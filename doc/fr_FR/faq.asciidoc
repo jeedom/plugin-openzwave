@@ -1,0 +1,17 @@
+[panel,primary]
+.Je souhaite utiliser le plugin sur un NAS Synology. Quelle est la procédure ?
+--
+Un tutoriel a été mis en ligne par Sarakha63 : https://forum.jeedom.fr/viewtopic.php?f=67&t=4586
+--
+
+[panel,primary]
+.Comment mettre à jour OpenZwave.
+--
+Voici la procédure pour mettre à jour toutes le dépendances :
+	
+	1. Arreter le moteur de tâches de Jeedom
+	2. Arreter le plugin OpenZwave
+	3. Lancer la commande d'installation : wget http://127.0.0.1/jeedom/plugins/openzwave/ressources/install.sh -v -O install.sh; ./install.sh
+	4. Relancer le plugin OpenZwave
+	5. Relancer le moteur de tâches de Jeedom
+--

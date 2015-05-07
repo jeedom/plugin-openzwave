@@ -1,0 +1,14 @@
+* *Configuration du plugin OpenZwave :*
+
+Séléction de la clé Z-Wave et du port d'écoute :
+Par défaut, celui-ci est le port 8083, si vous utilisez déjà ce port pour un autre service, vous pouvez modifier celui-ci.
+
+image:../images/openzwave1.png[]
+
+* *Configuration du plugin Z-Wave :*
+
+* Zway IP : 127.0.0.1 par défaut (si vous utilisez la clé sur une autre machine, veuillez indiquer ici son adresse IP)
+* Zway port : 8083 par défaut (si vous utilisez un autre port, veuillez l'indiquer ici)
+* Cocher la case : J'utilise un serveur OpenZwave
+
+image:../images/openzwave2.png[]

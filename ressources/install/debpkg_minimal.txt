@@ -1,0 +1,31 @@
+# Minimal installation for a Python ecosystem
+# for OpenZwave
+
+# Dpkg
+mercurial subversion python-pip python-dev
+python-setuptools python-louie
+python-sphinx make
+build-essential libudev-dev g++ gcc
+
+
+# Python
+pip install cython==0.14
+pip install sphinxcontrib-blockdiag
+pip install sphinxcontrib-actdiag
+pip install sphinxcontrib-nwdiag
+pip install sphinxcontrib-seqdiag
+pip install urwid
+pip install louie
+pip install flask
+pip install flask-restful
+
+# Installation de Python-OpenZwave
+$ sudo mkdir /opt
+$ sudo hg clone https://code.google.com/p/python-openzwave/ /opt/python-openzwave
+$ cd /opt/python-openzwave
+$ sudo ./update.sh
+$ sudo ./compile.sh clean
+$ sudo ./install.sh
+$ sudo chmod 775 -R /opt/python-openzwave
+$ sudo chown -R www-data:www-data /opt/python-openzwave
+

@@ -1,0 +1,104 @@
+<!doctype html>
+    
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>OpenZwave Expert Mode</title>
+		<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        
+        <script type="text/javascript" src="/static/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="/static/vivagraph.min.js"></script>
+        <script type="text/javascript" src="/static/app.js"></script>
+        <style media="screen" type="text/css">
+
+#graph_network {height:1200px; width:100%;}
+#graph_network > svg {height:100%; width:100%;}
+body{
+height:100%; 
+width:100%;
+}
+.nodes-nodelist {
+	position:fixed;
+    max-height:90%;
+    overflow-y:auto;  
+}
+.noscrolling{
+width:99%;
+overflow: hidden;
+}
+.table-striped{
+width:90%;
+}
+
+.template{
+width:80%;
+}
+.node-item{
+border: 1px solid;
+}
+
+.greeniconcolor {color:green;}	
+.yellowiconcolor {color:#FFD700;}
+.rediconcolor {color:red;}
+		</style>
+    </head>
+    <body>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#nodes">Nodes</a></li>
+                            <li><a href="#network">Network</a></li>
+                            <li><a href="#console">Console</a></li>
+                            <li><a href="#config">Config</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br><br>
+        
+        <div class="container noscrolling">
+            <div id="content"></div>
+        </div>
+		
+        <script src="/static/bootstrap/js/bootstrap.js"></script>
+    </body>
+</html>
+
+<script>
+
+var path = "http://"+window.location.host+"/";
+var nodes = {};
+
+app.load("console");
+app.load("nodes");
+app.load("network");
+app.load("config");
+app.load("graph");
+  
+var appname = "nodes";
+req = (window.location.hash).substring(1).split("/");
+
+appname = req[0];
+if (appname=="") appname = "nodes";
+
+app.show(appname);
+
+$(window).on('hashchange', function() {
+    app.hide(appname);
+    req = (window.location.hash).substring(1).split("/");
+    appname = req[0];
+    app.load(appname);
+    app.show(appname);
+});
+
+
+
+</script>

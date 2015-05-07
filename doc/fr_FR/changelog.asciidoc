@@ -1,0 +1,28 @@
+*V1.1 : Optimisations et corrections
+*V1.0 : Ajout bouton d'installation automatique
+*V0.9.17 : Nombreuses corrections + fonctions spéciales pour le rfid reader + compatibilité multi-controleur
+*V0.9.15 : Ajout de la documentation
+*V0.9.14 : Edition des groupes dans l'interface expert
+*V0.9.13 : Edition du polling dans l'interface expert + icônes représentant l'état des modules
+*V0.9.12 : Correction du cache + edition des valeurs dans l'interface expert
+*V0.9.11 : Edition des paramètres dans l'interface expert
+*v0.9.10 : Ajout de l'interface expert + nombreuses optimisations par Nechry
+*V0.9.9 : Ajout du mode Debug + Correction de l'autodétection
+*V0.9.8 : Ajout de la gestion des boutons
+*V0.9.7 : Ajout du port personnalisé du serveur
+*V0.9.7 : Correction pour les t° en Fahrenheit
+*V0.9.6 : Correction du statut des devices (interview & state)
+*V0.9.5 : Horodatage des logs
+*V0.9.4 : Optimisation pour le Raspberry
+*V0.9.3 : Ajout de la Network Key
+*V0.9.2 : Ajout du script pour patcher OpenZwave afin de supporter le BeNext Scene Controller
+*V0.9.1 : Modification du script d'installation
+*V0.9 : Gestion du polling via le plugin ZWave
+*V0.8 : Allègement de la charge + corrections de bugs
+*V0.7 : Compatibilité avec les paramètres des modules du Market
+*V0.6 : Ajout de la gestion des groupes + retour d'infos lors de l'inclusion/exclusion + Ajout de la table de routage
+*V0.5 : Amélioration du polling
+*V0.4 : Modifications sur la récupération des valeurs
+*V0.3 : Ajout de la gestion des batteries
+*V0.2 : Refonte du script d'install + quelques corrections.
+*V0.1 : Première beta

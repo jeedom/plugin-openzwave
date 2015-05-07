@@ -1,0 +1,32 @@
+{
+    "plugins\/openzwave\/plugin_info\/info.xml": {
+        "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave": "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave",
+        "Il faut installer le serveur OpenZwave :\n    \t- \"wget http:\/\/127.0.0.1\/jeedom\/plugins\/openzwave\/ressources\/install.sh -v -O install.sh; .\/install.sh\"\n        - Puis installer le plugin zwave\n    ": "Il faut installer le serveur OpenZwave :\n    \t- \"wget http:\/\/127.0.0.1\/jeedom\/plugins\/openzwave\/ressources\/install.sh -v -O install.sh; .\/install.sh\"\n        - Puis installer le plugin zwave\n    "
+    },
+    "plugins\/openzwave\/plugin_info\/configuration.php": {
+        "Arreter openZwave": "Arreter openZwave",
+        "Connexion à la Gateway : ": "Connexion à la Gateway : ",
+        "Aucun": "Aucun",
+        "Jeedom maître": "Jeedom maître",
+        "Gateway Réseau": "Gateway Réseau",
+        "Adresse de la Gateway": "Adresse de la Gateway",
+        "Port série non listé (port manuel)": "Port série non listé (port manuel)",
+        "ou": "ou",
+        "Inclusion": "Inclusion",
+        "Activée": "Activée",
+        "Désactivée": "Désactivée",
+        "Sauvegarde": "Sauvegarde",
+        "La sauvegarde de la configuration redémarre automatiquement le service, il faut attendre environ 1 minute pour qu'il soit joignable": "La sauvegarde de la configuration redémarre automatiquement le service, il faut attendre environ 1 minute pour qu'il soit joignable",
+        "Démarrer openZwave": "Démarrer openZwave"
+    },
+    "plugins\/openzwave\/core\/class\/openzwave.class.php": {
+        "Le port du openZwave est vide ou n'éxiste pas": "Le port du openZwave est vide ou n'éxiste pas"
+    },
+    "plugins\/openzwave\/desktop\/php\/openzwave.php": {
+        "Log des messages OpenZwave": "Log des messages OpenZwave",
+        "Arreter openZwave": "Arreter openZwave"
+    },
+    "plugins\/openzwave\/desktop\/js\/openzwave.js": {
+        "Log des messages openzwave": "Log des messages openzwave"
+    }
+}

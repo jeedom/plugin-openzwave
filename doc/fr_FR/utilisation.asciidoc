@@ -1,0 +1,11 @@
+* *Démarrage / Arret du serveur :*
+
+Le plugin se relance automatiquement toutes les minutes si celui-ci est arreté.
+
+Vous pouvez arreter / relancer OpenZwave à partir de la page de configuration plugin :
+
+image:../images/openzwave1.png[]
+
+* *Accès à l'interface avancée*
+
+L'accès à l'interface avancée est disponible sur la page du plugin.
