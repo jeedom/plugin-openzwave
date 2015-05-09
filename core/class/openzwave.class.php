@@ -46,10 +46,9 @@ class openzwave extends eqLogic {
 		}
 	}
 
-	public static function runDeamon() {
+	public static function runDeamon($_debug = false) {
 		self::stopDeamon();
 		log::add('openzwave', 'info', 'Lancement du démon openzwave');
-
 		$port = config::byKey('port', 'openzwave');
 		if ($port != 'auto') {
 			$port = jeedom::getUsbMapping($port);
@@ -57,39 +56,30 @@ class openzwave extends eqLogic {
 				throw new Exception(__('Le port : ', __FILE__) . print_r($port, true) . __(' n\'existe pas', __FILE__));
 			}
 		}
-
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
-
-		if (!file_exists($port)) {
-			config::save('port', '', 'openzwave');
-			throw new Exception(__('Le port : ', __FILE__) . $port . __(' n\'éxiste pas', __FILE__));
-		}
 		$openzwave_path = realpath(dirname(__FILE__) . '/../../ressources/zwaveserver');
-
-		$enable_logging = 0;
-		if (config::byKey('enableLogging', 'openzwave', 0) == 1) {
-			$enable_logging = 1;
-		}
-
-		if ($enable_logging == 1) {
+		if ($_debug) {
 			$cmd = 'nice -n 19 /usr/bin/python ' . $openzwave_path . '/rest-server.py --device=' . $port . ' --log=Debug --port=' . $port_server;
 		} else {
 			$cmd = 'nice -n 19 /usr/bin/python ' . $openzwave_path . '/rest-server.py --device=' . $port . ' --log=Info --port=' . $port_server;
 		}
-
 		log::add('openzwave', 'info', 'Lancement démon openzwave : ' . $cmd);
 		$result = exec('nohup ' . $cmd . ' >> ' . log::getPathToLog('openzwave') . ' 2>&1 &');
 		if (strpos(strtolower($result), 'error') !== false || strpos(strtolower($result), 'traceback') !== false) {
 			log::add('openzwave', 'error', $result);
 			return false;
 		}
-		sleep(2);
-		if (!self::deamonRunning()) {
-			sleep(10);
-			if (!self::deamonRunning()) {
-				log::add('openzwave', 'error', 'Impossible de lancer le démon openzwave, vérifiez le port', 'unableStartDeamon');
-				return false;
+		$i = 0;
+		while ($i < 30) {
+			if (self::deamonRunning()) {
+				break;
 			}
+			sleep(1);
+			$i++;
+		}
+		if ($i >= 30) {
+			log::add('openzwave', 'error', 'Impossible de lancer le démon openzwave, vérifiez le port', 'unableStartDeamon');
+			return false;
 		}
 		message::removeAll('openzwave', 'unableStartDeamon');
 		log::add('openzwave', 'info', 'Démon openzwave lancé');

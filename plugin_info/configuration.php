@@ -101,16 +101,11 @@ foreach (ls('/dev/', 'tty*') as $value) {
 	</div>
 </div>
 <div class="form-group">
-	<label class="col-sm-4 control-label">{{Mode Debug (cela peut ralentir le systeme)}}</label>
-	<div class="col-sm-2">
-		<input type="checkbox" class="configKey" data-l1key="enableLogging" />
-	</div>
-</div>
-<div class="form-group">
 	<label class="col-sm-4 control-label">{{Gestion du démon}}</label>
 	<div class="col-sm-8">
 		<a class="btn btn-success" id="bt_startopenZwaveDemon"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
 		<a class="btn btn-danger" id="bt_stopopenZwaveDemon"><i class='fa fa-stop'></i> {{Arrêter}}</a>
+		<a class="btn btn-warning" id="bt_launchOpenZwaveInDebug"><i class="fa fa-exclamation-triangle"></i> {{Lancer en mode debug}}</a>
 	</div>
 </div>
 </fieldset>
@@ -143,19 +138,12 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping') as $name => $value
 						<input class="slaveConfigKey form-control" data-l1key="port_server" placeholder="8083" />
 					</div>
 				</div>
-
-				<div class="form-group">
-					<label class="col-sm-4 control-label">{{Mode Debug (cela peut ralentir le systeme)}}</label>
-					<div class="col-sm-2">
-						<input type="checkbox" class="slaveConfigKey" data-l1key="enableLogging" />
-					</div>
-				</div>
-
 				<div class="form-group">
 					<label class="col-lg-4 control-label">{{Gestion du démon}}</label>
 					<div class="col-lg-8">
 						<a class="btn btn-success bt_restartOpenZwaveDeamon"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
 						<a class="btn btn-danger bt_stopZwaveDeamon"><i class='fa fa-stop'></i> {{Arrêter}}</a>
+						<a class="btn btn-warning bt_launchOpenZwaveInDebug"><i class="fa fa-exclamation-triangle"></i> {{Lancer en mode debug}}</a>
 					</div>
 				</div>
 			</fieldset>
@@ -188,6 +176,25 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping') as $name => $value
 
 	$('.bt_stopZwaveDeamon').on('click', function() {
 		stopopenZwaveDemon('remote',$(this).closest('.slaveConfig').attr('data-slave_id'));
+	});
+
+	$('.bt_launchOpenZwaveInDebug').on('click', function () {
+		var slave_id = $(this).closest('.slaveConfig').attr('data-slave_id');
+		bootbox.confirm('{{Etes-vous sur de vouloir lancer le démon en mode debug ? N\'oubliez pas de le relancer en mode normale une fois terminé}}', function (result) {
+			if (result) {
+				$('#md_modal').dialog({title: "{{Openzwave en mode debug}}"});
+				$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=show.debug&slave_id='+slave_id).dialog('open');
+			}
+		});
+	});
+
+	$('#bt_launchOpenZwaveInDebug').on('click', function () {
+		bootbox.confirm('{{Etes-vous sûr de vouloir lancer le démon en mode debug ? N\'oubliez pas d\'arrêter/redémarrer le démon une fois terminé}}', function (result) {
+			if (result) {
+				$('#md_modal').dialog({title: "{{Openzwave en mode debug}}"});
+				$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=show.debug').dialog('open');
+			}
+		});
 	});
 
 	function stopopenZwaveDemon(type,id) {
@@ -237,6 +244,13 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping') as $name => $value
 	        $('#ul_plugin .li_plugin[data-plugin_id=openzwave]').click();
 	    }
 	});
+	}
 
+	function openzwave_postSaveConfiguration(){
+		startopenZwaveDemon('local',0);
+	}
+
+	function openzwave_postSaveSlaveConfiguration(_slave_id){
+		startopenZwaveDemon('remote',_slave_id);
 	}
 </script>

@@ -56,7 +56,7 @@ try {
 				throw new Exception(__('Impossible de trouver l\'esclave : ', __FILE__) . init('id'));
 			}
 			$jsonrpc = $jeeNetwork->getJsonRpc();
-			if (!$jsonrpc->sendRequest('runDeamon', array('plugin' => 'openzwave'))) {
+			if (!$jsonrpc->sendRequest('runDeamon', array('plugin' => 'openzwave', 'debug' => init('debug', 0)))) {
 				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 			}
 		} else {
@@ -68,7 +68,8 @@ try {
 			if (openzwave::deamonRunning()) {
 				throw new Exception(__('Impossible d\'arrêter le démon', __FILE__));
 			}
-			openzwave::runDeamon();
+			log::clear('openzwave');
+			openzwave::runDeamon(init('debug', 0));
 		}
 		ajax::success();
 	}

@@ -37,7 +37,9 @@ if ($jsonrpc->getMethod() == 'runDeamon') {
 	if (openzwave::deamonRunning()) {
 		throw new Exception(__('Impossible d\'arrêter le démon', __FILE__));
 	}
-	openzwave::runDeamon();
+	log::clear('openzwave');
+	$params['debug'] = (!isset($params['debug'])) ? 0 : $params['debug'];
+	openzwave::runDeamon($params['debug']);
 	$jsonrpc->makeSuccess('ok');
 }
 
