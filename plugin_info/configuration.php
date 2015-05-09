@@ -59,6 +59,19 @@ foreach ($deamonRunningSlave as $name => $status) {
 
 <form class="form-horizontal">
 	<fieldset>
+		<legend>{{Générale}}</legend>
+		<div class="form-group">
+			<label class="col-lg-4 control-label">{{Supprimer automatiquement les périphériques exclus}}</label>
+			<div class="col-lg-3">
+				<input type="checkbox" class="configKey" data-l1key="autoRemoveExcludeDevice" />
+			</div>
+		</div>
+	</fieldset>
+</form>
+
+
+<form class="form-horizontal">
+	<fieldset>
 		<legend>{{Démon local}}</legend>
 		<?php
 if (exec('sudo cat /etc/sudoers') != "") {

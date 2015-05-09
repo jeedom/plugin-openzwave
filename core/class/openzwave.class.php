@@ -67,7 +67,10 @@ class openzwave extends eqLogic {
 						'port' => $jeeNetwork->configByKey('port_server', 'openzwave', 8083),
 						'path' => config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave'),
 					);
-
+					if (self::$_listZwaveServer[$jeeNetwork->getId()]['path'] == '') {
+						self::updateNginxRedirection();
+					}
+					self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
 				}
 
 			}
