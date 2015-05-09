@@ -96,7 +96,6 @@ if ($controlerState == 5) {
 	echo '</div>';
 }
 ?>
-
            <div class="cursor expertModeVisible" id="bt_syncEqLogic2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
             <center>
                 <i class="fa fa-refresh" style="font-size : 5em;color:#767676;"></i>
@@ -137,11 +136,7 @@ if ($controlerState == 5) {
 foreach ($eqLogics as $eqLogic) {
 	echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center>";
-	$urlPath = config::byKey('market::address') . '/filestore/market/zwave/images/' . $eqLogic->getConfiguration('device') . '.jpg';
-	$urlPath2 = config::byKey('market::address') . '/filestore/market/zwave/images/' . $eqLogic->getConfiguration('device') . '_icon.png';
-	$urlPath3 = config::byKey('market::address') . '/filestore/market/zwave/images/' . $eqLogic->getConfiguration('device') . '_icon.jpg';
-
-	echo '<img class="lazy" src="plugins/zwave/doc/images/zwave_icon.png" data-original3="' . $urlPath3 . '" data-original2="' . $urlPath2 . '" data-original="' . $urlPath . '" height="105" width="95" />';
+	echo '<img class="lazy" src="plugins/openzwave/doc/images/openzwave_icon.png" height="105" width="95" />';
 	echo "</center>";
 	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $eqLogic->getHumanName(true, true) . '</center></span>';
 	echo '</div>';
