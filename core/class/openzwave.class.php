@@ -79,11 +79,10 @@ class openzwave extends eqLogic {
 	public static function updateNginxRedirection() {
 		foreach (self::listServerZwave() as $zwave) {
 			$urlPath = config::byKey('urlPath' . $zwave['id'], 'openzwave');
-			if ($urlPath != '') {
-				continue;
+			if ($urlPath == '') {
+				$urlPath = 'openzwave_' . $zwave['id'] . '_' . config::genKey(30);
+				config::save('urlPath' . $zwave['id'], $urlPath, 'openzwave');
 			}
-			$urlPath = 'openzwave_' . $zwave['id'] . '_' . config::genKey(30);
-			config::save('urlPath' . $zwave['id'], $urlPath, 'openzwave');
 			$rules = array(
 				"location /" . $urlPath . "/ {\n" .
 				"proxy_pass http://" . $zwave['addr'] . ":" . $zwave['port'] . "/;\n" .
