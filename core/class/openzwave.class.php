@@ -573,11 +573,109 @@ class openzwave extends eqLogic {
 		return $return;
 	}
 
+	public function loadCmdFromConf() {
+		if (!file_exists(dirname(__FILE__) . '/../config/devices/' . $eqLogic->getConfiguration('product_name') . '.json')) {
+			return;
+		}
+		$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $eqLogic->getConfiguration('product_name') . '.json');
+		if (!is_json($content)) {
+			return;
+		}
+		$device = json_decode($content, true);
+		if (!is_array($device) || !isset($device['commands'])) {
+			return true;
+		}
+		$cmd_order = 0;
+		$link_cmds = array();
+		if (isset($device['configuration'])) {
+			foreach ($device['configuration'] as $key => $value) {
+				try {
+					$this->setConfiguration($key, $value);
+				} catch (Exception $e) {
+
+				}
+			}
+		}
+		nodejs::pushUpdate('jeedom::alert', array(
+			'level' => 'warning',
+			'message' => __('Création des commandes à partir d\'une configuration', __FILE__),
+		));
+		$commands = $device['commands'];
+		foreach ($commands as &$command) {
+			if (!isset($command['configuration']['instanceId'])) {
+				$command['configuration']['instanceId'] = 0;
+			}
+			if (!isset($command['configuration']['class'])) {
+				$command['configuration']['class'] = '';
+			}
+			$cmd = null;
+			foreach ($this->getCmd() as $liste_cmd) {
+				if ($liste_cmd->getConfiguration('instanceId', 0) == $command['configuration']['instanceId'] &&
+					$liste_cmd->getConfiguration('class') == $command['configuration']['class'] &&
+					$liste_cmd->getConfiguration('value') == $command['configuration']['value']) {
+					$cmd = $liste_cmd;
+					break;
+				}
+			}
+
+			try {
+				if ($cmd == null || !is_object($cmd)) {
+					$cmd = new openzwaveCmd();
+					$cmd->setOrder($cmd_order);
+					$cmd->setEqLogic_id($this->getId());
+				} else {
+					$command['name'] = $cmd->getName();
+					if (isset($command['display'])) {
+						unset($command['display']);
+					}
+				}
+				utils::a2o($cmd, $command);
+				if (isset($command['value'])) {
+					$cmd->setValue(null);
+				}
+				$cmd->save();
+				if (isset($command['value'])) {
+					$link_cmds[$cmd->getId()] = $command['value'];
+				}
+				$cmd_order++;
+			} catch (Exception $exc) {
+
+			}
+		}
+
+		if (count($link_cmds) > 0) {
+			foreach ($this->getCmd() as $eqLogic_cmd) {
+				foreach ($link_cmds as $cmd_id => $link_cmd) {
+					if ($link_cmd == $eqLogic_cmd->getName()) {
+						$cmd = cmd::byId($cmd_id);
+						if (is_object($cmd)) {
+							$cmd->setValue($eqLogic_cmd->getId());
+							$cmd->save();
+						}
+					}
+				}
+			}
+		}
+		nodejs::pushUpdate('jeedom::alert', array(
+			'level' => 'warning',
+			'message' => '',
+		));
+	}
+
 	public function createCommand() {
 		$return = array();
 		if (!is_numeric($this->getLogicalId())) {
 			return;
 		}
+
+		if (file_exists(dirname(__FILE__) . '/../config/devices/' . $eqLogic->getConfiguration('product_name') . '.json')) {
+			$this->loadCmdFromConf();
+			return;
+		}
+		nodejs::pushUpdate('jeedom::alert', array(
+			'level' => 'warning',
+			'message' => __('Création des commandes en mode automatique', __FILE__),
+		));
 		$results = self::callRazberry('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . ']', $this->getConfiguration('serverID', 1));
 		if (isset($results['instances']) && is_array($results['instances'])) {
 			foreach ($results['instances'] as $instanceID => $instance) {
@@ -714,6 +812,10 @@ class openzwave extends eqLogic {
 				}
 			}
 		}
+		nodejs::pushUpdate('jeedom::alert', array(
+			'level' => 'warning',
+			'message' => '',
+		));
 	}
 
 }
