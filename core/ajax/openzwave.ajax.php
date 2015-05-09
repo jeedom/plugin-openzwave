@@ -74,6 +74,79 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'syncEqLogicWithRazberry') {
+		foreach (zwave::listServerZwave() as $serverID => $server) {
+			if (isset($server['name'])) {
+				zwave::syncEqLogicWithRazberry($serverID);
+			}
+		}
+		ajax::success();
+	}
+
+	if (init('action') == 'changeIncludeState') {
+		zwave::changeIncludeState(init('mode'), init('state'), init('serverID'));
+		ajax::success();
+	}
+
+	if (init('action') == 'restartDeamon') {
+		$cron = cron::byClassAndFunction('zwave', 'pull');
+		if (is_object($cron)) {
+			$cron->stop();
+		}
+		ajax::success();
+	}
+
+	if (init('action') == 'getModuleInfo') {
+		$eqLogic = zwave::byId(init('id'));
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('Zwave eqLogic non trouvé : ', __FILE__) . init('id'));
+		}
+		ajax::success($eqLogic->getInfo());
+	}
+
+	if (init('action') == 'adminRazberry') {
+		ajax::success(zwave::adminRazberry(init('command')));
+	}
+
+	if (init('action') == 'getZwaveInfo') {
+		ajax::success(zwave::getZwaveInfo(init('path'), init('serverId', 1)));
+	}
+
+	if (init('action') == 'callRazberry') {
+		ajax::success(zwave::callRazberry(init('call'), init('serverId', 1)));
+	}
+
+	if (init('action') == 'listServerZway') {
+		ajax::success(zwave::listServerZwave());
+	}
+
+	if (init('action') == 'uploadConfZwave') {
+		$uploaddir = dirname(__FILE__) . '/../config';
+		if (!file_exists($uploaddir)) {
+			mkdir($uploaddir);
+		}
+		$uploaddir .= '/devices/';
+		if (!file_exists($uploaddir)) {
+			mkdir($uploaddir);
+		}
+		if (!file_exists($uploaddir)) {
+			throw new Exception(__('Répertoire d\'upload non trouvé : ', __FILE__) . $uploaddir);
+		}
+		if (!isset($_FILES['file'])) {
+			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
+		}
+		if (filesize($_FILES['file']['tmp_name']) > 2000000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 2Mo)', __FILE__));
+		}
+		if (!is_json(file_get_contents($_FILES['file']['tmp_name']))) {
+			throw new Exception(__('Le fichier json est invalide', __FILE__));
+		}
+		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $_FILES['file']['name'])) {
+			throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
+		}
+		ajax::success();
+	}
+
 	throw new Exception('Aucune methode correspondante');
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

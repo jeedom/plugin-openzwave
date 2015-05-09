@@ -21,7 +21,6 @@ if (!isConnect()) {
 	include_file('desktop', '404', 'php');
 	die();
 }
-$port = config::byKey('port', 'openzwave');
 $deamonRunningMaster = openzwave::deamonRunning();
 $deamonRunningSlave = array();
 if (config::byKey('jeeNetwork::mode') == 'master') {
