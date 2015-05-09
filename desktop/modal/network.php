@@ -25,15 +25,6 @@ if (!isConnect('admin')) {
 <style media="screen" type="text/css">
 	#graph_network {height:1200px; width:100%;}
 	#graph_network > svg {height:100%; width:100%;}
-	body{
-		height:100%;
-		width:100%;
-	}
-	.nodes-nodelist {
-		position:fixed;
-		max-height:90%;
-		overflow-y:auto;
-	}
 	.noscrolling{
 		width:99%;
 		overflow: hidden;
@@ -41,21 +32,22 @@ if (!isConnect('admin')) {
 	.table-striped{
 		width:90%;
 	}
-
-	.template{
-		width:80%;
-	}
 	.node-item{
 		border: 1px solid;
 	}
-
+	.modal-dialog-center {
+		margin: 0;
+		position: absolute;
+		top: 0%;
+		left: 0%;
+	}
 	.greeniconcolor {color:green;}
 	.yellowiconcolor {color:#FFD700;}
 	.rediconcolor {color:red;}
 </style>
 
 <span class='pull-right'>
-<select class="form-control expertModeVisible" style="width : 200px;" id="sel_zwaveNetworkServerId">
+	<select class="form-control expertModeVisible" style="width : 200px;" id="sel_zwaveNetworkServerId">
 		<?php
 foreach (openzwave::listServerZwave() as $id => $server) {
 	if (isset($server['name'])) {

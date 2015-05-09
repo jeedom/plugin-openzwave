@@ -27,30 +27,22 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 <style media="screen" type="text/css">
 	#graph_network {height:1200px; width:100%;}
 	#graph_network > svg {height:100%; width:100%;}
-	body{
-		height:100%;
-		width:100%;
-	}
-	.nodes-nodelist {
-		position:fixed;
-		max-height:90%;
-		overflow-y:auto;
-	}
 	.noscrolling{
 		width:99%;
 		overflow: hidden;
 	}
-	.table-striped{
-		width:90%;
-	}
-
 	.node-item{
 		border: 1px solid;
 	}
-
 	.greeniconcolor {color:green;}
 	.yellowiconcolor {color:#FFD700;}
 	.rediconcolor {color:red;}
+	.modal-dialog-center {
+		margin: 0;
+		position: absolute;
+		top: 0%;
+		left: 0%;
+	}
 </style>
 
 <div class="container-fluid noscrolling">
@@ -58,7 +50,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 </div>
 
 <script>
-console.log(path);
+	console.log(path);
 	var nodes = {};
 	app.load('nodes','plugins/openzwave/ressources/zwaveserver/');
 	app.show('nodes');
