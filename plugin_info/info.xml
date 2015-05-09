@@ -8,12 +8,11 @@
     <author>Thomas MARTINEZ (tmartinez) - Jean-François AUGER (Nechry)</author>
     <installation>Il faut installer le serveur OpenZwave :
     	- Veuillez suivre la procédure d'installation ci-dessous
-        - Puis installer le plugin zwave
     </installation>
     <require>1.10</require>
     <version>1.1</version>
     <allowRemote>1</allowRemote>
-    <canBeAction>0</canBeAction>
+    <mobile>openzwave</mobile>
     <category>automation protocol</category>
 </info>
 
