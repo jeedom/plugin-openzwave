@@ -307,17 +307,23 @@ class openzwave extends eqLogic {
 			$findDevice[$nodeId] = $nodeId;
 			if ($nodeId != $razberry_id && !is_object(self::getEqLogicByLogicalIdAndServerId($nodeId, $_serverId))) {
 				$eqLogic = new eqLogic();
-				$eqLogic->setEqType_name('zwave');
+				$eqLogic->setEqType_name('openzwave');
 				$eqLogic->setIsEnable(1);
-				$eqLogic->setName('Device ' . $nodeId);
+				if (isset($result['data']['name']['value'])) {
+					$eqLogic->setName($result['data']['name']['value']);
+				} else {
+					$eqLogic->setName('Device ' . $nodeId);
+				}
 				$eqLogic->setLogicalId($nodeId);
 				$eqLogic->setConfiguration('serverID', $_serverId);
 				$eqLogic->setIsVisible(1);
 				$eqLogic->save();
+				$eqLogic = openzwave::byId($eqLogic->getId());
+				$eqLogic->createCommand();
 			}
 		}
-		if (config::byKey('autoRemoveExcludeDevice', 'zwave') == 1 && count($findDevice) > 1) {
-			foreach (self::byType('zwave') as $eqLogic) {
+		if (config::byKey('autoRemoveExcludeDevice', 'openzwave') == 1 && count($findDevice) > 1) {
+			foreach (self::byType('openzwave') as $eqLogic) {
 				if (!isset($findDevice[$eqLogic->getLogicalId()]) && $eqLogic->getConfiguration('serverID') == $_serverId) {
 					$eqLogic->remove();
 				}
@@ -510,7 +516,7 @@ class openzwave extends eqLogic {
 			if (isset($results['data']['vendorString'])) {
 				$return['brand'] = array(
 					'value' => $results['data']['vendorString']['value'],
-					'datetime' => date('Y-m-d H:i:s', $results['data']['vendorString']['updateTime']),
+					'datetime' => '',
 				);
 			}
 
@@ -564,7 +570,146 @@ class openzwave extends eqLogic {
 	}
 
 	public function createCommand() {
+		$return = array();
+		if (!is_numeric($this->getLogicalId())) {
+			return;
+		}
+		$results = self::callRazberry('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . ']', $this->getConfiguration('serverID', 1));
+		if (isset($results['instances']) && is_array($results['instances'])) {
+			foreach ($results['instances'] as $instanceID => $instance) {
+				if (isset($instance['commandClasses']) && is_array($instance['commandClasses'])) {
+					foreach ($instance['commandClasses'] as $ccId => $commandClasses) {
+						if (isset($commandClasses['data']) && is_array($commandClasses['data'])) {
+							foreach ($commandClasses['data'] as $index => $data) {
+								if (isset($data['genre']) && $data['genre'] != 'Config' && $data['genre'] != 'System') {
+									$cmd_info = null;
+									$cmd = null;
+									if (!$data['write_only']) {
+										$cmd_info = new openzwaveCmd();
+										$cmd_info->setType('info');
+										$cmd_info->setEqLogic_id($this->getId());
+										$cmd_info->setUnite($data['units']);
+										if ($data['read_only']) {
+											$cmd_info->setName($data['name']);
+										} else {
+											$cmd_info->setName('Info ' . $data['name']);
+										}
+										$cmd_info->setConfiguration('instanceId', $instanceID);
+										$cmd_info->setConfiguration('class', $ccId);
+										$cmd_info->setConfiguration('value', 'data[' . $index . '].level');
+										switch ($data['type']) {
+											case 'bool':
+												$cmd_info->setSubType('binary');
+												break;
+											case 'int':
+												$cmd_info->setSubType('numeric');
+												$cmd_info->setIsHistorized(1);
+												break;
+											case 'float':
+												$cmd_info->setSubType('numeric');
+												$cmd_info->setIsHistorized(1);
+												break;
+										}
+										try {
+											$cmd_info->save();
+										} catch (Exception $e) {
 
+										}
+									}
+									if (!$data['read_only']) {
+										switch ($data['type']) {
+											case 'bool':
+												if ($data['typeZW'] == 'Button') {
+													$cmd = new openzwaveCmd();
+													$cmd->setSubType('other');
+													$cmd->setType('action');
+													$cmd->setEqLogic_id($this->getId());
+													$cmd->setName($data['name'] . ' On');
+													$cmd->setConfiguration('instanceId', $instanceID);
+													$cmd->setConfiguration('class', $ccId);
+													$cmd->setConfiguration('value', 'PressButton()');
+													try {
+														$cmd->save();
+													} catch (Exception $e) {
+
+													}
+													$cmd = new openzwaveCmd();
+													$cmd->setSubType('other');
+													$cmd->setType('action');
+													$cmd->setEqLogic_id($this->getId());
+													$cmd->setName($data['name'] . ' Off');
+													$cmd->setConfiguration('instanceId', $instanceID);
+													$cmd->setConfiguration('class', $ccId);
+													$cmd->setConfiguration('value', 'ReleaseButton()');
+													try {
+														$cmd->save();
+													} catch (Exception $e) {
+
+													}
+												}
+												break;
+											case 'int':
+												$cmd = new openzwaveCmd();
+												$cmd->setType('action');
+												$cmd->setEqLogic_id($this->getId());
+												$cmd->setName($data['name']);
+												$cmd->setConfiguration('instanceId', $instanceID);
+												$cmd->setConfiguration('class', $ccId);
+												$cmd->setConfiguration('value', 'Set(#slider#)');
+												$cmd->setSubType('slider');
+												if (is_object($cmd_info)) {
+													$cmd->setValue($cmd_info->getId());
+												}
+												try {
+													$cmd->save();
+												} catch (Exception $e) {
+
+												}
+												break;
+											case 'float':
+												$cmd = new openzwaveCmd();
+												$cmd->setType('action');
+												$cmd->setEqLogic_id($this->getId());
+												$cmd->setName($data['name']);
+												$cmd->setConfiguration('instanceId', $instanceID);
+												$cmd->setConfiguration('class', $ccId);
+												$cmd->setConfiguration('value', 'Set(#slider#)');
+												$cmd->setSubType('slider');
+												if (is_object($cmd_info)) {
+													$cmd->setValue($cmd_info->getId());
+												}
+												try {
+													$cmd->save();
+												} catch (Exception $e) {
+
+												}
+												break;
+											case 'List':
+												foreach (explode(';', $data['data_items']) as $value) {
+													$cmd = new openzwaveCmd();
+													$cmd->setType('action');
+													$cmd->setEqLogic_id($this->getId());
+													$cmd->setName($value);
+													$cmd->setConfiguration('instanceId', $instanceID);
+													$cmd->setConfiguration('class', $ccId);
+													$cmd->setConfiguration('value', 'Set(' . $value . ')');
+													$cmd->setSubType('other');
+													try {
+														$cmd->save();
+													} catch (Exception $e) {
+
+													}
+												}
+												break;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 }
