@@ -40,7 +40,7 @@ $eqLogics = eqLogic::byType('openzwave');
             <ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
                 <center style="margin-bottom: 5px;">
                     <a class="btn btn-default btn-sm tooltips" id="bt_syncEqLogic" title="{{Synchroniser équipement avec le contrôleur}}" style="display: inline-block;"><i class="fa fa-refresh"></i> <span class="expertModeHidden">{{Synchroniser}}</span></a>
-                   </center>
+                </center>
                 <?php
 if ($controlerState == 1) {
 	echo ' <a class="btn btn-success tooltips changeIncludeState" title="{{Inclure périphérique Z-Wave}}" data-mode="1" data-state="0" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-in fa-rotate-90"></i> {{Arrêter inclusion}}</a>';
@@ -65,9 +65,9 @@ foreach ($eqLogics as $eqLogic) {
    </div>
 
    <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
-     <legend>{{Gestion}}</legend>
-     <div class="eqLogicThumbnailContainer">
-         <?php
+       <legend>{{Gestion}}</legend>
+       <div class="eqLogicThumbnailContainer">
+           <?php
 if ($controlerState == 1) {
 	echo '<div class="cursor changeIncludeState card" data-mode="1" data-state="0" style="background-color : #8000FF; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo '<center>';
@@ -99,28 +99,36 @@ if ($controlerState == 5) {
 	echo '</div>';
 }
 ?>
-       <div class="cursor" id="bt_getFromMarket2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-        <center>
-            <i class="fa fa-shopping-cart" style="font-size : 5em;color:#767676;"></i>
-        </center>
-        <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Accéder au Market}}</center></span>
-    </div>
+           <div class="cursor" id="bt_getFromMarket2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+            <center>
+                <i class="fa fa-shopping-cart" style="font-size : 5em;color:#767676;"></i>
+            </center>
+            <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Accéder au Market}}</center></span>
+        </div>
 
-    <div class="cursor expertModeVisible" id="bt_syncEqLogic2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-        <center>
-            <i class="fa fa-refresh" style="font-size : 5em;color:#767676;"></i>
-        </center>
-        <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Synchroniser}}</center></span>
-    </div>
-</div>
-<legend>{{Mes équipements Z-Wave}}
-    <span style="font-size: 0.7em;color:#c5c5c5">
-        Vous devez être connecté à internet pour voir les prévisualisations
-    </span>
-</legend>
-<div class="eqLogicThumbnailContainer">
+        <div class="cursor expertModeVisible" id="bt_syncEqLogic2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+            <center>
+                <i class="fa fa-refresh" style="font-size : 5em;color:#767676;"></i>
+            </center>
+            <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Synchroniser}}</center></span>
+        </div>
 
-    <?php
+        <div class="cursor expertModeVisible" id="bt_zwaveNetwork" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+            <center>
+                <i class="fa fa-sitemap" style="font-size : 5em;color:#767676;"></i>
+            </center>
+            <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Reseaux Zwave}}</center></span>
+        </div>
+
+    </div>
+    <legend>{{Mes équipements Z-Wave}}
+        <span style="font-size: 0.7em;color:#c5c5c5">
+            Vous devez être connecté à internet pour voir les prévisualisations
+        </span>
+    </legend>
+    <div class="eqLogicThumbnailContainer">
+
+        <?php
 foreach ($eqLogics as $eqLogic) {
 	echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center>";
@@ -134,7 +142,7 @@ foreach ($eqLogics as $eqLogic) {
 	echo '</div>';
 }
 ?>
-</div>
+   </div>
 </div>
 
 <div class="col-lg-10 col-md-9 col-sm-8 eqLogic" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
@@ -192,7 +200,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
                 </div>
                 <label class="col-sm-2 control-label">{{Serveur}}</label>
                 <div class="col-sm-4">
-                   <select class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="serverID">
+                 <select class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="serverID">
                     <?php
 foreach (openzwave::listServerZwave() as $id => $server) {
 	if (isset($server['name'])) {

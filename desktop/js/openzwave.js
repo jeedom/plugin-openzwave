@@ -94,7 +94,12 @@
 
 $('#bt_displayZwaveData').on('click', function () {
     $('#md_modal').dialog({title: "{{Arbre Z-Wave de l'équipement}}"});
-    $('#md_modal').load('index.php?v=d&plugin=zwave&modal=zwave.data&id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
+    $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=zwave.data&id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
+});
+
+$('#bt_zwaveNetwork').on('click', function () {
+    $('#md_modal').dialog({title: "{{Réseaux zwave}}"});
+    $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=network').dialog('open');
 });
 
 $("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
