@@ -75,16 +75,16 @@ try {
 	}
 
 	if (init('action') == 'syncEqLogicWithRazberry') {
-		foreach (zwave::listServerZwave() as $serverID => $server) {
+		foreach (openzwave::listServerZwave() as $serverID => $server) {
 			if (isset($server['name'])) {
-				zwave::syncEqLogicWithRazberry($serverID);
+				openzwave::syncEqLogicWithRazberry($serverID);
 			}
 		}
 		ajax::success();
 	}
 
 	if (init('action') == 'changeIncludeState') {
-		zwave::changeIncludeState(init('mode'), init('state'), init('serverID'));
+		openzwave::changeIncludeState(init('mode'), init('state'), init('serverID'));
 		ajax::success();
 	}
 
@@ -97,7 +97,7 @@ try {
 	}
 
 	if (init('action') == 'getModuleInfo') {
-		$eqLogic = zwave::byId(init('id'));
+		$eqLogic = openzwave::byId(init('id'));
 		if (!is_object($eqLogic)) {
 			throw new Exception(__('Zwave eqLogic non trouvé : ', __FILE__) . init('id'));
 		}
@@ -105,19 +105,19 @@ try {
 	}
 
 	if (init('action') == 'adminRazberry') {
-		ajax::success(zwave::adminRazberry(init('command')));
+		ajax::success(openzwave::adminRazberry(init('command')));
 	}
 
 	if (init('action') == 'getZwaveInfo') {
-		ajax::success(zwave::getZwaveInfo(init('path'), init('serverId', 1)));
+		ajax::success(openzwave::getZwaveInfo(init('path'), init('serverId', 1)));
 	}
 
 	if (init('action') == 'callRazberry') {
-		ajax::success(zwave::callRazberry(init('call'), init('serverId', 1)));
+		ajax::success(openzwave::callRazberry(init('call'), init('serverId', 1)));
 	}
 
 	if (init('action') == 'listServerZway') {
-		ajax::success(zwave::listServerZwave());
+		ajax::success(openzwave::listServerZwave());
 	}
 
 	if (init('action') == 'uploadConfZwave') {

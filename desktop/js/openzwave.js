@@ -102,6 +102,11 @@ $('#bt_zwaveNetwork').on('click', function () {
     $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=network').dialog('open');
 });
 
+$('#bt_configureDevice').on('click', function () {
+    $('#md_modal').dialog({title: "{{Configuration du module}}"});
+    $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=node.configure&id='+ $('.eqLogicAttr[data-l1key=logicalId]').value()+'&serverId='+ $('.eqLogicAttr[data-l1key=configuration][data-l2key=serverID]').value()).dialog('open');
+});
+
 $("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
 $('body').delegate('#bt_getFromMarket,#bt_getFromMarket2', 'click', function () {
@@ -336,7 +341,6 @@ function addCmdToTable(_cmd) {
     tr += '<span><input type="checkbox" class="cmdAttr" data-l1key="isHistorized" /> {{Historiser}}<br/></span>';
     tr += '<span><input type="checkbox" class="cmdAttr" data-l1key="isVisible" checked/> {{Afficher}}<br/></span>';
     tr += '<span class="expertModeVisible"><input type="checkbox" class="cmdAttr" data-l1key="eventOnly" /> {{Evénement}}<br/></span>';
-    tr += '<span class="expertModeVisible"><input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="onlyChangeEvent" /> {{Evenement sur changement}}<br/></span>';
     tr += '<span class="expertModeVisible"><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="invertBinary" /> {{Inverser}}<br/></span>';
     tr += '<input style="width : 150px;" class="tooltips cmdAttr form-control expertModeVisible input-sm" data-l1key="cache" data-l2key="lifetime" placeholder="{{Lifetime cache}}">';
     tr += '</td>';

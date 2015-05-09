@@ -217,23 +217,23 @@ foreach (openzwave::listServerZwave() as $id => $server) {
             <input class="eqLogicAttr form-control" data-l1key="timeout" />
         </div>
     </div>
-</div>
-<div class="form-group expertModeVisible">
-    <label class="col-sm-4 control-label">{{Ne jamais mettre en erreur}}</label>
-    <div class="col-sm-1">
-        <input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="nerverFail"/>
+
+    <div class="form-group expertModeVisible">
+        <label class="col-sm-4 control-label">{{Ne jamais mettre en erreur}}</label>
+        <div class="col-sm-1">
+            <input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="nerverFail"/>
+        </div>
+        <label class="col-sm-4 control-label">{{Ne pas vérifier la batterie}}</label>
+        <div class="col-sm-1">
+            <input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="noBatterieCheck"/>
+        </div>
     </div>
-    <label class="col-sm-4 control-label">{{Ne pas vérifier la batterie}}</label>
-    <div class="col-sm-1">
-        <input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="noBatterieCheck"/>
+    <div class="form-group">
+        <label class="col-sm-4 control-label">{{Commentaire}}</label>
+        <div class="col-sm-8">
+            <textarea class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire" ></textarea>
+        </div>
     </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-4 control-label">{{Commentaire}}</label>
-    <div class="col-sm-8">
-        <textarea class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire" ></textarea>
-    </div>
-</div>
 </fieldset>
 </form>
 </div>
@@ -241,9 +241,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
     <form class="form-horizontal">
         <fieldset>
             <legend>{{Informations}}
-                <i id="bt_autoDetectModule" class="fa fa-search expertModeVisible pull-right tooltips cursor" title="{{Detecter automatiquement le modele du module}}"></i>
                 <i id="bt_displayZwaveData" title="{{Voir l'arbre Z-Wave}}" class="fa fa-tree expertModeVisible pull-right tooltips cursor"></i>
-                <i  id="bt_showClass" title="{{Voir les classes Z-Wave}}" class="fa fa-eye expertModeVisible pull-right tooltips cursor"></i>
             </legend>
 
             <div class="form-group">
@@ -307,18 +305,19 @@ foreach (openzwave::devicesParameters() as $id => $info) {
         <div class="form-group">
             <label class="col-sm-2 control-label">{{Interview}}</label>
             <div class="col-sm-3">
-                <a class="btn btn-default btn-sm" id="bt_showInterview" ><i class="fa fa-eye"></i> <span class="zwaveInfo" data-l1key="interviewComplete"></span></a>
+            <span class="zwaveInfo label label-default" data-l1key="interviewComplete">
+                </div>
+                <label class="col-sm-2 control-label">{{Communication}}</label>
+                <div class="col-sm-4">
+                    <span class="zwaveInfo tooltips label label-default" data-l1key="lastReceived"></span>
+                </div>
             </div>
-            <label class="col-sm-2 control-label">{{Communication}}</label>
-            <div class="col-sm-4">
-                <span class="zwaveInfo tooltips label label-default" data-l1key="lastReceived"></span>
-            </div>
-        </div>
-        <center>
-            <img src="core/img/no_image.gif" data-original=".jpg" id="img_device" class="img-responsive" style="max-height : 250px;"/>
-        </center>
-    </fieldset>
-</form>
+            <center>
+                <img src="core/img/no_image.gif" data-original=".jpg" id="img_device" class="img-responsive" style="max-height : 250px;"/>
+            </center>
+        </fieldset>
+    </form>
+</div>
 </div>
 
 <legend>Commandes</legend>
