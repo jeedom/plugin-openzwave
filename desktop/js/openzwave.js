@@ -102,6 +102,14 @@ $('#bt_zwaveConsole').on('click', function () {
 
 $("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
+function printEqLogic(_eqLogic){
+ if($('.li_eqLogic.active').attr('data-eqlogic_id') != ''){
+    $('#img_device').attr("src", $('.eqLogicDisplayCard[data-eqLogic_id='+$('.li_eqLogic.active').attr('data-eqlogic_id')+'] img').attr('src'));
+}else{
+    $('#img_device').attr("src",'plugins/openzwave/doc/images/openzwave_icon.png');
+}
+}
+
 
 /**********************Node js requests *****************************/
 $('body').one('nodeJsConnect', function () {

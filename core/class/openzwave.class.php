@@ -314,6 +314,7 @@ class openzwave extends eqLogic {
 				$eqLogic->setIsEnable(1);
 				if (isset($result['data']['name']['value'])) {
 					$eqLogic->setName($result['data']['name']['value']);
+					$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
 				} else {
 					$eqLogic->setName('Device ' . $nodeId);
 				}
