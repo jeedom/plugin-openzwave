@@ -26,11 +26,16 @@ var app_console = {
             url: path+"ZWaveAPI/Run/GetOZLogs()", 
             dataType: 'json',
             async: true, 
+            global : false,
             success: function(data) {
-				if(data['result']){
-					$(".console-out").html(data['result']);
-					var h = parseInt($('#log')[0].scrollHeight);
-            		$('#log').scrollTop(h);
+                if (!$(".console-out").is(':visible')) {
+                    clearInterval(app_console.updater);
+                    return;
+                }
+                if(data['result']){
+                   $(".console-out").html(data['result']);
+                   var h = parseInt($('#log')[0].scrollHeight);
+                   $('#log').scrollTop(h);
 					//$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
 				}else{
 					$(".console-out").append("error");

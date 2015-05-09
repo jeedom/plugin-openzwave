@@ -15,23 +15,6 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
- $('#bt_uploadConfZwave').fileupload({
-    replaceFileInput: false,
-    dataType: 'json',
-    done: function (e, data) {
-        if (data.result.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result.result, level: 'danger'});
-            return;
-        }
-        if (modifyWithoutSave) {
-            $('#div_alert').showAlert({message: '{{Fichier ajouté avec succès. Vous devez rafraîchir pour vous en servir}}', level: 'success'});
-        } else {
-            window.location.reload();
-        }
-    }
-});
-
  $(".li_eqLogic").on('click', function () {
     printModuleInfo($(this).attr('data-eqLogic_id'));
     return false;
@@ -107,79 +90,17 @@ $('#bt_configureDevice').on('click', function () {
     $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=node.configure&id='+ $('.eqLogicAttr[data-l1key=logicalId]').value()+'&serverId='+ $('.eqLogicAttr[data-l1key=configuration][data-l2key=serverID]').value()).dialog('open');
 });
 
+$('#bt_zwaveConfig').on('click', function () {
+    $('#md_modal').dialog({title: "{{Configuration zwave}}"});
+    $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=config').dialog('open');
+});
+
+$('#bt_zwaveConsole').on('click', function () {
+    $('#md_modal').dialog({title: "{{Console zwave}}"});
+    $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=console').dialog('open');
+});
+
 $("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-
-$('body').delegate('#bt_getFromMarket,#bt_getFromMarket2', 'click', function () {
-    $('#md_modal').dialog({title: "{{Market module zwave}}"});
-    $('#md_modal').load('index.php?v=d&modal=market.list&type=zwave').dialog('open');
-});
-
-$('body').delegate('#bt_shareOnMarket', 'click', function () {
-    var logicalId = $('.eqLogicAttr[data-l1key=configuration][data-l2key=device]').value();
-    if (logicalId == '') {
-        $('#div_alert').showAlert({message: '{{Vous devez d\'abord sélectionner une configuration à partager}}', level: 'danger'});
-        return;
-    }
-    $('#md_modal').dialog({title: "{{Partager sur le market}}"});
-    $('#md_modal').load('index.php?v=d&modal=market.send&type=zwave&logicalId=' + encodeURI(logicalId) + '&name=' + encodeURI($('.eqLogicAttr[data-l1key=configuration][data-l2key=device] option:selected').text())).dialog('open');
-});
-
-$('.eqLogicAttr[data-l1key=configuration][data-l2key=device]').on('change', function () {
-    var logicalId = $(this).value();
-    $('#bt_deviceDocumentation').hide();
-
-    jeedom.market.byLogicalId({
-        logicalId : logicalId,
-        type : 'zwave',
-        global : false,
-        noExecption : 1,
-        success : function(data){
-            if(isset(data.link) && isset(data.link['doc_'+jeedom_langage])){
-                $('#bt_deviceDocumentation').show();
-                $('#bt_deviceDocumentation').attr('href',data.link['doc_'+jeedom_langage]);
-            }
-        }
-    });
-
-    $('#img_device').attr('src', 'core/img/no_image.gif');
-    $("<img>", {
-        src: marketAddr + '/filestore/market/zwave/images/' + logicalId + '.jpg',
-        error: function () {
-            $("<img>", {
-                src: marketAddr + '/filestore/market/zwave/images/' + logicalId + '_icon.png',
-                error: function () {
-                    $("<img>", {
-                        src: marketAddr + '/filestore/market/zwave/images/' + logicalId + '_icon.jpg',
-                        error: function () {
-
-                        },
-                        load: function () {
-                            $('#img_device').attr("data-original", marketAddr + '/filestore/market/zwave/images/' + logicalId + '_icon.jpg');
-                            $('#img_device').lazyload({
-                                event: "sporty"
-                            });
-                            $('#img_device').trigger("sporty");
-                        }
-                    });
-                },
-                load: function () {
-                    $('#img_device').attr("data-original", marketAddr + '/filestore/market/zwave/images/' + logicalId + '_icon.png');
-                    $('#img_device').lazyload({
-                        event: "sporty"
-                    });
-                    $('#img_device').trigger("sporty");
-                }
-            });
-},
-load: function () {
-    $('#img_device').attr("data-original", marketAddr + '/filestore/market/zwave/images/' + logicalId + '.jpg');
-    $('#img_device').lazyload({
-        event: "sporty"
-    });
-    $('#img_device').trigger("sporty");
-}
-});
-});
 
 
 /**********************Node js requests *****************************/

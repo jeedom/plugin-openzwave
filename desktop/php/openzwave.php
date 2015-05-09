@@ -62,9 +62,9 @@ foreach ($eqLogics as $eqLogic) {
    </div>
 
    <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
-     <legend>{{Gestion}}</legend>
-     <div class="eqLogicThumbnailContainer">
-         <?php
+       <legend>{{Gestion}}</legend>
+       <div class="eqLogicThumbnailContainer">
+           <?php
 if ($controlerState == 1) {
 	echo '<div class="cursor changeIncludeState card" data-mode="1" data-state="0" style="background-color : #8000FF; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo '<center>';
@@ -97,29 +97,43 @@ if ($controlerState == 5) {
 }
 ?>
 
-    <div class="cursor expertModeVisible" id="bt_syncEqLogic2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-        <center>
-            <i class="fa fa-refresh" style="font-size : 5em;color:#767676;"></i>
-        </center>
-        <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Synchroniser}}</center></span>
+           <div class="cursor expertModeVisible" id="bt_syncEqLogic2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+            <center>
+                <i class="fa fa-refresh" style="font-size : 5em;color:#767676;"></i>
+            </center>
+            <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Synchroniser}}</center></span>
+        </div>
+
+        <div class="cursor expertModeVisible" id="bt_zwaveNetwork" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+            <center>
+                <i class="fa fa-sitemap" style="font-size : 5em;color:#767676;"></i>
+            </center>
+            <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Reseaux Zwave}}</center></span>
+        </div>
+
+        <div class="cursor expertModeVisible" id="bt_zwaveConfig" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+            <center>
+                <i class="fa fa-cog" style="font-size : 5em;color:#767676;"></i>
+            </center>
+            <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Configuration}}</center></span>
+        </div>
+
+        <div class="cursor expertModeVisible" id="bt_zwaveConsole" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+            <center>
+                <i class="fa fa-terminal" style="font-size : 5em;color:#767676;"></i>
+            </center>
+            <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Console}}</center></span>
+        </div>
+
     </div>
+    <legend>{{Mes équipements Z-Wave}}
+        <span style="font-size: 0.7em;color:#c5c5c5">
+            Vous devez être connecté à internet pour voir les prévisualisations
+        </span>
+    </legend>
+    <div class="eqLogicThumbnailContainer">
 
-    <div class="cursor expertModeVisible" id="bt_zwaveNetwork" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-        <center>
-            <i class="fa fa-sitemap" style="font-size : 5em;color:#767676;"></i>
-        </center>
-        <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Reseaux Zwave}}</center></span>
-    </div>
-
-</div>
-<legend>{{Mes équipements Z-Wave}}
-    <span style="font-size: 0.7em;color:#c5c5c5">
-        Vous devez être connecté à internet pour voir les prévisualisations
-    </span>
-</legend>
-<div class="eqLogicThumbnailContainer">
-
-    <?php
+        <?php
 foreach ($eqLogics as $eqLogic) {
 	echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center>";
@@ -133,7 +147,7 @@ foreach ($eqLogics as $eqLogic) {
 	echo '</div>';
 }
 ?>
-</div>
+   </div>
 </div>
 
 <div class="col-lg-10 col-md-9 col-sm-8 eqLogic" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
@@ -191,7 +205,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
                 </div>
                 <label class="col-sm-2 control-label">{{Serveur}}</label>
                 <div class="col-sm-4">
-                   <select class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="serverID">
+                 <select class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="serverID">
                     <?php
 foreach (openzwave::listServerZwave() as $id => $server) {
 	if (isset($server['name'])) {
@@ -236,7 +250,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
             </legend>
 
             <div class="form-group">
-            <label class="col-sm-2 control-label">{{Paramètres}}</label>
+                <label class="col-sm-2 control-label">{{Paramètres}}</label>
                 <a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fa fa-wrench"></i> {{Configuration}}</a>
                 <a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank"><i class="fa fa-book"></i> {{Documentation}}</a>
             </div>
