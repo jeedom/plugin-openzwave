@@ -304,11 +304,11 @@ class openzwave extends eqLogic {
 		$results = self::callRazberry('/ZWaveAPI/Data/0', $_serverId);
 		$findDevice = array();
 		$include_device = '';
-		$razberry_id = self::getZwaveInfo('controller::data::nodeId::value', $_serverId);
 		$findConfiguration = true;
 		foreach ($results['devices'] as $nodeId => $result) {
 			$findDevice[$nodeId] = $nodeId;
-			if ($nodeId != $razberry_id && !is_object(self::getEqLogicByLogicalIdAndServerId($nodeId, $_serverId))) {
+			$eqLogic = self::getEqLogicByLogicalIdAndServerId($nodeId, $_serverId);
+			if (!is_object($eqLogic)) {
 				$eqLogic = new eqLogic();
 				$eqLogic->setEqType_name('openzwave');
 				$eqLogic->setIsEnable(1);
@@ -324,6 +324,11 @@ class openzwave extends eqLogic {
 				$eqLogic->save();
 				$eqLogic = openzwave::byId($eqLogic->getId());
 				$eqLogic->createCommand();
+			} else {
+				if (isset($result['data']['name']['value'])) {
+					$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
+					$eqLogic->save();
+				}
 			}
 		}
 		if (config::byKey('autoRemoveExcludeDevice', 'openzwave') == 1 && count($findDevice) > 1) {
@@ -617,7 +622,6 @@ class openzwave extends eqLogic {
 					break;
 				}
 			}
-
 			try {
 				if ($cmd == null || !is_object($cmd)) {
 					$cmd = new openzwaveCmd();
