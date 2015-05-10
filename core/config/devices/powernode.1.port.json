@@ -1,0 +1,126 @@
+{
+	"name" : "Powernode 1",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+            {
+                "name": "Etat",
+                "type": "info",
+                "subType": "binary",
+                "isHistorized": "0",
+                "eventOnly": "1",
+                "configuration": {
+                    "class": "0x25",
+                    "instanceId": "0",
+                    "value": "data.level"
+                },
+                "display": {
+                    "invertBinary": "0"
+                },
+                "isVisible": "0"
+            },
+            {
+                "name": "On",
+                "type": "action",
+                "subType": "other",
+                "isHistorized": "0",
+                "eventOnly": "0",
+                "configuration": {
+                    "class": "0x25",
+                    "instanceId": "0",
+                    "value": "Set(255)"
+                },
+                "template": {
+                    "dashboard": "Multiprise",
+                    "mobile": "Multiprise"
+                },
+                "display": {
+                    "invertBinary": "0"
+                },
+                "value": "Etat",
+                "isVisible": "1"
+            },
+            {
+                "name": "Off",
+                "type": "action",
+                "subType": "other",
+                "isHistorized": "0",
+                "eventOnly": "0",
+                "configuration": {
+                    "class": "0x25",
+                    "instanceId": "0",
+                    "value": "Set(0)"
+                },
+                "template": {
+                    "dashboard": "Multiprise",
+                    "mobile": "Multiprise"
+                },
+                "display": {
+                    "invertBinary": "0"
+                },
+                "value": "Etat",
+                "isVisible": "1"
+            },
+            {
+                "name": "Reset",
+                "type": "action",
+                "subType": "other",
+                "isHistorized": "0",
+                "eventOnly": "0",
+                "configuration": {
+                    "class": "0x32",
+                    "instanceId": "0",
+                    "value": "Reset()"
+                },
+                "display": {
+                    "invertBinary": "0"
+                },
+                "isVisible": "0"
+            },
+            {
+                "name": "Puissance",
+                "type": "info",
+                "subType": "numeric",
+                "isHistorized": "1",
+                "unite": "W",
+                "eventOnly": "1",
+                "configuration": {
+                    "class": "0x32",
+                    "instanceId": "0",
+                    "value": "data[8].val",
+                    "maxValue": "2500",
+                    "minValue": "0"
+                },
+                "template": {
+                    "dashboard": "badge-Multiprise",
+                    "mobile": "default"
+                },
+                "display": {
+                    "invertBinary": "0"
+                },
+                "isVisible": "1"
+            },
+            {
+                "name": "Conso",
+                "type": "info",
+                "subType": "numeric",
+                "isHistorized": "0",
+                "unite": "kWh",
+                "eventOnly": "1",
+                "configuration": {
+                    "class": "0x32",
+                    "instanceId": "0",
+                    "value": "data[0].val"
+                },
+                "template": {
+                    "dashboard": "badge-Multiprise",
+                    "mobile": "default"
+                },
+                "display": {
+                    "invertBinary": "0"
+                },
+                "isVisible": "1"
+            }
+        ]
+}
