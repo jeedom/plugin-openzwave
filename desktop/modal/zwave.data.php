@@ -25,8 +25,8 @@ $eqLogic = eqLogic::byId(init('id'));
 if (!is_object($eqLogic)) {
 	throw new Exception('{{EqLogic non trouvé}}');
 }
-include_file('3rdparty', 'jsonTree/jsonTree', 'css', 'zwave');
-include_file('3rdparty', 'jsonTree/jsonTree', 'js', 'zwave');
+include_file('3rdparty', 'jsonTree/jsonTree', 'css', 'openzwave');
+include_file('3rdparty', 'jsonTree/jsonTree', 'js', 'openzwave');
 
 $json = openzwave::callRazberry('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . ']', $eqLogic->getConfiguration('serverID', 1));
 sendVarToJs('zwaveDataTree', $json);
