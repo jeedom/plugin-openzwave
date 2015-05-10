@@ -100,7 +100,7 @@ if ($controlerState == 5) {
 	echo '</div>';
 }
 ?>
-           <div class="cursor expertModeVisible" id="bt_syncEqLogic2" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+           <div class="cursor expertModeVisible" id="bt_syncEqLogic" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
             <center>
                 <i class="fa fa-refresh" style="font-size : 5em;color:#767676;"></i>
             </center>

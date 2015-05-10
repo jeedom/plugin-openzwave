@@ -15,7 +15,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- $('#bt_syncEqLogic,#bt_syncEqLogic2').on('click', function () {
+ $('#bt_syncEqLogic').on('click', function () {
     syncEqLogicWithRazberry();
 });
  $('.changeIncludeState').on('click', function () {
