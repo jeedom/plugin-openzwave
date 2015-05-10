@@ -56,7 +56,12 @@ class openzwave extends eqLogic {
 					'name' => 'Local',
 					'addr' => '127.0.0.1',
 					'port' => config::byKey('port_server', 'openzwave', 8083),
+					'path' => config::byKey('urlPath0', 'openzwave'),
 				);
+				if (self::$_listZwaveServer[0]['path'] == '') {
+					self::updateNginxRedirection();
+				}
+				self::$_listZwaveServer[0]['path'] = config::byKey('urlPath0', 'openzwave');
 			}
 			if (config::byKey('jeeNetwork::mode') == 'master') {
 				foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
