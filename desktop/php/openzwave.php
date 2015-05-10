@@ -9,25 +9,29 @@ sendVarToJS('eqType', 'openzwave');
 sendVarToJS('marketAddr', config::byKey('market::address'));
 sendVarToJS('listServerZway', openzwave::listServerZwave());
 echo '<div id="div_inclusionAlert"></div>';
+$controlerState = 0;
+
 foreach (openzwave::listServerZwave() as $id => $server) {
 	if (isset($server['name'])) {
-		try {
-			$controlerState = openzwave::getZwaveInfo('controller::data::controllerState::value', $id);
-		} catch (Exception $e) {
-			$controlerState = 0;
-		}
-		if ($controlerState === 0) {
-			echo '<div id="div_inclusionAlert' . $id . '"></div>';
-		}
-		if ($controlerState === 1) {
-			echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert' . $id . '" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode inclusion sur ' . $server['name'] . '. Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode}}</div>';
-		}
-		if ($controlerState === 5) {
-			echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert' . $id . '" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode exclusion sur ' . $server['name'] . '. Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}</div>';
-		}
-		if ($controlerState === null) {
-			echo '<div class="alert jqAlert alert-danger" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Impossible de contacter le serveur Z-wave ' . $server['name'] . '.}}</div>';
-		}
+		echo '<div id="div_inclusionAlert' . $id . '"></div>';
+		/*
+	try {
+	$controlerState = openzwave::getZwaveInfo('controller::data::controllerState::value', $id);
+	} catch (Exception $e) {
+	$controlerState = 0;
+	}
+	if ($controlerState === 0) {
+	echo '<div id="div_inclusionAlert' . $id . '"></div>';
+	}
+	if ($controlerState === 1) {
+	echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert' . $id . '" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode inclusion sur ' . $server['name'] . '. Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode}}</div>';
+	}
+	if ($controlerState === 5) {
+	echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert' . $id . '" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode exclusion sur ' . $server['name'] . '. Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}</div>';
+	}
+	if ($controlerState === null) {
+	echo '<div class="alert jqAlert alert-danger" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Impossible de contacter le serveur Z-wave ' . $server['name'] . '.}}</div>';
+	}*/
 	}
 }
 

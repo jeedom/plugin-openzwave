@@ -152,7 +152,7 @@ setTimeout(function () {
             if (_options == '') {
                 window.location.reload();
             } else {
-                window.location.href = 'index.php?v=d&p=zwave&m=zwave&id=' + _options;
+                window.location.href = 'index.php?v=d&p=openzwave&m=openzwave&id=' + _options;
             }
         }
     });

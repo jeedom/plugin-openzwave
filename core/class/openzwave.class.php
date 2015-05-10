@@ -157,7 +157,6 @@ class openzwave extends eqLogic {
 			if (!is_array($results)) {
 				continue;
 			}
-			print_r($results);
 			foreach ($results as $key => $result) {
 				if ($key == 'controller.data.controllerState') {
 					nodejs::pushUpdate('zwave::' . $key, array('name' => $server['name'], 'state' => $result['value'], 'serverId' => $serverID));
@@ -174,6 +173,10 @@ class openzwave extends eqLogic {
 							'level' => 'warning',
 							'message' => '',
 						));
+					}
+				}if ($key == 'controller') {
+					if (isset($result['controllerState'])) {
+						nodejs::pushUpdate('zwave::controller.data.controllerState', array('name' => $server['name'], 'state' => $result['controllerState']['value'], 'serverId' => $serverID));
 					}
 				} else if ($key == 'controller.data.lastIncludedDevice') {
 					if ($result['value'] != null) {
@@ -292,14 +295,18 @@ class openzwave extends eqLogic {
 		$results = self::callRazberry('/ZWaveAPI/Data/0', $_serverId);
 		$findDevice = array();
 		$include_device = '';
+		$controller_id = openzwave::getZwaveInfo('controller::data::nodeId::value', $_serverId);
 		foreach ($results['devices'] as $nodeId => $result) {
+			if ($nodeId == $controller_id) {
+				continue;
+			}
 			$findDevice[$nodeId] = $nodeId;
 			$eqLogic = self::getEqLogicByLogicalIdAndServerId($nodeId, $_serverId);
 			if (!is_object($eqLogic)) {
 				$eqLogic = new eqLogic();
 				$eqLogic->setEqType_name('openzwave');
 				$eqLogic->setIsEnable(1);
-				if (isset($result['data']['name']['value'])) {
+				if (isset($result['data']['name']['value']) && trim($result['data']['name']['value']) != '') {
 					$eqLogic->setName($result['data']['name']['value']);
 					$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
 				} else {
