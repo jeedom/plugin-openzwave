@@ -1,0 +1,32 @@
+{
+    "name" : "ST814",
+    "configuration" : {
+        "conf_version" : 5
+    },
+    "commands": [
+        {
+            "name": "Humidité",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "unite" : "%",
+            "isHistorized": 1,
+            "configuration": {
+                "class": "0x31",
+                "value": "data[5].level"
+            }
+        },
+        {
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "unite" : "°C",
+            "isHistorized": 1,
+            "configuration": {
+                "class": "0x31",
+                "value": "data[1].level"
+            }
+        }
+    ]
+}

@@ -373,6 +373,26 @@ class openzwave extends eqLogic {
 		}
 	}
 
+	public static function updateConf() {
+		foreach (self::byType('openzwave') as $openzwave) {
+			if (!file_exists(dirname(__FILE__) . '/../config/devices/' . $openzwave->getConfiguration('product_name') . '.json')) {
+				continue;
+			}
+			$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $openzwave->getConfiguration('product_name') . '.json');
+			if (!is_json($content)) {
+				continue;
+			}
+			$device = json_decode($content, true);
+			if (!isset($device['configuration']) || !isset($device['configuration']['conf_version'])) {
+				continue;
+			}
+			if ($device['configuration']['conf_version'] <= $openzwave->getConfiguration('conf_version')) {
+				//continue;
+			}
+			$openzwave->createCommand(true);
+		}
+	}
+
 /*     * ********************************************************************** */
 /*     * ***********************OPENZWAVE MANAGEMENT*************************** */
 	public static function updateOpenzwave() {
@@ -567,7 +587,7 @@ class openzwave extends eqLogic {
 		return $return;
 	}
 
-	public function loadCmdFromConf() {
+	public function loadCmdFromConf($_update = false) {
 		if (!file_exists(dirname(__FILE__) . '/../config/devices/' . $this->getConfiguration('product_name') . '.json')) {
 			return;
 		}
@@ -581,6 +601,9 @@ class openzwave extends eqLogic {
 		}
 		$cmd_order = 0;
 		$link_cmds = array();
+		if (isset($device['name']) && !$_update) {
+			$this->setName($device['name']);
+		}
 		if (isset($device['configuration'])) {
 			foreach ($device['configuration'] as $key => $value) {
 				try {
@@ -594,6 +617,7 @@ class openzwave extends eqLogic {
 			'level' => 'warning',
 			'message' => __('Création des commandes à partir d\'une configuration', __FILE__),
 		));
+
 		$commands = $device['commands'];
 		foreach ($commands as &$command) {
 			if (!isset($command['configuration']['instanceId'])) {
@@ -607,6 +631,10 @@ class openzwave extends eqLogic {
 				if ($liste_cmd->getConfiguration('instanceId', 0) == $command['configuration']['instanceId'] &&
 					$liste_cmd->getConfiguration('class') == $command['configuration']['class'] &&
 					$liste_cmd->getConfiguration('value') == $command['configuration']['value']) {
+					$cmd = $liste_cmd;
+					break;
+				}
+				if ($liste_cmd->getName() == $command['name']) {
 					$cmd = $liste_cmd;
 					break;
 				}
@@ -649,6 +677,7 @@ class openzwave extends eqLogic {
 				}
 			}
 		}
+		$this->save();
 		nodejs::pushUpdate('jeedom::alert', array(
 			'level' => 'warning',
 			'message' => '',

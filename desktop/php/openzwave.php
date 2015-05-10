@@ -156,14 +156,14 @@ foreach ($eqLogics as $eqLogic) {
                     <legend><i class="fa fa-arrow-circle-left eqLogicAction cursor" data-action="returnToThumbnailDisplay"></i> {{Général}} <i class='fa fa-cogs eqLogicAction pull-right cursor expertModeVisible' data-action='configure'></i></legend>
                     <div class="form-group">
                         <label class="col-sm-4 control-label">{{Nom de l'équipement}}</label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-6">
                             <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
                             <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 control-label" >{{Objet parent}}</label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-6">
                             <select class="eqLogicAttr form-control" data-l1key="object_id">
                                 <option value="">{{Aucun}}</option>
                                 <?php
@@ -201,7 +201,9 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
                 <div class="col-sm-2">
                     <input type="text" class="eqLogicAttr form-control" data-l1key="logicalId" />
                 </div>
-                <label class="col-sm-2 control-label">{{Serveur}}</label>
+            </div>
+            <div class="form-group expertModeVisible">
+                <label class="col-sm-4 control-label">{{Serveur}}</label>
                 <div class="col-sm-4">
                    <select class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="serverID">
                     <?php
@@ -219,24 +221,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
         <div class="col-sm-4">
             <input class="eqLogicAttr form-control" data-l1key="timeout" />
         </div>
-    </div>
-
-    <div class="form-group expertModeVisible">
-        <label class="col-sm-4 control-label">{{Ne jamais mettre en erreur}}</label>
-        <div class="col-sm-1">
-            <input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="nerverFail"/>
         </div>
-        <label class="col-sm-4 control-label">{{Ne pas vérifier la batterie}}</label>
-        <div class="col-sm-1">
-            <input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="noBatterieCheck"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-4 control-label">{{Commentaire}}</label>
-        <div class="col-sm-8">
-            <textarea class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire" ></textarea>
-        </div>
-    </div>
 </fieldset>
 </form>
 </div>
@@ -250,46 +235,47 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 
          <div class="form-group">
             <label class="col-sm-2 control-label">{{Paramètres}}</label>
-            <a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fa fa-wrench"></i> {{Configuration}}</a>
-            <a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank"><i class="fa fa-book"></i> {{Documentation}}</a>
+            <div class="col-sm-4">
+                <a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fa fa-wrench"></i> {{Configuration}}</a>
+                <a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank"><i class="fa fa-book"></i> {{Documentation}}</a>
+            </div>
+            <label class="col-sm-2 control-label">{{Communication}}</label>
+            <div class="col-sm-4">
+                <span class="zwaveInfo tooltips label label-default" data-l1key="lastReceived"></span>
+                <span class="tooltips label label-default">
+                    {{Interview}} <span class="zwaveInfo" data-l1key="interviewComplete">
+                </span>
+            </div>
+
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">{{Marque}}</label>
-            <div class="col-sm-2">
-                <span class="zwaveInfo tooltips label label-default" data-l1key="brand"></span>
-            </div>
-            <label class="col-sm-2 control-label">{{Nom}}</label>
             <div class="col-sm-4">
-                <span class="eqLogicAttr tooltips label label-default" data-l1key="configuration" data-l2key="product_name"></span>
+                <span class="zwaveInfo tooltips label label-default" data-l1key="brand"></span>
+                <span class="tooltips label label-default">
+                    <span class="eqLogicAttr" data-l1key="configuration" data-l2key="product_name"></span>
+                    (<span class="eqLogicAttr" data-l1key="configuration" data-l2key="conf_version"></span>)
+                </span>
             </div>
-        </div>
-
-        <div class="form-group expertModeVisible">
             <label class="col-sm-2 control-label">{{Etat}}</label>
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <span class="zwaveInfo tooltips label label-default" data-l1key="state"></span>
-            </div>
-            <label class="col-sm-2 control-label">{{Batterie}}</label>
-            <div class="col-sm-1">
-                <span class="zwaveInfo tooltips label label-default" data-l1key="battery"></span>
+                <span class="tooltips label label-default">
+                    {{Batterie}} <span class="zwaveInfo" data-l1key="battery"></span>
+                </span>
             </div>
         </div>
-
+        <center>
+            <img src="core/img/no_image.gif" data-original=".jpg" id="img_device" class="img-responsive" style="max-height : 250px;"/>
+        </center>
         <div class="form-group">
-            <label class="col-sm-2 control-label">{{Interview}}</label>
-            <div class="col-sm-3">
-                <span class="zwaveInfo label label-default" data-l1key="interviewComplete">
-                </div>
-                <label class="col-sm-2 control-label">{{Communication}}</label>
-                <div class="col-sm-4">
-                    <span class="zwaveInfo tooltips label label-default" data-l1key="lastReceived"></span>
-                </div>
+            <label class="col-sm-2 control-label">{{Commentaire}}</label>
+            <div class="col-sm-10">
+                <textarea class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire" ></textarea>
             </div>
-            <center>
-                <img src="core/img/no_image.gif" data-original=".jpg" id="img_device" class="img-responsive" style="max-height : 250px;"/>
-            </center>
-        </fieldset>
-    </form>
+        </div>
+    </fieldset>
+</form>
 </div>
 </div>
 

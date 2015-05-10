@@ -54,6 +54,7 @@ function openzwave_update() {
 			$cron->remove();
 		}
 	}
+	openzwave::updateConf();
 }
 
 function openzwave_remove() {
