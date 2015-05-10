@@ -312,7 +312,7 @@ class openzwave extends eqLogic {
 				$eqLogic->setEqType_name('openzwave');
 				$eqLogic->setIsEnable(1);
 				if (isset($result['data']['name']['value']) && trim($result['data']['name']['value']) != '') {
-					$eqLogic->setName($result['data']['name']['value']);
+					$eqLogic->setName('[' . $this->getLogicalId() . ']' . $result['data']['name']['value']);
 					$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
 				} else {
 					$eqLogic->setName('Device ' . $nodeId);
@@ -575,7 +575,7 @@ class openzwave extends eqLogic {
 		$cmd_order = 0;
 		$link_cmds = array();
 		if (isset($device['name']) && !$_update) {
-			$this->setName($device['name']);
+			$this->setName('[' . $this->getLogicalId() . ']' . $device['name']);
 		}
 		if (isset($device['configuration'])) {
 			foreach ($device['configuration'] as $key => $value) {
