@@ -1,0 +1,24 @@
+{
+	"name" : "Minimote",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+        {
+            "name": "Boutons",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "eventOnly": 0,
+            "configuration": {
+                "class": "0x2b",
+                "value": "data.currentScene"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        }
+    ]
+}
