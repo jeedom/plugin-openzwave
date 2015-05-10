@@ -17,21 +17,53 @@
  */
 
 function openzwave_install() {
-    if (openzwave::deamonRunning()) {
-        openzwave::stopDeamon();
-    }
+	if (config::byKey('jeeNetwork::mode') != 'slave') {
+		$cron = cron::byClassAndFunction('openzwave', 'pull');
+		if (!is_object($cron)) {
+			$cron = new cron();
+			$cron->setClass('openzwave');
+			$cron->setFunction('pull');
+			$cron->setEnable(1);
+			$cron->setDeamon(1);
+			$cron->setTimeout(1440);
+			$cron->setSchedule('* * * * *');
+			$cron->save();
+		}
+	}
 }
 
 function openzwave_update() {
-    if (openzwave::deamonRunning()) {
-        openzwave::stopDeamon();
-    }
+	if (openzwave::deamonRunning()) {
+		openzwave::stopDeamon();
+	}
+	$cron = cron::byClassAndFunction('openzwave', 'pull');
+	if (config::byKey('jeeNetwork::mode') != 'slave') {
+		if (!is_object($cron)) {
+			$cron = new cron();
+		}
+		$cron->setClass('openzwave');
+		$cron->setFunction('pull');
+		$cron->setEnable(1);
+		$cron->setDeamon(1);
+		$cron->setTimeout(1440);
+		$cron->setSchedule('* * * * *');
+		$cron->save();
+		$cron->stop();
+	} else {
+		if (is_object($cron)) {
+			$cron->remove();
+		}
+	}
 }
 
 function openzwave_remove() {
-    if (openzwave::deamonRunning()) {
-        openzwave::stopDeamon();
-    }
+	if (openzwave::deamonRunning()) {
+		openzwave::stopDeamon();
+	}
+	$cron = cron::byClassAndFunction('zwave', 'pull');
+	if (is_object($cron)) {
+		$cron->remove();
+	}
 }
 
 ?>

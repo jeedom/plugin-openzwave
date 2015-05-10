@@ -21,7 +21,6 @@ if (!isConnect()) {
 	include_file('desktop', '404', 'php');
 	die();
 }
-$port = config::byKey('port', 'openzwave');
 $deamonRunningMaster = openzwave::deamonRunning();
 $deamonRunningSlave = array();
 if (config::byKey('jeeNetwork::mode') == 'master') {
@@ -60,6 +59,19 @@ foreach ($deamonRunningSlave as $name => $status) {
 
 <form class="form-horizontal">
 	<fieldset>
+		<legend>{{Générale}}</legend>
+		<div class="form-group">
+			<label class="col-lg-4 control-label">{{Supprimer automatiquement les périphériques exclus}}</label>
+			<div class="col-lg-3">
+				<input type="checkbox" class="configKey" data-l1key="autoRemoveExcludeDevice" />
+			</div>
+		</div>
+	</fieldset>
+</form>
+
+
+<form class="form-horizontal">
+	<fieldset>
 		<legend>{{Démon local}}</legend>
 		<?php
 if (exec('sudo cat /etc/sudoers') != "") {
@@ -87,10 +99,9 @@ if (exec('sudo cat /etc/sudoers') != "") {
 foreach (jeedom::getUsbMapping() as $name => $value) {
 	echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
 }
-foreach (ls('/dev/', 'tty*') as $value) {
-	echo '<option value="/dev/' . $value . '">/dev/' . $value . '</option>';
-}
 ?>
+			<option value="/dev/ttyAMA0">{{Raspberry pi (/dev/ttyAMA0)}}</option>
+			<option value="/dev/ttymxc0">{{Jeedom board (/dev/ttymxc0)}}</option>
 		</select>
 	</div>
 </div>
@@ -122,12 +133,13 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 					<div class="col-lg-4">
 						<select class="slaveConfigKey form-control" data-l1key="port">
 							<option value="none">{{Aucun}}</option>
-							<option value="auto">{{Auto}}</option>
 							<?php
 foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping') as $name => $value) {
 			echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
 		}
 		?>
+							<option value="/dev/ttyAMA0">{{Raspberry pi (/dev/ttyAMA0)}}</option>
+							<option value="/dev/ttymxc0">{{Jeedom board (/dev/ttymxc0)}}</option>
 						</select>
 					</div>
 				</div>

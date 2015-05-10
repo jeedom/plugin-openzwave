@@ -1,0 +1,25 @@
+
+<div id="div_listIncludeSever"></div>
+
+
+
+<div data-role="popup" id="popup_configIncludeDevice">
+    <form>
+        <div style="padding:10px 20px;">
+            <h3>Configuration</h3>
+            <label for="un" class="ui-hidden-accessible">Nom</label>
+            <input type="text" placeholder="Nom" data-theme="b" class="eqLogicAttr" data-l1key="id" style="display : none;">
+            <input type="text" placeholder="Nom" data-theme="b" class="eqLogicAttr" data-l1key="name">
+
+
+            <select class="eqLogicAttr" data-l1key="object_id"></select>
+
+            <a class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check" id="bt_validateConfigDevice">{{Valider}}</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    $.include(['plugins/openzwave/mobile/js/openzwave.js'], function() {
+    });
+</script>

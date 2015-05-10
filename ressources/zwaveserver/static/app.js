@@ -2,7 +2,7 @@ var app = {
 
     include: {},
 
-    load: function(appname) 
+    load: function(appname,relativePath) 
     {
         // We load here the html of the app into an dedicated element for that app
         // when an app is loaded its html remains in the dom even when viewing another app
@@ -11,18 +11,19 @@ var app = {
         // we check here if the app has been loaded to the dom, if not we load it
         
         var appdom = $("#app_"+appname);
+        var relativePath = relativePath || '';
         
         if (appdom.length) return true;
         
-    
+        
         var html = "";
-        $.ajax({url: "static/apps/"+appname+"/"+appname+".html", async: false, cache: false, success: function(data) {html = data;} });
+        $.ajax({url: relativePath+"static/apps/"+appname+"/"+appname+".html", async: false, cache: false, success: function(data) {html = data;} });
         
         $("#content").append('<div class="apps" id="app_'+appname+'" style="display:none"></div>');
         $("#app_"+appname).html(html);
 
         $.ajax({
-            url: "static/apps/"+appname+"/"+appname+".js",
+            url: relativePath+"static/apps/"+appname+"/"+appname+".js",
             dataType: 'script',
             async: false
         });
