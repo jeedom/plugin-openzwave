@@ -2224,6 +2224,66 @@ def RequestAllConfigParams(device_id) :
         addLogEntry(str(e), 'error')
         return jsonify ({'error' : str(e)})
 
+@app.route('/ZWaveAPI/Run/GetControllerStatus()',methods = ['GET'])
+def GetControllerStatus() :
+    """
+    Get the controller status
+    """
+    try:
+        timestamp = int(time.time())
+        if network :
+            public_network={}
+            public_network['updateTime']=timestamp
+            if network.controller :
+                public_controller={}
+                controllerdata = {
+                    'name' : 'controller.data',
+                    'type' : 'NoneType',
+                    'value' : 'null'
+                }
+                public_controller['data']=controllerdata  
+                lastExcludedDevice = {
+                    'name' : 'lastExcludedDevice',
+                    'type' : 'NoneType',
+                    'value' : 'null'
+                }
+                lastIncludedDevice = {
+                    'name' : 'lastIncludedDevice',
+                    'type' : 'NoneType',
+                    'value' : 'null'
+                }            
+                roles = {'isPrimaryController': network.controller.is_primary_controller,
+                         'isStaticUpdateController': network.controller.is_static_update_controller,
+                         'isBridgeController': network.controller.is_bridge_controller
+                }
+                public_controller['data']['roles']=roles                      
+                public_controller['data']['nodeId']={'value':network.controller.node_id}            
+                            
+                #if the controller is flag as busy I set the coresponding networkInformations.controllerState, if not yet busy, I ignore the actual ControllerMode
+                if networkInformations.controllerIsBusy == False :
+                    if networkInformations.actualMode == ControllerMode.AddDevice:
+                        public_controller['data']['controllerState']={'value':AddDevice}
+                    elif networkInformations.actualMode == ControllerMode.RemoveDevice:
+                        public_controller['data']['controllerState']={'value':RemoveDevice}
+                    else:
+                        # not suppose
+                        public_controller['data']['controllerState']={'value':Idle}
+                        # I reset the flag
+                        networkInformations.actualMode = ControllerMode.Idle
+                else:
+                    public_controller['data']['controllerState']={'value':Idle}
+                    
+                public_controller['data']['lastExcludedDevice']=lastExcludedDevice
+                public_controller['data']['lastIncludedDevice']=lastIncludedDevice
+                public_controller['data']['softwareRevisionVersion']={"value":''+network.controller.ozw_library_version+' '+network.controller.python_library_version}            
+                public_controller['data']['notification'] = networkInformations.lastControllerNotification
+                public_controller['data']['isBusy'] = {"value" : networkInformations.controllerIsBusy} 
+                public_controller['data']['networkstate'] = {"value" : network.state} 
+        return jsonify ({'result' : public_controller})
+    except Exception as e:
+        addLogEntry(str(e), 'error')
+        return jsonify ({'result' : str(e)})
+
 @app.route('/ZWaveAPI/Run/GetOZLogs()',methods = ['GET'])
 def GetOZLogs() :
     """
