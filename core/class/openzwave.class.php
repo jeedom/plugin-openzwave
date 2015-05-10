@@ -185,31 +185,19 @@ class openzwave extends eqLogic {
 								'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration', __FILE__),
 							));
 							sleep(5);
-							self::syncEqLogicWithRazberry($serverID);
-						}
-					}
-				} else if ($key == 'controller') {
-					if (isset($result['controllerState'])) {
-						nodejs::pushUpdate('zwave::controller.data.controllerState', array('name' => $server['name'], 'state' => $result['controllerState']['value'], 'serverId' => $serverID));
-					}
-					if (isset($result['lastIncludedDevice']) && $result['lastIncludedDevice']['value'] != null) {
-						$eqLogic = self::getEqLogicByLogicalIdAndServerId($result['value'], $serverID);
-						if (!is_object($eqLogic)) {
+							for ($i = 0; $i < 30; $i++) {
+								nodejs::pushUpdate('jeedom::alert', array(
+									'level' => 'warning',
+									'message' => __('Pause de ', __FILE__) . (30 - $i) . __(' pour synchronisation avec le module', __FILE__),
+								));
+								sleep(1);
+							}
 							nodejs::pushUpdate('jeedom::alert', array(
 								'level' => 'warning',
-								'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration', __FILE__),
+								'message' => __('Inclusion en cours...', __FILE__),
 							));
-							sleep(5);
 							self::syncEqLogicWithRazberry($serverID);
 						}
-					}
-					if (isset($result['lastExcludedDevice']) && $result['lastExcludedDevice']['value'] != null) {
-						nodejs::pushUpdate('jeedom::alert', array(
-							'level' => 'warning',
-							'message' => __('Un périphérique Z-Wave vient d\'être exclu. Logical ID : ', __FILE__) . $result['value'],
-						));
-						sleep(5);
-						self::syncEqLogicWithRazberry($i);
 					}
 				} else {
 					$explodeKey = explode('.', $key);
@@ -304,7 +292,6 @@ class openzwave extends eqLogic {
 		$results = self::callRazberry('/ZWaveAPI/Data/0', $_serverId);
 		$findDevice = array();
 		$include_device = '';
-		$findConfiguration = true;
 		foreach ($results['devices'] as $nodeId => $result) {
 			$findDevice[$nodeId] = $nodeId;
 			$eqLogic = self::getEqLogicByLogicalIdAndServerId($nodeId, $_serverId);
@@ -339,17 +326,10 @@ class openzwave extends eqLogic {
 			}
 		}
 		nodejs::pushUpdate('zwave::includeDevice', $include_device);
-		if (!$findConfiguration) {
-			nodejs::pushUpdate('jeedom::alert', array(
-				'level' => 'warning',
-				'message' => __('Votre module n\'est pas reconnu, veuillez récupérer sa configuration sur le market si celle ci est disponible', __FILE__),
-			));
-		} else {
-			nodejs::pushUpdate('jeedom::alert', array(
-				'level' => 'warning',
-				'message' => '',
-			));
-		}
+		nodejs::pushUpdate('jeedom::alert', array(
+			'level' => 'warning',
+			'message' => '',
+		));
 	}
 
 	public static function changeIncludeState($_mode, $_state, $_serverId = 0) {
@@ -579,10 +559,10 @@ class openzwave extends eqLogic {
 	}
 
 	public function loadCmdFromConf() {
-		if (!file_exists(dirname(__FILE__) . '/../config/devices/' . $eqLogic->getConfiguration('product_name') . '.json')) {
+		if (!file_exists(dirname(__FILE__) . '/../config/devices/' . $this->getConfiguration('product_name') . '.json')) {
 			return;
 		}
-		$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $eqLogic->getConfiguration('product_name') . '.json');
+		$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $this->getConfiguration('product_name') . '.json');
 		if (!is_json($content)) {
 			return;
 		}
@@ -672,7 +652,7 @@ class openzwave extends eqLogic {
 			return;
 		}
 
-		if (file_exists(dirname(__FILE__) . '/../config/devices/' . $eqLogic->getConfiguration('product_name') . '.json')) {
+		if (file_exists(dirname(__FILE__) . '/../config/devices/' . $this->getConfiguration('product_name') . '.json')) {
 			$this->loadCmdFromConf();
 			return;
 		}
