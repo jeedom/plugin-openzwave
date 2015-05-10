@@ -480,16 +480,13 @@ class openzwave extends eqLogic {
 		return true;
 	}
 
-	public function getInfo($_infos = '') {
+	public function getInfo() {
 		$return = array();
 		if (!is_numeric($this->getLogicalId())) {
 			return $return;
 		}
-		if ($_infos == '') {
-			$results = self::callRazberry('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . ']', $this->getConfiguration('serverID', 1));
-		} else {
-			$results = $_infos['devices'][$this->getLogicalId()];
-		}
+		$results = self::callRazberry('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . ']', $this->getConfiguration('serverID', 1));
+
 		if ($this->getConfiguration('noBatterieCheck') != 1 && isset($results['instances']) && isset($results['instances'][0]) &&
 			isset($results['instances'][0]['commandClasses']) && isset($results['instances'][0]['commandClasses'][128]) &&
 			isset($results['instances'][0]['commandClasses'][128]['data']['supported']) && $results['instances'][0]['commandClasses'][128]['data']['supported']['value'] === true) {

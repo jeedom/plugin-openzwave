@@ -262,6 +262,10 @@ foreach (openzwave::listServerZwave() as $id => $server) {
                 <div class="col-sm-2">
                     <span class="zwaveInfo tooltips label label-default" data-l1key="brand"></span>
                 </div>
+                  <label class="col-sm-2 control-label">{{Nom}}</label>
+                <div class="col-sm-4">
+                    <span class="eqLogicAttr tooltips label label-default" data-l1key="configuration" data-l2key="product_name"></span>
+                </div>
             </div>
 
             <div class="form-group expertModeVisible">
