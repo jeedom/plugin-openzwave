@@ -155,6 +155,30 @@ setTimeout(function () {
 }, 3000);
 });
 
+$('#bt_autoDetectModule').on('click',function(){
+ $.ajax({// fonction permettant de faire de l'ajax
+        type: "POST", // méthode de transmission des données au fichier php
+        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+        data: {
+            action: "autoDetectModule",
+            id: $('.eqLogicAttr[data-l1key=id]').value(),
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        },
+        success: function (data) { // si l'appel a bien fonctionné
+        if (data.state != 'ok') {
+            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            return;
+        }
+        $('#div_alert').showAlert({message: '{{Opération réalisée avec succès}}', level: 'success'});
+        $('.li_eqLogic[data-eqLogic_id='+$('.eqLogicAttr[data-l1key=id]').value()+']').click();
+    }
+});
+});
+
 
 function printModuleInfo(_id) {
     $.ajax({// fonction permettant de faire de l'ajax

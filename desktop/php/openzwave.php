@@ -65,9 +65,9 @@ foreach ($eqLogics as $eqLogic) {
    </div>
 
    <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
-       <legend>{{Gestion}}</legend>
-       <div class="eqLogicThumbnailContainer">
-           <?php
+     <legend>{{Gestion}}</legend>
+     <div class="eqLogicThumbnailContainer">
+         <?php
 if ($controlerState == 1) {
 	echo '<div class="cursor changeIncludeState card" data-mode="1" data-state="0" style="background-color : #8000FF; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo '<center>';
@@ -99,39 +99,39 @@ if ($controlerState == 5) {
 	echo '</div>';
 }
 ?>
-           <div class="cursor expertModeVisible" id="bt_syncEqLogic" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-            <center>
-                <i class="fa fa-refresh" style="font-size : 5em;color:#767676;"></i>
-            </center>
-            <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Synchroniser}}</center></span>
-        </div>
-
-        <div class="cursor expertModeVisible" id="bt_zwaveNetwork" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-            <center>
-                <i class="fa fa-sitemap" style="font-size : 5em;color:#767676;"></i>
-            </center>
-            <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Reseaux Zwave}}</center></span>
-        </div>
-
-        <div class="cursor expertModeVisible" id="bt_zwaveConfig" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-            <center>
-                <i class="fa fa-cog" style="font-size : 5em;color:#767676;"></i>
-            </center>
-            <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Configuration}}</center></span>
-        </div>
-
-        <div class="cursor expertModeVisible" id="bt_zwaveConsole" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-            <center>
-                <i class="fa fa-terminal" style="font-size : 5em;color:#767676;"></i>
-            </center>
-            <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Console}}</center></span>
-        </div>
-
+       <div class="cursor expertModeVisible" id="bt_syncEqLogic" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+        <center>
+            <i class="fa fa-refresh" style="font-size : 5em;color:#767676;"></i>
+        </center>
+        <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Synchroniser}}</center></span>
     </div>
-    <legend>{{Mes équipements Z-Wave}}</legend>
-    <div class="eqLogicThumbnailContainer">
 
-        <?php
+    <div class="cursor expertModeVisible" id="bt_zwaveNetwork" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+        <center>
+            <i class="fa fa-sitemap" style="font-size : 5em;color:#767676;"></i>
+        </center>
+        <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Reseaux Zwave}}</center></span>
+    </div>
+
+    <div class="cursor expertModeVisible" id="bt_zwaveConfig" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+        <center>
+            <i class="fa fa-cog" style="font-size : 5em;color:#767676;"></i>
+        </center>
+        <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Configuration}}</center></span>
+    </div>
+
+    <div class="cursor expertModeVisible" id="bt_zwaveConsole" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+        <center>
+            <i class="fa fa-terminal" style="font-size : 5em;color:#767676;"></i>
+        </center>
+        <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Console}}</center></span>
+    </div>
+
+</div>
+<legend>{{Mes équipements Z-Wave}}</legend>
+<div class="eqLogicThumbnailContainer">
+
+    <?php
 foreach ($eqLogics as $eqLogic) {
 	echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center>";
@@ -145,7 +145,7 @@ foreach ($eqLogics as $eqLogic) {
 	echo '</div>';
 }
 ?>
-   </div>
+</div>
 </div>
 
 <div class="col-lg-10 col-md-9 col-sm-8 eqLogic" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
@@ -203,7 +203,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
                 </div>
                 <label class="col-sm-2 control-label">{{Serveur}}</label>
                 <div class="col-sm-4">
-                 <select class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="serverID">
+                   <select class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="serverID">
                     <?php
 foreach (openzwave::listServerZwave() as $id => $server) {
 	if (isset($server['name'])) {
@@ -244,52 +244,53 @@ foreach (openzwave::listServerZwave() as $id => $server) {
     <form class="form-horizontal">
         <fieldset>
             <legend>{{Informations}}
-                <i id="bt_displayZwaveData" title="{{Voir l'arbre Z-Wave}}" class="fa fa-tree expertModeVisible pull-right tooltips cursor"></i>
-            </legend>
+             <i id="bt_autoDetectModule" class="fa fa-search expertModeVisible pull-right tooltips cursor" title="{{Detecter automatiquement le modele du module}}"></i>
+             <i id="bt_displayZwaveData" title="{{Voir l'arbre Z-Wave}}" class="fa fa-tree expertModeVisible pull-right tooltips cursor"></i>
+         </legend>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{Paramètres}}</label>
-                <a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fa fa-wrench"></i> {{Configuration}}</a>
-                <a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank"><i class="fa fa-book"></i> {{Documentation}}</a>
+         <div class="form-group">
+            <label class="col-sm-2 control-label">{{Paramètres}}</label>
+            <a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fa fa-wrench"></i> {{Configuration}}</a>
+            <a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank"><i class="fa fa-book"></i> {{Documentation}}</a>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{Marque}}</label>
+            <div class="col-sm-2">
+                <span class="zwaveInfo tooltips label label-default" data-l1key="brand"></span>
             </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{Marque}}</label>
-                <div class="col-sm-2">
-                    <span class="zwaveInfo tooltips label label-default" data-l1key="brand"></span>
+            <label class="col-sm-2 control-label">{{Nom}}</label>
+            <div class="col-sm-4">
+                <span class="eqLogicAttr tooltips label label-default" data-l1key="configuration" data-l2key="product_name"></span>
+            </div>
+        </div>
+
+        <div class="form-group expertModeVisible">
+            <label class="col-sm-2 control-label">{{Etat}}</label>
+            <div class="col-sm-2">
+                <span class="zwaveInfo tooltips label label-default" data-l1key="state"></span>
+            </div>
+            <label class="col-sm-2 control-label">{{Batterie}}</label>
+            <div class="col-sm-1">
+                <span class="zwaveInfo tooltips label label-default" data-l1key="battery"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{Interview}}</label>
+            <div class="col-sm-3">
+                <span class="zwaveInfo label label-default" data-l1key="interviewComplete">
                 </div>
-                  <label class="col-sm-2 control-label">{{Nom}}</label>
+                <label class="col-sm-2 control-label">{{Communication}}</label>
                 <div class="col-sm-4">
-                    <span class="eqLogicAttr tooltips label label-default" data-l1key="configuration" data-l2key="product_name"></span>
+                    <span class="zwaveInfo tooltips label label-default" data-l1key="lastReceived"></span>
                 </div>
             </div>
-
-            <div class="form-group expertModeVisible">
-                <label class="col-sm-2 control-label">{{Etat}}</label>
-                <div class="col-sm-2">
-                    <span class="zwaveInfo tooltips label label-default" data-l1key="state"></span>
-                </div>
-                <label class="col-sm-2 control-label">{{Batterie}}</label>
-                <div class="col-sm-1">
-                    <span class="zwaveInfo tooltips label label-default" data-l1key="battery"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-2 control-label">{{Interview}}</label>
-                <div class="col-sm-3">
-                    <span class="zwaveInfo label label-default" data-l1key="interviewComplete">
-                    </div>
-                    <label class="col-sm-2 control-label">{{Communication}}</label>
-                    <div class="col-sm-4">
-                        <span class="zwaveInfo tooltips label label-default" data-l1key="lastReceived"></span>
-                    </div>
-                </div>
-                <center>
-                    <img src="core/img/no_image.gif" data-original=".jpg" id="img_device" class="img-responsive" style="max-height : 250px;"/>
-                </center>
-            </fieldset>
-        </form>
-    </div>
+            <center>
+                <img src="core/img/no_image.gif" data-original=".jpg" id="img_device" class="img-responsive" style="max-height : 250px;"/>
+            </center>
+        </fieldset>
+    </form>
+</div>
 </div>
 
 <legend>Commandes</legend>
