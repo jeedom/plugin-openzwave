@@ -627,7 +627,6 @@ show: function()
         	$('.nodes-rightpane').removeClass('col-md-6').addClass('col-md-12');
         }else{
         	$("#node-nav").parent().show();
-        	$('.leftWrapper').show();
         }     	
 
         for (z in nodes)
