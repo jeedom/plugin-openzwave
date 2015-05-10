@@ -557,33 +557,6 @@ class openzwave extends eqLogic {
 				);
 			}
 		}
-		$return['interviewComplete'] = array(
-			'value' => __('Complet', __FILE__),
-		);
-		$return['interviewComplete']['nbClass'] = 0;
-		$return['interviewComplete']['nbIncompleteClass'] = 0;
-		if (isset($results['instances']) && is_array($results['instances'])) {
-			foreach ($results['instances'] as $instanceID => $instance) {
-				if (isset($instance['commandClasses']) && is_array($instance['commandClasses'])) {
-					foreach ($instance['commandClasses'] as $ccId => $commandClasses) {
-						if (($ccId == 96 && $instanceID != 0) || (($ccId == 134 || $ccId == 114 || $ccId == 96) && $instanceID == 0)) {
-							continue;
-						}
-						if (isset($commandClasses['data']) && isset($commandClasses['data']['supported']) && (!isset($commandClasses['data']['supported']['value']) || $commandClasses['data']['supported']['value'] != true)) {
-							continue;
-						}
-						if (!isset($commandClasses['name']) || trim($commandClasses['name']) == '') {
-							continue;
-						}
-						$return['interviewComplete']['nbClass']++;
-						if (isset($commandClasses['data']) && isset($commandClasses['data']['interviewDone']) && (!isset($commandClasses['data']['interviewDone']['value']) || $commandClasses['data']['interviewDone']['value'] != true)) {
-							$return['interviewComplete']['value'] = __('Incomplet', __FILE__);
-							$return['interviewComplete']['nbIncompleteClass']++;
-						}
-					}
-				}
-			}
-		}
 		return $return;
 	}
 

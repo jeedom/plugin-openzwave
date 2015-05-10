@@ -242,9 +242,6 @@ foreach (openzwave::listServerZwave() as $id => $server) {
             <label class="col-sm-2 control-label">{{Communication}}</label>
             <div class="col-sm-4">
                 <span class="zwaveInfo tooltips label label-default" data-l1key="lastReceived"></span>
-                <span class="tooltips label label-default">
-                    {{Interview}} <span class="zwaveInfo" data-l1key="interviewComplete">
-                </span>
             </div>
 
         </div>
