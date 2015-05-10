@@ -310,6 +310,7 @@ class openzwave extends eqLogic {
 				$eqLogic->setIsVisible(1);
 				$eqLogic->save();
 				$eqLogic = openzwave::byId($eqLogic->getId());
+				$include_device = $eqLogic->getId();
 				$eqLogic->createCommand();
 			} else {
 				if (isset($result['data']['name']['value'])) {
