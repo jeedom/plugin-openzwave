@@ -583,7 +583,7 @@ load_groups: function(node_id)
 show: function()
 {
 
-	if(!isNaN(node_id)){
+	if(typeof node_id !== 'undefined' && !isNaN(node_id)){
 		app_nodes.selected_node = node_id;
 	}else{
 		app_nodes.selected_node = 1;
@@ -623,7 +623,7 @@ show: function()
         $("#replaceFailedNode").prop("disabled",disabledCommand);
         $("#sendNodeInformation").prop("disabled",disabledCommand);
 
-        if(!isNaN(node_id)){
+        if(typeof node_id !== 'undefined' && !isNaN(node_id)){
         	$('.nodes-rightpane').removeClass('col-md-6').addClass('col-md-12');
         }else{
         	$("#node-nav").show();
@@ -651,7 +651,7 @@ show: function()
         	}else{
         		iconcolor="fa-heartbeat yellowiconcolor";
         	}
-        	if(isNaN(node_id)){
+        	if(typeof node_id === 'undefined' || isNaN(node_id)){
         		$("#node-nav").append("<li nid="+z+" class='node-item'c><a><i class='fa "+iconcolor+"'></i> "+z+": "+nodes[z].data.name.value+"</a></li>");
         	}
 
