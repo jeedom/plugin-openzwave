@@ -624,7 +624,7 @@ show: function()
         $("#sendNodeInformation").prop("disabled",disabledCommand);
 
         if(typeof node_id !== 'undefined' && !isNaN(node_id)){
-        	$('.nodes-rightpane').removeClass('col-md-6').addClass('col-md-12');
+        	$('.nodes-rightpane').removeClass('col-md-9 col-md-offset-3').addClass('col-md-12');
         }else{
         	$("#node-nav").parent().show();
         }     	
