@@ -129,11 +129,7 @@ if ($controlerState == 5) {
         </div>
 
     </div>
-    <legend>{{Mes équipements Z-Wave}}
-        <span style="font-size: 0.7em;color:#c5c5c5">
-            Vous devez être connecté à internet pour voir les prévisualisations
-        </span>
-    </legend>
+    <legend>{{Mes équipements Z-Wave}}</legend>
     <div class="eqLogicThumbnailContainer">
 
         <?php
