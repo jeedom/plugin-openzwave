@@ -626,7 +626,7 @@ show: function()
         if(typeof node_id !== 'undefined' && !isNaN(node_id)){
         	$('.nodes-rightpane').removeClass('col-md-6').addClass('col-md-12');
         }else{
-        	$("#node-nav").show();
+        	$("#node-nav").parent().show();
         	$('.leftWrapper').show();
         }     	
 
