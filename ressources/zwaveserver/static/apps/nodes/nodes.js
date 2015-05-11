@@ -535,7 +535,6 @@ send_node_information: function(node_id)
 },
 load_data: function()
 {
-	console.log(nodes)
 	if(typeof node_id !== 'undefined' && !isNaN(node_id) && typeof controller !== 'undefined' && Object.keys(nodes).length > 0){
 		$.ajax({ 
 			url: path+"ZWaveAPI/Run/devices["+node_id+"]", 
