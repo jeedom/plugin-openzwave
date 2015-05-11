@@ -693,7 +693,7 @@ class openzwave extends eqLogic {
 										}
 										$cmd_info->setConfiguration('instanceId', $instanceID);
 										$cmd_info->setConfiguration('class', $ccId);
-										$cmd_info->setConfiguration('value', 'data[' . $index . '].level');
+										$cmd_info->setConfiguration('value', 'data[' . $index . '].val');
 										switch ($data['type']) {
 											case 'bool':
 												$cmd_info->setSubType('binary');
@@ -724,7 +724,7 @@ class openzwave extends eqLogic {
 													$cmd->setName($data['name'] . ' On');
 													$cmd->setConfiguration('instanceId', $instanceID);
 													$cmd->setConfiguration('class', $ccId);
-													$cmd->setConfiguration('value', 'PressButton()');
+													$cmd->setConfiguration('value', 'data[' . $index . '].PressButton()');
 													try {
 														$cmd->save();
 													} catch (Exception $e) {
@@ -737,7 +737,7 @@ class openzwave extends eqLogic {
 													$cmd->setName($data['name'] . ' Off');
 													$cmd->setConfiguration('instanceId', $instanceID);
 													$cmd->setConfiguration('class', $ccId);
-													$cmd->setConfiguration('value', 'ReleaseButton()');
+													$cmd->setConfiguration('value', 'data[' . $index . '].ReleaseButton()');
 													try {
 														$cmd->save();
 													} catch (Exception $e) {
@@ -752,7 +752,7 @@ class openzwave extends eqLogic {
 												$cmd->setName($data['name']);
 												$cmd->setConfiguration('instanceId', $instanceID);
 												$cmd->setConfiguration('class', $ccId);
-												$cmd->setConfiguration('value', 'Set(#slider#)');
+												$cmd->setConfiguration('value', 'data[' . $index . '].Set(#slider#)');
 												$cmd->setSubType('slider');
 												if (is_object($cmd_info)) {
 													$cmd->setValue($cmd_info->getId());
@@ -770,7 +770,7 @@ class openzwave extends eqLogic {
 												$cmd->setName($data['name']);
 												$cmd->setConfiguration('instanceId', $instanceID);
 												$cmd->setConfiguration('class', $ccId);
-												$cmd->setConfiguration('value', 'Set(#slider#)');
+												$cmd->setConfiguration('value', 'data[' . $index . '].Set(#slider#)');
 												$cmd->setSubType('slider');
 												if (is_object($cmd_info)) {
 													$cmd->setValue($cmd_info->getId());
@@ -789,7 +789,7 @@ class openzwave extends eqLogic {
 													$cmd->setName($value);
 													$cmd->setConfiguration('instanceId', $instanceID);
 													$cmd->setConfiguration('class', $ccId);
-													$cmd->setConfiguration('value', 'Set(' . $value . ')');
+													$cmd->setConfiguration('value', 'data[' . $index . '].Set(' . $value . ')');
 													$cmd->setSubType('other');
 													try {
 														$cmd->save();
