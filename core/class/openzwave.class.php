@@ -387,7 +387,7 @@ class openzwave extends eqLogic {
 				continue;
 			}
 			if ($device['configuration']['conf_version'] <= $openzwave->getConfiguration('conf_version')) {
-				//continue;
+				continue;
 			}
 			$openzwave->createCommand(true);
 		}
