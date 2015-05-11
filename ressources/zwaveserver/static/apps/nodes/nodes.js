@@ -529,22 +529,49 @@ send_node_information: function(node_id)
 },
 load_data: function()
 {
-    if(typeof controller !== 'undefined'){
-        $.ajax({ 
-          url: path+"ZWaveAPI/Run/devices["+node_id+"]", 
-          dataType: 'json',
-          async: true, 
-          global : false,
-          success: function(data) {
-            nodes[node_id] = data;
-            app_nodes.draw_nodes();
-                // auto select first node
+    if(typeof node_id !== 'undefined' && !isNaN(node_id)){
+        if(typeof controller === 'undefined'){
+            $.ajax({ 
+              url: path+"ZWaveAPI/Run/devices["+node_id+"]", 
+              dataType: 'json',
+              async: true, 
+              success: function(data) {
+                nodes = {};
+                nodes[node_id] = data;
+                $.ajax({ 
+                    url: path+"ZWaveAPI/Run/GetControllerStatus()", 
+                    dataType: 'json',
+                    async: true,       
+                    success: function(data) {
+                       controller = data.result;
+                       app_nodes.draw_nodes();
+                   },
+                   error: function(data) {
+                    alert('error'+JSON.stringify(data, null, 4));
+                }
+            });
             },
             error: function(data) {
                 alert('error'+JSON.stringify(data, null, 4));
             }
         });
-    }else{
+        }else{
+           $.ajax({ 
+              url: path+"ZWaveAPI/Run/devices["+node_id+"]", 
+              dataType: 'json',
+              async: true, 
+              global : false,
+              success: function(data) {
+                nodes = {};
+                nodes[node_id] = data;
+                app_nodes.draw_nodes();
+            },
+            error: function(data) {
+                alert('error'+JSON.stringify(data, null, 4));
+            }
+        });
+       }
+   }else{
      $.ajax({ 
       url: path+"ZWaveAPI/Data/0", 
       dataType: 'json',
@@ -564,12 +591,12 @@ load_data: function()
 },
 load_stats: function(node_id)
 {
-	$.ajax({ 
-		url: path+"ZWaveAPI/Run/devices["+node_id+"].GetNodeStatistics()", 
-		dataType: 'json',
-		async: true, 
-        global : (typeof node_id !== 'undefined' && !isNaN(node_id)) ? false : true,
-        success: function(data) {
+   $.ajax({ 
+      url: path+"ZWaveAPI/Run/devices["+node_id+"].GetNodeStatistics()", 
+      dataType: 'json',
+      async: true, 
+      global : (typeof node_id !== 'undefined' && !isNaN(node_id)) ? false : true,
+      success: function(data) {
          console.log('ok');
          stats = data['statistics'];
          app_nodes.show_stats();
@@ -583,21 +610,21 @@ load_stats: function(node_id)
 },
 load_groups: function(node_id)
 {
-	$.ajax({ 
-		url: path+"ZWaveAPI/Run/devices["+node_id+"].instances[0].commandClasses[133].data", 
-		dataType: 'json',
-		async: true, 
-        global : (typeof node_id !== 'undefined' && !isNaN(node_id)) ? false : true,
-        success: function(data) {
-         console.log('ok');
-         groups = data;
-         app_nodes.show_groups();
+ $.ajax({ 
+  url: path+"ZWaveAPI/Run/devices["+node_id+"].instances[0].commandClasses[133].data", 
+  dataType: 'json',
+  async: true, 
+  global : (typeof node_id !== 'undefined' && !isNaN(node_id)) ? false : true,
+  success: function(data) {
+     console.log('ok');
+     groups = data;
+     app_nodes.show_groups();
 
-     },
-     error: function(data) {
-         alert('error'+JSON.stringify(data, null, 4));
-     }
- });
+ },
+ error: function(data) {
+     alert('error'+JSON.stringify(data, null, 4));
+ }
+});
 },
 show: function()
 {
