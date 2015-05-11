@@ -56,12 +56,12 @@ class openzwave extends eqLogic {
 					'name' => 'Local',
 					'addr' => '127.0.0.1',
 					'port' => config::byKey('port_server', 'openzwave', 8083),
-					'path' => config::byKey('urlPath0', 'openzwave'),
+					'path' => network::getNetworkAccess('auto', 'prot:ip:port') . '/' . config::byKey('urlPath0', 'openzwave'),
 				);
 				if (self::$_listZwaveServer[0]['path'] == '') {
 					self::updateNginxRedirection();
 				}
-				self::$_listZwaveServer[0]['path'] = config::byKey('urlPath0', 'openzwave');
+				self::$_listZwaveServer[0]['path'] = network::getNetworkAccess('auto', 'prot:ip:port') . '/' . config::byKey('urlPath0', 'openzwave');
 			}
 			if (config::byKey('jeeNetwork::mode') == 'master') {
 				foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
@@ -70,12 +70,12 @@ class openzwave extends eqLogic {
 						'name' => $jeeNetwork->getName(),
 						'addr' => $jeeNetwork->getRealIp(),
 						'port' => $jeeNetwork->configByKey('port_server', 'openzwave', 8083),
-						'path' => config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave'),
+						'path' => network::getNetworkAccess('auto', 'prot:ip:port') . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave'),
 					);
 					if (self::$_listZwaveServer[$jeeNetwork->getId()]['path'] == '') {
 						self::updateNginxRedirection();
 					}
-					self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
+					self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = network::getNetworkAccess('auto', 'prot:ip:port') . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
 				}
 
 			}
@@ -312,7 +312,7 @@ class openzwave extends eqLogic {
 				$eqLogic->setEqType_name('openzwave');
 				$eqLogic->setIsEnable(1);
 				if (isset($result['data']['name']['value']) && trim($result['data']['name']['value']) != '') {
-					$eqLogic->setName('[' . $this->getLogicalId() . ']' . $result['data']['name']['value']);
+					$eqLogic->setName('[' . $eqLogic->getLogicalId() . ']' . $result['data']['name']['value']);
 					$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
 				} else {
 					$eqLogic->setName('Device ' . $nodeId);
