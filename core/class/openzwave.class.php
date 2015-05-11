@@ -361,7 +361,6 @@ class openzwave extends eqLogic {
 		foreach (self::byType('zwave') as $eqLogic) {
 			if ($eqLogic->getConfiguration('noBatterieCheck', 0) != 1) {
 				try {
-					self::callRazberry('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . '].instances[0].commandClasses[0x80].Get()', $eqLogic->getConfiguration('serverID', 0));
 					$info = $eqLogic->getInfo();
 					if (isset($info['battery']) && $info['battery'] !== '') {
 						$eqLogic->batteryStatus($info['battery']['value'], $info['battery']['datetime']);
