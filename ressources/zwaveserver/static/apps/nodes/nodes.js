@@ -528,17 +528,18 @@ send_node_information: function(node_id)
 },
 load_data: function()
 {
-	$.ajax({ 
-		url: path+"ZWaveAPI/Data/0", 
-		dataType: 'json',
-		async: true, 
-		success: function(data) {
-			console.log('chargement ok');
-			nodes = data['devices'];
-			controller = data['controller'];
-			app_nodes.draw_nodes();
+
+   $.ajax({ 
+      url: path+"ZWaveAPI/Data/0", 
+      dataType: 'json',
+      async: true, 
+      global : (typeof node_id !== 'undefined' && typeof controller !== 'undefined') ? false : true,
+      success: function(data) {
+         console.log('chargement ok');
+         nodes = data['devices'];
+         controller = data['controller'];
+         app_nodes.draw_nodes();
                 // auto select first node
-                
             },
             error: function(data) {
             	alert('error'+JSON.stringify(data, null, 4));
@@ -551,6 +552,7 @@ load_stats: function(node_id)
 		url: path+"ZWaveAPI/Run/devices["+node_id+"].GetNodeStatistics()", 
 		dataType: 'json',
 		async: true, 
+        global : (typeof node_id !== 'undefined' && !isNaN(node_id)) ? false : true,
 		success: function(data) {
 			console.log('ok');
 			stats = data['statistics'];
@@ -569,6 +571,7 @@ load_groups: function(node_id)
 		url: path+"ZWaveAPI/Run/devices["+node_id+"].instances[0].commandClasses[133].data", 
 		dataType: 'json',
 		async: true, 
+        global : (typeof node_id !== 'undefined' && !isNaN(node_id)) ? false : true,
 		success: function(data) {
 			console.log('ok');
 			groups = data;
