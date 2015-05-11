@@ -535,16 +535,14 @@ send_node_information: function(node_id)
 },
 load_data: function()
 {
-	if(typeof node_id !== 'undefined' && !isNaN(node_id) && typeof controller !== 'undefined'){
+	console.log(nodes)
+	if(typeof node_id !== 'undefined' && !isNaN(node_id) && typeof controller !== 'undefined' && Object.keys(nodes).length > 0){
 		$.ajax({ 
 			url: path+"ZWaveAPI/Run/devices["+node_id+"]", 
 			dataType: 'json',
 			async: true, 
 			global : false,
 			success: function(data) {
-				if(typeof nodes === 'undefined'){
-					nodes = {};
-				}
 				nodes[node_id] = data;
 				app_nodes.draw_nodes();
 			},
