@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Automatically generated script by
 # vagrantbox/doc/src/vagrant/src-vagrant/deb2sh.py
 # The script is based on packages listed in debpkg_minimal.txt.
