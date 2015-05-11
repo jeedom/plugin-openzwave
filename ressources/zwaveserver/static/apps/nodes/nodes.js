@@ -40,17 +40,18 @@ var app_nodes = {
     {
     	console.log(path);
     	app_nodes.load_data();
-    	$('#node-queryStageDescrition').popover({title: '', placement: 'right', trigger: 'hover'});
-    	$("#node-nav").on("click","li",function() {
-    		var nid = $(this).attr("nid");
-    		app_nodes.selected_node = nid;
-    		app_nodes.draw_nodes();
-    		app_nodes.load_data();
-    		app_nodes.load_stats(app_nodes.selected_node);
-    		app_nodes.show_groups();
+        setInterval(function(){ app_nodes.load_data(); }, 2000);
+        $('#node-queryStageDescrition').popover({title: '', placement: 'right', trigger: 'hover'});
+        $("#node-nav").on("click","li",function() {
+          var nid = $(this).attr("nid");
+          app_nodes.selected_node = nid;
+          app_nodes.draw_nodes();
+          app_nodes.load_data();
+          app_nodes.load_stats(app_nodes.selected_node);
+          app_nodes.show_groups();
             //app_nodes.load_groups(app_nodes.selected_node);
         });
-    	$("#tab-summary").on("click",function() {
+    	/*$("#tab-summary").on("click",function() {
     		app_nodes.draw_nodes();
     		app_nodes.load_data();
     	});
@@ -62,86 +63,86 @@ var app_nodes = {
     		app_nodes.draw_nodes();
     		app_nodes.load_data();
     	});
-    	$("#tab-groups").on("click",function() {
-    		app_nodes.draw_nodes();
-    		app_nodes.load_data();
-    		app_nodes.show_groups();
+$("#tab-systems").on("click",function() {
+            app_nodes.draw_nodes();
+            app_nodes.load_data();
+        });
+        $("#tab-actions").on("click",function() {
+            app_nodes.draw_nodes();
+            app_nodes.load_data();
+        });
+*/
+$("#tab-groups").on("click",function() {
+  app_nodes.show_groups();
             //app_nodes.load_groups(app_nodes.selected_node);
         });
-    	$("#tab-systems").on("click",function() {
-    		app_nodes.draw_nodes();
-    		app_nodes.load_data();
-    	});
-    	$("#tab-actions").on("click",function() {
-    		app_nodes.draw_nodes();
-    		app_nodes.load_data();
-    	});
-    	$("#tab-stats").on("click",function() {
-    		app_nodes.draw_nodes();
-    		app_nodes.load_data();
-    		app_nodes.load_stats(app_nodes.selected_node);
-    	});
-    	$("body").on("click",".requestNodeNeighboursUpdate",function (e) {
-    		app_nodes.request_node_neighbours_update(app_nodes.selected_node);
-    	});
-    	$("body").on("click",".healNode",function (e) {
-    		app_nodes.healNode(app_nodes.selected_node);
-    	});
-    	$("#testNode").on("click",function() {
-    		app_nodes.test_node(app_nodes.selected_node);
-    	});
-    	$("#refreshNodeValues").on("click",function() {
-    		app_nodes.refresh_node_values(app_nodes.selected_node);
-    	});
-    	$("body").on("click",".refreshNodeInfo",function (e) {
-    		app_nodes.refresh_node_info(app_nodes.selected_node);
-    	});
-    	$("body").on("click",".hasNodeFailed",function (e) {
-    		app_nodes.has_node_failed(app_nodes.selected_node);
-    	});
-    	$("#removeFailedNode").on("click",function() {
-    		app_nodes.remove_failed_node(app_nodes.selected_node);
-    	});
-    	$("#replaceFailedNode").on("click",function() {
-    		app_nodes.replace_failed_node(app_nodes.selected_node);
-    	});
-    	$("#sendNodeInformation").on("click",function() {
-    		app_nodes.send_node_information(app_nodes.selected_node);
-    	});
-    	$("body").on("click",".addGroup",function (e) {
-    		var group = $(this).data('groupindex');
-    		$('#groupsModal').data('groupindex', group);
-    		$('#groupsModal').modal('show');
-    	});
-    	$("body").on("click",".deleteGroup",function (e) {
-    		var group = $(this).data('groupindex');
-    		var node = $(this).data('nodeindex');
-    		app_nodes.delete_group(app_nodes.selected_node,group,node);
-    	});
-    	$('#groupsModal').on('show.bs.modal', function (e) {
-    		var modal = $(this);
-    		var group = $(this).data('groupindex');
-    		var arr_exists_nodes=nodes[app_nodes.selected_node].groups[group].associations.split(';');
-    		modal.find('.modal-body').html(' ');
-    		modal.find('.modal-title').text('Group '+group+' : Add an association for node ' + app_nodes.selected_node);
-    		var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode">';
-    		$.each(nodes, function(key, val) {
-    			if(arr_exists_nodes.indexOf(key)==-1 && key!=app_nodes.selected_node){
-    				options_node +='<option value="'+key+'">'+key+' : '+val.data.name.value+'</option>';
-    			}
-    		});
-    		options_node += '</select></div>';
-    		modal.find('.modal-body').append(options_node);
 
-    	});
-    	$("#saveGroups").on("click",function (e) {
-    		var groupGroup = $('#groupsModal').data('groupindex');
-    		var groupNode = $('#newvaluenode').val();
-    		$.ajax({ 
-    			url: path+"ZWaveAPI/Run/devices["+app_nodes.selected_node+"].instances[0].commandClasses[0x85].Add("+groupGroup+","+groupNode+")", 
-    			dataType: 'json',
-    			async: true, 
-    			success: function(data) {
+$("#tab-stats").on("click",function() {
+  //app_nodes.draw_nodes();
+  //app_nodes.load_data();
+  app_nodes.load_stats(app_nodes.selected_node);
+});
+$("body").on("click",".requestNodeNeighboursUpdate",function (e) {
+  app_nodes.request_node_neighbours_update(app_nodes.selected_node);
+});
+$("body").on("click",".healNode",function (e) {
+  app_nodes.healNode(app_nodes.selected_node);
+});
+$("#testNode").on("click",function() {
+  app_nodes.test_node(app_nodes.selected_node);
+});
+$("#refreshNodeValues").on("click",function() {
+  app_nodes.refresh_node_values(app_nodes.selected_node);
+});
+$("body").on("click",".refreshNodeInfo",function (e) {
+  app_nodes.refresh_node_info(app_nodes.selected_node);
+});
+$("body").on("click",".hasNodeFailed",function (e) {
+  app_nodes.has_node_failed(app_nodes.selected_node);
+});
+$("#removeFailedNode").on("click",function() {
+  app_nodes.remove_failed_node(app_nodes.selected_node);
+});
+$("#replaceFailedNode").on("click",function() {
+  app_nodes.replace_failed_node(app_nodes.selected_node);
+});
+$("#sendNodeInformation").on("click",function() {
+  app_nodes.send_node_information(app_nodes.selected_node);
+});
+$("body").on("click",".addGroup",function (e) {
+  var group = $(this).data('groupindex');
+  $('#groupsModal').data('groupindex', group);
+  $('#groupsModal').modal('show');
+});
+$("body").on("click",".deleteGroup",function (e) {
+  var group = $(this).data('groupindex');
+  var node = $(this).data('nodeindex');
+  app_nodes.delete_group(app_nodes.selected_node,group,node);
+});
+$('#groupsModal').on('show.bs.modal', function (e) {
+  var modal = $(this);
+  var group = $(this).data('groupindex');
+  var arr_exists_nodes=nodes[app_nodes.selected_node].groups[group].associations.split(';');
+  modal.find('.modal-body').html(' ');
+  modal.find('.modal-title').text('Group '+group+' : Add an association for node ' + app_nodes.selected_node);
+  var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode">';
+  $.each(nodes, function(key, val) {
+   if(arr_exists_nodes.indexOf(key)==-1 && key!=app_nodes.selected_node){
+    options_node +='<option value="'+key+'">'+key+' : '+val.data.name.value+'</option>';
+}
+});
+  options_node += '</select></div>';
+  modal.find('.modal-body').append(options_node);
+
+});
+$("#saveGroups").on("click",function (e) {
+  var groupGroup = $('#groupsModal').data('groupindex');
+  var groupNode = $('#newvaluenode').val();
+  $.ajax({ 
+   url: path+"ZWaveAPI/Run/devices["+app_nodes.selected_node+"].instances[0].commandClasses[0x85].Add("+groupGroup+","+groupNode+")", 
+   dataType: 'json',
+   async: true, 
+   success: function(data) {
 	            	//app_nodes.load_groups(app_nodes.selected_node);
 	            	app_nodes.draw_nodes();
 	            	app_nodes.load_data();
@@ -150,62 +151,62 @@ var app_nodes = {
 	            	$('#groupsModal').modal('hide');
 	            }
 	        });
-    	});
-    	$("body").on("click",".editValue",function (e) {
-    		var idx = $(this).data('valueidx');
-    		var instance = $(this).data('valueinstance');
-    		var cc = $(this).data('valuecc');
-    		var name = $(this).data('valuename');
-    		var value = $(this).data('valuevalue');
-    		var type = $(this).data('valuetype');
-    		var dataitems = $(this).data('valuedataitems');
-    		$('#valuesModal').data('valuename', name);
-    		$('#valuesModal').data('valuetype', type);
-    		$('#valuesModal').data('valueinstance', instance);
-    		$('#valuesModal').data('valuecc', cc);
-    		$('#valuesModal').data('valuevalue', value);
-    		$('#valuesModal').data('valuedataitems', dataitems);
-    		$('#valuesModal').data('valueidx', idx).modal('show');
-    	});
-    	$('#valuesModal').on('show.bs.modal', function (e) {
-    		var valueIdx = $(this).data('valueidx');
-    		var valueType = $(this).data('valuetype');
-    		var valueInstance = $(this).data('valueinstance');
-    		var valueCc = $(this).data('valuecc');
-    		var valueName = $(this).data('valuename');
-    		var valueValue = $(this).data('valuevalue');
-    		var valueDataitems = $(this).data('valuedataitems').split(";");
-    		var modal = $(this);
-    		modal.find('.modal-title').text('Change value for value ' + valueName);
-    		modal.find('.modal-body').html(valueName);
-    		modal.find('.modal-body').append('<b> : </b>');
-    		if(valueType == "List"){
-    			var options = '<select class="form-control" id="newvaluevalue">';
-    			$.each(valueDataitems, function(key, val) {
-    				if(val==valueValue){
-    					options +='<option value="'+val+'" selected="selected">'+val+'</option>';
-    				}else{
-    					options +='<option value="'+val+'">'+val+'</option>';
-    				}
-    			});
-    			options += '</select>';
-    			modal.find('.modal-body').append(options);
+});
+$("body").on("click",".editValue",function (e) {
+  var idx = $(this).data('valueidx');
+  var instance = $(this).data('valueinstance');
+  var cc = $(this).data('valuecc');
+  var name = $(this).data('valuename');
+  var value = $(this).data('valuevalue');
+  var type = $(this).data('valuetype');
+  var dataitems = $(this).data('valuedataitems');
+  $('#valuesModal').data('valuename', name);
+  $('#valuesModal').data('valuetype', type);
+  $('#valuesModal').data('valueinstance', instance);
+  $('#valuesModal').data('valuecc', cc);
+  $('#valuesModal').data('valuevalue', value);
+  $('#valuesModal').data('valuedataitems', dataitems);
+  $('#valuesModal').data('valueidx', idx).modal('show');
+});
+$('#valuesModal').on('show.bs.modal', function (e) {
+  var valueIdx = $(this).data('valueidx');
+  var valueType = $(this).data('valuetype');
+  var valueInstance = $(this).data('valueinstance');
+  var valueCc = $(this).data('valuecc');
+  var valueName = $(this).data('valuename');
+  var valueValue = $(this).data('valuevalue');
+  var valueDataitems = $(this).data('valuedataitems').split(";");
+  var modal = $(this);
+  modal.find('.modal-title').text('Change value for value ' + valueName);
+  modal.find('.modal-body').html(valueName);
+  modal.find('.modal-body').append('<b> : </b>');
+  if(valueType == "List"){
+   var options = '<select class="form-control" id="newvaluevalue">';
+   $.each(valueDataitems, function(key, val) {
+    if(val==valueValue){
+     options +='<option value="'+val+'" selected="selected">'+val+'</option>';
+ }else{
+     options +='<option value="'+val+'">'+val+'</option>';
+ }
+});
+   options += '</select>';
+   modal.find('.modal-body').append(options);
 
-    		}else if(valueType == "Bool"){
-    			if(valueValue==true){
-    				modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255" checked> ON ');
-    				modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0"> OFF ');
-    			}else{
-    				modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255"> ON ');
-    				modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0" checked> OFF ');
-    			}
-    		}else if(valueType == "Button"){
-    			modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Press" checked> Push Button ');
-    			modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Release"> Release Button ');
-    		}else{
-    			modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" value="'+valueValue+'">');
-    		}
-    	});
+}else if(valueType == "Bool"){
+   if(valueValue==true){
+    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255" checked> ON ');
+    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0"> OFF ');
+}else{
+    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255"> ON ');
+    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0" checked> OFF ');
+}
+}else if(valueType == "Button"){
+   modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Press" checked> Push Button ');
+   modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Release"> Release Button ');
+}else{
+   modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" value="'+valueValue+'">');
+}
+});
 $("body").on("click",".editPolling",function (e) {
 	var idx = $(this).data('valueidx');
 	var instance = $(this).data('valueinstance');
@@ -281,8 +282,8 @@ $("#saveParam").on("click",function (e) {
 		dataType: 'json',
 		async: true, 
 		success: function(data) {
-			app_nodes.draw_nodes();
-			app_nodes.load_data();
+			//app_nodes.draw_nodes();
+			//app_nodes.load_data();
 			$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
 			$('#paramsModal').modal('hide');
 		}
@@ -306,8 +307,8 @@ $("#applyValue").on("click",function (e) {
 			dataType: 'json',
 			async: true, 
 			success: function(data) {
-				app_nodes.draw_nodes();
-				app_nodes.load_data();
+				//app_nodes.draw_nodes();
+				//app_nodes.load_data();
 				$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
 				$('#valuesModal').modal('hide');
 				app_nodes.draw_nodes();
@@ -319,8 +320,8 @@ $("#applyValue").on("click",function (e) {
 			dataType: 'json',
 			async: true, 
 			success: function(data) {
-				app_nodes.draw_nodes();
-				app_nodes.load_data();
+				//app_nodes.draw_nodes();
+				//app_nodes.load_data();
 				$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
 				$('#valuesModal').modal('hide');
 				app_nodes.draw_nodes();
@@ -333,8 +334,8 @@ $("#applyValue").on("click",function (e) {
 			dataType: 'json',
 			async: true, 
 			success: function(data) {
-				app_nodes.draw_nodes();
-				app_nodes.load_data();
+				//app_nodes.draw_nodes();
+				//app_nodes.load_data();
 				$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
 				$('#valuesModal').modal('hide');
 				app_nodes.draw_nodes();
@@ -528,23 +529,38 @@ send_node_information: function(node_id)
 },
 load_data: function()
 {
-
-   $.ajax({ 
+    if(typeof controller !== 'undefined'){
+        $.ajax({ 
+          url: path+"ZWaveAPI/Run/devices["+node_id+"]", 
+          dataType: 'json',
+          async: true, 
+          global : false,
+          success: function(data) {
+            nodes[node_id] = data;
+            app_nodes.draw_nodes();
+                // auto select first node
+            },
+            error: function(data) {
+                alert('error'+JSON.stringify(data, null, 4));
+            }
+        });
+    }else{
+     $.ajax({ 
       url: path+"ZWaveAPI/Data/0", 
       dataType: 'json',
-      async: true, 
-      global : (typeof node_id !== 'undefined' && typeof controller !== 'undefined') ? false : true,
+      async: true,       
       success: function(data) {
-         console.log('chargement ok');
-         nodes = data['devices'];
-         controller = data['controller'];
-         app_nodes.draw_nodes();
+       console.log('chargement ok');
+       nodes = data['devices'];
+       controller = data['controller'];
+       app_nodes.draw_nodes();
                 // auto select first node
             },
             error: function(data) {
             	alert('error'+JSON.stringify(data, null, 4));
             }
         });
+ }
 },
 load_stats: function(node_id)
 {
@@ -553,10 +569,10 @@ load_stats: function(node_id)
 		dataType: 'json',
 		async: true, 
         global : (typeof node_id !== 'undefined' && !isNaN(node_id)) ? false : true,
-		success: function(data) {
-			console.log('ok');
-			stats = data['statistics'];
-			app_nodes.show_stats();
+        success: function(data) {
+         console.log('ok');
+         stats = data['statistics'];
+         app_nodes.show_stats();
                 // auto select first node
                 
             },
@@ -572,16 +588,16 @@ load_groups: function(node_id)
 		dataType: 'json',
 		async: true, 
         global : (typeof node_id !== 'undefined' && !isNaN(node_id)) ? false : true,
-		success: function(data) {
-			console.log('ok');
-			groups = data;
-			app_nodes.show_groups();
+        success: function(data) {
+         console.log('ok');
+         groups = data;
+         app_nodes.show_groups();
 
-		},
-		error: function(data) {
-			alert('error'+JSON.stringify(data, null, 4));
-		}
-	});
+     },
+     error: function(data) {
+         alert('error'+JSON.stringify(data, null, 4));
+     }
+ });
 },
 show: function()
 {
@@ -591,10 +607,6 @@ show: function()
 	}else{
 		app_nodes.selected_node = 1;
 	}
-	
-	setTimeout(function() {
-		app_nodes.draw_nodes();
-	}, 1000);
         //app_nodes.update();
         //app_nodes.updater = setInterval(app_nodes.update,2000);
     },
