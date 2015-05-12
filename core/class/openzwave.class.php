@@ -681,7 +681,6 @@ class openzwave extends eqLogic {
 								if (isset($data['genre']) && $data['genre'] != 'Config' && $data['genre'] != 'System') {
 									$cmd_info = null;
 									$cmd = null;
-									log::add('openzwave', 'info', 'nb instances : '.count($results['instances']));
 									if(count($results['instances'])>2){
 										$cmd_name_number=$instanceID+1;	
 										$cmd_name=$data['name'] . ' ' .$cmd_name_number;
