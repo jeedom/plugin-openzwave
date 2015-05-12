@@ -692,8 +692,7 @@ class openzwave extends eqLogic {
 		if (!is_numeric($this->getLogicalId())) {
 			return;
 		}
-
-		if (file_exists(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
+		if (is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
 			$this->loadCmdFromConf();
 			return;
 		}
