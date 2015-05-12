@@ -125,6 +125,18 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'checkDoc') {
+		$request_http = new com_http('http://doc.jeedom.fr/fr_FR/' . init('doc'));
+		try {
+			if (trim($request_http->exec(1, 0)) != '') {
+				ajax::success(1);
+			}
+		} catch (Exception $e) {
+
+		}
+		ajax::success(0);
+	}
+
 	throw new Exception('Aucune methode correspondante');
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

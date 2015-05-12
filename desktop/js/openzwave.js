@@ -113,6 +113,27 @@ if($('.li_eqLogic.active').attr('data-assistant') != ''){
 }else{
     $('#bt_deviceAssistant').hide();
 }
+ $.ajax({// fonction permettant de faire de l'ajax
+        type: "POST", // méthode de transmission des données au fichier php
+        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+        data: {
+            action: "checkDoc",
+            doc: _eqLogic.configuration.product_name,
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        },
+        success: function (data) { // si l'appel a bien fonctionné
+        if(data.result == 1){
+            $('#bt_deviceDocumentation').attr('href','http://doc.jeedom.fr/fr_FR/' + _eqLogic.configuration.product_name);
+            $('#bt_deviceDocumentation').show();
+        }else{
+            $('#bt_deviceDocumentation').hide();
+        }
+    }
+});
 }
 
 
