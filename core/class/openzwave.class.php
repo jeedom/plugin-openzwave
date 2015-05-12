@@ -56,7 +56,7 @@ class openzwave extends eqLogic {
 					'name' => 'Local',
 					'addr' => '127.0.0.1',
 					'port' => config::byKey('port_server', 'openzwave', 8083),
-					'path' => network::getNetworkAccess('auto', 'prot:ip:port') . '/' . config::byKey('urlPath0', 'openzwave'),
+					'path' => network::getNetworkAccess('external', 'prot:ip:port') . '/' . config::byKey('urlPath0', 'openzwave'),
 				);
 				if (self::$_listZwaveServer[0]['path'] == '') {
 					self::updateNginxRedirection();
@@ -75,7 +75,7 @@ class openzwave extends eqLogic {
 					if (self::$_listZwaveServer[$jeeNetwork->getId()]['path'] == '') {
 						self::updateNginxRedirection();
 					}
-					self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = network::getNetworkAccess('auto', 'prot:ip:port') . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
+					self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = network::getNetworkAccess('external', 'prot:ip:port') . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
 				}
 
 			}
@@ -327,6 +327,9 @@ class openzwave extends eqLogic {
 			} else {
 				if (isset($result['data']['name']['value'])) {
 					$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
+					$eqLogic->setConfiguration('manufacturer_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerId']['value'])));
+					$eqLogic->setConfiguration('product_type', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductType']['value'])));
+					$eqLogic->setConfiguration('product_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductId']['value'])));
 					$eqLogic->save();
 				}
 			}
@@ -561,10 +564,10 @@ class openzwave extends eqLogic {
 	}
 
 	public function loadCmdFromConf($_update = false) {
-		if (!file_exists(dirname(__FILE__) . '/../config/devices/' . $this->getConfiguration('product_name') . '.json')) {
+		if (!file_exists(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
 			return;
 		}
-		$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $this->getConfiguration('product_name') . '.json');
+		$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath());
 		if (!is_json($content)) {
 			return;
 		}
@@ -657,13 +660,31 @@ class openzwave extends eqLogic {
 		));
 	}
 
+	public function getConfFilePath() {
+		$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
+		$files = ls(dirname(__FILE__) . '/../config/devices', $id . '_*.json', false, array('files', 'quiet'));
+		if (count($files) > 0) {
+			return $files[0];
+		}
+		return false;
+	}
+
+	public function getImgFilePath() {
+		$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
+		$files = ls(dirname(__FILE__) . '/../img/devices', $id . '_*.jpg', false, array('files', 'quiet'));
+		if (count($files) > 0) {
+			return $files[0];
+		}
+		return false;
+	}
+
 	public function createCommand() {
 		$return = array();
 		if (!is_numeric($this->getLogicalId())) {
 			return;
 		}
 
-		if (file_exists(dirname(__FILE__) . '/../config/devices/' . $this->getConfiguration('product_name') . '.json')) {
+		if (file_exists(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
 			$this->loadCmdFromConf();
 			return;
 		}

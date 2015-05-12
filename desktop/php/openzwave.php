@@ -135,8 +135,8 @@ if ($controlerState == 5) {
 foreach ($eqLogics as $eqLogic) {
 	echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center>";
-	if (file_exists(dirname(__FILE__) . '/../../core/img/devices/' . $eqLogic->getConfiguration('product_name') . '.jpg')) {
-		echo '<img class="lazy" src="plugins/openzwave/core/img/devices/' . $eqLogic->getConfiguration('product_name') . '.jpg" height="105" width="95" />';
+	if ($eqLogic->getImgFilePath() !== false) {
+		echo '<img class="lazy" src="plugins/openzwave/core/img/devices/' . $eqLogic->getImgFilePath() . '" height="105" width="95" />';
 	} else {
 		echo '<img class="lazy" src="plugins/openzwave/doc/images/openzwave_icon.png" height="105" width="95" />';
 	}
