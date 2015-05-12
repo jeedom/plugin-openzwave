@@ -56,7 +56,7 @@ if ($controlerState == 5) {
                <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="Rechercher" style="width: 100%"/></li>
                <?php
 foreach ($eqLogics as $eqLogic) {
-	echo '<li class="cursor li_eqLogic" data-eqLogic_id="' . $eqLogic->getId() . '"><a>' . $eqLogic->getHumanName(true);
+	echo '<li class="cursor li_eqLogic" data-eqLogic_id="' . $eqLogic->getId() . '" data-assistant="' . $eqLogic->getAssistantFilePath() . '"><a>' . $eqLogic->getHumanName(true);
 	echo '</a></li>';
 }
 ?>
@@ -150,7 +150,7 @@ foreach ($eqLogics as $eqLogic) {
 
 <div class="col-lg-10 col-md-9 col-sm-8 eqLogic" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-7">
             <form class="form-horizontal">
                 <fieldset>
                     <legend><i class="fa fa-arrow-circle-left eqLogicAction cursor" data-action="returnToThumbnailDisplay"></i> {{Général}} <i class='fa fa-cogs eqLogicAction pull-right cursor expertModeVisible' data-action='configure'></i></legend>
@@ -225,7 +225,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 </fieldset>
 </form>
 </div>
-<div class="col-sm-6">
+<div class="col-sm-5">
     <form class="form-horizontal">
         <fieldset>
             <legend>{{Informations}}
@@ -235,20 +235,16 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 
          <div class="form-group">
             <label class="col-sm-2 control-label">{{Paramètres}}</label>
-            <div class="col-sm-4">
+            <div class="col-sm-10">
                 <a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fa fa-wrench"></i> {{Configuration}}</a>
+                <a class="btn btn-info" id="bt_deviceAssistant" title='{{Assistant de configuration spécifique}}'><i class="fa fa-question-circle"></i> {{Assistant}}</a>
                 <a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank"><i class="fa fa-book"></i> {{Documentation}}</a>
             </div>
-            <label class="col-sm-2 control-label">{{Communication}}</label>
-            <div class="col-sm-4">
-                <span class="zwaveInfo tooltips label label-default" data-l1key="lastReceived"></span>
-            </div>
-
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">{{Marque}}</label>
             <div class="col-sm-4">
-                <span class="zwaveInfo tooltips label label-default" data-l1key="brand"></span>
+                <span class="zwaveInfo tooltips label label-default" data-l1key="brand"></span><br/>
                 <span class="tooltips label label-default">
                     <span class="eqLogicAttr" data-l1key="configuration" data-l2key="product_name"></span>
                     (<span class="eqLogicAttr" data-l1key="configuration" data-l2key="conf_version"></span>)
@@ -256,7 +252,10 @@ foreach (openzwave::listServerZwave() as $id => $server) {
             </div>
             <label class="col-sm-2 control-label">{{Etat}}</label>
             <div class="col-sm-4">
-                <span class="zwaveInfo tooltips label label-default" data-l1key="state"></span>
+                <span class="zwaveInfo tooltips label label-default" data-l1key="state"></span><br/>
+                  <span class="tooltips label label-default">
+                    {{Communication}} <span class="zwaveInfo" data-l1key="lastReceived"></span>
+                </span><br/>
                 <span class="tooltips label label-default">
                     {{Batterie}} <span class="zwaveInfo" data-l1key="battery"></span>
                 </span>

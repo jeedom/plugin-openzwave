@@ -678,6 +678,15 @@ class openzwave extends eqLogic {
 		return false;
 	}
 
+	public function getAssistantFilePath() {
+		$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
+		$files = ls(dirname(__FILE__) . '/../config/devices', $id . '_*.php', false, array('files', 'quiet'));
+		if (count($files) > 0) {
+			return $files[0];
+		}
+		return false;
+	}
+
 	public function createCommand() {
 		$return = array();
 		if (!is_numeric($this->getLogicalId())) {
@@ -702,11 +711,11 @@ class openzwave extends eqLogic {
 								if (isset($data['genre']) && $data['genre'] != 'Config' && $data['genre'] != 'System') {
 									$cmd_info = null;
 									$cmd = null;
-									if(count($results['instances'])>2){
-										$cmd_name_number=$instanceID+1;	
-										$cmd_name=$data['name'] . ' ' .$cmd_name_number;
-									}else{
-										$cmd_name=$data['name'];
+									if (count($results['instances']) > 2) {
+										$cmd_name_number = $instanceID + 1;
+										$cmd_name = $data['name'] . ' ' . $cmd_name_number;
+									} else {
+										$cmd_name = $data['name'];
 									}
 									if (!$data['write_only']) {
 										$cmd_info = new openzwaveCmd();
@@ -752,7 +761,7 @@ class openzwave extends eqLogic {
 												if ($data['typeZW'] == 'Button') {
 													$cmd->setName($cmd_name);
 													$cmd->setConfiguration('value', 'data[' . $index . '].PressButton()');
-												}else{
+												} else {
 													$cmd->setName($cmd_name . ' On');
 													$cmd->setConfiguration('value', 'data[' . $index . '].Set(255)');
 												}
@@ -771,7 +780,7 @@ class openzwave extends eqLogic {
 													$cmd->setName($cmd_name . ' Stop');
 													$cmd->setIsVisible(0);
 													$cmd->setConfiguration('value', 'data[' . $index . '].ReleaseButton()');
-												}else{
+												} else {
 													$cmd->setName($cmd_name . ' Off');
 													$cmd->setConfiguration('value', 'data[' . $index . '].Set(0)');
 												}
