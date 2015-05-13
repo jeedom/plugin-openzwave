@@ -23,8 +23,9 @@ for ($i = 1; $i <= 3; $i++) {
 		}
 	}
 }
-
+$found = false;
 foreach (eqLogic::byType('zwave') as $eqLogic) {
+	$found = true;
 	$eqLogic->setEqType_name('openzwave');
 	$server_id = $eqLogic->getConfiguration('serverID', 1);
 	if (isset($server_convertion[$server_id])) {
@@ -38,4 +39,8 @@ foreach (eqLogic::byType('zwave') as $eqLogic) {
 	}
 }
 
+if ($found) {
+	openzwave::syncEqLogicWithRazberry();
+
+}
 ?>
