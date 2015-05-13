@@ -1846,8 +1846,7 @@ def get_device(fromtime):
                 global con
                 con.row_factory = lite.Row
                 cur = con.cursor() 
-                cur.execute("DELETE FROM Events WHERE UpdateTime < ?", (fromtime,))
-                cur.execute("SELECT * FROM Events WHERE UpdateTime >= ?", (fromtime,))
+                cur.execute("SELECT * FROM Events")
                 rows = cur.fetchall()
                 timestamp = int(time.time())
                 changes['updateTime']=timestamp
@@ -1873,6 +1872,7 @@ def get_device(fromtime):
                             changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.supported'] = {"value":"true","type": "bool","updateTime": row["updateTime"]}
                             changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.last'] = {"value":row["Value"],"type": "int","updateTime": row["updateTime"]}
                         changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"])]["val"]= {"value":row["Value"],"type":row["Type"],"updateTime": row["updateTime"]}
+                cur.execute("DELETE FROM Events")
                 return jsonify(changes)
                  
             else :
