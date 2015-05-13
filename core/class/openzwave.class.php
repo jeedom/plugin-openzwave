@@ -564,7 +564,7 @@ class openzwave extends eqLogic {
 	}
 
 	public function loadCmdFromConf($_update = false) {
-		if (!file_exists(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
+		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
 			return;
 		}
 		$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath());
