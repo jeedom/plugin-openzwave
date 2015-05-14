@@ -8,6 +8,8 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 	exit();
 }
 
+require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
+
 $server_convertion = array(1 => 1, 2 => 2, 3 => 3);
 
 for ($i = 1; $i <= 3; $i++) {
