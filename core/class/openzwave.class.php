@@ -151,14 +151,7 @@ class openzwave extends eqLogic {
 
 	public static function pull() {
 		foreach (self::listServerZwave() as $serverID => $server) {
-			if (!isset($server['name'])) {
-				continue;
-			}
-			if (!isset(self::$_zwaveUpdatetime[$serverID])) {
-				$cache = cache::byKey('openzwave::lastUpdate' . $serverID);
-				self::$_zwaveUpdatetime[$serverID] = $cache->getValue(0);
-			}
-			$results = self::callRazberry('/ZWaveAPI/Data/' . self::$_zwaveUpdatetime[$serverID], $serverID);
+			$results = self::callRazberry('/ZWaveAPI/Data/1', $serverID);
 			if (!is_array($results)) {
 				continue;
 			}
@@ -276,13 +269,6 @@ class openzwave extends eqLogic {
 						}
 					}
 				}
-			}
-			if (isset($results['updateTime'])) {
-				self::$_zwaveUpdatetime[$serverID] = $results['updateTime'];
-				cache::set('openzwave::lastUpdate' . $serverID, $results['updateTime'], 0);
-			} else {
-				self::$_zwaveUpdatetime[$serverID] = 0;
-				cache::set('openzwave::lastUpdate' . $serverID, 0, 0);
 			}
 		}
 	}
