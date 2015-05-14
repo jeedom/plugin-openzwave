@@ -887,25 +887,14 @@ class openzwaveCmd extends cmd {
 	/*     * *********************Methode d'instance************************* */
 
 	public function handleUpdateValue($_result) {
-		$updateTime = null;
 		if (isset($_result['val'])) {
 			$value = self::handleResult($_result['val']);
 			if (isset($_result['val']['updateTime'])) {
-				$updateTime = $_result['val']['updateTime'];
-			}
-		} else if (isset($_result['level'])) {
-			$value = self::handleResult($_result['level']);
-			if (isset($_result['level']['updateTime'])) {
-				$updateTime = $_result['level']['updateTime'];
 			}
 		} else {
 			$value = self::handleResult($_result);
 			if (isset($_result['updateTime'])) {
-				$updateTime = $_result['updateTime'];
 			}
-		}
-		if ($updateTime != null) {
-			$this->setCollectDate(date('Y-m-d H:i:s', $updateTime));
 		}
 		if ($value === '') {
 			try {
