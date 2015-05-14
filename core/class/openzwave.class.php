@@ -890,15 +890,18 @@ class openzwaveCmd extends cmd {
 		if (isset($_result['val'])) {
 			$value = self::handleResult($_result['val']);
 			if (isset($_result['val']['updateTime'])) {
+				$this->setCollectDate(date('Y-m-d H:i:s', $_result['val']['updateTime']));
 			}
 		} else {
 			$value = self::handleResult($_result);
 			if (isset($_result['updateTime'])) {
+				$this->setCollectDate(date('Y-m-d H:i:s', $_result['updateTime']));
 			}
 		}
 		if ($value === '') {
 			try {
 				$value = $this->execute();
+				$this->setCollectDate('');
 			} catch (Exception $e) {
 				return;
 			}
