@@ -1380,9 +1380,7 @@ def setValue(device_id, cc_id, value) :
                 Value['data'][val] = {'val':network.nodes[device_id].set_dimmer(val, value)}
                 if cc_id == COMMAND_CLASS_SWITCH_MULTILEVEL:
                     #dimmer don't report the final value until the value changes is completed
-                    time.sleep(1)
-                    network.nodes[device_id].values[val].refresh()
-                    time.sleep(1)
+                    time.sleep(2)
                     network.nodes[device_id].values[val].refresh()
                 return jsonify(Value)
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
@@ -1490,9 +1488,7 @@ def setValue7(device_id,instance_id, cc_id, index, value) :
                 Value['data'][val] = {'val': value}
                 if cc_id == COMMAND_CLASS_SWITCH_MULTILEVEL:
                     #dimmer don't report the final value until the value changes is completed
-                    time.sleep(1)
-                    network.nodes[device_id].values[val].refresh()
-                    time.sleep(1)
+                    time.sleep(2)
                     network.nodes[device_id].values[val].refresh()
                 return jsonify(Value) 
     else:
@@ -1511,9 +1507,7 @@ def setValue8(device_id,instance_id, cc_id, index, value) :
                 Value['data'][val] = {'val': value}
                 if cc_id == COMMAND_CLASS_SWITCH_MULTILEVEL:
                     #dimmer don't report the final value until the value changes is completed
-                    time.sleep(1)
-                    network.nodes[device_id].values[val].refresh()
-                    time.sleep(1)
+                    time.sleep(2)
                     network.nodes[device_id].values[val].refresh()
                 return jsonify(Value) 
     else:
@@ -1596,9 +1590,7 @@ def setValue3(device_id, instance_id, cc_id, value) :
                 Value['data'][val] = {'val':network.nodes[device_id].set_dimmer(val, value)}
                 if cc_id == COMMAND_CLASS_SWITCH_MULTILEVEL:
                     #dimmer don't report the final value until the value changes is completed
-                    time.sleep(1)
-                    network.nodes[device_id].values[val].refresh()
-                    time.sleep(1)
+                    time.sleep(2)
                     network.nodes[device_id].values[val].refresh()
                 return jsonify(Value)
     else:
