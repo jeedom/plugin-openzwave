@@ -1848,8 +1848,7 @@ def get_device(fromtime):
                 cur = con.cursor() 
                 cur.execute("SELECT * FROM Events")
                 rows = cur.fetchall()
-                timestamp = int(time.time())
-                changes['updateTime']=timestamp
+                cur.execute("DELETE FROM Events")
                 for row in rows:
                     if row["Commandclass"] == 0 and row["Value"]=="removed":
                         changes['controller.data.lastExcludedDevice'] = {"value":row["Node"]}
@@ -1860,19 +1859,7 @@ def get_device(fromtime):
                         changes['controller']['controllerState'] = {"value":int(row["Value"])}
                     else :
                         changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"])] = {}
-                        if row["Commandclass"] in [32,37,38,48,49] :
-                            changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.level'] = {"value":row["Value"],"type": row["Type"],"updateTime": row["updateTime"]}
-                            changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"]) + '.level'] = {"value":row["Value"],"type": row["Type"],"updateTime": row["updateTime"]}
-                        if row["Commandclass"] in [43,91] :
-                            changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.currentScene'] = {"value":row["Value"],"type": "int","updateTime": row["updateTime"]}
-                            changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"]) + '.currentScene'] = {"value":row["Value"],"type": "int","updateTime": row["updateTime"]}
-                        if row["Commandclass"] in [156] :
-                            changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"]) + '.sensorState'] = {"value":row["Value"],"type": "int","updateTime": row["updateTime"]}
-                        if row["Commandclass"] in [128] :
-                            changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.supported'] = {"value":"true","type": "bool","updateTime": row["updateTime"]}
-                            changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.last'] = {"value":row["Value"],"type": "int","updateTime": row["updateTime"]}
-                        changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"])]["val"]= {"value":row["Value"],"type":row["Type"],"updateTime": row["updateTime"]}
-                cur.execute("DELETE FROM Events")
+                        changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"])]["val"]= {"value":row["Value"],"type":row["Type"]}
                 return jsonify(changes)
                  
             else :
