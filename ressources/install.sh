@@ -23,6 +23,23 @@ function pip_install {
 }
 
 sudo apt-get update --fix-missing
+sudo service z-way-server status
+if [ $? -eq 0 ]; then
+  echo "Désactivation du z-way-server"
+  sudo service z-way-server stop
+  sudo service mongoose stop
+  sudo service zbw_connect stop
+  sudo updade-rc.d -f z-way-server remove
+  sudo updade-rc.d -f mongoose remove
+  sudo updade-rc.d -f zbw_connect remove
+  ps aux | grep mongoose | awk '{print $2}' | xargs kill -9
+  ps aux | grep z-way-server | awk '{print $2}' | xargs kill -9 
+
+  if [ -e /dev/ttymxc0 ]; then
+     sudo systemctl unmask serial-getty@ttymxc0.service
+  fi
+
+fi
 
 # Minimal installation for a Python ecosystem
 # for OpenZwave
