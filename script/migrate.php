@@ -34,11 +34,11 @@ foreach (eqLogic::byType('zwave') as $eqLogic) {
 		$server_id = $server_convertion[$server_id];
 	}
 	$eqLogic->setConfiguration('serverID', $server_id); // TODO FIND NEW SERVER ID
-	$eqLogic->save();
 	foreach ($eqLogic->getCmd() as $cmd) {
 		$cmd->setEqType('openzwave');
 		$cmd->save();
 	}
+	$eqLogic->save();
 }
 
 if ($found) {
