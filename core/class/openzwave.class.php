@@ -50,18 +50,19 @@ class openzwave extends eqLogic {
 	public static function listServerZwave() {
 		if (self::$_listZwaveServer == null) {
 			self::$_listZwaveServer = array();
+			$network_access = network::getNetworkAccess('auto', 'proto:ip:port');
 			if (config::byKey('port', 'openzwave', 'none') != 'none') {
 				self::$_listZwaveServer[0] = array(
 					'id' => 0,
 					'name' => 'Local',
 					'addr' => '127.0.0.1',
 					'port' => config::byKey('port_server', 'openzwave', 8083),
-					'path' => network::getNetworkAccess('auto', 'proto:ip:port') . '/' . config::byKey('urlPath0', 'openzwave'),
+					'path' => $network_access . '/' . config::byKey('urlPath0', 'openzwave'),
 				);
 				if (self::$_listZwaveServer[0]['path'] == '') {
 					self::updateNginxRedirection();
 				}
-				self::$_listZwaveServer[0]['path'] = network::getNetworkAccess('auto', 'proto:ip:port') . '/' . config::byKey('urlPath0', 'openzwave');
+				self::$_listZwaveServer[0]['path'] = $network_access . '/' . config::byKey('urlPath0', 'openzwave');
 			}
 			if (config::byKey('jeeNetwork::mode') == 'master') {
 				foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
@@ -70,12 +71,12 @@ class openzwave extends eqLogic {
 						'name' => $jeeNetwork->getName(),
 						'addr' => $jeeNetwork->getRealIp(),
 						'port' => $jeeNetwork->configByKey('port_server', 'openzwave', 8083),
-						'path' => network::getNetworkAccess('auto', 'proto:ip:port') . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave'),
+						'path' => $network_access . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave'),
 					);
 					if (self::$_listZwaveServer[$jeeNetwork->getId()]['path'] == '') {
 						self::updateNginxRedirection();
 					}
-					self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = network::getNetworkAccess('auto', 'proto:ip:port') . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
+					self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = $network_access . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
 				}
 
 			}
@@ -150,15 +151,14 @@ class openzwave extends eqLogic {
 	}
 
 	public static function pull() {
+		$startLoadTime = getmicrotime();
 		foreach (self::listServerZwave() as $serverID => $server) {
 			$results = self::callRazberry('/ZWaveAPI/Data/1', $serverID);
 			if (!is_array($results)) {
 				continue;
 			}
 			foreach ($results as $key => $result) {
-				if ($key == 'controller.data.controllerState') {
-					nodejs::pushUpdate('zwave::' . $key, array('name' => $server['name'], 'state' => $result['value'], 'serverId' => $serverID));
-				} else if ($key == 'controller.data.lastExcludedDevice') {
+				if ($key == 'controller.data.lastExcludedDevice') {
 					if ($result['value'] != null) {
 						nodejs::pushUpdate('zwave::' . $key, array('name' => $server['name'], 'state' => 0, 'serverId' => $serverID));
 						nodejs::pushUpdate('jeedom::alert', array(
@@ -172,7 +172,7 @@ class openzwave extends eqLogic {
 							'message' => '',
 						));
 					}
-				}if ($key == 'controller') {
+				} else if ($key == 'controller') {
 					if (isset($result['controllerState'])) {
 						nodejs::pushUpdate('zwave::controller.data.controllerState', array('name' => $server['name'], 'state' => $result['controllerState']['value'], 'serverId' => $serverID));
 					}
@@ -205,68 +205,15 @@ class openzwave extends eqLogic {
 					if (!isset($explodeKey[1])) {
 						continue;
 					}
-					if ($explodeKey[1] == 1) {
-						if (isset($results['devices.1.instances.0.commandClasses.' . $explodeKey[5] . '.data.srcNodeId'])) {
-							$explodeKey[1] = $results['devices.1.instances.0.commandClasses.' . $explodeKey[5] . '.data.srcNodeId']['value'];
-							$eqLogic = self::getEqLogicByLogicalIdAndServerId($results['devices.1.instances.0.commandClasses.' . $explodeKey[5] . '.data.srcNodeId']['value'], $serverID);
-							if (is_object($eqLogic)) {
-								foreach ($eqLogic->getCmd('info') as $cmd) {
-									if ($cmd->getConfiguration('instanceId') == $explodeKey[3]) {
-										try {
-											$cmd->forceUpdate();
-										} catch (Exception $e) {
-
-										}
-									}
-								}
-							}
-						}
-					}
 					$eqLogic = self::getEqLogicByLogicalIdAndServerId($explodeKey[1], $serverID);
 					if (is_object($eqLogic)) {
-						if (isset($value['hasCode'])) {
-							foreach ($eqLogic->searchCmdByConfiguration('code', 'info') as $cmd) {
-								$cmd->event($cmd->execute(), 0);
-								break;
-							}
-							continue;
-						}
-						if (count($explodeKey) == 5) {
-							foreach ($result as $class => $value) {
-								if ($eqLogic->getConfiguration('device') == 'fibaro.fgs221.pilote') {
-									foreach ($eqLogic->searchCmdByConfiguration('pilotWire', 'info') as $cmd) {
-										$cmd->event($cmd->getPilotWire(), 0);
-										break;
-									}
-									continue;
-								}
-								foreach ($eqLogic->getCmd('info') as $cmd) {
-									foreach ($eqLogic->getCmd('info', $explodeKey[3] . '.0x' . dechex($explodeKey[5]), null, true) as $cmd) {
-										$configurationValues = explode('.', str_replace(array(']', '['), array('', '.'), $cmd->getConfiguration('value')));
-										foreach ($configurationValues as $configurationValue) {
-											if (isset($value[$configurationValue])) {
-												$value = [$configurationValue];
-											}
-										}
-										$cmd->handleUpdateValue($value);
-									}
-								}
-							}
-						} else if (count($explodeKey) > 5) {
-							if ($eqLogic->getConfiguration('device') == 'fibaro.fgs221.pilote') {
-								foreach ($eqLogic->searchCmdByConfiguration('pilotWire', 'info') as $cmd) {
-									$cmd->event($cmd->getPilotWire(), 0);
-									break;
-								}
-								continue;
-							}
-							$attribut = implode('.', array_slice($explodeKey, 6));
-							foreach ($eqLogic->getCmd('info', $explodeKey[3] . '.0x' . dechex($explodeKey[5]), null, true) as $cmd) {
-								if (strpos(str_replace(array(']', '['), array('', '.'), $cmd->getConfiguration('value')), $attribut) !== false) {
-									$cmd->handleUpdateValue($result);
-								}
+						$attribut = implode('.', array_slice($explodeKey, 6));
+						foreach ($eqLogic->getCmd('info', $explodeKey[3] . '.0x' . dechex($explodeKey[5]), null, true) as $cmd) {
+							if (strpos(str_replace(array(']', '['), array('', '.'), $cmd->getConfiguration('value')), $attribut) !== false) {
+								$cmd->handleUpdateValue($result);
 							}
 						}
+
 					}
 				}
 			}
@@ -996,9 +943,6 @@ class openzwaveCmd extends cmd {
 	public function preSave() {
 		if ($this->getConfiguration('instanceId') === '') {
 			$this->setConfiguration('instanceId', '0');
-		}
-		if (strpos($this->getConfiguration('class'), '0x') === false) {
-			$this->setConfiguration('class', '0x' . dechex($this->getConfiguration('class')));
 		}
 		$this->setLogicalId($this->getConfiguration('instanceId') . '.' . $this->getConfiguration('class'));
 		$this->setEventOnly(1);
