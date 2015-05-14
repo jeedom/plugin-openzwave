@@ -38,16 +38,23 @@ foreach (eqLogic::byType('zwave') as $eqLogic) {
 		$cmd->save();
 	}
 }
-$replace = array(
-	'.level' => '.val',
-	'data.' => 'data[0].',
-	'data[0].sensorState.value' => 'data[0].val',
-);
+
 if ($found) {
-	openzwave::syncEqLogicWithRazberry();
+	$replace = array(
+		'.level' => '.val',
+		'data.' => 'data[0].',
+		'data[0].sensorState.value' => 'data[0].val',
+	);
+	foreach (openzwave::listServerZwave() as $serverID => $server) {
+		openzwave::syncEqLogicWithRazberry($serverID);
+	}
 	foreach (eqLogic::byType('openzwave') as $eqLogic) {
 		foreach ($eqLogic->getCmd() as $cmd) {
 			$cmd->setConfiguration('value', str_replace(array_keys($replace), $replace, $cmd->getConfiguration('value')));
+			if ($cmd->getConfiguration('class') == '0x80') {
+				$cmd->setConfiguration('value', str_replace('data.last', 'data[0].val', $cmd->getConfiguration('value')));
+				$cmd->setConfiguration('value', str_replace('data[0].last', 'data[0].val', $cmd->getConfiguration('value')));
+			}
 			$cmd->save();
 		}
 	}
