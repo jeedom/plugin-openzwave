@@ -123,11 +123,6 @@ class openzwave extends eqLogic {
 			$curl_error = curl_error($ch);
 			throw new Exception(__('Echec de la requete http : ', __FILE__) . $url . ' Curl error : ' . $curl_error, 404);
 		}
-		if (strpos($result, 'Error 500: Server Error') === 0 || strpos($result, 'Error 500: Internal Server Error') === 0) {
-			if (strpos($result, 'Code took too long to return result') === false) {
-				throw new Exception('Echec de la commande : ' . $_url . '. Erreur : ' . $result, 500);
-			}
-		}
 		if (is_json($result)) {
 			return json_decode($result, true);
 		} else {
