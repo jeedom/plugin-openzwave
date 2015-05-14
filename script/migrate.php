@@ -38,9 +38,19 @@ foreach (eqLogic::byType('zwave') as $eqLogic) {
 		$cmd->save();
 	}
 }
-
+$replace = array(
+	'.level' => '.val',
+	'data.' => 'data[0].',
+	'data[0].sensorState.value' => 'data[0].val',
+);
 if ($found) {
 	openzwave::syncEqLogicWithRazberry();
-
+	foreach (eqLogic::byType('openzwave') as $eqLogic) {
+		foreach ($eqLogic->getCmd() as $cmd) {
+			$cmd->setConfiguration('value', str_replace(array_keys($replace), $replace, $cmd->getConfiguration('value')));
+			$cmd->save();
+		}
+	}
 }
+
 ?>
