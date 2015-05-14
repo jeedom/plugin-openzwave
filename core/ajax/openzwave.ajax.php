@@ -128,7 +128,8 @@ try {
 	if (init('action') == 'checkDoc') {
 		$request_http = new com_http('http://doc.jeedom.fr/fr_FR/' . init('doc'));
 		try {
-			if (trim($request_http->exec(1, 1)) != '') {
+			$result = $request_http->exec(1, 1);
+			if (trim($result) != '' && strpos($result, '404 Not Found') === false) {
 				ajax::success(1);
 			}
 		} catch (Exception $e) {
