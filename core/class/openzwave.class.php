@@ -47,7 +47,7 @@ class openzwave extends eqLogic {
 		}
 	}
 
-	public static function listServerZwave() {
+	public static function listServerZwave($_autofix = true) {
 		if (self::$_listZwaveServer == null) {
 			self::$_listZwaveServer = array();
 			$network_access = network::getNetworkAccess('auto', 'proto:ip:port');
@@ -59,10 +59,12 @@ class openzwave extends eqLogic {
 					'port' => config::byKey('port_server', 'openzwave', 8083),
 					'path' => $network_access . '/' . config::byKey('urlPath0', 'openzwave'),
 				);
-				if (self::$_listZwaveServer[0]['path'] == '') {
-					self::updateNginxRedirection();
+				if ($_autofix) {
+					if (self::$_listZwaveServer[0]['path'] == '') {
+						self::updateNginxRedirection();
+					}
+					self::$_listZwaveServer[0]['path'] = $network_access . '/' . config::byKey('urlPath0', 'openzwave');
 				}
-				self::$_listZwaveServer[0]['path'] = $network_access . '/' . config::byKey('urlPath0', 'openzwave');
 			}
 			if (config::byKey('jeeNetwork::mode') == 'master') {
 				foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
@@ -73,20 +75,36 @@ class openzwave extends eqLogic {
 						'port' => $jeeNetwork->configByKey('port_server', 'openzwave', 8083),
 						'path' => $network_access . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave'),
 					);
-					if (self::$_listZwaveServer[$jeeNetwork->getId()]['path'] == '') {
-						self::updateNginxRedirection();
+					if ($_autofix) {
+						if (self::$_listZwaveServer[$jeeNetwork->getId()]['path'] == '') {
+							self::updateNginxRedirection();
+						}
+						self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = $network_access . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
 					}
-					self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = $network_access . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
 				}
-
 			}
-
 		}
 		return self::$_listZwaveServer;
 	}
 
 	public static function updateNginxRedirection() {
-		foreach (self::listServerZwave() as $zwave) {
+		if (config::byKey('port', 'openzwave', 'none') != 'none') {
+			$urlPath = config::byKey('urlPath0', 'openzwave');
+			if ($urlPath == '') {
+				$urlPath = 'openzwave_0_' . config::genKey(30);
+				config::save('urlPath0', $urlPath, 'openzwave');
+			}
+			$rules = array(
+				"location /" . $urlPath . "/ {\n" .
+				"proxy_pass http://127.0.0.1:" . config::byKey('port_server', 'openzwave', 8083) . "/;\n" .
+				"proxy_redirect off;\n" .
+				"proxy_set_header Host \$host:\$server_port;\n" .
+				"proxy_set_header X-Real-IP \$remote_addr;\n" .
+				"}",
+			);
+			network::nginx_saveRule($rules);
+		}
+		foreach (self::listServerZwave(false) as $zwave) {
 			$urlPath = config::byKey('urlPath' . $zwave['id'], 'openzwave');
 			if ($urlPath == '') {
 				$urlPath = 'openzwave_' . $zwave['id'] . '_' . config::genKey(30);
