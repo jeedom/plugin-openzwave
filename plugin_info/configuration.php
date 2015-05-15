@@ -66,59 +66,70 @@ foreach ($deamonRunningSlave as $name => $status) {
 				<input type="checkbox" class="configKey" data-l1key="autoRemoveExcludeDevice" />
 			</div>
 		</div>
-	</fieldset>
-</form>
 
 
-<form class="form-horizontal">
-	<fieldset>
-		<legend>{{Démon local}}</legend>
-		<?php
+		<?php if (config::byKey('jeeNetwork::mode') == 'master' && count(eqLogic::byType('zwave')) > 0) {?>
+			<div class="form-group">
+				<label class="col-lg-4 control-label">{{Migration des équipements zwave}}</label>
+				<div class="col-lg-3">
+					<a class="btn btn-warning" id="bt_migrateZwave" >{{Migrer}}</a>
+				</div>
+			</div>
+			<?php }?>
+
+		</fieldset>
+	</form>
+
+
+	<form class="form-horizontal">
+		<fieldset>
+			<legend>{{Démon local}}</legend>
+			<?php
 if (exec('sudo cat /etc/sudoers') != "") {
 	echo '<div class="form-group">
-			<label class="col-lg-4 control-label">{{Installer/Mettre à jour OpenZwave en local}}</label>
-			<div class="col-lg-3">
-				<a class="btn btn-danger" id="bt_installDeps"><i class="fa fa-check"></i> {{Lancer}}</a>
-			</div>
-		</div>';
+				<label class="col-lg-4 control-label">{{Installer/Mettre à jour OpenZwave en local}}</label>
+				<div class="col-lg-3">
+					<a class="btn btn-danger" id="bt_installDeps"><i class="fa fa-check"></i> {{Lancer}}</a>
+				</div>
+			</div>';
 } else {
 	echo '<div class="form-group">
-		<label class="col-lg-4 control-label">{{Installation automatique impossible}}</label>
-		<div class="col-lg-8">
-			{{Veuillez lancer la commande suivante :}} wget http://127.0.0.1/jeedom/plugins/openzwave/ressources/install.sh -v -O install.sh; ./install.sh
-		</div>
-	</div>';
+			<label class="col-lg-4 control-label">{{Installation automatique impossible}}</label>
+			<div class="col-lg-8">
+				{{Veuillez lancer la commande suivante :}} wget http://127.0.0.1/jeedom/plugins/openzwave/ressources/install.sh -v -O install.sh; ./install.sh
+			</div>
+		</div>';
 }
 ?>
-<div class="form-group">
-	<label class="col-sm-4 control-label">{{Port clé Z-Wave}}</label>
-	<div class="col-sm-4">
-		<select class="configKey form-control" data-l1key="port">
-			<option value="none">{{Aucun}}</option>
-			<?php
+	<div class="form-group">
+		<label class="col-sm-4 control-label">{{Port clé Z-Wave}}</label>
+		<div class="col-sm-4">
+			<select class="configKey form-control" data-l1key="port">
+				<option value="none">{{Aucun}}</option>
+				<?php
 foreach (jeedom::getUsbMapping() as $name => $value) {
 	echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
 }
 ?>
-			<option value="/dev/ttyAMA0">{{Raspberry pi (/dev/ttyAMA0)}}</option>
-			<option value="/dev/ttymxc0">{{Jeedom board (/dev/ttymxc0)}}</option>
-		</select>
+				<option value="/dev/ttyAMA0">{{Raspberry pi (/dev/ttyAMA0)}}</option>
+				<option value="/dev/ttymxc0">{{Jeedom board (/dev/ttymxc0)}}</option>
+			</select>
+		</div>
 	</div>
-</div>
-<div class="form-group">
-	<label class="col-sm-4 control-label">{{Port du Serveur (laisser vide par défault)}}</label>
-	<div class="col-sm-2">
-		<input class="configKey form-control" data-l1key="port_server" placeholder="8083" />
+	<div class="form-group">
+		<label class="col-sm-4 control-label">{{Port du Serveur (laisser vide par défault)}}</label>
+		<div class="col-sm-2">
+			<input class="configKey form-control" data-l1key="port_server" placeholder="8083" />
+		</div>
 	</div>
-</div>
-<div class="form-group">
-	<label class="col-sm-4 control-label">{{Gestion du démon}}</label>
-	<div class="col-sm-8">
-		<a class="btn btn-success" id="bt_startopenZwaveDemon"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-		<a class="btn btn-danger" id="bt_stopopenZwaveDemon"><i class='fa fa-stop'></i> {{Arrêter}}</a>
-		<a class="btn btn-warning" id="bt_launchOpenZwaveInDebug"><i class="fa fa-exclamation-triangle"></i> {{Lancer en mode debug}}</a>
+	<div class="form-group">
+		<label class="col-sm-4 control-label">{{Gestion du démon}}</label>
+		<div class="col-sm-8">
+			<a class="btn btn-success" id="bt_startopenZwaveDemon"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
+			<a class="btn btn-danger" id="bt_stopopenZwaveDemon"><i class='fa fa-stop'></i> {{Arrêter}}</a>
+			<a class="btn btn-warning" id="bt_launchOpenZwaveInDebug"><i class="fa fa-exclamation-triangle"></i> {{Lancer en mode debug}}</a>
+		</div>
 	</div>
-</div>
 </fieldset>
 </form>
 <?php
@@ -205,6 +216,15 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping') as $name => $value
 			if (result) {
 				$('#md_modal').dialog({title: "{{Openzwave en mode debug}}"});
 				$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=show.debug').dialog('open');
+			}
+		});
+	});
+
+	$('#bt_migrateZwave').on('click', function () {
+		bootbox.confirm('{{Etes-vous sûr de vouloir lancer la migration cette opération est irreversible}}', function (result) {
+			if (result) {
+				$('#md_modal').dialog({title: "{{Openzwave migration}}"});
+				$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=migrate.zway').dialog('open');
 			}
 		});
 	});

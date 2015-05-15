@@ -78,12 +78,12 @@ $('#div_listIncludeSever').delegate('.changeIncludeState','click', function() {
             $('#div_inclusionAlert').html(data.result);
             return;
         }
-        var listServerZway = data.result;
+        var listServerZwave = data.result;
         $('#div_listIncludeSever').empty();
-        for(var i in listServerZway){
-            if(listServerZway[i].name != null){
+        for(var i in listServerZwave){
+            if(listServerZwave[i].name != null){
              var html = '';
-             html += '<legend>'+listServerZway[i].name+'</legend>';
+             html += '<legend>'+listServerZwave[i].name+'</legend>';
              html += '<div id="div_inclusionAlert'+i+'" style="text-align: center;font-size: 2em;"></div>';
              html += '<div class="ui-grid-a">';
              html += '<div class="ui-block-a">';

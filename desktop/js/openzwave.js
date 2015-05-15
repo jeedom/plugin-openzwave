@@ -21,8 +21,8 @@
  $('.changeIncludeState').on('click', function () {
     var nbZwayServer = 0;
     var serverId = 1;
-    for(var i in listServerZway){
-        if(listServerZway[i].name != null){
+    for(var i in listServerZwave){
+        if(listServerZwave[i].name != null){
             serverId = i
             nbZwayServer++
         }
@@ -33,9 +33,9 @@
         var options = '';
         var mode = $(this).attr('data-mode');
         var state =  $(this).attr('data-state');
-        for(var i in listServerZway){
-            if(listServerZway[i].name != null){
-                options += '<option value="'+i+'">'+listServerZway[i].name+'</option>';
+        for(var i in listServerZwave){
+            if(listServerZwave[i].name != null){
+                options += '<option value="'+i+'">'+listServerZwave[i].name+'</option>';
             }
         }
         bootbox.dialog({

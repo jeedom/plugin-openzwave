@@ -7,7 +7,7 @@ include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
 include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
 sendVarToJS('eqType', 'openzwave');
 sendVarToJS('marketAddr', config::byKey('market::address'));
-sendVarToJS('listServerZway', openzwave::listServerZwave());
+sendVarToJS('listServerZwave', openzwave::listServerZwave());
 echo '<div id="div_inclusionAlert"></div>';
 $controlerState = 0;
 

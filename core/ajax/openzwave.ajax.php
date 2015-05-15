@@ -112,7 +112,7 @@ try {
 		ajax::success(openzwave::callRazberry(init('call'), init('serverId', 1)));
 	}
 
-	if (init('action') == 'listServerZway') {
+	if (init('action') == 'listServerZwave') {
 		ajax::success(openzwave::listServerZwave());
 	}
 
@@ -136,6 +136,13 @@ try {
 
 		}
 		ajax::success(0);
+	}
+
+	if (init('action') == 'migrateZwave') {
+		$cmd = 'sudo php ' . dirname(__FILE__) . '/../../script/migrate.php';
+		$cmd .= ' >> ' . log::getPathToLog('openzwave_migrate') . ' 2>&1 &';
+		exec($cmd);
+		ajax::success();
 	}
 
 	throw new Exception('Aucune methode correspondante');
