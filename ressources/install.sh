@@ -35,7 +35,7 @@ if [ $(ps ax | grep z-way-server | wc -l ) -ne 0 ]; then
   sudo update-rc.d -f zbw_connect remove
   ps aux | grep mongoose | awk '{print $2}' | xargs kill -9
   ps aux | grep z-way-server | awk '{print $2}' | xargs kill -9 
-
+  ps aux | grep zbw_connect | awk '{print $2}' | xargs kill -9 
   if [ -e /dev/ttymxc0 ]; then
      sudo systemctl unmask serial-getty@ttymxc0.service
   fi
