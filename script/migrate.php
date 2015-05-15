@@ -35,7 +35,7 @@ foreach (eqLogic::byType('zwave') as $eqLogic) {
 	if (isset($server_convertion[$server_id])) {
 		$server_id = $server_convertion[$server_id];
 	}
-	$eqLogic->setConfiguration('serverID', $server_id); // TODO FIND NEW SERVER ID
+	$eqLogic->setConfiguration('serverID', $server_id);
 	foreach ($eqLogic->getCmd() as $cmd) {
 		$cmd->setEqType('openzwave');
 		$cmd->save();
@@ -62,6 +62,11 @@ if ($found) {
 			$cmd->save();
 		}
 	}
+}
+
+$cron = cron::byClassAndFunction('zwave', 'pull');
+if (is_object($cron)) {
+	$cron->remove();
 }
 
 echo "\nFin de la migration vers openzwave!!!!!!";
