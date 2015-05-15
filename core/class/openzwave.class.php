@@ -57,14 +57,11 @@ class openzwave extends eqLogic {
 					'name' => 'Local',
 					'addr' => '127.0.0.1',
 					'port' => config::byKey('port_server', 'openzwave', 8083),
-					'path' => $network_access . '/' . config::byKey('urlPath0', 'openzwave'),
 				);
-				if ($_autofix) {
-					if (config::byKey('urlPath0', 'openzwave') == '') {
-						self::updateNginxRedirection();
-					}
-					self::$_listZwaveServer[0]['path'] = $network_access . '/' . config::byKey('urlPath0', 'openzwave');
+				if ($_autofix & config::byKey('urlPath0', 'openzwave') == '') {
+					self::updateNginxRedirection();
 				}
+				self::$_listZwaveServer[0]['path'] = $network_access . '/' . config::byKey('urlPath0', 'openzwave');
 			}
 			if (config::byKey('jeeNetwork::mode') == 'master') {
 				foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
@@ -73,14 +70,11 @@ class openzwave extends eqLogic {
 						'name' => $jeeNetwork->getName(),
 						'addr' => $jeeNetwork->getRealIp(),
 						'port' => $jeeNetwork->configByKey('port_server', 'openzwave', 8083),
-						'path' => $network_access . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave'),
 					);
-					if ($_autofix) {
-						if (config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave') == '') {
-							self::updateNginxRedirection();
-						}
-						self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = $network_access . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
+					if ($_autofix && config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave') == '') {
+						self::updateNginxRedirection();
 					}
+					self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = $network_access . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
 				}
 			}
 		}
