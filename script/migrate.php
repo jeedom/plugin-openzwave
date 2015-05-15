@@ -70,5 +70,10 @@ if (is_object($cron)) {
 	$cron->remove();
 }
 
+$plugin = plugin::byId('zwave');
+if (is_object($plugin)) {
+	$plugin->setIsEnable(0);
+}
+
 echo "\nFin de la migration vers openzwave!!!!!!";
 ?>
