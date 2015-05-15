@@ -88,22 +88,6 @@ class openzwave extends eqLogic {
 	}
 
 	public static function updateNginxRedirection() {
-		if (config::byKey('port', 'openzwave', 'none') != 'none') {
-			$urlPath = config::byKey('urlPath0', 'openzwave');
-			if ($urlPath == '') {
-				$urlPath = 'openzwave_0_' . config::genKey(30);
-				config::save('urlPath0', $urlPath, 'openzwave');
-			}
-			$rules = array(
-				"location /" . $urlPath . "/ {\n" .
-				"proxy_pass http://127.0.0.1:" . config::byKey('port_server', 'openzwave', 8083) . "/;\n" .
-				"proxy_redirect off;\n" .
-				"proxy_set_header Host \$host:\$server_port;\n" .
-				"proxy_set_header X-Real-IP \$remote_addr;\n" .
-				"}",
-			);
-			network::nginx_saveRule($rules);
-		}
 		foreach (self::listServerZwave(false) as $zwave) {
 			$urlPath = config::byKey('urlPath' . $zwave['id'], 'openzwave');
 			if ($urlPath == '') {
