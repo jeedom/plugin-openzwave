@@ -25,6 +25,7 @@ function openzwave_install() {
 			$cron->setFunction('pull');
 			$cron->setEnable(1);
 			$cron->setDeamon(1);
+			$cron->setDeamonSleepTime(0.5);
 			$cron->setTimeout(1440);
 			$cron->setSchedule('* * * * *');
 			$cron->save();
@@ -45,6 +46,7 @@ function openzwave_update() {
 		$cron->setFunction('pull');
 		$cron->setEnable(1);
 		$cron->setDeamon(1);
+		$cron->setDeamonSleepTime(0.5);
 		$cron->setTimeout(1440);
 		$cron->setSchedule('* * * * *');
 		$cron->save();
