@@ -60,7 +60,7 @@ class openzwave extends eqLogic {
 					'path' => $network_access . '/' . config::byKey('urlPath0', 'openzwave'),
 				);
 				if ($_autofix) {
-					if (self::$_listZwaveServer[0]['path'] == '') {
+					if (config::byKey('urlPath0', 'openzwave') == '') {
 						self::updateNginxRedirection();
 					}
 					self::$_listZwaveServer[0]['path'] = $network_access . '/' . config::byKey('urlPath0', 'openzwave');
@@ -76,7 +76,7 @@ class openzwave extends eqLogic {
 						'path' => $network_access . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave'),
 					);
 					if ($_autofix) {
-						if (self::$_listZwaveServer[$jeeNetwork->getId()]['path'] == '') {
+						if (config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave') == '') {
 							self::updateNginxRedirection();
 						}
 						self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = $network_access . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
