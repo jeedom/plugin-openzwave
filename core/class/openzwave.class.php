@@ -177,10 +177,10 @@ class openzwave extends eqLogic {
 								'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration', __FILE__),
 							));
 							sleep(5);
-							for ($i = 0; $i < 45; $i++) {
+							for ($i = 0; $i < 30; $i++) {
 								nodejs::pushUpdate('jeedom::alert', array(
 									'level' => 'warning',
-									'message' => __('Pause de ', __FILE__) . (45 - $i) . __(' pour synchronisation avec le module', __FILE__),
+									'message' => __('Pause de ', __FILE__) . (30 - $i) . __(' pour synchronisation avec le module', __FILE__),
 								));
 								sleep(1);
 							}
