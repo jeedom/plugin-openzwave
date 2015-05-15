@@ -79,4 +79,5 @@ if (is_object($plugin)) {
 }
 
 echo "\nFin de la migration vers openzwave!!!!!!";
+echo "\n/!\IL EST VIVEMENT CONSEILLE DE REDEMARRER JEEDOM/!\";
 ?>
