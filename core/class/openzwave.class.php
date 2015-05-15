@@ -237,10 +237,14 @@ class openzwave extends eqLogic {
 				$eqLogic->setIsEnable(1);
 				if (isset($result['data']['name']['value']) && trim($result['data']['name']['value']) != '') {
 					$eqLogic->setName('[' . $eqLogic->getLogicalId() . ']' . $result['data']['name']['value']);
-					$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
+
 				} else {
 					$eqLogic->setName('Device ' . $nodeId);
 				}
+				$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
+				$eqLogic->setConfiguration('manufacturer_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerId']['value'])));
+				$eqLogic->setConfiguration('product_type', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductType']['value'])));
+				$eqLogic->setConfiguration('product_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductId']['value'])));
 				$eqLogic->setLogicalId($nodeId);
 				$eqLogic->setConfiguration('serverID', $_serverId);
 				$eqLogic->setIsVisible(1);
