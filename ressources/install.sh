@@ -23,15 +23,16 @@ function pip_install {
 }
 
 sudo apt-get update --fix-missing
-sudo service z-way-server status
-if [ $? -eq 0 ]; then
+
+
+if [ $(ps ax | grep z-way-server | wc -l ) -ne 0 ]; then
   echo "Désactivation du z-way-server"
   sudo service z-way-server stop
   sudo service mongoose stop
   sudo service zbw_connect stop
-  sudo updade-rc.d -f z-way-server remove
-  sudo updade-rc.d -f mongoose remove
-  sudo updade-rc.d -f zbw_connect remove
+  sudo update-rc.d -f z-way-server remove
+  sudo update-rc.d -f mongoose remove
+  sudo update-rc.d -f zbw_connect remove
   ps aux | grep mongoose | awk '{print $2}' | xargs kill -9
   ps aux | grep z-way-server | awk '{print $2}' | xargs kill -9 
 
