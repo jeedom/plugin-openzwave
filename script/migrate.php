@@ -59,6 +59,9 @@ if ($found) {
 				$cmd->setConfiguration('value', str_replace('data.last', 'data[0].val', $cmd->getConfiguration('value')));
 				$cmd->setConfiguration('value', str_replace('data[0].last', 'data[0].val', $cmd->getConfiguration('value')));
 			}
+			if ($cmd->getConfiguration('class') == '0x30') {
+				$cmd->setConfiguration('value', str_replace('data[1].val', 'data[0].val', $cmd->getConfiguration('value')));
+			}
 			$cmd->save();
 		}
 	}
