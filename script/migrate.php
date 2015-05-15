@@ -35,7 +35,7 @@ foreach (eqLogic::byType('zwave') as $eqLogic) {
 	if (isset($server_convertion[$server_id])) {
 		$server_id = $server_convertion[$server_id];
 	}
-	$eqLogic->setConfiguration('serverID', $server_id); // TODO FIND NEW SERVER ID
+	$eqLogic->setConfiguration('serverID', $server_id);
 	foreach ($eqLogic->getCmd() as $cmd) {
 		$cmd->setEqType('openzwave');
 		$cmd->save();
@@ -59,10 +59,25 @@ if ($found) {
 				$cmd->setConfiguration('value', str_replace('data.last', 'data[0].val', $cmd->getConfiguration('value')));
 				$cmd->setConfiguration('value', str_replace('data[0].last', 'data[0].val', $cmd->getConfiguration('value')));
 			}
+			if ($cmd->getConfiguration('class') == '0x30') {
+				$cmd->setConfiguration('value', str_replace('data[1].val', 'data[0].val', $cmd->getConfiguration('value')));
+			}
 			$cmd->save();
 		}
 	}
 }
 
+$cron = cron::byClassAndFunction('zwave', 'pull');
+if (is_object($cron)) {
+	$cron->halt();
+	$cron->remove();
+}
+
+$plugin = plugin::byId('zwave');
+if (is_object($plugin)) {
+	$plugin->setIsEnable(0);
+}
+
 echo "\nFin de la migration vers openzwave!!!!!!";
+echo "\n/!\IL EST VIVEMENT CONSEILLE DE REDEMARRER JEEDOM/!\";
 ?>

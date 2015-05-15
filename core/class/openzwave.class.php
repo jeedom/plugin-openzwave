@@ -47,7 +47,7 @@ class openzwave extends eqLogic {
 		}
 	}
 
-	public static function listServerZwave() {
+	public static function listServerZwave($_autofix = true) {
 		if (self::$_listZwaveServer == null) {
 			self::$_listZwaveServer = array();
 			$network_access = network::getNetworkAccess('auto', 'proto:ip:port');
@@ -57,9 +57,8 @@ class openzwave extends eqLogic {
 					'name' => 'Local',
 					'addr' => '127.0.0.1',
 					'port' => config::byKey('port_server', 'openzwave', 8083),
-					'path' => $network_access . '/' . config::byKey('urlPath0', 'openzwave'),
 				);
-				if (self::$_listZwaveServer[0]['path'] == '') {
+				if ($_autofix & config::byKey('urlPath0', 'openzwave') == '') {
 					self::updateNginxRedirection();
 				}
 				self::$_listZwaveServer[0]['path'] = $network_access . '/' . config::byKey('urlPath0', 'openzwave');
@@ -71,22 +70,19 @@ class openzwave extends eqLogic {
 						'name' => $jeeNetwork->getName(),
 						'addr' => $jeeNetwork->getRealIp(),
 						'port' => $jeeNetwork->configByKey('port_server', 'openzwave', 8083),
-						'path' => $network_access . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave'),
 					);
-					if (self::$_listZwaveServer[$jeeNetwork->getId()]['path'] == '') {
+					if ($_autofix && config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave') == '') {
 						self::updateNginxRedirection();
 					}
 					self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = $network_access . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
 				}
-
 			}
-
 		}
 		return self::$_listZwaveServer;
 	}
 
 	public static function updateNginxRedirection() {
-		foreach (self::listServerZwave() as $zwave) {
+		foreach (self::listServerZwave(false) as $zwave) {
 			$urlPath = config::byKey('urlPath' . $zwave['id'], 'openzwave');
 			if ($urlPath == '') {
 				$urlPath = 'openzwave_' . $zwave['id'] . '_' . config::genKey(30);
@@ -241,10 +237,14 @@ class openzwave extends eqLogic {
 				$eqLogic->setIsEnable(1);
 				if (isset($result['data']['name']['value']) && trim($result['data']['name']['value']) != '') {
 					$eqLogic->setName('[' . $eqLogic->getLogicalId() . ']' . $result['data']['name']['value']);
-					$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
+
 				} else {
 					$eqLogic->setName('Device ' . $nodeId);
 				}
+				$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
+				$eqLogic->setConfiguration('manufacturer_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerId']['value'])));
+				$eqLogic->setConfiguration('product_type', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductType']['value'])));
+				$eqLogic->setConfiguration('product_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductId']['value'])));
 				$eqLogic->setLogicalId($nodeId);
 				$eqLogic->setConfiguration('serverID', $_serverId);
 				$eqLogic->setIsVisible(1);
