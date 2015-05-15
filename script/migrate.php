@@ -10,6 +10,8 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
+echo "Début de la migration vers openzwave\n";
+
 $server_convertion = array(1 => 1, 2 => 2, 3 => 3);
 
 for ($i = 1; $i <= 3; $i++) {
@@ -62,4 +64,5 @@ if ($found) {
 	}
 }
 
+echo "\nFin de la migration vers openzwave!!!!!!";
 ?>

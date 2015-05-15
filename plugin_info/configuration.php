@@ -72,7 +72,7 @@ foreach ($deamonRunningSlave as $name => $status) {
 			<div class="form-group">
 				<label class="col-lg-4 control-label">{{Migration des équipements zwave}}</label>
 				<div class="col-lg-3">
-					<a class="btn btn-warning" id="bt_migrateZwave" >{{Migrer}}</a>
+					<a class="btn btn-warning" id="bt_migrateZwave"><i class="fa fa-ship"></i> {{Migrer}}</a>
 				</div>
 			</div>
 			<?php }?>
@@ -224,7 +224,7 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping') as $name => $value
 		bootbox.confirm('{{Etes-vous sûr de vouloir lancer la migration cette opération est irreversible}}', function (result) {
 			if (result) {
 				$('#md_modal').dialog({title: "{{Openzwave migration}}"});
-				$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=migrate.zway').dialog('open');
+				$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=migrate.zwave').dialog('open');
 			}
 		});
 	});
