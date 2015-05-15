@@ -66,6 +66,7 @@ if ($found) {
 
 $cron = cron::byClassAndFunction('zwave', 'pull');
 if (is_object($cron)) {
+	$cron->halt();
 	$cron->remove();
 }
 
