@@ -254,10 +254,18 @@ class openzwave extends eqLogic {
 				$eqLogic->createCommand();
 			} else {
 				if (isset($result['data']['name']['value'])) {
-					$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
-					$eqLogic->setConfiguration('manufacturer_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerId']['value'])));
-					$eqLogic->setConfiguration('product_type', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductType']['value'])));
-					$eqLogic->setConfiguration('product_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductId']['value'])));
+					if ($eqLogic->getConfiguration('product_name') == '') {
+						$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
+					}
+					if ($eqLogic->getConfiguration('manufacturer_id') == '') {
+						$eqLogic->setConfiguration('manufacturer_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerId']['value'])));
+					}
+					if ($eqLogic->getConfiguration('product_type') == '') {
+						$eqLogic->setConfiguration('product_type', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductType']['value'])));
+					}
+					if ($eqLogic->getConfiguration('product_id') == '') {
+						$eqLogic->setConfiguration('product_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductId']['value'])));
+					}
 					$eqLogic->save();
 				}
 			}
