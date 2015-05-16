@@ -102,7 +102,7 @@
                 "isVisible": "1"
             },
             {
-                "name": "Conso",
+                "name": "Consommation",
                 "type": "info",
                 "subType": "numeric",
                 "isHistorized": "0",
