@@ -882,7 +882,7 @@ class openzwaveCmd extends cmd {
 		$g = ($g / 255) * 99;
 		$b = ($b / 255) * 99;
 
-		if ($eqLogic->getConfiguration('device') == 'fibaro.fgrgb101') {
+		if ($eqLogic->getConfiguration('manufacturer_id') == 271 && $eqLogic->getConfiguration('product_type') == 2304 && $eqLogic->getConfiguration('product_id') == 4096) {
 			/* Set GREEN color */
 			openzwave::callRazberry($request . '.instances[3].commandClasses[0x26].Set(' . str_replace(',', '%2C', $g) . ')', $eqLogic->getConfiguration('serverID', 1));
 			/* Set BLUE color */
