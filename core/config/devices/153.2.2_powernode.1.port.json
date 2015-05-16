@@ -32,8 +32,8 @@
                     "value": "Set(255)"
                 },
                 "template": {
-                    "dashboard": "Multiprise",
-                    "mobile": "Multiprise"
+                    "dashboard": "prise",
+                    "mobile": "prise"
                 },
                 "display": {
                     "invertBinary": "0"
@@ -53,8 +53,8 @@
                     "value": "Set(0)"
                 },
                 "template": {
-                    "dashboard": "Multiprise",
-                    "mobile": "Multiprise"
+                    "dashboard": "prise",
+                    "mobile": "prise"
                 },
                 "display": {
                     "invertBinary": "0"
@@ -93,7 +93,7 @@
                     "minValue": "0"
                 },
                 "template": {
-                    "dashboard": "badge-Multiprise",
+                    "dashboard": "default",
                     "mobile": "default"
                 },
                 "display": {
@@ -114,8 +114,8 @@
                     "value": "data[0].val"
                 },
                 "template": {
-                    "dashboard": "badge-Multiprise",
-                    "mobile": "default"
+                    "dashboard": "tile",
+                    "mobile": "tile"
                 },
                 "display": {
                     "invertBinary": "0"
