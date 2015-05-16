@@ -68,10 +68,6 @@
           "class": "0x31",
           "instanceId": 0,
           "value": "data[1].val"
-        },
-        "template": {
-          "dashboard": "tile",
-          "mobile": "tile"
         }
       },
       {
