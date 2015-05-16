@@ -1,0 +1,40 @@
+{
+	"name" : "Fibaro FGK-101 [Doorsensor]",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+            {
+                "name": "Etat",
+                "type": "info",
+                "subtype": "binary",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x30",
+                    "value": "data[0].val"
+                },
+                "template": {
+                    "dashboard": "door",
+                    "mobile": "door"
+                },
+                "display": {
+                    "invertBinary": "1"
+                }
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "eventOnly": 0,
+                "configuration": {
+                    "class": "0x80",
+                    "value": "data.last"
+                }
+            }
+        ]
+   }
