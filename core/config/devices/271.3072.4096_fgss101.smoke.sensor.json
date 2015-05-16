@@ -32,7 +32,9 @@
         "configuration": {
           "class": "0x9C",
           "instanceId": 0,
-          "value": "data[4].val"
+          "value": "data[4].val",,
+		  "returnStateTime": 1,
+		  "returnStateValue": 0
         },
         "display": {
           "invertBinary": "1"
