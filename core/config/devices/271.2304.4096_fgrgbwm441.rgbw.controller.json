@@ -159,7 +159,7 @@
                 "eventOnly": 1,
                 "configuration": {
                     "class": "0x26",
-                    "value": "data.level",
+                    "value": "data[0].level",
                     "minValue": 0,
                     "maxValue": 99
                 }
