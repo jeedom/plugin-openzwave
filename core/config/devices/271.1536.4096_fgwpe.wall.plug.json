@@ -91,7 +91,7 @@
                 "unite": "",
                 "configuration": {
                     "class": "0x32",
-                    "value": "data[33].PushButton()"
+                    "value": "data[33].PressButton()"
                 }
             }
         ]
