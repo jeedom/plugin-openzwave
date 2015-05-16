@@ -260,6 +260,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
         <center>
             <img src="core/img/no_image.gif" data-original=".jpg" id="img_device" class="img-responsive" style="max-height : 250px;"/>
         </center>
+        <br/>
         <div class="form-group">
             <label class="col-sm-2 control-label">{{Commentaire}}</label>
             <div class="col-sm-10">

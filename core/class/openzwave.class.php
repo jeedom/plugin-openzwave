@@ -454,7 +454,7 @@ class openzwave extends eqLogic {
 			isset($results['instances'][0]['commandClasses']) && isset($results['instances'][0]['commandClasses'][128]) &&
 			isset($results['instances'][0]['commandClasses'][128]['data']['supported']) && $results['instances'][0]['commandClasses'][128]['data']['supported']['value'] === true) {
 			$return['battery'] = array(
-				'value' => $results['instances'][0]['commandClasses'][128]['data']['last']['value'],
+				'value' => $results['instances'][0]['commandClasses'][128]['data'][0]['val'],
 				'datetime' => date('Y-m-d H:i:s', $results['instances'][0]['commandClasses'][128]['data']['last']['updateTime']),
 				'unite' => '%',
 			);
