@@ -33,7 +33,7 @@
                 "eventOnly": 0,
                 "configuration": {
                     "class": "0x80",
-                    "value": "data.last"
+                    "value": "data[0].val"
                 }
             }
         ]

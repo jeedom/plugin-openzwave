@@ -104,7 +104,7 @@
                 "configuration": {
                     "instanceId": 0,
                     "class": "0x80",
-                    "value": "data.last",
+                    "value": "data[0].val",
                     "unite": "%"
                 }
             }
