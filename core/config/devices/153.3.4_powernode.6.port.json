@@ -3,7 +3,7 @@
     "configuration" : {
         "conf_version" : 1
     },
-    "commands_openzwave": [
+    "commands": [
             {
                 "name": "Etat-1",
                 "type": "info",
