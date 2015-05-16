@@ -85,7 +85,7 @@ foreach ($deamonRunningSlave as $name => $status) {
 		<fieldset>
 			<legend>{{Démon local}}</legend>
 			<?php
-if (exec('sudo cat /etc/sudoers') != "") {
+if (jeedom::isCapable('sudo')) {
 	echo '<div class="form-group">
 				<label class="col-lg-4 control-label">{{Installer/Mettre à jour OpenZwave en local}}</label>
 				<div class="col-lg-3">
