@@ -1,0 +1,69 @@
+{
+	"name" : "Zipato Mini Keypad RFID",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+            {
+                "name": "Action",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x71",
+                    "value": "data[9].val",
+                    "minValue": 0,
+                    "maxValue": 255
+                },
+                "template": {
+                    "dashboard": "Rfid_HomeAway_fr",
+                    "mobile": "Rfid_HomeAway_fr"
+                }
+            },
+            {
+                "name": "Sabotage",
+                "type": "info",
+                "subtype": "binary",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x71",
+                    "value": "data[10].data",
+					"returnStateTime": 1,
+					"returnStateValue": 0
+                },
+                "display": {
+                    "invertBinary": "1"
+                }
+            },
+            {
+                "name": "Code",
+                "type": "info",
+                "subtype": "string",
+                "isVisible": 0,
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x63",
+                    "value": "data[0].val"
+                }
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+				"eventOnly": 1,
+                "isHistorized": 1,
+                "unite": "%",
+                "configuration": {
+                    "class": "0x80",
+                    "value": "data[0].val",
+                    "maxValue": 100,
+                    "minValue": 0
+                }
+            }
+        ]
+   }
