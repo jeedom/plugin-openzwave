@@ -13,7 +13,7 @@
                 "configuration": {
                     "class": "0x25",
                     "instanceId": "0",
-                    "value": "data.level"
+                    "value": "data[0].val"
                 },
                 "display": {
                     "invertBinary": "0"
@@ -71,7 +71,7 @@
                 "configuration": {
                     "class": "0x32",
                     "instanceId": "0",
-                    "value": "Reset()"
+                    "value": "data[33].PressButton()"
                 },
                 "display": {
                     "invertBinary": "0"

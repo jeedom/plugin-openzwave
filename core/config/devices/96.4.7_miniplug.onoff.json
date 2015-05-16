@@ -1,5 +1,5 @@
 {
-	"name" : "SwiidInter",
+	"name" : "Miniplug On/Off",
     "configuration" : {
         "conf_version" : 1
     },
@@ -7,10 +7,10 @@
             {
                 "name": "Etat",
                 "type": "info",
-                "subtype": "binary",
+                "subType": "binary",
                 "isVisible": 0,
-                "isHistorized": 0,
-                "eventOnly": 1,
+                "isHistorized": "0",
+                "eventOnly": "1",
                 "configuration": {
                     "class": "0x25",
                     "value": "data[0].val"
@@ -27,8 +27,8 @@
                     "value": "Set(255)"
                 },
                 "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
+                    "dashboard": "prise",
+                    "mobile": "prise"
                 }
             },
             {
@@ -42,9 +42,9 @@
                     "value": "Set(0)"
                 },
                 "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
+                    "dashboard": "prise",
+                    "mobile": "prise"
                 }
             }
         ]
-   }
+}
