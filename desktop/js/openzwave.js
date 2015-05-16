@@ -235,7 +235,6 @@ function printModuleInfo(_id) {
                 value += ' ' + data.result[i]['unite'];
             }
             $('.zwaveInfo[data-l1key=' + i + ']').value(value);
-            $('.zwaveInfo[data-l1key=' + i + ']').attr('title', data.result[i]['datetime']);
         }
     }
 });
