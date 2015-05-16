@@ -1,0 +1,180 @@
+{
+	"name" : "Fibaro FGRGB-101 [RGBW]",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+            {
+                "name": "Couleur",
+                "type": "action",
+                "subtype": "color",
+                "isVisible": 1,
+                "value": "Etat",
+                "configuration": {
+                    "class": "0x26",
+                    "value": "#color#"
+                }
+            },
+            {
+                "name": "Puissance",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 1,
+                "unite": "W",
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[4].val",
+                    "maxValue": 2500,
+                    "minValue": 0
+                }
+            },
+            {
+                "name": "Consommation",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "kWh",
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x32",
+                    "value": "data[0].val"
+                },
+                "template": {
+                    "dashboard": "tile"
+                }
+            },
+            {
+                "name": "Cheminée",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x70",
+                    "value": "Set(72,6,1)"
+                },
+                "display": {
+                    "icon": "<i class=\"icon jeedom-feu\"><\/i>"
+                }
+            },
+            {
+                "name": "Orage",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x70",
+                    "value": "Set(72,7,1)"
+                },
+                "display": {
+                    "icon": "<i class=\"icon meteo-orage\"><\/i>"
+                }
+            },
+            {
+                "name": "Aube",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x70",
+                    "value": "Set(72,8,1)"
+                },
+                "display": {
+                    "icon": "<i class=\"icon meteo-soleil\"><\/i>"
+                }
+            },
+            {
+                "name": "Fading",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x70",
+                    "value": "Set(72,9,1)"
+                },
+                "display": {
+                    "icon": "<i class=\"icon divers-triangular42\"><\/i>"
+                }
+            },
+            {
+                "name": "RBB",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x70",
+                    "value": "Set(72,10,1)"
+                },
+                "display": {
+                    "icon": "<i class=\"icon jeedom-alerte\"><\/i>"
+                }
+            },
+			{
+                "name": "On",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x26",
+                    "value": "Set(99)"
+                },
+                "display": {
+                    "icon": "<i class=\"icon jeedom-lumiere-on\"><\/i>"
+                }
+            },
+			{
+                "name": "Off",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x26",
+                    "value": "Set(0)"
+                },
+                "display": {
+                    "icon": "<i class=\"icon jeedom-lumiere-off\"><\/i>"
+                }
+            },
+			{
+                "name": "Intensité",
+                "type": "action",
+                "subtype": "slider",
+                "isVisible": 1,
+                "value": "Etat",
+                "configuration": {
+                    "class": "0x26",
+                    "value": "Set(#slider#)",
+                    "minValue": 0,
+                    "maxValue": 99
+				}
+            },
+            {
+                "name": "Etat",
+                "type": "info",
+                "subtype": "numeric",
+                "unite": "%",
+                "isVisible": 0,
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x26",
+                    "value": "data.level",
+                    "minValue": 0,
+                    "maxValue": 99
+                }
+            },
+            {
+                "name": "Reset",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "",
+                "configuration": {
+                    "class": "0x32",
+                    "value": "data[33].PressButton()"
+                }
+            }
+        ]
+   }
