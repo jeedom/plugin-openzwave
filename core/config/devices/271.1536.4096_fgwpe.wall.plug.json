@@ -1,0 +1,98 @@
+{
+	"name" : "Fibaro FGWPE [Wall Plug]",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+            {
+                "name": "Puissance",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite": "W",
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[4].val",
+                    "maxValue": 2500,
+                    "minValue": 0
+                }
+            },
+            {
+                "name": "Consommation",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "kWh",
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x32",
+                    "value": "data[0].val"
+                },
+                "template": {
+                    "dashboard": "tile"
+                }
+            },
+            {
+                "name": "Etat",
+                "type": "info",
+                "subtype": "binary",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "",
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x25",
+                    "value": "data[0].val"
+                },
+                "template": {
+                    "dashboard": "prise",
+                    "mobile": "prise"
+                }
+            },
+            {
+                "name": "On",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "value": "Etat",
+                "configuration": {
+                    "class": "0x25",
+                    "value": "Set(255)"
+                },
+                "template": {
+                    "dashboard": "prise",
+                    "mobile": "prise"
+                }
+            },
+            {
+                "name": "Off",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "value": "Etat",
+                "configuration": {
+                    "class": "0x25",
+                    "value": "Set(0)"
+                },
+                "template": {
+                    "dashboard": "prise",
+                    "mobile": "prise"
+                }
+            },
+            {
+                "name": "Reset",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "",
+                "configuration": {
+                    "class": "0x32",
+                    "value": "data[33].PushButton()"
+                }
+            }
+        ]
+   }
