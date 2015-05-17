@@ -204,7 +204,6 @@ class openzwave extends eqLogic {
 								$cmd->handleUpdateValue($result);
 							}
 						}
-
 					}
 				}
 			}
@@ -590,6 +589,7 @@ class openzwave extends eqLogic {
 			}
 		}
 		$this->save();
+
 		nodejs::pushUpdate('jeedom::alert', array(
 			'level' => 'warning',
 			'message' => '',
@@ -679,7 +679,6 @@ class openzwave extends eqLogic {
 												break;
 										}
 										$cmd_info->save();
-										$cmd_info->event($data['val']);
 									}
 									if (!$data['read_only']) {
 										switch ($data['type']) {
@@ -958,6 +957,12 @@ class openzwaveCmd extends cmd {
 			}
 		}
 		return $value;
+	}
+
+	public function postInsert() {
+		if ($this->getType() == 'info') {
+			$this->event($this->execute());
+		}
 	}
 
 	public function execute($_options = null) {

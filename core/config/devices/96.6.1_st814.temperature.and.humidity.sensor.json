@@ -13,7 +13,7 @@
             "isHistorized": 1,
             "configuration": {
                 "class": "0x31",
-                "value": "data[5].level"
+                "value": "data[5].val"
             }
         },
         {
@@ -25,7 +25,7 @@
             "isHistorized": 1,
             "configuration": {
                 "class": "0x31",
-                "value": "data[1].level"
+                "value": "data[1].val"
             }
         }
     ]
