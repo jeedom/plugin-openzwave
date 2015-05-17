@@ -678,11 +678,8 @@ class openzwave extends eqLogic {
 												$cmd_info->setIsHistorized(1);
 												break;
 										}
-										try {
-											$cmd_info->save();
-										} catch (Exception $e) {
-											ajax::error(displayExeption($e), $e->getCode());
-										}
+										$cmd_info->save();
+										$cmd_info->event($data['val']);
 									}
 									if (!$data['read_only']) {
 										switch ($data['type']) {
@@ -700,11 +697,8 @@ class openzwave extends eqLogic {
 													$cmd->setName($cmd_name . ' On');
 													$cmd->setConfiguration('value', 'data[' . $index . '].Set(255)');
 												}
-												try {
-													$cmd->save();
-												} catch (Exception $e) {
-													ajax::error(displayExeption($e), $e->getCode());
-												}
+												$cmd->save();
+
 												$cmd = new openzwaveCmd();
 												$cmd->setSubType('other');
 												$cmd->setType('action');
@@ -719,11 +713,7 @@ class openzwave extends eqLogic {
 													$cmd->setName($cmd_name . ' Off');
 													$cmd->setConfiguration('value', 'data[' . $index . '].Set(0)');
 												}
-												try {
-													$cmd->save();
-												} catch (Exception $e) {
-													ajax::error(displayExeption($e), $e->getCode());
-												}
+												$cmd->save();
 												break;
 											case 'int':
 												$cmd = new openzwaveCmd();
@@ -737,11 +727,7 @@ class openzwave extends eqLogic {
 												if (is_object($cmd_info)) {
 													$cmd->setValue($cmd_info->getId());
 												}
-												try {
-													$cmd->save();
-												} catch (Exception $e) {
-													ajax::error(displayExeption($e), $e->getCode());
-												}
+												$cmd->save();
 												break;
 											case 'float':
 												$cmd = new openzwaveCmd();
@@ -755,11 +741,7 @@ class openzwave extends eqLogic {
 												if (is_object($cmd_info)) {
 													$cmd->setValue($cmd_info->getId());
 												}
-												try {
-													$cmd->save();
-												} catch (Exception $e) {
-													ajax::error(displayExeption($e), $e->getCode());
-												}
+												$cmd->save();
 												break;
 											case 'List':
 												foreach (explode(';', $data['data_items']) as $value) {
@@ -771,11 +753,7 @@ class openzwave extends eqLogic {
 													$cmd->setConfiguration('class', $ccId);
 													$cmd->setConfiguration('value', 'data[' . $index . '].Set(' . $value . ')');
 													$cmd->setSubType('other');
-													try {
-														$cmd->save();
-													} catch (Exception $e) {
-														ajax::error(displayExeption($e), $e->getCode());
-													}
+													$cmd->save();
 												}
 												break;
 										}
