@@ -64,7 +64,7 @@ $('#div_listIncludeSever').delegate('.changeIncludeState','click', function() {
 
  $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
-        url: "openzwave/zwave/core/ajax/openzwave.ajax.php", // url du fichier php
+        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
         data: {
             action: "listServerZwave",
         },
