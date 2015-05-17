@@ -1378,7 +1378,7 @@ def setValue(device_id, cc_id, value) :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id:
                 Value['data'] = {}
                 Value['data'][val] = {'val':network.nodes[device_id].set_dimmer(val, value)}
-                if cc_id == COMMAND_CLASS_SWITCH_MULTILEVEL:
+                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
                     time.sleep(3)
                     network.nodes[device_id].values[val].refresh()
@@ -1486,7 +1486,7 @@ def setValue7(device_id,instance_id, cc_id, index, value) :
                 Value['data'] = {}
                 network.nodes[device_id].values[val].data=value
                 Value['data'][val] = {'val': value}
-                if cc_id == COMMAND_CLASS_SWITCH_MULTILEVEL:
+                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
                     time.sleep(3)
                     network.nodes[device_id].values[val].refresh()
@@ -1505,7 +1505,7 @@ def setValue8(device_id,instance_id, cc_id, index, value) :
                 Value['data'] = {}
                 network.nodes[device_id].values[val].data=value
                 Value['data'][val] = {'val': value}
-                if cc_id == COMMAND_CLASS_SWITCH_MULTILEVEL:
+                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
                     time.sleep(3)
                     network.nodes[device_id].values[val].refresh()
@@ -1588,7 +1588,7 @@ def setValue3(device_id, instance_id, cc_id, value) :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and hex(network.nodes[device_id].values[val].command_class)==cc_id:
                 Value['data'] = {}
                 Value['data'][val] = {'val':network.nodes[device_id].set_dimmer(val, value)}
-                if cc_id == COMMAND_CLASS_SWITCH_MULTILEVEL:
+                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
                     time.sleep(3)
                     network.nodes[device_id].values[val].refresh()
