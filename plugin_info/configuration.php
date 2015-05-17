@@ -299,9 +299,9 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping') as $name => $value
 	        }
 	    }
 	});
-	}
+		}
 
-	function openzwave_postSaveSlaveConfiguration(_slave_id){
-		startopenZwaveDemon('remote',_slave_id);
-	}
-</script>
+		function openzwave_postSaveSlaveConfiguration(_slave_id){
+			startopenZwaveDemon('remote',_slave_id);
+		}
+	</script>
