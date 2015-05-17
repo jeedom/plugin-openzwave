@@ -74,6 +74,16 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'rewriteNginxAndRestartCron') {
+		openzwave::removeNginxRedirection();
+		openzwave::listServerZwave();
+		$cron = cron::byClassAndFunction('openzwave', 'pull');
+		if (is_object($cron)) {
+			$cron->stop();
+		}
+		ajax::success();
+	}
+
 	if (init('action') == 'syncEqLogicWithRazberry') {
 		foreach (openzwave::listServerZwave() as $serverID => $server) {
 			if (isset($server['name'])) {

@@ -280,6 +280,25 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping') as $name => $value
 
 	function openzwave_postSaveConfiguration(){
 		startopenZwaveDemon('local',0);
+		  $.ajax({// fonction permettant de faire de l'ajax
+	        type: "POST", // methode de transmission des données au fichier php
+	        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+	        data: {
+	        	action: "rewriteNginxAndRestartCron",
+	        	type: type,
+	        	id: id
+	        },
+	        dataType: 'json',
+	        error: function(request, status, error) {
+	        	handleAjaxError(request, status, error);
+	        },
+	        success: function(data) { // si l'appel a bien fonctionné
+	        if (data.state != 'ok') {
+	        	$('#div_alert').showAlert({message: data.result, level: 'danger'});
+	        	return;
+	        }
+	    }
+	});
 	}
 
 	function openzwave_postSaveSlaveConfiguration(_slave_id){

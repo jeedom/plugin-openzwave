@@ -100,6 +100,17 @@ class openzwave extends eqLogic {
 		}
 	}
 
+	public static function removeNginxRedirection() {
+		foreach (self::listServerZwave(false) as $zwave) {
+			$urlPath = config::byKey('urlPath' . $zwave['id'], 'openzwave');
+			$rules = array(
+				"location /" . $urlPath . "/ {\n",
+			);
+			network::nginx_removeRule($rules);
+			config::save('urlPath' . $zwave['id'], '', 'openzwave');
+		}
+	}
+
 	public static function callRazberry($_url, $_serverId = 0) {
 		if (self::$_curl == null) {
 			self::$_curl = curl_init();
