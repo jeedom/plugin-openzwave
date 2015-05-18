@@ -1,0 +1,70 @@
+{
+	"name" : "Fibaro FGFS-101 [Flood Sensor]",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+            {
+                "name": "Fuite",
+                "type": "info",
+                "subtype": "binary",
+                "isVisible": 1,
+                "eventOnly": 1,
+				"isHistorized": 1,
+                "configuration": {
+                    "class": "0x9C",
+                    "instanceId": 0,
+                    "value": "data[5].val"
+                },
+               "display": {
+                    "invertBinary": "1"
+                },
+                "template": {
+                    "dashboard": "innondation",
+                    "mobile": "innondation"
+                }
+            },
+            {
+                "name": "Température",
+                "type": "info",
+                "subtype": "numeric",
+				"unite": "°C",
+                "isVisible": 1,
+                "eventOnly": 1,
+				"isHistorized": 1,
+                "configuration": {
+                    "class": "0x31",
+                    "instanceId": 0,
+                    "value": "data[1].val"				
+                }
+            },
+            {
+                "name": "Sabotage",
+                "type": "info",
+                "subtype": "binary",
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x9C",
+                    "instanceId": 0,
+                    "value": "data[0].val",
+                    "returnStateTime": "1",
+                    "returnStateValue": "0"
+                },
+               "display": {
+                    "invertBinary": "1"
+                }
+            },			
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+				"unite": "%",
+				"isVisible": 0,
+                "configuration": {
+                    "class": "0x80",
+                    "instanceId": 0,
+                    "value": "data[0].val"
+                }
+            }
+        ]
+   }
