@@ -107,12 +107,10 @@ if (jeedom::isCapable('sudo')) {
 			<select class="configKey form-control" data-l1key="port">
 				<option value="none">{{Aucun}}</option>
 				<?php
-foreach (jeedom::getUsbMapping() as $name => $value) {
+foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 	echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
 }
 ?>
-				<option value="/dev/ttyAMA0">{{Raspberry pi (/dev/ttyAMA0)}}</option>
-				<option value="/dev/ttymxc0">{{Jeedom board (/dev/ttymxc0)}}</option>
 			</select>
 		</div>
 	</div>
@@ -145,12 +143,10 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 						<select class="slaveConfigKey form-control" data-l1key="port">
 							<option value="none">{{Aucun}}</option>
 							<?php
-foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping') as $name => $value) {
+foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => true)) as $name => $value) {
 			echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
 		}
 		?>
-							<option value="/dev/ttyAMA0">{{Raspberry pi (/dev/ttyAMA0)}}</option>
-							<option value="/dev/ttymxc0">{{Jeedom board (/dev/ttymxc0)}}</option>
 						</select>
 					</div>
 				</div>
