@@ -935,6 +935,9 @@ class openzwaveCmd extends cmd {
 		if ($this->getConfiguration('instanceId') === '') {
 			$this->setConfiguration('instanceId', '0');
 		}
+		if (strpos($this->getConfiguration('class'), '0x') === false) {
+			$this->setConfiguration('class', '0x' . dechex($this->getConfiguration('class')));
+		}
 		$this->setLogicalId($this->getConfiguration('instanceId') . '.' . $this->getConfiguration('class'));
 		$this->setEventOnly(1);
 	}
