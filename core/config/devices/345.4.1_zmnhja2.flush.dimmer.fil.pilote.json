@@ -18,8 +18,8 @@
 					"value" : "data[0].val"
 				},
                 "template": {
-                    "dashboard": "heatPiloteWire6Ordres",
-                    "mobile": "heatPiloteWire6Ordres"
+                    "dashboard": "heatpilotewire6ordres",
+                    "mobile": "heatpilotewire6ordres"
                 }
 			},
 			{
