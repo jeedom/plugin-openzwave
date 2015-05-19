@@ -546,7 +546,7 @@ load_data: function()
 				app_nodes.draw_nodes();
 			},
 			error: function(data) {
-				alert('error'+JSON.stringify(data, null, 4));
+				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
 			}
 		});
 	}else{
@@ -561,7 +561,7 @@ load_data: function()
 				app_nodes.draw_nodes();
 			},
 			error: function(data) {
-				alert('error'+JSON.stringify(data, null, 4));
+				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
 			}
 		});
 	}
@@ -581,7 +581,7 @@ load_stats: function(node_id)
                 
             },
             error: function(data) {
-            	alert('error'+JSON.stringify(data, null, 4));
+            	$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
             }
         });
 },
@@ -600,7 +600,7 @@ load_groups: function(node_id)
 
 		},
 		error: function(data) {
-			alert('error'+JSON.stringify(data, null, 4));
+			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
 		}
 	});
 },

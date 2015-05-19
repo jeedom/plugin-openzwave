@@ -392,7 +392,7 @@ var app_network = {
                 
             },
             error: function(data) {
-            alert('error'+JSON.stringify(data, null, 4));
+            $('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
             }
         });
     },
@@ -407,7 +407,7 @@ var app_network = {
                 // auto select first node                
             },
             error: function(data) {
-            alert('error'+JSON.stringify(data, null, 4));
+            $('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
             }
         });
     },
@@ -456,7 +456,7 @@ var app_network = {
                 
             },
             error: function(data) {
-            alert('error'+JSON.stringify(data, null, 4));
+            $('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
             }
         });
     },
