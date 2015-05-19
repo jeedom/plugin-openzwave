@@ -19,7 +19,7 @@ for ($i = 1; $i <= 3; $i++) {
 		if (config::byKey('zwaveAddr' . $i, 'zwave') == '127.0.0.1' || config::byKey('zwaveAddr' . $i, 'zwave') == 'localhost') {
 			$server_convertion[$i] = 0;
 		} else {
-			foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
+			foreach (jeeNetwork::all() as $jeeNetwork) {
 				if (config::byKey('zwaveAddr' . $i, 'zwave') == $jeeNetwork->getRealIp()) {
 					$server_convertion[$i] = $jeeNetwork->getId();
 				}
