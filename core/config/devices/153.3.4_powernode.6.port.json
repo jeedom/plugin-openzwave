@@ -27,7 +27,7 @@
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 0,
-                    "value": "Set(255)"
+                    "value": "data[0].Set(255)"
                 },
                 "template": {
                     "dashboard": "Multiprise",
@@ -43,7 +43,7 @@
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 0,
-                    "value": "Set(0)"
+                    "value": "data[0].Set(0)"
                 },
                 "template": {
                     "dashboard": "Multiprise",
@@ -86,7 +86,7 @@
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 1,
-                    "value": "Set(255)"
+                    "value": "data[0].Set(255)"
                 },
                 "template": {
                     "dashboard": "Multiprise",
@@ -102,7 +102,7 @@
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 1,
-                    "value": "Set(0)"
+                    "value": "data[0].Set(0)"
                 },
                 "template": {
                     "dashboard": "Multiprise",
@@ -145,7 +145,7 @@
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 2,
-                    "value": "Set(255)"
+                    "value": "data[0].Set(255)"
                 },
                 "template": {
                     "dashboard": "Multiprise",
@@ -161,7 +161,7 @@
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 2,
-                    "value": "Set(0)"
+                    "value": "data[0].Set(0)"
                 },
                 "template": {
                     "dashboard": "Multiprise",
@@ -204,7 +204,7 @@
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 3,
-                    "value": "Set(255)"
+                    "value": "data[0].Set(255)"
                 },
                 "template": {
                     "dashboard": "Multiprise",
@@ -220,7 +220,7 @@
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 3,
-                    "value": "Set(0)"
+                    "value": "data[0].Set(0)"
                 },
                 "template": {
                     "dashboard": "Multiprise",
@@ -263,7 +263,7 @@
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 4,
-                    "value": "Set(255)"
+                    "value": "data[0].Set(255)"
                 },
                 "template": {
                     "dashboard": "Multiprise",
@@ -279,7 +279,7 @@
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 4,
-                    "value": "Set(0)"
+                    "value": "data[0].Set(0)"
                 },
                 "template": {
                     "dashboard": "Multiprise",
@@ -322,7 +322,7 @@
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 5,
-                    "value": "Set(255)"
+                    "value": "data[0].Set(255)"
                 },
                 "template": {
                     "dashboard": "Multiprise",
@@ -338,7 +338,7 @@
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 5,
-                    "value": "Set(0)"
+                    "value": "data[0].Set(0)"
                 },
                 "template": {
                     "dashboard": "Multiprise",

@@ -24,7 +24,7 @@
                 "value": "Etat",
                 "configuration": {
                     "class": "0x25",
-                    "value": "Set(255)"
+                    "value": "data[0].Set(255)"
                 },
                 "template": {
                     "dashboard": "prise",
@@ -39,7 +39,7 @@
                 "value": "Etat",
                 "configuration": {
                     "class": "0x25",
-                    "value": "Set(0)"
+                    "value": "data[0].Set(0)"
                 },
                 "template": {
                     "dashboard": "prise",

@@ -31,7 +31,7 @@
 				{
 					"instanceId" : 0,
 					"class" : "0x26",
-					"value" : "Set(0)"
+					"value" : "data[0].Set(0)"
 				},
                 "display": {
                     "icon": "<i class=\"fa fa-power-off\"><\/i>"
@@ -46,7 +46,7 @@
 				{
 					"instanceId" : 0,
 					"class" : "0x26",
-					"value" : "Set(99)"
+					"value" : "data[0].Set(99)"
 				},
                 "display": {
                     "icon": "<i class=\"icon jeedom-thermo-chaud\"><\/i>"
@@ -61,7 +61,7 @@
 				{
 					"instanceId" : 0,
 					"class" : "0x26",
-					"value" : "Set(30)"
+					"value" : "data[0].Set(30)"
 				},
                 "display": {
                     "icon": "<i class=\"icon divers-triangular42\"><\/i>"
@@ -76,7 +76,7 @@
 				{
 					"instanceId" : 0,
 					"class" : "0x26",
-					"value" : "Set(20)"
+					"value" : "data[0].Set(20)"
 				},
                 "display": {
                     "icon": "<i class=\"icon nature-snowflake\"><\/i>"
@@ -91,7 +91,7 @@
 				{
 					"instanceId" : 0,
 					"class" : "0x26",
-					"value" : "Set(50)"
+					"value" : "data[0].Set(50)"
 				},
                 "display": {
                     "icon": "<i class=\"icon jeedom-thermo-moyen\"><\/i>"
@@ -106,7 +106,7 @@
 				{
 					"instanceId" : 0,
 					"class" : "0x26",
-					"value" : "Set(40)"
+					"value" : "data[0].Set(40)"
 				},
                 "display": {
                     "icon": "<i class=\"icon jeedom-thermo-froid\"><\/i>"
@@ -138,7 +138,7 @@
 				{
 					"instanceId" : 0,
 					"class" : "0x30",
-					"value" : "data[1].level"
+					"value" : "data[1].val"
 				},
                 "display": {
                     "invertBinary": "1"
@@ -155,7 +155,7 @@
 				{
 					"instanceId" : 1,
 					"class" : "0x30",
-					"value" : "data[1].level"
+					"value" : "data[1].val"
 				},
                 "display": {
                     "invertBinary": "1"
@@ -172,7 +172,7 @@
 				{
 					"instanceId" : 2,
 					"class" : "0x30",
-					"value" : "data[1].level"
+					"value" : "data[1].val"
 				},
                 "display": {
                     "invertBinary": "1"

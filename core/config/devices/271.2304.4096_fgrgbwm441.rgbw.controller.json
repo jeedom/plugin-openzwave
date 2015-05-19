@@ -52,7 +52,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x70",
-                    "value": "Set(72,6,1)"
+                    "value": "data[0].Set(72,6,1)"
                 },
                 "display": {
                     "icon": "<i class=\"icon jeedom-feu\"><\/i>"
@@ -65,7 +65,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x70",
-                    "value": "Set(72,7,1)"
+                    "value": "data[0].Set(72,7,1)"
                 },
                 "display": {
                     "icon": "<i class=\"icon meteo-orage\"><\/i>"
@@ -78,7 +78,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x70",
-                    "value": "Set(72,8,1)"
+                    "value": "data[0].Set(72,8,1)"
                 },
                 "display": {
                     "icon": "<i class=\"icon meteo-soleil\"><\/i>"
@@ -91,7 +91,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x70",
-                    "value": "Set(72,9,1)"
+                    "value": "data[0].Set(72,9,1)"
                 },
                 "display": {
                     "icon": "<i class=\"icon divers-triangular42\"><\/i>"
@@ -104,7 +104,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x70",
-                    "value": "Set(72,10,1)"
+                    "value": "data[0].Set(72,10,1)"
                 },
                 "display": {
                     "icon": "<i class=\"icon jeedom-alerte\"><\/i>"
@@ -117,7 +117,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x26",
-                    "value": "Set(99)"
+                    "value": "data[0].Set(99)"
                 },
                 "display": {
                     "icon": "<i class=\"icon jeedom-lumiere-on\"><\/i>"
@@ -130,7 +130,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x26",
-                    "value": "Set(0)"
+                    "value": "data[0].Set(0)"
                 },
                 "display": {
                     "icon": "<i class=\"icon jeedom-lumiere-off\"><\/i>"
@@ -144,7 +144,7 @@
                 "value": "Etat",
                 "configuration": {
                     "class": "0x26",
-                    "value": "Set(#slider#)",
+                    "value": "data[0].Set(#slider#)",
                     "minValue": 0,
                     "maxValue": 99
 				}

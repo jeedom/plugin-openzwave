@@ -12,7 +12,7 @@
                 "value": "Etat",
                 "configuration": {
                     "class": "0x26",
-                    "value": "Set(#slider#)",
+                    "value": "data[0].Set(#slider#)",
                     "minValue": 0,
                     "maxValue": 99
                 },
@@ -28,7 +28,7 @@
                 "isVisible": 0,
                 "configuration": {
                     "class": "0x26",
-                    "value": "Set(99)"
+                    "value": "data[0].Set(99)"
                 }
             },
             {
@@ -38,7 +38,7 @@
                 "isVisible": 0,
                 "configuration": {
                     "class": "0x26",
-                    "value": "Set(0)"
+                    "value": "data[0].Set(0)"
                 }
             },
             {
