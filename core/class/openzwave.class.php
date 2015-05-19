@@ -165,7 +165,7 @@ class openzwave extends eqLogic {
 						nodejs::pushUpdate('zwave::' . $key, array('name' => $server['name'], 'state' => 0, 'serverId' => $serverID));
 						nodejs::pushUpdate('jeedom::alert', array(
 							'level' => 'warning',
-							'message' => __('Un périphérique Z-Wave vient est en cours d\'exclusion. Logical ID : ', __FILE__) . $result['value'],
+							'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $result['value'],
 						));
 						sleep(5);
 						self::syncEqLogicWithRazberry($serverID);
