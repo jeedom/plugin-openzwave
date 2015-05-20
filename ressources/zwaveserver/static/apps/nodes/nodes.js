@@ -533,26 +533,12 @@ send_node_information: function(node_id)
 		}
 	});
 },
-load_data: function()
+load_all: function()
 {
-	if(typeof node_id !== 'undefined' && !isNaN(node_id) && typeof controller !== 'undefined' && Object.keys(nodes).length > 0){
-		$.ajax({ 
-			url: path+"ZWaveAPI/Run/devices["+node_id+"]", 
-			dataType: 'json',
-			async: true, 
-			global : false,
-			success: function(data) {
-				nodes[node_id] = data;
-				app_nodes.draw_nodes();
-			},
-			error: function(data) {
-				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
-			}
-		});
-	}else{
-		$.ajax({ 
+	$.ajax({ 
 			url: path+"ZWaveAPI/Data/0", 
 			dataType: 'json',
+			global: false,
 			async: true,       
 			success: function(data) {
 				console.log('chargement ok');
@@ -564,6 +550,31 @@ load_data: function()
 				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
 			}
 		});
+},
+load_data: function()
+{
+	if(typeof node_id !== 'undefined' && !isNaN(node_id)){
+		$.ajax({ 
+			url: path+"ZWaveAPI/Run/devices["+node_id+"]", 
+			dataType: 'json',
+			async: true, 
+			global : false,
+			success: function(data) {
+				if(Object.keys(nodes).length == 0){
+					app_nodes.load_all();
+				}
+				nodes[node_id] = data;
+				app_nodes.draw_nodes();
+				
+				//controller.data.networkstate.value=10;
+				
+			},
+			error: function(data) {
+				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
+			}
+		});
+	}else{
+		
 	}
 },
 load_stats: function(node_id)
@@ -630,7 +641,11 @@ show: function()
         var template_parameter = $("#template-parameter").html();
         var template_system = $("#template-system").html();
         
-        var networkstate = controller.data.networkstate.value;
+        if(typeof controller !== 'undefined'){
+        	var networkstate = controller.data.networkstate.value;
+        }else{
+        	var networkstate = 10;
+        }
         var disabledCommand = networkstate<5;
         
         $("#requestNodeNeighboursUpdate").prop("disabled",disabledCommand);
