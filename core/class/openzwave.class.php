@@ -431,7 +431,7 @@ class openzwave extends eqLogic {
 
 	public function postSave() {
 		try {
-			self::callRazberry('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].SetDeviceName(' . str_replace(array('#', '[', ']'), array('', '', ' '), $this->getHumanName()) . ')', $this->getConfiguration('serverID', 1));
+			self::callRazberry('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].SetDeviceName(' . urlencode(trim(str_replace(array('#', '[', ']'), array('', '', ' '), $this->getHumanName()))) . ')', $this->getConfiguration('serverID', 1));
 		} catch (Exception $e) {
 
 		}
