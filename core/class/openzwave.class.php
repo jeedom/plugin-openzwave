@@ -429,6 +429,10 @@ class openzwave extends eqLogic {
 
 	/*     * *********************Methode d'instance************************* */
 
+	public function postSave() {
+		self::callRazberry('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].SetDeviceName(' . str_replace('#', '', $this->getHumanName()) . ')', $this->getConfiguration('serverID', 1));
+	}
+
 	public function ping() {
 		$info = $this->getInfo();
 		if ($info['state']['value'] == __('Réveillé', __FILE__) || $info['state']['value'] == __('Actif', __FILE__)) {
