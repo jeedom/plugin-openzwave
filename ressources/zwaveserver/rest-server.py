@@ -616,13 +616,17 @@ def get_device_info(device_id):
             product_type=int(myNode.product_type,16)
         except ValueError:
             product_type=""
+        try :
+            name=int(myNode.name,16)
+        except ValueError:
+            name=""
         
         tmpNode['data']= {}
         tmpNode['data']['manufacturerId'] = {'value' : manufacturer_id}
         tmpNode['data']['vendorString'] = {'value' : myNode.manufacturer_name}
         tmpNode['data']['manufacturerProductId'] = {'value' : product_id}
         tmpNode['data']['product_name'] = {'value' : myNode.product_name}
-        tmpNode['data']['name'] = {'value' : myNode.product_name}
+        tmpNode['data']['name'] = {'value' : myNode.name}
         tmpNode['data']['version'] = {'value' : myNode.version}    
         tmpNode['data']['manufacturerProductType'] = {'value' : product_type}
         tmpNode['data']['neighbours'] = {'value' : list(myNode.neighbors)}
@@ -979,6 +983,19 @@ def refresh_config(device_id, index_id) :
     else:
         addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(config)
+
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetDeviceName(<string:name>)',methods = ['GET'])
+def setDeviceName(device_id, name) :    
+    if networkInformations.controllerIsBusy:
+        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
+    debugPrint("setName for device_id:%s New Name ; '%s'" % (device_id, name,))
+    result = False
+    if(device_id in network.nodes) : 
+        network.nodes[device_id].set_field('name',name)
+        result = True
+    else:
+        addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+    return jsonify({'result' : result})
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses[0x70].data',methods = ['GET'])
 def get_config(device_id) :
