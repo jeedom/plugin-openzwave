@@ -991,6 +991,7 @@ def setDeviceName(device_id, name) :
     debugPrint("setName for device_id:%s New Name ; '%s'" % (device_id, name,))
     result = False
     if(device_id in network.nodes) : 
+        name = name.replace('+',' ')
         network.nodes[device_id].set_field('name',name)
         result = True
     else:
