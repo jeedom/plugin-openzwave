@@ -281,7 +281,6 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 	        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
 	        data: {
 	        	action: "rewriteNginxAndRestartCron",
-	        	id: id
 	        },
 	        dataType: 'json',
 	        error: function(request, status, error) {
