@@ -400,27 +400,31 @@ class openzwave extends eqLogic {
 	}
 
 	public static function deamonRunning() {
-		//$result = exec('ps e | grep "rest-server.py" | wc -l');
-		$result = exec("ps -eo pid,command | grep 'rest-server.py' | grep -v grep | awk '{print $1}'");
-		if ($result == 0) {
+		$pid_file = '/tmp/openzwave.pid';
+		if (!file_exists($pid_file)) {
 			return false;
 		}
-		return true;
+		$pid = trim(file_get_contents($pid_file));
+		if (posix_getsid($pid)) {
+			return true;
+		}
+		unlink($pid_file);
+		return false;
 	}
 
 	public static function stopDeamon() {
-		if (!self::deamonRunning()) {
-			return true;
-		}
-		$pid = exec("ps -eo pid,command | grep 'rest-server.py' | grep -v grep | awk '{print $1}'");
-		posix_kill($pid, 15);
-		if (self::deamonRunning()) {
-			sleep(1);
-			posix_kill($pid, 9);
-		}
-		if (self::deamonRunning()) {
-			sleep(1);
-			exec('kill -9 ' . $pid . ' > /dev/null 2>&1');
+		$pid_file = '/tmp/openzwave.pid';
+		if (file_exists($pid_file)) {
+			$pid = intval(trim(file_get_contents($pid_file)));
+			posix_kill($pid, 15);
+			if (self::deamonRunning()) {
+				sleep(1);
+				posix_kill($pid, 9);
+			}
+			if (self::deamonRunning()) {
+				sleep(1);
+				exec('kill -9 ' . $pid . ' > /dev/null 2>&1');
+			}
 		}
 		exec('fuser -k ' . config::byKey('port_server', 'openzwave', 8083) . '/tcp > /dev/null 2>&1');
 		exec('sudo fuser -k ' . config::byKey('port_server', 'openzwave', 8083) . '/tcp > /dev/null 2>&1');
