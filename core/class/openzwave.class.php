@@ -214,8 +214,12 @@ class openzwave extends eqLogic {
 					if (is_object($eqLogic)) {
 						$attribut = implode('.', array_slice($explodeKey, 6));
 						foreach ($eqLogic->getCmd('info', $explodeKey[3] . '.0x' . dechex($explodeKey[5]), null, true) as $cmd) {
-							if (strpos(str_replace(array(']', '['), array('', '.'), $cmd->getConfiguration('value')), $attribut) !== false) {
-								$cmd->handleUpdateValue($result);
+							if ($cmd->getConfiguration('value') == '271.1.1_fibaro.fgs221.fil.pilote.json') {
+								$cmd->event($cmd->getPilotWire());
+							} else {
+								if (strpos(str_replace(array(']', '['), array('', '.'), $cmd->getConfiguration('value')), $attribut) !== false) {
+									$cmd->handleUpdateValue($result);
+								}
 							}
 						}
 					}
@@ -250,7 +254,6 @@ class openzwave extends eqLogic {
 				$eqLogic->setIsEnable(1);
 				if (isset($result['data']['product_name']['value']) && trim($result['data']['product_name']['value']) != '') {
 					$eqLogic->setName('[' . $eqLogic->getLogicalId() . ']' . $result['data']['name']['value']);
-
 				} else {
 					$eqLogic->setName('Device ' . $nodeId);
 				}
@@ -433,17 +436,6 @@ class openzwave extends eqLogic {
 
 	/*     * *********************Methode d'instance************************* */
 
-	public function postSave() {
-		try {
-			$humanName = str_replace('][', ' - ', $this->getHumanName());
-			$humanName = str_replace(array('#', '', '[', ']'), array('', '', ' '), $humanName);
-			$humanName = urlencode(trim($humanName));
-			self::callRazberry('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].SetDeviceName(' . $humanName . ')', $this->getConfiguration('serverID', 1));
-		} catch (Exception $e) {
-
-		}
-	}
-
 	public function ping() {
 		$info = $this->getInfo();
 		if ($info['state']['value'] == __('Réveillé', __FILE__) || $info['state']['value'] == __('Actif', __FILE__)) {
@@ -523,6 +515,7 @@ class openzwave extends eqLogic {
 		if (!is_json($content)) {
 			return;
 		}
+		$this->setConfiguration('applyConfFile', $this->getConfFilePath());
 		$device = json_decode($content, true);
 		if (!is_array($device) || !isset($device['commands'])) {
 			return true;
@@ -613,7 +606,28 @@ class openzwave extends eqLogic {
 		));
 	}
 
-	public function getConfFilePath() {
+	public function postSave() {
+		try {
+			$humanName = str_replace('][', ' - ', $this->getHumanName());
+			$humanName = str_replace(array('#', '', '[', ']'), array('', '', ' '), $humanName);
+			$humanName = urlencode(trim($humanName));
+			self::callRazberry('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].SetDeviceName(' . $humanName . ')', $this->getConfiguration('serverID', 1));
+		} catch (Exception $e) {
+
+		}
+		if ($this->getConfiguration('applyConfFile') != $this->getConfiguration('fileconf') && $this->getConfiguration('fileconf') != '') {
+			$this->loadCmdFromConf();
+		}
+	}
+
+	public function getConfFilePath($_all = false) {
+		if ($_all) {
+			$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
+			return ls(dirname(__FILE__) . '/../config/devices', $id . '_*.json', false, array('files', 'quiet'));
+		}
+		if (file_exists($this->getConfiguration('fileconf'))) {
+			return $this->getConfiguration('fileconf');
+		}
 		$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
 		$files = ls(dirname(__FILE__) . '/../config/devices', $id . '_*.json', false, array('files', 'quiet'));
 		if (count($files) > 0) {

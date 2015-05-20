@@ -155,6 +155,14 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'getAllPossibleConf') {
+		$eqLogic = openzwave::byId(init('id'));
+		if (!is_object($eqLogic)) {
+			ajax::success();
+		}
+		ajax::success($eqLogic->getConfFilePath(true));
+	}
+
 	throw new Exception('Aucune methode correspondante');
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
