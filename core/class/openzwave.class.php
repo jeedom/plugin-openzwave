@@ -214,8 +214,12 @@ class openzwave extends eqLogic {
 					if (is_object($eqLogic)) {
 						$attribut = implode('.', array_slice($explodeKey, 6));
 						foreach ($eqLogic->getCmd('info', $explodeKey[3] . '.0x' . dechex($explodeKey[5]), null, true) as $cmd) {
-							if (strpos(str_replace(array(']', '['), array('', '.'), $cmd->getConfiguration('value')), $attribut) !== false) {
-								$cmd->handleUpdateValue($result);
+							if ($cmd->getConfiguration('value') == '271.1.1_fibaro.fgs221.fil.pilote.json') {
+								$cmd->event($cmd->getPilotWire());
+							} else {
+								if (strpos(str_replace(array(']', '['), array('', '.'), $cmd->getConfiguration('value')), $attribut) !== false) {
+									$cmd->handleUpdateValue($result);
+								}
 							}
 						}
 					}
