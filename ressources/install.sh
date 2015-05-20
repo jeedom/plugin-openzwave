@@ -121,7 +121,13 @@ sudo chown -R www-data:www-data /opt/python-openzwave
 sudo chmod 700 -R /opt/python-openzwave/python-eggs
 
 if [ $(grep 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200"' /etc/udev/rules.d/98-usb-serial.rules | wc -l) -eq 0 ]; then
-    echo 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200", SYMLINK+="ttyUSB21"' >> /etc/udev/rules.d/98-usb-serial.rules
+    if [ -f /etc/udev/rules.d/98-usb-serial.rules ]; then
+      sudo cp /etc/udev/rules.d/98-usb-serial.rules /tmp/udev
+    else
+      touch /tmp/udev
+    fi
+    sudo echo 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200", SYMLINK+="ttyUSB21"' >> /tmp/udev
+    sudo mv /tmp/udev /etc/udev/rules.d/98-usb-serial.rules
 fi
 
 echo "Everything is successfully installed!"
