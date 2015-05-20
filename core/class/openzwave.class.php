@@ -152,6 +152,10 @@ class openzwave extends eqLogic {
 		return $results;
 	}
 
+	public static function backup($_path) {
+		exec('cp /opt/python-openzwave/zwcfg_*.xml ' . $_path);
+	}
+
 	public static function pull() {
 		$startLoadTime = getmicrotime();
 		foreach (self::listServerZwave() as $serverID => $server) {
