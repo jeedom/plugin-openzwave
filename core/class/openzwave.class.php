@@ -251,10 +251,10 @@ class openzwave extends eqLogic {
 				} else {
 					$eqLogic->setName('Device ' . $nodeId);
 				}
-				$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
-				$eqLogic->setConfiguration('manufacturer_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerId']['value'])));
-				$eqLogic->setConfiguration('product_type', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductType']['value'])));
-				$eqLogic->setConfiguration('product_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductId']['value'])));
+				$eqLogic->setConfiguration('product_name', $result['data']['name']['value']);
+				$eqLogic->setConfiguration('manufacturer_id', $result['data']['manufacturerId']['value']);
+				$eqLogic->setConfiguration('product_type', $result['data']['manufacturerProductType']['value']);
+				$eqLogic->setConfiguration('product_id', $result['data']['manufacturerProductId']['value']);
 				$eqLogic->setLogicalId($nodeId);
 				$eqLogic->setConfiguration('serverID', $_serverId);
 				$eqLogic->setIsVisible(1);
@@ -264,18 +264,10 @@ class openzwave extends eqLogic {
 				$eqLogic->createCommand();
 			} else {
 				if (isset($result['data']['name']['value'])) {
-					if ($eqLogic->getConfiguration('product_name') == '') {
-						$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
-					}
-					if ($eqLogic->getConfiguration('manufacturer_id') == '') {
-						$eqLogic->setConfiguration('manufacturer_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerId']['value'])));
-					}
-					if ($eqLogic->getConfiguration('product_type') == '') {
-						$eqLogic->setConfiguration('product_type', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductType']['value'])));
-					}
-					if ($eqLogic->getConfiguration('product_id') == '') {
-						$eqLogic->setConfiguration('product_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductId']['value'])));
-					}
+					$eqLogic->setConfiguration('product_name', $result['data']['name']['value']);
+					$eqLogic->setConfiguration('manufacturer_id', $result['data']['manufacturerId']['value']);
+					$eqLogic->setConfiguration('product_type', $result['data']['manufacturerProductType']['value']);
+					$eqLogic->setConfiguration('product_id', $result['data']['manufacturerProductId']['value']);
 					$eqLogic->save();
 				}
 			}
@@ -323,12 +315,12 @@ class openzwave extends eqLogic {
 
 	public static function updateConf() {
 		foreach (self::byType('openzwave') as $openzwave) {
-			if (!file_exists(dirname(__FILE__) . '/../config/devices/' . $openzwave->getConfiguration('product_name') . '.json')) {
-				continue;
+			if (!is_file(dirname(__FILE__) . '/../config/devices/' . $openzwave->getConfFilePath())) {
+				return;
 			}
-			$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $openzwave->getConfiguration('product_name') . '.json');
+			$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $openzwave->getConfFilePath());
 			if (!is_json($content)) {
-				continue;
+				return;
 			}
 			$device = json_decode($content, true);
 			if (!isset($device['configuration']) || !isset($device['configuration']['conf_version'])) {
