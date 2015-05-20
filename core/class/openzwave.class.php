@@ -50,7 +50,6 @@ class openzwave extends eqLogic {
 	public static function listServerZwave($_autofix = true) {
 		if (self::$_listZwaveServer == null) {
 			self::$_listZwaveServer = array();
-			$network_access = network::getNetworkAccess('auto', 'proto:ip:port');
 			if (config::byKey('port', 'openzwave', 'none') != 'none') {
 				self::$_listZwaveServer[0] = array(
 					'id' => 0,
@@ -61,7 +60,7 @@ class openzwave extends eqLogic {
 				if ($_autofix & config::byKey('urlPath0', 'openzwave') == '') {
 					self::updateNginxRedirection();
 				}
-				self::$_listZwaveServer[0]['path'] = $network_access . '/' . config::byKey('urlPath0', 'openzwave');
+				self::$_listZwaveServer[0]['path'] = '/' . config::byKey('urlPath0', 'openzwave');
 			}
 			if (config::byKey('jeeNetwork::mode') == 'master') {
 				foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
@@ -74,7 +73,7 @@ class openzwave extends eqLogic {
 					if ($_autofix && config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave') == '') {
 						self::updateNginxRedirection();
 					}
-					self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = $network_access . '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
+					self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
 				}
 			}
 		}
@@ -150,6 +149,10 @@ class openzwave extends eqLogic {
 			}
 		}
 		return $results;
+	}
+
+	public static function backup($_path) {
+		exec('cp /opt/python-openzwave/zwcfg_*.xml ' . $_path);
 	}
 
 	public static function pull() {
@@ -251,10 +254,10 @@ class openzwave extends eqLogic {
 				} else {
 					$eqLogic->setName('Device ' . $nodeId);
 				}
-				$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
-				$eqLogic->setConfiguration('manufacturer_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerId']['value'])));
-				$eqLogic->setConfiguration('product_type', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductType']['value'])));
-				$eqLogic->setConfiguration('product_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductId']['value'])));
+				$eqLogic->setConfiguration('product_name', $result['data']['name']['value']);
+				$eqLogic->setConfiguration('manufacturer_id', $result['data']['manufacturerId']['value']);
+				$eqLogic->setConfiguration('product_type', $result['data']['manufacturerProductType']['value']);
+				$eqLogic->setConfiguration('product_id', $result['data']['manufacturerProductId']['value']);
 				$eqLogic->setLogicalId($nodeId);
 				$eqLogic->setConfiguration('serverID', $_serverId);
 				$eqLogic->setIsVisible(1);
@@ -264,18 +267,10 @@ class openzwave extends eqLogic {
 				$eqLogic->createCommand();
 			} else {
 				if (isset($result['data']['name']['value'])) {
-					if ($eqLogic->getConfiguration('product_name') == '') {
-						$eqLogic->setConfiguration('product_name', strtolower(str_replace(' ', '.', $result['data']['name']['value'])));
-					}
-					if ($eqLogic->getConfiguration('manufacturer_id') == '') {
-						$eqLogic->setConfiguration('manufacturer_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerId']['value'])));
-					}
-					if ($eqLogic->getConfiguration('product_type') == '') {
-						$eqLogic->setConfiguration('product_type', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductType']['value'])));
-					}
-					if ($eqLogic->getConfiguration('product_id') == '') {
-						$eqLogic->setConfiguration('product_id', strtolower(str_replace(' ', '.', $result['data']['manufacturerProductId']['value'])));
-					}
+					$eqLogic->setConfiguration('product_name', $result['data']['name']['value']);
+					$eqLogic->setConfiguration('manufacturer_id', $result['data']['manufacturerId']['value']);
+					$eqLogic->setConfiguration('product_type', $result['data']['manufacturerProductType']['value']);
+					$eqLogic->setConfiguration('product_id', $result['data']['manufacturerProductId']['value']);
 					$eqLogic->save();
 				}
 			}
@@ -323,12 +318,12 @@ class openzwave extends eqLogic {
 
 	public static function updateConf() {
 		foreach (self::byType('openzwave') as $openzwave) {
-			if (!file_exists(dirname(__FILE__) . '/../config/devices/' . $openzwave->getConfiguration('product_name') . '.json')) {
-				continue;
+			if (!is_file(dirname(__FILE__) . '/../config/devices/' . $openzwave->getConfFilePath())) {
+				return;
 			}
-			$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $openzwave->getConfiguration('product_name') . '.json');
+			$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $openzwave->getConfFilePath());
 			if (!is_json($content)) {
-				continue;
+				return;
 			}
 			$device = json_decode($content, true);
 			if (!isset($device['configuration']) || !isset($device['configuration']['conf_version'])) {
@@ -438,12 +433,10 @@ class openzwave extends eqLogic {
 		$info = $this->getInfo();
 		if ($info['state']['value'] == __('Réveillé', __FILE__) || $info['state']['value'] == __('Actif', __FILE__)) {
 			$cmds = $this->getCmd('info');
-			$cmds[0]->forceUpdate();
 			if (strtotime($this->getStatus('lastCommunication', date('Y-m-d H:i:s'))) < (strtotime('now') - 120)) {
 				sleep(5);
 			}
 			if (strtotime($this->getStatus('lastCommunication', date('Y-m-d H:i:s'))) < (strtotime('now') - 120)) {
-				echo 'je passe';
 				return false;
 			}
 		} else {
@@ -657,9 +650,9 @@ class openzwave extends eqLogic {
 									$cmd = null;
 									if (count($results['instances']) > 2) {
 										$cmd_name_number = $instanceID + 1;
-										$cmd_name = $data['name'] . ' ' . $cmd_name_number;
+										$cmd_name = $data['name'] . ' ' . $index . ' ' . $cmd_name_number;
 									} else {
-										$cmd_name = $data['name'];
+										$cmd_name = $data['name'] . ' ' . $index;
 									}
 									if (!$data['write_only']) {
 										$cmd_info = new openzwaveCmd();
@@ -870,48 +863,23 @@ class openzwaveCmd extends cmd {
 
 		if ($eqLogic->getConfiguration('manufacturer_id') == 271 && $eqLogic->getConfiguration('product_type') == 2304 && $eqLogic->getConfiguration('product_id') == 4096) {
 			/* Set GREEN color */
-			openzwave::callRazberry($request . '.instances[3].commandClasses[0x26].Set(' . str_replace(',', '%2C', $g) . ')', $eqLogic->getConfiguration('serverID', 1));
+			openzwave::callRazberry($request . '.instances[3].commandClasses[0x26].data[0].Set(' . str_replace(',', '%2C', $g) . ')', $eqLogic->getConfiguration('serverID', 1));
 			/* Set BLUE color */
-			openzwave::callRazberry($request . '.instances[4].commandClasses[0x26].Set(' . str_replace(',', '%2C', $b) . ')', $eqLogic->getConfiguration('serverID', 1));
+			openzwave::callRazberry($request . '.instances[4].commandClasses[0x26].data[0].Set(' . str_replace(',', '%2C', $b) . ')', $eqLogic->getConfiguration('serverID', 1));
 			/* Set RED color */
-			openzwave::callRazberry($request . '.instances[2].commandClasses[0x26].Set(' . str_replace(',', '%2C', $r) . ')', $eqLogic->getConfiguration('serverID', 1));
+			openzwave::callRazberry($request . '.instances[2].commandClasses[0x26].data[0].Set(' . str_replace(',', '%2C', $r) . ')', $eqLogic->getConfiguration('serverID', 1));
 		} else {
-			openzwave::callRazberry($request . '.instances[0].commandClasses[0x33].Set(0,0)', $eqLogic->getConfiguration('serverID', 1));
-			openzwave::callRazberry($request . '.instances[0].commandClasses[0x33].Set(1,0)', $eqLogic->getConfiguration('serverID', 1));
+			openzwave::callRazberry($request . '.instances[0].commandClasses[0x33].data[0].Set(0)', $eqLogic->getConfiguration('serverID', 1));
+			openzwave::callRazberry($request . '.instances[0].commandClasses[0x33].data[1].Set(0)', $eqLogic->getConfiguration('serverID', 1));
 			/* Set GREEN color */
-			openzwave::callRazberry($request . '.instances[0].commandClasses[0x33].Set(3,' . str_replace(',', '%2C', $g) . ')', $eqLogic->getConfiguration('serverID', 1));
+			openzwave::callRazberry($request . '.instances[0].commandClasses[0x33].data[5].Set' . str_replace(',', '%2C', $g) . ')', $eqLogic->getConfiguration('serverID', 1));
 			/* Set BLUE color */
-			openzwave::callRazberry($request . '.instances[0].commandClasses[0x33].Set(4,' . str_replace(',', '%2C', $b) . ')', $eqLogic->getConfiguration('serverID', 1));
+			openzwave::callRazberry($request . '.instances[0].commandClasses[0x33].data[4].Set(' . str_replace(',', '%2C', $b) . ')', $eqLogic->getConfiguration('serverID', 1));
 			/* Set RED color */
-			openzwave::callRazberry($request . '.instances[0].commandClasses[0x33].Set(2,' . str_replace(',', '%2C', $r) . ')', $eqLogic->getConfiguration('serverID', 1));
-			openzwave::callRazberry($request . '.instances[0].commandClasses[0x26].Set(255)', $eqLogic->getConfiguration('serverID', 1));
+			openzwave::callRazberry($request . '.instances[0].commandClasses[0x33].data[2].Set(' . str_replace(',', '%2C', $r) . ')', $eqLogic->getConfiguration('serverID', 1));
+			openzwave::callRazberry($request . '.instances[0].commandClasses[0x26].data[0].Set(255)', $eqLogic->getConfiguration('serverID', 1));
 		}
 		return true;
-	}
-
-	public function getRGBColor() {
-		$eqLogic = $this->getEqLogic();
-		$request = '/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . ']';
-		/* Get RED color */
-		$r = openzwave::callRazberry($request . '.instances[2].commandClasses[0x26].data.level.value', $eqLogic->getConfiguration('serverID', 1));
-		/* Get GREEN color */
-		$g = openzwave::callRazberry($request . '.instances[3].commandClasses[0x26].data.level.value', $eqLogic->getConfiguration('serverID', 1));
-		/* Get BLUE color */
-		$b = openzwave::callRazberry($request . '.instances[4].commandClasses[0x26].data.level.value', $eqLogic->getConfiguration('serverID', 1));
-		//Convertion pour sur une echelle de 0-255
-		$r = dechex(($r / 99) * 255);
-		$g = dechex(($g / 99) * 255);
-		$b = dechex(($b / 99) * 255);
-		if (strlen($r) == 1) {
-			$r = '0' . $r;
-		}
-		if (strlen($g) == 1) {
-			$g = '0' . $g;
-		}
-		if (strlen($b) == 1) {
-			$b = '0' . $b;
-		}
-		return '#' . $r . $g . $b;
 	}
 
 	public function getPilotWire() {
@@ -924,8 +892,8 @@ class openzwaveCmd extends cmd {
 		if (!isset($instancesId[1])) {
 			$instancesId[1] = 1;
 		}
-		$info1 = self::handleResult(openzwave::callRazberry($request . '.instances[' . $instancesId[0] . '].commandClasses[0x25].data.level', $eqLogic->getConfiguration('serverID', 1)));
-		$info2 = self::handleResult(openzwave::callRazberry($request . '.instances[' . $instancesId[1] . '].commandClasses[0x25].data.level', $eqLogic->getConfiguration('serverID', 1)));
+		$info1 = self::handleResult(openzwave::callRazberry($request . '.instances[' . $instancesId[0] . '].commandClasses[0x25].data[0].val', $eqLogic->getConfiguration('serverID', 1)));
+		$info2 = self::handleResult(openzwave::callRazberry($request . '.instances[' . $instancesId[1] . '].commandClasses[0x25].data[0].val', $eqLogic->getConfiguration('serverID', 1)));
 		return intval($info1) * 2 + intval($info2);
 	}
 
@@ -938,11 +906,6 @@ class openzwaveCmd extends cmd {
 		}
 		$this->setLogicalId($this->getConfiguration('instanceId') . '.' . $this->getConfiguration('class'));
 		$this->setEventOnly(1);
-	}
-
-	public function forceUpdate() {
-		$eqLogic = $this->getEqLogic();
-		openzwave::callRazberry('/ZWaveAPI/Run/devices[' . $this->getEqLogic()->getLogicalId() . '].instances[' . $this->getConfiguration('instanceId', 0) . '].commandClasses[' . $this->getConfiguration('class') . '].Get()', $eqLogic->getConfiguration('serverID', 1));
 	}
 
 	public function sendZwaveResquest($_url) {
@@ -1036,7 +999,7 @@ class openzwaveCmd extends cmd {
 		if ($this->getConfiguration('instanceId') != '' && ($this->getConfiguration('class') != '0x70')) {
 			$request .= '.instances[' . $this->getConfiguration('instanceId') . ']';
 		} else {
-			$request_http .= '.instances[0]';
+			$request .= '.instances[0]';
 		}
 		$request .= '.commandClasses[' . $this->getConfiguration('class') . ']';
 		$request .= '.' . str_replace(',', '%2C', $value);
