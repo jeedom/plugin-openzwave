@@ -248,13 +248,13 @@ class openzwave extends eqLogic {
 				$eqLogic = new eqLogic();
 				$eqLogic->setEqType_name('openzwave');
 				$eqLogic->setIsEnable(1);
-				if (isset($result['data']['name']['value']) && trim($result['data']['name']['value']) != '') {
+				if (isset($result['data']['product_name']['value']) && trim($result['data']['product_name']['value']) != '') {
 					$eqLogic->setName('[' . $eqLogic->getLogicalId() . ']' . $result['data']['name']['value']);
 
 				} else {
 					$eqLogic->setName('Device ' . $nodeId);
 				}
-				$eqLogic->setConfiguration('product_name', $result['data']['name']['value']);
+				$eqLogic->setConfiguration('product_name', $result['data']['product_name']['value']);
 				$eqLogic->setConfiguration('manufacturer_id', $result['data']['manufacturerId']['value']);
 				$eqLogic->setConfiguration('product_type', $result['data']['manufacturerProductType']['value']);
 				$eqLogic->setConfiguration('product_id', $result['data']['manufacturerProductId']['value']);
@@ -266,8 +266,8 @@ class openzwave extends eqLogic {
 				$include_device = $eqLogic->getId();
 				$eqLogic->createCommand();
 			} else {
-				if (isset($result['data']['name']['value'])) {
-					$eqLogic->setConfiguration('product_name', $result['data']['name']['value']);
+				if (isset($result['data']['product_name']['value'])) {
+					$eqLogic->setConfiguration('product_name', $result['data']['product_name']['value']);
 					$eqLogic->setConfiguration('manufacturer_id', $result['data']['manufacturerId']['value']);
 					$eqLogic->setConfiguration('product_type', $result['data']['manufacturerProductType']['value']);
 					$eqLogic->setConfiguration('product_id', $result['data']['manufacturerProductId']['value']);
@@ -430,7 +430,7 @@ class openzwave extends eqLogic {
 	/*     * *********************Methode d'instance************************* */
 
 	public function postSave() {
-		//self::callRazberry('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].SetDeviceName(' . str_replace('#', '', $this->getHumanName()) . ')', $this->getConfiguration('serverID', 1));
+		self::callRazberry('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].SetDeviceName(' . str_replace('#', '', $this->getHumanName()) . ')', $this->getConfiguration('serverID', 1));
 	}
 
 	public function ping() {
