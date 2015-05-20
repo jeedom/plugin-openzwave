@@ -460,9 +460,7 @@ class openzwave extends eqLogic {
 			return $return;
 		}
 		$results = self::callRazberry('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . ']', $this->getConfiguration('serverID', 1));
-		if ($this->getConfiguration('noBatterieCheck') != 1 && isset($results['instances']) && isset($results['instances'][0]) &&
-			isset($results['instances'][0]['commandClasses']) && isset($results['instances'][0]['commandClasses'][128]) &&
-			isset($results['instances'][0]['commandClasses'][128]['data']['supported']) && $results['instances'][0]['commandClasses'][128]['data']['supported']['value'] === true) {
+		if ($this->getConfiguration('noBatterieCheck') != 1 && isset($results['instances'][0]['commandClasses'][128]) && $results['instances'][0]['commandClasses'][128]['data']['supported']['value'] === true) {
 			$return['battery'] = array(
 				'value' => $results['instances'][0]['commandClasses'][128]['data'][0]['val'],
 				'datetime' => date('Y-m-d H:i:s', $results['instances'][0]['commandClasses'][128]['data']['last']['updateTime']),
@@ -1025,6 +1023,8 @@ class openzwaveCmd extends cmd {
 					}
 					if ($instanceId != '') {
 						$request_http .= '.instances[' . $instanceId . ']';
+					} else {
+						$request_http .= '.instances[0]';
 					}
 					$request_http .= '.commandClasses[' . $this->getConfiguration('class') . ']';
 					$request_http .= '.' . $value;
@@ -1035,6 +1035,8 @@ class openzwaveCmd extends cmd {
 		}
 		if ($this->getConfiguration('instanceId') != '' && ($this->getConfiguration('class') != '0x70')) {
 			$request .= '.instances[' . $this->getConfiguration('instanceId') . ']';
+		} else {
+			$request_http .= '.instances[0]';
 		}
 		$request .= '.commandClasses[' . $this->getConfiguration('class') . ']';
 		$request .= '.' . str_replace(',', '%2C', $value);

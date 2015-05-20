@@ -48,6 +48,8 @@ if ($found) {
 		'.level' => '.val',
 		'data.' => 'data[0].',
 		'data[0].sensorState.value' => 'data[0].val',
+		'Set(#slider#)' => 'data[0].Set(#slider#)',
+		'Reset()' => 'data[0].PressButton()',
 	);
 	foreach (openzwave::listServerZwave() as $serverID => $server) {
 		openzwave::syncEqLogicWithRazberry($serverID);
@@ -62,6 +64,20 @@ if ($found) {
 			if ($cmd->getConfiguration('class') == '0x30') {
 				$cmd->setConfiguration('value', str_replace('data[1].val', 'data[0].val', $cmd->getConfiguration('value')));
 			}
+			$value = $cmd->getConfiguration('value');
+			preg_match_all("/Set\(([0-9]*)\)/", $value, $matches);
+			if (count($matches) == 2 && is_numeric($matches[1][0]) && $matches[1][0] != '') {
+				$value = 'data[0].Set(' . $matches[1][0] . ')';
+			}
+			preg_match_all("/Set\(([0-9]*),([0-9]*)\)/", $value, $matches);
+			if (count($matches) == 3 && is_numeric($matches[1][0]) && $matches[1][0] != '' && is_numeric($matches[2][0]) && $matches[2][0] != '') {
+				$value = 'data[' . $matches[1][0] . '].Set(' . $matches[2][0] . ')';
+			}
+			preg_match_all("/Set\(([0-9]*),([0-9]*),([0-9]*)\)/", $value, $matches);
+			if (count($matches) == 4 && is_numeric($matches[1][0]) && $matches[1][0] != '' && is_numeric($matches[2][0]) && $matches[2][0] != '' && is_numeric($matches[3][0]) && $matches[3][0] != '') {
+				$value = 'data[0].' . $value;
+			}
+			$cmd->setConfiguration('value', $value);
 			$cmd->save();
 		}
 	}
