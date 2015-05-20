@@ -613,7 +613,14 @@ class openzwave extends eqLogic {
 		));
 	}
 
-	public function getConfFilePath() {
+	public function getConfFilePath($_all = false) {
+		if ($_all) {
+			$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
+			return ls(dirname(__FILE__) . '/../config/devices', $id . '_*.json', false, array('files', 'quiet'));
+		}
+		if (file_exists($this->getConfiguration('fileconf'))) {
+			return $this->getConfiguration('fileconf');
+		}
 		$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
 		$files = ls(dirname(__FILE__) . '/../config/devices', $id . '_*.json', false, array('files', 'quiet'));
 		if (count($files) > 0) {

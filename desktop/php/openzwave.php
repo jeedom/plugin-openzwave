@@ -237,6 +237,13 @@ foreach (openzwave::listServerZwave() as $id => $server) {
                <i id="bt_displayZwaveData" title="{{Voir l'arbre Z-Wave}}" class="fa fa-tree expertModeVisible pull-right tooltips cursor"></i>
            </legend>
 
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{Type}}</label>
+            <div class="col-sm-8">
+               <select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fileconf" ></select>
+            </div>
+        </div>
+
            <div class="form-group">
             <label class="col-sm-2 control-label">{{Paramètres}}</label>
             <div class="col-sm-10">
