@@ -170,6 +170,8 @@ for arg in sys.argv:
         temp,port_server = arg.split("=")
     elif arg.startswith("--log"):
         temp,log = arg.split("=")
+    elif arg.startswith("--pidfile"):
+        temp,pidfile = arg.split("=")
     elif arg.startswith("--help"):
         print("help : ")
         print("  --device=/dev/yourdevice ")
@@ -2083,4 +2085,6 @@ def GetLoginfos():
     return jsonify ({'data' : True})
     
 if __name__ == '__main__':
+    pid = str(os.getpid())
+    file(pidfile, 'w').write("%s\n" % pid)
     app.run(host='0.0.0.0',port=int(port_server),debug=False)
