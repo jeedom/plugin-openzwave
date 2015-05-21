@@ -1276,7 +1276,8 @@ def setValue7(device_id,instance_id, cc_id, index, value) :
                 Value['data'][val] = {'val': value}
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
-                    threading.Thread(target=refresh_background, args=(device_id, val))
+                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, val))
+                    waitrefresh.start()
                 return jsonify(Value) 
     else:
         addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -1294,7 +1295,8 @@ def setValue8(device_id,instance_id, cc_id, index, value) :
                 Value['data'][val] = {'val': value}
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
-                    threading.Thread(target=refresh_background, args=(device_id, val))
+                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, val))
+                    waitrefresh.start()
                 return jsonify(Value) 
     else:
         addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
