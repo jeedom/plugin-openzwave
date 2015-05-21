@@ -182,7 +182,7 @@ def debugPrint(message):
         addLogEntry(message, "debug")
         
 def addLogEntry(message, level="info"):
-    print('%s | %s | %s' % (time.strftime('%d-%m-%Y %H:%M:%S',time.localtime()), level, message,)) 
+    print('%s | %s | %s' % (time.strftime('%d-%m-%Y %H:%M:%S',time.localtime()), level, message.encode('utf8'),)) 
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 result = sock.connect_ex(('127.0.0.1',int(port_server)))
@@ -994,12 +994,12 @@ def refresh_config(device_id, index_id) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetDeviceName(<string:location>,<string:name>)',methods = ['GET'])
 def setDeviceName(device_id, location, name) :    
     if networkInformations.controllerIsBusy:
-        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
+        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState})     
     debugPrint("setName for device_id:%s New Name ; '%s'" % (device_id, name,))
     result = False
-    if(device_id in network.nodes) : 
+    if(device_id in network.nodes) :   
         name = name.encode('utf8')
-        name = name.replace('+',' ')
+        name = name.replace('+',' ')      
         network.nodes[device_id].set_field('name',name)
         location = location.encode('utf8')
         location = location.replace('+',' ')
