@@ -612,7 +612,7 @@ class openzwave extends eqLogic {
 			$objet = $this->getObject();
 			if (is_object($objet)) {
 				$location = $objet->getName();
-			}else{
+			} else {
 				$location = 'aucun';
 			}
 			$name = $this->getName();
