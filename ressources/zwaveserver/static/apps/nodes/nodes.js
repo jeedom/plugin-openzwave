@@ -705,9 +705,11 @@ show: function()
 	            node.find(".node-id").html(z);              // set the nodeid
 	            
 	            var name = nodes[z].data.name.value;
+	            var location = nodes[z].data.location.value;
 	            var productName = nodes[z].data.product_name.value;
 	            var manufacturerName = nodes[z].data.vendorString.value;
 	            node.find(".node-productname").html(productName);
+	            node.find(".node-location").html(location);
 	            node.find(".node-name").html(name);
 	            node.find(".node-vendor").html(manufacturerName);
 

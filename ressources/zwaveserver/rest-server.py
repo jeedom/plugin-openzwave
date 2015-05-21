@@ -619,6 +619,10 @@ def get_device_info(device_id):
         except ValueError:
             product_type=""
         try :
+            location=int(myNode.location,16)
+        except ValueError:
+            location=""
+        try :
             name=int(myNode.name,16)
         except ValueError:
             name=""
@@ -628,6 +632,7 @@ def get_device_info(device_id):
         tmpNode['data']['vendorString'] = {'value' : myNode.manufacturer_name}
         tmpNode['data']['manufacturerProductId'] = {'value' : product_id}
         tmpNode['data']['product_name'] = {'value' : myNode.product_name}
+        tmpNode['data']['location'] = {'value' : myNode.location}
         tmpNode['data']['name'] = {'value' : myNode.name}
         tmpNode['data']['version'] = {'value' : myNode.version}    
         tmpNode['data']['manufacturerProductType'] = {'value' : product_type}
@@ -986,8 +991,8 @@ def refresh_config(device_id, index_id) :
         addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(config)
 
-@app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetDeviceName(<string:name>)',methods = ['GET'])
-def setDeviceName(device_id, name) :    
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetDeviceName(<string:location>,<string:name>)',methods = ['GET'])
+def setDeviceName(device_id, location, name) :    
     if networkInformations.controllerIsBusy:
         return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
     debugPrint("setName for device_id:%s New Name ; '%s'" % (device_id, name,))
@@ -996,6 +1001,9 @@ def setDeviceName(device_id, name) :
         name = name.encode('utf8')
         name = name.replace('+',' ')
         network.nodes[device_id].set_field('name',name)
+        location = location.encode('utf8')
+        location = location.replace('+',' ')
+        network.nodes[device_id].set_field('location',location)
         result = True
     else:
         addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
