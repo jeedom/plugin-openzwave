@@ -277,6 +277,34 @@ class NetworkInformations(object):
             return Idle
 
 
+class PendingConfiguration(object):
+    
+    def __init__(self, expectedData, timeOut):
+        self._startTime=int(time.time())
+        self._expectedData = expectedData
+        self._timeOut = timeOut;    
+        self._data = None 
+        
+    @property
+    def data(self):        
+        return self._data
+    
+    @data.setter
+    def data(self, value):        
+        self._data = value
+        
+    @property
+    def state(self):  
+        if (self._data == None):
+            # is pending
+            return 3
+        if (self._data != self._expectedData)  :
+            # the node reject changes and set a default
+            return 2
+        # the parameter have be set succesfully
+        return 1
+        
+
 def signal_handler(signal, frame):
     network.write_config()
     addLogEntry('Graceful stopping the ZWave network.')
@@ -473,15 +501,20 @@ def node_queries_complete(network, node):
     
 def save_valueAsynchronous(node, value, last_update):
     #debugPrint('A node value has been updated. nodeId:%s value:%s' % (node.node_id, value.label))
-    myNode = network.nodes[node.node_id]
-    #check if am the realy last update
-    if myNode.last_update>last_update:
-        return
-        
-    myNode.last_update=last_update
-    #if value.genre != 'Basic':
-    value.last_update=last_update 
-    saveNodeValueEvent(node.node_id, int(time.time()), value.command_class, value.index, get_standard_value_type(value.type), extract_data(value, False), change_instance(value))    
+    if(node.node_id in network.nodes) :
+        myNode = network.nodes[node.node_id]    
+        #check if am the realy last update
+        if myNode.last_update>last_update:
+            return
+        #mark as seen flag
+        myNode.last_update=last_update
+        #if value.genre != 'Basic':
+        value.last_update=last_update 
+        if hasattr(value, 'pendingConfiguration' ):
+            if(value.pendingConfiguration != None):
+                #mark result
+                value.pendingConfiguration.data = value.data
+        saveNodeValueEvent(node.node_id, int(time.time()), value.command_class, value.index, get_standard_value_type(value.type), extract_data(value, False), change_instance(value))    
     
 def value_update(network, node, value):    
     try:
@@ -711,9 +744,12 @@ def get_device_info(device_id):
                 index2=myValue.index
             else :
                 index2=0
-                
-            data_items = concatenateList(myValue.data_items)
             
+            pendingState = None    
+            data_items = concatenateList(myValue.data_items)
+            if hasattr(myValue, 'pendingConfiguration' ):
+                if(myValue.pendingConfiguration != None) :
+                    pendingState = myValue.pendingConfiguration.state 
             try:
                 timestamp = int(myValue.last_update)
             except TypeError:
@@ -724,7 +760,7 @@ def get_device_info(device_id):
                 tmpNode['instances'][instance2]['commandClasses'] = {"updateTime":timestamp}
                 tmpNode['instances'][instance2]['commandClasses']['data'] = {"updateTime":timestamp}
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"name": myNode.get_command_class_as_string(myValue.command_class)}
-                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'] = {"updateTime":timestamp}
+                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'] = {"updateTime":timestamp}  
                 if myNode.isReady==False:
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interviewDone']={}
                 if myValue.command_class in [128] :
@@ -732,7 +768,8 @@ def get_device_info(device_id):
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['last']={"value":value2,"type":"int","updateTime":timestamp}
                 if myValue.command_class in [132] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interval']={"value":value2,"type":"int","updateTime":timestamp}
-                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] = {"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":myValue.units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity}
+                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] = {"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":myValue.units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity, "pendingState":pendingState}
+                
             elif myValue.command_class not in tmpNode['instances'][instance2]['commandClasses']:
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"updateTime":timestamp}
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"name": myNode.get_command_class_as_string(myValue.command_class)}
@@ -744,14 +781,16 @@ def get_device_info(device_id):
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['last']={"value":value2,"type":"int","updateTime":timestamp}
                 if myValue.command_class in [132] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interval']={"value":value2,"type":"int","updateTime":timestamp}
-                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] ={"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":myValue.units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity}
+                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] ={"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":myValue.units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity, "pendingState":pendingState}
+                
             elif index2 not in tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'] :
                 if myValue.command_class in [128] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['supported']={"value":True,"type":"bool","updateTime":timestamp}
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['last']={"value":value2,"type":"int","updateTime":timestamp}
                 if myValue.command_class in [132] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interval']={"value":value2,"type":"int","updateTime":timestamp}
-                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] ={"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":myValue.units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity}
+                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] ={"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":myValue.units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity, "pendingState":pendingState}
+                
             else :
                 print 'a'
     else:
@@ -1038,6 +1077,14 @@ def get_config(device_id) :
         addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(config)
 
+def markPendingChange(device_id, value_id, data, wakeupTime = 0):
+    if(device_id in network.nodes) :
+        myDevice = network.nodes[device_id]
+        if (value_id in myDevice.values) :
+            myValue = myDevice.values[value_id]
+            if (myValue != None) :
+                myValue.pendingConfiguration = PendingConfiguration(data, wakeupTime)
+
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetConfigurationItem(<int:value_id>,<string:item>)',methods = ['GET'])
 def setConfigurationItem(device_id, value_id, item) :    
     if networkInformations.controllerIsBusy:
@@ -1045,7 +1092,9 @@ def setConfigurationItem(device_id, value_id, item) :
     debugPrint("setConfigurationItem for device_id:%s change valueId:%s to '%s'" % (device_id, value_id, item,))
     result = False
     if(device_id in network.nodes) : 
-        result = network._manager.setValue(value_id, item)
+        result = network._manager.setValue(device_id, value_id, item)
+        if (result):
+           markPendingChange(device_id, value_id, item) 
     else:
         addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify({'result' : result})
@@ -1063,6 +1112,7 @@ def set_config4(device_id,instance_id,index_id2,index_id,value,size) :
         if(device_id in network.nodes) :
             #network.nodes[device_id].values[val].value_id
             network.nodes[device_id].set_config_param(index_id, value, size)
+            markPendingChange(device_id, value_id, item) 
         else:
             addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
@@ -1082,6 +1132,7 @@ def set_config5(device_id,instance_id,index_id2,index_id,value,size) :
     try :
         if(device_id in network.nodes) :
             network.nodes[device_id].set_config_param(index_id, value, size)
+            markPendingChange(device_id, value_id, item) 
         else:
             addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
@@ -1102,6 +1153,7 @@ def set_config6(device_id,instance_id,index_id2,index_id,value,size) :
     try :
         if(device_id in network.nodes) : 
             network.nodes[device_id].set_config_param(index_id, value, size)
+            markPendingChange(device_id, value_id, item) 
         else:
             addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
