@@ -1,9 +1,9 @@
 Marque;Produit;Manuf Id;Product Type;Productid;Conf Jeedom;Image Jeedom;Nom conf Jeedom;Fichier de conf OZW 
-2GIG Technologies;CT30 Thermostat;152;7698;348;;;152.7698.348_2gig.technologies.ct30.thermostat;2gig/ct30.xml
-2GIG Technologies;CT30 Thermostat;152;7698;350;;;152.7698.350_2gig.technologies.ct30.thermostat;2gig/ct30.xml
-2GIG Technologies;CT100 Thermostat;152;25601;261;;;152.25601.261_2gig.technologies.ct100.thermostat;2gig/ct100.xml
-2GIG Technologies;CT100 Thermostat USA;152;25601;263;;;152.25601.263_2gig.technologies.ct100.thermostat.usa;2gig/ct100.xml
-2GIG Technologies;CT101 Thermostat (Iris);152;25857;12;;;152.25857.12_2gig.technologies.ct101.thermostat.iris;2gig/ct101.xml
+2GIG Technologies;CT30 Thermostat;152;7698;348;;X;152.7698.348_2gig.technologies.ct30.thermostat;2gig/ct30.xml
+2GIG Technologies;CT30 Thermostat;152;7698;350;;X;152.7698.350_2gig.technologies.ct30.thermostat;2gig/ct30.xml
+2GIG Technologies;CT100 Thermostat;152;25601;261;;X;152.25601.261_2gig.technologies.ct100.thermostat;2gig/ct100.xml
+2GIG Technologies;CT100 Thermostat USA;152;25601;263;;X;152.25601.263_2gig.technologies.ct100.thermostat.usa;2gig/ct100.xml
+2GIG Technologies;CT101 Thermostat (Iris);152;25857;12;;X;152.25857.12_2gig.technologies.ct101.thermostat.iris;2gig/ct101.xml
 ACT;ZCS101 Serial Interface;1;17225;12592;;X;1.17225.12592_act.zcs101.serial.interface;N/A
 ACT;ZIR000 PIR Motion Sensor;1;18770;12336;;X;1.18770.12336_act.zir000.pir.motion.sensor;act/zir010.xml
 ACT;ZIR010 PIR Motion Sensor;1;18770;13104;;X;1.18770.13104_act.zir010.pir.motion.sensor;act/zir010.xml
@@ -167,7 +167,7 @@ Frostdale;Nanogrid: FDN2nxx light switch - where n is 1, 2, 3 or 4 buttons;272;9
 Frostdale;Nanogrid: FDN2nxx light switch - where n is 1, 2, 3 or 4 buttons;272;29491;49;;;272.29491.49_frostdale.nanogrid:.fdn2nxx.light.switch.-.where.n.is.1,.2,.3.or.4.buttons;frostdale/fdn2nxx.xml
 G.R.;Auto Valve;338;514;1297;;;338.514.1297_g.r..auto.valve;N/A
 General Electric;Wireless Lighting Control;32;32775;5008;;;32.32775.5008_general.electric.wireless.lighting.control;N/A
-GreenWave;One Gateway;153;1;2;;;153.1.2_greenwave.one.gateway;N/A
+GreenWave;One Gateway;153;1;2;;X;153.1.2_greenwave.one.gateway;N/A
 GreenWave;PowerNode 1 port;153;2;2;X;X;153.2.2_greenwave.powernode.1.port;greenwave/powernode1.xml
 GreenWave;PowerNode 6 port;153;3;4;X;X;153.3.4_greenwave.powernode.6.port;greenwave/powernode6.xml
 FortrezZ;SSA1 / SSA2 - Siren/Strobe Light Alarm;132;785;265;;;132.785.265_fortrezz.ssa1..ssa2.-.sirenstrobe.light.alarm;N/A
