@@ -43,6 +43,15 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 		top: 0%;
 		left: 0%;
 	}
+	.table-striped>tbody>tr.greenrow>td {
+		background-color: green;
+	}
+	.table-striped>tbody>tr.yellowrow>td {
+		background-color: #FFD700;
+	}
+	.table-striped>tbody>tr.redrow>td {
+		background-color: red;
+	}
 </style>
 
 <div class="container-fluid noscrolling">
