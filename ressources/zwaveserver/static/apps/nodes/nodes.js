@@ -1023,8 +1023,21 @@ show: function()
 	            			if(!isNaN(index)){								
 	            				var id=instance+":"+commandclass+":"+index;								
 	            				var genre = nodes[z].instances[instance].commandClasses[commandclass].data[index].genre;
-	            				if(genre =="Config"){									
-	            					parameters += "<tr pid='"+id+"'>"+template_parameter+"</tr>";
+	            				if(genre =="Config"){
+	            					var pending_state = nodes[z].instances[instance].commandClasses[commandclass].data[index].pendingState;
+	            					switch(pending_state){
+	            						case 1:
+	            							parameters += "<tr class='greenrow' pid='"+id+"'>"+template_parameter+"</tr>"; 
+	            							break;
+	            						case 2:
+	            							parameters += "<tr class='redrow' pid='"+id+"'>"+template_parameter+"</tr>"; 
+	            							break;
+	            						case 3:
+	            							parameters += "<tr class='yellowrow' pid='"+id+"'>"+template_parameter+"</tr>"; 
+	            							break;
+	            						default:
+	            							parameters += "<tr pid='"+id+"'>"+template_parameter+"</tr>";
+	            					}
 	            				}else if(genre == "System"){									
 	            					system_variables += "<tr sid='"+id+"'>"+template_system+"</tr>";
 	            				}else{

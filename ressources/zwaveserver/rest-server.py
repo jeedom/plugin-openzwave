@@ -1104,6 +1104,61 @@ def setConfigurationItem(device_id, value_id, item) :
         addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify({'result' : result})
 
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses[0x70].Set(<int:index_id>,<int:value>,<int:size>)',methods = ['GET'])
+def set_config(device_id,index_id,value,size) :
+    if networkInformations.controllerIsBusy:
+        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
+    debugPrint("set_config for nodeId:%s index:%s, value:%s, size:%s" % (device_id, index_id, value, size,))
+    config = {}
+    if size==0 :
+        size=2
+    try :
+        if(device_id in network.nodes) :
+            network.nodes[device_id].set_config_param(index_id, value, size)
+        else:
+            addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+    except Exception as e:
+        addLogEntry(str(e), 'error')
+        return jsonify({'result' : False, 'reason:': str(e)})         
+    return jsonify(config)
+
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses[0x70].Set(<int:index_id>,<string:value>,<int:size>)',methods = ['GET'])
+def set_config2(device_id,index_id,value,size) :
+    if networkInformations.controllerIsBusy:
+        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
+    debugPrint("set_config2 for device_id:%s change index:%s to '%s' size:(%s)" % (device_id,index_id,value,size,))
+    config = {}
+    try :
+        if(device_id in network.nodes) :
+            for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='List', readonly='All', writeonly='All') :
+                if network.nodes[device_id].values[val].command_class == COMMAND_CLASS_CONFIGURATION and network.nodes[device_id].values[val].index==index_id:
+                    network._manager.setValue(val, value)
+        else:
+            addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+    except Exception as e:
+        addLogEntry(str(e), 'error')
+        return jsonify({'result' : False, 'reason:': str(e)})    
+    return jsonify(config)
+
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses[0x70].Set(<int:index_id>,<float:value>,<int:size>)',methods = ['GET'])
+def set_config3(device_id,index_id,value,size) :
+    if networkInformations.controllerIsBusy:
+        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
+    debugPrint("set_config3 for nodeId:%s index:%s, value:%s, size:%s" % (device_id, index_id, value, size,))
+    config = {}
+    if size==0 :
+        size=2
+    value=int(value)
+    try :
+        if(device_id in network.nodes) :
+            network.nodes[device_id].set_config_param(index_id, value, size)
+        else:
+            addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+    except Exception as e:
+        addLogEntry(str(e), 'error')
+        return jsonify({'result' : False, 'reason:': str(e)})    
+    return jsonify(config)
+
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<int:value>,<int:size>)',methods = ['GET'])
 def set_config4(device_id,instance_id,index_id2,index_id,value,size) :
     if networkInformations.controllerIsBusy:
