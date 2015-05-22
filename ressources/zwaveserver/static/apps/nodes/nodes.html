@@ -5,6 +5,9 @@
 	.table-striped>tbody>tr.redrow>td {
 		background-color: #e74c3c;
 	}
+	.table-striped>tbody>tr.greenrow>td {
+		/*background-color: #2ecc71;*/
+	}
 </style>
 <div id = "alert_placeholder"></div>
 <div class="modal fade modal-dialog-center" id="paramsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
@@ -78,7 +81,7 @@
 <div class="row">
 	<div class="col-md-3 nodes-nodelist" style="display:none;">
 		<div class="block">
-			<h3>Nodes</h3>
+			<h5>Nodes</h5>
 		</div>
 		<ul id="node-nav" class="nav nav-tabs nav-stacked"></ul>
 	</div>
@@ -91,13 +94,13 @@
 					<div id="content">
 						
 						<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-							<li id="tab-summary" class="active"><a href="#summary" data-toggle="tab"><h4>Summary</h4></a></li>
-							<li id="tab-values"><a href="#values" data-toggle="tab"><h4>Values</h4></a></li>
-							<li id="tab-parameters"><a href="#parameters" data-toggle="tab"><h4>Parameters</h4></a></li>
-							<li id="tab-groups"><a href="#groups" data-toggle="tab"><h4>Associations</h4></a></li>
-							<li id="tab-systems"><a href="#systems" data-toggle="tab"><h4>Systems</h4></a></li>
-							<li id="tab-actions"><a href="#actions" data-toggle="tab"><h4>Actions</h4></a></li>
-							<li id="tab-stats"><a href="#statistics" data-toggle="tab"><h4>Statistics</h4></a></li>
+							<li id="tab-summary" class="active"><a href="#summary" data-toggle="tab">Summary</h4></a></li>
+							<li id="tab-values"><a href="#values" data-toggle="tab">Values</a></li>
+							<li id="tab-parameters"><a href="#parameters" data-toggle="tab">Parameters</a></li>
+							<li id="tab-groups"><a href="#groups" data-toggle="tab">Associations</a></li>
+							<li id="tab-systems"><a href="#systems" data-toggle="tab">Systems</a></li>
+							<li id="tab-actions"><a href="#actions" data-toggle="tab">Actions</a></li>
+							<li id="tab-stats"><a href="#statistics" data-toggle="tab">Statistics</a></li>
 						</ul>   
 						<div id="my-tab-content" class="tab-content">
 							<div class="tab-pane active" id="summary">
@@ -121,7 +124,7 @@
 										<p>Manufacturer: <b><span class="node-vendor label label-default">undefined</span></b></p>
 										<p><span class="node-zwave-id default">undefined</span></p>
 										<p>Query stage: <b><span class="node-queryStage label label-default">undefined</span></b>  <i class="fa fa-info-circle" id="node-queryStageDescrition"></i></p>
-										<p><b><span class="node-sleep label label-default">undefined</span></b></p>
+										<p>State : <b><span class="node-sleep label label-default">undefined</span></b></p>
 										<p>Last seen: <b><span class="node-lastSeen label label-default">undefined</span></b></p>
 										<p>Neighbours: <span class="node-neighbours label label-default">undefined</span></p>
 									</div>
