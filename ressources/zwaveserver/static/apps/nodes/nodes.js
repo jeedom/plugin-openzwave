@@ -133,12 +133,11 @@ $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode">';
 	$.each(nodes, function(key, val) {
 		if(arr_exists_nodes.indexOf(key)==-1 && key!=app_nodes.selected_node){
-			options_node +='<option value="'+key+'">'+key+' : '+val.data.name.value+'</option>';
+			options_node +='<option value="'+key+'">'+key+' : '+val.data.product_name.value+' - '+val.data.name.value+'</option>';
 		}
 	});
 	options_node += '</select></div>';
 	modal.find('.modal-body').append(options_node);
-
 });
 $("#saveGroups").off("click").on("click",function (e) {
 	var groupGroup = $('#groupsModal').data('groupindex');
@@ -433,8 +432,8 @@ test_node: function(node_id)
 		dataType: 'json',
 		async: true, 
 		success: function(data) {
-		app_nodes.sendOk();
-	},
+			app_nodes.sendOk();
+		},
 		error: function(data) {
 			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong>'+data['error']+'</span></div>');
 		}
@@ -688,7 +687,7 @@ show: function()
         		iconcolor="fa-heartbeat yellowiconcolor";
         	}
         	if(typeof node_id === 'undefined' || isNaN(node_id)){
-        		$("#node-nav").append("<li nid="+z+" class='node-item'c><a><i class='fa "+iconcolor+"'></i> "+z+": "+nodes[z].data.name.value+"</a></li>");
+        		$("#node-nav").append("<li nid="+z+" class='node-item'c><a><i class='fa "+iconcolor+"'></i> "+z+": "+nodes[z].data.product_name.value+' - '+nodes[z].data.name.value+"</a></li>");
         	}
 
             // make a copy of node info & variables block template, set its nodeid
@@ -704,8 +703,11 @@ show: function()
 	            var warningMessage = "";
 	            
 	            node.find(".node-id").html(z);              // set the nodeid
-	            
-	            var name = nodes[z].data.name.value;
+	            if(nodes[z].data.name.value != ''){
+	            	var name = nodes[z].data.product_name.value;
+	            }else{
+	            	var name = nodes[z].data.name.value;
+	            }
 	            var location = nodes[z].data.location.value;
 	            var productName = nodes[z].data.product_name.value;
 	            var manufacturerName = nodes[z].data.vendorString.value;
