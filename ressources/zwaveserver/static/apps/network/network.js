@@ -36,7 +36,6 @@ var app_network = {
 	},
     init: function()
     {
-       app_network.load_data();
        app_network.load_infos();
         
 		$("#confirm_reset").off("click").on("click",function() {
@@ -49,6 +48,9 @@ var app_network = {
             }
             //app_network.addDevice();
         });
+        $("#tab_graph").off("click").on("click",function() {
+    		app_network.load_data();
+    	});
         $("#addDevice").off("click").on("click",function() {
             app_network.addDevice();
         });
@@ -308,6 +310,7 @@ var app_network = {
     },
     load_data: function()
     {
+    $('#graph_network').html('<div id="graph-node-name"></div>');
     $.ajax({ 
             url: path+"ZWaveAPI/Data/0", 
             dataType: 'json',
@@ -321,7 +324,7 @@ var app_network = {
 				for (z in nodes){
 				//console.log('add node '+z);
 					if(nodes[z].data.name.value != ''){
-		        		graph.addNode(z,{'name':nodes[z].data.location.value+' '+nodes[z].data.name.value});
+		        		graph.addNode(z,{'name':'<span class="label label-primary">'+nodes[z].data.location.value+'</span> '+nodes[z].data.name.value});
                     }else{
                         graph.addNode(z,{'name':nodes[z].data.product_name.value});
                     }
@@ -385,12 +388,20 @@ var app_network = {
             });
 				var middle = graph.getNode(1);
               	middle.isPinned = true;
+              	var layout = Viva.Graph.Layout.forceDirected(graph, {
+		           stableThreshold: 0.9,
+		           dragCoeff : 0.01,
+		           springCoeff : 0.0004,
+		           gravity : -1.5,
+		           springLength : 150
+		        });
 				var renderer = Viva.Graph.View.renderer(graph, {
+			       layout: layout,
 			       graphics : graphics,
 			       container : document.getElementById('graph_network')
 			 	});
-			  	renderer.run();
-			  	setTimeout(function(){ renderer.pause(); }, 5000);
+			 	renderer.run();
+			  	setTimeout(function(){ renderer.pause();renderer.reset(); }, 500);
 			  	
                 
             },
@@ -563,7 +574,7 @@ var app_network = {
     },
     show: function ()
     {
-      app_network.load_data();
+      
       app_network.load_infos();
     }
 

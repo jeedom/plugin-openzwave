@@ -22,11 +22,8 @@ sendVarToJs('node_id', init('id'));
 $listServerZwave = openzwave::listServerZwave();
 sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 ?>
-<script type="text/javascript" src="plugins/openzwave/ressources/zwaveserver/static/vivagraph.min.js"></script>
 <script type="text/javascript" src="plugins/openzwave/ressources/zwaveserver/static/app.js"></script>
 <style media="screen" type="text/css">
-	#graph_network {height:1200px; width:100%;}
-	#graph_network > svg {height:100%; width:100%;}
 	.noscrolling{
 		width:99%;
 		overflow: hidden;
