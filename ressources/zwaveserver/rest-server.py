@@ -32,6 +32,9 @@ os.environ['PYTHON_EGG_CACHE'] = '/opt/python-openzwave/python-eggs'
 logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger('openzwave')
 
+reload(sys)  
+sys.setdefaultencoding('utf8')
+
 con = None
 try:
     con = lite.connect(":memory:", check_same_thread=False)
@@ -517,13 +520,15 @@ def save_valueAsynchronous(node, value, last_update):
         saveNodeValueEvent(node.node_id, int(time.time()), value.command_class, value.index, get_standard_value_type(value.type), extract_data(value, False), change_instance(value))    
     
 def value_update(network, node, value):    
+    thread = None
     try:
         thread = threading.Thread(target=save_valueAsynchronous, args=(node, value, time.time()))
         thread.setDaemon(False)
         thread.start()
     except Exception as error:
         addLogEntry('value_update %s' % (str(error),),"error")
-        thread.stop()
+        if(thread != None):
+            thread.stop()
         
 def scene_event(network, node, scene_id):
     addLogEntry('Scene Activation : %s' % (scene_id,))        
