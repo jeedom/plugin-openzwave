@@ -608,14 +608,15 @@ class openzwave extends eqLogic {
 
 	public function postSave() {
 		try {
+			$replace = array('/' => '');
 			$location = '';
 			$objet = $this->getObject();
 			if (is_object($objet)) {
-				$location = $objet->getName();
+				$location = str_replace(array_keys($replace), $replace, $objet->getName());
 			} else {
 				$location = 'aucun';
 			}
-			$name = $this->getName();
+			$name = str_replace(array_keys($replace), $replace, $this->getName());
 			$humanLocation = urlencode(trim($location));
 			$humanName = urlencode(trim($name));
 			self::callRazberry('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].SetDeviceName(' . $humanLocation . ',' . $humanName . ')', $this->getConfiguration('serverID', 1));
