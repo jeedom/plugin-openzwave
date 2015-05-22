@@ -320,8 +320,11 @@ var app_network = {
 				
 				for (z in nodes){
 				//console.log('add node '+z);
-					
-		        		graph.addNode(z,{'name':nodes[z].data.name.value});
+					if(nodes[z].data.name.value != ''){
+		        		graph.addNode(z,{'name':nodes[z].data.location.value+' '+nodes[z].data.name.value});
+                    }else{
+                        graph.addNode(z,{'name':nodes[z].data.product_name.value});
+                    }
 		        	
 		        	for (neighbour in nodes[z].data.neighbours.value){
 		        	//console.log('add link '+neighbour);

@@ -133,7 +133,11 @@ $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode">';
 	$.each(nodes, function(key, val) {
 		if(arr_exists_nodes.indexOf(key)==-1 && key!=app_nodes.selected_node){
-			options_node +='<option value="'+key+'">'+key+' : '+val.data.product_name.value+' - '+val.data.name.value+'</option>';
+			if(val.data.name.value != ''){
+				options_node +='<option value="'+key+'">'+key+' : '+val.data.location.value+' - '+val.data.name.value+'</option>';
+			}else{
+				options_node +='<option value="'+key+'">'+key+' : '+val.data.product_name.value+'</option>';
+			}
 		}
 	});
 	options_node += '</select></div>';
@@ -703,10 +707,10 @@ show: function()
 	            var warningMessage = "";
 	            
 	            node.find(".node-id").html(z);              // set the nodeid
-	            if(nodes[z].data.name.value != ''){
+	            if(nodes[z].data.name.value == ''){
 	            	var name = nodes[z].data.product_name.value;
 	            }else{
-	            	var name = nodes[z].data.name.value;
+	            	var name = nodes[z].data.location.value+' '+nodes[z].data.name.value;
 	            }
 	            var location = nodes[z].data.location.value;
 	            var productName = nodes[z].data.product_name.value;
@@ -1136,9 +1140,10 @@ show: function()
 						var id=z+'-'+values[val];
 						var node_id=values[val];
 						if(nodes[node_id]){
-							var node_name=nodes[node_id].data.product_name.value;
 							if(nodes[node_id].data.name.value != ''){
-								node_name += '('+nodes[node_id].data.name.value+')';
+								var node_name = nodes[node_id].data.location.value+' '+nodes[node_id].data.name.value;
+							}else{
+								var node_name=nodes[node_id].data.product_name.value;
 							}
 						}else{
 							var node_name="UNDEFINED";
