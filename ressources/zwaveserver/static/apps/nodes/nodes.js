@@ -371,7 +371,7 @@ $("#savePolling").off("click").on("click",function (e) {
 },
 sendOk : function(){
 	$('#li_state').show();
-	setTimeout(function(){ ('#li_state').hide(); }, 3000);
+	setTimeout(function(){ $('#li_state').hide(); }, 3000);
 },
 delete_group: function(node_id,group,node)
 {
