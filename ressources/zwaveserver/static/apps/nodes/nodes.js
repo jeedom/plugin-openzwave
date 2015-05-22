@@ -708,7 +708,7 @@ show: function()
 	            
 	            node.find(".node-id").html(z);              // set the nodeid
 	            if(nodes[z].data.name.value == ''){
-	            	var name = nodes[z].data.product_name.value;
+	            	var name ='';
 	            }else{
 	            	var name = nodes[z].data.location.value+' '+nodes[z].data.name.value;
 	            }
