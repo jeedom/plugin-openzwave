@@ -38,7 +38,6 @@ var app_nodes = {
     },
     init: function()
     {
-    	console.log(path);
     	app_nodes.load_data();
     	app_nodes.updater = setInterval(function(){ 
     		if($('#template-node').is(':visible')){
@@ -545,10 +544,10 @@ load_all: function()
 		global: false,
 		async: true,       
 		success: function(data) {
-			console.log('chargement ok');
 			nodes = data['devices'];
 			controller = data['controller'];
 			app_nodes.draw_nodes();
+			app_nodes.show_groups();
 		},
 		error: function(data) {
 			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
@@ -589,7 +588,6 @@ load_stats: function(node_id)
 		async: true, 
 		global : (typeof node_id !== 'undefined' && !isNaN(node_id)) ? false : true,
 		success: function(data) {
-			console.log('ok');
 			stats = data['statistics'];
 			app_nodes.show_stats();
                 // auto select first node
@@ -609,7 +607,6 @@ load_groups: function(node_id)
 		async: true, 
 		global : (typeof node_id !== 'undefined' && !isNaN(node_id)) ? false : true,
 		success: function(data) {
-			console.log('ok');
 			groups = data;
 			app_nodes.show_groups();
 
@@ -1134,11 +1131,13 @@ show: function()
 				tr_groups="";
 				for(val in values){
 					if(values.length > 0 && values[val]!=""){
-
 						var id=z+'-'+values[val];
 						var node_id=values[val];
 						if(nodes[node_id]){
-							var node_name=nodes[node_id].data.name.value;
+							var node_name=nodes[node_id].data.product_name.value;
+							if(nodes[node_id].data.name.value != ''){
+								node_name += '('+nodes[node_id].data.name.value+')';
+							}
 						}else{
 							var node_name="UNDEFINED";
 						}
@@ -1146,11 +1145,11 @@ show: function()
 					}
 				}
 				if(values.length < node_groups[z].maximumAssociations || values[val]==""){
-					var $newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="'+z+'"><i class="fa fa-plus"></i> Add a node</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' (max association: '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
+					var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="'+z+'"><i class="fa fa-plus"></i> Add a node</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' (max association: '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
 				}else{
-					var $newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="'+z+'"><i class="fa fa-plus"></i> Add a node</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' (max association: '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
+					var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="'+z+'"><i class="fa fa-plus"></i> Add a node</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' (max association: '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
 				}
-				$("#groups").append($newPanel);
+				$("#groups").append(newPanel);
 			}
 		}
 

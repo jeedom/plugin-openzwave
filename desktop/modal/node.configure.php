@@ -50,7 +50,6 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 </div>
 
 <script>
-	console.log(path);
 	var nodes = {};
 	app.load('nodes','plugins/openzwave/ressources/zwaveserver/');
 	app.show('nodes');
