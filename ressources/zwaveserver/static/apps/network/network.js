@@ -39,7 +39,7 @@ var app_network = {
        app_network.load_data();
        app_network.load_infos();
         
-		$("#confirm_reset").on("click",function() {
+		$("#confirm_reset").off("click").on("click",function() {
             var text=$("#confirm_text").val();
             if(text=="YES"){
             	app_network.hardReset();
@@ -49,43 +49,43 @@ var app_network = {
             }
             //app_network.addDevice();
         });
-        $("#addDevice").on("click",function() {
+        $("#addDevice").off("click").on("click",function() {
             app_network.addDevice();
         });
-        $("#removeDevice").on("click",function() {
+        $("#removeDevice").off("click").on("click",function() {
             app_network.removeDevice();
         });
-        $("#cancelCommand").on("click",function() {
+        $("#cancelCommand").off("click").on("click",function() {
             app_network.cancelCommand();
         });
-        $("#testNetwork").on("click",function() {
+        $("#testNetwork").off("click").on("click",function() {
             app_network.testNetwork();
         });
-        $("#healNetwork").on("click",function() {
+        $("#healNetwork").off("click").on("click",function() {
             app_network.healNetwork();
         });
-        $("#addController").on("click",function() {
+        $("#addController").off("click").on("click",function() {
             app_network.addController();
         });
-        $("#createNewPrimary").on("click",function() {
+        $("#createNewPrimary").off("click").on("click",function() {
             app_network.createNewPrimary();
         });
-        $("#replicationSend").on("click",function() {
+        $("#replicationSend").off("click").on("click",function() {
             app_network.replicationSend();
         });
-        $("#requestNetworkUpdate").on("click",function() {
+        $("#requestNetworkUpdate").off("click").on("click",function() {
             app_network.requestNetworkUpdate();
         });
-        $("#transferPrimaryRole").on("click",function() {
+        $("#transferPrimaryRole").off("click").on("click",function() {
             app_network.transferPrimaryRole();
         });
-        $("#writeconfigfile").on("click",function() {
+        $("#writeconfigfile").off("click").on("click",function() {
             app_network.writeConfigFile();
         });
-        $("#softReset").on("click",function() {
+        $("#softReset").off("click").on("click",function() {
             app_network.softReset();
         });
-        $("#hardReset").on("click",function() {
+        $("#hardReset").off("click").on("click",function() {
             $('#confirmModal').modal('show');
         });
 

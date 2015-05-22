@@ -2,12 +2,12 @@ var app_console = {
 	updater: false,
     init: function()
     {
-        $("#stopLiveLog").on("click",function() {
+        $("#stopLiveLog").off("click").on("click",function() {
             clearInterval(app_console.updater);
             $("#stopLiveLog").hide();
             $("#startLiveLog").show();
         });
-        $("#startLiveLog").on("click",function() {
+        $("#startLiveLog").off("click").on("click",function() {
             app_console.updater = setInterval(app_console.refresh,2000);
             $("#startLiveLog").hide();
             $("#stopLiveLog").show();
