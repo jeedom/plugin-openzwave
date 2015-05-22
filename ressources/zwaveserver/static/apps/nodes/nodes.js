@@ -153,7 +153,7 @@ $("#saveGroups").off("click").on("click",function (e) {
 	            	app_nodes.draw_nodes();
 	            	app_nodes.load_data();
 	            	app_nodes.show_groups();
-	            	$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
+	            	app_nodes.sendOk();
 	            	$('#groupsModal').modal('hide');
 	            }
 	        });
@@ -290,7 +290,7 @@ $("#saveParam").off("click").on("click",function (e) {
 		success: function(data) {
 			//app_nodes.draw_nodes();
 			//app_nodes.load_data();
-			$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
+			app_nodes.sendOk();
 			$('#paramsModal').modal('hide');
 		}
 	});
@@ -315,7 +315,7 @@ $("#applyValue").off("click").on("click",function (e) {
 			success: function(data) {
 				//app_nodes.draw_nodes();
 				//app_nodes.load_data();
-				$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
+				app_nodes.sendOk();
 				$('#valuesModal').modal('hide');
 				app_nodes.draw_nodes();
 			}
@@ -328,7 +328,7 @@ $("#applyValue").off("click").on("click",function (e) {
 			success: function(data) {
 				//app_nodes.draw_nodes();
 				//app_nodes.load_data();
-				$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
+				app_nodes.sendOk();
 				$('#valuesModal').modal('hide');
 				app_nodes.draw_nodes();
 			}
@@ -342,7 +342,7 @@ $("#applyValue").off("click").on("click",function (e) {
 			success: function(data) {
 				//app_nodes.draw_nodes();
 				//app_nodes.load_data();
-				$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
+				app_nodes.sendOk();
 				$('#valuesModal').modal('hide');
 				app_nodes.draw_nodes();
 			}
@@ -361,13 +361,17 @@ $("#savePolling").off("click").on("click",function (e) {
 		success: function(data) {
 			app_nodes.draw_nodes();
 			app_nodes.load_data();
-			$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
+			app_nodes.sendOk();
 			$('#pollingModal').modal('hide');
 			app_nodes.draw_nodes();
 		}
 	});
 });
 
+},
+sendOk : function(){
+	$('#li_state').show();
+	setTimeout(function(){ ('#li_state').hide(); }, 3000);
 },
 delete_group: function(node_id,group,node)
 {
@@ -413,7 +417,7 @@ healNode: function(node_id)
 		async: true, 
 		success: function(data) {
 			if(data['result']== true){
-				$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
+				app_nodes.sendOk();
 			}else{
 				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
 			}
@@ -430,8 +434,8 @@ test_node: function(node_id)
 		dataType: 'json',
 		async: true, 
 		success: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong> Messages Sent !</span></div>');
-		},
+		app_nodes.sendOk();
+	},
 		error: function(data) {
 			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong>'+data['error']+'</span></div>');
 		}
@@ -444,7 +448,7 @@ refresh_node_values: function(node_id)
 		dataType: 'json',
 		async: true, 
 		success: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > '+data['refresh count']+' Values Refreshed !</span></div>');
+			app_nodes.sendOk();
 		},
 		error: function(data) {
 			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong>'+data['error']+'</span></div>');
@@ -459,7 +463,7 @@ refresh_node_info: function(node_id)
 		async: true, 
 		success: function(data) {
 			if(data['result']== true){
-				$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
+				app_nodes.sendOk();
 			}else{
 				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
 			}
@@ -476,7 +480,7 @@ has_node_failed: function(node_id)
 		dataType: 'json',
 		async: true, 
 		success: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent ! '+data['result']+'</span></div>');
+			app_nodes.sendOk();
 		},
 		error: function(data) {
 			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
@@ -491,7 +495,7 @@ remove_failed_node: function(node_id)
 		async: true, 
 		success: function(data) {
 			if(data['result']== true){
-				$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
+				app_nodes.sendOk();
 			}else{
 				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
 			}
@@ -509,7 +513,7 @@ replace_failed_node: function(node_id)
 		async: true, 
 		success: function(data) {
 			if(data['result']== true){
-				$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
+				app_nodes.sendOk();
 			}else{
 				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
 			}
@@ -526,7 +530,7 @@ send_node_information: function(node_id)
 		dataType: 'json',
 		async: true, 
 		success: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent ! '+data['result']+'</span></div>');
+			app_nodes.sendOk();
 		},
 		error: function(data) {
 			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
@@ -536,20 +540,20 @@ send_node_information: function(node_id)
 load_all: function()
 {
 	$.ajax({ 
-			url: path+"ZWaveAPI/Data/0", 
-			dataType: 'json',
-			global: false,
-			async: true,       
-			success: function(data) {
-				console.log('chargement ok');
-				nodes = data['devices'];
-				controller = data['controller'];
-				app_nodes.draw_nodes();
-			},
-			error: function(data) {
-				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
-			}
-		});
+		url: path+"ZWaveAPI/Data/0", 
+		dataType: 'json',
+		global: false,
+		async: true,       
+		success: function(data) {
+			console.log('chargement ok');
+			nodes = data['devices'];
+			controller = data['controller'];
+			app_nodes.draw_nodes();
+		},
+		error: function(data) {
+			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
+		}
+	});
 },
 load_data: function()
 {
@@ -1027,16 +1031,16 @@ show: function()
 	            					var pending_state = nodes[z].instances[instance].commandClasses[commandclass].data[index].pendingState;
 	            					switch(pending_state){
 	            						case 1:
-	            							parameters += "<tr class='greenrow' pid='"+id+"'>"+template_parameter+"</tr>"; 
-	            							break;
+	            						parameters += "<tr class='greenrow' pid='"+id+"'>"+template_parameter+"</tr>"; 
+	            						break;
 	            						case 2:
-	            							parameters += "<tr class='redrow' pid='"+id+"'>"+template_parameter+"</tr>"; 
-	            							break;
+	            						parameters += "<tr class='redrow' pid='"+id+"'>"+template_parameter+"</tr>"; 
+	            						break;
 	            						case 3:
-	            							parameters += "<tr class='yellowrow' pid='"+id+"'>"+template_parameter+"</tr>"; 
-	            							break;
+	            						parameters += "<tr class='yellowrow' pid='"+id+"'>"+template_parameter+"</tr>"; 
+	            						break;
 	            						default:
-	            							parameters += "<tr pid='"+id+"'>"+template_parameter+"</tr>";
+	            						parameters += "<tr pid='"+id+"'>"+template_parameter+"</tr>";
 	            					}
 	            				}else if(genre == "System"){									
 	            					system_variables += "<tr sid='"+id+"'>"+template_system+"</tr>";
