@@ -253,7 +253,7 @@ class openzwave extends eqLogic {
 				$eqLogic->setEqType_name('openzwave');
 				$eqLogic->setIsEnable(1);
 				if (isset($result['data']['product_name']['value']) && trim($result['data']['product_name']['value']) != '') {
-					$eqLogic->setName('[' . $eqLogic->getLogicalId() . ']' . $result['data']['name']['value']);
+					$eqLogic->setName('[' . $eqLogic->getLogicalId() . ']' . $result['data']['product_name']['value']);
 				} else {
 					$eqLogic->setName('Device ' . $nodeId);
 				}
