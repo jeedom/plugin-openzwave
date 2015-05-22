@@ -77,6 +77,26 @@ $("#tab-systems").on("click",function() {
             app_nodes.load_data();
         });
 */
+$("#tab-parameters").off("click").on("click",function() {
+	if(!nodes[app_nodes.selected_node].instances[0].commandClasses[112]){
+		$("#parameters").html('<br><div><b>No predefined parameters found for this module.</b></div><br>');
+		$("#parameters").append('<div class="row"><label class="col-lg-1">Parameter : </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">Value : </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">Size :</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><button id="sendparamperso" class="btn btn-primary">Send parameter</a></div></div>');
+		$("#sendparamperso").off("click").on("click",function() {
+			var paramId = $("#paramidperso").val();
+			var paramValue = $('#newvalueperso').val();
+			var paramLength = $('#sizeperso').val();
+			$.ajax({ 
+				url: path+"ZWaveAPI/Run/devices["+app_nodes.selected_node+"].commandClasses[0x70].Set("+paramId+","+paramValue+","+paramLength+")", 
+				dataType: 'json',
+				async: true, 
+				success: function(data) {
+					app_nodes.sendOk();
+				}
+			});
+		});
+	}
+});
+
 $("#tab-groups").off("click").on("click",function() {
 	app_nodes.show_groups();
             //app_nodes.load_groups(app_nodes.selected_node);
