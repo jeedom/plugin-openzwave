@@ -48,7 +48,7 @@ var app_nodes = {
     		}
     	}, 2000);
     	$('#node-queryStageDescrition').popover({title: '', placement: 'right', trigger: 'hover'});
-    	$("#node-nav").on("click","li",function() {
+    	$("#node-nav").off("click","li").on("click","li",function() {
     		var nid = $(this).attr("nid");
     		app_nodes.selected_node = nid;
     		app_nodes.draw_nodes();
@@ -78,54 +78,54 @@ $("#tab-systems").on("click",function() {
             app_nodes.load_data();
         });
 */
-$("#tab-groups").on("click",function() {
+$("#tab-groups").off("click").on("click",function() {
 	app_nodes.show_groups();
             //app_nodes.load_groups(app_nodes.selected_node);
         });
 
-$("#tab-stats").on("click",function() {
+$("#tab-stats").off("click").on("click",function() {
   //app_nodes.draw_nodes();
   //app_nodes.load_data();
   app_nodes.load_stats(app_nodes.selected_node);
 });
-$("body").on("click",".requestNodeNeighboursUpdate",function (e) {
+$("body").off("click",".requestNodeNeighboursUpdate").on("click",".requestNodeNeighboursUpdate",function (e) {
 	app_nodes.request_node_neighbours_update(app_nodes.selected_node);
 });
-$("body").on("click",".healNode",function (e) {
+$("body").off("click",".healNode").on("click",".healNode",function (e) {
 	app_nodes.healNode(app_nodes.selected_node);
 });
-$("#testNode").on("click",function() {
+$("#testNode").off("click").on("click",function() {
 	app_nodes.test_node(app_nodes.selected_node);
 });
-$("#refreshNodeValues").on("click",function() {
+$("#refreshNodeValues").off("click").on("click",function() {
 	app_nodes.refresh_node_values(app_nodes.selected_node);
 });
-$("body").on("click",".refreshNodeInfo",function (e) {
+$("body").off("click",".refreshNodeInfo").on("click",".refreshNodeInfo",function (e) {
 	app_nodes.refresh_node_info(app_nodes.selected_node);
 });
-$("body").on("click",".hasNodeFailed",function (e) {
+$("body").off("click",".hasNodeFailed").on("click",".hasNodeFailed",function (e) {
 	app_nodes.has_node_failed(app_nodes.selected_node);
 });
-$("#removeFailedNode").on("click",function() {
+$("#removeFailedNode").off("click").on("click",function() {
 	app_nodes.remove_failed_node(app_nodes.selected_node);
 });
-$("#replaceFailedNode").on("click",function() {
+$("#replaceFailedNode").off("click").on("click",function() {
 	app_nodes.replace_failed_node(app_nodes.selected_node);
 });
-$("#sendNodeInformation").on("click",function() {
+$("#sendNodeInformation").off("click").on("click",function() {
 	app_nodes.send_node_information(app_nodes.selected_node);
 });
-$("body").on("click",".addGroup",function (e) {
+$("body").off("click",".addGroup").on("click",".addGroup",function (e) {
 	var group = $(this).data('groupindex');
 	$('#groupsModal').data('groupindex', group);
 	$('#groupsModal').modal('show');
 });
-$("body").on("click",".deleteGroup",function (e) {
+$("body").off("click",".deleteGroup").on("click",".deleteGroup",function (e) {
 	var group = $(this).data('groupindex');
 	var node = $(this).data('nodeindex');
 	app_nodes.delete_group(app_nodes.selected_node,group,node);
 });
-$('#groupsModal').on('show.bs.modal', function (e) {
+$('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var modal = $(this);
 	var group = $(this).data('groupindex');
 	var arr_exists_nodes=nodes[app_nodes.selected_node].groups[group].associations.split(';');
@@ -141,7 +141,7 @@ $('#groupsModal').on('show.bs.modal', function (e) {
 	modal.find('.modal-body').append(options_node);
 
 });
-$("#saveGroups").on("click",function (e) {
+$("#saveGroups").off("click").on("click",function (e) {
 	var groupGroup = $('#groupsModal').data('groupindex');
 	var groupNode = $('#newvaluenode').val();
 	$.ajax({ 
@@ -158,7 +158,7 @@ $("#saveGroups").on("click",function (e) {
 	            }
 	        });
 });
-$("body").on("click",".editValue",function (e) {
+$("body").off("click",".editValue").on("click",".editValue",function (e) {
 	var idx = $(this).data('valueidx');
 	var instance = $(this).data('valueinstance');
 	var cc = $(this).data('valuecc');
@@ -174,7 +174,7 @@ $("body").on("click",".editValue",function (e) {
 	$('#valuesModal').data('valuedataitems', dataitems);
 	$('#valuesModal').data('valueidx', idx).modal('show');
 });
-$('#valuesModal').on('show.bs.modal', function (e) {
+$('#valuesModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var valueIdx = $(this).data('valueidx');
 	var valueType = $(this).data('valuetype');
 	var valueInstance = $(this).data('valueinstance');
@@ -196,7 +196,7 @@ $('#valuesModal').on('show.bs.modal', function (e) {
 			}
 		});
 		options += '</select>';
-		modal.find('.modal-body').append(options);
+		modal.find('.modal-body').empty().append(options);
 
 	}else if(valueType == "Bool"){
 		if(valueValue==true){
@@ -213,7 +213,7 @@ $('#valuesModal').on('show.bs.modal', function (e) {
 		modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" value="'+valueValue+'">');
 	}
 });
-$("body").on("click",".editPolling",function (e) {
+$("body").off("click",".editPolling").on("click",".editPolling",function (e) {
 	var idx = $(this).data('valueidx');
 	var instance = $(this).data('valueinstance');
 	var cc = $(this).data('valuecc');
@@ -223,7 +223,7 @@ $("body").on("click",".editPolling",function (e) {
 	$('#pollingModal').data('valuepolling', polling);
 	$('#pollingModal').data('valueidx', idx).modal('show');
 });
-$('#pollingModal').on('show.bs.modal', function (e) {
+$('#pollingModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var valueIdx = $(this).data('valueidx');
 	var valueInstance = $(this).data('valueinstance');
 	var valueCc = $(this).data('valuecc');
@@ -234,7 +234,7 @@ $('#pollingModal').on('show.bs.modal', function (e) {
 	modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" value="'+valuePolling+'">');
 
 });
-$("body").on("click",".editParam",function (e) {
+$("body").off("click",".editParam").on("click",".editParam",function (e) {
 	var id = $(this).data('paramid');
 	var name = $(this).data('paramname');
 	var value = $(this).data('paramvalue');
@@ -244,7 +244,7 @@ $("body").on("click",".editParam",function (e) {
 	$('#paramsModal').data('paramvalue', value);
 	$('#paramsModal').data('paramid', id).modal('show');
 });
-$('#paramsModal').on('show.bs.modal', function (e) {
+$('#paramsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var paramId = $(this).data('paramid');
 	var paramType = $(this).data('paramtype');
 	var paramName = $(this).data('paramname');
@@ -268,7 +268,7 @@ $('#paramsModal').on('show.bs.modal', function (e) {
 					}
 				});
 				options += '</select>';
-				modal.find('.modal-body').append(options);
+				modal.find('.modal-body').empty().append(options);
 
 			}
 		});
@@ -276,10 +276,10 @@ $('#paramsModal').on('show.bs.modal', function (e) {
 		modal.find('.modal-body').append('<input type="text" class="form-control" id="newvalue" value="'+paramValue+'">');
 	}
 });
-$("#sendNodeInformation").on("click",function() {
+$("#sendNodeInformation").off("click").on("click",function() {
 	app_nodes.send_node_information(app_nodes.selected_node);
 });
-$("#saveParam").on("click",function (e) {
+$("#saveParam").off("click").on("click",function (e) {
 	var paramId = $('#paramsModal').data('paramid');
 	var paramValue = $('#newvalue').val();
 	var paramLength = paramValue.length;
@@ -295,7 +295,7 @@ $("#saveParam").on("click",function (e) {
 		}
 	});
 });
-$("#applyValue").on("click",function (e) {
+$("#applyValue").off("click").on("click",function (e) {
 	var valueType = $('#valuesModal').data('valuetype');
 	var valueIdx = $('#valuesModal').data('valueidx');
 	var valueInstance = $('#valuesModal').data('valueinstance');
@@ -349,7 +349,7 @@ $("#applyValue").on("click",function (e) {
 		});
 	}
 });
-$("#savePolling").on("click",function (e) {
+$("#savePolling").off("click").on("click",function (e) {
 	var valueIdx = $('#pollingModal').data('valueidx');
 	var valueInstance = $('#pollingModal').data('valueinstance');
 	var valueCc = $('#pollingModal').data('valuecc');
