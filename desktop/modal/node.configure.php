@@ -43,12 +43,6 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 		top: 0%;
 		left: 0%;
 	}
-	.table-striped>tbody>tr.yellowrow>td {
-		background-color: #FFD700;
-	}
-	.table-striped>tbody>tr.redrow>td {
-		background-color: #e74c3c;
-	}
 </style>
 
 <div class="container-fluid noscrolling">
@@ -60,4 +54,6 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 	var nodes = {};
 	app.load('nodes','plugins/openzwave/ressources/zwaveserver/');
 	app.show('nodes');
+	$('.tab-pane').height($('#md_modal').height() - 100);
+	$('.tab-pane').css('overflow','scroll');
 </script>

@@ -218,26 +218,28 @@
 					</table>
 				</div>
 				<div class="tab-pane" id="parameters">
-					<table class="table table-striped">
-						<tr>
-							<th>Index</th>
-							<th>Name</th>
-							<th>Type</th>
-							<th>Value</th>
-							<th>Edit</th>
-							<th>Help</th>
-						</tr>
-						<tr id="template-parameter" style="display:none">
-							<td key="parameter-index"></td>
-							<td key="parameter-name"></td>
-							<td key="parameter-type"></td>
-							<td key="parameter-value"></td>
-							<td key="parameter-edit"></td>
-							<td key="parameter-help"></td>
-						</tr>
-						<tbody class="parameters"></tbody>
-						
-					</table>
+				<div style="overflow: scroll;height : 100%;max-height: 96%;">
+						<table class="table table-striped">
+							<tr>
+								<th>Index</th>
+								<th>Name</th>
+								<th>Type</th>
+								<th>Value</th>
+								<th>Edit</th>
+								<th>Help</th>
+							</tr>
+							<tr id="template-parameter" style="display:none">
+								<td key="parameter-index"></td>
+								<td key="parameter-name"></td>
+								<td key="parameter-type"></td>
+								<td key="parameter-value"></td>
+								<td key="parameter-edit"></td>
+								<td key="parameter-help"></td>
+							</tr>
+							<tbody class="parameters"></tbody>
+
+						</table>
+					</div>
 				</div>
 				<div class="tab-pane" id="groups">
 					<button type="button" id="addGroup" class="btn btn-primary addGroup"><i class="fa fa-plus"></i> Add an association</button>
