@@ -357,7 +357,7 @@ class openzwave extends eqLogic {
 				}
 				message::removeAll('openzwave', 'noOpenzwaveComPort');
 			} else {
-				log::add('rfxcom', 'error', __('Le port du openZwave est vide ou n\'existe pas', __FILE__), 'noOpenzwaveComPort');
+				log::add('openzwave', 'error', __('Le port du openZwave est vide ou n\'existe pas', __FILE__), 'noOpenzwaveComPort');
 			}
 		}
 	}
