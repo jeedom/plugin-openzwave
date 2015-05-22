@@ -1082,15 +1082,28 @@ def get_config(device_id) :
         addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(config)
 
-def markPendingChange(device_id, value_id, data, wakeupTime = 0):
+def getValueByIndex(device_id, command_class, instance, index_id):
+    if(device_id in network.nodes) :
+        myDevice = network.nodes[device_id]
+        for value_id in myDevice.values :
+            if myDevice.values[value_id].command_class == command_class and myDevice.values[value_id].instance==instance and myDevice.values[value_id].index==index_id:
+                return myDevice.values[value_id]      
+    debugPrint("getValueByIndex Value not found for device_id:%s, cc:%s, instance:%s, index:%s" % (device_id, command_class, instance, index_id,))            
+    return None
+
+def getValueById(device_id, value_id):
     if(device_id in network.nodes) :
         myDevice = network.nodes[device_id]
         if (value_id in myDevice.values) :
-            myValue = myDevice.values[value_id]
-            if (myValue != None) :
-                myValue.pendingConfiguration = PendingConfiguration(data, wakeupTime)
+            return myDevice.values[value_id]                 
+    debugPrint("getValueById Value not found for device_id:%s, value_id:%s" % (device_id, value_id,)) 
+    return None
 
-@app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetConfigurationItem(<int:value_id>,<string:item>)',methods = ['GET'])
+def markPendingChange(myValue, data, wakeupTime = 0):
+    if(myValue != None):
+        myValue.pendingConfiguration = PendingConfiguration(data, wakeupTime)
+
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetConfigurationItem(<int:index_id>,<string:item>)',methods = ['GET'])
 def setConfigurationItem(device_id, value_id, item) :    
     if networkInformations.controllerIsBusy:
         return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
@@ -1099,7 +1112,7 @@ def setConfigurationItem(device_id, value_id, item) :
     if(device_id in network.nodes) : 
         result = network._manager.setValue(device_id, value_id, item)
         if (result):
-           markPendingChange(device_id, value_id, item) 
+           markPendingChange(getValueById(device_id, value_id), item) 
     else:
         addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify({'result' : result})
@@ -1115,6 +1128,7 @@ def set_config(device_id,index_id,value,size) :
     try :
         if(device_id in network.nodes) :
             network.nodes[device_id].set_config_param(index_id, value, size)
+            markPendingChange(getValueByIndex(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value) 
         else:
             addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
@@ -1130,9 +1144,10 @@ def set_config2(device_id,index_id,value,size) :
     config = {}
     try :
         if(device_id in network.nodes) :
-            for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='List', readonly='All', writeonly='All') :
-                if network.nodes[device_id].values[val].command_class == COMMAND_CLASS_CONFIGURATION and network.nodes[device_id].values[val].index==index_id:
-                    network._manager.setValue(val, value)
+            for value_id in network.nodes[device_id].get_values(class_id='All', genre='All', type='List', readonly='All', writeonly='All') :
+                if network.nodes[device_id].values[value_id].command_class == COMMAND_CLASS_CONFIGURATION and network.nodes[device_id].values[value_id].index==index_id:
+                    network._manager.setValue(value_id, value)                    
+                    markPendingChange(getValueByIndex(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value) 
         else:
             addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
@@ -1152,6 +1167,7 @@ def set_config3(device_id,index_id,value,size) :
     try :
         if(device_id in network.nodes) :
             network.nodes[device_id].set_config_param(index_id, value, size)
+            markPendingChange(getValueByIndex(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value) 
         else:
             addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
@@ -1170,9 +1186,8 @@ def set_config4(device_id,instance_id,index_id2,index_id,value,size) :
     value=int(value)
     try :
         if(device_id in network.nodes) :
-            #network.nodes[device_id].values[val].value_id
             network.nodes[device_id].set_config_param(index_id, value, size)
-            markPendingChange(device_id, value_id, item) 
+            markPendingChange(getValueByIndex(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value) 
         else:
             addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
@@ -1192,7 +1207,7 @@ def set_config5(device_id,instance_id,index_id2,index_id,value,size) :
     try :
         if(device_id in network.nodes) :
             network.nodes[device_id].set_config_param(index_id, value, size)
-            markPendingChange(device_id, value_id, item) 
+            markPendingChange(getValueByIndex(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value)  
         else:
             addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
@@ -1213,7 +1228,7 @@ def set_config6(device_id,instance_id,index_id2,index_id,value,size) :
     try :
         if(device_id in network.nodes) : 
             network.nodes[device_id].set_config_param(index_id, value, size)
-            markPendingChange(device_id, value_id, item) 
+            markPendingChange(getValueByIndex(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value)   
         else:
             addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
