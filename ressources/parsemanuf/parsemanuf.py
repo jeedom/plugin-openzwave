@@ -3,11 +3,13 @@
 from xml.dom import minidom
 import os
 import glob
+import urllib
 
 curdir=os.path.dirname(os.path.abspath(__file__))####repertoire courant
-indexozw=curdir.rfind('/ressources')
-jeeconfrep=os.path.join(curdir[:indexozw],'core/config/devices')####rep conf jeedom
-jeeimgrep=os.path.join(curdir[:indexozw],'core/img/devices')####rep image jeedom
+urllib.urlretrieve ("https://raw.githubusercontent.com/OpenZWave/open-zwave/master/config/manufacturer_specific.xml", "manuf.xml")#recuperation du fichier ozw
+rootdir=os.path.dirname(os.path.dirname(curdir))##rep paretn deux fois
+jeeconfrep=os.path.join(rootdir,'core\\config\\devices')####rep conf jeedom
+jeeimgrep=os.path.join(rootdir,'core\\img\\devices')####rep image jeedom
 outfile=os.path.join(curdir, 'out_ozw.csv')##definition du fichier 1
 outnoozw=os.path.join(curdir, 'no_ozw.csv')##definition du fichier 2
 for file in [outfile,outnoozw]:##suppression des fichiers si ils existent
@@ -15,7 +17,7 @@ for file in [outfile,outnoozw]:##suppression des fichiers si ils existent
 		os.remove(file)
 fichier = open(outfile,'a')###ouverture fichier en mode append
 fichier.write('Marque;Produit;Manuf Id;Product Type;Productid;Conf Jeedom;Image Jeedom;Nom conf Jeedom;Fichier de conf OZW \n')######creation entete
-xmldoc = minidom.parse('/opt/python-openzwave/openzwave/config/manufacturer_specific.xml')####fichier de conf manuf specific ozw
+xmldoc = minidom.parse(os.path.join(curdir,'manuf.xml'))####fichier de conf manuf specific ozw
 itemlist = xmldoc.getElementsByTagName('Manufacturer')###on construit la liste des blocs manufacturer
 exceptchars=['/','(',')','[',']']#####liste de caratere a eviter dans le nom de conf
 listnormalnoconf=[]######liste des confs ou il est normal de pas avoir de parametres OZW
