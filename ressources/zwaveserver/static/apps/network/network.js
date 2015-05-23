@@ -110,11 +110,11 @@ var app_network = {
             if(data['result']== true){
                 app_network.sendOk();
             }else{
-               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
            }
        },
        error: function(data) {
-           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
        }
    });
 },
@@ -128,11 +128,11 @@ removeDevice: function()
             if(data['result']== true){
                 app_network.sendOk();
            }else{
-               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
            }
        },
        error: function(data) {
-           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
        }
    });
 },
@@ -146,11 +146,11 @@ cancelCommand: function()
             if(data['result']== true){
                 app_network.sendOk();
            }else{
-               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
            }
        },
        error: function(data) {
-           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
        }
    });
 },
@@ -164,11 +164,11 @@ testNetwork: function()
             if(data['result']== true){
                 app_network.sendOk();
            }else{
-               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
            }
        },
        error: function(data) {
-           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
        }
    });
 },
@@ -182,11 +182,11 @@ healNetwork: function()
             if(data['result']== true){
               app_network.sendOk();
            }else{
-               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
            }
        },
        error: function(data) {
-           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
        }
    });
 },
@@ -200,7 +200,7 @@ addController: function()
             app_network.sendOk();
        },
        error: function(data) {
-           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong>'+data['error']+'</span></div>');
+           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong>'+data['error']+'</span></div>');
        }
    });
 },
@@ -214,7 +214,7 @@ createNewPrimary: function()
             app_network.sendOk();
        },
        error: function(data) {
-           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong>'+data['error']+'</span></div>');
+           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong>'+data['error']+'</span></div>');
        }
    });
 },
@@ -228,7 +228,7 @@ replicationSend: function()
              app_network.sendOk();
         },
         error: function(data) {
-           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong>'+data['error']+'</span></div>');
+           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong>'+data['error']+'</span></div>');
        }
    });
 },
@@ -242,11 +242,11 @@ requestNetworkUpdate: function()
             if(data['result']== true){
                 app_network.sendOk();
            }else{
-               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
            }
        },
        error: function(data) {
-           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
        }
    });
 },
@@ -260,7 +260,7 @@ transferPrimaryRole: function()
             app_network.sendOk();
        },
        error: function(data) {
-           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
        }
    });
 },
@@ -274,7 +274,7 @@ writeConfigFile: function()
             app_network.sendOk();
        },
        error: function(data) {
-           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
        }
    });
 },
@@ -288,11 +288,11 @@ softReset: function()
            if(data['result']== true){
                 app_network.sendOk();
            }else{
-               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
            }
        },
        error: function(data) {
-           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+           $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
        }
    });
 },
@@ -307,11 +307,11 @@ hardReset: function()
             	if(data['result']== true){
                     app_network.sendOk();
                }else{
-                   $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+                   $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
                }
            },
            error: function(data) {
-               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+               $('#alert_console_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
            }
        });
     },
@@ -413,7 +413,7 @@ hardReset: function()
 
       },
       error: function(data) {
-        $('#alert_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
+        $('#alert_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
     }
 });
 },
@@ -428,7 +428,7 @@ load_stats: function(node_id)
                 // auto select first node                
             },
             error: function(data) {
-                $('#alert_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
+                $('#alert_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
             }
         });
 },
@@ -475,7 +475,7 @@ load_infos: function()
             app_network.show_stats();
         },
         error: function(data) {
-            $('#alert_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
+            $('#alert_placeholder').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
         }
     });
 },

@@ -1,22 +1,7 @@
 <style>
 pre {
-    /* 
-    Absolute method:
-    
-    
-    position:absolute;
-    top:80px;
-    left:190px;
-    bottom:30px;
-    right:30px;
-    */
-    /*
-    Fixed height method:
-    */
     width:100%;
-    height:600px;
-    
-    
+    height:700px;
     margin:0px;
     padding:0px;
     font-size:16px;
@@ -24,7 +9,6 @@ pre {
     background-color:#300a24;
     overflow: scroll;
     overflow-x: hidden;
-    
     font-size:16px;
 }
 
@@ -32,10 +16,8 @@ pre {
     padding-left:20px;
     padding-top:20px;
 }
-
 </style>
+<button type="button" id="startLiveLog" class="btn btn-success pull-left"><i class="fa fa-play"></i> Reprendre</button>
+<button type="button" id="stopLiveLog" class="btn btn-warning pull-left"><i class="fa fa-pause"></i> Pause</button>
+<pre id="log"><div class="console-out"></div></pre>
 
-<h3>Console</h3>
-<pre id="log"><div  class="console-out"></div></pre>
-<button type="button" id="startLiveLog" class="btn btn-primary">Start Live Log</button>
-<button type="button" id="stopLiveLog" class="btn btn-primary">Stop Live Log</button>
