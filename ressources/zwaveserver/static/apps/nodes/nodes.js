@@ -855,7 +855,7 @@ show: function()
 	        	}
 	        }
 	        else{
-	        	node.find(".node-sleep").html("");
+	        	node.find(".node-sleep").html("Secteur");
 	        }
 
 	        if(nodeIsFailed=="true" & networkstate>=7){
