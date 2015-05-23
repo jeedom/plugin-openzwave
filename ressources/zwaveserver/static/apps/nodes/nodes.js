@@ -848,10 +848,10 @@ show: function()
 	        var nodeCanSleep = nodes[z].data.can_wake_up.value=="true";
 	        if(nodeCanSleep){
 	        	if(nodes[z].data.isAwake.value=="true"){
-	        		node.find(".node-sleep").html("Is awake");
+	        		node.find(".node-sleep").html("Réveillé");
 	        	}
 	        	else{
-	        		node.find(".node-sleep").html("Is sleeping");
+	        		node.find(".node-sleep").html("Endormi");
 	        	}
 	        }
 	        else{
