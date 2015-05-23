@@ -76,9 +76,9 @@ Iwatsu Electric Co;NE-4CT-2P Electric Power Measuring Equipment;291;258;258;;;29
 Iwatsu Electric Co;NE-4CT Electric Power Measuring Equipment;291;259;259;;;291.259.259_iwatsu.electric.co.ne-4ct.electric.power.measuring.equipment;N/A
 Buffalo;HW-100V15A-ZW Measure Power Monitor;325;1;4;;;325.1.4_buffalo.hw-100v15a-zw.measure.power.monitor;N/A
 ConnectHome;CH-201 Thermostat;377;1;1;;;377.1.1_connecthome.ch-201.thermostat;N/A
-Cooper;RF9534DS Wall Dimmer Module;26;17481;2;;;26.17481.2_cooper.rf9534ds.wall.dimmer.module;N/A
+Cooper;RF9534DS Wall Dimmer Module;26;17481;2;;X;26.17481.2_cooper.rf9534ds.wall.dimmer.module;N/A
 Cooper;RF9540-N All Load Dimmer Light Switch;26;17481;257;;;26.17481.257_cooper.rf9540-n.all.load.dimmer.light.switch;cooper/RF9540-N.xml
-Cooper;RF9505-T Split Control Duplex Receptacle;26;21060;0;;;26.21060.0_cooper.rf9505-t.split.control.duplex.receptacle;cooper/RF9505-T.xml
+Cooper;RF9505-T Split Control Duplex Receptacle;26;21060;0;;X;26.21060.0_cooper.rf9505-t.split.control.duplex.receptacle;cooper/RF9505-T.xml
 Cytech Tech;Comfort 9000 with UCM/Zwave;48;1;1;;;48.1.1_cytech.tech.comfort.9000.with.ucmzwave;N/A
 Danfoss;Z Thermostat;2;5;3;;X;2.5.3_danfoss.z.thermostat;danfoss/z.xml
 Danfoss;Z Thermostat 014G0013;2;5;4;;X;2.5.4_danfoss.z.thermostat.014g0013;danfoss/z.xml
@@ -92,23 +92,23 @@ Electronic Solutions Inc;DBMZ Motor Control;51;21072;2;;;51.21072.2_electronic.s
 EUROtronic;EUR_STELLAZ Wall Radiator Thermostat Valve Control;328;1;1;;;328.1.1_eurotronic.eur_stellaz.wall.radiator.thermostat.valve.control;eurotronic/eur_stellaz.xml
 Eneco;ED2.0 Meter Adapter;296;0;0;;;296.0.0_eneco.ed2.0.meter.adapter;N/A
 Eneco;ED2.0 Display;296;296;0;;;296.296.0_eneco.ed2.0.display;N/A
-Everspring;HSP02 Motion Detector;96;1;1;;;96.1.1_everspring.hsp02.motion.detector;N/A
-Everspring;SP814 Motion Detector;96;1;2;;;96.1.2_everspring.sp814.motion.detector;everspring/sp814.xml
-Everspring;SM103 Door/Window Sensor;96;2;1;;;96.2.1_everspring.sm103.doorwindow.sensor;everspring/sm103.xml
-Everspring;AD142 Plug-in Dimmer Module;96;3;1;;;96.3.1_everspring.ad142.plug-in.dimmer.module;N/A
-Everspring;AN157 Plug-in Appliance Module;96;4;1;;;96.4.1_everspring.an157.plug-in.appliance.module;N/A
-Everspring;AN158 Plug-in Meter Appliance Module;96;4;2;;;96.4.2_everspring.an158.plug-in.meter.appliance.module;everspring/an158.xml
+Everspring;HSP02 Motion Detector;96;1;1;;X;96.1.1_everspring.hsp02.motion.detector;N/A
+Everspring;SP814 Motion Detector;96;1;2;;X;96.1.2_everspring.sp814.motion.detector;everspring/sp814.xml
+Everspring;SM103 Door/Window Sensor;96;2;1;;X;96.2.1_everspring.sm103.doorwindow.sensor;everspring/sm103.xml
+Everspring;AD142 Plug-in Dimmer Module;96;3;1;;X;96.3.1_everspring.ad142.plug-in.dimmer.module;N/A
+Everspring;AN157 Plug-in Appliance Module;96;4;1;;X;96.4.1_everspring.an157.plug-in.appliance.module;N/A
+Everspring;AN158 Plug-in Meter Appliance Module;96;4;2;;X;96.4.2_everspring.an158.plug-in.meter.appliance.module;everspring/an158.xml
 Everspring;ST814 Temperature and Humidity Sensor;96;6;1;X;X;96.6.1_everspring.st814.temperature.and.humidity.sensor;everspring/st814.xml
-Everspring;ST815 Illumination Sensor;96;7;1;;;96.7.1_everspring.st815.illumination.sensor;everspring/st815.xml
-Everspring;TSE03 Door Bell;96;9;1;;;96.9.1_everspring.tse03.door.bell;everspring/tse03.xml
+Everspring;ST815 Illumination Sensor;96;7;1;;X;96.7.1_everspring.st815.illumination.sensor;everspring/st815.xml
+Everspring;TSE03 Door Bell;96;9;1;;X;96.9.1_everspring.tse03.door.bell;everspring/tse03.xml
 Everspring;ST812 Flood Detector;96;11;1;;X;96.11.1_everspring.st812.flood.detector;N/A
-Everspring;SE812 Siren;96;12;1;;;96.12.1_everspring.se812.siren;everspring/se812.xml
-Everspring;SF812 Smoke Alarm;96;13;1;;;96.13.1_everspring.sf812.smoke.alarm;everspring/sf812.xml
-Everspring;HAC01 In-wall Remote Module;96;16;1;;;96.16.1_everspring.hac01.in-wall.remote.module;N/A
-Everspring;HAN02 In-wall Remote Module;96;17;2;;;96.17.2_everspring.han02.in-wall.remote.module;N/A
-Everspring;SP103 PIR Motion Sensor;96;257;1;;;96.257.1_everspring.sp103.pir.motion.sensor;everspring/sp103.xml
-Everspring;AN145 Lamp Screw In Module;96;260;1;;;96.260.1_everspring.an145.lamp.screw.in.module;everspring/an145.xml
-Everspring;SM103 Door/Window Sensor;96;514;1;;;96.514.1_everspring.sm103.doorwindow.sensor;everspring/sm103.xml
+Everspring;SE812 Siren;96;12;1;;X;96.12.1_everspring.se812.siren;everspring/se812.xml
+Everspring;SF812 Smoke Alarm;96;13;1;;X;96.13.1_everspring.sf812.smoke.alarm;everspring/sf812.xml
+Everspring;HAC01 In-wall Remote Module;96;16;1;;X;96.16.1_everspring.hac01.in-wall.remote.module;N/A
+Everspring;HAN02 In-wall Remote Module;96;17;2;;X;96.17.2_everspring.han02.in-wall.remote.module;N/A
+Everspring;SP103 PIR Motion Sensor;96;257;1;;X;96.257.1_everspring.sp103.pir.motion.sensor;everspring/sp103.xml
+Everspring;AN145 Lamp Screw In Module;96;260;1;;X;96.260.1_everspring.an145.lamp.screw.in.module;everspring/an145.xml
+Everspring;SM103 Door/Window Sensor;96;514;1;;X;96.514.1_everspring.sm103.doorwindow.sensor;everspring/sm103.xml
 Chromagic Technologies Corporation;HSCP02 Motion Detector;278;1;1;;;278.1.1_chromagic.technologies.corporation.hscp02.motion.detector;N/A
 Chromagic Technologies Corporation;HSM02 Mini Door/Window Detector;278;2;1;;;278.2.1_chromagic.technologies.corporation.hsm02.mini.doorwindow.detector;everspringct/hsm02.xml
 Chromagic Technologies Corporation;HAC01 Remote Button;278;16;1;;;278.16.1_chromagic.technologies.corporation.hac01.remote.button;N/A
@@ -189,16 +189,16 @@ IBR-ZW;I-Bridge Z-Wave Controller;289;1;1;;;289.1.1_ibr-zw.i-bridge.z-wave.contr
 Innovus;SmoothRemote Controller;119;2;1;;;119.2.1_innovus.smoothremote.controller;N/A
 Innovus;RAone SmartPower Wall Appliance Module;119;1;2;;;119.1.2_innovus.raone.smartpower.wall.appliance.module;N/A
 Innovus;RAone SmartDimmer Wall Dimmer Module;119;1;1;;;119.1.1_innovus.raone.smartdimmer.wall.dimmer.module;N/A
-Intermatic;HA-02 Appliance Module;5;2;3;;;5.2.3_intermatic.ha-02.appliance.module;N/A
-Intermatic;HA-03WD Lamp Module;5;3;3;;;5.3.3_intermatic.ha-03wd.lamp.module;N/A
-Intermatic;HA-04C Outdoor Module;5;4;3;;;5.4.3_intermatic.ha-04c.outdoor.module;N/A
-Intermatic;HA-05C Lamp Screw In Module;5;5;3;;;5.5.3_intermatic.ha-05c.lamp.screw.in.module;N/A
-Intermatic;HA-06 In-Wall Switch Dimmer;5;6;3;;;5.6.3_intermatic.ha-06.in-wall.switch.dimmer;N/A
-Intermatic;CA600 Wall Dimmer;5;17217;1536;;;5.17217.1536_intermatic.ca600.wall.dimmer;N/A
-Intermatic;CA3000 Wall Switch;5;17217;12288;;;5.17217.12288_intermatic.ca3000.wall.switch;N/A
-Intermatic;CA3560 Split-Duplex Receptacle;5;17217;13568;;;5.17217.13568_intermatic.ca3560.split-duplex.receptacle;N/A
-Intermatic;CA8900 Digital Thermostat;5;17217;35072;;;5.17217.35072_intermatic.ca8900.digital.thermostat;intermatic/ca8900.xml
-Intermatic;CA9000 PIR Occupancy Sensor;5;17217;36864;;;5.17217.36864_intermatic.ca9000.pir.occupancy.sensor;N/A
+Intermatic;HA-02 Appliance Module;5;2;3;;X;5.2.3_intermatic.ha-02.appliance.module;N/A
+Intermatic;HA-03WD Lamp Module;5;3;3;;X;5.3.3_intermatic.ha-03wd.lamp.module;N/A
+Intermatic;HA-04C Outdoor Module;5;4;3;;X;5.4.3_intermatic.ha-04c.outdoor.module;N/A
+Intermatic;HA-05C Lamp Screw In Module;5;5;3;;X;5.5.3_intermatic.ha-05c.lamp.screw.in.module;N/A
+Intermatic;HA-06 In-Wall Switch Dimmer;5;6;3;;X;5.6.3_intermatic.ha-06.in-wall.switch.dimmer;N/A
+Intermatic;CA600 Wall Dimmer;5;17217;1536;;X;5.17217.1536_intermatic.ca600.wall.dimmer;N/A
+Intermatic;CA3000 Wall Switch;5;17217;12288;;X;5.17217.12288_intermatic.ca3000.wall.switch;N/A
+Intermatic;CA3560 Split-Duplex Receptacle;5;17217;13568;;X;5.17217.13568_intermatic.ca3560.split-duplex.receptacle;N/A
+Intermatic;CA8900 Digital Thermostat;5;17217;35072;;X;5.17217.35072_intermatic.ca8900.digital.thermostat;intermatic/ca8900.xml
+Intermatic;CA9000 PIR Occupancy Sensor;5;17217;36864;;X;5.17217.36864_intermatic.ca9000.pir.occupancy.sensor;N/A
 Iris;Range Extender;294;2;1;;;294.2.1_iris.range.extender;iris/rangeextender.xml
 GE;45602 Lamp Dimmer Module;99;17488;12336;;;99.17488.12336_ge.45602.lamp.dimmer.module;ge/dimmer_module.xml
 GE;45606 2-Way Dimmer Switch;99;17495;12848;;;99.17495.12848_ge.45606.2-way.dimmer.switch;ge/dimmer.xml
@@ -290,13 +290,13 @@ Remotec;ZXT-310EU;21076;257;33649;;;21076.257.33649_remotec.zxt-310eu;N/A
 Remotec;ZXT-120;21076;257;33655;;X;21076.257.33655_remotec.zxt-120;remotec/zxt-120.xml
 Remotec;ZFM-X10EU Dual Mode Insert Module ;21076;33281;33056;;;21076.33281.33056_remotec.zfm-x10eu.dual.mode.insert.module.;N/A
 Remotec;ZFM-80;21076;32768;2;;;21076.32768.2_remotec.zfm-80;remotec/zfm-80.xml
-RCS;TZ43 Thermostat;16;1;2;;;16.1.2_rcs.tz43.thermostat;N/A
+RCS;TZ43 Thermostat;16;1;2;;X;16.1.2_rcs.tz43.thermostat;N/A
 RCS;TZ43-IHD SMUD Thermostat;16;1;5;;;16.1.5_rcs.tz43-ihd.smud.thermostat;rcs/therm0005.xml
 RCS;TZ45-IHD SMUD Thermostat;16;1;7;;;16.1.7_rcs.tz45-ihd.smud.thermostat;rcs/therm0007.xml
-RCS;TZ45 Thermostat;16;1;9;;;16.1.9_rcs.tz45.thermostat;rcs/therm0009.xml
-RCS;TZ4Z-IHD RCS Thermostat;16;1;10;;;16.1.10_rcs.tz4z-ihd.rcs.thermostat;N/A
-RCS;EM52-ZW Z-Wave Home Energy Meter;16;17741;13618;;;16.17741.13618_rcs.em52-zw.z-wave.home.energy.meter;rcs/em52-zw.xml
-RCS;PM12-ZW Z-Wave Power Monitoring Module;16;20557;12594;;;16.20557.12594_rcs.pm12-zw.z-wave.power.monitoring.module;rcs/pm12-zw.xml
+RCS;TZ45 Thermostat;16;1;9;;X;16.1.9_rcs.tz45.thermostat;rcs/therm0009.xml
+RCS;TZ4Z-IHD RCS Thermostat;16;1;10;;X;16.1.10_rcs.tz4z-ihd.rcs.thermostat;N/A
+RCS;EM52-ZW Z-Wave Home Energy Meter;16;17741;13618;;X;16.17741.13618_rcs.em52-zw.z-wave.home.energy.meter;rcs/em52-zw.xml
+RCS;PM12-ZW Z-Wave Power Monitoring Module;16;20557;12594;;X;16.20557.12594_rcs.pm12-zw.z-wave.power.monitoring.module;rcs/pm12-zw.xml
 Schlage;FE599GR Wireless Door Lock;59;25419;20556;;;59.25419.20556_schlage.fe599gr.wireless.door.lock;N/A
 Schlage Link;iTemp Dual Sensor;151;4482;17665;;;151.4482.17665_schlage.link.itemp.dual.sensor;schlagelink/itemp.xml
 Schlage Link;iTemp Dual Sensor;151;4488;17665;;;151.4488.17665_schlage.link.itemp.dual.sensor;schlagelink/itemp.xml
@@ -322,7 +322,7 @@ Vitrum;Vitrum IV EU Wireless On-off;266;17408;25600;;;266.17408.25600_vitrum.vit
 Vitrum;Vitrum IV EU Wireless On-off;266;13312;25600;;;266.13312.25600_vitrum.vitrum.iv.eu.wireless.on-off;vitrum/vitrumBS.xml
 Vitrum;Vitrum VI EU Wireless On-off;266;5120;26112;;;266.5120.26112_vitrum.vitrum.vi.eu.wireless.on-off;vitrum/vitrumBS.xml
 Vitrum;Vitrum I EU Wireless On-off;266;5120;24832;;;266.5120.24832_vitrum.vitrum.i.eu.wireless.on-off;vitrum/vitrumBS.xml
-Wayne Dalton;WDTC-20 Thermostat;8;7;32;;;8.7.32_wayne.dalton.wdtc-20.thermostat;waynedalton/WDTC-20.xml
+Wayne Dalton;WDTC-20 Thermostat;8;7;32;;X;8.7.32_wayne.dalton.wdtc-20.thermostat;waynedalton/WDTC-20.xml
 WeBeHome AB;WBH HG-900 Home Gateway;369;1;1;;;369.1.1_webehome.ab.wbh.hg-900.home.gateway;N/A
 Wenzhou TKB Control System;TZ88 Smart Energy Plug-in Switch;280;1;1;;;280.1.1_wenzhou.tkb.control.system.tz88.smart.energy.plug-in.switch;wenzhou/tz88.xml
 Wenzhou TKB Control System;SM103 Door/Window Sensor;280;2;1;;;280.2.1_wenzhou.tkb.control.system.sm103.doorwindow.sensor;wenzhou/sm103.xml
