@@ -67,4 +67,6 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 	var nodes = {};
 	app.load('network','plugins/openzwave/ressources/zwaveserver/');
 	app.show('network');
+	$('.tab-pane').height($('#md_modal').height() - 100);
+	$('.tab-pane').css('overflow','scroll');
 </script>
