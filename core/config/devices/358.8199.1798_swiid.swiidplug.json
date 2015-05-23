@@ -1,0 +1,50 @@
+{
+    "commands": [
+        {
+            "configuration": {
+                "class": "0x25",
+                "value": "data[0].val"
+            },
+            "eventOnly": 1,
+            "isHistorized": 0,
+            "isVisible": 0,
+            "name": "Etat",
+            "subtype": "binary",
+            "type": "info"
+        },
+        {
+            "configuration": {
+                "class": "0x25",
+                "value": "data[0].Set(255)"
+            },
+            "isVisible": 1,
+            "name": "On",
+            "subtype": "other",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "type": "action",
+            "value": "Etat"
+        },
+        {
+            "configuration": {
+                "class": "0x25",
+                "value": "data[0].Set(0)"
+            },
+            "isVisible": 1,
+            "name": "Off",
+            "subtype": "other",
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "type": "action",
+            "value": "Etat"
+        }
+    ],
+    "configuration": {
+        "conf_version": 1
+    },
+    "name": "SwiidPlug"
+}
