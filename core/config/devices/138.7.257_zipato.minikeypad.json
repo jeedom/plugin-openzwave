@@ -65,5 +65,27 @@
                     "minValue": 0
                 }
             }
-        ]
+        ],
+        "configuration": {
+            "1": {
+                "name": "Reset",
+                "help": "Remise à zéro de tous les paramètres du clavier"
+            },
+            "2": {
+                "name": "Durée d'annulation",
+                "help": "Durée pour passer un badge ou rentrer un code. 0 veut dire désactivé, 255 veut dire infini"
+            },
+            "3": {
+                "name": "Retour par bip",
+                "help": "Retour par bip. Accusé réception"
+            },
+            "4": {
+                "name": "Nombre de bips par seconde",
+                "help": "Nombre de bips par seconde. Si option 3 activée."
+            },
+            "5": {
+                "name": "Mode",
+                "help": "Mode de fonctionnement."
+            }
+        }
    }
