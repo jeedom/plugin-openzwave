@@ -52,8 +52,13 @@ fichier.close()###on ferme le fichier
 ####parcourt des confs exsitantes dans jeedom pour voir si elles existent dans ozw
 actualjeeconf = [ f for f in os.listdir(jeeconfrep) if os.path.isfile(os.path.join(jeeconfrep,f)) ]###on construit la liste des confs jeedom
 fichiernozow = open(outnoozw,'a')###on ouvre le fichier
+fichiernozow.write('Conf Jeedom;Manuf Id OZW;Product Type OZW;Productid OZW \n')##on ecrit l'entete
 for jeeconf in actualjeeconf: ###pour toutes les confs jeedom
 	jeeconfid=jeeconf[:jeeconf.find('_')]##on recupere la partie id
+	listids=jeeconfid.split('.')##on split les ids
+	manufozw=hex(int(listids[0]))[2:].zfill(4)### on les convertis en hex et on enleve le 0x et on complete avec des 0 devant
+	typeozw=hex(int(listids[1]))[2:].zfill(4)
+	idozw=hex(int(listids[2]))[2:].zfill(4)
 	if jeeconfid not in listproductOZW:##si non presente dans la liste des confs OZW avec parametre et non presente dans la liste des normals sans confs
-		fichiernozow.write(jeeconf+'\n')
+		fichiernozow.write(jeeconf+';'+manufozw+';'+typeozw+';'+idozw +'\n')
 fichiernozow.close()

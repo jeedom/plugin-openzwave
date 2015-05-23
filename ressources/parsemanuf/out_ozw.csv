@@ -55,22 +55,22 @@ Airline Mechanical;ZDS-100;273;33280;512;;;273.33280.512_airline.mechanical.zds-
 Assa Abloy;Yale Real Living Cap-Touch Lever Lock;297;1;0;;;297.1.0_assa.abloy.yale.real.living.cap-touch.lever.lock;N/A
 Assa Abloy;Yale Real Living Cap-Touch Deadbolt;297;2;0;;;297.2.0_assa.abloy.yale.real.living.cap-touch.deadbolt;assa_abloy/RealLivingCapTouch.xml
 Aspalis;Plugin Lamp Module;93;514;1297;;;93.514.1297_aspalis.plugin.lamp.module;N/A
-BeNext;myGate;138;1;256;;;138.1.256_benext.mygate;N/A
-BeNext;myDisplay;138;2;256;;;138.2.256_benext.mydisplay;N/A
-BeNext;DHS-ZW-SNMT-01 Multi Sensor;138;3;256;;;138.3.256_benext.dhs-zw-snmt-01.multi.sensor;BeNext/Molite.xml
-BeNext;DHS-ZW-SNMT-01 Multi Sensor;138;3;257;;;138.3.257_benext.dhs-zw-snmt-01.multi.sensor;BeNext/Molite.xml
-BeNext;Door Sensor;138;4;256;;;138.4.256_benext.door.sensor;BeNext/DoorSensor.xml
-BeNext;Door Sensor;138;4;257;;;138.4.257_benext.door.sensor;BeNext/DoorSensor.xml
-BeNext;Alarm Sound;138;5;257;;;138.5.257_benext.alarm.sound;BeNext/AlarmSound.xml
-BeNext;Energy Switch;138;6;257;;;138.6.257_benext.energy.switch;BeNext/EnergySwitch.xml
-BeNext;Tag Reader;138;7;256;;;138.7.256_benext.tag.reader;BeNext/TagReader.xml
+BeNext;myGate;138;1;256;;X;138.1.256_benext.mygate;N/A
+BeNext;myDisplay;138;2;256;;X;138.2.256_benext.mydisplay;N/A
+BeNext;DHS-ZW-SNMT-01 Multi Sensor;138;3;256;;X;138.3.256_benext.dhs-zw-snmt-01.multi.sensor;BeNext/Molite.xml
+BeNext;DHS-ZW-SNMT-01 Multi Sensor;138;3;257;;X;138.3.257_benext.dhs-zw-snmt-01.multi.sensor;BeNext/Molite.xml
+BeNext;Door Sensor;138;4;256;;X;138.4.256_benext.door.sensor;BeNext/DoorSensor.xml
+BeNext;Door Sensor;138;4;257;;X;138.4.257_benext.door.sensor;BeNext/DoorSensor.xml
+BeNext;Alarm Sound;138;5;257;;X;138.5.257_benext.alarm.sound;BeNext/AlarmSound.xml
+BeNext;Energy Switch;138;6;257;;X;138.6.257_benext.energy.switch;BeNext/EnergySwitch.xml
+BeNext;Tag Reader;138;7;256;;X;138.7.256_benext.tag.reader;BeNext/TagReader.xml
 BeNext;Tag Reader;138;7;257;X;X;138.7.257_benext.tag.reader;BeNext/TagReader.xml
-BeNext;Power Switch;138;8;257;;;138.8.257_benext.power.switch;N/A
-BeNext;Built-in Dimmer;138;13;256;;;138.13.256_benext.built-in.dimmer;BeNext/BuiltinDimmer.xml
+BeNext;Power Switch;138;8;257;;X;138.8.257_benext.power.switch;N/A
+BeNext;Built-in Dimmer;138;13;256;;X;138.13.256_benext.built-in.dimmer;BeNext/BuiltinDimmer.xml
 BeNext;Scene Controller;138;23;256;;X;138.23.256_benext.scene.controller;BeNext/SceneController.xml
-BeNext;Plug-in Dimmer;138;24;256;;;138.24.256_benext.plug-in.dimmer;BeNext/PluginDimmer.xml
-BeNext;1Pole Switch;138;30;1;;;138.30.1_benext.1pole.switch;BeNext/1poleswitch.xml
-BeNext;2Pole Switch;138;31;1;;;138.31.1_benext.2pole.switch;BeNext/2poleswitch.xml
+BeNext;Plug-in Dimmer;138;24;256;;X;138.24.256_benext.plug-in.dimmer;BeNext/PluginDimmer.xml
+BeNext;1Pole Switch;138;30;1;;X;138.30.1_benext.1pole.switch;BeNext/1poleswitch.xml
+BeNext;2Pole Switch;138;31;1;;X;138.31.1_benext.2pole.switch;BeNext/2poleswitch.xml
 Iwatsu Electric Co;TM-H2VHD081 HA Dongle;291;0;0;;;291.0.0_iwatsu.electric.co.tm-h2vhd081.ha.dongle;N/A
 Iwatsu Electric Co;NE-4CT-2P Electric Power Measuring Equipment;291;258;258;;;291.258.258_iwatsu.electric.co.ne-4ct-2p.electric.power.measuring.equipment;N/A
 Iwatsu Electric Co;NE-4CT Electric Power Measuring Equipment;291;259;259;;;291.259.259_iwatsu.electric.co.ne-4ct.electric.power.measuring.equipment;N/A
@@ -175,9 +175,9 @@ FortrezZ;SSA1 / SSA2 - Siren/Strobe Light Alarm;132;785;267;;;132.785.267_fortre
 FortrezZ;SSA2USR - Siren/Strobe Light Alarm;132;787;267;;;132.787.267_fortrezz.ssa2usr.-.sirenstrobe.light.alarm;N/A
 Home Manageables;Door/Window Sensor;111;258;1;;;111.258.1_home.manageables.doorwindow.sensor;N/A
 Home Manageables;HM-AM001 Plugin Appliance Module;111;260;1;;;111.260.1_home.manageables.hm-am001.plugin.appliance.module;N/A
-Homeseer;ZTroller;30;1;2;;;30.1.2_homeseer.ztroller;homeseer/ztroller.xml
+Homeseer;ZTroller;30;1;2;;X;30.1.2_homeseer.ztroller;homeseer/ztroller.xml
 Homeseer;HSM100 Wireless Multi-Sensor;30;2;1;;X;30.2.1_homeseer.hsm100.wireless.multi-sensor;homeseer/hsm100.xml
-Homeseer;EZMotion+ 3-in-1 Sensor;30;2;2;;;30.2.2_homeseer.ezmotion+.3-in-1.sensor;homeseer/hsm100.xml
+Homeseer;EZMotion+ 3-in-1 Sensor;30;2;2;;X;30.2.2_homeseer.ezmotion+.3-in-1.sensor;homeseer/hsm100.xml
 Honeywell;TH8320ZW1000 Touchscreen Thermostat;57;17;1;;;57.17.1_honeywell.th8320zw1000.touchscreen.thermostat;honeywell/th8320zw1000.xml
 Horstmann;ASR-RF Thermostat Receiver;89;1;1;;;89.1.1_horstmann.asr-rf.thermostat.receiver;N/A
 Horstmann;AS2-RF Thermostat Transmitter;89;1;2;;;89.1.2_horstmann.as2-rf.thermostat.transmitter;N/A
@@ -379,5 +379,5 @@ Z-Wave.Me;ZME_06436 Motor Control;277;4096;3;;;277.4096.3_z-wave.me.zme_06436.mo
 Z-Wave.Me;ZME_064435 Wall Controller;277;4096;4;;;277.4096.4_z-wave.me.zme_064435.wall.controller;zwave.me/ZME_064435.xml
 Z-Wave.Me;PLDE Plug-in Dimmer;277;4352;2;;;277.4352.2_z-wave.me.plde.plug-in.dimmer;N/A
 Z-Wave.Me;RaZberry Controller;327;2;3;;;327.2.3_z-wave.me.razberry.controller;N/A
-Zipato;RGBW LED Bulb;305;2;2;;;305.2.2_zipato.rgbw.led.bulb;zipato/RGBBulb.xml
-Zipato;Zipato Mini Keypad;305;24881;17665;;;305.24881.17665_zipato.zipato.mini.keypad;zipato/MiniKeypad.xml
+Zipato;RGBW LED Bulb;305;2;2;;X;305.2.2_zipato.rgbw.led.bulb;zipato/RGBBulb.xml
+Zipato;Zipato Mini Keypad;305;24881;17665;;X;305.24881.17665_zipato.zipato.mini.keypad;zipato/MiniKeypad.xml
