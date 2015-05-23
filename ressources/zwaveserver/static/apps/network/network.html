@@ -22,10 +22,10 @@
         <div class="container-fluid">
     		<div id="content">
 				<ul id="tabs_network" class="nav nav-tabs" data-tabs="tabs">
-			        <li class="active"><a href="#summary_network" data-toggle="tab">Summary</a></li>
-			        <li id="tab_graph"><a href="#graph_network" data-toggle="tab">Network Graph</a></li>
-			        <li><a href="#actions_network" data-toggle="tab">Actions</a></li>
-			        <li><a href="#statistics_network" data-toggle="tab">Statistics</a></li>
+			        <li class="active"><a href="#summary_network" data-toggle="tab"><i class="fa fa-tachometer"></i> Summary</a></li>
+			        <li id="tab_graph"><a href="#graph_network" data-toggle="tab"><i class="fa fa-picture-o"></i> Network Graph</a></li>
+			        <li><a href="#actions_network" data-toggle="tab"><i class="fa fa-sliders"></i> Actions</a></li>
+			        <li><a href="#statistics_network" data-toggle="tab"><i class="fa fa-bar-chart"></i> Statistics</a></li>
 				</ul>   
 		        <div id="network-tab-content" class="tab-content">
 			        <div class="tab-pane active" id="summary_network">
@@ -85,55 +85,55 @@
 			    	<div class="tab-pane" id="actions_network">
 			    		<table class="table">
 				    		<tr>
-				    			<td><button type="button" id="addDevice" class="btn btn-primary">Add Device (inclusion)</button></td>
+				    			<td><button type="button" id="addDevice" class="btn btn-success"><i class="fa fa-plus-circle"></i> Add Device (inclusion)</button></td>
 				    			<td>Add a new device to the Z-Wave network.</td>
 				    		</tr>
 				    		<tr>
-				    			<td><button type="button" id="removeDevice" class="btn btn-primary">Remove Device (Exclusion)</button></td>
+				    			<td><button type="button" id="removeDevice" class="btn btn-danger"><i class="fa fa-minus-circle"></i> Remove Device (Exclusion)</button></td>
 				    			<td>Remove a device from the Z-Wave network.</td>
 				    		</tr>
 				    		<tr>
-				    			<td><button type="button" id="cancelCommand" class="btn btn-primary">Cancel Command</button></td>
+				    			<td><button type="button" id="cancelCommand" class="btn btn-warning"><i class="fa fa-times"></i> Cancel Command</button></td>
 				    			<td>Cancels any in-progress command running on a controller.</td>
 				    		</tr>
 				    		<tr>
-				    			<td><button type="button" id="testNetwork" class="btn btn-primary">Test Network</button></td>
+				    			<td><button type="button" id="testNetwork" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Test Network</button></td>
 				    			<td>Sends a series of messages to a network for testing network reliability.</td>
 				    		</tr>
 				    		<tr>
-				    			<td><button type="button" id="healNetwork" class="btn btn-primary">Heal Network</button></td>
+				    			<td><button type="button" id="healNetwork" class="btn btn-success"><i class="fa fa-medkit"></i> Heal Network</button></td>
 				    			<td>Heal the Z-Wave network one node at a time.<br>Try to heal all nodes (one by one) by requesting neighbor update and optional route update.</td>
 				    		</tr>
 				    		<tr>
-				    			<td><button type="button" id="addController" class="btn btn-primary">Add Controller</button></td>
+				    			<td><button type="button" id="addController" class="btn btn-info"><i class="fa fa-plus"></i> Add Controller</button></td>
 				    			<td>Add a new secondary controller to the Z-Wave network.</td>
 				    		</tr>
 				    		<tr>
-				    			<td><button type="button" id="createNewPrimary" class="btn btn-primary">Create New Primary</button></td>
+				    			<td><button type="button" id="createNewPrimary" class="btn btn-danger"><i class="fa fa-file"></i> Create New Primary</button></td>
 				    			<td>Add a new controller to the Z-Wave network. Used when old primary fails. Requires SUC.</td>
 				    		</tr>
 				    		<tr>
-				    			<td><button type="button" id="replicationSend" class="btn btn-primary">Replication Send</button></td>
+				    			<td><button type="button" id="replicationSend" class="btn btn-warning"><i class="fa fa-files-o"></i> Replication Send</button></td>
 				    			<td>Send information from primary to secondary.</td>
 				    		</tr>
 				    		<tr>
-				    			<td><button type="button" id="requestNetworkUpdate" class="btn btn-primary">Request Network Update</button></td>
+				    			<td><button type="button" id="requestNetworkUpdate" class="btn btn-primary"><i class="fa fa-refresh"></i> Request Network Update</button></td>
 				    			<td>Update the controller with network information from the SUC/SIS.</td>
 				    		</tr>
 				    		<tr>
-				    			<td><button type="button" id="transferPrimaryRole" class="btn btn-primary">Transfer Primary Role</button></td>
+				    			<td><button type="button" id="transferPrimaryRole" class="btn btn-primary"><i class="fa fa-external-link"></i> Transfer Primary Role</button></td>
 				    			<td>Make a different controller the primary. The existing primary will become a secondary controller.</td>
 				    		</tr>
 				    		<tr>
-				    			<td><button type="button" id="writeconfigfile" class="btn btn-primary">Write Config File</button></td>
+				    			<td><button type="button" id="writeconfigfile" class="btn btn-info"><i class="fa fa-pencil"></i> Write Config File</button></td>
 				    			<td>Write the OpenZwave Configuration file.</td>
 				    		</tr>
 				    		<tr>
-				    			<td><button type="button" id="softReset" class="btn btn-primary">Soft Reset</button></td>
+				    			<td><button type="button" id="softReset" class="btn btn-warning"><i class="fa fa-times"></i> Soft Reset</button></td>
 				    			<td>Soft Reset a PC Z-Wave Controller. Resets a controller without erasing its network configuration settings.</td>
 				    		</tr>
 				    		<tr>
-				    			<td><button type="button" id="hardReset" class="btn btn-primary">Hard Reset</button></td>
+				    			<td><button type="button" id="hardReset" class="btn btn-danger"><i class="fa fa-eraser"></i> Hard Reset</button></td>
 				    			<td>Hard Reset a PC Z-Wave Controller. <b>Resets a controller and erases its network configuration settings.</b><br> The controller becomes a primary controller ready to add devices to a new network.</td>
 				    		</tr>
 			    		</table>
