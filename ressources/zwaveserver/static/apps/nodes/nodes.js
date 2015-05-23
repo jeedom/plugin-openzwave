@@ -747,7 +747,7 @@ show: function()
 	            	basicDeviceClassDescription = "Esclave";
 	            	break;
 	            	case 4:
-	            	basicDeviceClassDescription = "Esclave routé";
+	            	basicDeviceClassDescription = "Esclave pouvant etre routé";
 	            	break;
 	            	default:
 	            	basicDeviceClassDescription = basicDeviceClass;
@@ -1007,7 +1007,7 @@ show: function()
 	            	}
 	            }
 	            else{  
-	            	node.find(".node-neighbours").html("<i>the neighbours is not yet available.</i>");
+	            	node.find(".node-neighbours").html("<i>La liste des noeuds voisin n'est pas encore disponible.</i>");
 	            }
 	            if (queryStageIndex > 7 & productName == ""){
 	            	if(networkstate>=7){
