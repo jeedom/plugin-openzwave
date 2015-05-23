@@ -28,5 +28,12 @@
                 "value": "data[1].val"
             }
         }
-    ]
+    ],
+    "configuration": {
+        "1" : {
+            "name" : "Niveau basic",
+            "help" : "Definie le niveau à partir duquel un evenement est envoyé au groupe 2. 0 pour le desactiver"
+        }
+    }
+    
 }

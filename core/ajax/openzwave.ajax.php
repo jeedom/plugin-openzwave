@@ -163,6 +163,23 @@ try {
 		ajax::success($eqLogic->getConfFilePath(true));
 	}
 
+	if (init('action') == 'getConfiguration') {
+		if (config::byKey('language', 'core', 'fr_FR') != 'fr_FR') {
+			ajax::success();
+		}
+
+		$id = init('manufacturer_id') . '.' . init('product_type') . '.' . init('product_id');
+		$files = ls(dirname(__FILE__) . '/../config/devices', $id . '_*.json', false, array('files', 'quiet'));
+		if (count($files) > 0) {
+			$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $files[0]);
+			if (!is_json($content)) {
+				ajax::success();
+			}
+			ajax::success(json_decode($content, true));
+		}
+		ajax::success();
+	}
+
 	throw new Exception('Aucune methode correspondante');
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
