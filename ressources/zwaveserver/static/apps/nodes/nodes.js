@@ -79,8 +79,8 @@ $("#tab-systems").on("click",function() {
 */
 $("#tab-parameters").off("click").on("click",function() {
 	if(!nodes[app_nodes.selected_node].instances[0].commandClasses[112]){
-		$("#parameters").html('<br><div><b>No predefined parameters found for this module.</b></div><br>');
-		$("#parameters").append('<div class="row"><label class="col-lg-1">Parameter : </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">Value : </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">Size :</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><button id="sendparamperso" class="btn btn-primary">Send parameter</a></div></div>');
+		$("#parameters").html('<br><div><b>Aucun paramètre prédefini trouvé pour ce noeud</b></div><br>');
+		$("#parameters").append('<div class="row"><label class="col-lg-1">Parametre : </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">Valeur : </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">Taile :</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><button id="sendparamperso" class="btn btn-primary">Envoyer le paramètre</a></div></div>');
 		$("#sendparamperso").off("click").on("click",function() {
 			var paramId = $("#paramidperso").val();
 			var paramValue = $('#newvalueperso').val();
@@ -229,8 +229,8 @@ $('#valuesModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 			modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0" checked> OFF ');
 		}
 	}else if(valueType == "Button"){
-		modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Press" checked> Push Button ');
-		modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Release"> Release Button ');
+		modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Press" checked> Presser le bouton ');
+		modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Release"> Relacher le bouton ');
 	}else{
 		modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" value="'+valueValue+'">');
 	}
@@ -406,10 +406,10 @@ delete_group: function(node_id,group,node)
             	app_nodes.draw_nodes();
             	app_nodes.load_data();
             	app_nodes.show_groups();
-            	$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
+            	app_nodes.sendOk();
             },
             error: function(data) {
-            	$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+            	$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
             }
         });
 },
@@ -421,13 +421,13 @@ request_node_neighbours_update: function(node_id)
 		async: true, 
 		success: function(data) {
 			if(data['result']== true){
-				$('#alert_placeholder').html('<div class="alert alert-success"><a class="close" data-dismiss="alert">×</a><span><strong>Success !</strong > Command Sent !</span></div>');
+				app_nodes.sendOk();
 			}else{
-				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 			}
 		},
 		error: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 		}
 	});
 },
@@ -441,11 +441,11 @@ healNode: function(node_id)
 			if(data['result']== true){
 				app_nodes.sendOk();
 			}else{
-				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 			}
 		},
 		error: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 		}
 	});
 },
@@ -459,7 +459,7 @@ test_node: function(node_id)
 			app_nodes.sendOk();
 		},
 		error: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong>'+data['error']+'</span></div>');
+			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong>'+data['error']+'</span></div>');
 		}
 	});
 },
@@ -473,7 +473,7 @@ refresh_node_values: function(node_id)
 			app_nodes.sendOk();
 		},
 		error: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong>'+data['error']+'</span></div>');
+			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong>'+data['error']+'</span></div>');
 		}
 	});
 },
@@ -487,11 +487,11 @@ refresh_node_info: function(node_id)
 			if(data['result']== true){
 				app_nodes.sendOk();
 			}else{
-				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 			}
 		},
 		error: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 		}
 	});
 },
@@ -505,7 +505,7 @@ has_node_failed: function(node_id)
 			app_nodes.sendOk();
 		},
 		error: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 		}
 	});
 },
@@ -519,11 +519,11 @@ remove_failed_node: function(node_id)
 			if(data['result']== true){
 				app_nodes.sendOk();
 			}else{
-				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 			}
 		},
 		error: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 		}
 	});
 },
@@ -537,11 +537,11 @@ replace_failed_node: function(node_id)
 			if(data['result']== true){
 				app_nodes.sendOk();
 			}else{
-				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 			}
 		},
 		error: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 		}
 	});
 },
@@ -555,7 +555,7 @@ send_node_information: function(node_id)
 			app_nodes.sendOk();
 		},
 		error: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong></span></div>');
+			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 		}
 	});
 },
@@ -573,7 +573,7 @@ load_all: function()
 			app_nodes.show_groups();
 		},
 		error: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
+			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
 		}
 	});
 },
@@ -596,7 +596,7 @@ load_data: function()
 				
 			},
 			error: function(data) {
-				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
+				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
 			}
 		});
 	}else{
@@ -617,7 +617,7 @@ load_stats: function(node_id)
                 
             },
             error: function(data) {
-            	$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
+            	$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
             }
         });
 },
@@ -635,7 +635,7 @@ load_groups: function(node_id)
 
 		},
 		error: function(data) {
-			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Error !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
+			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong> ('+JSON.stringify(data, null, 4)+')</span></div>');
 		}
 	});
 },
@@ -681,16 +681,8 @@ show: function()
         $("#removeFailedNode").prop("disabled",disabledCommand);
         $("#replaceFailedNode").prop("disabled",disabledCommand);
         $("#sendNodeInformation").prop("disabled",disabledCommand);
-
-        if(typeof node_id !== 'undefined' && !isNaN(node_id)){
-        	
-        }else{
-        	$("#node-nav").parent().show();
-        	$('.nodes-rightpane').removeClass('col-md-12').addClass('col-md-9 col-md-offset-3');
-        }     	
-
-        for (z in nodes)
-        {
+     	
+        for (z in nodes){
         	
             // node entry in left hand side navigation list
             var iconcolor="";
@@ -701,19 +693,7 @@ show: function()
             }
         	//var nodeIsFailed = nodes[z].data.isFailed.value=="true";
         	var queryStage = nodes[z].data.state.value;
-        	
-        	if(nodeIsFailed== "true"){
-        		iconcolor="fa-chain-broken rediconcolor";            	
-        	}
-        	else if(queryStage == "Complete"){
-        		iconcolor="fa-heartbeat greeniconcolor";
-        	}else{
-        		iconcolor="fa-heartbeat yellowiconcolor";
-        	}
-        	if(typeof node_id === 'undefined' || isNaN(node_id)){
-        		$("#node-nav").append("<li nid="+z+" class='node-item'c><a><i class='fa "+iconcolor+"'></i> "+z+": "+nodes[z].data.product_name.value+' - '+nodes[z].data.name.value+"</a></li>");
-        	}
-
+    
             // make a copy of node info & variables block template, set its nodeid
             var display = "";
             //if (app_nodes.selected_node!=z) display = "display:none";
@@ -741,7 +721,7 @@ show: function()
 	            node.find(".node-vendor").html(manufacturerName);
 
 
-	            node.find(".node-zwave-id").html("Manufacturer id: " +nodes[z].data.manufacturerId.value +" product type: " +nodes[z].data.manufacturerProductType.value + " product id: " + nodes[z].data.manufacturerProductId.value);            		
+	            node.find(".node-zwave-id").html("Identifiant du fabricant : <span class='label label-default'>" +nodes[z].data.manufacturerId.value +"</span> type de produit : <span class='label label-default'>" +nodes[z].data.manufacturerProductType.value + "</span> identifiant du produit : <span class='label label-default'>" + nodes[z].data.manufacturerProductId.value+"</span>");            		
 
 	            node.find(".node-lastSeen").html(app_nodes.timestampConverter(nodes[z].data.lastReceived.updateTime));
 
@@ -750,16 +730,16 @@ show: function()
 	            var basicDeviceClassDescription = "";	            
 	            switch(basicDeviceClass){
 	            	case 1:
-	            	basicDeviceClassDescription = "Controller";
+	            	basicDeviceClassDescription = "Controlleur";
 	            	break;
 	            	case 2:
-	            	basicDeviceClassDescription = "Static Controller";
+	            	basicDeviceClassDescription = "Controlleur static";
 	            	break;
 	            	case 3:
-	            	basicDeviceClassDescription = "Slave";
+	            	basicDeviceClassDescription = "Esclave";
 	            	break;
 	            	case 4:
-	            	basicDeviceClassDescription = "Routing Slave";
+	            	basicDeviceClassDescription = "Esclave routé";
 	            	break;
 	            	default:
 	            	basicDeviceClassDescription = basicDeviceClass;
@@ -772,40 +752,40 @@ show: function()
 	            //The ‘Generic’ device class defines the basic functionality that the devices will support as a controller or slave.	         
 	            switch(genericDeviceClass){
 	            case 1: //REMOTE_CONTROLLER   = 0x01
-	            genericDeviceClassDescription = "Remote controller";
+	            genericDeviceClassDescription = "Télécommande";
 	            break;
 	            case 2: //STATIC_CONTROLLER   = 0x02,
-	            genericDeviceClassDescription = "Static controller";
+	            genericDeviceClassDescription = "Controlleur static";
 	            break;
 	            case 3: //AV_CONTROL_POINT    = 0x03,
-	            genericDeviceClassDescription = "A/V Control Point";
+	            genericDeviceClassDescription = "A/V controleur";
 	            break;
 	            case 4: //DISPLAY             = 0x04,
-	            genericDeviceClassDescription = "Display";
+	            genericDeviceClassDescription = "Afficheur";
 	            break;
 	            case 7: //GARAGE_DOOR             = 0x07,
-	            genericDeviceClassDescription = "Garage Door";
+	            genericDeviceClassDescription = "Porte de garage";
 	            break;
 	            case 8: //THERMOSTAT          = 0x08,
 	            genericDeviceClassDescription = "Thermostat";
 	            break;
 	            case 9: //WINDOW_COVERING     = 0x09,
-	            genericDeviceClassDescription = "Window Covering";
+	            genericDeviceClassDescription = "Fenetre";
 	            break;
 	            case 15: //REPEATER_SLAVE      = 0x0f,
-	            genericDeviceClassDescription = "Repeater Slave";
+	            genericDeviceClassDescription = "Repéteur esclave";
 	            break;
 	            case 16: //BINARY_SWITCH       = 0x10,
-	            genericDeviceClassDescription = "Binary Switch";
+	            genericDeviceClassDescription = "Interrupteur";
 	            break;
 	            case 17: //MULTILEVEL_SWITCH   = 0x11,
-	            genericDeviceClassDescription = "Multi level Switch";
+	            genericDeviceClassDescription = "Interrupteur multi niveau";
 	            break;
 	            case 18: //REMOTE_SWITCH       = 0x12,
-	            genericDeviceClassDescription = "Remote Switch";
+	            genericDeviceClassDescription = "Interrupteur";
 	            break;
 	            case 19: // TOGGLE_SWITCH       = 0x13,
-	            genericDeviceClassDescription = "Toggle Switch";
+	            genericDeviceClassDescription = "Interrupteur";
 	            break;
 	            case 20: // Z_IP_GATEWAY       = 0x14,
 	            genericDeviceClassDescription = "Z/IP Gateway";
@@ -817,37 +797,36 @@ show: function()
 	            genericDeviceClassDescription = "Ventilation";
 	            break;
 	            case 30: //REMOTE_SWITCH2       = 0x18,
-	            genericDeviceClassDescription = "Remote Switch 2";
+	            genericDeviceClassDescription = "Interrupteur";
 	            break;
 	            case 32: //BINARY_SENSOR       = 0x20,
-	            genericDeviceClassDescription = "Binary Sensorr";
+	            genericDeviceClassDescription = "Capteur binaire";
 	            break;
 	            case 33: //MULTILEVEL_SENSOR   = 0x21
-	            genericDeviceClassDescription = "Multilevel-Sensor";
+	            genericDeviceClassDescription = "Capteur multi niveau";
 	            break;
 	            case 34: //WATER_CONTROL   = 0x22
-	            genericDeviceClassDescription = "Water Control";
+	            genericDeviceClassDescription = "Niveau d'eau";
 	            break;
 	            case 48: //PULSE_METER         = 0x30
-	            genericDeviceClassDescription = "Pulse Meter";
+	            genericDeviceClassDescription = "Mesure d'impulsion";
 	            case 49: //METER         = 0x31
-	            genericDeviceClassDescription = "Meter";
+	            genericDeviceClassDescription = "Mesure";
 	            break;
 	            case 64: //ENTRY_CONTROL       = 0x40
-	            genericDeviceClassDescription = "Entry Control";
+	            genericDeviceClassDescription = "Controle d'entrée";
 	            break;
 	            case 85: //NON_INTEROPERABLE        = 0x55
 	            genericDeviceClassDescription = "Semi-Interoperable";
 	            break;
 	            case 161: //ALARM_SENSOR        = 0xa1
-	            genericDeviceClassDescription = "Alarm Sensor";
+	            genericDeviceClassDescription = "Alarme";
 	            break;
 	            case 255: //NON_INTEROPERABLE        = 0xff
 	            genericDeviceClassDescription = "Non-Interoperable";
 	            break;	
-
 	            default:
-	            genericDeviceClassDescription = "Unknown";
+	            genericDeviceClassDescription = "Inconnue";
 	            break;
 	        }
 
@@ -874,82 +853,82 @@ show: function()
 	        if(nodeIsFailed=="true" & networkstate>=7){
 	            	//this warning must stay in place
 	            	isWarning = true;
-	            	warningMessage +="<li>The controller think this device as failed, use <button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'>Has Node Failed ?</button> action to try to revived the device.</li>"
+	            	warningMessage +="<li>Le controleur pense que ce noeud est en echec, essayé <button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-question'></i> Noeud en échec</button> ou <button type='button' id='testNode' class='btn btn-info'><i class='fa fa-check-square-o'></i> Tester Noeud</button> pour essayer de corriger.</li>"
 	            }
 	            
 	            var queryStageDescrition = "";
 	            var queryStageIndex = 0;	            
 	            switch(queryStage){
 	            	case "None":
-	            	queryStageDescrition = "Query process hasn't started for this node";
+	            	queryStageDescrition = "Le processus de demande n'a pas encore commencé pour ce noeud";
 	            	queryStageIndex = 0;
 	            	break;
 	            	case "ProtocolInfo":
-	            	queryStageDescrition = "Retrieve protocol information";
+	            	queryStageDescrition = "Recuperation des informations du protocole";
 	            	queryStageIndex = 1;
 	            	break;
 	            	case "Probe":
-	            	queryStageDescrition = "Ping device to see if alive";
+	            	queryStageDescrition = "Interrogation du module pour voir si il est en vie";
 	            	queryStageIndex = 2;
 	            	break;
 	            	case "WakeUp":
-	            	queryStageDescrition = "Start wake up process if a sleeping node";
+	            	queryStageDescrition = "Debut du processus de reveille du noeud si celui-ci dort";
 	            	queryStageIndex = 3;
 	            	break;
 	            	case "ManufacturerSpecific1":
-	            	queryStageDescrition = "Retrieve manufacturer name and product ids if ProtocolInfo lets us";
+	            	queryStageDescrition = "Recuperation des parametre constructeur du noeud";
 	            	queryStageIndex = 4;
 	            	break;
 	            	case "NodeInfo":
-	            	queryStageDescrition = "Retrieve info about supported, controlled command classes";
+	            	queryStageDescrition = "Recuperation des informations sur les classe du noeud";
 	            	queryStageIndex = 5;
 	            	break;
 	            	case "SecurityReport":
-	            	queryStageDescrition = "Retrive a list of Command Classes that require Security";
+	            	queryStageDescrition = "Recuperation des classes de sécurité du noeud";
 	            	queryStageIndex = 6;
 	            	break;
 	            	case "ManufacturerSpecific2":
-	            	queryStageDescrition = "Retrieve manufacturer name and product ids";
+	            	queryStageDescrition = "Recuperation des parametre constructeur du noeud";
 	            	queryStageIndex = 7;
 	            	break;
 	            	case "Versions":
-	            	queryStageDescrition = "Retrieve version information";
+	            	queryStageDescrition = "Recuperation des informations de version";
 	            	queryStageIndex = 8;
 	            	break;
 	            	case "Instances":
-	            	queryStageDescrition = "Retrieve information about multiple command class instances";
+	            	queryStageDescrition = "Recuperation des informations d'instance du noeud";
 	            	queryStageIndex = 9;
 	            	break;
 	            	case "Static":
-	            	queryStageDescrition = "Retrieve static information";
+	            	queryStageDescrition = "Recuperation des informations statistique";
 	            	queryStageIndex = 10;
 	            	break;
 	            	case "Probe1":
-	            	queryStageDescrition = "Ping a device upon starting with configuration";
+	            	queryStageDescrition = "Interrogation du module pour recuperer sa configuration";
 	            	queryStageIndex = 11;
 	            	break;
 	            	case "Associations":
-	            	queryStageDescrition = "Retrieve information about associations";
+	            	queryStageDescrition = "Recuperation des informations d'associations";
 	            	queryStageIndex = 12;
 	            	break;
 	            	case "Neighbors":
-	            	queryStageDescrition = "Retrieve node neighbor list";
+	            	queryStageDescrition = "Recuperation de la liste des voisins";
 	            	queryStageIndex = 13;
 	            	break;
 	            	case "Session":
-	            	queryStageDescrition = "Retrieve session information";
+	            	queryStageDescrition = "Recuperation des informations de sessions";
 	            	queryStageIndex = 14;
 	            	break;
 	            	case "Dynamic":
-	            	queryStageDescrition = "Retrieve dynamic information";
+	            	queryStageDescrition = "Recuperation des informations dynamique";
 	            	queryStageIndex = 15;
 	            	break;
 	            	case "Configuration":
-	            	queryStageDescrition = "Retrieve configurable parameter information";
+	            	queryStageDescrition = "Recuperation des informations de configuration";
 	            	queryStageIndex = 16;
 	            	break;
 	            	case "Complete":
-	            	queryStageDescrition = "Query process is completed for this node";
+	            	queryStageDescrition = "Processus de demande d'information sur le noeud complet";
 	            	queryStageIndex = 17;
 	            	break;	            	
 	            }
@@ -964,13 +943,13 @@ show: function()
 	            }		         
 	            node.find(".node-maxBaudRate").html(nodes[z].data.maxBaudRate.value);
 	            if(nodes[z].data.isRouting.value=="true"){
-	            	node.find(".node-routing").html("<li>Device is a routing node (capable of passing commands along to other nodes in the network)</li>");
+	            	node.find(".node-routing").html("<li>Le noeud à des capacité de routage (capable de faire passer des commandes à d'autre noeuds)</li>");
 	            }
 	            else{
 	            	node.find(".node-routing").html("");
 	            }
 	            if(nodes[z].data.isSecurity.value=="true"){
-	            	node.find(".node-isSecurity").html("<li>Device supports security features</li>");
+	            	node.find(".node-isSecurity").html("<li>Le noeud supporte les caracteristique de sécurité avancées</li>");
 	            	/* TODO: display Security Flag
 	            	Security = 0x01
 	            	Controller = 0x02
@@ -988,19 +967,19 @@ show: function()
 	            	node.find(".node-security").html("");
 	            }
 	            if(nodes[z].data.isListening.value=="true"){
-	            	node.find(".node-listening").html("<li>Device is powered and listening constantly</li>");
+	            	node.find(".node-listening").html("<li>Le noeud est alimenté et écoute en permanence</li>");
 	            }	
 	            else{
 	            	node.find(".node-listening").html("");
 	            }
 	            if(nodes[z].data.isFrequentListening.value=="true"){
-	            	node.find(".node-isFrequentListening").html("<li>Device can be woken up with a beam</li>");
+	            	node.find(".node-isFrequentListening").html("<li>Le noeud peut être reveillé</li>");
 	            }
 	            else{
 	            	node.find(".node-isFrequentListening").html("");	
 	            }
 	            if(nodes[z].data.isBeaming.value=="true"){
-	            	node.find(".node-isBeaming").html("<li>Device is beam capable</li>");
+	            	node.find(".node-isBeaming").html("<li>Le noeud est capable d'envoyer une trame réseaux</li>");
 	            }  
 	            else{
 	            	node.find(".node-isBeaming").html("");
@@ -1014,7 +993,7 @@ show: function()
 	            	else{
 	            		node.find(".node-neighbours").html("...");		  
 	            		if(networkstate>=7){
-	            			warningMessage +="<li>The neighbours is not available for this device.<br/>Use <button type='button' class='btn btn-xs btn-primary healNode'>Heal Node</button> or <button type='button' class='btn btn-xs btn-primary requestNodeNeighboursUpdate'>Request Node Neighbours Update</button> action to force a neighbours refresh.</li>";		            	
+	            			warningMessage +="<li>Liste des voisins non disponible <br/>Utilisez <button type='button' id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> Soigner le noeud</button> ou <button type='button' id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> Mise à jour des noeuds voisins</button> pour corriger.</li>";		            	
 	            			isWarning = true;
 	            		}
 	            	}
@@ -1024,14 +1003,14 @@ show: function()
 	            }
 	            if (queryStageIndex > 7 & productName == ""){
 	            	if(networkstate>=7){
-	            		warningMessage +="<li>The Product Name and the Manufacturer informations are not detected.<br/>Use <button type='button' class='btn btn-xs btn-primary refreshNodeInfo'>Refresh Node Info</button> action to trigger the fetching of fixed data about this node.</li>";
+	            		warningMessage +="<li>Les identifiances constructeur ne sont pas detectées.<br/>Utilisez <button type='button' id='refreshNodeInfo' class='btn btn-success refreshNodeInfo'><i class='fa fa-retweet'></i> Rafraîchir infos du noeud</button> pour corriger</li>";
 	            		isWarning = true;	 
 	            	}
 	            }	
 	            
 	            if (isWarning){ 
 	            	if (nodeCanSleep){
-	            		warningMessage += "<br><p>This is a sleeping device, he need a 'wake-up' before any command can be executed.<br/>You can manualy trigger a 'wake-up' directly on device or wait the normal 'wake-up'.<br/>See: 'Wake-up Interval in System TAB</p>";	            		
+	            		warningMessage += "<br><p>Le noeud est dormant et nécessite un reveil avant qu'une commande puisse etre exécutée.<br/>Vous pouvez le reveiller manullement ou attend son délai de reveil.<br/>Voir l'interval de réveille dans l'onglet Système</p>";	            		
 	            	}	            	
 	            	node.find(".panel-danger").show();
 	            	node.find(".node-warning").html(warningMessage);
@@ -1168,13 +1147,13 @@ show: function()
 						}else{
 							var node_name="UNDEFINED";
 						}
-						tr_groups += "<tr gid='"+id+"'><td>"+node_id+" : "+node_name+"</td><td align='right'><button type='button' class='btn btn-danger btn-sm deleteGroup' data-groupindex='"+z+"' data-nodeindex='"+node_id+"'><i class='fa fa-trash-o'></i> Delete</button></td></tr>";
+						tr_groups += "<tr gid='"+id+"'><td>"+node_id+" : "+node_name+"</td><td align='right'><button type='button' class='btn btn-danger btn-sm deleteGroup' data-groupindex='"+z+"' data-nodeindex='"+node_id+"'><i class='fa fa-trash-o'></i> Supprimer</button></td></tr>";
 					}
 				}
 				if(values.length < node_groups[z].maximumAssociations || values[val]==""){
-					var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="'+z+'"><i class="fa fa-plus"></i> Add a node</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' (max association: '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
+					var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="'+z+'"><i class="fa fa-plus"></i> Ajouter un noeud</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' (nombre maximum d\'association : '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
 				}else{
-					var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="'+z+'"><i class="fa fa-plus"></i> Add a node</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' (max association: '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
+					var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="'+z+'"><i class="fa fa-plus"></i> Ajouter un noeud</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' (nombre maximum d\'association : '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
 				}
 				$("#groups").append(newPanel);
 			}
