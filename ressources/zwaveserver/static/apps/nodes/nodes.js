@@ -80,7 +80,7 @@ $("#tab-systems").on("click",function() {
 $("#tab-parameters").off("click").on("click",function() {
 	if(!nodes[app_nodes.selected_node].instances[0].commandClasses[112]){
 		$("#parameters").html('<br><div><b>Aucun paramètre prédefini trouvé pour ce noeud</b></div><br>');
-		$("#parameters").append('<div class="row"><label class="col-lg-1">Parametre : </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">Valeur : </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">Taile :</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><button id="sendparamperso" class="btn btn-primary">Envoyer le paramètre</a></div></div>');
+		$("#parameters").append('<div class="row"><label class="col-lg-1">Paramètre : </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">Valeur : </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">Taile :</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><button id="sendparamperso" class="btn btn-primary">Envoyer le paramètre</a></div></div>');
 		$("#sendparamperso").off("click").on("click",function() {
 			var paramId = $("#paramidperso").val();
 			var paramValue = $('#newvalueperso').val();
@@ -747,7 +747,7 @@ show: function()
 	            	basicDeviceClassDescription = "Esclave";
 	            	break;
 	            	case 4:
-	            	basicDeviceClassDescription = "Esclave pouvant etre routé";
+	            	basicDeviceClassDescription = "Esclave pouvant être routé";
 	            	break;
 	            	default:
 	            	basicDeviceClassDescription = basicDeviceClass;
@@ -778,7 +778,7 @@ show: function()
 	            genericDeviceClassDescription = "Thermostat";
 	            break;
 	            case 9: //WINDOW_COVERING     = 0x09,
-	            genericDeviceClassDescription = "Fenetre";
+	            genericDeviceClassDescription = "Fenêtre";
 	            break;
 	            case 15: //REPEATER_SLAVE      = 0x0f,
 	            genericDeviceClassDescription = "Repéteur esclave";
@@ -884,7 +884,7 @@ show: function()
 	            	queryStageIndex = 3;
 	            	break;
 	            	case "ManufacturerSpecific1":
-	            	queryStageDescrition = "Recuperation des parametre constructeur du noeud";
+	            	queryStageDescrition = "Recuperation des paramètre constructeur du noeud";
 	            	queryStageIndex = 4;
 	            	break;
 	            	case "NodeInfo":
@@ -896,7 +896,7 @@ show: function()
 	            	queryStageIndex = 6;
 	            	break;
 	            	case "ManufacturerSpecific2":
-	            	queryStageDescrition = "Recuperation des parametre constructeur du noeud";
+	            	queryStageDescrition = "Recuperation des paramètre constructeur du noeud";
 	            	queryStageIndex = 7;
 	            	break;
 	            	case "Versions":
@@ -1018,7 +1018,7 @@ show: function()
 	            
 	            if (isWarning){ 
 	            	if (nodeCanSleep){
-	            		warningMessage += "<br><p>Le noeud est dormant et nécessite un reveil avant qu'une commande puisse etre exécutée.<br/>Vous pouvez le reveiller manullement ou attend son délai de reveil.<br/>Voir l'interval de réveille dans l'onglet Système</p>";	            		
+	            		warningMessage += "<br><p>Le noeud est dormant et nécessite un reveil avant qu'une commande puisse être exécutée.<br/>Vous pouvez le reveiller manullement ou attend son délai de reveil.<br/>Voir l'interval de réveille dans l'onglet Système</p>";	            		
 	            	}	            	
 	            	node.find(".panel-danger").show();
 	            	node.find(".node-warning").html(warningMessage);
