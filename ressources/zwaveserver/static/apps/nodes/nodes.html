@@ -78,89 +78,81 @@
 		</div>
 	</div>
 </div>
-<div class="row">
-	<div class="col-md-3 nodes-nodelist" style="display:none;">
-		<div class="block">
-			<h5>Noeuds</h5>
-		</div>
-		<ul id="node-nav" class="nav nav-tabs nav-stacked"></ul>
-	</div>
-	<div class="col-md-12 nodes-rightpane">
-		<div class='node' nid='' >   
-			<div id="template-node" > 
+<div class='node' nid='' >   
+	<div id="template-node" > 
 
-				<center><h3><span class="node-productname fixed">inconnu</span> - <span class="node-name fixed">inconnu</span> - Node Id: <span class="node-id">inconnu</span></h3></center>
-				<div class="container-fluid">
-					<div id="content">
-						
-						<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-							<li id="tab-summary" class="active"><a href="#summary" data-toggle="tab">Résumé</h4></a></li>
-							<li id="tab-values"><a href="#values" data-toggle="tab">Valeurs</a></li>
-							<li id="tab-parameters"><a href="#parameters" data-toggle="tab">Paramètres</a></li>
-							<li id="tab-groups"><a href="#groups" data-toggle="tab">Associations</a></li>
-							<li id="tab-systems"><a href="#systems" data-toggle="tab">Systèmes</a></li>
-							<li id="tab-actions"><a href="#actions" data-toggle="tab">Actions</a></li>
-							<li id="tab-stats"><a href="#statistics" data-toggle="tab">Statistiques</a></li>
+		<center><h3><span class="node-productname fixed">inconnu</span> - <span class="node-name fixed">inconnu</span> - Node Id: <span class="node-id">inconnu</span></h3></center>
+		<div class="container-fluid">
+			<div id="content">
 
-							<li id="li_state" class="pull-right alert" style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;"><span style="position:relative; top : -7px;">Envoi OK</span></li>
-						</ul>   
-						<div id="my-tab-content" class="tab-content">
-							<div class="tab-pane active" id="summary">
-								<br>		        
-								<div id="panel-danger" class="panel panel-danger template">
-									<div class="panel-heading">
-										<h4 class="panel-title"><i class="fa fa-exclamation-circle"></i> Attention</h4>
-									</div>
-									<div class="panel-body">				        
-										<p><span class="node-warning">inconnu</span></p>
-									</div>
-								</div>
-								<div class="panel panel-primary template">
-									<div class="panel-heading">
-										<h4 class="panel-title"><i class="fa fa-info-circle"></i> Informations Noeud</h4>
-									</div>
-									<div class="panel-body">				        
-										<p>Objet parent : <b><span class="node-location label label-default">inconnu</span></b></p>
-										<p>Nom de l'équipement : <b><span class="node-name label label-default">inconnu</span></b></p>
-										<p>Modèle : <b><span class="node-productname label label-default">inconnu</span></b></p>
-										<p>Fabricant : <b><span class="node-vendor label label-default">inconnu</span></b></p>
-										<p><span class="node-zwave-id default">inconnu</span></p>
-										<p>Etat des demandes : <b><span class="node-queryStage label label-default">inconnu</span></b>  <i class="fa fa-info-circle" id="node-queryStageDescrition"></i></p>
-										<p>Etat : <b><span class="node-sleep label label-default">inconnu</span></b></p>
-										<p>Dernier message : <b><span class="node-lastSeen label label-default">inconnu</span></b></p>
-										<p>Voisins : <span class="node-neighbours label label-default">inconnu</span></p>
-									</div>
-								</div>	
-								<div class="panel panel-primary template">
-									<div class="panel-heading">
-										<h4 class="panel-title"><i class="fa fa-info-circle"></i> Classe du module</h4>
-									</div>
-									<div class="panel-body">				        
-										Basique : <b><span class="node-basic label label-default">inconnu</span></b> 
-										<br/>
-										Générique : <b><span class="node-generic label label-default">inconnu</span></b> 
-										<br/>
-										Spécifique : <b><span class="node-specific label label-default">inconnu</span></b></p>				        
-									</div>
-								</div>						        
-								
-								
-								<div class="panel panel-primary template">
-									<div class="panel-heading">
-										<h4 class="panel-title"><i class="fa fa-info-circle"></i> Informations Protocole</h4>
-									</div>
-									<div class="panel-body">
-										<p>Vitesse maximale de communication du module :<b><span class="node-maxBaudRate"></span></b> bit/sec</p>
-										<b><span class="node-routing"></span></b>				        				        
-										<b><span class="node-isSecurity"></span></b>
-										<b><span class="node-listening"></span></b>
-										<b><span class="node-isFrequentListening"></span></b>
-										<b><span class="node-isBeaming"></span></b>				        
-										<br/>
-										<p><b><span class="node-security"></span></b></p>
-									</div>
-								</div>			        
-								
+				<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+					<li id="tab-summary" class="active"><a href="#summary" data-toggle="tab"><i class="fa fa-tachometer"></i> Résumé</a></li>
+					<li id="tab-values"><a href="#values" data-toggle="tab"><i class="fa fa-tag"></i> Valeurs</a></li>
+					<li id="tab-parameters"><a href="#parameters" data-toggle="tab"><i class="fa fa-wrench"></i> Paramètres</a></li>
+					<li id="tab-groups"><a href="#groups" data-toggle="tab"><i class="fa fa-users"></i> Associations</a></li>
+					<li id="tab-systems"><a href="#systems" data-toggle="tab"><i class="fa fa-cogs"></i> Systèmes</a></li>
+					<li id="tab-actions"><a href="#actions" data-toggle="tab"><i class="fa fa-sliders"></i> Actions</a></li>
+					<li id="tab-stats"><a href="#statistics" data-toggle="tab"><i class="fa fa-bar-chart"></i> Statistiques</a></li>
+
+					<li id="li_state" class="pull-right alert" style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;"><span style="position:relative; top : -7px;">Envoi OK</span></li>
+				</ul>   
+				<div id="my-tab-content" class="tab-content">
+					<div class="tab-pane active" id="summary">
+						<br>		        
+						<div id="panel-danger" class="panel panel-danger template">
+							<div class="panel-heading">
+								<h4 class="panel-title"><i class="fa fa-exclamation-circle"></i> Attention</h4>
+							</div>
+							<div class="panel-body">				        
+								<p><span class="node-warning">inconnu</span></p>
+							</div>
+						</div>
+						<div class="panel panel-primary template">
+							<div class="panel-heading">
+								<h4 class="panel-title"><i class="fa fa-info-circle"></i> Informations Noeud</h4>
+							</div>
+							<div class="panel-body">				        
+								<p>Objet parent : <b><span class="node-location label label-default">inconnu</span></b></p>
+								<p>Nom de l'équipement : <b><span class="node-name label label-default">inconnu</span></b></p>
+								<p>Modèle : <b><span class="node-productname label label-default">inconnu</span></b></p>
+								<p>Fabricant : <b><span class="node-vendor label label-default">inconnu</span></b></p>
+								<p><span class="node-zwave-id default">inconnu</span></p>
+								<p>Etat des demandes : <b><span class="node-queryStage label label-default">inconnu</span></b>  <i class="fa fa-info-circle" id="node-queryStageDescrition"></i></p>
+								<p>Etat : <b><span class="node-sleep label label-default">inconnu</span></b></p>
+								<p>Dernier message : <b><span class="node-lastSeen label label-default">inconnu</span></b></p>
+								<p>Voisins : <span class="node-neighbours label label-default">inconnu</span></p>
+							</div>
+						</div>	
+						<div class="panel panel-primary template">
+							<div class="panel-heading">
+								<h4 class="panel-title"><i class="fa fa-info-circle"></i> Classe du module</h4>
+							</div>
+							<div class="panel-body">				        
+								Basique : <b><span class="node-basic label label-default">inconnu</span></b> 
+								<br/>
+								Générique : <b><span class="node-generic label label-default">inconnu</span></b> 
+								<br/>
+								Spécifique : <b><span class="node-specific label label-default">inconnu</span></b></p>				        
+							</div>
+						</div>						        
+
+
+						<div class="panel panel-primary template">
+							<div class="panel-heading">
+								<h4 class="panel-title"><i class="fa fa-info-circle"></i> Informations Protocole</h4>
+							</div>
+							<div class="panel-body">
+								<p>Vitesse maximale de communication du module :<b><span class="node-maxBaudRate"></span></b> bit/sec</p>
+								<b><span class="node-routing"></span></b>				        				        
+								<b><span class="node-isSecurity"></span></b>
+								<b><span class="node-listening"></span></b>
+								<b><span class="node-isFrequentListening"></span></b>
+								<b><span class="node-isBeaming"></span></b>				        
+								<br/>
+								<p><b><span class="node-security"></span></b></p>
+							</div>
+						</div>			        
+
 			        <!--
 			        	<p>Id: <b><span class="node-id label label-default"></span></b></p>
 				        <p>Product Name: <b><span class="node-name label label-default">undefined</span></b></p>
@@ -220,7 +212,7 @@
 					</table>
 				</div>
 				<div class="tab-pane" id="parameters">
-				<div style="overflow: scroll;height : 100%;max-height: 96%;">
+					<div style="overflow: scroll;height : 100%;max-height: 96%;">
 						<table class="table table-striped">
 							<tr>
 								<th>Index</th>
@@ -290,7 +282,7 @@
 				</div>
 
 				<div class="tab-pane" id="actions">
-					<table class="table">
+					<table class="table table-striped">
 						<tr>
 							<td><button type="button" id="requestNodeNeighboursUpdate" class="btn btn-primary requestNodeNeighboursUpdate">Mise à jour des noeuds voisins</button></td>
 							<td>Choisir un noeud pour reconstruire sa liste de voisins.</td>
@@ -305,7 +297,7 @@
 						</tr>
 						<tr>
 							<td><button type="button" id="refreshNodeValues" class="btn btn-primary">Rafraîchir valeurs du noeud</button></td>
-							<td>Une actualisation manuelle des valeurs d'un noeud. Nous allons recevoir une valeur mise à jour du noeud.</td>
+							<td>Déclenche une actualisation manuelle des valeurs du noeud.</td>
 						</tr>
 						<tr>
 							<td><button type="button" id="refreshNodeInfo" class="btn btn-primary refreshNodeInfo">Rafraîchir infos du noeud</button></td>
@@ -313,11 +305,11 @@
 						</tr>
 						<tr>
 							<td><button type="button" id="hasNodeFailed" class="btn btn-primary hasNodeFailed">Echec du noeud ?</button></td>
-							<td>Vérifie si un noeud est dans la liste des noeuds en erreur sur le contrôleur.</td>
+							<td>Vérifie si le noeud est dans la liste des noeuds en erreur sur le contrôleur.</td>
 						</tr>
 						<tr>
 							<td><button type="button" id="removeFailedNode" class="btn btn-primary">Supprimer noeud en erreur</button></td>
-							<td>Déplace un noeud dans la liste du contrôleur des noeuds en erreur.<br>Le noeud doit être en échec.</td>
+							<td>Supprime le noeud du controleur<br>Le noeud doit être en échec.</td>
 						</tr>
 						<tr>
 							<td><button type="button" id="replaceFailedNode" class="btn btn-primary">Remplacer noeud en échec</button></td>
@@ -348,7 +340,7 @@
 						        * quality                  # Node quality measure
 						        * lastReceivedMessage      # Place to hold last received message
 						    -->
-						    <table class="table">
+						    <table class="table table-striped">
 						    	<tr>
 						    		<td><b>Temps de demande moyen (ms) :</b></td><td><span class="stats_av_req_rtt"></span></td>
 						    	</tr><tr>
@@ -388,7 +380,5 @@
 
 <div class="block">
 	<div id="node-content"></div>
-</div>
-</div>
 </div>
 
