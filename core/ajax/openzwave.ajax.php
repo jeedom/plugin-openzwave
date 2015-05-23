@@ -119,7 +119,7 @@ try {
 	}
 
 	if (init('action') == 'callRazberry') {
-		ajax::success(openzwave::callRazberry(init('call'), init('serverId', 1)));
+		ajax::success(openzwave::callOpenzwave(init('call'), init('serverId', 1)));
 	}
 
 	if (init('action') == 'listServerZwave') {

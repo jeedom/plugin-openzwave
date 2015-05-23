@@ -36,7 +36,7 @@ if (!isConnect()) {
 	<tbody>
 		<tr>
 			<?php
-$data = openzwave::callRazberry('/ZWaveAPI/Run/devices[' . init('logical_id') . ']', init('serverId'));
+$data = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . init('logical_id') . ']', init('serverId'));
 $data = $data['instances'][0]['commandClasses'][99]['data'];
 for ($i = 1; $i < 11; $i++) {
 	echo '<td>';

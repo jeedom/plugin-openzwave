@@ -28,7 +28,7 @@ if (!is_object($eqLogic)) {
 include_file('3rdparty', 'jsonTree/jsonTree', 'css', 'openzwave');
 include_file('3rdparty', 'jsonTree/jsonTree', 'js', 'openzwave');
 
-$json = openzwave::callRazberry('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . ']', $eqLogic->getConfiguration('serverID', 1));
+$json = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . ']', $eqLogic->getConfiguration('serverID', 1));
 sendVarToJs('zwaveDataTree', $json);
 ?>
 <div id="div_zwaveDataTree"></div>

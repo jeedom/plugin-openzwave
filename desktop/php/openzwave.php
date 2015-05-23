@@ -14,7 +14,7 @@ $state = 10;
 foreach (openzwave::listServerZwave() as $id => $server) {
 	if (isset($server['name'])) {
 		try {
-			$controlerState = openzwave::callRazberry('/ZWaveAPI/Run/GetControllerStatus()', $id);
+			$controlerState = openzwave::callOpenzwave('/ZWaveAPI/Run/GetControllerStatus()', $id);
 			$state = $controlerState['result']['data']['networkstate']['value'];
 			$controlerState = $controlerState['result']['data']['controllerState']['value'];
 		} catch (Exception $e) {
