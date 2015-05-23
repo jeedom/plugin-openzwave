@@ -323,7 +323,7 @@ class openzwave extends eqLogic {
 	}
 
 	public static function cronDaily() {
-		foreach (self::byType('zwave') as $eqLogic) {
+		foreach (self::byType('openzwave') as $eqLogic) {
 			if ($eqLogic->getConfiguration('noBatterieCheck', 0) != 1) {
 				try {
 					$info = $eqLogic->getInfo();
