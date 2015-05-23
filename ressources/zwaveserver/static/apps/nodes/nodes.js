@@ -310,9 +310,8 @@ $("#saveParam").off("click").on("click",function (e) {
 		dataType: 'json',
 		async: true, 
 		success: function(data) {
-			//app_nodes.draw_nodes();
-			//app_nodes.load_data();
 			app_nodes.sendOk();
+			app_nodes.load_data(); 
 			$('#paramsModal').modal('hide');
 		}
 	});
@@ -339,7 +338,7 @@ $("#applyValue").off("click").on("click",function (e) {
 				//app_nodes.load_data();
 				app_nodes.sendOk();
 				$('#valuesModal').modal('hide');
-				app_nodes.draw_nodes();
+				app_nodes.load_data(); 
 			}
 		});
 	}else if(valueType == "Raw"){
@@ -352,7 +351,7 @@ $("#applyValue").off("click").on("click",function (e) {
 				//app_nodes.load_data();
 				app_nodes.sendOk();
 				$('#valuesModal').modal('hide');
-				app_nodes.draw_nodes();
+				app_nodes.load_data(); 
 			}
 		});
 	}
@@ -366,7 +365,7 @@ $("#applyValue").off("click").on("click",function (e) {
 				//app_nodes.load_data();
 				app_nodes.sendOk();
 				$('#valuesModal').modal('hide');
-				app_nodes.draw_nodes();
+				app_nodes.load_data(); 
 			}
 		});
 	}
@@ -422,6 +421,7 @@ request_node_neighbours_update: function(node_id)
 		success: function(data) {
 			if(data['result']== true){
 				app_nodes.sendOk();
+				app_nodes.load_data(); 
 			}else{
 				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 			}
@@ -440,6 +440,7 @@ healNode: function(node_id)
 		success: function(data) {
 			if(data['result']== true){
 				app_nodes.sendOk();
+				app_nodes.load_data(); 
 			}else{
 				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 			}
@@ -457,6 +458,7 @@ test_node: function(node_id)
 		async: true, 
 		success: function(data) {
 			app_nodes.sendOk();
+			app_nodes.load_data(); 
 		},
 		error: function(data) {
 			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong>'+data['error']+'</span></div>');
@@ -471,6 +473,7 @@ refresh_node_values: function(node_id)
 		async: true, 
 		success: function(data) {
 			app_nodes.sendOk();
+			app_nodes.load_data(); 
 		},
 		error: function(data) {
 			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong>'+data['error']+'</span></div>');
@@ -486,6 +489,7 @@ refresh_node_info: function(node_id)
 		success: function(data) {
 			if(data['result']== true){
 				app_nodes.sendOk();
+				app_nodes.load_data(); 
 			}else{
 				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 			}
@@ -503,6 +507,7 @@ has_node_failed: function(node_id)
 		async: true, 
 		success: function(data) {
 			app_nodes.sendOk();
+			app_nodes.load_data(); 
 		},
 		error: function(data) {
 			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
@@ -518,6 +523,7 @@ remove_failed_node: function(node_id)
 		success: function(data) {
 			if(data['result']== true){
 				app_nodes.sendOk();
+				app_nodes.load_data(); 
 			}else{
 				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 			}
@@ -536,6 +542,7 @@ replace_failed_node: function(node_id)
 		success: function(data) {
 			if(data['result']== true){
 				app_nodes.sendOk();
+				app_nodes.load_data(); 
 			}else{
 				$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
 			}
@@ -553,6 +560,7 @@ send_node_information: function(node_id)
 		async: true, 
 		success: function(data) {
 			app_nodes.sendOk();
+			app_nodes.load_data(); 
 		},
 		error: function(data) {
 			$('#alert_placeholder').html('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><span><strong>Echec !</strong></span></div>');
