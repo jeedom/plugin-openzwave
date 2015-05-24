@@ -51,7 +51,6 @@
         {
             "name": "Etat",
             "type": "info",
-            "logicalId": "pilotWire",
             "subtype": "numeric",
             "isVisible": 1,
             "configuration": {
