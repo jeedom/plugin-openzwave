@@ -22,7 +22,6 @@ sendVarToJs('node_id', init('id'));
 $listServerZwave = openzwave::listServerZwave();
 sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 ?>
-<script type="text/javascript" src="plugins/openzwave/ressources/zwaveserver/static/app.js"></script>
 <style media="screen" type="text/css">
 	.noscrolling{
 		width:99%;
@@ -40,16 +39,391 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 		top: 0%;
 		left: 0%;
 	}
+	.table-striped>tbody>tr.yellowrow>td {
+		background-color: #FFD700;
+	}
+	.table-striped>tbody>tr.redrow>td {
+		background-color: #e74c3c;
+	}
+	.table-striped>tbody>tr.greenrow>td {
+		/*background-color: #2ecc71;*/
+	}
 </style>
+<div id='div_nodeConfigureOpenzwaveAlert' style="display: none;"></div>
+<div class="modal fade modal-dialog-center" id="paramsModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="exampleModalLabel">Nouveau message</h4>
+			</div>
+			<div class="modal-body">
+				<div id="modalparamname"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+				<button type="button" class="btn btn-primary" id="saveParam">Sauvegarder</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade modal-dialog-center" id="valuesModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="valueModalLabel">Nouveau message</h4>
+			</div>
+			<div class="modal-body">
+				<div id="modalvaluename"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+				<button type="button" class="btn btn-primary" id="applyValue">Appliquer</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade modal-dialog-center" id="pollingModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="pollingModalLabel">Nouveau message</h4>
+			</div>
+			<div class="modal-body">
+				<div id="modalpolling"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+				<button type="button" class="btn btn-primary" id="savePolling">Sauvegarder</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade modal-dialog-center" id="groupsModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="groupsModalLabel">Nouveau message</h4>
+			</div>
+			<div class="modal-body">
+				<div id="modalgroups"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+				<button type="button" class="btn btn-primary" id="saveGroups">Sauvegarder</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class='node' nid='' >
+	<div id="template-node" >
 
-<div class="container-fluid noscrolling">
-	<div id="content"></div>
+		<center><h3><span class="node-productname fixed">inconnu</span> - <span class="node-name fixed">inconnu</span> - Node Id: <span class="node-id">inconnu</span></h3></center>
+		<div class="container-fluid">
+			<div id="content">
+
+				<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+					<li id="tab-summary" class="active"><a href="#summary" data-toggle="tab"><i class="fa fa-tachometer"></i> Résumé</a></li>
+					<li id="tab-values"><a href="#values" data-toggle="tab"><i class="fa fa-tag"></i> Valeurs</a></li>
+					<li id="tab-parameters"><a href="#parameters" data-toggle="tab"><i class="fa fa-wrench"></i> Paramètres</a></li>
+					<li id="tab-groups"><a href="#groups" data-toggle="tab"><i class="fa fa-users"></i> Associations</a></li>
+					<li id="tab-systems"><a href="#systems" data-toggle="tab"><i class="fa fa-cogs"></i> Systèmes</a></li>
+					<li id="tab-actions"><a href="#actions" data-toggle="tab"><i class="fa fa-sliders"></i> Actions</a></li>
+					<li id="tab-stats"><a href="#statistics" data-toggle="tab"><i class="fa fa-bar-chart"></i> Statistiques</a></li>
+
+					<li id="li_state" class="pull-right alert" style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;"><span style="position:relative; top : -7px;">Envoi OK</span></li>
+				</ul>
+				<div id="my-tab-content" class="tab-content">
+					<div class="tab-pane active" id="summary">
+						<br>
+						<div id="panel-danger" class="panel panel-danger template">
+							<div class="panel-heading">
+								<h4 class="panel-title"><i class="fa fa-exclamation-circle"></i> Attention</h4>
+							</div>
+							<div class="panel-body">
+								<p><span class="node-warning">inconnu</span></p>
+							</div>
+						</div>
+						<div class="panel panel-primary template">
+							<div class="panel-heading">
+								<h4 class="panel-title"><i class="fa fa-info-circle"></i> Informations Noeud</h4>
+							</div>
+							<div class="panel-body">
+								<p>{{Objet parent :}}<b><span class="node-location label label-default">inconnu</span></b></p>
+								<p>{{Nom de l'équipement :}}<b><span class="node-name label label-default">inconnu</span></b></p>
+								<p>{{Modèle :}}<b><span class="node-productname label label-default">inconnu</span></b></p>
+								<p>{{Fabricant :}}<b><span class="node-vendor label label-default">inconnu</span></b></p>
+								<p><span class="node-zwave-id default">inconnu</span></p>
+								<p>{{Etat des demandes :}}<b><span class="node-queryStage label label-default">inconnu</span></b>  <i class="fa fa-info-circle" id="node-queryStageDescrition"></i></p>
+								<p>{{Etat :}} <b><span class="node-sleep label label-default">inconnu</span></b></p>
+								<p>{{Dernier message :}}<b><span class="node-lastSeen label label-default">inconnu</span></b></p>
+								<p>{{Voisins : }}<span class="node-neighbours label label-default">inconnu</span></p>
+							</div>
+						</div>
+						<div class="panel panel-primary template">
+							<div class="panel-heading">
+								<h4 class="panel-title"><i class="fa fa-info-circle"></i> Classe du module</h4>
+							</div>
+							<div class="panel-body">
+								Basique : <b><span class="node-basic label label-default">inconnu</span></b>
+								<br/>
+								Générique : <b><span class="node-generic label label-default">inconnu</span></b>
+								<br/>
+								Spécifique : <b><span class="node-specific label label-default">inconnu</span></b></p>
+							</div>
+						</div>
+
+
+						<div class="panel panel-primary template">
+							<div class="panel-heading">
+								<h4 class="panel-title"><i class="fa fa-info-circle"></i> Informations Protocole</h4>
+							</div>
+							<div class="panel-body">
+								<p>Vitesse maximale de communication du module :<b><span class="node-maxBaudRate"></span></b> bit/sec</p>
+								<b><span class="node-routing"></span></b>
+								<b><span class="node-isSecurity"></span></b>
+								<b><span class="node-listening"></span></b>
+								<b><span class="node-isFrequentListening"></span></b>
+								<b><span class="node-isBeaming"></span></b>
+								<br/>
+								<p><b><span class="node-security"></span></b></p>
+							</div>
+						</div>
+
+			        <!--
+			        	<p>Id: <b><span class="node-id label label-default"></span></b></p>
+				        <p>Product Name: <b><span class="node-name label label-default">undefined</span></b></p>
+				        <p>Manufacturer: <b><span class="node-vendor label label-default">undefined</span></b></p>
+				        <p>Type: <b><span class="node-type label label-default">undefined</span></b></p>
+				        <p>Basic: <b><span class="node-basic label label-default">undefined</span></b> Generic: <b><span class="node-generic label label-default">undefined</span></b> Specific: <b><span class="node-specific label label-default">undefined</span></b></p>
+				        <p><b><span class="node-sleep label label-default">undefined</span></b></p>
+				        <p><b><span class="node-isFailed label label-default">undefined</span></b></p>
+				        <p>Query stage: <b><span class="node-queryStage label label-default">undefined</span></b>  <i class="fa fa-info-circle" id="node-queryStageDescrition"></i></p>
+				        <p>Is Locked : <b><span class="node-isLocked label label-default">undefined</span></b></p>
+				        <p>Neighbours: <span class="node-neighbours label label-default">undefined</span></p>
+				        <div class="panel panel-primary template">
+						  <div class="panel-heading">
+						    <h4 class="panel-title">Protocol Informations</h4>
+						  </div>
+						  <div class="panel-body">
+							<p>Maximum baud rate at which this device can communicate: <b><span class="node-maxBaudRate"></span></b> bit/sec</p>
+					        <p><b><span class="node-routing"></span></b></p>
+					        <p><b><span class="node-isSecurity"></span></b></p>
+					        <p><b><span class="node-listening"></span></b></p>
+					        <p><b><span class="node-isFrequentListening"></span></b></p>
+					        <p><b><span class="node-isBeaming"></span></b></p>
+					        <p><b><span class="node-security"></span></b></p>
+						  </div>
+						</div>
+					-->
+
+				</div>
+				<div class="tab-pane" id="values">
+					<table class="table table-striped">
+						<tr>
+							<th>Nom</th>
+							<th>Valeur</th>
+							<th>Modifier valeur</th>
+							<th>Classe de commande</th>
+							<th>Instance</th>
+							<th>Index</th>
+							<th>Type</th>
+							<th>Fréquence d'interrogation du module</th>
+							<th>Modifier la fréquence d'interrogation</th>
+							<th>Date de mise à jour</th>
+						</tr>
+						<tr id="template-variable" style="display:none">
+							<td key="variable-name"></td>
+							<td key="variable-value"></td>
+							<td key="variable-edit"></td>
+							<td key="variable-cc"></td>
+							<td key="variable-instance"></td>
+							<td key="variable-index"></td>
+							<td key="variable-type"></td>
+							<td key="variable-polling"></td>
+							<td key="variable-editpolling"></td>
+							<td key="variable-updatetime"></td>
+						</tr>
+						<tbody class="variables"></tbody>
+
+					</table>
+				</div>
+				<div class="tab-pane" id="parameters">
+					<div style="overflow: scroll;height : 100%;max-height: 96%;">
+						<table class="table table-striped">
+							<tr>
+								<th>Index</th>
+								<th>Nom</th>
+								<th>Type</th>
+								<th>Valeur</th>
+								<th>Modifier</th>
+								<th>Aide</th>
+							</tr>
+							<tr id="template-parameter" style="display:none">
+								<td key="parameter-index"></td>
+								<td key="parameter-name"></td>
+								<td key="parameter-type"></td>
+								<td key="parameter-value"></td>
+								<td key="parameter-edit"></td>
+								<td key="parameter-help"></td>
+							</tr>
+							<tbody class="parameters"></tbody>
+
+						</table>
+					</div>
+				</div>
+				<div class="tab-pane" id="groups">
+					<button type="button" id="addGroup" class="btn btn-primary addGroup"><i class="fa fa-plus"></i> Ajouter une association</button>
+					<br>
+
+					<table class="table table-striped">
+						<tr>
+							<th>ID du groupe</th>
+							<th>ID de noeud</th>
+							<th></th>
+						</tr>
+						<tr id="template-group" style="display:none">
+							<td key="group-groupeindex"></td>
+							<td key="group-nodeindex"></td>
+							<td key="group-delete"></td>
+						</tr>
+						<tbody class="groups"></tbody>
+
+					</table>
+				</div>
+				<div class="tab-pane" id="systems">
+					<table class="table table-striped">
+						<tr>
+							<th>Nom</th>
+							<th>Valeur</th>
+							<th>Modifier</th>
+							<th>Classe de la commande</th>
+							<th>Instance</th>
+							<th>Index</th>
+							<th>Type</th>
+							<th>Date de mise à jour</th>
+						</tr>
+						<tr id="template-system" style="display:none">
+							<td key="system-name"></td>
+							<td key="system-value"></td>
+							<td key="system-edit"></td>
+							<td key="system-cc"></td>
+							<td key="system-instance"></td>
+							<td key="system-index"></td>
+							<td key="system-type"></td>
+							<td key="system-updatetime"></td>
+						</tr>
+						<tbody class="system_variables"></tbody>
+
+					</table>
+				</div>
+
+				<div class="tab-pane" id="actions">
+					<table class="table table-striped">
+						<tr>
+							<td><button type="button" id="requestNodeNeighboursUpdate" class="btn btn-primary requestNodeNeighboursUpdate"><i class="fa fa-sitemap"></i> Mise à jour des noeuds voisins</button></td>
+							<td>Force la mise à jour de la liste des noeuds voisin</td>
+						</tr>
+						<tr>
+							<td><button type="button" id="healNode" class="btn btn-success healNode"><i class="fa fa-medkit"></i> Soigner le noeud</button></td>
+							<td>Soigner un noeud du réseau.</td>
+						</tr>
+						<tr>
+							<td><button type="button" id="testNode" class="btn btn-info"><i class="fa fa-check-square-o"></i> Tester Noeud</button></td>
+							<td>Tester le noeud. Envoyer une série de message à un noeud pour le tester.</td>
+						</tr>
+						<tr>
+							<td><button type="button" id="refreshNodeValues" class="btn btn-success"><i class="fa fa-refresh"></i> Rafraîchir valeurs du noeud</button></td>
+							<td>Déclenche une actualisation manuelle des valeurs du noeud.</td>
+						</tr>
+						<tr>
+							<td><button type="button" id="refreshNodeInfo" class="btn btn-success refreshNodeInfo"><i class="fa fa-retweet"></i> Rafraîchir infos du noeud</button></td>
+							<td>Déclencher l'obtention des données du noeud. <br>Les données du noeud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.</td>
+						</tr>
+						<tr>
+							<td><button type="button" id="hasNodeFailed" class="btn btn-primary hasNodeFailed"><i class="fa fa-question"></i> Noeud en échec</button></td>
+							<td>Vérifie si le noeud est dans la liste des noeuds en erreur.</td>
+						</tr>
+						<tr>
+							<td><button type="button" id="removeFailedNode" class="btn btn-danger"><i class="fa fa-times"></i> Supprimer noeud en erreur</button></td>
+							<td>Supprime le noeud du controleur<br>Le noeud doit être en échec.</td>
+						</tr>
+						<tr>
+							<td><button type="button" id="replaceFailedNode" class="btn btn-warning"><i class="fa fa-repeat"></i> Remplacer noeud en échec</button></td>
+							<td>Remplace un module en échec par un autre. Si le noeud n'est pas dans la liste des noeuds en échec sur le contrôleur, ou que le noeud répond, la commande va échouer.</td>
+						</tr>
+						<tr>
+							<td><button type="button" id="sendNodeInformation" class="btn btn-info"><i class="fa fa-info-circle"></i> Envoi infos du noeud</button></td>
+							<td>Envoi une trame d'info au noeud (NIF).</td>
+						</tr>
+					</table>
+				</div>
+				<div class="tab-pane" id="statistics">
+				    	<!--
+				    	Statistics:
+				    	cdef struct NodeData:
+						        * sentCnt                  # Number of messages sent from this node.
+						        * sentFailed               # Number of sent messages failed
+						        * retries                  # Number of message retries
+						        * receivedCnt              # Number of messages received from this node.
+						        * receivedDups             # Number of duplicated messages received;
+						        * receivedUnsolicited      # Number of messages received unsolicited
+						        * sentTS                   # Last message sent time
+						        * receivedTS               # Last message received time
+						        * lastRequestRTT           # Last message request RTT
+						        * averageRequestRTT        # Average Request Round Trip Time (ms).
+						        * lastResponseRTT          # Last message response RTT
+						        * averageResponseRTT       # Average Reponse round trip time.
+						        * quality                  # Node quality measure
+						        * lastReceivedMessage      # Place to hold last received message
+						    -->
+						    <table class="table table-striped table-condensed">
+						    	<tr>
+						    		<td><b>Temps de demande moyen (ms) :</b></td><td><span class="stats_av_req_rtt"></span></td>
+						    	</tr><tr>
+						    	<td><b>Temps de réponse moyen (ms) :</b></td><td><span class="stats_av_res_rtt"></span></td>
+						    </tr><tr>
+						    <td><b>Dernier message de réponse RTT:</b></td><td><span class="stats_la_req_rtt"></span></td>
+						</tr><tr>
+						<td><b>Dernière réponse RTT :</b></td><td><span class="stats_la_res_rtt"></span></td>
+					</tr><tr>
+					<td><b>Qualité de la communication avec ce noeud :</b></td><td><span class="stats_quality"></span></td>
+				</tr><tr>
+				<td><b>Nombre de messages reçus par ce noeud :</b></td><td><span class="stats_rec_cnt"></span></td>
+			</tr><tr>
+			<td><b>Nombre de messages reçus en double :</b></td><td><span class="stats_rec_dups"></span></td>
+		</tr><tr>
+		<td><b>Heure du dernier message reçu :</b></td><td><span class="stats_rec_ts"></span></td>
+	</tr><tr>
+	<td><b>Nombre de messages reçus spontanément :</b></td><td><span class="stats_rec_uns"></span></td>
+</tr><tr>
+<td><b>Nombre de tentatives d'envoi :</b></td><td><span class="stats_retries"></span></td>
+</tr><tr>
+<td><b>Nombre de messages envoyés par ce noeud :</b></td><td><span class="stats_sen_cnt"></span></td>
+</tr><tr>
+<td><b>Nombre de messages envoyés en erreur :</b></td><td><span class="stats_sen_failed"></span></td>
+</tr><tr>
+<td><b>Heure du dernier message envoyé :</b></td><td><span class="stats_sen_ts"></span></td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </div>
 
+</div>
+
+</div>
+<?php include_file('desktop', 'nodes', 'js', 'openzwave');?>
 <script>
 	var nodes = {};
-	app.load('nodes','plugins/openzwave/ressources/zwaveserver/');
-	app.show('nodes');
+	if (window["app_nodes"]!=undefined){
+		window["app_nodes"].init();
+		window["app_nodes"].show();
+	}
 	$('.tab-pane').height($('#md_modal').height() - 100);
 	$('.tab-pane').css('overflow','scroll');
 </script>

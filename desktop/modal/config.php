@@ -55,13 +55,37 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 	</select>
 </span>
 
-<div class="container-fluid noscrolling">
-	<div id="content"></div>
+<style>
+    .bound-config {
+        width:100%;
+        margin:0px;
+        padding:0px;
+    }
+
+    textarea {
+        width:100%;
+        margin:0px;
+        padding:20px;
+        height:700px;
+        font-size: 14px;
+
+    }
+</style>
+<div id='div_configOpenzwaveAlert' style="display: none;"></div>
+<button id="saveconf" class="btn btn-success pull-left"><i class="fa fa-floppy-o"></i> Sauvegarder les changements</button><br/>
+<br/>
+<div class="bound-config">
+ <textarea id="zwcfgfile" class="boxsizingborder"></textarea>
 </div>
 
+<?php include_file('desktop', 'config', 'js', 'openzwave');?>
 <script>
-	var path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path')+'/';
+var path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path')+'/';
 	var nodes = {};
-	app.load('config','plugins/openzwave/ressources/zwaveserver/');
-	app.show('config');
+	if (window["app_config"]!=undefined){
+		window["app_config"].init();
+		window["app_config"].show();
+	}
+	$('.tab-pane').height($('#md_modal').height() - 100);
+	$('.tab-pane').css('overflow','scroll');
 </script>

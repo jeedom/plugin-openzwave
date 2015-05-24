@@ -58,13 +58,38 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 	</select>
 </span>
 
-<div class="container-fluid noscrolling">
-	<div id="content"></div>
-</div>
+<style>
+#log {
+    width:100%;
+    height:700px;
+    margin:0px;
+    padding:0px;
+    font-size:16px;
+    color:#fff;
+    background-color:#300a24;
+    overflow: scroll;
+    overflow-x: hidden;
+    font-size:16px;
+}
 
+.console-out {
+    padding-left:20px;
+    padding-top:20px;
+}
+</style>
+<div id='div_consoleOpenzwaveAlert' style="display: none;"></div>
+<button type="button" id="startLiveLog" class="btn btn-success pull-left"><i class="fa fa-play"></i> Reprendre</button>
+<button type="button" id="stopLiveLog" class="btn btn-warning pull-left"><i class="fa fa-pause"></i> Pause</button>
+<pre id="log"><div class="console-out"></div></pre>
+
+<?php include_file('desktop', 'console', 'js', 'openzwave');?>
 <script>
-	var path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path')+'/';
+var path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path')+'/';
 	var nodes = {};
-	app.load('console','plugins/openzwave/ressources/zwaveserver/');
-	app.show('console');
+	if (window["app_console"]!=undefined){
+		window["app_console"].init();
+		window["app_console"].show();
+	}
+	$('.tab-pane').height($('#md_modal').height() - 100);
+	$('.tab-pane').css('overflow','scroll');
 </script>
