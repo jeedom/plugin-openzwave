@@ -78,6 +78,11 @@ if ($found) {
 				$value = 'data[0].' . $value;
 			}
 			$cmd->setConfiguration('value', $value);
+			if ($eqLogic->getCnfiguration('device') == 'fibaro.fgrm221') {
+				if ($cmd->getConfiguration('class') == '0x25' && $this->getConfiguration('data[0].val') && $this->getType() == 'info') {
+					$cmd->setConfiguration('class', '0x26');
+				}
+			}
 			$cmd->save();
 		}
 	}
