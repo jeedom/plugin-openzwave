@@ -25,7 +25,7 @@ function pip_install {
 sudo apt-get update --fix-missing
 
 
-if [ $(ps ax | grep z-way-server | wc -l ) -ne 0 ]; then
+if [ $(ps ax | grep z-way-server | grep -v grep | wc -l ) -ne 0 ]; then
   echo "Désactivation du z-way-server"
   sudo service z-way-server stop
   sudo service mongoose stop
