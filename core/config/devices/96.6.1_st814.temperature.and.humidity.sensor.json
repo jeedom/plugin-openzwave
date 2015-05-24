@@ -36,19 +36,19 @@
         },
         "2" : {
             "name" : "Seuil alarme température haute",
-            "help" : "Définit le niveau à partir duquel un évènement ON est envoyé au groupe 2. 99 pour le désactiver"
+            "help" : "Définit la température à partir de laquel un évènement ON est envoyé au groupe 2. 99 pour le désactiver"
         },
         "3" : {
             "name" : "Seuil alarme température basse",
-            "help" : "Définit le niveau en dessous duquel un évènement OFF est envoyé au groupe 2. 99 pour le désactiver"
+            "help" : "Définit la température en dessous de laquel un évènement OFF est envoyé au groupe 2. 99 pour le désactiver"
         },
         "4" : {
             "name" : "Seuil alarme humidité haute",
-            "help" : "Définit le niveau à partir duquel un évènement ON est envoyé au groupe 2. 99 pour le désactiver"
+            "help" : "Définit le niveau d'humidité à partir duquel un évènement ON est envoyé au groupe 2. 99 pour le désactiver"
         },
         "5" : {
             "name" : "Seuil alarme humidité basse",
-            "help" : "Définit le niveau en dessous duquel un évènement OFF est envoyé au groupe 2. 99 pour le désactiver"
+            "help" : "Définit le niveau d'humidité en dessous duquel un évènement OFF est envoyé au groupe 2. 99 pour le désactiver"
         },
         "6" : {
             "name" : "Délai entre 2 rapports",
