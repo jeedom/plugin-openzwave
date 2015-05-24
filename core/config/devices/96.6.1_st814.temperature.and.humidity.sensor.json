@@ -32,7 +32,35 @@
     "configuration": {
         "1" : {
             "name" : "Niveau basic",
-            "help" : "Definie le niveau à partir duquel un evenement est envoyé au groupe 2. 0 pour le desactiver"
+            "help" : "Défini le niveau à partir duquel un evenement est envoyé au groupe 2. 0 pour le desactiver"
+        },
+        "2" : {
+            "name" : "Seuil alarme température haute",
+            "help" : "Definie le niveau à partir duquel un evenement ON est envoyé au groupe 2. 99 pour le desactiver"
+        },
+        "3" : {
+            "name" : "Seuil alarme température basse",
+            "help" : "Defini le niveau en dessous duquel un evenement est OFF envoyé au groupe 2. 99 pour le desactiver"
+        },
+        "4" : {
+            "name" : "Seuil alarme humidité haute",
+            "help" : "Defini le niveau à partir duquel un evenement ON est envoyé au groupe 2. 99 pour le desactiver"
+        },
+        "5" : {
+            "name" : "Seuil alarme humidité basse",
+            "help" : "Defini le niveau en dessous duquel un evenement est OFF envoyé au groupe 2. 99 pour le desactiver"
+        },
+        "6" : {
+            "name" : "Délai entre 2 rapports",
+            "help" : "Defini le délai entre 2 rapport en minute. 0 pour le desactiver"
+        },
+        "7" : {
+            "name" : "Délai entre 2 rapports de température",
+            "help" : "Defini le délai entre 2 rapport de température en minute. 0 pour le desactiver"
+        },
+        "8" : {
+            "name" : "Délai entre 2 rapports d'humidité",
+            "help" : "Defini le délai entre 2 rapport d'humidité en minute. 0 pour le desactiver"
         }
     }
     
