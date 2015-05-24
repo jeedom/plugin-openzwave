@@ -213,10 +213,14 @@ class openzwave extends eqLogic {
 					$eqLogic = self::getEqLogicByLogicalIdAndServerId($explodeKey[1], $serverID);
 					if (is_object($eqLogic)) {
 						$attribut = implode('.', array_slice($explodeKey, 6));
-						foreach ($eqLogic->getCmd('info', $explodeKey[3] . '.0x' . dechex($explodeKey[5]), null, true) as $cmd) {
-							if ($cmd->getConfiguration('value') == '271.1.1_fibaro.fgs221.fil.pilote.json') {
-								$cmd->event($cmd->getPilotWire());
-							} else {
+						if ($eqLogic->getConfiguration('value') == '271.1.1_fibaro.fgs221.fil.pilote.json') {
+							$cmd = $eqLogic->getCmd('info', '0&&1.pilotWire');
+							$cmd->event($cmd->getPilotWire());
+						} else if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && $eqLogic->getConfiguration('product_id') == '4096' && dechex($explodeKey[5]) == '26') {
+							$cmd = $eqLogic->getCmd('info', '0.0x26');
+							$cmd->event($cmd->getRGBColor());
+						} else {
+							foreach ($eqLogic->getCmd('info', $explodeKey[3] . '.0x' . dechex($explodeKey[5]), null, true) as $cmd) {
 								if (strpos(str_replace(array(']', '['), array('', '.'), $cmd->getConfiguration('value')), $attribut) !== false) {
 									$cmd->handleUpdateValue($result);
 								}
@@ -891,6 +895,31 @@ class openzwaveCmd extends cmd {
 			}
 		}
 		$this->event($value, 0);
+	}
+
+	public function getRGBColor() {
+		$eqLogic = $this->getEqLogic();
+		$request = '/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . ']';
+		/* Get RED color */
+		$r = openzwave::callOpenzwave($request . '.instances[2].commandClasses[0x26].data[0].val', $eqLogic->getConfiguration('serverID', 1));
+		/* Get GREEN color */
+		$g = openzwave::callOpenzwave($request . '.instances[3].commandClasses[0x26].data[0].val', $eqLogic->getConfiguration('serverID', 1));
+		/* Get BLUE color */
+		$b = openzwave::callOpenzwave($request . '.instances[4].commandClasses[0x26].data[0].val', $eqLogic->getConfiguration('serverID', 1));
+		//Convertion pour sur une echelle de 0-255
+		$r = dechex(($r / 99) * 255);
+		$g = dechex(($g / 99) * 255);
+		$b = dechex(($b / 99) * 255);
+		if (strlen($r) == 1) {
+			$r = '0' . $r;
+		}
+		if (strlen($g) == 1) {
+			$g = '0' . $g;
+		}
+		if (strlen($b) == 1) {
+			$b = '0' . $b;
+		}
+		return '#' . $r . $g . $b;
 	}
 
 	public function setRGBColor($_color) {
