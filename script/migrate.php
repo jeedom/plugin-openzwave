@@ -66,15 +66,15 @@ if ($found) {
 			}
 			$value = $cmd->getConfiguration('value');
 			preg_match_all("/Set\(([0-9]*)\)/", $value, $matches);
-			if (count($matches) == 2 && is_numeric($matches[1][0]) && $matches[1][0] != '') {
+			if (count($matches) == 2 && @is_numeric($matches[1][0]) && @$matches[1][0] != '') {
 				$value = 'data[0].Set(' . $matches[1][0] . ')';
 			}
 			preg_match_all("/Set\(([0-9]*),([0-9]*)\)/", $value, $matches);
-			if (count($matches) == 3 && is_numeric($matches[1][0]) && $matches[1][0] != '' && is_numeric($matches[2][0]) && $matches[2][0] != '') {
+			if (count($matches) == 3 && @is_numeric($matches[1][0]) && @$matches[1][0] != '' && @is_numeric($matches[2][0]) && @$matches[2][0] != '') {
 				$value = 'data[' . $matches[1][0] . '].Set(' . $matches[2][0] . ')';
 			}
 			preg_match_all("/Set\(([0-9]*),([0-9]*),([0-9]*)\)/", $value, $matches);
-			if (count($matches) == 4 && is_numeric($matches[1][0]) && $matches[1][0] != '' && is_numeric($matches[2][0]) && $matches[2][0] != '' && is_numeric($matches[3][0]) && $matches[3][0] != '') {
+			if (count($matches) == 4 && @is_numeric($matches[1][0]) && @$matches[1][0] != '' && @is_numeric($matches[2][0]) && @$matches[2][0] != '' && @is_numeric($matches[3][0]) && @$matches[3][0] != '') {
 				$value = 'data[0].' . $value;
 			}
 			$cmd->setConfiguration('value', $value);
