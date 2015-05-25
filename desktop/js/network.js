@@ -111,7 +111,7 @@ var app_network = {
         if(data['result']== true){
           app_network.sendOk();
         }else{
-          $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+          $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
         }
       }
     });
@@ -128,7 +128,7 @@ var app_network = {
         if(data['result']== true){
           app_network.sendOk();
         }else{
-         $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+         $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
        }
      }
    });
@@ -145,7 +145,7 @@ var app_network = {
         if(data['result']== true){
           app_network.sendOk();
         }else{
-         $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+         $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
        }
      }
    });
@@ -162,7 +162,7 @@ var app_network = {
         if(data['result']== true){
           app_network.sendOk();
         }else{
-         $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+         $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
        }
      }
    });
@@ -179,7 +179,7 @@ var app_network = {
         if(data['result']== true){
           app_network.sendOk();
         }else{
-         $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+         $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
        }
      }
    });
@@ -235,7 +235,7 @@ var app_network = {
         if(data['result']== true){
           app_network.sendOk();
         }else{
-         $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+         $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
        }
      }
    });
@@ -278,7 +278,7 @@ var app_network = {
        if(data['result']== true){
         app_network.sendOk();
       }else{
-      $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+      $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
      }
    }
  });
@@ -296,7 +296,7 @@ var app_network = {
          if(data['result']== true){
           app_network.sendOk();
         }else{
-         $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+         $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
        }
      }
    });
