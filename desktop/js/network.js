@@ -52,8 +52,7 @@ var app_network = {
      }else{
        alert('You haven\'t confirmed with YES'); 
      }
-            //app_network.addDevice();
-          });
+   });
      $("#tab_graph").off("click").on("click",function() {
       app_network.load_data();
     });
@@ -278,10 +277,10 @@ var app_network = {
        if(data['result']== true){
         app_network.sendOk();
       }else{
-      $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
-     }
-   }
- });
+        $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+      }
+    }
+  });
   },
   hardReset: function(){
     	//TODO: add a confirmation yes/no before execute
@@ -382,7 +381,9 @@ var app_network = {
                     ')');
               });
             var middle = graph.getNode(1);
-            middle.isPinned = true;
+            if(typeof middle !== 'undefined'){
+              middle.isPinned = true;
+            }
             var layout = Viva.Graph.Layout.forceDirected(graph, {
              stableThreshold: 0.9,
              dragCoeff : 0.01,

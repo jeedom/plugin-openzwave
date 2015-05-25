@@ -1,113 +1,85 @@
 
 var app_nodes = {
-    // note variable nodes is global!
-
-    selected_node: 0,
-    groups: [],
-    updater: false,
-    timestampConverter :function(time){
-
-    	if(time==1)
-    		return "N/A";
-    	var ret;
-    	var date = new Date(time*1000);
-    	var hours = date.getHours();
-    	if(hours<10){
-    		hours="0"+hours;
-    	}
-    	var minutes = date.getMinutes();
-    	if(minutes<10){
-    		minutes="0"+minutes;
-    	}
-    	var seconds = date.getSeconds();
-    	if(seconds<10){
-    		seconds="0"+seconds;
-    	}
-    	var num = date.getDate();
-    	if(num<10){
-    		num="0"+num;
-    	}
-    	var month = date.getMonth()+1;
-    	if(month<10){
-    		month="0"+month;
-    	}
-    	var year = date.getFullYear();
-    	var formattedTime = hours + ':' + minutes + ':' + seconds;
-    	var formattedDate = num + "/" + month + "/" + year;
-    	return formattedDate+' '+formattedTime;
-    },
-    init: function()
-    {
-    	app_nodes.load_data();
-    	app_nodes.updater = setInterval(function(){ 
-    		if($('#template-node').is(':visible')){
-    			app_nodes.load_data(); 
-    		}else{
-    			app_nodes.hide();	
-    		}
-    	}, 2000);
-    	$('#node-queryStageDescrition').popover({title: '', placement: 'right', trigger: 'hover'});
-    	$("#node-nav").off("click","li").on("click","li",function() {
-    		var nid = $(this).attr("nid");
-    		app_nodes.selected_node = nid;
-    		app_nodes.draw_nodes();
-    		app_nodes.load_data();
-    		app_nodes.load_stats(app_nodes.selected_node);
-    		app_nodes.show_groups();
-            //app_nodes.load_groups(app_nodes.selected_node);
-        });
-    	/*$("#tab-summary").on("click",function() {
-    		app_nodes.draw_nodes();
-    		app_nodes.load_data();
-    	});
-    	$("#tab-values").on("click",function() {
-    		app_nodes.draw_nodes();
-    		app_nodes.load_data();
-    	});
-    	$("#tab-parameters").on("click",function() {
-    		app_nodes.draw_nodes();
-    		app_nodes.load_data();
-    	});
-$("#tab-systems").on("click",function() {
-            app_nodes.draw_nodes();
-            app_nodes.load_data();
-        });
-        $("#tab-actions").on("click",function() {
-            app_nodes.draw_nodes();
-            app_nodes.load_data();
-        });
-*/
-$("#tab-parameters").off("click").on("click",function() {
-	if(!nodes[app_nodes.selected_node].instances[0].commandClasses[112]){
-		$("#parameters").html('<br><div><b>{{Aucun paramètre prédefini trouvé pour ce noeud}}</b></div><br>');
-		$("#parameters").append('<div class="row"><label class="col-lg-1">{{Paramètre :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">{{Valeur :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">{{Taile :}}</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><button id="sendparamperso" class="btn btn-primary">{{Envoyer le paramètre}}</a></div></div>');
-		$("#sendparamperso").off("click").on("click",function() {
-			var paramId = $("#paramidperso").val();
-			var paramValue = $('#newvalueperso').val();
-			var paramLength = $('#sizeperso').val();
-			$.ajax({ 
-				url: path+"ZWaveAPI/Run/devices["+app_nodes.selected_node+"].commandClasses[0x70].Set("+paramId+","+paramValue+","+paramLength+")", 
-				dataType: 'json',
-				async: true, error: function (request, status, error) {
-					handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
-				},
-				success: function(data) {
-					app_nodes.sendOk();
-				}
-			});
+	selected_node: 0,
+	groups: [],
+	updater: false,
+	timestampConverter :function(time){
+		if(time==1)
+			return "N/A";
+		var ret;
+		var date = new Date(time*1000);
+		var hours = date.getHours();
+		if(hours<10){
+			hours="0"+hours;
+		}
+		var minutes = date.getMinutes();
+		if(minutes<10){
+			minutes="0"+minutes;
+		}
+		var seconds = date.getSeconds();
+		if(seconds<10){
+			seconds="0"+seconds;
+		}
+		var num = date.getDate();
+		if(num<10){
+			num="0"+num;
+		}
+		var month = date.getMonth()+1;
+		if(month<10){
+			month="0"+month;
+		}
+		var year = date.getFullYear();
+		var formattedTime = hours + ':' + minutes + ':' + seconds;
+		var formattedDate = num + "/" + month + "/" + year;
+		return formattedDate+' '+formattedTime;
+	},
+	init: function()
+	{
+		app_nodes.load_data();
+		app_nodes.updater = setInterval(function(){ 
+			if($('#template-node').is(':visible')){
+				app_nodes.load_data(); 
+			}else{
+				app_nodes.hide();	
+			}
+		}, 2000);
+		$('#node-queryStageDescrition').popover({title: '', placement: 'right', trigger: 'hover'});
+		$("#node-nav").off("click","li").on("click","li",function() {
+			var nid = $(this).attr("nid");
+			app_nodes.selected_node = nid;
+			app_nodes.draw_nodes();
+			app_nodes.load_data();
+			app_nodes.load_stats(app_nodes.selected_node);
+			app_nodes.show_groups();
 		});
-	}
-});
+		$("#tab-parameters").off("click").on("click",function() {
+			if(!nodes[app_nodes.selected_node].instances[0].commandClasses[112]){
+				$("#parameters").html('<br><div><b>{{Aucun paramètre prédefini trouvé pour ce noeud}}</b></div><br>');
+				$("#parameters").append('<div class="row"><label class="col-lg-1">{{Paramètre :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">{{Valeur :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">{{Taile :}}</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><button id="sendparamperso" class="btn btn-primary">{{Envoyer le paramètre}}</a></div></div>');
+				$("#sendparamperso").off("click").on("click",function() {
+					var paramId = $("#paramidperso").val();
+					var paramValue = $('#newvalueperso').val();
+					var paramLength = $('#sizeperso').val();
+					$.ajax({ 
+						url: path+"ZWaveAPI/Run/devices["+app_nodes.selected_node+"].commandClasses[0x70].Set("+paramId+","+paramValue+","+paramLength+")", 
+						dataType: 'json',
+						async: true, error: function (request, status, error) {
+							handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
+						},
+						success: function(data) {
+							app_nodes.sendOk();
+						}
+					});
+				});
+			}
+		});
 
 $("#tab-groups").off("click").on("click",function() {
 	app_nodes.show_groups();
-            //app_nodes.load_groups(app_nodes.selected_node);
-        });
+});
 
 $("#tab-stats").off("click").on("click",function() {
-  //app_nodes.draw_nodes();
-  //app_nodes.load_data();
-  app_nodes.load_stats(app_nodes.selected_node);
+	app_nodes.load_stats(app_nodes.selected_node);
 });
 $("body").off("click",".requestNodeNeighboursUpdate").on("click",".requestNodeNeighboursUpdate",function (e) {
 	app_nodes.request_node_neighbours_update(app_nodes.selected_node);
@@ -176,14 +148,13 @@ $("#saveGroups").off("click").on("click",function (e) {
 			handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
 		},
 		success: function(data) {
-	            	//app_nodes.load_groups(app_nodes.selected_node);
-	            	app_nodes.draw_nodes();
-	            	app_nodes.load_data();
-	            	app_nodes.show_groups();
-	            	app_nodes.sendOk();
-	            	$('#groupsModal').modal('hide');
-	            }
-	        });
+			app_nodes.draw_nodes();
+			app_nodes.load_data();
+			app_nodes.show_groups();
+			app_nodes.sendOk();
+			$('#groupsModal').modal('hide');
+		}
+	});
 });
 $("body").off("click",".editValue").on("click",".editValue",function (e) {
 	var idx = $(this).data('valueidx');
@@ -348,8 +319,6 @@ $("#applyValue").off("click").on("click",function (e) {
 				handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
 			},
 			success: function(data) {
-				//app_nodes.draw_nodes();
-				//app_nodes.load_data();
 				app_nodes.sendOk();
 				$('#valuesModal').modal('hide');
 				app_nodes.load_data(); 
@@ -364,8 +333,6 @@ $("#applyValue").off("click").on("click",function (e) {
 				handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
 			},
 			success: function(data) {
-				//app_nodes.draw_nodes();
-				//app_nodes.load_data();
 				app_nodes.sendOk();
 				$('#valuesModal').modal('hide');
 				app_nodes.load_data(); 
@@ -381,8 +348,6 @@ $("#applyValue").off("click").on("click",function (e) {
 				handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
 			},
 			success: function(data) {
-				//app_nodes.draw_nodes();
-				//app_nodes.load_data();
 				app_nodes.sendOk();
 				$('#valuesModal').modal('hide');
 				app_nodes.load_data(); 
@@ -423,16 +388,15 @@ delete_group: function(node_id,group,node){
 		dataType: 'json',
 		async: true, 
 		success: function(data) {
-            	//app_nodes.load_groups(app_nodes.selected_node);
-            	app_nodes.draw_nodes();
-            	app_nodes.load_data();
-            	app_nodes.show_groups();
-            	app_nodes.sendOk();
-            },
-            error: function (request, status, error) {
-            	handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
-            }
-        });
+			app_nodes.draw_nodes();
+			app_nodes.load_data();
+			app_nodes.show_groups();
+			app_nodes.sendOk();
+		},
+		error: function (request, status, error) {
+			handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
+		}
+	});
 },
 request_node_neighbours_update: function(node_id){
 	$.ajax({ 
@@ -666,30 +630,30 @@ hide: function()
 draw_nodes: function ()
 {
 	$("#node-nav").html("");
-        var template_node = $("#template-node").html();
-        var template_variable = $("#template-variable").html();
-        var template_parameter = $("#template-parameter").html();
-        var template_system = $("#template-system").html();
-        
-        if(typeof controller !== 'undefined'){
-        	var networkstate = controller.data.networkstate.value;
-        }else{
-        	var networkstate = 10;
-        }
-        var disabledCommand = networkstate<5;
-        
-        $("#requestNodeNeighboursUpdate").prop("disabled",disabledCommand);
-        $("#healNode").prop("disabled",disabledCommand);
-        $("#testNode").prop("disabled",disabledCommand);
-        $("#refreshNodeValues").prop("disabled",disabledCommand);
-        $("#refreshNodeInfo").prop("disabled",disabledCommand);
-        $("#hasNodeFailed").prop("disabled",disabledCommand);
-        $("#removeFailedNode").prop("disabled",disabledCommand);
-        $("#replaceFailedNode").prop("disabled",disabledCommand);
-        $("#sendNodeInformation").prop("disabled",disabledCommand);
+	var template_node = $("#template-node").html();
+	var template_variable = $("#template-variable").html();
+	var template_parameter = $("#template-parameter").html();
+	var template_system = $("#template-system").html();
 
-        for (z in nodes){
-        	
+	if(typeof controller !== 'undefined'){
+		var networkstate = controller.data.networkstate.value;
+	}else{
+		var networkstate = 10;
+	}
+	var disabledCommand = networkstate<5;
+
+	$("#requestNodeNeighboursUpdate").prop("disabled",disabledCommand);
+	$("#healNode").prop("disabled",disabledCommand);
+	$("#testNode").prop("disabled",disabledCommand);
+	$("#refreshNodeValues").prop("disabled",disabledCommand);
+	$("#refreshNodeInfo").prop("disabled",disabledCommand);
+	$("#hasNodeFailed").prop("disabled",disabledCommand);
+	$("#removeFailedNode").prop("disabled",disabledCommand);
+	$("#replaceFailedNode").prop("disabled",disabledCommand);
+	$("#sendNodeInformation").prop("disabled",disabledCommand);
+
+	for (z in nodes){
+
             // node entry in left hand side navigation list
             var iconcolor="";
             if(nodes[z].data.isFailed){
@@ -697,8 +661,7 @@ draw_nodes: function ()
             }else{
             	var nodeIsFailed = "false";
             }
-        	//var nodeIsFailed = nodes[z].data.isFailed.value=="true";
-        	var queryStage = nodes[z].data.state.value;
+            var queryStage = nodes[z].data.state.value;
 
             // make a copy of node info & variables block template, set its nodeid
             var display = "";
