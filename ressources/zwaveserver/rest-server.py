@@ -306,7 +306,7 @@ class PendingConfiguration(object):
             return 2
         # the parameter have be set succesfully
         return 1
-        
+            
 
 def signal_handler(signal, frame):
     network.write_config()
@@ -329,7 +329,7 @@ options.set_save_configuration(True)
 options.set_poll_interval(60000) #  60 seconds    
 options.set_interval_between_polls(False)         
 options.set_notify_transactions(True) # Notifications when transaction complete is reported.           
-options.set_suppress_value_refresh(True) # if true, notifications for refreshed (but unchanged) values will not be sent.        
+options.set_suppress_value_refresh(False) # if true, notifications for refreshed (but unchanged) values will not be sent.        
 options.set_driver_max_attempts(5)                
 #options.addOptionBool("PerformReturnRoutes", True)
 #options.addOptionBool("AssumeAwake", True)        
@@ -518,17 +518,32 @@ def save_valueAsynchronous(node, value, last_update):
                 #mark result
                 value.pendingConfiguration.data = value.data
         saveNodeValueEvent(node.node_id, int(time.time()), value.command_class, value.index, get_standard_value_type(value.type), extract_data(value, False), change_instance(value))    
+
+def value_added(network, node, value):  
+    debugPrint('value_added. %s %s' % (node.node_id, value.label,)) 
+
+def prepareValueNotification(node, value):
+    if value.genre == 'System' or value.genre == 'Config':
+        return
     
-def value_update(network, node, value):    
+    debugPrint('send value notification %s %s' % (node.node_id, value.label,))  
     thread = None
     try:
         thread = threading.Thread(target=save_valueAsynchronous, args=(node, value, time.time()))
         thread.setDaemon(False)
         thread.start()
     except Exception as error:
-        addLogEntry('value_update %s' % (str(error),),"error")
-        if(thread != None):
+        addLogEntry('value_update %s' % (str(error), ), "error")
+        if (thread != None):
             thread.stop()
+
+def value_update(network, node, value): 
+    debugPrint('value_update. %s %s' % (node.node_id, value.label,))
+    prepareValueNotification(node, value)
+                
+def value_refreshed(network, node, value): 
+    debugPrint('value_refreshed. %s %s' % (node.node_id, value.label,))  
+    value_update(network, node, value)
         
 def scene_event(network, node, scene_id):
     addLogEntry('Scene Activation : %s' % (scene_id,))        
@@ -581,9 +596,15 @@ dispatcher.connect(node_added, ZWaveNetwork.SIGNAL_NODE_ADDED)
 # a node is fully removed from network.
 dispatcher.connect(node_removed, ZWaveNetwork.SIGNAL_NODE_REMOVED)
 # value is add, changed or is refreshed.
-dispatcher.connect(value_update, ZWaveNetwork.SIGNAL_VALUE_ADDED)
+
+# A new node value has been added to OpenZWave's list. 
+# These notifications occur after a node has been discovered, and details of its command classes have been received. 
+# Each command class may generate one or more values depending on the complexity of the item being represented.
+dispatcher.connect(value_added, ZWaveNetwork.SIGNAL_VALUE_ADDED)
+# A node value has been updated from the Z-Wave network and it is different from the previous value.
 dispatcher.connect(value_update, ZWaveNetwork.SIGNAL_VALUE_CHANGED)
-dispatcher.connect(value_update, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
+# A node value has been updated from the Z-Wave network.
+dispatcher.connect(value_refreshed, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
 # when a node sends a Basic_Set command to the controller.
 dispatcher.connect(node_event, ZWaveNetwork.SIGNAL_NODE_EVENT)
 # scene event
