@@ -72,7 +72,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
     }
 </style>
 <div id='div_configOpenzwaveAlert' style="display: none;"></div>
-<button id="saveconf" class="btn btn-success pull-left"><i class="fa fa-floppy-o"></i> Sauvegarder les changements</button><br/>
+<button id="saveconf" class="btn btn-success pull-left"><i class="fa fa-floppy-o"></i> {{Sauvegarder les changements}}</button><br/>
 <br/>
 <div class="bound-config">
  <textarea id="zwcfgfile" class="boxsizingborder"></textarea>

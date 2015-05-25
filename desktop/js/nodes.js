@@ -79,8 +79,8 @@ $("#tab-systems").on("click",function() {
 */
 $("#tab-parameters").off("click").on("click",function() {
 	if(!nodes[app_nodes.selected_node].instances[0].commandClasses[112]){
-		$("#parameters").html('<br><div><b>Aucun paramètre prédefini trouvé pour ce noeud</b></div><br>');
-		$("#parameters").append('<div class="row"><label class="col-lg-1">Paramètre : </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">Valeur : </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">Taile :</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><button id="sendparamperso" class="btn btn-primary">Envoyer le paramètre</a></div></div>');
+		$("#parameters").html('<br><div><b>{{Aucun paramètre prédefini trouvé pour ce noeud}}</b></div><br>');
+		$("#parameters").append('<div class="row"><label class="col-lg-1">{{Paramètre :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">{{Valeur :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">{{Taile :}}</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><button id="sendparamperso" class="btn btn-primary">{{Envoyer le paramètre}}</a></div></div>');
 		$("#sendparamperso").off("click").on("click",function() {
 			var paramId = $("#paramidperso").val();
 			var paramValue = $('#newvalueperso').val();
@@ -151,7 +151,7 @@ $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var group = $(this).data('groupindex');
 	var arr_exists_nodes=nodes[app_nodes.selected_node].groups[group].associations.split(';');
 	modal.find('.modal-body').html(' ');
-	modal.find('.modal-title').text('Group '+group+' : Add an association for node ' + app_nodes.selected_node);
+	modal.find('.modal-title').text('{{Groupe{{ '+group+' : {{Ajouter une association pour ce noeud}} ' + app_nodes.selected_node);
 	var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode">';
 	$.each(nodes, function(key, val) {
 		if(arr_exists_nodes.indexOf(key)==-1 && key!=app_nodes.selected_node){
@@ -227,15 +227,15 @@ $('#valuesModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 
 	}else if(valueType == "Bool"){
 		if(valueValue==true){
-			modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255" checked> ON ');
-			modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0"> OFF ');
+			modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255" checked> {{ON}} ');
+			modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0"> {{OFF}} ');
 		}else{
-			modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255"> ON ');
-			modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0" checked> OFF ');
+			modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255"> {{ON}} ');
+			modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0" checked> {{OFF}} ');
 		}
 	}else if(valueType == "Button"){
-		modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Press" checked> Presser le bouton ');
-		modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Release"> Relacher le bouton ');
+		modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Press" checked> {{Presser le bouton}} ');
+		modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Release"> {{Relacher le bouton}} ');
 	}else{
 		modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" value="'+valueValue+'">');
 	}
@@ -631,10 +631,8 @@ load_stats: function(node_id){
 		success: function(data) {
 			stats = data['statistics'];
 			app_nodes.show_stats();
-                // auto select first node
-                
-            }
-        });
+		}
+	});
 },
 load_groups: function(node_id){
 
@@ -649,31 +647,25 @@ load_groups: function(node_id){
 		success: function(data) {
 			groups = data;
 			app_nodes.show_groups();
-
 		}
 	});
 },
 show: function(){
-
 	if(typeof node_id !== 'undefined' && !isNaN(node_id)){
 		app_nodes.selected_node = node_id;
 	}else{
 		app_nodes.selected_node = 1;
 	}
-        //app_nodes.update();
-        //app_nodes.updater = setInterval(app_nodes.update,2000);
-    },
-    
-    hide: function()
-    {
-    	clearInterval(app_nodes.updater);
-    	openzwave_node_translation = null;
-    },
+},
+hide: function()
+{
+	clearInterval(app_nodes.updater);
+	openzwave_node_translation = null;
+},
 
-    draw_nodes: function ()
-    {
-    	$("#node-nav").html("");
-        //$("#node-content").html("");
+draw_nodes: function ()
+{
+	$("#node-nav").html("");
         var template_node = $("#template-node").html();
         var template_variable = $("#template-variable").html();
         var template_parameter = $("#template-parameter").html();
@@ -710,8 +702,6 @@ show: function(){
 
             // make a copy of node info & variables block template, set its nodeid
             var display = "";
-            //if (app_nodes.selected_node!=z) display = "display:none";
-            //$("#node-content").append("<div class='node' nid="+z+" style='"+display+"'>"+template_node+"</div>");
             if (app_nodes.selected_node==z){
             	$("#node").attr("nid", z);
 	            // select the copied block
@@ -735,7 +725,7 @@ show: function(){
 	            node.find(".node-vendor").html(manufacturerName);
 
 
-	            node.find(".node-zwave-id").html("Identifiant du fabricant : <span class='label label-default'>" +nodes[z].data.manufacturerId.value +"</span> type de produit : <span class='label label-default'>" +nodes[z].data.manufacturerProductType.value + "</span> identifiant du produit : <span class='label label-default'>" + nodes[z].data.manufacturerProductId.value+"</span>");            		
+	            node.find(".node-zwave-id").html("{{Identifiant du fabricant :}} <span class='label label-default'>" +nodes[z].data.manufacturerId.value +"</span> {{type de produit :}} <span class='label label-default'>" +nodes[z].data.manufacturerProductType.value + "</span> {{identifiant du produit :}} <span class='label label-default'>" + nodes[z].data.manufacturerProductId.value+"</span>");            		
 
 	            node.find(".node-lastSeen").html(app_nodes.timestampConverter(nodes[z].data.lastReceived.updateTime));
 
@@ -744,13 +734,13 @@ show: function(){
 	            var basicDeviceClassDescription = "";	            
 	            switch(basicDeviceClass){
 	            	case 1:
-	            	basicDeviceClassDescription = "Controlleur";
+	            	basicDeviceClassDescription = "{{Controlleur}}";
 	            	break;
 	            	case 2:
-	            	basicDeviceClassDescription = "Controlleur static";
+	            	basicDeviceClassDescription = "{{Controlleur static}}";
 	            	break;
 	            	case 3:
-	            	basicDeviceClassDescription = "Esclave";
+	            	basicDeviceClassDescription = "{{Esclave}}";
 	            	break;
 	            	case 4:
 	            	basicDeviceClassDescription = "{{Esclave pouvant être routé}}";
@@ -766,81 +756,81 @@ show: function(){
 	            //The ‘Generic’ device class defines the basic functionality that the devices will support as a controller or slave.	         
 	            switch(genericDeviceClass){
 	            case 1: //REMOTE_CONTROLLER   = 0x01
-	            genericDeviceClassDescription = "Télécommande";
+	            genericDeviceClassDescription = "{{Télécommande}}";
 	            break;
 	            case 2: //STATIC_CONTROLLER   = 0x02,
-	            genericDeviceClassDescription = "Controlleur static";
+	            genericDeviceClassDescription = "{{Controlleur statique}}";
 	            break;
 	            case 3: //AV_CONTROL_POINT    = 0x03,
-	            genericDeviceClassDescription = "A/V controleur";
+	            genericDeviceClassDescription = "{{A/V controleur}}";
 	            break;
 	            case 4: //DISPLAY             = 0x04,
-	            genericDeviceClassDescription = "Afficheur";
+	            genericDeviceClassDescription = "{{Afficheur}}";
 	            break;
 	            case 7: //GARAGE_DOOR             = 0x07,
-	            genericDeviceClassDescription = "Porte de garage";
+	            genericDeviceClassDescription = "{{Porte de garage}}";
 	            break;
 	            case 8: //THERMOSTAT          = 0x08,
-	            genericDeviceClassDescription = "Thermostat";
+	            genericDeviceClassDescription = "{{Thermostat}}";
 	            break;
 	            case 9: //WINDOW_COVERING     = 0x09,
-	            genericDeviceClassDescription = "Fenêtre";
+	            genericDeviceClassDescription = "{{Fenêtre}}";
 	            break;
 	            case 15: //REPEATER_SLAVE      = 0x0f,
-	            genericDeviceClassDescription = "Repéteur esclave";
+	            genericDeviceClassDescription = "{{Repéteur esclave}}";
 	            break;
 	            case 16: //BINARY_SWITCH       = 0x10,
-	            genericDeviceClassDescription = "Interrupteur";
+	            genericDeviceClassDescription = "{{Interrupteur}}";
 	            break;
 	            case 17: //MULTILEVEL_SWITCH   = 0x11,
-	            genericDeviceClassDescription = "Interrupteur multi niveau";
+	            genericDeviceClassDescription = "{{Interrupteur multi niveau}}";
 	            break;
 	            case 18: //REMOTE_SWITCH       = 0x12,
-	            genericDeviceClassDescription = "Interrupteur";
+	            genericDeviceClassDescription = "{{Interrupteur}}";
 	            break;
 	            case 19: // TOGGLE_SWITCH       = 0x13,
-	            genericDeviceClassDescription = "Interrupteur";
+	            genericDeviceClassDescription = "{{Interrupteur}}";
 	            break;
 	            case 20: // Z_IP_GATEWAY       = 0x14,
-	            genericDeviceClassDescription = "Z/IP Gateway";
+	            genericDeviceClassDescription = "{{Z/IP Gateway}}";
 	            break;
 	            case 21: // Z_IP_NODE       = 0x15,
-	            genericDeviceClassDescription = "Z/IP Node";
+	            genericDeviceClassDescription = "{{Z/IP Node}}";
 	            break;
 	            case 22: //VENTILATION         = 0x16,
-	            genericDeviceClassDescription = "Ventilation";
+	            genericDeviceClassDescription = "{{Ventilation}}";
 	            break;
 	            case 30: //REMOTE_SWITCH2       = 0x18,
-	            genericDeviceClassDescription = "Interrupteur";
+	            genericDeviceClassDescription = "{{Interrupteur}}";
 	            break;
 	            case 32: //BINARY_SENSOR       = 0x20,
-	            genericDeviceClassDescription = "Capteur binaire";
+	            genericDeviceClassDescription = "{{Capteur binaire}}";
 	            break;
 	            case 33: //MULTILEVEL_SENSOR   = 0x21
-	            genericDeviceClassDescription = "Capteur multi niveau";
+	            genericDeviceClassDescription = "{{Capteur multi niveau}}";
 	            break;
 	            case 34: //WATER_CONTROL   = 0x22
-	            genericDeviceClassDescription = "Niveau d'eau";
+	            genericDeviceClassDescription = "{{Niveau d'eau}}";
 	            break;
 	            case 48: //PULSE_METER         = 0x30
-	            genericDeviceClassDescription = "Mesure d'impulsion";
+	            genericDeviceClassDescription = "{{Mesure d'impulsion}}";
 	            case 49: //METER         = 0x31
-	            genericDeviceClassDescription = "Mesure";
+	            genericDeviceClassDescription = "{{Mesure}}";
 	            break;
 	            case 64: //ENTRY_CONTROL       = 0x40
-	            genericDeviceClassDescription = "Controle d'entrée";
+	            genericDeviceClassDescription = "{{Controle d'entrée}}";
 	            break;
 	            case 85: //NON_INTEROPERABLE        = 0x55
-	            genericDeviceClassDescription = "Semi-Interoperable";
+	            genericDeviceClassDescription = "{{Semi-Interoperable}}";
 	            break;
 	            case 161: //ALARM_SENSOR        = 0xa1
-	            genericDeviceClassDescription = "Alarme";
+	            genericDeviceClassDescription = "{{Alarme}}";
 	            break;
 	            case 255: //NON_INTEROPERABLE        = 0xff
-	            genericDeviceClassDescription = "Non-Interoperable";
+	            genericDeviceClassDescription = "{{Non-Interoperable}}";
 	            break;	
 	            default:
-	            genericDeviceClassDescription = "Inconnue";
+	            genericDeviceClassDescription = "{{Inconnue}}";
 	            break;
 	        }
 
@@ -854,95 +844,95 @@ show: function(){
 	        var nodeCanSleep = nodes[z].data.can_wake_up.value=="true";
 	        if(nodeCanSleep){
 	        	if(nodes[z].data.isAwake.value=="true"){
-	        		node.find(".node-sleep").html("Réveillé");
+	        		node.find(".node-sleep").html("{{Réveillé}}");
 	        	}
 	        	else{
-	        		node.find(".node-sleep").html("Endormi");
+	        		node.find(".node-sleep").html("{{Endormi}}");
 	        	}
 	        }
 	        else{
-	        	node.find(".node-sleep").html("Secteur");
+	        	node.find(".node-sleep").html("{{Secteur}}");
 	        }
 
 	        if(nodeIsFailed=="true" & networkstate>=7){
 	            	//this warning must stay in place
 	            	isWarning = true;
-	            	warningMessage +="<li>Le controleur pense que ce noeud est en echec, essayé <button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-question'></i> Noeud en échec</button> ou <button type='button' id='testNode' class='btn btn-info'><i class='fa fa-check-square-o'></i> Tester Noeud</button> pour essayer de corriger.</li>"
+	            	warningMessage +="<li>{{Le controleur pense que ce noeud est en echec, essayé}} <button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-question'></i> {{Noeud en échec}}</button> {{ou}} <button type='button' id='testNode' class='btn btn-info'><i class='fa fa-check-square-o'></i> {{Tester Noeud}}</button> {{pour essayer de corriger.}}</li>"
 	            }
 	            
 	            var queryStageDescrition = "";
 	            var queryStageIndex = 0;	            
 	            switch(queryStage){
 	            	case "None":
-	            	queryStageDescrition = "Le processus de demande n'a pas encore commencé pour ce noeud";
+	            	queryStageDescrition = "{{Le processus de demande n'a pas encore commencé pour ce noeud}}";
 	            	queryStageIndex = 0;
 	            	break;
 	            	case "ProtocolInfo":
-	            	queryStageDescrition = "Recuperation des informations du protocole";
+	            	queryStageDescrition = "{{Récupération des informations du protocole}}";
 	            	queryStageIndex = 1;
 	            	break;
 	            	case "Probe":
-	            	queryStageDescrition = "Interrogation du module pour voir si il est en vie";
+	            	queryStageDescrition = "{{Interrogation du module pour voir si il est en vie}}";
 	            	queryStageIndex = 2;
 	            	break;
 	            	case "WakeUp":
-	            	queryStageDescrition = "Debut du processus de reveille du noeud si celui-ci dort";
+	            	queryStageDescrition = "{{Début du processus de reveille du noeud si celui-ci dort}}";
 	            	queryStageIndex = 3;
 	            	break;
 	            	case "ManufacturerSpecific1":
-	            	queryStageDescrition = "Recuperation des paramètre constructeur du noeud";
+	            	queryStageDescrition = "{{Récupération des paramètre constructeur du noeud}}";
 	            	queryStageIndex = 4;
 	            	break;
 	            	case "NodeInfo":
-	            	queryStageDescrition = "Recuperation des informations sur les classe du noeud";
+	            	queryStageDescrition = "{{Récupération des informations sur les classe du noeud}}";
 	            	queryStageIndex = 5;
 	            	break;
 	            	case "SecurityReport":
-	            	queryStageDescrition = "Recuperation des classes de sécurité du noeud";
+	            	queryStageDescrition = "{{Récupération des classes de sécurité du noeud}}";
 	            	queryStageIndex = 6;
 	            	break;
 	            	case "ManufacturerSpecific2":
-	            	queryStageDescrition = "Recuperation des paramètre constructeur du noeud";
+	            	queryStageDescrition = "{{Récupération des paramètre constructeur du noeud}}";
 	            	queryStageIndex = 7;
 	            	break;
 	            	case "Versions":
-	            	queryStageDescrition = "Recuperation des informations de version";
+	            	queryStageDescrition = "{{Récupération des informations de version}}";
 	            	queryStageIndex = 8;
 	            	break;
 	            	case "Instances":
-	            	queryStageDescrition = "Recuperation des informations d'instance du noeud";
+	            	queryStageDescrition = "{{Récupération des informations d'instance du noeud}}";
 	            	queryStageIndex = 9;
 	            	break;
 	            	case "Static":
-	            	queryStageDescrition = "Recuperation des informations statistique";
+	            	queryStageDescrition = "{{Récupération des informations statistiques}}";
 	            	queryStageIndex = 10;
 	            	break;
 	            	case "Probe1":
-	            	queryStageDescrition = "Interrogation du module pour recuperer sa configuration";
+	            	queryStageDescrition = "{{Intérrogation du module pour récupérer sa configuration}}";
 	            	queryStageIndex = 11;
 	            	break;
 	            	case "Associations":
-	            	queryStageDescrition = "Recuperation des informations d'associations";
+	            	queryStageDescrition = "{{Récupération des informations d'associations}}";
 	            	queryStageIndex = 12;
 	            	break;
 	            	case "Neighbors":
-	            	queryStageDescrition = "Recuperation de la liste des voisins";
+	            	queryStageDescrition = "{{Récupération de la liste des voisins}}";
 	            	queryStageIndex = 13;
 	            	break;
 	            	case "Session":
-	            	queryStageDescrition = "Recuperation des informations de sessions";
+	            	queryStageDescrition = "{{Récupération des informations de sessions}}";
 	            	queryStageIndex = 14;
 	            	break;
 	            	case "Dynamic":
-	            	queryStageDescrition = "Recuperation des informations dynamique";
+	            	queryStageDescrition = "{{Récupération des informations dynamique}}";
 	            	queryStageIndex = 15;
 	            	break;
 	            	case "Configuration":
-	            	queryStageDescrition = "Recuperation des informations de configuration";
+	            	queryStageDescrition = "{{Récupération des informations de configuration}}";
 	            	queryStageIndex = 16;
 	            	break;
 	            	case "Complete":
-	            	queryStageDescrition = "Processus de demande d'information sur le noeud complet";
+	            	queryStageDescrition = "{{Processus de demande d'information sur le noeud complet}}";
 	            	queryStageIndex = 17;
 	            	break;	            	
 	            }
@@ -957,13 +947,13 @@ show: function(){
 	            }		         
 	            node.find(".node-maxBaudRate").html(nodes[z].data.maxBaudRate.value);
 	            if(nodes[z].data.isRouting.value=="true"){
-	            	node.find(".node-routing").html("<li>Le noeud à des capacité de routage (capable de faire passer des commandes à d'autre noeuds)</li>");
+	            	node.find(".node-routing").html("<li>{{Le noeud à des capacité de routage (capable de faire passer des commandes à d'autre noeuds)}}</li>");
 	            }
 	            else{
 	            	node.find(".node-routing").html("");
 	            }
 	            if(nodes[z].data.isSecurity.value=="true"){
-	            	node.find(".node-isSecurity").html("<li>Le noeud supporte les caracteristique de sécurité avancées</li>");
+	            	node.find(".node-isSecurity").html("<li>{{Le noeud supporte les caracteristique de sécurité avancées}}</li>");
 	            	/* TODO: display Security Flag
 	            	Security = 0x01
 	            	Controller = 0x02
@@ -974,26 +964,26 @@ show: function(){
 	            	Sensor1000ms = 0x40
 	            	OptionalFunctionality = 0x80 
 	            	*/
-	            	node.find(".node-security").html("Security class: " + nodes[z].data.security.value);
+	            	node.find(".node-security").html("{{Classe de sécurité:}} " + nodes[z].data.security.value);
 	            }
 	            else{
 	            	node.find(".node-isSecurity").html("");
 	            	node.find(".node-security").html("");
 	            }
 	            if(nodes[z].data.isListening.value=="true"){
-	            	node.find(".node-listening").html("<li>Le noeud est alimenté et écoute en permanence</li>");
+	            	node.find(".node-listening").html("<li>{{Le noeud est alimenté et écoute en permanence}}</li>");
 	            }	
 	            else{
 	            	node.find(".node-listening").html("");
 	            }
 	            if(nodes[z].data.isFrequentListening.value=="true"){
-	            	node.find(".node-isFrequentListening").html("<li>Le noeud peut être reveillé</li>");
+	            	node.find(".node-isFrequentListening").html("<li>{{Le noeud peut être reveillé}}</li>");
 	            }
 	            else{
 	            	node.find(".node-isFrequentListening").html("");	
 	            }
 	            if(nodes[z].data.isBeaming.value=="true"){
-	            	node.find(".node-isBeaming").html("<li>Le noeud est capable d'envoyer une trame réseaux</li>");
+	            	node.find(".node-isBeaming").html("<li>{{Le noeud est capable d'envoyer une trame réseaux}}</li>");
 	            }  
 	            else{
 	            	node.find(".node-isBeaming").html("");
@@ -1007,24 +997,24 @@ show: function(){
 	            	else{
 	            		node.find(".node-neighbours").html("...");		  
 	            		if(networkstate>=7){
-	            			warningMessage +="<li>Liste des voisins non disponible <br/>Utilisez <button type='button' id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> Soigner le noeud</button> ou <button type='button' id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> Mise à jour des noeuds voisins</button> pour corriger.</li>";		            	
+	            			warningMessage +="<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <button type='button' id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</button> {{ou}} <button type='button' id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</button> {{pour corriger.}}</li>";		            	
 	            			isWarning = true;
 	            		}
 	            	}
 	            }
 	            else{  
-	            	node.find(".node-neighbours").html("<i>La liste des noeuds voisin n'est pas encore disponible.</i>");
+	            	node.find(".node-neighbours").html("<i>{{La liste des noeuds voisin n'est pas encore disponible.}}</i>");
 	            }
 	            if (queryStageIndex > 7 & productName == ""){
 	            	if(networkstate>=7){
-	            		warningMessage +="<li>Les identifiances constructeur ne sont pas detectées.<br/>Utilisez <button type='button' id='refreshNodeInfo' class='btn btn-success refreshNodeInfo'><i class='fa fa-retweet'></i> Rafraîchir infos du noeud</button> pour corriger</li>";
+	            		warningMessage +="<li>{{Les identifiances constructeur ne sont pas detectées.}}<br/>{{Utilisez}} <button type='button' id='refreshNodeInfo' class='btn btn-success refreshNodeInfo'><i class='fa fa-retweet'></i> {{Rafraîchir infos du noeud}}</button> {{pour corriger}}</li>";
 	            		isWarning = true;	 
 	            	}
 	            }	
 	            
 	            if (isWarning){ 
 	            	if (nodeCanSleep){
-	            		warningMessage += "<br><p>Le noeud est dormant et nécessite un reveil avant qu'une commande puisse être exécutée.<br/>Vous pouvez le reveiller manullement ou attend son délai de reveil.<br/>Voir l'interval de réveille dans l'onglet Système</p>";	            		
+	            		warningMessage += "<br><p>{{Le noeud est dormant et nécessite un reveil avant qu'une commande puisse être exécutée.<br/>Vous pouvez le reveiller manullement ou attend son délai de reveil.}}<br/>{{Voir l'interval de réveille dans l'onglet Système}}</p>";	            		
 	            	}	            	
 	            	node.find(".panel-danger").show();
 	            	node.find(".node-warning").html(warningMessage);
@@ -1192,13 +1182,13 @@ show: function(){
 						}else{
 							var node_name="UNDEFINED";
 						}
-						tr_groups += "<tr gid='"+id+"'><td>"+node_id+" : "+node_name+"</td><td align='right'><button type='button' class='btn btn-danger btn-sm deleteGroup' data-groupindex='"+z+"' data-nodeindex='"+node_id+"'><i class='fa fa-trash-o'></i> Supprimer</button></td></tr>";
+						tr_groups += "<tr gid='"+id+"'><td>"+node_id+" : "+node_name+"</td><td align='right'><button type='button' class='btn btn-danger btn-sm deleteGroup' data-groupindex='"+z+"' data-nodeindex='"+node_id+"'><i class='fa fa-trash-o'></i> {{Supprimer}}</button></td></tr>";
 					}
 				}
 				if(values.length < node_groups[z].maximumAssociations || values[val]==""){
-					var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="'+z+'"><i class="fa fa-plus"></i> Ajouter un noeud</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' (nombre maximum d\'association : '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
+					var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="'+z+'"><i class="fa fa-plus"></i> {{Ajouter un noeud}}</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' {{(nombre maximum d\'association :}} '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
 				}else{
-					var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="'+z+'"><i class="fa fa-plus"></i> Ajouter un noeud</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' (nombre maximum d\'association : '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
+					var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="'+z+'"><i class="fa fa-plus"></i> {{Ajouter un noeud}}</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' {{(nombre maximum d\'association :}} '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
 				}
 				$("#groups").append(newPanel);
 			}

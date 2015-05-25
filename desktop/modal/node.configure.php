@@ -121,68 +121,68 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 <div class='node' nid='' >
 	<div id="template-node" >
 
-		<center><h3><span class="node-productname fixed">inconnu</span> - <span class="node-name fixed">inconnu</span> - Node Id: <span class="node-id">inconnu</span></h3></center>
+		<center><h3><span class="node-productname fixed">{{inconnu}}</span> - <span class="node-name fixed">{{inconnu}}</span> - {{Node Id:}} <span class="node-id">{{inconnu}}</span></h3></center>
 		<div class="container-fluid">
 			<div id="content">
 
 				<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-					<li id="tab-summary" class="active"><a href="#summary" data-toggle="tab"><i class="fa fa-tachometer"></i> Résumé</a></li>
-					<li id="tab-values"><a href="#values" data-toggle="tab"><i class="fa fa-tag"></i> Valeurs</a></li>
-					<li id="tab-parameters"><a href="#parameters" data-toggle="tab"><i class="fa fa-wrench"></i> Paramètres</a></li>
-					<li id="tab-groups"><a href="#groups" data-toggle="tab"><i class="fa fa-users"></i> Associations</a></li>
-					<li id="tab-systems"><a href="#systems" data-toggle="tab"><i class="fa fa-cogs"></i> Systèmes</a></li>
-					<li id="tab-actions"><a href="#actions" data-toggle="tab"><i class="fa fa-sliders"></i> Actions</a></li>
-					<li id="tab-stats"><a href="#statistics" data-toggle="tab"><i class="fa fa-bar-chart"></i> Statistiques</a></li>
+					<li id="tab-summary" class="active"><a href="#summary" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Résumé}}</a></li>
+					<li id="tab-values"><a href="#values" data-toggle="tab"><i class="fa fa-tag"></i> {{Valeurs}}</a></li>
+					<li id="tab-parameters"><a href="#parameters" data-toggle="tab"><i class="fa fa-wrench"></i> {{Paramètres}}</a></li>
+					<li id="tab-groups"><a href="#groups" data-toggle="tab"><i class="fa fa-users"></i> {{Associations}}</a></li>
+					<li id="tab-systems"><a href="#systems" data-toggle="tab"><i class="fa fa-cogs"></i> {{Systèmes}}</a></li>
+					<li id="tab-actions"><a href="#actions" data-toggle="tab"><i class="fa fa-sliders"></i> {{Actions}}</a></li>
+					<li id="tab-stats"><a href="#statistics" data-toggle="tab"><i class="fa fa-bar-chart"></i> {{Statistiques}}</a></li>
 
-					<li id="li_state" class="pull-right alert" style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;"><span style="position:relative; top : -7px;">Envoi OK</span></li>
+					<li id="li_state" class="pull-right alert" style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;"><span style="position:relative; top : -7px;">{{Envoi OK}}</span></li>
 				</ul>
 				<div id="my-tab-content" class="tab-content">
 					<div class="tab-pane active" id="summary">
 						<br>
 						<div id="panel-danger" class="panel panel-danger template">
 							<div class="panel-heading">
-								<h4 class="panel-title"><i class="fa fa-exclamation-circle"></i> Attention</h4>
+								<h4 class="panel-title"><i class="fa fa-exclamation-circle"></i> {{Attention}}</h4>
 							</div>
 							<div class="panel-body">
-								<p><span class="node-warning">inconnu</span></p>
+								<p><span class="node-warning">{{inconnu}}</span></p>
 							</div>
 						</div>
 						<div class="panel panel-primary template">
 							<div class="panel-heading">
-								<h4 class="panel-title"><i class="fa fa-info-circle"></i> Informations Noeud</h4>
+								<h4 class="panel-title"><i class="fa fa-info-circle"></i> {{Informations Noeud}}</h4>
 							</div>
 							<div class="panel-body">
-								<p>{{Objet parent :}}<b><span class="node-location label label-default">inconnu</span></b></p>
-								<p>{{Nom de l'équipement :}}<b><span class="node-name label label-default">inconnu</span></b></p>
-								<p>{{Modèle :}}<b><span class="node-productname label label-default">inconnu</span></b></p>
-								<p>{{Fabricant :}}<b><span class="node-vendor label label-default">inconnu</span></b></p>
-								<p><span class="node-zwave-id default">inconnu</span></p>
-								<p>{{Etat des demandes :}}<b><span class="node-queryStage label label-default">inconnu</span></b>  <i class="fa fa-info-circle" id="node-queryStageDescrition"></i></p>
-								<p>{{Etat :}} <b><span class="node-sleep label label-default">inconnu</span></b></p>
-								<p>{{Dernier message :}}<b><span class="node-lastSeen label label-default">inconnu</span></b></p>
-								<p>{{Voisins : }}<span class="node-neighbours label label-default">inconnu</span></p>
+								<p>{{Objet parent :}}<b><span class="node-location label label-default">{{inconnu}}</span></b></p>
+								<p>{{Nom de l'équipement :}}<b><span class="node-name label label-default">{{inconnu}}</span></b></p>
+								<p>{{Modèle :}}<b><span class="node-productname label label-default">{{inconnu}}</span></b></p>
+								<p>{{Fabricant :}}<b><span class="node-vendor label label-default">{{inconnu}}</span></b></p>
+								<p><span class="node-zwave-id default">{{inconnu}}</span></p>
+								<p>{{Etat des demandes :}}<b><span class="node-queryStage label label-default">{{inconnu}}</span></b>  <i class="fa fa-info-circle" id="node-queryStageDescrition"></i></p>
+								<p>{{Etat :}} <b><span class="node-sleep label label-default">{{inconnu}}</span></b></p>
+								<p>{{Dernier message :}}<b><span class="node-lastSeen label label-default">{{inconnu}}</span></b></p>
+								<p>{{Voisins : }}<span class="node-neighbours label label-default">{{inconnu}}</span></p>
 							</div>
 						</div>
 						<div class="panel panel-primary template">
 							<div class="panel-heading">
-								<h4 class="panel-title"><i class="fa fa-info-circle"></i> Classe du module</h4>
+								<h4 class="panel-title"><i class="fa fa-info-circle"></i> {{Classe du module}}</h4>
 							</div>
 							<div class="panel-body">
-								Basique : <b><span class="node-basic label label-default">inconnu</span></b>
+								{{Basique :}} <b><span class="node-basic label label-default">{{inconnu}}</span></b>
 								<br/>
-								Générique : <b><span class="node-generic label label-default">inconnu</span></b>
+								{{Générique :}} <b><span class="node-generic label label-default">{{inconnu}}</span></b>
 								<br/>
-								Spécifique : <b><span class="node-specific label label-default">inconnu</span></b></p>
+								{{Spécifique :}} <b><span class="node-specific label label-default">{{inconnu}}</span></b></p>
 							</div>
 						</div>
 
 
 						<div class="panel panel-primary template">
 							<div class="panel-heading">
-								<h4 class="panel-title"><i class="fa fa-info-circle"></i> Informations Protocole</h4>
+								<h4 class="panel-title"><i class="fa fa-info-circle"></i> {{Informations Protocole}}</h4>
 							</div>
 							<div class="panel-body">
-								<p>Vitesse maximale de communication du module :<b><span class="node-maxBaudRate"></span></b> bit/sec</p>
+								<p>{{Vitesse maximale de communication du module :}}<b><span class="node-maxBaudRate"></span></b> {{bit/sec}}</p>
 								<b><span class="node-routing"></span></b>
 								<b><span class="node-isSecurity"></span></b>
 								<b><span class="node-listening"></span></b>
@@ -224,16 +224,16 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 				<div class="tab-pane" id="values">
 					<table class="table table-striped">
 						<tr>
-							<th>Nom</th>
-							<th>Valeur</th>
-							<th>Modifier valeur</th>
-							<th>Classe de commande</th>
-							<th>Instance</th>
-							<th>Index</th>
-							<th>Type</th>
-							<th>Fréquence d'interrogation du module</th>
-							<th>Modifier la fréquence d'interrogation</th>
-							<th>Date de mise à jour</th>
+							<th>{{Nom}}</th>
+							<th>{{Valeur}}</th>
+							<th>{{Modifier valeur}}</th>
+							<th>{{Classe de commande}}</th>
+							<th>{{Instance}}</th>
+							<th>{{Index}}</th>
+							<th>{{Type}}</th>
+							<th>{{Fréquence d'interrogation du module}}</th>
+							<th>{{Modifier la fréquence d'interrogation}}</th>
+							<th>{{Date de mise à jour}}</th>
 						</tr>
 						<tr id="template-variable" style="display:none">
 							<td key="variable-name"></td>
@@ -255,12 +255,12 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 					<div style="overflow: scroll;height : 100%;max-height: 96%;">
 						<table class="table table-striped">
 							<tr>
-								<th>Index</th>
-								<th>Nom</th>
-								<th>Type</th>
-								<th>Valeur</th>
-								<th>Modifier</th>
-								<th>Aide</th>
+								<th>{{Index}}</th>
+								<th>{{Nom}}</th>
+								<th>{{Type}}</th>
+								<th>{{Valeur}}</th>
+								<th>{{Modifier}}</th>
+								<th>{{Aide}}</th>
 							</tr>
 							<tr id="template-parameter" style="display:none">
 								<td key="parameter-index"></td>
@@ -276,13 +276,13 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 					</div>
 				</div>
 				<div class="tab-pane" id="groups">
-					<button type="button" id="addGroup" class="btn btn-primary addGroup"><i class="fa fa-plus"></i> Ajouter une association</button>
+					<button type="button" id="addGroup" class="btn btn-primary addGroup"><i class="fa fa-plus"></i> {{Ajouter une association}}</button>
 					<br>
 
 					<table class="table table-striped">
 						<tr>
-							<th>ID du groupe</th>
-							<th>ID de noeud</th>
+							<th>{{ID du groupe}}</th>
+							<th>{{ID de noeud}}</th>
 							<th></th>
 						</tr>
 						<tr id="template-group" style="display:none">
@@ -297,14 +297,14 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 				<div class="tab-pane" id="systems">
 					<table class="table table-striped">
 						<tr>
-							<th>Nom</th>
-							<th>Valeur</th>
-							<th>Modifier</th>
-							<th>Classe de la commande</th>
-							<th>Instance</th>
-							<th>Index</th>
-							<th>Type</th>
-							<th>Date de mise à jour</th>
+							<th>{{Nom}}</th>
+							<th>{{Valeur}}</th>
+							<th>{{Modifier}}</th>
+							<th>{{Classe de la commande}}</th>
+							<th>{{Instance}}</th>
+							<th>{{Index}}</th>
+							<th>{{Type}}</th>
+							<th>{{Date de mise à jour}}</th>
 						</tr>
 						<tr id="template-system" style="display:none">
 							<td key="system-name"></td>
@@ -324,40 +324,40 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 				<div class="tab-pane" id="actions">
 					<table class="table table-striped">
 						<tr>
-							<td><button type="button" id="requestNodeNeighboursUpdate" class="btn btn-primary requestNodeNeighboursUpdate"><i class="fa fa-sitemap"></i> Mise à jour des noeuds voisins</button></td>
-							<td>Force la mise à jour de la liste des noeuds voisin</td>
+							<td><button type="button" id="requestNodeNeighboursUpdate" class="btn btn-primary requestNodeNeighboursUpdate"><i class="fa fa-sitemap"></i> {{Mise à jour des noeuds voisins}}</button></td>
+							<td>{{Force la mise à jour de la liste des noeuds voisin}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="healNode" class="btn btn-success healNode"><i class="fa fa-medkit"></i> Soigner le noeud</button></td>
-							<td>Soigner un noeud du réseau.</td>
+							<td><button type="button" id="healNode" class="btn btn-success healNode"><i class="fa fa-medkit"></i> {{Soigner le noeud}}</button></td>
+							<td>{{Soigner un noeud du réseau.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="testNode" class="btn btn-info"><i class="fa fa-check-square-o"></i> Tester Noeud</button></td>
-							<td>Tester le noeud. Envoyer une série de message à un noeud pour le tester.</td>
+							<td><button type="button" id="testNode" class="btn btn-info"><i class="fa fa-check-square-o"></i> {{Tester Noeud}}</button></td>
+							<td>{{Tester le noeud. Envoyer une série de message à un noeud pour le tester.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="refreshNodeValues" class="btn btn-success"><i class="fa fa-refresh"></i> Rafraîchir valeurs du noeud</button></td>
-							<td>Déclenche une actualisation manuelle des valeurs du noeud.</td>
+							<td><button type="button" id="refreshNodeValues" class="btn btn-success"><i class="fa fa-refresh"></i> {{Rafraîchir valeurs du noeud}}</button></td>
+							<td>{{Déclenche une actualisation manuelle des valeurs du noeud.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="refreshNodeInfo" class="btn btn-success refreshNodeInfo"><i class="fa fa-retweet"></i> Rafraîchir infos du noeud</button></td>
-							<td>Déclencher l'obtention des données du noeud. <br>Les données du noeud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.</td>
+							<td><button type="button" id="refreshNodeInfo" class="btn btn-success refreshNodeInfo"><i class="fa fa-retweet"></i> {{Rafraîchir infos du noeud}}</button></td>
+							<td>{{Déclencher l'obtention des données du noeud.}} <br>{{Les données du noeud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="hasNodeFailed" class="btn btn-primary hasNodeFailed"><i class="fa fa-question"></i> Noeud en échec</button></td>
-							<td>Vérifie si le noeud est dans la liste des noeuds en erreur.</td>
+							<td><button type="button" id="hasNodeFailed" class="btn btn-primary hasNodeFailed"><i class="fa fa-question"></i> {{Noeud en échec}}</button></td>
+							<td>{{Vérifie si le noeud est dans la liste des noeuds en erreur.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="removeFailedNode" class="btn btn-danger"><i class="fa fa-times"></i> Supprimer noeud en erreur</button></td>
-							<td>Supprime le noeud du controleur<br>Le noeud doit être en échec.</td>
+							<td><button type="button" id="removeFailedNode" class="btn btn-danger"><i class="fa fa-times"></i> {{Supprimer noeud en erreur}}</button></td>
+							<td>{{Supprime le noeud du controleur}}<br>{{Le noeud doit être en échec.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="replaceFailedNode" class="btn btn-warning"><i class="fa fa-repeat"></i> Remplacer noeud en échec</button></td>
-							<td>Remplace un module en échec par un autre. Si le noeud n'est pas dans la liste des noeuds en échec sur le contrôleur, ou que le noeud répond, la commande va échouer.</td>
+							<td><button type="button" id="replaceFailedNode" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Remplacer noeud en échec}}</button></td>
+							<td>{{Remplace un module en échec par un autre. Si le noeud n'est pas dans la liste des noeuds en échec sur le contrôleur, ou que le noeud répond, la commande va échouer.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="sendNodeInformation" class="btn btn-info"><i class="fa fa-info-circle"></i> Envoi infos du noeud</button></td>
-							<td>Envoi une trame d'info au noeud (NIF).</td>
+							<td><button type="button" id="sendNodeInformation" class="btn btn-info"><i class="fa fa-info-circle"></i> {{Envoi infos du noeud}}</button></td>
+							<td>{{Envoi une trame d'info au noeud (NIF).}}</td>
 						</tr>
 					</table>
 				</div>
@@ -382,31 +382,31 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 						    -->
 						    <table class="table table-striped table-condensed">
 						    	<tr>
-						    		<td><b>Temps de demande moyen (ms) :</b></td><td><span class="stats_av_req_rtt"></span></td>
+						    		<td><b>{{Temps de demande moyen (ms) :}}</b></td><td><span class="stats_av_req_rtt"></span></td>
 						    	</tr><tr>
-						    	<td><b>Temps de réponse moyen (ms) :</b></td><td><span class="stats_av_res_rtt"></span></td>
+						    	<td><b>{{Temps de réponse moyen (ms) :}}</b></td><td><span class="stats_av_res_rtt"></span></td>
 						    </tr><tr>
-						    <td><b>Dernier message de réponse RTT:</b></td><td><span class="stats_la_req_rtt"></span></td>
+						    <td><b>{{Dernier message de réponse RTT:}}</b></td><td><span class="stats_la_req_rtt"></span></td>
 						</tr><tr>
-						<td><b>Dernière réponse RTT :</b></td><td><span class="stats_la_res_rtt"></span></td>
+						<td><b>{{Dernière réponse RTT :}}</b></td><td><span class="stats_la_res_rtt"></span></td>
 					</tr><tr>
-					<td><b>Qualité de la communication avec ce noeud :</b></td><td><span class="stats_quality"></span></td>
+					<td><b>{{Qualité de la communication avec ce noeud :}}</b></td><td><span class="stats_quality"></span></td>
 				</tr><tr>
-				<td><b>Nombre de messages reçus par ce noeud :</b></td><td><span class="stats_rec_cnt"></span></td>
+				<td><b>{{Nombre de messages reçus par ce noeud :}}</b></td><td><span class="stats_rec_cnt"></span></td>
 			</tr><tr>
-			<td><b>Nombre de messages reçus en double :</b></td><td><span class="stats_rec_dups"></span></td>
+			<td><b>{{Nombre de messages reçus en double :}}</b></td><td><span class="stats_rec_dups"></span></td>
 		</tr><tr>
-		<td><b>Heure du dernier message reçu :</b></td><td><span class="stats_rec_ts"></span></td>
+		<td><b>{{Heure du dernier message reçu :}}</b></td><td><span class="stats_rec_ts"></span></td>
 	</tr><tr>
-	<td><b>Nombre de messages reçus spontanément :</b></td><td><span class="stats_rec_uns"></span></td>
+	<td><b>{{Nombre de messages reçus spontanément :}}</b></td><td><span class="stats_rec_uns"></span></td>
 </tr><tr>
-<td><b>Nombre de tentatives d'envoi :</b></td><td><span class="stats_retries"></span></td>
+<td><b>{{Nombre de tentatives d'envoi :}}</b></td><td><span class="stats_retries"></span></td>
 </tr><tr>
-<td><b>Nombre de messages envoyés par ce noeud :</b></td><td><span class="stats_sen_cnt"></span></td>
+<td><b>{{Nombre de messages envoyés par ce noeud :}}</b></td><td><span class="stats_sen_cnt"></span></td>
 </tr><tr>
-<td><b>Nombre de messages envoyés en erreur :</b></td><td><span class="stats_sen_failed"></span></td>
+<td><b>{{Nombre de messages envoyés en erreur :}}</b></td><td><span class="stats_sen_failed"></span></td>
 </tr><tr>
-<td><b>Heure du dernier message envoyé :</b></td><td><span class="stats_sen_ts"></span></td>
+<td><b>{{Heure du dernier message envoyé :}}</b></td><td><span class="stats_sen_ts"></span></td>
 </tr>
 </table>
 </div>

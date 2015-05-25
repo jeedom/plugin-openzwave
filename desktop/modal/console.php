@@ -78,8 +78,8 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 }
 </style>
 <div id='div_consoleOpenzwaveAlert' style="display: none;"></div>
-<button type="button" id="startLiveLog" class="btn btn-success pull-left"><i class="fa fa-play"></i> Reprendre</button>
-<button type="button" id="stopLiveLog" class="btn btn-warning pull-left"><i class="fa fa-pause"></i> Pause</button>
+<button type="button" id="startLiveLog" class="btn btn-success pull-left"><i class="fa fa-play"></i> {{Reprendre}}</button>
+<button type="button" id="stopLiveLog" class="btn btn-warning pull-left"><i class="fa fa-pause"></i> {{Pause}}</button>
 <pre id="log"><div class="console-out"></div></pre>
 
 <?php include_file('desktop', 'console', 'js', 'openzwave');?>
