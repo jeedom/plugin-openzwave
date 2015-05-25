@@ -2,7 +2,7 @@
 .J'ai le message d'erreur suivant :
 	ImportError: No module named flask
 	Impossible de lancer le démon openzwave, vérifiez le portTraceback (most recent call last):
-	File "/usr/share/nginx/www/jeedom/plugins/openzwave/ressources/zwaveserver/rest-server.py", line 2, in <module>
+	File "/usr/share/nginx/www/jeedom/plugins/openzwave/ressources/zwaveserver/openZWave.py", line 2, in <module>
 	from flask import Flask, jsonify, abort, request, make_response, redirect, url_for
 	ImportError: No module named flask
 --
