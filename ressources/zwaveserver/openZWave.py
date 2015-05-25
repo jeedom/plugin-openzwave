@@ -74,7 +74,6 @@ except :
     from openzwave.option import ZWaveOption
     from openzwave.group import ZWaveGroup
     
-import time
 from louie import dispatcher, All
 
 device="/dev/zwave-aeon-s2"
@@ -520,12 +519,20 @@ def save_valueAsynchronous(node, value, last_update):
         saveNodeValueEvent(node.node_id, int(time.time()), value.command_class, value.index, get_standard_value_type(value.type), extract_data(value, False), change_instance(value))    
 
 def value_added(network, node, value):  
-    debugPrint('value_added. %s %s' % (node.node_id, value.label,)) 
+    #debugPrint('value_added. %s %s' % (node.node_id, value.label,)) 
+    #mark initial data for skip notification durring interview
+    value.lastData = value.data 
 
 def prepareValueNotification(node, value):
     if value.genre == 'System' or value.genre == 'Config':
         return
     
+    if not node.isReady :
+        #check if have the attribute
+        if hasattr(value, 'lastData') and value.lastData == value.data :
+            #we skip notification to avoid value refresh durring the interview process
+            return
+        
     debugPrint('send value notification %s %s' % (node.node_id, value.label,))  
     thread = None
     try:
@@ -538,11 +545,11 @@ def prepareValueNotification(node, value):
             thread.stop()
 
 def value_update(network, node, value): 
-    debugPrint('value_update. %s %s' % (node.node_id, value.label,))
+    #debugPrint('value_update. %s %s' % (node.node_id, value.label,))
     prepareValueNotification(node, value)
                 
 def value_refreshed(network, node, value): 
-    debugPrint('value_refreshed. %s %s' % (node.node_id, value.label,))  
+    #debugPrint('value_refreshed. %s %s' % (node.node_id, value.label,))  
     value_update(network, node, value)
         
 def scene_event(network, node, scene_id):
