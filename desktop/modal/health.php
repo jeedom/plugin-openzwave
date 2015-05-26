@@ -53,7 +53,7 @@ foreach ($serverList as $id => $server) {
 foreach (openzwave::byType('openzwave') as $eqLogic) {
 	$info = $eqLogic->getInfo($infos[$eqLogic->getConfiguration('serverID')]);
 	echo "<tr>";
-	echo "<td><a href='index.php?v=d&m=openzwave&p=openzwave&id=" . $eqLogic->getId() . "'>" . $eqLogic->getHumanName() . "</a></td>";
+	echo "<td><a href='index.php?v=d&m=openzwave&p=openzwave&id=" . $eqLogic->getId() . "'>" . $eqLogic->getHumanName(true) . "</a></td>";
 	echo "<td>" . $eqLogic->getLogicalId() . "</td>";
 	echo "<td>" . $serverList[$eqLogic->getConfiguration('serverID')]['name'] . "</td>";
 	if (isset($info['queryStage']['value']) && $info['queryStage']['value'] != '') {
