@@ -90,6 +90,11 @@ $('#bt_zwaveConfig').on('click', function () {
     $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=config').dialog('open');
 });
 
+$('#bt_zwaveHealth').on('click', function () {
+    $('#md_modal').dialog({title: "{{Santé zwave}}"});
+    $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=health').dialog('open');
+});
+
 $('#bt_zwaveConsole').on('click', function () {
     $('#md_modal').dialog({title: "{{Console zwave}}"});
     $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=console').dialog('open');

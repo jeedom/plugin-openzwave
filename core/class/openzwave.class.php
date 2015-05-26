@@ -511,6 +511,99 @@ class openzwave extends eqLogic {
 				);
 			}
 
+			if (isset($results['data']['state'])) {
+				$queryStage=$results['data']['state']['value'];
+				$queryStageDescrition = "";
+	            $queryStageIndex = 0;
+	            switch($queryStage){
+	            	case "None":
+		            	$queryStageDescrition = "{{Le processus de demande n a pas encore commencé pour ce noeud}}";
+		            	$queryStageIndex = 0;
+		            	break;
+	            	case "ProtocolInfo":
+		            	$queryStageDescrition = "{{Récupération des informations du protocole}}";
+		            	$queryStageIndex = 1;
+		            	break;
+	            	case "Probe":
+		            	$queryStageDescrition = "{{Interrogation du module pour voir si il est en vie}}";
+		            	$queryStageIndex = 2;
+		            	break;
+	            	case "WakeUp":
+		            	$queryStageDescrition = "{{Début du processus de reveil du noeud si celui-ci dort}}";
+		            	$queryStageIndex = 3;
+		            	break;
+	            	case "ManufacturerSpecific1":
+		            	$queryStageDescrition = "{{Récupération des paramètres constructeur du noeud}}";
+		            	$queryStageIndex = 4;
+		            	break;
+	            	case "NodeInfo":
+		            	$queryStageDescrition = "{{Récupération des informations sur les classes du noeud}}";
+		            	$queryStageIndex = 5;
+		            	break;
+	            	case "SecurityReport":
+		            	$queryStageDescrition = "{{Récupération des classes de sécurité du noeud}}";
+		            	$queryStageIndex = 6;
+		            	break;
+	            	case "ManufacturerSpecific2":
+		            	$queryStageDescrition = "{{Récupération des paramètres constructeur du noeud}}";
+		            	$queryStageIndex = 7;
+		            	break;
+	            	case "Versions":
+		            	$queryStageDescrition = "{{Récupération des informations de version}}";
+		            	$queryStageIndex = 8;
+		            	break;
+	            	case "Instances":
+		            	$queryStageDescrition = "{{Récupération des informations d instance du noeud}}";
+		            	$queryStageIndex = 9;
+		            	break;
+	            	case "Static":
+		            	$queryStageDescrition = "{{Récupération des informations statistiques}}";
+		            	$queryStageIndex = 10;
+		            	break;
+	            	case "Probe1":
+		            	$queryStageDescrition = "{{Intérrogation du module pour récupérer sa configuration}}";
+		            	$queryStageIndex = 11;
+		            	break;
+	            	case "Associations":
+		            	$queryStageDescrition = "{{Récupération des informations d associations}}";
+		            	$queryStageIndex = 12;
+		            	break;
+	            	case "Neighbors":
+		            	$queryStageDescrition = "{{Récupération de la liste des voisins}}";
+		            	$queryStageIndex = 13;
+		            	break;
+	            	case "Session":
+		            	$queryStageDescrition = "{{Récupération des informations de sessions}}";
+		            	$queryStageIndex = 14;
+		            	break;
+	            	case "Dynamic":
+		            	$queryStageDescrition = "{{Récupération des informations dynamiques}}";
+		            	$queryStageIndex = 15;
+		            	break;
+	            	case "Configuration":
+		            	$queryStageDescrition = "{{Récupération des informations de configuration}}";
+		            	$queryStageIndex = 16;
+		            	break;
+	            	case "Complete":
+		            	$queryStageDescrition = "{{Processus de demande d information sur le noeud complet}}";
+		            	$queryStageIndex = 17;
+		            	break;	            	
+	            }	
+				$return['queryStage'] = array(
+					'value' => $queryStage,
+					'index' => $queryStageIndex,
+					'description' => $queryStageDescrition,
+					'datetime' => date('Y-m-d H:i:s'),
+				);
+			}
+
+			if (isset($results['instances'][0]) && isset($results['instances'][0]['commandClasses'][132])) {
+				$return['wakeup'] = array(
+					'value' => $results['instances'][0]['commandClasses'][132]['data']['interval']['value'],
+					'datetime' => date('Y-m-d H:i:s', $results['instances'][0]['commandClasses'][132]['data']['updateTime']),
+				);
+			}
+
 			if ((isset($return['battery']) && $return['battery']['value'] != '') || (isset($return['state']) && $return['state']['value'] == __('Endormi', __FILE__))) {
 				$return['powered'] = array(
 					'value' => false,
@@ -645,6 +738,10 @@ class openzwave extends eqLogic {
 		if ($this->getConfiguration('applyConfFile') != $this->getConfiguration('fileconf') && $this->getConfiguration('fileconf') != '') {
 			$this->loadCmdFromConf();
 		}
+	}
+	
+	public function sendNoOperation() {
+		return self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].TestNetwork()', $this->getConfiguration('serverID', 1));
 	}
 
 	public function getConfFilePath($_all = false) {

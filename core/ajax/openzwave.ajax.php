@@ -92,6 +92,14 @@ try {
 		}
 		ajax::success();
 	}
+	
+	if (init('action') == 'sendNoOperation') {
+		$eqLogic = openzwave::byId(init('id'));
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('Zwave eqLogic non trouvé : ', __FILE__) . init('id'));
+		}
+		ajax::success($eqLogic->sendNoOperation());
+	}
 
 	if (init('action') == 'changeIncludeState') {
 		openzwave::changeIncludeState(init('mode'), init('state'), init('serverID'));
