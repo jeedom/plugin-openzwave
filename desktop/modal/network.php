@@ -191,7 +191,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 							<td>{{Redémarrage du contrôleur. Redémarre le contrôleur sans effacer les paramètres de sa configuration réseau.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="hardReset" class="btn btn-danger"><i class="fa fa-eraser"></i> Remise à zéro}}</button></td>
+							<td><button type="button" id="hardReset" class="btn btn-danger"><i class="fa fa-eraser"></i> {{Remise à zéro}}</button></td>
 							<td>{{Remise à zéro du contrôleur.}} <b>{{Remet à zéro un contrôleur et efface ses paramètres de configuration réseau.}}</b><br> {{Le contrôleur devient un contrôleur primaire, prêt pour ajouter de nouveaux modules à un nouveau réseau.}}</td>
 						</tr>
 					</table>
