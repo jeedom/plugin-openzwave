@@ -488,12 +488,21 @@ class openzwave extends eqLogic {
 		}
 
 		if (isset($results['data'])) {
-			if (isset($results['data']['isAwake'])) {
-				$return['state'] = array(
-					'value' => ($results['data']['isAwake']['value']) ? __('Réveillé', __FILE__) : __('Endormi', __FILE__),
-					'datetime' => date('Y-m-d H:i:s', $results['data']['isAwake']['updateTime']),
-				);
+			if (isset($results['data']['isAwake']) && $results['instances'][0]['commandClasses'][128]['data']['supported']['value'] === true) {
+				if($results['data']['isAwake']['value']){
+					$state=__('Réveillé', __FILE__);
+				}else{
+					$state= __('Endormi', __FILE__);
+				}
+				
+			}else{
+				$state=__('Sur secteur', __FILE__);
 			}
+			$return['state'] = array(
+				'value' => $state,
+				'datetime' => date('Y-m-d H:i:s', $results['data']['isAwake']['updateTime']),
+			);
+			
 			if (isset($results['data']['isFailed'])) {
 				$return['state']['value'] = ($results['data']['isFailed']['value']) ? 'Dead' : $return['state']['value'];
 			}
