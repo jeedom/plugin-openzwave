@@ -1831,6 +1831,12 @@ def GetNetworkStatus():
                      'isStaticUpdateController': network.controller.is_static_update_controller,
                      'isBridgeController': network.controller.is_bridge_controller
                      }
+    if networkInformations.actualMode == ControllerMode.AddDevice:
+        networkStatus['controllerState']= AddDevice
+    elif networkInformations.actualMode == ControllerMode.RemoveDevice:
+        networkStatus['controllerState']= RemoveDevice
+    else:
+        networkStatus['controllerState']= Idle
     return jsonify(networkStatus)
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].ReplaceFailedNode()',methods = ['GET'])
@@ -2155,7 +2161,7 @@ def GetControllerStatus() :
                 public_controller['data']['nodeId']={'value':network.controller.node_id}            
                             
                 #if the controller is flag as busy I set the coresponding networkInformations.controllerState, if not yet busy, I ignore the actual ControllerMode
-                if networkInformations.controllerIsBusy == False :
+                if networkInformations.controllerIsBusy :
                     if networkInformations.actualMode == ControllerMode.AddDevice:
                         public_controller['data']['controllerState']={'value':AddDevice}
                     elif networkInformations.actualMode == ControllerMode.RemoveDevice:
