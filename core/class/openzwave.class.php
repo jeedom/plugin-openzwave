@@ -258,7 +258,7 @@ class openzwave extends eqLogic {
 				$eqLogic->setIsEnable(1);
 				$eqLogic->setLogicalId($nodeId);
 				if (isset($result['data']['product_name']['value']) && trim($result['data']['product_name']['value']) != '') {
-					$eqLogic->setName($eqLogic->getLogicalId() . ' - ' . $result['data']['product_name']['value']);
+					$eqLogic->setName($eqLogic->getLogicalId() . ' ' . $result['data']['product_name']['value']);
 				} else {
 					$eqLogic->setName('Device ' . $nodeId);
 				}
@@ -275,11 +275,18 @@ class openzwave extends eqLogic {
 			} else {
 				if (isset($result['data']['product_name']['value'])) {
 					$eqLogic->setConfiguration('product_name', $result['data']['product_name']['value']);
-					$eqLogic->setConfiguration('manufacturer_id', $result['data']['manufacturerId']['value']);
-					$eqLogic->setConfiguration('product_type', $result['data']['manufacturerProductType']['value']);
-					$eqLogic->setConfiguration('product_id', $result['data']['manufacturerProductId']['value']);
-					$eqLogic->save();
 				}
+				if (isset($result['data']['manufacturerId']['value'])) {
+					$eqLogic->setConfiguration('manufacturer_id', $result['data']['manufacturerId']['value']);
+				}
+				if (isset($result['data']['manufacturerProductType']['value'])) {
+					$eqLogic->setConfiguration('product_type', $result['data']['manufacturerProductType']['value']);
+				}
+				if (isset($result['data']['manufacturerProductId']['value'])) {
+					$eqLogic->setConfiguration('product_id', $result['data']['manufacturerProductId']['value']);
+				}
+				$eqLogic->save();
+
 			}
 		}
 		if (config::byKey('autoRemoveExcludeDevice', 'openzwave') == 1) {

@@ -677,7 +677,7 @@ draw_nodes: function ()
 	            if(nodes[z].data.name.value == ''){
 	            	var name ='';
 	            }else{
-	            	var name = nodes[z].data.location.value+' '+nodes[z].data.name.value;
+	            	var name = nodes[z].data.name.value;
 	            }
 	            var location = nodes[z].data.location.value;
 	            var productName = nodes[z].data.product_name.value;
