@@ -511,11 +511,7 @@ def save_valueAsynchronous(node, value, last_update):
         #mark as seen flag
         myNode.last_update=last_update
         #if value.genre != 'Basic':
-        value.last_update=last_update 
-        if hasattr(value, 'pendingConfiguration' ):
-            if(value.pendingConfiguration != None):
-                #mark result
-                value.pendingConfiguration.data = value.data
+        value.last_update=last_update         
         saveNodeValueEvent(node.node_id, int(time.time()), value.command_class, value.index, get_standard_value_type(value.type), extract_data(value, False), change_instance(value))    
 
 def value_added(network, node, value):  
@@ -524,6 +520,11 @@ def value_added(network, node, value):
     value.lastData = value.data 
 
 def prepareValueNotification(node, value):
+    if hasattr(value, 'pendingConfiguration' ):
+        if(value.pendingConfiguration != None):
+            #mark result
+            value.pendingConfiguration.data = value.data
+                
     if value.genre == 'System' or value.genre == 'Config':
         return
     
@@ -533,7 +534,7 @@ def prepareValueNotification(node, value):
             #we skip notification to avoid value refresh durring the interview process
             return
         
-    debugPrint('send value notification %s %s' % (node.node_id, value.label,))  
+    debugPrint('send value notification %s %s %s' % (node.node_id, value.label, value.data_as_string))  
     thread = None
     try:
         thread = threading.Thread(target=save_valueAsynchronous, args=(node, value, time.time()))
