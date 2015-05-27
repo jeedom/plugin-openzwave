@@ -352,11 +352,8 @@ class openzwave extends eqLogic {
 		shell_exec('sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/updateConf.sh');
 		if (file_exists('/tmp/updatedConfOpenzwave')) {
 			$change = file_get_contents('/tmp/updatedConfOpenzwave');
-			if ($change != '') {
-				$changes = explode("/n", $change);
-				foreach ($changes as &$change) {
-					$change = str_replace('/config/', '', $change);
-				}
+			if (trim($change) != '') {
+				self::runDeamon();
 			}
 		}
 		foreach (self::byType('openzwave') as $openzwave) {
