@@ -1213,7 +1213,7 @@ class openzwaveCmd extends cmd {
 			$request .= '.instances[0]';
 		}
 		$request .= '.commandClasses[' . $this->getConfiguration('class') . ']';
-		$request .= '.' . str_replace(',', '%2C', $value);
+		$request .= '.' . str_replace(' ', '%20', str_replace(',', '%2C', $value));
 		return $this->sendZwaveResquest($request);
 	}
 
