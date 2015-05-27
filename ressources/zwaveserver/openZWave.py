@@ -1458,6 +1458,25 @@ def setValue8(device_id,instance_id, cc_id, index, value) :
         addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(Value)
 
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<string:value>)',methods = ['GET'])
+def setValue9(device_id,instance_id, cc_id, index, value) :
+    debugPrint("setValue8 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (device_id, instance_id, cc_id, index, value,))
+    Value = {}
+    if(device_id in network.nodes) :
+        for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
+            if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
+                Value['data'] = {}
+                network.nodes[device_id].values[val].data=value
+                Value['data'][val] = {'val': value}
+                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
+                    #dimmer don't report the final value until the value changes is completed
+                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, val))
+                    waitrefresh.start()
+                return jsonify(Value) 
+    else:
+        addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+    return jsonify(Value)
+
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Set(<string:value>)',methods = ['GET'])
 def setValue6(device_id, instance_id, cc_id, value) :
     debugPrint("setValue6 nodeId:%s instance:%s commandClasses:%s  data:%s" % (device_id, instance_id, cc_id,  value,))
@@ -1498,6 +1517,8 @@ def setValue6(device_id, instance_id, cc_id, value) :
     else:
         addLogEntry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(Value)
+
+
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()',methods = ['GET'])
 def pressButton(device_id,instance_id, cc_id, index) :
