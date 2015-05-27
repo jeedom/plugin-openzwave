@@ -812,6 +812,9 @@ class openzwave extends eqLogic {
 									} else {
 										$cmd_name = $data['name'] . ' ' . $index;
 									}
+									if (strpos($cmd_name, 'Unknown') !== false || strpos($cmd_name, 'Unused') !== false) {
+										continue;
+									}
 									if (!$data['write_only']) {
 										$cmd_info = new openzwaveCmd();
 										$cmd_info->setType('info');
@@ -836,6 +839,9 @@ class openzwave extends eqLogic {
 											case 'float':
 												$cmd_info->setSubType('numeric');
 												$cmd_info->setIsHistorized(1);
+												break;
+											default:
+												$cmd_info->setSubType('other');
 												break;
 										}
 										$cmd_info->save();
@@ -923,6 +929,9 @@ class openzwave extends eqLogic {
 												break;
 											case 'List':
 												foreach (explode(';', $data['data_items']) as $value) {
+													if (strpos($value, 'Unknown') !== false || strpos($cmd_name, 'Unused') !== false) {
+														continue;
+													}
 													$cmd = new openzwaveCmd();
 													$cmd->setType('action');
 													$cmd->setEqLogic_id($this->getId());
