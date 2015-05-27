@@ -363,9 +363,9 @@ class openzwave extends eqLogic {
 
 /*     * ********************************************************************** */
 /*     * ***********************OPENZWAVE MANAGEMENT*************************** */
-	public static function updateOpenzwave() {
+	public static function updateOpenzwave($_mode = 'master') {
 		log::remove('openzwave_update');
-		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh';
+		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh ' . $_mode;
 		$cmd .= ' >> ' . log::getPathToLog('openzwave_update') . ' 2>&1 &';
 		exec($cmd);
 	}

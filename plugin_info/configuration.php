@@ -75,7 +75,8 @@ foreach ($deamonRunningSlave as $name => $status) {
 					<a class="btn btn-warning" id="bt_migrateZwave"><i class="fa fa-ship"></i> {{Migrer}}</a>
 				</div>
 			</div>
-			<?php }?>
+			<?php }
+?>
 
 		</fieldset>
 	</form>
@@ -89,7 +90,8 @@ if (jeedom::isCapable('sudo')) {
 	echo '<div class="form-group">
 				<label class="col-lg-4 control-label">{{Installer/Mettre à jour OpenZwave en local}}</label>
 				<div class="col-lg-3">
-					<a class="btn btn-danger" id="bt_installDeps"><i class="fa fa-check"></i> {{Lancer}}</a>
+					<a class="btn btn-warning bt_installDeps" data-mode="master"><i class="fa fa-check"></i> {{Stable}}</a>
+					<a class="btn btn-danger bt_installDeps" data-mode="dev"><i class="fa fa-check"></i> {{Developpement}}</a>
 				</div>
 			</div>';
 } else {
@@ -173,11 +175,12 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 ?>
 
 <script>
-	$('#bt_installDeps').on('click',function(){
+	$('.bt_installDeps').on('click',function(){
+		var mode = $(this).attr('data-mode');
 		bootbox.confirm('{{Etes-vous sûr de vouloir installer/mettre à jour Openzwave ? }}', function (result) {
 			if (result) {
 				$('#md_modal').dialog({title: "{{Installation / Mise à jour}}"});
-				$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=update.openzwave').dialog('open');
+				$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=update.openzwave&mode='+mode).dialog('open');
 			}
 		});
 	});

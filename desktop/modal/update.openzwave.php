@@ -28,7 +28,8 @@ if (!isConnect('admin')) {
 		type: 'POST',
 		url: 'plugins/openzwave/core/ajax/openzwave.ajax.php',
 		data: {
-			action: 'updateOpenzwave'
+			action: 'updateOpenzwave',
+			mode : '<?php echo init('mode');?>'
 		},
 		dataType: 'json',
 		global: false,
@@ -70,7 +71,7 @@ if (!isConnect('admin')) {
 					}
 				}
 				$('#pre_openzwaveupdate').text(log);
-				
+
 				$('#pre_openzwaveupdate').scrollTop($('#pre_openzwaveupdate').height() + 200000);
 				if (!$('#pre_openzwaveupdate').is(':visible')) {
 					_autoUpdate = 0;
