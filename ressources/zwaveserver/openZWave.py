@@ -1724,7 +1724,7 @@ def get_device(fromtime):
             public_controller['data']['nodeId']={'value':network.controller.node_id}            
                         
             #if the controller is flag as busy I set the coresponding networkInformations.controllerState, if not yet busy, I ignore the actual ControllerMode
-            if networkInformations.controllerIsBusy == False :
+            if networkInformations.controllerIsBusy  :
                 if networkInformations.actualMode == ControllerMode.AddDevice:
                     public_controller['data']['controllerState']={'value':AddDevice}
                 elif networkInformations.actualMode == ControllerMode.RemoveDevice:
