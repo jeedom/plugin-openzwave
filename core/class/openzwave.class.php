@@ -373,13 +373,8 @@ class openzwave extends eqLogic {
 	public static function cron() {
 		$port = config::byKey('port', 'openzwave', 'none');
 		if ($port != 'none') {
-			if ($port == 'auto' || file_exists(jeedom::getUsbMapping($port))) {
-				if (!self::deamonRunning()) {
-					self::runDeamon();
-				}
-				message::removeAll('openzwave', 'noOpenzwaveComPort');
-			} else {
-				log::add('openzwave', 'error', __('Le port du openZwave est vide ou n\'existe pas', __FILE__), 'noOpenzwaveComPort');
+			if (!self::deamonRunning()) {
+				self::runDeamon();
 			}
 		}
 	}
@@ -395,6 +390,7 @@ class openzwave extends eqLogic {
 			}
 			exec('sudo chmod 777 ' . $port . ' > /dev/null 2>&1');
 		}
+		message::removeAll('openzwave', 'noOpenzwaveComPort');
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
 		$openzwave_path = realpath(dirname(__FILE__) . '/../../ressources/zwaveserver');
 		$log = ($_debug) ? 'Debug' : 'Info';
@@ -489,20 +485,20 @@ class openzwave extends eqLogic {
 
 		if (isset($results['data'])) {
 			if (isset($results['data']['isAwake']) && $results['instances'][0]['commandClasses'][128]['data']['supported']['value'] === true) {
-				if($results['data']['isAwake']['value']){
-					$state=__('Réveillé', __FILE__);
-				}else{
-					$state= __('Endormi', __FILE__);
+				if ($results['data']['isAwake']['value']) {
+					$state = __('Réveillé', __FILE__);
+				} else {
+					$state = __('Endormi', __FILE__);
 				}
-				
-			}else{
-				$state=__('Sur secteur', __FILE__);
+
+			} else {
+				$state = __('Sur secteur', __FILE__);
 			}
 			$return['state'] = array(
 				'value' => $state,
 				'datetime' => date('Y-m-d H:i:s', $results['data']['isAwake']['updateTime']),
 			);
-			
+
 			if (isset($results['data']['isFailed'])) {
 				$return['state']['value'] = ($results['data']['isFailed']['value']) ? 'Dead' : $return['state']['value'];
 			}
@@ -521,83 +517,83 @@ class openzwave extends eqLogic {
 			}
 
 			if (isset($results['data']['state'])) {
-				$queryStage=$results['data']['state']['value'];
+				$queryStage = $results['data']['state']['value'];
 				$queryStageDescrition = "";
-	            $queryStageIndex = 0;
-	            switch($queryStage){
-	            	case "None":
-		            	$queryStageDescrition = "{{Le processus de demande n a pas encore commencé pour ce noeud}}";
-		            	$queryStageIndex = 0;
-		            	break;
-	            	case "ProtocolInfo":
-		            	$queryStageDescrition = "{{Récupération des informations du protocole}}";
-		            	$queryStageIndex = 1;
-		            	break;
-	            	case "Probe":
-		            	$queryStageDescrition = "{{Interrogation du module pour voir si il est en vie}}";
-		            	$queryStageIndex = 2;
-		            	break;
-	            	case "WakeUp":
-		            	$queryStageDescrition = "{{Début du processus de reveil du noeud si celui-ci dort}}";
-		            	$queryStageIndex = 3;
-		            	break;
-	            	case "ManufacturerSpecific1":
-		            	$queryStageDescrition = "{{Récupération des paramètres constructeur du noeud}}";
-		            	$queryStageIndex = 4;
-		            	break;
-	            	case "NodeInfo":
-		            	$queryStageDescrition = "{{Récupération des informations sur les classes du noeud}}";
-		            	$queryStageIndex = 5;
-		            	break;
-	            	case "SecurityReport":
-		            	$queryStageDescrition = "{{Récupération des classes de sécurité du noeud}}";
-		            	$queryStageIndex = 6;
-		            	break;
-	            	case "ManufacturerSpecific2":
-		            	$queryStageDescrition = "{{Récupération des paramètres constructeur du noeud}}";
-		            	$queryStageIndex = 7;
-		            	break;
-	            	case "Versions":
-		            	$queryStageDescrition = "{{Récupération des informations de version}}";
-		            	$queryStageIndex = 8;
-		            	break;
-	            	case "Instances":
-		            	$queryStageDescrition = "{{Récupération des informations d instance du noeud}}";
-		            	$queryStageIndex = 9;
-		            	break;
-	            	case "Static":
-		            	$queryStageDescrition = "{{Récupération des informations statistiques}}";
-		            	$queryStageIndex = 10;
-		            	break;
-	            	case "Probe1":
-		            	$queryStageDescrition = "{{Intérrogation du module pour récupérer sa configuration}}";
-		            	$queryStageIndex = 11;
-		            	break;
-	            	case "Associations":
-		            	$queryStageDescrition = "{{Récupération des informations d associations}}";
-		            	$queryStageIndex = 12;
-		            	break;
-	            	case "Neighbors":
-		            	$queryStageDescrition = "{{Récupération de la liste des voisins}}";
-		            	$queryStageIndex = 13;
-		            	break;
-	            	case "Session":
-		            	$queryStageDescrition = "{{Récupération des informations de sessions}}";
-		            	$queryStageIndex = 14;
-		            	break;
-	            	case "Dynamic":
-		            	$queryStageDescrition = "{{Récupération des informations dynamiques}}";
-		            	$queryStageIndex = 15;
-		            	break;
-	            	case "Configuration":
-		            	$queryStageDescrition = "{{Récupération des informations de configuration}}";
-		            	$queryStageIndex = 16;
-		            	break;
-	            	case "Complete":
-		            	$queryStageDescrition = "{{Processus de demande d information sur le noeud complet}}";
-		            	$queryStageIndex = 17;
-		            	break;	            	
-	            }	
+				$queryStageIndex = 0;
+				switch ($queryStage) {
+					case "None":
+						$queryStageDescrition = "{{Le processus de demande n a pas encore commencé pour ce noeud}}";
+						$queryStageIndex = 0;
+						break;
+					case "ProtocolInfo":
+						$queryStageDescrition = "{{Récupération des informations du protocole}}";
+						$queryStageIndex = 1;
+						break;
+					case "Probe":
+						$queryStageDescrition = "{{Interrogation du module pour voir si il est en vie}}";
+						$queryStageIndex = 2;
+						break;
+					case "WakeUp":
+						$queryStageDescrition = "{{Début du processus de reveil du noeud si celui-ci dort}}";
+						$queryStageIndex = 3;
+						break;
+					case "ManufacturerSpecific1":
+						$queryStageDescrition = "{{Récupération des paramètres constructeur du noeud}}";
+						$queryStageIndex = 4;
+						break;
+					case "NodeInfo":
+						$queryStageDescrition = "{{Récupération des informations sur les classes du noeud}}";
+						$queryStageIndex = 5;
+						break;
+					case "SecurityReport":
+						$queryStageDescrition = "{{Récupération des classes de sécurité du noeud}}";
+						$queryStageIndex = 6;
+						break;
+					case "ManufacturerSpecific2":
+						$queryStageDescrition = "{{Récupération des paramètres constructeur du noeud}}";
+						$queryStageIndex = 7;
+						break;
+					case "Versions":
+						$queryStageDescrition = "{{Récupération des informations de version}}";
+						$queryStageIndex = 8;
+						break;
+					case "Instances":
+						$queryStageDescrition = "{{Récupération des informations d instance du noeud}}";
+						$queryStageIndex = 9;
+						break;
+					case "Static":
+						$queryStageDescrition = "{{Récupération des informations statistiques}}";
+						$queryStageIndex = 10;
+						break;
+					case "Probe1":
+						$queryStageDescrition = "{{Intérrogation du module pour récupérer sa configuration}}";
+						$queryStageIndex = 11;
+						break;
+					case "Associations":
+						$queryStageDescrition = "{{Récupération des informations d associations}}";
+						$queryStageIndex = 12;
+						break;
+					case "Neighbors":
+						$queryStageDescrition = "{{Récupération de la liste des voisins}}";
+						$queryStageIndex = 13;
+						break;
+					case "Session":
+						$queryStageDescrition = "{{Récupération des informations de sessions}}";
+						$queryStageIndex = 14;
+						break;
+					case "Dynamic":
+						$queryStageDescrition = "{{Récupération des informations dynamiques}}";
+						$queryStageIndex = 15;
+						break;
+					case "Configuration":
+						$queryStageDescrition = "{{Récupération des informations de configuration}}";
+						$queryStageIndex = 16;
+						break;
+					case "Complete":
+						$queryStageDescrition = "{{Processus de demande d information sur le noeud complet}}";
+						$queryStageIndex = 17;
+						break;
+				}
 				$return['queryStage'] = array(
 					'value' => $queryStage,
 					'index' => $queryStageIndex,
@@ -748,7 +744,7 @@ class openzwave extends eqLogic {
 			$this->loadCmdFromConf();
 		}
 	}
-	
+
 	public function sendNoOperation() {
 		return self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].TestNetwork()', $this->getConfiguration('serverID', 1));
 	}
@@ -816,6 +812,9 @@ class openzwave extends eqLogic {
 									} else {
 										$cmd_name = $data['name'] . ' ' . $index;
 									}
+									if (strpos($cmd_name, 'Unknown') !== false || strpos($cmd_name, 'Unused') !== false) {
+										continue;
+									}
 									if (!$data['write_only']) {
 										$cmd_info = new openzwaveCmd();
 										$cmd_info->setType('info');
@@ -841,6 +840,9 @@ class openzwave extends eqLogic {
 												$cmd_info->setSubType('numeric');
 												$cmd_info->setIsHistorized(1);
 												break;
+											default:
+												$cmd_info->setSubType('string');
+												break;
 										}
 										$cmd_info->save();
 									}
@@ -860,6 +862,14 @@ class openzwave extends eqLogic {
 													$cmd->setName($cmd_name . ' On');
 													$cmd->setConfiguration('value', 'data[' . $index . '].Set(255)');
 												}
+												if (is_object($cmd_info)) {
+													$cmd->setValue($cmd_info->getId());
+													$cmd->setTemplate('dashboard', 'light');
+													$cmd->setTemplate('mobile', 'light');
+													$cmd_info->setIsVisible(0);
+													$cmd_info->save();
+
+												}
 												$cmd->save();
 
 												$cmd = new openzwaveCmd();
@@ -876,6 +886,13 @@ class openzwave extends eqLogic {
 													$cmd->setName($cmd_name . ' Off');
 													$cmd->setConfiguration('value', 'data[' . $index . '].Set(0)');
 												}
+												if (is_object($cmd_info)) {
+													$cmd->setValue($cmd_info->getId());
+													$cmd->setTemplate('dashboard', 'light');
+													$cmd->setTemplate('mobile', 'light');
+													$cmd_info->setIsVisible(0);
+													$cmd_info->save();
+												}
 												$cmd->save();
 												break;
 											case 'int':
@@ -889,6 +906,8 @@ class openzwave extends eqLogic {
 												$cmd->setSubType('slider');
 												if (is_object($cmd_info)) {
 													$cmd->setValue($cmd_info->getId());
+													$cmd_info->setIsVisible(0);
+													$cmd_info->save();
 												}
 												$cmd->save();
 												break;
@@ -903,11 +922,16 @@ class openzwave extends eqLogic {
 												$cmd->setSubType('slider');
 												if (is_object($cmd_info)) {
 													$cmd->setValue($cmd_info->getId());
+													$cmd_info->setIsVisible(0);
+													$cmd_info->save();
 												}
 												$cmd->save();
 												break;
 											case 'List':
 												foreach (explode(';', $data['data_items']) as $value) {
+													if (strpos($value, 'Unknown') !== false || strpos($cmd_name, 'Unused') !== false) {
+														continue;
+													}
 													$cmd = new openzwaveCmd();
 													$cmd->setType('action');
 													$cmd->setEqLogic_id($this->getId());

@@ -92,7 +92,7 @@ try {
 		}
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'sendNoOperation') {
 		$eqLogic = openzwave::byId(init('id'));
 		if (!is_object($eqLogic)) {
@@ -146,6 +146,7 @@ try {
 	if (init('action') == 'checkDoc') {
 		try {
 			$request_http = new com_http('http://doc.jeedom.fr/fr_FR/' . init('doc'));
+			$request_http->setNoReportError(true);
 			$result = $request_http->exec(1, 1);
 			if (trim($result) != '' && strpos($result, '404 Not Found') === false) {
 				ajax::success(1);
