@@ -856,6 +856,14 @@ class openzwave extends eqLogic {
 													$cmd->setName($cmd_name . ' On');
 													$cmd->setConfiguration('value', 'data[' . $index . '].Set(255)');
 												}
+												if (is_object($cmd_info)) {
+													$cmd->setValue($cmd_info->getId());
+													$cmd->setTemplate('dashboard', 'light');
+													$cmd->setTemplate('mobile', 'light');
+													$cmd_info->setIsVisible(0);
+													$cmd_info->save();
+
+												}
 												$cmd->save();
 
 												$cmd = new openzwaveCmd();
@@ -872,6 +880,13 @@ class openzwave extends eqLogic {
 													$cmd->setName($cmd_name . ' Off');
 													$cmd->setConfiguration('value', 'data[' . $index . '].Set(0)');
 												}
+												if (is_object($cmd_info)) {
+													$cmd->setValue($cmd_info->getId());
+													$cmd->setTemplate('dashboard', 'light');
+													$cmd->setTemplate('mobile', 'light');
+													$cmd_info->setIsVisible(0);
+													$cmd_info->save();
+												}
 												$cmd->save();
 												break;
 											case 'int':
@@ -885,6 +900,8 @@ class openzwave extends eqLogic {
 												$cmd->setSubType('slider');
 												if (is_object($cmd_info)) {
 													$cmd->setValue($cmd_info->getId());
+													$cmd_info->setIsVisible(0);
+													$cmd_info->save();
 												}
 												$cmd->save();
 												break;
@@ -899,6 +916,8 @@ class openzwave extends eqLogic {
 												$cmd->setSubType('slider');
 												if (is_object($cmd_info)) {
 													$cmd->setValue($cmd_info->getId());
+													$cmd_info->setIsVisible(0);
+													$cmd_info->save();
 												}
 												$cmd->save();
 												break;
