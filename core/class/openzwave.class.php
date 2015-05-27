@@ -841,7 +841,7 @@ class openzwave extends eqLogic {
 												$cmd_info->setIsHistorized(1);
 												break;
 											default:
-												$cmd_info->setSubType('other');
+												$cmd_info->setSubType('string');
 												break;
 										}
 										$cmd_info->save();
