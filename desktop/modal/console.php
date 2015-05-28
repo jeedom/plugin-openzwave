@@ -85,6 +85,11 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 <?php include_file('desktop', 'console', 'js', 'openzwave');?>
 <script>
 var path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path')+'/';
+$("#sel_zwaveNetworkServerId").on("change",function() {
+	path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path')+'/';
+    window["app_console"].init();
+	window["app_console"].show();
+});
 	var nodes = {};
 	if (window["app_console"]!=undefined){
 		window["app_console"].init();
