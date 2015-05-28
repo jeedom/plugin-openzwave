@@ -375,8 +375,8 @@ def network_awaked(network):
     recovering_failed_nodes()
 
 def network_ready(network):
-    write_config()
     add_log_entry("Openzwave network is ready with %d nodes (%d are sleeping). All nodes are queried, the network is fully functionnal." % (network.nodes_count, get_sleeping_nodes_count(),))   
+    write_config()
     networkInformations.assignControllerNotification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is ready")
     recovering_failed_nodes()
 
@@ -398,19 +398,13 @@ def node_new(network, node_id):
     force_refresh_nodes.append(node_id)    
     
 def node_added(network, node):
-    timestamp = int(time.time())    
-    #notify jeedom
-    #save_node_event(network.controller.node_id, int(time.time()), Idle)    
-    network.nodes[node.node_id].last_update=time.time()    
-    add_log_entry('A node has been added to OpenZWave list. %s.' % (node,))
-    save_node_event(node.node_id, timestamp, "added") 
+    add_log_entry('A node has been added to OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
+    node.last_update=time.time()   
+    save_node_event(node.node_id, int(time.time()), "added") 
         
 def node_removed(network, node):
-    timestamp = int(time.time())    
-    #notify jeedom
-    #save_node_event(network.controller.node_id, int(time.time()), Idle)
-    add_log_entry('A node has been removed from OpenZWave list. %s.' % (node,))
-    save_node_event(node.node_id, timestamp, "removed")
+    add_log_entry('A node has been removed from OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
+    save_node_event(node.node_id, int(time.time()), "removed")
 
 def get_standard_value_type(valueType):
     if valueType == "Int" :
@@ -484,14 +478,14 @@ def write_config():
         networkInformations.configFileSaveInProgress = False
 
 def essential_node_queries_complete(network, node):   
-    debug_print('The essential queries on a node have been completed. %s' % (node,))    
+    debug_print('The essential queries on a node have been completed. id:[%s] model:[%s].' % (node.node_id, node.product_name,))   
     timestamp = int(time.time())
     myNode = network.nodes[node.node_id]
     myNode.last_update=time.time()   
     #at this time is not good to save value, I skip this step                                    
 
 def node_queries_complete(network, node):
-    debug_print('All the initialisation queries on a node have been completed. %s' % (node,))        
+    debug_print('All the initialisation queries on a node have been completed. id:[%s] model:[%s].' % (node.node_id, node.product_name,))        
     node.last_update=time.time()  
     #save config 
     write_config() 
@@ -600,6 +594,7 @@ def node_event(network, node, value):
 def node_group_changed(network, node):
     debug_print('Group changed for nodeId %s' % (node.node_id,)) 
     #TODO: reset group changed for pending associations
+
 
 #app = Flask(__name__, static_url_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'static')))
 app = Flask(__name__, static_url_path = '/static')
