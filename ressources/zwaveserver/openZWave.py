@@ -335,7 +335,8 @@ options.set_driver_max_attempts(5)
 options.addOptionInt("RetryTimeout", 6000)
 options.addOptionString("NetworkKey","0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10",True)
 options.lock()
-       
+
+force_refresh_nodes = []    
 
 def save_node_event(node_id, timestamp, value):
     global con
@@ -391,15 +392,19 @@ def nodes_queried(network):
 def nodes_queried_some_dead(network):
     write_config()  
     add_log_entry("All nodes have been queried, but some node ar mark dead") 
+
+def node_new(network, node_id):
+    add_log_entry('A new node (%s), not already stored in zwcfg*.xml file, was found.' % (node_id,))
+    force_refresh_nodes.append(node_id)    
     
 def node_added(network, node):
     timestamp = int(time.time())    
     #notify jeedom
     #save_node_event(network.controller.node_id, int(time.time()), Idle)    
     network.nodes[node.node_id].last_update=time.time()    
-    add_log_entry('A new node has been added to OpenZWave list. %s.' % (node,))
-    save_node_event(node.node_id, timestamp, "added")  
-
+    add_log_entry('A node has been added to OpenZWave list. %s.' % (node,))
+    save_node_event(node.node_id, timestamp, "added") 
+        
 def node_removed(network, node):
     timestamp = int(time.time())    
     #notify jeedom
@@ -486,20 +491,32 @@ def essential_node_queries_complete(network, node):
     #at this time is not good to save value, I skip this step                                    
 
 def node_queries_complete(network, node):
-    debug_print('All the initialisation queries on a node have been completed. %s' % (node,))
-    timestamp = int(time.time())
-    myNode = network.nodes[node.node_id]
-    myNode.last_update=time.time()  
+    debug_print('All the initialisation queries on a node have been completed. %s' % (node,))        
+    node.last_update=time.time()  
     #save config 
     write_config() 
-    ''' 
-    for val in myNode.values :
-        myValue = myNode.values[val]        
-        if myValue.genre == 'Basic':
-            # We skip tracking basic value genre, they are mapped to other user value
-            continue        
-        save_node_value_event(node.node_id, timestamp, myValue.command_class, myValue.index, get_standard_value_type(myValue.type), extract_data(myValue), change_instance(myValue))
     '''
+    for new node not already stored in zwcfg*.xml file, we need to force a refresh of all configuration values. 
+    openzwave only return default values durring interview, not the stored in device 
+    '''    
+    try:
+        index = force_refresh_nodes.index(node.node_id)
+        force_refresh_nodes.remove(node.node_id) 
+        debug_print('Forces a refresh of the configuration values nodeId: %s' % (node.node_id,)) 
+        try:
+            for val in node.values:
+                currentValue = node.values[val]
+                if currentValue.genre == 'Config':
+                    if currentValue.type == 'Button':
+                        continue
+                    if currentValue.is_write_only:
+                        continue                
+                    currentValue.refresh()                
+        except Exception as error:
+            add_log_entry('Refresh configuration: %s' % (str(error), ), "error")            
+    except ValueError:
+        #node_id not found come here, is the speed way to check item in list
+        pass    
     
 def save_valueAsynchronous(node, value, last_update):
     #debug_print('A node value has been updated. nodeId:%s value:%s' % (node.node_id, value.label))
@@ -604,6 +621,8 @@ dispatcher.connect(network_ready, ZWaveNetwork.SIGNAL_NETWORK_READY)
 add_log_entry('******** The ZWave network is being started ********')
 network.start()
 
+#a new node has been found (not already stored in zwcfg*.xml file).
+dispatcher.connect(node_new, ZWaveNetwork.SIGNAL_NODE_NEW)
 #add node to the network, durring node discovering and after a inclusion 
 dispatcher.connect(node_added, ZWaveNetwork.SIGNAL_NODE_ADDED)
 # a node is fully removed from network.
