@@ -1231,6 +1231,42 @@ def get_config(device_id) :
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(config)
 
+@app.route('/ZWaveAPI/Run/devices[<int:source_id>].CopyConfigurations(<int:target_id>)',methods = ['GET'])
+def copy_configuration(source_id, target_id):
+    if networkInformations.controllerIsBusy:
+        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
+    debug_print("copy_configuration from source_id:%s to target_id:%s'" % (source_id, target_id,))
+    result = False
+    items = 0
+    if(source_id in network.nodes) : 
+        if(target_id in network.nodes) : 
+            source = network.nodes[source_id]
+            target = network.nodes[target_id]            
+            if source.manufacturer_id == target.manufacturer_id and source.product_type == target.product_type and source.product_id == target.product_id :
+                for val in source.values:
+                    configurationValue = source.values[val]
+                    if configurationValue.genre == 'Config':
+                        if configurationValue.type == 'Button':
+                            continue
+                        if configurationValue.is_write_only:
+                            continue                
+                        try:
+                            accepted = target.set_config_param(configurationValue.index, configurationValue.data)
+                            #accepted = network._manager.setValue(target_id, configurationValue.value_id, configurationValue.data)   
+                            if accepted :
+                                items +=1
+                                mark_pending_change(get_value_by_index(target_id, COMMAND_CLASS_CONFIGURATION, 1, configurationValue.index), onfigurationValue.data)                                    
+                        except Exception as error:
+                            add_log_entry('Copy configuration %s (index:%s) :%s' % (configurationValue.label, configurationValue.index, str(error), ), "error")
+                result = items != 0       
+            else:
+                add_log_entry('The two nodes must be with same: manufacturer_id, product_type and product_id', 'warning') 
+        else:
+            add_log_entry('This network does not contain any node with the id %s' % (target_id,), 'warning')             
+    else:
+        add_log_entry('This network does not contain any node with the id %s' % (source_id,), 'warning')
+    return jsonify({'result' : result, 'copied_configuration_items': items})
+
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetConfigurationItem(<int:index_id>,<string:item>)',methods = ['GET'])
 def set_configuration_item(device_id, value_id, item) :    
     if networkInformations.controllerIsBusy:
