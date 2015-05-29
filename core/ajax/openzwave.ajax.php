@@ -139,6 +139,9 @@ try {
 		if (!is_object($eqLogic)) {
 			throw new Exception(__('Zwave eqLogic non trouvé : ', __FILE__) . init('id'));
 		}
+		foreach ($eqLogic->getCmd() as $cmd) {
+			$cmd->remove();
+		}
 		$eqLogic->createCommand();
 		ajax::success();
 	}
