@@ -91,7 +91,7 @@ if [ ! -d /opt/python-openzwave/.git ]; then
 else 
 	echo "Update sources of python-openzwave";
 	cd /opt/python-openzwave;
-  git remote set-url origin https://github.com/jeedom/python-openzwave.git;
+  sudo git remote set-url origin https://github.com/jeedom/python-openzwave.git;
 	sudo git fetch --all
 	sudo git reset --hard origin/master
   if [ $1 = 'dev' ]; then
@@ -114,7 +114,7 @@ if [ ! -d openzwave/.git ]; then
 else 
 	echo "Update sources of Openzwave";
 	cd openzwave;
-  git remote set-url origin https://github.com/jeedom/open-zwave.git;
+  sudo git remote set-url origin https://github.com/jeedom/open-zwave.git;
 	sudo git fetch --all;
 	sudo git reset --hard origin/master;
   if [ $1 = 'dev' ]; then
