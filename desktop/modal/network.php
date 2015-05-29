@@ -83,6 +83,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 				<li><a href="#actions_network" data-toggle="tab"><i class="fa fa-sliders"></i> {{Actions}}</a></li>
 				<li><a href="#statistics_network" data-toggle="tab"><i class="fa fa-bar-chart"></i> {{Statistiques}}</a></li>
 				<li id="tab_graph"><a href="#graph_network" data-toggle="tab"><i class="fa fa-picture-o"></i> {{Graphique du réseau}}</a></li>
+				<li id="tab_route"><a href="#route_network" data-toggle="tab"><i class="fa fa-picture-o"></i> {{Table de routage}}</a></li>
 				<li id="li_state" class="pull-right alert" style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;"><span style="position:relative; top : -7px;">{{Demande envoyée}}</span></li>
 			</ul>
 			<div id="network-tab-content" class="tab-content">
@@ -138,6 +139,37 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 
 				<div id="graph_network" class="tab-pane span12">
 					<div id="graph-node-name"></div>
+				</div>
+
+				<div id="route_network" class="tab-pane span12">
+					<br/>
+					<div id="div_routingTable"></div>
+					<table class="table table-bordered table-condensed" style="width: 500px;">
+						<thead>
+							<tr><th colspan="2">{{Légende}}</th></tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="2">{{Nombre de [routes directes / avec 1 saut / 2 sauts]}}</td>
+							</tr>
+							<tr>
+								<td class="success" style="width: 40px"></td>
+								<td>{{Communication directe}}</td>
+							</tr>
+							<tr>
+								<td class="active"></td>
+								<td>{{Au moins 2 routes avec un saut}}</td>
+							</tr>
+							<tr>
+								<td class="warning"></td>
+								<td>{{Moins de 2 routes avec un saut}}</td>
+							</tr>
+							<tr>
+								<td class="danger"></td>
+								<td>{{Toutes les routes ont plus d'un saut}}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 
 				<div class="tab-pane" id="actions_network">
@@ -253,17 +285,17 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 </div>
 <?php include_file('desktop', 'network', 'js', 'openzwave');?>
 <script>
-var path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path')+'/';
-$("#sel_zwaveNetworkServerId").on("change",function() {
-	path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path')+'/';
-    window["app_network"].init();
-	window["app_network"].show();
-});
+	var path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path')+'/';
+	$("#sel_zwaveNetworkServerId").on("change",function() {
+		path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path')+'/';
+		window["app_network"].init();
+		window["app_network"].show();
+	});
 	var nodes = {};
 	if (window["app_network"]!=undefined){
 		window["app_network"].init();
 		window["app_network"].show();
 	}
-	$('.tab-pane').height($('#md_modal').height() - 100);
+	$('.tab-pane').height($('#md_modal').height() - 50);
 	$('.tab-pane').css('overflow','scroll');
 </script>
