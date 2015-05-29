@@ -1252,7 +1252,7 @@ def copy_configuration(source_id, target_id):
                             #accepted = network._manager.setValue(target_id, configurationValue.value_id, configurationValue.data)   
                             if accepted :
                                 items +=1
-                                mark_pending_change(get_value_by_index(target_id, COMMAND_CLASS_CONFIGURATION, 1, configurationValue.index), onfigurationValue.data)                                    
+                                mark_pending_change(get_value_by_index(target_id, COMMAND_CLASS_CONFIGURATION, 1, configurationValue.index), configurationValue.data)                                    
                         except Exception as error:
                             add_log_entry('Copy configuration %s (index:%s) :%s' % (configurationValue.label, configurationValue.index, str(error), ), "error")
                 result = items != 0       

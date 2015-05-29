@@ -108,6 +108,9 @@ $("#replaceFailedNode").off("click").on("click",function() {
 $("#sendNodeInformation").off("click").on("click",function() {
 	app_nodes.send_node_information(app_nodes.selected_node);
 });
+$("body").off("click",".copyParams").on("click",".copyParams",function (e) {
+	$('#copyParamsModal').modal('show');
+});
 $("body").off("click",".addGroup").on("click",".addGroup",function (e) {
 	var group = $(this).data('groupindex');
 	$('#groupsModal').data('groupindex', group);
@@ -117,6 +120,29 @@ $("body").off("click",".deleteGroup").on("click",".deleteGroup",function (e) {
 	var group = $(this).data('groupindex');
 	var node = $(this).data('nodeindex');
 	app_nodes.delete_group(app_nodes.selected_node,group,node);
+});
+$('#copyParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
+	var modal = $(this);
+	modal.find('.modal-body').html(' ');
+	modal.find('.modal-title').text('{{Copier les paramètres pour le module }} ' + app_nodes.selected_node);
+	var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode">';
+	var foundIdentical=0;
+	$.each(nodes, function(key, val) {
+		if(key!=app_nodes.selected_node && val.data.product_name.value==nodes[app_nodes.selected_node].data.product_name.value){
+			foundIdentical=1;
+			if(val.data.name.value != ''){
+				options_node +='<option value="'+key+'">'+key+' : '+val.data.location.value+' - '+val.data.name.value+'</option>';
+			}else{
+				options_node +='<option value="'+key+'">'+key+' : '+val.data.product_name.value+'</option>';
+			}
+		}
+	});
+	options_node += '</select></div>';
+	if(foundIdentical==0){
+		modal.find('#saveCopyParams').hide();
+		options_node = '{{Aucun module identique trouvé}}';
+	}
+	modal.find('.modal-body').append(options_node);
 });
 $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var modal = $(this);
@@ -136,6 +162,25 @@ $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	});
 	options_node += '</select></div>';
 	modal.find('.modal-body').append(options_node);
+});
+$("#saveCopyParams").off("click").on("click",function (e) {
+	var toNode = app_nodes.selected_node;
+	var fromNode = $('#newvaluenode').val();
+	$.ajax({ 
+		url: path+"ZWaveAPI/Run/devices["+fromNode+"].CopyConfigurations("+toNode+")", 
+		dataType: 'json',
+		async: true, 
+		error: function (request, status, error) {
+			handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
+		},
+		success: function(data) {
+			app_nodes.draw_nodes();
+			app_nodes.load_data();
+			app_nodes.show_groups();
+			app_nodes.sendOk();
+			$('#copyParamsModal').modal('hide');
+		}
+	});
 });
 $("#saveGroups").off("click").on("click",function (e) {
 	var groupGroup = $('#groupsModal').data('groupindex');
