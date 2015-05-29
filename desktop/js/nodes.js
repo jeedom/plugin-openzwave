@@ -123,7 +123,7 @@ $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var group = $(this).data('groupindex');
 	var arr_exists_nodes=nodes[app_nodes.selected_node].groups[group].associations.split(';');
 	modal.find('.modal-body').html(' ');
-	modal.find('.modal-title').text('{{Groupe{{ '+group+' : {{Ajouter une association pour ce noeud}} ' + app_nodes.selected_node);
+	modal.find('.modal-title').text('{{Groupe }}'+group+' : {{Ajouter une association pour le noeud}} ' + app_nodes.selected_node);
 	var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode">';
 	$.each(nodes, function(key, val) {
 		if(arr_exists_nodes.indexOf(key)==-1 && key!=app_nodes.selected_node){
@@ -816,11 +816,34 @@ draw_nodes: function ()
 	        else{
 	        	node.find(".node-sleep").html("{{Secteur}}");
 	        }
-
+			
+			if(typeof(controller) !== "undefined"){
+				var node_groups=nodes[z].groups;
+				var controller_id=controller.data.nodeId.value;
+				var found=0;
+				for (zz in node_groups){
+					if (!isNaN(zz)){
+						var values=node_groups[zz].associations.split(';');
+						tr_groups="";
+						for(val in values){
+							if(values.length > 0 && values[val]!=""){
+								var node_id=values[val];
+								if (node_id==controller_id){
+									found=1;
+								}
+							}
+						}
+					}
+				}
+				if(found==0){
+					isWarning = true;
+		            	warningMessage +="<li>{{Le controleur n'est inclus dans aucun groupe du module.}}</li>";
+				}
+			}
 	        if(nodeIsFailed=="true" & networkstate>=7){
 	            	//this warning must stay in place
 	            	isWarning = true;
-	            	warningMessage +="<li>{{Le controleur pense que ce noeud est en echec, essayé}} <button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-question'></i> {{Noeud en échec}}</button> {{ou}} <button type='button' id='testNode' class='btn btn-info'><i class='fa fa-check-square-o'></i> {{Tester Noeud}}</button> {{pour essayer de corriger.}}</li>"
+	            	warningMessage +="<li>{{Le controleur pense que ce noeud est en echec, essayez }} <button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-question'></i> {{Noeud en échec}}</button> {{ou}} <button type='button' id='testNode' class='btn btn-info'><i class='fa fa-check-square-o'></i> {{Tester Noeud}}</button> {{pour essayer de corriger.}}</li>";
 	            }
 	            
 	            var queryStageDescrition = "";
@@ -835,19 +858,19 @@ draw_nodes: function ()
 	            	queryStageIndex = 1;
 	            	break;
 	            	case "Probe":
-	            	queryStageDescrition = "{{Interrogation du module pour voir si il est en vie}}";
+	            	queryStageDescrition = "{{Interrogation du module pour voir sil est en vie}}";
 	            	queryStageIndex = 2;
 	            	break;
 	            	case "WakeUp":
-	            	queryStageDescrition = "{{Début du processus de reveille du noeud si celui-ci dort}}";
+	            	queryStageDescrition = "{{Début du processus de reveil du noeud si celui-ci dort}}";
 	            	queryStageIndex = 3;
 	            	break;
 	            	case "ManufacturerSpecific1":
-	            	queryStageDescrition = "{{Récupération des paramètre constructeur du noeud}}";
+	            	queryStageDescrition = "{{Récupération des paramètres constructeur du noeud}}";
 	            	queryStageIndex = 4;
 	            	break;
 	            	case "NodeInfo":
-	            	queryStageDescrition = "{{Récupération des informations sur les classe du noeud}}";
+	            	queryStageDescrition = "{{Récupération des informations sur les classes du noeud}}";
 	            	queryStageIndex = 5;
 	            	break;
 	            	case "SecurityReport":
@@ -855,7 +878,7 @@ draw_nodes: function ()
 	            	queryStageIndex = 6;
 	            	break;
 	            	case "ManufacturerSpecific2":
-	            	queryStageDescrition = "{{Récupération des paramètre constructeur du noeud}}";
+	            	queryStageDescrition = "{{Récupération des paramètres constructeur du noeud}}";
 	            	queryStageIndex = 7;
 	            	break;
 	            	case "Versions":
@@ -907,16 +930,16 @@ draw_nodes: function ()
 	            }
 	            else{
 	            	myPopover.options.content = queryStageDescrition;
-	            }		         
+	            }
 	            node.find(".node-maxBaudRate").html(nodes[z].data.maxBaudRate.value);
 	            if(nodes[z].data.isRouting.value=="true"){
-	            	node.find(".node-routing").html("<li>{{Le noeud à des capacité de routage (capable de faire passer des commandes à d'autre noeuds)}}</li>");
+	            	node.find(".node-routing").html("<li>{{Le noeud a des capacités de routage (capable de faire passer des commandes à d'autres noeuds)}}</li>");
 	            }
 	            else{
 	            	node.find(".node-routing").html("");
 	            }
 	            if(nodes[z].data.isSecurity.value=="true"){
-	            	node.find(".node-isSecurity").html("<li>{{Le noeud supporte les caracteristique de sécurité avancées}}</li>");
+	            	node.find(".node-isSecurity").html("<li>{{Le noeud supporte les caracteristiques de sécurité avancées}}</li>");
 	            	/* TODO: display Security Flag
 	            	Security = 0x01
 	            	Controller = 0x02
@@ -970,14 +993,14 @@ draw_nodes: function ()
 	            }
 	            if (queryStageIndex > 7 & productName == ""){
 	            	if(networkstate>=7){
-	            		warningMessage +="<li>{{Les identifiances constructeur ne sont pas detectées.}}<br/>{{Utilisez}} <button type='button' id='refreshNodeInfo' class='btn btn-success refreshNodeInfo'><i class='fa fa-retweet'></i> {{Rafraîchir infos du noeud}}</button> {{pour corriger}}</li>";
+	            		warningMessage +="<li>{{Les identifiants constructeur ne sont pas detectés.}}<br/>{{Utilisez}} <button type='button' id='refreshNodeInfo' class='btn btn-success refreshNodeInfo'><i class='fa fa-retweet'></i> {{Rafraîchir infos du noeud}}</button> {{pour corriger}}</li>";
 	            		isWarning = true;	 
 	            	}
 	            }	
 	            
 	            if (isWarning){ 
 	            	if (nodeCanSleep){
-	            		warningMessage += "<br><p>{{Le noeud est dormant et nécessite un reveil avant qu'une commande puisse être exécutée.<br/>Vous pouvez le reveiller manullement ou attend son délai de reveil.}}<br/>{{Voir l'interval de réveille dans l'onglet Système}}</p>";	            		
+	            		warningMessage += "<br><p>{{Le noeud est dormant et nécessite un reveil avant qu'une commande puisse être exécutée.<br/>Vous pouvez le reveiller manuellement ou attendre son délai de réveil.}}<br/>{{Voir l'interval de réveil dans l'onglet Système}}</p>";	            		
 	            	}	            	
 	            	node.find(".panel-danger").show();
 	            	node.find(".node-warning").html(warningMessage);
