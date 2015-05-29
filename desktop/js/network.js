@@ -56,6 +56,9 @@ var app_network = {
      $("#tab_graph").off("click").on("click",function() {
       app_network.load_data();
     });
+     $("#tab_route").off("click").on("click",function() {
+      app_network.displayRoutingTable()
+    });
      $("#addDevice").off("click").on("click",function() {
       app_network.addDevice();
     });
@@ -563,5 +566,99 @@ show_infos: function (){
   },
   show: function (){
     app_network.load_infos();
+  },
+  getRoutesCount: function (nodeId){
+   var routesCount = {};
+   $.each(app_network.getFarNeighbours(nodeId), function (index, nnode) {
+    if (nnode.nodeId in routesCount) {
+      if (nnode.hops in routesCount[nnode.nodeId])
+        routesCount[nnode.nodeId][nnode.hops]++;
+      else
+        routesCount[nnode.nodeId][nnode.hops] = 1;
+    } else {
+      routesCount[nnode.nodeId] = new Array();
+      routesCount[nnode.nodeId][nnode.hops] = 1;
+    }
+  });
+   return routesCount;
+ },
+ getFarNeighbours: function (nodeId, exludeNodeIds, hops){
+  if (hops === undefined) {
+    console.log('je passe');
+    var hops = 0;
+    var exludeNodeIds = [nodeId];
   }
+        if (hops > 2) // Z-Wave allows only 4 routers, but we are interested in only 2, since network becomes unstable if more that 2 routers are used in communications
+          return [];
+        var nodesList = [];
+        $.each(devicesRouting[nodeId].data.neighbours.value, function (index, nnodeId) {
+          if (!(nnodeId in devicesRouting))
+                return; // skip deviced reported in routing table but absent in reality. This may happen after restore of routing table.
+              if (!in_array(nnodeId, exludeNodeIds)) {
+                nodesList.push({nodeId: nnodeId, hops: hops});
+                if (devicesRouting[nnodeId].data.isListening.value && devicesRouting[nnodeId].data.isRouting.value)
+                  $.merge(nodesList, app_network.getFarNeighbours(nnodeId, $.merge([nnodeId], exludeNodeIds) /* this will not alter exludeNodeIds */, hops + 1));
+              }
+            });
+        return nodesList;
+      },
+      displayRoutingTable: function (){
+    $.ajax({// fonction permettant de faire de l'ajax
+     url: path+"ZWaveAPI/Data/0", 
+     dataType: 'json',
+     async: true, 
+     error: function (request, status, error) {
+      handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
+    },
+        success: function (data) { // si l'appel a bien fonctionné
+        devicesRouting = data.devices;
+            var skipPortableAndVirtual = true; // to minimize routing table by removing not interesting lines
+            var routingTable = '';
+            var routingTableHeader = '';
+            $.each(devicesRouting, function (nodeId, node) {
+              if (nodeId == 255){
+                return;
+              }
+              if (skipPortableAndVirtual && (node.data.isVirtual.value || node.data.basicType.value == 1)){
+                return;
+              }
+              var routesCount = app_network.getRoutesCount(nodeId);
+              routingTableHeader += '<th>' + nodeId + '</th>';
+              var name = node.data.product_name.value
+              if(node.data.name.value != ''){
+                var name = node.data.location.value+' - '+node.data.name.value
+              }
+              routingTable += '<tr><td>' + name + '</td><td>' + nodeId + '</td>';
+              $.each(devicesRouting, function (nnodeId, nnode) {
+                if (nnodeId == 255)
+                  return;
+                if (skipPortableAndVirtual && (nnode.data.isVirtual.value || nnode.data.basicType.value == 1))
+                  return;
+                var rtClass;
+                if (!routesCount[nnodeId])
+                        routesCount[nnodeId] = new Array(); // create empty array to let next line work
+                      var routeHops = (routesCount[nnodeId][0] || '0')+"/";
+                      routeHops += (routesCount[nnodeId][1] || '0')+"/";
+                      routeHops += (routesCount[nnodeId][2] || '0');
+                      if (nodeId == nnodeId || node.data.isVirtual.value || nnode.data.isVirtual.value || node.data.basicType.value == 1 || nnode.data.basicType.value == 1) {
+                        rtClass = 'rtUnavailable';
+                        routeHops = '';
+                      } else if ($.inArray(parseInt(nnodeId, 10), node.data.neighbours.value) != -1)
+                      rtClass = 'success';
+                      else if (routesCount[nnodeId] && routesCount[nnodeId][1] > 1)
+                        rtClass = 'active';
+                      else if (routesCount[nnodeId] && routesCount[nnodeId][1] == 1)
+                        rtClass = 'warning';
+                      else
+                        rtClass = 'danger';
+                      routingTable += '<td class="' + rtClass + ' tooltips" title="' + routeHops + '"></td>';
+                    });
+routingTable += '</td></tr>';
+});
+$('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '</tr></thead><tbody>' + routingTable + '</tbody></table>');
+initTooltips();
+}
+});
+
+}
 }
