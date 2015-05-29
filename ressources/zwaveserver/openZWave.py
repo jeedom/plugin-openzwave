@@ -962,9 +962,11 @@ def set_value(device_id, valueId, data):
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify({'result' : False, 'reason' : 'value not found'})  
 
-def refresh_background(device_id,val):
+def refresh_background(device_id, values):
     time.sleep(3)
-    network.nodes[device_id].values[val].refresh()
+    for val in values:
+        if val != None:
+            network.nodes[device_id].values[val].refresh()
 
 def get_sleeping_nodes_count():
     sleeping_nodes_count = 0
@@ -1551,7 +1553,7 @@ def set_value7(device_id,instance_id, cc_id, index, value) :
                 Value['data'][val] = {'val': value}
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
-                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, val))
+                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, [val]))
                     waitrefresh.start()
                 return jsonify(Value) 
     else:
@@ -1570,7 +1572,7 @@ def set_value8(device_id,instance_id, cc_id, index, value) :
                 Value['data'][val] = {'val': value}
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
-                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, val))
+                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, [val]))
                     waitrefresh.start()
                 return jsonify(Value) 
     else:
@@ -1589,7 +1591,7 @@ def set_value9(device_id,instance_id, cc_id, index, value) :
                 Value['data'][val] = {'val': value}
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
-                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, val))
+                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, [val]))
                     waitrefresh.start()
                 return jsonify(Value) 
     else:
@@ -1636,6 +1638,48 @@ def set_value6(device_id, instance_id, cc_id, value) :
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(Value)
+
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetColor(<int:red_level>,<int:green_level>,<int:blue_level>,<int:white_level>)',methods = ['GET'])
+def set_color(device_id,  red_level, green_level, blue_level, white_level) :
+    debug_print("set_color nodeId:%s red:%s green:%s blue:%s white:%s" % (device_id, red_level,  green_level, blue_level, white_level,))
+    result = False
+    if(device_id in network.nodes) :
+        intensity_Value = None
+        red_Value = None
+        green_Value = None
+        blue_Value = None
+        white_Value = None
+        
+        for val in network.nodes[device_id].get_values(class_id='All', genre='User', type='Byte', readonly=False, writeonly=False) :
+            my_value = network.nodes[device_id].values[val]
+            if my_value.command_class != COMMAND_CLASS_SWITCH_MULTILEVEL:
+                continue
+            if my_value.label != 'Level':
+                continue
+            if my_value.instance == 2 :
+                continue            
+            
+            if my_value.instance == 1 :
+                intensity_Value = val
+            elif my_value.instance == 3 :
+                red_Value = val
+                my_value.data = red_level
+            elif my_value.instance == 4 :
+                green_Value = val
+                my_value.data = green_level
+            elif my_value.instance == 5 :
+                blue_Value = val
+                my_value.data = blue_level
+            elif my_value.instance == 6 :
+                white_Value = val
+                my_value.data = white_level
+        if red_Value != None and green_Value != None and blue_Value != None  :
+            worker=threading.Thread(target=refresh_background, args=(device_id, [red_Value, green_Value, blue_Value, white_Value, intensity_Value,]))
+            worker.start()
+            result = True
+    else:
+        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+    return jsonify({'result' : result})
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()',methods = ['GET'])
 def press_button(device_id,instance_id, cc_id, index) :
