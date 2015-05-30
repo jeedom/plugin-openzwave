@@ -1,0 +1,52 @@
+{
+    "name": "Fibaro FGS-211 [Simple Relay]",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+        {
+            "name": "On",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat", 
+            "configuration": {
+                "class": "0x25",
+                "instanceId": 1,
+                "value": "data[0].Set(255)"
+            },
+                "template": {
+                    "dashboard": "light",
+                    "mobile": "light"
+                }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat", 
+            "configuration": {
+                "class": "0x25",
+                "instanceId": 1,
+                "value": "data[0].Set(0)"
+            },
+                "template": {
+                    "dashboard": "light",
+                    "mobile": "light"
+                }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "configuration": {
+                "class": "0x25",
+                "instanceId": 1,
+                "value": "data[0].val"
+            }
+        }
+    ]
+  }
+
