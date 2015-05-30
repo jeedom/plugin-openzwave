@@ -1,0 +1,83 @@
+{	
+	"name": "Fibaro FGBS-001 [Universal Relay]",
+	"configuration" : {
+        "conf_version" : 1
+		},
+    "commands": [
+      {
+        "name": "Etat 1",
+        "type": "info",
+        "subtype": "binary",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x30",
+          "instanceId": 0,
+          "value": "data[0].val"
+        }
+      },
+      {
+        "name": "Etat 2",
+        "type": "info",
+        "subtype": "binary",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x30",
+          "instanceId": 1,
+          "value": "data[0].val"
+        }
+      },
+      {
+        "name": "Température 1",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "unite": "°C",
+        "configuration": {
+          "class": "0x31",
+          "instanceId": 0,
+          "value": "data[1].val"
+        }
+      },
+      {
+        "name": "Température 2",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "unite": "°C",
+        "configuration": {
+          "class": "0x31",
+          "instanceId": 1,
+          "value": "data[1].val"
+        }
+      },
+      {
+        "name": "Température 3",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "unite": "°C",
+        "configuration": {
+          "class": "0x31",
+          "instanceId": 2,
+          "value": "data[1].val"
+        }
+      },
+      {
+        "name": "Température 4",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "unite": "°C",
+        "configuration": {
+          "class": "0x31",
+          "instanceId": 3,
+          "value": "data[1].val"
+        }
+      }
+    ]
+  }
+

@@ -1,0 +1,22 @@
+{		
+		"name": "Everspring ST815",
+        "configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "Luminosité",
+                "type": "info",
+                "subType": "numeric",
+				"isVisible": 1,
+				"isHistorized": 1,
+                "unite": "Lux",
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[3].val",
+                    "minValue": 0,
+                    "maxValue": 3000
+                 }
+            }
+        ]
+	}

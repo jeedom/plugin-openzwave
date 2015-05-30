@@ -1,0 +1,34 @@
+{
+		"name": "Everspring SP103",
+       "configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+			{
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "%",
+                "configuration": {
+                    "class": "0x80",
+                    "value": "data[0].val"
+                }
+            },
+            {
+                "name": "Présence",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "",
+				"invertBinary": 1,
+                "configuration": {
+                    "class": "0x30",
+                    "value": "data[0]."
+				}
+		}
+        ]
+    }
+ 

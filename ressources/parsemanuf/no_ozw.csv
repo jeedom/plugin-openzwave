@@ -5,7 +5,10 @@ Conf Jeedom;Manuf Id OZW;Product Type OZW;Productid OZW
 134.3.8_aeon.labs.aeon.labs.smart.energy.illuminator.json;0086;0003;0008
 134.4.37_aeon.labs.aeon.range.extender.repeater.json;0086;0004;0025
 270.1.1_poly-control.polylock.json;010e;0001;0001
+96.11.1_everspring.everspring.st812.json;0060;000b;0001
+96.3.1_everspring.everspring.ad142-6.json;0060;0003;0001
 96.3.2_smarthome.by.everspring.in.wall.dimmer.ad.146.0.json;0060;0003;0002
 96.3.3_miniplug.dimmer.json;0060;0003;0003
+96.4.1_everspring.everspring.an157-6.json;0060;0004;0001
 96.4.7_miniplug.onoff.json;0060;0004;0007
 96.4.8_smarthome.by.everspring.in.wall.on.off.an.179.0.json;0060;0004;0008

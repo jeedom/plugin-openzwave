@@ -1,0 +1,60 @@
+ {
+		"name": "Everspring TSE03 Door Bell",
+        "configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "Etat",
+                "type": "info",
+                "subtype": "binary",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "configuration": {
+                    "instanceId": 0,
+                    "class": "0x25",
+                    "value": "data[0].val"
+                },
+                "display": {
+                    "invertBinary": "1"
+                },
+                "template": {
+                    "dashboard": "bell",
+                    "mobile": "bell"
+                }
+            },
+            {
+                "name": "On",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x25",
+                    "value": "data[0].Set(255)"
+                }
+            },
+            {
+                "name": "Off",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x25",
+                    "value": "data[0].Set(0)"
+                }
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "configuration": {
+                    "instanceId": 0,
+                    "class": "0x80",
+                    "value": "data[0].val",
+                    "unite": "%"
+                }
+            }
+        ]
+    }

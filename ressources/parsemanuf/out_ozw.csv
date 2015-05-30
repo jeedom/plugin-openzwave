@@ -102,20 +102,20 @@ EUROtronic;EUR_STELLAZ Wall Radiator Thermostat Valve Control;328;1;1;;;328.1.1_
 Eneco;ED2.0 Meter Adapter;296;0;0;;;296.0.0_eneco.ed2.0.meter.adapter;N/A
 Eneco;ED2.0 Display;296;296;0;;;296.296.0_eneco.ed2.0.display;N/A
 Everspring;HSP02 Motion Detector;96;1;1;;X;96.1.1_everspring.hsp02.motion.detector;N/A
-Everspring;SP814 Motion Detector;96;1;2;;X;96.1.2_everspring.sp814.motion.detector;everspring/sp814.xml
+Everspring;SP814 Motion Detector;96;1;2;X;X;96.1.2_everspring.sp814.motion.detector;everspring/sp814.xml
 Everspring;SM103 Door/Window Sensor;96;2;1;;X;96.2.1_everspring.sm103.doorwindow.sensor;everspring/sm103.xml
-Everspring;AD142 Plug-in Dimmer Module;96;3;1;;X;96.3.1_everspring.ad142.plug-in.dimmer.module;N/A
-Everspring;AN157 Plug-in Appliance Module;96;4;1;;X;96.4.1_everspring.an157.plug-in.appliance.module;N/A
-Everspring;AN158 Plug-in Meter Appliance Module;96;4;2;;X;96.4.2_everspring.an158.plug-in.meter.appliance.module;everspring/an158.xml
+Everspring;AD142 Plug-in Dimmer Module;96;3;1;X;X;96.3.1_everspring.ad142.plug-in.dimmer.module;N/A
+Everspring;AN157 Plug-in Appliance Module;96;4;1;X;X;96.4.1_everspring.an157.plug-in.appliance.module;N/A
+Everspring;AN158 Plug-in Meter Appliance Module;96;4;2;X;X;96.4.2_everspring.an158.plug-in.meter.appliance.module;everspring/an158.xml
 Everspring;ST814 Temperature and Humidity Sensor;96;6;1;X;X;96.6.1_everspring.st814.temperature.and.humidity.sensor;everspring/st814.xml
-Everspring;ST815 Illumination Sensor;96;7;1;;X;96.7.1_everspring.st815.illumination.sensor;everspring/st815.xml
-Everspring;TSE03 Door Bell;96;9;1;;X;96.9.1_everspring.tse03.door.bell;everspring/tse03.xml
-Everspring;ST812 Flood Detector;96;11;1;;X;96.11.1_everspring.st812.flood.detector;N/A
-Everspring;SE812 Siren;96;12;1;;X;96.12.1_everspring.se812.siren;everspring/se812.xml
-Everspring;SF812 Smoke Alarm;96;13;1;;X;96.13.1_everspring.sf812.smoke.alarm;everspring/sf812.xml
+Everspring;ST815 Illumination Sensor;96;7;1;X;X;96.7.1_everspring.st815.illumination.sensor;everspring/st815.xml
+Everspring;TSE03 Door Bell;96;9;1;X;X;96.9.1_everspring.tse03.door.bell;everspring/tse03.xml
+Everspring;ST812 Flood Detector;96;11;1;X;X;96.11.1_everspring.st812.flood.detector;N/A
+Everspring;SE812 Siren;96;12;1;X;X;96.12.1_everspring.se812.siren;everspring/se812.xml
+Everspring;SF812 Smoke Alarm;96;13;1;X;X;96.13.1_everspring.sf812.smoke.alarm;everspring/sf812.xml
 Everspring;HAC01 In-wall Remote Module;96;16;1;;X;96.16.1_everspring.hac01.in-wall.remote.module;N/A
 Everspring;HAN02 In-wall Remote Module;96;17;2;;X;96.17.2_everspring.han02.in-wall.remote.module;N/A
-Everspring;SP103 PIR Motion Sensor;96;257;1;;X;96.257.1_everspring.sp103.pir.motion.sensor;everspring/sp103.xml
+Everspring;SP103 PIR Motion Sensor;96;257;1;X;X;96.257.1_everspring.sp103.pir.motion.sensor;everspring/sp103.xml
 Everspring;AN145 Lamp Screw In Module;96;260;1;;X;96.260.1_everspring.an145.lamp.screw.in.module;everspring/an145.xml
 Everspring;SM103 Door/Window Sensor;96;514;1;;X;96.514.1_everspring.sm103.doorwindow.sensor;everspring/sm103.xml
 Chromagic Technologies Corporation;HSCP02 Motion Detector;278;1;1;;;278.1.1_chromagic.technologies.corporation.hscp02.motion.detector;N/A
@@ -127,11 +127,11 @@ Evolve Guest Controls;LRM-AS Wall Dimmer 500W;275;17495;12340;;;275.17495.12340_
 Evolve Guest Controls;LFM-20 Fixture Module;275;21062;12595;;;275.21062.12595_evolve.guest.controls.lfm-20.fixture.module;N/A
 Evolve Guest Controls;LSM-15 Wall Switch;275;21079;13619;;;275.21079.13619_evolve.guest.controls.lsm-15.wall.switch;evolve/lsm-15.xml
 Evolve Guest Controls;LTM-5 Wall Switch Transmitter;275;21591;12339;;;275.21591.12339_evolve.guest.controls.ltm-5.wall.switch.transmitter;evolve/ltm-5.xml
-FIBARO System;FGBS001 Universal Binary Sensor;271;1281;257;;;271.1281.257_fibaro.system.fgbs001.universal.binary.sensor;fibaro/fgbs001.xml
-FIBARO System;FGBS001 Universal Binary Sensor;271;1281;258;;;271.1281.258_fibaro.system.fgbs001.universal.binary.sensor;fibaro/fgbs001.xml
-FIBARO System;FGBS001 Universal Binary Sensor;271;1281;265;;;271.1281.265_fibaro.system.fgbs001.universal.binary.sensor;fibaro/fgbs001.xml
-FIBARO System;FGBS001 Universal Binary Sensor;271;1281;4098;;X;271.1281.4098_fibaro.system.fgbs001.universal.binary.sensor;fibaro/fgbs001.xml
-FIBARO System;FGBS001 Universal Binary Sensor;271;1281;16386;;;271.1281.16386_fibaro.system.fgbs001.universal.binary.sensor;fibaro/fgbs001.xml
+FIBARO System;FGBS001 Universal Binary Sensor;271;1281;257;X;;271.1281.257_fibaro.system.fgbs001.universal.binary.sensor;fibaro/fgbs001.xml
+FIBARO System;FGBS001 Universal Binary Sensor;271;1281;258;X;;271.1281.258_fibaro.system.fgbs001.universal.binary.sensor;fibaro/fgbs001.xml
+FIBARO System;FGBS001 Universal Binary Sensor;271;1281;265;X;;271.1281.265_fibaro.system.fgbs001.universal.binary.sensor;fibaro/fgbs001.xml
+FIBARO System;FGBS001 Universal Binary Sensor;271;1281;4098;X;X;271.1281.4098_fibaro.system.fgbs001.universal.binary.sensor;fibaro/fgbs001.xml
+FIBARO System;FGBS001 Universal Binary Sensor;271;1281;16386;X;;271.1281.16386_fibaro.system.fgbs001.universal.binary.sensor;fibaro/fgbs001.xml
 FIBARO System;FGD211 Universal Dimmer 500W;271;256;260;X;;271.256.260_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
 FIBARO System;FGD211 Universal Dimmer 500W;271;256;262;X;;271.256.262_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
 FIBARO System;FGD211 Universal Dimmer 500W;271;256;263;X;;271.256.263_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
