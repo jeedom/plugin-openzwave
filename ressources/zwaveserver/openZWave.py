@@ -1674,7 +1674,7 @@ def set_color(device_id,  red_level, green_level, blue_level, white_level) :
                 white_Value = val
                 my_value.data = white_level
         if red_Value != None and green_Value != None and blue_Value != None  :
-            worker=threading.Thread(target=refresh_background, args=(device_id, [red_Value, green_Value, blue_Value, white_Value, intensity_Value,]))
+            worker=threading.Thread(target=refresh_background, args=(device_id, [red_Value, green_Value, blue_Value, white_Value, intensity_Value]))
             worker.start()
             result = True
     else:
