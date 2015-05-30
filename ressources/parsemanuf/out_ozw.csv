@@ -132,26 +132,26 @@ FIBARO System;FGBS001 Universal Binary Sensor;271;1281;258;;;271.1281.258_fibaro
 FIBARO System;FGBS001 Universal Binary Sensor;271;1281;265;;;271.1281.265_fibaro.system.fgbs001.universal.binary.sensor;fibaro/fgbs001.xml
 FIBARO System;FGBS001 Universal Binary Sensor;271;1281;4098;;X;271.1281.4098_fibaro.system.fgbs001.universal.binary.sensor;fibaro/fgbs001.xml
 FIBARO System;FGBS001 Universal Binary Sensor;271;1281;16386;;;271.1281.16386_fibaro.system.fgbs001.universal.binary.sensor;fibaro/fgbs001.xml
-FIBARO System;FGD211 Universal Dimmer 500W;271;256;260;;;271.256.260_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
-FIBARO System;FGD211 Universal Dimmer 500W;271;256;262;;;271.256.262_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
-FIBARO System;FGD211 Universal Dimmer 500W;271;256;263;;;271.256.263_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
-FIBARO System;FGD211 Universal Dimmer 500W;271;256;265;;X;271.256.265_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
+FIBARO System;FGD211 Universal Dimmer 500W;271;256;260;X;;271.256.260_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
+FIBARO System;FGD211 Universal Dimmer 500W;271;256;262;X;;271.256.262_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
+FIBARO System;FGD211 Universal Dimmer 500W;271;256;263;X;;271.256.263_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
+FIBARO System;FGD211 Universal Dimmer 500W;271;256;265;X;X;271.256.265_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
 FIBARO System;FGD211 Universal Dimmer 500W;271;256;4106;X;X;271.256.4106_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
-FIBARO System;FGD211 Universal Dimmer 500W;271;256;12298;;;271.256.12298_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
+FIBARO System;FGD211 Universal Dimmer 500W;271;256;12298;X;;271.256.12298_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
 FIBARO System;FGK101 Door Opening Sensor;271;1792;4096;X;X;271.1792.4096_fibaro.system.fgk101.door.opening.sensor;fibaro/fgk001.xml
 FIBARO System;FGK101 Door Opening Sensor;271;1792;16384;X;;271.1792.16384_fibaro.system.fgk101.door.opening.sensor;fibaro/fgk001.xml
-FIBARO System;FGR221 Roller Shutter Controller;271;768;260;;;271.768.260_fibaro.system.fgr221.roller.shutter.controller;fibaro/fgr221.xml
-FIBARO System;FGR221 Roller Shutter Controller;271;768;4106;;X;271.768.4106_fibaro.system.fgr221.roller.shutter.controller;fibaro/fgr221.xml
-FIBARO System;FGR221 Roller Shutter Controller;271;768;262;;;271.768.262_fibaro.system.fgr221.roller.shutter.controller;fibaro/fgr221.xml
-FIBARO System;FGR221 Roller Shutter Controller;271;768;263;;;271.768.263_fibaro.system.fgr221.roller.shutter.controller;fibaro/fgr221.xml
+FIBARO System;FGR221 Roller Shutter Controller;271;768;260;X;;271.768.260_fibaro.system.fgr221.roller.shutter.controller;fibaro/fgr221.xml
+FIBARO System;FGR221 Roller Shutter Controller;271;768;4106;X;X;271.768.4106_fibaro.system.fgr221.roller.shutter.controller;fibaro/fgr221.xml
+FIBARO System;FGR221 Roller Shutter Controller;271;768;262;X;;271.768.262_fibaro.system.fgr221.roller.shutter.controller;fibaro/fgr221.xml
+FIBARO System;FGR221 Roller Shutter Controller;271;768;263;X;;271.768.263_fibaro.system.fgr221.roller.shutter.controller;fibaro/fgr221.xml
 FIBARO System;FGRM222 Roller Shutter Controller 2;271;769;4097;X;X;271.769.4097_fibaro.system.fgrm222.roller.shutter.controller.2;fibaro/fgrm222.xml
-FIBARO System;FGS211 Switch 3kW;271;1024;260;;;271.1024.260_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
-FIBARO System;FGS211 Switch 3kW;271;1024;261;;;271.1024.261_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
-FIBARO System;FGS211 Switch 3kW;271;1024;262;;;271.1024.262_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
-FIBARO System;FGS211 Switch 3kW;271;1024;263;;;271.1024.263_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
-FIBARO System;FGS211 Switch 3kW;271;1024;264;;;271.1024.264_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
-FIBARO System;FGS221 Switch 3kW;271;1024;265;;;271.1024.265_fibaro.system.fgs221.switch.3kw;fibaro/fgs221.xml
-FIBARO System;FGS211 Switch 3kW;271;1024;4106;;X;271.1024.4106_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
+FIBARO System;FGS211 Switch 3kW;271;1024;260;X;;271.1024.260_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
+FIBARO System;FGS211 Switch 3kW;271;1024;261;X;;271.1024.261_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
+FIBARO System;FGS211 Switch 3kW;271;1024;262;X;;271.1024.262_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
+FIBARO System;FGS211 Switch 3kW;271;1024;263;X;;271.1024.263_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
+FIBARO System;FGS211 Switch 3kW;271;1024;264;X;;271.1024.264_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
+FIBARO System;FGS221 Switch 3kW;271;1024;265;X;;271.1024.265_fibaro.system.fgs221.switch.3kw;fibaro/fgs221.xml
+FIBARO System;FGS211 Switch 3kW;271;1024;4106;X;X;271.1024.4106_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
 FIBARO System;FGS212 Switch 3kW;271;1026;4098;X;X;271.1026.4098_fibaro.system.fgs212.switch.3kw;fibaro/fgs211.xml
 FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;260;X;;271.512.260_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
 FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;261;X;;271.512.261_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml

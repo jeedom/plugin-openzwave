@@ -1,0 +1,101 @@
+{
+		"name": "Fibaro FGRM-221 [Volet roulant]", 
+		"configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "Up",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration":
+                        {
+                            "instanceId": "0",
+                            "class": "0x26",
+                            "value": "data[0].Set(99)"
+                        },
+                "display":
+                        {
+                            "icon": "<i class=\"fa fa-arrow-up\"></i>"
+                        }
+            },
+            {
+                "name": "Down",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration":
+                        {
+                            "instanceId": "0",
+                            "class": "0x26",
+                            "value": "data[0].Set(0)"
+                        },
+                "display":
+                        {
+                            "icon": "<i class=\"fa fa-arrow-down\"></i>"
+                        }
+            },
+            {
+                "name": "Etat",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "eventOnly": 1,
+                "configuration":
+                        {
+                            "instanceId": "0",
+                            "class": "0x26",
+                            "value": "data[0].val"
+                        }
+            },
+            {
+                "name": "Positionnement",
+                "type": "action",
+                "subtype": "slider",
+                "isVisible": 1,
+                "value": "Etat",
+                "configuration":
+                        {
+                            "instanceId": "0",
+                            "class": "0x26",
+                            "value": "data[0].Set(#slider#)",
+                            "minValue": 0,
+                            "maxValue": 99
+                        },
+                "template":
+                        {
+                            "dashboard": "tooltip",
+                            "mobile": "tooltip"
+                        }
+            },
+            {
+                "name": "Rafraichir",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x26",
+                    "value": "Get()"
+                },
+                "display": {
+                    "icon": "<i class=\"fa fa-refresh\"><\/i>"
+                }
+            },
+			{
+                "name": "Stop",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x26",
+                    "value": "data[7].ReleaseButton()"
+                },
+                "display": {
+                    "icon": "<i class=\"fa fa-stop\"><\/i>"
+                }
+            }
+        ]
+    }
