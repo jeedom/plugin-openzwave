@@ -1,0 +1,60 @@
+{	
+	"name": "Aeon Labs Prise ZW075",
+    "configuration" : {
+        "conf_version" : 1
+		},
+    "commands": [
+      {
+        "name": "On",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x25",
+          "value": "data[0].Set(255)"
+        }
+      },
+      {
+        "name": "Off",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x25",
+          "value": "data[0].Set(0)"
+        }
+      },
+      {
+        "name": "Etat",
+        "type": "info",
+        "subtype": "binary",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x25",
+          "value": "data[0].val"
+        }
+      },
+      {
+        "name": "Puissance",
+        "type": "info",
+        "subtype": "numeric",
+        "unite": "W",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x32",
+          "value": "data[2].val"
+        }
+      },
+      {
+        "name": "Consommation",
+        "type": "info",
+        "subtype": "numeric",
+        "unite": "kWh",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x32",
+          "value": "data[0].val"
+        }
+      }
+    ]
+  }
