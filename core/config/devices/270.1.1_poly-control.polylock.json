@@ -29,7 +29,7 @@
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x62",
-                    "value": "Set(0)"
+                    "value": "data[0].Set(0)"
                 }
             },
             {
@@ -41,7 +41,7 @@
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x62",
-                    "value": "Set(255)"
+                    "value": "data[0].Set(255)"
                 }
             },
             {
@@ -54,7 +54,7 @@
                 "eventOnly": 0,
                 "configuration": {
                     "class": "0x80",
-                    "value": "data.last"
+                    "value": "data[0].val"
                 }
             }
         ],
