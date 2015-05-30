@@ -1,0 +1,175 @@
+{
+		"name": "Fibaro FGRM-222 [Volet roulant]", 
+		"configuration" : {
+        "conf_version" : 5
+		},
+        "commands": [
+            {
+                "name": "Up",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration":
+                        {
+                            "instanceId": "0",
+                            "class": "0x26",
+                            "value": "data[0].Set(99)"
+                        },
+                "display":
+                        {
+                            "icon": "<i class=\"fa fa-arrow-up\"></i>"
+                        }
+            },
+            {
+                "name": "Down",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration":
+                        {
+                            "instanceId": "0",
+                            "class": "0x26",
+                            "value": "data[0].Set(0)"
+                        },
+                "display":
+                        {
+                            "icon": "<i class=\"fa fa-arrow-down\"></i>"
+                        }
+            },
+            {
+                "name": "Etat",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "eventOnly": 1,
+                "configuration":
+                        {
+                            "instanceId": "0",
+                            "class": "0x26",
+                            "value": "data[0].val"
+                        }
+            },
+            {
+                "name": "Positionnement",
+                "type": "action",
+                "subtype": "slider",
+                "isVisible": 1,
+                "value": "Etat",
+                "configuration":
+                        {
+                            "instanceId": "0",
+                            "class": "0x26",
+                            "value": "data[0].Set(#slider#)",
+                            "minValue": 0,
+                            "maxValue": 99
+                        },
+                "template":
+                        {
+                            "dashboard": "tooltip",
+                            "mobile": "tooltip"
+                        }
+            },
+            {
+                "name": "Rafraichir",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x26",
+                    "value": "Get()"
+                },
+                "display": {
+                    "icon": "<i class=\"fa fa-refresh\"><\/i>"
+                }
+            },
+            {
+                "name": "Puissance",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "unite": "W",
+                "eventOnly": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x31",
+                    "value": "data[4].val"
+                },
+                "template": {
+                    "dashboard": "tile",
+                    "mobile": "tile"
+                }
+            },
+            {
+                "name": "Consommation",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "unite": "kWh",
+                "eventOnly": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x32",
+                    "value": "data[0].val"
+                },
+                "template": {
+                    "dashboard": "tile",
+                    "mobile": "tile"
+                }
+            },
+			{
+                "name": "Stop",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x26",
+                    "value": "data[7].ReleaseButton()"
+                },
+                "display": {
+                    "icon": "<i class=\"fa fa-stop\"><\/i>"
+                }
+            },
+			{
+                "name": "Incliner",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x26",
+                    "value": "data[7].PressButton()"
+                },
+                "display": {
+                    "icon": "<i class=\"fa fa-plus\"><\/i>"
+                }
+            },
+			{
+                "name": "Décliner",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x26",
+                    "value": "data[8].PressButton()"
+                },
+                "display": {
+                    "icon": "<i class=\"fa fa-minus\"><\/i>"
+                }
+            },
+			{
+                "name": "Pas",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "eventOnly": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x26",
+                    "value": "data[6].val"
+                }
+            }
+        ]
+    }
