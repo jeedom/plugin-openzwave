@@ -22,7 +22,7 @@
                 "isVisible": 0,
                 "isHistorized": 1,
                 "unite": "W",
-                "eventOnly": 1,
+
                 "configuration": {
                     "class": "0x31",
                     "value": "data[4].val",
@@ -37,7 +37,7 @@
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "kWh",
-                "eventOnly": 1,
+
                 "configuration": {
                     "class": "0x32",
                     "value": "data[0].val"
@@ -156,7 +156,7 @@
                 "subtype": "numeric",
                 "unite": "%",
                 "isVisible": 0,
-                "eventOnly": 1,
+
                 "configuration": {
                     "class": "0x26",
                     "value": "data[0].level",

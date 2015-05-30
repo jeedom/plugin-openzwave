@@ -41,7 +41,7 @@
                 "type": "info",
                 "subtype": "numeric",
                 "isVisible": 0,
-                "eventOnly": 1,
+
                 "configuration":
                         {
                             "instanceId": "0",
@@ -89,7 +89,7 @@
                 "subtype": "numeric",
                 "isVisible": 0,
                 "unite": "W",
-                "eventOnly": 1,
+
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x31",
@@ -106,7 +106,7 @@
                 "subtype": "numeric",
                 "isVisible": 0,
                 "unite": "kWh",
-                "eventOnly": 1,
+
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x32",
@@ -164,7 +164,7 @@
                 "type": "info",
                 "subtype": "numeric",
                 "isVisible": 0,
-                "eventOnly": 1,
+
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x26",

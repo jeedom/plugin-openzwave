@@ -10,7 +10,6 @@
                 "subtype": "slider",
                 "isVisible": 1,
                 "isHistorized": 0,
-                "eventOnly": 0,
 				"unite": "°C",
                 "configuration": {
                     "class": "0x43",
@@ -26,7 +25,6 @@
                 "subtype": "numeric",
                 "isVisible": 1,
                 "isHistorized": 0,
-                "eventOnly": 0,
 				"unite": "°C",
                 "configuration": {
                     "class": "0x43",
@@ -40,9 +38,8 @@
                 "name": "Batterie",
                 "type": "info",
                 "subtype": "numeric",
-                "isVisible": 1,
+                "isVisible": 0,
                 "isHistorized": 0,
-                "eventOnly": 0,
 				"unite": "%",
                 "configuration": {
                     "class": "0x80",

@@ -9,7 +9,6 @@
                 "type": "info",
                 "subType": "binary",
                 "isHistorized": "0",
-                "eventOnly": "1",
                 "configuration": {
                     "class": "0x25",
                     "instanceId": "0",
@@ -25,7 +24,6 @@
                 "type": "action",
                 "subType": "other",
                 "isHistorized": "0",
-                "eventOnly": "0",
                 "configuration": {
                     "class": "0x25",
                     "instanceId": "0",
@@ -46,7 +44,6 @@
                 "type": "action",
                 "subType": "other",
                 "isHistorized": "0",
-                "eventOnly": "0",
                 "configuration": {
                     "class": "0x25",
                     "instanceId": "0",
@@ -68,7 +65,6 @@
                 "subType": "numeric",
                 "isHistorized": "1",
                 "unite": "W",
-                "eventOnly": "1",
                 "configuration": {
                     "class": "0x32",
                     "instanceId": "0",
@@ -91,7 +87,6 @@
                 "subType": "numeric",
                 "isHistorized": "0",
                 "unite": "kWh",
-                "eventOnly": "1",
                 "configuration": {
                     "class": "0x32",
                     "instanceId": "0",

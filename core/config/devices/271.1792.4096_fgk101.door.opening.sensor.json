@@ -10,7 +10,7 @@
                 "subtype": "binary",
                 "isVisible": 1,
                 "isHistorized": 1,
-                "eventOnly": 1,
+
                 "configuration": {
                     "class": "0x30",
                     "value": "data[0].val"

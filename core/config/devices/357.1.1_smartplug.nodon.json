@@ -10,7 +10,7 @@
                 "subtype": "binary",
                 "isVisible": 0,
                 "isHistorized": 0,
-                "eventOnly": 1,
+
                 "configuration": {
                     "class": "0x25",
                     "value": "data[0].val"
@@ -51,7 +51,7 @@
                 "type": "info",
                 "subtype": "numeric",
                 "isVisible": 1,
-                "eventOnly": 1,
+
                 "configuration": {
                     "class": "0x71",
                     "value": "data[1].val"

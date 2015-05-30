@@ -47,7 +47,7 @@
                 "subtype": "numeric",
                 "unite": "%",
                 "isVisible": 0,
-                "eventOnly": 1,
+
                 "configuration": {
                     "class": "0x26",
                     "value": "data[0].val",

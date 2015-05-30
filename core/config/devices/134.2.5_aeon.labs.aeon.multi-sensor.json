@@ -1,22 +1,18 @@
-{
-	"name" : "Philio MultiSensor",
-    "configuration" : {
+{		
+		"name": "Aeon Multi-Sensor",
+		"configuration" : {
         "conf_version" : 1
-    },
-    "commands": [
+		},
+        "commands": [
             {
                 "name": "Présence",
                 "type": "info",
                 "subtype": "binary",
                 "isVisible": 1,
-                "isHistorized": 0,
-
+                "isHistorized": 1,
                 "configuration": {
-                    "instanceId": 0,
                     "class": "0x30",
-                    "value": "data[0].val",
-					"returnStateTime": 1,
-					"returnStateValue": 0
+                    "value": "data[0].val"
                 },
                 "display": {
                     "invertBinary": "1"
@@ -27,37 +23,15 @@
                 }
             },
             {
-                "name": "Ouverture",
-                "type": "info",
-                "subtype": "binary",
-                "isVisible": 1,
-                "isHistorized": 0,
-
-                "configuration": {
-                    "instanceId": 0,
-                    "class": "0x30",
-                    "value": "data[1].val"
-                },
-                "display": {
-                    "invertBinary": "1"
-                },
-                "template": {
-                    "dashboard": "door",
-                    "mobile": "door"
-                }
-            },
-            {
                 "name": "Température",
                 "type": "info",
                 "subtype": "numeric",
                 "isVisible": 1,
                 "isHistorized": 1,
-
+                "unite": "°C",
                 "configuration": {
-                    "instanceId": 0,
                     "class": "0x31",
-                    "value": "data[1].val",
-                    "unite": "°C"
+                    "value": "data[1].val"
                 }
             },
             {
@@ -66,32 +40,24 @@
                 "subtype": "numeric",
                 "isVisible": 1,
                 "isHistorized": 1,
-
+                "unite": "Lux",
                 "configuration": {
-                    "instanceId": 0,
                     "class": "0x31",
                     "value": "data[3].val",
-                    "unite": "%",
-                    "maxValue": 100,
+                    "maxValue": 1000,
                     "minValue": 0
                 }
             },
             {
-                "name": "Sabotage",
+                "name": "Humidité",
                 "type": "info",
-                "subtype": "binary",
+                "subtype": "numeric",
                 "isVisible": 1,
-                "isHistorized": 0,
-
+                "isHistorized": 1,
+                "unite": "%",
                 "configuration": {
-                    "instanceId": 0,
-                    "class": "0x30",
-                    "value": "data[2].val",
-					"returnStateTime": 1,
-					"returnStateValue": 0
-                },
-                "display": {
-                    "invertBinary": "1"
+                    "class": "0x31",
+                    "value": "data[5].val"
                 }
             },
             {
@@ -100,13 +66,11 @@
                 "subtype": "numeric",
                 "isVisible": 0,
                 "isHistorized": 0,
-                "eventOnly": 0,
+                "unite": "%",
                 "configuration": {
-                    "instanceId": 0,
                     "class": "0x80",
-                    "value": "data[0].val",
-                    "unite": "%"
+                    "value": "data[0].val"
                 }
             }
         ]
-}
+    }

@@ -11,7 +11,6 @@
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 0,
@@ -57,7 +56,6 @@
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 1,
@@ -103,7 +101,6 @@
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 2,
@@ -149,7 +146,6 @@
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 3,
@@ -195,7 +191,6 @@
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 4,
@@ -241,7 +236,6 @@
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 5,
@@ -287,7 +281,6 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "W",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 0,
@@ -306,7 +299,6 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "W",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 1,
@@ -325,7 +317,6 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "W",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 2,
@@ -344,7 +335,6 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "W",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 3,
@@ -363,7 +353,6 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "W",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 4,
@@ -382,7 +371,6 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "W",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 5,
@@ -401,7 +389,6 @@
                 "isVisible": 1,
                 "isHistorized": 0,
                 "unite": "kWh",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 0,
@@ -418,7 +405,6 @@
                 "isVisible": 1,
                 "isHistorized": 0,
                 "unite": "kWh",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 1,
@@ -435,7 +421,6 @@
                 "isVisible": 1,
                 "isHistorized": 0,
                 "unite": "kWh",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 2,
@@ -452,7 +437,6 @@
                 "isVisible": 1,
                 "isHistorized": 0,
                 "unite": "kWh",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 3,
@@ -469,7 +453,6 @@
                 "isVisible": 1,
                 "isHistorized": 0,
                 "unite": "kWh",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 4,
@@ -486,7 +469,6 @@
                 "isVisible": 1,
                 "isHistorized": 0,
                 "unite": "kWh",
-                "eventOnly": 1,
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 5,

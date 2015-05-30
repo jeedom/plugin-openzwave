@@ -10,7 +10,7 @@
                 "subtype": "binary",
                 "isVisible": 1,
                 "isHistorized": 1,
-                "eventOnly": 1,
+
                 "configuration": {
                     "class": "0x30",
                     "value": "data[0].level"
@@ -30,7 +30,7 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "°C",
-                "eventOnly": 1,
+
                 "configuration": {
                     "class": "0x31",
                     "value": "data[1].val"
@@ -43,7 +43,7 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "Lux",
-                "eventOnly": 1,
+
                 "configuration": {
                     "class": "0x31",
                     "value": "data[3].val",
@@ -57,7 +57,7 @@
                 "subtype": "numeric",
                 "isVisible": 1,
                 "isHistorized": 1,
-                "eventOnly": 1,
+
                 "configuration": {
                     "class": "0x9C",
                     "value": "data[0].val",

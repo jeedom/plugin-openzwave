@@ -41,7 +41,7 @@
                 "type": "info",
                 "subtype": "numeric",
                 "isVisible": 0,
-                "eventOnly": 1,
+
                 "configuration":
                         {
                             "instanceId": "0",

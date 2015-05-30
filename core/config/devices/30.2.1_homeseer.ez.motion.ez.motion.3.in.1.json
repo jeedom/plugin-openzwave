@@ -50,9 +50,8 @@
                 "name": "Batterie",
                 "type": "info",
                 "subtype": "numeric",
-                "isVisible": 1,
+                "isVisible": 0,
                 "isHistorized": 0,
-                "eventOnly": 0,
 				"unite": "%",
                 "configuration": {
                     "class": "0x80",
