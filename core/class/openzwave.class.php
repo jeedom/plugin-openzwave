@@ -1064,13 +1064,10 @@ class openzwaveCmd extends cmd {
 	}
 
 	public function setRGBColor($_color) {
-		//openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . '].SetColor(' . $r . ',' . $g . ',' . $b . ',0)',$eqLogic->getConfiguration('serverID', 1));
 		if ($_color == '') {
 			throw new Exception('Couleur non définie');
 		}
 		$eqLogic = $this->getEqLogic();
-		$request = '/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . ']';
-
 		$hex = str_replace("#", "", $_color);
 		if (strlen($hex) == 3) {
 			$r = hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
@@ -1081,30 +1078,10 @@ class openzwaveCmd extends cmd {
 			$g = hexdec(substr($hex, 2, 2));
 			$b = hexdec(substr($hex, 4, 2));
 		}
-
-		//Convertion pour sur une echelle de 0-99
-		$r = ($r / 255) * 99;
-		$g = ($g / 255) * 99;
-		$b = ($b / 255) * 99;
-
-		if ($eqLogic->getConfiguration('manufacturer_id') == 271 && $eqLogic->getConfiguration('product_type') == 2304 && $eqLogic->getConfiguration('product_id') == 4096) {
-			/* Set GREEN color */
-			openzwave::callOpenzwave($request . '.instances[3].commandClasses[0x26].data[0].Set(' . str_replace(',', '%2C', $g) . ')', $eqLogic->getConfiguration('serverID', 1));
-			/* Set BLUE color */
-			openzwave::callOpenzwave($request . '.instances[4].commandClasses[0x26].data[0].Set(' . str_replace(',', '%2C', $b) . ')', $eqLogic->getConfiguration('serverID', 1));
-			/* Set RED color */
-			openzwave::callOpenzwave($request . '.instances[2].commandClasses[0x26].data[0].Set(' . str_replace(',', '%2C', $r) . ')', $eqLogic->getConfiguration('serverID', 1));
-		} else {
-			openzwave::callOpenzwave($request . '.instances[0].commandClasses[0x33].data[0].Set(0)', $eqLogic->getConfiguration('serverID', 1));
-			openzwave::callOpenzwave($request . '.instances[0].commandClasses[0x33].data[1].Set(0)', $eqLogic->getConfiguration('serverID', 1));
-			/* Set GREEN color */
-			openzwave::callOpenzwave($request . '.instances[0].commandClasses[0x33].data[5].Set' . str_replace(',', '%2C', $g) . ')', $eqLogic->getConfiguration('serverID', 1));
-			/* Set BLUE color */
-			openzwave::callOpenzwave($request . '.instances[0].commandClasses[0x33].data[4].Set(' . str_replace(',', '%2C', $b) . ')', $eqLogic->getConfiguration('serverID', 1));
-			/* Set RED color */
-			openzwave::callOpenzwave($request . '.instances[0].commandClasses[0x33].data[2].Set(' . str_replace(',', '%2C', $r) . ')', $eqLogic->getConfiguration('serverID', 1));
-			openzwave::callOpenzwave($request . '.instances[0].commandClasses[0x26].data[0].Set(255)', $eqLogic->getConfiguration('serverID', 1));
-		}
+		$r = round(($r / 255) * 99);
+		$g = round(($g / 255) * 99);
+		$b = round(($b / 255) * 99);
+		openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . '].SetColor(' . $r . ',' . $g . ',' . $b . ',0)', $eqLogic->getConfiguration('serverID', 1));
 		return true;
 	}
 
