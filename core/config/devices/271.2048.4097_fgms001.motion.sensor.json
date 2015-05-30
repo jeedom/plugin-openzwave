@@ -79,7 +79,7 @@
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "%",
-                "eventOnly": 0,
+
                 "configuration": {
                     "class": "0x80",
                     "value": "data[0].val"

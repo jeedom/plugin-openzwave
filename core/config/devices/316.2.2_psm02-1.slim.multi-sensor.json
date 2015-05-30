@@ -100,7 +100,7 @@
                 "subtype": "numeric",
                 "isVisible": 0,
                 "isHistorized": 0,
-                "eventOnly": 0,
+
                 "configuration": {
                     "instanceId": 0,
                     "class": "0x80",
