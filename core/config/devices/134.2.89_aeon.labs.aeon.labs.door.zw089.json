@@ -1,0 +1,39 @@
+{
+		"name": "Aeon Labs Door ZW089",
+        "configuration" : {
+        "conf_version" : 1
+		},
+		"commands": [
+            {
+                "name": "Etat",
+                "type": "info",
+                "subType": "binary",
+                "isHistorized": "1",
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x20",
+                    "value": "data[0].val"
+                },
+                "template": {
+                    "dashboard": "door",
+                    "mobile": "door"
+                },
+                "display": {
+                    "invertBinary": "1"
+                },
+                "isVisible": "1"
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "configuration": {
+                    "class": "0x80",
+                    "value": "data[0].val"
+                }
+            }
+        ]
+    }

@@ -1,0 +1,250 @@
+{
+		"name": "Aeon DSB28",
+        "configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "Consommation totale",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "KWh",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 0,
+                    "value": "data[0].val",
+					"maxValue": 200,
+                    "minValue": 0
+                }
+            },
+			{
+                "name": "Consommation phase 1",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "KWh",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 1,
+                    "value": "data[0].val",
+					"maxValue": 200,
+                    "minValue": 0
+                }
+            },
+			{
+                "name": "Consommation phase 2",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "KWh",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 2,
+                    "value": "data[0].val",
+					"maxValue": 200,
+                    "minValue": 0
+                }
+            },
+			{
+                "name": "Consommation phase 3",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "KWh",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 3,
+                    "value": "data[0].val",
+					"maxValue": 200,
+                    "minValue": 0
+                }
+            },
+			{
+                "name": "Puissance totale",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "W",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 0,
+                    "value": "data[2].val",
+					"maxValue": 12000,
+                    "minValue": 0
+                }
+            },
+			{
+                "name": "Puissance phase 1",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "W",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 1,
+                    "value": "data[2].val",
+					"maxValue": 12000,
+                    "minValue": 0
+                }
+            },
+			{
+                "name": "Puissance phase 2",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "W",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 2,
+                    "value": "data[2].val",
+					"maxValue": 12000,
+                    "minValue": 0
+                }
+            },
+			{
+                "name": "Puissance phase 3",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "W",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 3,
+                    "value": "data[2].val",
+					"maxValue": 12000,
+                    "minValue": 0
+                }
+            },
+			{
+                "name": "Tension totale",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "V",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 0,
+                    "value": "data[4].val",
+					"maxValue": 240,
+                    "minValue": 220
+                }
+            },
+			{
+                "name": "Tension phase 1",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "V",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 1,
+                    "value": "data[4].val",
+					"maxValue": 240,
+                    "minValue": 220
+                }
+            },
+			{
+                "name": "Tension phase 2",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "V",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 2,
+                    "value": "data[4].val",
+					"maxValue": 240,
+                    "minValue": 220
+                }
+            },
+			{
+                "name": "Tension phase 3",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "V",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 3,
+                    "value": "data[4].val",
+					"maxValue": 240,
+                    "minValue": 220
+                }
+            },
+			{
+                "name": "Intensité totale",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "A",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 0,
+                    "value": "data[5].val",
+					"maxValue": 0,
+                    "minValue": 20
+                }
+            },
+			{
+                "name": "Intensité phase 1",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "A",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 1,
+                    "value": "data[5].val",
+					"maxValue": 0,
+                    "minValue": 20
+                }
+            },
+			{
+                "name": "Intensité phase 2",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "A",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 2,
+                    "value": "data[5].val",
+					"maxValue": 0,
+                    "minValue": 20
+                }
+            },
+			{
+                "name": "Intensité phase 3",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible":1,
+                "isHistorized": 1,
+				"unite": "A",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 3,
+                    "value": "data[5].val",
+					"maxValue": 0,
+                    "minValue": 20
+                }
+            }
+			
+        ]
+    }
+
