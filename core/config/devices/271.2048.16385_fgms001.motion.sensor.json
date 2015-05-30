@@ -1,0 +1,89 @@
+{
+	"name" : "Fibaro FGMS-001 [Motion Sensor]",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+            {
+                "name": "Présence",
+                "type": "info",
+                "subtype": "binary",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x30",
+                    "value": "data[0].level"
+                },
+                "display": {
+                    "invertBinary": "1"
+                },
+                "template": {
+                    "dashboard": "presence",
+                    "mobile": "presence"
+                }
+            },
+            {
+                "name": "Température",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite": "°C",
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[1].val"
+                }
+            },
+            {
+                "name": "Luminosité",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite": "Lux",
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[3].val",
+                    "maxValue": 1000,
+                    "minValue": 0
+                }
+            },
+            {
+                "name": "Anti Sabotage",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "eventOnly": 1,
+                "configuration": {
+                    "class": "0x9C",
+                    "value": "data[0].val",
+		            "maxValue": 255,
+                    "minValue": 0
+                },
+                "display": {
+                    "invertBinary": "1"
+                },
+		         "template": {
+                    "dashboard": "vibration",
+                    "mobile": "vibration"
+                }
+            },
+			{
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "eventOnly": 0,
+                "configuration": {
+                    "class": "0x80",
+                    "value": "data[0].val"
+                }
+            }
+        ]
+}

@@ -27,15 +27,20 @@ Aeon Labs;Z-Stick S2;134;1;2;;;134.1.2_aeon.labs.z-stick.s2;N/A
 Aeon Labs;Minimote;134;1;3;X;X;134.1.3_aeon.labs.minimote;aeon_labs/minimote.xml
 Aeon Labs;Z-Stick S2 Lite;134;1;7;;;134.1.7_aeon.labs.z-stick.s2.lite;N/A
 Aeon Labs;Key Fob;134;1;22;;X;134.1.22_aeon.labs.key.fob;aeon_labs/keyfob.xml
+Aeon Labs;ZW088 Key Fob Gen5;134;1;88;X;X;134.1.88_aeon.labs.zw088.key.fob.gen5;aeon_labs/keyfob2.xml
 Aeon Labs;Z-Stick Gen5;134;1;90;;;134.1.90_aeon.labs.z-stick.gen5;N/A
 Aeon Labs;Z-Stick Lite Gen5;134;1;92;;;134.1.92_aeon.labs.z-stick.lite.gen5;N/A
+Aeon Labs;Panic Button;134;1;38;;;134.1.38_aeon.labs.panic.button;aeon_labs/panicbtn.xml
 Aeon Labs;Z-Stick S2;134;2;1;;;134.2.1_aeon.labs.z-stick.s2;N/A
 Aeon Labs;Door/Window Sensor;134;2;4;;X;134.2.4_aeon.labs.doorwindow.sensor;aeon_labs/doorwindow.xml
 Aeon Labs;Multi Sensor;134;2;5;;X;134.2.5_aeon.labs.multi.sensor;aeon_labs/alms.xml
 Aeon Labs;Home Energy Meter;134;2;9;;X;134.2.9_aeon.labs.home.energy.meter;aeon_labs/hem.xml
 Aeon Labs;Home Energy Meter G2;134;2;28;;X;134.2.28_aeon.labs.home.energy.meter.g2;aeon_labs/hemg2.xml
 Aeon Labs;Door/Window Sensor;134;2;29;;X;134.2.29_aeon.labs.doorwindow.sensor;aeon_labs/doorwindow.xml
+Aeon Labs;Water Sensor;134;2;45;;;134.2.45_aeon.labs.water.sensor;aeon_labs/watersensor.xml
 Aeon Labs;Recessed Door Sensor;134;2;54;;X;134.2.54_aeon.labs.recessed.door.sensor;aeon_labs/recessed_doorsensor.xml
+Aeon Labs;Multi Sensor Gen5;134;2;74;;;134.2.74_aeon.labs.multi.sensor.gen5;aeon_labs/multisensor_gen5.xml
+Aeon Labs;Recessed Door Sensor;134;2;89;;;134.2.89_aeon.labs.recessed.door.sensor;aeon_labs/recessed_doorsensor_gen5.xml
 Aeon Labs;Smart Energy Switch;134;3;6;;X;134.3.6_aeon.labs.smart.energy.switch;aeon_labs/ses.xml
 Aeon Labs;Smart Energy Illuminator;134;3;8;;X;134.3.8_aeon.labs.smart.energy.illuminator;N/A
 Aeon Labs;Smart Energy 220V Utility Switch;134;3;10;;X;134.3.10_aeon.labs.smart.energy.220v.utility.switch;N/A
@@ -47,10 +52,13 @@ Aeon Labs;Micro Double Switch;134;3;17;;X;134.3.17_aeon.labs.micro.double.switch
 Aeon Labs;Micro Switch (2nd Edition);134;3;26;;X;134.3.26_aeon.labs.micro.switch.2nd.edition;N/A
 Aeon Labs;Micro Smart Energy Illuminator G2;134;3;27;;X;134.3.27_aeon.labs.micro.smart.energy.illuminator.g2;N/A
 Aeon Labs;Micro Smart Energy Switch G2;134;3;18;;X;134.3.18_aeon.labs.micro.smart.energy.switch.g2;aeon_labs/ses.xml
-Aeon Labs;Micro Smart Energy Dimmer;134;3;19;;X;134.3.19_aeon.labs.micro.smart.energy.dimmer;N/A
+Aeon Labs;Micro Smart Energy Dimmer v2;134;3;19;;X;134.3.19_aeon.labs.micro.smart.energy.dimmer.v2;aeon_labs/msesv2.xml
 Aeon Labs;Smart Energy Switch v2;134;3;75;;X;134.3.75_aeon.labs.smart.energy.switch.v2;aeon_labs/ses2.xml
+Aeon Labs;Heavy Duty Smart Switch Gen5;134;3;78;;;134.3.78_aeon.labs.heavy.duty.smart.switch.gen5;aeon_labs/hdss_gen5.xml
 Aeon Labs;Z-Wave Repeater;134;4;37;;X;134.4.37_aeon.labs.z-wave.repeater;N/A
 Aeon Labs;DSD31 Siren Gen5;134;4;80;;X;134.4.80_aeon.labs.dsd31.siren.gen5;aeon_labs/dsd31.xml
+Aeon Labs;Recessed Door Sensor Gen5;134;258;89;;;134.258.89_aeon.labs.recessed.door.sensor.gen5;aeon_labs/recessed_doorsensor_gen5.xml
+Aeon Labs;Recessed Door Sensor Gen5;134;514;89;;;134.514.89_aeon.labs.recessed.door.sensor.gen5;aeon_labs/recessed_doorsensor_gen5.xml
 Airline Mechanical;ZDS-100;273;33280;512;;;273.33280.512_airline.mechanical.zds-100;N/A
 Assa Abloy;Yale Real Living Cap-Touch Lever Lock;297;1;0;;;297.1.0_assa.abloy.yale.real.living.cap-touch.lever.lock;N/A
 Assa Abloy;Yale Real Living Cap-Touch Deadbolt;297;2;0;;;297.2.0_assa.abloy.yale.real.living.cap-touch.deadbolt;assa_abloy/RealLivingCapTouch.xml
@@ -71,6 +79,7 @@ BeNext;Scene Controller;138;23;256;;X;138.23.256_benext.scene.controller;BeNext/
 BeNext;Plug-in Dimmer;138;24;256;;X;138.24.256_benext.plug-in.dimmer;BeNext/PluginDimmer.xml
 BeNext;1Pole Switch;138;30;1;;X;138.30.1_benext.1pole.switch;BeNext/1poleswitch.xml
 BeNext;2Pole Switch;138;31;1;;X;138.31.1_benext.2pole.switch;BeNext/2poleswitch.xml
+BeNext;Energy Switch;138;32;1;;;138.32.1_benext.energy.switch;BeNext/EnergySwitch.xml
 Iwatsu Electric Co;TM-H2VHD081 HA Dongle;291;0;0;;;291.0.0_iwatsu.electric.co.tm-h2vhd081.ha.dongle;N/A
 Iwatsu Electric Co;NE-4CT-2P Electric Power Measuring Equipment;291;258;258;;;291.258.258_iwatsu.electric.co.ne-4ct-2p.electric.power.measuring.equipment;N/A
 Iwatsu Electric Co;NE-4CT Electric Power Measuring Equipment;291;259;259;;;291.259.259_iwatsu.electric.co.ne-4ct.electric.power.measuring.equipment;N/A
@@ -80,7 +89,7 @@ Cooper;RF9534DS Wall Dimmer Module;26;17481;2;;X;26.17481.2_cooper.rf9534ds.wall
 Cooper;RF9540-N All Load Dimmer Light Switch;26;17481;257;;;26.17481.257_cooper.rf9540-n.all.load.dimmer.light.switch;cooper/RF9540-N.xml
 Cooper;RF9505-T Split Control Duplex Receptacle;26;21060;0;;X;26.21060.0_cooper.rf9505-t.split.control.duplex.receptacle;cooper/RF9505-T.xml
 Cytech Tech;Comfort 9000 with UCM/Zwave;48;1;1;;;48.1.1_cytech.tech.comfort.9000.with.ucmzwave;N/A
-Danfoss;Z Thermostat;2;5;3;;X;2.5.3_danfoss.z.thermostat;danfoss/z.xml
+Danfoss;Z Thermostat;2;5;3;X;X;2.5.3_danfoss.z.thermostat;danfoss/z.xml
 Danfoss;Z Thermostat 014G0013;2;5;4;;X;2.5.4_danfoss.z.thermostat.014g0013;danfoss/z.xml
 Danfoss;RA Plus-W Radiator Thermostat;2;100;1;;X;2.100.1_danfoss.ra.plus-w.radiator.thermostat;N/A
 Danfoss;RXZ3 RF relay Switching Unit;2;32772;8192;;X;2.32772.8192_danfoss.rxz3.rf.relay.switching.unit;N/A
@@ -130,12 +139,12 @@ FIBARO System;FGD211 Universal Dimmer 500W;271;256;265;;X;271.256.265_fibaro.sys
 FIBARO System;FGD211 Universal Dimmer 500W;271;256;4106;X;X;271.256.4106_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
 FIBARO System;FGD211 Universal Dimmer 500W;271;256;12298;;;271.256.12298_fibaro.system.fgd211.universal.dimmer.500w;fibaro/fgd211.xml
 FIBARO System;FGK101 Door Opening Sensor;271;1792;4096;X;X;271.1792.4096_fibaro.system.fgk101.door.opening.sensor;fibaro/fgk001.xml
-FIBARO System;FGK101 Door Opening Sensor;271;1792;16384;;;271.1792.16384_fibaro.system.fgk101.door.opening.sensor;fibaro/fgk001.xml
+FIBARO System;FGK101 Door Opening Sensor;271;1792;16384;X;;271.1792.16384_fibaro.system.fgk101.door.opening.sensor;fibaro/fgk001.xml
 FIBARO System;FGR221 Roller Shutter Controller;271;768;260;;;271.768.260_fibaro.system.fgr221.roller.shutter.controller;fibaro/fgr221.xml
 FIBARO System;FGR221 Roller Shutter Controller;271;768;4106;;X;271.768.4106_fibaro.system.fgr221.roller.shutter.controller;fibaro/fgr221.xml
 FIBARO System;FGR221 Roller Shutter Controller;271;768;262;;;271.768.262_fibaro.system.fgr221.roller.shutter.controller;fibaro/fgr221.xml
 FIBARO System;FGR221 Roller Shutter Controller;271;768;263;;;271.768.263_fibaro.system.fgr221.roller.shutter.controller;fibaro/fgr221.xml
-FIBARO System;FGRM222 Roller Shutter Controller 2;271;769;4097;;X;271.769.4097_fibaro.system.fgrm222.roller.shutter.controller.2;fibaro/fgrm222.xml
+FIBARO System;FGRM222 Roller Shutter Controller 2;271;769;4097;X;X;271.769.4097_fibaro.system.fgrm222.roller.shutter.controller.2;fibaro/fgrm222.xml
 FIBARO System;FGS211 Switch 3kW;271;1024;260;;;271.1024.260_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
 FIBARO System;FGS211 Switch 3kW;271;1024;261;;;271.1024.261_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
 FIBARO System;FGS211 Switch 3kW;271;1024;262;;;271.1024.262_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
@@ -143,22 +152,23 @@ FIBARO System;FGS211 Switch 3kW;271;1024;263;;;271.1024.263_fibaro.system.fgs211
 FIBARO System;FGS211 Switch 3kW;271;1024;264;;;271.1024.264_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
 FIBARO System;FGS221 Switch 3kW;271;1024;265;;;271.1024.265_fibaro.system.fgs221.switch.3kw;fibaro/fgs221.xml
 FIBARO System;FGS211 Switch 3kW;271;1024;4106;;X;271.1024.4106_fibaro.system.fgs211.switch.3kw;fibaro/fgs211.xml
-FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;260;;;271.512.260_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
-FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;261;;;271.512.261_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
-FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;262;;;271.512.262_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
-FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;263;;;271.512.263_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
-FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;265;;X;271.512.265_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
+FIBARO System;FGS212 Switch 3kW;271;1026;4098;X;X;271.1026.4098_fibaro.system.fgs212.switch.3kw;fibaro/fgs211.xml
+FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;260;X;;271.512.260_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
+FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;261;X;;271.512.261_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
+FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;262;X;;271.512.262_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
+FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;263;X;;271.512.263_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
+FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;265;X;X;271.512.265_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
 FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;4106;X;X;271.512.4106_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
-FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;12298;;;271.512.12298_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
-FIBARO System;FGS222 Double Relay Switch 2x1.5kW;271;514;4098;;;271.514.4098_fibaro.system.fgs222.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
+FIBARO System;FGS221 Double Relay Switch 2x1.5kW;271;512;12298;X;;271.512.12298_fibaro.system.fgs221.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
+FIBARO System;FGS222 Double Relay Switch 2x1.5kW;271;514;4098;X;;271.514.4098_fibaro.system.fgs222.double.relay.switch.2x1.5kw;fibaro/fgs221.xml
 FIBARO System;FGWPE Wall Plug;271;1536;4096;X;X;271.1536.4096_fibaro.system.fgwpe.wall.plug;fibaro/fgwpe.xml
 FIBARO System;FGMS001 Motion Sensor;271;2048;4097;X;X;271.2048.4097_fibaro.system.fgms001.motion.sensor;fibaro/fgms.xml
-FIBARO System;FGMS001 Motion Sensor;271;2048;16385;;;271.2048.16385_fibaro.system.fgms001.motion.sensor;fibaro/fgms.xml
-FIBARO System;FGFS101 Flood Sensor;271;2816;12289;;;271.2816.12289_fibaro.system.fgfs101.flood.sensor;fibaro/fgfs101.xml
+FIBARO System;FGMS001 Motion Sensor;271;2048;16385;X;;271.2048.16385_fibaro.system.fgms001.motion.sensor;fibaro/fgms.xml
+FIBARO System;FGFS101 Flood Sensor;271;2816;12289;X;;271.2816.12289_fibaro.system.fgfs101.flood.sensor;fibaro/fgfs101.xml
 FIBARO System;FGFS101 Flood Sensor;271;2816;4097;X;X;271.2816.4097_fibaro.system.fgfs101.flood.sensor;fibaro/fgfs101.xml
-FIBARO System;FGFS101 Flood Sensor;271;2816;40448;;;271.2816.40448_fibaro.system.fgfs101.flood.sensor;fibaro/fgfs101.xml
+FIBARO System;FGFS101 Flood Sensor;271;2816;40448;X;;271.2816.40448_fibaro.system.fgfs101.flood.sensor;fibaro/fgfs101.xml
 FIBARO System;FGRGBWM441 RGBW Controller;271;2304;4096;X;X;271.2304.4096_fibaro.system.fgrgbwm441.rgbw.controller;fibaro/fgrgbwm441.xml
-FIBARO System;FGRGBWM441 RGBW Controller;271;2304;16384;;;271.2304.16384_fibaro.system.fgrgbwm441.rgbw.controller;fibaro/fgrgbwm441.xml
+FIBARO System;FGRGBWM441 RGBW Controller;271;2304;16384;X;;271.2304.16384_fibaro.system.fgrgbwm441.rgbw.controller;fibaro/fgrgbwm441.xml
 FIBARO System;FGSS101 Smoke Sensor;271;3072;4096;X;X;271.3072.4096_fibaro.system.fgss101.smoke.sensor;fibaro/fgss101.xml
 FIBARO System;FGSD002 Smoke Sensor;271;3074;4098;X;X;271.3074.4098_fibaro.system.fgsd002.smoke.sensor;fibaro/fgsd002.xml
 First Alert;ZCombo Smoke and Carbon Monoxide Detector;312;1;2;;;312.1.2_first.alert.zcombo.smoke.and.carbon.monoxide.detector;N/A
@@ -176,7 +186,7 @@ FortrezZ;SSA2USR - Siren/Strobe Light Alarm;132;787;267;;;132.787.267_fortrezz.s
 Home Manageables;Door/Window Sensor;111;258;1;;;111.258.1_home.manageables.doorwindow.sensor;N/A
 Home Manageables;HM-AM001 Plugin Appliance Module;111;260;1;;;111.260.1_home.manageables.hm-am001.plugin.appliance.module;N/A
 Homeseer;ZTroller;30;1;2;;X;30.1.2_homeseer.ztroller;homeseer/ztroller.xml
-Homeseer;HSM100 Wireless Multi-Sensor;30;2;1;;X;30.2.1_homeseer.hsm100.wireless.multi-sensor;homeseer/hsm100.xml
+Homeseer;HSM100 Wireless Multi-Sensor;30;2;1;X;X;30.2.1_homeseer.hsm100.wireless.multi-sensor;homeseer/hsm100.xml
 Homeseer;EZMotion+ 3-in-1 Sensor;30;2;2;;X;30.2.2_homeseer.ezmotion+.3-in-1.sensor;homeseer/hsm100.xml
 Honeywell;TH8320ZW1000 Touchscreen Thermostat;57;17;1;;;57.17.1_honeywell.th8320zw1000.touchscreen.thermostat;honeywell/th8320zw1000.xml
 Horstmann;ASR-RF Thermostat Receiver;89;1;1;;;89.1.1_horstmann.asr-rf.thermostat.receiver;N/A
@@ -250,6 +260,7 @@ Merten;Transmitter Move;122;2;1;;;122.2.1_merten.transmitter.move;N/A
 MIOS;Vera Lite;140;1;1;;;140.1.1_mios.vera.lite;N/A
 Miyakawa Electric Works;ME-D101 Electric Power Measuring Instrument;290;1;1;;;290.1.1_miyakawa.electric.works.me-d101.electric.power.measuring.instrument;N/A
 Miyakawa Electric Works;ZW-GW Smart Bridge;290;32768;0;;;290.32768.0_miyakawa.electric.works.zw-gw.smart.bridge;N/A
+NodOn;ASP-3-1-00 Smart Plug;357;1;1;X;X;357.1.1_nodon.asp-3-1-00.smart.plug;nodon/asp3100SmartPlug.xml
 NorthQ;NQ-92021 Power Reader;150;1;1;;;150.1.1_northq.nq-92021.power.reader;northq/nq92021.xml
 NorthQ;NQ-9021 Power Reader;150;1;2;;;150.1.2_northq.nq-9021.power.reader;N/A
 NorthQ;NQ-9121 Gas Meter;150;16;1;;;150.16.1_northq.nq-9121.gas.meter;N/A
@@ -262,7 +273,7 @@ Philio Technology Corporation;PST02-A 4 in 1 Multi-Sensor;316;2;12;;;316.2.12_ph
 Philio Technology Corporation;PST02-B PIR/Motion 3 in 1 Sensor;316;2;13;;;316.2.13_philio.technology.corporation.pst02-b.pirmotion.3.in.1.sensor;philio/pst02-b.xml
 Philio Technology Corporation;PST02-C Door/Window 3 in 1 sensor;316;2;14;;;316.2.14_philio.technology.corporation.pst02-c.doorwindow.3.in.1.sensor;philio/pst02-1c.xml
 Polycontrol;Danalock Keypad;270;2;1;;;270.2.1_polycontrol.danalock.keypad;polycontrol/keypad.xml
-Polycontrol;Danalock Circle/Square;270;3;2;;;270.3.2_polycontrol.danalock.circlesquare;polycontrol/doorlock.xml
+Polycontrol;Danalock Circle/Square;270;3;2;X;;270.3.2_polycontrol.danalock.circlesquare;polycontrol/doorlock.xml
 Popp;123601 Plug-in Switch;340;4352;1;;;340.4352.1_popp.123601.plug-in.switch;popp/123601.xml
 Popp;123580 Plug-in Dimmer;340;4352;2;;;340.4352.2_popp.123580.plug-in.dimmer;popp/123580.xml
 Popp;123658 Plug-in Switch plus Power Meter;340;1;1;;;340.1.1_popp.123658.plug-in.switch.plus.power.meter;popp/123658.xml
@@ -305,6 +316,7 @@ Schlage Link;Mini Keypad RFID;151;24881;17665;X;X;151.24881.17665_schlage.link.m
 Sercomm;SW-CLP01-EU Clamp Power Meter;337;2;1;;;337.2.1_sercomm.sw-clp01-eu.clamp.power.meter;N/A
 Sigma Designs;UZB Z-Wave USB Adapter;0;1;1;;;0.1.1_sigma.designs.uzb.z-wave.usb.adapter;N/A
 Swiid;SwiidInter;358;256;256;X;X;358.256.256_swiid.swiidinter;swiid/swiidinter.xml
+Swiid;SwiidPlug;358;8199;1798;X;;358.8199.1798_swiid.swiidplug;swiid/swiidplug.xml
 There;ThereGate;268;1;1;;;268.1.1_there.theregate;N/A
 Trane;Model TZEMT400AB32MAA;139;21586;21553;;;139.21586.21553_trane.model.tzemt400ab32maa;trane/TZEMT400AB32MAA.xml
 Trane;Model TZEMT400BB32MAA;139;21586;21555;;;139.21586.21555_trane.model.tzemt400bb32maa;trane/TZEMT400BB32MAA.xml
@@ -379,5 +391,6 @@ Z-Wave.Me;ZME_06436 Motor Control;277;4096;3;;;277.4096.3_z-wave.me.zme_06436.mo
 Z-Wave.Me;ZME_064435 Wall Controller;277;4096;4;;;277.4096.4_z-wave.me.zme_064435.wall.controller;zwave.me/ZME_064435.xml
 Z-Wave.Me;PLDE Plug-in Dimmer;277;4352;2;;;277.4352.2_z-wave.me.plde.plug-in.dimmer;N/A
 Z-Wave.Me;RaZberry Controller;327;2;3;;;327.2.3_z-wave.me.razberry.controller;N/A
+Z-Wave.Me;RaZberry Controller ZWave+;327;1024;1;;;327.1024.1_z-wave.me.razberry.controller.zwave+;N/A
 Zipato;RGBW LED Bulb;305;2;2;;X;305.2.2_zipato.rgbw.led.bulb;zipato/RGBBulb.xml
 Zipato;Zipato Mini Keypad;305;24881;17665;;X;305.24881.17665_zipato.zipato.mini.keypad;zipato/MiniKeypad.xml
