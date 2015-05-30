@@ -1,0 +1,66 @@
+{		
+		"name": "EZ Motion 3 in 1",
+		"configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "Luminosité",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x31",
+                    "instanceId": 1,
+                    "value": "data[3].val"
+                }
+            },
+            {
+                "name": "Température",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x31",
+                    "instanceId": 2,
+                    "value": "data[1].val"
+                }
+            },
+            {
+                "name": "Présence",
+                "type": "info",
+                "subtype": "binary",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x31",
+                    "instanceId": 0,
+                    "value": "data[2].val",
+                    "returnStateTime": "4",
+                    "returnStateValue": "0"
+                },
+                "display": {
+                    "invertBinary": "1"
+                },
+                "template": {
+                    "dashboard": "presence",
+                    "mobile": "presence"
+                }
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "eventOnly": 0,
+				"unite": "%",
+                "configuration": {
+                    "class": "0x80",
+					"instanceId": 0,
+                    "value": "data[0].val",
+					"maxValue": 100,
+                    "minValue": 0
+                }
+            }
+        ]
+}
