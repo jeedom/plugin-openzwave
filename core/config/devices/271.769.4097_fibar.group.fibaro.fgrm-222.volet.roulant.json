@@ -1,7 +1,7 @@
 {
 		"name": "Fibaro FGRM-222 [Volet roulant]", 
 		"configuration" : {
-        "conf_version" : 5
+        "conf_version" : 1
 		},
         "commands": [
             {
