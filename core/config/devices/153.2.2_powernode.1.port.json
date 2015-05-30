@@ -63,22 +63,6 @@
                 "isVisible": "1"
             },
             {
-                "name": "Reset",
-                "type": "action",
-                "subType": "other",
-                "isHistorized": "0",
-                "eventOnly": "0",
-                "configuration": {
-                    "class": "0x32",
-                    "instanceId": "0",
-                    "value": "data[33].PressButton()"
-                },
-                "display": {
-                    "invertBinary": "0"
-                },
-                "isVisible": "0"
-            },
-            {
                 "name": "Puissance",
                 "type": "info",
                 "subType": "numeric",

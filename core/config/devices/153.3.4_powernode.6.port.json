@@ -51,19 +51,6 @@
                 }
             },
             {
-                "name": "Reset-1",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 0,
-                "isHistorized": 0,
-                "unite": "",
-                "configuration": {
-                    "class": "0x32",
-                    "instanceId": 0,
-                    "value": "data[33].PressButton()"
-                }
-            },
-            {
                 "name": "Etat-2",
                 "type": "info",
                 "subtype": "binary",
@@ -107,19 +94,6 @@
                 "template": {
                     "dashboard": "Multiprise",
                     "mobile": "prise"
-                }
-            },
-            {
-                "name": "Reset-2",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 0,
-                "isHistorized": 0,
-                "unite": "",
-                "configuration": {
-                    "class": "0x32",
-                    "instanceId":1,
-                    "value": "data[33].PressButton()"
                 }
             },
             {
@@ -169,19 +143,6 @@
                 }
             },
             {
-                "name": "Reset-3",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 0,
-                "isHistorized": 0,
-                "unite": "",
-                "configuration": {
-                    "class": "0x32",
-                    "instanceId": 2,
-                    "value": "data[33].PressButton()"
-                }
-            },
-            {
                 "name": "Etat-4",
                 "type": "info",
                 "subtype": "binary",
@@ -225,19 +186,6 @@
                 "template": {
                     "dashboard": "Multiprise",
                     "mobile": "prise"
-                }
-            },
-            {
-                "name": "Reset-4",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 0,
-                "isHistorized": 0,
-                "unite": "",
-                "configuration": {
-                    "class": "0x32",
-                    "instanceId": 3,
-                    "value": "data[33].PressButton()"
                 }
             },
             {
@@ -287,19 +235,6 @@
                 }
             },
             {
-                "name": "Reset-5",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 0,
-                "isHistorized": 0,
-                "unite": "",
-                "configuration": {
-                    "class": "0x32",
-                    "instanceId": 4,
-                    "value": "data[33].PressButton()"
-                }
-            },
-            {
                 "name": "Etat-6",
                 "type": "info",
                 "subtype": "binary",
@@ -343,19 +278,6 @@
                 "template": {
                     "dashboard": "Multiprise",
                     "mobile": "prise"
-                }
-            },
-            {
-                "name": "Reset-6",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 0,
-                "isHistorized": 0,
-                "unite": "",
-                "configuration": {
-                    "class": "0x32",
-                    "instanceId": 5,
-                    "value": "data[33].PressButton()"
                 }
             },
             {

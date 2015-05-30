@@ -1,4 +1,8 @@
 {
+    "name": "SwiidPlug",
+    "configuration": {
+        "conf_version": 1
+    },
     "commands": [
         {
             "configuration": {
@@ -42,9 +46,5 @@
             "type": "action",
             "value": "Etat"
         }
-    ],
-    "configuration": {
-        "conf_version": 1
-    },
-    "name": "SwiidPlug"
+    ]
 }

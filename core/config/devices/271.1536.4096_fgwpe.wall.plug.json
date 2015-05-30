@@ -81,18 +81,6 @@
                 "template": {
                     "dashboard": "tile"
                 }
-            },
-            {
-                "name": "Reset",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 0,
-                "isHistorized": 0,
-                "unite": "",
-                "configuration": {
-                    "class": "0x32",
-                    "value": "data[33].PressButton()"
-                }
             }
         ]
    }
