@@ -1064,6 +1064,7 @@ class openzwaveCmd extends cmd {
 	}
 
 	public function setRGBColor($_color) {
+		//openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . '].SetColor(' . $r . ',' . $g . ',' . $b . ',0)',$eqLogic->getConfiguration('serverID', 1));
 		if ($_color == '') {
 			throw new Exception('Couleur non définie');
 		}
