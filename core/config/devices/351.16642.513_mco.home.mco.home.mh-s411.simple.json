@@ -1,0 +1,54 @@
+{
+		"name": "MCO Home MH-S411 [Simple]",
+        "configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "Etat",
+                "type": "info",
+                "subType": "binary",
+                "isHistorized": "0",
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x25",
+                    "value": "data[0].val"
+                },
+                "isVisible": "0"
+            },
+            {
+                "name": "On",
+                "type": "action",
+                "subType": "other",
+                "isHistorized": "0",
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x25",
+                    "value": "data[0].Set(255)"
+                },
+                "template": {
+                    "dashboard": "light",
+                    "mobile": "light"
+                },
+                "value": "Etat",
+                "isVisible": "1"
+            },
+            {
+				"name": "Off",
+                "type": "action",
+                "subType": "other",
+                "isHistorized": "0",
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x25",
+                    "value": "data[0].Set(0)"
+                },
+                "template": {
+                    "dashboard": "light",
+                    "mobile": "light"
+                },
+                "value": "Etat",
+                "isVisible": "1"
+            }
+        ]
+    }
