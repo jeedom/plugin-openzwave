@@ -146,20 +146,6 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'checkDoc') {
-		try {
-			$request_http = new com_http('http://doc.jeedom.fr/fr_FR/' . init('doc'));
-			$request_http->setNoReportError(true);
-			$result = $request_http->exec(1, 1);
-			if (trim($result) != '' && strpos($result, '404 Not Found') === false) {
-				ajax::success(1);
-			}
-		} catch (Exception $e) {
-
-		}
-		ajax::success(0);
-	}
-
 	if (init('action') == 'migrateZwave') {
 		$cmd = 'sudo php ' . dirname(__FILE__) . '/../../script/migrate.php';
 		$cmd .= ' >> ' . log::getPathToLog('openzwave_migrate') . ' 2>&1 &';
@@ -176,10 +162,9 @@ try {
 	}
 
 	if (init('action') == 'getConfiguration') {
-		if (config::byKey('language', 'core', 'fr_FR') != 'fr_FR') {
+		if (init('translation') == 1 && config::byKey('language', 'core', 'fr_FR') != 'fr_FR') {
 			ajax::success();
 		}
-
 		$id = init('manufacturer_id') . '.' . init('product_type') . '.' . init('product_id');
 		$files = ls(dirname(__FILE__) . '/../config/devices', $id . '_*.json', false, array('files', 'quiet'));
 		if (count($files) > 0) {

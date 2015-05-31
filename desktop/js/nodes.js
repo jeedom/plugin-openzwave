@@ -1177,6 +1177,7 @@ draw_nodes: function ()
 			global : false,
 			data: {
 				action: "getConfiguration",
+				translation : 1,
 				manufacturer_id:nodes[node_id].data.manufacturerId.value,
 				product_type: nodes[node_id].data.manufacturerProductType.value,
 				product_id: nodes[node_id].data.manufacturerProductId.value,

@@ -3,6 +3,7 @@
     "configuration" : {
         "conf_version" : 1
     },
+    "doc" : "fibaro.fgd211",
     "commands": [
             {
                 "name": "Intensité",
