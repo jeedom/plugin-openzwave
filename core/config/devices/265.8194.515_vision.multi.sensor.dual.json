@@ -1,0 +1,35 @@
+{
+		"name": "Vision Multi sensor Dual",
+        "configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "Temperature",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[1].val"
+                }
+            },
+            {
+                "name": "Présence",
+                "type": "info",
+                "subtype": "binary",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x30",
+                    "value": "data[1].val"
+                },
+                "display": {
+                    "invertBinary": "1"
+                },
+                "template": {
+                    "dashboard": "presence",
+                    "mobile": "presence"
+                }
+            }
+        ]
+    }
