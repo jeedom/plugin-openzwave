@@ -95,12 +95,7 @@ if (jeedom::isCapable('sudo')) {
 				</div>
 			</div>';
 } else {
-	echo '<div class="form-group">
-			<label class="col-lg-4 control-label">{{Installation automatique impossible}}</label>
-			<div class="col-lg-8">
-				{{Veuillez lancer la commande suivante :}} wget http://127.0.0.1/jeedom/plugins/openzwave/ressources/install.sh -v -O install.sh; ./install.sh
-			</div>
-		</div>';
+	echo '<div class="alert alert danger">{{Jeedom n\'a pas les droits sudo sur votre système, il faut lui ajouter pour qu\'il puisse installer le demon openzwave, voir <a target="_blank" href="http://doc.jeedom.fr/fr_FR/doc-installation.html#autre">ici</a> partie 1.7.4}}</div>';
 }
 ?>
 	<div class="form-group">
