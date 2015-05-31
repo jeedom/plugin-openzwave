@@ -1639,6 +1639,51 @@ def set_value6(device_id, instance_id, cc_id, value) :
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(Value)
 
+def convert_level_to_color(level):
+    if level > 99:
+        return 255
+    return level*255/99
+
+def convert_color_to_level(color):
+    if color > 255:
+        color = 255
+    if color < 0:
+        color = 0        
+    
+    return color*99/255
+
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].GetColor()',methods = ['GET'])
+def get_color(device_id) :
+    debug_print("get_color nodeId:%s" % (device_id,))
+    result = {}
+    if(device_id in network.nodes) :
+        red_level = 0  
+        green_level = 0 
+        blue_level = 0 
+        white_level = 0
+        
+        for val in network.nodes[device_id].get_values(class_id='All', genre='User', type='Byte', readonly=False, writeonly=False) :
+            my_value = network.nodes[device_id].values[val]
+            if my_value.command_class != COMMAND_CLASS_SWITCH_MULTILEVEL:
+                continue
+            if my_value.label != 'Level':
+                continue
+            if my_value.instance < 2 :
+                continue            
+            
+            if my_value.instance == 3 :                
+                red_level = convert_level_to_color(my_value.data)
+            elif my_value.instance == 4 :
+                green_level = convert_level_to_color(my_value.data)
+            elif my_value.instance == 5 :
+                blue_level = convert_level_to_color(my_value.data)
+            elif my_value.instance == 6 :
+                white_level = convert_level_to_color(my_value.data) 
+        result['data'] = {'red': red_level, 'green': green_level, 'blue': blue_level, 'white': white_level}
+    else:
+        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+    return jsonify(result)
+
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetColor(<int:red_level>,<int:green_level>,<int:blue_level>,<int:white_level>)',methods = ['GET'])
 def set_color(device_id,  red_level, green_level, blue_level, white_level) :
     debug_print("set_color nodeId:%s red:%s green:%s blue:%s white:%s" % (device_id, red_level,  green_level, blue_level, white_level,))
@@ -1663,16 +1708,16 @@ def set_color(device_id,  red_level, green_level, blue_level, white_level) :
                 intensity_Value = val
             elif my_value.instance == 3 :
                 red_Value = val
-                my_value.data = red_level
+                my_value.data = convert_color_to_level(red_level)
             elif my_value.instance == 4 :
                 green_Value = val
-                my_value.data = green_level
+                my_value.data = convert_color_to_level(green_level)
             elif my_value.instance == 5 :
                 blue_Value = val
-                my_value.data = blue_level
+                my_value.data = convert_color_to_level(blue_level)
             elif my_value.instance == 6 :
                 white_Value = val
-                my_value.data = white_level
+                my_value.data = convert_color_to_level(white_level)
         if red_Value != None and green_Value != None and blue_Value != None  :
             worker=threading.Thread(target=refresh_background, args=(device_id, [red_Value, green_Value, blue_Value, white_Value, intensity_Value]))
             worker.start()
