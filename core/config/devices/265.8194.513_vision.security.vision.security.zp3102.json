@@ -1,0 +1,42 @@
+{
+		"name": "Vision Security ZP3102",
+        "configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+		{
+                "name": "Etat",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+				"isHistorized": 1,
+                "configuration": {
+                    "class": "0x30",
+                    "value": "data[0].val"
+                }
+            },
+            {
+                "name": "Temperature",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+				"isHistorized": 1,
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[0].val"
+                }
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+				"isHistorized": 1,
+                "configuration": {
+                    "class": "0x80",
+                    "value": "data[0].val"
+                }
+            }
+            
+        ]
+	}
