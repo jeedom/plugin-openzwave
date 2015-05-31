@@ -1,0 +1,41 @@
+{
+		"name": "TKBHOME TZ66S",
+        "configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "On",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x25",
+                    "instanceId": 0,
+                    "value": "data[0].Set(255)"
+                }
+            },
+            {
+                "name": "Off",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x25",
+                    "instanceId": 0,
+                    "value": "data[0].Set(0)"
+                }
+            },
+            {
+                "name": "Etat",
+                "type": "info",
+                "subtype": "binary",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x25",
+                    "instanceId": 0,
+                    "value": "data[0].val"
+                }
+            }		
+        ]
+    }

@@ -1,0 +1,43 @@
+{
+		"name": "Duwi Wall Plug ZW_ES_1000",
+        "configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "On",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "configuration": {
+                    "class": "0x25",
+					"instanceId": 0,
+                    "value": "data[0].Set(255)"
+                }
+            },
+            {
+                "name": "Off",
+                "type": "other",
+                "subtype": "string",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "configuration": {
+                    "class": "0x25",
+					"instanceId": 0,
+                    "value": "data[0].Set(0)"
+                }
+            },
+            {
+                "name": "Etat",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "configuration": {
+                    "class": "0x25",
+                    "value": "data[0].val"
+				}
+            }            
+        ]
+    }

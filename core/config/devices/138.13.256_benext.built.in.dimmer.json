@@ -1,0 +1,80 @@
+{
+	"name": "Benext Built In Dimmer",
+    "configuration" : {
+        "conf_version" : 1
+		},
+    "commands": [
+      {
+        "name": "Intensité",
+        "type": "action",
+        "subtype": "slider",
+        "isVisible": 1,
+        "value": "Etat",
+        "configuration": {
+          "class": "0x26",
+          "value": "data[0].Set(#slider#)"
+        },
+        "template": {
+          "dashboard": "light",
+          "mobile": "light"
+        }
+      },
+      {
+        "name": "On",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x26",
+          "value": "data[0].Set(99)"
+        }
+      },
+      {
+        "name": "Off",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x26",
+          "value": "data[0].Set(0)"
+        }
+      },
+      {
+        "name": "Etat",
+        "type": "info",
+        "subtype": "numeric",
+        "unite": "%",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x26",
+          "value": "data[0].level",
+          "minValue": 0,
+          "maxValue": 100
+        }
+      },
+      {
+        "name": "Puissance",
+        "type": "info",
+        "subtype": "numeric",
+        "unite": "W",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x32",
+          "value": "data[2].val",
+          "minValue": 0,
+          "maxValue": 120
+        }
+      },
+      {
+        "name": "Consommation",
+        "type": "info",
+        "subtype": "numeric",
+        "unite": "KwH",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x32",
+          "value": "data[0].val"
+        }
+      }
+    ]
+  }
