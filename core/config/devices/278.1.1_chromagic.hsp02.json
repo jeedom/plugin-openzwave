@@ -1,0 +1,32 @@
+{
+		"name": "Everspring HSP02",
+        "configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+			{
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 1,
+                "unite": "%",
+                "configuration": {
+                    "class": "0x80",
+                    "value": "data[0].val"
+                }
+            },
+            {
+                "name": "Présence",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite": "",
+                "configuration": {
+                    "class": "0x30",
+                    "value": "data[1].val"
+				}
+			}
+        ]
+    }

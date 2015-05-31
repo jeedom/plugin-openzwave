@@ -1,0 +1,34 @@
+{
+		"name": "Opening Detector HSM02",
+        "configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "Etat",
+                "type": "info",
+                "subtype": "binary",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "configuration": {
+                    "class": "0x30",
+                    "value": "data[1].val"
+                },
+                "display": {
+                    "invertBinary": "1"
+                }
+            },
+			{
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+				"unite": "%",
+				"configuration": {
+                    "class": "0x80",
+                    "value": "data[0].val"
+                }
+            }
+        ]
+    }
