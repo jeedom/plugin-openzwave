@@ -9,7 +9,7 @@
                 "type": "action",
                 "subtype": "color",
                 "isVisible": 1,
-                "value": "Etat",
+                "value": "Etat couleur",
                 "configuration": {
                     "class": "0x26",
                     "value": "#color#"
@@ -162,6 +162,18 @@
                     "value": "data[0].level",
                     "minValue": 0,
                     "maxValue": 99
+                }
+            },
+            {
+                "name": "Etat couleur",
+                "type": "info",
+                "subtype": "other",
+                "unite": "",
+                "isVisible": 0,
+
+                "configuration": {
+                    "class": "0x26",
+                    "value": "#color#"
                 }
             }
         ],
