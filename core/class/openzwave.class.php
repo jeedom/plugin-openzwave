@@ -1040,26 +1040,13 @@ class openzwaveCmd extends cmd {
 
 	public function getRGBColor() {
 		$eqLogic = $this->getEqLogic();
-		$request = '/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . ']';
-		/* Get RED color */
-		$r = openzwave::callOpenzwave($request . '.instances[2].commandClasses[0x26].data[0].val', $eqLogic->getConfiguration('serverID', 1));
-		/* Get GREEN color */
-		$g = openzwave::callOpenzwave($request . '.instances[3].commandClasses[0x26].data[0].val', $eqLogic->getConfiguration('serverID', 1));
-		/* Get BLUE color */
-		$b = openzwave::callOpenzwave($request . '.instances[4].commandClasses[0x26].data[0].val', $eqLogic->getConfiguration('serverID', 1));
-		//Convertion pour sur une echelle de 0-255
-		$r = dechex(($r / 99) * 255);
-		$g = dechex(($g / 99) * 255);
-		$b = dechex(($b / 99) * 255);
-		if (strlen($r) == 1) {
-			$r = '0' . $r;
-		}
-		if (strlen($g) == 1) {
-			$g = '0' . $g;
-		}
-		if (strlen($b) == 1) {
-			$b = '0' . $b;
-		}
+		$result = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . '].GetColor()', $eqLogic->getConfiguration('serverID', 1));
+		$r = dechex($result['data']['red']);
+		$g = dechex($result['data']['green']);
+		$b = dechex($result['data']['blue']);
+		$r = (strlen($r) == 1) ? '0' . $r : $r;
+		$g = (strlen($g) == 1) ? '0' . $g : $g;
+		$b = (strlen($b) == 1) ? '0' . $b : $b;
 		return '#' . $r . $g . $b;
 	}
 
@@ -1078,9 +1065,6 @@ class openzwaveCmd extends cmd {
 			$g = hexdec(substr($hex, 2, 2));
 			$b = hexdec(substr($hex, 4, 2));
 		}
-		$r = round(($r / 255) * 99);
-		$g = round(($g / 255) * 99);
-		$b = round(($b / 255) * 99);
 		openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . '].SetColor(' . $r . ',' . $g . ',' . $b . ',0)', $eqLogic->getConfiguration('serverID', 1));
 		return true;
 	}
