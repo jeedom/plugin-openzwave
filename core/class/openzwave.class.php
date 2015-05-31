@@ -498,7 +498,7 @@ class openzwave extends eqLogic {
 		}
 
 		if (isset($results['data'])) {
-			if (isset($results['data']['isAwake']) && $results['instances'][0]['commandClasses'][128]['data']['supported']['value'] === true) {
+			if (isset($results['data']['isAwake']) && isset($results['instances'][0]['commandClasses'][128]) && $results['instances'][0]['commandClasses'][128]['data']['supported']['value'] === true) {
 				if ($results['data']['isAwake']['value']) {
 					$state = __('Réveillé', __FILE__);
 				} else {
