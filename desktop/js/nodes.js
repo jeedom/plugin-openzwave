@@ -256,6 +256,21 @@ $('#valuesModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 		modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" value="'+valueValue+'">');
 	}
 });
+$("body").off("click",".forceRefresh").on("click",".forceRefresh",function (e) {
+	var index = $(this).attr('data-valueidx');
+	var cc = $(this).attr('data-valuecc');
+	$.ajax({ 
+		url: path+"/ZWaveAPI/Run/devices["+app_nodes.selected_node+"].instances["+index+"].commandClasses["+cc+"].Get()", 
+		dataType: 'json',
+		async: true, 
+		error: function (request, status, error) {
+			handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
+		},
+		success: function(data) {
+			app_nodes.sendOk();
+		}
+	});
+});
 $("body").off("click",".editPolling").on("click",".editPolling",function (e) {
 	var idx = $(this).data('valueidx');
 	var instance = $(this).data('valueinstance');
@@ -861,30 +876,30 @@ draw_nodes: function ()
 	        else{
 	        	node.find(".node-sleep").html("{{Secteur}}");
 	        }
-			
-			if(typeof(controller) !== "undefined"){
-				var node_groups=nodes[z].groups;
-				var controller_id=controller.data.nodeId.value;
-				var found=0;
-				for (zz in node_groups){
-					if (!isNaN(zz)){
-						var values=node_groups[zz].associations.split(';');
-						tr_groups="";
-						for(val in values){
-							if(values.length > 0 && values[val]!=""){
-								var node_id=values[val];
-								if (node_id==controller_id){
-									found=1;
-								}
-							}
-						}
-					}
-				}
-				if(found==0){
-					isWarning = true;
-		            	warningMessage +="<li>{{Le controleur n'est inclus dans aucun groupe du module.}}</li>";
-				}
-			}
+
+	        if(typeof(controller) !== "undefined"){
+	        	var node_groups=nodes[z].groups;
+	        	var controller_id=controller.data.nodeId.value;
+	        	var found=0;
+	        	for (zz in node_groups){
+	        		if (!isNaN(zz)){
+	        			var values=node_groups[zz].associations.split(';');
+	        			tr_groups="";
+	        			for(val in values){
+	        				if(values.length > 0 && values[val]!=""){
+	        					var node_id=values[val];
+	        					if (node_id==controller_id){
+	        						found=1;
+	        					}
+	        				}
+	        			}
+	        		}
+	        	}
+	        	if(found==0){
+	        		isWarning = true;
+	        		warningMessage +="<li>{{Le controleur n'est inclus dans aucun groupe du module.}}</li>";
+	        	}
+	        }
 	        if(nodeIsFailed=="true" & networkstate>=7){
 	            	//this warning must stay in place
 	            	isWarning = true;
@@ -1115,6 +1130,7 @@ draw_nodes: function ()
 	            			row.find("td[key=variable-polling]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity);
 	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only==false){
 	            				row.find("td[key=variable-editpolling]").html('<button type="button" class="btn btn-primary editPolling" data-valueidx="'+index+'" data-valuepolling="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></button>');
+	            				row.find("td[key=variable-refresh]").html('<button type="button" class="btn btn-primary forceRefresh" data-valueidx="'+index+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-refresh"></i></button>');
 	            			}
 	            			row.find("td[key=variable-updatetime]").html(app_nodes.timestampConverter(nodes[z].instances[instance].commandClasses[commandclass].data[index].updateTime));
 
