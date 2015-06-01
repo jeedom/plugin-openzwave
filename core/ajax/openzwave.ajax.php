@@ -142,7 +142,7 @@ try {
 		foreach ($eqLogic->getCmd() as $cmd) {
 			$cmd->remove();
 		}
-		$eqLogic->createCommand();
+		$eqLogic->createCommand(true);
 		ajax::success();
 	}
 

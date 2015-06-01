@@ -24,7 +24,6 @@ class openzwave extends eqLogic {
 	private static $_curl = null;
 	private static $_nbZwaveServer = 1;
 	private static $_listZwaveServer = null;
-	private static $_zwaveUpdatetime = array();
 
 	/*     * ***********************Methode static*************************** */
 
@@ -536,75 +535,75 @@ class openzwave extends eqLogic {
 				$queryStageIndex = 0;
 				switch ($queryStage) {
 					case "None":
-						$queryStageDescrition = "{{Le processus de demande n a pas encore commencé pour ce noeud}}";
+						$queryStageDescrition = __("Le processus de demande n a pas encore commencé pour ce noeud", __FILE__);
 						$queryStageIndex = 0;
 						break;
 					case "ProtocolInfo":
-						$queryStageDescrition = "{{Récupération des informations du protocole}}";
+						$queryStageDescrition = __("Récupération des informations du protocole", __FILE__);
 						$queryStageIndex = 1;
 						break;
 					case "Probe":
-						$queryStageDescrition = "{{Interrogation du module pour voir si il est en vie}}";
+						$queryStageDescrition = __("Interrogation du module pour voir si il est en vie", __FILE__);
 						$queryStageIndex = 2;
 						break;
 					case "WakeUp":
-						$queryStageDescrition = "{{Début du processus de reveil du noeud si celui-ci dort}}";
+						$queryStageDescrition = __("Début du processus de reveil du noeud si celui-ci dort", __FILE__);
 						$queryStageIndex = 3;
 						break;
 					case "ManufacturerSpecific1":
-						$queryStageDescrition = "{{Récupération des paramètres constructeur du noeud}}";
+						$queryStageDescrition = __("Récupération des paramètres constructeur du noeud", __FILE__);
 						$queryStageIndex = 4;
 						break;
 					case "NodeInfo":
-						$queryStageDescrition = "{{Récupération des informations sur les classes du noeud}}";
+						$queryStageDescrition = __("Récupération des informations sur les classes du noeud", __FILE__);
 						$queryStageIndex = 5;
 						break;
 					case "SecurityReport":
-						$queryStageDescrition = "{{Récupération des classes de sécurité du noeud}}";
+						$queryStageDescrition = __("Récupération des classes de sécurité du noeud", __FILE__);
 						$queryStageIndex = 6;
 						break;
 					case "ManufacturerSpecific2":
-						$queryStageDescrition = "{{Récupération des paramètres constructeur du noeud}}";
+						$queryStageDescrition = __("Récupération des paramètres constructeur du noeud", __FILE__);
 						$queryStageIndex = 7;
 						break;
 					case "Versions":
-						$queryStageDescrition = "{{Récupération des informations de version}}";
+						$queryStageDescrition = __("Récupération des informations de version", __FILE__);
 						$queryStageIndex = 8;
 						break;
 					case "Instances":
-						$queryStageDescrition = "{{Récupération des informations d instance du noeud}}";
+						$queryStageDescrition = __("Récupération des informations d instance du noeud", __FILE__);
 						$queryStageIndex = 9;
 						break;
 					case "Static":
-						$queryStageDescrition = "{{Récupération des informations statistiques}}";
+						$queryStageDescrition = __("Récupération des informations statistiques", __FILE__);
 						$queryStageIndex = 10;
 						break;
 					case "Probe1":
-						$queryStageDescrition = "{{Intérrogation du module pour récupérer sa configuration}}";
+						$queryStageDescrition = __("Intérrogation du module pour récupérer sa configuration", __FILE__);
 						$queryStageIndex = 11;
 						break;
 					case "Associations":
-						$queryStageDescrition = "{{Récupération des informations d associations}}";
+						$queryStageDescrition = __("Récupération des informations d associations", __FILE__);
 						$queryStageIndex = 12;
 						break;
 					case "Neighbors":
-						$queryStageDescrition = "{{Récupération de la liste des voisins}}";
+						$queryStageDescrition = __("Récupération de la liste des voisins", __FILE__);
 						$queryStageIndex = 13;
 						break;
 					case "Session":
-						$queryStageDescrition = "{{Récupération des informations de sessions}}";
+						$queryStageDescrition = __("Récupération des informations de sessions", __FILE__);
 						$queryStageIndex = 14;
 						break;
 					case "Dynamic":
-						$queryStageDescrition = "{{Récupération des informations dynamiques}}";
+						$queryStageDescrition = __("Récupération des informations dynamiques", __FILE__);
 						$queryStageIndex = 15;
 						break;
 					case "Configuration":
-						$queryStageDescrition = "{{Récupération des informations de configuration}}";
+						$queryStageDescrition = __("Récupération des informations de configuration", __FILE__);
 						$queryStageIndex = 16;
 						break;
 					case "Complete":
-						$queryStageDescrition = "{{Processus de demande d information sur le noeud complet}}";
+						$queryStageDescrition = __("Processus de demande d information sur le noeud complet", __FILE__);
 						$queryStageIndex = 17;
 						break;
 				}
@@ -797,13 +796,13 @@ class openzwave extends eqLogic {
 		return false;
 	}
 
-	public function createCommand() {
+	public function createCommand($_update = false) {
 		$return = array();
 		if (!is_numeric($this->getLogicalId())) {
 			return;
 		}
 		if (is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
-			$this->loadCmdFromConf();
+			$this->loadCmdFromConf($_update);
 			return;
 		}
 		nodejs::pushUpdate('jeedom::alert', array(
