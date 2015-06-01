@@ -649,7 +649,6 @@ class openzwave extends eqLogic {
 		if (!is_json($content)) {
 			return;
 		}
-		$this->setConfiguration('applyConfFile', $this->getConfFilePath());
 		$device = json_decode($content, true);
 		if (!is_array($device) || !isset($device['commands'])) {
 			return true;
