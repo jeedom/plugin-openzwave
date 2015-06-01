@@ -345,7 +345,7 @@ $("#saveParam").off("click").on("click",function (e) {
 	var paramValue = $('#newvalue').val();
 	var paramLength = paramValue.length;
 	$.ajax({ 
-		url: path+"ZWaveAPI/Run/devices["+app_nodes.selected_node+"].commandClasses[0x70].Set("+paramId+","+paramValue+","+paramLength+")", 
+		url: path+"ZWaveAPI/Run/devices["+app_nodes.selected_node+"].commandClasses[0x70].Set("+paramId+","+encodeURIComponent(paramValue)+","+paramLength+")", 
 		dataType: 'json',
 		async: true, 
 		error: function (request, status, error) {
@@ -401,7 +401,7 @@ $("#applyValue").off("click").on("click",function (e) {
 	}
 	else{
 		$.ajax({ 
-			url: path+"ZWaveAPI/Run/devices["+app_nodes.selected_node+"].instances["+valueInstance+"].commandClasses[0x"+Number(valueCc).toString(16)+"].data["+valueIdx+"].Set("+valueValue+")", 
+			url: path+"ZWaveAPI/Run/devices["+app_nodes.selected_node+"].instances["+valueInstance+"].commandClasses[0x"+Number(valueCc).toString(16)+"].data["+valueIdx+"].Set("+encodeURIComponent(valueValue)+")", 
 			dataType: 'json',
 			async: true, 
 			error: function (request, status, error) {
