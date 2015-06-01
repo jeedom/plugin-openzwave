@@ -167,7 +167,7 @@
             {
                 "name": "Etat couleur",
                 "type": "info",
-                "subtype": "other",
+                "subtype": "string",
                 "unite": "",
                 "isVisible": 0,
 
