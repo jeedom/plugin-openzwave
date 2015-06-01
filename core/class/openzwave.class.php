@@ -757,9 +757,6 @@ class openzwave extends eqLogic {
 		} catch (Exception $e) {
 
 		}
-		if ($this->getConfiguration('applyConfFile') != $this->getConfiguration('fileconf') && $this->getConfiguration('fileconf') != '') {
-			$this->loadCmdFromConf();
-		}
 	}
 
 	public function sendNoOperation() {
