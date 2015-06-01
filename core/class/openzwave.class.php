@@ -653,7 +653,7 @@ class openzwave extends eqLogic {
 		}
 		$cmd_order = 0;
 		$link_cmds = array();
-		if (isset($device['name']) && !$_update) {
+		if (!isset($device['name']) && !$_update) {
 			$this->setName('[' . $this->getLogicalId() . ']' . $device['name']);
 		}
 		if (isset($device['configuration'])) {
