@@ -215,16 +215,20 @@ class openzwave extends eqLogic {
 						if ($eqLogic->getConfiguration('value') == '271.1.1_fibaro.fgs221.fil.pilote.json') {
 							$cmd = $eqLogic->getCmd('info', '0&&1.pilotWire');
 							$cmd->event($cmd->getPilotWire());
-						} else if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && $eqLogic->getConfiguration('product_id') == '4096' && dechex($explodeKey[5]) == '26') {
+							continue;
+						} else if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && ($eqLogic->getConfiguration('product_id') == '4096' || $eqLogic->getConfiguration('product_id') == '16384') && dechex($explodeKey[5]) == '26') {
 							$cmd = $eqLogic->getCmd('info', '0.0x26');
-							$cmd->event($cmd->getRGBColor());
-						} else {
-							foreach ($eqLogic->getCmd('info', $explodeKey[3] . '.0x' . dechex($explodeKey[5]), null, true) as $cmd) {
-								if (strpos(str_replace(array(']', '['), array('', '.'), $cmd->getConfiguration('value')), $attribut) !== false) {
-									$cmd->handleUpdateValue($result);
-								}
+							if ($cmd->getConfiguration('value') == '#color#') {
+								$cmd->event($cmd->getRGBColor());
 							}
 						}
+
+						foreach ($eqLogic->getCmd('info', $explodeKey[3] . '.0x' . dechex($explodeKey[5]), null, true) as $cmd) {
+							if (strpos(str_replace(array(']', '['), array('', '.'), $cmd->getConfiguration('value')), $attribut) !== false) {
+								$cmd->handleUpdateValue($result);
+							}
+						}
+
 					}
 				}
 			}
@@ -652,7 +656,7 @@ class openzwave extends eqLogic {
 		}
 		$cmd_order = 0;
 		$link_cmds = array();
-		if (!isset($device['name']) && !$_update) {
+		if (isset($device['name']) && !$_update) {
 			$this->setName('[' . $this->getLogicalId() . ']' . $device['name']);
 		}
 		if (isset($device['configuration'])) {
