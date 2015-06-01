@@ -80,6 +80,14 @@ foreach (eqLogic::byType('openzwave') as $eqLogic) {
 				$cmd->setConfiguration('class', '0x26');
 			}
 		}
+		if ($eqLogic->getConfiguration('device') == 'fibaro.fgs221') {
+			if ($cmd->getConfiguration('instanceId') == 1) {
+				$cmd->setConfiguration('instanceId', 0);
+			}
+			if ($cmd->getConfiguration('instanceId') == 2) {
+				$cmd->setConfiguration('instanceId', 1);
+			}
+		}
 		$cmd->save();
 	}
 }
