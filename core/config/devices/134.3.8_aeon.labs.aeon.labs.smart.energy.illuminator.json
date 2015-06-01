@@ -54,7 +54,7 @@
                 "configuration": {
                     "class": "0x26",
                     "instanceId": 0,
-                    "value": "data[0].level",
+                    "value": "data[0].val",
 			"maxValue": 100,
 			"minValue": 0
                 }

@@ -159,7 +159,7 @@
 
                 "configuration": {
                     "class": "0x26",
-                    "value": "data[0].level",
+                    "value": "data[0].val",
                     "minValue": 0,
                     "maxValue": 99
                 }

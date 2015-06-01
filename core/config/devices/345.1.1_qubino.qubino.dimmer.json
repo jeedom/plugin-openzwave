@@ -47,7 +47,7 @@
                 "isVisible": 0,
                 "configuration": {
                     "class": "0x26",
-                    "value": "data[0].level",
+                    "value": "data[0].val",
                     "minValue": 0,
                     "maxValue": 100
                 }
@@ -106,7 +106,7 @@
 				{
 					"instanceId" : 1,
 					"class" : "0x30",
-					"value" : "data[1].level"
+					"value" : "data[1].val"
 				}
 			},
 			{
@@ -119,7 +119,7 @@
 				{
 					"instanceId" : 2,
 					"class" : "0x30",
-					"value" : "data[1].level"
+					"value" : "data[1].val"
 				}
 			}
       ]

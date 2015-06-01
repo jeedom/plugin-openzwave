@@ -81,7 +81,7 @@
            "configuration": {
                "class": "0x71",
                "instanceId": 0,
-               "value": "data[1].level",
+               "value": "data[1].val",
 				"returnStateTime": 1,
 				"returnStateValue": 0
            },
