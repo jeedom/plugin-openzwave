@@ -1,0 +1,182 @@
+{
+	"name": "Remotec ZXT-120",
+    "configuration" : {
+    "conf_version" : 1
+	},
+        "commands": [
+            {
+                "name": "Température",
+                "type": "info",
+                "subType": "numeric",
+                "isHistorized": "0",
+				"unite": "°C",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x31",
+                    "value": "data[1].val"
+                }
+            },
+            {
+               "name": "Off",
+                "type": "action",
+                "subType": "other",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x40",
+                    "value": "data[0].Set(Off)"
+                }
+            },
+            {
+                "name": "On",
+                "type": "action",
+                "subType": "other",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x40",
+                    "value": "data[0].Set(Resume)"
+                }
+            },
+            {
+                "name": "Clim",
+                "type": "action",
+                "subType": "other",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x40",
+                    "value": "data[0].Set(Cool)"
+                }
+            },
+            {
+                "name": "Chauffe",
+                "type": "action",
+                "subType": "other",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x40",
+                    "value": "data[0].Set(Heat)"
+                }
+            },
+            {
+                "name": "Dry",
+                "type": "action",
+                "subType": "other",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x40",
+                    "value": "data[0].Set(Dry Air)"
+                }
+            },
+            {
+                "name": "Ventilateur Seul",
+                "type": "action",
+                "subType": "other",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x40",
+                    "value": "data[0].Set(Fan Only)"
+                }
+            },
+            {
+                "name": "Consigne Chaud",
+                "type": "action",
+                "subType": "slider",
+				"isVisible": 0,
+				"value": "Temp Chauffe",
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x43",
+                    "value": "data[1].Set(#slider#)"
+                }
+            },
+            {
+                "name": "Consigne Clim",
+                "type": "action",
+                "subType": "slider",
+				"isVisible": 0,
+				"value": "Temp Clim",
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x43",
+                    "value": "data[2].Set(#slider#)"
+                }
+            },
+			{
+                "name": "Temp Chauffe",
+                "type": "info",
+                "subType": "numeric",
+                "isHistorized": "0",
+				"unite": "°C",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x43",
+                    "value": "data[1].val"
+                }
+            },
+			{
+                "name": "Temp Clim",
+                "type": "info",
+                "subType": "numeric",
+                "isHistorized": "0",
+				"unite": "°C",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x43",
+                    "value": "data[2].val"
+                }
+            },
+            {
+                "name": "Fan Auto Low",
+                "type": "action",
+                "subType": "other",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x44",
+                    "value": "data[0].Set(Auto Low)"
+                }
+            },
+            {
+                "name": "Fan On Low",
+                "type": "action",
+                "subType": "other",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x44",
+                    "value": "data[0].Set(On Low)"
+                }
+            },
+            {
+                "name": "Auto High",
+                "type": "action",
+                "subType": "other",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x44",
+                    "value": "data[0].Set(Auto High)"
+                }
+            },
+			{
+				"name": "Batterie",
+				"type": "info",
+				"subtype": "numeric",
+				"isVisible": 0,
+				"isHistorized": 0,
+				"unite": "%",
+				"configuration": {
+					"class": "0x80",
+					"value": "data[0].val"
+				}
+			}
+        ]
+    }
