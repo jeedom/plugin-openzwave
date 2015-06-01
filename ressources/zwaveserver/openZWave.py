@@ -650,7 +650,7 @@ dispatcher.connect(nodes_queried_some_dead, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIE
 dispatcher.connect(button_on, ZWaveNetwork.SIGNAL_BUTTON_ON)
 dispatcher.connect(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
 
-dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
+#dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
 
 # keep a track of actual network stage and last message
 dispatcher.connect(controller_message, ZWaveController.SIGNAL_CONTROLLER)
