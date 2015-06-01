@@ -74,9 +74,6 @@ var app_network = {
      $("#healNetwork").off("click").on("click",function() {
       app_network.healNetwork();
     });
-     $("#addController").off("click").on("click",function() {
-      app_network.addController();
-    });
      $("#createNewPrimary").off("click").on("click",function() {
       app_network.createNewPrimary();
     });
@@ -185,19 +182,6 @@ var app_network = {
        }
      }
    });
-  },
-  addController: function(){
-    $.ajax({ 
-      url: path+"ZWaveAPI/Run/addController()", 
-      dataType: 'json',
-      async: true, 
-      error: function (request, status, error) {
-        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-      },
-      success: function(data) {
-        app_network.sendOk();
-      }
-    });
   },
   createNewPrimary: function(){
     $.ajax({ 
@@ -546,7 +530,6 @@ show_infos: function (){
      $("#cancelCommand").prop("disabled",disabledCommand);
      $("#testNetwork").prop("disabled",disabledCommand);
      $("#healNetwork").prop("disabled",disabledCommand);
-     $("#addController").prop("disabled",disabledCommand);
      $("#createNewPrimary").prop("disabled",disabledCommand);
      $("#replicationSend").prop("disabled",disabledCommand);
      $("#requestNetworkUpdate").prop("disabled",disabledCommand);

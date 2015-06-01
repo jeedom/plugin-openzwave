@@ -195,10 +195,6 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 							<td>{{Soigner le réseau Z-Wave noeud par noeud.}}<br>{{Essaye de soigner tous les noeuds (un par un) en mettant à jour la liste des voisins et les routes optionnelles.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="addController" class="btn btn-info"><i class="fa fa-plus"></i> {{Ajouter un contrôleur}}</button></td>
-							<td>{{Ajouter un nouveau contrôleur secondaire au réseau Z-Wave.}}</td>
-						</tr>
-						<tr>
 							<td><button type="button" id="createNewPrimary" class="btn btn-danger"><i class="fa fa-file"></i> {{Créer un nouveau noeud primaire}}</button></td>
 							<td>{{Ajouter un nouveau contrôleur au réseau Z-Wave. Utile quand un ancien primaire est en erreur. Nécessite SUC.}}</td>
 						</tr>
