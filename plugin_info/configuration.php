@@ -107,6 +107,9 @@ if (jeedom::isCapable('sudo')) {
 foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 	echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
 }
+foreach (ls('/dev/', 'ttyACM*') as $value) {
+    echo '<option value="/dev/' . $value . '">/dev/' . $value . '</option>';
+}
 ?>
 			</select>
 		</div>
