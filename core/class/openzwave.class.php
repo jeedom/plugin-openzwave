@@ -686,7 +686,8 @@ class openzwave extends eqLogic {
 			foreach ($this->getCmd() as $liste_cmd) {
 				if ($liste_cmd->getConfiguration('instanceId', 0) == $command['configuration']['instanceId'] &&
 					$liste_cmd->getConfiguration('class') == $command['configuration']['class'] &&
-					$liste_cmd->getConfiguration('value') == $command['configuration']['value']) {
+					$liste_cmd->getConfiguration('value') == $command['configuration']['value'] &&
+					$liste_cmd->getType() == $command['type']) {
 					$cmd = $liste_cmd;
 					break;
 				}
