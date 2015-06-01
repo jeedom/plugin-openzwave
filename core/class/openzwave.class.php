@@ -219,6 +219,7 @@ class openzwave extends eqLogic {
 						} else if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && ($eqLogic->getConfiguration('product_id') == '4096' || $eqLogic->getConfiguration('product_id') == '16384') && dechex($explodeKey[5]) == '26') {
 							log::add('openzwave', 'debug', 'Cest un équipement de type firbaro rgbw');
 							$cmd = $eqLogic->getCmd('info', '0.0x26');
+							log::add('openzwave', 'debug', 'Jai la commande color : ' . print_r($cmd, true));
 							if ($cmd->getConfiguration('value') == '#color#') {
 								log::add('openzwave', 'debug', 'Jai la commande color : ' . $cmd->getRGBColor());
 								$cmd->event($cmd->getRGBColor());
