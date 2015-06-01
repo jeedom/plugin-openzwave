@@ -421,7 +421,7 @@ $("#savePolling").off("click").on("click",function (e) {
 	var valueCc = $('#pollingModal').data('valuecc');
 	var valueValue = $('#newvaluevalue').val();
 	$.ajax({ 
-		url: path+"ZWaveAPI/Run/devices["+app_nodes.selected_node+"].instances["+valueInstance+"].commandClasses[0x"+Number(valueCc).toString(16)+"].data["+valueIdx+"].SetPolling("+valueValue+")", 
+		url: path+"ZWaveAPI/Run/devices["+app_nodes.selected_node+"].instances["+valueInstance+"].commandClasses[0x"+Number(valueCc).toString(16)+"].data["+valueIdx+"].SetPolling("+encodeURIComponent(valueValue)+")", 
 		dataType: 'json',
 		async: true, 
 		error: function (request, status, error) {
