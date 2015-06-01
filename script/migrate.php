@@ -34,6 +34,8 @@ foreach (eqLogic::byType('zwave') as $eqLogic) {
 	$server_id = $eqLogic->getConfiguration('serverID', 1);
 	if (isset($server_convertion[$server_id])) {
 		$server_id = $server_convertion[$server_id];
+	} else {
+		$server_id = 0;
 	}
 	$eqLogic->setConfiguration('serverID', $server_id);
 	foreach ($eqLogic->getCmd() as $cmd) {
@@ -51,9 +53,6 @@ if ($found) {
 		'Set(#slider#)' => 'data[0].Set(#slider#)',
 		'Reset()' => 'data[0].PressButton()',
 	);
-	foreach (openzwave::listServerZwave() as $serverID => $server) {
-		openzwave::syncEqLogicWithRazberry($serverID);
-	}
 	foreach (eqLogic::byType('openzwave') as $eqLogic) {
 		foreach ($eqLogic->getCmd() as $cmd) {
 			$cmd->setConfiguration('value', str_replace(array_keys($replace), $replace, $cmd->getConfiguration('value')));
