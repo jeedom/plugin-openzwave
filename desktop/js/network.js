@@ -95,6 +95,10 @@ var app_network = {
      $("#hardReset").off("click").on("click",function() {
       $('#confirmModal').modal('show');
     });
+    $("body").off("click",".requestNodeNeighboursUpdate").on("click",".requestNodeNeighboursUpdate",function (e) {
+	var nodeid = $(this).attr('data-nodeid');
+	app_network.request_node_neighbours_update(nodeid);
+	});
 
 
    },
@@ -287,6 +291,24 @@ var app_network = {
      }
    });
     },
+    request_node_neighbours_update: function(node_id){
+		$.ajax({ 
+			url: path+"ZWaveAPI/Run/devices["+node_id+"].RequestNodeNeighbourUpdate()", 
+			dataType: 'json',
+			async: true, 
+			error: function (request, status, error) {
+				handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+			},
+			success: function(data) {
+				if(data['result']== true){
+					app_network.sendOk();
+					app_network.load_data(); 
+				}else{
+					$('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+				}
+			}
+		});
+	},
     load_data: function(){
       $('#graph_network').html('<div id="graph-node-name"></div>');
       $.ajax({ 
@@ -636,9 +658,9 @@ show_infos: function (){
                         rtClass = 'danger';
                       routingTable += '<td class="' + rtClass + ' tooltips" title="' + routeHops + '"></td>';
                     });
-routingTable += '</td></tr>';
+routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="'+nodeId+'" class="btn btn-primary pull-right requestNodeNeighboursUpdate"><i class="fa fa-sitemap"></i> {{Mise à jour des noeuds voisins}}</button></td></tr>';
 });
-$('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '</tr></thead><tbody>' + routingTable + '</tbody></table>');
+$('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '<th>{{Actions}}</th></tr></thead><tbody>' + routingTable + '</tbody></table>');
 initTooltips();
 }
 });
