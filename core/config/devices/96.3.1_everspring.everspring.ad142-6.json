@@ -13,7 +13,7 @@
                 "unite": "%",
                 "configuration": {
                     "class": "0x26",
-                    "value": "data[0].level"
+                    "value": "data[0].val"
                 },
                 "template": {
                     "dashboard": "prise",
