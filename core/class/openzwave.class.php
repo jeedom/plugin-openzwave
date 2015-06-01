@@ -212,13 +212,15 @@ class openzwave extends eqLogic {
 					$eqLogic = self::getEqLogicByLogicalIdAndServerId($explodeKey[1], $serverID);
 					if (is_object($eqLogic)) {
 						$attribut = implode('.', array_slice($explodeKey, 6));
-						if ($eqLogic->getConfiguration('value') == '271.1.1_fibaro.fgs221.fil.pilote.json') {
+						if ($eqLogic->getConfiguration('fileconf') == '271.512.4106_fibaro.fgs221.fil.pilote.json') {
 							$cmd = $eqLogic->getCmd('info', '0&&1.pilotWire');
 							$cmd->event($cmd->getPilotWire());
 							continue;
 						} else if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && ($eqLogic->getConfiguration('product_id') == '4096' || $eqLogic->getConfiguration('product_id') == '16384') && dechex($explodeKey[5]) == '26') {
+							log::add('openzwave', 'debug', 'Cest un équipement de type firbaro rgbw');
 							$cmd = $eqLogic->getCmd('info', '0.0x26');
 							if ($cmd->getConfiguration('value') == '#color#') {
+								log::add('openzwave', 'debug', 'Jai la commande color : ' . $cmd->getRGBColor());
 								$cmd->event($cmd->getRGBColor());
 							}
 						}
