@@ -516,9 +516,6 @@ show_infos: function (){
         }
       }
       network.find(".network-state-led").html(stateled);
-
-
-
       network.find(".network-controller-capabilities").html(infos.controllerCapabilities);
       network.find(".network-controller-node-capabilities").html(infos.controllerNodeCapabilities);
       var outgoingSendQueue = parseInt(infos.outgoingSendQueue,0);

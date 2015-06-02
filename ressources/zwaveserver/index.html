@@ -1,113 +1,79 @@
 <!doctype html>
-    
+
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>OpenZwave Expert Mode</title>
-		<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="static/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        
-        <script type="text/javascript" src="static/jquery-1.11.2.min.js"></script>
-        <script type="text/javascript" src="static/vivagraph.min.js"></script>
-        <script type="text/javascript" src="static/app.js"></script>
-        <style media="screen" type="text/css">
-
-#graph_network {height:1200px; width:100%;}
-#graph_network > svg {height:100%; width:100%;}
-body{
-height:100%; 
-width:100%;
-}
-.nodes-nodelist {
-	position:fixed;
-    max-height:90%;
-    overflow-y:auto;  
-}
-.noscrolling{
-width:99%;
-overflow: hidden;
-}
-.table-striped{
-width:90%;
-}
-
-.template{
-width:80%;
-}
-.node-item{
-border: 1px solid;
-}
-
-.greeniconcolor {color:green;}	
-.yellowiconcolor {color:#FFD700;}
-.rediconcolor {color:red;}
-.table-striped>tbody>tr.greenrow>td {
-	background-color: green;
-}
-.table-striped>tbody>tr.yellowrow>td {
-	background-color: #FFD700;
-}
-.table-striped>tbody>tr.redrow>td {
-	background-color: red;
-}
-		</style>
-    </head>
-    <body>
-
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#nodes">Nodes</a></li>
-                            <li><a href="#network">Network</a></li>
-                            <li><a href="#console">Console</a></li>
-                            <li><a href="#config">Config</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <br><br><br>
-        
-        <div class="container noscrolling">
-            <div id="content"></div>
-        </div>
-		
-        <script src="static/bootstrap/js/bootstrap.js"></script>
-    </body>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="static/jquery.min.js"></script>
+    <title>State of openzwae server</title>
+</head>
+<body style="background-color : #e5e5e5">
+    <center><div id="status"></div></center>
+    <center>
+        <p>Network start <b><span class="network-startTime label label-default">unknown</span></b></p>
+        <p>Network have <b><span class="network-nodes-count"></span></b> node with <b><span class="network-sleeping-nodes-count">unknown</span></b> sleeping</p>
+        <p>State <b><span class="network-state-description label label-default">unknown</span></b></p>
+        <p>Outgoing queu <b><span class="network-outgoing-send-queue label label-default">unknown</span></b></p>
+        <p>Last message <b><span class="network-notification label label-default">unknown</span></b></p>
+        <p>Details <b><span class="network-notificationMessage label label-default">unknown</span></b></p>
+        <p>Received <b><span class="network-notificationTime label label-default">unknown</span></b></p>
+    </center>
+</body>
 </html>
 
+
 <script>
-
-var path = window.location.origin+window.location.pathname;
-var nodes = {};
-
-app.load("console");
-app.load("nodes");
-app.load("network");
-app.load("config");
-app.load("graph");
-  
-var appname = "nodes";
-req = (window.location.hash).substring(1).split("/");
-
-appname = req[0];
-if (appname=="") appname = "nodes";
-
-app.show(appname);
-
-$(window).on('hashchange', function() {
-    app.hide(appname);
-    req = (window.location.hash).substring(1).split("/");
-    appname = req[0];
-    app.load(appname);
-    app.show(appname);
-});
+    $.ajax({ 
+        url: "ZWaveAPI/Run/network_status()", 
+        dataType: 'json',
+        async: true, 
+        global : false,
+        error: function (request, status, error) {
+          $('#status').append('<img src="static/nok.png" />');
+      },
+      success: function(data) {
+          $('#status').append('<img src="static/ok.png" />');
+          $(".network-startTime").html(timestampConverter(data.startTime));    
+          $(".network-nodes-count").html(data.nodesCount);
+          $(".network-sleeping-nodes-count").html(data.sleepingNodesCount);
+          $(".network-state-description").html(data.stateDescription);
+          $(".network-outgoing-send-queue").html(parseInt(data.outgoingSendQueue,0));
+          $(".network-notification").html(data.notification.state);
+          $(".network-notificationMessage").html(data.notification.details);
+          $(".network-notificationTime").html(timestampConverter(data.notification.timestamp));
+      }
+  });
 
 
+    function timestampConverter(time){
+        if(time==1)
+           return "N/A";
+       var ret;
+       var date = new Date(time*1000);
+       var hours = date.getHours();
+       if(hours<10){
+           hours="0"+hours;
+       }
+       var minutes = date.getMinutes();
+       if(minutes<10){
+           minutes="0"+minutes;
+       }
+       var seconds = date.getSeconds();
+       if(seconds<10){
+           seconds="0"+seconds;
+       }
+       var num = date.getDate();
+       if(num<10){
+           num="0"+num;
+       }
+       var month = date.getMonth()+1;
+       if(month<10){
+           month="0"+month;
+       }
+       var year = date.getFullYear();
+       var formattedTime = hours + ':' + minutes + ':' + seconds;
+       var formattedDate = num + "/" + month + "/" + year;
+       return formattedDate+' '+formattedTime;
+   }
 
 </script>
