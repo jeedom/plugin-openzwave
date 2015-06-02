@@ -974,6 +974,18 @@ def get_sleeping_nodes_count():
         if not network.nodes[idNode].isNodeAwake():
             sleeping_nodes_count += 1
     return sleeping_nodes_count  
+
+def convert_level_to_color(level):
+    if level > 99:
+        return 255
+    return level*255/99
+
+def convert_color_to_level(color):
+    if color > 255:
+        color = 255
+    if color < 0:
+        color = 0
+    return color*99/255
         
 @app.before_first_request
 def _run_on_start():    
@@ -1248,11 +1260,16 @@ def copy_configuration(source_id, target_id):
                         if configurationValue.is_write_only:
                             continue                
                         try:
-                            accepted = target.set_config_param(configurationValue.index, configurationValue.data)
-                            #accepted = network._manager.setValue(target_id, configurationValue.value_id, configurationValue.data)   
-                            if accepted :
-                                items +=1
-                                mark_pending_change(get_value_by_index(target_id, COMMAND_CLASS_CONFIGURATION, 1, configurationValue.index), configurationValue.data)                                    
+                            target_value = get_value_by_index(target_id, COMMAND_CLASS_CONFIGURATION, 1, configurationValue.index)
+                            if target_value != None:
+                                if configurationValue.type == 'List':
+                                    network._manager.setValue(target_value.value_id, configurationValue.data)
+                                    accepted = True
+                                else:
+                                    accepted = target.set_config_param(configurationValue.index, configurationValue.data)
+                                if accepted :
+                                    items +=1
+                                    mark_pending_change(target_value, configurationValue.data)                                    
                         except Exception as error:
                             add_log_entry('Copy configuration %s (index:%s) :%s' % (configurationValue.label, configurationValue.index, str(error), ), "error")
                 result = items != 0       
@@ -1638,19 +1655,6 @@ def set_value6(device_id, instance_id, cc_id, value) :
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(Value)
-
-def convert_level_to_color(level):
-    if level > 99:
-        return 255
-    return level*255/99
-
-def convert_color_to_level(color):
-    if color > 255:
-        color = 255
-    if color < 0:
-        color = 0        
-    
-    return color*99/255
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].GetColor()',methods = ['GET'])
 def get_color(device_id) :
