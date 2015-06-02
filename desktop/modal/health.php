@@ -31,7 +31,7 @@ foreach ($serverList as $id => $server) {
 }
 ?>
 <div id='div_networkHealthAlert' style="display: none;"></div>
-<table class="table table-condensed">
+<table class="table table-condensed tablesorter">
 	<thead>
 		<tr>
 			<th>{{Module}}</th>
@@ -118,12 +118,12 @@ foreach (openzwave::byType('openzwave') as $eqLogic) {
 	echo "</td>";
 	echo "<td>" . $info['lastReceived']['value'];
 	if (isset($info['nextWakeup']['value']) && $info['nextWakeup']['value'] != '-') {
-		echo ' <i class="fa fa-long-arrow-right"></i> ' . date('H:i', strtotime($info['nextWakeup']['value'])) . ' <i class="fa fa-clock-o"></i>';
+		echo ' <i class="fa fa-long-arrow-right" ></i> ' . date('H:i', strtotime($info['nextWakeup']['value'])) . ' <i class="fa fa-clock-o"></i>';
 	}
 	echo "</td>";
 	echo "<td>";
 	if (isset($info['powered']) && $info['powered']['value'] && is_numeric($eqLogic->getLogicalId())) {
-		echo "<a class='btn btn-primary btn-xs bt_pingDevice' data-id='" . $eqLogic->getId() . "'><i class='fa fa-eye'></i> {{Ping}}</a>";
+		echo "<a class='btn btn-primary btn-xs bt_pingDevice' data-id='" . $eqLogic->getId() . "' style='color : white;'><i class='fa fa-eye'></i> {{Ping}}</a>";
 	}
 	echo "</td>";
 	echo "</tr>";
@@ -134,6 +134,7 @@ foreach (openzwave::byType('openzwave') as $eqLogic) {
 
 <script>
 	initTooltips();
+	initTableSorter();
 	$('.bt_pingDevice').on('click',function(){
 		$.ajax({// fonction permettant de faire de l'ajax
 		        type: "POST", // méthode de transmission des données au fichier php
