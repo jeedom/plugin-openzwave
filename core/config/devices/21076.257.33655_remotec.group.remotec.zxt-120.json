@@ -4,6 +4,32 @@
     "conf_version" : 1
 	},
         "commands": [
+			{
+                "name": "Mode",
+                "type": "info",
+                "subType": "string",
+                "isHistorized": "0",
+				"unite": "",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x40",
+                    "value": "data[0].val"
+                }
+            },
+			{
+                "name": "Vitesse",
+                "type": "info",
+                "subType": "string",
+                "isHistorized": "0",
+				"unite": "",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x44",
+                    "value": "data[0].val"
+                }
+            },
             {
                 "name": "Température",
                 "type": "info",
@@ -134,7 +160,7 @@
                 }
             },
             {
-                "name": "Fan Auto Low",
+                "name": "Auto Bas",
                 "type": "action",
                 "subType": "other",
 				"isVisible": 1,
@@ -145,7 +171,7 @@
                 }
             },
             {
-                "name": "Fan On Low",
+                "name": "On Bas",
                 "type": "action",
                 "subType": "other",
 				"isVisible": 1,
@@ -156,7 +182,7 @@
                 }
             },
             {
-                "name": "Auto High",
+                "name": "Auto Haut",
                 "type": "action",
                 "subType": "other",
 				"isVisible": 1,
@@ -164,6 +190,17 @@
                     "instanceId": "0",
                     "class": "0x44",
                     "value": "data[0].Set(Auto High)"
+                }
+            },
+            {
+                "name": "On Haut",
+                "type": "action",
+                "subType": "other",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x44",
+                    "value": "data[0].Set(On High)"
                 }
             },
 			{
