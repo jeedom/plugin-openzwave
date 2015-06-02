@@ -87,7 +87,7 @@
                 "name": "Consigne Chaud",
                 "type": "action",
                 "subType": "slider",
-				"isVisible": 0,
+				"isVisible": 1,
 				"value": "Temp Chauffe",
                 "configuration": {
                     "instanceId": "0",
@@ -99,7 +99,7 @@
                 "name": "Consigne Clim",
                 "type": "action",
                 "subType": "slider",
-				"isVisible": 0,
+				"isVisible": 1,
 				"value": "Temp Clim",
                 "configuration": {
                     "instanceId": "0",
@@ -113,7 +113,7 @@
                 "subType": "numeric",
                 "isHistorized": "0",
 				"unite": "°C",
-				"isVisible": 1,
+				"isVisible": 0,
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x43",
@@ -126,7 +126,7 @@
                 "subType": "numeric",
                 "isHistorized": "0",
 				"unite": "°C",
-				"isVisible": 1,
+				"isVisible": 0,
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x43",
