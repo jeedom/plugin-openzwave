@@ -1324,6 +1324,7 @@ def set_config2(device_id,index_id,value,size) :
         if(device_id in network.nodes) :
             for value_id in network.nodes[device_id].get_values(class_id='All', genre='All', type='List', readonly='All', writeonly='All') :
                 if network.nodes[device_id].values[value_id].command_class == COMMAND_CLASS_CONFIGURATION and network.nodes[device_id].values[value_id].index==index_id:
+                    value=value.replace("@","/")
                     network._manager.setValue(value_id, value)                    
                     mark_pending_change(get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value) 
         else:

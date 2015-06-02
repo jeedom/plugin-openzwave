@@ -343,9 +343,10 @@ $("#sendNodeInformation").off("click").on("click",function() {
 $("#saveParam").off("click").on("click",function (e) {
 	var paramId = $('#paramsModal').data('paramid');
 	var paramValue = $('#newvalue').val();
+	var paramValue2 = paramValue.replace(/\//g,'@');
 	var paramLength = paramValue.length;
 	$.ajax({ 
-		url: path+"ZWaveAPI/Run/devices["+app_nodes.selected_node+"].commandClasses[0x70].Set("+paramId+","+encodeURIComponent(paramValue)+","+paramLength+")", 
+		url: path+"ZWaveAPI/Run/devices["+app_nodes.selected_node+"].commandClasses[0x70].Set("+paramId+","+paramValue2+","+paramLength+")", 
 		dataType: 'json',
 		async: true, 
 		error: function (request, status, error) {
