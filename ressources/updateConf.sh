@@ -8,6 +8,7 @@
 
 cd /opt/python-openzwave/openzwave
 sudo touch /tmp/updateConfOpenzwave
+sudo git reset --hard HEAD
 sudo git pull
 sudo find config/ -newer /tmp/updateConfOpenzwave | grep xml >> /tmp/updatedConfOpenzwave
 rm /tmp/updateConfOpenzwave
