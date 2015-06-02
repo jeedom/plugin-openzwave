@@ -881,8 +881,10 @@ draw_nodes: function ()
 	        	var node_groups=nodes[z].groups;
 	        	var controller_id=controller.data.nodeId.value;
 	        	var found=0;
+	        	var hasGroup = false;
 	        	for (zz in node_groups){
 	        		if (!isNaN(zz)){
+	        			hasGroup = true;
 	        			var values=node_groups[zz].associations.split(';');
 	        			tr_groups="";
 	        			for(val in values){
@@ -895,7 +897,7 @@ draw_nodes: function ()
 	        			}
 	        		}
 	        	}
-	        	if(found==0){
+	        	if(hasGroup && found==0){
 	        		isWarning = true;
 	        		warningMessage +="<li>{{Le controleur n'est inclus dans aucun groupe du module.}}</li>";
 	        	}
