@@ -305,8 +305,59 @@ class PendingConfiguration(object):
             return 2
         # the parameter have be set succesfully
         return 1
-            
 
+            
+class NodeNotification(object):
+    
+    def __init__(self, code):
+        self._receive_time=int(time.time())           
+        self._code = code 
+        self._description = code 
+        self._help = code 
+        
+        if code == 0:
+            self._description = "Completed"
+            self._help = "Completed messages"
+        elif code == 1:
+            self._description = "Timeout"
+            self._help = "Messages that timeout will send a Notification with this code"
+        elif code == 2:
+            self._description = "NoOperation"
+            self._help = "Report on NoOperation message sent completion"
+        elif code == 3:
+            self._description = "Awake."
+            self._help = "Report when a sleeping node wakes"
+        elif code == 4:
+            self._description = "Sleep."
+            self._help = "Report when a node goes to sleep"
+        elif code == 5:
+            self._description = "Dead."
+            self._help = "Report when a node is presumed dead"
+        elif code == 6:
+            self._description = "Alive."
+            self._help = "Report when a node is revived"
+        else:
+            self._description = "Unknown state"
+            self._help = ""
+        
+        
+    @property
+    def code(self):        
+        return self._code
+    
+    @property
+    def receive_time(self):        
+        return self._receive_time
+    
+    @property
+    def description(self):        
+        return self._description
+    
+    @property
+    def help(self):        
+        return self._help
+    
+    
 def signal_handler(signal, frame):
     network.write_config()
     add_log_entry('Graceful stopping the ZWave network.')
@@ -595,7 +646,15 @@ def node_group_changed(network, node):
     debug_print('Group changed for nodeId %s' % (node.node_id,)) 
     #TODO: reset group changed for pending associations
 
-
+def node_notification(args):
+    code = int(args['notificationCode'])
+    device_id = int(args['nodeId'])
+    debug_print('Receive a notification from nodeId %s code:%s' % (device_id, code,)) 
+    
+    if(device_id in network.nodes) :
+        myNode = network.nodes[device_id]
+        myNode.last_notification = NodeNotification(code) 
+    
 #app = Flask(__name__, static_url_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'static')))
 app = Flask(__name__, static_url_path = '/static')
 
@@ -654,6 +713,8 @@ dispatcher.connect(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
 
 # keep a track of actual network stage and last message
 dispatcher.connect(controller_message, ZWaveController.SIGNAL_CONTROLLER)
+# Called when an error happened, or node changed (awake, sleep, death, no operation, timeout).
+dispatcher.connect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION)
 
 add_log_entry('OpenZwave Library Version %s' %(network.manager.getOzwLibraryVersionNumber(),)) 
 add_log_entry('Python-OpenZwave Wrapper Version %s' %(network.manager.getPythonLibraryVersionNumber(),)) 
@@ -796,6 +857,17 @@ def serialize_node_to_json(device_id):
             group = myNode.groups[groupIndex]
             tmpNode['groups'][groupIndex] = {"label":group.label, "maximumAssociations": group.max_associations, "associations": concatenate_list(group.associations)}  
         
+        
+        if hasattr(myNode, 'last_notification') : 
+            notification = myNode.last_notification
+            tmpNode['last_notification'] = {"receiveTime":notification.receive_time,
+                                            "code":notification.code,
+                                            "description":notification.description,
+                                            "help":notification.help}
+        else:
+            tmpNode['last_notification'] = {}
+        
+            
         #for val in myNode.values.keys() : 
         for val in myNode.values : 
             myValue = myNode.values[val]
