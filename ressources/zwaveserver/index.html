@@ -17,6 +17,8 @@
         <p>Dernier message : <b><span class="network-notification label label-default">inconnu</span></b></p>
         <p>Détails : <b><span class="network-notificationMessage label label-default">inconnu</span></b></p>
         <p>Reçu le <b><span class="network-notificationTime label label-default">inconnu</span></b></p>
+        <p>Version de la librairie OpenZwave : <b><span class="network-oz-library-version label label-default">inconnu</span></b></p>
+        <p>Version de la librairie Python-OpenZwave : <b><span class="network-poz-library-version label label-default">inconnu</span></b></p>
     </center>
 </body>
 </html>
@@ -41,6 +43,8 @@
           $(".network-notification").html(data.notification.state);
           $(".network-notificationMessage").html(data.notification.details);
           $(".network-notificationTime").html(timestampConverter(data.notification.timestamp));
+          $(".network-oz-library-version").html(data.OpenZwaveLibraryVersion);
+          $(".network-poz-library-version").html(data.PythonOpenZwaveLibraryVersion);
       }
   });
 
