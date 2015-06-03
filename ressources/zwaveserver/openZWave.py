@@ -1891,6 +1891,18 @@ def stop_network() :
     add_log_entry('ZWave network is now stopped')
     return jsonify(State)
 
+@app.route('/ZWaveAPI/assign_return_route(<int:from_node_id>,<int:to_node_id>)',methods = ['GET'])
+def assign_return_route(from_node_id,to_node_id) :
+    if can_execute_network_command() == False:
+        return build_network_busy_message()  
+    add_log_entry("Assign return route")
+    try:
+        result = network.controller.begin_command_assign_return_route(from_node_id,to_node_id)
+        return jsonify ({'result' : result})
+    except Exception as e:
+        add_log_entry(str(e), 'error')
+        return jsonify ({'error' : str(e)})
+
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RequestNodeInformation()',methods = ['GET'])
 def request_node_information(device_id) :
     if can_execute_network_command() == False:
