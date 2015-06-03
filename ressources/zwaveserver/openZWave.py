@@ -309,12 +309,16 @@ class PendingConfiguration(object):
             
 class NodeNotification(object):
     
-    def __init__(self, code):
+    def __init__(self, code, wakeup_time=None):
         self._receive_time=int(time.time())           
         self._code = code 
         self._description = code 
         self._help = code 
+        self._wakeup_time = wakeup_time 
+        self._next_wakeup = None       
+        self.refresh(code, wakeup_time)
         
+    def refresh(self, code, wakeup_time):
         if code == 0:
             self._description = "Completed"
             self._help = "Completed messages"
@@ -330,6 +334,9 @@ class NodeNotification(object):
         elif code == 4:
             self._description = "Sleep."
             self._help = "Report when a node goes to sleep"
+            #if they go to sleep, calcul the next expected wakeup time
+            if wakeup_time != None:
+                self._next_wakeup = wakeup_time + self._receive_time
         elif code == 5:
             self._description = "Dead."
             self._help = "Report when a node is presumed dead"
@@ -339,8 +346,7 @@ class NodeNotification(object):
         else:
             self._description = "Unknown state"
             self._help = ""
-        
-        
+            
     @property
     def code(self):        
         return self._code
@@ -356,6 +362,10 @@ class NodeNotification(object):
     @property
     def help(self):        
         return self._help
+    
+    @property
+    def next_wakeup(self):        
+        return self._next_wakeup
     
     
 def signal_handler(signal, frame):
@@ -646,6 +656,14 @@ def node_group_changed(network, node):
     debug_print('Group changed for nodeId %s' % (node.node_id,)) 
     #TODO: reset group changed for pending associations
 
+def get_wakeup_interval(device_id) :
+    if(device_id in network.nodes) : 
+        for val in network.nodes[device_id].values :
+            myValue = network.nodes[device_id].values[val]
+            if myValue.command_class == 132 and myValue.label =="Wake-up Interval":
+                return network.nodes[device_id].values[val].data
+    return None
+
 def node_notification(args):
     code = int(args['notificationCode'])
     device_id = int(args['nodeId'])
@@ -653,7 +671,14 @@ def node_notification(args):
     
     if(device_id in network.nodes) :
         myNode = network.nodes[device_id]
-        myNode.last_notification = NodeNotification(code) 
+        wakeup_time = get_wakeup_interval(device_id)
+        if not hasattr(myNode, 'last_notification') :                         
+            myNode.last_notification = NodeNotification(code, wakeup_time) 
+        else:
+            #I refresh notification, the wakeup_time can be modified from last time, we need to calculate the next expected wakeup time 
+            myNode.last_notification.refresh(code, wakeup_time)
+        
+        
     
 #app = Flask(__name__, static_url_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'static')))
 app = Flask(__name__, static_url_path = '/static')
@@ -863,7 +888,8 @@ def serialize_node_to_json(device_id):
             tmpNode['last_notification'] = {"receiveTime":notification.receive_time,
                                             "code":notification.code,
                                             "description":notification.description,
-                                            "help":notification.help}
+                                            "help":notification.help,
+                                            "next_wakeup": notification.next_wakeup}
         else:
             tmpNode['last_notification'] = {}
         
@@ -1201,10 +1227,7 @@ def set_polling_value(device_id, instance_id, cc_id, index, frequence) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[0].commandClasses[132].data.interval.value',methods = ['GET'])
 def get_wakeup(device_id) :
     if(device_id in network.nodes) : 
-        for val in network.nodes[device_id].values :
-            myValue = network.nodes[device_id].values[val]
-            if myValue.command_class == 132 and myValue.label =="Wake-up Interval":
-                return str(network.nodes[device_id].values[val].data_as_string)
+        return str(get_wakeup_interval(device_id))
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')        
     return str('')
