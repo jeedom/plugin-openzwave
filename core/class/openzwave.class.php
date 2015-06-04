@@ -155,7 +155,6 @@ class openzwave extends eqLogic {
 	}
 
 	public static function pull() {
-		$startLoadTime = getmicrotime();
 		foreach (self::listServerZwave() as $serverID => $server) {
 			$results = self::callOpenzwave('/ZWaveAPI/Data/1', $serverID);
 			if (!is_array($results)) {
@@ -390,6 +389,14 @@ class openzwave extends eqLogic {
 	}
 
 	public static function cron() {
+		if (config::byKey('port', 'openzwave', 'none') != 'none') {
+			if (!self::deamonRunning()) {
+				self::runDeamon();
+			}
+		}
+	}
+
+	public static function start() {
 		if (config::byKey('port', 'openzwave', 'none') != 'none') {
 			if (!self::deamonRunning()) {
 				self::runDeamon();
