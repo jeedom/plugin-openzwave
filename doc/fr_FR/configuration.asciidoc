@@ -5,21 +5,20 @@ Voici le détail (certains paramètres peuvent n'être visibles qu'en mode exper
 
 image:../images/openzwave1.png[]
 
- *Configuration* : cette partie vous donne le statut du démon (aussi bien en local qu'en déporté, ici en déporté).
-
+ * *Configuration* : cette partie vous donne le statut du démon (aussi bien en local qu'en déporté, ici en déporté).
 [icon="../images/plugin/tip.png"]
 [TIP]
 Si vous êtes en mode déporté, le démon local peut être arrêté, c'est tout à fait normal.
 
 * *Général* : cette partie permet de configurer les paramètres généraux du plugin.
 * *Démon local* ou *Démon XXX* : paramètres de configuration locale (ou déportée, en fonction de l'intitulé) du démon.
-** _Installer/Mettre à jour OpenZwave en local_ : permet de lancer l'installation du moteur openzwave, si vous venez de l'installer il faut absolument lancer l'installation (à moins de vouloir utiliser le plugin en mode déporté, dans ce cas il faudra lancer l'installation à partir du jeedom deporté). Il est recommandé de lancer l'installation en stable à moins que l'équipe de support vous demande le contraire
-** _Port clé Z-Wave_ : le port USB sur lequel votre interface Zwave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (rpi ou jeedomboard) les 2 posssibilités à la fin de la liste
-** _Port socket interne (modification dangereuse, doit être la même valeur sur tous les Jeedom déportés Zwave)_ : permet de modifier le port de communication interne du démon.
-** _Gestion du démon_ : vous retrouvez ici les boutons de gestion du démon : 
-*** Redémarrer : permet de redémarrer le démon en mode normal.
-*** Arrêter : force l'arrêt du démon (attention cette option place le port sur l'option "Aucun" également).
-*** Lancer en mode debug : cette option lance le démon en mode debug. Cette option peut être utile pour voir, si c'est le cas, pourquoi le démon plante ou ne remonte pas une valeur.
+** *Installer/Mettre à jour OpenZwave en local* : permet de lancer l'installation du moteur openzwave, si vous venez de l'installer il faut absolument lancer l'installation (à moins de vouloir utiliser le plugin en mode déporté, dans ce cas il faudra lancer l'installation à partir du jeedom deporté). Il est recommandé de lancer l'installation en stable à moins que l'équipe de support vous demande le contraire
+** *Port clé Z-Wave* : le port USB sur lequel votre interface Zwave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (rpi ou jeedomboard) les 2 posssibilités à la fin de la liste
+** *Port socket interne* (modification dangereuse, doit être la même valeur sur tous les Jeedom déportés Zwave)_ : permet de modifier le port de communication interne du démon.
+** *Gestion du démon* : vous retrouvez ici les boutons de gestion du démon : 
+*** *Redémarrer* : permet de redémarrer le démon en mode normal.
+*** *Arrêter* : force l'arrêt du démon (attention cette option place le port sur l'option "Aucun" également).
+*** *Lancer en mode debug* : cette option lance le démon en mode debug. Cette option peut être utile pour voir, si c'est le cas, pourquoi le démon plante ou ne remonte pas une valeur.
 [icon="../images/plugin/important.png"]
 [IMPORTANT]
 Dans ce mode, le démon est très bavard. Une fois le debug terminé, il ne faut pas oublier de cliquer sur "Redémarrer" pour sortir du mode debug !!
@@ -28,7 +27,8 @@ Dans ce mode, le démon est très bavard. Une fois le debug terminé, il ne faut
 [TIP]
 Pour pouvoir lancer l'installation du moteur openzwave, jeedom à besoin des droits sudo, si vous n'avez pas le bouton d'installation referez vous à link:http://doc.jeedom.fr/fr_FR/doc-installation.html[ici] partie 1.7.4
 
-==== Configuration des équipements
+'''
+=== Configuration des équipements
 
 La configuration des équipements OpenZwave est accessible à partir du menu plugin :
 
@@ -91,7 +91,8 @@ En fonction des types et sous types, certaines options peuvent être absentes.
 * Tester : permet de tester la commande.
 * supprimer (signe -) : permet de supprimer la commande.
 
-==== Configuration des modules
+'''
+=== Configuration des modules
 
 image:../images/openzwave5.png[]
 
@@ -153,7 +154,8 @@ image:../images/openzwave11.png[]
 
 Cette onglet donne quelques statisitiques de communication avec le noeud. Peut etre interessant en cas de module qui passe en "Dead"
 
-==== Mode inclusion
+'''
+=== Mode inclusion
 
 image:../images/openzwave17.png[]
 
@@ -177,7 +179,8 @@ Lors d'une inclusion, il est conseillé que le module soit à moins d'un mètre 
 [TIP]
 A noter que l'interface mobile vous donne aussi accès à l'inclusion.
 
-==== Mode exclusion
+'''
+=== Mode exclusion
 
 image:../images/openzwave15.png[]
 
@@ -195,7 +198,8 @@ Si vous recliquez sur le bouton vous sortez du mode exclusion.
 [TIP]
 A noter que l'interface mobile vous donne aussi accès à l'exclusion.
 
-==== Synchroniser
+'''
+=== Synchroniser
 
 image:../images/openzwave14.png[]
 
@@ -205,7 +209,8 @@ Bouton permettant de synchroniser les modules du réseau Z-Wave avec Jeedom.
 [TIP]
 Si vous n'avez pas l'image ou que jeedom n'a pas reconnu votre module ce bouton peut permettre de corriger
 
-==== Réseaux Zwave
+'''
+=== Réseaux Zwave
 
 image:../images/openzwave19.png[]
 
@@ -249,7 +254,8 @@ Affiche le nombre de route disponible pour la communication entre chaque noeud
 [TIP]
 La légende est diponible tout en bas
 
-==== Configuration
+'''
+=== Configuration
 
 image:../images/openzwave20.png[]
 
@@ -261,7 +267,8 @@ image:../images/openzwave23.png[]
 [IMPORTANT]
 Cette partie est reservé aux experts, toutes modifications ici (autre que sur demande du support) peut entrainer de grave problèmes sur le reseaux zwave et peut ne pas être pris en charge par le support
 
-==== Santé
+'''
+=== Santé
 
 image:../images/openzwave12.png[]
 
@@ -284,7 +291,8 @@ Vous avez ici :
 * *Derniere communication* : Date de dernière communication avec le module ainsi que l'heure de la prochaine communication prévue.
 * *Ping* : Permet d'envoyer un ping au module, peut être utilisé si le module est en dead pour voir si c'est réellement le cas
 
-==== Console
+'''
+=== Console
 
 image:../images/openzwave21.png[]
 
