@@ -50,7 +50,7 @@
         "type": "info",
         "subtype": "numeric",
         "unite": "kWh",
-        "isVisible": 1,
+        "isVisible": 0,
         "configuration": {
           "class": "0x32",
           "value": "data[0].val"
