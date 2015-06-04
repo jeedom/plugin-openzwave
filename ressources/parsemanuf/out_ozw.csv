@@ -39,7 +39,7 @@ Aeon Labs;Home Energy Meter G2;134;2;28;X;X;134.2.28_aeon.labs.home.energy.meter
 Aeon Labs;Door/Window Sensor;134;2;29;;X;134.2.29_aeon.labs.doorwindow.sensor;aeon_labs/doorwindow.xml
 Aeon Labs;Water Sensor;134;2;45;;X;134.2.45_aeon.labs.water.sensor;aeon_labs/watersensor.xml
 Aeon Labs;Recessed Door Sensor;134;2;54;;X;134.2.54_aeon.labs.recessed.door.sensor;aeon_labs/recessed_doorsensor.xml
-Aeon Labs;Multi Sensor Gen5;134;2;74;;X;134.2.74_aeon.labs.multi.sensor.gen5;aeon_labs/multisensor_gen5.xml
+Aeon Labs;Multi Sensor Gen5;134;2;74;X;X;134.2.74_aeon.labs.multi.sensor.gen5;aeon_labs/multisensor_gen5.xml
 Aeon Labs;Recessed Door Sensor;134;2;89;X;X;134.2.89_aeon.labs.recessed.door.sensor;aeon_labs/recessed_doorsensor_gen5.xml
 Aeon Labs;Smart Energy Switch;134;3;6;X;X;134.3.6_aeon.labs.smart.energy.switch;aeon_labs/ses.xml
 Aeon Labs;Smart Energy Illuminator;134;3;8;X;X;134.3.8_aeon.labs.smart.energy.illuminator;N/A
@@ -261,7 +261,7 @@ MIOS;Vera Lite;140;1;1;;X;140.1.1_mios.vera.lite;N/A
 Miyakawa Electric Works;ME-D101 Electric Power Measuring Instrument;290;1;1;;;290.1.1_miyakawa.electric.works.me-d101.electric.power.measuring.instrument;N/A
 Miyakawa Electric Works;ZW-GW Smart Bridge;290;32768;0;;;290.32768.0_miyakawa.electric.works.zw-gw.smart.bridge;N/A
 NodOn;ASP-3-1-00 Smart Plug;357;1;1;X;X;357.1.1_nodon.asp-3-1-00.smart.plug;nodon/asp3100SmartPlug.xml
-NorthQ;NQ-92021 Power Reader;150;1;1;;X;150.1.1_northq.nq-92021.power.reader;northq/nq92021.xml
+NorthQ;NQ-92021 Power Reader;150;1;1;X;X;150.1.1_northq.nq-92021.power.reader;northq/nq92021.xml
 NorthQ;NQ-9021 Power Reader;150;1;2;;X;150.1.2_northq.nq-9021.power.reader;N/A
 NorthQ;NQ-9121 Gas Meter;150;16;1;;X;150.16.1_northq.nq-9121.gas.meter;N/A
 Philio Technology Corporation;PAN11-4 Smart Energy Plug In Switch;316;1;1;;X;316.1.1_philio.technology.corporation.pan11-4.smart.energy.plug.in.switch;N/A
@@ -298,7 +298,7 @@ Quby;Energy Management System;304;1;1;;X;304.1.1_quby.energy.management.system;N
 Remotec;Z-URC;21076;0;21279;;X;21076.0.21279_remotec.z-urc;remotec/zurc.xml
 Remotec;ZRC-100;21076;1;33664;;X;21076.1.33664_remotec.zrc-100;N/A
 Remotec;ZXT-310EU;21076;257;33649;;X;21076.257.33649_remotec.zxt-310eu;N/A
-Remotec;ZXT-120;21076;257;33655;;X;21076.257.33655_remotec.zxt-120;remotec/zxt-120.xml
+Remotec;ZXT-120;21076;257;33655;X;X;21076.257.33655_remotec.zxt-120;remotec/zxt-120.xml
 Remotec;ZFM-X10EU Dual Mode Insert Module ;21076;33281;33056;;X;21076.33281.33056_remotec.zfm-x10eu.dual.mode.insert.module.;N/A
 Remotec;ZFM-80;21076;32768;2;;X;21076.32768.2_remotec.zfm-80;remotec/zfm-80.xml
 RCS;TZ43 Thermostat;16;1;2;;X;16.1.2_rcs.tz43.thermostat;N/A
