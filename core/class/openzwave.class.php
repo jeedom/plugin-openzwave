@@ -390,8 +390,7 @@ class openzwave extends eqLogic {
 	}
 
 	public static function cron() {
-		$port = config::byKey('port', 'openzwave', 'none');
-		if ($port != 'none') {
+		if (config::byKey('port', 'openzwave', 'none') != 'none') {
 			if (!self::deamonRunning()) {
 				self::runDeamon();
 			}
