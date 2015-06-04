@@ -205,6 +205,22 @@ Bouton permettant de synchroniser les modules du réseau Z-Wave avec Jeedom.
 [TIP]
 Si vous n'avez pas l'image ou que jeedom n'a pas reconnu votre module ce bouton peut permettre de corriger
 
+==== Réseaux Zwave
+
+image:../images/openzwave19.png[]
+
+==== Configuration
+
+image:../images/openzwave20.png[]
+
+Cette onglet contient la configuration des vos modules zwave
+
+image:../images/openzwave23.png[]
+
+[icon="../images/plugin/important.png"]
+[IMPORTANT]
+Cette partie est reservé aux experts, toutes modifications ici (autre que sur demande du support) peut entrainer de grave problèmes sur le reseaux zwave et peut ne pas être pris en charge par le support
+
 ==== Santé
 
 image:../images/openzwave12.png[]
@@ -227,3 +243,15 @@ Vous avez ici :
 * *Temporisation* : affiche le délai moyen d'envoi de paquet en ms.
 * *Derniere communication* : Date de dernière communication avec le module ainsi que l'heure de la prochaine communication prévue.
 * *Ping* : Permet d'envoyer un ping au module, peut être utilisé si le module est en dead pour voir si c'est réellement le cas
+
+==== Console
+
+image:../images/openzwave21.png[]
+
+La console permet de voir en temps réel ce qu'il se passe sur le réseaux zwave
+
+image:../images/openzwave22.png[]
+
+[icon="../images/plugin/important.png"]
+[IMPORTANT]
+Les informations ici sont a destination du support il ne faut donc pas s'inquieter de voir des "Error" ou  "Warning" ici cela ne veut pas forcement dire que votre systeme à un soucis.
