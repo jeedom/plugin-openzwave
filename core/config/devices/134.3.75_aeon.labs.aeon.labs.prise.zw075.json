@@ -42,7 +42,7 @@
         "isVisible": 1,
         "configuration": {
           "class": "0x32",
-          "value": "data[2].val"
+          "value": "data[8].val"
         }
       },
       {
