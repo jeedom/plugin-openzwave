@@ -1,14 +1,229 @@
-* *Configuration du plugin OpenZwave :*
+==== Configuration du plugin
 
-Séléction de la clé Z-Wave et du port d'écoute :
-Par défaut, celui-ci est le port 8083, si vous utilisez déjà ce port pour un autre service, vous pouvez modifier celui-ci.
+Après téléchargement du plugin, il vous suffit de l'activer et de configuer le port. Après sauvegarde le démon devrait se lancer. Le plugin est déjà configuré par défaut ; vous n'avez donc rien à faire de plus. Cependant vous pouvez modifier cette configuration.
+Voici le détail (certains paramètres peuvent n'être visibles qu'en mode expert) :
 
 image:../images/openzwave1.png[]
 
-* *Configuration du plugin Z-Wave :*
+ *Configuration* : cette partie vous donne le statut du démon (aussi bien en local qu'en déporté, ici en déporté).
 
-* Zway IP : 127.0.0.1 par défaut (si vous utilisez la clé sur une autre machine, veuillez indiquer ici son adresse IP)
-* Zway port : 8083 par défaut (si vous utilisez un autre port, veuillez l'indiquer ici)
-* Cocher la case : J'utilise un serveur OpenZwave
+[icon="../images/plugin/tip.png"]
+[TIP]
+Si vous êtes en mode déporté, le démon local peut être arrêté, c'est tout à fait normal.
+
+* *Général* : cette partie permet de configurer les paramètres généraux du plugin.
+* *Démon local* ou *Démon XXX* : paramètres de configuration locale (ou déportée, en fonction de l'intitulé) du démon.
+** _Installer/Mettre à jour OpenZwave en local_ : permet de lancer l'installation du moteur openzwave, si vous venez de l'installer il faut absolument lancer l'installation (à moins de vouloir utiliser le plugin en mode déporté, dans ce cas il faudra lancer l'installation à partir du jeedom deporté). Il est recommandé de lancer l'installation en stable à moins que l'équipe de support vous demande le contraire
+** _Port clé Z-Wave_ : le port USB sur lequel votre interface Zwave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (rpi ou jeedomboard) les 2 posssibilités à la fin de la liste
+** _Port socket interne (modification dangereuse, doit être la même valeur sur tous les Jeedom déportés Zwave)_ : permet de modifier le port de communication interne du démon.
+** _Gestion du démon_ : vous retrouvez ici les boutons de gestion du démon : 
+*** Redémarrer : permet de redémarrer le démon en mode normal.
+*** Arrêter : force l'arrêt du démon (attention cette option place le port sur l'option "Aucun" également).
+*** Lancer en mode debug : cette option lance le démon en mode debug. Cette option peut être utile pour voir, si c'est le cas, pourquoi le démon plante ou ne remonte pas une valeur.
+[icon="../images/plugin/important.png"]
+[IMPORTANT]
+Dans ce mode, le démon est très bavard. Une fois le debug terminé, il ne faut pas oublier de cliquer sur "Redémarrer" pour sortir du mode debug !!
+
+[icon="../images/plugin/tip.png"]
+[TIP]
+Pour pouvoir lancer l'installation du moteur openzwave, jeedom à besoin des droits sudo, si vous n'avez pas le bouton d'installation referez vous à link:http://doc.jeedom.fr/fr_FR/doc-installation.html[ici] partie 1.7.4
+
+==== Configuration des équipements
+
+La configuration des équipements OpenZwave est accessible à partir du menu plugin :
 
 image:../images/openzwave2.png[]
+
+Voilà à quoi ressemble la page du plugin  OpenZwave (ici avec déjà quelques équipement) :
+
+image:../images/openzwave3.png[]
+
+[icon="../images/plugin/tip.png"]
+[TIP]
+Comme à beaucoup d'endroits sur Jeedom, placer la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez, à partir de votre profil, le laisser toujours visible).
+
+[icon="../images/plugin/tip.png"]
+[TIP]
+Les boutons sur la ligne tout en haut sont présentés plus bas.
+
+image:../images/openzwave4.png[]
+
+Vous retrouvez ici toute la configuration de votre équipement : 
+
+* *Nom de l'équipement* : nom de votre module Z-Wave.
+* *Objet parent* : indique l'objet parent auquel appartient l'équipement.
+* *Catégorie* : les catégories de l'équipement (il peut appartenir à plusieurs catégories).
+* *Activer* : permet de rendre votre équipement actif.
+* *Visible* : le rend visible sur le dashboard.
+* *Node ID* : ID du module sur le réseau Z-Wave. Peut être utile si par exemple vous voulez remplacer un module défaillant. Il suffit d'inclure le nouveau module, de récupérer son ID, et le mettre à la place de l'ID de l'ancien module et enfin de supprimer le nouveau module.
+* *Serveur* : serveur Z-Wave auquel est rataché votre module. Il est déconseillé de changer ça à moins de savoir ce que vous faites.
+* *Délai maximum autorisé entre 2 messages (min)* : le délai maximum autorisé entre 2 messages avant que Jeedom ne déclare l'équipement en "timeout". 
+* *Commentaire* : vous permet de mettre des commentaires sur l'équipement (ex : pile changée le XX/XX/XXXX)
+* *Module* : ce champs n'apparait que si il existe different type de configuration pour votre module (cas pour les module pouvant faire fils pilote par exemple). Il vous permet lors de configurer la configuration à utiliser ou ensuite de la modifier
+* *Configuration* : fenêtre de configuration des paramètres du module
+* *Asistant* : disponible uniquement sur certain module il vous aide à configurer le module (cas sur le zipato keyboard par exemple)
+* *Documentation* : ce bouton vous permet d'ouvrir directement la doc Jeedom concernant ce module.
+* *Marque et nom* : fabricant de votre module Z-Wave.
+* *Etat* : indique l'état actuel de votre module, la date de derniere communication avec le module et si celui-ci est sur batterie son niveau de batterie
+[icon="../images/plugin/tip.png"]
+[TIP]
+Si la batterie de votre module tombe sous les 20 % Jeedom vous préviendra, vous n'avez donc pas à vous préoccuper du niveau de batterie de votre module.
+
+En dessous vous retrouvez la liste des commandes : 
+
+[icon="../images/plugin/tip.png"]
+[TIP]
+En fonction des types et sous types, certaines options peuvent être absentes.
+
+* le nom affiché sur le dashboard
+* icône : dans le cas d'une action permet de choisir une icône à afficher sur le dashboard au lieu du texte
+* valeur de la commande : dans le cas d'une commande type action, sa valeur peut être liée à une commande de type info, c'est ici que cela se configure. Exemple pour une lampe l'intensité est liée à son état, cela permet au widget d'avoir l'état réel de la lampe.
+* le type et le sous-type.
+* l'instance de cette commande Z-Wave (réservé aux experts).
+* la classe de la commande Z-Wave (réservé aux experts).
+* la commande en elle-même (réservé aux experts).
+* "Valeur de retour d'état" et "Durée avant retour d'état" : permet d'indiquer à Jeedom qu'après un changement sur l'information sa valeur doit revenir à Y, X min après le changement. Exemple : dans le cas d'un détecteur de présence qui n'émet que lors d'une détection de présence, il est utile de mettre par exemple 0 en valeur et 4 en durée, pour que 4 min après une détection de mouvement (et s'il n'y a en pas eu de nouvelles depuis) Jeedom remette la valeur de l'information à 0 (plus de mouvement détecté).
+* historiser : permet d'historiser la donnée.
+* afficher : permet d'afficher la donnée sur le dashboard.
+* unité : unité de la donnée (peut être vide).
+* min/max : bornes de la donnée (peuvent être vides).
+* configuration avancée (petites roues crantées) : permet d'afficher la configuration avancée de la commande (méthode d'historisation, widget...).
+* Tester : permet de tester la commande.
+* supprimer (signe -) : permet de supprimer la commande.
+
+==== Configuration des modules
+
+image:../images/openzwave5.png[]
+
+C'est ici que vous retrouverai toutes les informations sur votre module, la fenetre possède plusieurs onglets :
+
+*Résumé*
+
+Fournis un résumé complet de votre noeud avec differentes information sur celui ci comme par exemple l'état des demandes qui permet de savoir si le noeud est en attente d'information ou la liste des noeuds voisin
+
+[icon="../images/plugin/tip.png"]
+[TIP]
+Sur cette onglet il est possible d'aovir des alertes en cas de soucis de configuration, Jeedom vous indiquera la marche à suivre pour corriger
+
+*Valeur*
+
+image:../images/openzwave6.png[]
+
+Vous retrouvez ici toute les commandes possible sur votre module et la possibilité de rajouter une interrogation forcé du module tous les X cycles
+
+[icon="../images/plugin/important.png"]
+[IMPORTANT]
+Forcer l'interrogation du module n'est pas une bonne chose et peut impacter fortement les performances
+
+[icon="../images/plugin/tip.png"]
+[TIP]
+Il est possible d'avoir plus de commande ici que sur Jeedom c'est tout a fait normale, dans Jeedom les commandes ont été selectionné
+
+*Parametres*
+
+image:../images/openzwave7.png[]
+
+Vous retrouver ici toute les possibilité de configuration des parametres de votre module ainsi que la possibilité de copier la configuration d'un autre noeud
+
+*Associations*
+
+image:../images/openzwave8.png[]
+
+C'est ici que ce retrouve la gestion des groupes de votre module
+
+[icon="../images/plugin/tip.png"]
+[TIP]
+Il est possible que votre module ne possède aucun groupe
+
+*Systemes*
+
+image:../images/openzwave9.png[]
+
+Onglet regroupant les parametres systeme du module. A reserver aux experts
+
+*Actions*
+
+image:../images/openzwave10.png[]
+
+Permet d'effectuer certain action générique sur le module comme la mise à jour des routes, le test du noeuds ou la mise à jour des valeurs
+
+*Statistique*
+
+image:../images/openzwave11.png[]
+
+Cette onglet donne quelques statisitiques de communication avec le noeud. Peut etre interessant en cas de module qui passe en "Dead"
+
+==== Mode inclusion
+
+image:../images/openzwave17.png[]
+
+Ce bouton vous permet de passer en mode inclusion pour ajouter un module à votre réseau Z-Wave, il faut en faire de même sur votre module (voir la doc de celui-ci pour le passer en mode inclusion).
+
+Une fois en mode inclusion Jeedom vous le signale.
+
+image:../images/openzwave18.png[]
+
+[icon="../images/plugin/tip.png"]
+[TIP]
+Tant que vous n'avez pas le bandeau vous n'êtes pas en mode inclusion.
+
+Si vous recliquez sur le bouton vous sortez du mode inclusion.
+
+[icon="../images/plugin/important.png"]
+[IMPORTANT]
+Lors d'une inclusion, il est conseillé que le module soit à moins d'un mètre de la box.
+
+[icon="../images/plugin/tip.png"]
+[TIP]
+A noter que l'interface mobile vous donne aussi accès à l'inclusion.
+
+==== Mode exclusion
+
+image:../images/openzwave15.png[]
+
+Ce bouton vous permet de passer en mode exclusion, cela pour retirer un module de votre réseau Z-Wave, il faut en faire de même avec votre module (voir la doc de celui-ci pour le passer en mode exclusion).
+
+image:../images/openzwave16.png[]
+
+[icon="../images/plugin/tip.png"]
+[TIP]
+Tant que vous n'avez pas le bandeau vous n'êtes pas en mode exclusion.
+
+Si vous recliquez sur le bouton vous sortez du mode exclusion.
+
+[icon="../images/plugin/tip.png"]
+[TIP]
+A noter que l'interface mobile vous donne aussi accès à l'exclusion.
+
+==== Synchroniser
+
+image:../images/openzwave14.png[]
+
+Bouton permettant de synchroniser les modules du réseau Z-Wave avec Jeedom.
+
+[icon="../images/plugin/tip.png"]
+[TIP]
+Si vous n'avez pas l'image ou que jeedom n'a pas reconnu votre module ce bouton peut permettre de corriger
+
+==== Santé
+
+image:../images/openzwave12.png[]
+
+Cette fenêtre résume l'état de votre réseau Z-Wave : 
+
+image:../images/openzwave13.png[]
+
+Vous avez ici : 
+
+* *Module* : le nom de votre module, un clic dessus vous permet d'y accèder directement.
+* *ID* : ID de votre module sur le réseau Z-Wave.
+* *Serveur* : nom du serveur Z-Wave.
+* *Interview* : statut de l'interview, un clic dessus permet d'afficher la fenêtre de l'interview.
+* *Statut* : statut du module (actif => module alimenté, endormi => module sur batterie dormant, réveillé => module sur batterie à l'écoute).
+* *Batterie* : niveau de batterie du module (NA indique que le module est alimenté).
+* *Wakeup time* : pour les modules sur batterie, il donne la fréquence en secondes des instants où le module se réveille forcément.
+* *Paquet total* : affiche le nombre total de paquets reçus ou envoyés avec succès au module (maximum 30).
+* *%OK* : affiche le pourcentage de paquets envoyés/reçus avec succès.
+* *Temporisation* : affiche le délai moyen d'envoi de paquet en ms.
+* *Derniere communication* : Date de dernière communication avec le module ainsi que l'heure de la prochaine communication prévue.
+* *Ping* : Permet d'envoyer un ping au module, peut être utilisé si le module est en dead pour voir si c'est réellement le cas
