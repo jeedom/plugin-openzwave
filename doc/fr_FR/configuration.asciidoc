@@ -209,6 +209,46 @@ Si vous n'avez pas l'image ou que jeedom n'a pas reconnu votre module ce bouton 
 
 image:../images/openzwave19.png[]
 
+Vous retrouvez ici des informations générale sur votre réseaux zwave 
+
+image:../images/openzwave24.png[]
+
+*Résumé*
+
+Le premiere onglet vous donne le résumer de base de votre réseaux zwave, vous retrouvez notament l'état du réseaux zwave ainsi que le nombre d'élement dans la file d'attente
+
+*Actions*
+
+image:../images/openzwave25.png[]
+
+Vous retrouvez ici toutes les actions possible sur votre réseaux zwave ainsi que leur description
+
+[icon="../images/plugin/important.png"]
+[IMPORTANT]
+Certaine actions sont vraiment risqué et l'équipe Jeedom ne pourra etre tenu responsable en cas de mauvaise manipulation
+
+*Statistiques*
+
+image:../images/openzwave26.png[]
+
+Vous retrouvez ici les statistiques générales sur votre réseaux zwave
+
+*Graphique du réseaux*
+
+image:../images/openzwave27.png[]
+
+Cette onglet vous donnera une representation graphique des differents lien entre les noeuds
+
+*Table de routage*
+
+image:../images/openzwave28.png[]
+
+Affiche le nombre de route disponible pour la communication entre chaque noeud
+
+[icon="../images/plugin/tip.png"]
+[TIP]
+La légende est diponible tout en bas
+
 ==== Configuration
 
 image:../images/openzwave20.png[]
