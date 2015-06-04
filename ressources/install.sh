@@ -82,7 +82,7 @@ if [ ! -d /opt/python-openzwave/.git ]; then
     if [ -d /opt/python-openzwave ]; then
     	sudo rm -Rf /opt/python-openzwave;
     fi
-    sudo git clone https://github.com/jeedom/python-openzwave.git --depth=1 --quiet /opt/python-openzwave;
+    sudo git clone https://github.com/jeedom/python-openzwave.git --depth=1 /opt/python-openzwave;
     if [ $1 = 'dev' ]; then
       cd /opt/python-openzwave;
       sudo git checkout dev;
@@ -105,7 +105,7 @@ if [ ! -d openzwave/.git ]; then
     if [ -d openzwave ]; then
     	sudo rm -Rf /opt/python-openzwave/openzwave;
     fi
-    sudo git clone https://github.com/jeedom/open-zwave.git --depth=1 --quiet openzwave;
+    sudo git clone https://github.com/jeedom/open-zwave.git --depth=1 openzwave;
     if [ $1 = 'dev' ]; then
       cd openzwave;
       sudo git checkout dev;
