@@ -250,6 +250,9 @@ class openzwave extends eqLogic {
 		$findDevice = array();
 		$include_device = '';
 		$controller_id = openzwave::getZwaveInfo('controller::data::nodeId::value', $_serverId);
+		if (count($results['devices']) < 2) {
+			return;
+		}
 		foreach ($results['devices'] as $nodeId => $result) {
 			if ($nodeId == $controller_id) {
 				continue;
