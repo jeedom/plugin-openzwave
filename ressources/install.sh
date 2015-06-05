@@ -63,7 +63,7 @@ apt_install gcc
 
 # Python
 echo "Installation des dependances Python"
-pip_install cython==0.14
+
 pip_install sphinxcontrib-blockdiag
 pip_install sphinxcontrib-actdiag
 pip_install sphinxcontrib-nwdiag
@@ -124,11 +124,21 @@ else
 fi
 echo "Sources updated"
 cd /opt/python-openzwave
-#sudo make deps
-#sudo make update
-sudo make clean
-sudo make build
-sudo make install
+
+if [ $1 = 'dev' ]; then
+	sudo make clean
+	sudo rm -fr /usr/local/lib/python2.7/dist-packages/python_openzwave_*
+	sudo pip uninstall -y Cython
+	sudo make cython-deps
+	sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
+	cd openzwave && sudo make
+	cd /opt/python-openzwave
+	sudo make install-api
+else
+	sudo make clean
+	sudo make build
+	sudo make install
+fi
 
 #sudo /opt/python-openzwave/compile.sh clean
 #sudo /opt/python-openzwave/install.sh
