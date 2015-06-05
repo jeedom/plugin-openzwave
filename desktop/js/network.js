@@ -104,7 +104,7 @@ var app_network = {
    },
    addDevice: function(){
     $.ajax({ 
-      url: path+"ZWaveAPI/Run/controller.AddNodeToNetwork(1, 1)", 
+      url: path+"ZWaveAPI/Run/controller.AddNodeToNetwork(1,1)", 
       dataType: 'json',
       async: true, 
       error: function (request, status, error) {

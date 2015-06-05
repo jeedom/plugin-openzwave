@@ -1854,7 +1854,7 @@ def release_button(device_id,instance_id, cc_id, index) :
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(Value)
 
-@app.route('/ZWaveAPI/Run/controller.AddNodeToNetwork(<int:state>, <int:doSecurity>)',methods = ['GET'])
+@app.route('/ZWaveAPI/Run/controller.AddNodeToNetwork(<int:state>,<int:doSecurity>)',methods = ['GET'])
 def start_node_inclusion(state, doSecurity) :
     if networkInformations.controllerIsBusy:
         return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 

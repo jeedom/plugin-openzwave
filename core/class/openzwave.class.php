@@ -334,7 +334,7 @@ class openzwave extends eqLogic {
 			throw new Exception(__('Le controleur est deja en inclusion ou exclusion', __FILE__));
 		}
 		if ($_mode == 1) {
-			self::callOpenzwave('/ZWaveAPI/Run/controller.AddNodeToNetwork(' . $_state . ', 1)', $_serverId);
+			self::callOpenzwave('/ZWaveAPI/Run/controller.AddNodeToNetwork(' . $_state . ',1)', $_serverId);
 		} else {
 			self::callOpenzwave('/ZWaveAPI/Run/controller.RemoveNodeFromNetwork(' . $_state . ')', $_serverId);
 		}
