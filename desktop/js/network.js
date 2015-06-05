@@ -104,7 +104,7 @@ var app_network = {
    },
    addDevice: function(){
     $.ajax({ 
-      url: path+"ZWaveAPI/Run/controller.AddNodeToNetwork(1)", 
+      url: path+"ZWaveAPI/Run/controller.AddNodeToNetwork(1,1)", 
       dataType: 'json',
       async: true, 
       error: function (request, status, error) {
@@ -613,7 +613,7 @@ show_infos: function (){
       handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
     },
         success: function (data) { // si l'appel a bien fonctionné
-        devicesRouting = data.devices;
+            devicesRouting = data.devices;
             var skipPortableAndVirtual = true; // to minimize routing table by removing not interesting lines
             var routingTable = '';
             var routingTableHeader = '';
