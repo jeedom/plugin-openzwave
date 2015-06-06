@@ -179,6 +179,8 @@ for arg in sys.argv:
         print("  --device=/dev/yourdevice ")
         print("  --log=Info|Debug")
 
+#log = "Debug"
+
 def debug_print(message):
     if log == "Debug":
         add_log_entry(message, "debug")
@@ -367,6 +369,94 @@ class NodeNotification(object):
     def next_wakeup(self):        
         return self._next_wakeup
     
+
+class ControllerCommands(object):
+    
+    def __init__(self, state, command):
+        self._timestamp = int(time.time())
+        self._state = state
+        self._state_description = None
+        self._command = command
+        self._command_description = None
+        
+        if state == 0:
+            self._state_description = 'Normal'
+        elif state == 1:
+            self._state_description = 'Starting'
+        elif state == 2:
+            self._state_description = 'Cancel'
+        elif state == 3:
+            self._state_description = 'Error'
+        elif state == 4:
+            self._state_description = 'Waiting'
+        elif state == 5:
+            self._state_description = 'Sleeping'
+        elif state == 6:
+            self._state_description = 'InProgress'
+        elif state == 7:
+            self._state_description = 'Completed'
+        elif state == 8:
+            self._state_description = 'Failed'
+        elif state == 9:
+            self._state_description = 'Node OK'
+        elif state == 10:
+            self._state_description = 'Node Failed'
+                                                
+        if command == 0:
+            self._command_description = 'None'
+        elif command == 1:
+            self._command_description = 'Add Device' #'Remove Device'
+        elif command == 2:
+            self._command_description = 'Create New Primary'
+        elif command == 3:
+            self._command_description = 'Receive Configuration'
+        elif command == 4:
+            self._command_description = 'Remove Device' #'None'
+        elif command == 5:
+            self._command_description = 'Remove Failed Node'
+        elif command == 6:
+            self._command_description = 'Has Node Failed'
+        elif command == 7:
+            self._command_description = 'Replace Failed Node'
+        elif command == 8:
+            self._command_description = 'Transfer Primary Role'
+        elif command == 9:
+            self._command_description = 'Request Network Update'
+        elif command == 10:
+            self._command_description = 'Request Node Neighbor Update'
+        elif command == 11:
+            self._command_description = 'Assign Return Route'
+        elif command == 12:
+            self._command_description = 'Delete All Return Routes'
+        elif command == 13:
+            self._command_description = 'Send Node Information'
+        elif command == 14:
+            self._command_description = 'Replication Send'
+        elif command == 15:
+            self._command_description = 'Create Button'
+        elif command == 16:
+            self._command_description = 'Delete Button'                                                                                                                                                 
+    
+    @property
+    def timestamp(self):
+        return self._timestamp
+    
+    @property
+    def state(self):
+        return self._state
+    
+    @property
+    def command(self):
+        return self._command
+    
+    @property
+    def state_description(self):
+        return self._state_description
+    
+    @property
+    def command_description(self):
+        return self._command_description   
+    
     
 def signal_handler(signal, frame):
     network.write_config()
@@ -462,10 +552,17 @@ def node_added(network, node):
     add_log_entry('A node has been added to OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
     node.last_update=time.time()   
     save_node_event(node.node_id, int(time.time()), "added") 
+    #TODO: is a work around until got real command notifications
+    if networkInformations.actualMode != ControllerMode.Idle:
+        networkInformations.actualMode = ControllerMode.Idle
+    
         
 def node_removed(network, node):
     add_log_entry('A node has been removed from OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
     save_node_event(node.node_id, int(time.time()), "removed")
+    #TODO: is a work around until got real command notifications
+    if networkInformations.actualMode != ControllerMode.Idle:
+        networkInformations.actualMode = ControllerMode.Idle
 
 def get_standard_value_type(valueType):
     if valueType == "Int" :
@@ -641,6 +738,15 @@ def controller_message(state, message, network, controller):
     add_log_entry('Controller state: %s. %s' % (state, message,)) 
     debug_print('Controller is busy: %s' % (networkInformations.controllerIsBusy,))   
 
+def save_controller_command(state, command):
+    #TODO: got a real notification with valid data, the current are not correctly mapped. 
+    #network.current_command = ControllerCommands(state, command)
+    #add_log_entry('A message is sent form controller: %s(%s) is %s(%s)' % (network.current_command.command_description, network.current_command.command, network.current_command.state_description, network.current_command.state))
+    add_log_entry('A message is sent form controller: %s is %s' % (command, state))
+
+def controller_command(network, controller, state, command):
+    save_controller_command(state, command)
+
 def node_event(network, node, value):
     debug_print('NodeId %s sends a Basic_Set command to the controller with value %s' % (node.node_id, value,)) 
     for val in network.nodes[node.node_id].values :
@@ -666,9 +772,7 @@ def get_wakeup_interval(device_id) :
 
 def node_notification(args):
     code = int(args['notificationCode'])
-    device_id = int(args['nodeId'])
-    debug_print('Receive a notification from nodeId %s code:%s' % (device_id, code,)) 
-    
+    device_id = int(args['nodeId'])    
     if(device_id in network.nodes) :
         myNode = network.nodes[device_id]
         wakeup_time = get_wakeup_interval(device_id)
@@ -677,6 +781,7 @@ def node_notification(args):
         else:
             #I refresh notification, the wakeup_time can be modified from last time, we need to calculate the next expected wakeup time 
             myNode.last_notification.refresh(code, wakeup_time)
+        debug_print('NodeId %s send a notification: %s' % (device_id, myNode.last_notification.description,))
         
         
     
@@ -740,6 +845,8 @@ dispatcher.connect(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
 dispatcher.connect(controller_message, ZWaveController.SIGNAL_CONTROLLER)
 # Called when an error happened, or node changed (awake, sleep, death, no operation, timeout).
 dispatcher.connect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION)
+# keep a track of actual network command in progress
+dispatcher.connect(controller_command, ZWaveNetwork.SIGNAL_CONTROLLER_COMMAND)
 
 add_log_entry('OpenZwave Library Version %s' %(network.manager.getOzwLibraryVersionNumber(),)) 
 add_log_entry('Python-OpenZwave Wrapper Version %s' %(network.manager.getPythonLibraryVersionNumber(),)) 
@@ -1010,6 +1117,17 @@ def serialize_controller_to_json():
     result['data']['notification'] = networkInformations.lastControllerNotification
     result['data']['isBusy'] = {"value" : networkInformations.controllerIsBusy} 
     result['data']['networkstate'] = {"value" : network.state} 
+    
+    if hasattr(network, 'current_command') :
+        current_command = network.current_command
+        result['data']['last_command'] = {'received':current_command.timestamp,
+                                          'command':current_command.command,
+                                          'state':current_command.state,
+                                          'command_description':current_command.command_description,
+                                          'state_description':current_command.state_description}
+    else:
+        result['data']['last_command'] = {}
+    
     return result
 
 def changes_value_polling(frequence, value):
@@ -1417,11 +1535,31 @@ def set_config2(device_id,index_id,value,size) :
     config = {}
     try :
         if(device_id in network.nodes) :
-            for value_id in network.nodes[device_id].get_values(class_id='All', genre='All', type='List', readonly='All', writeonly='All') :
+            for value_id in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
                 if network.nodes[device_id].values[value_id].command_class == COMMAND_CLASS_CONFIGURATION and network.nodes[device_id].values[value_id].index==index_id:
                     value=value.replace("@","/")
-                    network._manager.setValue(value_id, value)                    
-                    mark_pending_change(get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value) 
+                    myValue = network.nodes[device_id].values[value_id]
+                    if myValue.type == 'Button':
+                        if value.lower() == 'true':
+                            network._manager.pressButton(myValue.value_id)
+                            debug_print("Button pressed") 
+                            #mark_pending_change(myValue, 1) 
+                        else:
+                            network._manager.releaseButton(myValue.value_id)  
+                            debug_print("Button released")    
+                            #mark_pending_change(myValue, 0)                                                   
+                    elif  myValue.type == 'List':
+                        network._manager.setValue(value_id, value)                    
+                        mark_pending_change(myValue, value) 
+                    elif myValue.type == 'Bool':
+                        if value.lower() == 'true':
+                            value = True
+                        else: 
+                            value = False
+                        network._manager.setValue(value_id, value)                    
+                        mark_pending_change(myValue, value)
+                        
+                        
         else:
             add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
@@ -1878,6 +2016,9 @@ def start_node_inclusion(state, doSecurity) :
     elif state == 0 :
         add_log_entry("Start the Inclusion is Cancel" ) 
         network.manager.cancelControllerCommand(network.home_id)
+        #TODO: is a work around until got real command notifications
+        if networkInformations.actualMode != ControllerMode.Idle:
+            networkInformations.actualMode = ControllerMode.Idle
     return jsonify(State)
  
 @app.route('/ZWaveAPI/Run/controller.RemoveNodeFromNetwork(<int:state>)',methods = ['GET'])
@@ -1895,7 +2036,10 @@ def start_node_exclusion(state) :
         return jsonify({'result' : result})
     elif state == 0 :
         add_log_entry("Remove a Device from the Z-Wave Network (Cancel)" ) 
-        network.manager.cancelControllerCommand(network.home_id)
+        network.manager.cancelControllerCommand(network.home_id)  
+        #TODO: is a work around until got real command notifications
+        if networkInformations.actualMode != ControllerMode.Idle:
+            networkInformations.actualMode = ControllerMode.Idle      
     return jsonify(State)
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RequestNetworkUpdate()',methods = ['GET'])
@@ -2206,7 +2350,7 @@ def test_network(device_id=0xff, count=3):
         return build_network_busy_message()  
     try:
         debug_print("test_network node %s" %(device_id,))
-        if device_id == 0xff:
+        if device_id == 0xff or device_id == 0:
             network.manager.testNetwork(network.home_id, count)
         else:
             if(device_id in network.nodes) :
@@ -2297,6 +2441,9 @@ def cancel_command():
         result = network.manager.cancelControllerCommand(network.home_id)
         if result :
             networkInformations.controllerIsBusy = False
+        #TODO: is a work around until got real command notifications
+        if networkInformations.actualMode != ControllerMode.Idle:
+            networkInformations.actualMode = ControllerMode.Idle
         return jsonify({'result' : result})
     except Exception as e:
         add_log_entry(str(e), 'error')
