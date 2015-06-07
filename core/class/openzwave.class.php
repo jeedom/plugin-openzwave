@@ -247,9 +247,12 @@ class openzwave extends eqLogic {
 
 	public static function syncEqLogicWithRazberry($_serverId = 0) {
 		$results = self::callOpenzwave('/ZWaveAPI/Data/0', $_serverId);
+		if (!isset($results['controller']['data']['networkstate']['value']) || $results['controller']['data']['networkstate']['value'] <= 7) {
+			return;
+		}
 		$findDevice = array();
 		$include_device = '';
-		$controller_id = openzwave::getZwaveInfo('controller::data::nodeId::value', $_serverId);
+		$controller_id = $results['controller']['data']['nodeId']['value'];
 		if (count($results['devices']) < 2) {
 			return;
 		}
