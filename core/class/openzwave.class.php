@@ -395,18 +395,8 @@ class openzwave extends eqLogic {
 	}
 
 	public static function cron() {
-		if (config::byKey('port', 'openzwave', 'none') != 'none') {
-			if (!self::deamonRunning()) {
-				self::runDeamon();
-			}
-		}
-	}
-
-	public static function start() {
-		if (config::byKey('port', 'openzwave', 'none') != 'none') {
-			if (!self::deamonRunning()) {
-				self::runDeamon();
-			}
+		if (config::byKey('port', 'openzwave', 'none') != 'none' && !self::deamonRunning()) {
+			self::runDeamon();
 		}
 	}
 
@@ -421,7 +411,6 @@ class openzwave extends eqLogic {
 			}
 			exec('sudo chmod 777 ' . $port . ' > /dev/null 2>&1');
 		}
-		message::removeAll('openzwave', 'noOpenzwaveComPort');
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
 		$openzwave_path = realpath(dirname(__FILE__) . '/../../ressources/zwaveserver');
 		$log = ($_debug) ? 'Debug' : 'Info';
