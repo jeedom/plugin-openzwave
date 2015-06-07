@@ -415,7 +415,7 @@ class openzwave extends eqLogic {
 		log::add('openzwave', 'info', 'Lancement du démon openzwave');
 		$port = config::byKey('port', 'openzwave');
 		if ($port != 'auto') {
-			$port = jeedom::getUsbMapping($port);
+			$port = jeedom::getUsbMapping($port, true);
 			if (@!file_exists($port)) {
 				throw new Exception(__('Le port : ', __FILE__) . print_r($port, true) . __(' n\'existe pas', __FILE__));
 			}
