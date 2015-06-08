@@ -873,8 +873,7 @@ draw_nodes: function ()
 	        	else{
 	        		node.find(".node-sleep").html("{{Endormi}}");
 	        	}
-	        }
-	        else{
+	        }else{
 	        	node.find(".node-sleep").html("{{Secteur}}");
 	        }
 
