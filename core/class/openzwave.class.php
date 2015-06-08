@@ -512,6 +512,7 @@ class openzwave extends eqLogic {
 				}
 			} else {
 				$state = __('Sur secteur', __FILE__);
+				unset($return['battery']);
 			}
 			$return['state'] = array(
 				'value' => $state,
