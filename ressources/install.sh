@@ -82,21 +82,22 @@ if [ ! -d /opt/python-openzwave/.git ]; then
     if [ -d /opt/python-openzwave ]; then
     	sudo rm -Rf /opt/python-openzwave;
     fi
-    sudo git clone https://github.com/jeedom/python-openzwave.git --depth=1 /opt/python-openzwave;
     if [ $1 = 'dev' ]; then
-      cd /opt/python-openzwave;
-      sudo git checkout dev;
+      sudo git clone https://github.com/tmartinez69009/python-openzwave.git --depth=1 /opt/python-openzwave;
+    else
+      sudo git clone https://github.com/jeedom/python-openzwave.git --depth=1 /opt/python-openzwave;
     fi
     cd /opt/python-openzwave;
 else 
 	echo "Update sources of python-openzwave";
 	cd /opt/python-openzwave;
-  sudo git remote set-url origin https://github.com/jeedom/python-openzwave.git;
-	sudo git fetch --all
-	sudo git reset --hard origin/master
   if [ $1 = 'dev' ]; then
-     sudo git checkout dev;
+    sudo git remote set-url origin https://github.com/tmartinez69009/python-openzwave.git;
+  else
+    sudo git remote set-url origin https://github.com/jeedom/python-openzwave.git;
   fi
+    sudo git fetch --all
+	sudo git reset --hard origin/master
 	sudo git pull;
 fi
 
