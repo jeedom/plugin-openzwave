@@ -247,9 +247,12 @@ class openzwave extends eqLogic {
 
 	public static function syncEqLogicWithRazberry($_serverId = 0) {
 		$results = self::callOpenzwave('/ZWaveAPI/Data/0', $_serverId);
+		if (!isset($results['controller']['data']['networkstate']['value']) || $results['controller']['data']['networkstate']['value'] <= 7) {
+			return;
+		}
 		$findDevice = array();
 		$include_device = '';
-		$controller_id = openzwave::getZwaveInfo('controller::data::nodeId::value', $_serverId);
+		$controller_id = $results['controller']['data']['nodeId']['value'];
 		if (count($results['devices']) < 2) {
 			return;
 		}
@@ -392,18 +395,8 @@ class openzwave extends eqLogic {
 	}
 
 	public static function cron() {
-		if (config::byKey('port', 'openzwave', 'none') != 'none') {
-			if (!self::deamonRunning()) {
-				self::runDeamon();
-			}
-		}
-	}
-
-	public static function start() {
-		if (config::byKey('port', 'openzwave', 'none') != 'none') {
-			if (!self::deamonRunning()) {
-				self::runDeamon();
-			}
+		if (config::byKey('port', 'openzwave', 'none') != 'none' && !self::deamonRunning()) {
+			self::runDeamon();
 		}
 	}
 
@@ -412,13 +405,12 @@ class openzwave extends eqLogic {
 		log::add('openzwave', 'info', 'Lancement du démon openzwave');
 		$port = config::byKey('port', 'openzwave');
 		if ($port != 'auto') {
-			$port = jeedom::getUsbMapping($port);
+			$port = jeedom::getUsbMapping($port, true);
 			if (@!file_exists($port)) {
 				throw new Exception(__('Le port : ', __FILE__) . print_r($port, true) . __(' n\'existe pas', __FILE__));
 			}
 			exec('sudo chmod 777 ' . $port . ' > /dev/null 2>&1');
 		}
-		message::removeAll('openzwave', 'noOpenzwaveComPort');
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
 		$openzwave_path = realpath(dirname(__FILE__) . '/../../ressources/zwaveserver');
 		$log = ($_debug) ? 'Debug' : 'Info';

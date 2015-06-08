@@ -6,7 +6,7 @@
 	from flask import Flask, jsonify, abort, request, make_response, redirect, url_for
 	ImportError: No module named flask
 --
-Il y a eu un problème lors de l'execution de la commande d'installation. Merci de relancer celle-ci.
+Il y a eu un problème lors de l'exécution de la commande d'installation. Merci de relancer celle-ci.
 --
 
 [panel,primary]
