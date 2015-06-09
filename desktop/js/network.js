@@ -332,10 +332,10 @@ var app_network = {
         graph.addNode(z,{'name':nodes[z].data.product_name.value});
       }
 
-      for (neighbour in nodes[z].data.neighbours.value){
-		        	//console.log('add link '+neighbour);
-              if(typeof nodes[neighbour] != 'undefined'){
-               graph.addLink(z, neighbour);
+        for (neighbour in nodes[z].data.neighbours.value){
+              neighbourid=nodes[z].data.neighbours.value[neighbour];
+              if(typeof nodes[neighbourid] != 'undefined'){
+               graph.addLink(z, neighbourid);
              }
            }
          }
