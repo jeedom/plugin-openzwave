@@ -1,16 +1,18 @@
-[panel,primary]
-.J'ai le message d'erreur suivant :
-	ImportError: No module named flask
-	Impossible de lancer le démon openzwave, vérifiez le portTraceback (most recent call last):
-	File "/usr/share/nginx/www/jeedom/plugins/openzwave/ressources/zwaveserver/openZWave.py", line 2, in <module>
-	from flask import Flask, jsonify, abort, request, make_response, redirect, url_for
-	ImportError: No module named flask
+[panel,danger]
+.J'ai le message d'erreur suivant "ImportError: No module named flask"
 --
 Il y a eu un problème lors de l'exécution de la commande d'installation. Merci de relancer celle-ci.
 --
 
-[panel,primary]
+[panel,danger]
 .Je ne vois pas ma clé dans le menu :
 --
 Voir ici : https://wiki.jeedom.fr/index.php?title=OpenZwave#D.C3.A9bogage
+--
+
+[panel,danger]
+.Quand je vais sur la configuration j'ai des erreurs 404 ?
+--
+Il faut verifier si l'étape visudo de la doc d'installation à bien été faite (valable uniquement en DIY pas sur les images) : http://doc.jeedom.fr/fr_FR/doc-installation.html#autre
+Vérifier aussi que vous avez la ligne "include sites-available/jeedom_dynamic_rule;" dans /etc/nginx/sites-available/default et default_ssl sinon il faut l'ajouter juste avant  "location /socket.io/" { et creer le fichier jeedom_dynamic_rule si il n'existe pas : touch /etc/nginx/sites-available/jeedom_dynamic_rule et donner les droits à jeedom dessus : chmod 777 /etc/nginx/sites-available/jeedom_dynamic_rule. Ensuite il faut bien penser a resauvegarder sur la la page Générale -> Plugins puis openzwave la configuration.
 --
