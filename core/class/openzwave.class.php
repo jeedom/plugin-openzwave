@@ -168,12 +168,7 @@ class openzwave extends eqLogic {
 							'level' => 'warning',
 							'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $result['value'],
 						));
-						sleep(5);
 						self::syncEqLogicWithRazberry($serverID);
-						nodejs::pushUpdate('jeedom::alert', array(
-							'level' => 'warning',
-							'message' => '',
-						));
 					}
 				} else if ($key == 'controller') {
 					if (isset($result['controllerState'])) {
@@ -247,7 +242,11 @@ class openzwave extends eqLogic {
 
 	public static function syncEqLogicWithRazberry($_serverId = 0) {
 		$results = self::callOpenzwave('/ZWaveAPI/Data/0', $_serverId);
-		if (!isset($results['controller']['data']['networkstate']['value']) || $results['controller']['data']['networkstate']['value'] <= 7) {
+		if (!isset($results['controller']['data']['networkstate']['value']) || $results['controller']['data']['networkstate']['value'] < 7) {
+			nodejs::pushUpdate('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => __('Le controleur est occupé veuillez réessayer plus tard', __FILE__),
+			));
 			return;
 		}
 		$findDevice = array();
