@@ -2294,6 +2294,7 @@ def test_network(device_id=0xff, count=3):
         debug_print("test_network node %s" %(device_id,))
         if device_id == 0xff or device_id == 0:
             network.manager.testNetwork(network.home_id, count)
+            return jsonify({'result' : True})
         else:
             if(device_id in network.nodes) :
                 network.manager.testNetworkNode(network.home_id, device_id, count)
