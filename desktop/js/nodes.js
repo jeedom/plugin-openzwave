@@ -848,18 +848,24 @@ draw_nodes: function ()
 	        node.find(".node-basic").html(basicDeviceClassDescription);
 	        node.find(".node-generic").html(genericDeviceClassDescription);
 	        node.find(".node-specific").html(specificDeviceClassDescription);
-
+	        var battery_level = nodes[z].data.battery_level.value
 	        var nodeCanSleep = nodes[z].data.can_wake_up.value=="true";
-	        if(nodeCanSleep){
-	        	if(nodes[z].data.isAwake.value=="true"){
-	        		node.find(".node-sleep").html("{{Réveillé}}");
-	        	}
-	        	else{
-	        		node.find(".node-sleep").html("{{Endormi}}");
-	        	}
-	        }else{
+	        if (battery_level != null){
+	        	if(nodeCanSleep){
+		        	if(nodes[z].data.isAwake.value=="true"){
+		        		node.find(".node-sleep").html("{{Réveillé}}");
+		        	}
+		        	else{
+		        		node.find(".node-sleep").html("{{Endormi}}");
+		        	}
+		        }else{
+		        	node.find(".node-sleep").html("{{Endormi}}");
+		        }
+	        }
+	        else{
 	        	node.find(".node-sleep").html("{{Secteur}}");
 	        }
+	        
 
 	        if(typeof(controller) !== "undefined"){
 	        	var node_groups=nodes[z].groups;

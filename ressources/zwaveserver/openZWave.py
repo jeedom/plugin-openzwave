@@ -905,7 +905,8 @@ def serialize_node_to_json(device_id):
         if myNode.can_wake_up():
             tmpNode['data']['can_wake_up'] = {'value' : 'true'}        
         else :                                                    
-            tmpNode['data']['can_wake_up'] = {'value' : 'false'}        
+            tmpNode['data']['can_wake_up'] = {'value' : 'false'}
+        tmpNode['data']['battery_level'] = {'value' : myNode.get_battery_level()} 
         if myNode.is_failed :
             tmpNode['data']['isFailed'] = {'value' : 'true'}
         if myNode.is_listening_device :
