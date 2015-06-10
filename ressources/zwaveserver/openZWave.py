@@ -986,7 +986,8 @@ def serialize_node_to_json(device_id):
                 tmpNode['instances'][instance2] = {"updateTime":timestamp}
                 tmpNode['instances'][instance2]['commandClasses'] = {"updateTime":timestamp}
                 tmpNode['instances'][instance2]['commandClasses']['data'] = {"updateTime":timestamp}
-                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"name": myNode.get_command_class_as_string(myValue.command_class)}
+                if myValue.command_class != None:
+                    tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"name": myNode.get_command_class_as_string(myValue.command_class)}                
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'] = {"updateTime":timestamp}  
                 if myNode.is_ready==False:
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interviewDone']={}
@@ -999,7 +1000,8 @@ def serialize_node_to_json(device_id):
                 
             elif myValue.command_class not in tmpNode['instances'][instance2]['commandClasses']:
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"updateTime":timestamp}
-                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"name": myNode.get_command_class_as_string(myValue.command_class)}
+                if myValue.command_class != None:
+                    tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"name": myNode.get_command_class_as_string(myValue.command_class)}
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'] = {"updateTime":timestamp}
                 if myNode.is_ready==False:
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interviewDone']={}
