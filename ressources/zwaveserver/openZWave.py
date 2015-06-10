@@ -179,7 +179,6 @@ for arg in sys.argv:
         print("  --device=/dev/yourdevice ")
         print("  --log=Info|Debug")
 
-#log = "Debug"
 
 def debug_print(message):
     if log == "Debug":
@@ -204,14 +203,28 @@ class ControllerMode:
     class RemoveDevice: pass
   
 class NetworkInformations(object):
-    
+    '''
+    STATE_NORMAL = 'Normal'
+    STATE_STARTING = 'Starting'
+    STATE_CANCEL = 'Cancel'
+    STATE_ERROR = 'Error'
+    STATE_WAITING = 'Waiting'
+    STATE_SLEEPING = 'Sleeping'
+    STATE_INPROGRESS = 'InProgress'
+    STATE_COMPLETED = 'Completed'
+    STATE_FAILED = 'Failed'
+    STATE_NODEOK = 'NodeOK'
+    STATE_NODEFAILED = 'NodeFailed'
+    '''
     def __init__(self):
         self._actualMode = ControllerMode.Idle
         self._startTime=int(time.time())
         self._configFileSaveInProgress = False
         self._controllerIsBusy = False;
-        self._controllerState = ZWaveController.SIGNAL_CTRL_STARTING
-        self._lastControllerNotification = {"state": self._controllerState, "details": '', "timestamp" :int(time.time())}         
+        self._controllerState = ZWaveController.STATE_STARTING
+        self._lastControllerNotification = {"state": self._controllerState, "details": '', "error": None, "error_description": None, "timestamp" :int(time.time())}         
+        self._error = None
+        self._error_description = None
     
     @property
     def actualMode(self):        
@@ -253,20 +266,34 @@ class NetworkInformations(object):
     def lastControllerNotification(self):        
         return self._lastControllerNotification
     
-    def assignControllerNotification(self, state, details):
+    @property
+    def error(self):        
+        return self._error
+    
+    @property
+    def error_description(self):        
+        return self._error_description
+    
+    def assignControllerNotification(self, state, details, error=None, error_description=None):
         self._controllerState = state
         self._lastControllerNotification['state'] = state
         self._lastControllerNotification['details'] = details
+        if error == 'None':
+            self._lastControllerNotification['error'] = None
+            self._lastControllerNotification['error_description'] = None
+        else:
+            self._lastControllerNotification['error'] = error
+            self._lastControllerNotification['error_description'] = error_description
         self._lastControllerNotification['timestamp'] = int(time.time())
+        self._error = error
+        self._error_description = error_description
         
-        if state == ZWaveController.SIGNAL_CTRL_WAITING:
+        if state == ZWaveController.STATE_WAITING:
             self.controllerIsBusy = True
-        elif state == ZWaveController.SIGNAL_CTRL_INPROGRESS:
+        elif state == ZWaveController.STATE_INPROGRESS:
             self.controllerIsBusy = True
-        elif state == ZWaveController.SIGNAL_CTRL_STARTING:
-            self.controllerIsBusy = False           
-            self.actualMode = ControllerMode.Idle
-            self._startTime=int(time.time())
+        elif state == ZWaveController.STATE_STARTING:
+            self.controllerIsBusy = True 
         else:
             self.controllerIsBusy = False
             #reset flag
@@ -368,95 +395,7 @@ class NodeNotification(object):
     @property
     def next_wakeup(self):        
         return self._next_wakeup
-    
-
-class ControllerCommands(object):
-    
-    def __init__(self, state, command):
-        self._timestamp = int(time.time())
-        self._state = state
-        self._state_description = None
-        self._command = command
-        self._command_description = None
-        
-        if state == 0:
-            self._state_description = 'Normal'
-        elif state == 1:
-            self._state_description = 'Starting'
-        elif state == 2:
-            self._state_description = 'Cancel'
-        elif state == 3:
-            self._state_description = 'Error'
-        elif state == 4:
-            self._state_description = 'Waiting'
-        elif state == 5:
-            self._state_description = 'Sleeping'
-        elif state == 6:
-            self._state_description = 'InProgress'
-        elif state == 7:
-            self._state_description = 'Completed'
-        elif state == 8:
-            self._state_description = 'Failed'
-        elif state == 9:
-            self._state_description = 'Node OK'
-        elif state == 10:
-            self._state_description = 'Node Failed'
-                                                
-        if command == 0:
-            self._command_description = 'None'
-        elif command == 1:
-            self._command_description = 'Add Device' #'Remove Device'
-        elif command == 2:
-            self._command_description = 'Create New Primary'
-        elif command == 3:
-            self._command_description = 'Receive Configuration'
-        elif command == 4:
-            self._command_description = 'Remove Device' #'None'
-        elif command == 5:
-            self._command_description = 'Remove Failed Node'
-        elif command == 6:
-            self._command_description = 'Has Node Failed'
-        elif command == 7:
-            self._command_description = 'Replace Failed Node'
-        elif command == 8:
-            self._command_description = 'Transfer Primary Role'
-        elif command == 9:
-            self._command_description = 'Request Network Update'
-        elif command == 10:
-            self._command_description = 'Request Node Neighbor Update'
-        elif command == 11:
-            self._command_description = 'Assign Return Route'
-        elif command == 12:
-            self._command_description = 'Delete All Return Routes'
-        elif command == 13:
-            self._command_description = 'Send Node Information'
-        elif command == 14:
-            self._command_description = 'Replication Send'
-        elif command == 15:
-            self._command_description = 'Create Button'
-        elif command == 16:
-            self._command_description = 'Delete Button'                                                                                                                                                 
-    
-    @property
-    def timestamp(self):
-        return self._timestamp
-    
-    @property
-    def state(self):
-        return self._state
-    
-    @property
-    def command(self):
-        return self._command
-    
-    @property
-    def state_description(self):
-        return self._state_description
-    
-    @property
-    def command_description(self):
-        return self._command_description   
-    
+   
     
 def signal_handler(signal, frame):
     network.write_config()
@@ -552,18 +491,11 @@ def node_added(network, node):
     add_log_entry('A node has been added to OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
     node.last_update=time.time()   
     save_node_event(node.node_id, int(time.time()), "added") 
-    #TODO: is a work around until got real command notifications
-    if networkInformations.actualMode != ControllerMode.Idle:
-        networkInformations.actualMode = ControllerMode.Idle
-    
-        
+            
 def node_removed(network, node):
     add_log_entry('A node has been removed from OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
     save_node_event(node.node_id, int(time.time()), "removed")
-    #TODO: is a work around until got real command notifications
-    if networkInformations.actualMode != ControllerMode.Idle:
-        networkInformations.actualMode = ControllerMode.Idle
-
+    
 def get_standard_value_type(valueType):
     if valueType == "Int" :
         return 'int'
@@ -643,7 +575,7 @@ def essential_node_queries_complete(network, node):
     #at this time is not good to save value, I skip this step                                    
 
 def node_queries_complete(network, node):
-    debug_print('All the initialisation queries on a node have been completed. id:[%s] model:[%s].' % (node.node_id, node.product_name,))        
+    add_log_entry('All the initialisation queries on a node have been completed. id:[%s] model:[%s].' % (node.node_id, node.product_name,))        
     node.last_update=time.time()  
     #save config 
     write_config() 
@@ -730,22 +662,27 @@ def scene_event(network, node, scene_id):
     save_node_value_event(node.node_id, int(time.time()), 91, 0, typestd, scene_id, 0)  
     save_node_value_event(node.node_id, int(time.time()), 43, 0, typestd, scene_id, 0)  
     
-def controller_message(state, message, network, controller):    
+def controller_message_complete(network):
+    add_log_entry('The last message that was sent is now complete')
+
+def controller_waiting (network, controller, state_int, state, state_full):
+    add_log_entry(state_full)
     #save actual state
-    networkInformations.assignControllerNotification(state, message)    
+    networkInformations.assignControllerNotification(state, state_full)    
     #notify jeedom
-    save_node_event(network.controller.node_id, int(time.time()), networkInformations.computeJeeDomMessage())     
-    add_log_entry('Controller state: %s. %s' % (state, message,)) 
-    debug_print('Controller is busy: %s' % (networkInformations.controllerIsBusy,))   
-
-def save_controller_command(state, command):
-    #TODO: got a real notification with valid data, the current are not correctly mapped. 
-    #network.current_command = ControllerCommands(state, command)
-    #add_log_entry('A message is sent form controller: %s(%s) is %s(%s)' % (network.current_command.command_description, network.current_command.command, network.current_command.state_description, network.current_command.state))
-    add_log_entry('A message is sent form controller: %s is %s' % (command, state))
-
-def controller_command(network, controller, state, command):
-    save_controller_command(state, command)
+    save_node_event(network.controller.node_id, int(time.time()), networkInformations.computeJeeDomMessage()) 
+   
+    
+def controller_command(network, controller, node, node_id, state_int, state, state_full, error_int, error, error_full):
+    add_log_entry('%s (%s)' % (state_full, state))
+    if error_int > 0:
+        add_log_entry('%s (%s)' % (error_full, error,), "error")
+    
+    #save actual state
+    networkInformations.assignControllerNotification(state, state_full, error, error_full)    
+    #notify jeedom
+    save_node_event(network.controller.node_id, int(time.time()), networkInformations.computeJeeDomMessage()) 
+    debug_print('Controller is busy: %s' % (networkInformations.controllerIsBusy,))
 
 def node_event(network, node, value):
     debug_print('NodeId %s sends a Basic_Set command to the controller with value %s' % (node.node_id, value,)) 
@@ -839,14 +776,17 @@ dispatcher.connect(nodes_queried_some_dead, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIE
 dispatcher.connect(button_on, ZWaveNetwork.SIGNAL_BUTTON_ON)
 dispatcher.connect(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
 
-#dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
-
-# keep a track of actual network stage and last message
-dispatcher.connect(controller_message, ZWaveController.SIGNAL_CONTROLLER)
 # Called when an error happened, or node changed (awake, sleep, death, no operation, timeout).
 dispatcher.connect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION)
+
+#dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
+
+# Controller is waiting for a user action
+dispatcher.connect(controller_waiting, ZWaveNetwork.SIGNAL_CONTROLLER_WAITING)
 # keep a track of actual network command in progress
 dispatcher.connect(controller_command, ZWaveNetwork.SIGNAL_CONTROLLER_COMMAND)
+# The command has completed successfully
+dispatcher.connect(controller_message_complete, ZWaveNetwork.SIGNAL_MSG_COMPLETE)
 
 add_log_entry('OpenZwave Library Version %s' %(network.manager.getOzwLibraryVersionNumber(),)) 
 add_log_entry('Python-OpenZwave Wrapper Version %s' %(network.manager.getPythonLibraryVersionNumber(),)) 
@@ -1117,17 +1057,7 @@ def serialize_controller_to_json():
     result['data']['notification'] = networkInformations.lastControllerNotification
     result['data']['isBusy'] = {"value" : networkInformations.controllerIsBusy} 
     result['data']['networkstate'] = {"value" : network.state} 
-    
-    if hasattr(network, 'current_command') :
-        current_command = network.current_command
-        result['data']['last_command'] = {'received':current_command.timestamp,
-                                          'command':current_command.command,
-                                          'state':current_command.state,
-                                          'command_description':current_command.command_description,
-                                          'state_description':current_command.state_description}
-    else:
-        result['data']['last_command'] = {}
-    
+        
     return result
 
 def changes_value_polling(frequence, value):
@@ -2016,9 +1946,7 @@ def start_node_inclusion(state, doSecurity) :
     elif state == 0 :
         add_log_entry("Start the Inclusion is Cancel" ) 
         network.manager.cancelControllerCommand(network.home_id)
-        #TODO: is a work around until got real command notifications
-        if networkInformations.actualMode != ControllerMode.Idle:
-            networkInformations.actualMode = ControllerMode.Idle
+        
     return jsonify(State)
  
 @app.route('/ZWaveAPI/Run/controller.RemoveNodeFromNetwork(<int:state>)',methods = ['GET'])
@@ -2037,9 +1965,7 @@ def start_node_exclusion(state) :
     elif state == 0 :
         add_log_entry("Remove a Device from the Z-Wave Network (Cancel)" ) 
         network.manager.cancelControllerCommand(network.home_id)  
-        #TODO: is a work around until got real command notifications
-        if networkInformations.actualMode != ControllerMode.Idle:
-            networkInformations.actualMode = ControllerMode.Idle      
+             
     return jsonify(State)
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RequestNetworkUpdate()',methods = ['GET'])
@@ -2440,10 +2366,7 @@ def cancel_command():
     try:
         result = network.manager.cancelControllerCommand(network.home_id)
         if result :
-            networkInformations.controllerIsBusy = False
-        #TODO: is a work around until got real command notifications
-        if networkInformations.actualMode != ControllerMode.Idle:
-            networkInformations.actualMode = ControllerMode.Idle
+            networkInformations.controllerIsBusy = False        
         return jsonify({'result' : result})
     except Exception as e:
         add_log_entry(str(e), 'error')
