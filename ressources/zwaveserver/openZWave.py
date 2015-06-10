@@ -519,6 +519,15 @@ def change_instance(myValue):
         return myValue.instance - 1
     return 0
 
+def normalize_short_value(value):
+    result=value
+    try:
+        if int(value)<0:
+            result = 65536 + int(value)
+    except:
+        pass
+    return result
+   
 def extract_data(value, displayRaw = False):
     if value.type == "Bool":
         if value.data:
@@ -624,7 +633,10 @@ def prepare_value_notification(node, value):
     if hasattr(value, 'pendingConfiguration' ):
         if(value.pendingConfiguration != None):
             #mark result
-            value.pendingConfiguration.data = value.data
+            data = value.data
+            if value.type =='Short':
+                data = normalize_short_value(value.data)
+            value.pendingConfiguration.data = data
                 
     if value.genre == 'System' or value.genre == 'Config':
         return
@@ -948,8 +960,11 @@ def serialize_node_to_json(device_id):
                 typeStandard = get_standard_value_type(myValue.type)
             else:
                 typeStandard = 'int'
-                
-            value2 = extract_data(myValue)
+            
+            if myValue.type == 'Short':
+                value2 = str(normalize_short_value(myValue.data))
+            else:
+                value2 = extract_data(myValue)
             instance2 = change_instance(myValue)
             
             if myValue.index :
@@ -1449,7 +1464,8 @@ def set_config(device_id,index_id,value,size) :
     try :
         if(device_id in network.nodes) :
             network.nodes[device_id].set_config_param(index_id, value, size)
-            mark_pending_change(get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value) 
+            myValue = get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id)
+            mark_pending_change(myValue, value) 
         else:
             add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
