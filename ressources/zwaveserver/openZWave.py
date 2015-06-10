@@ -453,7 +453,7 @@ def network_failed(network):
 def recovering_failed_nodes():
     return
     for idNode in network.nodes:
-        if network.nodes[idNode].isNodeFailed:
+        if network.nodes[idNode].is_failed:
             if network.manager.hasNodeFailed(network.home_id, idNode):
                 #avoid stress network
                 time.sleep(2)
@@ -629,7 +629,7 @@ def prepare_value_notification(node, value):
     if value.genre == 'System' or value.genre == 'Config':
         return
     
-    if not node.isReady :
+    if not node.is_ready :
         #check if have the attribute
         if hasattr(value, 'lastData') and value.lastData == value.data :
             #we skip notification to avoid value refresh durring the interview process
@@ -881,12 +881,12 @@ def serialize_node_to_json(device_id):
         
         tmpNode['data']['type'] = {'value' : myNode.type}
             
-        tmpNode['data']['state'] = {'value' : str(myNode.getNodeQueryStage)}
-        if myNode.isNodeAwake():
+        tmpNode['data']['state'] = {'value' : str(myNode.query_stage)}
+        if myNode.is_awake:
             tmpNode['data']['isAwake'] = {'value' : 'true',"updateTime":timestamp}
         else :                                                    
             tmpNode['data']['isAwake'] = {'value' : '',"updateTime":timestamp}
-        if myNode.isReady:
+        if myNode.is_ready:
             tmpNode['data']['isReady'] = {'value' : 'true',"updateTime":timestamp}        
         else :                                                    
             tmpNode['data']['isReady'] = {'value' : 'false',"updateTime":timestamp}
@@ -894,7 +894,7 @@ def serialize_node_to_json(device_id):
             tmpNode['data']['can_wake_up'] = {'value' : 'true'}        
         else :                                                    
             tmpNode['data']['can_wake_up'] = {'value' : 'false'}        
-        if myNode.isNodeFailed :
+        if myNode.is_failed :
             tmpNode['data']['isFailed'] = {'value' : 'true'}
         if myNode.is_listening_device :
             tmpNode['data']['isListening'] = {'value' : 'true'}
@@ -973,7 +973,7 @@ def serialize_node_to_json(device_id):
                 tmpNode['instances'][instance2]['commandClasses']['data'] = {"updateTime":timestamp}
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"name": myNode.get_command_class_as_string(myValue.command_class)}
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'] = {"updateTime":timestamp}  
-                if myNode.isReady==False:
+                if myNode.is_ready==False:
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interviewDone']={}
                 if myValue.command_class in [128] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['supported']={"value":True,"type":"bool","updateTime":timestamp}
@@ -986,7 +986,7 @@ def serialize_node_to_json(device_id):
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"updateTime":timestamp}
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"name": myNode.get_command_class_as_string(myValue.command_class)}
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'] = {"updateTime":timestamp}
-                if myNode.isReady==False:
+                if myNode.is_ready==False:
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interviewDone']={}
                 if myValue.command_class in [128] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['supported']={"value":True,"type":"bool","updateTime":timestamp}
@@ -1081,7 +1081,7 @@ def set_value(device_id, valueId, data):
         return jsonify({'result' : False, 'reason' : 'not a valid nodeId'})
     if(device_id in network.nodes) :
         currentNode = network.nodes[device_id]
-        if not currentNode.isReady:
+        if not currentNode.is_ready:
             return jsonify({'result' : False, 'reason' : 'The node must be Ready'})        
         
         for value in currentNode.values:
@@ -1117,7 +1117,7 @@ def refresh_background(device_id, values):
 def get_sleeping_nodes_count():
     sleeping_nodes_count = 0
     for idNode in network.nodes:
-        if not network.nodes[idNode].isNodeAwake():
+        if not network.nodes[idNode].is_awake:
             sleeping_nodes_count += 1
     return sleeping_nodes_count  
 
@@ -1606,7 +1606,7 @@ def get_value(device_id, instance_id,cc_id) :
             network.nodes[device_id].last_update=time.time()
         last_delta = last_update + datetime.timedelta(seconds=30)
         #check last update is out of delta time, if the node is not a sleeping device and isReady
-        if now > last_delta and network.nodes[device_id].can_wake_up() == False and network.nodes[device_id].isReady:
+        if now > last_delta and network.nodes[device_id].can_wake_up() == False and network.nodes[device_id].is_ready:
             #Fetch only the dynamic command class data for a node from the Z-Wave network
             network._manager.requestNodeDynamic(network.home_id,network.nodes[device_id].node_id)
             #mark as updated to avoid a second pass
