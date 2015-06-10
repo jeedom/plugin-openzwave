@@ -3,3 +3,9 @@
 --
 Un tutoriel a été mis en ligne par Sarakha63 : https://forum.jeedom.fr/viewtopic.php?f=67&t=4586
 --
+
+[panel,primary]
+.C'est compatible razberry ?
+--
+Oui c'est 100% compatible avec le razberry c'est d'ailleurs toujours la solution officiel jeedom
+--

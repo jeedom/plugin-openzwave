@@ -332,10 +332,10 @@ var app_network = {
         graph.addNode(z,{'name':nodes[z].data.product_name.value});
       }
 
-      for (neighbour in nodes[z].data.neighbours.value){
-		        	//console.log('add link '+neighbour);
-              if(typeof nodes[neighbour] != 'undefined'){
-               graph.addLink(z, neighbour);
+        for (neighbour in nodes[z].data.neighbours.value){
+              neighbourid=nodes[z].data.neighbours.value[neighbour];
+              if(typeof nodes[neighbourid] != 'undefined'){
+               graph.addLink(z, neighbourid);
              }
            }
          }
@@ -655,9 +655,9 @@ show_infos: function (){
                         rtClass = 'danger';
                       routingTable += '<td class="' + rtClass + ' tooltips" title="' + routeHops + '"></td>';
                     });
-routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="'+nodeId+'" class="btn btn-primary pull-right requestNodeNeighboursUpdate"><i class="fa fa-sitemap"></i> {{Mise à jour des noeuds voisins}}</button></td></tr>';
+routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="'+nodeId+'" class="btn btn-xs btn-primary requestNodeNeighboursUpdate tooltips" title="{{Mise à jour des noeuds voisins}}"><i class="fa fa-sitemap"></i></button></td></tr>';
 });
-$('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '<th>{{Actions}}</th></tr></thead><tbody>' + routingTable + '</tbody></table>');
+$('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '<th>{{}}</th></tr></thead><tbody>' + routingTable + '</tbody></table>');
 initTooltips();
 }
 });

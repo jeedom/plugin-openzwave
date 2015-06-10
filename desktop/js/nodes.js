@@ -1,7 +1,6 @@
 
 var app_nodes = {
 	selected_node: 0,
-	groups: [],
 	updater: false,
 	timestampConverter :function(time){
 		if(time==1)
@@ -638,6 +637,7 @@ load_data: function(){
 				}
 				nodes[node_id] = data;
 				app_nodes.draw_nodes();
+				app_nodes.show_groups();
 			}
 		});
 	}else{
@@ -656,22 +656,6 @@ load_stats: function(node_id){
 		success: function(data) {
 			stats = data['statistics'];
 			app_nodes.show_stats();
-		}
-	});
-},
-load_groups: function(node_id){
-
-	$.ajax({ 
-		url: path+"ZWaveAPI/Run/devices["+node_id+"].instances[0].commandClasses[133].data", 
-		dataType: 'json',
-		async: true, 
-		global : (typeof node_id !== 'undefined' && !isNaN(node_id)) ? false : true,
-		error: function (request, status, error) {
-			handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
-		},
-		success: function(data) {
-			groups = data;
-			app_nodes.show_groups();
 		}
 	});
 },
@@ -873,8 +857,7 @@ draw_nodes: function ()
 	        	else{
 	        		node.find(".node-sleep").html("{{Endormi}}");
 	        	}
-	        }
-	        else{
+	        }else{
 	        	node.find(".node-sleep").html("{{Secteur}}");
 	        }
 
@@ -1213,7 +1196,6 @@ draw_nodes: function ()
 		var $template = $(".template");
 		var tr_groups="";
 		var node_groups=nodes[app_nodes.selected_node].groups;
-		app_nodes.groups=[];
 		$("#groups").empty();
 		$("#groups").append('<br>');
 		for (z in node_groups){
