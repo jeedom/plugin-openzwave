@@ -400,7 +400,7 @@ class NodeNotification(object):
 def signal_handler(signal, frame):
     network.write_config()
     add_log_entry('Graceful stopping the ZWave network.')
-    network.stop()
+    network.destroy()
     add_log_entry('The Openzwave REST-server was stopped in a normal way')
     sys.exit(0)
         
@@ -982,13 +982,14 @@ def serialize_node_to_json(device_id):
                 timestamp = int(myValue.last_update)
             except TypeError:
                 timestamp = int(1)
-                
+            
+            if myValue.command_class == None:
+                continue    
             if instance2 not in tmpNode['instances']:
                 tmpNode['instances'][instance2] = {"updateTime":timestamp}
                 tmpNode['instances'][instance2]['commandClasses'] = {"updateTime":timestamp}
                 tmpNode['instances'][instance2]['commandClasses']['data'] = {"updateTime":timestamp}
-                if myValue.command_class != None:
-                    tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"name": myNode.get_command_class_as_string(myValue.command_class)}                
+                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"name": myNode.get_command_class_as_string(myValue.command_class)}                
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'] = {"updateTime":timestamp}  
                 if myNode.is_ready==False:
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interviewDone']={}
@@ -1001,8 +1002,7 @@ def serialize_node_to_json(device_id):
                 
             elif myValue.command_class not in tmpNode['instances'][instance2]['commandClasses']:
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"updateTime":timestamp}
-                if myValue.command_class != None:
-                    tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"name": myNode.get_command_class_as_string(myValue.command_class)}
+                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"name": myNode.get_command_class_as_string(myValue.command_class)}
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'] = {"updateTime":timestamp}
                 if myNode.is_ready==False:
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interviewDone']={}
