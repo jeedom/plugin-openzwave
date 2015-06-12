@@ -400,6 +400,34 @@ class NodeNotification(object):
 def signal_handler(signal, frame):
     network.write_config()
     add_log_entry('Graceful stopping the ZWave network.')
+    
+    #We disconnec to the louie dispatcher
+    dispatcher.disconnec(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
+    dispatcher.disconnec(network_failed, ZWaveNetwork.SIGNAL_NETWORK_FAILED)
+    dispatcher.disconnec(network_failed, ZWaveNetwork.SIGNAL_DRIVER_FAILED)
+    dispatcher.disconnec(network_awaked, ZWaveNetwork.SIGNAL_NETWORK_AWAKED)
+    dispatcher.disconnec(network_ready, ZWaveNetwork.SIGNAL_NETWORK_READY)
+    dispatcher.disconnec(node_new, ZWaveNetwork.SIGNAL_NODE_NEW)
+    dispatcher.disconnec(node_added, ZWaveNetwork.SIGNAL_NODE_ADDED)
+    dispatcher.disconnec(node_removed, ZWaveNetwork.SIGNAL_NODE_REMOVED)
+    dispatcher.disconnec(value_added, ZWaveNetwork.SIGNAL_VALUE_ADDED)
+    dispatcher.disconnec(value_update, ZWaveNetwork.SIGNAL_VALUE_CHANGED)
+    dispatcher.disconnec(value_refreshed, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
+    dispatcher.disconnec(node_event, ZWaveNetwork.SIGNAL_NODE_EVENT)
+    dispatcher.disconnec(scene_event, ZWaveNetwork.SIGNAL_SCENE_EVENT)
+    dispatcher.disconnec(essential_node_queries_complete, ZWaveNetwork.SIGNAL_ESSENTIAL_NODE_QUERIES_COMPLETE)
+    dispatcher.disconnec(node_queries_complete, ZWaveNetwork.SIGNAL_NODE_QUERIES_COMPLETE)
+    dispatcher.disconnec(nodes_queried, ZWaveNetwork.SIGNAL_AWAKE_NODES_QUERIED)
+    dispatcher.disconnec(nodes_queried, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED)
+    dispatcher.disconnec(nodes_queried_some_dead, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
+    dispatcher.disconnec(button_on, ZWaveNetwork.SIGNAL_BUTTON_ON)
+    dispatcher.disconnec(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
+    dispatcher.disconnec(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION)    
+    #dispatcher.disconnec(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
+    dispatcher.disconnec(controller_waiting, ZWaveNetwork.SIGNAL_CONTROLLER_WAITING)
+    dispatcher.disconnec(controller_command, ZWaveNetwork.SIGNAL_CONTROLLER_COMMAND)
+    dispatcher.disconnec(controller_message_complete, ZWaveNetwork.SIGNAL_MSG_COMPLETE)
+    
     network.destroy()
     add_log_entry('The Openzwave REST-server was stopped in a normal way')
     sys.exit(0)
@@ -451,9 +479,11 @@ def network_failed(network):
     networkInformations.assignControllerNotification(ZWaveController.SIGNAL_CTRL_ERROR, "Network have failed")
 
 def recovering_failed_nodes():
-    return
+    #return
+    add_log_entry("Auto recovering failed nodes")
     for idNode in network.nodes:
         if network.nodes[idNode].is_failed:
+            debug_print('try recovering nodeId: %s' % (network.nodes[idNode].node_id)) 
             if network.manager.hasNodeFailed(network.home_id, idNode):
                 #avoid stress network
                 time.sleep(2)
@@ -591,15 +621,21 @@ def node_queries_complete(network, node):
     '''
     for new node not already stored in zwcfg*.xml file, we need to force a refresh of all configuration values. 
     openzwave only return default values durring interview, not the stored in device 
-    '''    
-    try:
-        index = force_refresh_nodes.index(node.node_id)
+    ''' 
+    
+    force_refresh = False    
+    if node.node_id in force_refresh_nodes :
+        force_refresh = True
         force_refresh_nodes.remove(node.node_id) 
-        debug_print('Forces a refresh of the configuration values nodeId: %s' % (node.node_id,)) 
+    if not force_refresh and node.get_battery_level() == None:
+        force_refresh = True
+                
+    if force_refresh :    
+        debug_print('Refresh values for nodeId: %s' % (node.node_id,)) 
         try:
             for val in node.values:
                 currentValue = node.values[val]
-                if currentValue.genre == 'Config':
+                if currentValue.genre == 'Config' or currentValue.genre == 'User':
                     if currentValue.type == 'Button':
                         continue
                     if currentValue.is_write_only:
@@ -607,9 +643,7 @@ def node_queries_complete(network, node):
                     currentValue.refresh()                
         except Exception as error:
             add_log_entry('Refresh configuration: %s' % (str(error), ), "error")            
-    except ValueError:
-        #node_id not found come here, is the speed way to check item in list
-        pass    
+      
     
 def save_valueAsynchronous(node, value, last_update):
     #debug_print('A node value has been updated. nodeId:%s value:%s' % (node.node_id, value.label))
