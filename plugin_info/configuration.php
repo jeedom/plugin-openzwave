@@ -39,17 +39,17 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 echo '<div class="form-group">';
 echo '<label class="col-sm-4 control-label">{{Démon local}}</label>';
 if (!$deamonRunningMaster) {
-	echo '<div class="col-sm-1"><span class="label label-danger tooltips" title="{{Peut être normale si vous etes en deporté}}">NOK</span></div>';
+	echo '<div class="col-sm-1"><span class="label label-danger tooltips" style="font-size : 1em;" title="{{Peut être normale si vous etes en deporté}}">NOK</span></div>';
 } else {
-	echo '<div class="col-sm-1"><span class="label label-success">OK</span></div>';
+	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
 }
 echo '</div>';
 foreach ($deamonRunningSlave as $name => $status) {
 	echo ' <div class="form-group"><label class="col-sm-4 control-label">{{Sur l\'esclave}} ' . $name . '</label>';
 	if (!$status) {
-		echo '<div class="col-sm-1"><span class="label label-danger">NOK</span></div>';
+		echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
 	} else {
-		echo '<div class="col-sm-1"><span class="label label-success">OK</span></div>';
+		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
 	}
 	echo '</div>';
 }
@@ -63,7 +63,7 @@ foreach ($deamonRunningSlave as $name => $status) {
 		<div class="form-group">
 			<label class="col-lg-4 control-label">{{Supprimer automatiquement les périphériques exclus}}</label>
 			<div class="col-lg-3">
-				<input type="checkbox" class="configKey" data-l1key="autoRemoveExcludeDevice" />
+				<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="autoRemoveExcludeDevice" />
 			</div>
 		</div>
 
