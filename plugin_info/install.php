@@ -66,7 +66,7 @@ function openzwave_remove() {
 	if (openzwave::deamonRunning()) {
 		openzwave::stopDeamon();
 	}
-	$cron = cron::byClassAndFunction('zwave', 'pull');
+	$cron = cron::byClassAndFunction('openzwave', 'pull');
 	if (is_object($cron)) {
 		$cron->remove();
 	}
