@@ -1034,7 +1034,7 @@ draw_nodes: function ()
 	            	}
 	            	else{
 	            		node.find(".node-neighbours").html("...");		  
-	            		if(networkstate>=7){
+	            		if(networkstate>=7 & genericDeviceClass != 1){
 	            			warningMessage +="<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <button type='button' id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</button> {{ou}} <button type='button' id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</button> {{pour corriger.}}</li>";		            	
 	            			isWarning = true;
 	            		}

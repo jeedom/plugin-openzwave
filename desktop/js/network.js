@@ -312,7 +312,7 @@ var app_network = {
     load_data: function(){
       $('#graph_network').html('<div id="graph-node-name"></div>');
       $.ajax({ 
-        url: path+"ZWaveAPI/Data/0", 
+        url: path+"ZWaveAPI/GetNetworkNeighbours()", 
         dataType: 'json',
         async: true, 
         error: function (request, status, error) {
@@ -606,7 +606,7 @@ show_infos: function (){
       },
       displayRoutingTable: function (){
     $.ajax({// fonction permettant de faire de l'ajax
-     url: path+"ZWaveAPI/Data/0", 
+     url: path+"ZWaveAPI/GetNetworkNeighbours()", 
      dataType: 'json',
      async: true, 
      error: function (request, status, error) {

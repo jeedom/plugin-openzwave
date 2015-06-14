@@ -397,39 +397,41 @@ class NodeNotification(object):
         return self._next_wakeup
    
     
-def signal_handler(signal, frame):
-    network.write_config()
+
+def graceful_stop_network():
+    #network.save()
+    network.stop()
     add_log_entry('Graceful stopping the ZWave network.')
-    
-    #We disconnec to the louie dispatcher
-    dispatcher.disconnec(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
-    dispatcher.disconnec(network_failed, ZWaveNetwork.SIGNAL_NETWORK_FAILED)
-    dispatcher.disconnec(network_failed, ZWaveNetwork.SIGNAL_DRIVER_FAILED)
-    dispatcher.disconnec(network_awaked, ZWaveNetwork.SIGNAL_NETWORK_AWAKED)
-    dispatcher.disconnec(network_ready, ZWaveNetwork.SIGNAL_NETWORK_READY)
-    dispatcher.disconnec(node_new, ZWaveNetwork.SIGNAL_NODE_NEW)
-    dispatcher.disconnec(node_added, ZWaveNetwork.SIGNAL_NODE_ADDED)
-    dispatcher.disconnec(node_removed, ZWaveNetwork.SIGNAL_NODE_REMOVED)
-    dispatcher.disconnec(value_added, ZWaveNetwork.SIGNAL_VALUE_ADDED)
-    dispatcher.disconnec(value_update, ZWaveNetwork.SIGNAL_VALUE_CHANGED)
-    dispatcher.disconnec(value_refreshed, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
-    dispatcher.disconnec(node_event, ZWaveNetwork.SIGNAL_NODE_EVENT)
-    dispatcher.disconnec(scene_event, ZWaveNetwork.SIGNAL_SCENE_EVENT)
-    dispatcher.disconnec(essential_node_queries_complete, ZWaveNetwork.SIGNAL_ESSENTIAL_NODE_QUERIES_COMPLETE)
-    dispatcher.disconnec(node_queries_complete, ZWaveNetwork.SIGNAL_NODE_QUERIES_COMPLETE)
-    dispatcher.disconnec(nodes_queried, ZWaveNetwork.SIGNAL_AWAKE_NODES_QUERIED)
-    dispatcher.disconnec(nodes_queried, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED)
-    dispatcher.disconnec(nodes_queried_some_dead, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
-    dispatcher.disconnec(button_on, ZWaveNetwork.SIGNAL_BUTTON_ON)
-    dispatcher.disconnec(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
-    dispatcher.disconnec(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION)    
-    #dispatcher.disconnec(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
-    dispatcher.disconnec(controller_waiting, ZWaveNetwork.SIGNAL_CONTROLLER_WAITING)
-    dispatcher.disconnec(controller_command, ZWaveNetwork.SIGNAL_CONTROLLER_COMMAND)
-    dispatcher.disconnec(controller_message_complete, ZWaveNetwork.SIGNAL_MSG_COMPLETE)
-    
+#We disconnect to the louie dispatcher
+    dispatcher.disconnect(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
+    dispatcher.disconnect(network_failed, ZWaveNetwork.SIGNAL_NETWORK_FAILED)
+    dispatcher.disconnect(network_failed, ZWaveNetwork.SIGNAL_DRIVER_FAILED)
+    dispatcher.disconnect(network_awaked, ZWaveNetwork.SIGNAL_NETWORK_AWAKED)
+    dispatcher.disconnect(network_ready, ZWaveNetwork.SIGNAL_NETWORK_READY)
+    dispatcher.disconnect(node_new, ZWaveNetwork.SIGNAL_NODE_NEW)
+    dispatcher.disconnect(node_added, ZWaveNetwork.SIGNAL_NODE_ADDED)
+    dispatcher.disconnect(node_removed, ZWaveNetwork.SIGNAL_NODE_REMOVED)
+    dispatcher.disconnect(value_added, ZWaveNetwork.SIGNAL_VALUE_ADDED)
+    dispatcher.disconnect(value_update, ZWaveNetwork.SIGNAL_VALUE_CHANGED)
+    dispatcher.disconnect(value_refreshed, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
+    dispatcher.disconnect(node_event, ZWaveNetwork.SIGNAL_NODE_EVENT)
+    dispatcher.disconnect(scene_event, ZWaveNetwork.SIGNAL_SCENE_EVENT)
+    dispatcher.disconnect(essential_node_queries_complete, ZWaveNetwork.SIGNAL_ESSENTIAL_NODE_QUERIES_COMPLETE)
+    dispatcher.disconnect(node_queries_complete, ZWaveNetwork.SIGNAL_NODE_QUERIES_COMPLETE)
+    dispatcher.disconnect(nodes_queried, ZWaveNetwork.SIGNAL_AWAKE_NODES_QUERIED)
+    dispatcher.disconnect(nodes_queried, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED)
+    dispatcher.disconnect(nodes_queried_some_dead, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
+    dispatcher.disconnect(button_on, ZWaveNetwork.SIGNAL_BUTTON_ON)
+    dispatcher.disconnect(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
+    dispatcher.disconnect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION) #dispatcher.disconnect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
+    dispatcher.disconnect(controller_waiting, ZWaveNetwork.SIGNAL_CONTROLLER_WAITING)
+    dispatcher.disconnect(controller_command, ZWaveNetwork.SIGNAL_CONTROLLER_COMMAND)
+    dispatcher.disconnect(controller_message_complete, ZWaveNetwork.SIGNAL_MSG_COMPLETE)
     network.destroy()
     add_log_entry('The Openzwave REST-server was stopped in a normal way')
+
+def signal_handler(signal, frame):    
+    graceful_stop_network()
     sys.exit(0)
         
 signal.signal(signal.SIGTERM, signal_handler)
@@ -478,27 +480,58 @@ def network_failed(network):
     add_log_entry("Openzwave network can't load", "error")
     networkInformations.assignControllerNotification(ZWaveController.SIGNAL_CTRL_ERROR, "Network have failed")
 
-def recovering_failed_nodes():
-    #return
-    add_log_entry("Auto recovering failed nodes")
+def recovering_failed_nodes_asynchronous():
+    add_log_entry("Check for failed nodes")
     for idNode in network.nodes:
         if network.nodes[idNode].is_failed:
             debug_print('try recovering nodeId: %s' % (network.nodes[idNode].node_id)) 
             if network.manager.hasNodeFailed(network.home_id, idNode):
                 #avoid stress network
-                time.sleep(2)
-
+                time.sleep(3)
+    
+def refresh_configuration_asynchronous():
+    for idNode in force_refresh_nodes:
+        if idNode in network.nodes :
+            debug_print('Request All Configuration Parameters for nodeId: %s' % (node_id,)) 
+            network._manager.requestAllConfigParams(network.home_id, idNode)
+            time.sleep(3)            
+    
+def refresh_user_values_asynchronous():
+    add_log_entry("Refresh User Values of powered devices")
+    for idNode in network.nodes:
+        myNode = network.nodes[idNode]
+        if myNode.is_ready and myNode.is_awake and myNode.get_battery_level() == None and myNode.can_wake_up() == False:
+            debug_print('Refresh User Values for nodeId: %s' % (idNode,))
+            for val in myNode.values:
+                currentValue = myNode.values[val]
+                if currentValue.genre == 'User':
+                    if currentValue.type == 'Button':
+                        continue
+                    if currentValue.is_write_only:
+                        continue                
+                    currentValue.refresh()
+            time.sleep(30)            
+                    
 def network_awaked(network):
     add_log_entry("Openzwave network is awake : %d nodes were found (%d are sleeping). All listening nodes are queried, but some sleeping nodes may be missing." % (network.nodes_count, get_sleeping_nodes_count(),))
     add_log_entry("Controller is : %s" % (network.controller,))
-    networkInformations.assignControllerNotification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is awaked")
-    recovering_failed_nodes()
-
+    networkInformations.assignControllerNotification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is awaked")    
+    configuration = threading.Timer(360.0, refresh_configuration_asynchronous)
+    configuration.start() 
+    add_log_entry("refresh_configuration starting in 360 sec" )    
+    user_values = threading.Timer(60.0, refresh_user_values_asynchronous)
+    user_values.start() 
+    add_log_entry("refresh_user_values starting in 60 sec" )    
+    recovering = threading.Timer(15.0, recovering_failed_nodes_asynchronous)
+    recovering.start() 
+    add_log_entry("recovering_failed_nodes starting in 15 sec" )
+        
 def network_ready(network):
     add_log_entry("Openzwave network is ready with %d nodes (%d are sleeping). All nodes are queried, the network is fully functionnal." % (network.nodes_count, get_sleeping_nodes_count(),))   
     write_config()
     networkInformations.assignControllerNotification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is ready")
-    recovering_failed_nodes()
+    recovering = threading.Timer(360.0, recovering_failed_nodes_asynchronous)
+    recovering.start() 
 
 def button_on(network, node):
     add_log_entry('Controller button on pressed event') 
@@ -520,11 +553,13 @@ def node_new(network, node_id):
 def node_added(network, node):
     add_log_entry('A node has been added to OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
     node.last_update=time.time()   
-    save_node_event(node.node_id, int(time.time()), "added") 
+    if network.state >= 7: #STATE_AWAKED
+        save_node_event(node.node_id, int(time.time()), "added") 
             
 def node_removed(network, node):
     add_log_entry('A node has been removed from OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
-    save_node_event(node.node_id, int(time.time()), "removed")
+    if network.state >= 7: #STATE_AWAKED
+        save_node_event(node.node_id, int(time.time()), "removed")
     
 def get_standard_value_type(valueType):
     if valueType == "Int" :
@@ -617,33 +652,7 @@ def node_queries_complete(network, node):
     add_log_entry('All the initialisation queries on a node have been completed. id:[%s] model:[%s].' % (node.node_id, node.product_name,))        
     node.last_update=time.time()  
     #save config 
-    write_config() 
-    '''
-    for new node not already stored in zwcfg*.xml file, we need to force a refresh of all configuration values. 
-    openzwave only return default values durring interview, not the stored in device 
-    ''' 
-    
-    force_refresh = False    
-    if node.node_id in force_refresh_nodes :
-        force_refresh = True
-        force_refresh_nodes.remove(node.node_id) 
-    if not force_refresh and node.get_battery_level() == None:
-        force_refresh = True
-                
-    if force_refresh :    
-        debug_print('Refresh values for nodeId: %s' % (node.node_id,)) 
-        try:
-            for val in node.values:
-                currentValue = node.values[val]
-                if currentValue.genre == 'Config' or currentValue.genre == 'User':
-                    if currentValue.type == 'Button':
-                        continue
-                    if currentValue.is_write_only:
-                        continue                
-                    currentValue.refresh()                
-        except Exception as error:
-            add_log_entry('Refresh configuration: %s' % (str(error), ), "error")            
-      
+    write_config()       
     
 def save_valueAsynchronous(node, value, last_update):
     #debug_print('A node value has been updated. nodeId:%s value:%s' % (node.node_id, value.label))
@@ -876,7 +885,38 @@ def concatenate_list(listValues, separator=';'):
     except Exception as error:
         add_log_entry(str(error), "error")
     return ""
+
     
+def serialize_neighbour_to_json(device_id):    
+    tmpNode = {}    
+    if(device_id in network.nodes) :
+        myNode = network.nodes[device_id]        
+        try:
+            timestamp = int(myNode.last_update)
+        except TypeError:
+            timestamp = int(1)
+            
+        tmpNode['data']= {}
+        tmpNode['data']['product_name'] = {'value' : myNode.product_name}
+        tmpNode['data']['location'] = {'value' : myNode.location}
+        tmpNode['data']['name'] = {'value' : myNode.name}
+        tmpNode['data']['neighbours'] = {'value' : list(myNode.neighbors), 'enabled': myNode.generic != 1}
+        tmpNode['data']['isVirtual'] = {'value' : ''}
+        if network.controller.node_id == device_id and myNode.basic==1:
+            tmpNode['data']['basicType'] = {'value' : 2}
+        else:
+            tmpNode['data']['basicType'] = {'value' : myNode.basic}            
+        tmpNode['data']['genericType'] = {'value' : myNode.generic}
+        tmpNode['data']['specificType'] = {'value' : myNode.specific}
+        tmpNode['data']['type'] = {'value' : myNode.type}
+        tmpNode['data']['state'] = {'value' : myNode.query_stage}
+        tmpNode['data']['isListening'] = {'value' : myNode.is_listening_device}
+        tmpNode['data']['isRouting'] = {'value' : myNode.is_routing_device}
+        
+    else:
+        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+    return tmpNode
+     
 def serialize_node_to_json(device_id):    
     tmpNode = {}    
     if(device_id in network.nodes) :
@@ -1642,6 +1682,22 @@ def get_command_classes(device_id) :
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(result)
 
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].RequestNodeDynamic()',methods = ['GET'])
+def request_node_dynamic(device_id) :
+    Value = {}
+    if(device_id in network.nodes) :  
+        #Fetch only the dynamic command class data for a node from the Z-Wave network
+        network._manager.requestNodeDynamic(network.home_id, device_id)
+        #mark as updated to avoid a second pass
+        network.nodes[device_id].last_update=time.time()
+        debug_print("Fetch the dynamic command class data for the node %s" % (device_id,))
+        Value = {'result' : True}
+    else:
+        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+        Value = {'result' : False}
+    return jsonify(Value)  
+    
+    
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Get()',methods = ['GET'])
 def get_value(device_id, instance_id,cc_id) :
     Value = {}
@@ -2111,10 +2167,8 @@ def start_network() :
     
 @app.route('/ZWaveAPI/network_stop()',methods = ['GET'])
 def stop_network() :
-    State = {}    
-    network.stop()
-    add_log_entry('ZWave network is now stopped')
-    return jsonify(State)
+    graceful_stop_network()
+    return jsonify({'result' : True})
 
 @app.route('/ZWaveAPI/assign_return_route(<int:device_id>)',methods = ['GET'])
 def assign_return_route(device_id) :
@@ -2138,6 +2192,26 @@ def request_node_information(device_id) :
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify({}) 
+
+@app.route('/ZWaveAPI/GetNetworkNeighbours()',methods = ['GET'])
+def get_network_neighbours():
+    networkData={}
+    networkData['updateTime']=int(time.time())
+    nodesData = {}
+    for device_id in network.nodes:
+        nodesData[device_id] = serialize_neighbour_to_json(device_id) 
+    networkData['devices']=nodesData
+    return jsonify(networkData)
+
+@app.route('/ZWaveAPI/GetNetwrokHealth()',methods = ['GET'])
+def get_netwrok_health():
+    networkData={}
+    networkData['updateTime']=int(time.time())
+    nodesData = {}
+    for device_id in network.nodes:
+        nodesData[device_id] = serialize_node_to_json(device_id) 
+    networkData['devices']=nodesData
+    return jsonify(networkData)
     
 @app.route('/ZWaveAPI/Data/<int:fromtime>',methods = ['GET'])
 def get_device(fromtime):
@@ -2201,34 +2275,37 @@ def get_serialized_device(device_id):
 
 @app.route('/ZWaveAPI/Run/network_status()', methods = ['GET'])
 def get_network_status(): 
-    networkStatus = {'nodesCount': network.nodes_count,
-                     'sleepingNodesCount': get_sleeping_nodes_count(),
-                     'scenesCount': network.scenes_count,
-                     'pollInterval': network.manager.getPollInterval(),
-                     'isReady': network.is_ready,
-                     'stateDescription': network.state_str,
-                     'state': network.state,
-                     'controllerCapabilities': concatenate_list(network.controller.capabilities),
-                     'controllerNodeCapabilities': concatenate_list(network.controller.node.capabilities),
-                     'outgoingSendQueue': network.controller.send_queue_count,
-                     'controllerStatistics': network.controller.stats,
-                     'devicePath': network.controller.device,
-                     'OpenZwaveLibraryVersion': network.manager.getOzwLibraryVersionNumber(),
-                     'PythonOpenZwaveLibraryVersion': network.manager.getPythonLibraryVersionNumber(),
-                     'neighbors': concatenate_list(network.controller.node.neighbors),
-                     'notification' : networkInformations.lastControllerNotification,
-                     'isBusy' : networkInformations.controllerIsBusy,
-                     'startTime' :networkInformations.startTime,
-                     'isPrimaryController': network.controller.is_primary_controller,
-                     'isStaticUpdateController': network.controller.is_static_update_controller,
-                     'isBridgeController': network.controller.is_bridge_controller
-                     }
-    if networkInformations.actualMode == ControllerMode.AddDevice:
-        networkStatus['controllerState']= AddDevice
-    elif networkInformations.actualMode == ControllerMode.RemoveDevice:
-        networkStatus['controllerState']= RemoveDevice
+    if network != None and network.state >= 5:   # STATE_STARTED     
+        networkStatus = {'nodesCount': network.nodes_count,
+                         'sleepingNodesCount': get_sleeping_nodes_count(),
+                         'scenesCount': network.scenes_count,
+                         'pollInterval': network.manager.getPollInterval(),
+                         'isReady': network.is_ready,
+                         'stateDescription': network.state_str,
+                         'state': network.state,
+                         'controllerCapabilities': concatenate_list(network.controller.capabilities),
+                         'controllerNodeCapabilities': concatenate_list(network.controller.node.capabilities),
+                         'outgoingSendQueue': network.controller.send_queue_count,
+                         'controllerStatistics': network.controller.stats,
+                         'devicePath': network.controller.device,
+                         'OpenZwaveLibraryVersion': network.manager.getOzwLibraryVersionNumber(),
+                         'PythonOpenZwaveLibraryVersion': network.manager.getPythonLibraryVersionNumber(),
+                         'neighbors': concatenate_list(network.controller.node.neighbors),
+                         'notification' : networkInformations.lastControllerNotification,
+                         'isBusy' : networkInformations.controllerIsBusy,
+                         'startTime' :networkInformations.startTime,
+                         'isPrimaryController': network.controller.is_primary_controller,
+                         'isStaticUpdateController': network.controller.is_static_update_controller,
+                         'isBridgeController': network.controller.is_bridge_controller
+                         }
+        if networkInformations.actualMode == ControllerMode.AddDevice:
+            networkStatus['controllerState']= AddDevice
+        elif networkInformations.actualMode == ControllerMode.RemoveDevice:
+            networkStatus['controllerState']= RemoveDevice
+        else:
+            networkStatus['controllerState']= Idle
     else:
-        networkStatus['controllerState']= Idle
+        networkStatus = {}
     return jsonify(networkStatus)
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].ReplaceFailedNode()',methods = ['GET'])
