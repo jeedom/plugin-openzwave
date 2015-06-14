@@ -444,6 +444,15 @@ class openzwave extends eqLogic {
 	}
 
 	public static function stopDeamon() {
+		self::callOpenzwave('/ZWaveAPI/network_stop()');
+		$i = 0;
+		while (self::deamonRunning()) {
+			sleep(1);
+			$i++;
+			if ($i > 5) {
+				break;
+			}
+		}
 		$pid_file = '/tmp/openzwave.pid';
 		if (file_exists($pid_file)) {
 			$pid = intval(trim(file_get_contents($pid_file)));
