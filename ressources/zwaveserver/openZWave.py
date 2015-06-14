@@ -2216,7 +2216,7 @@ def get_netwrok_health():
 @app.route('/ZWaveAPI/Data/<int:fromtime>',methods = ['GET'])
 def get_device(fromtime):
     timestamp = int(time.time())
-    if network :
+    if network != None and network.state >= 5:   # STATE_STARTED 
         networkData={}
         networkData['updateTime']=timestamp
         if network.controller :
@@ -2596,7 +2596,7 @@ def get_controller_status() :
     """
     try:
         controllerData = {}
-        if network :            
+        if network != None and network.state >= 5:   # STATE_STARTED
             if network.controller :
                 controllerData = serialize_controller_to_json()    
                 
