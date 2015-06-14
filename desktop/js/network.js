@@ -325,11 +325,11 @@ var app_network = {
                 var graph = Viva.Graph.graph();
 
                 for (z in nodes){
-				//console.log('add node '+z);
+                //console.log('add node '+z);
        if(nodes[z].data.name.value != ''){
-        graph.addNode(z,{'name':'<span class="label label-primary">'+nodes[z].data.location.value+'</span> '+nodes[z].data.name.value});
+        graph.addNode(z,{'name':'<span class="label label-primary">'+nodes[z].data.location.value+'</span> '+nodes[z].data.name.value, 'neighbours' : nodes[z].data.neighbours.value});
       }else{
-        graph.addNode(z,{'name':nodes[z].data.product_name.value});
+        graph.addNode(z,{'name':nodes[z].data.product_name.value, 'neighbours' : nodes[z].data.neighbours.value});
       }
 
         for (neighbour in nodes[z].data.neighbours.value){
@@ -339,7 +339,6 @@ var app_network = {
              }
            }
          }
-
          var graphics = Viva.Graph.View.svgGraphics(),
          nodeSize = 24,
                 // we use this method to highlight all realted links
@@ -350,7 +349,7 @@ var app_network = {
                      var linkUI = graphics.getLinkUI(link.id);
                      if (linkUI) {
                            // linkUI is a UI object created by graphics below
-                           linkUI.attr('stroke', isOn ? 'red' : 'gray');
+                           linkUI.attr('stroke', isOn ? '#FF0000' : '#B7B7B7');
                          }
                        });
                  };
@@ -363,6 +362,12 @@ var app_network = {
               	graph.removeNode(node.id);
               	//break;
               }
+              nodecolor='#00a2e8';
+              if (node.data.neighbours.length < 1 && node.id != 1 ) {
+                    nodecolor='#d20606';
+              } else if (node.data.neighbours.indexOf(1) == -1 && node.id != 1) {
+                     nodecolor='#E5E500';
+              }
 
               var ui = Viva.Graph.svg('g'),
               
@@ -371,11 +376,17 @@ var app_network = {
                   img = Viva.Graph.svg('rect')
                   .attr("width", 10)
                   .attr("height", 10)
-                  .attr("fill", "#00a2e8");
+                  .attr("fill", nodecolor);
                   ui.append(svgText);
                   ui.append(img);
               $(ui).hover(function() { // mouse over
-                $('#graph-node-name').html(node.data.name);
+                numneighbours=node.data.neighbours.length;
+                if (numneighbours<1){
+                      sentenceneighbours='{{Pas de voisins}}';
+                } else {
+                       sentenceneighbours=numneighbours+ ' {{voisins}} ['+node.data.neighbours+']';
+                }
+                $('#graph-node-name').html(node.data.name + ' : ' + sentenceneighbours);
                 highlightRelatedNodes(node.id, true);
                 }, function() { // mouse out
                   highlightRelatedNodes(node.id, false);
@@ -386,7 +397,7 @@ var app_network = {
                 // we have to deal with transforms: http://www.w3.org/TR/SVG/coords.html#SVGGlobalTransformAttribute
                 nodeUI.attr('transform',
                   'translate(' +
-                    (pos.x - nodeSize/2) + ',' + (pos.y - nodeSize/2) +
+                    (pos.x - nodeSize/3) + ',' + (pos.y - nodeSize/2.5) +
                     ')');
               });
             var middle = graph.getNode(1);
@@ -397,16 +408,23 @@ var app_network = {
              stableThreshold: 0.9,
              dragCoeff : 0.01,
              springCoeff : 0.0004,
-             gravity : -1.5,
-             springLength : 150
+             gravity : -20,
+             springLength : 200
            });
+           graphics.link(function(link){
+                        return Viva.Graph.svg('line')
+                                .attr('stroke', '#B7B7B7')
+                                .attr('stroke-width', '0.4px');
+                    });
             var renderer = Viva.Graph.View.renderer(graph, {
               layout: layout,
               graphics : graphics,
+              prerender: 10,
+              renderLinks : true,
               container : document.getElementById('graph_network')
             });
             renderer.run();
-            setTimeout(function(){ renderer.pause();renderer.reset(); }, 500);
+            setTimeout(function(){ renderer.pause();renderer.reset(); }, 200);
 
 
           }
