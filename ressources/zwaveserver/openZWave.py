@@ -886,7 +886,45 @@ def concatenate_list(listValues, separator=';'):
         add_log_entry(str(error), "error")
     return ""
 
-    
+def convert_query_stage_to_int(stage):    
+    if stage == "None":
+        return 0
+    elif stage == "ProtocolInfo":
+        return 1
+    elif stage == "Probe":
+        return 2
+    elif stage == "WakeUp":
+        return 3
+    elif stage == "ManufacturerSpecific1":
+        return 4
+    elif stage == "NodeInfo":
+        return 5
+    elif stage == "SecurityReport":
+        return 6
+    elif stage == "ManufacturerSpecific2":
+        return 7
+    elif stage == "Versions":
+        return 8
+    elif stage == "Instances":
+        return 9
+    elif stage == "Static":
+        return 10
+    elif stage == "Probe1":
+        return 11
+    elif stage == "Associations":
+        return 12
+    elif stage == "Neighbors":
+        return 13
+    elif stage == "Session":
+        return 14
+    elif stage == "Dynamic":
+        return 15
+    elif stage == "Configuration":
+        return 16
+    elif stage == "Complete":
+        return 17
+    return 0 
+        
 def serialize_neighbour_to_json(device_id):    
     tmpNode = {}    
     if(device_id in network.nodes) :
@@ -909,7 +947,7 @@ def serialize_neighbour_to_json(device_id):
         tmpNode['data']['genericType'] = {'value' : myNode.generic}
         tmpNode['data']['specificType'] = {'value' : myNode.specific}
         tmpNode['data']['type'] = {'value' : myNode.type}
-        tmpNode['data']['state'] = {'value' : myNode.query_stage}
+        tmpNode['data']['state'] = {'value' : convert_query_stage_to_int(myNode.query_stage)}
         tmpNode['data']['isListening'] = {'value' : myNode.is_listening_device}
         tmpNode['data']['isRouting'] = {'value' : myNode.is_routing_device}
         
