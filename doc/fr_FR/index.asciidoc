@@ -5,13 +5,12 @@
 Plugin pour utiliser le moteur OpenZwave avec Jeedom.
 
 '''
-=== Configuration
 include::configuration.asciidoc[]
-
-'''
-=== Dépannage
-include::depannage.asciidoc[]
 
 '''
 === FAQ
 include::faq.asciidoc[]
+
+'''
+=== Dépannage
+include::troubleshooting.asciidoc[]

@@ -9,3 +9,10 @@ Un tutoriel a été mis en ligne par Sarakha63 : https://forum.jeedom.fr/viewtop
 --
 Oui c'est 100% compatible avec le razberry c'est d'ailleurs toujours la solution officiel jeedom
 --
+
+[panel,primary]
+.Comment faire une commande qui modifie un paramètre d'un module
+--
+C'est assez simple il suffit sur la page de configuration du module zwave, d'ajouter une commande, vous lui donnez un nom, il faut ensuite la mettre en Action/Défaut, dans instance mettre 0, dans la classe mettre 0x70 et dans la valeur data[0].Set(#numéro paramètre#,#valeur#,#taille#). Par exemple pour mettre le parametre 72 qui à une taille de 1 à 8 :  data[0].Set(72,8,1) : 
+image:../images/openzwave29.png[]
+--
