@@ -327,16 +327,21 @@ var app_network = {
                 for (z in nodes){
                 //console.log('add node '+z);
        if(nodes[z].data.name.value != ''){
-        graph.addNode(z,{'name':'<span class="label label-primary">'+nodes[z].data.location.value+'</span> '+nodes[z].data.name.value, 'neighbours' : nodes[z].data.neighbours.value});
+        graph.addNode(z,{'name':'<span class="label label-primary">'+nodes[z].data.location.value+'</span> '+nodes[z].data.name.value, 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled, 'interview' : parseInt(nodes[z].data.state.value)});
       }else{
-        graph.addNode(z,{'name':nodes[z].data.product_name.value, 'neighbours' : nodes[z].data.neighbours.value});
+        graph.addNode(z,{'name':nodes[z].data.product_name.value, 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled,'interview' : parseInt(nodes[z].data.state.value)});
       }
-
-        for (neighbour in nodes[z].data.neighbours.value){
-              neighbourid=nodes[z].data.neighbours.value[neighbour];
-              if(typeof nodes[neighbourid] != 'undefined'){
-               graph.addLink(z, neighbourid);
-             }
+        if (nodes[z].data.neighbours.value.length<1 && nodes[z].data.neighbours.enabled !=1){
+            if(typeof nodes[1] != 'undefined'){
+               graph.addLink(z, 1, { isdash: 1, lengthfactor : 0.6 });
+            }
+        } else {
+            for (neighbour in nodes[z].data.neighbours.value){
+                neighbourid=nodes[z].data.neighbours.value[neighbour];
+                if(typeof nodes[neighbourid] != 'undefined'){
+                graph.addLink(z, neighbourid, { isdash: 0, lengthfactor : 0 });
+                }
+            }
            }
          }
          var graphics = Viva.Graph.View.svgGraphics(),
@@ -363,12 +368,15 @@ var app_network = {
               	//break;
               }
               nodecolor='#00a2e8';
-              if (node.data.neighbours.length < 1 && node.id != 1 ) {
+              if (node.data.generic!=1) {
+                    nodecolor='#7BCC7B';
+              }else if (node.data.neighbours.length < 1 && node.id != 1 && node.data.interview >= 13) {
                     nodecolor='#d20606';
-              } else if (node.data.neighbours.indexOf(1) == -1 && node.id != 1) {
+              } else if (node.data.neighbours.indexOf(1) == -1 && node.id != 1 && node.data.interview >= 13) {
                      nodecolor='#E5E500';
+              } else if (node.data.interview < 13) {
+                     nodecolor='#979797';
               }
-
               var ui = Viva.Graph.svg('g'),
               
                   // Create SVG text element with user id as content
@@ -381,10 +389,17 @@ var app_network = {
                   ui.append(img);
               $(ui).hover(function() { // mouse over
                 numneighbours=node.data.neighbours.length;
-                if (numneighbours<1){
+                interview=node.data.interview;
+                if (numneighbours<1 && interview>= 13){
+                    if (node.data.generic != 1) {
+                      sentenceneighbours='{{Télécommande}}'
+                    } else {
                       sentenceneighbours='{{Pas de voisins}}';
-                } else {
+                    }
+                } else if (interview>= 13) {
                        sentenceneighbours=numneighbours+ ' {{voisins}} ['+node.data.neighbours+']';
+                } else {
+                       sentenceneighbours='{{Interview incomplet}}';
                 }
                 $('#graph-node-name').html(node.data.name + ' : ' + sentenceneighbours);
                 highlightRelatedNodes(node.id, true);
@@ -404,16 +419,25 @@ var app_network = {
             if(typeof middle !== 'undefined'){
               middle.isPinned = true;
             }
+            var idealLength = 200;
             var layout = Viva.Graph.Layout.forceDirected(graph, {
+             springLength: idealLength,
              stableThreshold: 0.9,
              dragCoeff : 0.01,
              springCoeff : 0.0004,
              gravity : -20,
-             springLength : 200
+             springTransform: function (link, spring) {
+                    spring.length = idealLength * (1 - link.data.lengthfactor);
+                  }
            });
            graphics.link(function(link){
+                        dashvalue='5, 0';
+                        if (link.data.isdash== 1){
+                                dashvalue='5, 2';
+                        }
                         return Viva.Graph.svg('line')
                                 .attr('stroke', '#B7B7B7')
+                                .attr('stroke-dasharray', dashvalue)
                                 .attr('stroke-width', '0.4px');
                     });
             var renderer = Viva.Graph.View.renderer(graph, {
@@ -425,9 +449,7 @@ var app_network = {
             });
             renderer.run();
             setTimeout(function(){ renderer.pause();renderer.reset(); }, 200);
-
-
-          }
+            }
         });
 },
 load_stats: function(node_id){
