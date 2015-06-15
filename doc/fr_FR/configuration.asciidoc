@@ -1,4 +1,4 @@
-==== Configuration du plugin
+=== Configuration du plugin
 
 Après téléchargement du plugin, il vous suffit de l'activer et de configuer le port. Après sauvegarde le démon devrait se lancer. Le plugin est déjà configuré par défaut ; vous n'avez donc rien à faire de plus. Cependant vous pouvez modifier cette configuration.
 Voici le détail (certains paramètres peuvent n'être visibles qu'en mode expert) :
