@@ -1735,7 +1735,6 @@ def request_node_dynamic(device_id) :
         Value = {'result' : False}
     return jsonify(Value)  
     
-    
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Get()',methods = ['GET'])
 def get_value(device_id, instance_id,cc_id) :
     Value = {}
@@ -2241,13 +2240,87 @@ def get_network_neighbours():
     networkData['devices']=nodesData
     return jsonify(networkData)
 
+def serialize_node_health(device_id):    
+    tmpNode = {}    
+    if(device_id in network.nodes) :
+        myNode = network.nodes[device_id]        
+        try:
+            timestamp = int(myNode.last_update)
+        except TypeError:
+            timestamp = int(1)
+        
+        query_stage_index = convert_query_stage_to_int(myNode.query_stage)
+        tmpNode['data']= {}
+        tmpNode['data']['location'] = {'value' : myNode.location}
+        tmpNode['data']['name'] = {'value' : myNode.name}        
+               
+        tmpNode['data']['isVirtual'] = {'value' : None}
+        if network.controller.node_id == device_id and myNode.basic==1:
+            tmpNode['data']['basicType'] = {'value' : 2}
+        else:
+            tmpNode['data']['basicType'] = {'value' : myNode.basic}
+        tmpNode['data']['genericType'] = {'value' : myNode.generic}
+        tmpNode['data']['state'] = {'value' : myNode.query_stage, 'index' : query_stage_index}
+        tmpNode['data']['isAwake'] = {'value' : myNode.is_awake}
+        tmpNode['data']['isReady'] = {'value' : myNode.is_ready}        
+        tmpNode['data']['can_wake_up'] = {'value' : myNode.can_wake_up()}        
+        if myNode.get_battery_level() != None:
+            battery_level = get_value_by_index(device_id, COMMAND_CLASS_BATTERY, 1, 0)
+            tmpNode['data']['battery_level'] = {'value' : battery_level.data, 'updateTime': battery_level.last_update}
+        else:
+            tmpNode['data']['battery_level'] = {'value' : None, 'updateTime':None}
+        
+        next_wakeup = None
+        if hasattr(myNode, 'last_notification') : 
+            notification = myNode.last_notification
+            next_wakeup = notification.next_wakeup
+            tmpNode['last_notification'] = {"receiveTime":notification.receive_time,
+                                            "description":notification.description,
+                                            "help":notification.help
+                                            }
+        else:
+            tmpNode['last_notification'] = {}             
+        tmpNode['data']['wakeup_interval'] = {'value': get_wakeup_interval(device_id), 'next_wakeup': next_wakeup}        
+        tmpNode['data']['isFailed'] = {'value' : myNode.is_failed}
+        tmpNode['data']['isListening'] = {'value' : myNode.is_listening_device}
+        tmpNode['data']['isRouting'] = {'value' : myNode.is_routing_device}
+        tmpNode['data']['isBeaming'] = {'value' : myNode.is_beaming_device}
+        tmpNode['data']['isFrequentListening'] = {'value' : myNode.is_frequent_listening_device}
+        tmpNode['data']['lastReceived'] = {'updateTime' : timestamp}
+        tmpNode['data']['maxBaudRate'] = {'value' : myNode.max_baud_rate}
+                        
+        statistics = network.manager.getNodeStatistics(network.home_id, device_id)
+        sentCnt = statistics['sentCnt']        
+        if sentCnt > 0 :
+            sentFailed = statistics['sentFailed'] 
+            sentOk = sentCnt - sentFailed
+            delivered = (sentOk* 100) / sentCnt 
+        else:
+            delivered = 0            
+        averageRequestRTT = statistics['averageRequestRTT']
+        tmpNode['data']['statistics'] = {'total' :sentCnt, 'delivered':delivered, 'deliveryTime': averageRequestRTT}
+        
+        have_group = False
+        for groupIndex in myNode.groups :
+            if len(myNode.groups[groupIndex].associations) > 0:
+                have_group = True
+                break
+        tmpNode['data']['is_groups_ok'] = {'value' : have_group, 'enabled': query_stage_index >= 12 and myNode.generic != 2}
+        tmpNode['data']['is_neighbours_ok'] = {'value' : len(myNode.neighbors) > 0, 'neighbors': len(myNode.neighbors), 'enabled': myNode.generic != 1 and query_stage_index >=13 }
+        
+        
+    else:
+        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+    return tmpNode
+
+
 @app.route('/ZWaveAPI/GetNetwrokHealth()',methods = ['GET'])
 def get_netwrok_health():
     networkData={}
     networkData['updateTime']=int(time.time())
     nodesData = {}
     for device_id in network.nodes:
-        nodesData[device_id] = serialize_node_to_json(device_id) 
+        nodesData[device_id] = serialize_node_health(device_id) 
     networkData['devices']=nodesData
     return jsonify(networkData)
     
