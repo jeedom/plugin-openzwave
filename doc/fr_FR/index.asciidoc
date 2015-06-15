@@ -10,7 +10,7 @@ include::configuration.asciidoc[]
 
 '''
 === Dépannage
-include::depannage.asciidoc[]
+include::troubleshooting.asciidoc[]
 
 '''
 === FAQ
