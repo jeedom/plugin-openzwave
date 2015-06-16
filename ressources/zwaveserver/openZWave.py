@@ -1667,8 +1667,10 @@ def set_config4(device_id,instance_id,index_id2,index_id,value,size) :
     value=int(value)
     try :
         if(device_id in network.nodes) :
+            myValue = get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id)
             network.nodes[device_id].set_config_param(index_id, value, size)
-            mark_pending_change(get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value) 
+            if myValue.type != 'List':
+                mark_pending_change(myValue, value) 
         else:
             add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
