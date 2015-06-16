@@ -437,7 +437,7 @@ def signal_handler(signal, frame):
 signal.signal(signal.SIGTERM, signal_handler)
 
 #Define some manager options
-options = ZWaveOption(device, config_path="/opt/python-openzwave/openzwave/config", user_path="/opt/python-openzwave/", cmd_line="")
+options = ZWaveOption(device, config_path="/usr/share/nginx/www/jeedom/plugins/openzwave/ressources/openzwave/config", user_path="/opt/python-openzwave/", cmd_line="")
 options.set_log_file("openzwave.log")
 options.set_append_log_file(False)
 options.set_console_output(False)
