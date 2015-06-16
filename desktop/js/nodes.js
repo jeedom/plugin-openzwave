@@ -733,7 +733,7 @@ draw_nodes: function ()
 	            node.find(".node-vendor").html(manufacturerName);
 
 
-	            node.find(".node-zwave-id").html("{{Identifiant du fabricant :}} <span class='label label-default'>" +nodes[z].data.manufacturerId.value +"</span> {{type de produit :}} <span class='label label-default'>" +nodes[z].data.manufacturerProductType.value + "</span> {{identifiant du produit :}} <span class='label label-default'>" + nodes[z].data.manufacturerProductId.value+"</span>");            		
+	            node.find(".node-zwave-id").html("{{Identifiant du fabricant :}} <span class='label label-default'>" +nodes[z].data.manufacturerId.hex +"</span> {{type de produit :}} <span class='label label-default'>" +nodes[z].data.manufacturerProductType.hex + "</span> {{identifiant du produit :}} <span class='label label-default'>" + nodes[z].data.manufacturerProductId.hex+"</span>");            		
 
 	            node.find(".node-lastSeen").html(app_nodes.timestampConverter(nodes[z].data.lastReceived.updateTime));
 

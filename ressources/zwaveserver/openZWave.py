@@ -2321,8 +2321,8 @@ def serialize_node_health(device_id):
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return tmpNode
 
-@app.route('/ZWaveAPI/GetNetwrokHealth()',methods = ['GET'])
-def get_netwrok_health():
+@app.route('/ZWaveAPI/GetNetworkHealth()',methods = ['GET'])
+def get_network_health():
     networkData={}
     networkData['updateTime']=int(time.time())
     nodesData = {}
