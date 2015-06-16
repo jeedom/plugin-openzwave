@@ -2316,7 +2316,7 @@ def serialize_node_health(device_id):
                 have_group = True
                 break
         tmpNode['data']['is_groups_ok'] = {'value' : have_group, 'enabled': query_stage_index >= 12 and myNode.generic != 2}
-        tmpNode['data']['is_neighbours_ok'] = {'value' : len(myNode.neighbors) > 0, 'neighbors': len(myNode.neighbors), 'enabled': myNode.generic != 1 and query_stage_index >=13 } 
+        tmpNode['data']['is_neighbours_ok'] = {'value' : len(myNode.neighbors) > 0, 'neighbors': len(myNode.neighbors), 'enabled': myNode.generic != 1 and query_stage_index >13 } 
         tmpNode['data']['is_manufacturer_specific_ok'] = {'value' : not is_none_or_empty(myNode.manufacturer_id) and not is_none_or_empty(myNode.product_id)  and not is_none_or_empty(myNode.product_type), 'enabled': query_stage_index >=7 } #ManufacturerSpecific2
         
     else:
