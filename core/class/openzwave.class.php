@@ -358,33 +358,6 @@ class openzwave extends eqLogic {
 		}
 	}
 
-	public static function updateConf() {
-		shell_exec('sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/updateConf.sh');
-		if (file_exists('/tmp/updatedConfOpenzwave')) {
-			$change = file_get_contents('/tmp/updatedConfOpenzwave');
-			if (trim($change) != '') {
-				self::runDeamon();
-			}
-		}
-		foreach (self::byType('openzwave') as $openzwave) {
-			if (!is_file(dirname(__FILE__) . '/../config/devices/' . $openzwave->getConfFilePath())) {
-				return;
-			}
-			$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $openzwave->getConfFilePath());
-			if (!is_json($content)) {
-				return;
-			}
-			$device = json_decode($content, true);
-			if (!isset($device['configuration']) || !isset($device['configuration']['conf_version'])) {
-				continue;
-			}
-			if ($device['configuration']['conf_version'] <= $openzwave->getConfiguration('conf_version')) {
-				continue;
-			}
-			$openzwave->createCommand(true);
-		}
-	}
-
 /*     * ********************************************************************** */
 /*     * ***********************OPENZWAVE MANAGEMENT*************************** */
 
