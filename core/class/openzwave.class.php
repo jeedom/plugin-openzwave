@@ -81,6 +81,9 @@ class openzwave extends eqLogic {
 
 	public static function updateNginxRedirection() {
 		foreach (self::listServerZwave(false) as $zwave) {
+			if (trim($zwave['addr']) == '' || trim($zwave['port']) == '') {
+				continue;
+			}
 			$urlPath = config::byKey('urlPath' . $zwave['id'], 'openzwave');
 			if ($urlPath == '') {
 				$urlPath = 'openzwave_' . $zwave['id'] . '_' . config::genKey(30);
