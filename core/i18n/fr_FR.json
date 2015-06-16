@@ -32,7 +32,9 @@
         "Migration des équipements zwave": "Migration des équipements zwave",
         "Migrer": "Migrer",
         "Etes-vous sûr de vouloir lancer la migration cette opération est irreversible": "Etes-vous sûr de vouloir lancer la migration cette opération est irreversible",
-        "Openzwave migration": "Openzwave migration"
+        "Openzwave migration": "Openzwave migration",
+        "Stable": "Stable",
+        "Developpement": "Developpement"
     },
     "plugins\/openzwave\/desktop\/js\/openzwave.js": {
         "Log des messages openzwave": "Log des messages openzwave",
@@ -69,7 +71,9 @@
         "Configuration zwave": "Configuration zwave",
         "Console zwave": "Console zwave",
         "Opération réalisée avec succès": "Opération réalisée avec succès",
-        "Assistant de configuration": "Assistant de configuration"
+        "Assistant de configuration": "Assistant de configuration",
+        "Santé zwave": "Santé zwave",
+        "Etes-vous sûr de vouloir récréer toute les commandes ? Cela va supprimer les commandes existante": "Etes-vous sûr de vouloir récréer toute les commandes ? Cela va supprimer les commandes existante"
     },
     "plugins\/openzwave\/desktop\/modal\/show.debug.php": {
         "Attention le lancement en mode debug est très consommateur en ressources et en log, pensez bien à relancer le démon une fois l'analyse terminée.": "Attention le lancement en mode debug est très consommateur en ressources et en log, pensez bien à relancer le démon une fois l'analyse terminée.",
@@ -141,7 +145,8 @@
         "Impossible de contacter le serveur Z-wave Local.": "Impossible de contacter le serveur Z-wave Local.",
         "Version de la configuration": "Version de la configuration",
         "Derniere communication": "Derniere communication",
-        "Openzwave est en cours de démarrage sur Local.": "Openzwave est en cours de démarrage sur Local."
+        "Openzwave est en cours de démarrage sur Local.": "Openzwave est en cours de démarrage sur Local.",
+        "Santé": "Santé"
     },
     "plugins\/openzwave\/core\/class\/openzwave.class.php": {
         "Echec de la requete http : ": "Echec de la requete http : ",
@@ -157,7 +162,11 @@
         "Création des commandes en mode automatique": "Création des commandes en mode automatique",
         "Incomplet": "Incomplet",
         "Création des commandes à partir d'une configuration": "Création des commandes à partir d'une configuration",
-        "Le controleur est occupé, si vous etes en inclusion ou exclusion veuillez d'abord quitter ce mode": "Le controleur est occupé, si vous etes en inclusion ou exclusion veuillez d'abord quitter ce mode"
+        "Le controleur est occupé, si vous etes en inclusion ou exclusion veuillez d'abord quitter ce mode": "Le controleur est occupé, si vous etes en inclusion ou exclusion veuillez d'abord quitter ce mode",
+        "Processus de demande d information sur le noeud complet": "Processus de demande d information sur le noeud complet",
+        "Sur secteur": "Sur secteur",
+        "Récupération des informations d associations": "Récupération des informations d associations",
+        "Intérrogation du module pour récupérer sa configuration": "Intérrogation du module pour récupérer sa configuration"
     },
     "plugins\/openzwave\/mobile\/js\/openzwave.js": {
         "Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\\'inclusion pour sortir de ce mode": "Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\\'inclusion pour sortir de ce mode",
@@ -259,7 +268,9 @@
         "Nombre de tentatives d'envoi :": "Nombre de tentatives d'envoi :",
         "Nombre de messages envoyés par ce noeud :": "Nombre de messages envoyés par ce noeud :",
         "Nombre de messages envoyés en erreur :": "Nombre de messages envoyés en erreur :",
-        "Heure du dernier message envoyé :": "Heure du dernier message envoyé :"
+        "Heure du dernier message envoyé :": "Heure du dernier message envoyé :",
+        "Forcer la mise à jour": "Forcer la mise à jour",
+        "Copier les paramètres d'un node existant": "Copier les paramètres d'un node existant"
     },
     "plugins\/openzwave\/desktop\/js\/nodes.js": {
         "Esclave pouvant être routé": "Esclave pouvant être routé",
@@ -346,7 +357,22 @@
         "Voir l'interval de réveille dans l'onglet Système": "Voir l'interval de réveille dans l'onglet Système",
         "Supprimer": "Supprimer",
         "Ajouter un noeud": "Ajouter un noeud",
-        "(nombre maximum d\\'association :": "(nombre maximum d\\'association :"
+        "(nombre maximum d\\'association :": "(nombre maximum d\\'association :",
+        "Copier les paramètres pour le module ": "Copier les paramètres pour le module ",
+        "Aucun module identique trouvé": "Aucun module identique trouvé",
+        "Groupe ": "Groupe ",
+        "Ajouter une association pour le noeud": "Ajouter une association pour le noeud",
+        "Le controleur n'est inclus dans aucun groupe du module.": "Le controleur n'est inclus dans aucun groupe du module.",
+        "Le controleur pense que ce noeud est en echec, essayez ": "Le controleur pense que ce noeud est en echec, essayez ",
+        "Interrogation du module pour voir sil est en vie": "Interrogation du module pour voir sil est en vie",
+        "Début du processus de reveil du noeud si celui-ci dort": "Début du processus de reveil du noeud si celui-ci dort",
+        "Récupération des paramètres constructeur du noeud": "Récupération des paramètres constructeur du noeud",
+        "Récupération des informations sur les classes du noeud": "Récupération des informations sur les classes du noeud",
+        "Le noeud a des capacités de routage (capable de faire passer des commandes à d'autres noeuds)": "Le noeud a des capacités de routage (capable de faire passer des commandes à d'autres noeuds)",
+        "Le noeud supporte les caracteristiques de sécurité avancées": "Le noeud supporte les caracteristiques de sécurité avancées",
+        "Les identifiants constructeur ne sont pas detectés.": "Les identifiants constructeur ne sont pas detectés.",
+        "Le noeud est dormant et nécessite un reveil avant qu'une commande puisse être exécutée.<br\/>Vous pouvez le reveiller manuellement ou attendre son délai de réveil.": "Le noeud est dormant et nécessite un reveil avant qu'une commande puisse être exécutée.<br\/>Vous pouvez le reveiller manuellement ou attendre son délai de réveil.",
+        "Voir l'interval de réveil dans l'onglet Système": "Voir l'interval de réveil dans l'onglet Système"
     },
     "plugins\/openzwave\/desktop\/modal\/config.php": {
         "Sauvegarder les changements": "Sauvegarder les changements"
@@ -433,10 +459,40 @@
         "Nombre de messages jetés ou non délivrés :": "Nombre de messages jetés ou non délivrés :",
         "Nombre de messages en échec à cause d'un mauvais routage :": "Nombre de messages en échec à cause d'un mauvais routage :",
         "Nombre de messages retransmis :": "Nombre de messages retransmis :",
-        "Nombre de messages reçus avec statut de routage occupé :": "Nombre de messages reçus avec statut de routage occupé :"
+        "Nombre de messages reçus avec statut de routage occupé :": "Nombre de messages reçus avec statut de routage occupé :",
+        "Table de routage": "Table de routage",
+        "Légende": "Légende",
+        "Nombre de [routes directes \/ avec 1 saut \/ 2 sauts]": "Nombre de [routes directes \/ avec 1 saut \/ 2 sauts]",
+        "Communication directe": "Communication directe",
+        "Au moins 2 routes avec un saut": "Au moins 2 routes avec un saut",
+        "Moins de 2 routes avec un saut": "Moins de 2 routes avec un saut",
+        "Toutes les routes ont plus d'un saut": "Toutes les routes ont plus d'un saut",
+        "Remise à zéro": "Remise à zéro"
     },
     "plugins\/openzwave\/desktop\/modal\/console.php": {
         "Reprendre": "Reprendre",
         "Pause": "Pause"
+    },
+    "plugins\/openzwave\/desktop\/js\/network.js": {
+        "Echec !": "Echec !",
+        "Mise à jour des noeuds voisins": "Mise à jour des noeuds voisins",
+        "Nom": "Nom",
+        "Actions": "Actions"
+    },
+    "plugins\/openzwave\/desktop\/modal\/health.php": {
+        "Complete": "Complete",
+        "Module": "Module",
+        "ID": "ID",
+        "Serveur": "Serveur",
+        "Interview": "Interview",
+        "Statut": "Statut",
+        "Batterie": "Batterie",
+        "Wakeup time": "Wakeup time",
+        "Paquet total": "Paquet total",
+        "% OK": "% OK",
+        "Temporisation moyenne": "Temporisation moyenne",
+        "Dernière communication": "Dernière communication",
+        "Ping": "Ping",
+        "Ping envoyé avec succès": "Ping envoyé avec succès"
     }
 }
