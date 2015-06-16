@@ -34,7 +34,6 @@ function openzwave_install() {
 }
 
 function openzwave_update() {
-	global $_OPENZWAVE_VERSION;
 	if (openzwave::deamonRunning()) {
 		openzwave::stopDeamon();
 	}
