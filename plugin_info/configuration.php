@@ -23,12 +23,17 @@ if (!isConnect()) {
 }
 $deamonRunningMaster = openzwave::deamonRunning();
 $deamonRunningSlave = array();
+$deamonSlaveVersion = array();
 if (config::byKey('jeeNetwork::mode') == 'master') {
 	foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
+		$deamonSlaveVersion[$jeeNetwork->getName()] = array('openzwave' => 0, 'python-openzwave' => 0);
+		$deamonRunningSlave[$jeeNetwork->getName()] = false;
 		try {
 			$deamonRunningSlave[$jeeNetwork->getName()] = $jeeNetwork->sendRawRequest('deamonRunning', array('plugin' => 'openzwave'));
+			$deamonSlaveVersion[$jeeNetwork->getName()]['openzwave'] = $jeeNetwork->sendRawRequest('getVersion', array('plugin' => 'openzwave', 'module' => 'openzwave'));
+			$deamonSlaveVersion[$jeeNetwork->getName()]['python-openzwave'] = $jeeNetwork->sendRawRequest('getVersion', array('plugin' => 'openzwave', 'module' => 'python-openzwave'));
 		} catch (Exception $e) {
-			$deamonRunningSlave[$jeeNetwork->getName()] = false;
+
 		}
 	}
 }
@@ -43,10 +48,22 @@ if (!$deamonRunningMaster) {
 } else {
 	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
 }
+echo '<label class="col-sm-2 control-label">{{Version}} (' . openzwave::getVersion('openzwave') . ')</label>';
+if (version_compare(config::byKey('openzwave_version', 'openzwave'), openzwave::getVersion('openzwave'), '>')) {
+	echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
+} else {
+	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
+}
 echo '</div>';
 foreach ($deamonRunningSlave as $name => $status) {
 	echo ' <div class="form-group"><label class="col-sm-4 control-label">{{Sur l\'esclave}} ' . $name . '</label>';
 	if (!$status) {
+		echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
+	} else {
+		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
+	}
+	echo '<label class="col-sm-2 control-label">{{Version}} (' . $deamonSlaveVersion[$name]['openzwave'] . ')</label>';
+	if (version_compare($deamonSlaveVersion[$name]['openzwave'], openzwave::getVersion('openzwave'), '>')) {
 		echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
 	} else {
 		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';

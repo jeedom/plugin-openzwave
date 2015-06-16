@@ -384,6 +384,18 @@ class openzwave extends eqLogic {
 
 /*     * ********************************************************************** */
 /*     * ***********************OPENZWAVE MANAGEMENT*************************** */
+
+	public static function getVersion($_module) {
+		if ($_module == 'openzwave') {
+			$result = trim(str_replace(array('"', 'char', 'ozw_version_string', '[]', '=', ';'), '', shell_exec('cat /opt/python-openzwave/openzwave/cpp/src/vers.cpp | grep ozw_version_string')));
+			$result = str_replace('-', '.', $result);
+			$result = explode('.', $result);
+			if (count($result) > 2) {
+				return $result[0] . '.' . $result[1] . '.' . $result[2];
+			}
+		}
+	}
+
 	public static function updateOpenzwave($_mode = 'master') {
 		log::remove('openzwave_update');
 		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh ' . $_mode;

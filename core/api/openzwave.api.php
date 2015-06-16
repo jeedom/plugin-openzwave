@@ -47,5 +47,9 @@ if ($jsonrpc->getMethod() == 'stopDeamon') {
 	$jsonrpc->makeSuccess(openzwave::stopDeamon());
 }
 
+if ($jsonrpc->getMethod() == 'getVersion') {
+	$jsonrpc->makeSuccess(openzwave::getVersion($params['module']));
+}
+
 throw new Exception(__('Aucune methode correspondante pour le plugin openzwave : ' . $jsonrpc->getMethod(), __FILE__));
 ?>

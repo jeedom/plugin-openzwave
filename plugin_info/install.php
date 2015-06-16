@@ -34,6 +34,7 @@ function openzwave_install() {
 }
 
 function openzwave_update() {
+	global $_OPENZWAVE_VERSION;
 	if (openzwave::deamonRunning()) {
 		openzwave::stopDeamon();
 	}
@@ -59,6 +60,16 @@ function openzwave_update() {
 	openzwave::updateConf();
 	if (count(eqLogic::byType('zwave')) > 0) {
 		log::add('openzwave', 'error', 'Attention vous etes sur la nouvelle version d\'openzwave, des actions de votre part sont necessaire merci d\'aller voir https://jeedom.fr/blog/?p=1576');
+	}
+	if (version_compare(config::byKey('openzwave_version', 'openzwave'), openzwave::getVersion('openzwave'), '>')) {
+		log::add('openzwave', 'error', __('Attention votre version d\'openzwave est dépassée sur le démon local, il faut ABSOLUMENT la mettre à jour', __FILE__));
+	}
+	if (config::byKey('jeeNetwork::mode') == 'master') {
+		foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
+			if (version_compare($jeeNetwork->sendRawRequest('getVersion', array('plugin' => 'openzwave', 'module' => 'openzwave')), openzwave::getVersion('openzwave'), '>')) {
+				log::add('openzwave', 'error', __('Attention votre version d\'openzwave est dépassée sur', __FILE__) . ' ' . $jeeNetwork->getName() . ' ' . __('il faut ABSOLUMENT la mettre à jour', __FILE__));
+			}
+		}
 	}
 }
 
