@@ -247,6 +247,10 @@ class openzwave extends eqLogic {
 		$include_device = '';
 		$controller_id = $results['controller']['data']['nodeId']['value'];
 		if (count($results['devices']) < 2) {
+			nodejs::pushUpdate('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => __('Le nombre de module trouvé est inférieure à 2', __FILE__),
+			));
 			return;
 		}
 		foreach ($results['devices'] as $nodeId => $result) {
