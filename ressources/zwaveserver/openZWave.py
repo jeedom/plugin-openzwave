@@ -985,14 +985,14 @@ def serialize_node_to_json(device_id):
             name=""
         
         tmpNode['data']= {}
-        tmpNode['data']['manufacturerId'] = {'value' : manufacturer_id}
+        tmpNode['data']['manufacturerId'] = {'value' : manufacturer_id, 'hex': '0x' + myNode.manufacturer_id}
         tmpNode['data']['vendorString'] = {'value' : myNode.manufacturer_name}
-        tmpNode['data']['manufacturerProductId'] = {'value' : product_id}
+        tmpNode['data']['manufacturerProductId'] = {'value' : product_id, 'hex': '0x' + myNode.product_id}
         tmpNode['data']['product_name'] = {'value' : myNode.product_name}
         tmpNode['data']['location'] = {'value' : myNode.location}
         tmpNode['data']['name'] = {'value' : myNode.name}
         tmpNode['data']['version'] = {'value' : myNode.version}    
-        tmpNode['data']['manufacturerProductType'] = {'value' : product_type}
+        tmpNode['data']['manufacturerProductType'] = {'value' : product_type, 'hex': '0x' + myNode.product_type}
         tmpNode['data']['neighbours'] = {'value' : list(myNode.neighbors)}
         tmpNode['data']['isVirtual'] = {'value' : ''}
         if network.controller.node_id == device_id and myNode.basic==1:
@@ -1262,7 +1262,15 @@ def convert_color_to_level(color):
     if color < 0:
         color = 0
     return color*99/255
-        
+
+def is_none_or_empty(value):
+    if value is None:
+        return True
+    if value:
+        return False
+    else:
+        return True
+            
 @app.before_first_request
 def _run_on_start():    
     global con
@@ -2306,13 +2314,12 @@ def serialize_node_health(device_id):
                 have_group = True
                 break
         tmpNode['data']['is_groups_ok'] = {'value' : have_group, 'enabled': query_stage_index >= 12 and myNode.generic != 2}
-        tmpNode['data']['is_neighbours_ok'] = {'value' : len(myNode.neighbors) > 0, 'neighbors': len(myNode.neighbors), 'enabled': myNode.generic != 1 and query_stage_index >=13 }
-        
+        tmpNode['data']['is_neighbours_ok'] = {'value' : len(myNode.neighbors) > 0, 'neighbors': len(myNode.neighbors), 'enabled': myNode.generic != 1 and query_stage_index >=13 } 
+        tmpNode['data']['is_manufacturer_specific_ok'] = {'value' : not is_none_or_empty(myNode.manufacturer_id) and not is_none_or_empty(myNode.product_id)  and not is_none_or_empty(myNode.product_type), 'enabled': query_stage_index >=7 } #ManufacturerSpecific2
         
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return tmpNode
-
 
 @app.route('/ZWaveAPI/GetNetwrokHealth()',methods = ['GET'])
 def get_netwrok_health():
