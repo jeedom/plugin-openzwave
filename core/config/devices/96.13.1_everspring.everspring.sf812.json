@@ -12,7 +12,7 @@
                 "isHistorized": 1,
                 "configuration": {
                     "class": "0x9C",
-                    "value": "data[0].val"
+                    "value": "data[1].val"
                 },
                 "display": {
                     "invertBinary": "1"
