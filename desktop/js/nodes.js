@@ -92,6 +92,9 @@ $("#testNode").off("click").on("click",function() {
 $("#refreshNodeValues").off("click").on("click",function() {
 	app_nodes.refresh_node_values(app_nodes.selected_node);
 });
+$("#requestNodeDynamic").off("click").on("click",function() {
+	app_nodes.request_node_dynamic(app_nodes.selected_node);
+});
 $("body").off("click",".refreshNodeInfo").on("click",".refreshNodeInfo",function (e) {
 	app_nodes.refresh_node_info(app_nodes.selected_node);
 });
@@ -522,6 +525,20 @@ refresh_node_values: function(node_id){
 		}
 	});
 },
+request_node_dynamic: function(node_id){
+	$.ajax({ 
+		url: path+"ZWaveAPI/Run/devices["+node_id+"].RequestNodeDynamic()", 
+		dataType: 'json',
+		async: true, 
+		error: function (request, status, error) {
+			handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
+		},
+		success: function(data) {
+			app_nodes.sendOk();
+			app_nodes.load_data(); 
+		}
+	});
+},
 refresh_node_info: function(node_id){
 	$.ajax({ 
 		url: path+"ZWaveAPI/Run/devices["+node_id+"].RefreshNodeInfo()", 
@@ -691,6 +708,7 @@ draw_nodes: function ()
 	$("#healNode").prop("disabled",disabledCommand);
 	$("#testNode").prop("disabled",disabledCommand);
 	$("#refreshNodeValues").prop("disabled",disabledCommand);
+	$("#requestNodeDynamic").prop("disabled",disabledCommand);
 	$("#refreshNodeInfo").prop("disabled",disabledCommand);
 	$("#hasNodeFailed").prop("disabled",disabledCommand);
 	$("#removeFailedNode").prop("disabled",disabledCommand);
