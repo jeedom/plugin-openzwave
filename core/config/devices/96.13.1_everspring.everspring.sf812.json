@@ -21,6 +21,18 @@
                     "dashboard": "feu",
                     "mobile": "feu"
                 }
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "unite": "%",
+                "isVisible": 0,
+                "configuration": {
+                    "class": "0x80",
+                    "instanceId": 0,
+                    "value": "data[0].val"
+                }
             }
         ]
     }
