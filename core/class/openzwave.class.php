@@ -112,7 +112,7 @@ class openzwave extends eqLogic {
 		}
 	}
 
-	public static function callOpenzwave($_url, $_serverId = 0) {
+	public static function callOpenzwave($_url, $_serverId = 0, $_timeout = null, $_noError = false) {
 		if (self::$_curl == null) {
 			self::$_curl = curl_init();
 		}
@@ -126,7 +126,13 @@ class openzwave extends eqLogic {
 			CURLOPT_HEADER => false,
 			CURLOPT_RETURNTRANSFER => true,
 		));
+		if ($_timeout !== null) {
+			curl_setopt($ch, CURLOPT_TIMEOUT_MS, $_timeout);
+		}
 		$result = curl_exec($ch);
+		if ($_noError) {
+			return $result;
+		}
 		if (curl_errno($ch)) {
 			$curl_error = curl_error($ch);
 			throw new Exception(__('Echec de la requete http : ', __FILE__) . $url . ' Curl error : ' . $curl_error, 404);
@@ -1097,10 +1103,11 @@ class openzwaveCmd extends cmd {
 
 	public function sendZwaveResquest($_url) {
 		$eqLogic = $this->getEqLogic();
-		$result = openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1));
 		if ($this->getType() == 'action') {
+			openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1), 1, true);
 			return;
 		}
+		$result = openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1));
 		if (is_array($result)) {
 			$value = self::handleResult($result);
 			if (isset($result['updateTime'])) {
