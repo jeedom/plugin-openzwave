@@ -108,7 +108,7 @@ if (jeedom::isCapable('sudo')) {
 				<label class="col-lg-4 control-label">{{Installer/Mettre à jour OpenZwave en local}}</label>
 				<div class="col-lg-3">
 					<a class="btn btn-warning bt_installDeps" data-mode="master"><i class="fa fa-check"></i> {{Stable}}</a>
-					<a class="btn btn-danger bt_installDeps" data-mode="dev"><i class="fa fa-check"></i> {{Developpement}}</a>
+					<!-- <a class="btn btn-danger bt_installDeps" data-mode="dev"><i class="fa fa-check"></i> {{Developpement}}</a> -->
 				</div>
 			</div>';
 } else {
