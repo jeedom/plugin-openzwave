@@ -1101,10 +1101,14 @@ class openzwaveCmd extends cmd {
 		$this->setEventOnly(1);
 	}
 
-	public function sendZwaveResquest($_url) {
+	public function sendZwaveResquest($_url, $_options = array()) {
 		$eqLogic = $this->getEqLogic();
 		if ($this->getType() == 'action') {
-			openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1), 1, true);
+			if (isset($_options['speedAndNoErrorReport']) && $_options['speedAndNoErrorReport'] == true) {
+				openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1), 1, true);
+			} else {
+				openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1));
+			}
 			return;
 		}
 		$result = openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1));
@@ -1134,7 +1138,7 @@ class openzwaveCmd extends cmd {
 		}
 	}
 
-	public function execute($_options = null) {
+	public function execute($_options = array()) {
 		if ($this->getLogicalId() == 'pilotWire' || $this->getConfiguration('value') == 'pilotWire') {
 			return $this->getPilotWire();
 		}
@@ -1185,7 +1189,7 @@ class openzwaveCmd extends cmd {
 					}
 					$request_http .= '.commandClasses[' . $this->getConfiguration('class') . ']';
 					$request_http .= '.' . $value;
-					$result .= $this->sendZwaveResquest($request_http);
+					$result .= $this->sendZwaveResquest($request_http, $_options);
 				}
 			}
 			return $result;
@@ -1197,7 +1201,7 @@ class openzwaveCmd extends cmd {
 		}
 		$request .= '.commandClasses[' . $this->getConfiguration('class') . ']';
 		$request .= '.' . str_replace(' ', '%20', str_replace(',', '%2C', $value));
-		return $this->sendZwaveResquest($request);
+		return $this->sendZwaveResquest($request, $_options);
 	}
 
 }
