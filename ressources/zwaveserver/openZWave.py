@@ -76,7 +76,7 @@ except :
     
 from louie import dispatcher, All
 
-device="/dev/zwave-aeon-s2"
+device="auto"
 log="None"
 
 COMMAND_CLASS_NO_OPERATION              = 0 # 0x00
@@ -167,7 +167,7 @@ COMMAND_CLASS_NON_INTEROPERABLE         = 240 # 0xF0
  
 for arg in sys.argv:
     if arg.startswith("--device"):
-        temp,device = arg.split("=")
+        temp,device = arg.split("=")        
     elif arg.startswith("--port"):
         temp,port_server = arg.split("=")
     elif arg.startswith("--log"):
@@ -179,7 +179,32 @@ for arg in sys.argv:
         print("  --device=/dev/yourdevice ")
         print("  --log=Info|Debug")
 
-
+def find_tty_usb(idVendor, idProduct):
+    """find_tty_usb('0658', '0200') -> '/dev/ttyUSB021' for Sigma Designs, Inc."""    
+    # Note: if searching for a lot of pairs, it would be much faster to search
+    # for the enitre lot at once instead of going over all the usb devices
+    # each time.
+    debug_print('check for idVendor:%s idProduct: %s' %(idVendor, idProduct,))
+    for dnbase in os.listdir('/sys/bus/usb/devices'):
+        dn = str.join('/sys/bus/usb/devices', dnbase)
+        #debug_print(dn)
+        if not os.path.exists(str.join(dn, 'idVendor')):
+            continue
+        idv = open(str.join(dn, 'idVendor')).read().strip()
+        #debug_print(idv)
+        if idv != idVendor:
+            continue
+        idp = open(str.join(dn, 'idProduct')).read().strip()
+        #debug_print(idp)
+        if idp != idProduct:
+            continue
+        for subdir in os.listdir(dn):
+            if subdir.startswith(dnbase+':'):
+                for subsubdir in os.listdir(join(dn, subdir)):
+                    if subsubdir.startswith('ttyUSB'):
+                        return str.join('/dev', subsubdir)
+    return None
+    
 def debug_print(message):
     if log == "Debug":
         add_log_entry(message, "debug")
@@ -191,7 +216,21 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 result = sock.connect_ex(('127.0.0.1',int(port_server)))
 if result == 0:
     add_log_entry('The port %s is already in use. Please check your openzwave configuration plugin page' % (port_server,), 'error')
-    sys.exit(1)
+    sys.exit(1)    
+
+#device = 'auto'
+if device == 'auto':
+    know_sticks = [{'idVendor':'0658', 'idProduct':'0200', 'name':'Sigma Designs, Inc'},
+                   {'idVendor':'10c4', 'idProduct':'ea60', 'name':'Cygnal Integrated Products, Inc. CP210x UART Bridge'}]
+    
+    for stick in know_sticks:
+        device = find_tty_usb(stick['idVendor'], stick['idProduct'])
+        if device != None:
+            add_log_entry('USB Z-Wave Stick found :%s' %(stick['name'],))
+            break
+    if device == None:        
+        add_log_entry('No USB Z-Wave Stick detected', 'error')
+        sys.exit(1)
 
 Idle= 0
 AddDevice = 1
