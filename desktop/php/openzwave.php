@@ -294,10 +294,10 @@ foreach (openzwave::listServerZwave() as $id => $server) {
     <tr>
       <th style="width: 300px;">{{Nom}}</th>
       <th style="width: 130px;" class="expertModeVisible">{{Type}}</th>
-      <th style="width: 100px;" class="expertModeVisible">{{Instance ID}}</th>
-      <th style="width: 100px;" class="expertModeVisible">{{Classe}}</th>
-      <th style="width: 200px;" class="expertModeVisible">{{Commande}}</th>
-      <th >{{Paramètres}}</th>
+      <th class="expertModeVisible">{{Instance ID}}</th>
+      <th class="expertModeVisible">{{Classe}}</th>
+      <th class="expertModeVisible">{{Commande}}</th>
+      <th style="width: 100px;">{{Paramètres}}</th>
       <th style="width: 100px;">{{Options}}</th>
       <th></th>
     </tr>
