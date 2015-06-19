@@ -90,14 +90,17 @@ fi
 echo "Installation de Python-OpenZwave"
 cd /opt
 sudo git clone https://github.com/OpenZWave/python-openzwave.git
-sudi git reset --hard 808b07076febdc66654083d8146f0ddd55b11654
+cd openzwave
+sudo git reset --hard 808b07076febdc66654083d8146f0ddd55b11654
 #Version du 19/06/15
 sudo pip uninstall -y Cython
 cd /opt/python-openzwave
 sudo make cython-deps
 sudo git clone git://github.com/OpenZWave/open-zwave.git openzwave
-sudi git reset --hard 5f03981324a2ad601f6837c2c1e9ad9cee94dac0
+cd openzwave
+sudo git reset --hard 5f03981324a2ad601f6837c2c1e9ad9cee94dac0
 #Version du 19/06/15
+cd /opt/python-openzwave
 sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
 cd openzwave && sudo make
 cd /opt/python-openzwave
