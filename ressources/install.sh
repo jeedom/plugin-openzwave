@@ -90,7 +90,7 @@ fi
 echo "Installation de Python-OpenZwave"
 cd /opt
 sudo git clone https://github.com/OpenZWave/python-openzwave.git
-cd openzwave
+cd python-openzwave
 sudo git reset --hard 808b07076febdc66654083d8146f0ddd55b11654
 #Version du 19/06/15
 sudo pip uninstall -y Cython
