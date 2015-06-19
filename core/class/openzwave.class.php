@@ -81,6 +81,9 @@ class openzwave extends eqLogic {
 
 	public static function updateNginxRedirection() {
 		foreach (self::listServerZwave(false) as $zwave) {
+			if (trim($zwave['addr']) == '' || trim($zwave['port']) == '') {
+				continue;
+			}
 			$urlPath = config::byKey('urlPath' . $zwave['id'], 'openzwave');
 			if ($urlPath == '') {
 				$urlPath = 'openzwave_' . $zwave['id'] . '_' . config::genKey(30);
@@ -109,7 +112,7 @@ class openzwave extends eqLogic {
 		}
 	}
 
-	public static function callOpenzwave($_url, $_serverId = 0) {
+	public static function callOpenzwave($_url, $_serverId = 0, $_timeout = null, $_noError = false) {
 		if (self::$_curl == null) {
 			self::$_curl = curl_init();
 		}
@@ -123,7 +126,13 @@ class openzwave extends eqLogic {
 			CURLOPT_HEADER => false,
 			CURLOPT_RETURNTRANSFER => true,
 		));
+		if ($_timeout !== null) {
+			curl_setopt($ch, CURLOPT_TIMEOUT_MS, $_timeout);
+		}
 		$result = curl_exec($ch);
+		if ($_noError) {
+			return $result;
+		}
 		if (curl_errno($ch)) {
 			$curl_error = curl_error($ch);
 			throw new Exception(__('Echec de la requete http : ', __FILE__) . $url . ' Curl error : ' . $curl_error, 404);
@@ -247,6 +256,10 @@ class openzwave extends eqLogic {
 		$include_device = '';
 		$controller_id = $results['controller']['data']['nodeId']['value'];
 		if (count($results['devices']) < 2) {
+			nodejs::pushUpdate('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => __('Le nombre de module trouvé est inférieure à 2', __FILE__),
+			));
 			return;
 		}
 		foreach ($results['devices'] as $nodeId => $result) {
@@ -351,35 +364,20 @@ class openzwave extends eqLogic {
 		}
 	}
 
-	public static function updateConf() {
-		shell_exec('sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/updateConf.sh');
-		if (file_exists('/tmp/updatedConfOpenzwave')) {
-			$change = file_get_contents('/tmp/updatedConfOpenzwave');
-			if (trim($change) != '') {
-				self::runDeamon();
+/*     * ********************************************************************** */
+/*     * ***********************OPENZWAVE MANAGEMENT*************************** */
+
+	public static function getVersion($_module) {
+		if ($_module == 'openzwave') {
+			$result = trim(str_replace(array('"', 'char', 'ozw_version_string', '[]', '=', ';'), '', shell_exec('cat /opt/python-openzwave/openzwave/cpp/src/vers.cpp | grep ozw_version_string')));
+			$result = str_replace('-', '.', $result);
+			$result = explode('.', str_replace('..', '.', $result));
+			if (count($result) > 2) {
+				return $result[0] . '.' . $result[1] . '.' . $result[2];
 			}
-		}
-		foreach (self::byType('openzwave') as $openzwave) {
-			if (!is_file(dirname(__FILE__) . '/../config/devices/' . $openzwave->getConfFilePath())) {
-				return;
-			}
-			$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $openzwave->getConfFilePath());
-			if (!is_json($content)) {
-				return;
-			}
-			$device = json_decode($content, true);
-			if (!isset($device['configuration']) || !isset($device['configuration']['conf_version'])) {
-				continue;
-			}
-			if ($device['configuration']['conf_version'] <= $openzwave->getConfiguration('conf_version')) {
-				continue;
-			}
-			$openzwave->createCommand(true);
 		}
 	}
 
-/*     * ********************************************************************** */
-/*     * ***********************OPENZWAVE MANAGEMENT*************************** */
 	public static function updateOpenzwave($_mode = 'master') {
 		log::remove('openzwave_update');
 		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh ' . $_mode;
@@ -1103,12 +1101,17 @@ class openzwaveCmd extends cmd {
 		$this->setEventOnly(1);
 	}
 
-	public function sendZwaveResquest($_url) {
+	public function sendZwaveResquest($_url, $_options = array()) {
 		$eqLogic = $this->getEqLogic();
-		$result = openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1));
 		if ($this->getType() == 'action') {
+			if (isset($_options['speedAndNoErrorReport']) && $_options['speedAndNoErrorReport'] == true) {
+				openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1), 1, true);
+			} else {
+				openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1));
+			}
 			return;
 		}
+		$result = openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1));
 		if (is_array($result)) {
 			$value = self::handleResult($result);
 			if (isset($result['updateTime'])) {
@@ -1135,7 +1138,7 @@ class openzwaveCmd extends cmd {
 		}
 	}
 
-	public function execute($_options = null) {
+	public function execute($_options = array()) {
 		if ($this->getLogicalId() == 'pilotWire' || $this->getConfiguration('value') == 'pilotWire') {
 			return $this->getPilotWire();
 		}
@@ -1186,7 +1189,7 @@ class openzwaveCmd extends cmd {
 					}
 					$request_http .= '.commandClasses[' . $this->getConfiguration('class') . ']';
 					$request_http .= '.' . $value;
-					$result .= $this->sendZwaveResquest($request_http);
+					$result .= $this->sendZwaveResquest($request_http, $_options);
 				}
 			}
 			return $result;
@@ -1198,7 +1201,7 @@ class openzwaveCmd extends cmd {
 		}
 		$request .= '.commandClasses[' . $this->getConfiguration('class') . ']';
 		$request .= '.' . str_replace(' ', '%20', str_replace(',', '%2C', $value));
-		return $this->sendZwaveResquest($request);
+		return $this->sendZwaveResquest($request, $_options);
 	}
 
 }

@@ -80,10 +80,6 @@
           "class": "0x80",
           "instanceId": 0,
           "value": "data[0].val"
-        },
-        "template": {
-          "dashboard": "tile",
-          "mobile": "tile"
         }
       }
     ]
