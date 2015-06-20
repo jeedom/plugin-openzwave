@@ -2385,6 +2385,33 @@ def get_network_health():
         nodesData[device_id] = serialize_node_health(device_id) 
     networkData['devices']=nodesData
     return jsonify(networkData)
+
+@app.route('/ZWaveAPI/GetNodesList()',methods = ['GET'])
+def get_nodes_list():
+    result = {}
+    result['updateTime']=int(time.time())
+    nodesData = {}
+    for device_id in network.nodes:        
+        myNode = network.nodes[device_id]        
+        tmpNode = {}        
+        try :
+            manufacturer_id = int(myNode.manufacturer_id,16)
+        except ValueError:
+            manufacturer_id = None
+        try :
+            product_id = int(myNode.product_id,16)
+        except ValueError:
+            product_id = None
+        try :
+            product_type = int(myNode.product_type,16)
+        except ValueError:
+            product_type = None
+            
+        tmpNode['description'] = {'name' : myNode.name, 'location':myNode.location ,'product_name': myNode.product_name} 
+        tmpNode['product'] = {'manufacturer_id': manufacturer_id, 'product_type': product_type, 'product_id': product_id , 'is_valid': manufacturer_id is not None and product_id is not None and product_type is not None}
+        nodesData[device_id] = tmpNode
+    result['devices']=nodesData
+    return jsonify(result)
     
 @app.route('/ZWaveAPI/Data/<int:fromtime>',methods = ['GET'])
 def get_device(fromtime):
