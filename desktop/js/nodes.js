@@ -103,6 +103,13 @@ $("#replaceFailedNode").off("click").on("click",function() {
 $("#sendNodeInformation").off("click").on("click",function() {
 	app_nodes.send_node_information(app_nodes.selected_node);
 });
+$("#regenerateNodeCfgFile").off("click").on("click",function() {
+	bootbox.confirm("Etes-vous sûr ? Cela va redémarrer votre réseau", function(result) {
+	  if(result){
+	  	app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node);
+	  }
+	}); 
+});
 $("body").off("click",".copyParams").on("click",".copyParams",function (e) {
 	$('#copyParamsModal').modal('show');
 });
@@ -611,6 +618,20 @@ replace_failed_node: function(node_id){
 send_node_information: function(node_id){
 	$.ajax({ 
 		url: path+"ZWaveAPI/Run/devices["+node_id+"].SendNodeInformation()", 
+		dataType: 'json',
+		async: true, 
+		error: function (request, status, error) {
+			handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
+		},
+		success: function(data) {
+			app_nodes.sendOk();
+			app_nodes.load_data(false); 
+		}
+	});
+},
+send_regenerate_node_cfg_file: function(node_id){
+	$.ajax({ 
+		url: path+"ZWaveAPI/Run/devices["+node_id+"].RemoveDeviceZWConfig()", 
 		dataType: 'json',
 		async: true, 
 		error: function (request, status, error) {

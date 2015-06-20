@@ -382,6 +382,10 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 							<td><button type="button" id="sendNodeInformation" class="btn btn-info"><i class="fa fa-info-circle"></i> {{Envoi infos du noeud}}</button></td>
 							<td>{{Envoi une trame d'info au noeud (NIF).}}</td>
 						</tr>
+						<tr>
+							<td><button type="button" id="regenerateNodeCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Regénérer la détection du noeud}}</button></td>
+							<td>{{Supprime les informations du node dans le fichier de config afin qu'il soit regénéré. (Attention : Relance le réseau)}}</td>
+						</tr>
 					</table>
 				</div>
 				<div class="tab-pane" id="statistics">

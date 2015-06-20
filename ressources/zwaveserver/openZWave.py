@@ -26,6 +26,7 @@ import binascii
 import sqlite3 as lite
 import threading
 import socket
+from lxml import etree
 
 os.environ['PYTHON_EGG_CACHE'] = '/opt/python-openzwave/python-eggs'
 
@@ -2727,6 +2728,36 @@ def write_openzwave_config() :
     except Exception as e:
         add_log_entry(str(e), 'error')
         return jsonify ({'error' : str(e)})
+    
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].RemoveDeviceZWConfig()',methods = ['GET'])
+def remove_device_openzwave_config(device_id) :
+    """
+    Remove a device from the openzwave config file
+    """
+    #ensure load latest file version
+    try:
+        network.stop()
+        add_log_entry('ZWave network is now stopped')
+        time.sleep(5)
+    except Exception as e:
+        add_log_entry(str(e), 'error')
+        return jsonify ({'error' : str(e)})
+    
+    fileName = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
+    try:
+        tree = etree.parse(fileName)
+        node = tree.find("{http://code.google.com/p/open-zwave/}Node[@id='"+str(device_id)+"']")
+        tree.getroot().remove(node)
+        FILE = open(fileName,"w")
+        FILE.write('<?xml version="1.0" encoding="utf-8" ?>\n')
+        FILE.writelines(etree.tostring(tree, pretty_print=True))
+        FILE.close()
+        add_log_entry('******** The ZWave network is being started ********')
+        network.start()
+        return jsonify ({'result' : True})
+    except Exception as e:
+        add_log_entry(str(e), 'error')
+        return jsonify ({'error' : str(e), 'fileName':fileName})
     
 @app.route('/ZWaveAPI/Run/SetPollInterval(<int:seconds>,<int:intervalBetweenPolls>)',methods = ['GET'])
 def set_poll_interval(seconds, intervalBetweenPolls):
