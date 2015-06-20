@@ -107,7 +107,7 @@ var app_health = {
       if(nodes[i].data.is_groups_ok != undefined && nodes[i].data.is_groups_ok.value){
         tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
       }else{
-        if(nodes[i].data.is_neighbours_ok.enabled){
+        if(nodes[i].data.is_groups_ok.enabled){
           tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
         }
       }
@@ -123,7 +123,9 @@ var app_health = {
       if(nodes[i].data.is_neighbours_ok != undefined && nodes[i].data.is_neighbours_ok.value){
         tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
       }else{
-        tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
+        if(nodes[i].data.is_neighbours_ok.enabled){
+          tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
+        }
       }
       tbody += '</td>';
       tbody += '<td>';
