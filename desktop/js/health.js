@@ -79,11 +79,14 @@ var app_health = {
   show_infos: function (nodes){
     var tbody = '';
     for(var i in nodes){
-      if(nodes[i].data.name.value != ''){
-        var name = '<span class="label label-primary">'+nodes[i].data.location.value+'</span> '+nodes[i].data.name.value;
+      if(nodes[i].data == undefined){
+        continue;
+      }
+      if(nodes[i].data.description.name != ''){
+        var name = '<span class="label label-primary">'+nodes[i].data.description.location+'</span> '+nodes[i].data.description.name;
       }else{
         //var name = nodes[i].data.product_name.value;
-        var name = '{{Inconnue}}'
+        var name = nodes[i].data.description.product_name
       }
       tbody += '<tr>';
       tbody += '<td>';

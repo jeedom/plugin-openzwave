@@ -165,7 +165,11 @@ class openzwave extends eqLogic {
 
 	public static function pull() {
 		foreach (self::listServerZwave() as $serverID => $server) {
-			$results = self::callOpenzwave('/ZWaveAPI/Data/1', $serverID);
+			try {
+				$results = self::callOpenzwave('/ZWaveAPI/Data/1', $serverID);
+			} catch (Exception $e) {
+				continue;
+			}
 			if (!is_array($results)) {
 				continue;
 			}
@@ -536,99 +540,6 @@ class openzwave extends eqLogic {
 				$return['lastReceived'] = array(
 					'value' => date('Y-m-d H:i', $results['data']['lastReceived']['updateTime']),
 					'datetime' => date('Y-m-d H:i:s', $results['data']['lastReceived']['updateTime']),
-				);
-			}
-
-			if (isset($results['data']['state'])) {
-				$queryStage = $results['data']['state']['value'];
-				$queryStageDescrition = "";
-				$queryStageIndex = 0;
-				switch ($queryStage) {
-					case "None":
-						$queryStageDescrition = __("Le processus de demande n a pas encore commencé pour ce noeud", __FILE__);
-						$queryStageIndex = 0;
-						break;
-					case "ProtocolInfo":
-						$queryStageDescrition = __("Récupération des informations du protocole", __FILE__);
-						$queryStageIndex = 1;
-						break;
-					case "Probe":
-						$queryStageDescrition = __("Interrogation du module pour voir si il est en vie", __FILE__);
-						$queryStageIndex = 2;
-						break;
-					case "WakeUp":
-						$queryStageDescrition = __("Début du processus de reveil du noeud si celui-ci dort", __FILE__);
-						$queryStageIndex = 3;
-						break;
-					case "ManufacturerSpecific1":
-						$queryStageDescrition = __("Récupération des paramètres constructeur du noeud", __FILE__);
-						$queryStageIndex = 4;
-						break;
-					case "NodeInfo":
-						$queryStageDescrition = __("Récupération des informations sur les classes du noeud", __FILE__);
-						$queryStageIndex = 5;
-						break;
-					case "SecurityReport":
-						$queryStageDescrition = __("Récupération des classes de sécurité du noeud", __FILE__);
-						$queryStageIndex = 6;
-						break;
-					case "ManufacturerSpecific2":
-						$queryStageDescrition = __("Récupération des paramètres constructeur du noeud", __FILE__);
-						$queryStageIndex = 7;
-						break;
-					case "Versions":
-						$queryStageDescrition = __("Récupération des informations de version", __FILE__);
-						$queryStageIndex = 8;
-						break;
-					case "Instances":
-						$queryStageDescrition = __("Récupération des informations d instance du noeud", __FILE__);
-						$queryStageIndex = 9;
-						break;
-					case "Static":
-						$queryStageDescrition = __("Récupération des informations statistiques", __FILE__);
-						$queryStageIndex = 10;
-						break;
-					case "Probe1":
-						$queryStageDescrition = __("Intérrogation du module pour récupérer sa configuration", __FILE__);
-						$queryStageIndex = 11;
-						break;
-					case "Associations":
-						$queryStageDescrition = __("Récupération des informations d associations", __FILE__);
-						$queryStageIndex = 12;
-						break;
-					case "Neighbors":
-						$queryStageDescrition = __("Récupération de la liste des voisins", __FILE__);
-						$queryStageIndex = 13;
-						break;
-					case "Session":
-						$queryStageDescrition = __("Récupération des informations de sessions", __FILE__);
-						$queryStageIndex = 14;
-						break;
-					case "Dynamic":
-						$queryStageDescrition = __("Récupération des informations dynamiques", __FILE__);
-						$queryStageIndex = 15;
-						break;
-					case "Configuration":
-						$queryStageDescrition = __("Récupération des informations de configuration", __FILE__);
-						$queryStageIndex = 16;
-						break;
-					case "Complete":
-						$queryStageDescrition = __("Processus de demande d information sur le noeud complet", __FILE__);
-						$queryStageIndex = 17;
-						break;
-				}
-				$return['queryStage'] = array(
-					'value' => $queryStage,
-					'index' => $queryStageIndex,
-					'description' => $queryStageDescrition,
-					'datetime' => date('Y-m-d H:i:s'),
-				);
-			}
-
-			if (isset($results['instances'][0]) && isset($results['instances'][0]['commandClasses'][132])) {
-				$return['wakeup'] = array(
-					'value' => $results['instances'][0]['commandClasses'][132]['data']['interval']['value'],
-					'datetime' => date('Y-m-d H:i:s', $results['instances'][0]['commandClasses'][132]['data']['updateTime']),
 				);
 			}
 
