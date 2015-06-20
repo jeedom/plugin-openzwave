@@ -104,7 +104,7 @@ var app_network = {
    },
    addDevice: function(){
     $.ajax({ 
-      url: path+"ZWaveAPI/Run/controller.AddNodeToNetwork(1)", 
+      url: path+"ZWaveAPI/Run/controller.AddNodeToNetwork(1,1)", 
       dataType: 'json',
       async: true, 
       error: function (request, status, error) {
@@ -312,7 +312,7 @@ var app_network = {
     load_data: function(){
       $('#graph_network').html('<div id="graph-node-name"></div>');
       $.ajax({ 
-        url: path+"ZWaveAPI/Data/0", 
+        url: path+"ZWaveAPI/GetNetworkNeighbours()", 
         dataType: 'json',
         async: true, 
         error: function (request, status, error) {
@@ -325,21 +325,25 @@ var app_network = {
                 var graph = Viva.Graph.graph();
 
                 for (z in nodes){
-				//console.log('add node '+z);
+                //console.log('add node '+z);
        if(nodes[z].data.name.value != ''){
-        graph.addNode(z,{'name':'<span class="label label-primary">'+nodes[z].data.location.value+'</span> '+nodes[z].data.name.value});
+        graph.addNode(z,{'name':'<span class="label label-primary">'+nodes[z].data.location.value+'</span> '+nodes[z].data.name.value, 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled, 'interview' : parseInt(nodes[z].data.state.value)});
       }else{
-        graph.addNode(z,{'name':nodes[z].data.product_name.value});
+        graph.addNode(z,{'name':nodes[z].data.product_name.value, 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled,'interview' : parseInt(nodes[z].data.state.value)});
       }
-
-        for (neighbour in nodes[z].data.neighbours.value){
-              neighbourid=nodes[z].data.neighbours.value[neighbour];
-              if(typeof nodes[neighbourid] != 'undefined'){
-               graph.addLink(z, neighbourid);
-             }
+        if (nodes[z].data.neighbours.value.length<1 && nodes[z].data.neighbours.enabled !=1){
+            if(typeof nodes[1] != 'undefined'){
+               graph.addLink(z, 1, { isdash: 1, lengthfactor : 0.6 });
+            }
+        } else {
+            for (neighbour in nodes[z].data.neighbours.value){
+                neighbourid=nodes[z].data.neighbours.value[neighbour];
+                if(typeof nodes[neighbourid] != 'undefined'){
+                graph.addLink(z, neighbourid, { isdash: 0, lengthfactor : 0 });
+                }
+            }
            }
          }
-
          var graphics = Viva.Graph.View.svgGraphics(),
          nodeSize = 24,
                 // we use this method to highlight all realted links
@@ -350,7 +354,7 @@ var app_network = {
                      var linkUI = graphics.getLinkUI(link.id);
                      if (linkUI) {
                            // linkUI is a UI object created by graphics below
-                           linkUI.attr('stroke', isOn ? 'red' : 'gray');
+                           linkUI.attr('stroke', isOn ? '#FF0000' : '#B7B7B7');
                          }
                        });
                  };
@@ -363,7 +367,16 @@ var app_network = {
               	graph.removeNode(node.id);
               	//break;
               }
-
+              nodecolor='#00a2e8';
+              if (node.data.generic!=1) {
+                    nodecolor='#7BCC7B';
+              }else if (node.data.neighbours.length < 1 && node.id != 1 && node.data.interview >= 13) {
+                    nodecolor='#d20606';
+              } else if (node.data.neighbours.indexOf(1) == -1 && node.id != 1 && node.data.interview >= 13) {
+                     nodecolor='#E5E500';
+              } else if (node.data.interview < 13) {
+                     nodecolor='#979797';
+              }
               var ui = Viva.Graph.svg('g'),
               
                   // Create SVG text element with user id as content
@@ -371,11 +384,24 @@ var app_network = {
                   img = Viva.Graph.svg('rect')
                   .attr("width", 10)
                   .attr("height", 10)
-                  .attr("fill", "#00a2e8");
+                  .attr("fill", nodecolor);
                   ui.append(svgText);
                   ui.append(img);
               $(ui).hover(function() { // mouse over
-                $('#graph-node-name').html(node.data.name);
+                numneighbours=node.data.neighbours.length;
+                interview=node.data.interview;
+                if (numneighbours<1 && interview>= 13){
+                    if (node.data.generic != 1) {
+                      sentenceneighbours='{{Télécommande}}'
+                    } else {
+                      sentenceneighbours='{{Pas de voisins}}';
+                    }
+                } else if (interview>= 13) {
+                       sentenceneighbours=numneighbours+ ' {{voisins}} ['+node.data.neighbours+']';
+                } else {
+                       sentenceneighbours='{{Interview incomplet}}';
+                }
+                $('#graph-node-name').html(node.data.name + ' : ' + sentenceneighbours);
                 highlightRelatedNodes(node.id, true);
                 }, function() { // mouse out
                   highlightRelatedNodes(node.id, false);
@@ -386,30 +412,44 @@ var app_network = {
                 // we have to deal with transforms: http://www.w3.org/TR/SVG/coords.html#SVGGlobalTransformAttribute
                 nodeUI.attr('transform',
                   'translate(' +
-                    (pos.x - nodeSize/2) + ',' + (pos.y - nodeSize/2) +
+                    (pos.x - nodeSize/3) + ',' + (pos.y - nodeSize/2.5) +
                     ')');
               });
             var middle = graph.getNode(1);
             if(typeof middle !== 'undefined'){
               middle.isPinned = true;
             }
+            var idealLength = 200;
             var layout = Viva.Graph.Layout.forceDirected(graph, {
+             springLength: idealLength,
              stableThreshold: 0.9,
              dragCoeff : 0.01,
              springCoeff : 0.0004,
-             gravity : -1.5,
-             springLength : 150
+             gravity : -20,
+             springTransform: function (link, spring) {
+                    spring.length = idealLength * (1 - link.data.lengthfactor);
+                  }
            });
+           graphics.link(function(link){
+                        dashvalue='5, 0';
+                        if (link.data.isdash== 1){
+                                dashvalue='5, 2';
+                        }
+                        return Viva.Graph.svg('line')
+                                .attr('stroke', '#B7B7B7')
+                                .attr('stroke-dasharray', dashvalue)
+                                .attr('stroke-width', '0.4px');
+                    });
             var renderer = Viva.Graph.View.renderer(graph, {
               layout: layout,
               graphics : graphics,
+              prerender: 10,
+              renderLinks : true,
               container : document.getElementById('graph_network')
             });
             renderer.run();
-            setTimeout(function(){ renderer.pause();renderer.reset(); }, 500);
-
-
-          }
+            setTimeout(function(){ renderer.pause();renderer.reset(); }, 200);
+            }
         });
 },
 load_stats: function(node_id){
@@ -606,14 +646,14 @@ show_infos: function (){
       },
       displayRoutingTable: function (){
     $.ajax({// fonction permettant de faire de l'ajax
-     url: path+"ZWaveAPI/Data/0", 
+     url: path+"ZWaveAPI/GetNetworkNeighbours()", 
      dataType: 'json',
      async: true, 
      error: function (request, status, error) {
       handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
     },
         success: function (data) { // si l'appel a bien fonctionné
-        devicesRouting = data.devices;
+            devicesRouting = data.devices;
             var skipPortableAndVirtual = true; // to minimize routing table by removing not interesting lines
             var routingTable = '';
             var routingTableHeader = '';

@@ -63,7 +63,7 @@ apt_install gcc
 
 # Python
 echo "Installation des dependances Python"
-pip_install cython==0.14
+
 pip_install sphinxcontrib-blockdiag
 pip_install sphinxcontrib-actdiag
 pip_install sphinxcontrib-nwdiag
@@ -73,69 +73,43 @@ pip_install louie
 pip_install flask
 pip_install flask-restful
 
+sudo mkdir /opt
+if [ -d /opt/python-openzwave ]; then
+	echo "Sauvegarde du fichier de conf";
+	sudo cp /opt/python-openzwave/zwcfg* /opt/.
+	cd /opt/python-openzwave
+	echo "Désinstallation de la version précédente";
+	sudo make uninstall
+	sudo rm -fr /usr/local/lib/python2.7/dist-packages/libopenzwave*
+	sudo rm -fr /usr/local/lib/python2.7/dist-packages/python_openzwave_*
+	sudo rm -fr /usr/local/lib/python2.7/dist-packages/openzwave* 
+	cd /opt
+	sudo rm -fr /opt/python-openzwave
+fi
 # Installation de Python-OpenZwave
 echo "Installation de Python-OpenZwave"
-sudo mkdir /opt
-
-if [ ! -d /opt/python-openzwave/.git ]; then
-    echo "Download sources of Python-Openzwave";
-    if [ -d /opt/python-openzwave ]; then
-    	sudo rm -Rf /opt/python-openzwave;
-    fi
-    sudo git clone https://github.com/jeedom/python-openzwave.git --depth=1 /opt/python-openzwave;
-    if [ $1 = 'dev' ]; then
-      cd /opt/python-openzwave;
-      sudo git checkout dev;
-    fi
-    cd /opt/python-openzwave;
-else 
-	echo "Update sources of python-openzwave";
-	cd /opt/python-openzwave;
-  sudo git remote set-url origin https://github.com/jeedom/python-openzwave.git;
-	sudo git fetch --all
-	sudo git reset --hard origin/master
-  if [ $1 = 'dev' ]; then
-     sudo git checkout dev;
-  fi
-	sudo git pull;
-fi
-
-if [ ! -d openzwave/.git ]; then
-    echo "Download sources of Openzwave";
-    if [ -d openzwave ]; then
-    	sudo rm -Rf /opt/python-openzwave/openzwave;
-    fi
-    sudo git clone https://github.com/jeedom/open-zwave.git --depth=1 openzwave;
-    if [ $1 = 'dev' ]; then
-      cd openzwave;
-      sudo git checkout dev;
-      cd ..;
-    fi
-else 
-	echo "Update sources of Openzwave";
-	cd openzwave;
-  sudo git remote set-url origin https://github.com/jeedom/open-zwave.git;
-	sudo git fetch --all;
-	sudo git reset --hard origin/master;
-  if [ $1 = 'dev' ]; then
-     sudo git checkout dev;
-  fi
-	sudo git pull;
-fi
-echo "Sources updated"
+cd /opt
+sudo git clone https://github.com/OpenZWave/python-openzwave.git
+cd python-openzwave
+sudo git reset --hard 808b07076febdc66654083d8146f0ddd55b11654
+#Version du 19/06/15
+sudo pip uninstall -y Cython
 cd /opt/python-openzwave
-#sudo make deps
-#sudo make update
-sudo make clean
-sudo make build
-sudo make install
-
-#sudo /opt/python-openzwave/compile.sh clean
-#sudo /opt/python-openzwave/install.sh
+sudo make cython-deps
+sudo git clone git://github.com/OpenZWave/open-zwave.git openzwave
+cd openzwave
+sudo git reset --hard 5f03981324a2ad601f6837c2c1e9ad9cee94dac0
+#Version du 19/06/15
+cd /opt/python-openzwave
+sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
+cd openzwave && sudo make
+cd /opt/python-openzwave
+sudo make install-api
 sudo mkdir /opt/python-openzwave/python-eggs
-sudo chmod 775 -R /opt/python-openzwave
+sudo cp /opt/zwcfg* /opt/python-openzwave/.
 sudo chown -R www-data:www-data /opt/python-openzwave
-sudo chmod 700 -R /opt/python-openzwave/python-eggs
+sudo chmod -R 777 /opt/python-openzwave
+
 
 if [ $(grep 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200"' /etc/udev/rules.d/98-usb-serial.rules | wc -l) -eq 0 ]; then
     if [ -f /etc/udev/rules.d/98-usb-serial.rules ]; then

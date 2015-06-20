@@ -359,6 +359,10 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 							<td>{{Déclenche une actualisation manuelle des valeurs du noeud.}}</td>
 						</tr>
 						<tr>
+							<td><button type="button" id="requestNodeDynamic" class="btn btn-success"><i class="fa fa-refresh"></i> {{Récupère les CC dynamique}}</button></td>
+							<td>{{Récupère seulement les données de CC dynamiques pour le nœud.}}</td>
+						</tr>
+						<tr>
 							<td><button type="button" id="refreshNodeInfo" class="btn btn-success refreshNodeInfo"><i class="fa fa-retweet"></i> {{Rafraîchir infos du noeud}}</button></td>
 							<td>{{Déclencher l'obtention des données du noeud.}} <br>{{Les données du noeud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.}}</td>
 						</tr>

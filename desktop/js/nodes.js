@@ -92,6 +92,9 @@ $("#testNode").off("click").on("click",function() {
 $("#refreshNodeValues").off("click").on("click",function() {
 	app_nodes.refresh_node_values(app_nodes.selected_node);
 });
+$("#requestNodeDynamic").off("click").on("click",function() {
+	app_nodes.request_node_dynamic(app_nodes.selected_node);
+});
 $("body").off("click",".refreshNodeInfo").on("click",".refreshNodeInfo",function (e) {
 	app_nodes.refresh_node_info(app_nodes.selected_node);
 });
@@ -522,6 +525,20 @@ refresh_node_values: function(node_id){
 		}
 	});
 },
+request_node_dynamic: function(node_id){
+	$.ajax({ 
+		url: path+"ZWaveAPI/Run/devices["+node_id+"].RequestNodeDynamic()", 
+		dataType: 'json',
+		async: true, 
+		error: function (request, status, error) {
+			handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
+		},
+		success: function(data) {
+			app_nodes.sendOk();
+			app_nodes.load_data(); 
+		}
+	});
+},
 refresh_node_info: function(node_id){
 	$.ajax({ 
 		url: path+"ZWaveAPI/Run/devices["+node_id+"].RefreshNodeInfo()", 
@@ -691,6 +708,7 @@ draw_nodes: function ()
 	$("#healNode").prop("disabled",disabledCommand);
 	$("#testNode").prop("disabled",disabledCommand);
 	$("#refreshNodeValues").prop("disabled",disabledCommand);
+	$("#requestNodeDynamic").prop("disabled",disabledCommand);
 	$("#refreshNodeInfo").prop("disabled",disabledCommand);
 	$("#hasNodeFailed").prop("disabled",disabledCommand);
 	$("#removeFailedNode").prop("disabled",disabledCommand);
@@ -733,7 +751,7 @@ draw_nodes: function ()
 	            node.find(".node-vendor").html(manufacturerName);
 
 
-	            node.find(".node-zwave-id").html("{{Identifiant du fabricant :}} <span class='label label-default'>" +nodes[z].data.manufacturerId.value +"</span> {{type de produit :}} <span class='label label-default'>" +nodes[z].data.manufacturerProductType.value + "</span> {{identifiant du produit :}} <span class='label label-default'>" + nodes[z].data.manufacturerProductId.value+"</span>");            		
+	            node.find(".node-zwave-id").html("{{Identifiant du fabricant :}} <span class='label label-default'>" +nodes[z].data.manufacturerId.hex +"</span> {{type de produit :}} <span class='label label-default'>" +nodes[z].data.manufacturerProductType.hex + "</span> {{identifiant du produit :}} <span class='label label-default'>" + nodes[z].data.manufacturerProductId.hex+"</span>");            		
 
 	            node.find(".node-lastSeen").html(app_nodes.timestampConverter(nodes[z].data.lastReceived.updateTime));
 
@@ -848,18 +866,24 @@ draw_nodes: function ()
 	        node.find(".node-basic").html(basicDeviceClassDescription);
 	        node.find(".node-generic").html(genericDeviceClassDescription);
 	        node.find(".node-specific").html(specificDeviceClassDescription);
-
+	        var battery_level = nodes[z].data.battery_level.value
 	        var nodeCanSleep = nodes[z].data.can_wake_up.value=="true";
-	        if(nodeCanSleep){
-	        	if(nodes[z].data.isAwake.value=="true"){
-	        		node.find(".node-sleep").html("{{Réveillé}}");
-	        	}
-	        	else{
-	        		node.find(".node-sleep").html("{{Endormi}}");
-	        	}
-	        }else{
+	        if (battery_level != null){
+	        	if(nodeCanSleep){
+		        	if(nodes[z].data.isAwake.value=="true"){
+		        		node.find(".node-sleep").html("{{Réveillé}}");
+		        	}
+		        	else{
+		        		node.find(".node-sleep").html("{{Endormi}}");
+		        	}
+		        }else{
+		        	node.find(".node-sleep").html("{{Endormi}}");
+		        }
+	        }
+	        else{
 	        	node.find(".node-sleep").html("{{Secteur}}");
 	        }
+	        
 
 	        if(typeof(controller) !== "undefined"){
 	        	var node_groups=nodes[z].groups;
@@ -1028,7 +1052,7 @@ draw_nodes: function ()
 	            	}
 	            	else{
 	            		node.find(".node-neighbours").html("...");		  
-	            		if(networkstate>=7){
+	            		if(networkstate>=7 & genericDeviceClass != 1){
 	            			warningMessage +="<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <button type='button' id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</button> {{ou}} <button type='button' id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</button> {{pour corriger.}}</li>";		            	
 	            			isWarning = true;
 	            		}
