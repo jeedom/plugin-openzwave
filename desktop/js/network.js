@@ -95,10 +95,10 @@ var app_network = {
      $("#hardReset").off("click").on("click",function() {
       $('#confirmModal').modal('show');
     });
-    $("body").off("click",".requestNodeNeighboursUpdate").on("click",".requestNodeNeighboursUpdate",function (e) {
-	var nodeid = $(this).attr('data-nodeid');
-	app_network.request_node_neighbours_update(nodeid);
-	});
+     $("body").off("click",".requestNodeNeighboursUpdate").on("click",".requestNodeNeighboursUpdate",function (e) {
+       var nodeid = $(this).attr('data-nodeid');
+       app_network.request_node_neighbours_update(nodeid);
+     });
 
 
    },
@@ -292,23 +292,23 @@ var app_network = {
    });
     },
     request_node_neighbours_update: function(node_id){
-		$.ajax({ 
-			url: path+"ZWaveAPI/Run/devices["+node_id+"].RequestNodeNeighbourUpdate()", 
-			dataType: 'json',
-			async: true, 
-			error: function (request, status, error) {
-				handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-			},
-			success: function(data) {
-				if(data['result']== true){
-					app_network.sendOk();
-					app_network.load_data(); 
-				}else{
-					$('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
-				}
-			}
-		});
-	},
+      $.ajax({ 
+       url: path+"ZWaveAPI/Run/devices["+node_id+"].RequestNodeNeighbourUpdate()", 
+       dataType: 'json',
+       async: true, 
+       error: function (request, status, error) {
+        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+      },
+      success: function(data) {
+        if(data['result']== true){
+         app_network.sendOk();
+         app_network.load_data(); 
+       }else{
+         $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+       }
+     }
+   });
+    },
     load_data: function(){
       $('#graph_network').html('<div id="graph-node-name"></div>');
       $.ajax({ 
@@ -326,26 +326,26 @@ var app_network = {
 
                 for (z in nodes){
                 //console.log('add node '+z);
-       if(nodes[z].data.name.value != ''){
-        graph.addNode(z,{'name':'<span class="label label-primary">'+nodes[z].data.location.value+'</span> '+nodes[z].data.name.value, 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled, 'interview' : parseInt(nodes[z].data.state.value)});
-      }else{
-        graph.addNode(z,{'name':nodes[z].data.product_name.value, 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled,'interview' : parseInt(nodes[z].data.state.value)});
-      }
-        if (nodes[z].data.neighbours.value.length<1 && nodes[z].data.neighbours.enabled !=1){
-            if(typeof nodes[1] != 'undefined'){
-               graph.addLink(z, 1, { isdash: 1, lengthfactor : 0.6 });
-            }
-        } else {
-            for (neighbour in nodes[z].data.neighbours.value){
-                neighbourid=nodes[z].data.neighbours.value[neighbour];
-                if(typeof nodes[neighbourid] != 'undefined'){
-                graph.addLink(z, neighbourid, { isdash: 0, lengthfactor : 0 });
+                if(nodes[z].data.name.value != ''){
+                  graph.addNode(z,{'name':'<span class="label label-primary">'+nodes[z].data.location.value+'</span> '+nodes[z].data.name.value, 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled, 'interview' : parseInt(nodes[z].data.state.value)});
+                }else{
+                  graph.addNode(z,{'name':nodes[z].data.product_name.value, 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled,'interview' : parseInt(nodes[z].data.state.value)});
                 }
+                if (nodes[z].data.neighbours.value.length<1 && nodes[z].data.neighbours.enabled !=1){
+                  if(typeof nodes[1] != 'undefined'){
+                   graph.addLink(z, 1, { isdash: 1, lengthfactor : 0.6 });
+                 }
+               } else {
+                for (neighbour in nodes[z].data.neighbours.value){
+                  neighbourid=nodes[z].data.neighbours.value[neighbour];
+                  if(typeof nodes[neighbourid] != 'undefined'){
+                    graph.addLink(z, neighbourid, { isdash: 0, lengthfactor : 0 });
+                  }
+                }
+              }
             }
-           }
-         }
-         var graphics = Viva.Graph.View.svgGraphics(),
-         nodeSize = 24,
+            var graphics = Viva.Graph.View.svgGraphics(),
+            nodeSize = 24,
                 // we use this method to highlight all realted links
                 // when user hovers mouse over a node:
                 highlightRelatedNodes = function(nodeId, isOn) {
@@ -369,16 +369,16 @@ var app_network = {
               }
               nodecolor='#00a2e8';
               if (node.data.generic!=1) {
-                    nodecolor='#7BCC7B';
+                nodecolor='#7BCC7B';
               }else if (node.data.neighbours.length < 1 && node.id != 1 && node.data.interview >= 13) {
-                    nodecolor='#d20606';
+                nodecolor='#d20606';
               } else if (node.data.neighbours.indexOf(1) == -1 && node.id != 1 && node.data.interview >= 13) {
-                     nodecolor='#E5E500';
-              } else if (node.data.interview < 13) {
-                     nodecolor='#979797';
-              }
-              var ui = Viva.Graph.svg('g'),
-              
+               nodecolor='#E5E500';
+             } else if (node.data.interview < 13) {
+               nodecolor='#979797';
+             }
+             var ui = Viva.Graph.svg('g'),
+
                   // Create SVG text element with user id as content
                   svgText = Viva.Graph.svg('text').attr('y', '0px').text(node.id),
                   img = Viva.Graph.svg('rect')
@@ -391,18 +391,18 @@ var app_network = {
                 numneighbours=node.data.neighbours.length;
                 interview=node.data.interview;
                 if (numneighbours<1 && interview>= 13){
-                    if (node.data.generic != 1) {
-                      sentenceneighbours='{{Télécommande}}'
-                    } else {
-                      sentenceneighbours='{{Pas de voisins}}';
-                    }
+                  if (node.data.generic != 1) {
+                    sentenceneighbours='{{Télécommande}}'
+                  } else {
+                    sentenceneighbours='{{Pas de voisins}}';
+                  }
                 } else if (interview>= 13) {
-                       sentenceneighbours=numneighbours+ ' {{voisins}} ['+node.data.neighbours+']';
-                } else {
-                       sentenceneighbours='{{Interview incomplet}}';
-                }
-                $('#graph-node-name').html(node.data.name + ' : ' + sentenceneighbours);
-                highlightRelatedNodes(node.id, true);
+                 sentenceneighbours=numneighbours+ ' {{voisins}} ['+node.data.neighbours+']';
+               } else {
+                 sentenceneighbours='{{Interview incomplet}}';
+               }
+               $('#graph-node-name').html(node.data.name + ' : ' + sentenceneighbours);
+               highlightRelatedNodes(node.id, true);
                 }, function() { // mouse out
                   highlightRelatedNodes(node.id, false);
                 });
@@ -427,19 +427,19 @@ var app_network = {
              springCoeff : 0.0004,
              gravity : -20,
              springTransform: function (link, spring) {
-                    spring.length = idealLength * (1 - link.data.lengthfactor);
-                  }
-           });
-           graphics.link(function(link){
-                        dashvalue='5, 0';
-                        if (link.data.isdash== 1){
-                                dashvalue='5, 2';
-                        }
-                        return Viva.Graph.svg('line')
-                                .attr('stroke', '#B7B7B7')
-                                .attr('stroke-dasharray', dashvalue)
-                                .attr('stroke-width', '0.4px');
-                    });
+              spring.length = idealLength * (1 - link.data.lengthfactor);
+            }
+          });
+            graphics.link(function(link){
+              dashvalue='5, 0';
+              if (link.data.isdash== 1){
+                dashvalue='5, 2';
+              }
+              return Viva.Graph.svg('line')
+              .attr('stroke', '#B7B7B7')
+              .attr('stroke-dasharray', dashvalue)
+              .attr('stroke-width', '0.4px');
+            });
             var renderer = Viva.Graph.View.renderer(graph, {
               layout: layout,
               graphics : graphics,
@@ -449,7 +449,7 @@ var app_network = {
             });
             renderer.run();
             setTimeout(function(){ renderer.pause();renderer.reset(); }, 200);
-            }
+          }
         });
 },
 show_stats: function (){
@@ -639,7 +639,7 @@ show_infos: function (){
       handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
     },
         success: function (data) { // si l'appel a bien fonctionné
-            devicesRouting = data.devices;
+        devicesRouting = data.devices;
             var skipPortableAndVirtual = true; // to minimize routing table by removing not interesting lines
             var routingTable = '';
             var routingTableHeader = '';
@@ -652,11 +652,17 @@ show_infos: function (){
               }
               var routesCount = app_network.getRoutesCount(nodeId);
               routingTableHeader += '<th>' + nodeId + '</th>';
-              var name = node.data.product_name.value
-              if(node.data.name.value != ''){
-                var name = node.data.location.value+' - '+node.data.name.value
+              if(node.data.basicType.value != 2){
+                var link ='index.php?v=d&p=openzwave&m=openzwave&server_id='+$("#sel_zwaveNetworkServerId").value()+'&logical_id='+nodeId;
+              }else{
+                var link ='#';
               }
-              routingTable += '<tr><td>' + name + '</td><td>' + nodeId + '</td>';
+              if(node.data.name.value != ''){
+                var name = '<span class="label label-primary">'+node.data.location.value+'</span> <a href="'+link+'">'+node.data.name.value+'</a>';
+              }else{
+                var name = '<a href="'+link+'">'+ node.data.product_name.value+'</a>';
+              }
+              routingTable += '<tr><td><a>' + name + '</td><td>' + nodeId + '</td>';
               $.each(devicesRouting, function (nnodeId, nnode) {
                 if (nnodeId == 255)
                   return;
