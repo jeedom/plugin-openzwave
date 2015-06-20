@@ -85,7 +85,6 @@ var app_health = {
       if(nodes[i].data.description.name != ''){
         var name = '<span class="label label-primary">'+nodes[i].data.description.location+'</span> '+nodes[i].data.description.name;
       }else{
-        //var name = nodes[i].data.product_name.value;
         var name = nodes[i].data.description.product_name
       }
       tbody += '<tr>';
