@@ -59,6 +59,7 @@ apt_install build-essential
 apt_install libudev-dev
 apt_install g++
 apt_install gcc
+apt_install python-lxml
 
 
 # Python
