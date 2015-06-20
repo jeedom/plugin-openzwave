@@ -123,12 +123,12 @@ $('#copyParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode">';
 	var foundIdentical=0;
 	$.each(nodes, function(key, val) {
-		if(key!=app_nodes.selected_node && val.data.product_name.value==nodes[app_nodes.selected_node].data.product_name.value){
+		if(key!=app_nodes.selected_node && val.description.product_name==nodes[app_nodes.selected_node].data.product_name.value){
 			foundIdentical=1;
-			if(val.data.name.value != ''){
-				options_node +='<option value="'+key+'">'+key+' : '+val.data.location.value+' - '+val.data.name.value+'</option>';
+			if(val.description.name != ''){
+				options_node +='<option value="'+key+'">'+key+' : '+val.description.location+' - '+val.description.name+'</option>';
 			}else{
-				options_node +='<option value="'+key+'">'+key+' : '+val.data.product_name.value+'</option>';
+				options_node +='<option value="'+key+'">'+key+' : '+val.description.product_name+'</option>';
 			}
 		}
 	});
@@ -148,10 +148,10 @@ $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode">';
 	$.each(nodes, function(key, val) {
 		if(arr_exists_nodes.indexOf(key)==-1 && key!=app_nodes.selected_node){
-			if(val.data.name.value != ''){
-				options_node +='<option value="'+key+'">'+key+' : '+val.data.location.value+' - '+val.data.name.value+'</option>';
+			if(val.description.name != ''){
+				options_node +='<option value="'+key+'">'+key+' : '+val.description.location+' - '+val.description.name+'</option>';
 			}else{
-				options_node +='<option value="'+key+'">'+key+' : '+val.data.product_name.value+'</option>';
+				options_node +='<option value="'+key+'">'+key+' : '+val.description.product_name+'</option>';
 			}
 		}
 	});
