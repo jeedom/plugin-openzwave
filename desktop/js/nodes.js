@@ -34,23 +34,16 @@ var app_nodes = {
 	},
 	init: function()
 	{
-		app_nodes.load_data();
+		controller_id = -1
+		app_nodes.load_data(true);
 		app_nodes.updater = setInterval(function(){ 
 			if($('#template-node').is(':visible')){
-				app_nodes.load_data(); 
+				app_nodes.load_data(false); 
 			}else{
 				app_nodes.hide();	
 			}
 		}, 2000);
 		$('#node-queryStageDescrition').popover({title: '', placement: 'right', trigger: 'hover'});
-		$("#node-nav").off("click","li").on("click","li",function() {
-			var nid = $(this).attr("nid");
-			app_nodes.selected_node = nid;
-			app_nodes.draw_nodes();
-			app_nodes.load_data();
-			app_nodes.load_stats(app_nodes.selected_node);
-			app_nodes.show_groups();
-		});
 		$("#tab-parameters").off("click").on("click",function() {
 			if(!nodes[app_nodes.selected_node].instances[0].commandClasses[112]){
 				$("#parameters").html('<br><div><b>{{Aucun paramètre prédefini trouvé pour ce noeud}}</b></div><br>');
@@ -177,7 +170,7 @@ $("#saveCopyParams").off("click").on("click",function (e) {
 		},
 		success: function(data) {
 			app_nodes.draw_nodes();
-			app_nodes.load_data();
+			app_nodes.load_data(true);
 			app_nodes.show_groups();
 			app_nodes.sendOk();
 			$('#copyParamsModal').modal('hide');
@@ -196,7 +189,7 @@ $("#saveGroups").off("click").on("click",function (e) {
 		},
 		success: function(data) {
 			app_nodes.draw_nodes();
-			app_nodes.load_data();
+			app_nodes.load_data(false);
 			app_nodes.show_groups();
 			app_nodes.sendOk();
 			$('#groupsModal').modal('hide');
@@ -356,7 +349,7 @@ $("#saveParam").off("click").on("click",function (e) {
 		},
 		success: function(data) {
 			app_nodes.sendOk();
-			app_nodes.load_data(); 
+			app_nodes.load_data(false); 
 			$('#paramsModal').modal('hide');
 		}
 	});
@@ -384,7 +377,7 @@ $("#applyValue").off("click").on("click",function (e) {
 			success: function(data) {
 				app_nodes.sendOk();
 				$('#valuesModal').modal('hide');
-				app_nodes.load_data(); 
+				app_nodes.load_data(false); 
 			}
 		});
 	}else if(valueType == "Raw"){
@@ -398,7 +391,7 @@ $("#applyValue").off("click").on("click",function (e) {
 			success: function(data) {
 				app_nodes.sendOk();
 				$('#valuesModal').modal('hide');
-				app_nodes.load_data(); 
+				app_nodes.load_data(false); 
 			}
 		});
 	}
@@ -413,7 +406,7 @@ $("#applyValue").off("click").on("click",function (e) {
 			success: function(data) {
 				app_nodes.sendOk();
 				$('#valuesModal').modal('hide');
-				app_nodes.load_data(); 
+				app_nodes.load_data(false); 
 			}
 		});
 	}
@@ -432,7 +425,7 @@ $("#savePolling").off("click").on("click",function (e) {
 		},
 		success: function(data) {
 			app_nodes.draw_nodes();
-			app_nodes.load_data();
+			app_nodes.load_data(false);
 			app_nodes.sendOk();
 			$('#pollingModal').modal('hide');
 			app_nodes.draw_nodes();
@@ -452,7 +445,7 @@ delete_group: function(node_id,group,node){
 		async: true, 
 		success: function(data) {
 			app_nodes.draw_nodes();
-			app_nodes.load_data();
+			app_nodes.load_data(false);
 			app_nodes.show_groups();
 			app_nodes.sendOk();
 		},
@@ -472,7 +465,7 @@ request_node_neighbours_update: function(node_id){
 		success: function(data) {
 			if(data['result']== true){
 				app_nodes.sendOk();
-				app_nodes.load_data(); 
+				app_nodes.load_data(false); 
 			}else{
 				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
 			}
@@ -490,7 +483,7 @@ healNode: function(node_id){
 		success: function(data) {
 			if(data['result']== true){
 				app_nodes.sendOk();
-				app_nodes.load_data(); 
+				app_nodes.load_data(false); 
 			}else{
 				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
 			}
@@ -507,7 +500,7 @@ test_node: function(node_id){
 		},
 		success: function(data) {
 			app_nodes.sendOk();
-			app_nodes.load_data(); 
+			app_nodes.load_data(false); 
 		}
 	});
 },
@@ -521,7 +514,7 @@ refresh_node_values: function(node_id){
 		},
 		success: function(data) {
 			app_nodes.sendOk();
-			app_nodes.load_data(); 
+			app_nodes.load_data(false); 
 		}
 	});
 },
@@ -535,7 +528,7 @@ request_node_dynamic: function(node_id){
 		},
 		success: function(data) {
 			app_nodes.sendOk();
-			app_nodes.load_data(); 
+			app_nodes.load_data(false); 
 		}
 	});
 },
@@ -550,7 +543,7 @@ refresh_node_info: function(node_id){
 		success: function(data) {
 			if(data['result']== true){
 				app_nodes.sendOk();
-				app_nodes.load_data(); 
+				app_nodes.load_data(false); 
 			}else{
 				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
 			}
@@ -567,7 +560,7 @@ has_node_failed: function(node_id){
 		},
 		success: function(data) {
 			app_nodes.sendOk();
-			app_nodes.load_data(); 
+			app_nodes.load_data(false); 
 		}
 	});
 },
@@ -582,7 +575,7 @@ remove_failed_node: function(node_id){
 		success: function(data) {
 			if(data['result']== true){
 				app_nodes.sendOk();
-				app_nodes.load_data(); 
+				app_nodes.load_data(false); 
 			}else{
 				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
 			}
@@ -600,7 +593,7 @@ replace_failed_node: function(node_id){
 		success: function(data) {
 			if(data['result']== true){
 				app_nodes.sendOk();
-				app_nodes.load_data(); 
+				app_nodes.load_data(false); 
 			}else{
 				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
 			}
@@ -617,7 +610,7 @@ send_node_information: function(node_id){
 		},
 		success: function(data) {
 			app_nodes.sendOk();
-			app_nodes.load_data(); 
+			app_nodes.load_data(false); 
 		}
 	});
 },
@@ -638,33 +631,27 @@ load_all: function(){
 					controller_id = i;
 				}
 			}
+		}
+	});
+},
+load_data: function(_global){
+	$.ajax({ 
+		url: path+"ZWaveAPI/Run/devices["+node_id+"]", 
+		dataType: 'json',
+		async: true, 
+		global : _global,
+		error: function (request, status, error) {
+			handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
+		},
+		success: function(data) {
+			if(Object.keys(nodes).length == 0){
+				app_nodes.load_all();
+			}
+			nodes[node_id] = data;
 			app_nodes.draw_nodes();
 			app_nodes.show_groups();
 		}
 	});
-},
-load_data: function(){
-	if(typeof node_id !== 'undefined' && !isNaN(node_id)){
-		$.ajax({ 
-			url: path+"ZWaveAPI/Run/devices["+node_id+"]", 
-			dataType: 'json',
-			async: true, 
-			global : false,
-			error: function (request, status, error) {
-				handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
-			},
-			success: function(data) {
-				if(Object.keys(nodes).length == 0){
-					app_nodes.load_all();
-				}
-				nodes[node_id] = data;
-				app_nodes.draw_nodes();
-				app_nodes.show_groups();
-			}
-		});
-	}else{
-		
-	}
 },
 load_stats: function(node_id){
 	$.ajax({ 
@@ -701,19 +688,15 @@ draw_nodes: function ()
 	var template_variable = $("#template-variable").html();
 	var template_parameter = $("#template-parameter").html();
 	var template_system = $("#template-system").html();
+	var z = app_nodes.selected_node;
+	if(nodes[z].data.isFailed){
+		var nodeIsFailed = nodes[z].data.isFailed.value
+	}else{
+		var nodeIsFailed = false;
+	}
+	var queryStage = nodes[z].data.state.value;
 
-	for (z in nodes){
-            // make a copy of node info & variables block template, set its nodeid
-            var display = "";
-            if (app_nodes.selected_node==z){
-            	if(nodes[z].data.isFailed){
-            		var nodeIsFailed = nodes[z].data.isFailed.value
-            	}else{
-            		var nodeIsFailed = false;
-            	}
-            	var queryStage = nodes[z].data.state.value;
-
-            	$("#node").attr("nid", z);
+	$("#node").attr("nid", z);
 	            // select the copied block
 	            var node = $(".node");
 	            var isWarning = false;
@@ -1154,83 +1137,83 @@ draw_nodes: function ()
 	            		}
 	            	}
 	            }
-	        }
+
+
+	        },
+	        get_translation : function(){
+	        	if(typeof node_id === 'undefined' || isNaN(node_id)){
+	        		return {configuration : {}};
+	        	}
+	        	var result = {configuration : {}};
+	        	$.ajax({ 
+	        		url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
+	        		dataType: 'json',
+	        		async: false, 
+	        		global : false,
+	        		data: {
+	        			action: "getConfiguration",
+	        			translation : 1,
+	        			manufacturer_id:nodes[node_id].data.manufacturerId.value,
+	        			product_type: nodes[node_id].data.manufacturerProductType.value,
+	        			product_id: nodes[node_id].data.manufacturerProductId.value,
+	        		},
+	        		success: function(data) {
+	        			result = data.result;
+	        		}
+	        	});
+	        	return result;
+	        },
+	        show_stats: function (){
+	        	var node = $(".node");
+	        	node.find(".stats_av_req_rtt").html(stats.averageRequestRTT);
+	        	node.find(".stats_av_res_rtt").html(stats.averageResponseRTT);
+	        	node.find(".stats_la_req_rtt").html(stats.lastRequestRTT);
+	        	node.find(".stats_la_res_rtt").html(stats.lastResponseRTT);
+	        	node.find(".stats_quality").html(stats.quality);
+	        	node.find(".stats_rec_cnt").html(stats.receivedCnt);
+	        	node.find(".stats_rec_dups").html(stats.receivedDups);
+	        	node.find(".stats_rec_ts").html(stats.receivedTS);
+	        	node.find(".stats_rec_uns").html(stats.receivedUnsolicited);
+	        	node.find(".stats_retries").html(stats.retries);
+	        	node.find(".stats_sen_cnt").html(stats.sentCnt);
+	        	node.find(".stats_sen_failed").html(stats.sentFailed);
+	        	node.find(".stats_sen_ts").html(stats.sentTS);
+	        },
+	        show_groups: function (){
+	        	var node = $(".node");
+	        	var template_group = $("#template-group").html();
+	        	var $template = $(".template");
+	        	var tr_groups="";
+	        	var node_groups=nodes[app_nodes.selected_node].groups;
+	        	$("#groups").empty();
+	        	$("#groups").append('<br>');
+	        	for (z in node_groups){
+	        		if (!isNaN(z)){
+	        			var values=node_groups[z].associations.split(';');
+	        			tr_groups="";
+	        			for(val in values){
+	        				if(values.length > 0 && values[val]!=""){
+	        					var id=z+'-'+values[val];
+	        					var node_id=values[val];
+	        					if(nodes[node_id]){
+	        						if(nodes[node_id].description.name != ''){
+	        							var node_name = nodes[node_id].description.location+' '+nodes[node_id].description.location;
+	        						}else{
+	        							var node_name=nodes[node_id].description.product_name;
+	        						}
+	        					}else{
+	        						var node_name="UNDEFINED";
+	        					}
+	        					tr_groups += "<tr gid='"+id+"'><td>"+node_id+" : "+node_name+"</td><td align='right'><button type='button' class='btn btn-danger btn-sm deleteGroup' data-groupindex='"+z+"' data-nodeindex='"+node_id+"'><i class='fa fa-trash-o'></i> {{Supprimer}}</button></td></tr>";
+	        				}
+	        			}
+	        			if(values.length < node_groups[z].maximumAssociations || values[val]==""){
+	        				var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="'+z+'"><i class="fa fa-plus"></i> {{Ajouter un noeud}}</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' {{(nombre maximum d\'association :}} '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
+	        			}else{
+	        				var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="'+z+'"><i class="fa fa-plus"></i> {{Ajouter un noeud}}</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' {{(nombre maximum d\'association :}} '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
+	        			}
+	        			$("#groups").append(newPanel);
+	        		}
+	        	}
+	        },
 	    }
-	},
-	get_translation : function(){
-		if(typeof node_id === 'undefined' || isNaN(node_id)){
-			return {configuration : {}};
-		}
-		var result = {configuration : {}};
-		$.ajax({ 
-			url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
-			dataType: 'json',
-			async: false, 
-			global : false,
-			data: {
-				action: "getConfiguration",
-				translation : 1,
-				manufacturer_id:nodes[node_id].data.manufacturerId.value,
-				product_type: nodes[node_id].data.manufacturerProductType.value,
-				product_id: nodes[node_id].data.manufacturerProductId.value,
-			},
-			success: function(data) {
-				result = data.result;
-			}
-		});
-		return result;
-	},
-	show_stats: function (){
-		var node = $(".node");
-		node.find(".stats_av_req_rtt").html(stats.averageRequestRTT);
-		node.find(".stats_av_res_rtt").html(stats.averageResponseRTT);
-		node.find(".stats_la_req_rtt").html(stats.lastRequestRTT);
-		node.find(".stats_la_res_rtt").html(stats.lastResponseRTT);
-		node.find(".stats_quality").html(stats.quality);
-		node.find(".stats_rec_cnt").html(stats.receivedCnt);
-		node.find(".stats_rec_dups").html(stats.receivedDups);
-		node.find(".stats_rec_ts").html(stats.receivedTS);
-		node.find(".stats_rec_uns").html(stats.receivedUnsolicited);
-		node.find(".stats_retries").html(stats.retries);
-		node.find(".stats_sen_cnt").html(stats.sentCnt);
-		node.find(".stats_sen_failed").html(stats.sentFailed);
-		node.find(".stats_sen_ts").html(stats.sentTS);
-	},
-	show_groups: function (){
-		var node = $(".node");
-		var template_group = $("#template-group").html();
-		var $template = $(".template");
-		var tr_groups="";
-		var node_groups=nodes[app_nodes.selected_node].groups;
-		$("#groups").empty();
-		$("#groups").append('<br>');
-		for (z in node_groups){
-			if (!isNaN(z)){
-				var values=node_groups[z].associations.split(';');
-				tr_groups="";
-				for(val in values){
-					if(values.length > 0 && values[val]!=""){
-						var id=z+'-'+values[val];
-						var node_id=values[val];
-						if(nodes[node_id]){
-							if(nodes[node_id].description.name != ''){
-								var node_name = nodes[node_id].description.location+' '+nodes[node_id].description.location;
-							}else{
-								var node_name=nodes[node_id].description.product_name;
-							}
-						}else{
-							var node_name="UNDEFINED";
-						}
-						tr_groups += "<tr gid='"+id+"'><td>"+node_id+" : "+node_name+"</td><td align='right'><button type='button' class='btn btn-danger btn-sm deleteGroup' data-groupindex='"+z+"' data-nodeindex='"+node_id+"'><i class='fa fa-trash-o'></i> {{Supprimer}}</button></td></tr>";
-					}
-				}
-				if(values.length < node_groups[z].maximumAssociations || values[val]==""){
-					var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="'+z+'"><i class="fa fa-plus"></i> {{Ajouter un noeud}}</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' {{(nombre maximum d\'association :}} '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
-				}else{
-					var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="'+z+'"><i class="fa fa-plus"></i> {{Ajouter un noeud}}</a></div><h3 class="panel-title" style="padding-top:10px;">'+z+' : '+node_groups[z].label+' {{(nombre maximum d\'association :}} '+node_groups[z].maximumAssociations+')</h3></div><div class="panel-body"><table class="table">'+tr_groups+'</table></div></div>';
-				}
-				$("#groups").append(newPanel);
-			}
-		}
-	},
-}
