@@ -1046,14 +1046,14 @@ class openzwaveCmd extends cmd {
 			}
 		} else {
 			$value = $result;
-			if ($value === true || $value == 'true') {
+			if ($value) {
 				return 1;
 			}
-			if ($value === false || $value == 'false') {
+			if ($value) {
 				return 0;
 			}
 			if (is_numeric($value)) {
-				return round($value, 1);
+				return round($value, 2);
 			}
 		}
 		return $value;

@@ -1371,7 +1371,7 @@ def get_assoc(device_id) :
     config = {}
     if(device_id in network.nodes) :
         if network.nodes[device_id].groups :
-            config['supported']={'value':'true'}
+            config['supported']={'value':True}
             for group in network.nodes[device_id].groups :
                 config[network.nodes[device_id].groups[group].index]={}
                 config[network.nodes[device_id].groups[group].index]['nodes']={'value':list(network.nodes[device_id].groups[group].associations),'updateTime':int(timestamp), 'invalidateTime':0}
@@ -1838,10 +1838,6 @@ def get_value6(device_id, instance_id, index,cc_id) :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].index == index:
                 if network.nodes[device_id].values[val].units=="F" :
                     return str((float(network.nodes[device_id].values[val].data) - 32) * 5.0/9.0)
-                elif network.nodes[device_id].values[val].type == "Bool" and network.nodes[device_id].values[val].data == True :
-                    return str('true')
-                elif network.nodes[device_id].values[val].type == "Bool" and network.nodes[device_id].values[val].data == False :
-                    return str('false')
                 else :
                     return str(network.nodes[device_id].values[val].data)
     else:
@@ -2115,7 +2111,7 @@ def press_button(device_id,instance_id, cc_id, index) :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 Value['data'] = {}
                 network._manager.pressButton(network.nodes[device_id].values[val].value_id)
-                Value['data'][val] = {'val': 'true'}
+                Value['data'][val] = {'val': True}
                 return jsonify(Value)
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2129,7 +2125,7 @@ def release_button(device_id,instance_id, cc_id, index) :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 Value['data'] = {}
                 network._manager.releaseButton(network.nodes[device_id].values[val].value_id)
-                Value['data'][val] = {'val': 'true'}
+                Value['data'][val] = {'val': True}
                 return jsonify(Value) 
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2363,8 +2359,7 @@ def get_device(fromtime):
                     changes['controller']={}
                     changes['controller']['controllerState'] = {"value":int(row["Value"])}
                 else :
-                    changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"])] = {}
-                    changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"])]["val"]= {"value":row["Value"],"type":row["Type"]}
+                    changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"])]= {"value":row["Value"],"type":row["Type"]}
             return jsonify(changes)            
     error = {
         'status' : 'error',
