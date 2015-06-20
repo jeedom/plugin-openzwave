@@ -522,8 +522,12 @@ def network_failed(network):
 def recovering_failed_nodes_asynchronous():
     add_log_entry("Check for failed nodes")
     for idNode in network.nodes:
+        if network.nodes[idNode].node_id == 0:
+            debug_print('remove fake nodeId: %s' % (idNode)) 
+            network.manager.removeFailedNode(network.home_id, idNode)
+            continue
         if network.nodes[idNode].is_failed:
-            debug_print('try recovering nodeId: %s' % (network.nodes[idNode].node_id)) 
+            debug_print('try recovering nodeId: %s' % (idNode)) 
             if network.manager.hasNodeFailed(network.home_id, idNode):
                 #avoid stress network
                 time.sleep(3)
@@ -586,17 +590,23 @@ def nodes_queried_some_dead(network):
     add_log_entry("All nodes have been queried, but some node ar mark dead") 
 
 def node_new(network, node_id):
+    if node_id == 0:
+        return
     add_log_entry('A new node (%s), not already stored in zwcfg*.xml file, was found.' % (node_id,))
     force_refresh_nodes.append(node_id)    
     
-def node_added(network, node):
+def node_added(network, node):    
     add_log_entry('A node has been added to OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
+    if node.node_id == 0:
+        return
     node.last_update=time.time()   
     if network.state >= 7: #STATE_AWAKED
         save_node_event(node.node_id, int(time.time()), "added") 
             
 def node_removed(network, node):
     add_log_entry('A node has been removed from OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
+    if node.node_id == 0:
+        return
     if network.state >= 7: #STATE_AWAKED
         save_node_event(node.node_id, int(time.time()), "removed")
     
@@ -806,6 +816,12 @@ def node_notification(args):
     device_id = int(args['nodeId'])    
     if(device_id in network.nodes) :
         myNode = network.nodes[device_id]
+        #try auto remove fake node with id = 0
+        if device_id == 0 and network.state >= 7:   # STATE_AWAKED
+            debug_print('remove fake nodeId: %s' % (node.node_id)) 
+            network.manager.removeFailedNode(network.home_id, device_id)
+            return
+        
         wakeup_time = get_wakeup_interval(device_id)
         if not hasattr(myNode, 'last_notification') :                         
             myNode.last_notification = NodeNotification(code, wakeup_time) 
@@ -1174,6 +1190,77 @@ def serialize_node_to_json(device_id):
                 
             else :
                 print 'a'
+    else:
+        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+    return tmpNode
+
+def serialize_node_health(device_id):    
+    tmpNode = {}    
+    if(device_id in network.nodes) :
+        
+        myNode = network.nodes[device_id]  
+        
+        if myNode.basic == 2: #STATIC_CONTROLLER   = 0x02
+            return tmpNode
+        try:
+            timestamp = int(myNode.last_update)
+        except TypeError:
+            timestamp = int(1)
+        
+        query_stage_index = convert_query_stage_to_int(myNode.query_stage)
+        tmpNode['data']= {}        
+        tmpNode['data']['description'] = {'name' : myNode.name, 'location':myNode.location ,'product_name': myNode.product_name} 
+        tmpNode['data']['type'] = {'basic' : myNode.basic,'generic': myNode.generic}
+        tmpNode['data']['state'] = {'value' : myNode.query_stage, 'index' : query_stage_index}
+        tmpNode['data']['isAwake'] = {'value' : myNode.is_awake}
+        tmpNode['data']['isReady'] = {'value' : myNode.is_ready}        
+        tmpNode['data']['can_wake_up'] = {'value' : myNode.can_wake_up()}        
+        if myNode.get_battery_level() != None:
+            battery_level = get_value_by_index(device_id, COMMAND_CLASS_BATTERY, 1, 0)
+            tmpNode['data']['battery_level'] = {'value' : battery_level.data, 'updateTime': battery_level.last_update}
+        else:
+            tmpNode['data']['battery_level'] = {'value' : None, 'updateTime':None}
+        
+        next_wakeup = None
+        if hasattr(myNode, 'last_notification') : 
+            notification = myNode.last_notification
+            next_wakeup = notification.next_wakeup
+            tmpNode['last_notification'] = {"receiveTime":notification.receive_time,
+                                            "description":notification.description,
+                                            "help":notification.help
+                                            }
+        else:
+            tmpNode['last_notification'] = {}             
+        tmpNode['data']['wakeup_interval'] = {'value': get_wakeup_interval(device_id), 'next_wakeup': next_wakeup}        
+        tmpNode['data']['isFailed'] = {'value' : myNode.is_failed}
+        tmpNode['data']['isListening'] = {'value' : myNode.is_listening_device}
+        tmpNode['data']['isRouting'] = {'value' : myNode.is_routing_device}
+        tmpNode['data']['isBeaming'] = {'value' : myNode.is_beaming_device}
+        tmpNode['data']['isFrequentListening'] = {'value' : myNode.is_frequent_listening_device}
+        tmpNode['data']['lastReceived'] = {'updateTime' : timestamp}
+        tmpNode['data']['maxBaudRate'] = {'value' : myNode.max_baud_rate}
+                        
+        statistics = network.manager.getNodeStatistics(network.home_id, device_id)
+        sentCnt = statistics['sentCnt']        
+        if sentCnt > 0 :
+            sentFailed = statistics['sentFailed'] 
+            sentOk = sentCnt - sentFailed
+            delivered = (sentOk* 100) / sentCnt 
+        else:
+            delivered = 0            
+        averageRequestRTT = statistics['averageRequestRTT']
+        tmpNode['data']['statistics'] = {'total' :sentCnt, 'delivered':delivered, 'deliveryTime': averageRequestRTT}
+        
+        have_group = False
+            
+        for groupIndex in myNode.groups :
+            if len(myNode.groups[groupIndex].associations) > 0:
+                have_group = True
+                break
+        tmpNode['data']['is_groups_ok'] = {'value' : have_group, 'enabled': len(myNode.groups) > 0 and query_stage_index >= 12 and myNode.generic != 2}
+        tmpNode['data']['is_neighbours_ok'] = {'value' : len(myNode.neighbors) > 0, 'neighbors': len(myNode.neighbors), 'enabled': myNode.generic != 1 and query_stage_index >13 } 
+        tmpNode['data']['is_manufacturer_specific_ok'] = {'value' : not is_none_or_empty(myNode.manufacturer_id) and not is_none_or_empty(myNode.product_id)  and not is_none_or_empty(myNode.product_type), 'enabled': query_stage_index >=7 } #ManufacturerSpecific2
+        
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return tmpNode
@@ -2289,79 +2376,6 @@ def get_network_neighbours():
     networkData['devices']=nodesData
     return jsonify(networkData)
 
-def serialize_node_health(device_id):    
-    tmpNode = {}    
-    if(device_id in network.nodes) :
-        myNode = network.nodes[device_id]        
-        try:
-            timestamp = int(myNode.last_update)
-        except TypeError:
-            timestamp = int(1)
-        
-        query_stage_index = convert_query_stage_to_int(myNode.query_stage)
-        tmpNode['data']= {}
-        tmpNode['data']['location'] = {'value' : myNode.location}
-        tmpNode['data']['name'] = {'value' : myNode.name}        
-               
-        tmpNode['data']['isVirtual'] = {'value' : None}
-        if network.controller.node_id == device_id and myNode.basic==1:
-            tmpNode['data']['basicType'] = {'value' : 2}
-        else:
-            tmpNode['data']['basicType'] = {'value' : myNode.basic}
-        tmpNode['data']['genericType'] = {'value' : myNode.generic}
-        tmpNode['data']['state'] = {'value' : myNode.query_stage, 'index' : query_stage_index}
-        tmpNode['data']['isAwake'] = {'value' : myNode.is_awake}
-        tmpNode['data']['isReady'] = {'value' : myNode.is_ready}        
-        tmpNode['data']['can_wake_up'] = {'value' : myNode.can_wake_up()}        
-        if myNode.get_battery_level() != None:
-            battery_level = get_value_by_index(device_id, COMMAND_CLASS_BATTERY, 1, 0)
-            tmpNode['data']['battery_level'] = {'value' : battery_level.data, 'updateTime': battery_level.last_update}
-        else:
-            tmpNode['data']['battery_level'] = {'value' : None, 'updateTime':None}
-        
-        next_wakeup = None
-        if hasattr(myNode, 'last_notification') : 
-            notification = myNode.last_notification
-            next_wakeup = notification.next_wakeup
-            tmpNode['last_notification'] = {"receiveTime":notification.receive_time,
-                                            "description":notification.description,
-                                            "help":notification.help
-                                            }
-        else:
-            tmpNode['last_notification'] = {}             
-        tmpNode['data']['wakeup_interval'] = {'value': get_wakeup_interval(device_id), 'next_wakeup': next_wakeup}        
-        tmpNode['data']['isFailed'] = {'value' : myNode.is_failed}
-        tmpNode['data']['isListening'] = {'value' : myNode.is_listening_device}
-        tmpNode['data']['isRouting'] = {'value' : myNode.is_routing_device}
-        tmpNode['data']['isBeaming'] = {'value' : myNode.is_beaming_device}
-        tmpNode['data']['isFrequentListening'] = {'value' : myNode.is_frequent_listening_device}
-        tmpNode['data']['lastReceived'] = {'updateTime' : timestamp}
-        tmpNode['data']['maxBaudRate'] = {'value' : myNode.max_baud_rate}
-                        
-        statistics = network.manager.getNodeStatistics(network.home_id, device_id)
-        sentCnt = statistics['sentCnt']        
-        if sentCnt > 0 :
-            sentFailed = statistics['sentFailed'] 
-            sentOk = sentCnt - sentFailed
-            delivered = (sentOk* 100) / sentCnt 
-        else:
-            delivered = 0            
-        averageRequestRTT = statistics['averageRequestRTT']
-        tmpNode['data']['statistics'] = {'total' :sentCnt, 'delivered':delivered, 'deliveryTime': averageRequestRTT}
-        
-        have_group = False
-        for groupIndex in myNode.groups :
-            if len(myNode.groups[groupIndex].associations) > 0:
-                have_group = True
-                break
-        tmpNode['data']['is_groups_ok'] = {'value' : have_group, 'enabled': query_stage_index >= 12 and myNode.generic != 2}
-        tmpNode['data']['is_neighbours_ok'] = {'value' : len(myNode.neighbors) > 0, 'neighbors': len(myNode.neighbors), 'enabled': myNode.generic != 1 and query_stage_index >13 } 
-        tmpNode['data']['is_manufacturer_specific_ok'] = {'value' : not is_none_or_empty(myNode.manufacturer_id) and not is_none_or_empty(myNode.product_id)  and not is_none_or_empty(myNode.product_type), 'enabled': query_stage_index >=7 } #ManufacturerSpecific2
-        
-    else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return tmpNode
-
 @app.route('/ZWaveAPI/GetNetworkHealth()',methods = ['GET'])
 def get_network_health():
     networkData={}
@@ -2578,49 +2592,6 @@ def test_network(device_id=0xff, count=3):
     except Exception as e:
         add_log_entry(str(e), 'error')
         return jsonify ({'error' : str(e)})
-
-@app.route('/ZWaveAPI/CommunicationStatistics',methods = ['GET'])
-def get_communication_statistics():
-    '''
-    "averageRequestRTT": 17, 
-    "averageResponseRTT": 0, 
-    "lastRequestRTT": 17, 
-    "lastResponseRTT": 0, 
-    "quality": 0,     
-    "receivedCnt": 0, 
-    "receivedDups": 0, 
-    "receivedTS": "2015-03-12 23:18:05:299 ", 
-    "receivedUnsolicited": 0, 
-    "retries": 0,     
-    "sentCnt": 1,     
-    "sentFailed": 0, 
-    "sentTS": "2015-03-12 23:18:09:010 "  
-    jeedom
-    'deliveryTime' == averageRequestRTT
-    'delivered' == sentCnt
-    '''
-    statistics = {}
-    for idNode in network.nodes:
-        results = network.manager.getNodeStatistics(network.home_id, idNode)
-        sentFailed = results['sentFailed']
-        sentCnt = results['sentCnt']
-        sentOk = sentCnt - sentFailed
-        averageRequestRTT = results['averageRequestRTT']
-        nodeStatistics = []        
-        for x in range(0, sentOk):
-            nodeStatistics.append({'date': int(time.time()),
-                                  'delivered': True,                              
-                                  'deliveryTime': averageRequestRTT,
-                                  'packetLength': 1,
-                                  })
-        for x in range(0, sentFailed):
-            nodeStatistics.append({'date': int(time.time()),
-                                  'delivered': False,                              
-                                  'deliveryTime' : averageRequestRTT,
-                                  'packetLength': 1,
-                                  })
-        statistics[idNode] = nodeStatistics
-    return jsonify(statistics)
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].SendNoOperation()',methods = ['GET'])
 def send_no_operation(device_id):
