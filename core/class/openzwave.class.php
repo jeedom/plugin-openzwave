@@ -1049,7 +1049,7 @@ class openzwaveCmd extends cmd {
 			if ($value) {
 				return 1;
 			}
-			if ($value) {
+			if (!$value) {
 				return 0;
 			}
 			if (is_numeric($value)) {
