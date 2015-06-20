@@ -284,8 +284,16 @@ $('#pollingModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var modal = $(this);
 	modal.find('.modal-title').text('Change polling ');
 	modal.find('.modal-body').html("<b>Change polling : </b>");
-	modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" value="'+valuePolling+'">');
-
+	var select = '<select class="form-control" id="newvaluevalue">';
+	select += '<option value="0">{{Auto}}</option>';
+	select += '<option value="1">{{30 min}}</option>';
+	select += '<option value="2">{{15 min}}</option>';
+	select += '<option value="3">{{10 min}}</option>';
+	select += '<option value="6">{{5 min}}</option>';
+	select += '<option value="30">{{1 min}}</option>';
+	select += '</option>';
+	modal.find('.modal-body').append(select);
+	modal.find('.modal-body').find('#newvaluevalue').val(valuePolling);
 });
 $("body").off("click",".editParam").on("click",".editParam",function (e) {
 	var id = $(this).data('paramid');
@@ -1102,7 +1110,21 @@ draw_nodes: function ()
 	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only==false){
 	            				row.find("td[key=variable-edit]").html('<button type="button" class="btn btn-primary editValue" data-valueidx="'+index+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></button>');
 	            			}
-	            			row.find("td[key=variable-polling]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity);
+	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 0){
+	            				row.find("td[key=variable-polling]").html('<span class="label label-success" style="font-size:1em;">{{Auto}}</span>');
+	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 1){
+	            				row.find("td[key=variable-polling]").html('<span class="label label-success" style="font-size:1em;">{{30 min}}</span>');
+	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 2){
+	            				row.find("td[key=variable-polling]").html('<span class="label label-success" style="font-size:1em;">{{15 min}}</span>');
+	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 3){
+	            				row.find("td[key=variable-polling]").html('<span class="label label-warning" style="font-size:1em;">{{10 min}}</span>');
+	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 6){
+	            				row.find("td[key=variable-polling]").html('<span class="label label-warning">{{5 min}}</span>');
+	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 30){
+	            				row.find("td[key=variable-polling]").html('<span class="label label-danger" style="font-size:1em;">{{1 min}}</span>');
+	            			}else{
+	            				row.find("td[key=variable-polling]").html('<span class="label label-default" style="font-size:1em;">'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'</span>');
+	            			}
 	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only==false){
 	            				row.find("td[key=variable-editpolling]").html('<button type="button" class="btn btn-primary editPolling" data-valueidx="'+index+'" data-valuepolling="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></button>');
 	            				row.find("td[key=variable-refresh]").html('<button type="button" class="btn btn-primary forceRefresh" data-valueidx="'+index+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-refresh"></i></button>');

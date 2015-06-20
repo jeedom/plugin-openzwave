@@ -484,7 +484,7 @@ options.set_save_log_level(log)
 options.set_logging(True)
 options.set_associate(True)                       
 options.set_save_configuration(True)              
-options.set_poll_interval(60000) #  60 seconds    
+options.set_poll_interval(180000) #  60 seconds    
 options.set_interval_between_polls(False)         
 options.set_notify_transactions(True) # Notifications when transaction complete is reported.           
 options.set_suppress_value_refresh(False) # if true, notifications for refreshed (but unchanged) values will not be sent.        
