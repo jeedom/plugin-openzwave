@@ -2746,12 +2746,3 @@ def set_poll_interval(seconds, intervalBetweenPolls):
     except Exception as e:
         add_log_entry(str(e), 'error')
         return jsonify ({'error' : str(e)})    
-    
-@app.route('/ZAutomation/api/v1/notifications',methods = ['GET'])
-def get_log_infos():
-    return jsonify ({'data' : True})
-    
-if __name__ == '__main__':
-    pid = str(os.getpid())
-    file(pidfile, 'w').write("%s\n" % pid)
-    app.run(host='0.0.0.0',port=int(port_server),debug=False)
