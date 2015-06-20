@@ -25,7 +25,7 @@
                 "unite": "",
                 "configuration": {
                     "class": "0x30",
-                    "value": "data[1].val"
+                    "value": "data[0].val"
 				}
 			}
         ]

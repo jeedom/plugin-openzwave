@@ -11,7 +11,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x31",
-                    "instanceId": 1,
+                    "instanceId": 0,
                     "value": "data[3].val"
                 }
             },
@@ -22,7 +22,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x31",
-                    "instanceId": 2,
+                    "instanceId": 0,
                     "value": "data[1].val"
                 }
             },
@@ -32,10 +32,10 @@
                 "subtype": "binary",
                 "isVisible": 1,
                 "configuration": {
-                    "class": "0x31",
+                    "class": "0x30",
                     "instanceId": 0,
-                    "value": "data[2].val",
-                    "returnStateTime": "4",
+                    "value": "data[0].val",
+                    "returnStateTime": "1",
                     "returnStateValue": "0"
                 },
                 "display": {
