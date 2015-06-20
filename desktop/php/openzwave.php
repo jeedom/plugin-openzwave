@@ -249,18 +249,21 @@ foreach (openzwave::listServerZwave() as $id => $server) {
    </div>
 
    <div class="form-group">
-    <label class="col-sm-2 control-label">{{Paramètres}}</label>
-    <div class="col-sm-5">
-      <a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fa fa-wrench"></i> {{Configuration}}</a>
-      <a class="btn btn-info" id="bt_deviceAssistant" title='{{Assistant de configuration spécifique}}' style="display:none;"><i class="fa fa-question-circle"></i> {{Assistant}}</a>
-      <a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank" style="display:none;"><i class="fa fa-book"></i> {{Documentation}}</a>
-    </div>
-     <label class="col-sm-2 control-label">{{Marque}}</label>
-    <div class="col-sm-3">
+    <label class="col-sm-2 control-label">{{Marque}}</label>
+    <div class="col-sm-10">
       <span class="tooltips label label-default">
         <span class="eqLogicAttr" data-l1key="configuration" data-l2key="product_name"></span>
         <span class="eqLogicAttr tooltips" data-l1key="configuration" data-l2key="conf_version" title="{{Version de la configuration}}"></span>
       </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">{{Paramètres}}</label>
+    <div class="col-sm-10">
+      <a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fa fa-wrench"></i> {{Configuration}}</a>
+      <a class="btn btn-info" id="bt_deviceAssistant" title='{{Assistant de configuration spécifique}}' style="display:none;"><i class="fa fa-question-circle"></i> {{Assistant}}</a>
+      <a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank" style="display:none;"><i class="fa fa-book"></i> {{Documentation}}</a>
     </div>
   </div>
   <center>

@@ -485,7 +485,7 @@ options.set_save_log_level(log)
 options.set_logging(True)
 options.set_associate(True)                       
 options.set_save_configuration(True)              
-options.set_poll_interval(180000) #  60 seconds    
+options.set_poll_interval(1800000) #  30 min    
 options.set_interval_between_polls(False)         
 options.set_notify_transactions(True) # Notifications when transaction complete is reported.           
 options.set_suppress_value_refresh(False) # if true, notifications for refreshed (but unchanged) values will not be sent.        
@@ -2777,11 +2777,8 @@ def set_poll_interval(seconds, intervalBetweenPolls):
     except Exception as e:
         add_log_entry(str(e), 'error')
         return jsonify ({'error' : str(e)})    
-    
-@app.route('/ZAutomation/api/v1/notifications',methods = ['GET'])
-def get_log_infos():
-    return jsonify ({'data' : True})
-    
+
+
 if __name__ == '__main__':
     pid = str(os.getpid())
     file(pidfile, 'w').write("%s\n" % pid)

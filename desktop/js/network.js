@@ -3,7 +3,13 @@ var app_network = {
     // note variable nodes is global!
 
     updater: false,
-    
+    durationConvert: function(d) {
+      d = Number(d);
+      var h = Math.floor(d / 3600);
+      var m = Math.floor(d % 3600 / 60);
+      var s = Math.floor(d % 3600 % 60);
+      return ((h > 0 ? h + "h" + (m < 10 ? "0" : "") : "") + m + "min" + (s < 10 ? "0" : "") + s); 
+    },
     timestampConverter :function(time){
     	if(time==1)
        return "N/A";
@@ -502,7 +508,7 @@ show_infos: function (){
         network.find(".network-sleeping-nodes-count").html(infos.sleepingNodesCount);
         network.find(".network-scenes-count").html(infos.scenesCount);
         
-        var pollInterval = parseInt(infos.pollInterval,0)/1000;
+        var pollInterval = app_network.durationConvert(parseInt(infos.pollInterval,0)/1000);
         
         network.find(".network-poll-interval").html(pollInterval);
         network.find(".network-isready").html(infos.isReady);
