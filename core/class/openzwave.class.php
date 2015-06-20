@@ -930,7 +930,7 @@ class openzwaveCmd extends cmd {
 				$value = intval($value);
 				break;
 			case 'bool':
-				$value = ($value === true || $value == 'true') ? 1 : 0;
+				$value = intval($value);
 				break;
 			case 'binary':
 				if (is_array($_val['value'])) {
