@@ -8,7 +8,7 @@ var app_network = {
       var h = Math.floor(d / 3600);
       var m = Math.floor(d % 3600 / 60);
       var s = Math.floor(d % 3600 % 60);
-      return ((h > 0 ? h + "h" + (m < 10 ? "0" : "") : "") + m + "min" + (s < 10 ? "0" : "") + s); 
+      return ((h > 0 ? h + " heure(s) " + (m < 10 ? "0" : "") : "") + m + " minute(s) " + (s < 10 ? "0" : "") + s) + ' seconde(s)'; 
     },
     timestampConverter :function(time){
     	if(time==1)
