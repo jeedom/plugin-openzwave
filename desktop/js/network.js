@@ -452,20 +452,6 @@ var app_network = {
             }
         });
 },
-load_stats: function(node_id){
-  $.ajax({ 
-    url: path+"ZWaveAPI/Data/0", 
-    dataType: 'json',
-    async: true, 
-    error: function (request, status, error) {
-      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-    },
-    success: function(data) {            
-     app_nodes.show_stats();               
-   }
- });
-},
-
 show_stats: function (){
  var network = $(".network");
  network.find(".stats_ACKCnt").html(infos.controllerStatistics.ACKCnt);

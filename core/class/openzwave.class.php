@@ -35,7 +35,7 @@ class openzwave extends eqLogic {
 					echo "Server addr : " . $server['addr'] . "\n";
 					echo "Port : " . $server['port'] . "\n";
 					echo "Test connection to zwave server...";
-					self::callOpenzwave('/ZWaveAPI/Data/0', $serverID);
+					self::callOpenzwave('/ZWaveAPI/Run/GetControllerStatus()', $serverID);
 					echo "OK\n";
 				} catch (Exception $e) {
 					echo "NOK\n";
@@ -144,21 +144,6 @@ class openzwave extends eqLogic {
 		}
 	}
 
-	public static function getZwaveInfo($_path, $_serverId = 0) {
-		$results = self::callOpenzwave('/ZWaveAPI/Data/0', $_serverId);
-		if ($_path != '') {
-			$paths = explode('::', $_path);
-			foreach ($paths as $path) {
-				if (isset($results[$path])) {
-					$results = $results[$path];
-				} else {
-					return null;
-				}
-			}
-		}
-		return $results;
-	}
-
 	public static function backup($_path) {
 		exec('cp /opt/python-openzwave/zwcfg_*.xml ' . $_path);
 	}
@@ -180,31 +165,24 @@ class openzwave extends eqLogic {
 						'level' => 'warning',
 						'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $result['value'],
 					));
-					self::syncEqLogicWithRazberry($serverID);
+					sleep(5);
+					self::syncEqLogicWithRazberry($serverID, $result['value']);
 				} else if ($key == 'controller' && isset($result['controllerState'])) {
 					nodejs::pushUpdate('zwave::controller.data.controllerState', array('name' => $server['name'], 'state' => $result['controllerState']['value'], 'serverId' => $serverID));
 				} else if ($key == 'controller.data.lastIncludedDevice' && $result['value'] != null) {
 					nodejs::pushUpdate('zwave::' . $key, array('name' => $server['name'], 'state' => 0, 'serverId' => $serverID));
-					$eqLogic = self::getEqLogicByLogicalIdAndServerId($result['value'], $serverID);
-					if (!is_object($eqLogic)) {
+					for ($i = 0; $i < 45; $i++) {
 						nodejs::pushUpdate('jeedom::alert', array(
 							'level' => 'warning',
-							'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration', __FILE__),
+							'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration.Pause de ', __FILE__) . (45 - $i) . __(' pour synchronisation avec le module', __FILE__),
 						));
-						sleep(5);
-						for ($i = 0; $i < 45; $i++) {
-							nodejs::pushUpdate('jeedom::alert', array(
-								'level' => 'warning',
-								'message' => __('Pause de ', __FILE__) . (45 - $i) . __(' pour synchronisation avec le module', __FILE__),
-							));
-							sleep(1);
-						}
-						nodejs::pushUpdate('jeedom::alert', array(
-							'level' => 'warning',
-							'message' => __('Inclusion en cours...', __FILE__),
-						));
-						self::syncEqLogicWithRazberry($serverID);
+						sleep(1);
 					}
+					nodejs::pushUpdate('jeedom::alert', array(
+						'level' => 'warning',
+						'message' => __('Inclusion en cours...', __FILE__),
+					));
+					self::syncEqLogicWithRazberry($serverID, $result['value']);
 				} else {
 					$explodeKey = explode('.', $key);
 					if (!isset($explodeKey[1])) {
@@ -247,15 +225,68 @@ class openzwave extends eqLogic {
 		return null;
 	}
 
-	public static function syncEqLogicWithRazberry($_serverId = 0) {
-		$results = self::callOpenzwave('/ZWaveAPI/Data/0', $_serverId);
-		if (!isset($results['controller']['data']['networkstate']['value']) || $results['controller']['data']['networkstate']['value'] < 7) {
+	public static function syncEqLogicWithRazberry($_serverId = 0, $_logical_id = null) {
+		try {
+			$controlerState = self::callOpenzwave('/ZWaveAPI/Run/GetControllerStatus()', $_serverId);
+			$state = $controlerState['result']['data']['networkstate']['value'];
+		} catch (Exception $e) {
+			$state = 10;
+		}
+		if ($state < 7) {
 			nodejs::pushUpdate('jeedom::alert', array(
 				'level' => 'warning',
 				'message' => __('Le controleur est occupé veuillez réessayer plus tard', __FILE__),
 			));
 			return;
 		}
+		if ($_logical_id !== null) {
+			$eqLogic = self::getEqLogicByLogicalIdAndServerId($_logical_id, $_serverId);
+			if (is_object($eqLogic)) {
+				if (config::byKey('autoRemoveExcludeDevice', 'openzwave') == 1) {
+					$eqLogic->remove();
+				}
+				nodejs::pushUpdate('jeedom::alert', array(
+					'level' => 'warning',
+					'message' => '',
+				));
+				return;
+			}
+			$result = self::callOpenzwave('/ZWaveAPI/Run/devices[' . $_logical_id . ']', $_serverId);
+			if (count($result) == 0) {
+				nodejs::pushUpdate('jeedom::alert', array(
+					'level' => 'danger',
+					'message' => __('Aucun module trouvé correspondant à cette ID : ', __FILE__) . $_logical_id,
+				));
+				return;
+			}
+			$eqLogic = new eqLogic();
+			$eqLogic->setEqType_name('openzwave');
+			$eqLogic->setIsEnable(1);
+			$eqLogic->setLogicalId($_logical_id);
+			if (isset($result['data']['product_name']['value']) && trim($result['data']['product_name']['value']) != '') {
+				$eqLogic->setName($eqLogic->getLogicalId() . ' ' . $result['data']['product_name']['value']);
+			} else {
+				$eqLogic->setName('Device ' . $_logical_id);
+			}
+			$eqLogic->setConfiguration('product_name', $result['data']['product_name']['value']);
+			$eqLogic->setConfiguration('manufacturer_id', $result['data']['manufacturerId']['value']);
+			$eqLogic->setConfiguration('product_type', $result['data']['manufacturerProductType']['value']);
+			$eqLogic->setConfiguration('product_id', $result['data']['manufacturerProductId']['value']);
+			$eqLogic->setConfiguration('serverID', $_serverId);
+			$eqLogic->setIsVisible(1);
+			$eqLogic->save();
+			$eqLogic = openzwave::byId($eqLogic->getId());
+			$include_device = $eqLogic->getId();
+			$eqLogic->createCommand(false, $result);
+			nodejs::pushUpdate('zwave::includeDevice', $include_device);
+			nodejs::pushUpdate('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => '',
+			));
+			return;
+		}
+
+		$results = self::callOpenzwave('/ZWaveAPI/Data/0', $_serverId);
 		$findDevice = array();
 		$include_device = '';
 		$controller_id = $results['controller']['data']['nodeId']['value'];
@@ -291,7 +322,7 @@ class openzwave extends eqLogic {
 				$eqLogic->save();
 				$eqLogic = openzwave::byId($eqLogic->getId());
 				$include_device = $eqLogic->getId();
-				$eqLogic->createCommand();
+				$eqLogic->createCommand(false, $result);
 			} else {
 				if (isset($result['data']['product_name']['value'])) {
 					$eqLogic->setConfiguration('product_name', $result['data']['product_name']['value']);
@@ -714,7 +745,7 @@ class openzwave extends eqLogic {
 		return false;
 	}
 
-	public function createCommand($_update = false) {
+	public function createCommand($_update = false, $_data = null) {
 		$return = array();
 		if (!is_numeric($this->getLogicalId())) {
 			return;
@@ -727,7 +758,11 @@ class openzwave extends eqLogic {
 			'level' => 'warning',
 			'message' => __('Création des commandes en mode automatique', __FILE__),
 		));
-		$results = self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . ']', $this->getConfiguration('serverID', 1));
+		if ($_data == null) {
+			$results = self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . ']', $this->getConfiguration('serverID', 1));
+		} else {
+			$results = $_data;
+		}
 		if (isset($results['instances']) && is_array($results['instances'])) {
 			foreach ($results['instances'] as $instanceID => $instance) {
 				if (isset($instance['commandClasses']) && is_array($instance['commandClasses'])) {

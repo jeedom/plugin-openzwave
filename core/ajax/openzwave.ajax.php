@@ -122,8 +122,8 @@ try {
 		ajax::success($eqLogic->getInfo());
 	}
 
-	if (init('action') == 'getZwaveInfo') {
-		ajax::success(openzwave::getZwaveInfo(init('path'), init('serverId', 1)));
+	if (init('action') == 'getControllerState') {
+		ajax::success(openzwave::callOpenzwave('/ZWaveAPI/Run/GetControllerStatus()', init('serverID')));
 	}
 
 	if (init('action') == 'callRazberry') {
