@@ -102,17 +102,18 @@ $('#div_listIncludeSever').delegate('.changeIncludeState','click', function() {
              html += '</div>';
              html += '</div>';
              $('#div_listIncludeSever').append(html);
-             var controllerState = getZwaveInfo('controller::data::controllerState::value',i);
-             if (controllerState == "0") {
+             var controllerState = getControllerState(i);
+             var networkState = controllerState.result.data.controllerState.value;
+             if (networkState == "0") {
                 $('#div_inclusionAlert'+i).html('{{Aucun mode actif}}');
             }
-            if (controllerState == "1") {
+            if (networkState == "1") {
                 $('#div_inclusionAlert'+i).html('{{Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode}}');
                 $('.changeIncludeState[data-mode=1][data-serverID='+i+']').removeClass('ui-btn-a').addClass('ui-btn-b');
                 $('.changeIncludeState[data-mode=1][data-serverID='+i+']').attr('data-state', 0);
                 $('.changeIncludeState[data-mode=1][data-serverID='+i+']').html('<i class="fa fa-sign-in fa-rotate-90" style="font-size: 6em;"></i><br/>{{Stop inclusion}}');
             }
-            if (controllerState == "5") {
+            if (networkState == "5") {
                 $('#div_inclusionAlert'+i).html('{{Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}');
                 $('.changeIncludeState[data-mode=0][data-serverID='+i+']').removeClass('ui-btn-a').addClass('ui-btn-b');
                 $('.changeIncludeState[data-mode=0][data-serverID='+i+']').attr('data-state', 0);
@@ -153,14 +154,13 @@ jeedom.object.all({success: function(objects) {
 }
 
 
-function getZwaveInfo(_path,_serverID) {
+function getControllerState(_serverID) {
     var result = '';
     $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
         url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
         data: {
-            action: "getZwaveInfo",
-            path: _path,
+            action: "getControllerState",
             serverID: _serverID,
         },
         dataType: 'json',
