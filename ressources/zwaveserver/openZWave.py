@@ -644,19 +644,15 @@ def normalize_short_value(value):
    
 def extract_data(value, displayRaw = False):
     if value.type == "Bool":
-        if value.data:
-            value2 = 'true'
-        else:
-            value2 = 'false'
+        return value.data
     elif value.units == "F":
-        value2 = str((float(value.data_as_string) - 32) * 5.0 / 9.0)
+        return (float(value.data_as_string) - 32) * 5.0 / 9.0
     elif value.type == "Raw":
-        value2 = binascii.b2a_hex(value.data)
+        result = binascii.b2a_hex(value.data)
         if displayRaw :
-            print('Raw Signal : %s' % value2)
-    else:
-        value2 = str(value.data_as_string)
-    return value2
+            print('Raw Signal : %s' % result)
+        return result
+    return value.data
 
 def can_execute_network_command(allowed_queue_count=25):
     if not network.controller.is_primary_controller:
@@ -1021,24 +1017,16 @@ def serialize_node_to_json(device_id):
         try :
             manufacturer_id=int(myNode.manufacturer_id,16)
         except ValueError:
-            manufacturer_id=""
+            manufacturer_id = None
         try :
             product_id=int(myNode.product_id,16)
         except ValueError:
-            product_id=""
+            product_id = None
         try :
             product_type=int(myNode.product_type,16)
         except ValueError:
-            product_type=""
-        try :
-            location=int(myNode.location,16)
-        except ValueError:
-            location=""
-        try :
-            name=int(myNode.name,16)
-        except ValueError:
-            name=""
-        
+            product_type = None
+                    
         tmpNode['data']= {}
         tmpNode['data']['manufacturerId'] = {'value' : manufacturer_id, 'hex': '0x' + myNode.manufacturer_id}
         tmpNode['data']['vendorString'] = {'value' : myNode.manufacturer_name}
@@ -1053,63 +1041,30 @@ def serialize_node_to_json(device_id):
         if network.controller.node_id == device_id and myNode.basic==1:
             tmpNode['data']['basicType'] = {'value' : 2}
         else:
-            tmpNode['data']['basicType'] = {'value' : myNode.basic}
-            
+            tmpNode['data']['basicType'] = {'value' : myNode.basic}            
         tmpNode['data']['genericType'] = {'value' : myNode.generic}
-        tmpNode['data']['specificType'] = {'value' : myNode.specific}
-        
-        tmpNode['data']['type'] = {'value' : myNode.type}
-            
+        tmpNode['data']['specificType'] = {'value' : myNode.specific}        
+        tmpNode['data']['type'] = {'value' : myNode.type}            
         tmpNode['data']['state'] = {'value' : str(myNode.query_stage)}
-        if myNode.is_awake:
-            tmpNode['data']['isAwake'] = {'value' : 'true',"updateTime":timestamp}
-        else :                                                    
-            tmpNode['data']['isAwake'] = {'value' : '',"updateTime":timestamp}
-        if myNode.is_ready:
-            tmpNode['data']['isReady'] = {'value' : 'true',"updateTime":timestamp}        
-        else :                                                    
-            tmpNode['data']['isReady'] = {'value' : 'false',"updateTime":timestamp}
-        if myNode.can_wake_up():
-            tmpNode['data']['can_wake_up'] = {'value' : 'true'}        
-        else :                                                    
-            tmpNode['data']['can_wake_up'] = {'value' : 'false'}
+        tmpNode['data']['isAwake'] = {'value' : myNode.is_awake,"updateTime":timestamp}
+        tmpNode['data']['isReady'] = {'value' : myNode.is_ready,"updateTime":timestamp}        
+        tmpNode['data']['can_wake_up'] = {'value' : myNode.can_wake_up()}        
         tmpNode['data']['battery_level'] = {'value' : myNode.get_battery_level()} 
-        if myNode.is_failed :
-            tmpNode['data']['isFailed'] = {'value' : 'true'}
-        if myNode.is_listening_device :
-            tmpNode['data']['isListening'] = {'value' : 'true'}
-        else :                                                    
-            tmpNode['data']['isListening'] = {'value' : 'false'}
-        if myNode.is_routing_device:
-            tmpNode['data']['isRouting'] = {'value' : 'true'}
-        else :                                                    
-            tmpNode['data']['isRouting'] = {'value' : 'false'}
-        if myNode.is_security_device:
-            tmpNode['data']['isSecurity'] = {'value' : 'true'}
-        else :                                                    
-            tmpNode['data']['isSecurity'] = {'value' : 'false'}     
-        if myNode.is_beaming_device:
-            tmpNode['data']['isBeaming'] = {'value' : 'true'}
-        else :                                                    
-            tmpNode['data']['isBeaming'] = {'value' : 'false'}   
-        if myNode.is_frequent_listening_device:
-            tmpNode['data']['isFrequentListening'] = {'value' : 'true'}
-        else :                                                    
-            tmpNode['data']['isFrequentListening'] = {'value' : 'false'}     
-            
+        tmpNode['data']['isFailed'] = {'value' : myNode.is_failed}
+        tmpNode['data']['isListening'] = {'value' : myNode.is_listening_device}
+        tmpNode['data']['isRouting'] = {'value' : myNode.is_routing_device}
+        tmpNode['data']['isSecurity'] = {'value' : myNode.is_security_device}
+        tmpNode['data']['isBeaming'] = {'value' : myNode.is_beaming_device}
+        tmpNode['data']['isFrequentListening'] = {'value' : myNode.is_frequent_listening_device}
         tmpNode['data']['security'] = {'value' : myNode.security}        
         tmpNode['data']['lastReceived'] = {'updateTime' : timestamp}
-        tmpNode['data']['maxBaudRate'] = {'value' : myNode.max_baud_rate}
-        
+        tmpNode['data']['maxBaudRate'] = {'value' : myNode.max_baud_rate} 
         
         tmpNode['instances'] = {"updateTime":timestamp}    
-        tmpNode['groups'] = {"updateTime":timestamp}
-            
+        tmpNode['groups'] = {"updateTime":timestamp}            
         for groupIndex in myNode.groups:
             group = myNode.groups[groupIndex]
-            tmpNode['groups'][groupIndex] = {"label":group.label, "maximumAssociations": group.max_associations, "associations": concatenate_list(group.associations)}  
-        
-        
+            tmpNode['groups'][groupIndex] = {"label":group.label, "maximumAssociations": group.max_associations, "associations": concatenate_list(group.associations)}        
         if hasattr(myNode, 'last_notification') : 
             notification = myNode.last_notification
             tmpNode['last_notification'] = {"receiveTime":notification.receive_time,
@@ -1119,7 +1074,6 @@ def serialize_node_to_json(device_id):
                                             "next_wakeup": notification.next_wakeup}
         else:
             tmpNode['last_notification'] = {}
-        
             
         #for val in myNode.values.keys() : 
         for val in myNode.values : 
@@ -1127,19 +1081,16 @@ def serialize_node_to_json(device_id):
             if myValue.genre != 'Basic':
                 typeStandard = get_standard_value_type(myValue.type)
             else:
-                typeStandard = 'int'
-            
+                typeStandard = 'int'            
             if myValue.type == 'Short':
-                value2 = str(normalize_short_value(myValue.data))
+                value2 = normalize_short_value(myValue.data)
             else:
                 value2 = extract_data(myValue)
-            instance2 = change_instance(myValue)
-            
+            instance2 = change_instance(myValue)            
             if myValue.index :
-                index2=myValue.index
+                index2 = myValue.index
             else :
-                index2=0
-            
+                index2 = 0            
             pendingState = None    
             data_items = concatenate_list(myValue.data_items)
             if hasattr(myValue, 'pendingConfiguration' ):
@@ -1265,55 +1216,35 @@ def serialize_node_health(device_id):
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return tmpNode
 
-def serialize_controller_to_json():    
-    result={}
-    controllerdata = {
-        'name' : 'controller.data',
-        'type' : 'NoneType',
-        'value' : 'null'
-    }
-    result['data']=controllerdata  
-    lastExcludedDevice = {
-        'name' : 'lastExcludedDevice',
-        'type' : 'NoneType',
-        'value' : 'null'
-    }
-    lastIncludedDevice = {
-        'name' : 'lastIncludedDevice',
-        'type' : 'NoneType',
-        'value' : 'null'
-    }            
-    roles = {'isPrimaryController': network.controller.is_primary_controller,
-             'isStaticUpdateController': network.controller.is_static_update_controller,
-             'isBridgeController': network.controller.is_bridge_controller
-    }
-    result['data']['roles']=roles                      
-    result['data']['nodeId']={'value':network.controller.node_id}            
-
+def get_network_mode():
     '''
     if the controller is flag as busy I set the coresponding networkInformations.controllerState, 
     if not yet busy, I ignore the actual ControllerMode and assume is idle
     '''
     if networkInformations.controllerIsBusy  :
         if networkInformations.actualMode == ControllerMode.AddDevice:
-            result['data']['controllerState']={'value':AddDevice}
+            return AddDevice
         elif networkInformations.actualMode == ControllerMode.RemoveDevice:
-            result['data']['controllerState']={'value':RemoveDevice}
+            return RemoveDevice
         else:
-            # not suppose
-            result['data']['controllerState']={'value':Idle}
-            # I reset the flag
-            networkInformations.actualMode = ControllerMode.Idle
+            return Idle
     else:
-        result['data']['controllerState']={'value':Idle}
+        return Idle
         
-    result['data']['lastExcludedDevice']=lastExcludedDevice
-    result['data']['lastIncludedDevice']=lastIncludedDevice
-    result['data']['softwareRevisionVersion']={"value":''+network.controller.ozw_library_version+' '+network.controller.python_library_version}            
+def serialize_controller_to_json():    
+    result={}     
+    result['data'] = {}         
+   
+    result['data']['roles'] = {'isPrimaryController': network.controller.is_primary_controller,
+                               'isStaticUpdateController': network.controller.is_static_update_controller,
+                               'isBridgeController': network.controller.is_bridge_controller
+                               }                      
+    result['data']['nodeId'] = {'value':network.controller.node_id}     
+    result['data']['mode'] = {'value': get_network_mode()}   
+    result['data']['softwareVersion'] = {'ozw_library': network.controller.ozw_library_version, 'python_library':  network.controller.python_library_version}            
     result['data']['notification'] = networkInformations.lastControllerNotification
     result['data']['isBusy'] = {"value" : networkInformations.controllerIsBusy} 
     result['data']['networkstate'] = {"value" : network.state} 
-        
     return result
 
 def changes_value_polling(frequence, value):
@@ -2411,13 +2342,15 @@ def get_nodes_list():
         nodesData[device_id] = tmpNode
     result['devices']=nodesData
     return jsonify(result)
-    
+            
 @app.route('/ZWaveAPI/Data/<int:fromtime>',methods = ['GET'])
 def get_device(fromtime):
     timestamp = int(time.time())
     if network != None and network.state >= 5:   # STATE_STARTED 
         if network.nodes:            
-            changes = {}
+            changes = {}               
+            changes['controller'] = {'state' :network.state, 'mode': get_network_mode()} 
+                        
             global con
             con.row_factory = lite.Row
             cur = con.cursor() 
@@ -2475,12 +2408,7 @@ def get_network_status():
                          'isStaticUpdateController': network.controller.is_static_update_controller,
                          'isBridgeController': network.controller.is_bridge_controller
                          }
-        if networkInformations.actualMode == ControllerMode.AddDevice:
-            networkStatus['controllerState']= AddDevice
-        elif networkInformations.actualMode == ControllerMode.RemoveDevice:
-            networkStatus['controllerState']= RemoveDevice
-        else:
-            networkStatus['controllerState']= Idle
+        networkStatus['mode'] = get_network_mode()
     else:
         networkStatus = {}
     return jsonify(networkStatus)
@@ -2732,12 +2660,11 @@ def get_controller_status() :
         controllerData = {}
         if network != None and network.state >= 5:   # STATE_STARTED
             if network.controller :
-                controllerData = serialize_controller_to_json()    
-                
+                controllerData = serialize_controller_to_json() 
         return jsonify ({'result' : controllerData})
     except Exception as e:
         add_log_entry(str(e), 'error')
-        return jsonify ({'result' : str(e)})
+        return jsonify ({'error' : str(e)})
 
 @app.route('/ZWaveAPI/Run/GetOZLogs()',methods = ['GET'])
 def get_openzwave_logs() :
