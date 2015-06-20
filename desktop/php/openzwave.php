@@ -16,9 +16,9 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 		try {
 			$controlerState = openzwave::callOpenzwave('/ZWaveAPI/Run/GetControllerStatus()', $id);
 			$state = $controlerState['result']['data']['networkstate']['value'];
-			$controlerState = $controlerState['result']['data']['controllerState']['value'];
+			$controlerState = $controlerState['result']['data']['mode']['value'];
 		} catch (Exception $e) {
-			$controlerState = 0;
+			$controlerState = null;
 		}
 		if ($state < 7) {
 			echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert' . $id . '" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Openzwave est en cours de démarrage sur ' . $server['name'] . '.}}</div>';

@@ -2345,12 +2345,9 @@ def get_nodes_list():
             
 @app.route('/ZWaveAPI/Data/<int:fromtime>',methods = ['GET'])
 def get_device(fromtime):
-    timestamp = int(time.time())
     if network != None and network.state >= 5:   # STATE_STARTED 
         if network.nodes:            
-            changes = {}               
-            changes['controller'] = {'state' :network.state, 'mode': get_network_mode()} 
-                        
+            changes = {}   
             global con
             con.row_factory = lite.Row
             cur = con.cursor() 
@@ -2359,9 +2356,9 @@ def get_device(fromtime):
             cur.execute("DELETE FROM Events")
             for row in rows:
                 if row["Commandclass"] == 0 and row["Value"]=="removed":
-                    changes['controller.data.lastExcludedDevice'] = {"value":row["Node"]}
+                    changes['controller.lastExcludedDevice'] = {"value":row["Node"]}
                 elif row["Commandclass"] == 0 and row["Value"]=="added":
-                    changes['controller.data.lastIncludedDevice'] = {"value":row["Node"]}
+                    changes['controller.lastIncludedDevice'] = {"value":row["Node"]}
                 elif row["Commandclass"] == 0 and row["Value"] in ["0","1","5"]:
                     changes['controller']={}
                     changes['controller']['controllerState'] = {"value":int(row["Value"])}
@@ -2371,7 +2368,7 @@ def get_device(fromtime):
             return jsonify(changes)            
     error = {
         'status' : 'error',
-        'msg' : 'unable to retrieve ideas'
+        'msg' : 'unable to retrieve nodes'
     }
     return jsonify(error)
     

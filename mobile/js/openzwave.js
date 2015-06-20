@@ -103,7 +103,7 @@ $('#div_listIncludeSever').delegate('.changeIncludeState','click', function() {
              html += '</div>';
              $('#div_listIncludeSever').append(html);
              var controllerState = getControllerState(i);
-             var networkState = controllerState.result.data.controllerState.value;
+             var networkState = controllerState.result.data.mode.value;
              if (networkState == "0") {
                 $('#div_inclusionAlert'+i).html('{{Aucun mode actif}}');
             }
