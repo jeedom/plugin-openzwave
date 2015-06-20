@@ -623,7 +623,7 @@ send_node_information: function(node_id){
 },
 load_all: function(){
 	$.ajax({ 
-		url: path+"ZWaveAPI/Data/0", 
+		url: path+"ZWaveAPI/GetNodesList()", 
 		dataType: 'json',
 		global: false,
 		async: true,     
@@ -632,7 +632,12 @@ load_all: function(){
 		},  
 		success: function(data) {
 			nodes = data['devices'];
-			controller = data['controller'];
+			controller_id = -1;
+			for(var i in data['devices']){
+				if(data['devices'][i]['description']['is_static_controller']){
+					controller_id = i;
+				}
+			}
 			app_nodes.draw_nodes();
 			app_nodes.show_groups();
 		}
@@ -697,38 +702,17 @@ draw_nodes: function ()
 	var template_parameter = $("#template-parameter").html();
 	var template_system = $("#template-system").html();
 
-	if(typeof controller !== 'undefined'){
-		var networkstate = controller.data.networkstate.value;
-	}else{
-		var networkstate = 10;
-	}
-	var disabledCommand = networkstate<5;
-
-	$("#requestNodeNeighboursUpdate").prop("disabled",disabledCommand);
-	$("#healNode").prop("disabled",disabledCommand);
-	$("#testNode").prop("disabled",disabledCommand);
-	$("#refreshNodeValues").prop("disabled",disabledCommand);
-	$("#requestNodeDynamic").prop("disabled",disabledCommand);
-	$("#refreshNodeInfo").prop("disabled",disabledCommand);
-	$("#hasNodeFailed").prop("disabled",disabledCommand);
-	$("#removeFailedNode").prop("disabled",disabledCommand);
-	$("#replaceFailedNode").prop("disabled",disabledCommand);
-	$("#sendNodeInformation").prop("disabled",disabledCommand);
-
 	for (z in nodes){
-
-            // node entry in left hand side navigation list
-            var iconcolor="";
-            if(nodes[z].data.isFailed){
-            	var nodeIsFailed = nodes[z].data.isFailed.value
-            }else{
-            	var nodeIsFailed = "false";
-            }
-            var queryStage = nodes[z].data.state.value;
-
             // make a copy of node info & variables block template, set its nodeid
             var display = "";
             if (app_nodes.selected_node==z){
+            	if(nodes[z].data.isFailed){
+            		var nodeIsFailed = nodes[z].data.isFailed.value
+            	}else{
+            		var nodeIsFailed = false;
+            	}
+            	var queryStage = nodes[z].data.state.value;
+
             	$("#node").attr("nid", z);
 	            // select the copied block
 	            var node = $(".node");
@@ -867,27 +851,26 @@ draw_nodes: function ()
 	        node.find(".node-generic").html(genericDeviceClassDescription);
 	        node.find(".node-specific").html(specificDeviceClassDescription);
 	        var battery_level = nodes[z].data.battery_level.value
-	        var nodeCanSleep = nodes[z].data.can_wake_up.value=="true";
+	        var nodeCanSleep = nodes[z].data.can_wake_up.value;
 	        if (battery_level != null){
 	        	if(nodeCanSleep){
-		        	if(nodes[z].data.isAwake.value=="true"){
-		        		node.find(".node-sleep").html("{{Réveillé}}");
-		        	}
-		        	else{
-		        		node.find(".node-sleep").html("{{Endormi}}");
-		        	}
-		        }else{
-		        	node.find(".node-sleep").html("{{Endormi}}");
-		        }
+	        		if(nodes[z].data.isAwake.value){
+	        			node.find(".node-sleep").html("{{Réveillé}}");
+	        		}
+	        		else{
+	        			node.find(".node-sleep").html("{{Endormi}}");
+	        		}
+	        	}else{
+	        		node.find(".node-sleep").html("{{Endormi}}");
+	        	}
 	        }
 	        else{
 	        	node.find(".node-sleep").html("{{Secteur}}");
 	        }
 	        
 
-	        if(typeof(controller) !== "undefined"){
+	        if(controller_id != -1){
 	        	var node_groups=nodes[z].groups;
-	        	var controller_id=controller.data.nodeId.value;
 	        	var found=0;
 	        	var hasGroup = false;
 	        	for (zz in node_groups){
@@ -910,7 +893,7 @@ draw_nodes: function ()
 	        		warningMessage +="<li>{{Le controleur n'est inclus dans aucun groupe du module.}}</li>";
 	        	}
 	        }
-	        if(nodeIsFailed=="true" & networkstate>=7){
+	        if(nodeIsFailed){
 	            	//this warning must stay in place
 	            	isWarning = true;
 	            	warningMessage +="<li>{{Le controleur pense que ce noeud est en echec, essayez }} <button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-question'></i> {{Noeud en échec}}</button> {{ou}} <button type='button' id='testNode' class='btn btn-info'><i class='fa fa-check-square-o'></i> {{Tester Noeud}}</button> {{pour essayer de corriger.}}</li>";
@@ -1002,13 +985,13 @@ draw_nodes: function ()
 	            	myPopover.options.content = queryStageDescrition;
 	            }
 	            node.find(".node-maxBaudRate").html(nodes[z].data.maxBaudRate.value);
-	            if(nodes[z].data.isRouting.value=="true"){
+	            if(nodes[z].data.isRouting.value){
 	            	node.find(".node-routing").html("<li>{{Le noeud a des capacités de routage (capable de faire passer des commandes à d'autres noeuds)}}</li>");
 	            }
 	            else{
 	            	node.find(".node-routing").html("");
 	            }
-	            if(nodes[z].data.isSecurity.value=="true"){
+	            if(nodes[z].data.isSecurity.value){
 	            	node.find(".node-isSecurity").html("<li>{{Le noeud supporte les caracteristiques de sécurité avancées}}</li>");
 	            	/* TODO: display Security Flag
 	            	Security = 0x01
@@ -1026,19 +1009,19 @@ draw_nodes: function ()
 	            	node.find(".node-isSecurity").html("");
 	            	node.find(".node-security").html("");
 	            }
-	            if(nodes[z].data.isListening.value=="true"){
+	            if(nodes[z].data.isListening.value){
 	            	node.find(".node-listening").html("<li>{{Le noeud est alimenté et écoute en permanence}}</li>");
 	            }	
 	            else{
 	            	node.find(".node-listening").html("");
 	            }
-	            if(nodes[z].data.isFrequentListening.value=="true"){
+	            if(nodes[z].data.isFrequentListening.value){
 	            	node.find(".node-isFrequentListening").html("<li>{{Le noeud peut être reveillé}}</li>");
 	            }
 	            else{
 	            	node.find(".node-isFrequentListening").html("");	
 	            }
-	            if(nodes[z].data.isBeaming.value=="true"){
+	            if(nodes[z].data.isBeaming.value){
 	            	node.find(".node-isBeaming").html("<li>{{Le noeud est capable d'envoyer une trame réseaux}}</li>");
 	            }  
 	            else{
@@ -1052,7 +1035,7 @@ draw_nodes: function ()
 	            	}
 	            	else{
 	            		node.find(".node-neighbours").html("...");		  
-	            		if(networkstate>=7 & genericDeviceClass != 1){
+	            		if(genericDeviceClass != 1){
 	            			warningMessage +="<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <button type='button' id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</button> {{ou}} <button type='button' id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</button> {{pour corriger.}}</li>";		            	
 	            			isWarning = true;
 	            		}
@@ -1062,10 +1045,9 @@ draw_nodes: function ()
 	            	node.find(".node-neighbours").html("<i>{{La liste des noeuds voisin n'est pas encore disponible.}}</i>");
 	            }
 	            if (queryStageIndex > 7 & productName == ""){
-	            	if(networkstate>=7){
-	            		warningMessage +="<li>{{Les identifiants constructeur ne sont pas detectés.}}<br/>{{Utilisez}} <button type='button' id='refreshNodeInfo' class='btn btn-success refreshNodeInfo'><i class='fa fa-retweet'></i> {{Rafraîchir infos du noeud}}</button> {{pour corriger}}</li>";
-	            		isWarning = true;	 
-	            	}
+	            	
+	            	warningMessage +="<li>{{Les identifiants constructeur ne sont pas detectés.}}<br/>{{Utilisez}} <button type='button' id='refreshNodeInfo' class='btn btn-success refreshNodeInfo'><i class='fa fa-retweet'></i> {{Rafraîchir infos du noeud}}</button> {{pour corriger}}</li>";
+	            	isWarning = true;	
 	            }	
 	            
 	            if (isWarning){ 
@@ -1231,10 +1213,10 @@ draw_nodes: function ()
 						var id=z+'-'+values[val];
 						var node_id=values[val];
 						if(nodes[node_id]){
-							if(nodes[node_id].data.name.value != ''){
-								var node_name = nodes[node_id].data.location.value+' '+nodes[node_id].data.name.value;
+							if(nodes[node_id].description.name != ''){
+								var node_name = nodes[node_id].description.location+' '+nodes[node_id].description.location;
 							}else{
-								var node_name=nodes[node_id].data.product_name.value;
+								var node_name=nodes[node_id].description.product_name;
 							}
 						}else{
 							var node_name="UNDEFINED";

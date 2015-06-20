@@ -250,26 +250,17 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 
    <div class="form-group">
     <label class="col-sm-2 control-label">{{Paramètres}}</label>
-    <div class="col-sm-10">
+    <div class="col-sm-5">
       <a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fa fa-wrench"></i> {{Configuration}}</a>
       <a class="btn btn-info" id="bt_deviceAssistant" title='{{Assistant de configuration spécifique}}' style="display:none;"><i class="fa fa-question-circle"></i> {{Assistant}}</a>
       <a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank" style="display:none;"><i class="fa fa-book"></i> {{Documentation}}</a>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">{{Marque}}</label>
-    <div class="col-sm-4">
-      <span class="zwaveInfo tooltips label label-default" data-l1key="brand"></span><br/>
+     <label class="col-sm-2 control-label">{{Marque}}</label>
+    <div class="col-sm-3">
       <span class="tooltips label label-default">
         <span class="eqLogicAttr" data-l1key="configuration" data-l2key="product_name"></span>
         <span class="eqLogicAttr tooltips" data-l1key="configuration" data-l2key="conf_version" title="{{Version de la configuration}}"></span>
       </span>
-    </div>
-    <label class="col-sm-2 control-label">{{Etat}}</label>
-    <div class="col-sm-4">
-      <span class="zwaveInfo tooltips label label-default" data-l1key="state"></span><br/>
-      <span class="zwaveInfo tooltips label label-default" data-l1key="lastReceived" title="{{Derniere communication}}"></span><br/>
-      <span class="zwaveInfo label label-default tooltips" data-l1key="battery" title="{{Batterie}}"></span>
     </div>
   </div>
   <center>

@@ -286,10 +286,9 @@ class openzwave extends eqLogic {
 			return;
 		}
 
-		$results = self::callOpenzwave('/ZWaveAPI/Data/0', $_serverId);
+		$results = self::callOpenzwave('/ZWaveAPI/GetNodesList()', $_serverId);
 		$findDevice = array();
 		$include_device = '';
-		$controller_id = $results['controller']['data']['nodeId']['value'];
 		if (count($results['devices']) < 2) {
 			nodejs::pushUpdate('jeedom::alert', array(
 				'level' => 'warning',
@@ -298,25 +297,28 @@ class openzwave extends eqLogic {
 			return;
 		}
 		foreach ($results['devices'] as $nodeId => $result) {
-			if ($nodeId == $controller_id) {
+			$findDevice[$nodeId] = $nodeId;
+			if (isset($result['description']['is_static_controller']) && $result['description']['is_static_controller']) {
 				continue;
 			}
-			$findDevice[$nodeId] = $nodeId;
+			if (!isset($result['product']['is_valid']) || !$result['product']['is_valid']) {
+				continue;
+			}
 			$eqLogic = self::getEqLogicByLogicalIdAndServerId($nodeId, $_serverId);
 			if (!is_object($eqLogic)) {
 				$eqLogic = new eqLogic();
 				$eqLogic->setEqType_name('openzwave');
 				$eqLogic->setIsEnable(1);
 				$eqLogic->setLogicalId($nodeId);
-				if (isset($result['data']['product_name']['value']) && trim($result['data']['product_name']['value']) != '') {
-					$eqLogic->setName($eqLogic->getLogicalId() . ' ' . $result['data']['product_name']['value']);
+				if (isset($result['description']['product_name']) && trim($result['description']['product_name']) != '') {
+					$eqLogic->setName($eqLogic->getLogicalId() . ' ' . $result['description']['product_name']);
 				} else {
 					$eqLogic->setName('Device ' . $nodeId);
 				}
-				$eqLogic->setConfiguration('product_name', $result['data']['product_name']['value']);
-				$eqLogic->setConfiguration('manufacturer_id', $result['data']['manufacturerId']['value']);
-				$eqLogic->setConfiguration('product_type', $result['data']['manufacturerProductType']['value']);
-				$eqLogic->setConfiguration('product_id', $result['data']['manufacturerProductId']['value']);
+				$eqLogic->setConfiguration('product_name', $result['description']['product_name']);
+				$eqLogic->setConfiguration('manufacturer_id', $result['product']['manufacturer_id']);
+				$eqLogic->setConfiguration('product_type', $result['product']['product_type']);
+				$eqLogic->setConfiguration('product_id', $result['product']['product_id']);
 				$eqLogic->setConfiguration('serverID', $_serverId);
 				$eqLogic->setIsVisible(1);
 				$eqLogic->save();
@@ -324,17 +326,13 @@ class openzwave extends eqLogic {
 				$include_device = $eqLogic->getId();
 				$eqLogic->createCommand(false, $result);
 			} else {
-				if (isset($result['data']['product_name']['value'])) {
-					$eqLogic->setConfiguration('product_name', $result['data']['product_name']['value']);
+				if (isset($result['description']['product_name'])) {
+					$eqLogic->setConfiguration('product_name', $result['description']['product_name']);
 				}
-				if (isset($result['data']['manufacturerId']['value'])) {
-					$eqLogic->setConfiguration('manufacturer_id', $result['data']['manufacturerId']['value']);
-				}
-				if (isset($result['data']['manufacturerProductType']['value'])) {
-					$eqLogic->setConfiguration('product_type', $result['data']['manufacturerProductType']['value']);
-				}
-				if (isset($result['data']['manufacturerProductId']['value'])) {
-					$eqLogic->setConfiguration('product_id', $result['data']['manufacturerProductId']['value']);
+				if (isset($result['product']['is_valid']) && $result['product']['is_valid']) {
+					$eqLogic->setConfiguration('manufacturer_id', $result['product']['manufacturer_id']);
+					$eqLogic->setConfiguration('product_type', $result['product']['product_type']);
+					$eqLogic->setConfiguration('product_id', $result['product']['product_id']);
 				}
 				$eqLogic->save();
 
@@ -533,7 +531,7 @@ class openzwave extends eqLogic {
 			return $return;
 		}
 		$results = self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . ']', $this->getConfiguration('serverID', 1));
-		if ($this->getConfiguration('noBatterieCheck') != 1 && isset($results['instances'][0]['commandClasses'][128]) && $results['instances'][0]['commandClasses'][128]['data']['supported']['value'] === true) {
+		if (isset($results['instances'][0]['commandClasses'][128]) && $results['instances'][0]['commandClasses'][128]['data']['supported']['value'] === true) {
 			$return['battery'] = array(
 				'value' => $results['instances'][0]['commandClasses'][128]['data'][0]['val'],
 				'datetime' => date('Y-m-d H:i:s', $results['instances'][0]['commandClasses'][128]['data']['last']['updateTime']),
@@ -559,19 +557,6 @@ class openzwave extends eqLogic {
 
 			if (isset($results['data']['isFailed'])) {
 				$return['state']['value'] = ($results['data']['isFailed']['value']) ? 'Dead' : $return['state']['value'];
-			}
-			if (isset($results['data']['vendorString'])) {
-				$return['brand'] = array(
-					'value' => $results['data']['vendorString']['value'],
-					'datetime' => '',
-				);
-			}
-
-			if (isset($results['data']['lastReceived'])) {
-				$return['lastReceived'] = array(
-					'value' => date('Y-m-d H:i', $results['data']['lastReceived']['updateTime']),
-					'datetime' => date('Y-m-d H:i:s', $results['data']['lastReceived']['updateTime']),
-				);
 			}
 
 			if ((isset($return['battery']) && $return['battery']['value'] != '') || (isset($return['state']) && $return['state']['value'] == __('Endormi', __FILE__))) {
@@ -945,11 +930,7 @@ class openzwaveCmd extends cmd {
 				$value = intval($value);
 				break;
 			case 'bool':
-				if ($value === true || $value == 'true') {
-					$value = 1;
-				} else {
-					$value = 0;
-				}
+				$value = ($value === true || $value == 'true') ? 1 : 0;
 				break;
 			case 'binary':
 				if (is_array($_val['value'])) {
