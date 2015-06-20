@@ -103,7 +103,6 @@ $('#bt_zwaveConsole').on('click', function () {
 $("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
 function printEqLogic(_eqLogic){
-   printModuleInfo(_eqLogic.id);
    if($('.li_eqLogic.active').attr('data-eqlogic_id') != ''){
     $('#img_device').attr("src", $('.eqLogicDisplayCard[data-eqLogic_id='+$('.li_eqLogic.active').attr('data-eqlogic_id')+'] img').attr('src'));
 }else{
@@ -246,36 +245,6 @@ $('#bt_autoDetectModule').on('click',function(){
 }
 });
 });
-
-function printModuleInfo(_id) {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // méthode de transmission des données au fichier php
-        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
-        data: {
-            action: "getModuleInfo",
-            id: _id,
-        },
-        dataType: 'json',
-        global: false,
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
-        }
-        $('.zwaveInfo').value('');
-        for (var i in data.result) {
-            var value = data.result[i]['value'];
-            if (isset(data.result[i]['unite'])) {
-                value += ' ' + data.result[i]['unite'];
-            }
-            $('.zwaveInfo[data-l1key=' + i + ']').value(value);
-        }
-    }
-});
-}
 
 function syncEqLogicWithRazberry() {
     $.ajax({// fonction permettant de faire de l'ajax
