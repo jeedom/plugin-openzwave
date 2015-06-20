@@ -2416,50 +2416,31 @@ def get_nodes_list():
 def get_device(fromtime):
     timestamp = int(time.time())
     if network != None and network.state >= 5:   # STATE_STARTED 
-        networkData={}
-        networkData['updateTime']=timestamp
-        if network.controller :
-            controllerData = serialize_controller_to_json()            
-        if network.nodes:
-            nodesData = {}
-            if fromtime :
-                changes = {}
-                global con
-                con.row_factory = lite.Row
-                cur = con.cursor() 
-                cur.execute("SELECT * FROM Events")
-                rows = cur.fetchall()
-                cur.execute("DELETE FROM Events")
-                for row in rows:
-                    if row["Commandclass"] == 0 and row["Value"]=="removed":
-                        changes['controller.data.lastExcludedDevice'] = {"value":row["Node"]}
-                    elif row["Commandclass"] == 0 and row["Value"]=="added":
-                        changes['controller.data.lastIncludedDevice'] = {"value":row["Node"]}
-                    elif row["Commandclass"] == 0 and row["Value"] in ["0","1","5"]:
-                        changes['controller']={}
-                        changes['controller']['controllerState'] = {"value":int(row["Value"])}
-                    else :
-                        changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"])] = {}
-                        changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"])]["val"]= {"value":row["Value"],"type":row["Type"]}
-                return jsonify(changes)     
-                        
-            else :
-                error = {
-                'status' : 'error',
-                'msg' : 'unable to retrieve ideas'
-                }
-                return jsonify(error)
-                            
-            networkData['controller']=controllerData
-            networkData['devices']=nodesData
-            return jsonify(networkData)
-     
-        else:
-            error = {
-                'status' : 'error',
-                'msg' : 'unable to retrieve ideas'
-            }
-            return jsonify(error)
+        if network.nodes:            
+            changes = {}
+            global con
+            con.row_factory = lite.Row
+            cur = con.cursor() 
+            cur.execute("SELECT * FROM Events")
+            rows = cur.fetchall()
+            cur.execute("DELETE FROM Events")
+            for row in rows:
+                if row["Commandclass"] == 0 and row["Value"]=="removed":
+                    changes['controller.data.lastExcludedDevice'] = {"value":row["Node"]}
+                elif row["Commandclass"] == 0 and row["Value"]=="added":
+                    changes['controller.data.lastIncludedDevice'] = {"value":row["Node"]}
+                elif row["Commandclass"] == 0 and row["Value"] in ["0","1","5"]:
+                    changes['controller']={}
+                    changes['controller']['controllerState'] = {"value":int(row["Value"])}
+                else :
+                    changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"])] = {}
+                    changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"])]["val"]= {"value":row["Value"],"type":row["Type"]}
+            return jsonify(changes)            
+    error = {
+        'status' : 'error',
+        'msg' : 'unable to retrieve ideas'
+    }
+    return jsonify(error)
     
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>]', methods = ['GET'])
 def get_serialized_device(device_id):
