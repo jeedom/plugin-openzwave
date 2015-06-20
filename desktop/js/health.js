@@ -4,7 +4,7 @@ var app_health = {
 
     updater: false,
     
-    timestampConverter :function(time){
+    timestampConverter :function(time,_hourOnly){
     	if(time==1)
        return "N/A";
      var ret;
@@ -17,10 +17,6 @@ var app_health = {
      if(minutes<10){
        minutes="0"+minutes;
      }
-     var seconds = date.getSeconds();
-     if(seconds<10){
-       seconds="0"+seconds;
-     }
      var num = date.getDate();
      if(num<10){
        num="0"+num;
@@ -30,11 +26,14 @@ var app_health = {
        month="0"+month;
      }
      var year = date.getFullYear();
-     var formattedTime = hours + ':' + minutes + ':' + seconds;
+     var formattedTime = hours + ':' + minutes ;
      var formattedDate = num + "/" + month + "/" + year;
-     return formattedDate+' '+formattedTime;
-   },
-   init: function(){
+     if(_hourOnly){
+      return formattedTime;
+    }
+    return formattedDate+' '+formattedTime;
+  },
+  init: function(){
     app_health.load_data(true);
     app_health.updater = setInterval(function(){ 
       if($('#table_healthNetwork').is(':visible')){
@@ -84,7 +83,7 @@ var app_health = {
       }
       var link ='index.php?v=d&p=openzwave&m=openzwave&server_id='+$("#sel_zwaveHealthServerId").value()+'&logical_id='+i;
       if(nodes[i].data.description.name != ''){
-        var name = '<span class="label label-primary">'+nodes[i].data.description.location+'</span> <a href="'+link+'">'+nodes[i].data.description.name+'</a>';
+        var name = '<span class="label label-primary" style="font-size : 1em;">'+nodes[i].data.description.location+'</span> <a href="'+link+'" style="font-size : 1em;">'+nodes[i].data.description.name+'</a>';
       }else{
         var name = '<a href="'+link+'">'+ nodes[i].data.description.product_name+'</a>';
       }
@@ -189,9 +188,9 @@ var app_health = {
   tbody += '</td>';
   tbody += '<td>';
   if(nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null){
-    tbody += app_health.timestampConverter(nodes[i].data.lastReceived.updateTime);
+    tbody += app_health.timestampConverter(nodes[i].data.lastReceived.updateTime,false);
     if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.next_wakeup != null){
-      tbody += ' <i class="fa fa-arrow-right"></i> ' + app_health.timestampConverter(nodes[i].data.wakeup_interval.next_wakeup)+' <i class="fa fa-clock-o"></i>';
+      tbody += ' <i class="fa fa-arrow-right"></i> ' + app_health.timestampConverter(nodes[i].data.wakeup_interval.next_wakeup,true)+' <i class="fa fa-clock-o"></i>';
     }
   }
   tbody += '</td>';
