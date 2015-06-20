@@ -2422,10 +2422,7 @@ def get_device(fromtime):
             controllerData = serialize_controller_to_json()            
         if network.nodes:
             nodesData = {}
-            if fromtime==0 :
-                for i in network.nodes:
-                    nodesData[i] = serialize_node_to_json(i) 
-            elif fromtime :
+            if fromtime :
                 changes = {}
                 global con
                 con.row_factory = lite.Row
