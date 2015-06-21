@@ -383,23 +383,32 @@ class openzwave extends eqLogic {
 	}
 
 	public static function cronDaily() {
-		foreach (self::byType('openzwave') as $eqLogic) {
-			if ($eqLogic->getConfiguration('noBatterieCheck', 0) != 1) {
-				try {
-					$info = $eqLogic->getInfo();
-					if (isset($info['battery']) && $info['battery'] !== '') {
-						$eqLogic->batteryStatus($info['battery']['value'], $info['battery']['datetime']);
-					}
-				} catch (Exception $exc) {
+		if (config::byKey('jeeNetwork::mode') == 'master') {
+			foreach (self::byType('openzwave') as $eqLogic) {
+				if ($eqLogic->getConfiguration('noBatterieCheck', 0) != 1) {
+					try {
+						$info = $eqLogic->getInfo();
+						if (isset($info['battery']) && $info['battery'] !== '') {
+							$eqLogic->batteryStatus($info['battery']['value'], $info['battery']['datetime']);
+						}
+					} catch (Exception $exc) {
 
+					}
 				}
 			}
-		}
-		foreach (self::listServerZwave() as $serverID => $server) {
-			try {
-				self::callOpenzwave('/ZWaveAPI/Run/RefreshAllBatteryLevel()', $serverID);
-			} catch (Exception $e) {
-				continue;
+			foreach (self::listServerZwave() as $serverID => $server) {
+				try {
+					self::callOpenzwave('/ZWaveAPI/Run/RefreshAllBatteryLevel()', $serverID);
+				} catch (Exception $e) {
+					continue;
+				}
+			}
+			if (config::byKey('auto_health', 'openzwave') == 1 && (date('w') == 1 || date('w') == 4)) {
+				sleep(60 * 60);
+				try {
+					self::callOpenzwave('/ZWaveAPI/Run/controller.HealNetwork()', $serverID);
+				} catch (Exception $e) {
+				}
 			}
 		}
 	}

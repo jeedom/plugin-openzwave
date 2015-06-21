@@ -77,170 +77,180 @@ foreach ($deamonRunningSlave as $name => $status) {
 <form class="form-horizontal">
 	<fieldset>
 		<legend>{{Générale}}</legend>
-		<div class="form-group">
-			<label class="col-lg-4 control-label">{{Supprimer automatiquement les périphériques exclus}}</label>
-			<div class="col-lg-3">
-				<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="autoRemoveExcludeDevice" />
-			</div>
-		</div>
-
-
-		<?php if (config::byKey('jeeNetwork::mode') == 'master' && count(eqLogic::byType('zwave')) > 0) {?>
+		<?php if (config::byKey('jeeNetwork::mode') == 'master') {?>
 			<div class="form-group">
-				<label class="col-lg-4 control-label">{{Migration des équipements zwave}}</label>
+				<label class="col-lg-4 control-label">{{Supprimer automatiquement les périphériques exclus}}</label>
 				<div class="col-lg-3">
-					<a class="btn btn-warning" id="bt_migrateZwave"><i class="fa fa-ship"></i> {{Migrer}}</a>
+					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="autoRemoveExcludeDevice" />
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-lg-4 control-label">{{Soigner le réseau automatique 2 fois par semaine}}</label>
+				<div class="col-lg-3">
+					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_health" />
+				</div>
+			</div>
+
 			<?php }
 ?>
 
-		</fieldset>
-	</form>
+
+			<?php if (config::byKey('jeeNetwork::mode') == 'master' && count(eqLogic::byType('zwave')) > 0) {?>
+				<div class="form-group">
+					<label class="col-lg-4 control-label">{{Migration des équipements zwave}}</label>
+					<div class="col-lg-3">
+						<a class="btn btn-warning" id="bt_migrateZwave"><i class="fa fa-ship"></i> {{Migrer}}</a>
+					</div>
+				</div>
+				<?php }
+?>
+
+			</fieldset>
+		</form>
 
 
-	<form class="form-horizontal">
-		<fieldset>
-			<legend>{{Démon local}}</legend>
-			<?php
+		<form class="form-horizontal">
+			<fieldset>
+				<legend>{{Démon local}}</legend>
+				<?php
 if (jeedom::isCapable('sudo')) {
 	echo '<div class="form-group">
-				<label class="col-lg-4 control-label">{{Installer/Mettre à jour OpenZwave en local}}</label>
-				<div class="col-lg-3">
-					<a class="btn btn-warning bt_installDeps" data-mode="master"><i class="fa fa-check"></i> {{Stable}}</a>
-					<!-- <a class="btn btn-danger bt_installDeps" data-mode="dev"><i class="fa fa-check"></i> {{Developpement}}</a> -->
-				</div>
-			</div>';
+					<label class="col-lg-4 control-label">{{Installer/Mettre à jour OpenZwave en local}}</label>
+					<div class="col-lg-3">
+						<a class="btn btn-warning bt_installDeps" data-mode="master"><i class="fa fa-check"></i> {{Stable}}</a>
+						<!-- <a class="btn btn-danger bt_installDeps" data-mode="dev"><i class="fa fa-check"></i> {{Developpement}}</a> -->
+					</div>
+				</div>';
 } else {
 	echo '<div class="alert alert danger">{{Jeedom n\'a pas les droits sudo sur votre système, il faut lui ajouter pour qu\'il puisse installer le démon openzwave, voir <a target="_blank" href="https://jeedom.fr/doc/documentation/installation/fr_FR/doc-installation.html#autre">ici</a> partie 1.7.4}}</div>';
 }
 ?>
-	<div class="form-group">
-		<label class="col-sm-4 control-label">{{Port clé Z-Wave}}</label>
-		<div class="col-sm-4">
-			<select class="configKey form-control" data-l1key="port">
-				<option value="none">{{Aucun}}</option>
-				<?php
+			<div class="form-group">
+				<label class="col-sm-4 control-label">{{Port clé Z-Wave}}</label>
+				<div class="col-sm-4">
+					<select class="configKey form-control" data-l1key="port">
+						<option value="none">{{Aucun}}</option>
+						<?php
 foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 	echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
 }
 ?>
-			</select>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-4 control-label">{{Port du Serveur (laisser vide par défault)}}</label>
-		<div class="col-sm-2">
-			<input class="configKey form-control" data-l1key="port_server" placeholder="8083" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-4 control-label">{{Gestion du démon}}</label>
-		<div class="col-sm-8">
-			<a class="btn btn-success" id="bt_startopenZwaveDemon"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-			<a class="btn btn-danger" id="bt_stopopenZwaveDemon"><i class='fa fa-stop'></i> {{Arrêter}}</a>
-			<a class="btn btn-warning" id="bt_launchOpenZwaveInDebug"><i class="fa fa-exclamation-triangle"></i> {{Lancer en mode debug}}</a>
-		</div>
-	</div>
-</fieldset>
-</form>
-<?php
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">{{Port du Serveur (laisser vide par défault)}}</label>
+				<div class="col-sm-2">
+					<input class="configKey form-control" data-l1key="port_server" placeholder="8083" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">{{Gestion du démon}}</label>
+				<div class="col-sm-8">
+					<a class="btn btn-success" id="bt_startopenZwaveDemon"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
+					<a class="btn btn-danger" id="bt_stopopenZwaveDemon"><i class='fa fa-stop'></i> {{Arrêter}}</a>
+					<a class="btn btn-warning" id="bt_launchOpenZwaveInDebug"><i class="fa fa-exclamation-triangle"></i> {{Lancer en mode debug}}</a>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+	<?php
 if (config::byKey('jeeNetwork::mode') == 'master') {
 	foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
 		?>
-		<form class="form-horizontal slaveConfig" data-slave_id="<?php echo $jeeNetwork->getId();?>">
-			<fieldset>
-				<legend>{{Démon sur l'esclave}} <?php echo $jeeNetwork->getName()?></legend>
-				<div class="form-group">
-					<label class="col-lg-4 control-label">{{Port clé Z-Wave}}</label>
-					<div class="col-lg-4">
-						<select class="slaveConfigKey form-control" data-l1key="port">
-							<option value="none">{{Aucun}}</option>
-							<?php
+			<form class="form-horizontal slaveConfig" data-slave_id="<?php echo $jeeNetwork->getId();?>">
+				<fieldset>
+					<legend>{{Démon sur l'esclave}} <?php echo $jeeNetwork->getName()?></legend>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Port clé Z-Wave}}</label>
+						<div class="col-lg-4">
+							<select class="slaveConfigKey form-control" data-l1key="port">
+								<option value="none">{{Aucun}}</option>
+								<?php
 foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => true)) as $name => $value) {
 			echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
 		}
 		?>
-						</select>
+							</select>
+						</div>
 					</div>
-				</div>
 
-				<div class="form-group">
-					<label class="col-sm-4 control-label">{{Port du Serveur (laisser vide par défault)}}</label>
-					<div class="col-sm-2">
-						<input class="slaveConfigKey form-control" data-l1key="port_server" placeholder="8083" />
+					<div class="form-group">
+						<label class="col-sm-4 control-label">{{Port du Serveur (laisser vide par défault)}}</label>
+						<div class="col-sm-2">
+							<input class="slaveConfigKey form-control" data-l1key="port_server" placeholder="8083" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-4 control-label">{{Gestion du démon}}</label>
-					<div class="col-lg-8">
-						<a class="btn btn-success bt_restartOpenZwaveDeamon"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-						<a class="btn btn-danger bt_stopZwaveDeamon"><i class='fa fa-stop'></i> {{Arrêter}}</a>
-						<a class="btn btn-warning bt_launchOpenZwaveInDebug"><i class="fa fa-exclamation-triangle"></i> {{Lancer en mode debug}}</a>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Gestion du démon}}</label>
+						<div class="col-lg-8">
+							<a class="btn btn-success bt_restartOpenZwaveDeamon"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
+							<a class="btn btn-danger bt_stopZwaveDeamon"><i class='fa fa-stop'></i> {{Arrêter}}</a>
+							<a class="btn btn-warning bt_launchOpenZwaveInDebug"><i class="fa fa-exclamation-triangle"></i> {{Lancer en mode debug}}</a>
+						</div>
 					</div>
-				</div>
-			</fieldset>
-		</form>
-		<?php
+				</fieldset>
+			</form>
+			<?php
 }
 }
 ?>
 
-<script>
-	$('.bt_installDeps').on('click',function(){
-		var mode = $(this).attr('data-mode');
-		bootbox.confirm('{{Etes-vous sûr de vouloir installer/mettre à jour Openzwave ? }}', function (result) {
-			if (result) {
-				$('#md_modal').dialog({title: "{{Installation / Mise à jour}}"});
-				$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=update.openzwave&mode='+mode).dialog('open');
-			}
+	<script>
+		$('.bt_installDeps').on('click',function(){
+			var mode = $(this).attr('data-mode');
+			bootbox.confirm('{{Etes-vous sûr de vouloir installer/mettre à jour Openzwave ? }}', function (result) {
+				if (result) {
+					$('#md_modal').dialog({title: "{{Installation / Mise à jour}}"});
+					$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=update.openzwave&mode='+mode).dialog('open');
+				}
+			});
 		});
-	});
 
-	$('#bt_stopopenZwaveDemon').on('click', function() {
-		stopopenZwaveDemon('local',0);
-	});
-
-	$('#bt_startopenZwaveDemon').on('click', function() {
-		startopenZwaveDemon('local',0);
-	});
-	$('.bt_restartOpenZwaveDeamon').on('click', function() {
-		startopenZwaveDemon('remote',$(this).closest('.slaveConfig').attr('data-slave_id'));
-	});
-
-	$('.bt_stopZwaveDeamon').on('click', function() {
-		stopopenZwaveDemon('remote',$(this).closest('.slaveConfig').attr('data-slave_id'));
-	});
-
-	$('.bt_launchOpenZwaveInDebug').on('click', function () {
-		var slave_id = $(this).closest('.slaveConfig').attr('data-slave_id');
-		bootbox.confirm('{{Etes-vous sur de vouloir lancer le démon en mode debug ? N\'oubliez pas de le relancer en mode normale une fois terminé}}', function (result) {
-			if (result) {
-				$('#md_modal').dialog({title: "{{Openzwave en mode debug}}"});
-				$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=show.debug&slave_id='+slave_id).dialog('open');
-			}
+		$('#bt_stopopenZwaveDemon').on('click', function() {
+			stopopenZwaveDemon('local',0);
 		});
-	});
 
-	$('#bt_launchOpenZwaveInDebug').on('click', function () {
-		bootbox.confirm('{{Etes-vous sûr de vouloir lancer le démon en mode debug ? N\'oubliez pas d\'arrêter/redémarrer le démon une fois terminé}}', function (result) {
-			if (result) {
-				$('#md_modal').dialog({title: "{{Openzwave en mode debug}}"});
-				$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=show.debug').dialog('open');
-			}
+		$('#bt_startopenZwaveDemon').on('click', function() {
+			startopenZwaveDemon('local',0);
 		});
-	});
-
-	$('#bt_migrateZwave').on('click', function () {
-		bootbox.confirm('{{Etes-vous sûr de vouloir lancer la migration cette opération est irreversible}}', function (result) {
-			if (result) {
-				$('#md_modal').dialog({title: "{{Openzwave migration}}"});
-				$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=migrate.zwave').dialog('open');
-			}
+		$('.bt_restartOpenZwaveDeamon').on('click', function() {
+			startopenZwaveDemon('remote',$(this).closest('.slaveConfig').attr('data-slave_id'));
 		});
-	});
 
-	function stopopenZwaveDemon(type,id) {
+		$('.bt_stopZwaveDeamon').on('click', function() {
+			stopopenZwaveDemon('remote',$(this).closest('.slaveConfig').attr('data-slave_id'));
+		});
+
+		$('.bt_launchOpenZwaveInDebug').on('click', function () {
+			var slave_id = $(this).closest('.slaveConfig').attr('data-slave_id');
+			bootbox.confirm('{{Etes-vous sur de vouloir lancer le démon en mode debug ? N\'oubliez pas de le relancer en mode normale une fois terminé}}', function (result) {
+				if (result) {
+					$('#md_modal').dialog({title: "{{Openzwave en mode debug}}"});
+					$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=show.debug&slave_id='+slave_id).dialog('open');
+				}
+			});
+		});
+
+		$('#bt_launchOpenZwaveInDebug').on('click', function () {
+			bootbox.confirm('{{Etes-vous sûr de vouloir lancer le démon en mode debug ? N\'oubliez pas d\'arrêter/redémarrer le démon une fois terminé}}', function (result) {
+				if (result) {
+					$('#md_modal').dialog({title: "{{Openzwave en mode debug}}"});
+					$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=show.debug').dialog('open');
+				}
+			});
+		});
+
+		$('#bt_migrateZwave').on('click', function () {
+			bootbox.confirm('{{Etes-vous sûr de vouloir lancer la migration cette opération est irreversible}}', function (result) {
+				if (result) {
+					$('#md_modal').dialog({title: "{{Openzwave migration}}"});
+					$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=migrate.zwave').dialog('open');
+				}
+			});
+		});
+
+		function stopopenZwaveDemon(type,id) {
 	    $.ajax({// fonction permettant de faire de l'ajax
 	        type: "POST", // methode de transmission des données au fichier php
 	        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
