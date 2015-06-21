@@ -79,6 +79,7 @@ from louie import dispatcher, All
 
 device="auto"
 log="None"
+default_poll_interval = 1800000 # 30 minutes
 
 COMMAND_CLASS_NO_OPERATION              = 0 # 0x00
 COMMAND_CLASS_BASIC                     = 32 # 0x20   
@@ -435,7 +436,6 @@ class NodeNotification(object):
     @property
     def next_wakeup(self):        
         return self._next_wakeup
-   
     
 
 def graceful_stop_network():
@@ -485,7 +485,7 @@ options.set_save_log_level(log)
 options.set_logging(True)
 options.set_associate(True)                       
 options.set_save_configuration(True)              
-options.set_poll_interval(1800000) #  30 min    
+options.set_poll_interval(default_poll_interval)    
 options.set_interval_between_polls(False)         
 options.set_notify_transactions(True) # Notifications when transaction complete is reported.           
 options.set_suppress_value_refresh(False) # if true, notifications for refreshed (but unchanged) values will not be sent.        
@@ -515,6 +515,8 @@ def save_node_value_event(node_id, timestamp, command_class, index, typeStandard
 def network_started(network):
     add_log_entry("Openzwave network are started with homeId %0.8x." % (network.home_id,))    
     networkInformations.assignControllerNotification(ZWaveController.SIGNAL_CTRL_STARTING, "Network is started")
+    if network.manager.getPollInterval() != default_poll_interval:
+        network.set_poll_interval(default_poll_interval, False)
 
 def network_failed(network):
     add_log_entry("Openzwave network can't load", "error")
