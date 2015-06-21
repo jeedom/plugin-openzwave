@@ -63,7 +63,7 @@ var app_network = {
       app_network.load_data();
     });
      $("#tab_route").off("click").on("click",function() {
-      app_network.displayRoutingTable()
+      //app_network.displayRoutingTable()
     });
      $("#addDevice").off("click").on("click",function() {
       app_network.addDevice();
@@ -95,13 +95,13 @@ var app_network = {
      $("#writeconfigfile").off("click").on("click",function() {
       app_network.writeConfigFile();
     });
-    $("#regenerateNodesCfgFile").off("click").on("click",function() {
-		bootbox.confirm("Etes-vous sûr ? Cela va redémarrer votre réseau", function(result) {
-		  if(result){
-		  	app_network.regenerate_nodes_cfg_file();
-		  }
-		}); 
-	});
+     $("#regenerateNodesCfgFile").off("click").on("click",function() {
+      bootbox.confirm("Etes-vous sûr ? Cela va redémarrer votre réseau", function(result) {
+        if(result){
+         app_network.regenerate_nodes_cfg_file();
+       }
+     }); 
+    });
      $("#softReset").off("click").on("click",function() {
       app_network.softReset();
     });
@@ -329,6 +329,7 @@ var app_network = {
         if(data['result']== true){
          app_network.sendOk();
          app_network.load_data(); 
+         app_network.displayRoutingTable(); 
        }else{
          $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
        }

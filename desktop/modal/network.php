@@ -290,11 +290,14 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 		path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path')+'/';
 		window["app_network"].init();
 		window["app_network"].show();
+		window["app_network"].displayRoutingTable();
+		window["app_network"].load_data();
 	});
 	var nodes = {};
 	if (window["app_network"]!=undefined){
 		window["app_network"].init();
 		window["app_network"].show();
+		window["app_network"].displayRoutingTable();
 	}
 	$('.tab-pane').height($('#md_modal').height() - 50);
 	$('.tab-pane').css('overflow','scroll');
