@@ -437,8 +437,9 @@ class openzwave extends eqLogic {
 		}
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
 		$openzwave_path = realpath(dirname(__FILE__) . '/../../ressources/zwaveserver');
+		$config_path = realpath(dirname(__FILE__) . '/../../ressources/openzwave/config');
 		$log = ($_debug) ? 'Debug' : 'Info';
-		$cmd = '/usr/bin/python ' . $openzwave_path . '/openZWave.py --pidfile=/tmp/openzwave.pid --device=' . $port . ' --log=' . $log . ' --port=' . $port_server;
+		$cmd = '/usr/bin/python ' . $openzwave_path . '/openZWave.py --pidfile=/tmp/openzwave.pid --device=' . $port . ' --log=' . $log . ' --port=' . $port_server . ' --config=' . $config_path;
 		log::add('openzwave', 'info', 'Lancement démon openzwave : ' . $cmd);
 		$result = exec($cmd . ' >> ' . log::getPathToLog('openzwave') . ' 2>&1 &');
 		if (strpos(strtolower($result), 'error') !== false || strpos(strtolower($result), 'traceback') !== false) {
