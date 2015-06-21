@@ -336,7 +336,7 @@ var app_network = {
      }
    });
     },
-    load_data: function(){
+    load_data: function(){      
       $('#graph_network').html('<div id="graph-node-name"></div>');
       $.ajax({ 
         url: path+"ZWaveAPI/GetNetworkNeighbours()", 
@@ -415,6 +415,7 @@ var app_network = {
                   ui.append(svgText);
                   ui.append(img);
               $(ui).hover(function() { // mouse over
+                var link ='index.php?v=d&p=openzwave&m=openzwave&server_id='+$("#sel_zwaveNetworkServerId").value()+'&logical_id='+node.id;
                 numneighbours=node.data.neighbours.length;
                 interview=node.data.interview;
                 if (numneighbours<1 && interview>= 13){
@@ -428,7 +429,12 @@ var app_network = {
                } else {
                  sentenceneighbours='{{Interview incomplet}}';
                }
-               $('#graph-node-name').html(node.data.name + ' : ' + sentenceneighbours);
+               if (node.id != 1){
+                    linkname='<a href="'+link+'">'+node.data.name+'</a>'
+               }else {
+                   linkname=node.data.name
+               }
+               $('#graph-node-name').html(linkname + ' : ' + sentenceneighbours);
                highlightRelatedNodes(node.id, true);
                 }, function() { // mouse out
                   highlightRelatedNodes(node.id, false);
