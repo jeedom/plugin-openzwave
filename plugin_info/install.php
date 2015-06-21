@@ -75,7 +75,6 @@ function openzwave_update() {
 			}
 		}
 	}
-	exec('sudo apt-get -y install python-lxml');	
 }
 
 function openzwave_remove() {
