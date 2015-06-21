@@ -243,8 +243,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 						<tr>
 							<th>{{Nom}}</th>
 							<th>{{Valeur}}</th>
-							<th>{{Modifier valeur}}</th>
-							<th>{{Classe de commande}}</th>
+							<th>{{Classe}}</th>
 							<th>{{Instance}}</th>
 							<th>{{Index}}</th>
 							<th>{{Type}}</th>
@@ -255,7 +254,6 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 						<tr id="template-variable" style="display:none">
 							<td key="variable-name"></td>
 							<td key="variable-value"></td>
-							<td key="variable-edit"></td>
 							<td key="variable-cc"></td>
 							<td key="variable-instance"></td>
 							<td key="variable-index"></td>

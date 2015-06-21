@@ -1127,10 +1127,17 @@ draw_nodes: function ()
 	            			row.find("td[key=variable-index]").html(index);
 	            			row.find("td[key=variable-name]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].name);
 	            			row.find("td[key=variable-type]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+' ('+nodes[z].instances[instance].commandClasses[commandclass].data[index].type+')');
-	            			row.find("td[key=variable-value]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].val +" "+ nodes[z].instances[instance].commandClasses[commandclass].data[index].units);
+	            			var value = '';
+
 	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only==false){
-	            				row.find("td[key=variable-edit]").html('<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="'+index+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></button>');
+	            				value += '<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="'+index+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></button> ';
 	            			}
+
+
+
+
+	            			value += nodes[z].instances[instance].commandClasses[commandclass].data[index].val +" "+ nodes[z].instances[instance].commandClasses[commandclass].data[index].units;
+	            			row.find("td[key=variable-value]").html(value);
 	            			var polling = '<span style="width : 22px;"></span>';
 	            			
 	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only==false){
