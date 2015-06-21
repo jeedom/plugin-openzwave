@@ -104,7 +104,7 @@ $("#sendNodeInformation").off("click").on("click",function() {
 	app_nodes.send_node_information(app_nodes.selected_node);
 });
 $("#regenerateNodeCfgFile").off("click").on("click",function() {
-	bootbox.confirm("Etes-vous sûr ? Cela va redémarrer votre réseau", function(result) {
+	bootbox.confirm("{{Etes-vous sûr ? Cela va redémarrer votre réseau}}", function(result) {
 		if(result){
 			app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node);
 		}
@@ -126,8 +126,8 @@ $("body").off("click",".deleteGroup").on("click",".deleteGroup",function (e) {
 $('#copyParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var modal = $(this);
 	modal.find('.modal-body').html(' ');
-	modal.find('.modal-title').text('{{Copier les paramètres pour le module }} ' + app_nodes.selected_node);
-	var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode">';
+	modal.find('.modal-title').text('{{Copier les paramètres pour le module}} ' + app_nodes.selected_node);
+	var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
 	var foundIdentical=0;
 	$.each(nodes, function(key, val) {
 		if(key!=app_nodes.selected_node && val.description.product_name==nodes[app_nodes.selected_node].data.product_name.value){
@@ -152,7 +152,7 @@ $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var arr_exists_nodes=nodes[app_nodes.selected_node].groups[group].associations.split(';');
 	modal.find('.modal-body').html(' ');
 	modal.find('.modal-title').text('{{Groupe }}'+group+' : {{Ajouter une association pour le noeud}} ' + app_nodes.selected_node);
-	var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode">';
+	var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
 	$.each(nodes, function(key, val) {
 		if(arr_exists_nodes.indexOf(key)==-1 && key!=app_nodes.selected_node){
 			if(val.description.name != ''){
@@ -228,11 +228,11 @@ $('#valuesModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var valueValue = $(this).data('valuevalue');
 	var valueDataitems = $(this).data('valuedataitems').split(";");
 	var modal = $(this);
-	modal.find('.modal-title').text('Change value for value ' + valueName);
+	modal.find('.modal-title').text('{{Changer la valeur de}} ' + valueName);
 	modal.find('.modal-body').html(valueName);
 	modal.find('.modal-body').append('<b> : </b>');
 	if(valueType == "List"){
-		var options = '<select class="form-control" id="newvaluevalue">';
+		var options = '<select class="form-control" id="newvaluevalue" style="display:inline-block;width:400px;">';
 		$.each(valueDataitems, function(key, val) {
 			if(val==valueValue){
 				options +='<option value="'+val+'" selected="selected">'+val+'</option>';
@@ -255,7 +255,7 @@ $('#valuesModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 		modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Press" checked> {{Presser le bouton}} ');
 		modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Release"> {{Relacher le bouton}} ');
 	}else{
-		modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" value="'+valueValue+'">');
+		modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" style="display:inline-block;width:400px;" value="'+valueValue+'">');
 	}
 });
 $("body").off("click",".forceRefresh").on("click",".forceRefresh",function (e) {
@@ -289,9 +289,9 @@ $('#pollingModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var valueCc = $(this).data('valuecc');
 	var valuePolling = $(this).data('valuepolling');
 	var modal = $(this);
-	modal.find('.modal-title').text('Change polling ');
-	modal.find('.modal-body').html("<b>Change polling : </b>");
-	var select = '<select class="form-control" id="newvaluevalue">';
+	modal.find('.modal-title').text('{{Changer le rafraichissement}}');
+	modal.find('.modal-body').html("<b>{{Fréquence : }}</b>");
+	var select = '<select class="form-control" style="display:inline-block;width : 200px;" id="newvaluevalue">';
 	select += '<option value="0">{{Auto}}</option>';
 	select += '<option value="1">{{30 min}}</option>';
 	select += '<option value="2">{{15 min}}</option>';
@@ -318,7 +318,7 @@ $('#paramsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	var paramName = $(this).data('paramname');
 	var paramValue = $(this).data('paramvalue');
 	var modal = $(this);
-	modal.find('.modal-title').text('Change value for parameter ' + paramId);
+	modal.find('.modal-title').text('{{Changer la valeur pour le paramètre}} ' + paramId);
 	modal.find('.modal-body').html(paramName);
 	modal.find('.modal-body').append('<b> : </b>');
 	if(paramType == "List"){
@@ -1131,27 +1131,28 @@ draw_nodes: function ()
 	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only==false){
 	            				row.find("td[key=variable-edit]").html('<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="'+index+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></button>');
 	            			}
-	            			var polling = '';
-	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 0){
-	            				polling = '<span class="label label-success" style="font-size:1em;">{{Auto}}</span>';
-	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 1){
-	            				polling = '<span class="label label-success" style="font-size:1em;">{{30 min}}</span>';
-	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 2){
-	            				polling = '<span class="label label-success" style="font-size:1em;">{{15 min}}</span>';
-	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 3){
-	            				polling = '<span class="label label-warning" style="font-size:1em;">{{10 min}}</span>';
-	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 6){
-	            				polling = '<span class="label label-warning">{{5 min}}</span>';
-	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 30){
-	            				polling = '<span class="label label-danger" style="font-size:1em;">{{1 min}}</span>';
-	            			}else{
-	            				polling = '<span class="label label-default" style="font-size:1em;">'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'</span>';
-	            			}
+	            			var polling = '<span style="width : 22px;"></span>';
+	            			
 	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only==false){
 	            				if(nodes[z].data.isListening.value){
-	            					polling += ' <a style="position:relative;top:-1px;" class="btn btn-primary btn-xs editPolling cursor" data-valueidx="'+index+'" data-valuepolling="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></a>';
+	            					var polling = '<a style="position:relative;top:-1px;" class="btn btn-primary btn-xs editPolling cursor" data-valueidx="'+index+'" data-valuepolling="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></a> ';
 	            				}
 	            				row.find("td[key=variable-refresh]").html('<button type="button" class="btn btn-xs btn-primary forceRefresh" data-valueidx="'+index+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-refresh"></i></button>');
+	            			}
+	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 0){
+	            				polling += '<span class="label label-success" style="font-size:1em;">{{Auto}}</span>';
+	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 1){
+	            				polling += '<span class="label label-success" style="font-size:1em;">{{30 min}}</span>';
+	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 2){
+	            				polling += '<span class="label label-success" style="font-size:1em;">{{15 min}}</span>';
+	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 3){
+	            				polling += '<span class="label label-warning" style="font-size:1em;">{{10 min}}</span>';
+	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 6){
+	            				polling += '<span class="label label-warning">{{5 min}}</span>';
+	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 30){
+	            				polling += '<span class="label label-danger" style="font-size:1em;">{{1 min}}</span>';
+	            			}else{
+	            				polling += '<span class="label label-default" style="font-size:1em;">'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'</span>';
 	            			}
 	            			row.find("td[key=variable-polling]").html(polling);
 	            			row.find("td[key=variable-updatetime]").html(app_nodes.timestampConverter(nodes[z].instances[instance].commandClasses[commandclass].data[index].updateTime));
