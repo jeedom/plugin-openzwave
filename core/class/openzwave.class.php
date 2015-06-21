@@ -395,6 +395,13 @@ class openzwave extends eqLogic {
 				}
 			}
 		}
+		foreach (self::listServerZwave() as $serverID => $server) {
+			try {
+				self::callOpenzwave('/ZWaveAPI/Run/RefreshAllBatteryLevel()', $serverID);
+			} catch (Exception $e) {
+				continue;
+			}
+		}
 	}
 
 /*     * ********************************************************************** */
