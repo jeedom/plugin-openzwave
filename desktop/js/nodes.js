@@ -653,13 +653,17 @@ load_all: function(){
 			handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
 		},  
 		success: function(data) {
+			var node = nodes[node_id];
 			nodes = data['devices'];
+			nodes[node_id] = node;
 			controller_id = -1;
 			for(var i in data['devices']){
 				if(data['devices'][i]['description']['is_static_controller']){
 					controller_id = i;
 				}
 			}
+			app_nodes.draw_nodes();
+			app_nodes.show_groups();
 		}
 	});
 },
