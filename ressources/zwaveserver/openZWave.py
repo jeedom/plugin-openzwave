@@ -655,6 +655,11 @@ def extract_data(value, displayRaw = False):
         if displayRaw :
             print('Raw Signal : %s' % result)
         return result
+    if value.type == "Decimal":
+        precision = value.precision
+        if precision == None:
+            precision = 0
+        return round(value.data, precision)
     return value.data
 
 def can_execute_network_command(allowed_queue_count=25):
