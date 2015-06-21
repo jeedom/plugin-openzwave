@@ -85,7 +85,7 @@ foreach ($deamonRunningSlave as $name => $status) {
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-lg-4 control-label">{{Soigner le réseau automatique 2 fois par semaine}}</label>
+				<label class="col-lg-4 control-label">{{Soigner le réseau automatiquement 2 fois par semaine}}</label>
 				<div class="col-lg-3">
 					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_health" />
 				</div>
