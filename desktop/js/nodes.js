@@ -1159,7 +1159,7 @@ draw_nodes: function ()
 	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 3){
 	            				polling += '<span class="label label-warning" style="font-size:1em;">{{10 min}}</span>';
 	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 6){
-	            				polling += '<span class="label label-warning">{{5 min}}</span>';
+	            				polling += '<span class="label label-warning" style="font-size:1em;">{{5 min}}</span>';
 	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 30){
 	            				polling += '<span class="label label-danger" style="font-size:1em;">{{1 min}}</span>';
 	            			}else{
