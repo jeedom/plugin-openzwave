@@ -208,8 +208,8 @@ def find_tty_usb(idVendor, idProduct):
     return None
     
 def debug_print(message):
-    if log == "Debug":
-        add_log_entry(message, "debug")
+    if log == 'Debug':
+        add_log_entry(message, 'debug')
         
 def add_log_entry(message, level="info"):
     print('%s | %s | %s' % (time.strftime('%d-%m-%Y %H:%M:%S',time.localtime()), level, message.encode('utf8'),)) 
@@ -523,7 +523,7 @@ def network_failed(network):
     networkInformations.assignControllerNotification(ZWaveController.SIGNAL_CTRL_ERROR, "Network have failed")
 
 def recovering_failed_nodes_asynchronous():
-    add_log_entry("Check for failed nodes")
+    debug_print("Check for failed nodes")
     for idNode in network.nodes:
         if network.nodes[idNode].node_id == 0:
             debug_print('remove fake nodeId: %s' % (idNode)) 
@@ -543,7 +543,7 @@ def refresh_configuration_asynchronous():
             time.sleep(3)            
     
 def refresh_user_values_asynchronous():
-    add_log_entry("Refresh User Values of powered devices")
+    debug_print("Refresh User Values of powered devices")
     for idNode in network.nodes:
         myNode = network.nodes[idNode]
         if myNode.is_ready and myNode.is_awake and myNode.get_battery_level() == None and myNode.can_wake_up() == False:
@@ -564,13 +564,13 @@ def network_awaked(network):
     networkInformations.assignControllerNotification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is awaked")    
     configuration = threading.Timer(360.0, refresh_configuration_asynchronous)
     configuration.start() 
-    add_log_entry("refresh_configuration starting in 360 sec" )    
+    debug_print("refresh_configuration starting in 360 sec" )    
     user_values = threading.Timer(60.0, refresh_user_values_asynchronous)
     user_values.start() 
-    add_log_entry("refresh_user_values starting in 60 sec" )    
+    debug_print("refresh_user_values starting in 60 sec" )    
     recovering = threading.Timer(15.0, recovering_failed_nodes_asynchronous)
     recovering.start() 
-    add_log_entry("recovering_failed_nodes starting in 15 sec" )
+    debug_print("recovering_failed_nodes starting in 15 sec" )
         
 def network_ready(network):
     add_log_entry("Openzwave network is ready with %d nodes (%d are sleeping). All nodes are queried, the network is fully functionnal." % (network.nodes_count, get_sleeping_nodes_count(),))   
@@ -678,7 +678,7 @@ def can_execute_network_command(allowed_queue_count=25):
 def write_config():  
     watchDog = 0  
     while(networkInformations.configFileSaveInProgress and watchDog <10):
-        if log == "Debug":
+        if log == 'Debug':
             print ('.')
         time.sleep(1)
         watchDog +=1
@@ -687,7 +687,7 @@ def write_config():
     networkInformations.configFileSaveInProgress = True
     try:
         network.write_config()
-        add_log_entry('write configuration xml file')
+        add_log_entry('write configuration file')
         time.sleep(1)
     except Exception as error:
         add_log_entry('write_config %s' % (str(error),), "error")
@@ -771,10 +771,10 @@ def scene_event(network, node, scene_id):
     save_node_value_event(node.node_id, int(time.time()), 43, 0, typestd, scene_id, 0)  
     
 def controller_message_complete(network):
-    add_log_entry('The last message that was sent is now complete')
+    debug_print('The last message that was sent is now complete')
 
 def controller_waiting (network, controller, state_int, state, state_full):
-    add_log_entry(state_full)
+    debug_print(state_full)
     #save actual state
     networkInformations.assignControllerNotification(state, state_full)    
     #notify jeedom
@@ -782,7 +782,7 @@ def controller_waiting (network, controller, state_int, state, state_full):
    
     
 def controller_command(network, controller, node, node_id, state_int, state, state_full, error_int, error, error_full):
-    add_log_entry('%s (%s)' % (state_full, state))
+    debug_print('%s (%s)' % (state_full, state))
     if error_int > 0:
         add_log_entry('%s (%s)' % (error_full, error,), "error")
     
@@ -908,13 +908,14 @@ add_log_entry('Python-OpenZwave Wrapper Version %s' %(network.manager.getPythonL
 #We wait for the network.
 add_log_entry('Waiting for network to become ready')
 
-def get_value_by_index(device_id, command_class, instance, index_id):
+def get_value_by_index(device_id, command_class, instance, index_id, trace=True):
     if(device_id in network.nodes) :
         myDevice = network.nodes[device_id]
         for value_id in myDevice.values :
             if myDevice.values[value_id].command_class == command_class and myDevice.values[value_id].instance==instance and myDevice.values[value_id].index==index_id:
-                return myDevice.values[value_id]      
-    debug_print("get_value_by_index Value not found for device_id:%s, cc:%s, instance:%s, index:%s" % (device_id, command_class, instance, index_id,))            
+                return myDevice.values[value_id]     
+    if trace :
+        debug_print("get_value_by_index Value not found for device_id:%s, cc:%s, instance:%s, index:%s" % (device_id, command_class, instance, index_id,))            
     return None
 
 def get_value_by_id(device_id, value_id):
@@ -930,7 +931,7 @@ def mark_pending_change(myValue, data, wakeupTime = 0):
         myValue.pendingConfiguration = PendingConfiguration(data, wakeupTime)
         
 def build_network_busy_message():
-    return jsonify({'result':False, 'reason:':'Controller is too busy', 'state':networkInformations.actualMode, 'send_queue_count':network.controller.send_queue_count, 'state':network.state_str})
+    return jsonify({'result':False, 'data:': 'Controller is too busy', 'mode': networkInformations.actualMode, 'send_queue_count': network.controller.send_queue_count, 'state': network.state_str})
 
 def concatenate_list(listValues, separator=';'):
     try:
@@ -1272,13 +1273,10 @@ def convert_user_code_to_hex(value):
 def set_value(device_id, valueId, data):    
     debug_print("set a value for nodeId:%s valueId:%s data:%s" % (device_id, valueId, data,))
     #check for a valid device_id    
-    if device_id == 0xff:        
-        return jsonify({'result' : False, 'reason' : 'not a valid nodeId'})
     if(device_id in network.nodes) :
         currentNode = network.nodes[device_id]
         if not currentNode.is_ready:
-            return jsonify({'result' : False, 'reason' : 'The node must be Ready'})        
-        
+            return format_json_result(False, 'The node must be Ready') 
         for value in currentNode.values:
             if value == valueId:
                 zwaveValue = currentNode.values[value]
@@ -1297,11 +1295,11 @@ def set_value(device_id, valueId, data):
                 else:
                     resultMessage = 'fails (unknown error)'
                 if result == 1 :
-                    return jsonify({'result' : True, 'lastValue' : lastValue, 'newValue' : data})
-                return jsonify({'result' : False, 'reason' : resultMessage})
+                    return format_json_result()                    
+                return format_json_result(False, resultMessage)
+        return format_json_result(False, 'valueId not exist' )
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify({'result' : False, 'reason' : 'value not found'})  
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 def refresh_background(device_id, values):
     time.sleep(3)
@@ -1335,6 +1333,13 @@ def is_none_or_empty(value):
         return False
     else:
         return True
+    
+def format_json_result(success=True, detail=None, log_Level=None, code=0):
+    if (log_Level != None and not is_none_or_empty(detail)):
+        add_log_entry(detail, log_Level)
+    if detail != None :
+        return jsonify({'result': success, 'data': detail,'code': code}) 
+    return jsonify({'result': success}) 
             
 @app.before_first_request
 def _run_on_start():    
@@ -1368,9 +1373,9 @@ def refresh_assoc(device_id) :
         for val in network.nodes[device_id].values :
             if network.nodes[device_id].values[val].command_class == 133 :
                 network.nodes[device_id].values[val].refresh()
+        return format_json_result()
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify(config)
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[0].commandClasses[133].data',methods = ['GET'])
 def get_assoc(device_id) :
@@ -1390,35 +1395,30 @@ def get_assoc(device_id) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[0].commandClasses[0x85].Remove(<int:value>,<int:value2>)',methods = ['GET'])
 def remove_assoc(device_id,value,value2) :    
     if networkInformations.controllerIsBusy:
-        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
-    
-    config = {}   
+        return format_json_result(False, 'Controller is busy') 
     groupIndex=value
     targetNodeId=value2    
     debug_print("remove_assoc for nodeId: %s for group %s with nodeId: %s" % (device_id, groupIndex, targetNodeId,))
     if(device_id in network.nodes) : 
         network.manager.removeAssociation(network.home_id, device_id, groupIndex, targetNodeId)
-        config['result']={'value':'ok'}
+        return format_json_result()
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-        config['result']={'value':'failed'}
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(config)
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[0].commandClasses[0x85].Add(<int:value>,<int:value2>)',methods = ['GET'])
 def add_assoc(device_id, value, value2) :  
     if networkInformations.controllerIsBusy:
-        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState})    
+        return format_json_result(False, 'Controller is busy')   
     config = {}
     groupIndex=value
     targetNodeId=value2
     debug_print("add_assoc for nodeId: %s for group %s with nodeId: %s" % (device_id, groupIndex, targetNodeId,))
     if(device_id in network.nodes) :
         network.manager.addAssociation(network.home_id, device_id, groupIndex, targetNodeId)
-        config['result']={'value':'ok'}
+        return format_json_result()
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-        config['result']={'value':'failed'}
-    return jsonify(config)
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].GetPolling()',methods = ['GET'])
 def get_polling(device_id) :
@@ -1431,17 +1431,16 @@ def get_polling(device_id) :
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return str(polling)
         
-@app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetPolling(<int:frequence>)',methods = ['GET'])
-def set_polling(device_id, frequence) :
-    debug_print("set_polling for nodeId: %s at: %s" % (device_id, frequence,))    
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].ResetPolling()',methods = ['GET'])
+def reset_polling(device_id) :
+    debug_print("reset_polling for nodeId: %s" % (device_id,))    
     if(device_id in network.nodes) :
         for val in network.nodes[device_id].values :
             myValue = network.nodes[device_id].values[val]        
-            changes_value_polling(frequence, myValue)    
-        return jsonify({'result' : True})  
+            changes_value_polling(0, myValue)    
+        return format_json_result()  
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify({'result' : False}) 
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning') 
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetPolling(<int:value_id>,<int:frequence>)',methods = ['GET'])
 def set_polling2(device_id, value_id, frequence) :
@@ -1451,15 +1450,14 @@ def set_polling2(device_id, value_id, frequence) :
             myValue = network.nodes[device_id].values[val] 
             if(myValue.value_id==value_id):
                 changes_value_polling(frequence, myValue)
-                return jsonify({'result' : True})    
+                return format_json_result()
+        return format_json_result(False, 'valueId not found') 
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify({'result' : False,'raison':'valueId not found'})
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].SetPolling(<int:frequence>)',methods = ['GET'])
 def set_polling_value(device_id, instance_id, cc_id, index, frequence) :
-    debug_print("set_polling for nodeId: %s at: %s" % (device_id, frequence,))
-    Value = {}
+    debug_print("set_polling_value for nodeId: %s instance: %s cc:%s index:%s at: %s" % (device_id, instance_id, cc_id, index, frequence,))
     if(device_id in network.nodes) : 
         for val in network.nodes[device_id].values :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].index == index:
@@ -1470,10 +1468,10 @@ def set_polling_value(device_id, instance_id, cc_id, index, frequence) :
                 elif myValue.genre == "User" and myValue.is_write_only == False :
                     #we activate the value polling only on user genre value and is not a writeOnly 
                     myValue.enable_poll(frequence)
-        write_config()        
+        write_config()  
+        return format_json_result()      
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify(Value)
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning') 
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[0].commandClasses[132].data.interval.value',methods = ['GET'])
 def get_wakeup(device_id) :
@@ -1486,16 +1484,16 @@ def get_wakeup(device_id) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetWakeup(<int:time>)',methods = ['GET'])       
 def set_wakeup(device_id, time) :    
     debug_print("set wakeup interval for nodeId %s at: %s" % (device_id, time,))
-    Value = {}
     if(device_id in network.nodes) :
         for val in network.nodes[device_id].values :
             myValue = network.nodes[device_id].values[val]
             #we need to find the right valueId
             if myValue.command_class == 132 and myValue.label == "Wake-up Interval":
-                return set_value(device_id, myValue.value_id, int(time))   
+                result = set_value(device_id, myValue.value_id, int(time))  
+                return format_json_result(result) 
+        return format_json_result(False,'Wake-up Interval not found')
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')         
-    return jsonify(Value)
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')  
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].SetChangeVerified(<int:index>,<int:verified>)',methods = ['GET'])       
 def set_change_verified(device_id, instance_id, cc_id, index, verified) :
@@ -1508,10 +1506,10 @@ def set_change_verified(device_id, instance_id, cc_id, index, verified) :
             myValue = network.nodes[device_id].values[val]
             if hex(myValue.command_class)==cc_id and myValue.instance - 1 == instance_id and myValue.index == index:
                 network._manager.setChangeVerified(myValue.value_id, bool(verified))    
-                return jsonify({'result' : True})
+                return format_json_result()
+        return format_json_result(False,'value not found')
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify({'result' : False})
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses[0x70].Refresh()',methods = ['GET'])
 def request_all_config_params(device_id) :    
@@ -1522,27 +1520,25 @@ def request_all_config_params(device_id) :
     result = False
     if(device_id in network.nodes) : 
         network._manager.requestAllConfigParams(network.home_id, device_id)   
-        result = True
+        return format_json_result()
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning') 
-    return jsonify({'result' : result})
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses[0x70].Get(<int:index_id>)',methods = ['GET'])
 def refresh_config(device_id, index_id) :
     debug_print("refresh_config for nodeId:%s index_id:%s" % (device_id, index_id,))
-    config = {}
     if(device_id in network.nodes) : 
         for val in network.nodes[device_id].values :
             if network.nodes[device_id].values[val].command_class == COMMAND_CLASS_CONFIGURATION and network.nodes[device_id].values[val].index == index_id :
-                network.nodes[device_id].values[val].refresh()    
+                network.nodes[device_id].values[val].refresh()  
+        return format_json_result()  
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify(config)
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetDeviceName(<string:location>,<string:name>)',methods = ['GET'])
 def set_device_name(device_id, location, name) :    
     if networkInformations.controllerIsBusy:
-        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState})     
+        return format_json_result(False,'Controller is busy')    
     debug_print("setName for device_id:%s New Name ; '%s'" % (device_id, name,))
     result = False
     if(device_id in network.nodes) :   
@@ -1552,10 +1548,9 @@ def set_device_name(device_id, location, name) :
         location = location.encode('utf8')
         location = location.replace('+',' ')
         network.nodes[device_id].set_field('location',location)
-        result = True
+        return format_json_result()
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify({'result' : result})
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses[0x70].data',methods = ['GET'])
 def get_config(device_id) :
@@ -1589,7 +1584,7 @@ def get_config(device_id) :
 @app.route('/ZWaveAPI/Run/devices[<int:source_id>].CopyConfigurations(<int:target_id>)',methods = ['GET'])
 def copy_configuration(source_id, target_id):
     if networkInformations.controllerIsBusy:
-        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
+        return format_json_result(False,'Controller is busy')
     debug_print("copy_configuration from source_id:%s to target_id:%s'" % (source_id, target_id,))
     result = False
     items = 0
@@ -1620,33 +1615,32 @@ def copy_configuration(source_id, target_id):
                             add_log_entry('Copy configuration %s (index:%s) :%s' % (configurationValue.label, configurationValue.index, str(error), ), "error")
                 result = items != 0       
             else:
-                add_log_entry('The two nodes must be with same: manufacturer_id, product_type and product_id', 'warning') 
+                return format_json_result(False, 'The two nodes must be with same: manufacturer_id, product_type and product_id', 'warning')
         else:
-            add_log_entry('This network does not contain any node with the id %s' % (target_id,), 'warning')             
+            return format_json_result(False, 'This network does not contain any node with the id %s' % (target_id,), 'warning')
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (source_id,), 'warning')
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (source_id,), 'warning')            
     return jsonify({'result' : result, 'copied_configuration_items': items})
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetConfigurationItem(<int:index_id>,<string:item>)',methods = ['GET'])
 def set_configuration_item(device_id, value_id, item) :    
     if networkInformations.controllerIsBusy:
-        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
+        return format_json_result(False,'Controller is busy') 
     debug_print("set_configuration_item for device_id:%s change valueId:%s to '%s'" % (device_id, value_id, item,))
-    result = False
     if(device_id in network.nodes) : 
+        result = False
         result = network._manager.setValue(device_id, value_id, item)
         if (result):
            mark_pending_change(get_value_by_id(device_id, value_id), item) 
+        return format_json_result(result)   
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify({'result' : result})
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses[0x70].Set(<int:index_id>,<int:value>,<int:size>)',methods = ['GET'])
 def set_config(device_id,index_id,value,size) :
     if networkInformations.controllerIsBusy:
-        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
+        return format_json_result(False,'Controller is busy')
     debug_print("set_config for nodeId:%s index:%s, value:%s, size:%s" % (device_id, index_id, value, size,))
-    config = {}
     if size==0 :
         size=2
     try :
@@ -1654,19 +1648,18 @@ def set_config(device_id,index_id,value,size) :
             network.nodes[device_id].set_config_param(index_id, value, size)
             myValue = get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id)
             mark_pending_change(myValue, value) 
+            return format_json_result()
         else:
-            add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+            return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify({'result' : False, 'reason:': str(e)})         
+        return format_json_result(False, str(e), 'error')         
     return jsonify(config)
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses[0x70].Set(<int:index_id>,<string:value>,<int:size>)',methods = ['GET'])
 def set_config2(device_id,index_id,value,size) :
     if networkInformations.controllerIsBusy:
-        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
-    debug_print("set_config2 for device_id:%s change index:%s to '%s' size:(%s)" % (device_id,index_id,value,size,))
-    config = {}
+        return format_json_result(False,'Controller is busy')
+    debug_print("set_config2 for device_id:%s change index:%s to '%s' size:(%s)" % (device_id,index_id,value,size,))    
     try :
         if(device_id in network.nodes) :
             for value_id in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
@@ -1692,21 +1685,18 @@ def set_config2(device_id,index_id,value,size) :
                             value = False
                         network._manager.setValue(value_id, value)                    
                         mark_pending_change(myValue, value)
-                        
-                        
+                    return format_json_result()   
+            return format_json_result( False, 'configuration parameter not found') 
         else:
-            add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+            return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify({'result' : False, 'reason:': str(e)})    
-    return jsonify(config)
+        return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses[0x70].Set(<int:index_id>,<float:value>,<int:size>)',methods = ['GET'])
 def set_config3(device_id,index_id,value,size) :
     if networkInformations.controllerIsBusy:
-        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
+        return format_json_result(False,'Controller is busy') 
     debug_print("set_config3 for nodeId:%s index:%s, value:%s, size:%s" % (device_id, index_id, value, size,))
-    config = {}
     if size==0 :
         size=2
     value=int(value)
@@ -1714,19 +1704,17 @@ def set_config3(device_id,index_id,value,size) :
         if(device_id in network.nodes) :
             network.nodes[device_id].set_config_param(index_id, value, size)
             mark_pending_change(get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value) 
+            return format_json_result()
         else:
-            add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+            return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify({'result' : False, 'reason:': str(e)})    
-    return jsonify(config)
+        return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<int:value>,<int:size>)',methods = ['GET'])
 def set_config4(device_id,instance_id,index_id2,index_id,value,size) :
     if networkInformations.controllerIsBusy:
-        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
+        return format_json_result( False, 'Controller is busy')    
     debug_print("set_config4 for nodeId:%s instance_id:%s, index:%s, value:%s, size:%s" % (device_id, instance_id, index_id, value, size,))
-    config = {}
     if size==0 :
         size=2
     value=int(value)
@@ -1736,19 +1724,17 @@ def set_config4(device_id,instance_id,index_id2,index_id,value,size) :
             network.nodes[device_id].set_config_param(index_id, value, size)
             if myValue.type != 'List':
                 mark_pending_change(myValue, value) 
+            return format_json_result()
         else:
-            add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+            return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify({'result' : False, 'reason:': str(e)})    
-    return jsonify(config)
+        return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<string:value>,<int:size>)',methods = ['GET'])
 def set_config5(device_id,instance_id,index_id2,index_id,value,size) :
     if networkInformations.controllerIsBusy:
-        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
+        return format_json_result( False, 'Controller is busy') 
     debug_print("set_config5 for nodeId:%s instance_id:%s, index:%s, value:%s, size:%s" % (device_id, instance_id, index_id, value, size,))
-    config = {}
     if size==0 :
         size=2
     value=int(value)
@@ -1756,33 +1742,29 @@ def set_config5(device_id,instance_id,index_id2,index_id,value,size) :
         if(device_id in network.nodes) :
             network.nodes[device_id].set_config_param(index_id, value, size)
             mark_pending_change(get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value)  
+            return format_json_result()
         else:
-            add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+            return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify({'result' : False, 'reason:': str(e)})    
-    return jsonify(config)
+        return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<float:value>,<int:size>)',methods = ['GET'])
 def set_config6(device_id,instance_id,index_id2,index_id,value,size) :
     if networkInformations.controllerIsBusy:
-        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
+        return format_json_result(False,'Controller is busy') 
     debug_print("set_config6 for nodeId:%s instance_id:%s, index:%s, value:%s, size:%s" % (device_id, instance_id, index_id, value, size,))
-    config = {}
     if size==0 :
         size=2
-    value=int(value)
-    
+    value=int(value)    
     try :
         if(device_id in network.nodes) : 
             network.nodes[device_id].set_config_param(index_id, value, size)
             mark_pending_change(get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value)   
+            return format_json_result()
         else:
-            add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
+            return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify({'result' : False, 'reason:': str(e)})    
-    return jsonify(config)
+        return format_json_result(False, str(e), 'error')
             
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses',methods = ['GET'])
 def get_command_classes(device_id) :
@@ -1797,22 +1779,19 @@ def get_command_classes(device_id) :
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RequestNodeDynamic()',methods = ['GET'])
 def request_node_dynamic(device_id) :
-    Value = {}
     if(device_id in network.nodes) :  
         #Fetch only the dynamic command class data for a node from the Z-Wave network
         network._manager.requestNodeDynamic(network.home_id, device_id)
         #mark as updated to avoid a second pass
         network.nodes[device_id].last_update=time.time()
         debug_print("Fetch the dynamic command class data for the node %s" % (device_id,))
-        Value = {'result' : True}
+        return format_json_result()
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-        Value = {'result' : False}
-    return jsonify(Value)  
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
     
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Get()',methods = ['GET'])
 def get_value(device_id, instance_id,cc_id) :
-    Value = {}
+    
     if(device_id in network.nodes) :        
         try:
             network.nodes[device_id].last_update
@@ -1833,10 +1812,9 @@ def get_value(device_id, instance_id,cc_id) :
             #mark as updated to avoid a second pass
             network.nodes[device_id].last_update=time.time()
             debug_print("Fetch the dynamic command class data for the node %s" % (device_id,))
-        
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify(Value) 
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
+    return format_json_result()
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].val',methods = ['GET'])
 def get_value6(device_id, instance_id, index,cc_id) :
@@ -1850,9 +1828,8 @@ def get_value6(device_id, instance_id, index,cc_id) :
                     return str(network.nodes[device_id].values[val].data)
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-                
-    return jsonify(Value)
-
+    return jsonify(Value) 
+        
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[0x63].data[<int:index>].code',methods = ['GET'])
 def get_user_code(device_id, instance_id, index) :
     debug_print("getValueRaw nodeId:%s instance:%s commandClasses:%s index:%s" % (device_id, instance_id, hex(COMMAND_CLASS_USER_CODE), index))
@@ -1942,64 +1919,54 @@ def set_user_code2(device_id, slot_id, value1, value2, value3, value4, value5, v
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<int:value>)',methods = ['GET'])
 def set_value7(device_id,instance_id, cc_id, index, value) :
     debug_print("set_value7 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (device_id, instance_id, cc_id, index, value,))
-    Value = {}
     if(device_id in network.nodes) :
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
-                Value['data'] = {}
                 network.nodes[device_id].values[val].data=value
-                Value['data'][val] = {'val': value}
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
                     waitrefresh=threading.Thread(target=refresh_background, args=(device_id, [val]))
                     waitrefresh.start()
-                return jsonify(Value) 
+                return format_json_result()
+        return format_json_result(False, 'value not found')
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify(Value)
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<float:value>)',methods = ['GET'])
 def set_value8(device_id,instance_id, cc_id, index, value) :
     debug_print("set_value8 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (device_id, instance_id, cc_id, index, value,))
-    Value = {}
     if(device_id in network.nodes) :
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
-                Value['data'] = {}
                 network.nodes[device_id].values[val].data=value
-                Value['data'][val] = {'val': value}
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
                     waitrefresh=threading.Thread(target=refresh_background, args=(device_id, [val]))
                     waitrefresh.start()
-                return jsonify(Value) 
+                return format_json_result()
+        return format_json_result(False, 'value not found')
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify(Value)
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<string:value>)',methods = ['GET'])
 def set_value9(device_id,instance_id, cc_id, index, value) :
     debug_print("set_value8 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (device_id, instance_id, cc_id, index, value,))
-    Value = {}
     if(device_id in network.nodes) :
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
-                Value['data'] = {}
                 network.nodes[device_id].values[val].data=value
-                Value['data'][val] = {'val': value}
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
                     waitrefresh=threading.Thread(target=refresh_background, args=(device_id, [val]))
                     waitrefresh.start()
-                return jsonify(Value) 
+                return format_json_result() 
+        return format_json_result(False, 'value not found')
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify(Value)
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Set(<string:value>)',methods = ['GET'])
 def set_value6(device_id, instance_id, cc_id, value) :
     debug_print("set_value6 nodeId:%s instance:%s commandClasses:%s  data:%s" % (device_id, instance_id, cc_id,  value,))
-    Value = {}
     if cc_id == '132' :
         #is a wakeup interval update  
         arr=value.split(",")
@@ -2012,30 +1979,29 @@ def set_value6(device_id, instance_id, cc_id, value) :
             group=int(arr[0])
             nodeTarget=int(arr[1])
             try:
-                return add_assoc(device_id, group, nodeTarget)
+                return format_json_result(add_assoc(device_id, group, nodeTarget))
             except ValueError:
                 debug_print('Node not Ready for associations')
-                Value['result']={'value':'Node not Ready for associations'}
-                return jsonify(Value)        
+                return format_json_result(False,'Node not Ready for associations')       
         for val in network.nodes[device_id].get_switches() :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and hex(network.nodes[device_id].values[val].command_class)==cc_id:
                 Value['data'] = {}
                 Value['data'][val] = {'val':network.nodes[device_id].set_switch(val, value)}
-                return jsonify(Value)
+                return format_json_result() 
         for val in network.nodes[device_id].get_dimmers() :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and hex(network.nodes[device_id].values[val].command_class)==cc_id:
                 Value['data'] = {}
                 Value['data'][val] = {'val':network.nodes[device_id].set_dimmer(val, value)}
-                return jsonify(Value)
+                return format_json_result() 
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id:
                 Value['data'] = {}
                 network.nodes[device_id].values[val].data=value
                 Value['data'][val] = {'val': value}
-                return jsonify(Value) 
+                return format_json_result()  
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify(Value)
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
+    return format_json_result(False,'value not found')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].GetColor()',methods = ['GET'])
 def get_color(device_id) :
@@ -2079,7 +2045,6 @@ def set_color(device_id,  red_level, green_level, blue_level, white_level) :
         green_Value = None
         blue_Value = None
         white_Value = None
-        
         for val in network.nodes[device_id].get_values(class_id='All', genre='User', type='Byte', readonly=False, writeonly=False) :
             my_value = network.nodes[device_id].values[val]
             if my_value.command_class != COMMAND_CLASS_SWITCH_MULTILEVEL:
@@ -2087,8 +2052,7 @@ def set_color(device_id,  red_level, green_level, blue_level, white_level) :
             if my_value.label != 'Level':
                 continue
             if my_value.instance == 2 :
-                continue            
-            
+                continue
             if my_value.instance == 1 :
                 intensity_Value = val
             elif my_value.instance == 3 :
@@ -2108,69 +2072,57 @@ def set_color(device_id,  red_level, green_level, blue_level, white_level) :
             worker.start()
             result = True
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify({'result' : result})
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
+    return format_json_result(result) 
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()',methods = ['GET'])
 def press_button(device_id,instance_id, cc_id, index) :
-    Value = {}
     if(device_id in network.nodes) :
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
-                Value['data'] = {}
                 network._manager.pressButton(network.nodes[device_id].values[val].value_id)
-                Value['data'][val] = {'val': True}
-                return jsonify(Value)
+                return format_json_result()
+        return format_json_result(False,'button not found')
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify(Value)
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ReleaseButton()',methods = ['GET'])
 def release_button(device_id,instance_id, cc_id, index) :
-    Value = {}
     if(device_id in network.nodes) :
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
-                Value['data'] = {}
                 network._manager.releaseButton(network.nodes[device_id].values[val].value_id)
-                Value['data'][val] = {'val': True}
-                return jsonify(Value) 
+                return format_json_result()
+        return format_json_result(False,'button not found')
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify(Value)
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/controller.AddNodeToNetwork(<int:state>,<int:doSecurity>)',methods = ['GET'])
 def start_node_inclusion(state, doSecurity) :
     if networkInformations.controllerIsBusy:
-        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
-    State = {}
+        return format_json_result(False,'Controller is busy')
     if state == 1 :    
         if can_execute_network_command(0) == False:
-            return build_network_busy_message()    
-        
+            return build_network_busy_message()
         if doSecurity == 1:
             doSecurity = True
             add_log_entry("Start the Inclusion Process to add a Node to the Network with Security CC if the node is supports it")
         else:
             doSecurity = False
-            add_log_entry("Start the Inclusion Process to add a Node to the Network")
-            
-        
+            add_log_entry("Start the Inclusion Process to add a Node to the Network")        
         result = network.manager.addNode(network.home_id, doSecurity)
         if result :
-            networkInformations.actualMode = ControllerMode.AddDevice            
-        return jsonify({'result' : result})      
+            networkInformations.actualMode = ControllerMode.AddDevice   
+        return format_json_result(result)
     elif state == 0 :
-        add_log_entry("Start the Inclusion is Cancel" ) 
+        add_log_entry("Start the Inclusion (Cancel)" ) 
         network.manager.cancelControllerCommand(network.home_id)
-        
-    return jsonify(State)
+        return format_json_result()
  
 @app.route('/ZWaveAPI/Run/controller.RemoveNodeFromNetwork(<int:state>)',methods = ['GET'])
 def start_node_exclusion(state) :
     if networkInformations.controllerIsBusy:
-        return jsonify({'result' : False, 'reason:': 'Controller is busy', 'state' : networkInformations.controllerState}) 
-    State = {}
+        return format_json_result(False,'Controller is busy')
     if state == 1 :
         if can_execute_network_command(0) == False:
             return build_network_busy_message()  
@@ -2178,12 +2130,11 @@ def start_node_exclusion(state) :
         result = network.manager.removeNode(network.home_id)
         if result :
             networkInformations.actualMode = ControllerMode.RemoveDevice            
-        return jsonify({'result' : result})
+        return format_json_result(result)
     elif state == 0 :
         add_log_entry("Remove a Device from the Z-Wave Network (Cancel)" ) 
-        network.manager.cancelControllerCommand(network.home_id)  
-             
-    return jsonify(State)
+        network.manager.cancelControllerCommand(network.home_id) 
+        return format_json_result() 
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RequestNetworkUpdate()',methods = ['GET'])
 def request_network_update(device_id) :
@@ -2191,38 +2142,34 @@ def request_network_update(device_id) :
     Update the controller with network information from the SUC/SIS.
     """    
     add_log_entry("Update the controller with network information from the SUC/SIS node %s" %(device_id,))
-    return jsonify ({'result' : False})    
+    return format_json_result(False,'Not implemented')   
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     if(device_id in network.nodes) :
         result = network.manager.requestNetworkUpdate(network.home_id, device_id)
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify ({'result' : result}) 
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
+    return format_json_result(result) 
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RemoveFailedNode()',methods = ['GET'])
 def remove_failed_node(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     add_log_entry("Remove a failed node %s" %(device_id,))
-    result = False
     if(device_id in network.nodes) :
-        result = network.manager.removeFailedNode(network.home_id, device_id)
+        return format_json_result(network.manager.removeFailedNode(network.home_id, device_id))
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify ({'result' : result})
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RequestNodeNeighbourUpdate()',methods = ['GET'])
 def request_node_neighbour_update(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     debug_print("request_node_neighbour_update for node %s" %(device_id,)) 
-    result = False
     if(device_id in network.nodes) :
-        result = network.manager.requestNodeNeighborUpdate(network.home_id, device_id)
+        return format_json_result(network.manager.requestNodeNeighborUpdate(network.home_id, device_id))
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify ({'result' : result})
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
    
 @app.route('/ZWaveAPI/Run/controller.HealthNetwork()',methods = ['GET'])
 def health_network() :
@@ -2234,61 +2181,53 @@ def heal_network(performReturnRoutesInitialization=False) :
         return build_network_busy_message()      
     add_log_entry("heal_network") 
     network._manager.healNetwork(network.home_id, performReturnRoutesInitialization)
-    return jsonify ({'result' : True})
-    
-    return jsonify(State)
+    return format_json_result()
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].HealNode()',methods = ['GET'])
 def heal_node(device_id, performReturnRoutesInitialization=False) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
-    State = {}
     try:
         add_log_entry("HealNode node %s" %(device_id,)) 
         if(device_id in network.nodes) :
             network._manager.healNetworkNode(network.home_id, device_id, performReturnRoutesInitialization)
-            return jsonify ({'result' : True})
+            return format_json_result()
         else:
-            add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-            return jsonify ({'result' : False})
+            return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
-    return jsonify(State)    
+        return format_json_result(False, str(e), 'error') 
 
 @app.route('/ZWaveAPI/Run/SerialAPISoftReset()',methods = ['GET'])
 def soft_reset() :
     add_log_entry("Controller software Reset")
     try:
-        result = network.controller.soft_reset()
-        return jsonify ({'result' : result})
+        return format_json_result(network.controller.soft_reset())        
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
+        return format_json_result(False, str(e), 'error')
     
 @app.route('/ZWaveAPI/network_start()',methods = ['GET'])
 def start_network() :
-    State = {}
     add_log_entry('******** The ZWave network is being started ********')
-    network.start()
-    return jsonify(State)
+    try:
+        network.start()    
+        return format_json_result()   
+    except Exception as e:
+        return format_json_result(False, str(e), 'error')
     
 @app.route('/ZWaveAPI/network_stop()',methods = ['GET'])
 def stop_network() :
     graceful_stop_network()
-    return jsonify({'result' : True})
+    return format_json_result() 
 
 @app.route('/ZWaveAPI/assign_return_route(<int:device_id>)',methods = ['GET'])
 def assign_return_route(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
-    add_log_entry("Assign return route")
-    try:
-        result = network.manager.assignReturnRoute(network.home_id, device_id)
-        return jsonify ({'result' : result})
-    except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
+    add_log_entry("Assign return route")    
+    if(device_id in network.nodes) : 
+        return format_json_result(network.manager.assignReturnRoute(network.home_id, device_id))
+    else:
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')     
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RequestNodeInformation()',methods = ['GET'])
 def request_node_information(device_id) :
@@ -2296,10 +2235,9 @@ def request_node_information(device_id) :
         return build_network_busy_message()  
     debug_print("request_node_information node %s" %(device_id,)) 
     if(device_id in network.nodes) : 
-        return str(network.network.nodes[device_id].request_all_config_params())
+        return format_json_result(network.network.nodes[device_id].request_all_config_params())
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify({}) 
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/GetNetworkNeighbours()',methods = ['GET'])
 def get_network_neighbours():
@@ -2421,12 +2359,10 @@ def replace_failed_node(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     add_log_entry("replace_failed_node node %s" %(device_id,)) 
-    result = False
     if(device_id in network.nodes) : 
-        result = network.manager.replaceFailedNode(network.home_id, device_id)
+        return format_json_result(network.manager.replaceFailedNode(network.home_id, device_id))
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify ({'result' : result})
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].SendNodeInformation()',methods = ['GET'])
 def send_node_information(device_id) :
@@ -2436,12 +2372,10 @@ def send_node_information(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     debug_print("send_node_information node %s" %(device_id,)) 
-    result = False
     if(device_id in network.nodes) : 
-        result = network.manager.sendNodeInformation(network.home_id, device_id)
+        return format_json_result(network.manager.sendNodeInformation(network.home_id, device_id))
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify ({'result' : result})
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].HasNodeFailed()',methods = ['GET'])
 def has_node_failed(device_id) :
@@ -2451,12 +2385,10 @@ def has_node_failed(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     add_log_entry("has_node_failed node %s" %(device_id,)) 
-    result = False
     if(device_id in network.nodes) : 
-        result = network.manager.hasNodeFailed(network.home_id, device_id)
+        return format_json_result(network.manager.hasNodeFailed(network.home_id, device_id))
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify ({'result' : result})
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RefreshNodeInfo()',methods = ['GET'])
 def refresh_node_info(device_id) :
@@ -2466,20 +2398,16 @@ def refresh_node_info(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     debug_print("refresh_node_info node %s" %(device_id,)) 
-    result = False
     if(device_id in network.nodes) : 
-        result = network.manager.refreshNodeInfo(network.home_id, device_id)
+        return format_json_result(network.manager.refreshNodeInfo(network.home_id, device_id))
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify ({'result' : result})
-
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
+    
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RefreshAllValues()',methods = ['GET'])
 def refresh_all_values(device_id):
     """
     A manual refresh of all value of a node, we will receive a refreshed value form value refresh notification
     """
-    if device_id == 0xff:
-        return jsonify({'result' : False})
     if(device_id in network.nodes) : 
         currentNode = network.nodes[device_id]
         try:
@@ -2492,17 +2420,16 @@ def refresh_all_values(device_id):
                 if currentValue.is_write_only:
                     continue
                 currentValue.refresh()
-                counter+=1            
-            return jsonify({'result' : True,'refresh count': counter})
+                counter+=1
+            message = 'Refreshed values count: %s' % (counter,)            
+            return format_json_result(True, message)
         except Exception as e:
-            add_log_entry(str(e), 'error')
-            return jsonify ({'error' : str(e)})
+            return format_json_result(False, str(e), 'error')
     else:
-        add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-    return jsonify ({'result' : False})
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].TestNetwork()',methods = ['GET'])
-def test_network(device_id=0xff, count=3):
+def test_network(device_id=0, count=3):
     """
     Test network node.
     Sends a series of messages to a network node for testing network reliability.
@@ -2511,19 +2438,17 @@ def test_network(device_id=0xff, count=3):
         return build_network_busy_message()  
     try:
         debug_print("test_network node %s" %(device_id,))
-        if device_id == 0xff or device_id == 0:
+        if device_id == 0:
             network.manager.testNetwork(network.home_id, count)
-            return jsonify({'result' : True})
+            return format_json_result()
         else:
             if(device_id in network.nodes) :
                 network.manager.testNetworkNode(network.home_id, device_id, count)
-                return jsonify({'result' : True})
+                return format_json_result()
             else:
-                add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-                return jsonify({'result' : False})        
+                return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')       
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
+        return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].SendNoOperation()',methods = ['GET'])
 def send_no_operation(device_id):
@@ -2533,9 +2458,7 @@ def send_no_operation(device_id):
 def get_node_statistics(device_id):
     """
     Retrieve statistics per node.
-    """
-    if device_id == 0xff:
-        return jsonify({'result' : False})
+    """    
     try:
         if(device_id in network.nodes) :
             queryStageDescription = network.manager.getNodeQueryStage(network.home_id, device_id)
@@ -2544,11 +2467,9 @@ def get_node_statistics(device_id):
                     'queryStageCode' : queryStageCode,
                     'queryStageDescription' : queryStageDescription})
         else:
-            add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-            return jsonify({'result' : False})
+            return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
+        return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/CancelCommand()',methods = ['GET'])
 def cancel_command():
@@ -2560,18 +2481,16 @@ def cancel_command():
         result = network.manager.cancelControllerCommand(network.home_id)
         if result :
             networkInformations.controllerIsBusy = False        
-        return jsonify({'result' : result})
+        return format_json_result(result)
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
+        return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/addController()',methods = ['GET'])
 def add_controller() :
     """
     Add a new secondary controller to the Z-Wave network.
     """
-    return jsonify ({'result' : False})
-    
+    return format_json_result(False, 'not implemented')
 
 @app.route('/ZWaveAPI/Run/CreateNewPrimary()',methods = ['GET'])
 def create_new_primary() :
@@ -2582,14 +2501,12 @@ def create_new_primary() :
         return build_network_busy_message()  
     add_log_entry("Add a new controller to the Z-Wave network")
     try:
-        result = network.manager.createNewPrimary(network.home_id)
-        return jsonify ({'result' : result})
+        return format_json_result(network.manager.createNewPrimary(network.home_id))
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
+        return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].ReplicationSend()',methods = ['GET'])
-def replication_send() :
+def replication_send(device_id) :
     """
     Send a NIF frame from the Controller to the Node.
     """
@@ -2597,11 +2514,12 @@ def replication_send() :
         return build_network_busy_message() 
     add_log_entry('Send a NIF frame from the Controller to the Nodeid %s' % (device_id,))
     try:
-        result = network.manager.replicationSend(network.home_id, device_id)
-        return jsonify ({'result' : result})
+        if(device_id in network.nodes) :
+            return format_json_result(network.manager.replicationSend(network.home_id, device_id))
+        else:
+            return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
+        return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/TransferPrimaryRole()',methods = ['GET'])
 def transfer_primary_role() :
@@ -2613,11 +2531,9 @@ def transfer_primary_role() :
         return build_network_busy_message()  
     add_log_entry("Add a new controller to the network and make it the primary")
     try:
-        result = network.manager.transferPrimaryRole(network.home_id)
-        return jsonify ({'result' : result})
+        return format_json_result(network.manager.transferPrimaryRole(network.home_id))
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
+        return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/HardReset()',methods = ['GET'])
 def hard_reset() :    
@@ -2626,11 +2542,9 @@ def hard_reset() :
     """
     add_log_entry("Resets a controller and erases its network configuration settings")
     try:
-        result = network.controller.hard_reset()
-        return jsonify ({'result' : result})
+        return format_json_result(network.controller.hard_reset())
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
+        return format_json_result(False, str(e), 'error')
     
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].request_all_config_params()',methods = ['GET'])
 def request_all_config_parameters(device_id) :
@@ -2641,15 +2555,12 @@ def request_all_config_parameters(device_id) :
         return build_network_busy_message()  
     try:
         debug_print("RequestAllConfigParams node %s" %(device_id,))
-        result = False
         if(device_id in network.nodes) : 
-            result = str(network.network.nodes[device_id].request_all_config_params())
+           return format_json_result(network.network.nodes[device_id].request_all_config_params())
         else:
-            add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
-        return jsonify ({'result' : result})
+            return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
+        return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/GetControllerStatus()',methods = ['GET'])
 def get_controller_status() :
@@ -2663,8 +2574,7 @@ def get_controller_status() :
                 controllerData = serialize_controller_to_json() 
         return jsonify ({'result' : controllerData})
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
+        return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/GetOZLogs()',methods = ['GET'])
 def get_openzwave_logs() :
@@ -2677,8 +2587,7 @@ def get_openzwave_logs() :
         lines = stdout.readlines(); stdout.close()
         return jsonify ({'result' : lines})
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'result' : str(e)})
+        return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/GetZWConfig()',methods = ['GET'])
 def get_openzwave_config() :
@@ -2689,21 +2598,19 @@ def get_openzwave_config() :
     try:
         write_config()
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
-    
+        return format_json_result(False, str(e), 'error')  
     fileName = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
     try:
         with open(fileName, "r") as ins:
             f = ins.read()
         return jsonify ({'result' : f})
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e), 'fileName':fileName})
+        return format_json_result(False, str(e), 'error')
     
 @app.route('/JS/Run/zway.devices.SaveData()',methods = ['GET'])
 def save_data() :
-    return write_config()
+    write_config()
+    return format_json_result()
     
 @app.route('/ZWaveAPI/Run/SaveZWConfig()',methods = ['POST'])
 def save_openzwave_config() :
@@ -2719,10 +2626,9 @@ def save_openzwave_config() :
             ins.write(request.data)
         add_log_entry('******** The ZWave network is being started ********')
         network.start()
-        return jsonify ({'result' : True})
+        return format_json_result() 
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e), 'fileName':fileName})
+        return format_json_result(False, '%s : %s' (str(e),fileName,), 'error') 
     
 @app.route('/ZWaveAPI/Run/WriteZWConfig()',methods = ['GET'])
 def write_openzwave_config() :
@@ -2731,10 +2637,9 @@ def write_openzwave_config() :
     """
     try:
         write_config()
-        return jsonify ({'result' : True})
+        return format_json_result()
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
+        return format_json_result(False, str(e), 'error') 
     
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RemoveDeviceZWConfig()',methods = ['GET'])
 def remove_device_openzwave_config(device_id) :
@@ -2747,9 +2652,7 @@ def remove_device_openzwave_config(device_id) :
         add_log_entry('ZWave network is now stopped')
         time.sleep(5)
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
-    
+        return format_json_result(False, str(e), 'error')    
     fileName = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
     try:
         tree = etree.parse(fileName)
@@ -2761,10 +2664,9 @@ def remove_device_openzwave_config(device_id) :
         FILE.close()
         add_log_entry('******** The ZWave network is being started ********')
         network.start()
-        return jsonify ({'result' : True})
+        return format_json_result()
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e), 'fileName':fileName})
+        return format_json_result(False, '%s : %s' (str(e),fileName,), 'error') 
     
 @app.route('/ZWaveAPI/Run/RemoveUnknownsDevicesZWConfig()',methods = ['GET'])
 def remove_unknowns_devices_openzwave_config() :
@@ -2777,8 +2679,7 @@ def remove_unknowns_devices_openzwave_config() :
         add_log_entry('ZWave network is now stopped')
         time.sleep(5)
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})
+        return format_json_result(False, str(e), 'error')
     
     fileName = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
     try:
@@ -2793,10 +2694,9 @@ def remove_unknowns_devices_openzwave_config() :
         FILE.close()
         add_log_entry('******** The ZWave network is being started ********')
         network.start()
-        return jsonify ({'result' : True})
+        return format_json_result()
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e), 'fileName':fileName})
+        return format_json_result(False, '%s : %s' (str(e),fileName,), 'error')
     
 @app.route('/ZWaveAPI/Run/SetPollInterval(<int:seconds>,<int:intervalBetweenPolls>)',methods = ['GET'])
 def set_poll_interval(seconds, intervalBetweenPolls):
@@ -2812,11 +2712,25 @@ def set_poll_interval(seconds, intervalBetweenPolls):
         if seconds < 30:
             return jsonify ({'result' : False, 'reason' : 'interval is too small'})  
         network.set_poll_interval(1000*seconds, bool(intervalBetweenPolls))                
-        return jsonify ({'result' : True})
+        return format_json_result()
     except Exception as e:
-        add_log_entry(str(e), 'error')
-        return jsonify ({'error' : str(e)})    
-
+        return format_json_result(False, str(e), 'error') 
+    
+@app.route('/ZWaveAPI/Run/RefreshAllBatteryLevel()',methods = ['GET'])       
+def refresh_all_battery_level():
+    debug_print("refresh_all_battery_level")
+    if network != None and network.state >= 7: 
+        count = 0
+        for device_id in network.nodes:
+            myNode = network.nodes[device_id]
+            if not myNode.is_listening_device:
+                debug_print('Refresh battery level for nodeId: %s' % (device_id,))
+                battery_level = get_value_by_index(device_id, COMMAND_CLASS_BATTERY, 1, 0)
+                if battery_level != None:
+                    battery_level.refresh()
+                    count+=1
+        return format_json_result(True,'%s battery level refreshed' %(count,))
+    return format_json_result(False, 'network must be at least awaked')
 
 if __name__ == '__main__':
     pid = str(os.getpid())
