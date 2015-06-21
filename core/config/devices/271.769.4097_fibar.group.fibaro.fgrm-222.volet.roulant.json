@@ -125,6 +125,20 @@
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x26",
+                    "value": "data[2].ReleaseButton()"
+                },
+                "display": {
+                    "icon": "<i class=\"fa fa-stop\"><\/i>"
+                }
+            },
+			{
+                "name": "Stop BSO",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x26",
                     "value": "data[7].ReleaseButton()"
                 },
                 "display": {
