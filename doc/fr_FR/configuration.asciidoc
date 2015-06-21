@@ -12,7 +12,7 @@ Si vous êtes en mode déporté, le démon local peut être arrêté, c'est tout
 
 * *Général* : cette partie permet de configurer les paramètres généraux du plugin.
 * *Démon local* ou *Démon XXX* : paramètres de configuration locale (ou déportée, en fonction de l'intitulé) du démon.
-** *Installer/Mettre à jour OpenZwave en local* : permet de lancer l'installation du moteur OpenZwave, si vous venez de l'installer il faut absolument lancer l'installation (à moins de vouloir utiliser le plugin en mode déporté, dans ce cas il faudra lancer l'installation à partir du jeedom deporté). Il est recommandé de lancer l'installation en stable à moins que l'équipe de support vous demande le contraire.
+** *Installer/Mettre à jour OpenZwave en local* : permet de lancer l'installation du moteur OpenZwave, si vous venez de l'installer il faut absolument lancer l'installation (à moins de vouloir utiliser le plugin en mode déporté, dans ce cas il faudra lancer l'installation à partir du jeedom deporté). Il est aussi possible que Jeedom vous redemande de faire cette étape suite à une mise à jour. C'est normale ca permet de mettre à jour openzwave
 ** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-wave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 posssibilités à la fin de la liste
 ** *Port socket interne* (modification dangereuse, doit être la même valeur sur tous les Jeedom déportés Z-wave)_ : permet de modifier le port de communication interne du démon.
 ** *Gestion du démon* : vous retrouvez ici les boutons de gestion du démon : 
@@ -60,14 +60,10 @@ Vous retrouvez ici toute la configuration de votre équipement :
 * *Délai maximum autorisé entre 2 messages (min)* : le délai maximum autorisé entre 2 messages avant que Jeedom ne déclare l'équipement en "timeout". 
 * *Commentaire* : vous permet de mettre des commentaires sur l'équipement (ex : pile changée le XX/XX/XXXX)
 * *Module* : ce champs n'apparaît que si il existe différents types de configuration pour votre module (cas pour les modules pouvant faire fils pilotes par exemple). Il vous permet lors de configurer la configuration à utiliser ou de la modifier par la suite
+* *Marque* : fabricant de votre module Z-Wave.
 * *Configuration* : fenêtre de configuration des paramètres du module
 * *Assistant* : disponible uniquement sur certains modules, il vous aide à configurer le module (cas sur le zipato keyboard par exemple)
 * *Documentation* : ce bouton vous permet d'ouvrir directement la doc Jeedom concernant ce module.
-* *Marque et nom* : fabricant de votre module Z-Wave.
-* *Etat* : indique l'état actuel de votre module, la date de dernière communication avec le module et si celui-ci est sur batterie son niveau de batterie
-[icon="../images/plugin/tip.png"]
-[TIP]
-Si la batterie de votre module tombe sous les 20 % Jeedom vous préviendra, vous n'avez donc pas à vous préoccuper du niveau de batterie de votre module.
 
 En dessous vous retrouvez la liste des commandes : 
 
@@ -280,9 +276,11 @@ Vous avez ici :
 
 * *Module* : le nom de votre module, un clic dessus vous permet d'y accèder directement.
 * *ID* : ID de votre module sur le réseau Z-Wave.
-* *Serveur* : nom du serveur Z-Wave.
-* *Interview* : statut de l'interview, un clic dessus permet d'afficher la fenêtre de l'interview.
-* *Statut* : statut du module (actif => module alimenté, endormi => module sur batterie dormant, réveillé => module sur batterie à l'écoute).
+* *Notification* : dernier type d'échange entre le module et le controleur
+* *Groupe* : indique si la configuration des groupes est ok (controleur au moins dans un groupe). Si vous n'avez rien c'est que le module ne supporte pas la notion de groupe, c'est normal
+* *Constructeur* : indique si la recuperation des informations d'identification du module est ok
+* *Voisin* : indique si la liste des voisins a bien était recupérée
+* *Statut* : Indique le status de l'interview du module
 * *Batterie* : niveau de batterie du module (NA indique que le module est alimenté).
 * *Wakeup time* : pour les modules sur batterie, il donne la fréquence en secondes des instants où le module se réveille forcément.
 * *Paquet total* : affiche le nombre total de paquets reçus ou envoyés avec succès au module (maximum 30).
