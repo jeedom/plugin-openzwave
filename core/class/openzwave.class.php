@@ -416,6 +416,9 @@ class openzwave extends eqLogic {
 				return $result[0] . '.' . $result[1] . '.' . $result[2];
 			}
 		}
+		if ($_module == 'python-openzwave') {
+			return trim(str_replace(array("'", 'pyozw_version', '[]', '='), '', shell_exec('cat /opt/python-openzwave/pyozw_version.py | grep "pyozw_version ="')));
+		}
 	}
 
 	public static function updateOpenzwave($_mode = 'master') {

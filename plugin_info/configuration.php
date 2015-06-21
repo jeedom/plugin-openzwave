@@ -48,7 +48,7 @@ if (!$deamonRunningMaster) {
 } else {
 	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
 }
-echo '<label class="col-sm-2 control-label">{{OpenZwave}} (' . openzwave::getVersion('openzwave') . ')</label>';
+echo '<label class="col-sm-2 control-label">{{OpenZwave}} (' . openzwave::getVersion('openzwave') . '/' . openzwave::getVersion('python-openzwave') . ')</label>';
 if (version_compare(config::byKey('openzwave_version', 'openzwave'), openzwave::getVersion('openzwave'), '>')) {
 	echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
 } else {
@@ -62,7 +62,7 @@ foreach ($deamonRunningSlave as $name => $status) {
 	} else {
 		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
 	}
-	echo '<label class="col-sm-2 control-label">{{OpenZwave}} (' . $deamonSlaveVersion[$name]['openzwave'] . ')</label>';
+	echo '<label class="col-sm-2 control-label">{{OpenZwave}} (' . $deamonSlaveVersion[$name]['openzwave'] . '/' . $deamonSlaveVersion[$name]['python-openzwave'] . ')</label>';
 	if (version_compare($deamonSlaveVersion[$name]['openzwave'], openzwave::getVersion('openzwave'), '>')) {
 		echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
 	} else {
