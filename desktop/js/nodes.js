@@ -345,10 +345,10 @@ $('#paramsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 		});
 	}else if(paramType == "Bool"){
 		if(paramValue==true){
-			modal.find('.modal-body').append('<input type="radio" name="newvalue" id="on" value="255" checked> {{ON}} ');
+			modal.find('.modal-body').append('<input type="radio" name="newvalue" id="on" value="1" checked> {{ON}} ');
 			modal.find('.modal-body').append('<input type="radio" name="newvalue" id="off" value="0"> {{OFF}} ');
 		}else{
-			modal.find('.modal-body').append('<input type="radio" name="newvalue" id="on" value="255"> {{ON}} ');
+			modal.find('.modal-body').append('<input type="radio" name="newvalue" id="on" value="1"> {{ON}} ');
 			modal.find('.modal-body').append('<input type="radio" name="newvalue" id="off" value="0" checked> {{OFF}} ');
 		}
 	}else if(paramType == "Button"){
