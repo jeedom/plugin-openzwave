@@ -105,9 +105,9 @@ $("#sendNodeInformation").off("click").on("click",function() {
 });
 $("#regenerateNodeCfgFile").off("click").on("click",function() {
 	bootbox.confirm("Etes-vous sûr ? Cela va redémarrer votre réseau", function(result) {
-	  if(result){
-	  	app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node);
-	  }
+		if(result){
+			app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node);
+		}
 	}); 
 });
 $("body").off("click",".copyParams").on("click",".copyParams",function (e) {
@@ -1131,25 +1131,29 @@ draw_nodes: function ()
 	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only==false){
 	            				row.find("td[key=variable-edit]").html('<button type="button" class="btn btn-primary editValue" data-valueidx="'+index+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></button>');
 	            			}
+	            			var polling = '';
 	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 0){
-	            				row.find("td[key=variable-polling]").html('<span class="label label-success" style="font-size:1em;">{{Auto}}</span>');
+	            				polling = '<span class="label label-success" style="font-size:1em;">{{Auto}}</span>';
 	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 1){
-	            				row.find("td[key=variable-polling]").html('<span class="label label-success" style="font-size:1em;">{{30 min}}</span>');
+	            				polling = '<span class="label label-success" style="font-size:1em;">{{30 min}}</span>';
 	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 2){
-	            				row.find("td[key=variable-polling]").html('<span class="label label-success" style="font-size:1em;">{{15 min}}</span>');
+	            				polling = '<span class="label label-success" style="font-size:1em;">{{15 min}}</span>';
 	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 3){
-	            				row.find("td[key=variable-polling]").html('<span class="label label-warning" style="font-size:1em;">{{10 min}}</span>');
+	            				polling = '<span class="label label-warning" style="font-size:1em;">{{10 min}}</span>';
 	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 6){
-	            				row.find("td[key=variable-polling]").html('<span class="label label-warning">{{5 min}}</span>');
+	            				polling = '<span class="label label-warning">{{5 min}}</span>';
 	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 30){
-	            				row.find("td[key=variable-polling]").html('<span class="label label-danger" style="font-size:1em;">{{1 min}}</span>');
+	            				polling = '<span class="label label-danger" style="font-size:1em;">{{1 min}}</span>';
 	            			}else{
-	            				row.find("td[key=variable-polling]").html('<span class="label label-default" style="font-size:1em;">'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'</span>');
+	            				polling = '<span class="label label-default" style="font-size:1em;">'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'</span>';
 	            			}
 	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only==false){
-	            				row.find("td[key=variable-editpolling]").html('<button type="button" class="btn btn-primary editPolling" data-valueidx="'+index+'" data-valuepolling="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></button>');
+	            				if(nodes[z].data.isListening.value){
+	            					polling += ' <a style="position:relative;top:-1px;" class="btn btn-primary btn-xs editPolling cursor" data-valueidx="'+index+'" data-valuepolling="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></a>';
+	            				}
 	            				row.find("td[key=variable-refresh]").html('<button type="button" class="btn btn-primary forceRefresh" data-valueidx="'+index+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-refresh"></i></button>');
 	            			}
+	            			row.find("td[key=variable-polling]").html(polling);
 	            			row.find("td[key=variable-updatetime]").html(app_nodes.timestampConverter(nodes[z].instances[instance].commandClasses[commandclass].data[index].updateTime));
 
 	            			row_system.find("td[key=system-instance]").html(instance);

@@ -248,8 +248,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 							<th>{{Instance}}</th>
 							<th>{{Index}}</th>
 							<th>{{Type}}</th>
-							<th>{{Fréquence d'interrogation du module}}</th>
-							<th>{{Modifier la fréquence d'interrogation}}</th>
+							<th>{{Rafraichissement}}</th>
 							<th>{{Forcer la mise à jour}}</th>
 							<th>{{Date de mise à jour}}</th>
 						</tr>
@@ -262,7 +261,6 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 							<td key="variable-index"></td>
 							<td key="variable-type"></td>
 							<td key="variable-polling"></td>
-							<td key="variable-editpolling"></td>
 							<td key="variable-refresh"></td>
 							<td key="variable-updatetime"></td>
 						</tr>
