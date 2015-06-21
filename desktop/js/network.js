@@ -713,7 +713,7 @@ show_infos: function (){
                         rtClass = 'danger';
                       routingTable += '<td class="' + rtClass + ' tooltips" title="' + routeHops + '"></td>';
                     });
-routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="'+nodeId+'" class="btn btn-xs btn-primary requestNodeNeighboursUpdate tooltips" title="{{Mise à jour des noeuds voisins}}"><i class="fa fa-sitemap"></i></button></td></tr>';
+routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="'+nodeId+'" class="btn btn-xs btn-primary requestNodeNeighboursUpdate tooltips" title="{{Mise à jour des noeuds voisins}}"><i class="fa fa-refresh"></i></button></td></tr>';
 });
 $('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '<th>{{}}</th></tr></thead><tbody>' + routingTable + '</tbody></table>');
 initTooltips();
