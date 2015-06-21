@@ -95,6 +95,13 @@ var app_network = {
      $("#writeconfigfile").off("click").on("click",function() {
       app_network.writeConfigFile();
     });
+    $("#regenerateNodesCfgFile").off("click").on("click",function() {
+		bootbox.confirm("Etes-vous sûr ? Cela va redémarrer votre réseau", function(result) {
+		  if(result){
+		  	app_network.regenerate_nodes_cfg_file();
+		  }
+		}); 
+	});
      $("#softReset").off("click").on("click",function() {
       app_network.softReset();
     });
@@ -252,6 +259,19 @@ var app_network = {
   writeConfigFile: function(){
     $.ajax({ 
       url: path+"ZWaveAPI/Run/WriteZWConfig()", 
+      dataType: 'json',
+      async: true, 
+      error: function (request, status, error) {
+        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+      },
+      success: function(data) {
+        app_network.sendOk();
+      }
+    });
+  },
+  regenerate_nodes_cfg_file: function(){
+    $.ajax({ 
+      url: path+"ZWaveAPI/Run/RemoveUnknownsDevicesZWConfig()", 
       dataType: 'json',
       async: true, 
       error: function (request, status, error) {

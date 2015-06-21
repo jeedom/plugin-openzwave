@@ -215,6 +215,10 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 							<td>{{Ecrit le fichier de configuration OpenZwave.}}</td>
 						</tr>
 						<tr>
+							<td><button type="button" id="regenerateNodesCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Regénérer la détection des noeuds inconnus}}</button></td>
+							<td>{{Supprime les informations des noeuds inconnus dans le fichier de config afin qu'il soit regénéré. (Attention : Relance le réseau)}}</td>
+						</tr>
+						<tr>
 							<td><button type="button" id="softReset" class="btn btn-warning"><i class="fa fa-times"></i> {{Redémarrage}}</button></td>
 							<td>{{Redémarrage du contrôleur. Redémarre le contrôleur sans effacer les paramètres de sa configuration réseau.}}</td>
 						</tr>
