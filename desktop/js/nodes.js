@@ -343,8 +343,19 @@ $('#paramsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 
 			}
 		});
+	}else if(paramType == "Bool"){
+		if(paramValue==true){
+			modal.find('.modal-body').append('<input type="radio" name="newvalue" id="on" value="255" checked> {{ON}} ');
+			modal.find('.modal-body').append('<input type="radio" name="newvalue" id="off" value="0"> {{OFF}} ');
+		}else{
+			modal.find('.modal-body').append('<input type="radio" name="newvalue" id="on" value="255"> {{ON}} ');
+			modal.find('.modal-body').append('<input type="radio" name="newvalue" id="off" value="0" checked> {{OFF}} ');
+		}
+	}else if(paramType == "Button"){
+		modal.find('.modal-body').append('<input type="radio" name="newvalue" id="push" value="Press" checked> {{Presser le bouton}} ');
+		modal.find('.modal-body').append('<input type="radio" name="newvalue" id="push" value="Release"> {{Relacher le bouton}} ');
 	}else{
-		modal.find('.modal-body').append('<input type="text" class="form-control" id="newvalue" value="'+paramValue+'">');
+		modal.find('.modal-body').append('<input type="text" class="form-control" id="newvalue" style="display:inline-block;width:400px;" value="'+paramValue+'">');
 	}
 });
 $("#sendNodeInformation").off("click").on("click",function() {
@@ -352,7 +363,14 @@ $("#sendNodeInformation").off("click").on("click",function() {
 });
 $("#saveParam").off("click").on("click",function (e) {
 	var paramId = $('#paramsModal').data('paramid');
-	var paramValue = $('#newvalue').val();
+	var paramType = $('#paramsModal').data('paramtype');
+	if(paramType == "Bool"){
+		var paramValue = $('input[name=newvalue]:checked', '#paramsModal').val();
+	}else if(paramType == "Button"){
+		var paramValue = $('input[name=newvalue]:checked', '#paramsModal').val();
+	}else{
+		var paramValue = $('#newvalue').val();
+	}
 	var paramValue2 = paramValue.replace(/\//g,'@');
 	var paramLength = paramValue.length;
 	$.ajax({ 
