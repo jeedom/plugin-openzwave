@@ -32,6 +32,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 			$deamonRunningSlave[$jeeNetwork->getName()] = $jeeNetwork->sendRawRequest('deamonRunning', array('plugin' => 'openzwave'));
 			$deamonSlaveVersion[$jeeNetwork->getName()]['openzwave'] = $jeeNetwork->sendRawRequest('getVersion', array('plugin' => 'openzwave', 'module' => 'openzwave'));
 			$deamonSlaveVersion[$jeeNetwork->getName()]['python-openzwave'] = $jeeNetwork->sendRawRequest('getVersion', array('plugin' => 'openzwave', 'module' => 'python-openzwave'));
+			$deamonSlaveVersion[$jeeNetwork->getName()]['compilation'] = $jeeNetwork->sendRawRequest('compilationOk', array('plugin' => 'openzwave'));
 		} catch (Exception $e) {
 
 		}
@@ -48,11 +49,17 @@ if (!$deamonRunningMaster) {
 } else {
 	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
 }
-echo '<label class="col-sm-2 control-label">{{OpenZwave}} (' . openzwave::getVersion('openzwave') . '/' . openzwave::getVersion('python-openzwave') . ')</label>';
+echo '<label class="col-sm-3 control-label">{{OpenZwave}} (' . openzwave::getVersion('openzwave') . '/' . openzwave::getVersion('python-openzwave') . ')</label>';
 if (version_compare(config::byKey('openzwave_version', 'openzwave'), openzwave::getVersion('openzwave'), '>')) {
 	echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
 } else {
 	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
+}
+echo '<label class="col-sm-2 control-label">{{Compilation}}</label>';
+if (openzwave::compilationOk()) {
+	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
+} else {
+	echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
 }
 echo '</div>';
 foreach ($deamonRunningSlave as $name => $status) {
@@ -62,11 +69,17 @@ foreach ($deamonRunningSlave as $name => $status) {
 	} else {
 		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
 	}
-	echo '<label class="col-sm-2 control-label">{{OpenZwave}} (' . $deamonSlaveVersion[$name]['openzwave'] . '/' . $deamonSlaveVersion[$name]['python-openzwave'] . ')</label>';
+	echo '<label class="col-sm-3 control-label">{{OpenZwave}} (' . $deamonSlaveVersion[$name]['openzwave'] . '/' . $deamonSlaveVersion[$name]['python-openzwave'] . ')</label>';
 	if (version_compare($deamonSlaveVersion[$name]['openzwave'], openzwave::getVersion('openzwave'), '>')) {
 		echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
 	} else {
 		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
+	}
+	echo '<label class="col-sm-2 control-label">{{Compilation}}</label>';
+	if ($deamonSlaveVersion[$name]['compilation']) {
+		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
+	} else {
+		echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
 	}
 	echo '</div>';
 }
