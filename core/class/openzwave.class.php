@@ -425,6 +425,11 @@ class openzwave extends eqLogic {
 	}
 
 	public static function updateOpenzwave($_mode = 'master') {
+		try {
+			self::stopDeamon();
+		} catch (Exception $e) {
+
+		}
 		log::remove('openzwave_update');
 		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh ' . $_mode;
 		$cmd .= ' >> ' . log::getPathToLog('openzwave_update') . ' 2>&1 &';
@@ -438,7 +443,11 @@ class openzwave extends eqLogic {
 	}
 
 	public static function runDeamon($_debug = false) {
-		self::stopDeamon();
+		try {
+			self::stopDeamon();
+		} catch (Exception $e) {
+
+		}
 		log::add('openzwave', 'info', 'Lancement du démon openzwave');
 		$port = config::byKey('port', 'openzwave');
 		if ($port != 'auto') {
