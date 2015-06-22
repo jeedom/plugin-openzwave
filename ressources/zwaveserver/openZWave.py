@@ -465,7 +465,8 @@ def graceful_stop_network():
     dispatcher.disconnect(nodes_queried_some_dead, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
     dispatcher.disconnect(button_on, ZWaveNetwork.SIGNAL_BUTTON_ON)
     dispatcher.disconnect(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
-    dispatcher.disconnect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION) #dispatcher.disconnect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
+    dispatcher.disconnect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION) 
+    dispatcher.disconnect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
     dispatcher.disconnect(controller_waiting, ZWaveNetwork.SIGNAL_CONTROLLER_WAITING)
     dispatcher.disconnect(controller_command, ZWaveNetwork.SIGNAL_CONTROLLER_COMMAND)
     dispatcher.disconnect(controller_message_complete, ZWaveNetwork.SIGNAL_MSG_COMPLETE)
@@ -526,33 +527,43 @@ def network_failed(network):
     add_log_entry("Openzwave network can't load", "error")
     networkInformations.assignControllerNotification(ZWaveController.SIGNAL_CTRL_ERROR, "Network have failed")
 
+def validate_association_groups_asynchronous():
+    debug_print("Check association")
+    for node_id in list(network.nodes):
+        if validate_association_groups(node_id):
+            #avoid stress network
+            time.sleep(3)
+
 def recovering_failed_nodes_asynchronous():
     debug_print("Check for failed nodes")
-    for idNode in network.nodes:
-        if network.nodes[idNode].node_id == 0:
-            debug_print('remove fake nodeId: %s' % (idNode)) 
-            network.manager.removeFailedNode(network.home_id, idNode)
+    for node_id in list(network.nodes):
+        if network.nodes[node_id].node_id == 0:
+            debug_print('remove fake nodeId: %s' % (node_id)) 
+            network.manager.removeFailedNode(network.home_id, node_id)
             continue
-        if network.nodes[idNode].is_failed:
-            debug_print('try recovering nodeId: %s' % (idNode)) 
-            if network.manager.hasNodeFailed(network.home_id, idNode):
+        if network.nodes[node_id].is_failed:
+            debug_print('try recovering nodeId: %s' % (node_id)) 
+            if network.manager.hasNodeFailed(network.home_id, node_id):
                 #avoid stress network
                 time.sleep(3)
+    #do again in 15 minutes
+    recovering = threading.Timer(900.0, recovering_failed_nodes_asynchronous)
+    recovering.start()
     
 def refresh_configuration_asynchronous():
-    for idNode in force_refresh_nodes:
-        if idNode in network.nodes :
+    for node_id in list(force_refresh_nodes):
+        if node_id in network.nodes :
             debug_print('Request All Configuration Parameters for nodeId: %s' % (node_id,)) 
-            network._manager.requestAllConfigParams(network.home_id, idNode)
+            network._manager.requestAllConfigParams(network.home_id, node_id)
             time.sleep(3)            
     
 def refresh_user_values_asynchronous():
     debug_print("Refresh User Values of powered devices")
-    for idNode in network.nodes:
-        myNode = network.nodes[idNode]
-        if myNode.is_ready and myNode.is_awake and myNode.get_battery_level() == None and myNode.can_wake_up() == False:
-            debug_print('Refresh User Values for nodeId: %s' % (idNode,))
-            for val in myNode.values:
+    for node_id in list(network.nodes):
+        myNode = network.nodes[node_id]
+        if myNode.is_ready and myNode.is_listening_device:
+            debug_print('Refresh User Values for nodeId: %s' % (node_id,))
+            for val in myNode.get_values():
                 currentValue = myNode.values[val]
                 if currentValue.genre == 'User':
                     if currentValue.type == 'Button':
@@ -569,19 +580,22 @@ def network_awaked(network):
     configuration = threading.Timer(360.0, refresh_configuration_asynchronous)
     configuration.start() 
     debug_print("refresh_configuration starting in 360 sec" )    
-    user_values = threading.Timer(60.0, refresh_user_values_asynchronous)
+    user_values = threading.Timer(120.0, refresh_user_values_asynchronous)
     user_values.start() 
-    debug_print("refresh_user_values starting in 60 sec" )    
+    debug_print("refresh_user_values starting in 120 sec" )    
+    association = threading.Timer(45.0, validate_association_groups_asynchronous)
+    association.start()
+    debug_print("validate_association_groups starting in 45 sec" )
     recovering = threading.Timer(15.0, recovering_failed_nodes_asynchronous)
     recovering.start() 
     debug_print("recovering_failed_nodes starting in 15 sec" )
+    #start listening for group changes
+    dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)    
         
 def network_ready(network):
     add_log_entry("Openzwave network is ready with %d nodes (%d are sleeping). All nodes are queried, the network is fully functionnal." % (network.nodes_count, get_sleeping_nodes_count(),))   
     write_config()
     networkInformations.assignControllerNotification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is ready")
-    recovering = threading.Timer(360.0, recovering_failed_nodes_asynchronous)
-    recovering.start() 
 
 def button_on(network, node):
     add_log_entry('Controller button on pressed event') 
@@ -713,7 +727,7 @@ def node_queries_complete(network, node):
     
 def save_valueAsynchronous(node, value, last_update):
     #debug_print('A node value has been updated. nodeId:%s value:%s' % (node.node_id, value.label))
-    if(node.node_id in network.nodes) :
+    if node.node_id in network.nodes :
         myNode = network.nodes[node.node_id]    
         #check if am the realy last update
         if myNode.last_update>last_update:
@@ -798,7 +812,7 @@ def controller_command(network, controller, node, node_id, state_int, state, sta
 
 def node_event(network, node, value):
     debug_print('NodeId %s sends a Basic_Set command to the controller with value %s' % (node.node_id, value,)) 
-    for val in network.nodes[node.node_id].values :
+    for val in network.nodes[node.node_id].get_values():
         myValue = network.nodes[node.node_id].values[val]
         if myValue.genre == "User" and myValue.is_write_only == False :
             value_update(network, node, myValue)
@@ -810,10 +824,11 @@ def node_event(network, node, value):
 def node_group_changed(network, node):
     debug_print('Group changed for nodeId %s' % (node.node_id,)) 
     #TODO: reset group changed for pending associations
+    validate_association_groups(node.node_id)
 
 def get_wakeup_interval(device_id) :
-    if(device_id in network.nodes) : 
-        for val in network.nodes[device_id].values :
+    if device_id in network.nodes : 
+        for val in list(network.nodes[device_id].get_values()) :
             myValue = network.nodes[device_id].values[val]
             if myValue.command_class == 132 and myValue.label =="Wake-up Interval":
                 return network.nodes[device_id].values[val].data
@@ -822,8 +837,10 @@ def get_wakeup_interval(device_id) :
 def node_notification(args):
     code = int(args['notificationCode'])
     device_id = int(args['nodeId'])    
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         myNode = network.nodes[device_id]
+        #mark as updated
+        myNode.last_update=time.time()
         #try auto remove fake node with id = 0
         if device_id == 0 and network.state >= 7:   # STATE_AWAKED
             debug_print('remove fake nodeId: %s' % (node.node_id)) 
@@ -897,8 +914,6 @@ dispatcher.connect(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
 # Called when an error happened, or node changed (awake, sleep, death, no operation, timeout).
 dispatcher.connect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION)
 
-#dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
-
 # Controller is waiting for a user action
 dispatcher.connect(controller_waiting, ZWaveNetwork.SIGNAL_CONTROLLER_WAITING)
 # keep a track of actual network command in progress
@@ -913,9 +928,9 @@ add_log_entry('Python-OpenZwave Wrapper Version %s' %(network.manager.getPythonL
 add_log_entry('Waiting for network to become ready')
 
 def get_value_by_index(device_id, command_class, instance, index_id, trace=True):
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         myDevice = network.nodes[device_id]
-        for value_id in myDevice.values :
+        for value_id in myDevice.get_values() :
             if myDevice.values[value_id].command_class == command_class and myDevice.values[value_id].instance==instance and myDevice.values[value_id].index==index_id:
                 return myDevice.values[value_id]     
     if trace :
@@ -923,7 +938,7 @@ def get_value_by_index(device_id, command_class, instance, index_id, trace=True)
     return None
 
 def get_value_by_id(device_id, value_id):
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         myDevice = network.nodes[device_id]
         if (value_id in myDevice.values) :
             return myDevice.values[value_id]                 
@@ -991,7 +1006,7 @@ def convert_query_stage_to_int(stage):
         
 def serialize_neighbour_to_json(device_id):    
     tmpNode = {}    
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         myNode = network.nodes[device_id]        
         try:
             timestamp = int(myNode.last_update)
@@ -1018,10 +1033,29 @@ def serialize_neighbour_to_json(device_id):
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return tmpNode
+
+def validate_association_groups(device_id):
+    fake_found = False
+    if network != None and network.state >= 7:
+        
+        if device_id in network.nodes :
+            myNode = network.nodes[device_id]            
+            query_stage_index = convert_query_stage_to_int(myNode.query_stage)
+            if query_stage_index >= 12:
+                debug_print("validate_association_groups for nodeId: %s" % (device_id,))
+                for group_index in list(myNode.groups):
+                    group = myNode.groups[group_index]
+                    for target_node_id in list(group.associations):
+                        if(target_node_id in network.nodes) :
+                            continue
+                        debug_print("Remove association for nodeId: %s index %s with not exsit target: %s" % (device_id, group_index, target_node_id,))
+                        network.manager.removeAssociation(network.home_id, device_id, group_index, target_node_id) 
+                        fake_found = True
+    return fake_found
      
 def serialize_node_to_json(device_id):    
     tmpNode = {}    
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         myNode = network.nodes[device_id]        
         try:
             timestamp = int(myNode.last_update)
@@ -1075,7 +1109,7 @@ def serialize_node_to_json(device_id):
         
         tmpNode['instances'] = {"updateTime":timestamp}    
         tmpNode['groups'] = {"updateTime":timestamp}            
-        for groupIndex in myNode.groups:
+        for groupIndex in list(myNode.groups):
             group = myNode.groups[groupIndex]
             tmpNode['groups'][groupIndex] = {"label":group.label, "maximumAssociations": group.max_associations, "associations": concatenate_list(group.associations)}        
         if hasattr(myNode, 'last_notification') : 
@@ -1088,8 +1122,7 @@ def serialize_node_to_json(device_id):
         else:
             tmpNode['last_notification'] = {}
             
-        #for val in myNode.values.keys() : 
-        for val in myNode.values : 
+        for val in myNode.get_values() : 
             myValue = myNode.values[val]
             if myValue.genre != 'Basic':
                 typeStandard = get_standard_value_type(myValue.type)
@@ -1152,15 +1185,13 @@ def serialize_node_to_json(device_id):
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interval']={"value":value2,"type":"int","updateTime":timestamp}
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] ={"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":myValue.units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity, "pendingState":pendingState}
                 
-            else :
-                print 'a'
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return tmpNode
 
 def serialize_node_health(device_id):    
     tmpNode = {}    
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         
         myNode = network.nodes[device_id]  
         
@@ -1215,13 +1246,17 @@ def serialize_node_health(device_id):
         averageRequestRTT = statistics['averageRequestRTT']
         tmpNode['data']['statistics'] = {'total' :sentCnt, 'delivered':delivered, 'deliveryTime': averageRequestRTT}
         
+        check_for_group = True        
         have_group = False
-            
-        for groupIndex in myNode.groups :
-            if len(myNode.groups[groupIndex].associations) > 0:
-                have_group = True
-                break
-        tmpNode['data']['is_groups_ok'] = {'value' : have_group, 'enabled': len(myNode.groups) > 0 and query_stage_index >= 12 and myNode.generic != 2}
+        if myNode.groups and query_stage_index >= 12 and myNode.generic != 2:    
+            check_for_group = len(myNode.groups) > 0 
+            for groupIndex in list(myNode.groups) :
+                if len(myNode.groups[groupIndex].associations) > 0:
+                    have_group = True
+                    break            
+        else:
+            check_for_group = False
+        tmpNode['data']['is_groups_ok'] = {'value' : have_group, 'enabled': check_for_group}
         tmpNode['data']['is_neighbours_ok'] = {'value' : len(myNode.neighbors) > 0, 'neighbors': len(myNode.neighbors), 'enabled': myNode.generic != 1 and query_stage_index >13 } 
         tmpNode['data']['is_manufacturer_specific_ok'] = {'value' : not is_none_or_empty(myNode.manufacturer_id) and not is_none_or_empty(myNode.product_id)  and not is_none_or_empty(myNode.product_type), 'enabled': query_stage_index >=7 } #ManufacturerSpecific2
         
@@ -1277,11 +1312,11 @@ def convert_user_code_to_hex(value):
 def set_value(device_id, valueId, data):    
     debug_print("set a value for nodeId:%s valueId:%s data:%s" % (device_id, valueId, data,))
     #check for a valid device_id    
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         currentNode = network.nodes[device_id]
         if not currentNode.is_ready:
             return format_json_result(False, 'The node must be Ready') 
-        for value in currentNode.values:
+        for value in currentNode.get_values():
             if value == valueId:
                 zwaveValue = currentNode.values[value]
                 lastValue = zwaveValue.data
@@ -1313,7 +1348,7 @@ def refresh_background(device_id, values):
 
 def get_sleeping_nodes_count():
     sleeping_nodes_count = 0
-    for idNode in network.nodes:
+    for idNode in list(network.nodes):
         if not network.nodes[idNode].is_awake:
             sleeping_nodes_count += 1
     return sleeping_nodes_count  
@@ -1373,8 +1408,8 @@ def close_network(error):
 def refresh_assoc(device_id) :
     debug_print("refresh_assoc for nodeId: %s" % (device_id,))
     config = {}
-    if(device_id in network.nodes) :
-        for val in network.nodes[device_id].values :
+    if device_id in network.nodes :
+        for val in network.nodes[device_id].get_values():
             if network.nodes[device_id].values[val].command_class == 133 :
                 network.nodes[device_id].values[val].refresh()
         return format_json_result()
@@ -1386,10 +1421,10 @@ def get_assoc(device_id) :
     debug_print("get_assoc for nodeId: %s" % (device_id,))
     timestamp = int(time.time())
     config = {}
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         if network.nodes[device_id].groups :
             config['supported']={'value':True}
-            for group in network.nodes[device_id].groups :
+            for group in list(network.nodes[device_id].groups) :
                 config[network.nodes[device_id].groups[group].index]={}
                 config[network.nodes[device_id].groups[group].index]['nodes']={'value':list(network.nodes[device_id].groups[group].associations),'updateTime':int(timestamp), 'invalidateTime':0}
     else:
@@ -1402,8 +1437,8 @@ def remove_assoc(device_id,value,value2) :
         return format_json_result(False, 'Controller is busy') 
     groupIndex=value
     targetNodeId=value2    
-    debug_print("remove_assoc for nodeId: %s for group %s with nodeId: %s" % (device_id, groupIndex, targetNodeId,))
-    if(device_id in network.nodes) : 
+    debug_print("remove_assoc to nodeId: %s in group %s with nodeId: %s" % (device_id, groupIndex, targetNodeId,))
+    if device_id in network.nodes : 
         network.manager.removeAssociation(network.home_id, device_id, groupIndex, targetNodeId)
         return format_json_result()
     else:
@@ -1417,8 +1452,8 @@ def add_assoc(device_id, value, value2) :
     config = {}
     groupIndex=value
     targetNodeId=value2
-    debug_print("add_assoc for nodeId: %s for group %s with nodeId: %s" % (device_id, groupIndex, targetNodeId,))
-    if(device_id in network.nodes) :
+    debug_print("add_assoc to nodeId: %s in group %s with nodeId: %s" % (device_id, groupIndex, targetNodeId,))
+    if device_id in network.nodes :
         network.manager.addAssociation(network.home_id, device_id, groupIndex, targetNodeId)
         return format_json_result()
     else:
@@ -1427,8 +1462,8 @@ def add_assoc(device_id, value, value2) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].GetPolling()',methods = ['GET'])
 def get_polling(device_id) :
     polling = 0
-    if(device_id in network.nodes) :
-        for val in network.nodes[device_id].values :
+    if device_id in network.nodes :
+        for val in network.nodes[device_id].get_values() :
             if network.nodes[device_id].values[val].poll_intensity > polling :
                 polling = network.nodes[device_id].values[val].poll_intensity
     else:
@@ -1438,8 +1473,8 @@ def get_polling(device_id) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].ResetPolling()',methods = ['GET'])
 def reset_polling(device_id) :
     debug_print("reset_polling for nodeId: %s" % (device_id,))    
-    if(device_id in network.nodes) :
-        for val in network.nodes[device_id].values :
+    if device_id in network.nodes :
+        for val in network.nodes[device_id].get_values():
             myValue = network.nodes[device_id].values[val]        
             changes_value_polling(0, myValue)    
         return format_json_result()  
@@ -1449,8 +1484,8 @@ def reset_polling(device_id) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetPolling(<int:value_id>,<int:frequence>)',methods = ['GET'])
 def set_polling2(device_id, value_id, frequence) :
     debug_print("set_polling for nodeId: %s ValueId %s at: %s" % (device_id, value_id, frequence,))   
-    if(device_id in network.nodes) :
-        for val in network.nodes[device_id].values :
+    if device_id in network.nodes :
+        for val in network.nodes[device_id].get_values() :
             myValue = network.nodes[device_id].values[val] 
             if(myValue.value_id==value_id):
                 changes_value_polling(frequence, myValue)
@@ -1462,8 +1497,8 @@ def set_polling2(device_id, value_id, frequence) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].SetPolling(<int:frequence>)',methods = ['GET'])
 def set_polling_value(device_id, instance_id, cc_id, index, frequence) :
     debug_print("set_polling_value for nodeId: %s instance: %s cc:%s index:%s at: %s" % (device_id, instance_id, cc_id, index, frequence,))
-    if(device_id in network.nodes) : 
-        for val in network.nodes[device_id].values :
+    if device_id in network.nodes : 
+        for val in network.nodes[device_id].get_values() :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].index == index:
                 myValue = network.nodes[device_id].values[val]
                 if frequence == 0:
@@ -1479,7 +1514,7 @@ def set_polling_value(device_id, instance_id, cc_id, index, frequence) :
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[0].commandClasses[132].data.interval.value',methods = ['GET'])
 def get_wakeup(device_id) :
-    if(device_id in network.nodes) : 
+    if device_id in network.nodes : 
         return str(get_wakeup_interval(device_id))
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')        
@@ -1488,8 +1523,8 @@ def get_wakeup(device_id) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].SetWakeup(<int:time>)',methods = ['GET'])       
 def set_wakeup(device_id, time) :    
     debug_print("set wakeup interval for nodeId %s at: %s" % (device_id, time,))
-    if(device_id in network.nodes) :
-        for val in network.nodes[device_id].values :
+    if device_id in network.nodes :
+        for val in network.nodes[device_id].get_values() :
             myValue = network.nodes[device_id].values[val]
             #we need to find the right valueId
             if myValue.command_class == 132 and myValue.label == "Wake-up Interval":
@@ -1505,8 +1540,8 @@ def set_change_verified(device_id, instance_id, cc_id, index, verified) :
     Sets a flag indicating whether value changes noted upon a refresh should be verified
     """       
     debug_print("set_change_verified nodeId:%s instance:%s commandClasses:%s index:%s verified:%s" % (device_id, instance_id, cc_id, index, verified,))
-    if(device_id in network.nodes) : 
-        for val in network.nodes[device_id].values :
+    if device_id in network.nodes : 
+        for val in network.nodes[device_id].get_values() :
             myValue = network.nodes[device_id].values[val]
             if hex(myValue.command_class)==cc_id and myValue.instance - 1 == instance_id and myValue.index == index:
                 network._manager.setChangeVerified(myValue.value_id, bool(verified))    
@@ -1522,7 +1557,7 @@ def request_all_config_params(device_id) :
     """       
     debug_print("Request the values of all known configurable parameters from nodeId %s" % (device_id,))
     result = False
-    if(device_id in network.nodes) : 
+    if device_id in network.nodes : 
         network._manager.requestAllConfigParams(network.home_id, device_id)   
         return format_json_result()
     else:
@@ -1531,8 +1566,8 @@ def request_all_config_params(device_id) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses[0x70].Get(<int:index_id>)',methods = ['GET'])
 def refresh_config(device_id, index_id) :
     debug_print("refresh_config for nodeId:%s index_id:%s" % (device_id, index_id,))
-    if(device_id in network.nodes) : 
-        for val in network.nodes[device_id].values :
+    if device_id in network.nodes : 
+        for val in network.nodes[device_id].get_values() :
             if network.nodes[device_id].values[val].command_class == COMMAND_CLASS_CONFIGURATION and network.nodes[device_id].values[val].index == index_id :
                 network.nodes[device_id].values[val].refresh()  
         return format_json_result()  
@@ -1545,7 +1580,7 @@ def set_device_name(device_id, location, name) :
         return format_json_result(False,'Controller is busy')    
     debug_print("setName for device_id:%s New Name ; '%s'" % (device_id, name,))
     result = False
-    if(device_id in network.nodes) :   
+    if device_id in network.nodes :   
         name = name.encode('utf8')
         name = name.replace('+',' ')      
         network.nodes[device_id].set_field('name',name)
@@ -1561,7 +1596,7 @@ def get_config(device_id) :
     debug_print("get_config for nodeId:%s" % (device_id,))
     timestamp = int(time.time())
     config = {}
-    if(device_id in network.nodes) : 
+    if device_id in network.nodes : 
         for val in network.nodes[device_id].values :
             list_values=[]
             if network.nodes[device_id].values[val].command_class == COMMAND_CLASS_CONFIGURATION :
@@ -1597,7 +1632,7 @@ def copy_configuration(source_id, target_id):
             source = network.nodes[source_id]
             target = network.nodes[target_id]            
             if source.manufacturer_id == target.manufacturer_id and source.product_type == target.product_type and source.product_id == target.product_id :
-                for val in source.values:
+                for val in source.get_values() :
                     configurationValue = source.values[val]
                     if configurationValue.genre == 'Config':
                         if configurationValue.type == 'Button':
@@ -1631,7 +1666,7 @@ def set_configuration_item(device_id, value_id, item) :
     if networkInformations.controllerIsBusy:
         return format_json_result(False,'Controller is busy') 
     debug_print("set_configuration_item for device_id:%s change valueId:%s to '%s'" % (device_id, value_id, item,))
-    if(device_id in network.nodes) : 
+    if device_id in network.nodes : 
         result = False
         result = network._manager.setValue(device_id, value_id, item)
         if (result):
@@ -1648,7 +1683,7 @@ def set_config(device_id,index_id,value,size) :
     if size==0 :
         size=2
     try :
-        if(device_id in network.nodes) :
+        if device_id in network.nodes :
             network.nodes[device_id].set_config_param(index_id, value, size)
             myValue = get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id)
             mark_pending_change(myValue, value) 
@@ -1665,7 +1700,7 @@ def set_config2(device_id,index_id,value,size) :
         return format_json_result(False,'Controller is busy')
     debug_print("set_config2 for device_id:%s change index:%s to '%s' size:(%s)" % (device_id,index_id,value,size,))    
     try :
-        if(device_id in network.nodes) :
+        if device_id in network.nodes :
             for value_id in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
                 if network.nodes[device_id].values[value_id].command_class == COMMAND_CLASS_CONFIGURATION and network.nodes[device_id].values[value_id].index==index_id:
                     value=value.replace("@","/")
@@ -1705,7 +1740,7 @@ def set_config3(device_id,index_id,value,size) :
         size=2
     value=int(value)
     try :
-        if(device_id in network.nodes) :
+        if device_id in network.nodes :
             network.nodes[device_id].set_config_param(index_id, value, size)
             mark_pending_change(get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value) 
             return format_json_result()
@@ -1723,7 +1758,7 @@ def set_config4(device_id,instance_id,index_id2,index_id,value,size) :
         size=2
     value=int(value)
     try :
-        if(device_id in network.nodes) :
+        if device_id in network.nodes :
             myValue = get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id)
             network.nodes[device_id].set_config_param(index_id, value, size)
             if myValue.type != 'List':
@@ -1743,7 +1778,7 @@ def set_config5(device_id,instance_id,index_id2,index_id,value,size) :
         size=2
     value=int(value)
     try :
-        if(device_id in network.nodes) :
+        if device_id in network.nodes :
             network.nodes[device_id].set_config_param(index_id, value, size)
             mark_pending_change(get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value)  
             return format_json_result()
@@ -1761,7 +1796,7 @@ def set_config6(device_id,instance_id,index_id2,index_id,value,size) :
         size=2
     value=int(value)    
     try :
-        if(device_id in network.nodes) : 
+        if device_id in network.nodes : 
             network.nodes[device_id].set_config_param(index_id, value, size)
             mark_pending_change(get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value)   
             return format_json_result()
@@ -1774,8 +1809,8 @@ def set_config6(device_id,instance_id,index_id2,index_id,value,size) :
 def get_command_classes(device_id) :
     result = {}
     debug_print("get_command_classes for nodeId:%s" % (device_id,))
-    if(device_id in network.nodes) : 
-        for val in network.nodes[device_id].values :
+    if device_id in network.nodes : 
+        for val in network.nodes[device_id].get_values():
             result[network.nodes[device_id].values[val].command_class] = {}
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -1783,7 +1818,7 @@ def get_command_classes(device_id) :
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RequestNodeDynamic()',methods = ['GET'])
 def request_node_dynamic(device_id) :
-    if(device_id in network.nodes) :  
+    if device_id in network.nodes :  
         #Fetch only the dynamic command class data for a node from the Z-Wave network
         network._manager.requestNodeDynamic(network.home_id, device_id)
         #mark as updated to avoid a second pass
@@ -1796,7 +1831,7 @@ def request_node_dynamic(device_id) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Get()',methods = ['GET'])
 def get_value(device_id, instance_id,cc_id) :
     
-    if(device_id in network.nodes) :        
+    if device_id in network.nodes :        
         try:
             network.nodes[device_id].last_update
         except NameError:
@@ -1810,7 +1845,7 @@ def get_value(device_id, instance_id,cc_id) :
             network.nodes[device_id].last_update=time.time()
         last_delta = last_update + datetime.timedelta(seconds=30)
         #check last update is out of delta time, if the node is not a sleeping device and isReady
-        if now > last_delta and network.nodes[device_id].can_wake_up() == False and network.nodes[device_id].is_ready:
+        if now > last_delta and network.nodes[device_id].is_listening_device and network.nodes[device_id].is_ready:
             #Fetch only the dynamic command class data for a node from the Z-Wave network
             network._manager.requestNodeDynamic(network.home_id,network.nodes[device_id].node_id)
             #mark as updated to avoid a second pass
@@ -1823,8 +1858,8 @@ def get_value(device_id, instance_id,cc_id) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].val',methods = ['GET'])
 def get_value6(device_id, instance_id, index,cc_id) :
     Value = {}
-    if(device_id in network.nodes) :
-        for val in network.nodes[device_id].values :
+    if device_id in network.nodes :
+        for val in network.nodes[device_id].get_values() :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].index == index:
                 if network.nodes[device_id].values[val].units=="F" :
                     return str((float(network.nodes[device_id].values[val].data) - 32) * 5.0/9.0)
@@ -1838,9 +1873,9 @@ def get_value6(device_id, instance_id, index,cc_id) :
 def get_user_code(device_id, instance_id, index) :
     debug_print("getValueRaw nodeId:%s instance:%s commandClasses:%s index:%s" % (device_id, instance_id, hex(COMMAND_CLASS_USER_CODE), index))
     Value = {}
-    if(device_id in network.nodes) :        
+    if device_id in network.nodes :        
         myDevice = network.nodes[device_id]
-        for val in myDevice.values :  
+        for val in myDevice.get_values() :  
             myValue = myDevice.values[val]                                  
             if myValue.instance -1 == instance_id and myValue.command_class==COMMAND_CLASS_USER_CODE and myValue.index == index:                            
                 userCode = [0,0,0,0,0,0,0,0,0,0] 
@@ -1869,9 +1904,9 @@ def get_user_code(device_id, instance_id, index) :
 def get_user_codes(device_id, instance_id) :    
     debug_print("getValueAllRaw nodeId:%s instance:%s commandClasses:%s" % (device_id, instance_id, hex(COMMAND_CLASS_USER_CODE),))
     Value = {}
-    if(device_id in network.nodes) :        
+    if device_id in network.nodes :        
         myDevice = network.nodes[device_id]
-        for val in myDevice.values :  
+        for val in myDevice.get_values() :  
             myValue = myDevice.values[val]
             if myValue.instance -1 == instance_id and myValue.command_class==COMMAND_CLASS_USER_CODE : 
                 if myValue.index == 0 :
@@ -1906,7 +1941,7 @@ def set_user_code(device_id, slot_id, value) :
 def set_user_code2(device_id, slot_id, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10) :    
     debug_print("set_user_code2 nodeId:%s slot:%s usercode:%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" % (device_id, slot_id, value1,value2,value3,value4,value5,value6,value7,value8,value9,value10,))
     Value2 = {}
-    if(device_id in network.nodes) : 
+    if device_id in network.nodes : 
         for val in network.nodes[device_id].get_values() :
             if network.nodes[device_id].values[val].command_class==COMMAND_CLASS_USER_CODE and network.nodes[device_id].values[val].index == slot_id:
                 Value2['data'] = {}            
@@ -1923,7 +1958,7 @@ def set_user_code2(device_id, slot_id, value1, value2, value3, value4, value5, v
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<int:value>)',methods = ['GET'])
 def set_value7(device_id,instance_id, cc_id, index, value) :
     debug_print("set_value7 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (device_id, instance_id, cc_id, index, value,))
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network.nodes[device_id].values[val].data=value
@@ -1939,7 +1974,7 @@ def set_value7(device_id,instance_id, cc_id, index, value) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<float:value>)',methods = ['GET'])
 def set_value8(device_id,instance_id, cc_id, index, value) :
     debug_print("set_value8 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (device_id, instance_id, cc_id, index, value,))
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network.nodes[device_id].values[val].data=value
@@ -1955,7 +1990,7 @@ def set_value8(device_id,instance_id, cc_id, index, value) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<string:value>)',methods = ['GET'])
 def set_value9(device_id,instance_id, cc_id, index, value) :
     debug_print("set_value8 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (device_id, instance_id, cc_id, index, value,))
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network.nodes[device_id].values[val].data=value
@@ -1976,7 +2011,7 @@ def set_value6(device_id, instance_id, cc_id, value) :
         arr=value.split(",")
         time=int(arr[0])      
         return set_wakeup(device_id, time) 
-    if(device_id in network.nodes) :       
+    if device_id in network.nodes :       
         if cc_id == '0x85' :
             # is a add association
             arr=value.split(",")
@@ -2011,7 +2046,7 @@ def set_value6(device_id, instance_id, cc_id, value) :
 def get_color(device_id) :
     debug_print("get_color nodeId:%s" % (device_id,))
     result = {}
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         red_level = 0  
         green_level = 0 
         blue_level = 0 
@@ -2043,7 +2078,7 @@ def get_color(device_id) :
 def set_color(device_id,  red_level, green_level, blue_level, white_level) :
     debug_print("set_color nodeId:%s red:%s green:%s blue:%s white:%s" % (device_id, red_level,  green_level, blue_level, white_level,))
     result = False
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         intensity_Value = None
         red_Value = None
         green_Value = None
@@ -2081,7 +2116,7 @@ def set_color(device_id,  red_level, green_level, blue_level, white_level) :
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()',methods = ['GET'])
 def press_button(device_id,instance_id, cc_id, index) :
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network._manager.pressButton(network.nodes[device_id].values[val].value_id)
@@ -2092,7 +2127,7 @@ def press_button(device_id,instance_id, cc_id, index) :
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ReleaseButton()',methods = ['GET'])
 def release_button(device_id,instance_id, cc_id, index) :
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network._manager.releaseButton(network.nodes[device_id].values[val].value_id)
@@ -2149,7 +2184,7 @@ def request_network_update(device_id) :
     return format_json_result(False,'Not implemented')   
     if can_execute_network_command() == False:
         return build_network_busy_message()  
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         result = network.manager.requestNetworkUpdate(network.home_id, device_id)
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2160,7 +2195,7 @@ def remove_failed_node(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     add_log_entry("Remove a failed node %s" %(device_id,))
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         return format_json_result(network.manager.removeFailedNode(network.home_id, device_id))
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2170,7 +2205,7 @@ def request_node_neighbour_update(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     debug_print("request_node_neighbour_update for node %s" %(device_id,)) 
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         return format_json_result(network.manager.requestNodeNeighborUpdate(network.home_id, device_id))
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2193,7 +2228,7 @@ def heal_node(device_id, performReturnRoutesInitialization=False) :
         return build_network_busy_message()  
     try:
         add_log_entry("HealNode node %s" %(device_id,)) 
-        if(device_id in network.nodes) :
+        if device_id in network.nodes :
             network._manager.healNetworkNode(network.home_id, device_id, performReturnRoutesInitialization)
             return format_json_result()
         else:
@@ -2228,7 +2263,7 @@ def assign_return_route(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     add_log_entry("Assign return route")    
-    if(device_id in network.nodes) : 
+    if device_id in network.nodes : 
         return format_json_result(network.manager.assignReturnRoute(network.home_id, device_id))
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')     
@@ -2238,7 +2273,7 @@ def request_node_information(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     debug_print("request_node_information node %s" %(device_id,)) 
-    if(device_id in network.nodes) : 
+    if device_id in network.nodes : 
         return format_json_result(network.network.nodes[device_id].request_all_config_params())
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2248,7 +2283,7 @@ def get_network_neighbours():
     networkData={}
     networkData['updateTime']=int(time.time())
     nodesData = {}
-    for device_id in network.nodes:
+    for device_id in list(network.nodes):
         nodesData[device_id] = serialize_neighbour_to_json(device_id) 
     networkData['devices']=nodesData
     return jsonify(networkData)
@@ -2258,7 +2293,7 @@ def get_network_health():
     networkData={}
     networkData['updateTime']=int(time.time())
     nodesData = {}
-    for device_id in network.nodes:
+    for device_id in list(network.nodes):
         nodesData[device_id] = serialize_node_health(device_id) 
     networkData['devices']=nodesData
     return jsonify(networkData)
@@ -2268,7 +2303,7 @@ def get_nodes_list():
     result = {}
     result['updateTime']=int(time.time())
     nodesData = {}
-    for device_id in network.nodes:        
+    for device_id in list(network.nodes):        
         myNode = network.nodes[device_id]        
         tmpNode = {}        
         try :
@@ -2319,7 +2354,7 @@ def get_device(fromtime):
     
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>]', methods = ['GET'])
 def get_serialized_device(device_id):
-    if(device_id in network.nodes) :
+    if device_id in network.nodes :
         return jsonify( serialize_node_to_json(device_id))
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2363,7 +2398,7 @@ def replace_failed_node(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     add_log_entry("replace_failed_node node %s" %(device_id,)) 
-    if(device_id in network.nodes) : 
+    if device_id in network.nodes : 
         return format_json_result(network.manager.replaceFailedNode(network.home_id, device_id))
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2376,7 +2411,7 @@ def send_node_information(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     debug_print("send_node_information node %s" %(device_id,)) 
-    if(device_id in network.nodes) : 
+    if device_id in network.nodes : 
         return format_json_result(network.manager.sendNodeInformation(network.home_id, device_id))
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2389,7 +2424,7 @@ def has_node_failed(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     add_log_entry("has_node_failed node %s" %(device_id,)) 
-    if(device_id in network.nodes) : 
+    if device_id in network.nodes : 
         return format_json_result(network.manager.hasNodeFailed(network.home_id, device_id))
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2402,7 +2437,7 @@ def refresh_node_info(device_id) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     debug_print("refresh_node_info node %s" %(device_id,)) 
-    if(device_id in network.nodes) : 
+    if device_id in network.nodes : 
         return format_json_result(network.manager.refreshNodeInfo(network.home_id, device_id))
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2412,12 +2447,12 @@ def refresh_all_values(device_id):
     """
     A manual refresh of all value of a node, we will receive a refreshed value form value refresh notification
     """
-    if(device_id in network.nodes) : 
+    if device_id in network.nodes : 
         currentNode = network.nodes[device_id]
         try:
             counter = 0
             debug_print("refresh_all_values node %s" %(device_id,))
-            for val in currentNode.values:
+            for val in currentNode.get_values():
                 currentValue = currentNode.values[val]
                 if currentValue.type == 'Button':
                     continue
@@ -2446,7 +2481,7 @@ def test_network(device_id=0, count=3):
             network.manager.testNetwork(network.home_id, count)
             return format_json_result()
         else:
-            if(device_id in network.nodes) :
+            if device_id in network.nodes :
                 network.manager.testNetworkNode(network.home_id, device_id, count)
                 return format_json_result()
             else:
@@ -2464,7 +2499,7 @@ def get_node_statistics(device_id):
     Retrieve statistics per node.
     """    
     try:
-        if(device_id in network.nodes) :
+        if device_id in network.nodes :
             queryStageDescription = network.manager.getNodeQueryStage(network.home_id, device_id)
             queryStageCode = network.manager.getNodeQueryStageCode(queryStageDescription)
             return jsonify( {'statistics' : network.manager.getNodeStatistics(network.home_id, device_id),
@@ -2518,7 +2553,7 @@ def replication_send(device_id) :
         return build_network_busy_message() 
     add_log_entry('Send a NIF frame from the Controller to the Nodeid %s' % (device_id,))
     try:
-        if(device_id in network.nodes) :
+        if device_id in network.nodes :
             return format_json_result(network.manager.replicationSend(network.home_id, device_id))
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2559,7 +2594,7 @@ def request_all_config_parameters(device_id) :
         return build_network_busy_message()  
     try:
         debug_print("RequestAllConfigParams node %s" %(device_id,))
-        if(device_id in network.nodes) : 
+        if device_id in network.nodes : 
            return format_json_result(network.network.nodes[device_id].request_all_config_params())
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2725,15 +2760,13 @@ def refresh_all_battery_level():
     debug_print("refresh_all_battery_level")
     result = {}
     if network != None and network.state >= 7: 
-        count = 0
-        for device_id in network.nodes:
+        for device_id in list(network.nodes):
             myNode = network.nodes[device_id]
             if not myNode.is_listening_device:
                 debug_print('Refresh battery level for nodeId: %s' % (device_id,))
                 battery_level = get_value_by_index(device_id, COMMAND_CLASS_BATTERY, 1, 0)
                 if battery_level != None:
                     battery_level.refresh()
-                    count+=1
                     result[device_id] = {'value' : battery_level.data, 'updateTime': battery_level.last_update}
     return jsonify(result)
 
