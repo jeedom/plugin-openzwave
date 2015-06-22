@@ -430,17 +430,17 @@ var app_network = {
                  sentenceneighbours='{{Interview incomplet}}';
                }
                if (node.id != 1){
-                    linkname='<a href="'+link+'">'+node.data.name+'</a>'
-               }else {
-                   linkname=node.data.name
-               }
-               $('#graph-node-name').html(linkname + ' : ' + sentenceneighbours);
-               highlightRelatedNodes(node.id, true);
+                linkname='<a href="'+link+'">'+node.data.name+'</a>'
+              }else {
+               linkname=node.data.name
+             }
+             $('#graph-node-name').html(linkname + ' : ' + sentenceneighbours);
+             highlightRelatedNodes(node.id, true);
                 }, function() { // mouse out
                   highlightRelatedNodes(node.id, false);
                 });
-              return ui;
-            }).placeNode(function(nodeUI, pos) {
+return ui;
+}).placeNode(function(nodeUI, pos) {
                 // 'g' element doesn't have convenient (x,y) attributes, instead
                 // we have to deal with transforms: http://www.w3.org/TR/SVG/coords.html#SVGGlobalTransformAttribute
                 nodeUI.attr('transform',
@@ -448,42 +448,42 @@ var app_network = {
                     (pos.x - nodeSize/3) + ',' + (pos.y - nodeSize/2.5) +
                     ')');
               });
-            var middle = graph.getNode(1);
-            if(typeof middle !== 'undefined'){
-              middle.isPinned = true;
-            }
-            var idealLength = 200;
-            var layout = Viva.Graph.Layout.forceDirected(graph, {
-             springLength: idealLength,
-             stableThreshold: 0.9,
-             dragCoeff : 0.01,
-             springCoeff : 0.0004,
-             gravity : -20,
-             springTransform: function (link, spring) {
-              spring.length = idealLength * (1 - link.data.lengthfactor);
-            }
-          });
-            graphics.link(function(link){
-              dashvalue='5, 0';
-              if (link.data.isdash== 1){
-                dashvalue='5, 2';
-              }
-              return Viva.Graph.svg('line')
-              .attr('stroke', '#B7B7B7')
-              .attr('stroke-dasharray', dashvalue)
-              .attr('stroke-width', '0.4px');
-            });
-            var renderer = Viva.Graph.View.renderer(graph, {
-              layout: layout,
-              graphics : graphics,
-              prerender: 10,
-              renderLinks : true,
-              container : document.getElementById('graph_network')
-            });
-            renderer.run();
-            setTimeout(function(){ renderer.pause();renderer.reset(); }, 200);
-          }
-        });
+var middle = graph.getNode(1);
+if(typeof middle !== 'undefined'){
+  middle.isPinned = true;
+}
+var idealLength = 200;
+var layout = Viva.Graph.Layout.forceDirected(graph, {
+ springLength: idealLength,
+ stableThreshold: 0.9,
+ dragCoeff : 0.01,
+ springCoeff : 0.0004,
+ gravity : -20,
+ springTransform: function (link, spring) {
+  spring.length = idealLength * (1 - link.data.lengthfactor);
+}
+});
+graphics.link(function(link){
+  dashvalue='5, 0';
+  if (link.data.isdash== 1){
+    dashvalue='5, 2';
+  }
+  return Viva.Graph.svg('line')
+  .attr('stroke', '#B7B7B7')
+  .attr('stroke-dasharray', dashvalue)
+  .attr('stroke-width', '0.4px');
+});
+var renderer = Viva.Graph.View.renderer(graph, {
+  layout: layout,
+  graphics : graphics,
+  prerender: 10,
+  renderLinks : true,
+  container : document.getElementById('graph_network')
+});
+renderer.run();
+setTimeout(function(){ renderer.pause();renderer.reset(); }, 200);
+}
+});
 },
 show_stats: function (){
  var network = $(".network");
@@ -691,11 +691,12 @@ show_infos: function (){
                 var link ='#';
               }
               if(node.data.name.value != ''){
-                var name = '<span class="label label-primary">'+node.data.location.value+'</span> <a href="'+link+'">'+node.data.name.value+'</a>';
+
+                var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'"><span class="label label-primary">'+node.data.location.value+'</span> '+node.data.name.value+'</span>';
               }else{
-                var name = '<a href="'+link+'">'+ node.data.product_name.value+'</a>';
+                var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'">'+ node.data.product_name.value+'</span>';
               }
-              routingTable += '<tr><td><a>' + name + '</td><td>' + nodeId + '</td>';
+              routingTable += '<tr><td>' + name + '</td><td>' + nodeId + '</td>';
               $.each(devicesRouting, function (nnodeId, nnode) {
                 if (nnodeId == 255)
                   return;

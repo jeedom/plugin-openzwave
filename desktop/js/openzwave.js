@@ -70,6 +70,11 @@
 }
 });
 
+$('body').delegate('.nodeConfiguration','click',function(){
+    $('#md_modal2').dialog({title: "{{Configuration module Z-Wave}}"});
+    $('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=node.configure&id='+ $(this).attr('data-node-id')+'&serverId='+ $(this).attr('data-server-id')).dialog('open');
+});
+
 $('#bt_displayZwaveData').on('click', function () {
     $('#md_modal').dialog({title: "{{Arbre Z-Wave de l'équipement}}"});
     $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=zwave.data&id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open');

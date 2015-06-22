@@ -81,11 +81,10 @@ var app_health = {
       if(nodes[i].data == undefined){
         continue;
       }
-      var link ='index.php?v=d&p=openzwave&m=openzwave&server_id='+$("#sel_zwaveHealthServerId").value()+'&logical_id='+i;
       if(nodes[i].data.description.name != ''){
-        var name = '<span class="label label-primary" style="font-size : 1em;">'+nodes[i].data.description.location+'</span> <a href="'+link+'" style="font-size : 1em;">'+nodes[i].data.description.name+'</a>';
+        var name = '<span class="nodeConfiguration cursor" data-node-id="'+i+'" data-server-id="'+$("#sel_zwaveHealthServerId").value()+'"><span  class="label label-primary" style="font-size : 1em;">'+nodes[i].data.description.location+'</span> '+nodes[i].data.description.name+'</span>';
       }else{
-        var name = '<a href="'+link+'">'+ nodes[i].data.description.product_name+'</a>';
+        var name = '<span class="nodeConfiguration cursor" data-node-id="'+i+'" data-server-id="'+$("#sel_zwaveHealthServerId").value()+'">'+ nodes[i].data.description.product_name+'</span>';
       }
       tbody += '<tr>';
       tbody += '<td>';
