@@ -2723,6 +2723,7 @@ def set_poll_interval(seconds, intervalBetweenPolls):
 @app.route('/ZWaveAPI/Run/RefreshAllBatteryLevel()',methods = ['GET'])       
 def refresh_all_battery_level():
     debug_print("refresh_all_battery_level")
+    result = {}
     if network != None and network.state >= 7: 
         count = 0
         for device_id in network.nodes:
@@ -2733,8 +2734,8 @@ def refresh_all_battery_level():
                 if battery_level != None:
                     battery_level.refresh()
                     count+=1
-        return format_json_result(True,'%s battery level refreshed' %(count,))
-    return format_json_result(False, 'network must be at least awaked')
+                    result[device_id] = {'value' : battery_level.data, 'updateTime': battery_level.last_update}
+    return jsonify(result)
 
 if __name__ == '__main__':
     pid = str(os.getpid())
