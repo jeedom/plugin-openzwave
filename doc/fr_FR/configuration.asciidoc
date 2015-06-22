@@ -10,7 +10,7 @@ image:../images/openzwave1.png[]
 [TIP]
 Si vous êtes en mode déporté, le démon local peut être arrêté, c'est tout à fait normal.
 
-* *Général* : cette partie permet de configurer les paramètres généraux du plugin.
+* *Général* : cette partie permet de configurer les paramètres généraux du plugin ainsi que la version actuel d'openzwave (si nous avez un NOK veuillez vous refairer à la partie "Mettre à jour OpenZwave")
 * *Démon local* ou *Démon XXX* : paramètres de configuration locale (ou déportée, en fonction de l'intitulé) du démon.
 ** *Installer/Mettre à jour OpenZwave en local* : permet de lancer l'installation du moteur OpenZwave, si vous venez de l'installer il faut absolument lancer l'installation (à moins de vouloir utiliser le plugin en mode déporté, dans ce cas il faudra lancer l'installation à partir du jeedom deporté). Il est aussi possible que Jeedom vous redemande de faire cette étape suite à une mise à jour. C'est normale ca permet de mettre à jour openzwave
 ** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-wave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 posssibilités à la fin de la liste
@@ -301,3 +301,32 @@ image:../images/openzwave22.png[]
 [icon="../images/plugin/important.png"]
 [IMPORTANT]
 Les informations ici sont à destination du support, il ne faut donc pas s'inquiéter de voir des "Error" ou  "Warning" ici. Cela ne veut pas forcément dire que votre système a un soucis.
+
+
+=== Mettre à jour OpenZwave
+
+Si Jeedom vous demande de mettre à jour OpenZwave ou si vous avez NOK au niveau de la version OpenZwave : 
+
+image:../images/openzwave30.png[]
+
+[icon="../images/plugin/tip.png"]
+[TIP]
+Cette opération n'est pas a faire à chaque mise à jour du plugin seulement si necessaire
+
+Vous devez d'abord arreter le démon (c'est plus sur) : 
+
+image:../images/openzwave31.png[]
+
+Ensuite il faut cliquer sur le bouton "Stable" en face de "Installer/Mettre à jour OpenZwave en local" (si vous etês en deporté il faut le faire sur les deportés) : 
+
+image:../images/openzwave32.png[]
+
+La durée de cette opération peut varier en fonction de votre systeme (jusqu'a plus de 1h sur raspberry pi)
+
+Ensuite il vous faut reselectionner le bon port (attention ca depend de votre système) : 
+
+image:../images/openzwave33.png[]
+
+Et faites sauvegarder : 
+
+image:../images/openzwave34.png[]
