@@ -151,6 +151,8 @@ var app_health = {
     }else{
       tbody += '<span class="label label-danger" style="font-size : 1em;">'+nodes[i].data.battery_level.value+'%</span>';
     }
+  }else{
+    tbody += '<span class="label label-primary" style="font-size : 1em;">{{Secteur}}</span>';
   }
   tbody += '</td>';
   tbody += '<td>';
