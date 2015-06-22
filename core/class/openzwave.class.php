@@ -153,6 +153,7 @@ class openzwave extends eqLogic {
 			try {
 				$results = self::callOpenzwave('/ZWaveAPI/Data/1', $serverID);
 			} catch (Exception $e) {
+				log::add('openzwave', 'debug', 'Error on querry /ZWaveAPI/Data/1 : ' . $e->getMessage());
 				continue;
 			}
 			if (!is_array($results)) {
