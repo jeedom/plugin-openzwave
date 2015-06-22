@@ -1235,16 +1235,16 @@ def serialize_node_health(device_id):
         tmpNode['data']['lastReceived'] = {'updateTime' : timestamp}
         tmpNode['data']['maxBaudRate'] = {'value' : myNode.max_baud_rate}
                         
-        statistics = network.manager.getNodeStatistics(network.home_id, device_id)
-        sentCnt = statistics['sentCnt']        
-        if sentCnt > 0 :
-            sentFailed = statistics['sentFailed'] 
-            sentOk = sentCnt - sentFailed
-            delivered = (sentOk* 100) / sentCnt 
+        statistics = network.manager.getNodeStatistics(network.home_id, device_id)        
+        sentOk = statistics['sentCnt']    
+        sentFailed = statistics['sentFailed']
+        send_total = sentOk + sentFailed            
+        if send_total > 0 :             
+            percent_delivered = (sentOk* 100) / send_total             
         else:
-            delivered = 0            
+            percent_delivered = 0            
         averageRequestRTT = statistics['averageRequestRTT']
-        tmpNode['data']['statistics'] = {'total' :sentCnt, 'delivered':delivered, 'deliveryTime': averageRequestRTT}
+        tmpNode['data']['statistics'] = {'total': send_total, 'delivered': percent_delivered, 'deliveryTime': averageRequestRTT}
         
         check_for_group = True        
         have_group = False
