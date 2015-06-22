@@ -950,7 +950,7 @@ def mark_pending_change(myValue, data, wakeupTime = 0):
         myValue.pendingConfiguration = PendingConfiguration(data, wakeupTime)
         
 def build_network_busy_message():
-    return jsonify({'result':False, 'data:': 'Controller is too busy', 'mode': networkInformations.actualMode, 'send_queue_count': network.controller.send_queue_count, 'state': network.state_str})
+    return format_json_result(False, 'Controller is too busy', networkInformations.computeJeeDomMessage())
 
 def concatenate_list(listValues, separator=';'):
     try:
