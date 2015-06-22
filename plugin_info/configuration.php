@@ -55,7 +55,7 @@ if (version_compare(config::byKey('openzwave_version', 'openzwave'), openzwave::
 } else {
 	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
 }
-echo '<label class="col-sm-2 control-label">{{Compilation}}</label>';
+echo '<label class="col-sm-1 control-label">{{Compilation}}</label>';
 if (openzwave::compilationOk()) {
 	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
 } else {
@@ -75,7 +75,7 @@ foreach ($deamonRunningSlave as $name => $status) {
 	} else {
 		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
 	}
-	echo '<label class="col-sm-2 control-label">{{Compilation}}</label>';
+	echo '<label class="col-sm-1 control-label">{{Compilation}}</label>';
 	if ($deamonSlaveVersion[$name]['compilation']) {
 		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
 	} else {
