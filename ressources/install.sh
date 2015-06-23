@@ -36,9 +36,6 @@ if [ $(ps ax | grep z-way-server | grep -v grep | wc -l ) -ne 0 ]; then
   ps aux | grep mongoose | awk '{print $2}' | xargs kill -9
   ps aux | grep z-way-server | awk '{print $2}' | xargs kill -9 
   ps aux | grep zbw_connect | awk '{print $2}' | xargs kill -9 
-  if [ -e /dev/ttymxc0 ]; then
-     sudo systemctl unmask serial-getty@ttymxc0.service
-  fi
   sudo rm -rf /opt/z-way-server*
 fi
 
