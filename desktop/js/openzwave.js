@@ -146,7 +146,7 @@ if($('.li_eqLogic.active').attr('data-assistant') != ''){
         },
         success: function (data) { // si l'appel a bien fonctionné
         if(isset(data.result.doc)){
-            $('#bt_deviceDocumentation').attr('href','http://doc.jeedom.fr/fr_FR/doc-zwave-modules-' + data.result.doc+'.html');
+            $('#bt_deviceDocumentation').attr('href','https://www.jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-' + data.result.doc+'.html');
             $('#bt_deviceDocumentation').show();
         }else{
             $('#bt_deviceDocumentation').hide();
