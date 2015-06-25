@@ -66,7 +66,10 @@ var app_network = {
       //app_network.displayRoutingTable()
     });
      $("#addDevice").off("click").on("click",function() {
-      app_network.addDevice();
+      app_network.addDevice(false);
+    });
+     $("#addDeviceSecure").off("click").on("click",function() {
+      app_network.addDevice(true);
     });
      $("#removeDevice").off("click").on("click",function() {
       app_network.removeDevice();
@@ -115,191 +118,195 @@ var app_network = {
 
 
    },
-   addDevice: function(){
-    $.ajax({ 
-      url: path+"ZWaveAPI/Run/controller.AddNodeToNetwork(1,1)", 
-      dataType: 'json',
-      async: true, 
-      error: function (request, status, error) {
-        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-      },
-      success: function(data) {
-        if(data['result']== true){
-          app_network.sendOk();
-        }else{
-          $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
-        }
-      }
-    });
-  },
-  removeDevice: function(){
-    $.ajax({ 
-      url: path+"ZWaveAPI/Run/controller.RemoveNodeFromNetwork(1)", 
-      dataType: 'json',
-      async: true, 
-      error: function (request, status, error) {
-        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-      },
-      success: function(data) {
-        if(data['result']== true){
-          app_network.sendOk();
-        }else{
-         $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
-       }
-     }
-   });
-  },
-  cancelCommand: function(){
-    $.ajax({ 
-      url: path+"ZWaveAPI/Run/CancelCommand()", 
-      dataType: 'json',
-      async: true, 
-      error: function (request, status, error) {
-        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-      },
-      success: function(data) {
-        if(data['result']== true){
-          app_network.sendOk();
-        }else{
-         $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
-       }
-     }
-   });
-  },
-  testNetwork: function(){
-    $.ajax({ 
-      url: path+"ZWaveAPI/Run/devices[0].TestNetwork()", 
-      dataType: 'json',
-      async: true, 
-      error: function (request, status, error) {
-        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-      },
-      success: function(data) {
-        if(data['result']== true){
-          app_network.sendOk();
-        }else{
-         $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
-       }
-     }
-   });
-  },
-  healNetwork: function(){
-    $.ajax({ 
-      url: path+"ZWaveAPI/Run/controller.HealNetwork()", 
-      dataType: 'json',
-      async: true, 
-      error: function (request, status, error) {
-        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-      },
-      success: function(data) {
-        if(data['result']== true){
-          app_network.sendOk();
-        }else{
-         $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
-       }
-     }
-   });
-  },
-  createNewPrimary: function(){
-    $.ajax({ 
-      url: path+"ZWaveAPI/Run/CreateNewPrimary()", 
-      dataType: 'json',
-      async: true, 
-      error: function (request, status, error) {
-        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-      },
-      success: function(data) {
-        app_network.sendOk();
-      }
-    });
-  },
-  replicationSend: function(){
-    $.ajax({ 
-      url: path+"ZWaveAPI/Run/ReplicationSend()", 
-      dataType: 'json',
-      async: true, 
-      error: function (request, status, error) {
-        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-      },
-      success: function(data) {
-       app_network.sendOk();
-     }
-   });
-  },
-  requestNetworkUpdate: function(){
-    $.ajax({ 
-      url: path+"ZWaveAPI/Run/controller.RequestNetworkUpdate()", 
-      dataType: 'json',
-      async: true, 
-      error: function (request, status, error) {
-        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-      },
-      success: function(data) {
-        if(data['result']== true){
-          app_network.sendOk();
-        }else{
-         $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
-       }
-     }
-   });
-  },
-  transferPrimaryRole: function(){
-    $.ajax({ 
-      url: path+"ZWaveAPI/Run/TransferPrimaryRole()", 
-      dataType: 'json',
-      async: true, 
-      error: function (request, status, error) {
-        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-      },
-      success: function(data) {
-        app_network.sendOk();
-      }
-    });
-  },
-  writeConfigFile: function(){
-    $.ajax({ 
-      url: path+"ZWaveAPI/Run/WriteZWConfig()", 
-      dataType: 'json',
-      async: true, 
-      error: function (request, status, error) {
-        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-      },
-      success: function(data) {
-        app_network.sendOk();
-      }
-    });
-  },
-  regenerate_nodes_cfg_file: function(){
-    $.ajax({ 
-      url: path+"ZWaveAPI/Run/RemoveUnknownsDevicesZWConfig()", 
-      dataType: 'json',
-      async: true, 
-      error: function (request, status, error) {
-        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-      },
-      success: function(data) {
-        app_network.sendOk();
-      }
-    });
-  },
-  softReset: function(){
-    $.ajax({ 
-      url: path+"/ZWaveAPI/Run/SerialAPISoftReset()", 
-      dataType: 'json',
-      async: true, 
-      error: function (request, status, error) {
-        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-      },
-      success: function(data) {
-       if(data['result']== true){
+   addDevice: function(_secure){
+    var secure = 0;
+    if(_secure){
+     var secure = 1;
+   }
+   $.ajax({ 
+    url: path+"ZWaveAPI/Run/controller.AddNodeToNetwork(1,"+secure+")", 
+    dataType: 'json',
+    async: true, 
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+    },
+    success: function(data) {
+      if(data['result']== true){
         app_network.sendOk();
       }else{
         $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
       }
     }
   });
-  },
-  hardReset: function(){
+ },
+ removeDevice: function(){
+  $.ajax({ 
+    url: path+"ZWaveAPI/Run/controller.RemoveNodeFromNetwork(1)", 
+    dataType: 'json',
+    async: true, 
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+    },
+    success: function(data) {
+      if(data['result']== true){
+        app_network.sendOk();
+      }else{
+       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+     }
+   }
+ });
+},
+cancelCommand: function(){
+  $.ajax({ 
+    url: path+"ZWaveAPI/Run/CancelCommand()", 
+    dataType: 'json',
+    async: true, 
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+    },
+    success: function(data) {
+      if(data['result']== true){
+        app_network.sendOk();
+      }else{
+       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+     }
+   }
+ });
+},
+testNetwork: function(){
+  $.ajax({ 
+    url: path+"ZWaveAPI/Run/devices[0].TestNetwork()", 
+    dataType: 'json',
+    async: true, 
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+    },
+    success: function(data) {
+      if(data['result']== true){
+        app_network.sendOk();
+      }else{
+       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+     }
+   }
+ });
+},
+healNetwork: function(){
+  $.ajax({ 
+    url: path+"ZWaveAPI/Run/controller.HealNetwork()", 
+    dataType: 'json',
+    async: true, 
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+    },
+    success: function(data) {
+      if(data['result']== true){
+        app_network.sendOk();
+      }else{
+       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+     }
+   }
+ });
+},
+createNewPrimary: function(){
+  $.ajax({ 
+    url: path+"ZWaveAPI/Run/CreateNewPrimary()", 
+    dataType: 'json',
+    async: true, 
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+    },
+    success: function(data) {
+      app_network.sendOk();
+    }
+  });
+},
+replicationSend: function(){
+  $.ajax({ 
+    url: path+"ZWaveAPI/Run/ReplicationSend()", 
+    dataType: 'json',
+    async: true, 
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+    },
+    success: function(data) {
+     app_network.sendOk();
+   }
+ });
+},
+requestNetworkUpdate: function(){
+  $.ajax({ 
+    url: path+"ZWaveAPI/Run/controller.RequestNetworkUpdate()", 
+    dataType: 'json',
+    async: true, 
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+    },
+    success: function(data) {
+      if(data['result']== true){
+        app_network.sendOk();
+      }else{
+       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+     }
+   }
+ });
+},
+transferPrimaryRole: function(){
+  $.ajax({ 
+    url: path+"ZWaveAPI/Run/TransferPrimaryRole()", 
+    dataType: 'json',
+    async: true, 
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+    },
+    success: function(data) {
+      app_network.sendOk();
+    }
+  });
+},
+writeConfigFile: function(){
+  $.ajax({ 
+    url: path+"ZWaveAPI/Run/WriteZWConfig()", 
+    dataType: 'json',
+    async: true, 
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+    },
+    success: function(data) {
+      app_network.sendOk();
+    }
+  });
+},
+regenerate_nodes_cfg_file: function(){
+  $.ajax({ 
+    url: path+"ZWaveAPI/Run/RemoveUnknownsDevicesZWConfig()", 
+    dataType: 'json',
+    async: true, 
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+    },
+    success: function(data) {
+      app_network.sendOk();
+    }
+  });
+},
+softReset: function(){
+  $.ajax({ 
+    url: path+"/ZWaveAPI/Run/SerialAPISoftReset()", 
+    dataType: 'json',
+    async: true, 
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+    },
+    success: function(data) {
+     if(data['result']== true){
+      app_network.sendOk();
+    }else{
+      $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+    }
+  }
+});
+},
+hardReset: function(){
     	//TODO: add a confirmation yes/no before execute
       $.ajax({ 
         url: path+"ZWaveAPI/Run/HardReset()", 

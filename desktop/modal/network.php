@@ -179,6 +179,10 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 							<td>{{Ajouter un nouveau module au réseau Z-Wave.}}</td>
 						</tr>
 						<tr>
+							<td><button type="button" id="addDeviceSecure" class="btn btn-warning"><i class="fa fa-plus-circle"></i> {{Ajouter module en mode sécurisé (inclusion)}}</button></td>
+							<td>{{Ajouter un nouveau module au réseau Z-Wave en mode sécurisé (peut ne pas marcher si le module ne le supporte pas bien).}}</td>
+						</tr>
+						<tr>
 							<td><button type="button" id="removeDevice" class="btn btn-danger"><i class="fa fa-minus-circle"></i> {{Supprimer module (Exclusion)}}</button></td>
 							<td>{{Supprimer un module du réseau Z-Wave.}}</td>
 						</tr>
