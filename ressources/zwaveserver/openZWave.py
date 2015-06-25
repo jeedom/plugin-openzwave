@@ -19,6 +19,7 @@ except Exception as e:
     
 import logging
 import signal
+import os.path
 
 import time
 import datetime
@@ -215,7 +216,7 @@ def debug_print(message):
         
 def add_log_entry(message, level="info"):
     print('%s | %s | %s' % (time.strftime('%d-%m-%Y %H:%M:%S',time.localtime()), level, message.encode('utf8'),)) 
-
+    
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 result = sock.connect_ex(('127.0.0.1',int(port_server)))
 if result == 0:
@@ -239,6 +240,8 @@ if device == 'auto':
 Idle= 0
 AddDevice = 1
 RemoveDevice = 5
+
+not_supported_nodes = [0,255]
 
 class ControllerMode:
     class Idle: pass
@@ -440,6 +443,33 @@ class NodeNotification(object):
         return self._next_wakeup
     
 
+def cleanup_confing_file(fileName):
+    add_log_entry('validate configuration file: %s' %(fileName,)) 
+    if os.path.isfile(fileName) :
+        try:            
+            tree = etree.parse(fileName)
+            nodes = tree.findall(".//{http://code.google.com/p/open-zwave/}Product")
+            for node in nodes:
+                if node.get("id")[:7] in not_supported_nodes :
+                    tree.getroot().remove(node.getparent().getparent())
+            FILE = open(fileName,"w")
+            FILE.write('<?xml version="1.0" encoding="utf-8" ?>\n')
+            FILE.writelines(etree.tostring(tree, pretty_print=True))
+            FILE.close()          
+            
+        except Exception as e:
+            add_log_entry(str(e), 'error') 
+
+def check_config_files():
+    root = "/opt/python-openzwave"
+    pattern = "zwcfg_"
+    alist_filter = ['xml'] 
+    path=os.path.join(root,"")
+    for r,d,f in os.walk(path):
+        for file in f:
+            if file[-3:] in alist_filter and pattern in file:
+                cleanup_confing_file(os.path.join(root,file))
+
 def graceful_stop_network():
     #network.save()
     network.stop()
@@ -503,6 +533,8 @@ options.lock()
 
 force_refresh_nodes = []    
 
+check_config_files()
+
 def save_node_event(node_id, timestamp, value):
     global con
     cur = con.cursor()
@@ -537,7 +569,7 @@ def validate_association_groups_asynchronous():
 def recovering_failed_nodes_asynchronous():
     debug_print("Check for failed nodes")
     for node_id in list(network.nodes):
-        if network.nodes[node_id].node_id == 0:
+        if node_id in not_supported_nodes :   
             debug_print('remove fake nodeId: %s' % (node_id)) 
             network.manager.removeFailedNode(network.home_id, node_id)
             continue
@@ -611,14 +643,14 @@ def nodes_queried_some_dead(network):
     add_log_entry("All nodes have been queried, but some node ar mark dead") 
 
 def node_new(network, node_id):
-    if node_id == 0:
+    if node_id in not_supported_nodes:
         return
     add_log_entry('A new node (%s), not already stored in zwcfg*.xml file, was found.' % (node_id,))
     force_refresh_nodes.append(node_id)    
     
 def node_added(network, node):    
     add_log_entry('A node has been added to OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
-    if node.node_id == 0:
+    if node.node_id in not_supported_nodes:
         return
     node.last_update=time.time()   
     if network.state >= 7: #STATE_AWAKED
@@ -626,7 +658,7 @@ def node_added(network, node):
             
 def node_removed(network, node):
     add_log_entry('A node has been removed from OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
-    if node.node_id == 0:
+    if node.node_id in not_supported_nodes:
         return
     if network.state >= 7: #STATE_AWAKED
         save_node_event(node.node_id, int(time.time()), "removed")
@@ -739,6 +771,8 @@ def save_valueAsynchronous(node, value, last_update):
         save_node_value_event(node.node_id, int(time.time()), value.command_class, value.index, get_standard_value_type(value.type), extract_data(value, False), change_instance(value))    
 
 def value_added(network, node, value):  
+    if node.node_id in not_supported_nodes:
+        return
     #debug_print('value_added. %s %s' % (node.node_id, value.label,)) 
     #mark initial data for skip notification durring interview
     value.lastData = value.data 
@@ -774,10 +808,14 @@ def prepare_value_notification(node, value):
             thread.stop()
 
 def value_update(network, node, value): 
+    if node.node_id in not_supported_nodes:
+        return
     #debug_print('value_update. %s %s' % (node.node_id, value.label,))
     prepare_value_notification(node, value)
                 
 def value_refreshed(network, node, value): 
+    if node.node_id in not_supported_nodes:
+        return
     #debug_print('value_refreshed. %s %s' % (node.node_id, value.label,))  
     value_update(network, node, value)
         
@@ -841,8 +879,8 @@ def node_notification(args):
         myNode = network.nodes[device_id]
         #mark as updated
         myNode.last_update=time.time()
-        #try auto remove fake node with id = 0
-        if device_id == 0 and network.state >= 7:   # STATE_AWAKED
+        #try auto remove not upported nodes  
+        if device_id in not_supported_nodes and network.state >= 7:   # STATE_AWAKED
             debug_print('remove fake nodeId: %s' % (node.node_id)) 
             network.manager.removeFailedNode(network.home_id, device_id)
             return
@@ -1046,7 +1084,7 @@ def validate_association_groups(device_id):
                 for group_index in list(myNode.groups):
                     group = myNode.groups[group_index]
                     for target_node_id in list(group.associations):
-                        if(target_node_id in network.nodes) :
+                        if target_node_id in network.nodes and not target_node_id in not_supported_nodes:
                             continue
                         debug_print("Remove association for nodeId: %s index %s with not exsit target: %s" % (device_id, group_index, target_node_id,))
                         network.manager.removeAssociation(network.home_id, device_id, group_index, target_node_id) 
@@ -1055,6 +1093,8 @@ def validate_association_groups(device_id):
      
 def serialize_node_to_json(device_id):    
     tmpNode = {}    
+    if device_id in not_supported_nodes:
+        return tmpNode
     if device_id in network.nodes :
         myNode = network.nodes[device_id]        
         try:
@@ -1191,10 +1231,10 @@ def serialize_node_to_json(device_id):
 
 def serialize_node_health(device_id):    
     tmpNode = {}    
-    if device_id in network.nodes :
-        
-        myNode = network.nodes[device_id]  
-        
+    if device_id in not_supported_nodes:
+        return tmpNode
+    if device_id in network.nodes :        
+        myNode = network.nodes[device_id]          
         if myNode.basic == 2: #STATIC_CONTROLLER   = 0x02
             return tmpNode
         try:
