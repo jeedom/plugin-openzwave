@@ -1134,7 +1134,9 @@ def serialize_node_to_json(device_id):
         tmpNode['data']['type'] = {'value' : myNode.type}            
         tmpNode['data']['state'] = {'value' : str(myNode.query_stage)}
         tmpNode['data']['isAwake'] = {'value' : myNode.is_awake,"updateTime":timestamp}
-        tmpNode['data']['isReady'] = {'value' : myNode.is_ready,"updateTime":timestamp}        
+        tmpNode['data']['isReady'] = {'value' : myNode.is_ready,"updateTime":timestamp}   
+        tmpNode['data']['isInfoReceived'] = {'value' : myNode.is_info_received}  
+             
         tmpNode['data']['can_wake_up'] = {'value' : myNode.can_wake_up()}        
         tmpNode['data']['battery_level'] = {'value' : myNode.get_battery_level()} 
         tmpNode['data']['isFailed'] = {'value' : myNode.is_failed}
@@ -1161,6 +1163,10 @@ def serialize_node_to_json(device_id):
                                             "next_wakeup": notification.next_wakeup}
         else:
             tmpNode['last_notification'] = {}
+            
+        tmpNode['command_classes'] = {}    
+        for command_class in myNode.command_classes:
+            tmpNode['command_classes'][command_class] = {'name': myNode.get_command_class_as_string(command_class),'hex': '0x' +convert_user_code_to_hex(command_class)}
             
         for val in myNode.get_values() : 
             myValue = myNode.values[val]
@@ -1342,11 +1348,11 @@ def changes_value_polling(frequence, value):
         value.enable_poll(frequence)
     write_config() 
 
-def convert_user_code_to_hex(value):
+def convert_user_code_to_hex(value, lenght=2):
     value1 = int(value)
-    result = hex(value1)[2:]
+    result = hex(value1)[lenght:]
     if len(result)==1:
-        result = '0'+result
+        result = '0' *(lenght-1) + result
     return result
 
 def set_value(device_id, valueId, data):    
