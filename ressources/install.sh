@@ -108,6 +108,14 @@ sudo cp /opt/zwcfg* /opt/python-openzwave/.
 sudo chown -R www-data:www-data /opt/python-openzwave
 sudo chmod -R 777 /opt/python-openzwave
 
+if [ -e /dev/ttyAMA0 ];  then 
+  sudo sed -i 's/console=ttyAMA0,115200//; s/kgdboc=ttyAMA0,115200//' /boot/cmdline.txt
+  sudo sed -i 's|[^:]*:[^:]*:respawn:/sbin/getty[^:]*ttyAMA0[^:]*||' /etc/inittab
+fi
+
+if [ -e /dev/ttymxc0 ];  then 
+  sudo systemctl mask serial-getty@ttymxc0.service
+fi
 
 if [ $(grep 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200"' /etc/udev/rules.d/98-usb-serial.rules | wc -l) -eq 0 ]; then
     if [ -f /etc/udev/rules.d/98-usb-serial.rules ]; then
