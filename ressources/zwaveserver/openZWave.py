@@ -26,6 +26,7 @@ import datetime
 import binascii
 import sqlite3 as lite
 import threading
+from threading import Event, Thread
 import socket
 from lxml import etree
 
@@ -651,6 +652,9 @@ def node_new(network, node_id):
 def node_added(network, node):    
     add_log_entry('A node has been added to OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
     if node.node_id in not_supported_nodes:
+        debug_print('remove fake nodeId: %s' % (node.node_id)) 
+        node_cleaner = threading.Timer(60.0, network.manager.removeFailedNode, [network.home_id, node.node_id])
+        node_cleaner.start()        
         return
     node.last_update=time.time()   
     if network.state >= 7: #STATE_AWAKED
