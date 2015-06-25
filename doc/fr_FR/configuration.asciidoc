@@ -25,7 +25,7 @@ Dans ce mode, le démon est très bavard. Une fois le debug terminé, il ne faut
 
 [icon="../images/plugin/tip.png"]
 [TIP]
-Pour pouvoir lancer l'installation du moteur OpenZwave, Jeedom a besoin des droits sudo, si vous n'avez pas le bouton d'installation référez-vous à link:http://doc.jeedom.fr/fr_FR/doc-installation.html[ici] partie 1.7.4
+Pour pouvoir lancer l'installation du moteur OpenZwave, Jeedom a besoin des droits sudo, si vous n'avez pas le bouton d'installation référez-vous à https://www.jeedom.fr/doc/documentation/installation/fr_FR/doc-installation.html[ici] partie 1.7.4
 
 '''
 === Configuration des équipements
