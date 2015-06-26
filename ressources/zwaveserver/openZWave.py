@@ -83,6 +83,7 @@ device="auto"
 log="None"
 #default_poll_interval = 1800000 # 30 minutes
 default_poll_interval = 300000 # 5 minutes
+maximum_poll_intensity = 1
 
 COMMAND_CLASS_NO_OPERATION              = 0 # 0x00
 COMMAND_CLASS_BASIC                     = 32 # 0x20   
@@ -781,6 +782,10 @@ def value_added(network, node, value):
     #debug_print('value_added. %s %s' % (node.node_id, value.label,)) 
     #mark initial data for skip notification durring interview
     value.lastData = value.data 
+    #check if old polling is outside autorised range
+    if value.poll_intensity > maximum_poll_intensity:
+        changes_value_polling(maximum_poll_intensity, value)
+    
 
 def prepare_value_notification(node, value):
     if hasattr(value, 'pendingConfiguration' ):
@@ -1346,11 +1351,13 @@ def serialize_controller_to_json():
     result['data']['networkstate'] = {"value" : network.state} 
     return result
 
-def changes_value_polling(frequence, value):
-    if frequence == 0: #disable the value polling for any value
+def changes_value_polling(intensity, value):
+    if intensity == 0: #disable the value polling for any value
         value.disable_poll()
     elif value.genre == "User" and not value.is_write_only: #we activate the value polling only on user genre value and is not a writeOnly
-        value.enable_poll(frequence)
+        if intensity > maximum_poll_intensity:
+            intensity = maximum_poll_intensity
+        value.enable_poll(intensity)
     write_config() 
 
 def convert_user_code_to_hex(value, lenght=2):
@@ -1555,9 +1562,8 @@ def set_polling_value(device_id, instance_id, cc_id, index, frequence) :
                 if frequence == 0:
                     #disable the value polling for any value
                     myValue.disable_poll()
-                elif myValue.genre == "User" and myValue.is_write_only == False :
-                    #we activate the value polling only on user genre value and is not a writeOnly 
-                    myValue.enable_poll(frequence)
+                else :                    
+                    changes_value_polling(frequence, myValue)
         write_config()  
         return format_json_result()      
     else:
