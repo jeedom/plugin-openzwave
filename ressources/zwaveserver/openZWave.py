@@ -885,6 +885,8 @@ def get_wakeup_interval(device_id) :
 def node_notification(args):
     code = int(args['notificationCode'])
     device_id = int(args['nodeId'])    
+    if device_id in not_supported_nodes:
+        return
     if device_id in network.nodes :
         myNode = network.nodes[device_id]
         #mark as updated
