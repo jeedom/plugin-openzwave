@@ -81,7 +81,8 @@ from louie import dispatcher, All
 
 device="auto"
 log="None"
-default_poll_interval = 1800000 # 30 minutes
+#default_poll_interval = 1800000 # 30 minutes
+default_poll_interval = 300000 # 5 minutes
 
 COMMAND_CLASS_NO_OPERATION              = 0 # 0x00
 COMMAND_CLASS_BASIC                     = 32 # 0x20   

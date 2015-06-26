@@ -293,11 +293,11 @@ $('#pollingModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 	modal.find('.modal-body').html("<b>{{Fréquence : }}</b>");
 	var select = '<select class="form-control" style="display:inline-block;width : 200px;" id="newvaluevalue">';
 	select += '<option value="0">{{Auto}}</option>';
-	select += '<option value="1">{{30 min}}</option>';
-	select += '<option value="2">{{15 min}}</option>';
-	select += '<option value="3">{{10 min}}</option>';
-	select += '<option value="6">{{5 min}}</option>';
-	select += '<option value="30">{{1 min}}</option>';
+	select += '<option value="1">{{5 min}}</option>';
+	//select += '<option value="2">{{15 min}}</option>';
+	//select += '<option value="3">{{10 min}}</option>';
+	//select += '<option value="6">{{5 min}}</option>';
+	//select += '<option value="30">{{1 min}}</option>';
 	select += '</option>';
 	modal.find('.modal-body').append(select);
 	modal.find('.modal-body').find('#newvaluevalue').val(valuePolling);
@@ -1171,15 +1171,19 @@ draw_nodes: function ()
 	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 0){
 	            				polling += '<span class="label label-success" style="font-size:1em;">{{Auto}}</span>';
 	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 1){
-	            				polling += '<span class="label label-success" style="font-size:1em;">{{30 min}}</span>';
+	            				polling += '<span class="label label-success" style="font-size:1em;">{{5 min}}</span>';
 	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 2){
-	            				polling += '<span class="label label-success" style="font-size:1em;">{{15 min}}</span>';
+	            				//polling += '<span class="label label-success" style="font-size:1em;">{{15 min}}</span>';
+	            				polling += '<span class="label label-default" style="font-size:1em;">'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'</span>';
 	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 3){
-	            				polling += '<span class="label label-warning" style="font-size:1em;">{{10 min}}</span>';
+	            				//polling += '<span class="label label-warning" style="font-size:1em;">{{10 min}}</span>';
+	            				polling += '<span class="label label-default" style="font-size:1em;">'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'</span>';
 	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 6){
-	            				polling += '<span class="label label-warning" style="font-size:1em;">{{5 min}}</span>';
+	            				//polling += '<span class="label label-warning" style="font-size:1em;">{{5 min}}</span>';
+	            				polling += '<span class="label label-default" style="font-size:1em;">'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'</span>';
 	            			}else if(nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 30){
-	            				polling += '<span class="label label-danger" style="font-size:1em;">{{1 min}}</span>';
+	            				//polling += '<span class="label label-danger" style="font-size:1em;">{{1 min}}</span>';
+	            				polling += '<span class="label label-default" style="font-size:1em;">'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'</span>';
 	            			}else{
 	            				polling += '<span class="label label-default" style="font-size:1em;">'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'</span>';
 	            			}
