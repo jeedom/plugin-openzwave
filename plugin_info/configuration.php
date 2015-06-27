@@ -128,10 +128,9 @@ foreach ($deamonRunningSlave as $name => $status) {
 				<?php
 if (jeedom::isCapable('sudo')) {
 	echo '<div class="form-group">
-					<label class="col-lg-4 control-label">{{Installer/Mettre à jour OpenZwave en local}}</label>
+					<label class="col-lg-4 control-label">{{Dépendance OpenZwave locale}}</label>
 					<div class="col-lg-3">
-						<a class="btn btn-warning bt_installDeps" data-mode="master"><i class="fa fa-check"></i> {{Stable}}</a>
-						<!-- <a class="btn btn-danger bt_installDeps" data-mode="dev"><i class="fa fa-check"></i> {{Developpement}}</a> -->
+						<a class="btn btn-warning bt_installDeps" data-mode="master"><i class="fa fa-check"></i> {{Installer/Mettre à jour}}</a>
 					</div>
 				</div>';
 } else {

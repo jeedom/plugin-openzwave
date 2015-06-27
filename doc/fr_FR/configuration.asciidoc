@@ -12,7 +12,7 @@ Si vous êtes en mode déporté, le démon local peut être arrêté, c'est tout
 
 * *Général* : cette partie permet de configurer les paramètres généraux du plugin ainsi que la version actuel d'openzwave (si nous avez un NOK veuillez vous refairer à la partie "Mettre à jour OpenZwave")
 * *Démon local* ou *Démon XXX* : paramètres de configuration locale (ou déportée, en fonction de l'intitulé) du démon.
-** *Installer/Mettre à jour OpenZwave en local* : permet de lancer l'installation du moteur OpenZwave, si vous venez de l'installer il faut absolument lancer l'installation (à moins de vouloir utiliser le plugin en mode déporté, dans ce cas il faudra lancer l'installation à partir du jeedom deporté). Il est aussi possible que Jeedom vous redemande de faire cette étape suite à une mise à jour. C'est normale ca permet de mettre à jour openzwave
+** *Dépendance OpenZwave locale* : permet de lancer l'installation du moteur OpenZwave, si vous venez de l'installer il faut absolument lancer l'installation (à moins de vouloir utiliser le plugin en mode déporté, dans ce cas il faudra lancer l'installation à partir du jeedom deporté). Il est aussi possible que Jeedom vous redemande de faire cette étape suite à une mise à jour. C'est normale ca permet de mettre à jour OpenZwave
 ** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-wave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 posssibilités à la fin de la liste
 ** *Port socket interne* (modification dangereuse, doit être la même valeur sur tous les Jeedom déportés Z-wave)_ : permet de modifier le port de communication interne du démon.
 ** *Gestion du démon* : vous retrouvez ici les boutons de gestion du démon : 
@@ -317,7 +317,7 @@ Vous devez d'abord arreter le démon (c'est plus sur) :
 
 image:../images/openzwave31.png[]
 
-Ensuite il faut cliquer sur le bouton "Stable" en face de "Installer/Mettre à jour OpenZwave en local" (si vous etês en deporté il faut le faire sur les deportés) : 
+Ensuite il faut cliquer sur le bouton "Installer/Mettre à jour" en face de "Dépendance OpenZwave locale" (si vous etês en deporté il faut le faire sur les deportés) : 
 
 image:../images/openzwave32.png[]
 
