@@ -29,7 +29,7 @@
                     "value": "data[0].Set(255)"
                 },
                 "template": {
-                    "dashboard": "Multiprise",
+                    "dashboard": "prise",
                     "mobile": "prise"
                 }
             },
@@ -45,7 +45,7 @@
                     "value": "data[0].Set(0)"
                 },
                 "template": {
-                    "dashboard": "Multiprise",
+                    "dashboard": "prise",
                     "mobile": "prise"
                 }
             },
@@ -74,7 +74,7 @@
                     "value": "data[0].Set(255)"
                 },
                 "template": {
-                    "dashboard": "Multiprise",
+                    "dashboard": "prise",
                     "mobile": "prise"
                 }
             },
@@ -90,7 +90,7 @@
                     "value": "data[0].Set(0)"
                 },
                 "template": {
-                    "dashboard": "Multiprise",
+                    "dashboard": "prise",
                     "mobile": "prise"
                 }
             },
@@ -119,7 +119,7 @@
                     "value": "data[0].Set(255)"
                 },
                 "template": {
-                    "dashboard": "Multiprise",
+                    "dashboard": "prise",
                     "mobile": "prise"
                 }
             },
@@ -135,7 +135,7 @@
                     "value": "data[0].Set(0)"
                 },
                 "template": {
-                    "dashboard": "Multiprise",
+                    "dashboard": "prise",
                     "mobile": "prise"
                 }
             },
@@ -164,7 +164,7 @@
                     "value": "data[0].Set(255)"
                 },
                 "template": {
-                    "dashboard": "Multiprise",
+                    "dashboard": "prise",
                     "mobile": "prise"
                 }
             },
@@ -180,7 +180,7 @@
                     "value": "data[0].Set(0)"
                 },
                 "template": {
-                    "dashboard": "Multiprise",
+                    "dashboard": "prise",
                     "mobile": "prise"
                 }
             },
@@ -209,7 +209,7 @@
                     "value": "data[0].Set(255)"
                 },
                 "template": {
-                    "dashboard": "Multiprise",
+                    "dashboard": "prise",
                     "mobile": "prise"
                 }
             },
@@ -225,7 +225,7 @@
                     "value": "data[0].Set(0)"
                 },
                 "template": {
-                    "dashboard": "Multiprise",
+                    "dashboard": "prise",
                     "mobile": "prise"
                 }
             },
@@ -254,7 +254,7 @@
                     "value": "data[0].Set(255)"
                 },
                 "template": {
-                    "dashboard": "Multiprise",
+                    "dashboard": "prise",
                     "mobile": "prise"
                 }
             },
@@ -270,7 +270,7 @@
                     "value": "data[0].Set(0)"
                 },
                 "template": {
-                    "dashboard": "Multiprise",
+                    "dashboard": "prise",
                     "mobile": "prise"
                 }
             },
