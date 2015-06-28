@@ -455,6 +455,8 @@ def cleanup_confing_file(fileName):
             for node in nodes:
                 if node.get("id")[:7] in not_supported_nodes :
                     tree.getroot().remove(node.getparent().getparent())
+                elif node.get("name")[:7]=="Unknown" :
+                    tree.getroot().remove(node.getparent().getparent())
             FILE = open(fileName,"w")
             FILE.write('<?xml version="1.0" encoding="utf-8" ?>\n')
             FILE.writelines(etree.tostring(tree, pretty_print=True))
