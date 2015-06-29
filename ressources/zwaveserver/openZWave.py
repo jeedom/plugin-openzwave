@@ -388,7 +388,6 @@ class PendingConfiguration(object):
 class NodeNotification(object):
     
     def __init__(self, code, wakeup_time=None):
-        self._receive_time=int(time.time())           
         self._code = code 
         self._description = code 
         self._help = code 
@@ -397,6 +396,8 @@ class NodeNotification(object):
         self.refresh(code, wakeup_time)
         
     def refresh(self, code, wakeup_time):
+        # reset time stamp
+        self._receive_time=int(time.time())
         if code == 0:
             self._description = "Completed"
             self._help = "Completed messages"
@@ -409,12 +410,13 @@ class NodeNotification(object):
         elif code == 3:
             self._description = "Awake."
             self._help = "Report when a sleeping node wakes"
+            self._next_wakeup = None #clear and wait sleep to calcul next expected wakeup
         elif code == 4:
             self._description = "Sleep."
             self._help = "Report when a node goes to sleep"
             #if they go to sleep, calcul the next expected wakeup time
-            if wakeup_time != None:
-                self._next_wakeup = wakeup_time + self._receive_time
+            if wakeup_time != None and wakeup_time > 0:
+                self._next_wakeup = self._receive_time + wakeup_time
         elif code == 5:
             self._description = "Dead."
             self._help = "Report when a node is presumed dead"
