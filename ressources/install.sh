@@ -88,6 +88,10 @@ fi
 echo "Installation de Python-OpenZwave"
 cd /opt
 sudo git clone https://github.com/OpenZWave/python-openzwave.git
+if [ $? -ne 0 ]; then
+  echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
+  exit 1
+fi
 cd python-openzwave
 sudo git reset --hard 808b07076febdc66654083d8146f0ddd55b11654
 #Version du 19/06/15
@@ -95,6 +99,10 @@ sudo pip uninstall -y Cython
 cd /opt/python-openzwave
 sudo make cython-deps
 sudo git clone git://github.com/OpenZWave/open-zwave.git openzwave
+if [ $? -ne 0 ]; then
+  echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
+  exit 1
+fi
 cd openzwave
 sudo git reset --hard 5f03981324a2ad601f6837c2c1e9ad9cee94dac0
 #Version du 19/06/15
@@ -118,13 +126,13 @@ if [ -e /dev/ttymxc0 ];  then
 fi
 
 if [ $(grep 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200"' /etc/udev/rules.d/98-usb-serial.rules | wc -l) -eq 0 ]; then
-    if [ -f /etc/udev/rules.d/98-usb-serial.rules ]; then
-      sudo cp /etc/udev/rules.d/98-usb-serial.rules /tmp/udev
-    else
-      touch /tmp/udev
-    fi
-    sudo echo 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200", SYMLINK+="ttyUSB21"' >> /tmp/udev
-    sudo mv /tmp/udev /etc/udev/rules.d/98-usb-serial.rules
+  if [ -f /etc/udev/rules.d/98-usb-serial.rules ]; then
+    sudo cp /etc/udev/rules.d/98-usb-serial.rules /tmp/udev
+  else
+    touch /tmp/udev
+  fi
+  sudo echo 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200", SYMLINK+="ttyUSB21"' >> /tmp/udev
+  sudo mv /tmp/udev /etc/udev/rules.d/98-usb-serial.rules
 fi
 
 echo "Everything is successfully installed!"
