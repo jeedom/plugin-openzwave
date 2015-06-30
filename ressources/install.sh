@@ -98,7 +98,7 @@ sudo git reset --hard 808b07076febdc66654083d8146f0ddd55b11654
 sudo pip uninstall -y Cython
 cd /opt/python-openzwave
 sudo make cython-deps
-sudo git clone git://github.com/OpenZWave/open-zwave.git openzwave
+sudo git clone https://github.com/OpenZWave/open-zwave.git openzwave
 if [ $? -ne 0 ]; then
   echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
   exit 1
