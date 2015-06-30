@@ -123,6 +123,7 @@ COMMAND_CLASS_DOOR_LOCK_LOGGING         = 76 # 0x4C
 COMMAND_CLASS_SCHEDULE_ENTRY_LOCK       = 78 # 0x4E
 COMMAND_CLASS_BASIC_WINDOW_COVERING     = 80 # 0x50
 COMMAND_CLASS_MTP_WINDOW_COVERING       = 81 # 0x51
+COMMAND_CLASS_CENTAL_SCENE              = 91 # 0x5B
 COMMAND_CLASS_MULTI_INSTANCE            = 96 # 0x60
 COMMAND_CLASS_DOOR_LOCK                 = 98 # 0x62
 COMMAND_CLASS_USER_CODE                 = 99 # 0x63
@@ -840,8 +841,8 @@ def scene_event(network, node, scene_id):
     add_log_entry('Scene Activation : %s' % (scene_id,))        
     timestamp = int(time.time())
     typestd = 'int'        
-    save_node_value_event(node.node_id, int(time.time()), 91, 0, typestd, scene_id, 0)  
-    save_node_value_event(node.node_id, int(time.time()), 43, 0, typestd, scene_id, 0)  
+    save_node_value_event(node.node_id, int(time.time()), COMMAND_CLASS_CENTAL_SCENE, 0, typestd, scene_id, 0)  
+    save_node_value_event(node.node_id, int(time.time()), COMMAND_CLASS_SCENE_ACTIVATION, 0, typestd, scene_id, 0)  
     
 def controller_message_complete(network):
     debug_print('The last message that was sent is now complete')
