@@ -10,7 +10,9 @@ image:../images/openzwave1.png[]
 [TIP]
 Si vous êtes en mode déporté, le démon local peut être arrêté, c'est tout à fait normal.
 
-* *Général* : cette partie permet de configurer les paramètres généraux du plugin ainsi que la version actuel d'openzwave (si nous avez un NOK veuillez vous refairer à la partie "Mettre à jour OpenZwave")
+* *Général* : cette partie permet de configurer les paramètres généraux du plugin ainsi que la version actuel d'openzwave (si nous avez un NOK veuillez vous refairer à la partie "Mettre à jour OpenZwave").
+** *Supprimer automatiquement les périphériques exclus* : permet de supprimer les periphérique exclus du réseaux zwave ou non
+** *Soigner le réseau automatiquement 2 fois par semaine* : option pour activer un soin automatique du réseaux zwave (vivement conseillée)
 * *Démon local* ou *Démon XXX* : paramètres de configuration locale (ou déportée, en fonction de l'intitulé) du démon.
 ** *Dépendance OpenZwave locale* : permet de lancer l'installation du moteur OpenZwave, si vous venez de l'installer il faut absolument lancer l'installation (à moins de vouloir utiliser le plugin en mode déporté, dans ce cas il faudra lancer l'installation à partir du jeedom deporté). Il est aussi possible que Jeedom vous redemande de faire cette étape suite à une mise à jour. C'est normale ca permet de mettre à jour OpenZwave
 ** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-wave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 posssibilités à la fin de la liste
