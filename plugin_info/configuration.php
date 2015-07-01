@@ -70,7 +70,7 @@ foreach ($deamonRunningSlave as $name => $status) {
 		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
 	}
 	echo '<label class="col-sm-3 control-label">{{OpenZwave}} (' . $deamonSlaveVersion[$name]['openzwave'] . '/' . $deamonSlaveVersion[$name]['python-openzwave'] . ')</label>';
-	if (version_compare($deamonSlaveVersion[$name]['openzwave'], openzwave::getVersion('openzwave'), '>')) {
+	if (version_compare(config::byKey('openzwave_version', 'openzwave'), $deamonSlaveVersion[$name]['openzwave'], '>')) {
 		echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
 	} else {
 		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
