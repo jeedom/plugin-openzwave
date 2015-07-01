@@ -9,26 +9,34 @@ Plugin openzwave for jeedom is distributed in the hope that it will be useful, b
 You should have received a copy of the GNU General Public License along with Plugin openzwave for jeedom. If not, see http://www.gnu.org/licenses.
 """
 import sys, os
-
+print "Check flask dependances"
 try:
     from flask import Flask, jsonify, abort, request, make_response, redirect, url_for
+    print "--> pass"
 except Exception as e:
     print "The dependances of openzwave plugin are not installed. Please, check the plugin openzwave configuration page for instructions"
     print "Error %s:" % str(e)
     sys.exit(1)
-    
-import logging
-import signal
-import os.path
 
-import time
-import datetime
-import binascii
-import sqlite3 as lite
-import threading
-from threading import Event, Thread
-import socket
-from lxml import etree
+print "Check other dependances"
+try:
+    import logging
+    import os.path
+    import time
+    import datetime
+    import binascii
+    import threading
+    from threading import Event, Thread
+    import socket
+    import sqlite3 as lite
+    from lxml import etree
+    import signal
+    from louie import dispatcher, All
+    print "--> pass"
+except Exception as e:
+    print "The dependances of openzwave plugin are not installed. Please, check the plugin openzwave configuration page for instructions"
+    print "Error %s:" % str(e)
+    sys.exit(1)
 
 os.environ['PYTHON_EGG_CACHE'] = '/opt/python-openzwave/python-eggs'
 
@@ -38,6 +46,7 @@ logger = logging.getLogger('openzwave')
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
+print "Check SQLite"
 con = None
 try:
     con = lite.connect(":memory:", check_same_thread=False)
@@ -45,13 +54,13 @@ try:
     cur = con.cursor()    
     cur.execute('SELECT SQLITE_VERSION()')
     data = cur.fetchone()
-    print "SQLite version: %s" % data  
+    print "--> SQLite version: %s" % data  
     cur.execute("DROP TABLE IF EXISTS Events")  
     cur.execute("CREATE TABLE IF NOT EXISTS Events(Node INT, Instance INT, Commandclass INT, Type TEXT, Id TEXT, Index_value INT, Value TEXT, Level INT, UpdateTime INT)")               
 except lite.Error, e:
     print "Error %s:" % e.args[0]
     sys.exit(1)
-
+print("Check Openzwave")
 try :
     import openzwave
     from openzwave.node import ZWaveNode
@@ -61,7 +70,7 @@ try :
     from openzwave.network import ZWaveNetwork
     from openzwave.option import ZWaveOption
     from openzwave.group import ZWaveGroup
-    print("Openzwave is installed.")
+    print("--> pass")
 except :
     print("Openzwave is not installed. Get it from tmp directory.")
     sys.path.insert(0, os.path.abspath('../build/tmp/usr/local/lib/python2.6/dist-packages'))
@@ -77,8 +86,6 @@ except :
     from openzwave.option import ZWaveOption
     from openzwave.group import ZWaveGroup
     
-from louie import dispatcher, All
-
 device="auto"
 log="None"
 #default_poll_interval = 1800000 # 30 minutes
@@ -171,7 +178,8 @@ COMMAND_CLASS_SILENCE_ALARM             = 157 # 0x9D
 COMMAND_CLASS_SENSOR_CONFIGURATION      = 158 #0x9E
 COMMAND_CLASS_MARK                      = 239 # 0xEF
 COMMAND_CLASS_NON_INTEROPERABLE         = 240 # 0xF0
- 
+
+print("validate startup arguments") 
 for arg in sys.argv:
     if arg.startswith("--device"):
         temp,device = arg.split("=")        
@@ -187,6 +195,7 @@ for arg in sys.argv:
         print("help : ")
         print("  --device=/dev/yourdevice ")
         print("  --log=Info|Debug")
+print("--> pass")  
 
 def find_tty_usb(idVendor, idProduct):
     """find_tty_usb('0658', '0200') -> '/dev/ttyUSB021' for Sigma Designs, Inc."""    
@@ -220,12 +229,14 @@ def debug_print(message):
         
 def add_log_entry(message, level="info"):
     print('%s | %s | %s' % (time.strftime('%d-%m-%Y %H:%M:%S',time.localtime()), level, message.encode('utf8'),)) 
-    
+
+print("check if port is available")     
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 result = sock.connect_ex(('127.0.0.1',int(port_server)))
 if result == 0:
     add_log_entry('The port %s is already in use. Please check your openzwave configuration plugin page' % (port_server,), 'error')
-    sys.exit(1)    
+    sys.exit(1) 
+print("--> pass")   
 
 #device = 'auto'
 if device == 'auto':
