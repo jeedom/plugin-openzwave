@@ -205,7 +205,7 @@ class openzwave extends eqLogic {
 						}
 						$attribut = implode('.', array_slice($explodeKey, 6));
 						foreach ($eqLogic->getCmd('info', $explodeKey[3] . '.0x' . dechex($explodeKey[5]), null, true) as $cmd) {
-							if (strpos(str_replace(array(']', '['), array('', '.'), $cmd->getConfiguration('value')), $attribut) !== false) {
+							if (str_replace(array(']', '['), array('', '.'), $cmd->getConfiguration('value')) == $attribut) {
 								$cmd->handleUpdateValue($result);
 							}
 						}
