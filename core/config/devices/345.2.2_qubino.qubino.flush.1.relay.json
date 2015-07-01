@@ -89,7 +89,7 @@
 				"name" : "I1",
 				"type" : "info",
 				"subtype" : "binary",
-				"isVisible" : 1,
+				"isVisible" : 0,
 				"isHistorized" : 1,
 				"configuration" :
 				{
@@ -102,7 +102,7 @@
 				"name" : "I2",
 				"type" : "info",
 				"subtype" : "binary",
-				"isVisible" : 1,
+				"isVisible" : 0,
 				"isHistorized" : 1,
 				"configuration" :
 				{
@@ -115,7 +115,7 @@
 				"name" : "I3",
 				"type" : "info",
 				"subtype" : "binary",
-				"isVisible" : 1,
+				"isVisible" : 0,
 				"isHistorized" : 1,
 				"configuration" :
 				{
