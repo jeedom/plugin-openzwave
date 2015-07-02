@@ -624,7 +624,7 @@ def refresh_configuration_asynchronous():
     else:
         #I will try again in 2 minutes
         retry_job = threading.Timer(240.0, refresh_configuration_asynchronous)
-        recovering.start()        
+        retry_job.start()        
     
 def refresh_user_values_asynchronous():
     debug_print("Refresh User Values of powered devices")
@@ -641,12 +641,14 @@ def refresh_user_values_asynchronous():
                         if currentValue.is_write_only:
                             continue                
                         currentValue.refresh()
-                time.sleep(30) 
+                while not can_execute_network_command(0):
+                    debug_print("Network Waiting execution of all messages in the waiting")
+                    time.sleep(60) 
     else:
         debug_print("Network is loaded, do not execute this time")
         #I will try again in 2 minutes
         retry_job = threading.Timer(240.0, refresh_user_values_asynchronous)
-        recovering.start()           
+        retry_job.start()           
                     
 def network_awaked(network):
     add_log_entry("Openzwave network is awake : %d nodes were found (%d are sleeping). All listening nodes are queried, but some sleeping nodes may be missing." % (network.nodes_count, get_sleeping_nodes_count(),))
@@ -2281,7 +2283,7 @@ def request_network_update(device_id) :
     """    
     add_log_entry("Update the controller with network information from the SUC/SIS node %s" %(device_id,))
     return format_json_result(False,'Not implemented')   
-    if can_execute_network_command() == False:
+    if can_execute_network_command(0) == False:
         return build_network_busy_message()  
     if device_id in network.nodes :
         result = network.manager.requestNetworkUpdate(network.home_id, device_id)
@@ -2291,7 +2293,7 @@ def request_network_update(device_id) :
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RemoveFailedNode()',methods = ['GET'])
 def remove_failed_node(device_id) :
-    if can_execute_network_command() == False:
+    if can_execute_network_command(0) == False:
         return build_network_busy_message()  
     add_log_entry("Remove a failed node %s" %(device_id,))
     if device_id in network.nodes :
@@ -2315,7 +2317,7 @@ def health_network() :
     
 @app.route('/ZWaveAPI/Run/controller.HealNetwork()',methods = ['GET'])
 def heal_network(performReturnRoutesInitialization=False) :
-    if can_execute_network_command() == False:
+    if can_execute_network_command(0) == False:
         return build_network_busy_message()      
     add_log_entry("heal_network") 
     network._manager.healNetwork(network.home_id, performReturnRoutesInitialization)
