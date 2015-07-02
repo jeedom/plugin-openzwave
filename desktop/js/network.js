@@ -63,7 +63,7 @@ var app_network = {
       app_network.load_data();
     });
      $("#tab_route").off("click").on("click",function() {
-      //app_network.displayRoutingTable()
+      app_network.displayRoutingTable()
     });
      $("#addDevice").off("click").on("click",function() {
       app_network.addDevice(false);
@@ -336,7 +336,6 @@ hardReset: function(){
         if(data['result']== true){
          app_network.sendOk();
          app_network.load_data(); 
-         app_network.displayRoutingTable(); 
        }else{
          $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
        }
