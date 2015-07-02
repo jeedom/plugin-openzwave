@@ -89,7 +89,7 @@ foreach ($deamonRunningSlave as $name => $status) {
 
 <form class="form-horizontal">
 	<fieldset>
-		<legend>{{Générale}}</legend>
+		<legend>{{Général}}</legend>
 		<?php if (config::byKey('jeeNetwork::mode') == 'master') {?>
 			<div class="form-group">
 				<label class="col-lg-4 control-label">{{Supprimer automatiquement les périphériques exclus}}</label>
