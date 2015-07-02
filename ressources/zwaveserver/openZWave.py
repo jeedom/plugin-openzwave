@@ -643,7 +643,7 @@ def refresh_user_values_asynchronous():
                         currentValue.refresh()
                 while not can_execute_network_command(0):
                     debug_print("Network Waiting execution of all messages in the waiting")
-                    time.sleep(60) 
+                    time.sleep(10) 
     else:
         debug_print("Network is loaded, do not execute this time")
         #I will try again in 2 minutes
@@ -2316,19 +2316,32 @@ def health_network() :
     return heal_network()
     
 @app.route('/ZWaveAPI/Run/controller.HealNetwork()',methods = ['GET'])
-def heal_network(performReturnRoutesInitialization=False) :
+def heal_network(performReturnRoutesInitialization=True) :
     if can_execute_network_command(0) == False:
         return build_network_busy_message()      
-    add_log_entry("heal_network") 
-    network._manager.healNetwork(network.home_id, performReturnRoutesInitialization)
+    add_log_entry("Heal network by requesting node's rediscover their neighbors") 
+    for node_id in list(network.nodes):
+        if node_id in not_supported_nodes :   
+            debug_print("skip not supported (nodeId: %s)" %(node_id,)) 
+            continue
+        if network.nodes[node_id].is_failed:
+            debug_print("skip presume dead (nodeId: %s)" %(node_id,))
+            continue        
+        if network.nodes[node_id].query_stage != "Complete":
+            debug_print("skip query stage not complete (nodeId: %s)" %(node_id,))
+            continue
+        if network.nodes[node_id].generic == 1:
+            debug_print("skip Remote controller (nodeId: %s) (they don't have neighbors)" %(node_id,))
+            continue
+        network._manager.healNetworkNode(network.home_id, node_id, performReturnRoutesInitialization)
     return format_json_result()
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].HealNode()',methods = ['GET'])
-def heal_node(device_id, performReturnRoutesInitialization=False) :
+def heal_node(device_id, performReturnRoutesInitialization=True) :
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     try:
-        add_log_entry("HealNode node %s" %(device_id,)) 
+        add_log_entry("Heal network node (%s) by requesting the node rediscover their neighbors" %(device_id,)) 
         if device_id in network.nodes :
             network._manager.healNetworkNode(network.home_id, device_id, performReturnRoutesInitialization)
             return format_json_result()
