@@ -590,16 +590,20 @@ def validate_association_groups_asynchronous():
 
 def recovering_failed_nodes_asynchronous():
     debug_print("Check for failed nodes")
-    for node_id in list(network.nodes):
-        if node_id in not_supported_nodes :   
-            debug_print('remove fake nodeId: %s' % (node_id)) 
-            network.manager.removeFailedNode(network.home_id, node_id)
-            continue
-        if network.nodes[node_id].is_failed:
-            debug_print('try recovering nodeId: %s' % (node_id)) 
-            if network.manager.hasNodeFailed(network.home_id, node_id):
-                #avoid stress network
-                time.sleep(3)
+    #if controler is busy ski this run
+    if can_execute_network_command(0):        
+        for node_id in list(network.nodes):
+            if node_id in not_supported_nodes :   
+                debug_print('remove fake nodeId: %s' % (node_id)) 
+                network.manager.removeFailedNode(network.home_id, node_id)
+                continue
+            if network.nodes[node_id].is_failed:
+                debug_print('try recovering nodeId: %s' % (node_id)) 
+                if network.manager.hasNodeFailed(network.home_id, node_id):
+                    #avoid stress network
+                    time.sleep(3)
+    else:
+        debug_print("Network is loaded, do not execute this time")
     #do again in 15 minutes
     recovering = threading.Timer(900.0, recovering_failed_nodes_asynchronous)
     recovering.start()
@@ -2820,7 +2824,7 @@ def set_poll_interval(seconds, intervalBetweenPolls):
     """
     Set the time period between polls of a node's state.
     """ 
-    if can_execute_network_command == False:
+    if can_execute_network_command() == False:
         return build_network_busy_message()  
     try:        
         add_log_entry('set_poll_interval seconds:%s, interval Between Polls: %s' % (seconds, bool(intervalBetweenPolls)),)
