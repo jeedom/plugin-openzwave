@@ -552,7 +552,7 @@ options.set_notify_transactions(True) # Notifications when transaction complete 
 options.set_suppress_value_refresh(False) # if true, notifications for refreshed (but unchanged) values will not be sent.        
 options.set_driver_max_attempts(5) 
 #options.addOptionBool("AssumeAwake", True)        
-options.addOptionInt("RetryTimeout", 6000)
+#options.addOptionInt("RetryTimeout", 6000) # Timeout before retrying to send a message. Defaults to 40 Seconds
 options.addOptionString("NetworkKey","0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10",True)
 options.set_security_strategy('CUSTOM') # The security strategy : SUPPORTED | ESSENTIAL | CUSTOM
 options.set_custom_secured_cc('0x62,0x4c,0x63') # What List of Custom CC should we always encrypt if SecurityStrategy is CUSTOM
@@ -758,7 +758,7 @@ def extract_data(value, displayRaw = False):
         return round(value.data, precision)
     return value.data
 
-def can_execute_network_command(allowed_queue_count=25):
+def can_execute_network_command(allowed_queue_count=5):
     global network
     if network is None:
         return False
