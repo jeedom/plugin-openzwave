@@ -92,6 +92,9 @@ log="None"
 default_poll_interval = 300000 # 5 minutes
 maximum_poll_intensity = 1
 
+network = None
+networkInformations = None
+
 COMMAND_CLASS_NO_OPERATION              = 0 # 0x00
 COMMAND_CLASS_BASIC                     = 32 # 0x20   
 COMMAND_CLASS_CONTROLLER_REPLICATION    = 33 # 0x21
@@ -490,8 +493,9 @@ def check_config_files():
                 cleanup_confing_file(os.path.join(root,file))
 
 def graceful_stop_network():
-    add_log_entry('Graceful stopping the ZWave network.')
-    if network:
+    add_log_entry('Graceful stopping the ZWave network.')   
+    global network
+    if network is not None:
         network.stop()
         #We disconnect to the louie dispatcher
         try:
@@ -523,6 +527,8 @@ def graceful_stop_network():
         except Exception:
             pass
         network.destroy()
+        #avoid a second pass
+        network = None
     add_log_entry('The Openzwave REST-server was stopped in a normal way')
 
 def signal_handler(signal, frame):    
@@ -742,6 +748,9 @@ def extract_data(value, displayRaw = False):
     return value.data
 
 def can_execute_network_command(allowed_queue_count=25):
+    global network
+    if network is None:
+        return False
     if not network.controller.is_primary_controller:
         return True
     if network.controller.send_queue_count > allowed_queue_count:
@@ -934,9 +943,6 @@ def node_notification(args):
 app = Flask(__name__, static_url_path = '/static')
 
 #Create a network object
-global network
-global networkInformations
-
 networkInformations = NetworkInformations()  
 network = ZWaveNetwork(options, autostart=False)
 
@@ -2408,6 +2414,7 @@ def get_nodes_list():
             
 @app.route('/ZWaveAPI/Data/<int:fromtime>',methods = ['GET'])
 def get_device(fromtime):
+    global network
     if network != None and network.state >= 5:   # STATE_STARTED 
         if network.nodes:            
             changes = {}   
