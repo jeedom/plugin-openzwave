@@ -615,27 +615,38 @@ def recovering_failed_nodes_asynchronous():
     recovering.start()
     
 def refresh_configuration_asynchronous():
-    for node_id in list(force_refresh_nodes):
-        if node_id in network.nodes :
-            debug_print('Request All Configuration Parameters for nodeId: %s' % (node_id,)) 
-            network._manager.requestAllConfigParams(network.home_id, node_id)
-            time.sleep(3)            
+    if can_execute_network_command(0):
+        for node_id in list(force_refresh_nodes):
+            if node_id in network.nodes :
+                debug_print('Request All Configuration Parameters for nodeId: %s' % (node_id,)) 
+                network._manager.requestAllConfigParams(network.home_id, node_id)
+                time.sleep(3)    
+    else:
+        #I will try again in 2 minutes
+        retry_job = threading.Timer(240.0, refresh_configuration_asynchronous)
+        recovering.start()        
     
 def refresh_user_values_asynchronous():
     debug_print("Refresh User Values of powered devices")
-    for node_id in list(network.nodes):
-        myNode = network.nodes[node_id]
-        if myNode.is_ready and myNode.is_listening_device:
-            debug_print('Refresh User Values for nodeId: %s' % (node_id,))
-            for val in myNode.get_values():
-                currentValue = myNode.values[val]
-                if currentValue.genre == 'User':
-                    if currentValue.type == 'Button':
-                        continue
-                    if currentValue.is_write_only:
-                        continue                
-                    currentValue.refresh()
-            time.sleep(30)            
+    if can_execute_network_command(0):
+        for node_id in list(network.nodes):
+            myNode = network.nodes[node_id]
+            if myNode.is_ready and myNode.is_listening_device:
+                debug_print('Refresh User Values for nodeId: %s' % (node_id,))
+                for val in myNode.get_values():
+                    currentValue = myNode.values[val]
+                    if currentValue.genre == 'User':
+                        if currentValue.type == 'Button':
+                            continue
+                        if currentValue.is_write_only:
+                            continue                
+                        currentValue.refresh()
+                time.sleep(30) 
+    else:
+        debug_print("Network is loaded, do not execute this time")
+        #I will try again in 2 minutes
+        retry_job = threading.Timer(240.0, refresh_user_values_asynchronous)
+        recovering.start()           
                     
 def network_awaked(network):
     add_log_entry("Openzwave network is awake : %d nodes were found (%d are sleeping). All listening nodes are queried, but some sleeping nodes may be missing." % (network.nodes_count, get_sleeping_nodes_count(),))
