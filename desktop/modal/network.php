@@ -301,7 +301,6 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 	if (window["app_network"]!=undefined){
 		window["app_network"].init();
 		window["app_network"].show();
-		window["app_network"].displayRoutingTable();
 	}
 	$('.tab-pane').height($('#md_modal').height() - 50);
 	$('.tab-pane').css('overflow','scroll');

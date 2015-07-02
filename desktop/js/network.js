@@ -336,6 +336,7 @@ hardReset: function(){
         if(data['result']== true){
          app_network.sendOk();
          app_network.load_data(); 
+          app_network.displayRoutingTable();
        }else{
          $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
        }
