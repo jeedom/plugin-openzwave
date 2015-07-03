@@ -93,7 +93,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 cd python-openzwave
-sudo git reset --hard 808b07076febdc66654083d8146f0ddd55b11654
+sudo git reset --hard e936bc81fcf56e620c37335181096f43d8192cff
 #Version du 19/06/15
 sudo pip uninstall -y Cython
 cd /opt/python-openzwave
@@ -104,7 +104,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 cd openzwave
-sudo git reset --hard 5f03981324a2ad601f6837c2c1e9ad9cee94dac0
+sudo git reset --hard be04f6c19ce6f38a01476d6fad95b8a41ca52c82
 #Version du 19/06/15
 cd /opt/python-openzwave
 sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
