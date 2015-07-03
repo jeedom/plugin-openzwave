@@ -8,26 +8,6 @@
                 "name": "Ouverture",
                 "type": "info",
                 "subtype": "binary",
-                "isVisible": 0,
-                "isHistorized": 0,
-
-                "configuration": {
-                    "instanceId": 0,
-                    "class": "0x30",
-                    "value": "data[0].val"
-                },
-                "display": {
-                    "invertBinary": "1"
-                },
-                "template": {
-                    "dashboard": "presence",
-                    "mobile": "presence"
-                }
-            },
-            {
-                "name": "Ouverture",
-                "type": "info",
-                "subtype": "binary",
                 "isVisible": 1,
                 "isHistorized": 0,
 
