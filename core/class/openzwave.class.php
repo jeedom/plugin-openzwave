@@ -47,7 +47,7 @@ class openzwave extends eqLogic {
 	}
 
 	public static function listServerZwave($_autofix = true) {
-		if (self::$_listZwaveServer == null) {
+		if (self::$_listZwaveServer == null || count(self::$_listZwaveServer) == 0) {
 			self::$_listZwaveServer = array();
 			if (config::byKey('port', 'openzwave', 'none') != 'none') {
 				self::$_listZwaveServer[0] = array(
