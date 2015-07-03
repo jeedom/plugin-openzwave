@@ -35,8 +35,11 @@ function openzwave_install() {
 
 function openzwave_update() {
 	if (openzwave::deamonRunning()) {
+		echo 'Stop zwave network...';
 		openzwave::stopDeamon();
+		echo "OK\n";
 	}
+	echo 'Stop cron...';
 	$cron = cron::byClassAndFunction('openzwave', 'pull');
 	if (config::byKey('jeeNetwork::mode') != 'slave') {
 		if (!is_object($cron)) {
@@ -56,6 +59,8 @@ function openzwave_update() {
 			$cron->remove();
 		}
 	}
+	echo "OK\n";
+	echo 'Check zwave system...';
 	if (count(eqLogic::byType('zwave')) > 0) {
 		log::add('openzwave', 'error', 'Attention vous etes sur la nouvelle version d\'openzwave, des actions de votre part sont necessaire merci d\'aller voir https://jeedom.fr/blog/?p=1576');
 	}
@@ -75,6 +80,7 @@ function openzwave_update() {
 			}
 		}
 	}
+	echo "OK\n";
 }
 
 function openzwave_remove() {
