@@ -1,5 +1,6 @@
 {
 	"name" : "Zipato Mini Keypad RFID",
+    "doc" : "zipato.minikeypad",
     "configuration" : {
         "conf_version" : 1
     },
