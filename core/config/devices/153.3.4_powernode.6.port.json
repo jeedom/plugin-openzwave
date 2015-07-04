@@ -1,5 +1,6 @@
 {
 	"name" : "GreenWave[6 x prises]",
+    "doc" : "greenwave.powernode",
     "configuration" : {
         "conf_version" : 1
     },
