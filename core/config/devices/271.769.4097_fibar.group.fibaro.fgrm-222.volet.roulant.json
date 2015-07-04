@@ -1,5 +1,6 @@
 {
-		"name": "Fibaro FGRM-222 [Volet roulant]", 
+		"name": "Fibaro FGRM-222 [Volet roulant]",
+        "doc" : "fibaro.fgrm222",
 		"configuration" : {
         "conf_version" : 1
 		},
@@ -65,8 +66,8 @@
                         },
                 "template":
                         {
-                            "dashboard": "tooltip",
-                            "mobile": "tooltip"
+                            "dashboard": "store",
+                            "mobile": "store"
                         }
             },
             {
