@@ -1,5 +1,6 @@
 {
 	"name" : "In Wall On/Off",
+    "doc" : "smarthomebyeverspring.AN179-0",
     "configuration" : {
         "conf_version" : 1
     },

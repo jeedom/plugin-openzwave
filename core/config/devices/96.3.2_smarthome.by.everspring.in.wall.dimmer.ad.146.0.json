@@ -1,5 +1,6 @@
 {
 	"name" : "In Wall Dimmer",
+    "doc" : "smarthomebyeverspring.AD146-0",
     "configuration" : {
         "conf_version" : 1
     },
