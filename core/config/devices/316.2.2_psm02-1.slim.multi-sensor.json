@@ -1,5 +1,6 @@
 {
 	"name" : "Philio MultiSensor",
+    "doc" : "philio.psp01",
     "configuration" : {
         "conf_version" : 1
     },
