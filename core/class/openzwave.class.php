@@ -543,70 +543,7 @@ class openzwave extends eqLogic {
 	/*     * *********************Methode d'instance************************* */
 
 	public function ping() {
-		$info = $this->getInfo();
-		if ($info['state']['value'] == __('Réveillé', __FILE__) || $info['state']['value'] == __('Actif', __FILE__)) {
-			$cmds = $this->getCmd('info');
-			if (strtotime($this->getStatus('lastCommunication', date('Y-m-d H:i:s'))) < (strtotime('now') - 120)) {
-				sleep(5);
-			}
-			if (strtotime($this->getStatus('lastCommunication', date('Y-m-d H:i:s'))) < (strtotime('now') - 120)) {
-				return false;
-			}
-		} else {
-			if ($this->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $this->getTimeout() . ' minutes' . date('Y-m-d H:i:s')))) {
-				return false;
-			}
-		}
 		return true;
-	}
-
-	public function getInfo() {
-		$return = array();
-		if (!is_numeric($this->getLogicalId())) {
-			return $return;
-		}
-		$results = self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . ']', $this->getConfiguration('serverID', 1));
-		if (isset($results['instances'][0]['commandClasses'][128]) && $results['instances'][0]['commandClasses'][128]['data']['supported']['value'] === true) {
-			$return['battery'] = array(
-				'value' => $results['instances'][0]['commandClasses'][128]['data'][0]['val'],
-				'datetime' => date('Y-m-d H:i:s', $results['instances'][0]['commandClasses'][128]['data']['last']['updateTime']),
-				'unite' => '%',
-			);
-		}
-
-		if (isset($results['data'])) {
-			if (isset($results['data']['can_wake_up']) && $results['data']['can_wake_up']['value'] == 'true') {
-				if ($results['data']['isAwake']['value']) {
-					$state = __('Réveillé', __FILE__);
-				} else {
-					$state = __('Endormi', __FILE__);
-				}
-			} else {
-				$state = __('Sur secteur', __FILE__);
-				unset($return['battery']);
-			}
-			$return['state'] = array(
-				'value' => $state,
-				'datetime' => date('Y-m-d H:i:s', $results['data']['isAwake']['updateTime']),
-			);
-
-			if (isset($results['data']['isFailed'])) {
-				$return['state']['value'] = ($results['data']['isFailed']['value']) ? 'Dead' : $return['state']['value'];
-			}
-
-			if ((isset($return['battery']) && $return['battery']['value'] != '') || (isset($return['state']) && $return['state']['value'] == __('Endormi', __FILE__))) {
-				$return['powered'] = array(
-					'value' => false,
-					'datetime' => date('Y-m-d H:i:s'),
-				);
-			} else {
-				$return['powered'] = array(
-					'value' => true,
-					'datetime' => date('Y-m-d H:i:s'),
-				);
-			}
-		}
-		return $return;
 	}
 
 	public function loadCmdFromConf($_update = false) {
@@ -639,7 +576,6 @@ class openzwave extends eqLogic {
 			'level' => 'warning',
 			'message' => __('Création des commandes à partir d\'une configuration', __FILE__),
 		));
-
 		$commands = $device['commands'];
 		foreach ($commands as &$command) {
 			if (!isset($command['configuration']['instanceId'])) {
@@ -648,31 +584,10 @@ class openzwave extends eqLogic {
 			if (!isset($command['configuration']['class'])) {
 				$command['configuration']['class'] = '';
 			}
-			$cmd = null;
-			foreach ($this->getCmd() as $liste_cmd) {
-				if ($liste_cmd->getConfiguration('instanceId', 0) == $command['configuration']['instanceId'] &&
-					$liste_cmd->getConfiguration('class') == $command['configuration']['class'] &&
-					$liste_cmd->getConfiguration('value') == $command['configuration']['value'] &&
-					$liste_cmd->getType() == $command['type']) {
-					$cmd = $liste_cmd;
-					break;
-				}
-				if ($liste_cmd->getName() == $command['name']) {
-					$cmd = $liste_cmd;
-					break;
-				}
-			}
 			try {
-				if ($cmd == null || !is_object($cmd)) {
-					$cmd = new openzwaveCmd();
-					$cmd->setOrder($cmd_order);
-					$cmd->setEqLogic_id($this->getId());
-				} else {
-					$command['name'] = $cmd->getName();
-					if (isset($command['display'])) {
-						unset($command['display']);
-					}
-				}
+				$cmd = new openzwaveCmd();
+				$cmd->setOrder($cmd_order);
+				$cmd->setEqLogic_id($this->getId());
 				utils::a2o($cmd, $command);
 				if (isset($command['value'])) {
 					$cmd->setValue(null);

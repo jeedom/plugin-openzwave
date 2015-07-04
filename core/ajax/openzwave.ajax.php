@@ -114,14 +114,6 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'getModuleInfo') {
-		$eqLogic = openzwave::byId(init('id'));
-		if (!is_object($eqLogic)) {
-			throw new Exception(__('Zwave eqLogic non trouvé : ', __FILE__) . init('id'));
-		}
-		ajax::success($eqLogic->getInfo());
-	}
-
 	if (init('action') == 'getControllerState') {
 		ajax::success(openzwave::callOpenzwave('/ZWaveAPI/Run/GetControllerStatus()', init('serverID')));
 	}
