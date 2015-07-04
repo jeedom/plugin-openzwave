@@ -1,5 +1,6 @@
 {
 	"name" : "Miniplug Dimmer",
+    "doc" : "everspring.AD147-6",
     "configuration" : {
         "conf_version" : 1
     },
