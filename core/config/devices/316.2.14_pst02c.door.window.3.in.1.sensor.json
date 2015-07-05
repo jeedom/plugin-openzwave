@@ -1,5 +1,6 @@
 {
 	"name" : "Philio Door/Window Sensor",
+    "doc" : "philio.pst02c",
     "configuration" : {
         "conf_version" : 1
     },
