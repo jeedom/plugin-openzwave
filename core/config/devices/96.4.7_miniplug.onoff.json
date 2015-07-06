@@ -1,5 +1,6 @@
 {
 	"name" : "Miniplug On/Off",
+    "doc" : "everspring.AN180-6",
     "configuration" : {
         "conf_version" : 1
     },

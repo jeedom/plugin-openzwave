@@ -1,31 +1,10 @@
 {
-	"name" : "Philio MultiSensor",
+	"name" : "Philio Door/Window Sensor",
+    "doc" : "philio.pst02c",
     "configuration" : {
         "conf_version" : 1
     },
     "commands": [
-            {
-                "name": "Présence",
-                "type": "info",
-                "subtype": "binary",
-                "isVisible": 0,
-                "isHistorized": 0,
-
-                "configuration": {
-                    "instanceId": 0,
-                    "class": "0x30",
-                    "value": "data[0].val",
-					"returnStateTime": 1,
-					"returnStateValue": 0
-                },
-                "display": {
-                    "invertBinary": "1"
-                },
-                "template": {
-                    "dashboard": "presence",
-                    "mobile": "presence"
-                }
-            },
             {
                 "name": "Ouverture",
                 "type": "info",
@@ -74,24 +53,6 @@
                     "unite": "%",
                     "maxValue": 100,
                     "minValue": 0
-                }
-            },
-            {
-                "name": "Sabotage",
-                "type": "info",
-                "subtype": "binary",
-                "isVisible": 0,
-                "isHistorized": 0,
-
-                "configuration": {
-                    "instanceId": 0,
-                    "class": "0x30",
-                    "value": "data[2].val",
-					"returnStateTime": 1,
-					"returnStateValue": 0
-                },
-                "display": {
-                    "invertBinary": "1"
                 }
             },
             {

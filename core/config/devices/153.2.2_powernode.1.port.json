@@ -1,5 +1,6 @@
 {
 	"name" : "Powernode 1",
+    "doc" : "greenwave.Powernode1",
     "configuration" : {
         "conf_version" : 1
     },

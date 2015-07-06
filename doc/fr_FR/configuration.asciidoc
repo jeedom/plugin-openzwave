@@ -29,6 +29,10 @@ Dans ce mode, le démon est très bavard. Une fois le debug terminé, il ne faut
 [TIP]
 Pour pouvoir lancer l'installation du moteur OpenZwave, Jeedom a besoin des droits sudo, si vous n'avez pas le bouton d'installation référez-vous à https://www.jeedom.fr/doc/documentation/installation/fr_FR/doc-installation.html[ici] partie 1.7.4
 
+[icon="../images/plugin/important.png"]
+[IMPORTANT]
+Si vous utilisez Ubuntu : Pour que le démon marche il faut absolument avoir ubuntu 15.04 (les versions inferieurs ont un bug et le demon n'arrive pas à se lancer). Attention si vous faite une mise à jour à partir de 14.04 il faut une fois en 15.04 relancer l'installation des dépendance
+
 '''
 === Configuration des équipements
 

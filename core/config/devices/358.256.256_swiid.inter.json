@@ -1,5 +1,6 @@
 {
 	"name" : "SwiidInter",
+    "doc" : "swiid.inter",
     "configuration" : {
         "conf_version" : 1
     },

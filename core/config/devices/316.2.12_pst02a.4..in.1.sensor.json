@@ -1,6 +1,6 @@
 {
-	"name" : "Philio MultiSensor",
-    "doc" : "philio.psp01",
+	"name" : "Philio 4 in 1 Sensor",
+    "doc" : "philio.pst02a",
     "configuration" : {
         "conf_version" : 1
     },
@@ -14,10 +14,9 @@
 
                 "configuration": {
                     "instanceId": 0,
-                    "class": "0x30",
-                    "value": "data[0].val",
-					"returnStateTime": 1,
-					"returnStateValue": 0
+                    "class": "0x71",
+                    "value": "data[10].val",
+                    "calculValueOffset" : "#value#==8"
                 },
                 "display": {
                     "invertBinary": "1"
@@ -36,8 +35,9 @@
 
                 "configuration": {
                     "instanceId": 0,
-                    "class": "0x30",
-                    "value": "data[1].val"
+                    "class": "0x71",
+                    "value": "data[9].val",
+                    "calculValueOffset" : "#value#==22"
                 },
                 "display": {
                     "invertBinary": "1"
@@ -53,12 +53,12 @@
                 "subtype": "numeric",
                 "isVisible": 1,
                 "isHistorized": 1,
+                "unite": "°C",
 
                 "configuration": {
                     "instanceId": 0,
                     "class": "0x31",
-                    "value": "data[1].val",
-                    "unite": "°C"
+                    "value": "data[1].val"
                 }
             },
             {
@@ -67,14 +67,15 @@
                 "subtype": "numeric",
                 "isVisible": 1,
                 "isHistorized": 1,
+                "unite": "%",
 
                 "configuration": {
                     "instanceId": 0,
                     "class": "0x31",
                     "value": "data[3].val",
-                    "unite": "%",
                     "maxValue": 100,
                     "minValue": 0
+                    
                 }
             },
             {
@@ -86,13 +87,16 @@
 
                 "configuration": {
                     "instanceId": 0,
-                    "class": "0x30",
-                    "value": "data[2].val",
-					"returnStateTime": 1,
-					"returnStateValue": 0
+                    "class": "0x71",
+                    "value": "data[10].val",
+                    "calculValueOffset" : "#value#==3"
                 },
                 "display": {
                     "invertBinary": "1"
+                },
+                "template": {
+                    "dashboard": "vibration",
+                    "mobile": "vibration"
                 }
             },
             {
@@ -101,12 +105,14 @@
                 "subtype": "numeric",
                 "isVisible": 0,
                 "isHistorized": 0,
+                "unite": "%",
 
                 "configuration": {
                     "instanceId": 0,
                     "class": "0x80",
                     "value": "data[0].val",
-                    "unite": "%"
+                    "maxValue": 100,
+                    "minValue": 0
                 }
             }
         ]
