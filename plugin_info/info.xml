@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <info>
     <id>openzwave</id>
-    <name>OpenZwave</name>
-    <description>Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave</description>
+    <name>Z-Wave</name>
+    <description>Plugin pour contrôler les équipements Z-Wave via une clé ZWave compatible openZwave</description>
     <icon>fa fa-share-alt</icon>
     <licence>AGPL</licence>
     <author>Thomas MARTINEZ (tmartinez) - Jean-François AUGER (Nechry)</author>
-    <installation>Il faut installer le serveur OpenZwave :
-    	- Veuillez suivre la procédure d'installation ci-dessous
-    </installation>
-    <require>1.10</require>
-    <version>1.1</version>
+    <installation></installation>
+    <require>1.188</require>
+    <version>1.4.1</version>
     <allowRemote>1</allowRemote>
     <mobile>openzwave</mobile>
     <category>automation protocol</category>
