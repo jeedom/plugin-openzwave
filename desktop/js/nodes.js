@@ -100,6 +100,9 @@ $("#removeFailedNode").off("click").on("click",function() {
 $("#removeGhostNode").off("click").on("click",function() {
 	app_nodes.remove_ghost_node(app_nodes.selected_node);
 });
+$("#replaceFailedNode").off("click").on("click",function() {
+	app_nodes.replace_failed_node(app_nodes.selected_node);
+});	
 $("#sendNodeInformation").off("click").on("click",function() {
 	app_nodes.send_node_information(app_nodes.selected_node);
 });
