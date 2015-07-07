@@ -221,8 +221,11 @@ createNewPrimary: function(){
   });
 },
 replicationSend: function(){
+	/*
+	 add bridController selection and pass as argument 
+	 */
   $.ajax({ 
-    url: path+"ZWaveAPI/Run/ReplicationSend()", 
+    url: path+"ZWaveAPI/Run/controller.ReplicationSend(bridge_controller_id)", 
     dataType: 'json',
     async: true, 
     error: function (request, status, error) {
@@ -234,8 +237,11 @@ replicationSend: function(){
  });
 },
 requestNetworkUpdate: function(){
+	/*
+	 add bridController selection and pass as argument 
+	 */
   $.ajax({ 
-    url: path+"ZWaveAPI/Run/controller.RequestNetworkUpdate()", 
+    url: path+"ZWaveAPI/Run/controller.RequestNetworkUpdate(bridge_controller_id)", 
     dataType: 'json',
     async: true, 
     error: function (request, status, error) {
@@ -252,7 +258,7 @@ requestNetworkUpdate: function(){
 },
 transferPrimaryRole: function(){
   $.ajax({ 
-    url: path+"ZWaveAPI/Run/TransferPrimaryRole()", 
+    url: path+"ZWaveAPI/Run/controller.TransferPrimaryRole()", 
     dataType: 'json',
     async: true, 
     error: function (request, status, error) {
