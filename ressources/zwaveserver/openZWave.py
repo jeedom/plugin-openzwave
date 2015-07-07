@@ -2825,6 +2825,55 @@ def remove_device_openzwave_config(device_id) :
     except Exception as e:
         return format_json_result(False, '%s : %s' (str(e),fileName,), 'error') 
     
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].GhostKiller()',methods = ['GET'])    
+def ghost_killer(device_id):
+    """
+    Remove cc 0x84 wakeup for a ghost device in openzwave config file
+    """
+    if can_execute_network_command(0) == False:
+        return build_network_busy_message() 
+    add_log_entry('Remove cc 0x84 (wake_up) for a ghost device: %s' %(device_id,)) 
+    
+    fileName = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
+    #ensure load latest file version
+    try:
+        network.stop()
+        add_log_entry('ZWave network is now stopped')
+        time.sleep(5)
+    except Exception as e:
+        return format_json_result(False, str(e), 'error') 
+    try: 
+        found = False       
+        message = None    
+        tree = etree.parse(fileName)
+        namespace = tree.getroot().tag[1:].split("}")[0]
+        node = tree.find("{%s}Node[@id='%s']" % (namespace, device_id,))   
+        if node is None :
+            message = 'node not found'
+        else:            
+            commandClasses = node.find(".//{%s}CommandClasses" % namespace)        
+            if commandClasses is None :
+                message = 'commandClasses not found'
+            else:
+                for command_Class in commandClasses.findall(".//{%s}CommandClass" % namespace) :
+                    if int(command_Class.get("id")[:7]) == COMMAND_CLASS_WAKE_UP :
+                        commandClasses.remove(command_Class)
+                        found = True
+                        break
+                if found :   
+                    config_file = open(fileName,"w")
+                    config_file.write('<?xml version="1.0" encoding="utf-8" ?>\n')
+                    config_file.writelines(etree.tostring(tree, pretty_print=True))
+                    config_file.close()  
+                else:
+                    message = 'commandClass wake_up not found'
+        return format_json_result(found, message)
+    except Exception,e:
+        return format_json_result(False, str(e), 'error') 
+    finally:
+        add_log_entry('******** The ZWave network is being started ********')
+        network.start()            
+    
 @app.route('/ZWaveAPI/Run/RemoveUnknownsDevicesZWConfig()',methods = ['GET'])
 def remove_unknowns_devices_openzwave_config() :
     """
