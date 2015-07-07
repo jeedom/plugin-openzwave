@@ -2749,7 +2749,7 @@ def get_network_status():
         networkStatus = {}
     return jsonify(networkStatus)
 
-@app.route('/ZWaveAPI/Run/network.GetNetworkNeighbours()',methods = ['GET'])
+@app.route('/ZWaveAPI/Run/network.GetNeighbours()',methods = ['GET'])
 def get_network_neighbours():
     networkData={}
     networkData['updateTime']=int(time.time())
