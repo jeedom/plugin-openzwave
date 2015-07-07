@@ -2759,7 +2759,7 @@ def get_network_neighbours():
     networkData['devices']=nodesData
     return jsonify(networkData)
 
-@app.route('/ZWaveAPI/Run/network.GetNetworkHealth()',methods = ['GET'])
+@app.route('/ZWaveAPI/Run/network.GetHealth()',methods = ['GET'])
 def get_network_health():
     networkData={}
     networkData['updateTime']=int(time.time())

@@ -19,7 +19,7 @@ var app_console = {
     },
     refresh: function(){
     	$.ajax({ 
-            url: path+"ZWaveAPI/Run/GetOZLogs()", 
+            url: path+"ZWaveAPI/Run/network.GetOZLogs()", 
             dataType: 'json',
             async: true, 
             global : false,
