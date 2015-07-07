@@ -36,7 +36,7 @@ var app_console = {
                    var h = parseInt($('#log')[0].scrollHeight);
                    $('#log').scrollTop(h);
 				}else{
-					$(".console-out").append("error");
+					$(".console-out").append("error...");
 				}
             }
         });
