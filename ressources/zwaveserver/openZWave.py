@@ -1,5 +1,5 @@
 #!flask/bin/python
-"""
+'''
 Copyright (c) 2014 
 author : Thomas Martinez tmartinez69009@gmail.com
 author : Jean-Francois Auger jeanfrancois.auger@gmail.com
@@ -7,7 +7,7 @@ SOFTWARE NOTICE AND LICENSE This file is part of Plugin openzwave for jeedom pro
 Plugin openzwave for jeedom is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 Plugin openzwave for jeedom is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with Plugin openzwave for jeedom. If not, see http://www.gnu.org/licenses.
-"""
+'''
 import sys, os
 print "Check flask dependances"
 try:
@@ -204,7 +204,7 @@ for arg in sys.argv:
 print("--> pass")  
 
 def find_tty_usb(idVendor, idProduct):
-    """find_tty_usb('0658', '0200') -> '/dev/ttyUSB021' for Sigma Designs, Inc."""    
+    '''find_tty_usb('0658', '0200') -> '/dev/ttyUSB021' for Sigma Designs, Inc.'''    
     # Note: if searching for a lot of pairs, it would be much faster to search
     # for the enitre lot at once instead of going over all the usb devices
     # each time.
@@ -268,6 +268,7 @@ class ControllerMode:
     class Idle: pass
     class AddDevice: pass
     class RemoveDevice: pass
+
   
 class NetworkInformations(object):
     '''
@@ -833,7 +834,6 @@ def value_added(network, node, value):
     #check if old polling is outside autorised range
     if value.poll_intensity > maximum_poll_intensity:
         changes_value_polling(maximum_poll_intensity, value)
-    
 
 def prepare_value_notification(node, value):
     if hasattr(value, 'pendingConfiguration' ):
@@ -893,7 +893,6 @@ def controller_waiting (network, controller, state_int, state, state_full):
     networkInformations.assignControllerNotification(state, state_full)    
     #notify jeedom
     save_node_event(network.controller.node_id, int(time.time()), networkInformations.computeJeeDomMessage()) 
-   
     
 def controller_command(network, controller, node, node_id, state_int, state, state_full, error_int, error, error_full):
     debug_print('%s (%s)' % (state_full, state))
@@ -912,10 +911,10 @@ def node_event(network, node, value):
         myValue = network.nodes[node.node_id].values[val]
         if myValue.genre == "User" and myValue.is_write_only == False :
             value_update(network, node, myValue)
-    """
+    '''
     the value is actualy the event data, not a zwave value object.
     This is commonly caused when a node sends a Basic_Set command to the controller.
-    """  
+    '''  
 
 def node_group_changed(network, node):
     debug_print('Group changed for nodeId %s' % (node.node_id,)) 
@@ -1654,9 +1653,9 @@ def set_wakeup(device_id, time) :
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].SetChangeVerified(<int:index>,<int:verified>)',methods = ['GET'])       
 def set_change_verified(device_id, instance_id, cc_id, index, verified) :
-    """
+    '''
     Sets a flag indicating whether value changes noted upon a refresh should be verified
-    """       
+    '''       
     debug_print("set_change_verified nodeId:%s instance:%s commandClasses:%s index:%s verified:%s" % (device_id, instance_id, cc_id, index, verified,))
     if device_id in network.nodes : 
         for val in network.nodes[device_id].get_values() :
@@ -1670,9 +1669,9 @@ def set_change_verified(device_id, instance_id, cc_id, index, verified) :
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses[0x70].Refresh()',methods = ['GET'])
 def request_all_config_params(device_id) :    
-    """
+    '''
     Request the values of all known configurable parameters from a device
-    """       
+    '''       
     debug_print("Request the values of all known configurable parameters from nodeId %s" % (device_id,))
     result = False
     if device_id in network.nodes : 
@@ -2318,9 +2317,9 @@ def get_serialized_device(device_id):
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].ReplaceFailedNode()',methods = ['GET'])
 def replace_failed_node(device_id) :
-    """
+    '''
     Replace a failed device with another. If the node is not in the controller failed nodes list, or the node responds, this command will fail.
-    """
+    '''
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     add_log_entry("replace_failed_node node %s" %(device_id,)) 
@@ -2331,9 +2330,9 @@ def replace_failed_node(device_id) :
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].SendNodeInformation()',methods = ['GET'])
 def send_node_information(device_id) :
-    """
+    '''
     Send a node information frame (NIF).
-    """
+    '''
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     debug_print("send_node_information node %s" %(device_id,)) 
@@ -2344,9 +2343,9 @@ def send_node_information(device_id) :
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].HasNodeFailed()',methods = ['GET'])
 def has_node_failed(device_id) :
-    """
+    '''
     Check whether a node is in the controller failed nodes list.
-    """
+    '''
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     add_log_entry("has_node_failed node %s" %(device_id,)) 
@@ -2357,9 +2356,9 @@ def has_node_failed(device_id) :
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RefreshNodeInfo()',methods = ['GET'])
 def refresh_node_info(device_id) :
-    """
+    '''
     Trigger the fetching of fixed data about a node. Causes the node data to be obtained from the Z-Wave network in the same way as if it had just been added.
-    """
+    '''
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     debug_print("refresh_node_info node %s" %(device_id,)) 
@@ -2370,9 +2369,9 @@ def refresh_node_info(device_id) :
     
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RefreshAllValues()',methods = ['GET'])
 def refresh_all_values(device_id):
-    """
+    '''
     A manual refresh of all value of a node, we will receive a refreshed value form value refresh notification
-    """
+    '''
     if device_id in network.nodes : 
         currentNode = network.nodes[device_id]
         try:
@@ -2395,10 +2394,10 @@ def refresh_all_values(device_id):
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].TestNode()',methods = ['GET'])
 def test_node(device_id=0, count=3):
-    """
+    '''
     Test network node.
     Sends a series of messages to a network node for testing network reliability.
-    """
+    '''
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     try:
@@ -2413,9 +2412,9 @@ def test_node(device_id=0, count=3):
     
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].GetNodeStatistics()',methods = ['GET'])
 def get_node_statistics(device_id):
-    """
+    '''
     Retrieve statistics per node.
-    """    
+    '''    
     try:
         if device_id in network.nodes :
             queryStageDescription = network.manager.getNodeQueryStage(network.home_id, device_id)
@@ -2430,9 +2429,9 @@ def get_node_statistics(device_id):
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].request_all_config_params()',methods = ['GET'])
 def request_all_config_parameters(device_id) :
-    """
+    '''
     Request the values of all known configurable parameters from a device.
-    """
+    '''
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     try:
@@ -2446,9 +2445,9 @@ def request_all_config_parameters(device_id) :
     
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RemoveDeviceZWConfig()',methods = ['GET'])
 def remove_device_openzwave_config(device_id) :
-    """
+    '''
     Remove a device from the openzwave config file
-    """
+    '''
     #ensure load latest file version
     try:
         network.stop()
@@ -2473,9 +2472,9 @@ def remove_device_openzwave_config(device_id) :
     
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].GhostKiller()',methods = ['GET'])    
 def ghost_killer(device_id):
-    """
+    '''
     Remove cc 0x84 wakeup for a ghost device in openzwave config file
-    """
+    '''
     if can_execute_network_command(0) == False:
         return build_network_busy_message() 
     add_log_entry('Remove cc 0x84 (wake_up) for a ghost device: %s' %(device_id,)) 
@@ -2563,11 +2562,11 @@ def start_node_exclusion(state) :
         network.manager.cancelControllerCommand(network.home_id) 
         return format_json_result() 
 
-@app.route('/ZWaveAPI/Run/controller.CancelCommand()',methods = ['GET'])
-def cancel_command():
-    """
+'''
     Cancels any in-progress command running on a controller.
-    """
+'''
+@app.route('/ZWaveAPI/Run/controller.CancelCommand()',methods = ['GET'])
+def cancel_command():    
     add_log_entry("Cancels any in-progress command running on a controller.")
     try:
         result = network.manager.cancelControllerCommand(network.home_id)
@@ -2576,12 +2575,12 @@ def cancel_command():
         return format_json_result(result)
     except Exception as e:
         return format_json_result(False, str(e), 'error')
-    
+
+'''
+    Update the controller with network information from the SUC/SIS.
+'''      
 @app.route('/ZWaveAPI/Run/controller.RequestNetworkUpdate(<int:bridge_controller_id>)',methods = ['GET'])
 def request_network_update(bridge_controller_id) :
-    """
-    Update the controller with network information from the SUC/SIS.
-    """    
     add_log_entry("Update the controller with network information from the SUC/SIS node %s" %(bridge_controller_id,))
     return format_json_result(False,'Not implemented')   
     if can_execute_network_command(0) == False:
@@ -2592,11 +2591,11 @@ def request_network_update(bridge_controller_id) :
         return format_json_result(False, 'This network does not contain any node with the id %s' % (bridge_controller_id,), 'warning')
     return format_json_result(result) 
 
+'''
+    Send a NIF frame from the Controller to the Node.
+'''
 @app.route('/ZWaveAPI/Run/controller.ReplicationSend(<int:bridge_controller_id>)',methods = ['GET'])
 def replication_send(bridge_controller_id) :
-    """
-    Send a NIF frame from the Controller to the Node.
-    """
     if can_execute_network_command(0) == False:
         return build_network_busy_message() 
     add_log_entry('Send a NIF frame from the Controller to the Nodeid %s' % (device_id,))
@@ -2607,10 +2606,6 @@ def replication_send(bridge_controller_id) :
             return format_json_result(False, 'This network does not contain any node with the id %s' % (bridge_controller_id,), 'warning')
     except Exception as e:
         return format_json_result(False, str(e), 'error')
-   
-@app.route('/ZWaveAPI/Run/controller.HealthNetwork()',methods = ['GET'])
-def health_network() :
-    return heal_network()
     
 @app.route('/ZWaveAPI/Run/controller.HealNetwork()',methods = ['GET'])
 def heal_network(performReturnRoutesInitialization=True) :
@@ -2641,12 +2636,12 @@ def soft_reset() :
     except Exception as e:
         return format_json_result(False, str(e), 'error')
 
-@app.route('/ZWaveAPI/Run/controller.TestNetwork()',methods = ['GET'])
-def test_network(count=3):
-    """
+'''
     Test network node.
     Sends a series of messages to a network node for testing network reliability.
-    """
+'''
+@app.route('/ZWaveAPI/Run/controller.TestNetwork()',methods = ['GET'])
+def test_network(count=3):
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     try:
@@ -2655,19 +2650,12 @@ def test_network(count=3):
         return format_json_result()
     except Exception as e:
         return format_json_result(False, str(e), 'error')
-    
-@app.route('/ZWaveAPI/Run/controller.AddController()',methods = ['GET'])
-def add_controller() :
-    """
-    Add a new secondary controller to the Z-Wave network.
-    """
-    return format_json_result(False, 'not implemented')
 
+'''
+    Add a new controller to the Z-Wave network. Used when old primary fails. Requires SUC.
+'''
 @app.route('/ZWaveAPI/Run/controller.CreateNewPrimary()',methods = ['GET'])
 def create_new_primary() :
-    """
-    Add a new controller to the Z-Wave network. Used when old primary fails. Requires SUC.
-    """
     if can_execute_network_command(0) == False:
         return build_network_busy_message()  
     add_log_entry("Add a new controller to the Z-Wave network")
@@ -2675,13 +2663,14 @@ def create_new_primary() :
         return format_json_result(network.manager.createNewPrimary(network.home_id))
     except Exception as e:
         return format_json_result(False, str(e), 'error')
-    
-@app.route('/ZWaveAPI/Run/controller.TransferPrimaryRole()',methods = ['GET'])
-def transfer_primary_role() :
-    """
+
+'''
     Add a new controller to the network and make it the primary.
     The existing primary will become a secondary controller.
-    """
+'''    
+@app.route('/ZWaveAPI/Run/controller.TransferPrimaryRole()',methods = ['GET'])
+def transfer_primary_role() :
+    
     if can_execute_network_command(0) == False:
         return build_network_busy_message()  
     add_log_entry("Add a new controller to the network and make it the primary")
@@ -2690,11 +2679,25 @@ def transfer_primary_role() :
     except Exception as e:
         return format_json_result(False, str(e), 'error')
 
+'''
+    Transfering the network configuration from another controller.
+'''
+@app.route('/ZWaveAPI/Run/controller.ReceiveConfiguration()',methods = ['GET'])
+def receive_configuration() :
+    if can_execute_network_command(0) == False:
+        return build_network_busy_message()  
+    add_log_entry("Transfering the network configuration from another controller")
+    try:
+        return format_json_result(network.manager.receiveConfiguration(network.home_id))
+    except Exception as e:
+        return format_json_result(False, str(e), 'error')
+
+
 @app.route('/ZWaveAPI/Run/controller.HardReset()',methods = ['GET'])
 def hard_reset() :    
-    """
+    '''
     Hard Reset a PC Z-Wave Controller. Resets a controller and erases its network configuration settings. The controller becomes a primary controller ready to add devices to a new network.
-    """
+    '''
     add_log_entry("Resets a controller and erases its network configuration settings")
     try:
         return format_json_result(network.controller.hard_reset())
@@ -2795,11 +2798,11 @@ def get_nodes_list():
     result['devices']=nodesData
     return jsonify(result)
 
+'''
+    Get the controller status
+'''
 @app.route('/ZWaveAPI/Run/network.GetControllerStatus()',methods = ['GET'])
 def get_controller_status() :
-    """
-    Get the controller status
-    """
     try:
         controllerData = {}
         if network != None and network.state >= 5:   # STATE_STARTED
@@ -2838,11 +2841,11 @@ def get_device_changes():
     }
     return jsonify(error)
 
-@app.route('/ZWaveAPI/Run/network.GetOZLogs()',methods = ['GET'])
-def get_openzwave_logs() :
-    """
+'''
     Read the openzwave log file
-    """
+'''
+@app.route('/ZWaveAPI/Run/network.GetOZLogs()',methods = ['GET'])
+def get_openzwave_logs() :    
     try:
         stdin,stdout = os.popen2("tail -n 1000 /opt/python-openzwave/openzwave.log")
         stdin.close()
@@ -2853,9 +2856,6 @@ def get_openzwave_logs() :
 
 @app.route('/ZWaveAPI/Run/network.GetZWConfig()',methods = ['GET'])
 def get_openzwave_config() :
-    """
-    Read the openzwave config file
-    """
     #ensure load latest file version
     try:
         write_config()
@@ -2868,12 +2868,12 @@ def get_openzwave_config() :
         return jsonify ({'result' : f})
     except Exception as e:
         return format_json_result(False, str(e), 'error')
-   
+
+'''
+    Save the openzwave config file
+'''   
 @app.route('/ZWaveAPI/Run/network.SaveZWConfig()',methods = ['POST'])
 def save_openzwave_config() :
-    """
-    Save the openzwave config file
-    """
     try:
         network.stop()
         add_log_entry('ZWave network is now stopped')
@@ -2886,23 +2886,23 @@ def save_openzwave_config() :
         return format_json_result() 
     except Exception as e:
         return format_json_result(False, '%s : %s' (str(e),fileName,), 'error') 
-    
+
+'''
+    Write the openzwave config file
+'''    
 @app.route('/ZWaveAPI/Run/network.WriteZWConfig()',methods = ['GET'])
 def write_openzwave_config() :
-    """
-    Write the openzwave config file
-    """
     try:
         write_config()
         return format_json_result()
     except Exception as e:
         return format_json_result(False, str(e), 'error') 
-    
+
+'''
+    Remove unknowns devices from the openzwave config file
+'''    
 @app.route('/ZWaveAPI/Run/network.RemoveUnknownsDevicesZWConfig()',methods = ['GET'])
 def remove_unknowns_devices_openzwave_config() :
-    """
-    Remove unknowns devices from the openzwave config file
-    """
     #ensure load latest file version
     try:
         network.stop()
@@ -2927,12 +2927,12 @@ def remove_unknowns_devices_openzwave_config() :
         return format_json_result()
     except Exception as e:
         return format_json_result(False, '%s : %s' (str(e),fileName,), 'error')
-    
+
+'''
+    Set the time period between polls of a node's state.
+'''    
 @app.route('/ZWaveAPI/Run/network.SetPollInterval(<int:seconds>,<int:intervalBetweenPolls>)',methods = ['GET'])
 def set_poll_interval(seconds, intervalBetweenPolls):
-    """
-    Set the time period between polls of a node's state.
-    """ 
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     try:        

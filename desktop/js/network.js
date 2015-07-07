@@ -86,6 +86,9 @@ var app_network = {
      $("#createNewPrimary").off("click").on("click",function() {
       app_network.createNewPrimary();
     });
+     $("#receiveConfiguration").off("click").on("click",function() {
+         app_network.receiveConfiguration();
+       });     
      $("#replicationSend").off("click").on("click",function() {
       app_network.replicationSend();
     });
@@ -220,10 +223,21 @@ createNewPrimary: function(){
     }
   });
 },
+receiveConfiguration: function(){
+	  $.ajax({ 
+	    url: path+"ZWaveAPI/Run/controller.ReceiveConfiguration()", 
+	    dataType: 'json',
+	    async: true, 
+	    error: function (request, status, error) {
+	      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+	    },
+	    success: function(data) {
+	      app_network.sendOk();
+	    }
+	  });
+	},
 replicationSend: function(){
-	/*
-	 TODO: add bridController selection and pass as argument 
-	 */
+  //TODO: add bridController selection and pass as argument 
   $.ajax({ 
     url: path+"ZWaveAPI/Run/controller.ReplicationSend(bridge_controller_id)", 
     dataType: 'json',
@@ -237,9 +251,7 @@ replicationSend: function(){
  });
 },
 requestNetworkUpdate: function(){
-	/*
-	 TODO: add bridController selection and pass as argument 
-	 */
+  //TODO: add bridController selection and pass as argument 
   $.ajax({ 
     url: path+"ZWaveAPI/Run/controller.RequestNetworkUpdate(bridge_controller_id)", 
     dataType: 'json',

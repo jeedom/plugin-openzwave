@@ -198,22 +198,35 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 							<td><button type="button" id="healNetwork" class="btn btn-success"><i class="fa fa-medkit"></i> {{Soigner le réseau}}</button></td>
 							<td>{{Soigner le réseau Z-Wave noeud par noeud.}}<br>{{Essaye de soigner tous les noeuds (un par un) en mettant à jour la liste des voisins et les routes optionnelles.}}</td>
 						</tr>
+						
+						
 						<tr>
 							<td><button type="button" id="createNewPrimary" class="btn btn-danger"><i class="fa fa-file"></i> {{Créer un nouveau noeud primaire}}</button></td>
-							<td>{{Ajouter un nouveau contrôleur au réseau Z-Wave. Utile quand un ancien primaire est en erreur. Nécessite SUC.}}</td>
+							<td>{{Put the target controller into receive configuration mode.\nThe PC Z-Wave Controller must be within 2m of the controller that is being made the primary.. Nécessite SUC.}}</td>
 						</tr>
+						
+						<tr>
+							<td><button type="button" id="receiveConfiguration" class="btn btn-danger"><i class="fa fa-file"></i> {{Receive Configuration}}</button></td>
+							<td>{{Transfering the network configuration from another controller.\n\nPlease bring the other controller within 2m of the PC controller and set it to send its network configuration.}}</td>
+						</tr>
+						
+						<!--
 						<tr>
 							<td><button type="button" id="replicationSend" class="btn btn-warning"><i class="fa fa-files-o"></i> {{Répliquer}}</button></td>
 							<td>{{Répliquer les informations du primaire sur le secondaire.}}</td>
 						</tr>
+						
 						<tr>
 							<td><button type="button" id="requestNetworkUpdate" class="btn btn-primary"><i class="fa fa-refresh"></i> {{Mise à jour du réseau}}</button></td>
 							<td>{{Mise à jour du contrôleur avec les informations du réseau du SUC/SIS.}}</td>
 						</tr>
+						-->
 						<tr>
 							<td><button type="button" id="transferPrimaryRole" class="btn btn-primary"><i class="fa fa-external-link"></i> {{Transférer le rôle primaire}}</button></td>
-							<td>{{Changer de contrôleur primaire. Le contrôleur primaire existant devient contrôleur secondaire.}}</td>
+							<td>{{Changer de contrôleur primaire. Le contrôleur primaire existant devient contrôleur secondaire. Please bring the new controller within 2m of the PC controller and set it to receive the network configuration.}}</td>
 						</tr>
+						
+						
 						<tr>
 							<td><button type="button" id="writeconfigfile" class="btn btn-info"><i class="fa fa-pencil"></i> {{Ecrire le fichier de configuration}}</button></td>
 							<td>{{Ecrit le fichier de configuration OpenZwave.}}</td>
