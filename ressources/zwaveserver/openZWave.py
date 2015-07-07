@@ -1111,7 +1111,10 @@ def serialize_neighbour_to_json(device_id):
         tmpNode['data']= {}
         tmpNode['data']['product_name'] = {'value' : myNode.product_name}
         tmpNode['data']['location'] = {'value' : myNode.location}
-        tmpNode['data']['name'] = {'value' : myNode.name}
+        node_name = myNode.name
+        if is_none_or_empty(node_name) :
+            node_name = 'Unknown'
+        tmpNode['data']['name'] = {'value' : node_name}
         tmpNode['data']['neighbours'] = {'value' : list(myNode.neighbors), 'enabled': myNode.generic != 1}
         tmpNode['data']['isVirtual'] = {'value' : ''}
         if network.controller.node_id == device_id and myNode.basic==1:
@@ -1306,8 +1309,11 @@ def serialize_node_health(device_id):
             timestamp = int(1)
         
         query_stage_index = convert_query_stage_to_int(myNode.query_stage)
-        tmpNode['data']= {}        
-        tmpNode['data']['description'] = {'name' : myNode.name, 'location':myNode.location ,'product_name': myNode.product_name} 
+        tmpNode['data']= {}       
+        node_name = myNode.name
+        if is_none_or_empty(node_name) :
+            node_name = 'Unknown'
+        tmpNode['data']['description'] = {'name' : node_name, 'location':myNode.location ,'product_name': myNode.product_name} 
         tmpNode['data']['type'] = {'basic' : myNode.basic,'generic': myNode.generic}
         tmpNode['data']['state'] = {'value' : myNode.query_stage, 'index' : query_stage_index}
         tmpNode['data']['isAwake'] = {'value' : myNode.is_awake}
