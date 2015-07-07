@@ -97,8 +97,8 @@ $("body").off("click",".hasNodeFailed").on("click",".hasNodeFailed",function (e)
 $("#removeFailedNode").off("click").on("click",function() {
 	app_nodes.remove_failed_node(app_nodes.selected_node);
 });
-$("#replaceFailedNode").off("click").on("click",function() {
-	app_nodes.replace_failed_node(app_nodes.selected_node);
+$("#removeGhostNode").off("click").on("click",function() {
+	app_nodes.remove_ghost_node(app_nodes.selected_node);
 });
 $("#sendNodeInformation").off("click").on("click",function() {
 	app_nodes.send_node_information(app_nodes.selected_node);
@@ -600,6 +600,24 @@ has_node_failed: function(node_id){
 remove_failed_node: function(node_id){
 	$.ajax({ 
 		url: path+"ZWaveAPI/Run/devices["+node_id+"].RemoveFailedNode()", 
+		dataType: 'json',
+		async: true, 
+		error: function (request, status, error) {
+			handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
+		},
+		success: function(data) {
+			if(data['result']== true){
+				app_nodes.sendOk();
+				app_nodes.load_data(false); 
+			}else{
+				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+			}
+		}
+	});
+},
+remove_ghost_node: function(node_id){
+	$.ajax({ 
+		url: path+"ZWaveAPI/Run/devices["+node_id+"].GhostKiller()", 
 		dataType: 'json',
 		async: true, 
 		error: function (request, status, error) {

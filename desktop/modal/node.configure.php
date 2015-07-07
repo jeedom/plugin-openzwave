@@ -382,6 +382,10 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 							<td><button type="button" id="regenerateNodeCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Regénérer la détection du noeud}}</button></td>
 							<td>{{Supprime les informations du node dans le fichier de config afin qu'il soit regénéré. (Attention : Relance le réseau)}}</td>
 						</tr>
+						<tr>
+							<td><button type="button" id="removeGhostNode" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Supprimer le noeud fantome}}</button></td>
+							<td>{{Supprime le noeud si celui-ci est un fantôme. (Attention : Relance le réseau)}}</td>
+						</tr>
 					</table>
 				</div>
 				<div class="tab-pane" id="statistics">
