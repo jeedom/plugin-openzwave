@@ -528,7 +528,7 @@ healNode: function(node_id){
 },
 test_node: function(node_id){
 	$.ajax({ 
-		url: path+"ZWaveAPI/Run/devices["+node_id+"].TestNetwork()", 
+		url: path+"ZWaveAPI/Run/devices["+node_id+"].TestNode()", 
 		dataType: 'json',
 		async: true, 
 		error: function (request, status, error) {
@@ -684,7 +684,7 @@ send_regenerate_node_cfg_file: function(node_id){
 },
 load_all: function(){
 	$.ajax({ 
-		url: path+"ZWaveAPI/GetNodesList()", 
+		url: path+"ZWaveAPI/network.GetNodesList()", 
 		dataType: 'json',
 		global: false,
 		async: true,     
@@ -1175,14 +1175,9 @@ draw_nodes: function ()
 	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only==false){
 	            				value += '<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="'+index+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></button> ';
 	            			}
-
-
-
-
 	            			value += nodes[z].instances[instance].commandClasses[commandclass].data[index].val +" "+ nodes[z].instances[instance].commandClasses[commandclass].data[index].units;
 	            			row.find("td[key=variable-value]").html(value);
-	            			var polling = '<span style="width : 22px;"></span>';
-	            			
+	            			var polling = '<span style="width : 22px;"></span>';	            			
 	            			if(nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only==false){
 	            				if(nodes[z].data.isListening.value){
 	            					var polling = '<a style="position:relative;top:-1px;" class="btn btn-primary btn-xs editPolling cursor" data-valueidx="'+index+'" data-valuepolling="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></a> ';
@@ -1210,7 +1205,6 @@ draw_nodes: function ()
 	            			}
 	            			row.find("td[key=variable-polling]").html(polling);
 	            			row.find("td[key=variable-updatetime]").html(app_nodes.timestampConverter(nodes[z].instances[instance].commandClasses[commandclass].data[index].updateTime));
-
 	            			row_system.find("td[key=system-instance]").html(instance);
 	            			row_system.find("td[key=system-cc]").html(commandclass+' (0x'+Number(commandclass).toString(16)+')');
 	            			row_system.find("td[key=system-index]").html(index);
@@ -1227,7 +1221,6 @@ draw_nodes: function ()
 	            				row_parameter.find("td[key=parameter-name]").html(openzwave_node_translation['configuration'][index].name);
 	            			}
 	            			row_parameter.find("td[key=parameter-index]").html(index);
-
 	            			row_parameter.find("td[key=parameter-type]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW);
 	            			row_parameter.find("td[key=parameter-value]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].val);
 	            			row_parameter.find("td[key=parameter-edit]").html('<button type="button" class="btn btn-xs btn-primary editParam" data-paramid="'+index+'" data-paramtype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-paramname="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-paramvalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></button>');
@@ -1239,8 +1232,6 @@ draw_nodes: function ()
 	            		}
 	            	}
 	            }
-
-
 	        },
 	        get_translation : function(){
 	        	if(typeof node_id === 'undefined' || isNaN(node_id)){
