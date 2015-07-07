@@ -42,6 +42,21 @@ var app_health = {
         app_health.hide();   
       }
     }, 2000);
+    $('#bt_pingAllDevice').off().on('click',function(){
+      $.ajax({ 
+        url: path+"ZWaveAPI/Run/devices[0].TestNetwork()", 
+        dataType: 'json',
+        async: true, 
+        error: function (request, status, error) {
+          handleAjaxError(request, status, error,$('#div_networkHealthAlert'));
+        },
+        success: function(data) {
+          app_health.sendOk();
+          app_health.load_data(false); 
+        }
+      });
+    });
+
     $('#table_healthNetwork').off().delegate('.bt_pingDevice','click',function(){
       $.ajax({ 
         url: path+"ZWaveAPI/Run/devices["+$(this).attr('data-id')+"].TestNetwork()", 
