@@ -2665,7 +2665,7 @@ def test_network(count=3):
     if can_execute_network_command() == False:
         return build_network_busy_message()  
     try:
-        debug_print("test_network node %s" %(device_id,))
+        add_log_entry("Sends a series of messages to a network node for testing network reliability")
         network.manager.testNetwork(network.home_id, count)
         return format_json_result()
     except Exception as e:
