@@ -161,43 +161,43 @@ class openzwave extends eqLogic {
 			if (!is_array($results)) {
 				continue;
 			}
-			foreach ($results as $key => $result) {
-				if ($key == 'controller' && isset($result['controllerState'])) {
-					nodejs::pushUpdate('zwave::controller.data.controllerState', array('name' => $server['name'], 'state' => $result['controllerState']['value'], 'serverId' => $serverID));
-				} else if ($key == 'controller.lastExcludedDevice') {
-					nodejs::pushUpdate('zwave::' . $key, array('name' => $server['name'], 'state' => 0, 'serverId' => $serverID));
+			if (isset($results['controller']['state'])) {
+				nodejs::pushUpdate('zwave::controller.data.controllerState', array('name' => $server['name'], 'state' => $results['controller']['state']['value'], 'serverId' => $serverID));
+			}
+			if (isset($results['controller']['excluded'])) {
+				nodejs::pushUpdate('zwave::' . $key, array('name' => $server['name'], 'state' => 0, 'serverId' => $serverID));
+				nodejs::pushUpdate('jeedom::alert', array(
+					'level' => 'warning',
+					'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
+				));
+				sleep(2);
+				self::syncEqLogicWithRazberry($serverID, $results['controller']['excluded']['value']);
+			}
+			if (isset($results['controller']['included'])) {
+				nodejs::pushUpdate('zwave::' . $key, array('name' => $server['name'], 'state' => 0, 'serverId' => $serverID));
+				for ($i = 0; $i < 45; $i++) {
 					nodejs::pushUpdate('jeedom::alert', array(
 						'level' => 'warning',
-						'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $result['value'],
+						'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration.Pause de ', __FILE__) . (45 - $i) . __(' pour synchronisation avec le module', __FILE__),
 					));
-					sleep(2);
-					self::syncEqLogicWithRazberry($serverID, $result['value']);
-				} else if ($key == 'controller.lastIncludedDevice') {
-					nodejs::pushUpdate('zwave::' . $key, array('name' => $server['name'], 'state' => 0, 'serverId' => $serverID));
-					for ($i = 0; $i < 45; $i++) {
-						nodejs::pushUpdate('jeedom::alert', array(
-							'level' => 'warning',
-							'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration.Pause de ', __FILE__) . (45 - $i) . __(' pour synchronisation avec le module', __FILE__),
-						));
-						sleep(1);
-					}
-					nodejs::pushUpdate('jeedom::alert', array(
-						'level' => 'warning',
-						'message' => __('Inclusion en cours...', __FILE__),
-					));
-					self::syncEqLogicWithRazberry($serverID, $result['value']);
-				} else {
-					$explodeKey = explode('.', $key);
-					if (!isset($explodeKey[1])) {
+					sleep(1);
+				}
+				nodejs::pushUpdate('jeedom::alert', array(
+					'level' => 'warning',
+					'message' => __('Inclusion en cours...', __FILE__),
+				));
+				self::syncEqLogicWithRazberry($serverID, $results['controller']['included']['value']);
+			}
+			foreach ($results['device'] as $node_id => $datas) {
+				$eqLogic = self::getEqLogicByLogicalIdAndServerId($node_id, $serverID);
+				if (is_object($eqLogic)) {
+					if ($eqLogic->getConfiguration('fileconf') == '271.512.4106_fibaro.fgs221.fil.pilote.json') {
+						$cmd = $eqLogic->getCmd('info', '0&&1.pilotWire');
+						$cmd->event($cmd->getPilotWire());
 						continue;
 					}
-					$eqLogic = self::getEqLogicByLogicalIdAndServerId($explodeKey[1], $serverID);
-					if (is_object($eqLogic)) {
-						if ($eqLogic->getConfiguration('fileconf') == '271.512.4106_fibaro.fgs221.fil.pilote.json') {
-							$cmd = $eqLogic->getCmd('info', '0&&1.pilotWire');
-							$cmd->event($cmd->getPilotWire());
-							continue;
-						} else if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && ($eqLogic->getConfiguration('product_id') == '4096' || $eqLogic->getConfiguration('product_id') == '16384') && dechex($explodeKey[5]) == '26') {
+					foreach ($datas as $result) {
+						if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && ($eqLogic->getConfiguration('product_id') == '4096' || $eqLogic->getConfiguration('product_id') == '16384') && $result['CommandClass'] == '0x26') {
 							foreach ($cmd = $eqLogic->getCmd('info', '0.0x26', null, true) as $cmd) {
 								if ($cmd->getConfiguration('value') == '#color#') {
 									$cmd->event($cmd->getRGBColor());
@@ -205,13 +205,11 @@ class openzwave extends eqLogic {
 								}
 							}
 						}
-						$attribut = implode('.', array_slice($explodeKey, 6));
-						foreach ($eqLogic->getCmd('info', $explodeKey[3] . '.0x' . dechex($explodeKey[5]), null, true) as $cmd) {
-							if (str_replace(array(']', '[', '.val'), array('', '.', ''), $cmd->getConfiguration('value')) == $attribut) {
+						foreach ($eqLogic->getCmd('info', $result['instance'] . '.' . $result['CommandClass'], null, true) as $cmd) {
+							if ($cmd->getConfiguration('value') == 'data[' . $result['index'] . '].val') {
 								$cmd->handleUpdateValue($result);
 							}
 						}
-
 					}
 				}
 			}

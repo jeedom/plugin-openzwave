@@ -2839,6 +2839,8 @@ def get_device_changes():
     if network != None and network.state >= 5:   # STATE_STARTED 
         if network.nodes:            
             changes = {}   
+            changes['controller']={}
+            changes['device']={}
             global con
             con.row_factory = lite.Row
             cur = con.cursor() 
@@ -2847,14 +2849,15 @@ def get_device_changes():
             cur.execute("DELETE FROM Events")
             for row in rows:
                 if row["Commandclass"] == 0 and row["Value"]=="removed":
-                    changes['controller.lastExcludedDevice'] = {"value":row["Node"]}
+                    changes['controller']['excluded'] = {"value":row["Node"]}
                 elif row["Commandclass"] == 0 and row["Value"]=="added":
-                    changes['controller.lastIncludedDevice'] = {"value":row["Node"]}
+                    changes['controller']['included'] = {"value":row["Node"]}
                 elif row["Commandclass"] == 0 and row["Value"] in ["0","1","5"]:
-                    changes['controller']={}
-                    changes['controller']['controllerState'] = {"value":int(row["Value"])}
+                    changes['controller']['state'] = {"value":int(row["Value"])}
                 else :
-                    changes['devices.' + str(row["Node"]) + '.instances.' + str(row["Instance"]) + '.commandClasses.' + str(row["Commandclass"]) + '.data.' + str(row["Index_value"])]= {"value":row["Value"],"type":row["Type"]}
+                    if row["Node"] not in changes['device']:
+                        changes['device'][row["Node"]]=[]
+                    changes['device'][row["Node"]].append({'instance':row["Instance"], 'CommandClass':hex(row["Commandclass"]), 'index':row["Index_value"],'value':row["Value"], 'type':row["Type"]})
             return jsonify(changes)            
     error = {
         'status' : 'error',
