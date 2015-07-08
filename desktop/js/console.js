@@ -19,7 +19,7 @@ var app_console = {
     },
     refresh: function(){
     	$.ajax({ 
-            url: path+"ZWaveAPI/Run/GetOZLogs()", 
+            url: path+"ZWaveAPI/Run/network.GetOZLogs()", 
             dataType: 'json',
             async: true, 
             global : false,
@@ -36,7 +36,7 @@ var app_console = {
                    var h = parseInt($('#log')[0].scrollHeight);
                    $('#log').scrollTop(h);
 				}else{
-					$(".console-out").append("error");
+					$(".console-out").append("error...");
 				}
             }
         });

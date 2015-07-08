@@ -1,4 +1,4 @@
-=== Configuration du plugin
+== Configuration du plugin
 
 Après téléchargement du plugin, il vous suffit de l'activer et de configuer le port. Après sauvegarde le démon devrait se lancer. Le plugin est déjà configuré par défaut ; vous n'avez donc rien à faire de plus. Cependant vous pouvez modifier cette configuration.
 Voici le détail (certains paramètres peuvent n'être visibles qu'en mode expert) :
@@ -6,7 +6,7 @@ Voici le détail (certains paramètres peuvent n'être visibles qu'en mode exper
 image:../images/openzwave1.png[]
 
  * *Configuration* : cette partie vous donne le statut du démon (aussi bien en local qu'en déporté, ici en déporté).
-[icon="../images/plugin/tip.png"]
+
 [TIP]
 Si vous êtes en mode déporté, le démon local peut être arrêté, c'est tout à fait normal.
 
@@ -21,20 +21,20 @@ Si vous êtes en mode déporté, le démon local peut être arrêté, c'est tout
 *** *Redémarrer* : permet de redémarrer le démon en mode normal.
 *** *Arrêter* : force l'arrêt du démon (attention cette option place le port sur l'option "Aucun" également).
 *** *Lancer en mode debug* : cette option lance le démon en mode debug. Cette option peut être utile pour voir, si c'est le cas, pourquoi le démon plante ou ne remonte pas une valeur.
-[icon="../images/plugin/important.png"]
+
 [IMPORTANT]
 Dans ce mode, le démon est très bavard. Une fois le debug terminé, il ne faut pas oublier de cliquer sur "Redémarrer" pour sortir du mode debug !!
 
-[icon="../images/plugin/tip.png"]
+
 [TIP]
 Pour pouvoir lancer l'installation du moteur OpenZwave, Jeedom a besoin des droits sudo, si vous n'avez pas le bouton d'installation référez-vous à https://www.jeedom.fr/doc/documentation/installation/fr_FR/doc-installation.html[ici] partie 1.7.4
 
-[icon="../images/plugin/important.png"]
+
 [IMPORTANT]
 Si vous utilisez Ubuntu : Pour que le démon marche il faut absolument avoir ubuntu 15.04 (les versions inferieurs ont un bug et le demon n'arrive pas à se lancer). Attention si vous faite une mise à jour à partir de 14.04 il faut une fois en 15.04 relancer l'installation des dépendance
 
 '''
-=== Configuration des équipements
+== Configuration des équipements
 
 La configuration des équipements OpenZwave est accessible à partir du menu plugin :
 
@@ -44,11 +44,9 @@ Voilà à quoi ressemble la page du plugin OpenZwave (ici avec déjà quelques �
 
 image:../images/openzwave3.png[]
 
-[icon="../images/plugin/tip.png"]
 [TIP]
 Comme à beaucoup d'endroits sur Jeedom, placer la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez, à partir de votre profil, le laisser toujours visible).
 
-[icon="../images/plugin/tip.png"]
 [TIP]
 Les boutons sur la ligne tout en haut sont présentés plus bas.
 
@@ -73,7 +71,6 @@ Vous retrouvez ici toute la configuration de votre équipement :
 
 En dessous vous retrouvez la liste des commandes : 
 
-[icon="../images/plugin/tip.png"]
 [TIP]
 En fonction des types et sous-types, certaines options peuvent être absentes.
 
@@ -94,7 +91,7 @@ En fonction des types et sous-types, certaines options peuvent être absentes.
 * supprimer (signe -) : permet de supprimer la commande.
 
 '''
-=== Configuration des modules
+== Configuration des modules
 
 image:../images/openzwave5.png[]
 
@@ -104,7 +101,6 @@ C'est ici que vous retrouverez toutes les informations sur votre module, la fen�
 
 Fournit un résumé complet de votre noeud avec différentes informations sur celui-ci, comme par exemple l'état des demandes qui permet de savoir si le noeud est en attente d'information ou la liste des noeuds voisins.
 
-[icon="../images/plugin/tip.png"]
 [TIP]
 Sur cette onglet il est possible d'avoir des alertes en cas de soucis de configuration, Jeedom vous indiquera la marche à suivre pour corriger.
 
@@ -114,11 +110,9 @@ image:../images/openzwave6.png[]
 
 Vous retrouvez ici toutes les commandes possibles sur votre module et la possibilité de rajouter une interrogation forcée du module tous les X cycles.
 
-[icon="../images/plugin/important.png"]
 [IMPORTANT]
 Forcer l'interrogation du module n'est pas une bonne chose et peut impacter fortement les performances.
 
-[icon="../images/plugin/tip.png"]
 [TIP]
 Il est possible d'avoir plus de commandes ici que sur Jeedom, c'est tout à fait normal. Dans Jeedom les commandes ont été sélectionnées.
 
@@ -134,7 +128,6 @@ image:../images/openzwave8.png[]
 
 C'est ici que se retrouve la gestion des groupes de votre module.
 
-[icon="../images/plugin/tip.png"]
 [TIP]
 Il est possible que votre module ne possède aucun groupe.
 
@@ -157,7 +150,7 @@ image:../images/openzwave11.png[]
 Cet onglet donne quelques statistiques de communication avec le noeud. Peut être intéressant en cas de module qui passe en "Dead".
 
 '''
-=== Mode inclusion
+== Mode inclusion
 
 image:../images/openzwave17.png[]
 
@@ -167,22 +160,19 @@ Une fois en mode inclusion : Jeedom vous le signale.
 
 image:../images/openzwave18.png[]
 
-[icon="../images/plugin/tip.png"]
 [TIP]
 Tant que vous n'avez pas le bandeau vous n'êtes pas en mode inclusion.
 
 Si vous recliquez sur le bouton vous sortez du mode inclusion.
 
-[icon="../images/plugin/important.png"]
 [IMPORTANT]
 Lors d'une inclusion, il est conseillé que le module soit à moins d'un mètre de la box.
 
-[icon="../images/plugin/tip.png"]
 [TIP]
 A noter que l'interface mobile vous donne aussi accès à l'inclusion.
 
 '''
-=== Mode exclusion
+== Mode exclusion
 
 image:../images/openzwave15.png[]
 
@@ -190,29 +180,26 @@ Ce bouton vous permet de passer en mode exclusion, cela pour retirer un module d
 
 image:../images/openzwave16.png[]
 
-[icon="../images/plugin/tip.png"]
 [TIP]
 Tant que vous n'avez pas le bandeau vous n'êtes pas en mode exclusion.
 
 Si vous recliquez sur le bouton vous sortez du mode exclusion.
 
-[icon="../images/plugin/tip.png"]
 [TIP]
 A noter que l'interface mobile vous donne aussi accès à l'exclusion.
 
 '''
-=== Synchroniser
+== Synchroniser
 
 image:../images/openzwave14.png[]
 
 Bouton permettant de synchroniser les modules du réseau Z-Wave avec Jeedom.
 
-[icon="../images/plugin/tip.png"]
 [TIP]
 Si vous n'avez pas l'image ou que Jeedom n'a pas reconnu votre module ce bouton peut permettre de corriger.
 
 '''
-=== Réseaux Zwave
+== Réseaux Zwave
 
 image:../images/openzwave19.png[]
 
@@ -230,7 +217,6 @@ image:../images/openzwave25.png[]
 
 Vous retrouvez ici toutes les actions possibles sur votre réseau Z-wave ainsi que leur description.
 
-[icon="../images/plugin/important.png"]
 [IMPORTANT]
 Certaines actions sont vraiment risquées et l'équipe Jeedom ne pourra être tenue responsable en cas de mauvaise manipulation.
 
@@ -252,12 +238,11 @@ image:../images/openzwave28.png[]
 
 Affiche le nombre de routes disponibles pour la communication entre chaque noeud.
 
-[icon="../images/plugin/tip.png"]
 [TIP]
 La légende est diponible tout en bas.
 
 '''
-=== Configuration
+== Configuration
 
 image:../images/openzwave20.png[]
 
@@ -265,12 +250,11 @@ Cet onglet contient la configuration des vos modules Z-wave.
 
 image:../images/openzwave23.png[]
 
-[icon="../images/plugin/important.png"]
 [IMPORTANT]
 Cette partie est réservée aux experts, toute modification ici (autre que sur demande du support) peut entrainer de graves problèmes sur le réseau Z-wave et peut ne pas être prise en charge par le support.
 
 '''
-=== Santé
+== Santé
 
 image:../images/openzwave12.png[]
 
@@ -296,7 +280,7 @@ Vous avez ici :
 * *Ping* : Permet d'envoyer un ping au module, peut être utilisé si le module est en dead pour voir si c'est réellement le cas.
 
 '''
-=== Console
+== Console
 
 image:../images/openzwave21.png[]
 
@@ -304,18 +288,16 @@ La console permet de voir en temps réel ce qu'il se passe sur le réseau Z-wave
 
 image:../images/openzwave22.png[]
 
-[icon="../images/plugin/important.png"]
 [IMPORTANT]
 Les informations ici sont à destination du support, il ne faut donc pas s'inquiéter de voir des "Error" ou  "Warning" ici. Cela ne veut pas forcément dire que votre système a un soucis.
 
 
-=== Mettre à jour OpenZwave
+== Mettre à jour OpenZwave
 
 Si Jeedom vous demande de mettre à jour OpenZwave ou si vous avez NOK au niveau de la version OpenZwave : 
 
 image:../images/openzwave30.png[]
 
-[icon="../images/plugin/tip.png"]
 [TIP]
 Cette opération n'est pas a faire à chaque mise à jour du plugin seulement si necessaire
 

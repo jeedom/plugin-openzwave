@@ -4,7 +4,7 @@ var app_config = {
 
             $.ajax({ 
                 type:'POST', 
-                url: path+"ZWaveAPI/Run/SaveZWConfig()", 
+                url: path+"ZWaveAPI/Run/network.SaveZWConfig()", 
                 contentType: "text/plain", 
                 data: $("#zwcfgfile").val(),
                 error: function (request, status, error) {
@@ -18,7 +18,7 @@ var app_config = {
     },
     show: function(){
         $.ajax({ 
-            url: path+"ZWaveAPI/Run/GetZWConfig()", 
+            url: path+"ZWaveAPI/Run/network.GetZWConfig()", 
             dataType: 'json', 
             error: function (request, status, error) {
                 handleAjaxError(request, status, error,$('#div_configOpenzwaveAlert'));

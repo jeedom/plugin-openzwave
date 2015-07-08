@@ -1,16 +1,16 @@
-:icons:
-== OpenZwave
+:icons: font
+= OpenZwave
 
-=== Description
+== Description
 Plugin pour utiliser le moteur OpenZwave avec Jeedom.
 
 '''
 include::configuration.asciidoc[]
 
 '''
-=== FAQ
+== FAQ
 include::faq.asciidoc[]
 
 '''
-=== Dépannage
+== Dépannage
 include::troubleshooting.asciidoc[]

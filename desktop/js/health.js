@@ -44,7 +44,7 @@ var app_health = {
     }, 2000);
     $('#bt_pingAllDevice').off().on('click',function(){
       $.ajax({ 
-        url: path+"ZWaveAPI/Run/devices[0].TestNetwork()", 
+        url: path+"ZWaveAPI/Run/controller.TestNetwork()", 
         dataType: 'json',
         async: true, 
         error: function (request, status, error) {
@@ -59,7 +59,7 @@ var app_health = {
 
     $('#table_healthNetwork').off().delegate('.bt_pingDevice','click',function(){
       $.ajax({ 
-        url: path+"ZWaveAPI/Run/devices["+$(this).attr('data-id')+"].TestNetwork()", 
+        url: path+"ZWaveAPI/Run/devices["+$(this).attr('data-id')+"].TestNode()", 
         dataType: 'json',
         async: true, 
         error: function (request, status, error) {
@@ -77,7 +77,7 @@ var app_health = {
   },
   load_data: function(_global){
     $.ajax({ 
-      url: path+"ZWaveAPI/GetNetworkHealth()", 
+      url: path+"ZWaveAPI/Run/network.GetHealth()", 
       dataType: 'json',
       async: true, 
       global : _global,

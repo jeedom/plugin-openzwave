@@ -86,6 +86,9 @@ var app_network = {
      $("#createNewPrimary").off("click").on("click",function() {
       app_network.createNewPrimary();
     });
+     $("#receiveConfiguration").off("click").on("click",function() {
+         app_network.receiveConfiguration();
+       });     
      $("#replicationSend").off("click").on("click",function() {
       app_network.replicationSend();
     });
@@ -158,7 +161,7 @@ var app_network = {
 },
 cancelCommand: function(){
   $.ajax({ 
-    url: path+"ZWaveAPI/Run/CancelCommand()", 
+    url: path+"ZWaveAPI/Run/controller.CancelCommand()", 
     dataType: 'json',
     async: true, 
     error: function (request, status, error) {
@@ -175,7 +178,7 @@ cancelCommand: function(){
 },
 testNetwork: function(){
   $.ajax({ 
-    url: path+"ZWaveAPI/Run/devices[0].TestNetwork()", 
+    url: path+"ZWaveAPI/Run/controller.TestNetwork()", 
     dataType: 'json',
     async: true, 
     error: function (request, status, error) {
@@ -209,7 +212,7 @@ healNetwork: function(){
 },
 createNewPrimary: function(){
   $.ajax({ 
-    url: path+"ZWaveAPI/Run/CreateNewPrimary()", 
+    url: path+"ZWaveAPI/Run/controller.CreateNewPrimary()", 
     dataType: 'json',
     async: true, 
     error: function (request, status, error) {
@@ -220,9 +223,23 @@ createNewPrimary: function(){
     }
   });
 },
+receiveConfiguration: function(){
+	  $.ajax({ 
+	    url: path+"ZWaveAPI/Run/controller.ReceiveConfiguration()", 
+	    dataType: 'json',
+	    async: true, 
+	    error: function (request, status, error) {
+	      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+	    },
+	    success: function(data) {
+	      app_network.sendOk();
+	    }
+	  });
+	},
 replicationSend: function(){
+  //TODO: add bridController selection and pass as argument 
   $.ajax({ 
-    url: path+"ZWaveAPI/Run/ReplicationSend()", 
+    url: path+"ZWaveAPI/Run/controller.ReplicationSend(bridge_controller_id)", 
     dataType: 'json',
     async: true, 
     error: function (request, status, error) {
@@ -234,8 +251,9 @@ replicationSend: function(){
  });
 },
 requestNetworkUpdate: function(){
+  //TODO: add bridController selection and pass as argument 
   $.ajax({ 
-    url: path+"ZWaveAPI/Run/controller.RequestNetworkUpdate()", 
+    url: path+"ZWaveAPI/Run/controller.RequestNetworkUpdate(bridge_controller_id)", 
     dataType: 'json',
     async: true, 
     error: function (request, status, error) {
@@ -252,7 +270,7 @@ requestNetworkUpdate: function(){
 },
 transferPrimaryRole: function(){
   $.ajax({ 
-    url: path+"ZWaveAPI/Run/TransferPrimaryRole()", 
+    url: path+"ZWaveAPI/Run/controller.TransferPrimaryRole()", 
     dataType: 'json',
     async: true, 
     error: function (request, status, error) {
@@ -265,7 +283,7 @@ transferPrimaryRole: function(){
 },
 writeConfigFile: function(){
   $.ajax({ 
-    url: path+"ZWaveAPI/Run/WriteZWConfig()", 
+    url: path+"ZWaveAPI/Run/network.WriteZWConfig()", 
     dataType: 'json',
     async: true, 
     error: function (request, status, error) {
@@ -278,7 +296,7 @@ writeConfigFile: function(){
 },
 regenerate_nodes_cfg_file: function(){
   $.ajax({ 
-    url: path+"ZWaveAPI/Run/RemoveUnknownsDevicesZWConfig()", 
+    url: path+"ZWaveAPI/Run/network.RemoveUnknownsDevicesZWConfig()", 
     dataType: 'json',
     async: true, 
     error: function (request, status, error) {
@@ -291,7 +309,7 @@ regenerate_nodes_cfg_file: function(){
 },
 softReset: function(){
   $.ajax({ 
-    url: path+"/ZWaveAPI/Run/SerialAPISoftReset()", 
+    url: path+"/ZWaveAPI/Run/controller.SerialAPISoftReset()", 
     dataType: 'json',
     async: true, 
     error: function (request, status, error) {
@@ -307,9 +325,8 @@ softReset: function(){
 });
 },
 hardReset: function(){
-    	//TODO: add a confirmation yes/no before execute
       $.ajax({ 
-        url: path+"ZWaveAPI/Run/HardReset()", 
+        url: path+"ZWaveAPI/Run/controller.HardReset()", 
         dataType: 'json',
         async: true, 
         error: function (request, status, error) {
@@ -346,7 +363,7 @@ hardReset: function(){
     load_data: function(){      
       $('#graph_network').html('<div id="graph-node-name"></div>');
       $.ajax({ 
-        url: path+"ZWaveAPI/GetNetworkNeighbours()", 
+        url: path+"ZWaveAPI/Run/network.GetNeighbours()", 
         dataType: 'json',
         async: true, 
         error: function (request, status, error) {
@@ -521,7 +538,7 @@ hide: function(){
 },
 load_infos: function(){
   $.ajax({ 
-    url: path+"ZWaveAPI/Run/network_status()", 
+    url: path+"ZWaveAPI/Run/network.GetStatus()", 
     dataType: 'json',
     async: true, 
     global : false,
@@ -652,7 +669,7 @@ show_infos: function (){
  },
  getFarNeighbours: function (nodeId, exludeNodeIds, hops){
   if (hops === undefined) {
-    console.log('je passe');
+    //console.log('je passe');
     var hops = 0;
     var exludeNodeIds = [nodeId];
   }
@@ -672,7 +689,7 @@ show_infos: function (){
       },
       displayRoutingTable: function (){
     $.ajax({// fonction permettant de faire de l'ajax
-     url: path+"ZWaveAPI/GetNetworkNeighbours()", 
+     url: path+"ZWaveAPI/Run/network.GetNeighbours()", 
      dataType: 'json',
      async: true, 
      error: function (request, status, error) {

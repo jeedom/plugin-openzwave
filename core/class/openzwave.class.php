@@ -35,7 +35,7 @@ class openzwave extends eqLogic {
 					echo "Server addr : " . $server['addr'] . "\n";
 					echo "Port : " . $server['port'] . "\n";
 					echo "Test connection to zwave server...";
-					self::callOpenzwave('/ZWaveAPI/Run/GetControllerStatus()', $serverID);
+					self::callOpenzwave('/ZWaveAPI/Run/network.GetControllerStatus()', $serverID);
 					echo "OK\n";
 				} catch (Exception $e) {
 					echo "NOK\n";
@@ -153,9 +153,9 @@ class openzwave extends eqLogic {
 	public static function pull() {
 		foreach (self::listServerZwave() as $serverID => $server) {
 			try {
-				$results = self::callOpenzwave('/ZWaveAPI/Data/1', $serverID);
+				$results = self::callOpenzwave('/ZWaveAPI/Run/network.GetChanges()', $serverID);
 			} catch (Exception $e) {
-				log::add('openzwave', 'debug', 'Error on querry /ZWaveAPI/Data/1 : ' . $e->getMessage());
+				log::add('openzwave', 'debug', 'Error on querry /ZWaveAPI/Run/network.GetChanges() : ' . $e->getMessage());
 				continue;
 			}
 			if (!is_array($results)) {
@@ -229,7 +229,7 @@ class openzwave extends eqLogic {
 
 	public static function syncEqLogicWithRazberry($_serverId = 0, $_logical_id = null) {
 		try {
-			$controlerState = self::callOpenzwave('/ZWaveAPI/Run/GetControllerStatus()', $_serverId);
+			$controlerState = self::callOpenzwave('/ZWaveAPI/Run/network.GetControllerStatus()', $_serverId);
 			$state = $controlerState['result']['data']['networkstate']['value'];
 		} catch (Exception $e) {
 			$state = 10;
@@ -289,7 +289,7 @@ class openzwave extends eqLogic {
 			return;
 		}
 
-		$results = self::callOpenzwave('/ZWaveAPI/GetNodesList()', $_serverId);
+		$results = self::callOpenzwave('/ZWaveAPI/Run/network.GetNodesList()', $_serverId);
 		$findDevice = array();
 		$include_device = '';
 		if (count($results['devices']) < 2) {
@@ -357,11 +357,11 @@ class openzwave extends eqLogic {
 
 	public static function changeIncludeState($_mode, $_state, $_serverId = 0) {
 		if ($_state == 0) {
-			self::callOpenzwave('/ZWaveAPI/Run/CancelCommand()', $_serverId);
+			self::callOpenzwave('/ZWaveAPI/Run/controller.CancelCommand()', $_serverId);
 			return;
 		}
 		try {
-			$controlerState = self::callOpenzwave('/ZWaveAPI/Run/GetControllerStatus()', $_serverId);
+			$controlerState = self::callOpenzwave('/ZWaveAPI/Run/network.GetControllerStatus()', $_serverId);
 			$isBusy = $controlerState['result']['data']['isBusy']['value'];
 			$state = $controlerState['result']['data']['networkstate']['value'];
 			$controlerState = $controlerState['result']['data']['mode']['value'];
@@ -389,7 +389,7 @@ class openzwave extends eqLogic {
 		if (config::byKey('jeeNetwork::mode') == 'master') {
 			foreach (self::listServerZwave() as $serverID => $server) {
 				try {
-					$results = self::callOpenzwave('/ZWaveAPI/Run/RefreshAllBatteryLevel()', $serverID);
+					$results = self::callOpenzwave('/ZWaveAPI/Run/network.RefreshAllBatteryLevel()', $serverID);
 					foreach ($results as $node_id => $value) {
 						$eqLogic = self::getEqLogicByLogicalIdAndServerId($node_id, $serverID);
 						if (is_object($eqLogic) && $eqLogic->getConfiguration('noBatterieCheck', 0) != 1 && $value['updateTime'] !== null) {
@@ -513,7 +513,7 @@ class openzwave extends eqLogic {
 	public static function stop() {
 		if (self::deamonRunning()) {
 			try {
-				self::callOpenzwave('/ZWaveAPI/network_stop()');
+				self::callOpenzwave('/ZWaveAPI/network.Stop()');
 			} catch (Exception $e) {
 
 			}
@@ -643,7 +643,7 @@ class openzwave extends eqLogic {
 	}
 
 	public function sendNoOperation() {
-		return self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].TestNetwork()', $this->getConfiguration('serverID', 1));
+		return self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].TestNode()', $this->getConfiguration('serverID', 1));
 	}
 
 	public function getConfFilePath($_all = false) {
