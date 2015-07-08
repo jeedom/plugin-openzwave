@@ -684,7 +684,7 @@ send_regenerate_node_cfg_file: function(node_id){
 },
 load_all: function(){
 	$.ajax({ 
-		url: path+"ZWaveAPI/network.GetNodesList()", 
+		url: path+"ZWaveAPI/Run/network.GetNodesList()", 
 		dataType: 'json',
 		global: false,
 		async: true,     
