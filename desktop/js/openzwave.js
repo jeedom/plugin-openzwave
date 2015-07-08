@@ -171,7 +171,7 @@ if($('.li_eqLogic.active').attr('data-assistant') != ''){
         if(data.result.length > 1){
             option = '';
             for(var i in data.result){
-                option = '<option value="'+data.result[i]+'">'+data.result[i]+'</option>';
+                option += '<option value="'+data.result[i]+'">'+data.result[i]+'</option>';
             }
             $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').append(option);
         }else{
