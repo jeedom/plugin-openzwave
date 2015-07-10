@@ -171,7 +171,7 @@ class openzwave extends eqLogic {
 					'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
 				));
 				sleep(2);
-				self::syncEqLogicWithRazberry($serverID, $results['controller']['excluded']['value']);
+				self::syncEqLogicWithOpenZwave($serverID, $results['controller']['excluded']['value']);
 			}
 			if (isset($results['controller']['included'])) {
 				nodejs::pushUpdate('zwave::' . $key, array('name' => $server['name'], 'state' => 0, 'serverId' => $serverID));
@@ -186,7 +186,7 @@ class openzwave extends eqLogic {
 					'level' => 'warning',
 					'message' => __('Inclusion en cours...', __FILE__),
 				));
-				self::syncEqLogicWithRazberry($serverID, $results['controller']['included']['value']);
+				self::syncEqLogicWithOpenZwave($serverID, $results['controller']['included']['value']);
 			}
 			foreach ($results['device'] as $node_id => $datas) {
 				$eqLogic = self::getEqLogicByLogicalIdAndServerId($node_id, $serverID);
@@ -225,7 +225,7 @@ class openzwave extends eqLogic {
 		return null;
 	}
 
-	public static function syncEqLogicWithRazberry($_serverId = 0, $_logical_id = null) {
+	public static function syncEqLogicWithOpenZwave($_serverId = 0, $_logical_id = null) {
 		try {
 			$controlerState = self::callOpenzwave('/ZWaveAPI/Run/network.GetControllerStatus()', $_serverId);
 			$state = $controlerState['result']['data']['networkstate']['value'];

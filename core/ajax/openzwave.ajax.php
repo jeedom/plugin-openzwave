@@ -84,10 +84,10 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'syncEqLogicWithRazberry') {
+	if (init('action') == 'syncEqLogicWithOpenZwave') {
 		foreach (openzwave::listServerZwave() as $serverID => $server) {
 			if (isset($server['name'])) {
-				openzwave::syncEqLogicWithRazberry($serverID);
+				openzwave::syncEqLogicWithOpenZwave($serverID);
 			}
 		}
 		ajax::success();

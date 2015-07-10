@@ -16,7 +16,7 @@
  */
 
  $('#bt_syncEqLogic').on('click', function () {
-    syncEqLogicWithRazberry();
+    syncEqLogicWithOpenZwave();
 });
  $('.changeIncludeState').on('click', function () {
     var nbZwayServer = 0;
@@ -168,13 +168,16 @@ if($('.li_eqLogic.active').attr('data-assistant') != ''){
         },
         success: function (data) { // si l'appel a bien fonctionné
         $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').empty();
-        if(data.result.length > 1){
+        if(data.result.length > 1 ){
             option = '';
             for(var i in data.result){
                 option += '<option value="'+data.result[i]+'">'+data.result[i]+'</option>';
             }
             $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').append(option);
             $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').closest('.form-group').show();
+            if(isset(_eqLogic.configuration.fileconf)){
+                $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').value(_eqLogic.configuration.fileconf);
+            }
         }else{
             $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').closest('.form-group').hide();
         }
@@ -260,12 +263,12 @@ $('#bt_autoDetectModule').on('click',function(){
 });
 });
 
-function syncEqLogicWithRazberry() {
+function syncEqLogicWithOpenZwave() {
     $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // méthode de transmission des données au fichier php
         url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
         data: {
-            action: "syncEqLogicWithRazberry",
+            action: "syncEqLogicWithOpenZwave",
         },
         dataType: 'json',
         error: function (request, status, error) {
