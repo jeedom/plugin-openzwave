@@ -511,7 +511,7 @@ class openzwave extends eqLogic {
 	public static function stop() {
 		if (self::deamonRunning()) {
 			try {
-				self::callOpenzwave('/ZWaveAPI/network.Stop()');
+				self::callOpenzwave('/ZWaveAPI/Run/network.Stop()');
 			} catch (Exception $e) {
 
 			}
