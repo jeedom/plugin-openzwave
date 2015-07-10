@@ -174,6 +174,7 @@ if($('.li_eqLogic.active').attr('data-assistant') != ''){
                 option += '<option value="'+data.result[i]+'">'+data.result[i]+'</option>';
             }
             $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').append(option);
+            $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').closest('.form-group').show();
         }else{
             $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').closest('.form-group').hide();
         }
