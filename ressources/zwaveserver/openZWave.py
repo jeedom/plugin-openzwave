@@ -1021,6 +1021,16 @@ add_log_entry('Python-OpenZwave Wrapper Version %s' %(network.manager.getPythonL
 #We wait for the network.
 add_log_entry('Waiting for network to become ready')
 
+def get_value_by_label(device_id, command_class, instance, label, trace=True):
+    if device_id in network.nodes :
+        myDevice = network.nodes[device_id]
+        for value_id in myDevice.get_values() :
+            if myDevice.values[value_id].command_class == command_class and myDevice.values[value_id].instance==instance and myDevice.values[value_id].label==label:
+                return myDevice.values[value_id]     
+    if trace :
+        debug_print("get_value_by_index Value not found for device_id:%s, cc:%s, instance:%s, index:%s" % (device_id, command_class, instance, index_id,))            
+    return None
+
 def get_value_by_index(device_id, command_class, instance, index_id, trace=True):
     if device_id in network.nodes :
         myDevice = network.nodes[device_id]
@@ -1450,12 +1460,20 @@ def set_value(device_id, valueId, data):
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
-def refresh_background(device_id, values):
+def refresh_background(device_id, value_id, target_value):
     time.sleep(3)
-    for val in values:
-        if val != None:
-            network.nodes[device_id].values[val].refresh()
-
+    if target_value == None:
+        network.nodes[device_id].values[value_id].refresh()
+        return
+    refresh_count = 0   
+    delta = abs(network.nodes[device_id].values[value_id].data - target_value)
+    #some device will automaticly report value, fisrt check is reached
+    while delta > 1 and refresh_count < 20:
+        network.nodes[device_id].values[value_id].refresh()
+        time.sleep(3)
+        delta = abs(network.nodes[device_id].values[value_id].data - target_value)
+        refresh_count +=1
+    
 def get_sleeping_nodes_count():
     sleeping_nodes_count = 0
     for idNode in list(network.nodes):
@@ -2081,7 +2099,7 @@ def set_value7(device_id,instance_id, cc_id, index, value) :
                 network.nodes[device_id].values[val].data=value
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
-                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, [val]))
+                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, val, value))
                     waitrefresh.start()
                 return format_json_result()
         return format_json_result(False, 'value not found')
@@ -2097,7 +2115,7 @@ def set_value8(device_id,instance_id, cc_id, index, value) :
                 network.nodes[device_id].values[val].data=value
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
-                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, [val]))
+                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, val, value))
                     waitrefresh.start()
                 return format_json_result()
         return format_json_result(False, 'value not found')
@@ -2224,7 +2242,7 @@ def set_color(device_id,  red_level, green_level, blue_level, white_level) :
                 white_Value = val
                 my_value.data = convert_color_to_level(white_level)
         if red_Value != None and green_Value != None and blue_Value != None  :
-            worker=threading.Thread(target=refresh_background, args=(device_id, [intensity_Value]))
+            worker=threading.Thread(target=refresh_background, args=(device_id, intensity_Value, None))
             worker.start()
             result = True
     else:
@@ -2232,14 +2250,27 @@ def set_color(device_id,  red_level, green_level, blue_level, white_level) :
     return format_json_result(result) 
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()',methods = ['GET'])
-def press_button(device_id,instance_id, cc_id, index) :
+def press_button(device_id, instance_id, cc_id, index) :
     """
     Start an activity in a device
     """
+    debug_print("press_button nodeId:%s, instance:%s, cc:%s, index:%s" % (device_id,  instance_id, cc_id, index,))
     if device_id in network.nodes :
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network._manager.pressButton(network.nodes[device_id].values[val].value_id)
+                #special case for dimmer and store
+                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and network.nodes[device_id].values[val].label in ['Bright', 'Dim', 'Open', 'Close']:
+                    #assume Dim / Close as target value
+                    value = 1
+                    if network.nodes[device_id].values[val].label in ['Bright', 'Open']:
+                        value = 99
+                    #dimmer don't report the final value until the value changes is completed                    
+                    value_level = get_value_by_label(device_id, COMMAND_CLASS_SWITCH_MULTILEVEL, network.nodes[device_id].values[val].instance, 'Level',True)
+                    if value_level:
+                        waitrefresh=threading.Thread(target=refresh_background, args=(device_id, value_level.value_id, value))
+                        waitrefresh.start()
+                    
                 return format_json_result()
         return format_json_result(False,'button not found')
     else:
