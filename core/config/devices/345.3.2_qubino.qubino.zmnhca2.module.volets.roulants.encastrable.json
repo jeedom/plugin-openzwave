@@ -8,7 +8,7 @@
                 "name": "Etat",
                 "type": "info",
                 "subtype": "binary",
-                "isVisible": 1,
+                "isVisible": 0,
                 "configuration": {
                     "class": "0x26",
                     "value": "data[0].val"
@@ -17,6 +17,26 @@
                     "dashboard": "store",
                     "mobile": "store"
                 }
+            },
+            {
+                "name": "Positionnement",
+                "type": "action",
+                "subtype": "slider",
+                "isVisible": 1,
+                "value": "Etat",
+                "configuration":
+                        {
+                            "instanceId": "0",
+                            "class": "0x26",
+                            "value": "data[0].Set(#slider#)",
+                            "minValue": 0,
+                            "maxValue": 99
+                        },
+                "template":
+                        {
+                            "dashboard": "store",
+                            "mobile": "store"
+                        }
             },
 			{
                 "name": "Descendre",
@@ -48,7 +68,7 @@
                 "name": "Température",
                 "type": "info",
                 "subtype": "numeric",
-                "isVisible": 1,
+                "isVisible": 0,
 				"isHistorized": 1,
                 "unite": "°C",
                 "configuration": {
@@ -61,19 +81,101 @@
                 }
             },
 			{
-                "name": "Consommation",
+				"name" : "Puissance",
+				"type" : "info",
+				"subtype" : "numeric",
+				"isVisible" : 1,
+				"isHistorized" : 1,
+				"unite" : "W",
+				"configuration" :
+				{
+					"instanceId" : 0,
+					"class" : "0x32",
+					"value" : "data[8].val",
+					"minValue" : 0,
+					"maxValue" : 1840
+				}
+			},
+			{
+				"name" : "Consommation",
+				"type" : "info",
+				"subtype" : "numeric",
+				"isVisible" : 1,
+				"isHistorized" : 1,
+				"unite" : "kWh",
+				"configuration" :
+				{
+					"instanceId" : 0,
+					"class" : "0x32",
+					"value" : "data[0].val"
+				}
+			},
+			{
+                "name": "Stop",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x26",
+                    "value": "data[2].ReleaseButton()"
+                },
+                "display": {
+                    "icon": "<i class=\"fa fa-stop\"><\/i>"
+                }
+            },
+			{
+                "name": "Stop BSO",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x26",
+                    "value": "data[7].ReleaseButton()"
+                },
+                "display": {
+                    "icon": "<i class=\"fa fa-stop\"><\/i>"
+                }
+            },
+			{
+                "name": "Incliner",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x26",
+                    "value": "data[7].PressButton()"
+                },
+                "display": {
+                    "icon": "<i class=\"fa fa-plus\"><\/i>"
+                }
+            },
+			{
+                "name": "Décliner",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x26",
+                    "value": "data[8].PressButton()"
+                },
+                "display": {
+                    "icon": "<i class=\"fa fa-minus\"><\/i>"
+                }
+            },
+			{
+                "name": "Pas",
                 "type": "info",
                 "subtype": "numeric",
-				"isVisible": 0,
-				"isHistorized": 1,
-                "unite": "kWh",
+                "isVisible": 0,
+
                 "configuration": {
-                    "class": "0x32",
-                    "value": "data[0].val"
-                },
-                "template": {
-                    "dashboard": "tile",
-                    "mobile": "tile"
+                    "instanceId": "0",
+                    "class": "0x26",
+                    "value": "data[6].val"
                 }
             },
             {
