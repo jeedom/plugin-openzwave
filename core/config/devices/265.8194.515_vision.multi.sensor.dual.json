@@ -4,16 +4,7 @@
         "conf_version" : 1
 		},
         "commands": [
-            {
-                "name": "Temperature",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 1,
-                "configuration": {
-                    "class": "0x31",
-                    "value": "data[1].val"
-                }
-            },
+            
             {
                 "name": "Présence",
                 "type": "info",
@@ -29,6 +20,32 @@
                 "template": {
                     "dashboard": "presence",
                     "mobile": "presence"
+                }
+            },
+            {
+                "name": "Température",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "unite" : "°C",
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[1].val",
+                    "maxValue": 50,
+                    "minValue": -20
+                }
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "configuration": {
+                    "class": "0x80",
+                    "instanceId": 0,
+                    "value": "data[0].val",
+                    "unite": "%"
                 }
             }
         ]
