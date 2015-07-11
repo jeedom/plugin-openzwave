@@ -16,6 +16,28 @@
                 },
                 "display": {
                     "invertBinary": "1"
+                },
+                "template": {
+                    "dashboard": "door",
+                    "mobile": "door"
+                }
+            },
+            {
+                "name": "Sabotage",
+                "type": "info",
+                "subtype": "binary",
+                "isVisible": 1,
+                "isHistorized": 0,
+
+                "configuration": {
+                    "instanceId": 0,
+                    "class": "0x71",
+                    "value": "data[0].val",
+					"returnStateTime": 1,
+					"returnStateValue": 0
+                },
+                "display": {
+                    "invertBinary": "1"
                 }
             },
             {
