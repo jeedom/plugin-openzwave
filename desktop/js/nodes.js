@@ -918,9 +918,12 @@ draw_nodes: function ()
 	        	}else{
 	        		node.find(".node-sleep").html("{{Endormi}}");
 	        	}
+	        	node.find(".node-battery").html(battery_level+' %');
+	        	node.find(".node-battery-span").show();
 	        }
 	        else{
 	        	node.find(".node-sleep").html("{{Secteur}}");
+	        	node.find(".node-battery-span").hide();
 	        }
 	        
 
