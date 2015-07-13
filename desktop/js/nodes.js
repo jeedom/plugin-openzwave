@@ -697,7 +697,7 @@ load_all: function(){
 			nodes[node_id] = node;
 			controller_id = -1;
 			for(var i in data['devices']){
-				if(data['devices'][i]['description']['is_static_controller']){
+				if(isset(data['devices'][i]['description']) && isset(data['devices'][i]['description']['is_static_controller']) && data['devices'][i]['description']['is_static_controller']){
 					controller_id = i;
 				}
 			}
