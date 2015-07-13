@@ -932,7 +932,7 @@ draw_nodes: function ()
 	        	node.find(".node-battery-span").hide();
 	        }
 	        
-
+	        var queryStageIndex = 0;	 
 	        if(controller_id != -1){
 	        	var node_groups=nodes[z].groups;
 	        	var found=0;
@@ -952,7 +952,7 @@ draw_nodes: function ()
 	        			}
 	        		}
 	        	}
-	        	if(hasGroup && found==0){
+	        	if(hasGroup && found==0 && queryStageIndex > 12){
 	        		isWarning = true;
 	        		warningMessage +="<li>{{Le controleur n'est inclus dans aucun groupe du module.}}</li>";
 	        	}
@@ -963,7 +963,7 @@ draw_nodes: function ()
 	        }
 
 	        var queryStageDescrition = "";
-	        var queryStageIndex = 0;	            
+	                  
 	        switch(queryStage){
 	        	case "None":
 	        	queryStageDescrition = "{{Le processus de demande n'a pas encore commencé pour ce noeud}}";
