@@ -790,7 +790,7 @@ draw_nodes: function ()
 	            node.find(".node-vendor").html(manufacturerName);
 
 
-	            node.find(".node-zwave-id").html("{{Identifiant du fabricant :}} <span class='label label-default'>" + nodes[z].data.manufacturerId.value +" [" +nodes[z].data.manufacturerId.hex +"]</span> {{Type de produit :}} <span class='label label-default'>" +nodes[z].data.manufacturerProductType.value +' [' +nodes[z].data.manufacturerProductType.hex + "]</span> {{Identifiant du produit :}} <span class='label label-default'>" +nodes[z].data.manufacturerProductId.value +' ['+ nodes[z].data.manufacturerProductId.hex+"]</span>");        		
+	            node.find(".node-zwave-id").html("{{Identifiant du fabricant :}} <span class='label label-default' style='font-size : 1em;'>" + nodes[z].data.manufacturerId.value +" [" +nodes[z].data.manufacturerId.hex +"]</span> {{Type de produit :}} <span class='label label-default' style='font-size : 1em;'>" +nodes[z].data.manufacturerProductType.value +' [' +nodes[z].data.manufacturerProductType.hex + "]</span> {{Identifiant du produit :}} <span class='label label-default' style='font-size : 1em;'>" +nodes[z].data.manufacturerProductId.value +' ['+ nodes[z].data.manufacturerProductId.hex+"]</span>");        		
 
 	            node.find(".node-lastSeen").html(app_nodes.timestampConverter(nodes[z].data.lastReceived.updateTime));
 	            if(nodes[z].last_notification.next_wakeup != null){

@@ -169,15 +169,15 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 								<h4 class="panel-title"><i class="fa fa-info-circle"></i> {{Informations Noeud}}</h4>
 							</div>
 							<div class="panel-body">
-								<p>{{Objet parent :}}<b><span class="node-location label label-default">{{inconnu}}</span></b></p>
-								<p>{{Nom de l'équipement :}}<b><span class="node-name label label-default">{{inconnu}}</span></b></p>
-								<p>{{Modèle :}}<b><span class="node-productname label label-default">{{inconnu}}</span></b></p>
-								<p>{{Fabricant :}}<b><span class="node-vendor label label-default">{{inconnu}}</span></b></p>
+								<p>{{Objet parent :}} <b><span class="node-location label label-default" style="font-size : 1em;">{{inconnu}}</span></b></p>
+								<p>{{Nom de l'équipement :}} <b><span class="node-name label label-default" style="font-size : 1em;">{{inconnu}}</span></b></p>
+								<p>{{Modèle :}} <b><span class="node-productname label label-default" style="font-size : 1em;">{{inconnu}}</span></b></p>
+								<p>{{Fabricant :}} <b><span class="node-vendor label label-default" style="font-size : 1em;">{{inconnu}}</span></b></p>
 								<p><span class="node-zwave-id default">{{inconnu}}</span></p>
-								<p>{{Etat des demandes :}}<b><span class="node-queryStage label label-default">{{inconnu}}</span></b>  <i class="fa fa-info-circle" id="node-queryStageDescrition"></i></p>
-								<p>{{Etat :}} <b><span class="node-sleep label label-default">{{inconnu}}</span></b> <span class="node-battery-span">{{Batterie : }} <b><span class="node-battery label label-default">{{inconnu}}</span></b></span></p>
-								<p>{{Dernier message :}}<b><span class="node-lastSeen label label-default">{{inconnu}}</span></b> <span class="node-next-wakeup-span">{{Prochain réveil : }} <b><span class="node-next-wakeup label label-default">{{inconnu}}</span></b></span></p>
-								<p>{{Voisins : }}<span class="node-neighbours label label-default">{{inconnu}}</span></p>
+								<p>{{Etat des demandes :}} <b><span class="node-queryStage label label-default" style="font-size : 1em;">{{inconnu}}</span></b>  <i class="fa fa-info-circle" id="node-queryStageDescrition"></i></p>
+								<p>{{Etat :}} <b><span class="node-sleep label label-default" style="font-size : 1em;">{{inconnu}}</span></b> <span class="node-battery-span">{{Batterie : }} <b><span class="node-battery label label-default" style="font-size : 1em;">{{inconnu}}</span></b></span></p>
+								<p>{{Dernier message :}} <b><span class="node-lastSeen label label-default" style="font-size : 1em;">{{inconnu}}</span></b> <span class="node-next-wakeup-span">{{Prochain réveil : }} <b><span class="node-next-wakeup label label-default" style="font-size : 1em;">{{inconnu}}</span></b></span></p>
+								<p>{{Voisins : }} <span class="node-neighbours label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
 							</div>
 						</div>
 						<div class="panel panel-primary template">
