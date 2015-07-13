@@ -963,7 +963,7 @@ draw_nodes: function ()
 	        }
 
 	        var queryStageDescrition = "";
-	                  
+
 	        switch(queryStage){
 	        	case "None":
 	        	queryStageDescrition = "{{Le processus de demande n'a pas encore commencé pour ce noeud}}";
@@ -1039,8 +1039,12 @@ draw_nodes: function ()
 	        	node.find(".node-queryStage").removeClass("label-default").addClass("label-success");
 	        	break;	            	
 	        }
-
-	        node.find(".node-queryStage").html(queryStage);
+	        if(nodeIsFailed){
+	        	node.find(".node-queryStage").html("Dead");
+	        	node.find(".node-queryStage").removeClass("label-default").addClass("label-danger");
+	        }else{
+	        	node.find(".node-queryStage").html(queryStage);
+	        }
 
 	        var myPopover = $('#node-queryStageDescrition').data('bs.popover');
 	        if (queryStageIndex < 17){
