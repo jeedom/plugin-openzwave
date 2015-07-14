@@ -1,6 +1,6 @@
 {
 	"name" : "Philio MultiSensor",
-    "doc" : "philio.psp01",
+    "doc" : "philio.psp01_-_Multicapteurs",
     "configuration" : {
         "conf_version" : 1
     },

@@ -1,6 +1,6 @@
 {
 	"name" : "Smartplug",
-    "doc" : "nodon.smartplug",
+    "doc" : "nodon.smartplug_-_Prise",
     "configuration" : {
         "conf_version" : 1
     },

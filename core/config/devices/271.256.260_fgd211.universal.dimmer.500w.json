@@ -1,6 +1,6 @@
 {
 	"name" : "Fibaro FGD-211 [Dimmer]",
-    "doc" : "fibaro.fgd211",
+    "doc" : "fibaro.fgd211_-_Dimmer",
     "configuration" : {
         "conf_version" : 1
     },

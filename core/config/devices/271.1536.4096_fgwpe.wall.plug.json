@@ -1,6 +1,6 @@
 {
 	"name" : "Fibaro FGWPE [Wall Plug]",
-    "doc" : "fibaro.fgwpe101",
+    "doc" : "fibaro.fgwpe101_-_Wall_Plug",
     "configuration" : {
         "conf_version" : 1
     },
