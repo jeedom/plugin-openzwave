@@ -3,71 +3,63 @@
     "configuration" : {
         "conf_version" : 1
     },
-    "commands": [
+   "commands": [
         {
-            "name": "On 1",
+            "name": "Confort",
             "type": "action",
             "subtype": "other",
             "isVisible": 1,
             "configuration": {
                 "class": "0x25",
-                "instanceId": 0,
-                "value": "data[0].Set(255)"
+                "instanceId": "0&&1",
+                "value": "data[0].Set(0)&&data[0].Set(0)"
             }
         },
         {
-            "name": "Off 1",
+            "name": "Eco",
             "type": "action",
             "subtype": "other",
             "isVisible": 1,
             "configuration": {
                 "class": "0x25",
-                "instanceId": 0,
-                "value": "data[0].Set(0)"
+                "instanceId": "0&&1",
+                "value": "data[0].Set(255)&&data[0].Set(255)"
             }
         },
         {
-            "name": "Etat 1",
+            "name": "Hors Gel",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": "0x25",
+                "instanceId": "0&&1",
+                "value": "data[0].Set(0)&&data[0].Set(255)"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": "0x25",
+                "instanceId": "0&&1",
+                "value": "data[0].Set(255)&&data[0].Set(0)"
+            }
+        },
+        {
+            "name": "Etat",
             "type": "info",
-            "subtype": "binary",
+            "subtype": "numeric",
             "isVisible": 1,
             "configuration": {
-                "class": "0x25",
-                "instanceId": 0,
-                "value": "data[0].val"
-            }
-        },
-        {
-            "name": "On 2 ",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "configuration": {
-                "class": "0x25",
-                "instanceId": 1,
-                "value": "data[0].Set(255)"
-            }
-        },
-        {
-            "name": "Off 2 ",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "configuration": {
-                "class": "0x25",
-                "instanceId": 1,
-                "value": "data[0].Set(0)"
-            }
-        },
-        {
-            "name": "Etat 2",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "configuration": {
-                "class": "0x25",
-                "instanceId": 1,
-                "value": "data[0].val"
+                "instanceId": "0&&1",
+                "value": "pilotWire"
+            },
+            "template": {
+                "dashboard": "heatPiloteWire",
+                "mobile": "heatPiloteWire"
             }
         }
     ]
