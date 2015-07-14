@@ -17,7 +17,7 @@
  */
 
 function openzwave_pre_update() {
-	rrmdir(dirname(__FILE__) . '/../core/config/devices');
+	exec('rm -rf ' . dirname(__FILE__) . '/../core/config/devices');
 }
 
 ?>
