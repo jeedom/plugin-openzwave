@@ -191,7 +191,7 @@ class openzwave extends eqLogic {
 			foreach ($results['device'] as $node_id => $datas) {
 				$eqLogic = self::getEqLogicByLogicalIdAndServerId($node_id, $serverID);
 				if (is_object($eqLogic)) {
-					if ($eqLogic->getConfiguration('fileconf') == '271.512.4106_fibaro.fgs221.fil.pilote.json') {
+					if (strpos($eqLogic->getConfiguration('fileconf'), 'fibaro.fgs221.fil.pilote') !== false) {
 						$cmd = $eqLogic->getCmd('info', '0&&1.pilotWire');
 						$cmd->event($cmd->getPilotWire());
 						continue;
