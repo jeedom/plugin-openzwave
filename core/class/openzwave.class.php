@@ -953,15 +953,8 @@ class openzwaveCmd extends cmd {
 	public function getPilotWire() {
 		$eqLogic = $this->getEqLogic();
 		$request = '/ZWaveAPI/Run/devices[' . $this->getEqLogic()->getLogicalId() . ']';
-		$instancesId = explode('&&', $this->getConfiguration('instanceId'));
-		if (!isset($instancesId[0])) {
-			$instancesId[0] = 0;
-		}
-		if (!isset($instancesId[1])) {
-			$instancesId[1] = 1;
-		}
-		$info1 = self::handleResult(openzwave::callOpenzwave($request . '.instances[' . $instancesId[0] . '].commandClasses[0x25].data[0].val', $eqLogic->getConfiguration('serverID', 1)));
-		$info2 = self::handleResult(openzwave::callOpenzwave($request . '.instances[' . $instancesId[1] . '].commandClasses[0x25].data[0].val', $eqLogic->getConfiguration('serverID', 1)));
+		$info1 = self::handleResult(openzwave::callOpenzwave($request . '.instances[0].commandClasses[0x25].data[0].val', $eqLogic->getConfiguration('serverID', 1)));
+		$info2 = self::handleResult(openzwave::callOpenzwave($request . '.instances[1].commandClasses[0x25].data[0].val', $eqLogic->getConfiguration('serverID', 1)));
 		return intval($info1) * 2 + intval($info2);
 	}
 
