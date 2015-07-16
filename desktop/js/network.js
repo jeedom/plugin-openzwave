@@ -87,8 +87,8 @@ var app_network = {
       app_network.createNewPrimary();
     });
      $("#receiveConfiguration").off("click").on("click",function() {
-         app_network.receiveConfiguration();
-       });     
+       app_network.receiveConfiguration();
+     });     
      $("#replicationSend").off("click").on("click",function() {
       app_network.replicationSend();
     });
@@ -224,18 +224,18 @@ createNewPrimary: function(){
   });
 },
 receiveConfiguration: function(){
-	  $.ajax({ 
-	    url: path+"ZWaveAPI/Run/controller.ReceiveConfiguration()", 
-	    dataType: 'json',
-	    async: true, 
-	    error: function (request, status, error) {
-	      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-	    },
-	    success: function(data) {
-	      app_network.sendOk();
-	    }
-	  });
-	},
+ $.ajax({ 
+   url: path+"ZWaveAPI/Run/controller.ReceiveConfiguration()", 
+   dataType: 'json',
+   async: true, 
+   error: function (request, status, error) {
+     handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+   },
+   success: function(data) {
+     app_network.sendOk();
+   }
+ });
+},
 replicationSend: function(){
   //TODO: add bridController selection and pass as argument 
   $.ajax({ 
@@ -325,51 +325,51 @@ softReset: function(){
 });
 },
 hardReset: function(){
-      $.ajax({ 
-        url: path+"ZWaveAPI/Run/controller.HardReset()", 
-        dataType: 'json',
-        async: true, 
-        error: function (request, status, error) {
-          handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-        },
-        success: function(data) {
-         if(data['result']== true){
-          app_network.sendOk();
-        }else{
-         $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
-       }
-     }
-   });
+  $.ajax({ 
+    url: path+"ZWaveAPI/Run/controller.HardReset()", 
+    dataType: 'json',
+    async: true, 
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
     },
-    request_node_neighbours_update: function(node_id){
-      $.ajax({ 
-       url: path+"ZWaveAPI/Run/devices["+node_id+"].RequestNodeNeighbourUpdate()", 
-       dataType: 'json',
-       async: true, 
-       error: function (request, status, error) {
-        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-      },
-      success: function(data) {
-        if(data['result']== true){
-         app_network.sendOk();
-         app_network.load_data(); 
-          app_network.displayRoutingTable();
-       }else{
-         $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
-       }
-     }
-   });
+    success: function(data) {
+     if(data['result']== true){
+      app_network.sendOk();
+    }else{
+     $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+   }
+ }
+});
+},
+request_node_neighbours_update: function(node_id){
+  $.ajax({ 
+   url: path+"ZWaveAPI/Run/devices["+node_id+"].RequestNodeNeighbourUpdate()", 
+   dataType: 'json',
+   async: true, 
+   error: function (request, status, error) {
+    handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+  },
+  success: function(data) {
+    if(data['result']== true){
+     app_network.sendOk();
+     app_network.load_data(); 
+     app_network.displayRoutingTable();
+   }else{
+     $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+   }
+ }
+});
+},
+load_data: function(){      
+  $('#graph_network').html('<div id="graph-node-name"></div>');
+  $.ajax({ 
+    url: path+"ZWaveAPI/Run/network.GetNeighbours()", 
+    dataType: 'json',
+    async: true, 
+    error: function (request, status, error) {
+      handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
     },
-    load_data: function(){      
-      $('#graph_network').html('<div id="graph-node-name"></div>');
-      $.ajax({ 
-        url: path+"ZWaveAPI/Run/network.GetNeighbours()", 
-        dataType: 'json',
-        async: true, 
-        error: function (request, status, error) {
-          handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-        },
-        success: function(data) {
+    success: function(data) {
             //console.log('chargement ok');
             nodes = data['devices'];
                 // auto select first node
@@ -708,18 +708,20 @@ show_infos: function (){
                 return;
               }
               var routesCount = app_network.getRoutesCount(nodeId);
-              routingTableHeader += '<th>' + nodeId + '</th>';
+              
               if(node.data.basicType.value != 2){
                 var link ='index.php?v=d&p=openzwave&m=openzwave&server_id='+$("#sel_zwaveNetworkServerId").value()+'&logical_id='+nodeId;
               }else{
                 var link ='#';
               }
               if(node.data.name.value != ''){
-
+                routingTableHeader += '<th class="tooltips" title="'+node.data.location.value+' '+ node.data.name.value+'" >' + nodeId + '</th>';
                 var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'"><span class="label label-primary">'+node.data.location.value+'</span> '+node.data.name.value+'</span>';
               }else{
+               routingTableHeader += '<th class="tooltips" title="'+node.data.product_name.valuee+'" >' + nodeId + '</th>';
                 var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'">'+ node.data.product_name.value+'</span>';
               }
+
               routingTable += '<tr><td>' + name + '</td><td>' + nodeId + '</td>';
               $.each(devicesRouting, function (nnodeId, nnode) {
                 if (nnodeId == 255)

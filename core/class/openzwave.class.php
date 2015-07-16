@@ -192,8 +192,11 @@ class openzwave extends eqLogic {
 				$eqLogic = self::getEqLogicByLogicalIdAndServerId($node_id, $serverID);
 				if (is_object($eqLogic)) {
 					if (strpos($eqLogic->getConfiguration('fileconf'), 'fibaro.fgs221.fil.pilote') !== false) {
-						$cmd = $eqLogic->getCmd('info', '0&&1.pilotWire');
-						$cmd->event($cmd->getPilotWire());
+						foreach ($eqLogic->getCmd('info', '0&&1.0x0', null, true) as $cmd) {
+							if ($cmd->getConfiguration('value') == 'pilotWire') {
+								$cmd->event($cmd->getPilotWire());
+							}
+						}
 						continue;
 					}
 					foreach ($datas as $result) {
@@ -649,7 +652,7 @@ class openzwave extends eqLogic {
 			$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
 			return ls(dirname(__FILE__) . '/../config/devices', $id . '_*.json', false, array('files', 'quiet'));
 		}
-		if (file_exists($this->getConfiguration('fileconf'))) {
+		if (file_exists(dirname(__FILE__) . '/../config/devices/' . $this->getConfiguration('fileconf'))) {
 			return $this->getConfiguration('fileconf');
 		}
 		$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
@@ -953,8 +956,10 @@ class openzwaveCmd extends cmd {
 	public function getPilotWire() {
 		$eqLogic = $this->getEqLogic();
 		$request = '/ZWaveAPI/Run/devices[' . $this->getEqLogic()->getLogicalId() . ']';
-		$info1 = self::handleResult(openzwave::callOpenzwave($request . '.instances[0].commandClasses[0x25].data[0].val', $eqLogic->getConfiguration('serverID', 1)));
-		$info2 = self::handleResult(openzwave::callOpenzwave($request . '.instances[1].commandClasses[0x25].data[0].val', $eqLogic->getConfiguration('serverID', 1)));
+		$info1 = openzwave::callOpenzwave($request . '.instances[0].commandClasses[0x25].data[0].val', $eqLogic->getConfiguration('serverID', 1));
+		$info1 = ($info1 == 'True') ? 1 : 0;
+		$info2 = openzwave::callOpenzwave($request . '.instances[1].commandClasses[0x25].data[0].val', $eqLogic->getConfiguration('serverID', 1));
+		$info2 = ($info2 == 'True') ? 1 : 0;
 		return intval($info1) * 2 + intval($info2);
 	}
 
