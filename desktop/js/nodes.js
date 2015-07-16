@@ -1304,7 +1304,7 @@ draw_nodes: function ()
 	        					var node_id=values[val];
 	        					if(nodes[node_id]){
 	        						if(nodes[node_id].description.name != ''){
-	        							var node_name = nodes[node_id].description.location+' '+nodes[node_id].description.location;
+	        							var node_name = nodes[node_id].description.location+' '+nodes[node_id].description.name;
 	        						}else{
 	        							var node_name=nodes[node_id].description.product_name;
 	        						}
