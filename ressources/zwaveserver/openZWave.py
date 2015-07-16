@@ -2852,12 +2852,14 @@ def get_nodes_list():
             product_type = None      
         
         node_name = myNode.name
+        node_location = myNode.location
         if is_none_or_empty(node_name) :
             node_name = 'Unknown'  
         if network.controller.node_id == device_id :
             node_name = myNode.product_name
+            node_location = 'Jeedom'
                   
-        tmpNode['description'] = {'name' : node_name, 'location':myNode.location ,'product_name': myNode.product_name, 'is_static_controller': myNode.basic == 2} 
+        tmpNode['description'] = {'name' : node_name, 'location':node_location ,'product_name': myNode.product_name, 'is_static_controller': myNode.basic == 2} 
         tmpNode['product'] = {'manufacturer_id': manufacturer_id, 'product_type': product_type, 'product_id': product_id , 'is_valid': manufacturer_id is not None and product_id is not None and product_type is not None}
         nodesData[device_id] = tmpNode
     result['devices']=nodesData
