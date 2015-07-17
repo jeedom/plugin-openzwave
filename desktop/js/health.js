@@ -113,109 +113,109 @@ var app_health = {
         if(nodes[i].last_notification.description == 'Timeout'){
           tbody += '<span class="label label-warning" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
         }if(nodes[i].last_notification.description == 'Dead.'){
-           tbody += '<span class="label label-danger" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
-        }else{
-          tbody += '<span class="label label-primary" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
-        }
+         tbody += '<span class="label label-danger" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
+       }else{
+        tbody += '<span class="label label-primary" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
       }
-      tbody += '</td>';
-      tbody += '<td>';
-      if(nodes[i].data.is_groups_ok != undefined && nodes[i].data.is_groups_ok.value){
-        tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-      }else{
-        if(nodes[i].data.is_groups_ok.enabled){
-          tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
-        }
-      }
-      tbody += '</td>';
-      tbody += '<td>';
-      if(nodes[i].data.is_manufacturer_specific_ok != undefined && nodes[i].data.is_manufacturer_specific_ok.value){
-        tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-      }else{
+    }
+    tbody += '</td>';
+    tbody += '<td>';
+    if(nodes[i].data.is_groups_ok != undefined && nodes[i].data.is_groups_ok.value){
+      tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
+    }else{
+      if(nodes[i].data.is_groups_ok.enabled){
         tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
       }
-      tbody += '</td>';
-      tbody += '<td>';
-      if(nodes[i].data.is_neighbours_ok != undefined && nodes[i].data.is_neighbours_ok.value){
-        tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-      }else{
-        if(nodes[i].data.is_neighbours_ok.enabled){
-          tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
-        }
+    }
+    tbody += '</td>';
+    tbody += '<td>';
+    if(nodes[i].data.is_manufacturer_specific_ok != undefined && nodes[i].data.is_manufacturer_specific_ok.value){
+      tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
+    }else{
+      tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
+    }
+    tbody += '</td>';
+    tbody += '<td>';
+    if(nodes[i].data.is_neighbours_ok != undefined && nodes[i].data.is_neighbours_ok.value){
+      tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
+    }else{
+      if(nodes[i].data.is_neighbours_ok.enabled){
+        tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
       }
-      tbody += '</td>';
-      tbody += '<td>';
-      if(nodes[i].data.isFailed != undefined && !nodes[i].data.isFailed.value){
-        if(nodes[i].data.state != undefined){
-          if(nodes[i].data.state.value == 'Complete'){
-           tbody += '<span class="label label-success" style="font-size : 1em;">'+nodes[i].data.state.value+'</span>';
-         }else{
-          tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.state.value+'</span>';
-        }
-      }else{
-       tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-     }
-   }else{
-    tbody += '<span class="label label-danger" style="font-size : 1em;">{{DEATH}}</span>';
-  }
-  tbody += '</td>';
-  tbody += '<td>';
-  if(nodes[i].data.battery_level != undefined && nodes[i].data.battery_level.value != null){
-    if(nodes[i].data.battery_level.value > 75){
-      tbody += '<span class="label label-success" style="font-size : 1em;">'+nodes[i].data.battery_level.value+'%</span>';
-    }else if(nodes[i].data.battery_level.value > 50){
-      tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.battery_level.value+'%</span>';
-    }else{
-      tbody += '<span class="label label-danger" style="font-size : 1em;">'+nodes[i].data.battery_level.value+'%</span>';
     }
+    tbody += '</td>';
+    tbody += '<td>';
+    if(nodes[i].data.isFailed != undefined && !nodes[i].data.isFailed.value){
+      if(nodes[i].data.state != undefined){
+        if(nodes[i].data.state.value == 'Complete'){
+         tbody += '<span class="label label-success" style="font-size : 1em;">'+nodes[i].data.state.value+'</span>';
+       }else{
+        tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.state.value+'</span>';
+      }
+    }else{
+     tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
+   }
+ }else{
+  tbody += '<span class="label label-danger" style="font-size : 1em;">{{DEATH}}</span>';
+}
+tbody += '</td>';
+tbody += '<td>';
+if(nodes[i].data.battery_level != undefined && nodes[i].data.battery_level.value != null){
+  if(nodes[i].data.battery_level.value > 75){
+    tbody += '<span class="label label-success" style="font-size : 1em;">'+nodes[i].data.battery_level.value+'%</span>';
+  }else if(nodes[i].data.battery_level.value > 50){
+    tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.battery_level.value+'%</span>';
   }else{
-    tbody += '<span class="label label-primary" style="font-size : 1em;">{{Secteur}}</span>';
+    tbody += '<span class="label label-danger" style="font-size : 1em;">'+nodes[i].data.battery_level.value+'%</span>';
   }
-  tbody += '</td>';
-  tbody += '<td>';
-  if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null){
-    tbody += '<span class="label label-info" style="font-size : 1em;">'+nodes[i].data.wakeup_interval.value+'</span>';
+}else{
+  tbody += '<span class="label label-primary" style="font-size : 1em;">{{Secteur}}</span>';
+}
+tbody += '</td>';
+tbody += '<td>';
+if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null){
+  tbody += '<span class="label label-info" style="font-size : 1em;">'+nodes[i].data.wakeup_interval.value+'</span>';
+}
+tbody += '</td>';
+tbody += '<td>';
+if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.total != null){
+  tbody += '<span class="label label-primary" style="font-size : 1em;">'+nodes[i].data.statistics.total+'</span>';
+}
+tbody += '</td>';
+tbody += '<td>';
+if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.delivered != null){
+  if(nodes[i].data.statistics.delivered > 90){
+    tbody += '<span class="label label-success" style="font-size : 1em;">'+nodes[i].data.statistics.delivered+'%</span>';
+  }else if(nodes[i].data.statistics.delivered > 75){
+    tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.statistics.delivered+'%</span>';
+  }else{
+    tbody += '<span class="label label-danger" style="font-size : 1em;">'+nodes[i].data.statistics.delivered+'%</span>';
   }
-  tbody += '</td>';
-  tbody += '<td>';
-  if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.total != null){
-    tbody += '<span class="label label-primary" style="font-size : 1em;">'+nodes[i].data.statistics.total+'</span>';
+}
+tbody += '</td>';
+tbody += '<td>';
+if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.deliveryTime != null){
+  if(nodes[i].data.statistics.deliveryTime > 500){
+    tbody += '<span class="label label-danger" style="font-size : 1em;">'+nodes[i].data.statistics.deliveryTime+'ms</span>';
+  }else if(nodes[i].data.statistics.deliveryTime > 250){
+    tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.statistics.deliveryTime+'ms</span>';
+  }else{
+    tbody += '<span class="label label-success" style="font-size : 1em;">'+nodes[i].data.statistics.deliveryTime+'ms</span>';
   }
-  tbody += '</td>';
-  tbody += '<td>';
-  if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.delivered != null){
-    if(nodes[i].data.statistics.delivered > 90){
-      tbody += '<span class="label label-success" style="font-size : 1em;">'+nodes[i].data.statistics.delivered+'%</span>';
-    }else if(nodes[i].data.statistics.delivered > 75){
-      tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.statistics.delivered+'%</span>';
-    }else{
-      tbody += '<span class="label label-danger" style="font-size : 1em;">'+nodes[i].data.statistics.delivered+'%</span>';
-    }
+}
+tbody += '</td>';
+tbody += '<td>';
+if(nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null){
+  tbody += app_health.timestampConverter(nodes[i].data.lastReceived.updateTime,false);
+  if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.next_wakeup != null){
+    tbody += ' <i class="fa fa-arrow-right"></i> ' + app_health.timestampConverter(nodes[i].data.wakeup_interval.next_wakeup,true)+' <i class="fa fa-clock-o"></i>';
   }
-  tbody += '</td>';
-  tbody += '<td>';
-  if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.deliveryTime != null){
-    if(nodes[i].data.statistics.deliveryTime > 500){
-      tbody += '<span class="label label-danger" style="font-size : 1em;">'+nodes[i].data.statistics.deliveryTime+'ms</span>';
-    }else if(nodes[i].data.statistics.deliveryTime > 250){
-      tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.statistics.deliveryTime+'ms</span>';
-    }else{
-      tbody += '<span class="label label-success" style="font-size : 1em;">'+nodes[i].data.statistics.deliveryTime+'ms</span>';
-    }
-  }
-  tbody += '</td>';
-  tbody += '<td>';
-  if(nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null){
-    tbody += app_health.timestampConverter(nodes[i].data.lastReceived.updateTime,false);
-    if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.next_wakeup != null){
-      tbody += ' <i class="fa fa-arrow-right"></i> ' + app_health.timestampConverter(nodes[i].data.wakeup_interval.next_wakeup,true)+' <i class="fa fa-clock-o"></i>';
-    }
-  }
-  tbody += '</td>';
-  tbody += '<td>';
-  tbody += '<a class="btn btn-info btn-xs bt_pingDevice" data-id="'+i+'"><i class="fa fa-eye"></i> {{Ping}}</a>';
-  tbody += '</td>';
-  tbody += '</tr>';
+}
+tbody += '</td>';
+tbody += '<td>';
+tbody += '<a class="btn btn-info btn-xs bt_pingDevice" data-id="'+i+'"><i class="fa fa-eye"></i> {{Ping}}</a>';
+tbody += '</td>';
+tbody += '</tr>';
 }
 $('#table_healthNetwork tbody').empty().append(tbody);
 },
