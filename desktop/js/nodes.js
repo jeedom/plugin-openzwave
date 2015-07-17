@@ -1044,6 +1044,7 @@ draw_nodes: function ()
 	        	node.find(".node-queryStage").removeClass("label-default").addClass("label-danger");
 	        }else{
 	        	node.find(".node-queryStage").html(queryStage);
+	        	node.find(".node-queryStage").removeClass("label-danger").addClass("label-default");
 	        }
 
 	        var myPopover = $('#node-queryStageDescrition').data('bs.popover');
