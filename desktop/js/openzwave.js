@@ -116,7 +116,7 @@ if (is_numeric(getUrlVars('logical_id')) && is_numeric(getUrlVars('server_id')))
 $("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
 function printEqLogic(_eqLogic){
- if($('.li_eqLogic.active').attr('data-eqlogic_id') != ''){
+   if($('.li_eqLogic.active').attr('data-eqlogic_id') != ''){
     $('#img_device').attr("src", $('.eqLogicDisplayCard[data-eqLogic_id='+$('.li_eqLogic.active').attr('data-eqlogic_id')+'] img').attr('src'));
 }else{
     $('#img_device').attr("src",'plugins/openzwave/doc/images/openzwave_icon.png');
@@ -124,9 +124,9 @@ function printEqLogic(_eqLogic){
 if($('.li_eqLogic.active').attr('data-assistant') != ''){
     $('#bt_deviceAssistant').show();
     $('#bt_deviceAssistant').off().on('click',function(){
-       $('#md_modal').dialog({title: "{{Assistant de configuration}}"});
-       $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=device.assistant&id='+_eqLogic.id+'&serverId='+ _eqLogic.configuration.serverID+'&logical_id='+ _eqLogic.logicalId).dialog('open');
-   });
+     $('#md_modal').dialog({title: "{{Assistant de configuration}}"});
+     $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=device.assistant&id='+_eqLogic.id+'&serverId='+ _eqLogic.configuration.serverID+'&logical_id='+ _eqLogic.logicalId).dialog('open');
+ });
 }else{
     $('#bt_deviceAssistant').hide();
 }
@@ -154,6 +154,7 @@ if($('.li_eqLogic.active').attr('data-assistant') != ''){
         }else{
             $('#bt_deviceDocumentation').hide();
         }
+        modifyWithoutSave = false;
     }
 });
 
@@ -184,6 +185,7 @@ if($('.li_eqLogic.active').attr('data-assistant') != ''){
         }else{
             $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').closest('.form-group').hide();
         }
+        modifyWithoutSave = false;
     }
 });
 }
@@ -209,18 +211,18 @@ $('body').one('nodeJsConnect', function () {
             $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fa fa-sign-out fa-rotate-90"></i> {{Arrêter l\'exclusion}}');
             $('#div_inclusionAlert'+_options.serverId).showAlert({message: '{{Vous êtes en mode exclusion sur}} '+_options.name+'. {{Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}', level: 'warning'});
         }else{
-           $('.changeIncludeState.card[data-mode=0]').css('background-color','#ffffff');
-           $('.changeIncludeState.card[data-mode=1]').css('background-color','#ffffff');
-           $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Mode exclusion}}');
-           $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Mode inclusion}}');
-           $('.changeIncludeState.card[data-mode=1] span center').text('{{Mode inclusion}}');
-           $('.changeIncludeState.card[data-mode=0] span center').text('{{Mode exclusion}}');
-           $('.changeIncludeState[data-mode=1]').attr('data-state', 1);
-           $('.changeIncludeState[data-mode=0]').attr('data-state', 1);
-           $('.changeIncludeState[data-mode=1]:not(.card)').removeClass('btn-success').addClass('btn-default');
-           $('.changeIncludeState[data-mode=0]:not(.card)').removeClass('btn-danger').addClass('btn-default');
-       }
-   });
+         $('.changeIncludeState.card[data-mode=0]').css('background-color','#ffffff');
+         $('.changeIncludeState.card[data-mode=1]').css('background-color','#ffffff');
+         $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Mode exclusion}}');
+         $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Mode inclusion}}');
+         $('.changeIncludeState.card[data-mode=1] span center').text('{{Mode inclusion}}');
+         $('.changeIncludeState.card[data-mode=0] span center').text('{{Mode exclusion}}');
+         $('.changeIncludeState[data-mode=1]').attr('data-state', 1);
+         $('.changeIncludeState[data-mode=0]').attr('data-state', 1);
+         $('.changeIncludeState[data-mode=1]:not(.card)').removeClass('btn-success').addClass('btn-default');
+         $('.changeIncludeState[data-mode=0]:not(.card)').removeClass('btn-danger').addClass('btn-default');
+     }
+ });
 
 setTimeout(function () {
     socket.on('zwave::includeDevice', function (_options) {
@@ -239,7 +241,7 @@ setTimeout(function () {
 
 $('#bt_autoDetectModule').on('click',function(){
 
-   bootbox.confirm('{{Etes-vous sûr de vouloir récréer toute les commandes ? Cela va supprimer les commandes existante}}', function (result) {
+ bootbox.confirm('{{Etes-vous sûr de vouloir récréer toute les commandes ? Cela va supprimer les commandes existante}}', function (result) {
     if (result) {
  $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // méthode de transmission des données au fichier php
