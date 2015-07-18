@@ -94,11 +94,11 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 							<h4 class="panel-title">{{Informations}}</h4>
 						</div>
 						<div class="panel-body">
-							<p>{{Réseau démarré le}} <span class="network-startTime label label-default">{{inconnu}}</span></p>
+							<p>{{Réseau démarré le}} <span class="network-startTime label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
 							<p>{{Le réseau contient}} <b><span class="network-nodes-count"></span></b> {{noeuds, actuellement}} <b><span class="network-sleeping-nodes-count">{{inconnu}}</span></b> {{dorment}}</p>
-							<p>{{Nombre de scènes :}} <span class="network-scenes-count label label-default">{{inconnu}}</span></p>
-							<p>{{Intervalle des demandes :}} <span class="network-poll-interval label label-default">{{inconnu}}</span></p>
-							<p>{{Voisins :}} <span class="network-node-neighbours label label-default">{{inconnu}}</span></p>
+							<p>{{Nombre de scènes :}} <span class="network-scenes-count label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
+							<p>{{Intervalle des demandes :}} <span class="network-poll-interval label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
+							<p>{{Voisins :}} <span class="network-node-neighbours label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
 						</div>
 					</div>
 
@@ -107,11 +107,11 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 							<h4 class="panel-title">{{Etat}}</h4>
 						</div>
 						<div class="panel-body">
-							<p><span class="network-state-led">{{inconnu}}</span> {{Etat actuel :}} <span class="network-state-description label label-default">{{inconnu}}</span></p>
-							<p><span class="network-outgoing-send-queueWarning">{{inconnu}}</span> {{Queue sortante :}} <span class="network-outgoing-send-queue label label-default">{{inconnu}}</span></p>
-							<p>{{Dernière notification du contrôleur :}} <span class="network-notification label label-default">{{inconnu}}</span></p>
-							<p>{{Détails du message :}} <span class="network-notificationMessage label label-default">{{inconnu}}</span></p>
-							<p>{{Reçu à :}} <span class="network-notificationTime label label-default">{{inconnu}}</span></p>
+							<p><span class="network-state-led">{{inconnu}}</span> {{Etat actuel :}} <span class="network-state-description label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
+							<p><span class="network-outgoing-send-queueWarning">{{inconnu}}</span> {{Queue sortante :}} <span class="network-outgoing-send-queue label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
+							<p>{{Dernière notification du contrôleur :}} <span class="network-notification label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
+							<p>{{Détails du message :}} <span class="network-notificationMessage label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
+							<p>{{Reçu à :}} <span class="network-notificationTime label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
 						</div>
 					</div>
 
@@ -120,8 +120,8 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 							<h4 class="panel-title">{{Capacités}}</h4>
 						</div>
 						<div class="panel-body">
-							<p>{{Contrôleur :}} <span class="network-controller-capabilities label label-default">{{inconnu}}</span></p>
-							<p>{{Noeud :}} <span class="network-controller-node-capabilities label label-default">{{inconnu}}</span></p>
+							<p>{{Contrôleur :}} <span class="network-controller-capabilities label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
+							<p>{{Noeud :}} <span class="network-controller-node-capabilities label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
 						</div>
 					</div>
 					<div class="panel panel-primary">
@@ -129,9 +129,9 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 							<h4 class="panel-title">{{Système}}</h4>
 						</div>
 						<div class="panel-body">
-							<p>{{Chemin du module :}} <span class="network-device-path label label-default">{{inconnu}}</span></p>
-							<p>{{Version de la librairie OpenZwave :}}<span class="network-oz-library-version label label-default">{{inconnu}}</span></p>
-							<p>{{Version de la librairie Python-OpenZwave :}} <span class="network-poz-library-version label label-default">{{inconnu}}</span></p>
+							<p>{{Chemin du module :}} <span class="network-device-path label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
+							<p>{{Version de la librairie OpenZwave :}}<span class="network-oz-library-version label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
+							<p>{{Version de la librairie Python-OpenZwave :}} <span class="network-poz-library-version label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
 						</div>
 					</div>
 
@@ -198,24 +198,24 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 							<td><button type="button" id="healNetwork" class="btn btn-success"><i class="fa fa-medkit"></i> {{Soigner le réseau}}</button></td>
 							<td>{{Soigner le réseau Z-Wave noeud par noeud.}}<br>{{Essaye de soigner tous les noeuds (un par un) en mettant à jour la liste des voisins et les routes optionnelles.}}</td>
 						</tr>
-						
-						
+
+
 						<tr>
 							<td><button type="button" id="createNewPrimary" class="btn btn-danger"><i class="fa fa-file"></i> {{Créer un nouveau noeud primaire}}</button></td>
 							<td>{{Put the target controller into receive configuration mode.\nThe PC Z-Wave Controller must be within 2m of the controller that is being made the primary.. Nécessite SUC.}}</td>
 						</tr>
-						
+
 						<tr>
 							<td><button type="button" id="receiveConfiguration" class="btn btn-danger"><i class="fa fa-file"></i> {{Receive Configuration}}</button></td>
 							<td>{{Transfering the network configuration from another controller.\n\nPlease bring the other controller within 2m of the PC controller and set it to send its network configuration.}}</td>
 						</tr>
-						
+
 						<!--
 						<tr>
 							<td><button type="button" id="replicationSend" class="btn btn-warning"><i class="fa fa-files-o"></i> {{Répliquer}}</button></td>
 							<td>{{Répliquer les informations du primaire sur le secondaire.}}</td>
 						</tr>
-						
+
 						<tr>
 							<td><button type="button" id="requestNetworkUpdate" class="btn btn-primary"><i class="fa fa-refresh"></i> {{Mise à jour du réseau}}</button></td>
 							<td>{{Mise à jour du contrôleur avec les informations du réseau du SUC/SIS.}}</td>
@@ -225,8 +225,8 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 							<td><button type="button" id="transferPrimaryRole" class="btn btn-primary"><i class="fa fa-external-link"></i> {{Transférer le rôle primaire}}</button></td>
 							<td>{{Changer de contrôleur primaire. Le contrôleur primaire existant devient contrôleur secondaire. Please bring the new controller within 2m of the PC controller and set it to receive the network configuration.}}</td>
 						</tr>
-						
-						
+
+
 						<tr>
 							<td><button type="button" id="writeconfigfile" class="btn btn-info"><i class="fa fa-pencil"></i> {{Ecrire le fichier de configuration}}</button></td>
 							<td>{{Ecrit le fichier de configuration OpenZwave.}}</td>
