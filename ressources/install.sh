@@ -9,6 +9,7 @@
 function apt_install {
   sudo apt-get -y install $1
   if [ $? -ne 0 ]; then
+    sudo service jeedom start
     echo "could not install $1 - abort"
     exit 1
   fi
@@ -17,11 +18,13 @@ function apt_install {
 function pip_install {
   sudo pip install "$@"
   if [ $? -ne 0 ]; then
+    sudo service jeedom start
     echo "could not install $p - abort"
     exit 1
   fi
 }
 
+sudo service jeedom stop
 sudo apt-get update --fix-missing
 
 
@@ -89,6 +92,7 @@ echo "Installation de Python-OpenZwave"
 cd /opt
 sudo git clone https://github.com/OpenZWave/python-openzwave.git
 if [ $? -ne 0 ]; then
+  sudo service jeedom start
   echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
   exit 1
 fi
@@ -100,6 +104,7 @@ cd /opt/python-openzwave
 sudo make cython-deps
 sudo git clone https://github.com/OpenZWave/open-zwave.git openzwave
 if [ $? -ne 0 ]; then
+  sudo service jeedom start
   echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
   exit 1
 fi
@@ -134,5 +139,5 @@ if [ $(grep 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200"
   sudo echo 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200", SYMLINK+="ttyUSB21"' >> /tmp/udev
   sudo mv /tmp/udev /etc/udev/rules.d/98-usb-serial.rules
 fi
-
+sudo service jeedom start
 echo "Everything is successfully installed!"
