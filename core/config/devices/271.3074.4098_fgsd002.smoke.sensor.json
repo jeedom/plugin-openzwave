@@ -2,7 +2,8 @@
 	"name" : "Fibaro FGSD-002 [Smoke Sensor CE] ",
     "doc" : "fibaro.fgsd102_-_Fumees",
     "configuration" : {
-        "conf_version" : 1
+        "conf_version" : 1,
+        "battery_type" : "CR123A"
     },
     "commands": [
       {
