@@ -28,6 +28,10 @@
 			Value=0 to 127.
 			0 is the minimum sensitivity, 127 is the maximum sensitivity.</Help>
 		</Value>
+        <Value type="byte" index="39" genre="config" label="Low Battery" min="10" max="50" value="20" size="1">
+			<Help>Configure low battery value
+			Value=10 to 50.</Help>
+		</Value>
 		<Value type="list" index="40" genre="config" label="Reporting Threshold" min="0" max="1" value="0" size="1">
 			<Help>Enable/disable the selective reporting only when measurements reach a certain threshold or percentage 
 			set in the threshold settings.  This is used to reduce network
@@ -60,6 +64,10 @@
 			The high byte is the part of integer, the low byte is the fractional part.  
 			</Help>
 		</Value>
+        <Value type="byte" index="45" genre="config" label="UV Reporting Threshold" units="" min="0" max="255" value="2">
+			<Help>Threshold change in ultraviolet to induce an automatic report.
+			</Help>
+		</Value>
 		<Value type="list" index="46" genre="config" label="Low Temp Alarm" min="0" max="1" value="0" size="1">
 			<Help>Enable/disable to send the alarm report of low temperature(Less than 15 Degress C)
 			</Help>
@@ -70,13 +78,13 @@
 			<Help>Reset The Reporting Group Configuration (101 to 103) to default</Help>
 		</Value>
 		<Value type="int" index="101" genre="config" label="Group 1 Reports" value="255">
-			<Help>Which reports need to send automatically in timing intervals for group 1. Bitsets: 0 -> Battery report, 1 -> Ultraviolet, 5 -> Temperature, 6 -> Humidity, 7 -> Luminosity</Help>
+			<Help>Which reports need to send automatically in timing intervals for group 1. Bitsets: 0 -> Battery report, 4 -> Ultraviolet, 5 -> Temperature, 6 -> Humidity, 7 -> Luminosity</Help>
 		</Value>
 		<Value type="int" index="102" genre="config" label="Group 2 Reports" value="0">
-			<Help>Which reports need to send automatically in timing intervals for group 2. Bitsets: 0 -> Battery report, 1 -> Ultraviolet, 5 -> Temperature, 6 -> Humidity, 7 -> Luminosity</Help>
+			<Help>Which reports need to send automatically in timing intervals for group 2. Bitsets: 0 -> Battery report, 4 -> Ultraviolet, 5 -> Temperature, 6 -> Humidity, 7 -> Luminosity</Help>
 		</Value>
 		<Value type="int" index="103" genre="config" label="Group 3 Reports" value="0">
-			<Help>Which reports need to send automatically in timing intervals for group 3. Bitsets: 0 -> Battery report, 1 -> Ultraviolet, 5 -> Temperature, 6 -> Humidity, 7 -> Luminosity</Help>
+			<Help>Which reports need to send automatically in timing intervals for group 3. Bitsets: 0 -> Battery report, 4 -> Ultraviolet, 5 -> Temperature, 6 -> Humidity, 7 -> Luminosity</Help>
 		</Value>
 		<Value type="button" index="110" genre="config" label="Reset Params 111-113 to Default" write_only="true" affects="111,112,113">
 			<Help>Reset The Reporting Group Interval Configuration (111 to 113) to default</Help>
