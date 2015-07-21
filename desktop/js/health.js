@@ -112,7 +112,7 @@ var app_health = {
       if(nodes[i].last_notification != undefined){
         if(nodes[i].last_notification.description == 'Timeout'){
           tbody += '<span class="label label-warning" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
-        }if(nodes[i].last_notification.description == 'Dead.'){
+        }else if(nodes[i].last_notification.description == 'Dead.'){
          tbody += '<span class="label label-danger" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
        }else{
         tbody += '<span class="label label-primary" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
