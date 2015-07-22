@@ -81,6 +81,61 @@ class openzwave extends eqLogic {
 		return self::$_listZwaveServer;
 	}
 
+	public static function health() {
+		$return = array();
+		$demon_state = self::deamonRunning();
+		$return[] = array(
+			'test' => __('Démon local', __FILE__),
+			'result' => ($demon_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'advice' => ($demon_state) ? '' : __('Peut être normal si vous êtes en déporté', __FILE__),
+			'state' => $demon_state,
+		);
+		$version = openzwave::getVersion('openzwave');
+		$return[] = array(
+			'test' => __('Version d\'openzwave', __FILE__),
+			'result' => $version,
+			'advice' => ($demon_state) ? '' : __('Mettez à jour les dépendances', __FILE__),
+			'state' => version_compare(config::byKey('openzwave_version', 'openzwave'), $version, '<='),
+		);
+		$compilation = openzwave::compilationOk();
+		$return[] = array(
+			'test' => __('Compilation', __FILE__),
+			'result' => ($compilation) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'advice' => ($compilation) ? '' : __('Mettez à jour les dépendances', __FILE__),
+			'state' => $compilation,
+		);
+		if (config::byKey('jeeNetwork::mode') == 'master') {
+			foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
+				try {
+					$demon_state = $jeeNetwork->sendRawRequest('deamonRunning', array('plugin' => 'openzwave'));
+				} catch (Exception $e) {
+					$demon_state = false;
+				}
+				$return[] = array(
+					'test' => __('Démon sur', __FILE__) . $jeeNetwork->getName(),
+					'result' => ($demon_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+					'advice' => '',
+					'state' => $demon_state,
+				);
+				$version = $jeeNetwork->sendRawRequest('getVersion', array('plugin' => 'openzwave', 'module' => 'openzwave'));
+				$return[] = array(
+					'test' => __('Version d\'openzwave sur', __FILE__) . $jeeNetwork->getName(),
+					'result' => $version,
+					'advice' => ($demon_state) ? '' : __('Mettez à jour les dépendances', __FILE__),
+					'state' => version_compare(config::byKey('openzwave_version', 'openzwave'), $version, '<='),
+				);
+				$compilation = $jeeNetwork->sendRawRequest('compilationOk', array('plugin' => 'openzwave'));
+				$return[] = array(
+					'test' => __('Compilation sur', __FILE__) . $jeeNetwork->getName(),
+					'result' => ($compilation) ? __('OK', __FILE__) : __('NOK', __FILE__),
+					'advice' => ($compilation) ? '' : __('Mettez à jour les dépendances', __FILE__),
+					'state' => $compilation,
+				);
+			}
+		}
+		return $return;
+	}
+
 	public static function updateNginxRedirection() {
 		foreach (self::listServerZwave(false) as $zwave) {
 			if (trim($zwave['addr']) == '' || trim($zwave['port']) == '') {
@@ -1020,10 +1075,10 @@ class openzwaveCmd extends cmd {
 		switch ($this->getType()) {
 			case 'action':
 				switch ($this->getSubType()) {
-				case 'slider':
+					case 'slider':
 						$value = str_replace('#slider#', $_options['slider'], $value);
 						break;
-				case 'color':
+					case 'color':
 						$value = str_replace('#color#', $_options['color'], $value);
 						return $this->setRGBColor($value);
 				}
