@@ -77,7 +77,7 @@
 		<Value type="button" index="100" genre="config" label="Reset Params 101-103 to Default" write_only="true" affects="101,102,103">
 			<Help>Reset The Reporting Group Configuration (101 to 103) to default</Help>
 		</Value>
-		<Value type="int" index="101" genre="config" label="Group 1 Reports" value="255">
+		<Value type="int" index="101" genre="config" label="Group 1 Reports" value="241">
 			<Help>Which reports need to send automatically in timing intervals for group 1. Bitsets: 0 -> Battery report, 4 -> Ultraviolet, 5 -> Temperature, 6 -> Humidity, 7 -> Luminosity</Help>
 		</Value>
 		<Value type="int" index="102" genre="config" label="Group 2 Reports" value="0">
