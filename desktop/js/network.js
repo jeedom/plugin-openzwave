@@ -3,6 +3,7 @@ var app_network = {
     // note variable nodes is global!
 
     updater: false,
+    console_updater: false,
     durationConvert: function(d) {
       d = Number(d);
       var h = Math.floor(d / 3600);
@@ -59,6 +60,47 @@ var app_network = {
        alert('You haven\'t confirmed with YES'); 
      }
    });
+     $("#saveconf").click(function(){
+      $.ajax({ 
+        type:'POST', 
+        url: path+"ZWaveAPI/Run/network.SaveZWConfig()", 
+        contentType: "text/plain", 
+        data: $("#zwcfgfile").val(),
+        error: function (request, status, error) {
+          handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+        },
+        success: function(data) {
+          $('#div_networkOpenzwaveAlert').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
+        }
+      });
+    });
+     $("#tab_config").off("click").on("click",function() {
+      $.ajax({ 
+        url: path+"ZWaveAPI/Run/network.GetZWConfig()", 
+        dataType: 'json', 
+        error: function (request, status, error) {
+          handleAjaxError(request, status, error,$('#div_configOpenzwaveAlert'));
+        },
+        success: function(data){
+          $("#zwcfgfile").val(data['result']);
+        }
+      });
+    });
+     $("#stopLiveLog").off("click").on("click",function() {
+      clearInterval(app_network.console_updater);
+      $("#stopLiveLog").hide();
+      $("#startLiveLog").show();
+    });
+     $("#startLiveLog").off("click").on("click",function() {
+      app_network.console_updater = setInterval(app_network.console_refresh,2000);
+      $("#startLiveLog").hide();
+      $("#stopLiveLog").show();
+    });
+     $(".console-out").html("");
+     $("#tab_console").off("click").on("click",function() {
+      $("#startLiveLog").hide();
+      app_network.console_updater = setInterval(app_network.console_refresh,2000);
+    });
      $("#tab_graph").off("click").on("click",function() {
       app_network.load_data();
     });
@@ -121,7 +163,34 @@ var app_network = {
 
 
    },
-   addDevice: function(_secure){
+   console_refresh: function(){
+    if(!$('#log').is(':visible')){
+      clearInterval(app_network.console_updater);
+    }
+    $.ajax({ 
+      url: path+"ZWaveAPI/Run/network.GetOZLogs()", 
+      dataType: 'json',
+      async: true, 
+      global : false,
+      error: function (request, status, error) {
+        handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
+      },
+      success: function(data) {
+        if (!$(".console-out").is(':visible')) {
+          clearInterval(app_console.updater);
+          return;
+        }
+        if(data['result']){
+         $(".console-out").html(data['result']);
+         var h = parseInt($('#log')[0].scrollHeight);
+         $('#log').scrollTop(h);
+       }else{
+        $(".console-out").append("error...");
+      }
+    }
+  });
+  },
+  addDevice: function(_secure){
     var secure = 0;
     if(_secure){
      var secure = 1;
@@ -535,6 +604,7 @@ show_stats: function (){
 
 hide: function(){
   clearInterval(app_network.updater);
+  clearInterval(app_network.console_updater);
 },
 load_infos: function(){
   $.ajax({ 
@@ -719,17 +789,17 @@ show_infos: function (){
                 var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'"><span class="label label-primary">'+node.data.location.value+'</span> '+node.data.name.value+'</span>';
               }else{
                routingTableHeader += '<th class="tooltips" title="'+node.data.product_name.valuee+'" >' + nodeId + '</th>';
-                var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'">'+ node.data.product_name.value+'</span>';
-              }
+               var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'">'+ node.data.product_name.value+'</span>';
+             }
 
-              routingTable += '<tr><td>' + name + '</td><td>' + nodeId + '</td>';
-              $.each(devicesRouting, function (nnodeId, nnode) {
-                if (nnodeId == 255)
-                  return;
-                if (skipPortableAndVirtual && (nnode.data.isVirtual.value || nnode.data.basicType.value == 1))
-                  return;
-                var rtClass;
-                if (!routesCount[nnodeId])
+             routingTable += '<tr><td>' + name + '</td><td>' + nodeId + '</td>';
+             $.each(devicesRouting, function (nnodeId, nnode) {
+              if (nnodeId == 255)
+                return;
+              if (skipPortableAndVirtual && (nnode.data.isVirtual.value || nnode.data.basicType.value == 1))
+                return;
+              var rtClass;
+              if (!routesCount[nnodeId])
                         routesCount[nnodeId] = new Array(); // create empty array to let next line work
                       var routeHops = (routesCount[nnodeId][0] || '0')+"/";
                       routeHops += (routesCount[nnodeId][1] || '0')+"/";

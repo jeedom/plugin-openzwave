@@ -42,6 +42,39 @@ if (!isConnect('admin')) {
 	.greeniconcolor {color:green;}
 	.yellowiconcolor {color:#FFD700;}
 	.rediconcolor {color:red;}
+
+	#log {
+		width:100%;
+		height:700px;
+		margin:0px;
+		padding:0px;
+		font-size:16px;
+		color:#fff;
+		background-color:#300a24;
+		overflow: scroll;
+		overflow-x: hidden;
+		font-size:16px;
+	}
+
+	.console-out {
+		padding-left:20px;
+		padding-top:20px;
+	}
+
+	.bound-config {
+		width:100%;
+		margin:0px;
+		padding:0px;
+	}
+
+	.bound-config textarea {
+		width:100%;
+		margin:0px;
+		padding:20px;
+		height:700px;
+		font-size: 14px;
+
+	}
 </style>
 
 <span class='pull-right'>
@@ -83,10 +116,24 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 				<li><a href="#actions_network" data-toggle="tab"><i class="fa fa-sliders"></i> {{Actions}}</a></li>
 				<li><a href="#statistics_network" data-toggle="tab"><i class="fa fa-bar-chart"></i> {{Statistiques}}</a></li>
 				<li id="tab_graph"><a href="#graph_network" data-toggle="tab"><i class="fa fa-picture-o"></i> {{Graphique du réseau}}</a></li>
-				<li id="tab_route"><a href="#route_network" data-toggle="tab"><i class="fa fa-picture-o"></i> {{Table de routage}}</a></li>
+				<li id="tab_route"><a href="#route_network" data-toggle="tab"><i class="fa fa-table"></i> {{Table de routage}}</a></li>
+				<li id="tab_console"><a href="#console_network" data-toggle="tab"><i class="fa fa-terminal"></i> {{Console}}</a></li>
+				<li id="tab_config"><a href="#config_network" data-toggle="tab"><i class="fa fa-cog"></i> {{Configuration}}</a></li>
 				<li id="li_state" class="pull-right alert" style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;"><span style="position:relative; top : -7px;">{{Demande envoyée}}</span></li>
 			</ul>
 			<div id="network-tab-content" class="tab-content">
+				<div class="tab-pane" id="console_network">
+					<a id="startLiveLog" class="btn btn-success pull-right"><i class="fa fa-play"></i> {{Reprendre}}</a>
+					<a id="stopLiveLog" class="btn btn-warning pull-right"><i class="fa fa-pause"></i> {{Pause}}</a>
+					<pre id="log"><div class="console-out"></div></pre>
+				</div>
+				<div class="tab-pane" id="config_network">
+					<a class="btn btn-success pull-right"><i class="fa fa-floppy-o"></i> {{Sauvegarder les changements}}</a><br/>
+					<br/>
+					<div class="bound-config">
+						<textarea id="zwcfgfile" class="boxsizingborder"></textarea>
+					</div>
+				</div>
 				<div class="tab-pane active" id="summary_network">
 					<br>
 					<div class="panel panel-primary">
@@ -220,48 +267,48 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 							<td><button type="button" id="requestNetworkUpdate" class="btn btn-primary"><i class="fa fa-refresh"></i> {{Mise à jour du réseau}}</button></td>
 							<td>{{Mise à jour du contrôleur avec les informations du réseau du SUC/SIS.}}</td>
 						</tr>
-						-->
-						<tr>
-							<td><button type="button" id="transferPrimaryRole" class="btn btn-primary"><i class="fa fa-external-link"></i> {{Transférer le rôle primaire}}</button></td>
-							<td>{{Changer de contrôleur primaire. Le contrôleur primaire existant devient contrôleur secondaire. Please bring the new controller within 2m of the PC controller and set it to receive the network configuration.}}</td>
-						</tr>
+					-->
+					<tr>
+						<td><button type="button" id="transferPrimaryRole" class="btn btn-primary"><i class="fa fa-external-link"></i> {{Transférer le rôle primaire}}</button></td>
+						<td>{{Changer de contrôleur primaire. Le contrôleur primaire existant devient contrôleur secondaire. Please bring the new controller within 2m of the PC controller and set it to receive the network configuration.}}</td>
+					</tr>
 
 
-						<tr>
-							<td><button type="button" id="writeconfigfile" class="btn btn-info"><i class="fa fa-pencil"></i> {{Ecrire le fichier de configuration}}</button></td>
-							<td>{{Ecrit le fichier de configuration OpenZwave.}}</td>
-						</tr>
-						<tr>
-							<td><button type="button" id="regenerateNodesCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Regénérer la détection des noeuds inconnus}}</button></td>
-							<td>{{Supprime les informations des noeuds inconnus dans le fichier de config afin qu'il soit regénéré. (Attention : Relance le réseau)}}</td>
-						</tr>
-						<tr>
-							<td><button type="button" id="softReset" class="btn btn-warning"><i class="fa fa-times"></i> {{Redémarrage}}</button></td>
-							<td>{{Redémarrage du contrôleur. Redémarre le contrôleur sans effacer les paramètres de sa configuration réseau.}}</td>
-						</tr>
-						<tr>
-							<td><button type="button" id="hardReset" class="btn btn-danger"><i class="fa fa-eraser"></i> {{Remise à zéro}}</button></td>
-							<td>{{Remise à zéro du contrôleur.}} <b>{{Remet à zéro un contrôleur et efface ses paramètres de configuration réseau.}}</b><br> {{Le contrôleur devient un contrôleur primaire, prêt pour ajouter de nouveaux modules à un nouveau réseau.}}</td>
-						</tr>
-					</table>
-				</div>
-				<div class="tab-pane" id="statistics_network">
+					<tr>
+						<td><button type="button" id="writeconfigfile" class="btn btn-info"><i class="fa fa-pencil"></i> {{Ecrire le fichier de configuration}}</button></td>
+						<td>{{Ecrit le fichier de configuration OpenZwave.}}</td>
+					</tr>
+					<tr>
+						<td><button type="button" id="regenerateNodesCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Regénérer la détection des noeuds inconnus}}</button></td>
+						<td>{{Supprime les informations des noeuds inconnus dans le fichier de config afin qu'il soit regénéré. (Attention : Relance le réseau)}}</td>
+					</tr>
+					<tr>
+						<td><button type="button" id="softReset" class="btn btn-warning"><i class="fa fa-times"></i> {{Redémarrage}}</button></td>
+						<td>{{Redémarrage du contrôleur. Redémarre le contrôleur sans effacer les paramètres de sa configuration réseau.}}</td>
+					</tr>
+					<tr>
+						<td><button type="button" id="hardReset" class="btn btn-danger"><i class="fa fa-eraser"></i> {{Remise à zéro}}</button></td>
+						<td>{{Remise à zéro du contrôleur.}} <b>{{Remet à zéro un contrôleur et efface ses paramètres de configuration réseau.}}</b><br> {{Le contrôleur devient un contrôleur primaire, prêt pour ajouter de nouveaux modules à un nouveau réseau.}}</td>
+					</tr>
+				</table>
+			</div>
+			<div class="tab-pane" id="statistics_network">
 
-					<table class="table table-condensed table-striped">
-						<tr>
-							<td><b>{{Nombre d'émissions lues :}}</b></td><td> <span class="stats_broadcastReadCnt"></span></td>
-						</tr><tr>
-						<td><b>{{Nombre d'émissions envoyées :}}</b></td><td> <span class="stats_broadcastWriteCnt"></span></td>
+				<table class="table table-condensed table-striped">
+					<tr>
+						<td><b>{{Nombre d'émissions lues :}}</b></td><td> <span class="stats_broadcastReadCnt"></span></td>
 					</tr><tr>
-					<td><b>{{Nombre de bits ACK reçus :}}</b></td><td> <span class="stats_ACKCnt"></span></td>
+					<td><b>{{Nombre d'émissions envoyées :}}</b></td><td> <span class="stats_broadcastWriteCnt"></span></td>
 				</tr><tr>
-				<td><b>{{Nombre de messages non-sollicités alors qu'en attente d'ACK :}}</b></td><td> <span class="stats_ACKWaiting"></span></td>
+				<td><b>{{Nombre de bits ACK reçus :}}</b></td><td> <span class="stats_ACKCnt"></span></td>
 			</tr><tr>
-			<td><b>{{Nombre de bits CAN reçus :}}</b></td><td> <span class="stats_CANCnt"></span></td>
+			<td><b>{{Nombre de messages non-sollicités alors qu'en attente d'ACK :}}</b></td><td> <span class="stats_ACKWaiting"></span></td>
 		</tr><tr>
-		<td><b>{{Nombre de bits NAK reçus :}}</b></td><td> <span class="stats_NAKCnt"></span></td>
+		<td><b>{{Nombre de bits CAN reçus :}}</b></td><td> <span class="stats_CANCnt"></span></td>
 	</tr><tr>
-	<td><b>{{Nombre de bits jamais arrivés :}}</b></td><td> <span class="stats_OOFCnt"></span></td>
+	<td><b>{{Nombre de bits NAK reçus :}}</b></td><td> <span class="stats_NAKCnt"></span></td>
+</tr><tr>
+<td><b>{{Nombre de bits jamais arrivés :}}</b></td><td> <span class="stats_OOFCnt"></span></td>
 </tr><tr>
 <td><b>{{Nombre de bits SOF reçus :}}</b></td><td> <span class="stats_SOFCnt"></span></td>
 </tr><tr>

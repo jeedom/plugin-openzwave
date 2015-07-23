@@ -90,19 +90,9 @@ $('#bt_configureDevice').on('click', function () {
     $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=node.configure&id='+ $('.eqLogicAttr[data-l1key=logicalId]').value()+'&serverId='+ $('.eqLogicAttr[data-l1key=configuration][data-l2key=serverID]').value()).dialog('open');
 });
 
-$('#bt_zwaveConfig').on('click', function () {
-    $('#md_modal').dialog({title: "{{Configuration zwave}}"});
-    $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=config').dialog('open');
-});
-
 $('#bt_zwaveHealth').on('click', function () {
     $('#md_modal').dialog({title: "{{Santé zwave}}"});
     $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=health').dialog('open');
-});
-
-$('#bt_zwaveConsole').on('click', function () {
-    $('#md_modal').dialog({title: "{{Console zwave}}"});
-    $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=console').dialog('open');
 });
 
 if (is_numeric(getUrlVars('logical_id')) && is_numeric(getUrlVars('server_id'))) {
