@@ -1902,7 +1902,7 @@ def set_config4(device_id,instance_id,index_id2,index_id,value,size) :
         if device_id in network.nodes :
             myValue = get_value_by_index(device_id, COMMAND_CLASS_CONFIGURATION, 1, index_id)
             network.nodes[device_id].set_config_param(index_id, value, size)
-            if myValue.type != 'List':
+            if myValue != None and myValue.type != 'List':
                 mark_pending_change(myValue, value) 
             return format_json_result()
         else:
@@ -2321,7 +2321,7 @@ def remove_failed_node(device_id) :
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
     
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].HealNode()',methods = ['GET'])
-def heal_node(device_id, performReturnRoutesInitialization=True) :
+def heal_node(device_id, performReturnRoutesInitialization=False) :
     """
     Heal a single node in the network
     """
@@ -2665,7 +2665,7 @@ def replication_send(bridge_controller_id) :
         return format_json_result(False, str(e), 'error')
     
 @app.route('/ZWaveAPI/Run/controller.HealNetwork()',methods = ['GET'])
-def heal_network(performReturnRoutesInitialization=True) :
+def heal_network(performReturnRoutesInitialization=False) :
     if can_execute_network_command(0) == False:
         return build_network_busy_message()      
     add_log_entry("Heal network by requesting node's rediscover their neighbors") 
