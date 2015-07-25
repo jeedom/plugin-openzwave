@@ -1140,8 +1140,8 @@ draw_nodes: function ()
 	            			if(!isNaN(index)){								
 	            				var id=instance+":"+commandclass+":"+index;								
 	            				var genre = nodes[z].instances[instance].commandClasses[commandclass].data[index].genre;
+	            				var pending_state = nodes[z].instances[instance].commandClasses[commandclass].data[index].pendingState;
 	            				if(genre =="Config"){
-	            					var pending_state = nodes[z].instances[instance].commandClasses[commandclass].data[index].pendingState;
 	            					switch(pending_state){
 	            						case 1:
 	            						parameters += "<tr class='greenrow' pid='"+id+"'>"+template_parameter+"</tr>"; 
@@ -1155,8 +1155,20 @@ draw_nodes: function ()
 	            						default:
 	            						parameters += "<tr pid='"+id+"'>"+template_parameter+"</tr>";
 	            					}
-	            				}else if(genre == "System"){									
-	            					system_variables += "<tr sid='"+id+"'>"+template_system+"</tr>";
+	            				}else if(genre == "System"){	
+	            					switch(pending_state){
+	            						case 1:
+	            							system_variables += "<tr class='greenrow' sid='"+id+"'>"+template_system+"</tr>"; 
+	            						break;
+	            						case 2:
+	            							system_variables += "<tr class='redrow' sid='"+id+"'>"+template_system+"</tr>"; 
+	            						break;
+	            						case 3:
+	            							system_variables += "<tr class='yellowrow' sid='"+id+"'>"+template_system+"</tr>"; 
+	            						break;
+	            						default:
+	            							system_variables += "<tr sid='"+id+"'>"+template_system+"</tr>";
+	            					}	
 	            				}else{
 	            					variables += "<tr vid='"+id+"'>"+template_variable+"</tr>";
 	            				}								

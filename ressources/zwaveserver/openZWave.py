@@ -843,10 +843,7 @@ def prepare_value_notification(node, value):
             if value.type =='Short':
                 data = normalize_short_value(value.data)
             value.pendingConfiguration.data = data
-                
-    if value.genre == 'System' or value.genre == 'Config':
-        return
-    
+            
     if not node.is_ready :
         #check if have the attribute
         if hasattr(value, 'lastData') and value.lastData == value.data :
@@ -854,6 +851,10 @@ def prepare_value_notification(node, value):
             return
     #update for next run    
     value.lastData = value.data    
+    if value.genre == 'System' or value.genre == 'Config':
+        value.last_update = time.time()
+        return
+    
     debug_print('send value notification %s %s %s' % (node.node_id, value.label, value.data_as_string))  
     thread = None
     try:
@@ -1849,12 +1850,8 @@ def set_config2(device_id,index_id,value,size) :
                     if myValue.type == 'Button':
                         if value.lower() == 'true':
                             network._manager.pressButton(myValue.value_id)
-                            debug_print("Button pressed") 
-                            #mark_pending_change(myValue, 1) 
                         else:
-                            network._manager.releaseButton(myValue.value_id)  
-                            debug_print("Button released")    
-                            #mark_pending_change(myValue, 0)                                                   
+                            network._manager.releaseButton(myValue.value_id)                                 
                     elif  myValue.type == 'List':
                         network._manager.setValue(value_id, value)                    
                         mark_pending_change(myValue, value) 
@@ -2103,6 +2100,13 @@ def set_value7(device_id,instance_id, cc_id, index, value) :
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network.nodes[device_id].values[val].data=value
+                if network.nodes[device_id].values[val].genre=='System':
+                    if network.nodes[device_id].values[val].type=='Bool':
+                        if value == 0:
+                            value =False
+                        else:
+                            value = True                        
+                    mark_pending_change(network.nodes[device_id].values[val], value) 
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
                     waitrefresh=threading.Thread(target=refresh_background, args=(device_id, val, value))
@@ -2119,6 +2123,8 @@ def set_value8(device_id,instance_id, cc_id, index, value) :
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network.nodes[device_id].values[val].data=value
+                if network.nodes[device_id].values[val].genre=='System':
+                    mark_pending_change(network.nodes[device_id].values[val], value)  
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
                     waitrefresh=threading.Thread(target=refresh_background, args=(device_id, val, value))
@@ -2135,6 +2141,8 @@ def set_value9(device_id,instance_id, cc_id, index, value) :
         for val in network.nodes[device_id].get_values(class_id='All', genre='All', type='All', readonly='All', writeonly='All') :
             if hex(network.nodes[device_id].values[val].command_class)==cc_id and network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network.nodes[device_id].values[val].data=value
+                if network.nodes[device_id].values[val].genre=='System':
+                    mark_pending_change(network.nodes[device_id].values[val], value) 
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
                     waitrefresh=threading.Thread(target=refresh_background, args=(device_id, [val]))
