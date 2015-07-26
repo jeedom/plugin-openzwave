@@ -98,7 +98,6 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-sudo mkdir /opt/python-openzwave/python-eggs
 sudo cp /opt/zwcfg* /opt/python-openzwave/.
 sudo chown -R www-data:www-data /opt/python-openzwave
 sudo chmod -R 777 /opt/python-openzwave
