@@ -5,9 +5,6 @@
 # The script is based on packages listed in debpkg_minimal.txt.
 
 #set -x  # make sure each command is printed in the terminal
-BASEDIR=$(dirname $0)
-ARCH=`uname -m`
-
 
 function apt_install {
   sudo apt-get -y install $1
@@ -90,8 +87,7 @@ if [ -d /opt/python-openzwave ]; then
 	cd /opt
 	sudo rm -fr /opt/python-openzwave
 fi
-sudo pip uninstall -y Cython
-
+# Installation de Python-OpenZwave
 echo "Installation de Python-OpenZwave"
 cd /opt
 sudo git clone https://github.com/OpenZWave/python-openzwave.git
@@ -101,14 +97,23 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 cd python-openzwave
-sudo git reset --hard e936bc81fcf56e620c37335181096f43d8192cff #Version du 19/06/15
-
+sudo git reset --hard e936bc81fcf56e620c37335181096f43d8192cff
+#Version du 19/06/15
+sudo pip uninstall -y Cython
 cd /opt/python-openzwave
 sudo make cython-deps
-sudo mkdir /opt/python-openzwave/openzwave
-cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.so /opt/python-openzwave/openzwave/libopenzwave.so
-cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.a /opt/python-openzwave/openzwave/libopenzwave.a
-
+sudo git clone https://github.com/OpenZWave/open-zwave.git openzwave
+if [ $? -ne 0 ]; then
+  sudo service jeedom start
+  echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
+  exit 1
+fi
+cd openzwave
+sudo git reset --hard be04f6c19ce6f38a01476d6fad95b8a41ca52c82
+#Version du 19/06/15
+cd /opt/python-openzwave
+sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
+cd openzwave && sudo make
 cd /opt/python-openzwave
 sudo make install-api
 sudo mkdir /opt/python-openzwave/python-eggs
