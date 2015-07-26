@@ -1,6 +1,4 @@
 .DS_Store
-nbproject/
 test.php
 core/config/common.config.php
-plugins
 sftp-config.json
