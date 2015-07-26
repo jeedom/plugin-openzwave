@@ -28,8 +28,6 @@ function pip_install {
 }
 
 sudo service jeedom stop
-sudo apt-get update --fix-missing
-
 
 if [ $(ps ax | grep z-way-server | grep -v grep | wc -l ) -ne 0 ]; then
   echo "Désactivation du z-way-server"
@@ -49,20 +47,7 @@ fi
 # for OpenZwave
 
 # Dpkg
-echo "Installation des dependances"
-apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml
 
-# Python
-echo "Installation des dependances Python"
-
-pip_install sphinxcontrib-blockdiag
-pip_install sphinxcontrib-actdiag
-pip_install sphinxcontrib-nwdiag
-pip_install sphinxcontrib-seqdiag
-pip_install urwid
-pip_install louie
-pip_install flask
-pip_install flask-restful
 
 sudo mkdir /opt
 if [ -d /opt/python-openzwave ]; then
@@ -76,6 +61,22 @@ if [ -d /opt/python-openzwave ]; then
 	sudo rm -fr /usr/local/lib/python2.7/dist-packages/openzwave* 
 	cd /opt
 	sudo rm -fr /opt/python-openzwave
+else
+  sudo apt-get update --fix-missing
+  echo "Installation des dependances"
+  apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml
+
+  # Python
+  echo "Installation des dependances Python"
+
+  pip_install sphinxcontrib-blockdiag
+  pip_install sphinxcontrib-actdiag
+  pip_install sphinxcontrib-nwdiag
+  pip_install sphinxcontrib-seqdiag
+  pip_install urwid
+  pip_install louie
+  pip_install flask
+  pip_install flask-restful
 fi
 sudo pip uninstall -y Cython
 
