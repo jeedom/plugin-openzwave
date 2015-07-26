@@ -38,7 +38,10 @@ except Exception as e:
     print "Error %s:" % str(e)
     sys.exit(1)
 
-os.environ['PYTHON_EGG_CACHE'] = '/opt/python-openzwave/python-eggs'
+if not os.path.exists('/tmp/python-openzwave-eggs'):
+    os.makedirs('/tmp/python-openzwave-eggs')
+    
+os.environ['PYTHON_EGG_CACHE'] = '/tmp/python-openzwave-eggs'
 
 logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger('openzwave')

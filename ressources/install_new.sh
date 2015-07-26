@@ -50,9 +50,8 @@ if [ -d /opt/python-openzwave ]; then
 	cd /opt/python-openzwave
 	echo "Désinstallation de la version précédente";
 	sudo make uninstall
-	sudo rm -fr /usr/local/lib/python2.7/dist-packages/libopenzwave*
-	sudo rm -fr /usr/local/lib/python2.7/dist-packages/python_openzwave_*
-	sudo rm -fr /usr/local/lib/python2.7/dist-packages/openzwave* 
+	sudo rm -rf /usr/local/lib/python2.7/dist-packages/libopenzwave*
+	sudo rm -rf /usr/local/lib/python2.7/dist-packages/openzwave* 
 	cd /opt
 	sudo rm -fr /opt/python-openzwave
 else
