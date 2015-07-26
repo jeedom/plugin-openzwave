@@ -503,7 +503,7 @@ request_node_neighbours_update: function(node_id){
 				app_nodes.sendOk();
 				app_nodes.load_data(false); 
 			}else{
-				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
 			}
 		}
 	});
@@ -517,11 +517,11 @@ healNode: function(node_id){
 			handleAjaxError(request, status, error,$('#div_nodeConfigureOpenzwaveAlert'));
 		},
 		success: function(data) {
-			if(data['result']== true){
+			if(data.result== true){
 				app_nodes.sendOk();
 				app_nodes.load_data(false); 
 			}else{
-				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
 			}
 		}
 	});
@@ -581,7 +581,7 @@ refresh_node_info: function(node_id){
 				app_nodes.sendOk();
 				app_nodes.load_data(false); 
 			}else{
-				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
 			}
 		}
 	});
@@ -613,7 +613,7 @@ remove_failed_node: function(node_id){
 				app_nodes.sendOk();
 				app_nodes.load_data(false); 
 			}else{
-				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
 			}
 		}
 	});
@@ -631,7 +631,7 @@ remove_ghost_node: function(node_id){
 				app_nodes.sendOk();
 				app_nodes.load_data(false); 
 			}else{
-				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
 			}
 		}
 	});
@@ -649,7 +649,7 @@ replace_failed_node: function(node_id){
 				app_nodes.sendOk();
 				app_nodes.load_data(false); 
 			}else{
-				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+				$('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
 			}
 		}
 	});
@@ -1158,16 +1158,16 @@ draw_nodes: function ()
 	            				}else if(genre == "System"){	
 	            					switch(pending_state){
 	            						case 1:
-	            							system_variables += "<tr class='greenrow' sid='"+id+"'>"+template_system+"</tr>"; 
+	            						system_variables += "<tr class='greenrow' sid='"+id+"'>"+template_system+"</tr>"; 
 	            						break;
 	            						case 2:
-	            							system_variables += "<tr class='redrow' sid='"+id+"'>"+template_system+"</tr>"; 
+	            						system_variables += "<tr class='redrow' sid='"+id+"'>"+template_system+"</tr>"; 
 	            						break;
 	            						case 3:
-	            							system_variables += "<tr class='yellowrow' sid='"+id+"'>"+template_system+"</tr>"; 
+	            						system_variables += "<tr class='yellowrow' sid='"+id+"'>"+template_system+"</tr>"; 
 	            						break;
 	            						default:
-	            							system_variables += "<tr sid='"+id+"'>"+template_system+"</tr>";
+	            						system_variables += "<tr sid='"+id+"'>"+template_system+"</tr>";
 	            					}	
 	            				}else{
 	            					variables += "<tr vid='"+id+"'>"+template_variable+"</tr>";

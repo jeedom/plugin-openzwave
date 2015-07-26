@@ -206,7 +206,7 @@ var app_network = {
       if(data['result']== true){
         app_network.sendOk();
       }else{
-        $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+        $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
       }
     }
   });
@@ -223,7 +223,7 @@ var app_network = {
       if(data['result']== true){
         app_network.sendOk();
       }else{
-       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
      }
    }
  });
@@ -240,7 +240,7 @@ cancelCommand: function(){
       if(data['result']== true){
         app_network.sendOk();
       }else{
-       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
      }
    }
  });
@@ -257,7 +257,7 @@ testNetwork: function(){
       if(data['result']== true){
         app_network.sendOk();
       }else{
-       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
      }
    }
  });
@@ -274,7 +274,7 @@ healNetwork: function(){
       if(data['result']== true){
         app_network.sendOk();
       }else{
-       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
      }
    }
  });
@@ -332,7 +332,7 @@ requestNetworkUpdate: function(){
       if(data['result']== true){
         app_network.sendOk();
       }else{
-       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+       $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
      }
    }
  });
@@ -388,7 +388,7 @@ softReset: function(){
      if(data['result']== true){
       app_network.sendOk();
     }else{
-      $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+      $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
     }
   }
 });
@@ -405,7 +405,7 @@ hardReset: function(){
      if(data['result']== true){
       app_network.sendOk();
     }else{
-     $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec !}}', level: 'danger'});
+     $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
    }
  }
 });
@@ -424,7 +424,7 @@ request_node_neighbours_update: function(node_id){
      app_network.load_data(); 
      app_network.displayRoutingTable();
    }else{
-     $('#div_networkOpenzwaveAlert').showAlert({message: 'Echec !', level: 'danger'});
+     $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
    }
  }
 });
