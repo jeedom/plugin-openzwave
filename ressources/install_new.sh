@@ -43,12 +43,6 @@ if [ $(ps ax | grep z-way-server | grep -v grep | wc -l ) -ne 0 ]; then
   sudo rm -rf /opt/z-way-server*
 fi
 
-# Minimal installation for a Python ecosystem
-# for OpenZwave
-
-# Dpkg
-
-
 sudo mkdir /opt
 if [ -d /opt/python-openzwave ]; then
 	echo "Sauvegarde du fichier de conf";
@@ -64,11 +58,9 @@ if [ -d /opt/python-openzwave ]; then
 else
   sudo apt-get update --fix-missing
   echo "Installation des dependances"
-  apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml
-
+  apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml cython
   # Python
   echo "Installation des dependances Python"
-
   pip_install sphinxcontrib-blockdiag
   pip_install sphinxcontrib-actdiag
   pip_install sphinxcontrib-nwdiag
@@ -78,7 +70,6 @@ else
   pip_install flask
   pip_install flask-restful
 fi
-sudo pip uninstall -y Cython
 
 echo "Installation de Python-OpenZwave"
 cd /opt
@@ -90,17 +81,23 @@ if [ $? -ne 0 ]; then
 fi
 cd python-openzwave
 sudo git reset --hard e936bc81fcf56e620c37335181096f43d8192cff #Version du 19/06/15
-
-cd /opt/python-openzwave
-sudo make cython-deps
 sudo mkdir /opt/python-openzwave/openzwave
 cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.so /opt/python-openzwave/openzwave/libopenzwave.so
 cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.a /opt/python-openzwave/openzwave/libopenzwave.a
 cp -R ${BASEDIR}/openzwave/cpp /opt/python-openzwave/openzwave/
 cd /opt/python-openzwave
-sudo make cython-deps
 python setup-lib.py install
+if [ $? -ne 0 ]; then
+  sudo service jeedom start
+  echo "Unable to install setup-lib.py"
+  exit 1
+fi
 python setup-api.py install
+if [ $? -ne 0 ]; then
+  sudo service jeedom start
+  echo "Unable to install setup-api.py"
+  exit 1
+fi
 
 sudo mkdir /opt/python-openzwave/python-eggs
 sudo cp /opt/zwcfg* /opt/python-openzwave/.
