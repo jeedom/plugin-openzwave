@@ -1095,7 +1095,11 @@ class openzwaveCmd extends cmd {
 							$value = str_replace('#color#', str_replace('#', '', $_options['color']), $value);
 							return $this->setRGBColor($value);
 						}
-						$value = str_replace('#color#', str_replace('#', '', $_options['color']), $value);
+						$_options['color'] = str_replace('#', '%23', $_options['color']);
+						if (strlen($_options['color']) == 7) {
+							$_options['color'] .= '00';
+						}
+						$value = str_replace('#color#', $_options['color'], $value);
 				}
 				break;
 		}
