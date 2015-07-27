@@ -267,7 +267,7 @@ class openzwave extends eqLogic {
 					}
 					foreach ($datas as $result) {
 						if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && ($eqLogic->getConfiguration('product_id') == '4096' || $eqLogic->getConfiguration('product_id') == '16384') && $result['CommandClass'] == '0x26') {
-							foreach ($cmd = $eqLogic->getCmd('info', '0.0x26', null, true) as $cmd) {
+							foreach ($eqLogic->getCmd('info', '0.0x26', null, true) as $cmd) {
 								if ($cmd->getConfiguration('value') == '#color#') {
 									$cmd->event($cmd->getRGBColor());
 									break;
