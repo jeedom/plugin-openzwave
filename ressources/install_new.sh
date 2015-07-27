@@ -49,11 +49,24 @@ if [ -d /opt/python-openzwave ]; then
 	sudo cp /opt/python-openzwave/zwcfg* /opt/.
 	cd /opt/python-openzwave
 	echo "Désinstallation de la version précédente";
-	sudo make uninstall
-	sudo rm -rf /usr/local/lib/python2.7/dist-packages/libopenzwave*
-	sudo rm -rf /usr/local/lib/python2.7/dist-packages/openzwave* 
-	cd /opt
-	sudo rm -fr /opt/python-openzwave
+  python_version_major = $(word 1,${python_version_full})
+  python_version_minor = $(word 2,${python_version_full})
+  python_version_patch = $(word 3,${python_version_full})
+  -yes | sudo pip uninstall python-openzwave-lib
+  -yes | sudo pip uninstall python-openzwave-api
+  -yes | sudo pip uninstall libopenzwave
+  -yes | sudo pip uninstall openzwave
+  -yes | sudo pip uninstall pyozwman
+  sudo python setup-lib.py develop --uninstall
+  sudo python setup-api.py develop --uninstall
+  sudo rm -Rf /usr/local/lib/python${python_version_major}.${python_version_minor}/dist-packages/python-openzwave*
+  sudo rm -Rf /usr/local/lib/python${python_version_major}.${python_version_minor}/dist-packages/python_openzwave*
+  sudo rm -Rf /usr/local/lib/python${python_version_major}.${python_version_minor}/dist-packages/libopenzwave*
+  sudo rm -Rf /usr/local/lib/python${python_version_major}.${python_version_minor}/dist-packages/openzwave*
+  sudo rm -Rf /usr/local/share/python-openzwave
+  sudo rm -Rf /usr/local/share/openzwave
+  cd /opt
+  sudo rm -fr /opt/python-openzwave
 else
   sudo apt-get update --fix-missing
   echo "Installation des dependances"
