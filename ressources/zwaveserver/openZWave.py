@@ -75,7 +75,7 @@ if path_libopenzwave not in sys.path:
 
 path_openzwave=os.path.dirname(os.path.abspath(__file__))+"/dist-packages/"+platform.machine()+"/openzwave.egg"
 if path_openzwave not in sys.path:
-     print("Add to path "+path_openzwave)
+    print("Add to path "+path_openzwave)
     sys.path.append(path_openzwave)
 
 import openzwave
