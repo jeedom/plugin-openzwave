@@ -2231,6 +2231,18 @@ def set_color(device_id,  red_level, green_level, blue_level, white_level) :
     debug_print("set_color nodeId:%s red:%s green:%s blue:%s white:%s" % (device_id, red_level,  green_level, blue_level, white_level,))
     result = False
     if device_id in network.nodes :
+        color_val = None
+        for val in network.nodes[device_id].get_values(class_id='All', genre='User', type='String', readonly=False, writeonly=False) :
+            my_value = network.nodes[device_id].values[val]
+            if my_value.label != 'Color':
+                continue
+            else:
+                color_val=val
+                target_color='#'+hex(red_level)[2:].ljust(2,'0')+hex(green_level)[2:].ljust(2,'0')+hex(blue_level)[2:].ljust(2,'0')+'0000'
+                my_value.data = target_color
+            if color_val != None :
+                result = True
+                return format_json_result(result) 
         intensity_Value = None
         red_Value = None
         green_Value = None
