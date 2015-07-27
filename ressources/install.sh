@@ -5,6 +5,9 @@
 # The script is based on packages listed in debpkg_minimal.txt.
 
 #set -x  # make sure each command is printed in the terminal
+BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+ARCH=`uname -m`
+
 
 function apt_install {
   sudo apt-get -y install $1
@@ -25,8 +28,6 @@ function pip_install {
 }
 
 sudo service jeedom stop
-sudo apt-get update --fix-missing
-
 
 if [ $(ps ax | grep z-way-server | grep -v grep | wc -l ) -ne 0 ]; then
   echo "Désactivation du z-way-server"
@@ -42,51 +43,36 @@ if [ $(ps ax | grep z-way-server | grep -v grep | wc -l ) -ne 0 ]; then
   sudo rm -rf /opt/z-way-server*
 fi
 
-# Minimal installation for a Python ecosystem
-# for OpenZwave
+if [ ! -d /opt ]; then
+  sudo mkdir /opt
+fi
 
-# Dpkg
-echo "Installation des dependances"
-apt_install mercurial
-apt_install git
-apt_install python-pip
-apt_install python-dev
-apt_install python-setuptools
-apt_install python-louie
-apt_install python-sphinx
-apt_install make
-apt_install build-essential
-apt_install libudev-dev
-apt_install g++
-apt_install gcc
-apt_install python-lxml
-
-
-# Python
-echo "Installation des dependances Python"
-
-pip_install sphinxcontrib-blockdiag
-pip_install sphinxcontrib-actdiag
-pip_install sphinxcontrib-nwdiag
-pip_install sphinxcontrib-seqdiag
-pip_install urwid
-pip_install louie
-pip_install flask
-pip_install flask-restful
-
-sudo mkdir /opt
 if [ -d /opt/python-openzwave ]; then
 	echo "Sauvegarde du fichier de conf";
 	sudo cp /opt/python-openzwave/zwcfg* /opt/.
 	cd /opt/python-openzwave
 	echo "Désinstallation de la version précédente";
-	sudo make uninstall
+	sudo make uninstall > /dev/null 2>&1
 	sudo rm -rf /usr/local/lib/python2.7/dist-packages/libopenzwave*
 	sudo rm -rf /usr/local/lib/python2.7/dist-packages/openzwave* 
 	cd /opt
-	sudo rm -rf /opt/python-openzwave
+	sudo rm -fr /opt/python-openzwave
+else
+  sudo apt-get update --fix-missing
+  echo "Installation des dependances"
+  apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml cython
+  # Python
+  echo "Installation des dependances Python"
+  pip_install sphinxcontrib-blockdiag
+  pip_install sphinxcontrib-actdiag
+  pip_install sphinxcontrib-nwdiag
+  pip_install sphinxcontrib-seqdiag
+  pip_install urwid
+  pip_install louie
+  pip_install flask
+  pip_install flask-restful
 fi
-# Installation de Python-OpenZwave
+
 echo "Installation de Python-OpenZwave"
 cd /opt
 sudo git clone https://github.com/OpenZWave/python-openzwave.git
@@ -96,26 +82,25 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 cd python-openzwave
-sudo git reset --hard e936bc81fcf56e620c37335181096f43d8192cff
-#Version du 19/06/15
-sudo pip uninstall -y Cython
+sudo git reset --hard e936bc81fcf56e620c37335181096f43d8192cff #Version du 19/06/15
+sudo mkdir /opt/python-openzwave/openzwave
+cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.so /opt/python-openzwave/openzwave/libopenzwave.so
+cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.a /opt/python-openzwave/openzwave/libopenzwave.a
+cp -R ${BASEDIR}/openzwave/cpp /opt/python-openzwave/openzwave/
 cd /opt/python-openzwave
-sudo make cython-deps
-sudo git clone https://github.com/OpenZWave/open-zwave.git openzwave
+python setup-lib.py install
 if [ $? -ne 0 ]; then
   sudo service jeedom start
-  echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
+  echo "Unable to install setup-lib.py"
   exit 1
 fi
-cd openzwave
-sudo git reset --hard be04f6c19ce6f38a01476d6fad95b8a41ca52c82
-#Version du 19/06/15
-cd /opt/python-openzwave
-sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
-cd openzwave && sudo make
-cd /opt/python-openzwave
-sudo make install-api
-sudo mkdir /opt/python-openzwave/python-eggs
+python setup-api.py install
+if [ $? -ne 0 ]; then
+  sudo service jeedom start
+  echo "Unable to install setup-api.py"
+  exit 1
+fi
+
 sudo cp /opt/zwcfg* /opt/python-openzwave/.
 sudo chown -R www-data:www-data /opt/python-openzwave
 sudo chmod -R 777 /opt/python-openzwave
