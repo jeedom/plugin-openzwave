@@ -1000,25 +1000,6 @@ class openzwaveCmd extends cmd {
 		return '#' . $r . $g . $b;
 	}
 
-	public function setRGBColor($_color) {
-		if ($_color == '') {
-			throw new Exception('Couleur non définie');
-		}
-		$eqLogic = $this->getEqLogic();
-		$hex = str_replace("#", "", $_color);
-		if (strlen($hex) == 3) {
-			$r = hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
-			$g = hexdec(substr($hex, 1, 1) . substr($hex, 1, 1));
-			$b = hexdec(substr($hex, 2, 1) . substr($hex, 2, 1));
-		} else {
-			$r = hexdec(substr($hex, 0, 2));
-			$g = hexdec(substr($hex, 2, 2));
-			$b = hexdec(substr($hex, 4, 2));
-		}
-		openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . '].SetColor(' . $r . ',' . $g . ',' . $b . ',0)', $eqLogic->getConfiguration('serverID', 1));
-		return true;
-	}
-
 	public function getPilotWire() {
 		$eqLogic = $this->getEqLogic();
 		$request = '/ZWaveAPI/Run/devices[' . $this->getEqLogic()->getLogicalId() . ']';
@@ -1090,8 +1071,7 @@ class openzwaveCmd extends cmd {
 						$value = str_replace('#slider#', $_options['slider'], $value);
 						break;
 					case 'color':
-						$value = str_replace('#color#', $_options['color'], $value);
-						return $this->setRGBColor($value);
+						$value = str_replace('#color#', str_replace('#', '', $_options['color']), $value);
 				}
 				break;
 		}
