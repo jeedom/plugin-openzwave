@@ -43,7 +43,10 @@ if [ $(ps ax | grep z-way-server | grep -v grep | wc -l ) -ne 0 ]; then
   sudo rm -rf /opt/z-way-server*
 fi
 
-sudo mkdir /opt
+if [ ! -d /opt ]; then
+  sudo mkdir /opt
+fi
+
 if [ -d /opt/python-openzwave ]; then
 	echo "Sauvegarde du fichier de conf";
 	sudo cp /opt/python-openzwave/zwcfg* /opt/.
