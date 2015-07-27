@@ -5,6 +5,8 @@
 # The script is based on packages listed in debpkg_minimal.txt.
 
 #set -x  # make sure each command is printed in the terminal
+echo "Lancement da l'installation/mise à jour des dépendance openzwave"
+
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ARCH=`uname -m`
 
