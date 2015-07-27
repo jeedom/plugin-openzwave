@@ -11,8 +11,8 @@
                 "isVisible": 1,
                 "value": "Etat couleur",
                 "configuration": {
-                    "class": "0x26",
-                    "value": "#color#"
+                    "class": "0x33",
+                    "value": "data[0].Set(#color#)"
                 }
             },
             {
@@ -111,6 +111,32 @@
                     "icon": "<i class=\"icon jeedom-alerte\"><\/i>"
                 }
             },
+            {
+                "name": "Blanc Froid",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "configuration": {
+                    "class": "0x33",
+                    "value": "data[1].Set(Cool White)"
+                },
+                "display": {
+                    "icon": "<i class=\"icon nature-snowflake\"><\/i>"
+                }
+            },
+            {
+                "name": "Blanc Chaud",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "configuration": {
+                    "class": "0x33",
+                    "value": "data[1].Set(Warm White)"
+                },
+                "display": {
+                    "icon": "<i class=\"icon meteo-brouillard\"><\/i>"
+                }
+            },
 			{
                 "name": "On",
                 "type": "action",
@@ -172,8 +198,8 @@
                 "isVisible": 0,
 
                 "configuration": {
-                    "class": "0x26",
-                    "value": "#color#"
+                    "class": "0x33",
+                    "value": "data[0].val"
                 }
             }
         ],
