@@ -23,6 +23,7 @@ try:
     import logging
     import os.path
     import time
+    import platform
     import datetime
     import binascii
     import threading
@@ -63,31 +64,30 @@ try:
 except lite.Error, e:
     print "Error %s:" % e.args[0]
     sys.exit(1)
+
+
 print("Check Openzwave")
-try :
-    import openzwave
-    from openzwave.node import ZWaveNode
-    from openzwave.value import ZWaveValue
-    from openzwave.scene import ZWaveScene
-    from openzwave.controller import ZWaveController
-    from openzwave.network import ZWaveNetwork
-    from openzwave.option import ZWaveOption
-    from openzwave.group import ZWaveGroup
-    print("--> pass")
-except :
-    print("Openzwave is not installed. Get it from tmp directory.")
-    sys.path.insert(0, os.path.abspath('../build/tmp/usr/local/lib/python2.6/dist-packages'))
-    sys.path.insert(0, os.path.abspath('../build/tmp/usr/local/lib/python2.7/dist-packages'))
-    sys.path.insert(0, os.path.abspath('build/tmp/usr/local/lib/python2.6/dist-packages'))
-    sys.path.insert(0, os.path.abspath('build/tmp/usr/local/lib/python2.7/dist-packages'))
-    import openzwave
-    from openzwave.node import ZWaveNode
-    from openzwave.value import ZWaveValue
-    from openzwave.scene import ZWaveScene
-    from openzwave.controller import ZWaveController
-    from openzwave.network import ZWaveNetwork
-    from openzwave.option import ZWaveOption
-    from openzwave.group import ZWaveGroup
+
+path_libopenzwave=os.path.dirname(os.path.abspath(__file__))+"/dist-packages/"+platform.machine()+"/libopenzwave.egg"
+if path_libopenzwave not in sys.path:
+    print("Add to path "+path_libopenzwave)
+    sys.path.append(path_libopenzwave)
+
+path_openzwave=os.path.dirname(os.path.abspath(__file__))+"/dist-packages/"+platform.machine()+"/openzwave.egg"
+if path_openzwave not in sys.path:
+     print("Add to path "+path_openzwave)
+    sys.path.append(path_openzwave)
+
+import openzwave
+from openzwave.node import ZWaveNode
+from openzwave.value import ZWaveValue
+from openzwave.scene import ZWaveScene
+from openzwave.controller import ZWaveController
+from openzwave.network import ZWaveNetwork
+from openzwave.option import ZWaveOption
+from openzwave.group import ZWaveGroup
+print("--> pass")
+
     
 device="auto"
 log="None"
