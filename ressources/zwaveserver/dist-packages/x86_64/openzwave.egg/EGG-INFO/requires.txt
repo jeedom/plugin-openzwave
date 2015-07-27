@@ -1,0 +1,3 @@
+Louie >= 1.1
+libopenzwave == 0.3.0-beta3
+six
