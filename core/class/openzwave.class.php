@@ -1015,6 +1015,7 @@ class openzwaveCmd extends cmd {
 			$g = hexdec(substr($hex, 2, 2));
 			$b = hexdec(substr($hex, 4, 2));
 		}
+		log::add('openzwave', 'debug', '/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . '].SetColor(' . $r . ',' . $g . ',' . $b . ',0)');
 		openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . '].SetColor(' . $r . ',' . $g . ',' . $b . ',0)', $eqLogic->getConfiguration('serverID', 1));
 		return true;
 	}
@@ -1090,10 +1091,11 @@ class openzwaveCmd extends cmd {
 						$value = str_replace('#slider#', $_options['slider'], $value);
 						break;
 					case 'color':
-						$value = str_replace('#color#', str_replace('#', '', $_options['color']), $value);
 						if ($value == '#color#') {
+							$value = str_replace('#color#', str_replace('#', '', $_options['color']), $value);
 							return $this->setRGBColor($value);
 						}
+						$value = str_replace('#color#', str_replace('#', '', $_options['color']), $value);
 				}
 				break;
 		}
