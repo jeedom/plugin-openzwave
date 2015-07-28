@@ -2100,7 +2100,7 @@ def set_user_code2(device_id, slot_id, value1, value2, value3, value4, value5, v
 def set_value7(device_id,instance_id, cc_id, index, value) :
     debug_print("set_value7 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (device_id, instance_id, cc_id, index, value,))
     if device_id in network.nodes :
-        for val in network.nodes[device_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly=False, writeonly='All') :
+        for val in network.nodes[device_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All') :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network.nodes[device_id].values[val].data=value
                 if network.nodes[device_id].values[val].genre=='System':
@@ -2123,7 +2123,7 @@ def set_value7(device_id,instance_id, cc_id, index, value) :
 def set_value8(device_id,instance_id, cc_id, index, value) :
     debug_print("set_value8 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (device_id, instance_id, cc_id, index, value,))
     if device_id in network.nodes :
-        for val in network.nodes[device_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly=False, writeonly='All') :
+        for val in network.nodes[device_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All') :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network.nodes[device_id].values[val].data=value
                 if network.nodes[device_id].values[val].genre=='System':
@@ -2141,7 +2141,7 @@ def set_value8(device_id,instance_id, cc_id, index, value) :
 def set_value9(device_id,instance_id, cc_id, index, value) :
     debug_print("set_value9 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (device_id, instance_id, cc_id, index, value,))
     if device_id in network.nodes :
-        for val in network.nodes[device_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly=False, writeonly='All') :
+        for val in network.nodes[device_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All') :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network.nodes[device_id].values[val].data=value
                 if network.nodes[device_id].values[val].genre=='System':
@@ -2204,7 +2204,7 @@ def get_color(device_id) :
         blue_level = 0 
         white_level = 0
         
-        for val in network.nodes[device_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User', type='Byte', readonly=False, writeonly=False) :
+        for val in network.nodes[device_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User', type='Byte', readonly='All', writeonly=False) :
             my_value = network.nodes[device_id].values[val]
             if my_value.label != 'Level':
                 continue
@@ -2234,7 +2234,7 @@ def set_color(device_id,  red_level, green_level, blue_level, white_level) :
         green_Value = None
         blue_Value = None
         white_Value = None
-        for val in network.nodes[device_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User', type='Byte', readonly=False, writeonly=False) :
+        for val in network.nodes[device_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User', type='Byte', readonly='All', writeonly=False) :
             my_value = network.nodes[device_id].values[val]
             if my_value.label != 'Level':
                 continue
@@ -2269,7 +2269,7 @@ def press_button(device_id, instance_id, cc_id, index) :
     """
     debug_print("press_button nodeId:%s, instance:%s, cc:%s, index:%s" % (device_id,  instance_id, cc_id, index,))
     if device_id in network.nodes :
-        for val in network.nodes[device_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly=False, writeonly='All') :
+        for val in network.nodes[device_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All') :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network._manager.pressButton(network.nodes[device_id].values[val].value_id)
                 #special case for dimmer and store
@@ -2295,7 +2295,7 @@ def release_button(device_id,instance_id, cc_id, index) :
     Stop an activity in a device
     """
     if device_id in network.nodes :
-        for val in network.nodes[device_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly=False, writeonly='All') :
+        for val in network.nodes[device_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All') :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network._manager.releaseButton(network.nodes[device_id].values[val].value_id)
                 return format_json_result()
