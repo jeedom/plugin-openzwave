@@ -84,7 +84,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 cd python-openzwave
-sudo git reset --hard e936bc81fcf56e620c37335181096f43d8192cff #Version du 19/06/15
+sudo git reset --hard 6320ae88db5c6bcd3482d962269fa624055ab557 #Version du 19/07/15
 sudo mkdir /opt/python-openzwave/openzwave
 cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.so /opt/python-openzwave/openzwave/libopenzwave.so
 cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.a /opt/python-openzwave/openzwave/libopenzwave.a
