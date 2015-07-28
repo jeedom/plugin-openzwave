@@ -1483,6 +1483,10 @@ def refresh_background(device_id, value_id, target_value):
         time.sleep(3)
         delta = abs(network.nodes[device_id].values[value_id].data - target_value)
         refresh_count +=1
+
+def refresh_background_once(device_id, value_id):
+   time.sleep(3)
+   network.nodes[device_id].values[value_id].refresh()
     
 def get_sleeping_nodes_count():
     sleeping_nodes_count = 0
@@ -2149,6 +2153,9 @@ def set_value9(device_id,instance_id, cc_id, index, value) :
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
                     waitrefresh=threading.Thread(target=refresh_background, args=(device_id, [val]))
+                    waitrefresh.start()
+                if cc_id == hex(COMMAND_CLASS_COLOR):
+                    waitrefresh=threading.Thread(target=refresh_background_once, args=(device_id, val))
                     waitrefresh.start()
                 return format_json_result() 
         return format_json_result(False, 'value not found')
