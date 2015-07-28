@@ -267,7 +267,7 @@ class openzwave extends eqLogic {
 					}
 					foreach ($datas as $result) {
 						if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && ($eqLogic->getConfiguration('product_id') == '4096' || $eqLogic->getConfiguration('product_id') == '16384') && $result['CommandClass'] == '0x26') {
-							foreach ($cmd = $eqLogic->getCmd('info', '0.0x26', null, true) as $cmd) {
+							foreach ($eqLogic->getCmd('info', '0.0x26', null, true) as $cmd) {
 								if ($cmd->getConfiguration('value') == '#color#') {
 									$cmd->event($cmd->getRGBColor());
 									break;
@@ -1091,16 +1091,16 @@ class openzwaveCmd extends cmd {
 						$value = str_replace('#slider#', $_options['slider'], $value);
 						break;
 					case 'color':
-						case 'color':
+					case 'color':
 						if ($value == '#color#') {
 							$value = str_replace('#color#', str_replace('#', '', $_options['color']), $value);
 							return $this->setRGBColor($value);
 						}
-                        if (strlen($_options['color']) == 7) {
+						if (strlen($_options['color']) == 7) {
 							$_options['color'] .= '0000';
 						}
 						$_options['color'] = str_replace('#', '%23', $_options['color']);
-						
+
 						$value = str_replace('#color#', $_options['color'], $value);
 				}
 				break;
