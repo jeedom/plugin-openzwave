@@ -85,7 +85,7 @@ fi
 cd python-openzwave
 sudo git reset --hard 6320ae88db5c6bcd3482d962269fa624055ab557 #Version du 19/07/15
 
-if [ $( uname -a | grep cubox | wc -l ) -eq 0 ]; then
+if [ -f /usr/bin/raspi-config ]; then
   sudo git clone https://github.com/OpenZWave/open-zwave.git openzwave
   if [ $? -ne 0 ]; then
     echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
