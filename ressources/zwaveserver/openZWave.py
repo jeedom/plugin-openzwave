@@ -1838,7 +1838,7 @@ def set_config(device_id,index_id,value,size) :
             return format_json_result()
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')         
     return jsonify(config)
 
@@ -1872,7 +1872,7 @@ def set_config2(device_id,index_id,value,size) :
             return format_json_result( False, 'configuration parameter not found') 
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses[0x70].Set(<int:index_id>,<float:value>,<int:size>)',methods = ['GET'])
@@ -1890,7 +1890,7 @@ def set_config3(device_id,index_id,value,size) :
             return format_json_result()
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<int:value>,<int:size>)',methods = ['GET'])
@@ -1910,7 +1910,7 @@ def set_config4(device_id,instance_id,index_id2,index_id,value,size) :
             return format_json_result()
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<string:value>,<int:size>)',methods = ['GET'])
@@ -1928,7 +1928,7 @@ def set_config5(device_id,instance_id,index_id2,index_id,value,size) :
             return format_json_result()
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<float:value>,<int:size>)',methods = ['GET'])
@@ -1946,7 +1946,7 @@ def set_config6(device_id,instance_id,index_id2,index_id,value,size) :
             return format_json_result()
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
             
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].commandClasses',methods = ['GET'])
@@ -2348,7 +2348,7 @@ def heal_node(device_id, performReturnRoutesInitialization=False) :
             return format_json_result()
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error') 
     
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].AssignReturnRoute()',methods = ['GET'])
@@ -2456,7 +2456,7 @@ def refresh_all_values(device_id):
                 counter+=1
             message = 'Refreshed values count: %s' % (counter,)            
             return format_json_result(True, message)
-        except Exception as e:
+        except Exception,e:
             return format_json_result(False, str(e), 'error')
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2476,7 +2476,7 @@ def test_node(device_id=0, count=3):
             return format_json_result()
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')       
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
     
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].GetNodeStatistics()',methods = ['GET'])
@@ -2493,7 +2493,7 @@ def get_node_statistics(device_id):
                     'queryStageDescription' : queryStageDescription})
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
 
 """
@@ -2524,7 +2524,7 @@ def remove_device_openzwave_config(device_id) :
         network.stop()
         add_log_entry('ZWave network is now stopped')
         time.sleep(5)
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')    
     fileName = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
     try:
@@ -2538,8 +2538,8 @@ def remove_device_openzwave_config(device_id) :
         add_log_entry('******** The ZWave network is being started ********')
         network.start()
         return format_json_result()
-    except Exception as e:
-        return format_json_result(False, '%s : %s' (str(e),fileName,), 'error') 
+    except Exception,e:
+        return format_json_result(False, str(e), 'error') 
     
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].GhostKiller()',methods = ['GET'])    
 def ghost_killer(device_id):
@@ -2556,7 +2556,7 @@ def ghost_killer(device_id):
         network.stop()
         add_log_entry('ZWave network is now stopped')
         time.sleep(5)
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error') 
     try: 
         found = False       
@@ -2644,7 +2644,7 @@ def cancel_command():
         if result :
             networkInformations.controllerIsBusy = False        
         return format_json_result(result)
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
      
 @app.route('/ZWaveAPI/Run/controller.RequestNetworkUpdate(<int:bridge_controller_id>)',methods = ['GET'])
@@ -2675,7 +2675,7 @@ def replication_send(bridge_controller_id) :
             return format_json_result(network.manager.replicationSend(network.home_id, bridge_controller_id))
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (bridge_controller_id,), 'warning')
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
     
 @app.route('/ZWaveAPI/Run/controller.HealNetwork()',methods = ['GET'])
@@ -2704,7 +2704,7 @@ def soft_reset() :
     add_log_entry("Soft-reset the Z-Wave controller chip")
     try:
         return format_json_result(network.controller.soft_reset())        
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/controller.TestNetwork()',methods = ['GET'])
@@ -2719,7 +2719,7 @@ def test_network(count=3):
         add_log_entry("Sends a series of messages to a network node for testing network reliability")
         network.manager.testNetwork(network.home_id, count)
         return format_json_result()
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/controller.CreateNewPrimary()',methods = ['GET'])
@@ -2733,7 +2733,7 @@ def create_new_primary() :
     add_log_entry("Add a new controller to the Z-Wave network")
     try:
         return format_json_result(network.manager.createNewPrimary(network.home_id))
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
    
 @app.route('/ZWaveAPI/Run/controller.TransferPrimaryRole()',methods = ['GET'])
@@ -2747,7 +2747,7 @@ def transfer_primary_role() :
     add_log_entry("Transfer Primary Role")
     try:
         return format_json_result(network.manager.transferPrimaryRole(network.home_id))
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/controller.ReceiveConfiguration()',methods = ['GET'])
@@ -2760,7 +2760,7 @@ def receive_configuration() :
     add_log_entry("Receive Configuration")
     try:
         return format_json_result(network.manager.receiveConfiguration(network.home_id))
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
 
 @app.route('/ZWaveAPI/Run/controller.HardReset()',methods = ['GET'])
@@ -2773,7 +2773,7 @@ def hard_reset() :
     add_log_entry("Resets a controller and erases its network configuration settings")
     try:
         return format_json_result(network.controller.hard_reset())
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
             
 """
@@ -2786,7 +2786,7 @@ def start_network() :
     try:
         network.start()    
         return format_json_result()   
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
     
 @app.route('/ZWaveAPI/Run/network.Stop()',methods = ['GET'])
@@ -2890,7 +2890,7 @@ def get_controller_status() :
             if network.controller :
                 controllerData = serialize_controller_to_json() 
         return jsonify ({'result' : controllerData})
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
             
 @app.route('/ZWaveAPI/Run/network.GetChanges()',methods = ['GET'])
@@ -2943,14 +2943,14 @@ def get_openzwave_config() :
     #ensure load latest file version
     try:
         write_config()
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')  
     fileName = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
     try:
         with open(fileName, "r") as ins:
             f = ins.read()
         return jsonify ({'result' : f})
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
   
 @app.route('/ZWaveAPI/Run/network.SaveZWConfig()',methods = ['POST'])
@@ -2968,8 +2968,8 @@ def save_openzwave_config() :
         add_log_entry('******** The ZWave network is being started ********')
         network.start()
         return format_json_result() 
-    except Exception as e:
-        return format_json_result(False, '%s : %s' (str(e),fileName,), 'error') 
+    except Exception,e:
+        return format_json_result(False, str(e), 'error')
    
 @app.route('/ZWaveAPI/Run/network.WriteZWConfig()',methods = ['GET'])
 def write_openzwave_config() :
@@ -2979,8 +2979,8 @@ def write_openzwave_config() :
     try:
         write_config()
         return format_json_result()
-    except Exception as e:
-        return format_json_result(False, str(e), 'error') 
+    except Exception,e:
+        return format_json_result(False, str(e), 'error')
    
 @app.route('/ZWaveAPI/Run/network.RemoveUnknownsDevicesZWConfig()',methods = ['GET'])
 def remove_unknowns_devices_openzwave_config() :
@@ -2992,7 +2992,7 @@ def remove_unknowns_devices_openzwave_config() :
         network.stop()
         add_log_entry('ZWave network is now stopped')
         time.sleep(5)
-    except Exception as e:
+    except Exception,e:
         return format_json_result(False, str(e), 'error')
     
     fileName = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
@@ -3009,8 +3009,8 @@ def remove_unknowns_devices_openzwave_config() :
         add_log_entry('******** The ZWave network is being started ********')
         network.start()
         return format_json_result()
-    except Exception as e:
-        return format_json_result(False, '%s : %s' (str(e),fileName,), 'error')
+    except Exception,e:
+        return format_json_result(False, str(e), 'error')
  
 @app.route('/ZWaveAPI/Run/network.SetPollInterval(<int:seconds>,<int:intervalBetweenPolls>)',methods = ['GET'])
 def set_poll_interval(seconds, intervalBetweenPolls):
@@ -3027,8 +3027,8 @@ def set_poll_interval(seconds, intervalBetweenPolls):
             return jsonify ({'result' : False, 'reason' : 'interval is too small'})  
         network.set_poll_interval(1000*seconds, bool(intervalBetweenPolls))                
         return format_json_result()
-    except Exception as e:
-        return format_json_result(False, str(e), 'error') 
+    except Exception,e:
+        return format_json_result(False, str(e), 'error')
     
 @app.route('/ZWaveAPI/Run/network.RefreshAllBatteryLevel()',methods = ['GET'])       
 def refresh_all_battery_level():
