@@ -717,13 +717,24 @@ class openzwave extends eqLogic {
 	public function getConfFilePath($_all = false) {
 		if ($_all) {
 			$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
-			return ls(dirname(__FILE__) . '/../config/devices', $id . '_*.json', false, array('files', 'quiet'));
+			$return = ls(dirname(__FILE__) . '/../config/devices', $id . '_*.json', false, array('files', 'quiet'));
+			foreach (ls(dirname(__FILE__) . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
+				foreach (ls(dirname(__FILE__) . '/../config/devices/' . $folder, $id . '_*.json', false, array('files', 'quiet')) as $file) {
+					$return[] = $folder . $file;
+				}
+			}
+			return $return;
 		}
 		if (is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfiguration('fileconf'))) {
 			return $this->getConfiguration('fileconf');
 		}
 		$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
 		$files = ls(dirname(__FILE__) . '/../config/devices', $id . '_*.json', false, array('files', 'quiet'));
+		foreach (ls(dirname(__FILE__) . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
+			foreach (ls(dirname(__FILE__) . '/../config/devices/' . $folder, $id . '_*.json', false, array('files', 'quiet')) as $file) {
+				$files[] = $folder . $file;
+			}
+		}
 		if (count($files) > 0) {
 			return $files[0];
 		}
@@ -733,6 +744,11 @@ class openzwave extends eqLogic {
 	public function getImgFilePath() {
 		$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
 		$files = ls(dirname(__FILE__) . '/../img/devices', $id . '_*.jpg', false, array('files', 'quiet'));
+		foreach (ls(dirname(__FILE__) . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
+			foreach (ls(dirname(__FILE__) . '/../config/devices/' . $folder, $id . '_*.jpg', false, array('files', 'quiet')) as $file) {
+				$files[] = $folder . $file;
+			}
+		}
 		if (count($files) > 0) {
 			return $files[0];
 		}
