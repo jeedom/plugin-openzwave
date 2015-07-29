@@ -67,17 +67,6 @@ except lite.Error, e:
 
 
 print("Check Openzwave")
-
-path_libopenzwave=os.path.dirname(os.path.abspath(__file__))+"/dist-packages/"+platform.machine()+"/libopenzwave.egg"
-if path_libopenzwave not in sys.path:
-    print("Add to path "+path_libopenzwave)
-    sys.path.append(path_libopenzwave)
-
-path_openzwave=os.path.dirname(os.path.abspath(__file__))+"/dist-packages/"+platform.machine()+"/openzwave.egg"
-if path_openzwave not in sys.path:
-    print("Add to path "+path_openzwave)
-    sys.path.append(path_openzwave)
-
 import openzwave
 from openzwave.node import ZWaveNode
 from openzwave.value import ZWaveValue
