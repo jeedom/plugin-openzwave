@@ -10,6 +10,15 @@ echo "Lancement da l'installation/mise à jour des dépendance openzwave"
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ARCH=`uname -m`
 
+function apt_install {
+  sudo apt-get -y install $1
+  if [ $? -ne 0 ]; then
+    sudo service jeedom start
+    echo "could not install $1 - abort"
+    exit 1
+  fi
+}
+
 function pip_install {
   sudo pip install "$@"
   if [ $? -ne 0 ]; then
@@ -52,7 +61,7 @@ if [ -d /opt/python-openzwave ]; then
 else
   sudo apt-get update --fix-missing
   echo "Installation des dependances"
-  sudo apt-get -y install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml cython
+  apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml cython
   # Python
   echo "Installation des dependances Python"
   pip_install sphinxcontrib-blockdiag
