@@ -94,8 +94,8 @@ cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.a /opt/python-openzwave/openzwave/l
 cp -R ${BASEDIR}/openzwave/cpp /opt/python-openzwave/openzwave/
 
 
-if [  -z "$1" -a ${ARCH} = "armv7l" ]; then
-  echo "Armv7 de detecter, installation direct"
+if [  -z "$1" -a $(uname -a | grep cubox | wc -l ) -eq 1 -a ${ARCH} = "armv7l" ]; then
+  echo "Armv7/Jeedomboard installation direct"
   cp -R ${BASEDIR}/python-openzwave/armv7/*  /usr/local/lib/python2.*/dist-packages
 else
   echo "Compilation des dépendances"
