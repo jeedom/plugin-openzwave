@@ -58,21 +58,23 @@ if [ -d /opt/python-openzwave ]; then
 	sudo rm -rf /usr/local/lib/python2.7/dist-packages/openzwave* 
 	cd /opt
 	sudo rm -fr /opt/python-openzwave
-else
-  sudo apt-get update --fix-missing
-  echo "Installation des dependances"
-  apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml cython
-  # Python
-  echo "Installation des dependances Python"
-  pip_install sphinxcontrib-blockdiag
-  pip_install sphinxcontrib-actdiag
-  pip_install sphinxcontrib-nwdiag
-  pip_install sphinxcontrib-seqdiag
-  pip_install urwid
-  pip_install louie
-  pip_install flask
-  pip_install flask-restful
 fi
+
+
+sudo apt-get update --fix-missing
+echo "Installation des dependances"
+apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml cython
+# Python
+echo "Installation des dependances Python"
+pip_install sphinxcontrib-blockdiag
+pip_install sphinxcontrib-actdiag
+pip_install sphinxcontrib-nwdiag
+pip_install sphinxcontrib-seqdiag
+pip_install urwid
+pip_install louie
+pip_install flask
+pip_install flask-restful
+
 
 echo "Installation de Python-OpenZwave"
 cd /opt
@@ -90,20 +92,27 @@ sudo mkdir /opt/python-openzwave/openzwave
 cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.so /opt/python-openzwave/openzwave/libopenzwave.so
 cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.a /opt/python-openzwave/openzwave/libopenzwave.a
 cp -R ${BASEDIR}/openzwave/cpp /opt/python-openzwave/openzwave/
-cd /opt/python-openzwave
-python setup-lib.py install
-if [ $? -ne 0 ]; then
-  sudo service jeedom start
-  echo "Unable to install setup-lib.py"
-  exit 1
-fi
-python setup-api.py install
-if [ $? -ne 0 ]; then
-  sudo service jeedom start
-  echo "Unable to install setup-api.py"
-  exit 1
-fi
 
+
+if[ ${ARCH} = "armv7" ]; then
+  echo "Armv7 de detecter, installation direct"
+  cp ${BASEDIR}/python-openzwave/armv7/*  /usr/local/lib/python2.*/dist-packages
+else
+  echo "Compilation des dépendances"
+  cd /opt/python-openzwave
+  python setup-lib.py install
+  if [ $? -ne 0 ]; then
+    sudo service jeedom start
+    echo "Unable to install setup-lib.py"
+    exit 1
+  fi
+  python setup-api.py install
+  if [ $? -ne 0 ]; then
+    sudo service jeedom start
+    echo "Unable to install setup-api.py"
+    exit 1
+  fi
+fi
 
 sudo cp /opt/zwcfg* /opt/python-openzwave/.
 sudo chown -R www-data:www-data /opt/python-openzwave
