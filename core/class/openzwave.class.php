@@ -610,7 +610,7 @@ class openzwave extends eqLogic {
 		}
 		exec('fuser -k ' . config::byKey('port_server', 'openzwave', 8083) . '/tcp > /dev/null 2>&1');
 		exec('sudo fuser -k ' . config::byKey('port_server', 'openzwave', 8083) . '/tcp > /dev/null 2>&1');
-		exec("ps aux | grep -ie 'zwaveserver/openZWave.py' | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+		exec("ps aux | grep -ie 'openZWave.py' | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
 		return self::deamonRunning();
 	}
 

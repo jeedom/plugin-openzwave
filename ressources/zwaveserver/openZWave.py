@@ -527,12 +527,6 @@ def graceful_stop_network():
         network = None
     add_log_entry('The Openzwave REST-server was stopped in a normal way')
 
-def signal_handler(signal, frame):    
-    graceful_stop_network()
-    sys.exit(0)
-        
-signal.signal(signal.SIGTERM, signal_handler)
-
 #Define some manager options
 options = ZWaveOption(device, config_path=config, user_path="/opt/python-openzwave/", cmd_line="")
 options.set_log_file("openzwave.log")
