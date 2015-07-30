@@ -94,7 +94,7 @@ cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.a /opt/python-openzwave/openzwave/l
 cp -R ${BASEDIR}/openzwave/cpp /opt/python-openzwave/openzwave/
 
 
-if[ ${ARCH} = "armv7" -a -z "$1" ]; then
+if [  -z "$1" -a ${ARCH} = "armv7l" ]; then
   echo "Armv7 de detecter, installation direct"
   cp ${BASEDIR}/python-openzwave/armv7/*  /usr/local/lib/python2.*/dist-packages
 else
