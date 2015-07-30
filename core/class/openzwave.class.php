@@ -501,7 +501,13 @@ class openzwave extends eqLogic {
 	}
 
 	public static function compilationOk() {
-		return file_exists('/opt/python-openzwave/openzwave/libopenzwave.so');
+		if (!file_exists('/opt/python-openzwave/openzwave/libopenzwave.so')) {
+			return false;
+		}
+		if (shell_exec('ls /usr/local/lib/python2.*/dist-packages/openzwave*.egg/libopenzwave.so | wc -l') == 0) {
+			return false;
+		}
+		return true;
 	}
 
 	public static function updateOpenzwave($_mode = 'master') {
