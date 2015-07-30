@@ -103,12 +103,8 @@ foreach ($deamonRunningSlave as $name => $status) {
 					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_health" />
 				</div>
 			</div>
-
 			<?php }
-?>
-
-
-			<?php if (config::byKey('jeeNetwork::mode') == 'master' && count(eqLogic::byType('zwave')) > 0) {?>
+if (config::byKey('jeeNetwork::mode') == 'master' && count(eqLogic::byType('zwave')) > 0) {?>
 				<div class="form-group">
 					<label class="col-lg-4 control-label">{{Migration des équipements zwave}}</label>
 					<div class="col-lg-3">
@@ -117,11 +113,8 @@ foreach ($deamonRunningSlave as $name => $status) {
 				</div>
 				<?php }
 ?>
-
 			</fieldset>
 		</form>
-
-
 		<form class="form-horizontal">
 			<fieldset>
 				<legend>{{Démon local}}</legend>
@@ -130,7 +123,7 @@ if (jeedom::isCapable('sudo')) {
 	echo '<div class="form-group">
 					<label class="col-lg-4 control-label">{{Dépendance OpenZwave locale}}</label>
 					<div class="col-lg-3">
-						<a class="btn btn-warning bt_installDeps" data-mode="master"><i class="fa fa-check"></i> {{Installer/Mettre à jour}}</a>
+						<a class="btn btn-warning bt_installDeps"><i class="fa fa-check"></i> {{Installer/Mettre à jour}}</a>
 					</div>
 				</div>';
 } else {
@@ -210,11 +203,10 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 
 	<script>
 		$('.bt_installDeps').on('click',function(){
-			var mode = $(this).attr('data-mode');
 			bootbox.confirm('{{Etes-vous sûr de vouloir installer/mettre à jour Openzwave ? }}', function (result) {
 				if (result) {
 					$('#md_modal').dialog({title: "{{Installation / Mise à jour}}"});
-					$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=update.openzwave&mode='+mode).dialog('open');
+					$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=update.openzwave').dialog('open');
 				}
 			});
 		});

@@ -29,7 +29,6 @@ if (!isConnect('admin')) {
 		url: 'plugins/openzwave/core/ajax/openzwave.ajax.php',
 		data: {
 			action: 'updateOpenzwave',
-			mode : '<?php echo init('mode');?>'
 		},
 		dataType: 'json',
 		global: false,

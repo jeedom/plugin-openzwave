@@ -25,7 +25,7 @@ try {
 	}
 
 	if (init('action') == 'updateOpenzwave') {
-		openzwave::updateOpenzwave(init('mode'));
+		openzwave::updateOpenzwave();
 		ajax::success();
 	}
 

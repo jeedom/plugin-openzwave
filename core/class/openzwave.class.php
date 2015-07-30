@@ -510,14 +510,14 @@ class openzwave extends eqLogic {
 		return true;
 	}
 
-	public static function updateOpenzwave($_mode = 'master') {
+	public static function updateOpenzwave() {
 		try {
 			self::stopDeamon();
 		} catch (Exception $e) {
 
 		}
 		log::remove('openzwave_update');
-		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh ' . $_mode;
+		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh';
 		$cmd .= ' >> ' . log::getPathToLog('openzwave_update') . ' 2>&1 &';
 		exec($cmd);
 	}
