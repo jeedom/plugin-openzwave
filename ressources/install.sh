@@ -96,7 +96,7 @@ cp -R ${BASEDIR}/openzwave/cpp /opt/python-openzwave/openzwave/
 
 if [  -z "$1" -a ${ARCH} = "armv7l" ]; then
   echo "Armv7 de detecter, installation direct"
-  cp ${BASEDIR}/python-openzwave/armv7/*  /usr/local/lib/python2.*/dist-packages
+  cp -R ${BASEDIR}/python-openzwave/armv7/*  /usr/local/lib/python2.*/dist-packages
 else
   echo "Compilation des dépendances"
   cd /opt/python-openzwave
