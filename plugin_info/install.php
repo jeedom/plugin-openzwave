@@ -60,6 +60,7 @@ function openzwave_update() {
 		}
 	}
 	echo "OK\n";
+
 	echo 'Check zwave system...';
 	if (count(eqLogic::byType('zwave')) > 0) {
 		log::add('openzwave', 'error', 'Attention vous etes sur la nouvelle version d\'openzwave, des actions de votre part sont necessaire merci d\'aller voir https://jeedom.fr/blog/?p=1576');
@@ -67,7 +68,12 @@ function openzwave_update() {
 	if (config::byKey('port', 'openzwave', 'none') != 'none') {
 		if (method_exists('openzwave', 'getVersion')) {
 			if (version_compare(config::byKey('openzwave_version', 'openzwave'), openzwave::getVersion('openzwave'), '>')) {
-				log::add('openzwave', 'error', __('Attention votre version d\'openzwave est dépassée sur le démon local, il faut ABSOLUMENT la mettre à jour', __FILE__));
+				if (jeedom::getHardwareName() == 'Jeedomboard') {
+					openzwave::updateOpenzwave();
+					log::add('openzwave', 'error', __('Le démon vient d\'être mise à jour, veuillez reconfigurer le port', __FILE__));
+				} else {
+					log::add('openzwave', 'error', __('Attention votre version d\'openzwave est dépassée sur le démon local, il faut ABSOLUMENT la mettre à jour', __FILE__));
+				}
 			}
 		}
 	}
