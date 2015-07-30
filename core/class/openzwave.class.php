@@ -123,14 +123,14 @@ class openzwave extends eqLogic {
 					$demon_state = false;
 				}
 				$return[] = array(
-					'test' => __('Démon sur', __FILE__) . $jeeNetwork->getName(),
+					'test' => __('Démon sur ', __FILE__) . $jeeNetwork->getName(),
 					'result' => ($demon_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
 					'advice' => '',
 					'state' => $demon_state,
 				);
 				$version = $jeeNetwork->sendRawRequest('getVersion', array('plugin' => 'openzwave', 'module' => 'openzwave'));
 				$return[] = array(
-					'test' => __('Version d\'openzwave sur', __FILE__) . $jeeNetwork->getName(),
+					'test' => __('Version d\'openzwave sur ', __FILE__) . $jeeNetwork->getName(),
 					'result' => $version,
 					'advice' => ($demon_state) ? '' : __('Mettez à jour les dépendances', __FILE__),
 					'state' => version_compare(config::byKey('openzwave_version', 'openzwave'), $version, '<='),
