@@ -48,19 +48,6 @@ if [ ! -d /opt ]; then
   sudo mkdir /opt
 fi
 
-if [ -d /opt/python-openzwave ]; then
-	echo "Sauvegarde du fichier de conf";
-	sudo cp /opt/python-openzwave/zwcfg* /opt/.
-	cd /opt/python-openzwave
-	echo "Désinstallation de la version précédente";
-	sudo make uninstall > /dev/null 2>&1
-	sudo rm -rf /usr/local/lib/python2.7/dist-packages/libopenzwave*
-	sudo rm -rf /usr/local/lib/python2.7/dist-packages/openzwave* 
-	cd /opt
-	sudo rm -fr /opt/python-openzwave
-fi
-
-
 sudo apt-get update --fix-missing
 echo "Installation des dependances"
 apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml cython
@@ -75,46 +62,69 @@ pip_install louie
 pip_install flask
 pip_install flask-restful
 
-
-echo "Installation de Python-OpenZwave"
-cd /opt
-sudo git clone https://github.com/OpenZWave/python-openzwave.git
-if [ $? -ne 0 ]; then
-  sudo service jeedom start
-  echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
-  exit 1
-fi
-cd python-openzwave
-sudo git reset --hard 6320ae88db5c6bcd3482d962269fa624055ab557 #Version du 19/07/15
-
-
-sudo mkdir /opt/python-openzwave/openzwave
-cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.so /opt/python-openzwave/openzwave/libopenzwave.so
-cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.a /opt/python-openzwave/openzwave/libopenzwave.a
-cp -R ${BASEDIR}/openzwave/cpp /opt/python-openzwave/openzwave/
-
-
 if [  -z "$1" -a $(uname -a | grep cubox | wc -l ) -eq 1 -a ${ARCH} = "armv7l" ]; then
   echo "Armv7/Jeedomboard installation direct"
+  sudo mkdir /opt/python-openzwave/openzwave
+  cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.so /opt/python-openzwave/openzwave/libopenzwave.so
+  cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.a /opt/python-openzwave/openzwave/libopenzwave.a
+  cp -R ${BASEDIR}/openzwave/cpp /opt/python-openzwave/openzwave/
   cp -R ${BASEDIR}/python-openzwave/armv7/*  /usr/local/lib/python2.*/dist-packages
 else
-  echo "Compilation des dépendances"
-  cd /opt/python-openzwave
-  python setup-lib.py install
+  if [ -d /opt/python-openzwave ]; then
+    echo "Sauvegarde du fichier de conf";
+    sudo cp /opt/python-openzwave/zwcfg* /opt/.
+    cd /opt/python-openzwave
+    echo "Désinstallation de la version précédente";
+    sudo make uninstall > /dev/null 2>&1
+    sudo rm -rf /usr/local/lib/python2.7/dist-packages/libopenzwave*
+    sudo rm -rf /usr/local/lib/python2.7/dist-packages/openzwave* 
+    cd /opt
+    sudo rm -fr /opt/python-openzwave
+  fi
+  echo "Installation de Python-OpenZwave"
+  cd /opt
+  sudo git clone https://github.com/OpenZWave/python-openzwave.git
   if [ $? -ne 0 ]; then
     sudo service jeedom start
-    echo "Unable to install setup-lib.py"
+    echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
     exit 1
   fi
-  python setup-api.py install
-  if [ $? -ne 0 ]; then
-    sudo service jeedom start
-    echo "Unable to install setup-api.py"
-    exit 1
+  cd python-openzwave
+  sudo git reset --hard 6320ae88db5c6bcd3482d962269fa624055ab557 #Version du 19/07/15
+  if [ ${ARCH} = 'i686' ]; then
+    sudo git clone https://github.com/OpenZWave/open-zwave.git openzwave
+    if [ $? -ne 0 ]; then
+      echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
+      exit 1
+    fi
+    cd openzwave
+    sudo git reset --hard 0432f68a7d331bdde4c0b77b2b81bcf9bd37795c #Version du 29/07/15
+    cd /opt/python-openzwave
+    sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
+    sudo make install-api
+  else
+    sudo mkdir /opt/python-openzwave/openzwave
+    cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.so /opt/python-openzwave/openzwave/libopenzwave.so
+    cp ${BASEDIR}/openzwave/libopenzwave-${ARCH}.a /opt/python-openzwave/openzwave/libopenzwave.a
+    cp -R ${BASEDIR}/openzwave/cpp /opt/python-openzwave/openzwave/
+    echo "Compilation des dépendances"
+    cd /opt/python-openzwave
+    python setup-lib.py install
+    if [ $? -ne 0 ]; then
+      sudo service jeedom start
+      echo "Unable to install setup-lib.py"
+      exit 1
+    fi
+    python setup-api.py install
+    if [ $? -ne 0 ]; then
+      sudo service jeedom start
+      echo "Unable to install setup-api.py"
+      exit 1
+    fi
+    sudo cp /opt/zwcfg* /opt/python-openzwave/.
   fi
 fi
 
-sudo cp /opt/zwcfg* /opt/python-openzwave/.
 sudo chown -R www-data:www-data /opt/python-openzwave
 sudo chmod -R 777 /opt/python-openzwave
 
