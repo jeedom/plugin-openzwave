@@ -483,7 +483,7 @@ class openzwave extends eqLogic {
 	public static function getVersion($_module) {
 		if ($_module == 'openzwave') {
 			if (!file_exists('/opt/python-openzwave/openzwave/cpp/src/vers.cpp')) {
-				return '';
+				return config::byKey('openzwave_version', 'openzwave');
 			}
 			$result = trim(str_replace(array('"', 'char', 'ozw_version_string', '[]', '=', ';'), '', shell_exec('cat /opt/python-openzwave/openzwave/cpp/src/vers.cpp | grep ozw_version_string')));
 			$result = str_replace('-', '.', $result);
@@ -492,18 +492,9 @@ class openzwave extends eqLogic {
 				return $result[0] . '.' . $result[1] . '.' . $result[2];
 			}
 		}
-		if ($_module == 'python-openzwave') {
-			if (!file_exists('/opt/python-openzwave/pyozw_version.py')) {
-				return '';
-			}
-			return trim(str_replace(array("'", 'pyozw_version', '[]', '='), '', shell_exec('cat /opt/python-openzwave/pyozw_version.py | grep "pyozw_version ="')));
-		}
 	}
 
 	public static function compilationOk() {
-		if (!file_exists('/opt/python-openzwave/openzwave/libopenzwave.so')) {
-			return false;
-		}
 		if (shell_exec('ls /usr/local/lib/python2.*/dist-packages/openzwave*.egg/libopenzwave.so | wc -l') == 0) {
 			return false;
 		}
