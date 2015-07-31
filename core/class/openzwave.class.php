@@ -510,7 +510,7 @@ class openzwave extends eqLogic {
 		return true;
 	}
 
-	public static function updateOpenzwave() {
+	public static function updateOpenzwave($_background = true) {
 		try {
 			self::stopDeamon();
 		} catch (Exception $e) {
@@ -518,7 +518,9 @@ class openzwave extends eqLogic {
 		}
 		log::remove('openzwave_update');
 		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh';
-		$cmd .= ' >> ' . log::getPathToLog('openzwave_update') . ' 2>&1 &';
+		if ($_background) {
+			$cmd .= ' >> ' . log::getPathToLog('openzwave_update') . ' 2>&1 &';
+		}
 		exec($cmd);
 	}
 

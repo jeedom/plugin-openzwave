@@ -69,8 +69,9 @@ function openzwave_update() {
 		if (method_exists('openzwave', 'getVersion')) {
 			if (version_compare(config::byKey('openzwave_version', 'openzwave'), openzwave::getVersion('openzwave'), '>')) {
 				if (jeedom::getHardwareName() == 'Jeedomboard') {
-					openzwave::updateOpenzwave();
-					log::add('openzwave', 'error', __('Le démon vient d\'être mise à jour, veuillez reconfigurer le port', __FILE__));
+					config::save('allowStartDeamon', 0, 'openzwave');
+					openzwave::updateOpenzwave(false);
+					config::save('allowStartDeamon', 1, 'openzwave');
 				} else {
 					log::add('openzwave', 'error', __('Attention votre version d\'openzwave est dépassée sur le démon local, il faut ABSOLUMENT la mettre à jour', __FILE__));
 				}
