@@ -523,12 +523,15 @@ class openzwave extends eqLogic {
 	}
 
 	public static function cron() {
-		if (config::byKey('port', 'openzwave', 'none') != 'none' && !self::deamonRunning()) {
+		if (config::byKey('allowStartDeamon', 'openzwave', 1) == 1 && config::byKey('port', 'openzwave', 'none') != 'none' && !self::deamonRunning()) {
 			self::runDeamon();
 		}
 	}
 
 	public static function runDeamon($_debug = false) {
+		if (config::byKey('allowStartDeamon', 'openzwave', 1) == 0) {
+			return;
+		}
 		try {
 			self::stopDeamon();
 		} catch (Exception $e) {

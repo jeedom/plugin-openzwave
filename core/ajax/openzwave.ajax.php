@@ -44,7 +44,7 @@ try {
 			if (openzwave::deamonRunning()) {
 				throw new Exception(__('Impossible d\'arrêter le démon', __FILE__));
 			}
-			config::save('port', 'none', 'openzwave');
+			config::save('allowStartDeamon', 0, 'openzwave');
 		}
 		ajax::success();
 	}
@@ -60,6 +60,7 @@ try {
 				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
 			}
 		} else {
+			config::save('allowStartDeamon', 1, 'openzwave');
 			$port = config::byKey('port', 'openzwave', 'none');
 			if ($port == 'none') {
 				ajax::success();

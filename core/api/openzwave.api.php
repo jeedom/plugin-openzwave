@@ -29,6 +29,7 @@ if ($jsonrpc->getMethod() == 'deamonRunning') {
 }
 
 if ($jsonrpc->getMethod() == 'runDeamon') {
+	config::save('allowStartDeamon', 1, 'openzwave');
 	$port = config::byKey('port', 'openzwave', 'none');
 	if ($port == 'none') {
 		ajax::success();
@@ -44,6 +45,7 @@ if ($jsonrpc->getMethod() == 'runDeamon') {
 }
 
 if ($jsonrpc->getMethod() == 'stopDeamon') {
+	config::save('allowStartDeamon', 0, 'openzwave');
 	$jsonrpc->makeSuccess(openzwave::stopDeamon());
 }
 
