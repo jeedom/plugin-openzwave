@@ -128,7 +128,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 					<pre id="log"><div class="console-out"></div></pre>
 				</div>
 				<div class="tab-pane" id="config_network">
-					<a class="btn btn-success pull-right"><i class="fa fa-floppy-o"></i> {{Sauvegarder les changements}}</a><br/>
+					<a class="btn btn-success pull-right" id="bt_saveconfCfg"><i class="fa fa-floppy-o"></i> {{Sauvegarder les changements}}</a><br/>
 					<br/>
 					<div class="bound-config">
 						<textarea id="zwcfgfile" class="boxsizingborder"></textarea>

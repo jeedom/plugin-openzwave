@@ -60,7 +60,7 @@ var app_network = {
        alert('You haven\'t confirmed with YES'); 
      }
    });
-     $("#saveconf").click(function(){
+     $("#bt_saveconfCfg").click(function(){
       $.ajax({ 
         type:'POST', 
         url: path+"ZWaveAPI/Run/network.SaveZWConfig()", 
