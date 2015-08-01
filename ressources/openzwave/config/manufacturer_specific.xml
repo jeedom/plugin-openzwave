@@ -220,6 +220,7 @@
 		<Product type="000c" id="0001" name="SE812 Siren" config="everspring/se812.xml"/>
 		<Product type="000d" id="0001" name="SF812 Smoke Alarm" config="everspring/sf812.xml"/>
 		<Product type="0010" id="0001" name="HAC01 In-wall Remote Module"/>
+		<Product type="0011" id="0001" name="HAN01 In-wall Remote Module"/>
 		<Product type="0011" id="0002" name="HAN02 In-wall Remote Module"/>
 		<Product type="0101" id="0001" name="SP103 PIR Motion Sensor" config="everspring/sp103.xml"/>
 		<Product type="0104" id="0001" name="AN145 Lamp Screw In Module" config="everspring/an145.xml"/>
@@ -324,6 +325,7 @@
 		<Product type="0311" id="0109" name="SSA1 / SSA2 - Siren/Strobe Light Alarm"/>
 		<Product type="0311" id="010b" name="SSA1 / SSA2 - Siren/Strobe Light Alarm"/>
 		<Product type="0313" id="010b" name="SSA2USR - Siren/Strobe Light Alarm"/>
+		<Product type="0331" id="010b" name="SSA3 - Siren/Strobe Light Alarm"/>
 	</Manufacturer>
 	<Manufacturer id="0017" name="HiTech Automation">
 	</Manufacturer>
@@ -497,6 +499,7 @@
 		<Product type="0001" id="0003" name="PAN04-1 Double Relay Switch 2x1.5kW with Power Measurement" config="philio/pan04.xml"/>
 		<Product type="0001" id="0004" name="PAN06-1 In Wall Dual Relay (1 Way) Switch Module"/>
 		<Product type="0001" id="0006" name="PAN08-1 In Wall Roller Shutter Controller"/>
+		<Product type="0001" id="0012" name="PAN04-1 Double Relay Switch 2x1.5kW with Power Measurement" config="philio/pan04.xml"/>
 		<Product type="0002" id="0002" name="PSM02-1 Slim Multi-Sensor" config="philio/psm02.xml"/>
                 <Product type="0002" id="000c" name="PST02-A 4 in 1 Multi-Sensor" config="philio/pst02.xml"/>
 		<Product type="0002" id="000d" name="PST02-B PIR/Motion 3 in 1 Sensor" config="philio/pst02-b.xml"/>
@@ -682,7 +685,8 @@
 		<Product type="2002" id="0203" name="ZP3102 EU PIR Motion Sensor" config="vision/zp3102.xml"/>
 		<Product type="2002" id="0204" name="ZP3102 JP PIR Motion Sensor" config="vision/zp3102.xml"/>
 		<Product type="2002" id="0205" name="ZP3102 EU PIR Motion Sensor" config="vision/zp3102.xml"/>
-		<Product type="2003" id="0302" name="ZS5101 Shock and Vibration Sensor"/>
+		<Product type="2003" id="0302" name="ZS5101 Shock and Vibration Sensor" config="vision/zs5101eu.xml"/>
+		<Product type="2003" id="0306" name="ZS5101 Shock and Vibration Sensor" config="vision/zs5101eu.xml"/>
 		<Product type="2004" id="0403" name="ZS6101 Smoke Detector"/>
 		<Product type="2005" id="0503" name="ZM1601 Battery Operated Siren" config="vision/zm1601eu.xml"/>
 		<Product type="2005" id="0505" name="ZM1601 Battery Operated Siren"/>
@@ -691,6 +695,8 @@
 		<Product type="2006" id="0621" name="ZM1701 Electronic Deadbolt Door Lock without Handle"/>
 		<Product type="2007" id="0703" name="Plug-in Switch"/>
 		<Product type="2008" id="0803" name="ZL7101 Plug-in Dimmer Module"/>
+		<Product type="2009" id="0903" name="ZM1602 Main Operated Siren" config="vision/zm1602eu.xml"/>
+		<Product type="2009" id="0908" name="ZM1602 Main Operated Siren" config="vision/zm1602eu.xml"/>
 		<Product type="200a" id="0a02" name="ZG8101 Garage Door Detector"/>
 		<Product type="200f" id="0f02" name="ZS6301 CO Detector"/>
 		<Product type="200f" id="0f03" name="ZS6301 CO Detector"/>
