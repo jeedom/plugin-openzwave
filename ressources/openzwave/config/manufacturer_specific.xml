@@ -40,7 +40,7 @@
 		<Product type="0001" id="0007" name="Z-Stick S2 Lite"/>
 		<Product type="0001" id="0016" name="Key Fob" config="aeotec/keyfob.xml"/>
 		<Product type="0001" id="0058" name="ZW088 Key Fob Gen5" config="aeotec/keyfob2.xml"/>
-		<Product type="0001" id="005a" name="Z-Stick Gen5"/>
+		<Product type="0001" id="005a" name="Z-Stick Gen5" config="aeotec/zstickgen5.xml"/>
 		<Product type="0001" id="005c" name="Z-Stick Lite Gen5"/>
 		<Product type="0001" id="0026" name="Panic Button" config="aeotec/panicbtn.xml"/>
 		<Product type="0002" id="0001" name="Z-Stick S2"/>
@@ -61,7 +61,7 @@
 		<Product type="0003" id="000d" name="Micro Smart Energy Illuminator"/>
 		<Product type="0003" id="000e" name="Micro Motor Controller"/>
 		<Product type="0003" id="0011" name="Micro Double Switch" />
-                <Product type="0003" id="0018" name="Smart Switch (2nd Edition)"/>
+        <Product type="0003" id="0018" name="Smart Switch (2nd Edition)"/>
 		<Product type="0003" id="001a" name="Micro Switch (2nd Edition)"/>
 		<Product type="0003" id="001b" name="Micro Smart Energy Illuminator G2"/>
 		<Product type="0003" id="0012" name="Micro Smart Energy Switch G2" config="aeotec/ses.xml" />
@@ -71,7 +71,7 @@
 		<Product type="0004" id="0025" name="Z-Wave Repeater"/>
 		<Product type="0004" id="0050" name="DSD31 Siren Gen5" config="aeotec/dsd31.xml"/>
         	<!-- US-market products start with type prefix "01" -->
-		<Product type="0101" id="005a" name="Z-Stick Gen5"/>
+		<Product type="0101" id="005a" name="Z-Stick Gen5" config="aeotec/zstickgen5.xml"/>
 		<Product type="0102" id="0059" name="Recessed Door Sensor Gen5" config="aeotec/recessed_doorsensor_gen5.xml"/>
 	        <!-- AU-market products start with type prefix "02" -->
 		<Product type="0202" id="0059" name="Recessed Door Sensor Gen5" config="aeotec/recessed_doorsensor_gen5.xml"/>
