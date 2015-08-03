@@ -932,38 +932,8 @@ draw_nodes: function ()
 	        	node.find(".node-battery-span").hide();
 	        }
 	        
-	        var queryStageIndex = 0;	 
-	        if(controller_id != -1){
-	        	var node_groups=nodes[z].groups;
-	        	var found=0;
-	        	var hasGroup = false;
-	        	for (zz in node_groups){
-	        		if (!isNaN(zz)){
-	        			hasGroup = true;
-	        			var values=node_groups[zz].associations.split(';');
-	        			tr_groups="";
-	        			for(val in values){
-	        				if(values.length > 0 && values[val]!=""){
-	        					var node_id=values[val];
-	        					if (node_id==controller_id){
-	        						found=1;
-	        					}
-	        				}
-	        			}
-	        		}
-	        	}
-	        	if(hasGroup && found==0 && queryStageIndex > 12){
-	        		isWarning = true;
-	        		warningMessage +="<li>{{Le controleur n'est inclus dans aucun groupe du module.}}</li>";
-	        	}
-	        }
-	        if(nodeIsFailed){
-	        	isWarning = true;
-	        	warningMessage +="<li>{{Le controleur pense que ce noeud est en echec, essayez }} <button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-question'></i> {{Noeud en échec}}</button> {{ou}} <button type='button' id='testNode' class='btn btn-info'><i class='fa fa-check-square-o'></i> {{Tester Noeud}}</button> {{pour essayer de corriger.}}</li>";
-	        }
-
+	        var queryStageIndex = 0;
 	        var queryStageDescrition = "";
-
 	        switch(queryStage){
 	        	case "None":
 	        	queryStageDescrition = "{{Le processus de demande n'a pas encore commencé pour ce noeud}}";
@@ -1039,6 +1009,36 @@ draw_nodes: function ()
 	        	node.find(".node-queryStage").removeClass("label-default").addClass("label-success");
 	        	break;	            	
 	        }
+	        if(controller_id != -1){
+	        	var node_groups=nodes[z].groups;
+	        	var found=0;
+	        	var hasGroup = false;
+	        	for (zz in node_groups){
+	        		if (!isNaN(zz)){
+	        			hasGroup = true;
+	        			var values=node_groups[zz].associations.split(';');
+	        			tr_groups="";
+	        			for(val in values){
+	        				if(values.length > 0 && values[val]!=""){
+	        					var node_id=values[val];
+	        					if (node_id==controller_id){
+	        						found=1;
+	        					}
+	        				}
+	        			}
+	        		}
+	        	}
+	        	if(hasGroup && found==0 && queryStageIndex > 12){
+	        		isWarning = true;
+	        		warningMessage +="<li>{{Le controleur n'est inclus dans aucun groupe du module.}}</li>";
+	        	}
+	        }
+	        if(nodeIsFailed){
+	        	isWarning = true;
+	        	warningMessage +="<li>{{Le controleur pense que ce noeud est en echec, essayez }} <button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-question'></i> {{Noeud en échec}}</button> {{ou}} <button type='button' id='testNode' class='btn btn-info'><i class='fa fa-check-square-o'></i> {{Tester Noeud}}</button> {{pour essayer de corriger.}}</li>";
+	        }
+
+	        
 	        if(nodeIsFailed){
 	        	node.find(".node-queryStage").html("Dead");
 	        	node.find(".node-queryStage").removeClass("label-default").addClass("label-danger");
