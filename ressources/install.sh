@@ -11,7 +11,7 @@ BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ARCH=`uname -m`
 
 function apt_install {
-  sudo apt-get -y install $1
+  sudo apt-get -y install "$@"
   if [ $? -ne 0 ]; then
     sudo service jeedom start
     echo "could not install $1 - abort"
