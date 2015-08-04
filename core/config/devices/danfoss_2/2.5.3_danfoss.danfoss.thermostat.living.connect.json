@@ -1,5 +1,5 @@
 {
-		"name": "Danfoss Thermostat Living Connect + retour consigne",
+		"name": "Thermostat Living Connect",
 		"configuration" : {
         "conf_version" : 1
 		},
