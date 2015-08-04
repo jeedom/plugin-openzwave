@@ -1,6 +1,10 @@
 {
 	"name" : "Minimote",
     "doc" : "aeotec.minimote_-_Telecommande",
+    "type": "Télécommande",
+    "comlink" : "291-aeon-labs-telecommande-z-wave-blanche-1220000010253",
+    "remark" : "",
+    "imglink" : "aeotec.minimote",
     "configuration" : {
         "conf_version" : 1
     },
