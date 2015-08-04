@@ -1,5 +1,6 @@
 {
 	"name" : "Keyfob",
+    "doc" : "aeotec.keyfob_-_Telecommande",
     "configuration" : {
         "conf_version" : 1
     },
