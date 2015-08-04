@@ -1,5 +1,10 @@
 {		
-		"name": "Aeon Multi-Sensor",
+		"name": "Multi-Sensor 4 en 1",
+        "doc" : "",
+        "type": "Multicapteurs",
+        "comlink" : "",
+        "remark" : "Attention ce module peut remonter de mauvaises données, il faut bien faire attention à la configuration",
+        "imglink" : "aeotec.multisensor",
 		"configuration" : {
         "conf_version" : 1
 		},

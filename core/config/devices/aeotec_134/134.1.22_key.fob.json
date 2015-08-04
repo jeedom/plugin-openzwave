@@ -1,6 +1,10 @@
 {
 	"name" : "Keyfob",
     "doc" : "aeotec.keyfob_-_Telecommande",
+    "type": "Télécommande",
+    "comlink" : "",
+    "remark" : "",
+    "imglink" : "aeotec.keyfob",
     "configuration" : {
         "conf_version" : 1
     },
