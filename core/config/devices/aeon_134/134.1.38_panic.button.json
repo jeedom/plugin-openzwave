@@ -1,5 +1,6 @@
 {
 	"name" : "Panic Button",
+    "doc" : "aeotec.panic_button_-_Telecommande",
     "configuration" : {
         "conf_version" : 1
     },
