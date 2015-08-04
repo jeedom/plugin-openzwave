@@ -1,5 +1,5 @@
 {
-	"name" : "Fibaro FGMS-001 [Motion Sensor]",
+	"name" : "FGMS-001 [Motion Sensor]",
     "doc" : "fibaro.fgms001_-_Motion",
     "configuration" : {
         "conf_version" : 1

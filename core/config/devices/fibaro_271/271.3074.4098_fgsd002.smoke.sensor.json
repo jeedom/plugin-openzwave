@@ -1,5 +1,5 @@
 {
-	"name" : "Fibaro FGSD-002 [Smoke Sensor CE] ",
+	"name" : "FGSD-002 [Smoke Sensor CE] ",
     "doc" : "fibaro.fgsd102_-_Fumees",
     "configuration" : {
         "conf_version" : 1,

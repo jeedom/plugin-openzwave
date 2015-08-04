@@ -1,5 +1,5 @@
 {
-	"name" : "Fibaro FGK-101 [Doorsensor]",
+	"name" : "FGK-101 [Doorsensor]",
     "doc" : "fibaro.fgk101_-_Ouverture",
     "configuration" : {
         "conf_version" : 1
