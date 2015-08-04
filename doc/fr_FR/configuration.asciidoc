@@ -239,8 +239,6 @@ La légende est diponible tout en bas.
 
 === Console
 
-image:../images/openzwave21.png[]
-
 La console permet de voir en temps réel ce qu'il se passe sur le réseau Z-wave.
 
 image:../images/openzwave22.png[]
@@ -248,10 +246,7 @@ image:../images/openzwave22.png[]
 [IMPORTANT]
 Les informations ici sont à destination du support, il ne faut donc pas s'inquiéter de voir des "Error" ou  "Warning" ici. Cela ne veut pas forcément dire que votre système a un soucis.
 
-
 === Configuration
-
-image:../images/openzwave20.png[]
 
 Cet onglet contient la configuration des vos modules Z-wave.
 
