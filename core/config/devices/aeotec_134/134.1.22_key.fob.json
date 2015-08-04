@@ -5,6 +5,7 @@
     "comlink" : "",
     "remark" : "",
     "imglink" : "aeotec.keyfob",
+    "battery_type" : "1xCR2450",
     "configuration" : {
         "conf_version" : 1
     },
