@@ -1,5 +1,10 @@
 {
-	"name": "Opening Detector HSM02",
+        "name": "HSM02",
+        "type": "Ouverture",
+        "comlink" : "838-everspring-mini-detecteur-d-ouverture-z-wave-hsm02-3700946500134",
+        "remark" : "Ce module est actuellement vendu sous la marque Everspring",
+        "imglink" : "chromagic.hsm02",
+        "battery_type" : "1xCR2450",
         "configuration" : {
         "conf_version" : 1
 		},
