@@ -1,5 +1,11 @@
 {
-		"name": "Door ZW089",
+		"name": "ZW089 Door",
+        "doc" : "",
+        "type": "Ouverture",
+        "comlink" : "2680-aeon-labs-capteur-d-ouverture-de-porte-a-encastrer-z-wave-plus-gen5-1220000012721",
+        "remark" : "",
+        "imglink" : "aeotec.zw089",
+        "battery_type" : "1xCR2",
         "configuration" : {
         "conf_version" : 1
 		},
