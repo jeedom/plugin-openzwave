@@ -2,8 +2,8 @@
 		"name": "Multi-Sensor 4 en 1",
         "doc" : "",
         "type": "Multicapteurs",
-        "comlink" : "",
-        "remark" : "Attention ce module peut remonter de mauvaises données, il faut bien faire attention à la configuration",
+        "comlink" : "2681-aeon-labs-detecteur-multifonction-multisensor-z-wave-plus-gen5-1220000012684",
+        "remark" : "Attention ce module peut remonter de mauvaises données, il faut bien faire attention à la configuration. Remplacé en boutique par son équivalent Gen5",
         "imglink" : "aeotec.multisensor",
         "battery_type" : "2xAAA",
 		"configuration" : {

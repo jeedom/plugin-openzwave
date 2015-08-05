@@ -1,5 +1,10 @@
 {
 	"name": "Plug In Dimmer",
+    "doc" : "",
+    "type": "Prise",
+    "comlink" : "2347-benext-module-prise-variateur-z-wave-avec-mesure-d-energie-0632181493779",
+    "remark" : "",
+    "imglink" : "benext.plugin-dimmer",
     "configuration" : {
         "conf_version" : 1
 		},

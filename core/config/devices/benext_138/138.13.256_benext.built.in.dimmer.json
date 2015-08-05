@@ -1,5 +1,10 @@
 {
 	"name": "Built In Dimmer",
+    "doc" : "",
+    "type": "Micromodule",
+    "comlink" : "2346-benext-module-variateur-z-wave-encastrable-avec-mesure-d-energie-0632181493762",
+    "remark" : "",
+    "imglink" : "benext.builtin-dimmer",
     "configuration" : {
         "conf_version" : 1
 		},
