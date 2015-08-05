@@ -1,5 +1,10 @@
 {
     "name" : "SmartSwitch",
+        "doc" : "",
+        "type": "Prise",
+        "comlink" : "2918-aeon-labs-mini-prise-commutateur-z-wave-plus-avec-consometre-smart-switch-6-1220000013049",
+        "remark" : "",
+        "imglink" : "aeotec.smartswitch",
     "configuration" : {
         "conf_version" : 1
     },

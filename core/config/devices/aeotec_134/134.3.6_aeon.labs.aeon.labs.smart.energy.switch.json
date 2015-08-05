@@ -1,5 +1,10 @@
 {		
 		"name": "Smart Energy Switch",
+        "doc" : "",
+        "type": "Prise",
+        "comlink" : "282-aeon-labs-smart-energy-switch-z-wave-1220000010369",
+        "remark" : "",
+        "imglink" : "aeotec.smart-energy-switch",
         "configuration" : {
         "conf_version" : 1
 		},

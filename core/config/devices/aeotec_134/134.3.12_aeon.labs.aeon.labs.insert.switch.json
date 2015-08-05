@@ -1,5 +1,10 @@
 {
 		"name": "Insert Switch",
+        "doc" : "",
+        "type": "Micromodule",
+        "comlink" : "286-aeon-labs-micromodule-commutateur-et-compteur-d-energie-g2-1220000011014",
+        "remark" : "",
+        "imglink" : "aeotec.insert-switch",
         "configuration" : {
         "conf_version" : 1
 		},

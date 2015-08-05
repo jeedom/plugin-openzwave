@@ -1,5 +1,10 @@
 {
 		"name": "Blind Control Switch",
+        "doc" : "",
+        "type": "Volets",
+        "comlink" : "284-aeon-labs-micromodule-z-wave-pour-volet-roulant-1220000010864",
+        "remark" : "",
+        "imglink" : "aeotec.blind-control",
         "configuration" : {
         "conf_version" : 1
 		},

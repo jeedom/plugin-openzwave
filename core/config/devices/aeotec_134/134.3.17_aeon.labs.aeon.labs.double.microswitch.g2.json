@@ -1,5 +1,10 @@
 {
 		"name": "Double microSwitch G2",
+        "doc" : "",
+        "type": "Micromodule",
+        "comlink" : "",
+        "remark" : "Module pratiquement plus commercialisé",
+        "imglink" : "aeotec.double-microswitch",
         "configuration" : {
         "conf_version" : 1
 		},

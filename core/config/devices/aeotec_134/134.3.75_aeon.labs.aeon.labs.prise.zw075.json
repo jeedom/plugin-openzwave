@@ -1,5 +1,10 @@
 {	
-	"name": "Prise ZW075",
+	"name": "ZW075",
+        "doc" : "",
+        "type": "Prise",
+        "comlink" : "2594-aeon-labs-module-prise-commutateur-z-wave-plus-avec-mesure-d-energie-gen5-1220000012578",
+        "remark" : "",
+        "imglink" : "aeotec.zw075",
     "configuration" : {
         "conf_version" : 1
 		},
