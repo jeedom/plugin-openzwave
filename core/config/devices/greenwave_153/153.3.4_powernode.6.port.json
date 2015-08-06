@@ -1,6 +1,10 @@
 {
-	"name" : "Powernode [6 x prises]",
+	"name" : "Powernode 6 prises",
     "doc" : "greenwave.powernode_-_Multiprise",
+    "type": "Multiprise",
+    "comlink" : "2728-greenwave-multiprise-z-wave-6-ports-powernode-schuko--8886464000242",
+    "remark" : "Bien lire la documentation pour la remontée automatique des consommations",
+    "imglink" : "greenwave.powernode",
     "configuration" : {
         "conf_version" : 1
     },

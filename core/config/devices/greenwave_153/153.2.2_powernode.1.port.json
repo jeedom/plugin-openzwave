@@ -1,6 +1,10 @@
 {
 	"name" : "Powernode 1",
     "doc" : "greenwave.Powernode1_-_Prise",
+    "type": "Prise",
+    "comlink" : "2857-greenwave-module-prise-z-wave-powernode-schuko-8886464000235",
+    "remark" : "",
+    "imglink" : "greenwave.Powernode1",
     "configuration" : {
         "conf_version" : 1
     },
