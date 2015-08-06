@@ -1,5 +1,5 @@
 {
-	"name" : "FGD-211 [Dimmer]",
+	"name" : "FGD-211 Dimmer",
     "doc" : "fibaro.fgd211_-_Dimmer",
     "type": "Micromodule",
     "comlink" : "2965-fibaro-micromodule-variateur-z-wave-fgd-212",
