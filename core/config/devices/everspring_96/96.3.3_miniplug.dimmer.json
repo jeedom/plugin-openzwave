@@ -1,6 +1,10 @@
 {
 	"name" : "Miniplug Dimmer",
     "doc" : "everspring.AD147-6_-_Miniplug_Dimmer",
+    "type": "Prise",
+    "comlink" : "2687-everspring-mini-prise-variateur-z-wave-plus-ad147-6-prise-francaise-3700946500370",
+    "remark" : "",
+    "imglink" : "everspring.AD147-6",
     "configuration" : {
         "conf_version" : 1
     },

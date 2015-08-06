@@ -1,6 +1,10 @@
 {
 	"name" : "Miniplug On/Off",
     "doc" : "everspring.AN180-6_-_Miniplug_On-Off",
+    "type": "Prise",
+    "comlink" : "2684-everspring-mini-prise-onoff-z-wave-plus-an180-6-prise-francaise-3700946500400",
+    "remark" : "",
+    "imglink" : "everspring.AN180-6",
     "configuration" : {
         "conf_version" : 1
     },

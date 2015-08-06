@@ -1,5 +1,11 @@
  {
 		"name": "TSE03 Door Bell",
+        "doc" : "",
+        "type": "Carillon",
+        "comlink" : "",
+        "remark" : "",
+        "imglink" : "everspring.tse03",
+        "battery_type" : "3xAA + 2xAAA",
         "configuration" : {
         "conf_version" : 1
 		},

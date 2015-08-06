@@ -1,5 +1,10 @@
 {
 		"name": "HAN01",
+        "doc" : "",
+        "type": "Micromodule",
+        "comlink" : "2497-everspring-micromodule-commutateur-z-wave-han01-3700946500042",
+        "remark" : "",
+        "imglink" : "everspring.han01",
         "configuration" : {
         "conf_version" : 1
 		},
