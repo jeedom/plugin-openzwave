@@ -9,6 +9,8 @@ echo "Lancement da l'installation/mise à jour des dépendance openzwave"
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ARCH=`uname -m`
+PYTHON_OPENZWAVE_VERSION=6320ae88db5c6bcd3482d962269fa624055ab557
+OPENZWAVE_VERSION=0432f68a7d331bdde4c0b77b2b81bcf9bd37795c
 
 function apt_install {
   sudo apt-get -y install "$@"
@@ -49,7 +51,7 @@ if [ ! -d /opt ]; then
 fi
 
 echo "Installation des dependances"
-apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml cython
+apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml cython unzip
 # Python
 echo "Installation des dependances Python"
 pip_install sphinxcontrib-blockdiag
@@ -82,21 +84,38 @@ else
   fi
   echo "Installation de Python-OpenZwave"
   cd /opt
-  sudo git clone https://github.com/OpenZWave/python-openzwave.git
+  wget "https://github.com/OpenZWave/python-openzwave/archive/${PYTHON_OPENZWAVE_VERSION}.zip" -O /tmp/python-openzwave.zip
   if [ $? -ne 0 ]; then
     sudo service jeedom start
     echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
     exit 1
   fi
-  cd python-openzwave
-  sudo git reset --hard 6320ae88db5c6bcd3482d962269fa624055ab557 #Version du 19/07/15
-  sudo git clone https://github.com/OpenZWave/open-zwave.git openzwave
+  unzip /tmp/python-openzwave.zip -d /opt
+  if [ $? -ne 0 ]; then
+    sudo service jeedom start
+    echo "Unable to unzip python-openzwave"
+    exit 1
+  fi
+  mv /opt/python-openzwave-${PYTHON_OPENZWAVE_VERSION} /opt/python-openzwave
+  rm /tmp/python-openzwave.zip
+  cd /opt/python-openzwave
+
+
+  mkdir openzwave
+  wget "https://github.com/OpenZWave/open-zwave/archive/${OPENZWAVE_VERSION}.zip" -O /tmp/openzwave.zip
   if [ $? -ne 0 ]; then
     echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
     exit 1
   fi
-  cd openzwave
-  sudo git reset --hard 0432f68a7d331bdde4c0b77b2b81bcf9bd37795c #Version du 29/07/15
+  unzip /tmp/openzwave.zip -d /opt/python-openzwave
+   if [ $? -ne 0 ]; then
+    sudo service jeedom start
+    echo "Unable to unzip openzwave"
+    exit 1
+  fi
+  rm /tmp/openzwave.zip
+  mv /opt/python-openzwave/open-zwave-${OPENZWAVE_VERSION} /opt/python-openzwave/openzwave
+
   cd /opt/python-openzwave
   sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
   sudo make install-api
