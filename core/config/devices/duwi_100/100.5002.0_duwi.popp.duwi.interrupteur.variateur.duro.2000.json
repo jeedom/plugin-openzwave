@@ -1,5 +1,9 @@
 {
 		"name": "Interrupteur Variateur Duro 2000",
+        "type": "Interrupteur",
+        "comlink" : "758-duwi-interrupteur-variateur-duro-2000-z-wave-4008297054580",
+        "remark" : "Il faut activer le polling pour avoir une remonté d'état",
+        "imglink" : "duwi.duro-2000",
         "configuration" : {
         "conf_version" : 1
 		},
