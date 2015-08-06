@@ -1,5 +1,5 @@
 {
-	"name" : "FGSD-002 [Smoke Sensor CE] ",
+	"name" : "FGSD-002 Smoke Sensor CE",
     "doc" : "fibaro.fgsd102_-_Fumees",
     "type": "Fumées",
     "comlink" : "2751-fibaro-detecteur-de-fumee-z-wave-plus-fgsd-002-5902020528265",

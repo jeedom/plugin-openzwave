@@ -1,6 +1,10 @@
 {
-	"name" : "FGWPE [Wall Plug]",
+	"name" : "FGWPE/FGWPF Wall Plug",
     "doc" : "fibaro.fgwpe101_-_Wall_Plug",
+    "type": "Prise",
+    "comlink" : "2934-fibaro-module-prise-commutateur-z-wave-avec-mesure-d-energie-fgwpf-102-schuko-5902020528302",
+    "remark" : "",
+    "imglink" : "fibaro.fgwpe101",
     "configuration" : {
         "conf_version" : 1
     },

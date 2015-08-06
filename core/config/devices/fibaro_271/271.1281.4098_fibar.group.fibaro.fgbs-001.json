@@ -1,5 +1,10 @@
 {	
-	"name": "FGBS-001 [Universal Relay]",
+	"name": "FGBS-001 Universal Relay",
+        "doc" : "",
+    "type": "Micromodule",
+    "comlink" : "916-fibaro-detecteur-universel-z-wave-fgbs-001-5902020528074",
+    "remark" : "",
+    "imglink" : "fibaro.fgbs001",
 	"configuration" : {
         "conf_version" : 1
 		},

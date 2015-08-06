@@ -1,5 +1,10 @@
 {
-	"name" : "FGRGB-101 [RGBW]",
+	"name" : "FGRGB-101 RGBW",
+    "doc" : "",
+    "type": "RGBW",
+    "comlink" : "2367-fibaro-controleur-rgbw-z-wave-fgrgb-101-5902020528159",
+    "remark" : "Peut aussi servir de capteurs multisondes",
+    "imglink" : "fibaro.fgrgb101",
     "configuration" : {
         "conf_version" : 1
     },
