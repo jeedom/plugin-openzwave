@@ -1,14 +1,13 @@
 {
 	"name" : "FGSD-002 Smoke Sensor CE",
     "doc" : "fibaro.fgsd102_-_Fumees",
-    "type": "Fumées",
+    "type": "Fumée",
     "comlink" : "2751-fibaro-detecteur-de-fumee-z-wave-plus-fgsd-002-5902020528265",
     "remark" : "",
     "imglink" : "fibaro.fgsd102",
     "battery_type" : "1xCR123A",
     "configuration" : {
         "conf_version" : 1,
-        "battery_type" : "CR123A"
     },
     "commands": [
       {

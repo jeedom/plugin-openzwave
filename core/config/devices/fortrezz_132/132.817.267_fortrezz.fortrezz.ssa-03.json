@@ -1,5 +1,10 @@
 {
 		"name": "SSA-03",
+        "doc" : "",
+        "type": "Sirène",
+        "comlink" : "978-fortrezz-sirene-exterieure-ip54-z-wave-flash-ssa-03-0661799563277",
+        "remark" : "",
+        "imglink" : "fortrezz.ssa03",
         "configuration" : {
         "conf_version" : 1
 		},

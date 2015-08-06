@@ -1,5 +1,10 @@
 {
 		"name": "SSA-02",
+        "doc" : "",
+        "type": "Sirène",
+        "comlink" : "980-fortrezz-sirene-z-wave-flash-rouge-ssa2-0661799486026",
+        "remark" : "",
+        "imglink" : "fortrezz.ssa02",
         "configuration" : {
         "conf_version" : 1
 		},
