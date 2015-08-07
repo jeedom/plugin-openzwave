@@ -149,7 +149,6 @@ image:../images/openzwave11.png[]
 
 Cet onglet donne quelques statistiques de communication avec le noeud. Peut être intéressant en cas de module qui passe en "Dead".
 
-'''
 == Mode inclusion
 
 image:../images/openzwave17.png[]
@@ -171,7 +170,6 @@ Lors d'une inclusion, il est conseillé que le module soit à moins d'un mètre 
 [TIP]
 A noter que l'interface mobile vous donne aussi accès à l'inclusion.
 
-'''
 == Mode exclusion
 
 image:../images/openzwave15.png[]
@@ -188,7 +186,6 @@ Si vous recliquez sur le bouton vous sortez du mode exclusion.
 [TIP]
 A noter que l'interface mobile vous donne aussi accès à l'exclusion.
 
-'''
 == Synchroniser
 
 image:../images/openzwave14.png[]
@@ -198,7 +195,6 @@ Bouton permettant de synchroniser les modules du réseau Z-Wave avec Jeedom.
 [TIP]
 Si vous n'avez pas l'image ou que Jeedom n'a pas reconnu votre module ce bouton peut permettre de corriger.
 
-'''
 == Réseaux Zwave
 
 image:../images/openzwave19.png[]
@@ -207,11 +203,11 @@ Vous retrouvez ici des informations générales sur votre réseau Z-wave.
 
 image:../images/openzwave24.png[]
 
-*Résumé*
+=== Résumé
 
 Le premier onglet vous donne le résumé de base de votre réseau Z-wave, vous retrouvez notament l'état du réseau Z-wave ainsi que le nombre d'éléments dans la file d'attente.
 
-*Actions*
+=== Actions
 
 image:../images/openzwave25.png[]
 
@@ -220,19 +216,19 @@ Vous retrouvez ici toutes les actions possibles sur votre réseau Z-wave ainsi q
 [IMPORTANT]
 Certaines actions sont vraiment risquées et l'équipe Jeedom ne pourra être tenue responsable en cas de mauvaise manipulation.
 
-*Statistiques*
+=== Statistiques
 
 image:../images/openzwave26.png[]
 
 Vous retrouvez ici les statistiques générales sur votre réseau Z-wave.
 
-*Graphique du réseau*
+=== Graphique du réseau
 
 image:../images/openzwave27.png[]
 
 Cet onglet vous donnera une représentation graphique des différents liens entre les noeuds.
 
-*Table de routage*
+=== Table de routage
 
 image:../images/openzwave28.png[]
 
@@ -241,10 +237,16 @@ Affiche le nombre de routes disponibles pour la communication entre chaque noeud
 [TIP]
 La légende est diponible tout en bas.
 
-'''
-== Configuration
+=== Console
 
-image:../images/openzwave20.png[]
+La console permet de voir en temps réel ce qu'il se passe sur le réseau Z-wave.
+
+image:../images/openzwave22.png[]
+
+[IMPORTANT]
+Les informations ici sont à destination du support, il ne faut donc pas s'inquiéter de voir des "Error" ou  "Warning" ici. Cela ne veut pas forcément dire que votre système a un soucis.
+
+=== Configuration
 
 Cet onglet contient la configuration des vos modules Z-wave.
 
@@ -253,7 +255,6 @@ image:../images/openzwave23.png[]
 [IMPORTANT]
 Cette partie est réservée aux experts, toute modification ici (autre que sur demande du support) peut entrainer de graves problèmes sur le réseau Z-wave et peut ne pas être prise en charge par le support.
 
-'''
 == Santé
 
 image:../images/openzwave12.png[]
@@ -278,19 +279,6 @@ Vous avez ici :
 * *Temporisation* : affiche le délai moyen d'envoi de paquet en ms.
 * *Dernière communication* : Date de dernière communication avec le module ainsi que l'heure de la prochaine communication prévue.
 * *Ping* : Permet d'envoyer un ping au module, peut être utilisé si le module est en dead pour voir si c'est réellement le cas.
-
-'''
-== Console
-
-image:../images/openzwave21.png[]
-
-La console permet de voir en temps réel ce qu'il se passe sur le réseau Z-wave.
-
-image:../images/openzwave22.png[]
-
-[IMPORTANT]
-Les informations ici sont à destination du support, il ne faut donc pas s'inquiéter de voir des "Error" ou  "Warning" ici. Cela ne veut pas forcément dire que votre système a un soucis.
-
 
 == Mettre à jour OpenZwave
 

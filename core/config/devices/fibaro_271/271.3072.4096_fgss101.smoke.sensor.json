@@ -1,5 +1,11 @@
 {
-	"name" : "Fibaro FGSS-001 [Smoke Sensor]",
+	"name" : "FGSS-001 Smoke Sensor",
+    "doc" : "",
+    "type": "Fumée",
+    "comlink" : "2751-fibaro-detecteur-de-fumee-z-wave-plus-fgsd-002-5902020528265",
+    "remark" : "Remplacé par son équivalent aux normes le FGSD-002",
+    "imglink" : "fibaro.fgss001",
+    "battery_type" : "1xCR123A",
     "configuration" : {
         "conf_version" : 1
     },

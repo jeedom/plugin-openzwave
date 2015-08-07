@@ -1,74 +1,45 @@
 {
-		"name": "Aeon Labs Double microSwitch G2",
+		"name": "Insert Switch",
+        "doc" : "",
+        "type": "Micromodule",
+        "comlink" : "286-aeon-labs-micromodule-commutateur-et-compteur-d-energie-g2-1220000011014",
+        "remark" : "",
+        "imglink" : "aeotec.insert-switch",
         "configuration" : {
         "conf_version" : 1
 		},
         "commands": [
             {
-                "name": "On 1",
+                "name": "On",
                 "type": "action",
                 "subtype": "other",
                 "isVisible":1,
                 "configuration": {
                     "class": "0x25",
-					"instanceId": 1,
+					"instanceId": 0,
                     "value": "data[0].Set(255)"
                 }
             },
             {
-                "name": "Off 1",
+                "name": "Off",
                 "type": "action",
                 "subtype": "other",
                 "isVisible":1,
                 "configuration": {
                     "class": "0x25",
-					"instanceId": 1,
+					"instanceId": 0,
                     "value": "data[0].Set(0)"
                 }
             },
             {
-                "name": "Etat 1",
+                "name": "Etat",
                 "type": "info",
                 "subtype": "binary",
                 "unite": "",
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x25",
-                    "instanceId": 1,
-                    "value": "data[0].val"
-                }
-            },
-            {
-                "name": "On 2",
-                "type": "action",
-                "subtype": "other",
-                "isVisible":1,
-                "configuration": {
-                    "class": "0x25",
-					"instanceId": 2,
-                    "value": "data[0].Set(255)"
-                }
-            },
-            {
-                "name": "Off2",
-                "type": "action",
-                "subtype": "other",
-                "isVisible":1,
-                "configuration": {
-                    "class": "0x25",
-					"instanceId": 2,
-                    "value": "data[0].Set(0)"
-                }
-            },
-            {
-                "name": "Etat2",
-                "type": "info",
-                "subtype": "binary",
-                "unite": "",
-                "isVisible": 1,
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 2,
+                    "instanceId": 0,
                     "value": "data[0].val"
                 }
             },
@@ -83,7 +54,7 @@
                     "class": "0x31",
 					"instanceId": 0,
                     "value": "data[4].val",
-					"maxValue": 1150,
+					"maxValue": 2500,
                     "minValue": 0
                 }
             },
@@ -102,3 +73,4 @@
             }
         ]
     }
+

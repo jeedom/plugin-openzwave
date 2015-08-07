@@ -1,5 +1,10 @@
 {
-    "name": "Fibaro FGS-221 Double charge",
+    "name": "FGS-221 Double charge",
+    "doc" : "",
+    "type": "Micromodule",
+    "comlink" : "2863-fibaro-micromodule-commutateur-double-z-wave-fgs-222-5902020528289",
+    "remark" : "Ce module est remplacé dans les boutiques par le FGS-222",
+    "imglink" : "fibaro.fgs221",
     "configuration" : {
         "conf_version" : 1
     },

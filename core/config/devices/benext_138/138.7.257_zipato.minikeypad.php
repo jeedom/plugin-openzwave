@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . "/../../../../../core/php/core.inc.php";
+require_once dirname(__FILE__) . "/../../../../../../core/php/core.inc.php";
 include_file('core', 'authentification', 'php');
 if (!isConnect()) {
 	echo '<div class="alert alert-danger div_alert">';

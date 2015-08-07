@@ -1,5 +1,10 @@
 {
-		"name": "Aeon Labs Smart Energy Illuminator",
+		"name": "Smart Energy Illuminator",
+        "doc" : "",
+        "type": "Prise",
+        "comlink" : "283-aeon-labs-smart-energy-illuminator-z-wave-1220000010499",
+        "remark" : "",
+        "imglink" : "aeotec.smart-energy-illuminator",
          "configuration" : {
         "conf_version" : 1
 		},

@@ -1,5 +1,10 @@
 {
-		"name": "Fibaro FGRM-221 [Volet roulant]", 
+		"name": "FGRM-221 Volet roulant", 
+    "doc" : "",
+    "type": "Volets",
+    "comlink" : "2604-fibaro-micromodule-pour-volet-roulant-z-wave-fgrm-222-5902020528227",
+    "remark" : "Module équivalent au FGRM-222",
+    "imglink" : "fibaro.fgrm222",
 		"configuration" : {
         "conf_version" : 1
 		},

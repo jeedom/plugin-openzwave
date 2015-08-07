@@ -1468,7 +1468,7 @@ def refresh_background(device_id, value_id, target_value):
         refresh_count +=1
 
 def refresh_background_once(device_id, value_id):
-   time.sleep(3)
+   time.sleep(4)
    network.nodes[device_id].values[value_id].refresh()
     
 def get_sleeping_nodes_count():

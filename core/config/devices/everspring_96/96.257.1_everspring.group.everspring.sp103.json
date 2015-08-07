@@ -1,5 +1,11 @@
 {
-		"name": "Everspring SP103",
+		"name": "SP103",
+        "doc" : "",
+        "type": "Mouvement",
+        "comlink" : "854-everspring-detecteur-de-mouvement-pir-z-wave-sp-103-3700946500257",
+        "remark" : "",
+        "imglink" : "everspring.sp103",
+        "battery_type" : "3xAA",
        "configuration" : {
         "conf_version" : 1
 		},

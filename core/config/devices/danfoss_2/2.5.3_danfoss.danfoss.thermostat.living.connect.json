@@ -1,8 +1,13 @@
 {
-		"name": "Danfoss Thermostat Living Connect + retour consigne",
-		"configuration" : {
+        "name": "Thermostat Living Connect",
+        "type": "Thermostat",
+        "comlink" : "2495-danfoss-tete-electronique-living-connect-z-wave-lc-13-5013567421497",
+        "remark" : "",
+        "imglink" : "danfoss.living-connect",
+        "battery_type" : "2xAA",
+        "configuration" : {
         "conf_version" : 1
-		},
+        },
         "commands": [
             {
                 "name": "Commande",
@@ -10,12 +15,12 @@
                 "subtype": "slider",
                 "isVisible": 1,
                 "isHistorized": 0,
-				"unite": "°C",
+                "unite": "°C",
                 "configuration": {
                     "class": "0x43",
-					"instanceId": 0,
+                    "instanceId": 0,
                     "value": "data[1].Set(#slider#)",
-					"maxValue": 28,
+                    "maxValue": 28,
                     "minValue": 4
                 }
             },
@@ -25,12 +30,12 @@
                 "subtype": "numeric",
                 "isVisible": 1,
                 "isHistorized": 0,
-				"unite": "°C",
+                "unite": "°C",
                 "configuration": {
                     "class": "0x43",
-					"instanceId": 0,
+                    "instanceId": 0,
                     "value": "data[1].val",
-					"maxValue": 28,
+                    "maxValue": 28,
                     "minValue": 0
                 }
             },          
@@ -40,12 +45,12 @@
                 "subtype": "numeric",
                 "isVisible": 0,
                 "isHistorized": 0,
-				"unite": "%",
+                "unite": "%",
                 "configuration": {
                     "class": "0x80",
-					"instanceId": 0,
+                    "instanceId": 0,
                     "value": "data[0].val",
-					"maxValue": 100,
+                    "maxValue": 100,
                     "minValue": 0
                 }
             }          

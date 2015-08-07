@@ -1,6 +1,10 @@
 {
-	"name" : "Fibaro FGD-211 [Dimmer]",
+	"name" : "FGD-211 Dimmer",
     "doc" : "fibaro.fgd211_-_Dimmer",
+    "type": "Micromodule",
+    "comlink" : "2965-fibaro-micromodule-variateur-z-wave-fgd-212",
+    "remark" : "Ce module est remplacé dans les boutiques par le FGD-212",
+    "imglink" : "fibaro.fgd211",
     "configuration" : {
         "conf_version" : 1
     },
@@ -56,5 +60,5 @@
                     "maxValue": 99
                 }
             }
-        ],
+        ]
 }

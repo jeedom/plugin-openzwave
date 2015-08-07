@@ -1,5 +1,10 @@
 {
-		"name": "Aeon DSB28",
+		"name": "DSB28 3 Pinces",
+        "doc" : "",
+        "type": "Consommation",
+        "comlink" : "281-aeon-labs-compteur-de-consommation-electrique-z-wave-3c-60a-version-g2-1220000011670",
+        "remark" : "",
+        "imglink" : "aeotec.dsb28",
         "configuration" : {
         "conf_version" : 1
 		},

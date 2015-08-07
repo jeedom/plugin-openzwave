@@ -1,5 +1,11 @@
 {
-		"name": "Everspring SM103",
+		"name": "SM103",
+        "doc" : "",
+        "type": "Ouverture",
+        "comlink" : "851-everspring-capteur-d-ouverture-z-wave-sm103-3700946500233",
+        "remark" : "",
+        "imglink" : "everspring.sm103",
+        "battery_type" : "3xAAA",
         "configuration" : {
         "conf_version" : 1
     },

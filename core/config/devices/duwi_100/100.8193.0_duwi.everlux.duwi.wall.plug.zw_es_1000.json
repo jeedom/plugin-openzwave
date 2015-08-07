@@ -1,5 +1,9 @@
 {
-		"name": "Duwi Wall Plug ZW_ES_1000",
+		"name": "ZW_ES_1000 Wall Plug ",
+        "type": "Interrupteur",
+        "comlink" : "748-duwi-interrupteur-on-off-everlux-z-wave-4008297054313",
+        "remark" : "Il faut activer le polling pour avoir une remonté d'état",
+        "imglink" : "duwi.zwes-1000",
         "configuration" : {
         "conf_version" : 1
 		},

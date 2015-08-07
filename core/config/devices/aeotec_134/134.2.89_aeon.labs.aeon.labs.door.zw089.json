@@ -1,26 +1,33 @@
 {
-		"name": "Aeon Door/Window Sensor",
-		"configuration" : {
+		"name": "ZW089 Door",
+        "doc" : "",
+        "type": "Ouverture",
+        "comlink" : "2680-aeon-labs-capteur-d-ouverture-de-porte-a-encastrer-z-wave-plus-gen5-1220000012721",
+        "remark" : "",
+        "imglink" : "aeotec.zw089",
+        "battery_type" : "1xCR2",
+        "configuration" : {
         "conf_version" : 1
 		},
-        "commands": [
+		"commands": [
             {
                 "name": "Etat",
                 "type": "info",
-                "subtype": "binary",
-                "isVisible": 1,
-                "isHistorized": 1,
+                "subType": "binary",
+                "isHistorized": "1",
                 "configuration": {
-                    "class": "0x30",
+                    "instanceId": "0",
+                    "class": "0x20",
                     "value": "data[0].val"
-                },
-                "display": {
-                    "invertBinary": "1"
                 },
                 "template": {
                     "dashboard": "door",
                     "mobile": "door"
-                }
+                },
+                "display": {
+                    "invertBinary": "1"
+                },
+                "isVisible": "1"
             },
             {
                 "name": "Batterie",

@@ -1,5 +1,11 @@
 {		
 		"name": "EZ Motion 3 in 1",
+        "doc" : "",
+        "type": "Multicapteurs",
+        "comlink" : "",
+        "remark" : "",
+        "imglink" : "homeseer.ezmotion3en1",
+        "battery_type" : "3xAAA",
 		"configuration" : {
         "conf_version" : 1
 		},

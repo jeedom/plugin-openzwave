@@ -1,5 +1,10 @@
 {		
-		"name": "Aeon Labs Siren ZW080",
+		"name": "ZW080",
+        "doc" : "",
+        "type": "Sirène",
+        "comlink" : "2592-aeon-labs-sirene-z-wave-plus-sur-prise-electrique-gen5-1220000012592",
+        "remark" : "",
+        "imglink" : "aeotec.zw080",
          "configuration" : {
         "conf_version" : 1
 		},

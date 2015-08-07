@@ -1,5 +1,11 @@
 {
-		"name": "Everspring HSP02",
+		"name": "HSP02",
+        "doc" : "",
+        "type": "Multicapteurs",
+        "comlink" : "842-everspring-detecteur-de-mouvement-z-wave-hsp02-3700946500165",
+        "remark" : "Ce module est actuellement vendu sous la marque Everspring",
+        "imglink" : "chromagic.hsp02",
+        "battery_type" : "1xCR2",
         "configuration" : {
         "conf_version" : 1
 		},

@@ -1,5 +1,11 @@
 {
-		"name": "Aeon HEM",
+		"name": "HEM 2 Pinces",
+        "doc" : "",
+        "type": "Consommation",
+        "comlink" : "2289-aeon-labs-compteur-de-consommation-electrique-z-wave-2c-200a-1220000010598",
+        "remark" : "",
+        "imglink" : "aeotec.hem",
+        "battery_type" : "4xAA",
 		"configuration" : {
         "conf_version" : 1
 		},

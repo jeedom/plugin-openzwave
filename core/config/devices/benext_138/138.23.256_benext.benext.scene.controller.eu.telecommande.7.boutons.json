@@ -1,5 +1,10 @@
 {
-		"name": "Benext Scene Controller EU telecommande 7 boutons",
+		"name": "Scene Controller 7 boutons",
+        "doc" : "",
+        "type": "Télécommande",
+        "comlink" : "2534-benext-telecommande-7-boutons-z-wave-scene-controller-0632181493786",
+        "remark" : "Télécommande non fonctionnelle, fonctionne cependant en association avec d'autres modules",
+        "imglink" : "benext.scene-controller",
         "configuration" : {
         "conf_version" : 1
 		},

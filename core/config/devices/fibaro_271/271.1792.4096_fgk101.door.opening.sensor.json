@@ -1,6 +1,11 @@
 {
-	"name" : "Fibaro FGK-101 [Doorsensor]",
+	"name" : "FGK-101 Door Sensor",
     "doc" : "fibaro.fgk101_-_Ouverture",
+    "type": "Ouverture",
+    "comlink" : "922-fibaro-detecteur-d-ouverture-z-wave-avec-entree-contact-sec-blanc-5902020528111",
+    "remark" : "",
+    "imglink" : "fibaro.fgk101-DS18B20",
+    "battery_type" : "1xER14250",
     "configuration" : {
         "conf_version" : 1
     },

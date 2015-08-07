@@ -1,5 +1,10 @@
 {
-	"name" : "Fibaro FGD-212 [Dimmer 2]",
+	"name" : "FGD-212 Dimmer 2",
+    "doc" : "",
+    "type": "Micromodule",
+    "comlink" : "2965-fibaro-micromodule-variateur-z-wave-fgd-212",
+    "remark" : "Remplace le FGD-211",
+    "imglink" : "fibaro.fgd212",
     "configuration" : {
         "conf_version" : 1
     },

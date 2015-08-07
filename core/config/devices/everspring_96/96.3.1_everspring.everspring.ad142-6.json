@@ -1,5 +1,10 @@
 {	
-		"name": "Everspring AD142-6",
+		"name": "AD142-6",
+        "doc" : "",
+        "type": "Prise",
+        "comlink" : "825-everspring-module-lampe-z-wave-french-3700946500035",
+        "remark" : "",
+        "imglink" : "everspring.ad142-6",
         "configuration" : {
         "conf_version" : 1
 		},

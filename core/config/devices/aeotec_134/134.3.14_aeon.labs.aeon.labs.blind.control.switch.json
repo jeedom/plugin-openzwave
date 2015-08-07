@@ -1,27 +1,32 @@
-{		
-		"name": "Aeon Labs Smart Energy Switch",
+{
+		"name": "Blind Control Switch",
+        "doc" : "",
+        "type": "Volets",
+        "comlink" : "284-aeon-labs-micromodule-z-wave-pour-volet-roulant-1220000010864",
+        "remark" : "",
+        "imglink" : "aeotec.blind-control",
         "configuration" : {
         "conf_version" : 1
 		},
         "commands": [
             {
-                "name": "On",
+                "name": "Monter",
                 "type": "action",
                 "subtype": "other",
                 "isVisible":1,
                 "configuration": {
-                    "class": "0x25",
+                    "class": "0x26",
 					"instanceId": 0,
-                    "value": "data[0].Set(255)"
+                    "value": "data[0].Set(99)"
                 }
             },
             {
-                "name": "Off",
+                "name": "Descendre",
                 "type": "action",
                 "subtype": "other",
                 "isVisible":1,
                 "configuration": {
-                    "class": "0x25",
+                    "class": "0x26",
 					"instanceId": 0,
                     "value": "data[0].Set(0)"
                 }
@@ -33,9 +38,16 @@
                 "unite": "",
                 "isVisible": 1,
                 "configuration": {
-                    "class": "0x25",
+                    "class": "0x26",
                     "instanceId": 0,
                     "value": "data[0].val"
+                },
+                "display": {
+                    "invertBinary": "1"
+                }, 
+                "template": {
+                    "dashboard": "store",
+                    "mobile": "store"
                 }
             },
 			{
@@ -68,4 +80,3 @@
             }
         ]
     }
-

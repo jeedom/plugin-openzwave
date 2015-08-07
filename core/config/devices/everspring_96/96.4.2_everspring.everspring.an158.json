@@ -1,5 +1,10 @@
 {		
-		"name": "Everspring AN158",
+		"name": "AN158",
+        "doc" : "",
+        "type": "Prise",
+        "comlink" : "835-everspring-module-prise-on-off-z-wave-mesure-d-energie-an158-2-ger-3700946500097",
+        "remark" : "",
+        "imglink" : "everspring.an158",
 		"configuration" : {
         "conf_version" : 1
 		},

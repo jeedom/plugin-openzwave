@@ -1,5 +1,11 @@
 {
-		"name": "Everspring ST812",
+		"name": "ST812",
+        "doc" : "",
+        "type": "Fuite",
+        "comlink" : "860-everspring-detecteur-d-eau-z-wave-st-812-3700946500318",
+        "remark" : "",
+        "imglink" : "everspring.st812",
+        "battery_type" : "3xAA",
         "configuration" : {
         "conf_version" : 1
 		},

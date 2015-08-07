@@ -1,11 +1,16 @@
 {
-		"name": "Aeon Labs Blind Control Switch",
-        "configuration" : {
+		"name": "Insert Dimmer",
+        "doc" : "",
+        "type": "Micromodule",
+        "comlink" : "287-aeon-labs-micromodule-variateur-et-compteur-d-energie-g2-1220000011120",
+        "remark" : "",
+        "imglink" : "aeotec.insert-dimmer",
+		"configuration" : {
         "conf_version" : 1
 		},
         "commands": [
             {
-                "name": "Monter",
+                "name": "On",
                 "type": "action",
                 "subtype": "other",
                 "isVisible":1,
@@ -16,7 +21,7 @@
                 }
             },
             {
-                "name": "Descendre",
+                "name": "Off",
                 "type": "action",
                 "subtype": "other",
                 "isVisible":1,
@@ -27,22 +32,35 @@
                 }
             },
             {
+                "name": "Intensité",
+                "type": "action",
+                "subtype": "slider",
+                "isVisible":1,
+                "value": "Etat",
+                "configuration": {
+                    "class": "0x26",
+					"instanceId": 0,
+                    "value": "data[0].Set(#slider#)",
+                    "minValue": 0,
+                    "maxValue": 100
+                },
+                "template": {
+                    "dashboard": "light",
+                    "mobile": "light"
+                }
+            },
+			{
                 "name": "Etat",
                 "type": "info",
-                "subtype": "binary",
-                "unite": "",
-                "isVisible": 1,
+                "subtype": "numeric",
+                "unite": "%",
+                "isVisible": 0,
                 "configuration": {
                     "class": "0x26",
                     "instanceId": 0,
-                    "value": "data[0].val"
-                },
-                "display": {
-                    "invertBinary": "1"
-                }, 
-                "template": {
-                    "dashboard": "store",
-                    "mobile": "store"
+                    "value": "data[0].val",
+                    "minValue": 0,
+                    "maxValue": 100
                 }
             },
 			{
@@ -75,3 +93,4 @@
             }
         ]
     }
+

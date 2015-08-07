@@ -1,6 +1,11 @@
 {
-	"name" : "Keyfob Gen5",
-    "doc" : "aeotec.keyfob_Gen5_-_Telecommande",
+	"name" : "Panic Button",
+    "doc" : "aeotec.panic_button_-_Telecommande",
+    "type": "Télécommande",
+    "comlink" : "278-aeon-labs-telecommande-z-wave-porte-cles-1-bouton",
+    "remark" : "",
+    "imglink" : "aeotec.panicbutton",
+    "battery_type" : "1xCR2450",
     "configuration" : {
         "conf_version" : 1
     },

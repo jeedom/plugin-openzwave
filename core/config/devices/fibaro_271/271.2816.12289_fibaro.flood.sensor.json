@@ -1,5 +1,11 @@
 {
-	"name" : "Fibaro FGFS-101 [Flood Sensor]",
+	"name" : "FGFS-101 Flood Sensor",
+    "doc" : "",
+    "type": "Fuite",
+    "comlink" : "2365-fibaro-detecteur-d-inondation-z-wave-fgfs-101-5902020528142",
+    "remark" : "",
+    "imglink" : "fibaro.fgfs101",
+    "battery_type" : "1xCR123A",
     "configuration" : {
         "conf_version" : 1
     },
