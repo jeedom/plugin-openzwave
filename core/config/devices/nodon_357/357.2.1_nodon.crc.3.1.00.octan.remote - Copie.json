@@ -1,0 +1,29 @@
+{
+	"name" : "Octan Remote",
+    "doc" : "",
+    "type": "Télécommande",
+    "comlink" : "2939-nodon-octan-telecommande-murale-z-wave-3700313920282",
+    "remark" : "Fonctionne en mode scene et non central scene",
+    "imglink" : "nodon.octan",
+    "battery_type" : "1xCR2032",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+        {
+            "name": "Boutons",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": "0x2b",
+                "value": "data[0].val"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        }
+    ]
+}

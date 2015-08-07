@@ -1,6 +1,10 @@
 {
 	"name" : "Smartplug",
     "doc" : "nodon.smartplug_-_Prise",
+    "type": "Prise",
+    "comlink" : "2939-nodon-octan-telecommande-murale-z-wave-3700313920282",
+    "remark" : "",
+    "imglink" : "nodon.smartplug",
     "configuration" : {
         "conf_version" : 1
     },
