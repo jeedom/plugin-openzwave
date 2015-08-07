@@ -34,7 +34,7 @@
                 "isVisible": "1"
             },
             {
-				"name": "Off",
+                "name": "Off",
                 "type": "action",
                 "subType": "other",
                 "isHistorized": "0",

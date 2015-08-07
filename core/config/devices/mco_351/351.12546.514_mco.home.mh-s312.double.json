@@ -1,5 +1,5 @@
 {
-		"name": "MCO Home MH-S412 [Double]",
+		"name": "MCO Home MH-S312 [Double]",
         "configuration" : {
         "conf_version" : 1
 		},
@@ -10,7 +10,7 @@
                 "subType": "binary",
                 "isHistorized": "0",
                 "configuration": {
-                    "instanceId": "1",
+                    "instanceId": "0",
                     "class": "0x25",
                     "value": "data[0].val"
                 },
@@ -22,7 +22,7 @@
                 "subType": "other",
                 "isHistorized": "0",
                 "configuration": {
-                    "instanceId": "1",
+                    "instanceId": "0",
                     "class": "0x25",
                     "value": "data[0].Set(255)"
                 },
@@ -39,7 +39,7 @@
                 "subType": "other",
                 "isHistorized": "0",
                 "configuration": {
-                    "instanceId": "1",
+                    "instanceId": "0",
                     "class": "0x25",
                     "value": "data[0].Set(0)"
                 },
@@ -56,7 +56,7 @@
                 "subType": "binary",
                 "isHistorized": "0",
                 "configuration": {
-                    "instanceId": "2",
+                    "instanceId": "1",
                     "class": "0x25",
                     "value": "data[0].val"
                 },
@@ -68,7 +68,7 @@
                 "subType": "other",
                 "isHistorized": "0",
                 "configuration": {
-                    "instanceId": "2",
+                    "instanceId": "1",
                     "class": "0x25",
                     "value": "data[0].Set(255)"
                 },
@@ -85,7 +85,7 @@
                 "subType": "other",
                 "isHistorized": "0",
                 "configuration": {
-                    "instanceId": "2",
+                    "instanceId": "1",
                     "class": "0x25",
                     "value": "data[0].Set(0)"
                 },
