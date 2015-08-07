@@ -133,7 +133,7 @@ foreach ($eqLogics as $eqLogic) {
 	echo '<div class="eqLogicDisplayCard cursor" data-logical-id="' . $eqLogic->getLogicalId() . '" data-server-id="' . $eqLogic->getConfiguration('serverID', 0) . '" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center>";
 	if ($eqLogic->getImgFilePath() !== false) {
-		echo '<img class="lazy" src="plugins/openzwave/core/img/devices/' . $eqLogic->getImgFilePath() . '" height="105" width="95" />';
+		echo '<img class="lazy" src="plugins/openzwave/core/config/devices/' . $eqLogic->getImgFilePath() . '" height="105" width="95" />';
 	} else {
 		echo '<img class="lazy" src="plugins/openzwave/doc/images/openzwave_icon.png" height="105" width="95" />';
 	}
