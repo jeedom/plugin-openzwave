@@ -1,5 +1,5 @@
 {
-		"name": "ASR-ZW Thermostat Receiver",
+		"name": "ASR-ZW Receiver",
         "doc" : "",
         "type": "Thermostat",
         "comlink" : "1987-secure-actionneur-de-chaudiere-ssr303-z-wave-5015914250095",
