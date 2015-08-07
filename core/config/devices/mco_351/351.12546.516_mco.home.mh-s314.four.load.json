@@ -1,5 +1,10 @@
 {
 		"name": "MH-S314 Four-load",
+        "doc" : "",
+        "type": "Interrupteur",
+        "comlink" : "",
+        "remark" : "",
+        "imglink" : "mco.mhs314",
         "configuration" : {
         "conf_version" : 1
 		},

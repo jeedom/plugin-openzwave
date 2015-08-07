@@ -1,5 +1,10 @@
 {
 		"name": "MH-S412 Double",
+        "doc" : "",
+        "type": "Interrupteur",
+        "comlink" : "2889-mcohome-interrupteur-tactile-en-verre-z-wave-2-charges-blanc",
+        "remark" : "",
+        "imglink" : "mco.mhs412",
         "configuration" : {
         "conf_version" : 1
 		},
