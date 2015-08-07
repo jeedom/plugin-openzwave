@@ -1,5 +1,10 @@
 {
 		"name": "ASR-ZW Thermostat Receiver",
+        "doc" : "",
+        "type": "Thermostat",
+        "comlink" : "1987-secure-actionneur-de-chaudiere-ssr303-z-wave-5015914250095",
+        "remark" : "Module vendu sous la marque Secure",
+        "imglink" : "horstmann.asrzw",
        "configuration" : {
         "conf_version" : 1
 		},
