@@ -1,6 +1,10 @@
 {
 	"name" : "SwiidInter",
     "doc" : "swiid.inter_-_Interrupteur_Cordon",
+    "type": "Interrupteur",
+    "comlink" : "2675-swiid-interrupteur-sur-cordon-z-wave-swiidinter-blanc-370092591002",
+    "remark" : "",
+    "imglink" : "swiid.inter",
     "configuration" : {
         "conf_version" : 1
     },
