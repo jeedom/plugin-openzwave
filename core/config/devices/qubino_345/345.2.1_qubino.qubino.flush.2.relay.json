@@ -1,5 +1,10 @@
 {		
-		"name" : "Flush 2 relay",
+		"name" : "ZMNHBA2 Double Charge",
+        "doc" : "",
+        "type": "Micromodule",
+        "comlink" : "3062-qubino-micromodule-commutateur-2-relais-et-consometre-z-wave-zmnhbd1-3830062070119.html",
+        "remark" : "Remplacé par ZMNHBD1",
+        "imglink" : "qubino.zmnhba2",
 		"configuration" : {
         "conf_version" : 1
 		},

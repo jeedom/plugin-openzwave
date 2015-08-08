@@ -1,5 +1,10 @@
 {
-	"name" : "Fil Pilote 6 ordres",
+	"name" : "ZMNHJA2 Fil Pilote",
+    "doc" : "",
+    "type": "Micromodule",
+    "comlink" : "2654-qubino-module-fil-pilote-encastrable-z-wave-zmnhja2",
+    "remark" : "",
+    "imglink" : "qubino.zmnhja2",
     "configuration" : {
         "conf_version" : 1
     },

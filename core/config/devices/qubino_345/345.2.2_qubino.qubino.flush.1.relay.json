@@ -1,5 +1,10 @@
 {
-		"name" : "Flush 1 relay",
+		"name" : "ZMNHAA2 Simple Charge",
+        "doc" : "",
+        "type": "Micromodule",
+        "comlink" : "3060-qubino-micromodule-commutateur-1-relai-et-consometre-z-wave-zmnhad1-3830062070102",
+        "remark" : "Remplacé par ZMNHAD1",
+        "imglink" : "qubino.zmnhaa2",
 		"configuration" : {
         "conf_version" : 1
 		},

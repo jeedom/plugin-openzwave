@@ -1,5 +1,10 @@
 {
-		"name" : "Flush on/off thermostat",
+		"name" : "ZMNHIA2 Thermostat",
+        "doc" : "",
+        "type": "Micromodule",
+        "comlink" : "2653-qubino-micromodule-thermostat-encastrable-z-wave-zmnhia2-3830062070041",
+        "remark" : "",
+        "imglink" : "qubino.zmnhia2",
 		"configuration" : {
         "conf_version" : 1
 		},

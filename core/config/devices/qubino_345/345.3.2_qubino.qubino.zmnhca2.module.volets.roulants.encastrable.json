@@ -1,5 +1,10 @@
 {
-		"name": "ZMNHCA2",
+		"name": "ZMNHCA2 Volets",
+        "doc" : "",
+        "type": "Volets",
+        "comlink" : "3061-qubino-micromodule-pour-volet-roulant-et-consometre-z-wave-zmnhcd1-3830062070126",
+        "remark" : "Remplacé par ZMNHCD1",
+        "imglink" : "qubino.zmnhca2",
         "configuration" : {
         "conf_version" : 1
 		},
