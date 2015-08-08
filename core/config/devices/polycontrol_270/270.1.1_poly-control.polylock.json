@@ -1,6 +1,11 @@
 {
         "name": "Polylock",
         "doc" : "polycontrol.polylock_-_Serrure",
+    "type": "Serrure",
+    "comlink" : "1752-poly-control-serrure-motorisee-poly-lock-z-wave",
+    "remark" : "",
+    "imglink" : "polycontrol.polylock",
+    "battery_type" : "1xER26500M",
         "configuration" : {
         "conf_version" : 1
         },

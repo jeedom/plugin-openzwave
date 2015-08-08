@@ -1,5 +1,11 @@
 {
 		"name": "Danalock", 
+        "doc" : "",
+    "type": "Serrure",
+    "comlink" : "",
+    "remark" : "",
+    "imglink" : "polycontrol.danalock",
+    "battery_type" : "1xER26500M",
 		"configuration" : {
         "conf_version" : 1
 		},
