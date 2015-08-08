@@ -1,6 +1,11 @@
 {
-	"name" : "MultiSensor",
+	"name" : "PSP01/PSM02",
     "doc" : "philio.psp01_-_Multicapteurs",
+    "type": "Multicapteurs",
+    "comlink" : "2608-zipato-detecteur-z-wave-4-en-1-mouvement-ouverture-luminosite-tem-3858890730425",
+    "remark" : "Vendu aussi sous la marque Zipato",
+    "imglink" : "philio.psp01",
+    "battery_type" : "1xCR123A",
     "configuration" : {
         "conf_version" : 1
     },

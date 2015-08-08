@@ -1,5 +1,11 @@
 {
 	"name": "Power Reader",
+    "doc" : "",
+    "type": "Compteur",
+    "comlink" : "1537-northq-compteur-optique-de-consommation-z-wave",
+    "remark" : "",
+    "imglink" : "northq.powerreader",
+    "battery_type" : "2xAA",
     "configuration" : {
     "conf_version" : 1
 	},

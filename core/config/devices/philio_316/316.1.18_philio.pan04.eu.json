@@ -1,5 +1,10 @@
 {
-		"name": "PAN04.eu",
+		"name": "PAN04 Double Charge",
+    "doc" : "",
+    "type": "Micromodule",
+    "comlink" : "2610-zipato-micromodule-commutateur-double-z-wave-avec-mesure-d-energie-3858890730821",
+    "remark" : "Vendu aussi sous la marque Zipato",
+    "imglink" : "philio.pan04",
        "configuration" : {
         "conf_version" : 1
 		},

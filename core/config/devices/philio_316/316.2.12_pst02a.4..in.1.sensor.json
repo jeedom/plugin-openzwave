@@ -1,6 +1,11 @@
 {
-	"name" : "4 in 1 Sensor",
+	"name" : "PST02-A 4 en 1",
     "doc" : "philio.pst02a_-_4_en_1",
+    "type": "Multicapteurs",
+    "comlink" : "2608-zipato-detecteur-z-wave-4-en-1-mouvement-ouverture-luminosite-tem-3858890730425",
+    "remark" : "Vendu aussi sous la marque Zipato",
+    "imglink" : "philio.pst02a",
+    "battery_type" : "1xCR123A",
     "configuration" : {
         "conf_version" : 1
     },

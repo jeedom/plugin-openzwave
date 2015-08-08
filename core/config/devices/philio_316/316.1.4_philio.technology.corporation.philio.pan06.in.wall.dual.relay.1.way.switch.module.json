@@ -1,5 +1,10 @@
 {
-		"name": "PAN06 In Wall Dual Relay (1 way) switch module",
+		"name": "PAN06 Double Charge",
+    "doc" : "",
+    "type": "Micromodule",
+    "comlink" : "2482-philio-micromodule-commutateur-double-z-wave-4713698570019",
+    "remark" : "",
+    "imglink" : "philio.pan06",
         "configuration" : {
         "conf_version" : 1
 		},
