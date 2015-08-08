@@ -1,5 +1,11 @@
 {
-		"name": "ZS 6101 Smoke Detector ",
+		"name": "ZS6101 Smoke Detector ",
+        "doc" : "",
+        "type": "Fumée",
+        "comlink" : "",
+        "remark" : "",
+        "imglink" : "vision.zs6101",
+        "battery_type" : "1xCR123A",
         "configuration" : {
         "conf_version" : 1
 		},

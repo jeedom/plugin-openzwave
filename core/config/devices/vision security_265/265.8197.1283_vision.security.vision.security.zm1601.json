@@ -1,5 +1,11 @@
 {
 		"name": "ZM1601",
+        "doc" : "",
+        "type": "Sirène",
+        "comlink" : "2435-vision-security-sirene-z-wave-zm1601-alimentee-sur-batterie",
+        "remark" : "",
+        "imglink" : "vision.zm1601",
+        "battery_type" : "4xAA",
         "configuration" : {
         "conf_version" : 1
 		},

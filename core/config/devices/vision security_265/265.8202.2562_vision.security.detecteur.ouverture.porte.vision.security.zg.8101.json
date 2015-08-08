@@ -1,5 +1,11 @@
 {
-		"name": "ZG 8101 Détecteur ouverture porte",
+		"name": "ZG8101",
+        "doc" : "",
+        "type": "Ouverture",
+        "comlink" : "2434-vision-security-detecteur-de-porte-de-garage-z-wave-zg8101-0696859123412.html",
+        "remark" : "",
+        "imglink" : "vision.zg8101",
+        "battery_type" : "1xCR123A",
         "configuration" : {
         "conf_version" : 1
 		},
