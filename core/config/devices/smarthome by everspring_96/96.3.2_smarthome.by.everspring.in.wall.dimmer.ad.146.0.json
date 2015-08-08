@@ -1,6 +1,10 @@
 {
-	"name" : "In Wall Dimmer",
+	"name" : "AD146-0 Variateur",
     "doc" : "smart_Home_by_Everspring.AD146-0_-_In_Wall_Dimmer",
+    "type": "Micromodule",
+    "comlink" : "2688-smarthome-europe-micromodule-variateur-mural-z-wave-plus-ad146-3700946500356",
+    "remark" : "",
+    "imglink" : "smarthomebyeverspring.AD146-0",
     "configuration" : {
         "conf_version" : 1
     },

@@ -1,6 +1,10 @@
 {
-	"name" : "In Wall On/Off",
+	"name" : "AN179-0 On/Off",
     "doc" : "smart_Home_by_Everspring.AN179-0_-_In_Wall_On-Off",
+    "type": "Micromodule",
+    "comlink" : "2689-smarthome-europe-micromodule-mural-onoff-z-wave-plus-an179-3700946500387",
+    "remark" : "",
+    "imglink" : "smarthomebyeverspring.AN179-0",
     "configuration" : {
         "conf_version" : 1
     },
