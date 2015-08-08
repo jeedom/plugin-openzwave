@@ -5,6 +5,7 @@
         "comlink" : "",
         "remark" : "",
         "imglink" : "mco.mhs314",
+        "ignore" : 1,
         "configuration" : {
         "conf_version" : 1
 		},
