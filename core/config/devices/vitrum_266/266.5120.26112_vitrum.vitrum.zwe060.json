@@ -1,5 +1,10 @@
 {
-		"name": "ZWE060",
+		"name": "ZWE060 6 boutons",
+    "doc" : "",
+    "type": "Interrupteur",
+    "comlink" : "",
+    "remark" : "",
+    "imglink" : "vitrum.zwe060",
         "configuration" : {
         "conf_version" : 1
 		},

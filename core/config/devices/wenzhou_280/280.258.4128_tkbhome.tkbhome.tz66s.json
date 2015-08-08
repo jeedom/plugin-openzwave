@@ -1,5 +1,10 @@
 {
 		"name": "TZ66S",
+    "doc" : "",
+    "type": "Interrupteur",
+    "comlink" : "2060-tkb-home-tz66-s-interrupteur-simple-z-wave-blanc-6959174466508",
+    "remark" : "",
+    "imglink" : "tkb.tz66s",
         "configuration" : {
         "conf_version" : 1
 		},
