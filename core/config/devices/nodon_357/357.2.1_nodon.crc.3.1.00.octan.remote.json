@@ -1,6 +1,6 @@
 {
 	"name" : "Octan Remote",
-    "doc" : "",
+    "doc" : "nodon.octan_-_Remote_-_Telecommande",
     "type": "Télécommande",
     "comlink" : "2939-nodon-octan-telecommande-murale-z-wave-3700313920282",
     "remark" : "Fonctionne en mode scene et non central scene",
