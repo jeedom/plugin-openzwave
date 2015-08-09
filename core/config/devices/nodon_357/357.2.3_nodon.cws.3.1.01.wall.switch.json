@@ -1,6 +1,6 @@
 {
 	"name" : "Wall Switch",
-    "doc" : "",
+    "doc" : "nodon.wall_-_Switch_-_Interrupteur",
     "type": "Interrupteur",
     "comlink" : "2995-nodon-interrupteur-mural-z-wave-plus-cozi-white-3700313920268",
     "remark" : "Fonctionne en mode scene et non central scene",
