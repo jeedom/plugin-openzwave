@@ -660,7 +660,7 @@ def network_awaked(network):
     dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)    
         
 def network_ready(network):
-    add_log_entry("Openzwave network is ready with %d nodes (%d are sleeping). All nodes are queried, the network is fully functionnal." % (network.nodes_count, get_sleeping_nodes_count(),))   
+    add_log_entry("Openzwave network is ready with %d nodes (%d are sleeping). All nodes are queried, the network is fully functional." % (network.nodes_count, get_sleeping_nodes_count(),))   
     write_config()
     networkInformations.assignControllerNotification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is ready")
 
