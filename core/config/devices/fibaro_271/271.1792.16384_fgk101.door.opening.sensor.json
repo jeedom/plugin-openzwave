@@ -30,6 +30,19 @@
                 }
             },
             {
+        	"name": "Température",
+        	"type": "info",
+        	"subtype": "numeric",
+        	"isVisible": 0,
+        	"isHistorized": 1,
+        	"unite": "°C",
+        	"configuration": {
+             	    "class": "0x31",
+          	    "instanceId": 0,
+          	    "value": "data[1].val"
+        	}
+      	    },
+            {
                 "name": "Batterie",
                 "type": "info",
                 "subtype": "numeric",
