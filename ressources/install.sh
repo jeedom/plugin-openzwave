@@ -90,7 +90,7 @@ else
     echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
     exit 1
   fi
-  unzip /tmp/python-openzwave.zip -d /opt
+  unzip -q /tmp/python-openzwave.zip -d /opt
   if [ $? -ne 0 ]; then
     sudo service jeedom start
     echo "Unable to unzip python-openzwave"
@@ -107,13 +107,14 @@ else
     echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
     exit 1
   fi
-  unzip /tmp/openzwave.zip -d /opt/python-openzwave
+  unzip -q /tmp/openzwave.zip -d /opt/python-openzwave
    if [ $? -ne 0 ]; then
     sudo service jeedom start
     echo "Unable to unzip openzwave"
     exit 1
   fi
   rm /tmp/openzwave.zip
+  rm -rf /opt/python-openzwave/openzwave
   mv /opt/python-openzwave/open-zwave-${OPENZWAVE_VERSION} /opt/python-openzwave/openzwave
 
   cd /opt/python-openzwave
