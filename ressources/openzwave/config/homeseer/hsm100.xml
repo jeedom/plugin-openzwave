@@ -92,6 +92,8 @@
 			</Help>
 		</Value>
 	</CommandClass>
+    <!-- Basic set as report -->
+    <CommandClass id="32" setasreport="true"/>
 	<!-- Association Groups -->
 	<CommandClass id="96" mapping="endpoints" />
 	<CommandClass id="133">
