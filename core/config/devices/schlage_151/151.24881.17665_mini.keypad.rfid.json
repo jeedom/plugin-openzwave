@@ -35,7 +35,7 @@
                 "isHistorized": 1,
                 "configuration": {
                     "class": "0x71",
-                    "value": "data[10].data",
+                    "value": "data[10].val",
 					"returnStateTime": 1,
 					"returnStateValue": 0
                 },
