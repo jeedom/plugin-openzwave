@@ -32,7 +32,7 @@
                 "configuration": {
                     "class": "0x71",
                     "instanceId": 0,
-                    "value": "data[0].val"
+                    "value": "data[1].val"
                 }
             }
         ]
