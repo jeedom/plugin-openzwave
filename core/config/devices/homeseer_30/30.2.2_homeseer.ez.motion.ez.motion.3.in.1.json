@@ -18,9 +18,7 @@
                 "configuration": {
                     "class": "0x30",
                     "instanceId": 0,
-                    "value": "data[0].val",
-                    "returnStateTime": "1",
-                    "returnStateValue": "0"
+                    "value": "data[0].val"
                 },
                 "display": {
                     "invertBinary": "1"
