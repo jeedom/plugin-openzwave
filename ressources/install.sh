@@ -119,6 +119,9 @@ else
 
   cd /opt/python-openzwave
   sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
+
+  sudo make repo-deps
+  sudo make build
   sudo make install-api
   if [ $? -ne 0 ]; then
     echo "Error while install python-openzwave"
