@@ -6,6 +6,7 @@
         "remark" : "Remonte très mal la détection de mouvement",
         "imglink" : "homeseer.ezmotion3en1",
         "battery_type" : "3xAAA",
+        "ignore" : 1,
 		"configuration" : {
         "conf_version" : 1
 		},
