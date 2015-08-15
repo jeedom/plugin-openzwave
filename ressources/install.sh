@@ -51,7 +51,20 @@ if [ ! -d /opt ]; then
 fi
 
 echo "Installation des dependances"
-apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml cython unzip
+apt_install mercurial
+apt_install git
+apt_install python-pip
+apt_install python-dev
+apt_install python-setuptools
+apt_install python-louie
+apt_install python-sphinx
+apt_install make
+apt_install build-essential
+apt_install libudev-dev
+apt_install g++
+apt_install gcc
+apt_install python-lxml
+apt_install unzip
 # Python
 echo "Installation des dependances Python"
 pip_install sphinxcontrib-blockdiag
@@ -71,63 +84,45 @@ if [  -z "$1" -a $(uname -a | grep cubox | wc -l ) -eq 1 -a ${ARCH} = "armv7l" ]
   cp -R ${BASEDIR}/python-openzwave/armv7/*  /usr/local/lib/python2.*/dist-packages
   sudo cp /opt/zwcfg* /opt/python-openzwave
 else
+  sudo mkdir /opt
   if [ -d /opt/python-openzwave ]; then
     echo "Sauvegarde du fichier de conf";
     sudo cp /opt/python-openzwave/zwcfg* /opt
     cd /opt/python-openzwave
     echo "Désinstallation de la version précédente";
     sudo make uninstall > /dev/null 2>&1
-    sudo rm -rf /usr/local/lib/python2.*/dist-packages/libopenzwave*
-    sudo rm -rf /usr/local/lib/python2.*/dist-packages/openzwave* 
+    sudo rm -fr /usr/local/lib/python2.7/dist-packages/libopenzwave*
+    sudo rm -fr /usr/local/lib/python2.7/dist-packages/python_openzwave_*
+    sudo rm -fr /usr/local/lib/python2.7/dist-packages/openzwave* 
     cd /opt
     sudo rm -fr /opt/python-openzwave
   fi
+  # Installation de Python-OpenZwave
   echo "Installation de Python-OpenZwave"
   cd /opt
-  wget "https://github.com/OpenZWave/python-openzwave/archive/${PYTHON_OPENZWAVE_VERSION}.zip" -O /tmp/python-openzwave.zip
+  sudo git clone https://github.com/OpenZWave/python-openzwave.git
   if [ $? -ne 0 ]; then
-    sudo service jeedom start
     echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
     exit 1
   fi
-  unzip -q /tmp/python-openzwave.zip -d /opt
-  if [ $? -ne 0 ]; then
-    sudo service jeedom start
-    echo "Unable to unzip python-openzwave"
-    exit 1
-  fi
-  mv /opt/python-openzwave-${PYTHON_OPENZWAVE_VERSION} /opt/python-openzwave
-  rm /tmp/python-openzwave.zip
+  cd python-openzwave
+  sudo git reset --hard ${PYTHON_OPENZWAVE_VERSION}
+  sudo pip uninstall -y Cython
   cd /opt/python-openzwave
-
-
-  mkdir openzwave
-  wget "https://github.com/OpenZWave/open-zwave/archive/${OPENZWAVE_VERSION}.zip" -O /tmp/openzwave.zip
+  sudo make cython-deps
+  sudo make repo-deps
+  sudo git clone https://github.com/OpenZWave/open-zwave.git openzwave
   if [ $? -ne 0 ]; then
     echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
     exit 1
   fi
-  unzip -q /tmp/openzwave.zip -d /opt/python-openzwave
-   if [ $? -ne 0 ]; then
-    sudo service jeedom start
-    echo "Unable to unzip openzwave"
-    exit 1
-  fi
-  rm /tmp/openzwave.zip
-  rm -rf /opt/python-openzwave/openzwave
-  mv /opt/python-openzwave/open-zwave-${OPENZWAVE_VERSION} /opt/python-openzwave/openzwave
-
+  cd openzwave
+  sudo git reset --hard ${OPENZWAVE_VERSION}
   cd /opt/python-openzwave
   sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
-
-  sudo make repo-deps
-  sudo make build
   sudo make install-api
-  if [ $? -ne 0 ]; then
-    echo "Error while install python-openzwave"
-    exit 1
-  fi
-  sudo cp /opt/zwcfg* /opt/python-openzwave
+  sudo mkdir /opt/python-openzwave/python-eggs
+  sudo cp /opt/zwcfg* /opt/python-openzwave/.
 fi
 
 sudo chown -R www-data:www-data /opt/python-openzwave

@@ -515,7 +515,7 @@ class openzwave extends eqLogic {
 		exec($cmd);
 	}
 
-	public static function cron() {
+	public static function cron15() {
 		if (config::byKey('allowStartDeamon', 'openzwave', 1) == 1 && config::byKey('port', 'openzwave', 'none') != 'none' && !self::deamonRunning()) {
 			self::runDeamon();
 		}
