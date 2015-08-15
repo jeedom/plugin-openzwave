@@ -3,7 +3,7 @@
         "doc" : "",
         "type": "Multicapteurs",
         "comlink" : "",
-        "remark" : "",
+        "remark" : "Remonte très mal la détection de mouvement",
         "imglink" : "homeseer.ezmotion3en1",
         "battery_type" : "3xAAA",
 		"configuration" : {
