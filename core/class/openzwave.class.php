@@ -457,13 +457,13 @@ class openzwave extends eqLogic {
 			foreach (self::listServerZwave() as $serverID => $server) {
 				try {
 					$results = self::callOpenzwave('/ZWaveAPI/Run/network.RefreshAllBatteryLevel()', $serverID);
-                    foreach ($results as $node_id => $value) {
-                        batteryStatusDate= date('Y-m-d H:i:s');
-                        $eqLogic = self::get(qLogicByLogicalIdAndServerId($node_id, $serverID);
+					foreach ($results as $node_id => $value) {
+						batteryStatusDate= date('Y-m-d H:i:s');
+						$eqLogic = self::get(qLogicByLogicalIdAndServerId($node_id, $serverID);
 						if (is_object($eqLogic) && $eqLogic->getConfiguration('noBatterieCheck', 0) != 1) {
-                            if ($value['updateTime'] !== null) {
-                                batteryStatusDate=date('Y-m-d H:i:s', $value['updateTime']);
-                            }
+							if ($value['updateTime'] !== null) {
+								batteryStatusDate=date('Y-m-d H:i:s', $value['updateTime']);
+							}
 							$eqLogic->batteryStatus($value['value'], batteryStatusDate);
 						}
 					}
