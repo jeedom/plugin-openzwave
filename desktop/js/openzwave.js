@@ -168,9 +168,6 @@ if($('.li_eqLogic.active').attr('data-assistant') != ''){
                 option += '<option value="'+data.result[i]+'">'+data.result[i]+'</option>';
             }
             $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').append(option);
-            $(".eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]").html($(".eqLogicAttr[data-l1key=configuration][data-l2key=fileconf] option").sort(function (a, b) {
-                return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
-            }))
             $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').closest('.form-group').show();
             if(isset(_eqLogic.configuration.fileconf)){
                 $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').value(_eqLogic.configuration.fileconf);
