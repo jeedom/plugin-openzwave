@@ -1,0 +1,65 @@
+{	
+	"name": "ZW075",
+        "doc" : "",
+        "type": "Prise",
+        "comlink" : "2594-aeon-labs-module-prise-commutateur-z-wave-plus-avec-mesure-d-energie-gen5-1220000012578",
+        "remark" : "",
+        "imglink" : "aeotec.zw075",
+    "configuration" : {
+        "conf_version" : 1
+		},
+    "commands": [
+      {
+        "name": "On",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x25",
+          "value": "data[0].Set(255)"
+        }
+      },
+      {
+        "name": "Off",
+        "type": "action",
+        "subtype": "other",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x25",
+          "value": "data[0].Set(0)"
+        }
+      },
+      {
+        "name": "Etat",
+        "type": "info",
+        "subtype": "binary",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x25",
+          "value": "data[0].val"
+        }
+      },
+      {
+        "name": "Puissance",
+        "type": "info",
+        "subtype": "numeric",
+        "unite": "W",
+        "isVisible": 1,
+        "configuration": {
+          "class": "0x32",
+          "value": "data[8].val"
+        }
+      },
+      {
+        "name": "Consommation",
+        "type": "info",
+        "subtype": "numeric",
+        "unite": "kWh",
+        "isVisible": 0,
+        "configuration": {
+          "class": "0x32",
+          "value": "data[0].val"
+        }
+      }
+    ]
+  }
