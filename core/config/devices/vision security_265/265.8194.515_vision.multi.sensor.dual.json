@@ -10,14 +10,15 @@
         "conf_version" : 1
 		},
         "commands": [
-            
-            {
+		{
                 "name": "Présence",
                 "type": "info",
                 "subtype": "binary",
                 "isVisible": 1,
+                "isHistorized": 0,
                 "configuration": {
-                    "class": "0x30",
+                    "instanceId": 0,
+                    "class": "0x20",
                     "value": "data[0].val"
                 },
                 "display": {
@@ -27,18 +28,17 @@
                     "dashboard": "presence",
                     "mobile": "presence"
                 }
-            },
+             },
             {
                 "name": "Température",
                 "type": "info",
                 "subtype": "numeric",
                 "isVisible": 1,
-                "unite" : "°C",
+				"isHistorized": 1,
+                "unite": "°C",
                 "configuration": {
                     "class": "0x31",
-                    "value": "data[1].val",
-                    "maxValue": 50,
-                    "minValue": -20
+                    "value": "data[1].val"
                 }
             },
             {
@@ -46,7 +46,9 @@
                 "type": "info",
                 "subtype": "binary",
                 "isVisible": 1,
+                "isHistorized": 0,
                 "configuration": {
+                    "instanceId": 0,
                     "class": "0x71",
                     "value": "data[10].val",
                     "calculValueOffset" : "#value#==3"
@@ -64,13 +66,13 @@
                 "type": "info",
                 "subtype": "numeric",
                 "isVisible": 0,
-                "isHistorized": 0,
+				"isHistorized": 1,
+                "unite": "%",
                 "configuration": {
                     "class": "0x80",
-                    "instanceId": 0,
-                    "value": "data[0].val",
-                    "unite": "%"
+                    "value": "data[0].val"
                 }
             }
+            
         ]
-    }
+	}
