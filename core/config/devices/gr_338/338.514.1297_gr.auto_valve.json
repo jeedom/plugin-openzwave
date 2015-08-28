@@ -1,0 +1,49 @@
+{
+    "name": "Vanne 1/4 de tour",
+    "doc" : "",
+    "type": "Vanne",
+    "comlink" : "2958-gr-smarthome-motorisation-z-wave-pour-vanne-14-de-tour",
+    "remark" : "",
+    "imglink" : "gr.autovalve",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+        {
+            "name": "Ouvrir",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat", 
+            "configuration": {
+                "class": "0x25",
+                "instanceId": 0,
+                "value": "data[0].Set(255)"
+            }
+        },
+        {
+            "name": "Fermer",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat", 
+            "configuration": {
+                "class": "0x25",
+                "instanceId": 0,
+                "value": "data[0].Set(0)"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "configuration": {
+                "class": "0x25",
+                "instanceId": 0,
+                "value": "data[0].val"
+            }
+        }
+    ]
+  }
+
