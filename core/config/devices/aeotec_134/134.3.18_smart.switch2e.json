@@ -4,7 +4,7 @@
         "type": "Prise",
         "comlink" : "",
         "remark" : "",
-        "imglink" : "",
+        "imglink" : "aeotec.smartswitch2e",
     "configuration" : {
         "conf_version" : 1
 		},
