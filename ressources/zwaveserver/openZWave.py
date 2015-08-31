@@ -279,6 +279,7 @@ class NetworkInformations(object):
     def __init__(self):
         self._actualMode = ControllerMode.Idle
         self._startTime=int(time.time())
+        self._awakeTime = None
         self._configFileSaveInProgress = False
         self._controllerIsBusy = False;
         self._controllerState = ZWaveController.STATE_STARTING
@@ -333,6 +334,16 @@ class NetworkInformations(object):
     @property
     def error_description(self):        
         return self._error_description
+    
+    def awaked(self):
+        self._awakeTime = int(time.time())
+        self.assignControllerNotification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is awaked")
+        
+    @property
+    def controllerAwakedDelay(self):   
+        if self._awakeTime is not None:
+            return self._awakeTime - self._startTime   
+        return None
     
     def assignControllerNotification(self, state, details, error=None, error_description=None):
         self._controllerState = state
@@ -643,7 +654,7 @@ def refresh_user_values_asynchronous():
 def network_awaked(network):
     add_log_entry("Openzwave network is awake : %d nodes were found (%d are sleeping). All listening nodes are queried, but some sleeping nodes may be missing." % (network.nodes_count, get_sleeping_nodes_count(),))
     add_log_entry("Controller is : %s" % (network.controller,))
-    networkInformations.assignControllerNotification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is awaked")    
+    networkInformations.awaked()
     configuration = threading.Timer(360.0, refresh_configuration_asynchronous)
     configuration.start() 
     debug_print("refresh_configuration starting in 360 sec" )    
@@ -2819,7 +2830,8 @@ def get_network_status():
                          'startTime' :networkInformations.startTime,
                          'isPrimaryController': network.controller.is_primary_controller,
                          'isStaticUpdateController': network.controller.is_static_update_controller,
-                         'isBridgeController': network.controller.is_bridge_controller
+                         'isBridgeController': network.controller.is_bridge_controller,
+                         'awakedDelay' : networkInformations.controllerAwakedDelay 
                          }
         networkStatus['mode'] = get_network_mode()
     else:

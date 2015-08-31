@@ -79,9 +79,6 @@ $("body").off("click",".requestNodeNeighboursUpdate").on("click",".requestNodeNe
 $("body").off("click",".healNode").on("click",".healNode",function (e) {
 	app_nodes.healNode(app_nodes.selected_node);
 });
-$("#testNode").off("click").on("click",function() {
-	app_nodes.test_node(app_nodes.selected_node);
-});
 $("#refreshNodeValues").off("click").on("click",function() {
 	app_nodes.refresh_node_values(app_nodes.selected_node);
 });
@@ -93,6 +90,9 @@ $("body").off("click",".refreshNodeInfo").on("click",".refreshNodeInfo",function
 });
 $("body").off("click",".hasNodeFailed").on("click",".hasNodeFailed",function (e) {
 	app_nodes.has_node_failed(app_nodes.selected_node);
+});
+$("body").off("click",".testNode").on("click",".testNode",function (e) {
+	app_nodes.test_node(app_nodes.selected_node);
 });
 $("#removeFailedNode").off("click").on("click",function() {
 	app_nodes.remove_failed_node(app_nodes.selected_node);
@@ -1035,7 +1035,11 @@ draw_nodes: function ()
 	        }
 	        if(nodeIsFailed){
 	        	isWarning = true;
-	        	warningMessage +="<li>{{Le controleur pense que ce noeud est en echec, essayez }} <button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-question'></i> {{Noeud en échec}}</button> {{ou}} <button type='button' id='testNode' class='btn btn-info'><i class='fa fa-check-square-o'></i> {{Tester Noeud}}</button> {{pour essayer de corriger.}}</li>";
+	        	warningMessage +="<li>{{Le controleur pense que ce noeud est en echec, essayez }} " +
+	        			"<button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'>{{Noeud en échec}}</button> " +
+	        			"{{ou}} " +
+	        			"<button type='button' id='testNode' class='btn btn-info testNode'> {{Tester Noeud}}</button> " +
+	        			"{{pour essayer de corriger.}}</li>";
 	        }
 
 	        

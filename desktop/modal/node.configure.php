@@ -347,7 +347,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 							<td>{{Soigner un noeud du réseau.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="testNode" class="btn btn-info"><i class="fa fa-check-square-o"></i> {{Tester Noeud}}</button></td>
+							<td><button type="button" id="testNode" class="btn btn-info testNode"><i class="fa fa-check-square-o"></i> {{Tester Noeud}}</button></td>
 							<td>{{Tester le noeud. Envoyer une série de message à un noeud pour le tester.}}</td>
 						</tr>
 						<tr>

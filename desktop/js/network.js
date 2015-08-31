@@ -625,6 +625,16 @@ load_infos: function(){
 show_infos: function (){
   var network = $(".network");		
   network.find(".network-startTime").html(app_network.timestampConverter(infos.startTime));    
+  
+  var awakedDelay = infos.awakedDelay;
+  if (awakedDelay != null){	
+	  //TODO: display minutes and secondes, but secondes is nice too?
+	  network.find(".network-awakedTime").html('opérationnel en ' + awakedDelay + ' secondes');
+   }
+  else{
+	  network.find(".network-awakedTime").html('');
+  }
+  
         network.find(".network-nodes-count").html(infos.nodesCount);              // set the nodeid
         network.find(".network-sleeping-nodes-count").html(infos.sleepingNodesCount);
         network.find(".network-scenes-count").html(infos.scenesCount);
