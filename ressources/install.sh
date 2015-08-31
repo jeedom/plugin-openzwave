@@ -50,6 +50,9 @@ if [ ! -d /opt ]; then
   sudo mkdir /opt
 fi
 
+sudo apt-cache clean
+sudo apt-get update
+
 echo "Installation des dependances"
 apt_install mercurial
 apt_install git
