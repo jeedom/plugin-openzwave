@@ -618,7 +618,7 @@ def recovering_failed_nodes_asynchronous():
 def refresh_configuration_asynchronous():
     if can_execute_network_command(0):
         for node_id in list(force_refresh_nodes):
-            if node_id in network.nodes :
+            if node_id in network.nodes and not network.nodes[node_id].is_failed :
                 debug_print('Request All Configuration Parameters for nodeId: %s' % (node_id,)) 
                 network._manager.requestAllConfigParams(network.home_id, node_id)
                 time.sleep(3)    
@@ -632,7 +632,7 @@ def refresh_user_values_asynchronous():
     if can_execute_network_command(0):
         for node_id in list(network.nodes):
             myNode = network.nodes[node_id]
-            if myNode.is_ready and myNode.is_listening_device:
+            if myNode.is_ready and myNode.is_listening_device and not myNode.is_failed:
                 debug_print('Refresh User Values for nodeId: %s' % (node_id,))
                 for val in myNode.get_values():
                     currentValue = myNode.values[val]
