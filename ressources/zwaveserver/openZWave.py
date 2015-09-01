@@ -609,6 +609,8 @@ def recovering_failed_nodes_asynchronous():
                 if network.manager.hasNodeFailed(network.home_id, node_id):
                     #avoid stress network
                     time.sleep(3)
+            #sector device will send NoOperation and battery will return to sleep
+            force_sleeping(node_id)
     else:
         debug_print("Network is loaded, do not execute this time")
     #do again in 15 minutes
@@ -927,6 +929,15 @@ def get_wakeup_interval(device_id) :
                 return network.nodes[device_id].values[val].data
     return None
 
+def force_sleeping(device_id, count=1):
+    if device_id in network.nodes :
+        myNode = network.nodes[device_id]
+        # check if still awake
+        if myNode.is_awake:
+            debug_print('trying to lull the node %s' % (device_id,)) 
+            # a ping will force the node to return sleep after the NoOperation CC. 
+            network.manager.testNetworkNode(network.home_id, device_id, count)            
+
 def node_notification(args):
     code = int(args['notificationCode'])
     device_id = int(args['nodeId'])    
@@ -948,9 +959,11 @@ def node_notification(args):
         else:
             #I refresh notification, the wakeup_time can be modified from last time, we need to calculate the next expected wakeup time 
             myNode.last_notification.refresh(code, wakeup_time)
-        debug_print('NodeId %s send a notification: %s' % (device_id, myNode.last_notification.description,))
-        
-        
+        # if is a battery operated device, do a ping 
+        if code == 3:
+            go_sleep = threading.Timer(interval=30.0, function=force_sleeping, args=(device_id, 1))
+            go_sleep.start()
+        debug_print('NodeId %s send a notification: %s' % (device_id, myNode.last_notification.description,))                
     
 #app = Flask(__name__, static_url_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'static')))
 app = Flask(__name__, static_url_path = '/static')
