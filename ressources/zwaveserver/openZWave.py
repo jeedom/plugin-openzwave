@@ -1464,7 +1464,12 @@ def set_value(device_id, valueId, data):
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
+
+#refresh_workers = {}
+
 def refresh_background(device_id, value_id, target_value):
+    refresh_background_once(device_id, value_id)
+    '''
     time.sleep(3)
     if target_value == None:
         network.nodes[device_id].values[value_id].refresh()
@@ -1477,6 +1482,7 @@ def refresh_background(device_id, value_id, target_value):
         time.sleep(3)
         delta = abs(network.nodes[device_id].values[value_id].data - target_value)
         refresh_count +=1
+    '''
 
 def refresh_background_once(device_id, value_id):
    time.sleep(4)
