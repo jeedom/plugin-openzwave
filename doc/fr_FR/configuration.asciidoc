@@ -228,6 +228,14 @@ image:../images/openzwave27.png[]
 
 Cet onglet vous donnera une représentation graphique des différents liens entre les noeuds.
 
+Voici la legende des couleurs : 
+
+* *Gris* : interview non complet 
+* *Rouge* : dead, ou sans voisins
+* *Jaune* : ne communique pas directement avec le contrôleur principal. 
+* *Vert* : pour les contrôleurs (comme les remote) ils sont virtuelle associé au contrôleur primaire.
+* *Bleu* : lien direct avec le contrôleur primaire.
+
 === Table de routage
 
 image:../images/openzwave28.png[]
