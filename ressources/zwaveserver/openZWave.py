@@ -256,6 +256,8 @@ RemoveDevice = 5
 
 not_supported_nodes = [0,255]
 
+user_values_to_refresh = ["Level","Sensor","Switch", "Power", "Temperature", "Alarm Type" ,"Alarm Type", "Power Management"]
+
 class ControllerMode:
     class Idle: pass
     class AddDevice: pass
@@ -642,8 +644,9 @@ def refresh_user_values_asynchronous():
                         if currentValue.type == 'Button':
                             continue
                         if currentValue.is_write_only:
-                            continue                
-                        currentValue.refresh()
+                            continue   
+                        if currentValue.label in user_values_to_refresh :
+                            currentValue.refresh()
                 while not can_execute_network_command(0):
                     debug_print("Network Waiting execution of all messages in the waiting")
                     time.sleep(10) 
@@ -1477,25 +1480,45 @@ def set_value(device_id, valueId, data):
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
 
+refresh_workers = {}
 
-#refresh_workers = {}
+def prepare_refresh(device_id, value_id, target_value=None):   
+    #debug_print("prepare_refresh for nodeId:%s valueId:%s data:%s" % (device_id, value_id, target_value,)) 
+    #check if for a existing worker
+    worker = refresh_workers.get(value_id)
+    if worker is not None:
+        #debug_print("Stop the timer")
+        #Stop the timer, and cancel the execution of the timer action. This will only work if the timer is still in its waiting stage.
+        worker.cancel()
+        #remove worker
+        del refresh_workers[value_id]
+    #create a new refresh worker 
+    worker = threading.Timer(interval=3, function=refresh_background, args=(device_id, value_id, target_value))
+    worker.start()
+    # save worker
+    refresh_workers[value_id] = worker
 
 def refresh_background(device_id, value_id, target_value):
-    refresh_background_once(device_id, value_id)
-    '''
-    time.sleep(3)
-    if target_value == None:
-        network.nodes[device_id].values[value_id].refresh()
-        return
-    refresh_count = 0   
-    delta = abs(network.nodes[device_id].values[value_id].data - target_value)
-    #some device will automaticly report value, fisrt check is reached
-    while delta > 1 and refresh_count < 20:
-        network.nodes[device_id].values[value_id].refresh()
-        time.sleep(3)
-        delta = abs(network.nodes[device_id].values[value_id].data - target_value)
-        refresh_count +=1
-    '''
+    do_refresh = True
+    actual_value = network.nodes[device_id].values[value_id].data 
+    if target_value is not None:
+        if isinstance(target_value, basestring):
+            #clor CC test
+            do_refresh = actual_value != target_value
+            #debug_print("delta %s : %s" % (actual_value, target_value,))
+        else:
+            #check if target is reported         
+            delta = abs(actual_value - target_value)
+            #debug_print("delta for nodeId:%s valueId:%s is: %s" % (device_id, value_id, delta,))
+            if delta < 2 :
+                #if delta is too small don't refresh
+                do_refresh = False
+                #debug_print("delta is too small don't refresh")
+    if do_refresh :
+        #debug_print("refresh")
+        network.nodes[device_id].values[value_id].refresh()   
+    #remove worker
+    del refresh_workers[value_id]
 
 def refresh_background_once(device_id, value_id):
    time.sleep(4)
@@ -2129,8 +2152,7 @@ def set_value7(device_id,instance_id, cc_id, index, value) :
                     mark_pending_change(network.nodes[device_id].values[val], value) 
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
-                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, val, value))
-                    waitrefresh.start()
+                    prepare_refresh(device_id, val, value)
                 return format_json_result()
         return format_json_result(False, 'value not found')
     else:
@@ -2147,8 +2169,7 @@ def set_value8(device_id,instance_id, cc_id, index, value) :
                     mark_pending_change(network.nodes[device_id].values[val], value)  
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
-                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, val, value))
-                    waitrefresh.start()
+                    prepare_refresh(device_id, val, value)
                 return format_json_result()
         return format_json_result(False, 'value not found')
     else:
@@ -2165,11 +2186,9 @@ def set_value9(device_id,instance_id, cc_id, index, value) :
                     mark_pending_change(network.nodes[device_id].values[val], value) 
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
-                    waitrefresh=threading.Thread(target=refresh_background, args=(device_id, [val]))
-                    waitrefresh.start()
+                    prepare_refresh(device_id, val, value)
                 if cc_id == hex(COMMAND_CLASS_COLOR):
-                    waitrefresh=threading.Thread(target=refresh_background_once, args=(device_id, val))
-                    waitrefresh.start()
+                    prepare_refresh(device_id, val, value.upper())
                 return format_json_result() 
         return format_json_result(False, 'value not found')
     else:
@@ -2275,8 +2294,7 @@ def set_color(device_id,  red_level, green_level, blue_level, white_level) :
                 white_Value = val
                 my_value.data = convert_color_to_level(white_level)
         if red_Value != None and green_Value != None and blue_Value != None  :
-            worker=threading.Thread(target=refresh_background, args=(device_id, intensity_Value, None))
-            worker.start()
+            prepare_refresh(device_id, intensity_Value, None)
             result = True
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
@@ -2301,8 +2319,7 @@ def press_button(device_id, instance_id, cc_id, index) :
                     #dimmer don't report the final value until the value changes is completed                    
                     value_level = get_value_by_label(device_id, COMMAND_CLASS_SWITCH_MULTILEVEL, network.nodes[device_id].values[val].instance, 'Level',True)
                     if value_level:
-                        waitrefresh=threading.Thread(target=refresh_background, args=(device_id, value_level.value_id, value))
-                        waitrefresh.start()
+                        prepare_refresh(device_id, value_level.value_id, value)
                     
                 return format_json_result()
         return format_json_result(False,'button not found')
