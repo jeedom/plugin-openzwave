@@ -36,10 +36,10 @@ if (!is_array($results)) {
 }
 if (isset($results['controller']['state'])) {
 	$jeenetwork = jeenetwork::byId($results['serverId']);
-	if (is_object($jeenetwork)) {
+	if (is_object($jeenetwork) || $results['serverId'] == 0) {
 		nodejs::pushUpdate('zwave::controller.data.controllerState',
 			array(
-				'name' => $jeenetwork->getName(),
+				'name' => ($results['serverId'] == 0) ? 'local' : $jeenetwork->getName(),
 				'state' => $results['controller']['state']['value'],
 				'serverId' => $results['serverId'])
 		);
@@ -47,8 +47,8 @@ if (isset($results['controller']['state'])) {
 }
 if (isset($results['controller']['excluded'])) {
 	$jeenetwork = jeenetwork::byId($results['serverId']);
-	if (is_object($jeenetwork)) {
-		nodejs::pushUpdate('zwave::excludeDevice', array('name' => $jeenetwork->getName(), 'state' => 0, 'serverId' => $results['serverId']));
+	if (is_object($jeenetwork) || $results['serverId'] == 0) {
+		nodejs::pushUpdate('zwave::excludeDevice', array('name' => ($results['serverId'] == 0) ? 'local' : $jeenetwork->getName(), 'state' => 0, 'serverId' => $results['serverId']));
 	}
 	nodejs::pushUpdate('jeedom::alert', array(
 		'level' => 'warning',
@@ -58,8 +58,8 @@ if (isset($results['controller']['excluded'])) {
 }
 if (isset($results['controller']['included'])) {
 	$jeenetwork = jeenetwork::byId($results['serverId']);
-	if (is_object($jeenetwork)) {
-		nodejs::pushUpdate('zwave::includeDevice', array('name' => $jeenetwork->getName(), 'state' => 0, 'serverId' => $results['serverId']));
+	if (is_object($jeenetwork) || $results['serverId'] == 0) {
+		nodejs::pushUpdate('zwave::includeDevice', array('name' => ($results['serverId'] == 0) ? 'local' : $jeenetwork->getName(), 'state' => 0, 'serverId' => $results['serverId']));
 	}
 	for ($i = 0; $i < 45; $i++) {
 		nodejs::pushUpdate('jeedom::alert', array(
