@@ -84,6 +84,18 @@ log="None"
 default_poll_interval = 300000 # 5 minutes
 maximum_poll_intensity = 1
 
+# maximum time (in secondes) allowed for a background refresh
+refresh_timeout = 120
+# background refresh interval step in secondes
+refresh_interval = 3
+#post topology loaded delais tasks
+refresh_configuration_timer = 360.0    
+refresh_user_values_timer = 120.0
+validate_association_groups_timmer = 45.0   
+recovering_failed_nodes_timer = 15.0 
+#perform sanitary jobs
+recovering_failed_nodes_jobs_timer = 900.0 #15 minutes
+
 network = None
 networkInformations = None
 
@@ -616,7 +628,7 @@ def recovering_failed_nodes_asynchronous():
     else:
         debug_print("Network is loaded, do not execute this time")
     #do again in 15 minutes
-    recovering = threading.Timer(900.0, recovering_failed_nodes_asynchronous)
+    recovering = threading.Timer(recovering_failed_nodes_jobs_timer, recovering_failed_nodes_asynchronous)
     recovering.start()
     
 def refresh_configuration_asynchronous():
@@ -655,23 +667,23 @@ def refresh_user_values_asynchronous():
         #I will try again in 2 minutes
         retry_job = threading.Timer(240.0, refresh_user_values_asynchronous)
         retry_job.start()           
-                    
+            
 def network_awaked(network):
     add_log_entry("Openzwave network is awake : %d nodes were found (%d are sleeping). All listening nodes are queried, but some sleeping nodes may be missing." % (network.nodes_count, get_sleeping_nodes_count(),))
     add_log_entry("Controller is : %s" % (network.controller,))
     networkInformations.awaked()
-    configuration = threading.Timer(360.0, refresh_configuration_asynchronous)
+    configuration = threading.Timer(refresh_configuration_timer, refresh_configuration_asynchronous)
     configuration.start() 
-    debug_print("refresh_configuration starting in 360 sec" )    
-    user_values = threading.Timer(120.0, refresh_user_values_asynchronous)
+    debug_print("refresh_configuration starting in %d sec" %(refresh_configuration_timer,))    
+    user_values = threading.Timer(refresh_user_values_timer, refresh_user_values_asynchronous)
     user_values.start() 
-    debug_print("refresh_user_values starting in 120 sec" )    
-    association = threading.Timer(45.0, validate_association_groups_asynchronous)
+    debug_print("refresh_user_values starting in %d sec" %(refresh_user_values_timer,))    
+    association = threading.Timer(validate_association_groups_timmer, validate_association_groups_asynchronous)
     association.start()
-    debug_print("validate_association_groups starting in 45 sec" )
-    recovering = threading.Timer(15.0, recovering_failed_nodes_asynchronous)
+    debug_print("validate_association_groups starting in %d sec" %(validate_association_groups_timmer,) )
+    recovering = threading.Timer(recovering_failed_nodes_timer, recovering_failed_nodes_asynchronous)
     recovering.start() 
-    debug_print("recovering_failed_nodes starting in 15 sec" )
+    debug_print("recovering_failed_nodes starting in %d sec" %(recovering_failed_nodes_timer))
     #start listening for group changes
     dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)    
         
@@ -1482,21 +1494,19 @@ def set_value(device_id, valueId, data):
 
 refresh_workers = {}
 
-def prepare_refresh(device_id, value_id, target_value=None):   
-    #debug_print("prepare_refresh for nodeId:%s valueId:%s data:%s" % (device_id, value_id, target_value,)) 
-    #check if for a existing worker
-    worker = refresh_workers.get(value_id)
-    if worker is not None:
-        #debug_print("Stop the timer")
-        #Stop the timer, and cancel the execution of the timer action. This will only work if the timer is still in its waiting stage.
-        worker.cancel()
-        #remove worker
-        del refresh_workers[value_id]
-    #create a new refresh worker 
-    worker = threading.Timer(interval=3, function=refresh_background, args=(device_id, value_id, target_value))
-    worker.start()
+def create_worker(device_id, value_id, target_value):
+    #create a new refresh worker
+    worker = threading.Timer(interval=refresh_interval, function=refresh_background, args=(device_id, value_id, target_value))
     # save worker
     refresh_workers[value_id] = worker
+    #start refresh timer
+    worker.start() 
+
+def prepare_refresh(device_id, value_id, target_value=None):   
+    #debug_print("prepare_refresh for nodeId:%s valueId:%s data:%s" % (device_id, value_id, target_value,))     
+    stop_refresh(device_id, value_id)
+    create_worker(device_id, value_id, target_value)
+    network.nodes[device_id].values[value_id].start_refresh_time = int(time.time()) 
 
 def refresh_background(device_id, value_id, target_value):
     do_refresh = True
@@ -1517,12 +1527,26 @@ def refresh_background(device_id, value_id, target_value):
     if do_refresh :
         #debug_print("refresh")
         network.nodes[device_id].values[value_id].refresh()   
-    #remove worker
-    del refresh_workers[value_id]
+        #check if someone stop this refresh or we reach the timeout
+        timeout = int(time.time()) - network.nodes[device_id].values[value_id].start_refresh_time 
+        if (timeout < refresh_timeout):
+            # I will start again a refresh timer
+            create_worker(device_id, value_id, target_value)
+    else:
+        #remove worker the consigne is set
+        del refresh_workers[value_id]
 
-def refresh_background_once(device_id, value_id):
-   time.sleep(4)
-   network.nodes[device_id].values[value_id].refresh()
+def stop_refresh(device_id, value_id):    
+    #check if for a existing worker
+    worker = refresh_workers.get(value_id)
+    if worker is not None:
+        #debug_print("Stop the timer")
+        #Stop the timer, and cancel the execution of the timer action. This will only work if the timer is still in its waiting stage.
+        worker.cancel()
+        #remove worker
+        del refresh_workers[value_id]
+    #reset start time if refresh is running to avoid start again
+    network.nodes[device_id].values[value_id].start_refresh_time = 0
     
 def get_sleeping_nodes_count():
     sleeping_nodes_count = 0
@@ -2335,6 +2359,12 @@ def release_button(device_id,instance_id, cc_id, index) :
         for val in network.nodes[device_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All') :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
                 network._manager.releaseButton(network.nodes[device_id].values[val].value_id)
+                #stop refresh if running in background
+                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
+                    value_level = get_value_by_label(device_id, COMMAND_CLASS_SWITCH_MULTILEVEL, network.nodes[device_id].values[val].instance, 'Level',True)
+                    if value_level:
+                        stop_refresh(device_id, value_level.value_id)
+                
                 return format_json_result()
         return format_json_result(False,'button not found')
     else:
