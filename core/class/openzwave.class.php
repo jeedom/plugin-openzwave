@@ -561,11 +561,30 @@ class openzwave extends eqLogic {
 			}
 			exec('sudo chmod 777 ' . $port . ' > /dev/null 2>&1');
 		}
+
+		if (config::byKey('jeeNetwork::mode') == 'slave') {
+			$serverId = config::byKey('jeeNetwork::slave::id');
+			$callback = config::byKey('jeeNetwork::master::ip');
+			$apikey = config::byKey('jeeNetwork::master::apikey');
+		} else {
+			$serverId = 0;
+			$callback = network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp');
+			$apikey = config::byKey('api');
+		}
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
 		$openzwave_path = realpath(dirname(__FILE__) . '/../../ressources/zwaveserver');
 		$config_path = realpath(dirname(__FILE__) . '/../../ressources/openzwave/config');
 		$log = ($_debug) ? 'Debug' : 'Info';
-		$cmd = '/usr/bin/python ' . $openzwave_path . '/openZWave.py --pidfile=/tmp/openzwave.pid --device=' . $port . ' --log=' . $log . ' --port=' . $port_server . ' --config=' . $config_path;
+		$cmd = '/usr/bin/python ' . $openzwave_path . '/openZWave.py ';
+		$cmd .= ' --pidfile=/tmp/openzwave.pid';
+		$cmd .= ' --device=' . $port;
+		$cmd .= ' --log=' . $log;
+		$cmd .= ' --port=' . $port_server;
+		$cmd .= ' --config=' . $config_path;
+		$cmd .= ' --callback=' . $callback;
+		$cmd .= ' --apikey=' . $apikey;
+		$cmd .= ' --serverId=' . $serverId;
+
 		log::add('openzwave', 'info', 'Lancement démon openzwave : ' . $cmd);
 		$result = exec($cmd . ' >> ' . log::getPathToLog('openzwave') . ' 2>&1 &');
 		if (strpos(strtolower($result), 'error') !== false || strpos(strtolower($result), 'traceback') !== false) {
