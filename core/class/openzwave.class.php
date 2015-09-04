@@ -231,7 +231,7 @@ class openzwave extends eqLogic {
 				nodejs::pushUpdate('zwave::controller.data.controllerState', array('name' => $server['name'], 'state' => $results['controller']['state']['value'], 'serverId' => $serverID));
 			}
 			if (isset($results['controller']['excluded'])) {
-				nodejs::pushUpdate('zwave::' . $key, array('name' => $server['name'], 'state' => 0, 'serverId' => $serverID));
+				nodejs::pushUpdate('zwave::excludeDevice', array('name' => $server['name'], 'state' => 0, 'serverId' => $serverID));
 				nodejs::pushUpdate('jeedom::alert', array(
 					'level' => 'warning',
 					'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
@@ -240,7 +240,7 @@ class openzwave extends eqLogic {
 				self::syncEqLogicWithOpenZwave($serverID, $results['controller']['excluded']['value']);
 			}
 			if (isset($results['controller']['included'])) {
-				nodejs::pushUpdate('zwave::' . $key, array('name' => $server['name'], 'state' => 0, 'serverId' => $serverID));
+				nodejs::pushUpdate('zwave::includeDevice', array('name' => $server['name'], 'state' => 0, 'serverId' => $serverID));
 				for ($i = 0; $i < 45; $i++) {
 					nodejs::pushUpdate('jeedom::alert', array(
 						'level' => 'warning',
