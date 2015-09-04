@@ -286,9 +286,12 @@ class openzwave extends eqLogic {
 	}
 
 	public static function getEqLogicByLogicalIdAndServerId($_logical_id, $_serverId = 0) {
-		foreach (self::byLogicalId($_logical_id, 'openzwave', true) as $eqLogic) {
-			if ($eqLogic->getConfiguration('serverID', 0) == $_serverId) {
-				return $eqLogic;
+		$eqLogics = self::byLogicalId($_logical_id, 'openzwave', true);
+		if (is_array($eqLogics)) {
+			foreach ($eqLogics as $eqLogic) {
+				if ($eqLogic->getConfiguration('serverID', 0) == $_serverId) {
+					return $eqLogic;
+				}
 			}
 		}
 		return null;
