@@ -88,14 +88,14 @@ $('#div_listIncludeSever').delegate('.changeIncludeState','click', function() {
              html += '<div class="ui-grid-a">';
              html += '<div class="ui-block-a">';
              html += '<center>';
-             html += '<a href="#" class="ui-btn ui-btn-a changeIncludeState" data-mode="1" data-state="1" data-serverID="'+i+'" style="margin: 5px;">';
+             html += '<a href="#" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button changeIncludeState" data-mode="1" data-state="1" data-serverID="'+i+'" style="margin: 5px;">';
              html += '<i class="fa fa-sign-in fa-rotate-90" style="font-size: 6em;"></i><br/>{{Inclusion}}';
              html += '</a>';
              html += '</center>';
              html += '</div>';
              html += '<div class="ui-block-b">';
              html += '<center>';
-             html += '<a href="#" class="ui-btn ui-btn-a changeIncludeState" data-mode="0" data-state="1" data-serverID="'+i+'" style="margin: 5px;">';
+             html += '<a href="#" class="ui-btn ui-btn-raised clr-warning waves-effect waves-button changeIncludeState" data-mode="0" data-state="1" data-serverID="'+i+'" style="margin: 5px;">';
              html += '<i class="fa fa-sign-out fa-rotate-90" style="font-size: 6em;"></i><br/>{{Exclusion}}';
              html += '</a>';
              html += '</center>';
