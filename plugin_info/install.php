@@ -34,6 +34,7 @@ function openzwave_install() {
 }
 
 function openzwave_update() {
+	config::save('allowStartDeamon', 0, 'openzwave');
 	if (openzwave::deamonRunning()) {
 		echo 'Stop zwave network...';
 		openzwave::stopDeamon();
@@ -69,9 +70,7 @@ function openzwave_update() {
 		if (method_exists('openzwave', 'getVersion')) {
 			if (version_compare(config::byKey('openzwave_version', 'openzwave'), openzwave::getVersion('openzwave'), '>')) {
 				if (jeedom::getHardwareName() == 'Jeedomboard') {
-					config::save('allowStartDeamon', 0, 'openzwave');
 					openzwave::updateOpenzwave(false);
-					config::save('allowStartDeamon', 1, 'openzwave');
 				} else {
 					log::add('openzwave', 'error', __('Attention votre version d\'openzwave est dépassée sur le démon local, il faut ABSOLUMENT la mettre à jour', __FILE__));
 				}
@@ -91,6 +90,10 @@ function openzwave_update() {
 			}
 		}
 	}
+	echo "OK\n";
+	echo 'Redemarrage zwave network...';
+	config::save('allowStartDeamon', 1, 'openzwave');
+	openzwave::runDeamon();
 	echo "OK\n";
 }
 

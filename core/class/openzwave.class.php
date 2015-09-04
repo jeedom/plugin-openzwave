@@ -530,7 +530,16 @@ class openzwave extends eqLogic {
 
 	public static function start() {
 		if (config::byKey('allowStartDeamon', 'openzwave', 1) == 1 && config::byKey('port', 'openzwave', 'none') != 'none' && !self::deamonRunning()) {
-			self::runDeamon();
+			$continue = 0;
+			while ($continue < 4) {
+				self::runDeamon();
+				if (!self::deamonRunning()) {
+					$continue++;
+					sleep(60);
+				} else {
+					$continue = 99;
+				}
+			}
 		}
 	}
 
