@@ -92,10 +92,12 @@ function openzwave_update() {
 	}
 	echo "OK\n";
 	echo 'Redemarrage zwave network...';
-	ob_start();
-	config::save('allowStartDeamon', 1, 'openzwave');
-	openzwave::runDeamon();
-	ob_clean();
+	try {
+		config::save('allowStartDeamon', 1, 'openzwave');
+		openzwave::runDeamon();
+	} catch (Exception $e) {
+
+	}
 	echo "OK\n";
 }
 
