@@ -37,6 +37,7 @@ function openzwave_update() {
 	config::save('allowStartDeamon', 0, 'openzwave');
 	if (openzwave::deamonRunning()) {
 		echo 'Stop zwave network...';
+		openzwave::stop();
 		openzwave::stopDeamon();
 		echo "OK\n";
 	}
