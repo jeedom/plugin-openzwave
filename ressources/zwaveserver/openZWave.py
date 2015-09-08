@@ -566,7 +566,7 @@ options.set_interval_between_polls(False)
 options.set_notify_transactions(True) # Notifications when transaction complete is reported.           
 options.set_suppress_value_refresh(False) # if true, notifications for refreshed (but unchanged) values will not be sent.        
 options.set_driver_max_attempts(5) 
-#options.addOptionBool("AssumeAwake", True)        
+options.addOptionBool("AssumeAwake", True)        
 #options.addOptionInt("RetryTimeout", 6000) # Timeout before retrying to send a message. Defaults to 40 Seconds
 options.addOptionString("NetworkKey","0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10",True)
 options.set_security_strategy('CUSTOM') # The security strategy : SUPPORTED | ESSENTIAL | CUSTOM
@@ -975,9 +975,9 @@ def node_notification(args):
             #I refresh notification, the wakeup_time can be modified from last time, we need to calculate the next expected wakeup time 
             myNode.last_notification.refresh(code, wakeup_time)
         # if is a battery operated device, do a ping 
-        if code == 3:
-            go_sleep = threading.Timer(interval=30.0, function=force_sleeping, args=(device_id, 1))
-            go_sleep.start()
+        #if code == 3:
+        #    go_sleep = threading.Timer(interval=30.0, function=force_sleeping, args=(device_id, 1))
+        #    go_sleep.start()
         debug_print('NodeId %s send a notification: %s' % (device_id, myNode.last_notification.description,))                
     
 #app = Flask(__name__, static_url_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'static')))
@@ -2211,8 +2211,8 @@ def set_value9(device_id,instance_id, cc_id, index, value) :
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
                     prepare_refresh(device_id, val, value)
-                if cc_id == hex(COMMAND_CLASS_COLOR):
-                    prepare_refresh(device_id, val, value.upper())
+                if cc_id == hex(COMMAND_CLASS_COLOR):        
+                    prepare_refresh(device_id, val, value[:9].upper())
                 return format_json_result() 
         return format_json_result(False, 'value not found')
     else:
