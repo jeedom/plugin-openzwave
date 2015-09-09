@@ -92,7 +92,7 @@ refresh_interval = 3
 refresh_configuration_timer = 360.0    
 refresh_user_values_timer = 120.0
 validate_association_groups_timmer = 45.0   
-recovering_failed_nodes_timer = 15.0 
+recovering_failed_nodes_timer = 900.0 # 15min 
 #perform sanitary jobs
 recovering_failed_nodes_jobs_timer = 900.0 #15 minutes
 
@@ -610,26 +610,38 @@ def validate_association_groups_asynchronous():
             time.sleep(3)
 
 def recovering_failed_nodes_asynchronous():
-    debug_print("Check for failed nodes")
-    #if controler is busy ski this run
-    if can_execute_network_command(0):        
-        for node_id in list(network.nodes):
-            if node_id in not_supported_nodes :   
-                debug_print('remove fake nodeId: %s' % (node_id)) 
-                network.manager.removeFailedNode(network.home_id, node_id)
-                continue
-            if network.nodes[node_id].is_failed:
-                debug_print('try recovering nodeId: %s' % (node_id)) 
-                if network.manager.hasNodeFailed(network.home_id, node_id):
-                    #avoid stress network
-                    time.sleep(3)
-            #sector device will send NoOperation and battery will return to sleep
-            force_sleeping(node_id)
-    else:
-        debug_print("Network is loaded, do not execute this time")
-    #do again in 15 minutes
-    recovering = threading.Timer(recovering_failed_nodes_jobs_timer, recovering_failed_nodes_asynchronous)
-    recovering.start()
+    debug_print("Start recovering_failed_nodes background thread")
+    #wait 15 seconds on first launch
+    time.sleep(15.0)    
+    while True: 
+        #if controler is busy skip this run
+        if can_execute_network_command(0):      
+            debug_print("Perform network sanity check")  
+            for node_id in list(network.nodes):
+                myNode = network.nodes[node_id]
+                if node_id in not_supported_nodes :   
+                    debug_print('Remove fake nodeId: %s' % (node_id)) 
+                    network.manager.removeFailedNode(network.home_id, node_id)
+                    continue
+                if myNode.is_failed:
+                    debug_print('Try recovering nodeId: %s' % (node_id)) 
+                    if network.manager.hasNodeFailed(network.home_id, node_id):
+                        #avoid stress network
+                        time.sleep(3)
+                if myNode.is_listening_device and myNode.is_awake:
+                    #check if a ping is require 
+                    if hasattr(myNode, 'last_notification') :
+                        #is in timeout or dead
+                        if myNode.last_notification.code == 1 or myNode.last_notification.code == 5:
+                            debug_print('Do a test on node %s' % (device_id,)) 
+                            # a ping will try to resolve this situation with a NoOperation CC. 
+                            network.manager.testNetworkNode(network.home_id, device_id, 1) 
+                            #avoid stress network
+                            time.sleep(3)  
+        else:
+            debug_print("Network is loaded, skip sanity check this time")
+        # wait for next run    
+        time.sleep(recovering_failed_nodes_timer)
     
 def refresh_configuration_asynchronous():
     if can_execute_network_command(0):
@@ -680,10 +692,8 @@ def network_awaked(network):
     debug_print("refresh_user_values starting in %d sec" %(refresh_user_values_timer,))    
     association = threading.Timer(validate_association_groups_timmer, validate_association_groups_asynchronous)
     association.start()
-    debug_print("validate_association_groups starting in %d sec" %(validate_association_groups_timmer,) )
-    recovering = threading.Timer(recovering_failed_nodes_timer, recovering_failed_nodes_asynchronous)
-    recovering.start() 
-    debug_print("recovering_failed_nodes starting in %d sec" %(recovering_failed_nodes_timer))
+    debug_print("validate_association_groups starting in %d sec" %(validate_association_groups_timmer,)) 
+    threading.Thread(target=recovering_failed_nodes_asynchronous).start()
     #start listening for group changes
     dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)    
         
@@ -937,21 +947,20 @@ def node_group_changed(network, node):
     validate_association_groups(node.node_id)
 
 def get_wakeup_interval(device_id) :
-    if device_id in network.nodes : 
-        for val in list(network.nodes[device_id].get_values()) :
-            myValue = network.nodes[device_id].values[val]
-            if myValue.command_class == 132 and myValue.label =="Wake-up Interval":
-                return network.nodes[device_id].values[val].data
+    interval = get_value_by_label(device_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval', False)
+    if interval != None:
+        return interval.data
     return None
 
 def force_sleeping(device_id, count=1):
     if device_id in network.nodes :
         myNode = network.nodes[device_id]
+        debug_print('check if node %s still awake' % (device_id,)) 
         # check if still awake
         if myNode.is_awake:
             debug_print('trying to lull the node %s' % (device_id,)) 
             # a ping will force the node to return sleep after the NoOperation CC. 
-            network.manager.testNetworkNode(network.home_id, device_id, count)            
+            network.manager.testNetworkNode(network.home_id, device_id, count)          
 
 def node_notification(args):
     code = int(args['notificationCode'])
@@ -973,11 +982,18 @@ def node_notification(args):
             myNode.last_notification = NodeNotification(code, wakeup_time) 
         else:
             #I refresh notification, the wakeup_time can be modified from last time, we need to calculate the next expected wakeup time 
-            myNode.last_notification.refresh(code, wakeup_time)
-        # if is a battery operated device, do a ping 
-        #if code == 3:
-        #    go_sleep = threading.Timer(interval=30.0, function=force_sleeping, args=(device_id, 1))
-        #    go_sleep.start()
+            myNode.last_notification.refresh(code, wakeup_time)  
+        if code == 3: 
+            #get the device Wake-up Interval Step
+            my_value =  get_value_by_label(device_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval Step', False)
+            if my_value != None:
+                #add 2 seconds at device Wake-up Interval Step
+                wakeup_interval_step = my_value.data + 2.0   
+            else:
+                # assume a default Wake-up Interval Step     
+                wakeup_interval_step = 60.0
+            #perform a ping to avoid device still awake after the Wake-up Interval Step        
+            threading.Timer(interval=wakeup_interval_step, function=force_sleeping, args=(device_id, 1)).start()    
         debug_print('NodeId %s send a notification: %s' % (device_id, myNode.last_notification.description,))                
     
 #app = Flask(__name__, static_url_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'static')))
@@ -1054,7 +1070,7 @@ def get_value_by_label(device_id, command_class, instance, label, trace=True):
             if myDevice.values[value_id].instance==instance and myDevice.values[value_id].label==label:
                 return myDevice.values[value_id]     
     if trace :
-        debug_print("get_value_by_index Value not found for device_id:%s, cc:%s, instance:%s, index:%s" % (device_id, command_class, instance, index_id,))            
+        debug_print("get_value_by_label Value not found for device_id:%s, cc:%s, instance:%s, label:%s" % (device_id, command_class, instance, label,))            
     return None
 
 def get_value_by_index(device_id, command_class, instance, index_id, trace=True):
@@ -1305,7 +1321,7 @@ def serialize_node_to_json(device_id):
                 if myValue.command_class in [128] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['supported']={"value":True,"type":"bool","updateTime":timestamp}
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['last']={"value":value2,"type":"int","updateTime":timestamp}
-                if myValue.command_class in [132] :
+                if myValue.command_class in [COMMAND_CLASS_WAKE_UP] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interval']={"value":value2,"type":"int","updateTime":timestamp}
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] = {"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":myValue.units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity, "pendingState":pendingState}
                 
@@ -1318,7 +1334,7 @@ def serialize_node_to_json(device_id):
                 if myValue.command_class in [128] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['supported']={"value":True,"type":"bool","updateTime":timestamp}
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['last']={"value":value2,"type":"int","updateTime":timestamp}
-                if myValue.command_class in [132] :
+                if myValue.command_class in [COMMAND_CLASS_WAKE_UP] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interval']={"value":value2,"type":"int","updateTime":timestamp}
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] ={"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":myValue.units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity, "pendingState":pendingState}
                 
@@ -1326,7 +1342,7 @@ def serialize_node_to_json(device_id):
                 if myValue.command_class in [128] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['supported']={"value":True,"type":"bool","updateTime":timestamp}
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['last']={"value":value2,"type":"int","updateTime":timestamp}
-                if myValue.command_class in [132] :
+                if myValue.command_class in [COMMAND_CLASS_WAKE_UP] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interval']={"value":value2,"type":"int","updateTime":timestamp}
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] ={"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":myValue.units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity, "pendingState":pendingState}
                 
@@ -2221,7 +2237,7 @@ def set_value9(device_id,instance_id, cc_id, index, value) :
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Set(<string:value>)',methods = ['GET'])
 def set_value6(device_id, instance_id, cc_id, value) :
     debug_print("set_value6 nodeId:%s instance:%s commandClasses:%s  data:%s" % (device_id, instance_id, cc_id,  value,))
-    if cc_id == '132' :
+    if cc_id == str(COMMAND_CLASS_WAKE_UP) :
         #is a wakeup interval update  
         arr=value.split(",")
         time=int(arr[0])      
@@ -2341,7 +2357,7 @@ def press_button(device_id, instance_id, cc_id, index) :
                     if network.nodes[device_id].values[val].label in ['Bright', 'Open']:
                         value = 99
                     #dimmer don't report the final value until the value changes is completed                    
-                    value_level = get_value_by_label(device_id, COMMAND_CLASS_SWITCH_MULTILEVEL, network.nodes[device_id].values[val].instance, 'Level',True)
+                    value_level = get_value_by_label(device_id, COMMAND_CLASS_SWITCH_MULTILEVEL, network.nodes[device_id].values[val].instance, 'Level')
                     if value_level:
                         prepare_refresh(device_id, value_level.value_id, value)
                     
@@ -2361,7 +2377,7 @@ def release_button(device_id,instance_id, cc_id, index) :
                 network._manager.releaseButton(network.nodes[device_id].values[val].value_id)
                 #stop refresh if running in background
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
-                    value_level = get_value_by_label(device_id, COMMAND_CLASS_SWITCH_MULTILEVEL, network.nodes[device_id].values[val].instance, 'Level',True)
+                    value_level = get_value_by_label(device_id, COMMAND_CLASS_SWITCH_MULTILEVEL, network.nodes[device_id].values[val].instance, 'Level')
                     if value_level:
                         stop_refresh(device_id, value_level.value_id)
                 
