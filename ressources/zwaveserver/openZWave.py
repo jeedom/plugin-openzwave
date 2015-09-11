@@ -2221,14 +2221,17 @@ def set_value9(device_id,instance_id, cc_id, index, value) :
     if device_id in network.nodes :
         for val in network.nodes[device_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All') :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index :
+                last_value = network.nodes[device_id].values[val].data
                 network.nodes[device_id].values[val].data=value
                 if network.nodes[device_id].values[val].genre=='System':
                     mark_pending_change(network.nodes[device_id].values[val], value) 
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     #dimmer don't report the final value until the value changes is completed
                     prepare_refresh(device_id, val, value)
-                if cc_id == hex(COMMAND_CLASS_COLOR):        
-                    prepare_refresh(device_id, val, value[:9].upper())
+                if cc_id == hex(COMMAND_CLASS_COLOR):                       
+                    if len(last_value) == 9 and len(value) > 9:
+                        value = value[:9]     
+                    prepare_refresh(device_id, val, value.upper())
                 return format_json_result() 
         return format_json_result(False, 'value not found')
     else:
