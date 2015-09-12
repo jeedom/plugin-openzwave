@@ -28,27 +28,25 @@ if (isset($_GET['test'])) {
 	die();
 }
 
-log::add('openzwave', 'debug', 'Received : ' . secureXSS(init('data')));
-
-$results = json_decode(init('data'), true);
+$results = json_decode(file_get_contents("php://input"), true);
 if (!is_array($results)) {
 	die();
 }
 if (isset($results['controller']['state'])) {
-	$jeenetwork = jeenetwork::byId($results['serverId']);
-	if (is_object($jeenetwork) || $results['serverId'] == 0) {
+	$jeeNetwork = jeeNetwork::byId($results['serverId']);
+	if (is_object($jeeNetwork) || $results['serverId'] == 0) {
 		nodejs::pushUpdate('zwave::controller.data.controllerState',
 			array(
-				'name' => ($results['serverId'] == 0) ? 'local' : $jeenetwork->getName(),
+				'name' => ($results['serverId'] == 0) ? 'local' : $jeeNetwork->getName(),
 				'state' => $results['controller']['state']['value'],
 				'serverId' => $results['serverId'])
 		);
 	}
 }
 if (isset($results['controller']['excluded'])) {
-	$jeenetwork = jeenetwork::byId($results['serverId']);
-	if (is_object($jeenetwork) || $results['serverId'] == 0) {
-		nodejs::pushUpdate('zwave::excludeDevice', array('name' => ($results['serverId'] == 0) ? 'local' : $jeenetwork->getName(), 'state' => 0, 'serverId' => $results['serverId']));
+	$jeeNetwork = jeeNetwork::byId($results['serverId']);
+	if (is_object($jeeNetwork) || $results['serverId'] == 0) {
+		nodejs::pushUpdate('zwave::excludeDevice', array('name' => ($results['serverId'] == 0) ? 'local' : $jeeNetwork->getName(), 'state' => 0, 'serverId' => $results['serverId']));
 	}
 	nodejs::pushUpdate('jeedom::alert', array(
 		'level' => 'warning',
@@ -57,9 +55,9 @@ if (isset($results['controller']['excluded'])) {
 	openzwave::syncEqLogicWithOpenZwave($results['serverId'], $results['controller']['excluded']['value']);
 }
 if (isset($results['controller']['included'])) {
-	$jeenetwork = jeenetwork::byId($results['serverId']);
-	if (is_object($jeenetwork) || $results['serverId'] == 0) {
-		nodejs::pushUpdate('zwave::includeDevice', array('name' => ($results['serverId'] == 0) ? 'local' : $jeenetwork->getName(), 'state' => 0, 'serverId' => $results['serverId']));
+	$jeeNetwork = jeeNetwork::byId($results['serverId']);
+	if (is_object($jeeNetwork) || $results['serverId'] == 0) {
+		nodejs::pushUpdate('zwave::includeDevice', array('name' => ($results['serverId'] == 0) ? 'local' : $jeeNetwork->getName(), 'state' => 0, 'serverId' => $results['serverId']));
 	}
 	for ($i = 0; $i < 45; $i++) {
 		nodejs::pushUpdate('jeedom::alert', array(

@@ -16,23 +16,6 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-function openzwave_install() {
-	if (config::byKey('jeeNetwork::mode') != 'slave') {
-		$cron = cron::byClassAndFunction('openzwave', 'pull');
-		if (!is_object($cron)) {
-			$cron = new cron();
-			$cron->setClass('openzwave');
-			$cron->setFunction('pull');
-			$cron->setEnable(1);
-			$cron->setDeamon(1);
-			$cron->setDeamonSleepTime(0.5);
-			$cron->setTimeout(1440);
-			$cron->setSchedule('* * * * *');
-			$cron->save();
-		}
-	}
-}
-
 function openzwave_update() {
 	config::save('allowStartDeamon', 0, 'openzwave');
 	if (openzwave::deamonRunning()) {
@@ -43,23 +26,8 @@ function openzwave_update() {
 	}
 	echo 'Stop cron...';
 	$cron = cron::byClassAndFunction('openzwave', 'pull');
-	if (config::byKey('jeeNetwork::mode') != 'slave') {
-		if (!is_object($cron)) {
-			$cron = new cron();
-		}
-		$cron->setClass('openzwave');
-		$cron->setFunction('pull');
-		$cron->setEnable(1);
-		$cron->setDeamon(1);
-		$cron->setDeamonSleepTime(0.5);
-		$cron->setTimeout(1440);
-		$cron->setSchedule('* * * * *');
-		$cron->save();
-		$cron->stop();
-	} else {
-		if (is_object($cron)) {
-			$cron->remove();
-		}
+	if (is_object($cron)) {
+		$cron->remove();
 	}
 	echo "OK\n";
 

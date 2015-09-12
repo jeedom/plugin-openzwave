@@ -49,7 +49,7 @@ class openzwave extends eqLogic {
 	public static function listServerZwave($_autofix = true) {
 		if (self::$_listZwaveServer == null || count(self::$_listZwaveServer) == 0) {
 			self::$_listZwaveServer = array();
-			if (config::byKey('port', 'openzwave', 'none') != 'none' && config::byKey('allowStartDeamon', 'openzwave', 1) == 1) {
+			if (config::byKey('port', 'openzwave', 'none') != 'none' && config::byKey('allowStartDeamon', 'openzwave', 1) == 1 || true) {
 				self::$_listZwaveServer[0] = array(
 					'id' => 0,
 					'name' => 'Local',
@@ -567,11 +567,11 @@ class openzwave extends eqLogic {
 
 		if (config::byKey('jeeNetwork::mode') == 'slave') {
 			$serverId = config::byKey('jeeNetwork::slave::id');
-			$callback = config::byKey('jeeNetwork::master::ip');
+			$callback = config::byKey('jeeNetwork::master::ip') . '/plugins/openzwave/core/php/jeeZwave.php';
 			$apikey = config::byKey('jeeNetwork::master::apikey');
 		} else {
 			$serverId = 0;
-			$callback = network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp');
+			$callback = network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/openzwave/core/php/jeeZwave.php';
 			$apikey = config::byKey('api');
 		}
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
@@ -587,6 +587,7 @@ class openzwave extends eqLogic {
 		$cmd .= ' --callback=' . $callback;
 		$cmd .= ' --apikey=' . $apikey;
 		$cmd .= ' --serverId=' . $serverId;
+		$cmd .= ' --cycle=0.5';
 
 		log::add('openzwave', 'info', 'Lancement démon openzwave : ' . $cmd);
 		$result = exec($cmd . ' >> ' . log::getPathToLog('openzwave') . ' 2>&1 &');
@@ -602,7 +603,7 @@ class openzwave extends eqLogic {
 			sleep(1);
 			$i++;
 		}
-		if ($i >= 30) {
+		if ($i >= 10) {
 			log::add('openzwave', 'error', 'Impossible de lancer le démon openzwave, vérifiez le port', 'unableStartDeamon');
 			return false;
 		}

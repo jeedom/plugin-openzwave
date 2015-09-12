@@ -32,6 +32,7 @@ try:
     import sqlite3 as lite
     from lxml import etree
     import signal
+    import requests
     from louie import dispatcher, All
     print "--> pass"
 except Exception as e:
@@ -201,6 +202,15 @@ for arg in sys.argv:
         temp,config = arg.split("=")
     elif arg.startswith("--pidfile"):
         temp,pidfile = arg.split("=")
+    elif arg.startswith("--callback"):
+        temp,callback = arg.split("=")
+    elif arg.startswith("--apikey"):
+        temp,apikey = arg.split("=")
+    elif arg.startswith("--serverId"):
+        temp,serverId = arg.split("=")
+    elif arg.startswith("--cycle"):
+        temp,cycle = arg.split("=")
+        cycle = float(cycle)
     elif arg.startswith("--help"):
         print("help : ")
         print("  --device=/dev/yourdevice ")
@@ -1597,6 +1607,46 @@ def format_json_result(success=True, detail=None, log_Level=None, code=0):
     if detail != None :
         return jsonify({'result': success, 'data': detail,'code': code}) 
     return jsonify({'result': success}) 
+
+def get_zwave_changes():
+    global network
+    if network != None and network.state >= 5:   # STATE_STARTED 
+        if network.nodes:            
+            changes = {}   
+            changes['controller']={}
+            changes['device']={}
+            global con
+            con.row_factory = lite.Row
+            cur = con.cursor() 
+            cur.execute("SELECT * FROM Events")
+            rows = cur.fetchall()
+            cur.execute("DELETE FROM Events")
+            if (len(rows) < 1):
+                return False 
+            for row in rows:
+                if row["Commandclass"] == 0 and row["Value"]=="removed":
+                    changes['controller']['excluded'] = {"value":row["Node"]}
+                elif row["Commandclass"] == 0 and row["Value"]=="added":
+                    changes['controller']['included'] = {"value":row["Node"]}
+                elif row["Commandclass"] == 0 and row["Value"] in ["0","1","5"]:
+                    changes['controller']['state'] = {"value":int(row["Value"])}
+                else :
+                    if row["Node"] not in changes['device']:
+                        changes['device'][row["Node"]]=[]
+                    changes['device'][row["Node"]].append({'instance':row["Instance"], 'CommandClass':hex(row["Commandclass"]), 'index':row["Index_value"],'value':row["Value"], 'type':row["Type"]})
+            return changes         
+    return False
+
+def send_changes():
+    changes = get_zwave_changes() 
+    if(changes != False):
+        changes['serverId'] = serverId
+        debug_print('Send data to jeedom %s => %s' % (callback,str(changes),))
+        requests.post(callback+'?apikey='+apikey, json=changes,timeout= 10)
+    resend_changes = threading.Timer(cycle, send_changes)
+    resend_changes.start() 
+
+send_changes()
 
 '''
 default routes
