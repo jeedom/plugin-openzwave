@@ -208,9 +208,6 @@ for arg in sys.argv:
         temp,apikey = arg.split("=")
     elif arg.startswith("--serverId"):
         temp,serverId = arg.split("=")
-    elif arg.startswith("--cycle"):
-        temp,cycle = arg.split("=")
-        cycle = float(cycle)
     elif arg.startswith("--help"):
         print("help : ")
         print("  --device=/dev/yourdevice ")
