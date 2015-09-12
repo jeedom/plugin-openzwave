@@ -29,7 +29,6 @@ if (isset($_GET['test'])) {
 }
 
 $results = json_decode(file_get_contents("php://input"), true);
-log::add('openzwave', 'debug', print_r($results, true));
 if (!is_array($results)) {
 	die();
 }
