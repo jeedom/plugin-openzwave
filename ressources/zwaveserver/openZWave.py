@@ -29,7 +29,7 @@ try:
     import threading
     from threading import Event, Thread
     import socket
-    import sqlite3 as lite
+    #import sqlite3 as lite
     from lxml import etree
     import signal
     import requests
@@ -50,7 +50,7 @@ logger = logging.getLogger('openzwave')
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
-
+"""
 print "Check SQLite"
 con = None
 try:
@@ -65,7 +65,7 @@ try:
 except lite.Error, e:
     print "Error %s:" % e.args[0]
     sys.exit(1)
-
+"""
 
 print("Check Openzwave")
 import openzwave
@@ -588,19 +588,32 @@ force_refresh_nodes = []
 
 check_config_files()
 
+def send_changes(changes):
+    changes['serverId'] = serverId
+    debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
+    requests.post(callback+'?apikey='+apikey, json=changes,timeout= 10)
+
+
 def save_node_event(node_id, timestamp, value):
-    global con
-    cur = con.cursor()
-    #add a new cache entry for value 
-    cur.execute("INSERT INTO Events (Node, Instance, Commandclass, Type, Id, Index_value, Value, Level, Updatetime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (node_id, 0, 0, "", "", "", value, 0, timestamp))
-    
+    changes = {}   
+    changes['controller']={}
+    if value=="removed":
+        changes['controller']['excluded'] = {"value":node_id}
+    elif value=="added":
+        changes['controller']['included'] = {"value":node_id}
+    elif value in [0,1,5]:
+        changes['controller']['state'] = {"value":value}
+    else:
+        return
+    send_changes(changes)
+
 def save_node_value_event(node_id, timestamp, command_class, index, typeStandard, value, instance):
-    global con
-    cur = con.cursor()
-    #delete the existing cache entry, if exist
-    cur.execute("DELETE FROM Events where Node=? AND Commandclass=? AND Instance=? AND Index_value=?", (node_id, command_class, instance, index,))   
-    #add a new cache entry for value 
-    cur.execute("INSERT INTO Events (Node, Instance, Commandclass, Type, Id, Index_value, Value, Level, Updatetime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (node_id, instance, command_class, typeStandard, "", index, value, 0, timestamp))  
+    changes = {}   
+    changes['device']={}
+    changes['device'][node_id]=[]
+    changes['device'][node_id].append({'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value})
+    send_changes(changes)
+
 
 def network_started(network):
     add_log_entry("Openzwave network are started with homeId %0.8x." % (network.home_id,))    
@@ -1608,6 +1621,7 @@ def format_json_result(success=True, detail=None, log_Level=None, code=0):
         return jsonify({'result': success, 'data': detail,'code': code}) 
     return jsonify({'result': success}) 
 
+"""
 def get_zwave_changes():
     global network
     if network != None and network.state >= 5:   # STATE_STARTED 
@@ -1652,7 +1666,8 @@ def send_changes():
     resend_changes = threading.Timer(timer_duration, send_changes)
     resend_changes.start() 
 
-send_changes()
+#send_changes()
+"""
 
 '''
 default routes
