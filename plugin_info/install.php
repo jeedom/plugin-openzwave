@@ -18,12 +18,10 @@
 
 function openzwave_update() {
 	config::save('allowStartDeamon', 0, 'openzwave');
-	if (openzwave::deamonRunning()) {
-		echo 'Stop zwave network...';
-		openzwave::stop();
-		openzwave::stopDeamon();
-		echo "OK\n";
-	}
+	echo 'Stop zwave network...';
+	openzwave::stop();
+	openzwave::stopDeamon();
+	echo "OK\n";
 	echo 'Stop cron...';
 	$cron = cron::byClassAndFunction('openzwave', 'pull');
 	if (is_object($cron)) {
