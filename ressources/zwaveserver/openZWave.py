@@ -23,6 +23,7 @@ try:
     import logging
     import os.path
     import time
+    import shutil
     import platform
     import datetime
     import binascii
@@ -472,7 +473,6 @@ class NodeNotification(object):
     @property
     def next_wakeup(self):        
         return self._next_wakeup
-    
 
 def cleanup_confing_file(fileName):
     add_log_entry('validate configuration file: %s' %(fileName,)) 
@@ -489,23 +489,82 @@ def cleanup_confing_file(fileName):
             FILE.write('<?xml version="1.0" encoding="utf-8" ?>\n')
             FILE.writelines(etree.tostring(tree, pretty_print=True))
             FILE.close()          
-            
         except Exception as e:
-            add_log_entry(str(e), 'error') 
-
+            add_log_entry(str(e), 'error')
+            add_log_entry('Trying to find the most recent valid xml in backups')
+            backupFolder = "/opt/python-openzwave/xml_backups"
+            try:
+                os.stat(backupFolder)
+            except:
+                os.mkdir(backupFolder)
+            pattern = "_zwcfg_"
+            alist_filter = ['xml'] 
+            path=os.path.join(backupFolder,"")
+            actualBackups = os.listdir(backupFolder)
+            actualBackups.sort()
+            foundValidBackup=0
+            for candidateBackup in actualBackups:
+                if candidateBackup[-3:] in alist_filter and pattern in candidateBackup:
+                    try:            
+                        tree = etree.parse(os.path.join(backupFolder,candidateBackup))
+                        finalFilename=candidateBackup[candidateBackup.find('zwcfg'):]
+                        shutil.copy2(os.path.join(backupFolder,candidateBackup), os.path.join("/opt/python-openzwave",finalFilename))
+                        add_log_entry('Found one valid backup. Using it')
+                        foundValidBackup=1
+                        break
+                    except Exception as e:
+                        add_log_entry(str(e), 'error')
+                        continue
+            if foundValidBackup==0:
+                add_log_entry('No valid backup found. Regenerating')
+                     
 def check_config_files():
     root = "/opt/python-openzwave"
     pattern = "zwcfg_"
     alist_filter = ['xml'] 
     path=os.path.join(root,"")
-    for r,d,f in os.walk(path):
-        for file in f:
-            if file[-3:] in alist_filter and pattern in file:
-                cleanup_confing_file(os.path.join(root,file))
+    actualConfs = os.listdir(root)
+    for file in actualConfs:
+        if file[-3:] in alist_filter and pattern in file:
+            cleanup_confing_file(os.path.join(root,file))
 
+def backup_xml_config(mode,homeId):
+    #backup xml config file
+    add_log_entry('Backuping xml config file with mode : %s' % (mode))
+    #prepare all variables
+    dateTimestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
+    xmlToBackup = "/opt/python-openzwave/zwcfg_" + homeId +".xml"
+    if not os.path.isfile(xmlToBackup) :
+        add_log_entry('No config file found to backup', "error")
+        return
+    backupFolder = "/opt/python-openzwave/xml_backups"
+    backupName = dateTimestamp+"_"+mode+"_zwcfg_"+homeId+".xml"
+    #check if folder exist (more efficient way)
+    try:
+        os.stat(backupFolder)
+    except:
+        os.mkdir(backupFolder)
+    #check if we need to clean the folder
+    actualBackups = os.listdir(backupFolder)
+    actualBackups.sort()
+    if len(actualBackups) > 12 :
+        add_log_entry('More than 12 backups found. Cleaning the folder')
+        for fileToDelete in actualBackups[:-11]:
+            os.unlink(os.path.join(backupFolder,fileToDelete))
+    #make the backup
+    try:
+        finalPath = os.path.join(backupFolder,backupName)
+        shutil.copy2(xmlToBackup, finalPath)
+    except Exception as error:
+        add_log_entry('Backuping xml failed %s' % (str(error),), "error")
+        return
+    add_log_entry('Xml config file succesfully backuped')
+    return
+                
 def graceful_stop_network():
     add_log_entry('Graceful stopping the ZWave network.')   
     global network
+    homeId=network.home_id_str
     if network is not None:
         network.stop()
         #We disconnect to the louie dispatcher
@@ -541,6 +600,7 @@ def graceful_stop_network():
         #avoid a second pass
         network = None
     add_log_entry('The Openzwave REST-server was stopped in a normal way')
+    backup_xml_config('stop',homeId)
 
 #Define some manager options
 options = ZWaveOption(device, config_path=config, user_path="/opt/python-openzwave/", cmd_line="")
