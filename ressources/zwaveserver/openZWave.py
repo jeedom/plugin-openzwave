@@ -29,7 +29,6 @@ try:
     import threading
     from threading import Event, Thread
     import socket
-    #import sqlite3 as lite
     from lxml import etree
     import signal
     import requests
@@ -50,22 +49,6 @@ logger = logging.getLogger('openzwave')
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
-"""
-print "Check SQLite"
-con = None
-try:
-    con = lite.connect(":memory:", check_same_thread=False)
-    con.isolation_level = None
-    cur = con.cursor()    
-    cur.execute('SELECT SQLITE_VERSION()')
-    data = cur.fetchone()
-    print "--> SQLite version: %s" % data  
-    cur.execute("DROP TABLE IF EXISTS Events")  
-    cur.execute("CREATE TABLE IF NOT EXISTS Events(Node INT, Instance INT, Commandclass INT, Type TEXT, Id TEXT, Index_value INT, Value TEXT, Level INT, UpdateTime INT)")               
-except lite.Error, e:
-    print "Error %s:" % e.args[0]
-    sys.exit(1)
-"""
 
 print("Check Openzwave")
 import openzwave
@@ -604,10 +587,8 @@ def save_node_event(node_id, timestamp, value):
     send_changes(changes)
 
 def save_node_value_event(node_id, timestamp, command_class, index, typeStandard, value, instance):
-    changes = {}   
-    changes['device']={}
-    changes['device'][node_id]=[]
-    changes['device'][node_id].append({'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value})
+    changes = {}
+    changes['device']={'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value}
     send_changes(changes)
 
 
@@ -1616,54 +1597,6 @@ def format_json_result(success=True, detail=None, log_Level=None, code=0):
     if detail != None :
         return jsonify({'result': success, 'data': detail,'code': code}) 
     return jsonify({'result': success}) 
-
-"""
-def get_zwave_changes():
-    global network
-    if network != None and network.state >= 5:   # STATE_STARTED 
-        if network.nodes:            
-            changes = {}   
-            changes['controller']={}
-            changes['device']={}
-            global con
-            con.row_factory = lite.Row
-            cur = con.cursor() 
-            cur.execute("SELECT * FROM Events")
-            rows = cur.fetchall()
-            cur.execute("DELETE FROM Events")
-            if (len(rows) < 1):
-                return False 
-            for row in rows:
-                if row["Commandclass"] == 0 and row["Value"]=="removed":
-                    changes['controller']['excluded'] = {"value":row["Node"]}
-                elif row["Commandclass"] == 0 and row["Value"]=="added":
-                    changes['controller']['included'] = {"value":row["Node"]}
-                elif row["Commandclass"] == 0 and row["Value"] in ["0","1","5"]:
-                    changes['controller']['state'] = {"value":int(row["Value"])}
-                else :
-                    if row["Node"] not in changes['device']:
-                        changes['device'][row["Node"]]=[]
-                    changes['device'][row["Node"]].append({'instance':row["Instance"], 'CommandClass':hex(row["Commandclass"]), 'index':row["Index_value"],'value':row["Value"], 'type':row["Type"]})
-            return changes         
-    return False
-
-def send_changes():
-    start_time = datetime.datetime.now()
-    changes = get_zwave_changes() 
-    if(changes != False):
-        changes['serverId'] = serverId
-        debug_print('Send data to jeedom %s => %s' % (callback,str(changes),))
-        requests.post(callback+'?apikey='+apikey, json=changes,timeout= 10)
-    dt = datetime.datetime.now() - start_time
-    ms = (dt.days * 24 * 60 * 60 + dt.seconds) * 1000 + dt.microseconds / 1000.0
-    timer_duration = cycle - ms
-    if(timer_duration < 0.1):
-        timer_duration = 0.1
-    resend_changes = threading.Timer(timer_duration, send_changes)
-    resend_changes.start() 
-
-#send_changes()
-"""
 
 '''
 default routes
