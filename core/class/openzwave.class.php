@@ -49,7 +49,7 @@ class openzwave extends eqLogic {
 	public static function listServerZwave($_autofix = true) {
 		if (self::$_listZwaveServer == null || count(self::$_listZwaveServer) == 0) {
 			self::$_listZwaveServer = array();
-			if (config::byKey('port', 'openzwave', 'none') != 'none' && config::byKey('allowStartDeamon', 'openzwave', 1) == 1 || true) {
+			if (config::byKey('port', 'openzwave', 'none') != 'none' && config::byKey('allowStartDeamon', 'openzwave', 1) == 1) {
 				self::$_listZwaveServer[0] = array(
 					'id' => 0,
 					'name' => 'Local',
