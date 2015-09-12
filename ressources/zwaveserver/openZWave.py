@@ -1638,12 +1638,18 @@ def get_zwave_changes():
     return False
 
 def send_changes():
+    start_time = datetime.datetime.now()
     changes = get_zwave_changes() 
     if(changes != False):
         changes['serverId'] = serverId
         debug_print('Send data to jeedom %s => %s' % (callback,str(changes),))
         requests.post(callback+'?apikey='+apikey, json=changes,timeout= 10)
-    resend_changes = threading.Timer(cycle, send_changes)
+    dt = datetime.datetime.now() - start_time
+    ms = (dt.days * 24 * 60 * 60 + dt.seconds) * 1000 + dt.microseconds / 1000.0
+    timer_duration = cycle - ms
+    if(timer_duration < 0.1):
+        timer_duration = 0.1
+    resend_changes = threading.Timer(timer_duration, send_changes)
     resend_changes.start() 
 
 send_changes()
