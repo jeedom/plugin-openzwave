@@ -593,7 +593,6 @@ def send_changes(changes):
     debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
     requests.post(callback+'?apikey='+apikey, json=changes,timeout= 10)
 
-
 def save_node_event(node_id, timestamp, value):
     changes = {}   
     changes['controller']={}
