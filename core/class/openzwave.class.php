@@ -214,7 +214,9 @@ class openzwave extends eqLogic {
 
 	public static function backup($_path) {
 		exec('cp /opt/python-openzwave/zwcfg_*.xml ' . $_path);
-		exec('cp -R /opt/python-openzwave/xml_backups ' . $_path);
+		if (file_exists('/opt/python-openzwave/xml_backups')) {
+			exec('cp -R /opt/python-openzwave/xml_backups ' . $_path);
+		}
 	}
 
 	public static function getEqLogicByLogicalIdAndServerId($_logical_id, $_serverId = 0) {
