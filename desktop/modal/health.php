@@ -18,6 +18,14 @@
 if (!isConnect('admin')) {
 	throw new Exception('401 Unauthorized');
 }
+$eqLogics = openzwave::byType('openzwave');
+$tags = array();
+if (is_array($eqLogics)) {
+	foreach ($eqLogics as $eqLogic) {
+		$tags[$eqLogic->getLogicalId()] = $eqLogic->getHumanName(true);
+	}
+}
+sendVarTojs('eqLogic_human_name', $tags);
 ?>
 <span class="pull-left alert" id="span_state" style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;margin-bottom:0px;"><span style="position:relative; top : -7px;">{{Demande envoyée}}</span></span>
 <span class='pull-right'>
