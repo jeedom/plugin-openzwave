@@ -59,7 +59,7 @@ if (!isConnect('admin')) {
 
                 if (init(_autoUpdate, 0) == 1) {
                     setTimeout(function() {
-                        getEnoceanLog(_autoUpdate)
+                        getOpenzwaveLog(_autoUpdate)
                     }, 1000);
                 }
             }
