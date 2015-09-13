@@ -1,5 +1,5 @@
 $('#bt_createBackup').off().on('click',function(event){
-      bootbox.confirm('{{Etes-vous sûr de vouloir créer un backup. Une fois lancée cette opération ne peut être annulée}}',
+      bootbox.confirm('{{Etes-vous sûr de vouloir créer un backup ? Une fois lancée cette opération ne peut être annulée.}}',
       function (result) {
            if (result) {
                 $.ajax({ 
@@ -23,7 +23,7 @@ $('#bt_createBackup').off().on('click',function(event){
     });
     
 $('#bt_removeBackup').off().on('click',function(event){
-      bootbox.confirm('{{Etes-vous sûr de vouloir supprimer le backup suivant }} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée}}',
+      bootbox.confirm('{{Etes-vous sûr de vouloir supprimer le backup suivant }} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée.}}',
       function (result) {
            if (result) {
                 $.ajax({ 
@@ -47,7 +47,7 @@ $('#bt_removeBackup').off().on('click',function(event){
     });
     
 $('#bt_restoreBackup').off().on('click',function(event){
-      bootbox.confirm('{{Etes-vous sûr de vouloir restaurer Openzwave avec }} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave}}',
+      bootbox.confirm('{{Etes-vous sûr de vouloir restaurer Openzwave avec }} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave.}}',
       function (result) {
            if (result) {
                 $.ajax({ 
@@ -59,7 +59,7 @@ $('#bt_restoreBackup').off().on('click',function(event){
                     },
                     success: function(data) {
                          if(data['result']== true){
-                           $('#div_backupAlert').showAlert({message: '{{Restauration réussie. Redémarrage d\'OpenZwave en cours}}', level: 'success'});
+                           $('#div_backupAlert').showAlert({message: '{{Restauration réussie. Redémarrage d\'OpenZwave en cours.}}', level: 'success'});
                         }else{
                             $('#div_backupAlert').showAlert({message: '{{Echec}} :'+data.data, level: 'danger'});
                          }
