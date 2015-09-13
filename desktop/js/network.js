@@ -447,7 +447,11 @@ load_data: function(){
                 for (z in nodes){
                 //console.log('add node '+z);
                 if(nodes[z].data.name.value != ''){
-                  graph.addNode(z,{'name':'<span class="label label-primary">'+nodes[z].data.location.value+'</span> '+nodes[z].data.name.value, 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled, 'interview' : parseInt(nodes[z].data.state.value)});
+                  if(isset(eqLogic_human_name[z])){
+                    graph.addNode(z,{'name':eqLogic_human_name[z], 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled, 'interview' : parseInt(nodes[z].data.state.value)});
+                  }else{
+                    graph.addNode(z,{'name':'<span class="label label-primary">'+nodes[z].data.location.value+'</span> '+nodes[z].data.name.value, 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled, 'interview' : parseInt(nodes[z].data.state.value)});
+                  }
                 }else{
                   graph.addNode(z,{'name':nodes[z].data.product_name.value, 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled,'interview' : parseInt(nodes[z].data.state.value)});
                 }
@@ -630,11 +634,11 @@ show_infos: function (){
   if (awakedDelay != null){	
 	  //TODO: display minutes and secondes, but secondes is nice too?
 	  network.find(".network-awakedTime").html('opérationnel en ' + awakedDelay + ' secondes');
-   }
-  else{
-	  network.find(".network-awakedTime").html('');
-  }
-  
+ }
+ else{
+   network.find(".network-awakedTime").html('');
+ }
+
         network.find(".network-nodes-count").html(infos.nodesCount);              // set the nodeid
         network.find(".network-sleeping-nodes-count").html(infos.sleepingNodesCount);
         network.find(".network-scenes-count").html(infos.scenesCount);
@@ -796,8 +800,12 @@ show_infos: function (){
               }
               if(node.data.name.value != ''){
                 routingTableHeader += '<th class="tooltips" title="'+node.data.location.value+' '+ node.data.name.value+'" >' + nodeId + '</th>';
-                var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'"><span class="label label-primary">'+node.data.location.value+'</span> '+node.data.name.value+'</span>';
-              }else{
+                if(isset(eqLogic_human_name[nodeId])){
+                 var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'">'+eqLogic_human_name[nodeId]+'</span>';
+               }else{
+                 var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'"><span class="label label-primary">'+node.data.location.value+'</span> '+node.data.name.value+'</span>';
+               }
+             }else{
                routingTableHeader += '<th class="tooltips" title="'+node.data.product_name.valuee+'" >' + nodeId + '</th>';
                var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'">'+ node.data.product_name.value+'</span>';
              }
