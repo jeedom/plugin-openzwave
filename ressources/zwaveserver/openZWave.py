@@ -68,6 +68,7 @@ log="None"
 #default_poll_interval = 1800000 # 30 minutes
 default_poll_interval = 300000 # 5 minutes
 maximum_poll_intensity = 1
+controller_state = -1
 
 # maximum time (in secondes) allowed for a background refresh
 refresh_timeout = 120
@@ -634,13 +635,15 @@ def send_changes(changes):
     requests.post(callback+'?apikey='+apikey, json=changes,timeout= 10)
 
 def save_node_event(node_id, timestamp, value):
+    global controller_state
     changes = {}   
     changes['controller']={}
     if value=="removed":
         changes['controller']['excluded'] = {"value":node_id}
     elif value=="added":
         changes['controller']['included'] = {"value":node_id}
-    elif value in [0,1,5]:
+    elif value in [0,1,5] and controller_state != value :
+        controller_state = value
         changes['controller']['state'] = {"value":value}
     else:
         return
