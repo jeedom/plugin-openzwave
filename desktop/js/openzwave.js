@@ -95,6 +95,11 @@ $('#bt_zwaveHealth').on('click', function () {
     $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=health').dialog('open');
 });
 
+$('#bt_zwaveBackup').on('click', function () {
+    $('#md_modal2').dialog({title: "{{Sauvegardes}}"});
+    $('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=backup').dialog('open');
+});
+
 if (is_numeric(getUrlVars('logical_id')) && is_numeric(getUrlVars('server_id'))) {
     if ($('.eqLogicDisplayCard[data-logical-id=' + getUrlVars('logical_id') + '][data-server-id=' + getUrlVars('server_id') + ']').length != 0) {
         setTimeout(function(){
