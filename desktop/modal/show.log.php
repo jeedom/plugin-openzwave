@@ -15,9 +15,8 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 if (!isConnect('admin')) {
-    throw new Exception('401 Unauthorized');
+	throw new Exception('401 Unauthorized');
 }
 ?>
 <pre id='pre_openzwavelog' style='overflow: auto; height: 95%;with:90%;'></pre>
@@ -38,7 +37,7 @@ if (!isConnect('admin')) {
             global: false,
             error: function(request, status, error) {
                 setTimeout(function() {
-                    getJeedomLog(_autoUpdate, _log)
+                    getOpenzwaveLog(_autoUpdate, _log)
                 }, 1000);
             },
             success: function(data) {
