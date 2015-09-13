@@ -55,6 +55,12 @@ foreach (openzwave::listServerZwave() as $id => $server) {
                 <a class="btn btn-warning" id="bt_restoreBackup"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-file"></i> {{Restaurer}}</a>
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-sm-4 col-xs-6 control-label">{{Supprimer la sauvegarde}}</label>
+            <div class="col-sm-4 col-xs-6">
+                 <a class="btn btn-danger" id="bt_removeBackup"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
+            </div>
+        </div>
     </fieldset>
 </form>
 </div>
