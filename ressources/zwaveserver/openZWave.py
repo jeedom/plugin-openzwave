@@ -840,7 +840,7 @@ def extract_data(value, displayRaw = False):
     if value.type == "Bool":
         return value.data
     elif value.units == "F":
-        return (float(value.data_as_string) - 32) * 5.0 / 9.0
+        return int(((float(value.data_as_string) - 32) * 5.0 / 9.0) * 100) / 100.0
     elif value.type == "Raw":
         result = binascii.b2a_hex(value.data)
         if displayRaw :
@@ -2147,7 +2147,7 @@ def get_value6(device_id, instance_id, index,cc_id) :
         for val in network.nodes[device_id].get_values(class_id=int(cc_id,16)) :
             if network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index:
                 if network.nodes[device_id].values[val].units=="F" :
-                    return str((float(network.nodes[device_id].values[val].data) - 32) * 5.0/9.0)
+                    return str((float(network.nodes[device_id].values[val].data) - 32) * 5.0/9.0)[0:5]
                 else :
                     return str(network.nodes[device_id].values[val].data)
     else:
