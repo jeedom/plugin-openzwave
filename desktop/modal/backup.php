@@ -40,7 +40,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
         <div class="form-group">
             <label class="col-sm-4 col-xs-6 control-label">{{Créer une sauvegarde}}</label>
             <div class="col-sm-4 col-xs-6">
-                <a class="btn btn-success" id="bt_createBackup"><i class="fa fa-floppy-o"></i> {{Lancer}}</a>
+                <a class="btn btn-success" id="bt_downloadBackup"><i class="fa fa-floppy-o"></i> {{Lancer}}</a>
             </div>
         </div>
         <div class="form-group">
@@ -50,15 +50,10 @@ foreach (openzwave::listServerZwave() as $id => $server) {
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-4 col-xs-6 control-label">{{Restaurer la sauvegarde}}</label>
+            <label class="col-sm-4 col-xs-6 control-label">{{Restaurer/Supprimer la sauvegarde}}</label>
             <div class="col-sm-4 col-xs-6">
-                <a class="btn btn-warning" id="bt_restoreBackup"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-file"></i> {{Restaurer}}</a>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-4 col-xs-6 control-label">{{Supprimer la sauvegarde}}</label>
-            <div class="col-sm-4 col-xs-6">
-                 <a class="btn btn-danger" id="bt_removeBackup"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
+                <a class="btn btn-warning" id="bt_restoreJeedom"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-file"></i> {{Restaurer}}</a>
+                <a class="btn btn-danger" id="bt_removeBackup"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
             </div>
         </div>
     </fieldset>
