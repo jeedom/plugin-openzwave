@@ -125,7 +125,7 @@ foreach ($deamonRunningSlave as $name => $status) {
 
 <form class="form-horizontal">
 	<fieldset>
-		<legend>{{Général}}</legend>
+		<legend><i class="fa fa-list-alt"></i> {{Général}}</legend>
 		<?php if (config::byKey('jeeNetwork::mode') == 'master') {?>
 			<div class="form-group">
 				<label class="col-lg-4 control-label">{{Supprimer automatiquement les périphériques exclus}}</label>
@@ -137,6 +137,15 @@ foreach ($deamonRunningSlave as $name => $status) {
 				<label class="col-lg-4 control-label">{{Soigner le réseau automatiquement 2 fois par semaine}}</label>
 				<div class="col-lg-3">
 					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_health" />
+				</div>
+			</div>
+            <legend><i class="fa fa-cog"></i>  {{Gestion avancée}}</legend>
+            <div class="form-group">
+				<label class="col-lg-4 control-label">{{Options avancées}}</label>
+				<div class="col-lg-5">
+					<a class="btn btn-success" id="bt_consoleZwave"><i class="fa fa-terminal"></i> {{Console}}</a>
+                    <a class="btn btn-warning" id="bt_backupsZwave"><i class="fa fa-floppy-o"></i> {{Backups}}</a>
+                    <a class="btn btn-danger" id="bt_fileconfigZwave"><i class="fa fa-file-o"></i> {{Configuration}}</a>
 				</div>
 			</div>
 			<?php }
@@ -153,7 +162,7 @@ if (config::byKey('jeeNetwork::mode') == 'master' && count(eqLogic::byType('zwav
 	</form>
 	<form class="form-horizontal">
 		<fieldset>
-			<legend>{{Démon local}}</legend>
+			<legend><i class="icon loisir-darth"></i>  {{Démon local}}</legend>
 			<?php
 if (jeedom::isCapable('sudo')) {
 	echo '<div class="form-group">
@@ -290,7 +299,22 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 		});
 	});
 
-	function stopopenZwaveDemon(type,id) {
+    $('#bt_backupsZwave').on('click', function () {
+        $('#md_modal').dialog({title: "{{Backups}}"});
+        $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=backup').dialog('open');
+    });
+    
+    $('#bt_fileconfigZwave').on('click', function () {
+        $('#md_modal').dialog({title: "{{Configuration}}"});
+        $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=config').dialog('open');
+    });
+    
+    $('#bt_consoleZwave').on('click', function () {
+        $('#md_modal').dialog({title: "{{Console}}"});
+        $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=console').dialog('open');
+    });
+	
+    function stopopenZwaveDemon(type,id) {
 	    $.ajax({// fonction permettant de faire de l'ajax
 	        type: "POST", // methode de transmission des données au fichier php
 	        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
