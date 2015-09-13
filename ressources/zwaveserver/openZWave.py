@@ -510,6 +510,7 @@ def cleanup_confing_file(fileName):
                         tree = etree.parse(os.path.join(backupFolder,candidateBackup))
                         finalFilename=candidateBackup[candidateBackup.find('zwcfg'):]
                         shutil.copy2(os.path.join(backupFolder,candidateBackup), os.path.join("/opt/python-openzwave",finalFilename))
+                        os.chmod(finalFilename, 0777)
                         add_log_entry('Found one valid backup. Using it')
                         foundValidBackup=1
                         break
@@ -537,7 +538,7 @@ def backup_xml_config(mode,homeId):
     xmlToBackup = "/opt/python-openzwave/zwcfg_" + homeId +".xml"
     if not os.path.isfile(xmlToBackup) :
         add_log_entry('No config file found to backup', "error")
-        return
+        return format_json_result(False,'No config file found to backup')
     backupFolder = "/opt/python-openzwave/xml_backups"
     backupName = dateTimestamp+"_"+mode+"_zwcfg_"+homeId+".xml"
     #check if folder exist (more efficient way)
@@ -555,12 +556,13 @@ def backup_xml_config(mode,homeId):
     #make the backup
     try:
         finalPath = os.path.join(backupFolder,backupName)
+        tree = etree.parse(xmlToBackup)
         shutil.copy2(xmlToBackup, finalPath)
     except Exception as error:
         add_log_entry('Backuping xml failed %s' % (str(error),), "error")
-        return
+        return format_json_result(False,'Backuping xml failed')
     add_log_entry('Xml config file succesfully backuped')
-    return
+    return format_json_result(True,'Xml config file succesfully backuped')
                 
 def graceful_stop_network():
     add_log_entry('Graceful stopping the ZWave network.')   
@@ -3181,7 +3183,69 @@ def refresh_all_battery_level():
                     result[device_id] = {'value' : battery_level.data, 'updateTime': battery_level.last_update}
     return jsonify(result)
 
+@app.route('/ZWaveAPI/Run/network.GetOZBackups()',methods = ['GET'])       
+def get_openzwave_backups():
+    """
+    Return the list of all available backups
+    """
+    debug_print("List all backups")
+    result = {}
+    backupNumber = 1
+    backupFolder = "/opt/python-openzwave/xml_backups"
+    try:
+        os.stat(backupFolder)
+    except:
+        os.mkdir(backupFolder)
+    pattern = "_zwcfg_"
+    alist_filter = ['xml'] 
+    actualBackups = os.listdir(backupFolder)
+    actualBackups.sort()
+    for candidateBackup in actualBackups:
+        if candidateBackup[-3:] in alist_filter and pattern in candidateBackup:
+            result['Backup' +str(backupNumber)] = candidateBackup
+            backupNumber += 1
+    return jsonify(result)
 
+@app.route('/ZWaveAPI/Run/network.RestoreBackup(<backup_name>)',methods = ['GET'])       
+def restore_openzwave_backups(backup_name):
+    """
+    Manually restore a backup
+    """
+    add_log_entry('Restoring backup ' + backup_name)
+    backupFolder = "/opt/python-openzwave/xml_backups"
+    try:
+        os.stat(backupFolder)
+    except:
+        os.mkdir(backupFolder)
+    backupFile = os.path.join(backupFolder,backup_name)
+    targetFile = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
+    if not os.path.isfile(backupFile) :
+        add_log_entry('No config file found to backup', "error")
+        return format_json_result(False, 'No config file found with name ' + backup_name)
+    else:
+        try:            
+            tree = etree.parse(backupFile)
+        except:
+            add_log_entry('The backup file seems invalid', "error")
+            return format_json_result(False, 'The backup file (' + backup_name+') seems invalid')
+        shutil.copy2(backupFile, targetFile)
+        os.chmod(targetFile, 0777)
+        add_log_entry('******** The ZWave network is being started ********')
+        # reset flags
+        force_refresh_nodes = []    
+        networkInformations = NetworkInformations()
+        network.start()
+    return format_json_result(True, backup_name + ' succesfully restored')
+
+@app.route('/ZWaveAPI/Run/network.ManualBackup()',methods = ['GET'])       
+def manually_backup_config():
+    """
+    Manually create a backup
+    """
+    add_log_entry('Manually creating a backup')
+    result = backup_xml_config('manual',network.home_id_str)
+    return result
+    
 if __name__ == '__main__':
     pid = str(os.getpid())
     file(pidfile, 'w').write("%s\n" % pid)
