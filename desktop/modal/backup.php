@@ -67,6 +67,4 @@ foreach (openzwave::listServerZwave() as $id => $server) {
         updateListBackup();
 	});
     updateListBackup();
-	$('.tab-pane').height($('#md_modal').height() - 50);
-	$('.tab-pane').css('overflow','scroll');
 </script>
