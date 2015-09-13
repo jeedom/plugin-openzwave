@@ -3190,7 +3190,7 @@ def get_openzwave_backups():
     """
     debug_print("List all backups")
     result = {}
-    backupNumber = 1
+    backupList = []
     backupFolder = "/opt/python-openzwave/xml_backups"
     try:
         os.stat(backupFolder)
@@ -3199,11 +3199,11 @@ def get_openzwave_backups():
     pattern = "_zwcfg_"
     alist_filter = ['xml'] 
     actualBackups = os.listdir(backupFolder)
-    actualBackups.sort()
+    actualBackups.sort(reverse=True)
     for candidateBackup in actualBackups:
         if candidateBackup[-3:] in alist_filter and pattern in candidateBackup:
-            result['Backup' +str(backupNumber)] = candidateBackup
-            backupNumber += 1
+            backupList.append(candidateBackup)
+    result['Backups'] = backupList
     return jsonify(result)
 
 @app.route('/ZWaveAPI/Run/network.RestoreBackup(<backup_name>)',methods = ['GET'])       
