@@ -3245,6 +3245,21 @@ def manually_backup_config():
     add_log_entry('Manually creating a backup')
     result = backup_xml_config('manual',network.home_id_str)
     return result
+
+@app.route('/ZWaveAPI/Run/network.DeleteBackup(<backup_name>)',methods = ['GET'])       
+def manually_delete_backup(backup_name):
+    """
+    Manually delete a backup
+    """
+    add_log_entry('Manually deleting a backup')
+    backupFolder = "/opt/python-openzwave/xml_backups"
+    backupFile = os.path.join(backupFolder,backup_name)
+    if not os.path.isfile(backupFile) :
+        add_log_entry('No config file found to delete', "error")
+        return format_json_result(False, 'No config file found with name ' + backup_name)
+    else:
+        os.unlink(backupFile)
+    return format_json_result(True, backup_name + ' succesfully deleted')
     
 if __name__ == '__main__':
     pid = str(os.getpid())
