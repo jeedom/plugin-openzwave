@@ -10,9 +10,14 @@ image:../images/openzwave1.png[]
 [TIP]
 Si vous êtes en mode déporté, le démon local peut être arrêté, c'est tout à fait normal.
 
-* *Général* : cette partie permet de configurer les paramètres généraux du plugin ainsi que la version actuel d'openzwave (si nous avez un NOK veuillez vous refairer à la partie "Mettre à jour OpenZwave").
+* *Configuration* : cette partie permet de configurer les paramètres généraux du plugin ainsi que la version actuel d'openzwave (si nous avez un NOK veuillez vous refairer à la partie "Mettre à jour OpenZwave"). Vous avez aussi une indication pour savoir si le moteur zwave arrivera bien à communiquer avec Jeeodom
+* *Général* :
 ** *Supprimer automatiquement les périphériques exclus* : permet de supprimer les periphérique exclus du réseaux zwave ou non
 ** *Soigner le réseau automatiquement 2 fois par semaine* : option pour activer un soin automatique du réseaux zwave (vivement conseillée)
+* *Gestion avancée* :
+** Console : permet d'affichager la console zwave (voir plus bas)
+** Backups : permet de gérer les backups du fichier de topologie réseaux
+** Configuration : permet de voir et modifier le fichier de topologie réseaux
 * *Démon local* ou *Démon XXX* : paramètres de configuration locale (ou déportée, en fonction de l'intitulé) du démon.
 ** *Dépendance OpenZwave locale* : permet de lancer l'installation du moteur OpenZwave, si vous venez de l'installer il faut absolument lancer l'installation (à moins de vouloir utiliser le plugin en mode déporté, dans ce cas il faudra lancer l'installation à partir du jeedom deporté). Il est aussi possible que Jeedom vous redemande de faire cette étape suite à une mise à jour. C'est normale ca permet de mettre à jour OpenZwave
 ** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-wave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 posssibilités à la fin de la liste
@@ -245,24 +250,6 @@ Affiche le nombre de routes disponibles pour la communication entre chaque noeud
 [TIP]
 La légende est diponible tout en bas.
 
-=== Console
-
-La console permet de voir en temps réel ce qu'il se passe sur le réseau Z-wave.
-
-image:../images/openzwave22.png[]
-
-[IMPORTANT]
-Les informations ici sont à destination du support, il ne faut donc pas s'inquiéter de voir des "Error" ou  "Warning" ici. Cela ne veut pas forcément dire que votre système a un soucis.
-
-=== Configuration
-
-Cet onglet contient la configuration des vos modules Z-wave.
-
-image:../images/openzwave23.png[]
-
-[IMPORTANT]
-Cette partie est réservée aux experts, toute modification ici (autre que sur demande du support) peut entrainer de graves problèmes sur le réseau Z-wave et peut ne pas être prise en charge par le support.
-
 == Santé
 
 image:../images/openzwave12.png[]
@@ -288,6 +275,36 @@ Vous avez ici :
 * *Dernière communication* : Date de dernière communication avec le module ainsi que l'heure de la prochaine communication prévue.
 * *Ping* : Permet d'envoyer un ping au module, peut être utilisé si le module est en dead pour voir si c'est réellement le cas.
 
+== Console
+
+La console permet de voir en temps réel ce qu'il se passe sur le réseau Z-wave.
+
+image:../images/openzwave22.png[]
+
+[IMPORTANT]
+Les informations ici sont à destination du support, il ne faut donc pas s'inquiéter de voir des "Error" ou  "Warning" ici. Cela ne veut pas forcément dire que votre système a un soucis.
+
+== Backups
+
+La partie backup va vous permetre de gérer les backups de la topologie de votre réseaux. A partir de cette écran vous pourrez : 
+
+* Lancer un backup (un backup est fait à chaque arrêt relance du réseaux et pendant les opérations critique). Les 12 dernieres backups sont conservés
+* Restaurer un backup (en le selectionnant dans la liste juste au dessus)
+* Supprimer un backup
+
+image:../images/openzwave35.png[]
+
+== Configuration
+
+Cet onglet contient la configuration des vos modules Z-wave.
+
+image:../images/openzwave23.png[]
+
+[IMPORTANT]
+Cette partie est réservée aux experts, toute modification ici (autre que sur demande du support) peut entrainer de graves problèmes sur le réseau Z-wave et peut ne pas être prise en charge par le support.
+
+
+
 == Mettre à jour OpenZwave
 
 Si Jeedom vous demande de mettre à jour OpenZwave ou si vous avez NOK au niveau de la version OpenZwave : 
@@ -307,10 +324,4 @@ image:../images/openzwave32.png[]
 
 La durée de cette opération peut varier en fonction de votre systeme (jusqu'a plus de 1h sur raspberry pi)
 
-Ensuite il vous faut reselectionner le bon port (attention ca depend de votre système) : 
-
-image:../images/openzwave33.png[]
-
-Et faites sauvegarder : 
-
-image:../images/openzwave34.png[]
+Ensuite vous avez juste à cliquer sur redemarrer pour relancer le démon.
