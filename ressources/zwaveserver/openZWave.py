@@ -502,7 +502,7 @@ def cleanup_confing_file(fileName):
             alist_filter = ['xml'] 
             path=os.path.join(backupFolder,"")
             actualBackups = os.listdir(backupFolder)
-            actualBackups.sort(reverse=True)
+            actualBackups.sort()
             foundValidBackup=0
             for candidateBackup in actualBackups:
                 if candidateBackup[-3:] in alist_filter and pattern in candidateBackup:
@@ -632,18 +632,22 @@ force_refresh_nodes = []
 check_config_files()
 
 def send_changes(changes):
-    changes['serverId'] = serverId
     debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
-    requests.post(callback+'?apikey='+apikey, json=changes,timeout= 120)
+    requests.post(callback+'?apikey='+apikey, json=changes,timeout= 10)
 
 def save_node_event(node_id, timestamp, value):
     global controller_state
     changes = {}   
     changes['controller']={}
+    changes['serverId'] = serverId
     if value=="removed":
         changes['controller']['excluded'] = {"value":node_id}
     elif value=="added":
         changes['controller']['included'] = {"value":node_id}
+        thread=threading.Thread(target=send_changes, args=(changes,))
+        thread.setDaemon(False)
+        thread.start()
+        return
     elif value in [0,1,5] and controller_state != value :
         controller_state = value
         changes['controller']['state'] = {"value":value}
@@ -653,7 +657,7 @@ def save_node_event(node_id, timestamp, value):
 
 def save_node_value_event(node_id, timestamp, command_class, index, typeStandard, value, instance):
     changes = {}
-    changes['device']={'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp}
+    changes['device']={'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value}
     send_changes(changes)
 
 
