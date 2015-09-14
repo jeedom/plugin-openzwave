@@ -60,10 +60,10 @@ if (isset($results['controller'])) {
 		if (is_object($jeeNetwork) || $results['serverId'] == 0) {
 			nodejs::pushUpdate('zwave::includeDevice', array('name' => ($results['serverId'] == 0) ? 'local' : $jeeNetwork->getName(), 'state' => 0, 'serverId' => $results['serverId']));
 		}
-		for ($i = 0; $i < 45; $i++) {
+		for ($i = 0; $i < 10; $i++) {
 			nodejs::pushUpdate('jeedom::alert', array(
 				'level' => 'warning',
-				'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration.Pause de ', __FILE__) . (45 - $i) . __(' pour synchronisation avec le module', __FILE__),
+				'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration.Pause de ', __FILE__) . (10 - $i) . __(' pour synchronisation avec le module', __FILE__),
 			));
 		}
 		nodejs::pushUpdate('jeedom::alert', array(

@@ -634,7 +634,7 @@ check_config_files()
 def send_changes(changes):
     changes['serverId'] = serverId
     debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
-    requests.post(callback+'?apikey='+apikey, json=changes,timeout= 10)
+    requests.post(callback+'?apikey='+apikey, json=changes,timeout= 120)
 
 def save_node_event(node_id, timestamp, value):
     global controller_state
