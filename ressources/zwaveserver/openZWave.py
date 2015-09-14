@@ -502,7 +502,7 @@ def cleanup_confing_file(fileName):
             alist_filter = ['xml'] 
             path=os.path.join(backupFolder,"")
             actualBackups = os.listdir(backupFolder)
-            actualBackups.sort()
+            actualBackups.sort(reverse=True)
             foundValidBackup=0
             for candidateBackup in actualBackups:
                 if candidateBackup[-3:] in alist_filter and pattern in candidateBackup:
@@ -633,7 +633,7 @@ check_config_files()
 
 def send_changes(changes):
     debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
-    requests.post(callback+'?apikey='+apikey, json=changes,timeout= 10)
+    requests.post(callback+'?apikey='+apikey, json=changes,timeout= 120)
 
 def save_node_event(node_id, timestamp, value):
     global controller_state
@@ -657,7 +657,7 @@ def save_node_event(node_id, timestamp, value):
 
 def save_node_value_event(node_id, timestamp, command_class, index, typeStandard, value, instance):
     changes = {}
-    changes['device']={'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value}
+    changes['device']={'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp}
     send_changes(changes)
 
 
