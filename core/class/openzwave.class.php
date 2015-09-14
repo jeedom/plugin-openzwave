@@ -105,17 +105,6 @@ class openzwave extends eqLogic {
 			'state' => $compilation,
 		);
 		if (config::byKey('jeeNetwork::mode') == 'master') {
-			$cron = cron::byClassAndFunction('openzwave', 'pull');
-			$running = false;
-			if (is_object($cron)) {
-				$running = $cron->running();
-			}
-			$return[] = array(
-				'test' => __('Tâche Z-Wave', __FILE__),
-				'result' => ($running) ? __('OK', __FILE__) : __('NOK', __FILE__),
-				'advice' => ($running) ? '' : __('Allez sur la page du moteur des tâches et vérifiez lancer la tache openzwave::pull', __FILE__),
-				'state' => $running,
-			);
 			foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
 				try {
 					$demon_state = $jeeNetwork->sendRawRequest('deamonRunning', array('plugin' => 'openzwave'));
