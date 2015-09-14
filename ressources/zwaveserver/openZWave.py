@@ -502,7 +502,7 @@ def cleanup_confing_file(fileName):
             alist_filter = ['xml'] 
             path=os.path.join(backupFolder,"")
             actualBackups = os.listdir(backupFolder)
-            actualBackups.sort()
+            actualBackups.sort(reverse=True)
             foundValidBackup=0
             for candidateBackup in actualBackups:
                 if candidateBackup[-3:] in alist_filter and pattern in candidateBackup:
