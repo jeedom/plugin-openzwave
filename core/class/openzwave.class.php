@@ -927,6 +927,9 @@ class openzwaveCmd extends cmd {
 		if (!isset($_val['value'])) {
 			return '';
 		}
+		if (!isset($_val['type'])) {
+			return $_val['value'];
+		}
 		$value = $_val['value'];
 		switch ($_val['type']) {
 			case 'float':

@@ -653,7 +653,7 @@ def save_node_event(node_id, timestamp, value):
 
 def save_node_value_event(node_id, timestamp, command_class, index, typeStandard, value, instance):
     changes = {}
-    changes['device']={'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value}
+    changes['device']={'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard}
     send_changes(changes)
 
 
