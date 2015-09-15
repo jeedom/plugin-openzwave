@@ -32,6 +32,34 @@ $results = json_decode(file_get_contents("php://input"), true);
 if (!is_array($results)) {
 	die();
 }
+
+if (isset($results['device'])) {
+	$eqLogic = openzwave::getEqLogicByLogicalIdAndServerId($results['device']['node_id'], $results['serverId']);
+	if (!is_object($eqLogic)) {
+		die();
+	}
+	if (strpos($eqLogic->getConfiguration('fileconf'), 'fibaro.fgs221.fil.pilote') !== false) {
+		foreach ($eqLogic->getCmd('info', '0&&1.0x0', null, true) as $cmd) {
+			if ($cmd->getConfiguration('value') == 'pilotWire') {
+				$cmd->event($cmd->getPilotWire());
+			}
+		}
+	}
+	if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && ($eqLogic->getConfiguration('product_id') == '4096' || $eqLogic->getConfiguration('product_id') == '16384') && $results['device']['CommandClass'] == '0x26') {
+		foreach ($eqLogic->getCmd('info', '0.0x26', null, true) as $cmd) {
+			if ($cmd->getConfiguration('value') == '#color#') {
+				$cmd->event($cmd->getRGBColor());
+				break;
+			}
+		}
+	}
+	foreach ($eqLogic->getCmd('info', $results['device']['instance'] . '.' . $results['device']['CommandClass'], null, true) as $cmd) {
+		if ($cmd->getConfiguration('value') == 'data[' . $results['device']['index'] . '].val') {
+			$cmd->handleUpdateValue($results['device']);
+		}
+	}
+}
+
 if (isset($results['controller'])) {
 	if (isset($results['controller']['state'])) {
 		$jeeNetwork = jeeNetwork::byId($results['serverId']);
@@ -75,29 +103,7 @@ if (isset($results['controller'])) {
 		openzwave::syncEqLogicWithOpenZwave($results['serverId'], $results['controller']['included']['value']);
 	}
 }
-if (isset($results['device'])) {
-	$eqLogic = openzwave::getEqLogicByLogicalIdAndServerId($results['device']['node_id'], $results['serverId']);
-	if (!is_object($eqLogic)) {
-		die();
-	}
-	if (strpos($eqLogic->getConfiguration('fileconf'), 'fibaro.fgs221.fil.pilote') !== false) {
-		foreach ($eqLogic->getCmd('info', '0&&1.0x0', null, true) as $cmd) {
-			if ($cmd->getConfiguration('value') == 'pilotWire') {
-				$cmd->event($cmd->getPilotWire());
-			}
-		}
-	}
-	if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && ($eqLogic->getConfiguration('product_id') == '4096' || $eqLogic->getConfiguration('product_id') == '16384') && $results['device']['CommandClass'] == '0x26') {
-		foreach ($eqLogic->getCmd('info', '0.0x26', null, true) as $cmd) {
-			if ($cmd->getConfiguration('value') == '#color#') {
-				$cmd->event($cmd->getRGBColor());
-				break;
-			}
-		}
-	}
-	foreach ($eqLogic->getCmd('info', $results['device']['instance'] . '.' . $results['device']['CommandClass'], null, true) as $cmd) {
-		if ($cmd->getConfiguration('value') == 'data[' . $results['device']['index'] . '].val') {
-			$cmd->handleUpdateValue($results['device']);
-		}
-	}
+
+if (isset($results['message'])) {
+	log::add('openzwave', 'error', $results['message']);
 }
