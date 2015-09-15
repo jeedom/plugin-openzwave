@@ -54,20 +54,8 @@ sudo apt-cache clean
 sudo apt-get update
 
 echo "Installation des dependances"
-apt_install mercurial
-apt_install git
-apt_install python-pip
-apt_install python-dev
-apt_install python-setuptools
-apt_install python-louie
-apt_install python-sphinx
-apt_install make
-apt_install build-essential
-apt_install libudev-dev
-apt_install g++
-apt_install gcc
-apt_install python-lxml
-apt_install unzip
+apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml unzip
+
 # Python
 echo "Installation des dependances Python"
 pip_install sphinxcontrib-blockdiag
