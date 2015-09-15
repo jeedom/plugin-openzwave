@@ -718,7 +718,8 @@ def refresh_configuration_asynchronous():
             if node_id in network.nodes and not network.nodes[node_id].is_failed :
                 debug_print('Request All Configuration Parameters for nodeId: %s' % (node_id,)) 
                 network._manager.requestAllConfigParams(network.home_id, node_id)
-                time.sleep(3)    
+                time.sleep(3)
+                backup_xml_config('start',network.home_id_str)  
     else:
         #I will try again in 2 minutes
         retry_job = threading.Timer(240.0, refresh_configuration_asynchronous)
@@ -3232,6 +3233,9 @@ def restore_openzwave_backups(backup_name):
         except:
             add_log_entry('The backup file seems invalid', "error")
             return format_json_result(False, 'The backup file (' + backup_name+') seems invalid')
+        network.stop()
+        add_log_entry('ZWave network is now stopped')
+        time.sleep(3)
         shutil.copy2(backupFile, targetFile)
         os.chmod(targetFile, 0777)
         add_log_entry('******** The ZWave network is being started ********')
