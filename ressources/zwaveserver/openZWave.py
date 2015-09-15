@@ -719,7 +719,7 @@ def refresh_configuration_asynchronous():
                 debug_print('Request All Configuration Parameters for nodeId: %s' % (node_id,)) 
                 network._manager.requestAllConfigParams(network.home_id, node_id)
                 time.sleep(3)
-                backup_xml_config('start',network.home_id_str)  
+        backup_xml_config('start',network.home_id_str)  
     else:
         #I will try again in 2 minutes
         retry_job = threading.Timer(240.0, refresh_configuration_asynchronous)
