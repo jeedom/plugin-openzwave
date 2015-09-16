@@ -15,7 +15,7 @@ try:
     print "--> pass"
 except Exception as e:
     print "The dependances of openzwave plugin are not installed. Please, check the plugin openzwave configuration page for instructions"
-    print "Error %s:" % str(e)
+    print "Error : %s" % str(e)
     sys.exit(1)
 
 print "Check other dependances"
@@ -37,7 +37,7 @@ try:
     print "--> pass"
 except Exception as e:
     print "The dependances of openzwave plugin are not installed. Please, check the plugin openzwave configuration page for instructions"
-    print "Error %s:" % str(e)
+    print "Error : %s" % str(e)
     sys.exit(1)
 
 if not os.path.exists('/tmp/python-openzwave-eggs'):
