@@ -303,17 +303,17 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
         $('#md_modal').dialog({title: "{{Backups}}"});
         $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=backup').dialog('open');
     });
-    
+
     $('#bt_fileconfigZwave').on('click', function () {
         $('#md_modal').dialog({title: "{{Configuration}}"});
         $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=config').dialog('open');
     });
-    
+
     $('#bt_consoleZwave').on('click', function () {
         $('#md_modal').dialog({title: "{{Console}}"});
         $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=console').dialog('open');
     });
-	
+
     function stopopenZwaveDemon(type,id) {
 	    $.ajax({// fonction permettant de faire de l'ajax
 	        type: "POST", // methode de transmission des données au fichier php

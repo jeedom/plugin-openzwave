@@ -73,10 +73,6 @@ if (isset($results['controller'])) {
 		}
 	}
 	if (isset($results['controller']['excluded'])) {
-		$jeeNetwork = jeeNetwork::byId($results['serverId']);
-		if (is_object($jeeNetwork) || $results['serverId'] == 0) {
-			nodejs::pushUpdate('zwave::excludeDevice', array('name' => ($results['serverId'] == 0) ? 'local' : $jeeNetwork->getName(), 'state' => 0, 'serverId' => $results['serverId']));
-		}
 		nodejs::pushUpdate('jeedom::alert', array(
 			'level' => 'warning',
 			'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
@@ -85,10 +81,6 @@ if (isset($results['controller'])) {
 		openzwave::syncEqLogicWithOpenZwave($results['serverId'], $results['controller']['excluded']['value']);
 	}
 	if (isset($results['controller']['included'])) {
-		$jeeNetwork = jeeNetwork::byId($results['serverId']);
-		if (is_object($jeeNetwork) || $results['serverId'] == 0) {
-			nodejs::pushUpdate('zwave::includeDevice', array('name' => ($results['serverId'] == 0) ? 'local' : $jeeNetwork->getName(), 'state' => 0, 'serverId' => $results['serverId']));
-		}
 		for ($i = 0; $i < 10; $i++) {
 			nodejs::pushUpdate('jeedom::alert', array(
 				'level' => 'warning',
