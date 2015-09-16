@@ -1,0 +1,29 @@
+{
+	"name" : "KFOB Key Chain Controller",
+    "doc" : "",
+    "type": "Télécommande",
+    "comlink" : "",
+    "remark" : "",
+    "imglink" : "",
+    "battery_type" : "1xCR2032",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+        {
+            "name": "Boutons",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": "0x2b",
+                "value": "data[0].val"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        }
+    ]
+}
