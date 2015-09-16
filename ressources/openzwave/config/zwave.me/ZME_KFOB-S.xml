@@ -11,7 +11,7 @@
 			<Item label="In pair without double clicks (default)" value="1"/>
 			<Item label="In pair with double clicks" value="2"/>
 		</Value>
-		<Value type="list" index="2" genre="config" label="Modes for Button 2 and 4" units="" min="0" max="2" value="1" size="1">
+		<Value type="list" index="2" genre="config" label="Button 2 and 4 pair mode" units="" min="0" max="2" value="1" size="1">
 			<Help>In separate mode button 2 works with group B, button 4 with groups D. 
 				Click is On, Hold is dimming Up, Double click is Off, Click-Hold is dimming Down. 
 				In pair button 2/4 are Up/Down correspondingly. Click is On/Off, Hold is dimming Up/Down. Single clicks works with group B, double click with group D.</Help>
