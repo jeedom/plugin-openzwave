@@ -283,15 +283,7 @@ class NetworkInformations(object):
     STATE_NODEFAILED = 'NodeFailed'
     '''
     def __init__(self):
-        self._actualMode = ControllerMode.Idle
-        self._startTime=int(time.time())
-        self._awakeTime = None
-        self._configFileSaveInProgress = False
-        self._controllerIsBusy = False;
-        self._controllerState = ZWaveController.STATE_STARTING
-        self._lastControllerNotification = {"state": self._controllerState, "details": '', "error": None, "error_description": None, "timestamp" :int(time.time())}         
-        self._error = None
-        self._error_description = None
+        self.reset()
     
     @property
     def actualMode(self):        
@@ -384,6 +376,16 @@ class NetworkInformations(object):
         else:
             return Idle
 
+    def reset(self):
+        self._actualMode = ControllerMode.Idle
+        self._startTime=int(time.time())
+        self._awakeTime = None
+        self._configFileSaveInProgress = False
+        self._controllerIsBusy = False;
+        self._controllerState = ZWaveController.STATE_STARTING
+        self._lastControllerNotification = {"state": self._controllerState, "details": '', "error": None, "error_description": None, "timestamp" :int(time.time())}         
+        self._error = None
+        self._error_description = None
 
 class PendingConfiguration(object):
     
@@ -474,7 +476,19 @@ class NodeNotification(object):
     @property
     def next_wakeup(self):        
         return self._next_wakeup
+        
 
+def start_network():
+    global networkInformations
+    # reset flags
+    force_refresh_nodes = []
+    if networkInformations is None:
+        networkInformations = NetworkInformations()
+    else:
+        networkInformations.reset()
+    add_log_entry('******** The ZWave network is being started ********')
+    network.start()
+    
 def cleanup_confing_file(fileName):
     add_log_entry('validate configuration file: %s' %(fileName,)) 
     if os.path.isfile(fileName) :
@@ -1069,7 +1083,6 @@ def node_notification(args):
 app = Flask(__name__, static_url_path = '/static')
 
 #Create a network object
-networkInformations = NetworkInformations()  
 network = ZWaveNetwork(options, autostart=False)
 
 #We connect to the louie dispatcher
@@ -1079,8 +1092,7 @@ dispatcher.connect(network_failed, ZWaveNetwork.SIGNAL_DRIVER_FAILED)
 dispatcher.connect(network_awaked, ZWaveNetwork.SIGNAL_NETWORK_AWAKED)
 dispatcher.connect(network_ready, ZWaveNetwork.SIGNAL_NETWORK_READY)
 
-add_log_entry('******** The ZWave network is being started ********')
-network.start()
+start_network()
 
 #a new node has been found (not already stored in zwcfg*.xml file).
 dispatcher.connect(node_new, ZWaveNetwork.SIGNAL_NODE_NEW)
@@ -2663,6 +2675,7 @@ def request_all_config_parameters(device_id) :
 """
     
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].RemoveDeviceZWConfig()',methods = ['GET'])
+
 def remove_device_openzwave_config(device_id) :
     """
     Remove a device from the openzwave config file and restart network to rediscover again
@@ -2683,11 +2696,7 @@ def remove_device_openzwave_config(device_id) :
         FILE.write('<?xml version="1.0" encoding="utf-8" ?>\n')
         FILE.writelines(etree.tostring(tree, pretty_print=True))
         FILE.close()
-        # reset flags
-        force_refresh_nodes = []    
-        networkInformations = NetworkInformations()
-        add_log_entry('******** The ZWave network is being started ********')
-        network.start()
+        start_network()
         return format_json_result()
     except Exception,e:
         return format_json_result(False, str(e), 'error') 
@@ -2738,11 +2747,7 @@ def ghost_killer(device_id):
     except Exception,e:
         return format_json_result(False, str(e), 'error') 
     finally:
-        # reset flags
-        force_refresh_nodes = []    
-        networkInformations = NetworkInformations()
-        add_log_entry('******** The ZWave network is being started ********')
-        network.start()            
+        start_network()            
 
 """
 controllers routes
@@ -2931,11 +2936,7 @@ def hard_reset() :
         network.controller.hard_reset()        
         add_log_entry('The controller becomes a primary controller ready to add devices to a new network')
         time.sleep(2)            
-        add_log_entry('Restarting ZWave network')            
-        # reset flags
-        force_refresh_nodes = []    
-        networkInformations = NetworkInformations()              
-        network.start()
+        start_network()
         return format_json_result()        
     except Exception,e:
         return format_json_result(False, str(e), 'error')
@@ -2945,13 +2946,10 @@ network routes
 """
     
 @app.route('/ZWaveAPI/Run/network.Start()',methods = ['GET'])
-def start_network() :
+def network_start() :
     add_log_entry('******** The ZWave network is being started ********')
     try:
-        # reset flags
-        force_refresh_nodes = []    
-        networkInformations = NetworkInformations()
-        network.start()    
+        start_network()     
         return format_json_result()   
     except Exception,e:
         return format_json_result(False, str(e), 'error')
@@ -3101,11 +3099,7 @@ def save_openzwave_config() :
         fileName = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
         with open(fileName, "w") as ins:
             ins.write(request.data)
-        # reset flags
-        force_refresh_nodes = []    
-        networkInformations = NetworkInformations()
-        add_log_entry('******** The ZWave network is being started ********')
-        network.start()
+        start_network()
         return format_json_result() 
     except Exception,e:
         return format_json_result(False, str(e), 'error')
@@ -3145,11 +3139,7 @@ def remove_unknowns_devices_openzwave_config() :
         FILE.write('<?xml version="1.0" encoding="utf-8" ?>\n')
         FILE.writelines(etree.tostring(tree, pretty_print=True))
         FILE.close()
-        add_log_entry('******** The ZWave network is being started ********')
-        # reset flags
-        force_refresh_nodes = []    
-        networkInformations = NetworkInformations()
-        network.start()
+        start_network()
         return format_json_result()
     except Exception,e:
         return format_json_result(False, str(e), 'error')
@@ -3237,11 +3227,7 @@ def restore_openzwave_backups(backup_name):
         time.sleep(3)
         shutil.copy2(backupFile, targetFile)
         os.chmod(targetFile, 0777)
-        add_log_entry('******** The ZWave network is being started ********')
-        # reset flags
-        force_refresh_nodes = []    
-        networkInformations = NetworkInformations()
-        network.start()
+        start_network()
     return format_json_result(True, backup_name + ' succesfully restored')
 
 @app.route('/ZWaveAPI/Run/network.ManualBackup()',methods = ['GET'])       
@@ -3271,4 +3257,7 @@ def manually_delete_backup(backup_name):
 if __name__ == '__main__':
     pid = str(os.getpid())
     file(pidfile, 'w').write("%s\n" % pid)
-    app.run(host='0.0.0.0',port=int(port_server),debug=False)
+    try:
+        app.run(host='0.0.0.0',port=int(port_server),debug=False)
+    except Exception,e:
+        print "Fatal Error : %s" % str(e)
