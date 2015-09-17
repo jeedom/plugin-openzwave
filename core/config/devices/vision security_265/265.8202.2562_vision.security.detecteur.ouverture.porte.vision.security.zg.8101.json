@@ -30,9 +30,23 @@
                 "isVisible": 1,
                 "isHistorized": 0,
                 "configuration": {
-                    "class": "0x71",
+                    "class": "0x30",
                     "instanceId": 0,
                     "value": "data[0].val"
+                }
+            },
+			{
+               "name": "Sabotage",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "configuration": {
+                    "class": "0x71",
+                    "instanceId": 0,
+                    "value": "data[10].val",
+                    "minValue": 2,
+                    "maxValue": 3
                 }
             }
         ]
