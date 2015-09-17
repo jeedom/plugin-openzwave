@@ -33,20 +33,30 @@
                     "class": "0x30",
                     "instanceId": 0,
                     "value": "data[0].val"
+                },
+                "display": {
+                    "invertBinary": "1"
                 }
             },
 			{
-               "name": "Sabotage",
+                "name": "Sabotage",
                 "type": "info",
-                "subtype": "numeric",
+                "subtype": "binary",
                 "isVisible": 1,
                 "isHistorized": 0,
+
                 "configuration": {
-                    "class": "0x71",
                     "instanceId": 0,
+                    "class": "0x71",
                     "value": "data[10].val",
-                    "minValue": 2,
-                    "maxValue": 3
+                    "calculValueOffset" : "#value#==3"
+                },
+                "display": {
+                    "invertBinary": "1"
+                },
+                "template": {
+                    "dashboard": "vibration",
+                    "mobile": "vibration"
                 }
             }
         ]
