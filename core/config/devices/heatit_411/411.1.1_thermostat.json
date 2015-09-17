@@ -2,10 +2,9 @@
 	"name" : "Heatit Z-Wave thermostat",
     "doc" : "",
     "type": "Thermostat",
-    "comlink" : "",
+    "comlink" : "2731-thermofloor-thermostat-z-wave-heatit-3600w-16a-blanc-7071236011934",
     "remark" : "",
-    "imglink" : "",
-    "battery_type" : "",
+    "imglink" : "heatit.thermostat",
     "configuration" : {
         "conf_version" : 1
     },
