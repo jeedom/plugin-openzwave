@@ -4,7 +4,7 @@
     "type": "Télécommande",
     "comlink" : "",
     "remark" : "",
-    "imglink" : "",
+    "imglink" : "zwaveme.keyfob1",
     "battery_type" : "1xCR2032",
     "configuration" : {
         "conf_version" : 1

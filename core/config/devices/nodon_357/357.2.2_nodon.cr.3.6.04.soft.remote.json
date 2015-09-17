@@ -1,0 +1,29 @@
+{
+	"name" : "Soft Remote",
+    "doc" : "",
+    "type": "Télécommande",
+    "comlink" : "2979-nodon-soft-remote-z-wave-plus-wasabi-3700313920336",
+    "remark" : "Fonctionne en mode scene et non central scene",
+    "imglink" : "nodon.softremote",
+    "battery_type" : "1xCR2032",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+        {
+            "name": "Boutons",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": "0x2b",
+                "value": "data[0].val"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        }
+    ]
+}

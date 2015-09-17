@@ -2,9 +2,9 @@
 	"name" : "KFOB Key Chain Controller",
     "doc" : "",
     "type": "Télécommande",
-    "comlink" : "",
+    "comlink" : "2311-z-waveme-telecommande-porte-cles-4-boutons-z-wave-0696859123344",
     "remark" : "",
-    "imglink" : "",
+    "imglink" : "zwaveme.keyfob4",
     "battery_type" : "1xCR2032",
     "configuration" : {
         "conf_version" : 1
