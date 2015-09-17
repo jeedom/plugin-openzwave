@@ -1,0 +1,82 @@
+{
+	"name" : "Heatit Z-Wave thermostat",
+    "doc" : "",
+    "type": "Thermostat",
+    "comlink" : "",
+    "remark" : "",
+    "imglink" : "",
+    "battery_type" : "",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+            {
+                "name": "Température",
+                "type": "info",
+                "subType": "numeric",
+                "isHistorized": "0",
+				"unite": "°C",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x31",
+                    "value": "data[1].val"
+                }
+            },
+            {
+                "name": "Off",
+                "type": "action",
+                "subType": "other",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x40",
+                    "value": "data[0].Set(Off)"
+                }
+            },
+            {
+                "name": "Confort",
+                "type": "action",
+                "subType": "other",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x40",
+                    "value": "data[0].Set(Heat)"
+                }
+            },
+            {
+                "name": "ECO",
+                "type": "action",
+                "subType": "other",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x40",
+                    "value": "data[0].Set(Heat Econ)"
+                }
+            },
+            {
+                "name": "Cooling",
+                "type": "action",
+                "subType": "slider",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x43",
+                    "value": "data[2].Set((#slider#)"
+                }
+            },
+            {
+                "name": "Dry Air",
+                "type": "action",
+                "subType": "slider",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x43",
+                    "value": "data[8].Set((#slider#)"
+                }
+            }            
+    ]
+}
