@@ -413,8 +413,8 @@
 	<Manufacturer id="0090" name="Kwikset">
 		<Product type="0001" id="0001" name="Touchpad Electronic Deadbolt"/>
 	</Manufacturer>
-	<Manufacturer id="0019b" name="HeatIt">
-		<Product type="0001" id="0001" name="Thermostat"/>
+	<Manufacturer id="0019b" name="Thermo-Floor AS">
+		<Product type="0001" id="0001" name="Heatit Thermostat"/>
 	</Manufacturer>	
 	<Manufacturer id="0051" name="Lagotek Corp">
 	</Manufacturer>
