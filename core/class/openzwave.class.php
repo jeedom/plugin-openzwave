@@ -77,6 +77,29 @@ class openzwave extends eqLogic {
 					}
 				}
 			}
+			if ($_autofix && count(self::$_listZwaveServer) > 0) {
+				foreach (self::$_listZwaveServer as $key => $value) {
+					$url = network::getNetworkAccess() . $value['path'] . '/ZWaveAPI/Run/IsAlive()';
+					$ch = curl_init();
+					curl_setopt_array($ch, array(
+						CURLOPT_URL => $url,
+						CURLOPT_HEADER => false,
+						CURLOPT_RETURNTRANSFER => true,
+					));
+					curl_setopt($ch, CURLOPT_TIMEOUT_MS, 1000);
+					$result = curl_exec($ch);
+					curl_close($ch);
+					if (is_json($result)) {
+						$result = json_decode($result, true);
+					}
+					if (!is_array($result) || $result['result'] != true) {
+						self::removeNginxRedirection();
+						self::updateNginxRedirection();
+						self::$_listZwaveServer = null;
+						self::listServerZwave(false);
+					}
+				}
+			}
 		}
 		return self::$_listZwaveServer;
 	}
@@ -174,7 +197,7 @@ class openzwave extends eqLogic {
 			self::$_curl = curl_init();
 		}
 		if (self::$_listZwaveServer == null) {
-			self::listServerZwave();
+			self::listServerZwave(false);
 		}
 		if (!isset(self::$_listZwaveServer[$_serverId])) {
 			self::listServerZwave();
@@ -194,12 +217,15 @@ class openzwave extends eqLogic {
 		}
 		$result = curl_exec($ch);
 		if ($_noError) {
+			curl_close($ch);
 			return $result;
 		}
 		if (curl_errno($ch)) {
 			$curl_error = curl_error($ch);
+			curl_close($ch);
 			throw new Exception(__('Echec de la requete http : ', __FILE__) . $url . ' Curl error : ' . $curl_error, 404);
 		}
+		curl_close($ch);
 		if (is_json($result)) {
 			return json_decode($result, true);
 		} else {
