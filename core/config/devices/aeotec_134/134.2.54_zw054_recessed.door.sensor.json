@@ -1,0 +1,45 @@
+{
+		"name": "ZW054 Door",
+        "doc" : "",
+        "type": "Ouverture",
+        "comlink" : "",
+        "remark" : "",
+        "imglink" : "aeotec.zw054",
+        "battery_type" : "1xCR2",
+        "configuration" : {
+        "conf_version" : 1
+		},
+		"commands": [
+            {
+                "name": "Etat",
+                "type": "info",
+                "subType": "binary",
+                "isHistorized": "1",
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x30",
+                    "value": "data[0].val"
+                },
+                "template": {
+                    "dashboard": "door",
+                    "mobile": "door"
+                },
+                "display": {
+                    "invertBinary": "1"
+                },
+                "isVisible": "1"
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "configuration": {
+                    "class": "0x80",
+                    "value": "data[0].val"
+                }
+            }
+        ]
+    }
