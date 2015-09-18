@@ -3254,6 +3254,10 @@ def manually_delete_backup(backup_name):
     else:
         os.unlink(backupFile)
     return format_json_result(True, backup_name + ' succesfully deleted')
+
+@app.route('/ZWaveAPI/Run/network.IsAlive()',methods = ['GET'])       
+def rest_is_alive():    
+    return format_json_result()
     
 if __name__ == '__main__':
     pid = str(os.getpid())
