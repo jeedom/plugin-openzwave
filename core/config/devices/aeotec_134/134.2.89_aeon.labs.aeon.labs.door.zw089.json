@@ -17,7 +17,7 @@
                 "isHistorized": "1",
                 "configuration": {
                     "instanceId": "0",
-                    "class": "0x20",
+                    "class": "0x30",
                     "value": "data[0].val"
                 },
                 "template": {
