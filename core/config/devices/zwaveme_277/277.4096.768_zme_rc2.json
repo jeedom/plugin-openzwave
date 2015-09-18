@@ -4,7 +4,7 @@
     "type": "Télécommande",
     "comlink" : "3075-z-waveme-telecommande-z-wave-10-canaux",
     "remark" : "",
-    "imglink" : "z-waveme-telecommande-z-wave-10-canaux",
+    "imglink" : "zwaveme.rc2",
     "battery_type" : "4xAAA",
     "configuration" : {
         "conf_version" : 1
