@@ -1,0 +1,29 @@
+{
+	"name" : "ZME_RC2 Remote Control",
+    "doc" : "",
+    "type": "Télécommande",
+    "comlink" : "3075-z-waveme-telecommande-z-wave-10-canaux",
+    "remark" : "",
+    "imglink" : "z-waveme-telecommande-z-wave-10-canaux",
+    "battery_type" : "4xAAA",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+        {
+            "name": "Boutons",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": "0x2b",
+                "value": "data[0].val"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        }
+    ]
+}
