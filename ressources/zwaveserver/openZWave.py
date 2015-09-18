@@ -3255,7 +3255,7 @@ def manually_delete_backup(backup_name):
         os.unlink(backupFile)
     return format_json_result(True, backup_name + ' succesfully deleted')
 
-@app.route('/ZWaveAPI/Run/network.IsAlive()',methods = ['GET'])       
+@app.route('/ZWaveAPI/Run/IsAlive()',methods = ['GET'])       
 def rest_is_alive():    
     return format_json_result()
     
