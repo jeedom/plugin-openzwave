@@ -21,7 +21,6 @@
 class openzwave extends eqLogic {
 	/*     * *************************Attributs****************************** */
 
-	private static $_curl = null;
 	private static $_nbZwaveServer = 1;
 	private static $_listZwaveServer = null;
 
@@ -193,9 +192,6 @@ class openzwave extends eqLogic {
 	}
 
 	public static function callOpenzwave($_url, $_serverId = 0, $_timeout = null, $_noError = false) {
-		if (self::$_curl == null) {
-			self::$_curl = curl_init();
-		}
 		if (self::$_listZwaveServer == null) {
 			self::listServerZwave(false);
 		}
@@ -206,7 +202,7 @@ class openzwave extends eqLogic {
 			return '';
 		}
 		$url = 'http://' . self::$_listZwaveServer[$_serverId]['addr'] . ':' . self::$_listZwaveServer[$_serverId]['port'] . $_url;
-		$ch = self::$_curl;
+		$ch = curl_init();
 		curl_setopt_array($ch, array(
 			CURLOPT_URL => $url,
 			CURLOPT_HEADER => false,
