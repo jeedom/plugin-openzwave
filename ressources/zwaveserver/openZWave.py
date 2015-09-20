@@ -679,7 +679,9 @@ if directPush == 1 :
     def save_node_value_event(node_id, timestamp, command_class, index, typeStandard, value, instance):
         changes = {}
         changes['serverId'] = serverId
-        changes['device']={'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp}
+        changes['device']={}
+        changes['device'][node_id]=[]
+        changes['device'][node_id].append({'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp})
         send_changes(changes)
 else :
     print 'Stack push mode'

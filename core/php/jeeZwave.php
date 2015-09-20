@@ -34,9 +34,6 @@ if (!is_array($results)) {
 }
 
 if (isset($results['device'])) {
-	if (!is_array($results['device'])) {
-		$results['device'] = array($results['device']);
-	}
 	foreach ($results['device'] as $node_id => $datas) {
 		$eqLogic = openzwave::getEqLogicByLogicalIdAndServerId($node_id, $results['serverId']);
 		if (is_object($eqLogic)) {

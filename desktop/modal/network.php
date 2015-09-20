@@ -141,7 +141,6 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 						<div class="panel-body">
 							<p>{{Réseau démarré le}} <span class="network-startTime label label-default" style="font-size : 1em;">{{inconnu}}</span> <span class="network-awakedTime label label-default" style="font-size : 1em;"></span></p>
 							<p>{{Le réseau contient}} <b><span class="network-nodes-count"></span></b> {{noeuds, actuellement}} <b><span class="network-sleeping-nodes-count">{{inconnu}}</span></b> {{dorment}}</p>
-							<p>{{Nombre de scènes :}} <span class="network-scenes-count label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
 							<p>{{Intervalle des demandes :}} <span class="network-poll-interval label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
 							<p>{{Voisins :}} <span class="network-node-neighbours label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
 						</div>
