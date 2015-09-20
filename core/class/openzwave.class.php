@@ -116,7 +116,7 @@ class openzwave extends eqLogic {
 		$return[] = array(
 			'test' => __('Version d\'openzwave', __FILE__),
 			'result' => $version,
-			'advice' => ($demon_state) ? '' : __('Mettez à jour les dépendances', __FILE__),
+			'advice' => ($version) ? '' : __('Mettez à jour les dépendances', __FILE__),
 			'state' => version_compare(config::byKey('openzwave_version', 'openzwave'), $version, '<='),
 		);
 		$compilation = openzwave::compilationOk();
