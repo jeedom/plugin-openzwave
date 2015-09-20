@@ -64,6 +64,7 @@ print("--> pass")
 
     
 device="auto"
+directPush=1
 log="None"
 #default_poll_interval = 1800000 # 30 minutes
 default_poll_interval = 300000 # 5 minutes
@@ -193,6 +194,9 @@ for arg in sys.argv:
         temp,apikey = arg.split("=")
     elif arg.startswith("--serverId"):
         temp,serverId = arg.split("=")
+    elif arg.startswith("--directPush"):
+        temp,directPush = arg.split("=")
+        directPush = int(directPush)
     elif arg.startswith("--help"):
         print("help : ")
         print("  --device=/dev/yourdevice ")
@@ -645,35 +649,117 @@ force_refresh_nodes = []
 
 check_config_files()
 
-def send_changes(changes):
-    debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
-    requests.post(callback+'?apikey='+apikey, json=changes,timeout= 120)
 
-def save_node_event(node_id, timestamp, value):
-    global controller_state
-    changes = {}   
-    changes['controller']={}
-    changes['serverId'] = serverId
-    if value=="removed":
-        changes['controller']['excluded'] = {"value":node_id}
-    elif value=="added":
-        changes['controller']['included'] = {"value":node_id}
-        thread=threading.Thread(target=send_changes, args=(changes,))
-        thread.setDaemon(False)
-        thread.start()
-        return
-    elif value in [0,1,5] and controller_state != value :
-        controller_state = value
-        changes['controller']['state'] = {"value":value}
-    else:
-        return
-    send_changes(changes)
+if directPush == 1 :
+    print 'Direct push mode'
+    def send_changes(changes):
+        debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
+        requests.post(callback+'?apikey='+apikey, json=changes,timeout= 120)
 
-def save_node_value_event(node_id, timestamp, command_class, index, typeStandard, value, instance):
-    changes = {}
-    changes['serverId'] = serverId
-    changes['device']={'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp}
-    send_changes(changes)
+    def save_node_event(node_id, timestamp, value):
+        global controller_state
+        changes = {}   
+        changes['controller']={}
+        changes['serverId'] = serverId
+        if value=="removed":
+            changes['controller']['excluded'] = {"value":node_id}
+        elif value=="added":
+            changes['controller']['included'] = {"value":node_id}
+            thread=threading.Thread(target=send_changes, args=(changes,))
+            thread.setDaemon(False)
+            thread.start()
+            return
+        elif value in [0,1,5] and controller_state != value :
+            controller_state = value
+            changes['controller']['state'] = {"value":value}
+        else:
+            return
+        send_changes(changes)
+
+    def save_node_value_event(node_id, timestamp, command_class, index, typeStandard, value, instance):
+        changes = {}
+        changes['serverId'] = serverId
+        changes['device']={'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp}
+        send_changes(changes)
+else :
+    print 'Stack push mode'
+    import sqlite3 as lite
+    cycle = 0.5
+
+    print "Check SQLite"
+    con = None
+    try:
+        con = lite.connect(":memory:", check_same_thread=False)
+        con.isolation_level = None
+        cur = con.cursor()    
+        cur.execute('SELECT SQLITE_VERSION()')
+        data = cur.fetchone()
+        print "--> SQLite version: %s" % data  
+        cur.execute("DROP TABLE IF EXISTS Events")  
+        cur.execute("CREATE TABLE IF NOT EXISTS Events(Node INT, Instance INT, Commandclass INT, Type TEXT, Id TEXT, Index_value INT, Value TEXT, Level INT, UpdateTime INT)")               
+    except lite.Error, e:
+        print "Error %s:" % e.args[0]
+        sys.exit(1)
+
+    def save_node_event(node_id, timestamp, value):
+        global con
+        cur = con.cursor()
+        #add a new cache entry for value 
+        cur.execute("INSERT INTO Events (Node, Instance, Commandclass, Type, Id, Index_value, Value, Level, Updatetime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (node_id, 0, 0, "", "", "", value, 0, timestamp))
+        
+    def save_node_value_event(node_id, timestamp, command_class, index, typeStandard, value, instance):
+        global con
+        cur = con.cursor()
+        #delete the existing cache entry, if exist
+        cur.execute("DELETE FROM Events where Node=? AND Commandclass=? AND Instance=? AND Index_value=?", (node_id, command_class, instance, index,))   
+        #add a new cache entry for value 
+        cur.execute("INSERT INTO Events (Node, Instance, Commandclass, Type, Id, Index_value, Value, Level, Updatetime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (node_id, instance, command_class, typeStandard, "", index, value, 0, timestamp))  
+
+    def get_zwave_changes():
+        global network
+        if network != None and network.state >= 5:   # STATE_STARTED 
+            if network.nodes:            
+                changes = {}   
+                changes['controller']={}
+                changes['device']={}
+                global con
+                con.row_factory = lite.Row
+                cur = con.cursor() 
+                cur.execute("SELECT * FROM Events")
+                rows = cur.fetchall()
+                cur.execute("DELETE FROM Events")
+                if (len(rows) < 1):
+                    return False 
+                for row in rows:
+                    if row["Commandclass"] == 0 and row["Value"]=="removed":
+                        changes['controller']['excluded'] = {"value":row["Node"]}
+                    elif row["Commandclass"] == 0 and row["Value"]=="added":
+                        changes['controller']['included'] = {"value":row["Node"]}
+                    elif row["Commandclass"] == 0 and row["Value"] in ["0","1","5"]:
+                        changes['controller']['state'] = {"value":int(row["Value"])}
+                    else :
+                        if row["Node"] not in changes['device']:
+                            changes['device'][row["Node"]]=[]
+                        changes['device'][row["Node"]].append({'instance':row["Instance"], 'CommandClass':hex(row["Commandclass"]), 'index':row["Index_value"],'value':row["Value"], 'type':row["Type"]})
+                return changes         
+        return False
+
+    def send_changes():
+        start_time = datetime.datetime.now()
+        changes = get_zwave_changes() 
+        if(changes != False):
+            changes['serverId'] = serverId
+            debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
+            requests.post(callback+'?apikey='+apikey, json=changes,timeout= 10)
+        dt = datetime.datetime.now() - start_time
+        ms = (dt.days * 24 * 60 * 60 + dt.seconds) * 1000 + dt.microseconds / 1000.0
+        timer_duration = cycle - ms
+        if(timer_duration < 0.1):
+            timer_duration = 0.1
+        resend_changes = threading.Timer(timer_duration, send_changes)
+        resend_changes.start() 
+
+    send_changes()
 
 
 def network_started(network):

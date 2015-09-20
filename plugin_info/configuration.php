@@ -139,13 +139,13 @@ foreach ($deamonRunningSlave as $name => $status) {
 					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_health" />
 				</div>
 			</div>
-            <legend><i class="fa fa-cog"></i>  {{Gestion avancée}}</legend>
-            <div class="form-group">
+			<legend><i class="fa fa-cog"></i>  {{Gestion avancée}}</legend>
+			<div class="form-group">
 				<label class="col-lg-4 control-label">{{Options avancées}}</label>
 				<div class="col-lg-5">
 					<a class="btn btn-success" id="bt_consoleZwave"><i class="fa fa-terminal"></i> {{Console}}</a>
-                    <a class="btn btn-warning" id="bt_backupsZwave"><i class="fa fa-floppy-o"></i> {{Backups}}</a>
-                    <a class="btn btn-danger" id="bt_fileconfigZwave"><i class="fa fa-file-o"></i> {{Configuration}}</a>
+					<a class="btn btn-warning" id="bt_backupsZwave"><i class="fa fa-floppy-o"></i> {{Backups}}</a>
+					<a class="btn btn-danger" id="bt_fileconfigZwave"><i class="fa fa-file-o"></i> {{Configuration}}</a>
 				</div>
 			</div>
 			<?php }
@@ -195,6 +195,12 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 			</div>
 		</div>
 		<div class="form-group">
+			<label class="col-sm-4 control-label">{{Mode "direct push" (recommandé)}}</label>
+			<div class="col-sm-2">
+				<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="directPush" />
+			</div>
+		</div>
+		<div class="form-group">
 			<label class="col-sm-4 control-label">{{Gestion du démon}}</label>
 			<div class="col-sm-8">
 				<a class="btn btn-success" id="bt_startopenZwaveDemon"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
@@ -224,11 +230,16 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 						</select>
 					</div>
 				</div>
-
 				<div class="form-group">
 					<label class="col-sm-4 control-label">{{Port du Serveur (laisser vide par défault)}}</label>
 					<div class="col-sm-2">
 						<input class="slaveConfigKey form-control" data-l1key="port_server" placeholder="8083" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label">{{Mode "direct push" (recommandé)}}</label>
+					<div class="col-sm-2">
+						<input type="checkbox" class="slaveConfigKey bootstrapSwitch" data-l1key="directPush" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -299,22 +310,22 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 		});
 	});
 
-    $('#bt_backupsZwave').on('click', function () {
-        $('#md_modal').dialog({title: "{{Backups}}"});
-        $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=backup').dialog('open');
-    });
+	$('#bt_backupsZwave').on('click', function () {
+		$('#md_modal').dialog({title: "{{Backups}}"});
+		$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=backup').dialog('open');
+	});
 
-    $('#bt_fileconfigZwave').on('click', function () {
-        $('#md_modal').dialog({title: "{{Configuration}}"});
-        $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=config').dialog('open');
-    });
+	$('#bt_fileconfigZwave').on('click', function () {
+		$('#md_modal').dialog({title: "{{Configuration}}"});
+		$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=config').dialog('open');
+	});
 
-    $('#bt_consoleZwave').on('click', function () {
-        $('#md_modal').dialog({title: "{{Console}}"});
-        $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=console').dialog('open');
-    });
+	$('#bt_consoleZwave').on('click', function () {
+		$('#md_modal').dialog({title: "{{Console}}"});
+		$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=console').dialog('open');
+	});
 
-    function stopopenZwaveDemon(type,id) {
+	function stopopenZwaveDemon(type,id) {
 	    $.ajax({// fonction permettant de faire de l'ajax
 	        type: "POST", // methode de transmission des données au fichier php
 	        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php

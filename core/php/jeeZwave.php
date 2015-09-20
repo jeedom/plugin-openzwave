@@ -34,28 +34,35 @@ if (!is_array($results)) {
 }
 
 if (isset($results['device'])) {
-	$eqLogic = openzwave::getEqLogicByLogicalIdAndServerId($results['device']['node_id'], $results['serverId']);
-	if (!is_object($eqLogic)) {
-		die();
+	if (!is_array($results['device'])) {
+		$results['device'] = array($results['device']);
 	}
-	if (strpos($eqLogic->getConfiguration('fileconf'), 'fibaro.fgs221.fil.pilote') !== false) {
-		foreach ($eqLogic->getCmd('info', '0&&1.0x0', null, true) as $cmd) {
-			if ($cmd->getConfiguration('value') == 'pilotWire') {
-				$cmd->event($cmd->getPilotWire());
+	foreach ($results['device'] as $node_id => $datas) {
+		$eqLogic = openzwave::getEqLogicByLogicalIdAndServerId($node_id, $results['serverId']);
+		if (is_object($eqLogic)) {
+			if (strpos($eqLogic->getConfiguration('fileconf'), 'fibaro.fgs221.fil.pilote') !== false) {
+				foreach ($eqLogic->getCmd('info', '0&&1.0x0', null, true) as $cmd) {
+					if ($cmd->getConfiguration('value') == 'pilotWire') {
+						$cmd->event($cmd->getPilotWire());
+					}
+				}
+				continue;
 			}
-		}
-	}
-	if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && ($eqLogic->getConfiguration('product_id') == '4096' || $eqLogic->getConfiguration('product_id') == '16384') && $results['device']['CommandClass'] == '0x26') {
-		foreach ($eqLogic->getCmd('info', '0.0x26', null, true) as $cmd) {
-			if ($cmd->getConfiguration('value') == '#color#') {
-				$cmd->event($cmd->getRGBColor());
-				break;
+			foreach ($datas as $result) {
+				if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && ($eqLogic->getConfiguration('product_id') == '4096' || $eqLogic->getConfiguration('product_id') == '16384') && $result['CommandClass'] == '0x26') {
+					foreach ($eqLogic->getCmd('info', '0.0x26', null, true) as $cmd) {
+						if ($cmd->getConfiguration('value') == '#color#') {
+							$cmd->event($cmd->getRGBColor());
+							break;
+						}
+					}
+				}
+				foreach ($eqLogic->getCmd('info', $result['instance'] . '.' . $result['CommandClass'], null, true) as $cmd) {
+					if ($cmd->getConfiguration('value') == 'data[' . $result['index'] . '].val') {
+						$cmd->handleUpdateValue($result);
+					}
+				}
 			}
-		}
-	}
-	foreach ($eqLogic->getCmd('info', $results['device']['instance'] . '.' . $results['device']['CommandClass'], null, true) as $cmd) {
-		if ($cmd->getConfiguration('value') == 'data[' . $results['device']['index'] . '].val') {
-			$cmd->handleUpdateValue($results['device']);
 		}
 	}
 }
