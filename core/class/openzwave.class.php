@@ -962,7 +962,7 @@ class openzwaveCmd extends cmd {
 		$value = $_val['value'];
 		switch ($_val['type']) {
 			case 'float':
-				$value = round(floatval($value), 2);
+				$value = round(floatval($value), 3);
 				break;
 			case 'int':
 				$value = intval($value);
