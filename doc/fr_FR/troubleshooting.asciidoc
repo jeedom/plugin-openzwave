@@ -10,9 +10,11 @@ Voir ici : https://wiki.jeedom.fr/index.php?title=OpenZwave#D.C3.A9bogage
 
 Quand je vais sur la configuration j'ai des erreurs 404 ?::
 Il faut verifier si l'étape visudo de la doc d'installation à bien été faite (valable uniquement en DIY pas sur les images) https://www.jeedom.fr/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom:ici
-Vérifier aussi que vous avez la ligne "include sites-available/jeedom_dynamic_rule;" dans /etc/nginx/sites-available/default et default_ssl sinon il faut l'ajouter juste avant  "location /socket.io/" { et creer le fichier jeedom_dynamic_rule si il n'existe pas : touch /etc/nginx/sites-available/jeedom_dynamic_rule et donner les droits à jeedom dessus : chmod 777 /etc/nginx/sites-available/jeedom_dynamic_rule. Ensuite il faut bien penser a resauvegarder sur la la page Générale -> Plugins puis openzwave la configuration.
 
 ''''
+
+Quand je vais sur la santé j'ai des erreurs 404 ?::
+Cela arrive sur certaine configuration il faut essayer de désactiver le "direct push" (voir tout au début, la configuration du plugin) et relancer le démon
 
 Je ne vois pas le bouton "Stable" en face de "Installer/Mettre à jour OpenZwave en local"::
 Votre Jeedom n'a pas les droits sudo un message d'erreur doit vous indiquer la marche à suivre

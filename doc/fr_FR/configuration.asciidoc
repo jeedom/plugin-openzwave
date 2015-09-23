@@ -22,6 +22,7 @@ Si vous êtes en mode déporté, le démon local peut être arrêté, c'est tout
 ** *Dépendance OpenZwave locale* : permet de lancer l'installation du moteur OpenZwave, si vous venez de l'installer il faut absolument lancer l'installation (à moins de vouloir utiliser le plugin en mode déporté, dans ce cas il faudra lancer l'installation à partir du jeedom deporté). Il est aussi possible que Jeedom vous redemande de faire cette étape suite à une mise à jour. C'est normale ca permet de mettre à jour OpenZwave
 ** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-wave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 posssibilités à la fin de la liste
 ** *Port socket interne* (modification dangereuse, doit être la même valeur sur tous les Jeedom déportés Z-wave)_ : permet de modifier le port de communication interne du démon.
+** *Mode "direct push" (recommandé)* : indique au démon de pousser immediatement un evenement venant d'un module à Jeedom. Dans certain cas ce systeme n'est pas le plus optimale (module tèrs bavard par exemple) et il est possible qu'il soit nécessaire de le désactiver. Quand ce mode est désactivé le démon va enregistrer tous les évenements pendant 500ms puis les transmettre à Jeedom.
 ** *Gestion du démon* : vous retrouvez ici les boutons de gestion du démon : 
 *** *Redémarrer* : permet de redémarrer le démon en mode normal.
 *** *Arrêter* : force l'arrêt du démon (attention cette option place le port sur l'option "Aucun" également).
