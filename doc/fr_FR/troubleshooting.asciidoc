@@ -16,6 +16,8 @@ Il faut verifier si l'étape visudo de la doc d'installation à bien été faite
 Quand je vais sur la santé j'ai des erreurs 404 ?::
 Cela arrive sur certaine configuration il faut essayer de désactiver le "direct push" (voir tout au début, la configuration du plugin) et relancer le démon
 
+''''
+
 Je ne vois pas le bouton "Stable" en face de "Installer/Mettre à jour OpenZwave en local"::
 Votre Jeedom n'a pas les droits sudo un message d'erreur doit vous indiquer la marche à suivre
 
