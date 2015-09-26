@@ -1,0 +1,130 @@
+{
+		"name": "SCS317, 7 Day Programmable Room Thermostat",
+        "doc" : "",
+        "type": "Thermostat",
+        "comlink" : "2419-secure-thermostat-electronique-programmable-z-wave-scs317-5015914370083",
+        "remark" : "Module vendu sous la marque Secure",
+        "imglink" : "horstmann.scs317",
+        "battery_type" : "2xAA",
+       "configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "Température",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite": "°C",
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[1].val"
+                }
+            },
+            {
+                "name": "Mode",
+                "type": "info",
+                "subtype": "string",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "",
+                "configuration": {
+                    "class": "0x42",
+                    "value": "data[0].val"
+                }
+            },                        
+            {
+                "name": "Off",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "isHistorized": 0,
+				"unite": "°C",
+                "configuration": {
+                    "class": "0x40",
+					"instanceId": 0,
+                    "value": "data[0].Set(Off)"
+                }
+            },
+            {
+                "name": "Heat",
+                "type": "action",
+                "subType": "other",
+                "isVisible": 1,
+                "isHistorized": 0,
+				"unite": "°C",
+                "configuration": {
+                    "class": "0x40",
+					"instanceId": 0,
+                    "value": "data[0].Set(Heat)"
+                }
+            },
+            {
+                "name": "ConsigneEtat",
+                "type": "info",
+                "subType": "numeric",
+				"isVisible": 0,
+				"unite": "°C",
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x43",
+                    "value": "data[1].val",
+                    "maxValue":"5",
+                    "maxValue":"30"
+                }
+            },
+            {
+                "name": "Consigne",
+                "type": "action",
+                "subType": "slider",
+				"isVisible": 1,
+				"unite": "°C",
+				"value": "ConsigneEtat",
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x43",
+                    "value": "data[1].Set(#slider#)",
+                    "maxValue":"5",
+                    "maxValue":"30"
+                }
+            },
+            {
+                "name": "On",
+                "type": "action",
+                "subtype": "other",
+                "isVisible":0,
+                "isHistorized": 0,
+                "configuration": {
+                    "class": "0x25",
+					"instanceId": 0,
+                    "value": "data[0].Set(255)"
+                }
+            },
+            {
+                "name": "Off",
+                "type": "action",
+                "subtype": "other",
+                "isVisible":0,
+                "isHistorized": 0,
+                "configuration": {
+                    "class": "0x25",
+					"instanceId": 0,
+                    "value": "data[0].Set(0)"
+                }
+            },
+            {
+                "name": "Etat",
+                "type": "info",
+                "subtype": "binary",
+                "unite": "",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "configuration": {
+                    "class": "0x25",
+                    "instanceId": 0,
+                    "value": "data[0].val"
+                }
+            }
+        ]
+    }

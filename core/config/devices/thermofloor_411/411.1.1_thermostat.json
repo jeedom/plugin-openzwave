@@ -56,14 +56,46 @@
                 }
             },
             {
-                "name": "Cooling",
-                "type": "action",
-                "subType": "slider",
-				"isVisible": 1,
+                "name": "CoolingEtat",
+                "type": "info",
+                "subType": "numeric",
+				"isVisible": 0,
+				"unite": "°C",
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x43",
-                    "value": "data[2].Set((#slider#)"
+                    "value": "data[2].val",
+                    "maxValue":"5",
+                    "maxValue":"30"
+                }
+            },
+            {
+                "name": "Cooling",
+                "type": "action",
+                "subType": "slider",
+				"isVisible": 0,
+				"value": "CoolingEtat",
+				"unite": "°C",
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x43",
+                    "value": "data[2].Set(#slider#)",
+                    "maxValue":"5",
+                    "maxValue":"30"
+                }
+            },
+            {
+                "name": "AirEtat",
+                "type": "info",
+                "subType": "numeric",
+				"isVisible": 0,
+				"unite": "°C",
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x43",
+                    "value": "data[8].val",
+                    "maxValue":"5",
+                    "maxValue":"30"
                 }
             },
             {
@@ -71,10 +103,14 @@
                 "type": "action",
                 "subType": "slider",
 				"isVisible": 1,
+				"value": "ConsigneEtat",
+				"unite": "°C",
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x43",
-                    "value": "data[8].Set((#slider#)"
+                    "value": "data[8].Set(#slider#)",
+                    "maxValue":"5",
+                    "maxValue":"30"
                 }
             }            
     ]
