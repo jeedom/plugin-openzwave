@@ -336,9 +336,17 @@ $('#paramsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 				var options = '<select class="form-control" id="newvalue">';
 				$.each(data[paramId].val.value4, function(key, val) {
 					if(val==paramValue){
-						options +='<option value="'+val+'" selected="selected">'+val+'</option>';
+						if(typeof openzwave_node_translation.configuration[paramId] !== 'undefined' && openzwave_node_translation['configuration'][paramId].hasOwnProperty('list') && typeof openzwave_node_translation['configuration'][paramId].list[val] !== 'undefined'){
+							options +='<option value="'+val+'" selected="selected">'+openzwave_node_translation['configuration'][paramId].list[val]+'</option>';
+						} else{
+							options +='<option value="'+val+'" selected="selected">'+val+'</option>';
+						}
 					}else{
-						options +='<option value="'+val+'">'+val+'</option>';
+						if(typeof openzwave_node_translation.configuration[paramId] !== 'undefined' && openzwave_node_translation['configuration'][paramId].hasOwnProperty('list') && typeof openzwave_node_translation['configuration'][paramId].list[val] !== 'undefined'){
+							options +='<option value="'+val+'">'+openzwave_node_translation['configuration'][paramId].list[val]+'</option>';
+						} else{
+							options +='<option value="'+val+'">'+val+'</option>';
+						}
 					}
 				});
 				options += '</select>';
@@ -1246,19 +1254,24 @@ draw_nodes: function ()
 	            				row_system.find("td[key=system-edit]").html('<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="'+index+'" data-valueinstance="'+instance+'" data-valuecc="'+commandclass+'" data-valuedataitems="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items+'" data-valuetype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-valuename="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-valuevalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></button>');
 	            			}
 	            			row_system.find("td[key=system-updatetime]").html(app_nodes.timestampConverter(nodes[z].instances[instance].commandClasses[commandclass].data[index].updateTime));
-	            			if(typeof openzwave_node_translation.configuration[index] === 'undefined' ){
-	            				row_parameter.find("td[key=parameter-name]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].name);
+	            			if(typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('name')){
+								row_parameter.find("td[key=parameter-name]").html(
+	            				openzwave_node_translation['configuration'][index].name);
 	            			}else{
-	            				row_parameter.find("td[key=parameter-name]").html(openzwave_node_translation['configuration'][index].name);
+	            				row_parameter.find("td[key=parameter-name]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].name);
 	            			}
 	            			row_parameter.find("td[key=parameter-index]").html(index);
 	            			row_parameter.find("td[key=parameter-type]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW);
-	            			row_parameter.find("td[key=parameter-value]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].val);
-	            			row_parameter.find("td[key=parameter-edit]").html('<button type="button" class="btn btn-xs btn-primary editParam" data-paramid="'+index+'" data-paramtype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-paramname="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-paramvalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></button>');
-	            			if(typeof openzwave_node_translation.configuration[index] === 'undefined' ){
-	            				row_parameter.find("td[key=parameter-help]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].help);
+							if(typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('list') && typeof openzwave_node_translation['configuration'][index].list[nodes[z].instances[instance].commandClasses[commandclass].data[index].val] !== 'undefined'){
+								row_parameter.find("td[key=parameter-value]").html(openzwave_node_translation['configuration'][index].list[nodes[z].instances[instance].commandClasses[commandclass].data[index].val]);
+							}else{
+								row_parameter.find("td[key=parameter-value]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].val);
+							}
+							row_parameter.find("td[key=parameter-edit]").html('<button type="button" class="btn btn-xs btn-primary editParam" data-paramid="'+index+'" data-paramtype="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW+'" data-paramname="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].name+'" data-paramvalue="'+nodes[z].instances[instance].commandClasses[commandclass].data[index].val+'"><i class="fa fa-wrench"></i></button>');
+							if(typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('help') ){
+								row_parameter.find("td[key=parameter-help]").html(openzwave_node_translation['configuration'][index].help);
 	            			}else{
-	            				row_parameter.find("td[key=parameter-help]").html(openzwave_node_translation['configuration'][index].help);
+	            				row_parameter.find("td[key=parameter-help]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].help);
 	            			}
 	            		}
 	            	}
