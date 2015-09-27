@@ -50,7 +50,8 @@ if [ ! -d /opt ]; then
   sudo mkdir /opt
 fi
 
-sudo apt-cache clean
+sudo rm -f /var/lib/dpkg/updates/*
+sudo apt-get clean
 sudo apt-get update
 
 echo "Installation des dependances"

@@ -78,7 +78,7 @@ class openzwave extends eqLogic {
 			}
 			if ($_autofix && count(self::$_listZwaveServer) > 0) {
 				foreach (self::$_listZwaveServer as $key => $value) {
-					$url = network::getNetworkAccess() . $value['path'] . '/ZWaveAPI/Run/IsAlive()';
+					$url = network::getNetworkAccess('internal', 'proto:ip:port') . $value['path'] . '/ZWaveAPI/Run/IsAlive()';
 					$ch = curl_init();
 					curl_setopt_array($ch, array(
 						CURLOPT_URL => $url,

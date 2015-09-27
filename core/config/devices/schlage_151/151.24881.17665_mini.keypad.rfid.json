@@ -87,7 +87,11 @@
             },
             "5": {
                 "name": "Mode",
-                "help": "Mode de fonctionnement."
+                "help": "Mode de fonctionnement.",
+				"list": {
+						"Mode 1: Normal operating mode.": "Mode 1 : Normal",
+						"Mode 3: Z-Wave chip is always on to request e.g. version or manufacturer id.": "Mode 3 : Toujours réveillé"
+						}
             }
         }
    }
