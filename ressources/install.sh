@@ -13,6 +13,7 @@ PYTHON_OPENZWAVE_VERSION=6320ae88db5c6bcd3482d962269fa624055ab557
 OPENZWAVE_VERSION=0a73afbe4114e8d6f0593b55f13a48130d095bb9
 
 function apt_install {
+  sudo apt-get update
   sudo apt-get -y install "$@"
   if [ $? -ne 0 ]; then
     sudo service jeedom start
@@ -52,7 +53,6 @@ fi
 
 sudo rm -f /var/lib/dpkg/updates/*
 sudo apt-get clean
-sudo apt-get update
 
 echo "Installation des dependances"
 apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml unzip
