@@ -195,12 +195,6 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-4 control-label">{{Mode "direct push" (recommandé)}}</label>
-			<div class="col-sm-2">
-				<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="directPush" />
-			</div>
-		</div>
-		<div class="form-group">
 			<label class="col-sm-4 control-label">{{Gestion du démon}}</label>
 			<div class="col-sm-8">
 				<a class="btn btn-success" id="bt_startopenZwaveDemon"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
@@ -234,12 +228,6 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 					<label class="col-sm-4 control-label">{{Port du Serveur (laisser vide par défault)}}</label>
 					<div class="col-sm-2">
 						<input class="slaveConfigKey form-control" data-l1key="port_server" placeholder="8083" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-4 control-label">{{Mode "direct push" (recommandé)}}</label>
-					<div class="col-sm-2">
-						<input type="checkbox" class="slaveConfigKey bootstrapSwitch" data-l1key="directPush" />
 					</div>
 				</div>
 				<div class="form-group">

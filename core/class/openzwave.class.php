@@ -536,7 +536,6 @@ class openzwave extends eqLogic {
 		$cmd .= ' --callback=' . $callback;
 		$cmd .= ' --apikey=' . $apikey;
 		$cmd .= ' --serverId=' . $serverId;
-		$cmd .= ' --directPush=' . config::byKey('directPush', 'openzwave');
 
 		log::add('openzwave', 'info', 'Lancement démon openzwave : ' . $cmd);
 		$result = exec($cmd . ' >> ' . log::getPathToLog('openzwave') . ' 2>&1 &');
