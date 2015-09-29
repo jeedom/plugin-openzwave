@@ -711,8 +711,8 @@ def save_node_value_event(node_id, timestamp, command_class, index, typeStandard
         if not changes_async.has_key('device') :
             changes_async['device']={}
         if not changes_async['device'].has_key(node_id) :
-            changes_async['device'][node_id]=[]
-        changes_async['device'][node_id].append({'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp})
+            changes_async['device'][node_id]={}
+        changes_async['device'][node_id][str(hex(command_class))+str(instance)+str(index)] = {'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp}
     
 
 def network_started(network):
