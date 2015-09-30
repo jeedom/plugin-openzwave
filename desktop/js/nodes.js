@@ -769,6 +769,9 @@ draw_nodes: function ()
 	var template_parameter = $("#template-parameter").html();
 	var template_system = $("#template-system").html();
 	var z = app_nodes.selected_node;
+	if(!isset(nodes[z])){
+		return;
+	}
 	if(nodes[z].data.isFailed){
 		var nodeIsFailed = nodes[z].data.isFailed.value
 	}else{
