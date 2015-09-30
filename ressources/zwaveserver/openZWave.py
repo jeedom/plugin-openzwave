@@ -756,9 +756,9 @@ def recovering_failed_nodes_asynchronous():
                     if hasattr(myNode, 'last_notification') :
                         #is in timeout or dead
                         if myNode.last_notification.code == 1 or myNode.last_notification.code == 5:
-                            debug_print('Do a test on node %s' % (device_id,)) 
+                            debug_print('Do a test on node %s' % (node_id,)) 
                             # a ping will try to resolve this situation with a NoOperation CC. 
-                            network.manager.testNetworkNode(network.home_id, device_id, 1) 
+                            network.manager.testNetworkNode(network.home_id, node_id, 1) 
                             #avoid stress network
                             time.sleep(3)  
         else:
@@ -1631,9 +1631,9 @@ def set_value(device_id, valueId, data):
 
 refresh_workers = {}
 
-def create_worker(device_id, value_id, target_value):
+def create_worker(device_id, value_id, target_value, starting_value, counter):
     #create a new refresh worker
-    worker = threading.Timer(interval=refresh_interval, function=refresh_background, args=(device_id, value_id, target_value))
+    worker = threading.Timer(interval=refresh_interval, function=refresh_background, args=(device_id, value_id, target_value, starting_value, counter))
     # save worker
     refresh_workers[value_id] = worker
     #start refresh timer
@@ -1642,10 +1642,11 @@ def create_worker(device_id, value_id, target_value):
 def prepare_refresh(device_id, value_id, target_value=None):   
     #debug_print("prepare_refresh for nodeId:%s valueId:%s data:%s" % (device_id, value_id, target_value,))     
     stop_refresh(device_id, value_id)
-    create_worker(device_id, value_id, target_value)
+    starting_value = network.nodes[device_id].values[value_id].data 
+    create_worker(device_id, value_id, target_value, starting_value, 0)
     network.nodes[device_id].values[value_id].start_refresh_time = int(time.time()) 
 
-def refresh_background(device_id, value_id, target_value):
+def refresh_background(device_id, value_id, target_value, starting_value, counter):
     do_refresh = True
     actual_value = network.nodes[device_id].values[value_id].data 
     if target_value is not None:
@@ -1661,6 +1662,15 @@ def refresh_background(device_id, value_id, target_value):
                 #if delta is too small don't refresh
                 do_refresh = False
                 #debug_print("delta is too small don't refresh")
+    if do_refresh : 
+        #debug_print("check for changes, actual : %s , starting : %s (retry %s)" % (actual_value, starting_value, counter,))
+        #check if won't changes   
+        if starting_value == actual_value:
+            counter+=1
+            if counter >3:
+                do_refresh = False
+        else:
+            counter = 0                
     if do_refresh :
         #debug_print("refresh")
         network.nodes[device_id].values[value_id].refresh()   
@@ -1668,7 +1678,7 @@ def refresh_background(device_id, value_id, target_value):
         timeout = int(time.time()) - network.nodes[device_id].values[value_id].start_refresh_time 
         if (timeout < refresh_timeout):
             # I will start again a refresh timer
-            create_worker(device_id, value_id, target_value)
+            create_worker(device_id, value_id, target_value, starting_value, counter)
     else:
         #remove worker the consigne is set
         del refresh_workers[value_id]
