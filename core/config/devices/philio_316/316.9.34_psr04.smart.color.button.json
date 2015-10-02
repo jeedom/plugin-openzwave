@@ -1,0 +1,67 @@
+{
+	"name" : "PSR04 Smart Color Button",
+    "doc" : "",
+    "type": "Interrupteur",
+    "comlink" : "",
+    "remark" : "",
+    "imglink" : "philio.psr04",
+    "battery_type" : "Batterie",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+             {
+                "name": "Etat",
+                "type": "info",
+                "subtype": "numeric",
+                "unite": "%",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x20",
+                    "value": "data[0].val",
+					"calculValueOffset" : "(#value#==255) ? 99 :  ((#value#==1) ? 0 : #value#)",
+                    "minValue": 0,
+                    "maxValue": 99
+                }
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "configuration": {
+                    "instanceId": 0,
+                    "class": "0x80",
+                    "value": "data[0].val",
+                    "unite": "%"
+                }
+            }
+        ],
+        "configuration": {
+            "1": {
+                "name": "Niveau Off Minimum",
+                "help": "Permet de définir la borne minimum (côté gauche)"
+            },
+            "2": {
+                "name": "Niveau On Maximum",
+                "help": "Permet de définir la borne maximum (côté droit)"
+            },
+            "10": {
+                "name": "Rapport de niveau de batterie",
+                "help": "L'intervalle de temps d'un rapport de niveau de batterie (0 désactivé, valeur max 127)"
+            },
+            "25": {
+                "name": "Fonction custom",
+                "help": "Bit 0 : Fonctionnement du dimmer. (0 envoie la valeur après fin de rotation, 1 envoie la valeur après avoir appuyé sur le bouton après la rotation). Bit 1 : Buzzer (0 : activé, 1: désactivé)"
+            },
+            "26": {
+                "name": "Envoie de scène sur appui bouton central",
+                "help": "Envoie de scène sur appui bouton central",
+				"list": {
+						"Enabled": "Activé",
+						"Disabled": "Désactivé"
+						}
+            }
+        }
+}
