@@ -472,6 +472,15 @@ class openzwave extends eqLogic {
 		}
 		exec($cmd);
 	}
+	
+	public static function syncconfOpenzwave($_background = true) {
+		log::remove('openzwave_syncconf');
+		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/syncconf.sh';
+		if ($_background) {
+			$cmd .= ' >> ' . log::getPathToLog('openzwave_syncconf') . ' 2>&1 &';
+		}
+		exec($cmd);
+	}
 
 	public static function cron15() {
 		if (config::byKey('allowStartDeamon', 'openzwave', 1) == 1 && config::byKey('port', 'openzwave', 'none') != 'none' && !self::deamonRunning()) {

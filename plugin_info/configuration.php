@@ -146,6 +146,7 @@ foreach ($deamonRunningSlave as $name => $status) {
 					<a class="btn btn-success" id="bt_consoleZwave"><i class="fa fa-terminal"></i> {{Console}}</a>
 					<a class="btn btn-warning" id="bt_backupsZwave"><i class="fa fa-floppy-o"></i> {{Backups}}</a>
 					<a class="btn btn-danger" id="bt_fileconfigZwave"><i class="fa fa-file-o"></i> {{Configuration}}</a>
+					<a class="btn btn-success" id="bt_syncconfigZwave"><i class="fa fa-refresh"></i> {{Configs modules}}</a>
 				</div>
 			</div>
 			<?php }
@@ -311,6 +312,15 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 	$('#bt_consoleZwave').on('click', function () {
 		$('#md_modal').dialog({title: "{{Console}}"});
 		$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=console').dialog('open');
+	});
+	
+	$('#bt_syncconfigZwave').on('click',function(){
+		bootbox.confirm('{{Etes-vous sûr de vouloir synchroniser les configurations des modules ? }}', function (result) {
+			if (result) {
+				$('#md_modal').dialog({title: "{{Synchronisation des configurations}}"});
+				$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=syncconf.openzwave').dialog('open');
+			}
+		});
 	});
 
 	function stopopenZwaveDemon(type,id) {

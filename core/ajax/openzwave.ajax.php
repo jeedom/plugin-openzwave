@@ -28,6 +28,11 @@ try {
 		openzwave::updateOpenzwave();
 		ajax::success();
 	}
+	
+	if (init('action') == 'syncconfOpenzwave') {
+		openzwave::syncconfOpenzwave();
+		ajax::success();
+	}
 
 	if (init('action') == 'stopDeamon') {
 		if (init('type', 'local') == 'remote') {
