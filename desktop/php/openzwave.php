@@ -277,6 +277,15 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 </div>
 </div>
 
+<form class="form-horizontal">
+  <fieldset>
+    <div class="form-actions" align="right">
+      <a class="btn btn-danger eqLogicAction" data-action="remove"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+      <a class="btn btn-success eqLogicAction" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+    </div>
+  </fieldset>
+</form>
+
 <legend>Commandes</legend>
 <a class="btn btn-success btn-sm cmdAction expertModeVisible" data-action="add"><i class="fa fa-plus-circle"></i> {{Commandes}}</a><br/><br/>
 <table id="table_cmd" class="table table-bordered table-condensed">
