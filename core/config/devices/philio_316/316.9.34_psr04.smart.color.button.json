@@ -53,7 +53,7 @@
             },
             "25": {
                 "name": "Fonction custom",
-                "help": "Bit 0 : Fonctionnement du dimmer. (0 envoie la valeur après fin de rotation, 1 envoie la valeur après avoir appuyé sur le bouton après la rotation). Bit 1 : Buzzer (0 : activé, 1: désactivé)"
+                "help": "Bit 0 : Fonctionnement du dimmer. (0 envoie la valeur après fin de rotation, 1 envoie la valeur après avoir appuyé sur le bouton après la rotation). Bit 1 : Buzzer en mode timer (0 : activé, 1: désactivé)"
             },
             "26": {
                 "name": "Envoie de scène sur appui bouton central",
