@@ -55,7 +55,7 @@
 		<Product type="0002" id="0059" name="Recessed Door Sensor" config="aeotec/recessed_doorsensor_gen5.xml"/>
 		<Product type="0003" id="0006" name="Smart Energy Switch" config="aeotec/ses.xml"/>
 		<Product type="0003" id="0008" name="Smart Energy Illuminator" config="aeotec/sei.xml"/>
-		<Product type="0003" id="000a" name="Smart Energy 220V Utility Switch"/>
+		<Product type="0003" id="000a" name="Smart Energy 220V Utility Switch" config="aeotec/ses.xml"/>
 		<Product type="0003" id="000b" name="Smart Energy Strip"/>
 		<Product type="0003" id="000c" name="Micro Smart Energy Switch" config="aeotec/ses.xml"/>
 		<Product type="0003" id="000d" name="Micro Smart Energy Illuminator"/>
