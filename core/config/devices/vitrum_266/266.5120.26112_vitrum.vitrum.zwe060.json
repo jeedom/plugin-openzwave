@@ -3,9 +3,10 @@
     "doc" : "",
     "type": "Interrupteur",
     "comlink" : "",
-    "remark" : "",
+    "remark" : "",	
     "imglink" : "vitrum.zwe060",
-        "configuration" : {
+	"ignore" : 1,
+    "configuration" : {
         "conf_version" : 1
 		},
         "commands": [
