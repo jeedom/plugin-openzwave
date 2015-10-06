@@ -55,5 +55,85 @@
                     "value": "data[0].val"
                 }
             }
-        ]
-   }
+        ],
+        "configuration": {
+            "1": {
+                "name": "Délai d’annulation d’alarme de l’entrée",
+                "help": "Nombre de secondes avant l’annulation de l’alarme après que le capteur de l’entrée 1 soit repassé à son état normal. Valeurs pour ce paramètre [0- 65535] Valeur par défaut 0"
+                },
+            "2": {
+                "name": "Changement d’état signalé par la LED",
+                "help": "",
+                "list": {
+                  "LED turned Off":"LED éteinte",
+                  "LED turned On":"LED allumée"
+                  }
+                },
+            "3": {
+                "name": "Type d’entrée (entrée 1)",
+                "help": "Type d’entrée (entrée 1) Ce que reportera l'entrée s'il n'y a aucun contact",
+                "list": {
+                  "NO (Normal Open)":"Normalement ouverte",
+                  "NC (Normal Close)":"Normalement fermée",
+                  "MONOSTABLE":"Monostable (bouton poussoir)",
+                  "BISTABLE":"Bistable (interrupteur)"
+                  }
+            },
+            "5": {
+                "name": "Type d’information transmise au groupe 1 via l'entrée IN",
+                "help": "Type de trame transmise au groupe 1, activer via l'entrée IN. Ce paramètre permet de spécifier le type de trame Alarme ou de forcer la trasmission de trame de controle.",
+                "list": {
+                	"ALARM GENERIC":"Trame ALARM GENERIC",
+     				"ALARM SMOKE":"Trame ALARM SMOKE",
+     				"ALARM CO":"Trame ALARM CO",
+     				"ALARM CO2":"Trame ALARM CO2",
+     				"ALARM HEAT":"Trame ALARM HEAT",
+     				"ALARM WATER":"Trame ALARM WATER",
+     				"BASIC_SET":"Trame BASIC_SET"
+            		}
+            },
+            "7": {
+                "name": "Valeur forcée transmise au groupe 1 via l'entrée IN",
+                "help": "Valeur pour ce paramètre 1-99 : spécifie le niveau de variation d’un éclairage ou d’ouverture d’un volet pour une action « On » 255 : Demande au variateur de lumière de s’allumer au niveau de variation précédemment utilisé avant son extinction."
+            },
+            "9": {
+                "name": "Ordre d’extinction après annulation de l’alarme",
+                "help": "Ce parametre permet de désactiver la fonction de désactivation ou la fonction d'annulation de l'alarme pour les modules associés sur les bonnes entrées des capteurs Fibaro.",
+                "list": {
+                	"Groups 1 and 2 sent":"L’ordre est envoyé aux groupe 1 et 2",
+     				"Group 1 sent, Group 2 not sent.":"L’ordre est envoyé uniquement au groupe 1",
+     				"Group 1 not sent, Group 2 sent.":"L’ordre est envoyé uniquement au groupe 2"
+     				}
+            },
+            "10": {
+                "name": "Intervalle de lecture des températures",
+                "help": "Nombre de secondes entre deux interrogation des capteurs de température."
+            },
+            "11": {
+                "name": "Intervalle de transmission forcée des températures",
+                "help": "Nombre de secondes entre deux transmissions forcées des températures mesurées. La valeur 0 désactive les transmissions forcées et nécessite donc des interrogations manuelles."
+            },
+            "12": {
+                "name": "Delta minimum entre 2 valeurs transmises",
+                "help": "Sensibilité aux changements de température. C`est la différence maximale admissible entre la dernière température mesurée et celle actuelle provenant du capteur. Si la différence de température est celle de la valeur programmée ou plus, alors un rapport de la température actuelle est envoyé au dispositif du troisième groupe d`associations. Valeur = xx°C x 16. Exemple pour 0,5°C --> 0,5x16 = 8 (valeur par défaut)"
+            },
+            "13": {
+                "name": "Transmet à tous les modules à proximité (broadcast)",
+                "help": "Transmet l'alarme ou la trame de controle en mode broadcast (tous les modules à portée), l'information envoyé dans ce mode n'est pas répétée par le réseau maillé. Attention si le mode broadcast pour la transmission des informations est activé pour une bande donnée, alors la transmission d'information en mode singlecast pour les modules associé au groupe de cette bande est désactivée",
+                "list": {
+                	"IN1 and IN2 Broadcast inactive":"Mode broadcast désactivé pour l’entrée IN et TMP",
+     				"IN1 broadcast mode active, Sensor 2 broadcast mode inactive":"Mode broadcast activé pour l’entrée IN, mode broadcast désactivé pour l’entrée TMP",
+     				"IN1 broadcast mode inactive, Sensor 2 broadcast mode active":"Mode broadcast désactivé pour l’entrée IN, mode Broadcast activé pour l’entrée TMP",
+     				"INI and IN2 broadcast mode active":"Mode broadcast activé pour l’entrée IN et TMP"
+     				}
+            },
+            "14": {
+                "name": "Fonction d`activation des scènes",
+                "help": "Le module offre la possibilité d'envoyer des commandes compatibles avec une commande d’activation de scène. L'information est transmise aux périphériques affectées au groupe d'association n°3. Les contrôleurs comme le Home Center 2 sont capables d'interpréter ces commandes afin d’activer des scènes, pour lesquelles un identifiant spécifique de scène spécifique a été attribué. L'utilisateur peut étendre la fonctionnalité du bouton relié aux entrées S1 et S2 en distinguant les actions des touches connectées à ces entrées. Par exemple: double-cliquer activerait la scène bonsoir et triple clic pourrait activer la scène Matin",
+                  "list": {
+                  	"Scenes disabled":"Fonctionnalité désactivée",
+     				"Scenes enabled":"Fonctionnalité activée"
+     				}	
+            }
+        }
+}

@@ -60,5 +60,137 @@
                     "maxValue": 99
                 }
             }
-        ]
+        ],
+		"configuration": {
+            "1": {
+                "name": "Activation/Désactivation des fonctions ALL ON / ALL OFF",
+                "help": "Activation/Désactivation des fonctions ALL ON / ALL OFF. Valeur par défaut 255",
+                "list": {
+                  "ALL ON active / ALL OFF active": "ALL ON actif / ALL OFF actif",
+                  "ALL ON disabled/ ALL OFF disabled": "ALL ON inactif / ALL OFF inactif",
+                  "ALL ON disabled/ ALL OFF active":"ALL ON inactif / ALL OFF actif",
+                  "ALL ON active / ALL OFF disabled":"ALL ON actif / ALL OFF inactif"
+                  }
+            },
+            "6": {
+                "name": "Envoi de commandes au groupe no. 1",
+                "help": "Activation/Désactivation de l'envoi de commande au groupe N°1 - Note: Le paramètre 15 doit être positionné à 1 pour fonctionner correctement. Valeur par défaut 0.",
+                "list": {
+                  "Map status to all devices in group 1 (default)":"Allumer et éteindre entraine l’envoi de commandes à tous les modules du groupe 1",
+                  "Map OFF status to all devices in group 1, Double click on key 1 will send ON to all devices in group 1, all dimmers set to prev.value":"Eteindre entraine l'envoi à tous les dispositifs du groupe 1. Double-cliquer, allume tous les appareils associés, les variateurs sont fixés au dernier état enregistré",
+                  "Map OFF status to all devices in group 1, Double click on key 1 will send ON to all devices in group 1, all dimmers set to 100%":"Eteindre entraine l'envoi à tous les dispositifs du groupe 1. Double-cliquer, allume tous les appareils associés, les variateurs sont fixés à 100%"
+                  }
+            },
+            "7": {
+                "name": "Vérification de l'état de l'appareil avant d'envoyer une trame de controle à partir du n ° 2",
+                "help": "La touche 2 n'est pas représentée par un dispositif physique comme on pourrait s’attendre à la voir sur la liste. Cette fonctionnalité prévient le manque de réaction après l’appui sur la touche 2 car tous les dispositifs associés sont testés ainsi que l’état réel des associations. Valeur par défaut 1",
+                "list": {
+                	"Frame GET not send. Device status is not checked":"L’état de l'appareil n'est pas vérifié.",
+     				"Frame GET is send. Device status is checked before send":"L’état de l'appareil est testé."
+     				}
+            },
+            "8": {
+                "name": "Le pourcentage du taux de variation lors de commande automatique",
+                "help": "Options pour modifier le paramètre 1-99. Valeur par défaut 1"
+            },
+            "9": {
+                "name": "Temps nécessaire pour déplacer manuellement le variateur entre les valeurs extrêmes",
+                "help": "Options pour modifier le paramètre 1-255 (10ms – 2.5s). Valeur par défaut 1"
+            },
+            "10": {
+                "name": "Temps nécessaire pour déplacer automatiquement le variateur entre les valeurs extrêmes.",
+                "help": "Options pour modifier le paramètre 1-255 (10ms – 2.5s) 0 - cette valeur désactive le changement en douceur de l'intensité lumineuse. NOTE La valeur 0 est requise pour les dispositifs inductifs et capacitifs impropres à la gradation, (par exemple, les lampes fluorescentes, les moteurs, etc) Valeur par défaut 1"
+            },
+            "11": {
+                "name": "Pourcentage de variation d’une étape lors de contrôle manuel",
+                "help": "Options pour modifier le paramètre 1-99. Valeur par défaut 1"
+            },
+            "12": {
+                "name": "Niveau maximum d’éclairage",
+                "help": "Options pour ce paramètre 2-99. Valeur par défaut 99"
+            },
+            "13": {
+                "name": "Niveau minimum d’éclairage",
+                "help": "Options pour ce paramètre 1-98. Valeur par défaut 2"
+            },
+            "14": {
+                "name": "Type d’interrupteur utilisé sur le commutateur.",
+                "help": "Configuration du type d’interrupteur. Valeur par défaut 0",
+                "list": {
+                	"Mono-stable input (button)":"Interrupteur type poussoir (monostable)",
+     				"Bi-stable input (switch)":"Interrupteur à 2 positions (bistable)",
+     				"Role blind switch (UP / DOWN) - two switch keys operate the Dimmer":"Bouton volets roulants (UP/DOWN)"
+     				}
+            },
+            "15": {
+                "name": "Option double clic",
+                "help": "Option double clic (éclairage mis à 100%). Valeur par défaut 1",
+                "list": {
+                	"Disable double click":"Double Click Désactivé",
+     				"Enable double click":"Double Click Activé"
+     				}
+            },
+            "16": {
+                "name": "Sauvegarde de l'état de l'appareil après une coupure de courant",
+                "help": "Sauvegarde de l'état de l'appareil après une coupure de courant. Valeur par défaut 1",
+                "list": {
+                	"State NOT saved at power failure, all outputs are set to OFF upon power restore":"Etats non sauvé lors de la coupure de courant, toutes les sorties seront à OFF lors de la remise du courant",
+     				"State saved at power failure, all outputs are set to previous state upon power restore":"Etats sauvé lors de la coupure de courant, toute les sorties seront à l'état précedent lors de la remise du courant"
+     				}
+            },
+            "17": {
+                "name": "Interrupteur 3 voies",
+                "help": "La fonction Interrupteur 3 voies, permet au variateur grâce à un double clic sur la touche. 1 de contrôler deux boutons à 2 positions ou un nombre infini de poussoirs Valeur par défaut 0",
+                "list": {
+                	"Disable":"Désactivé",
+     				"Enable":"Activé"
+     				}
+            },
+            "18": {
+                "name": "Synchronisation de niveau de lumière des dispositifs associés",
+                "help": "Le variateur communique la position au dispositif associé. Valeur par défaut 0",
+                "list": {
+                	"Disable":"Désactivé",
+     				"Enable":"Activé"
+     				}
+            },
+            "19": {
+                "name": "Comportement lors de la pression de l'interrupteur",
+                "help": "Cette fonction permet de modifier le comportement de l'interrupteur bistable (paramètre no. 14). Valeur par défaut 0",
+                "list": {
+                	"Disable":"Désactivé",
+     				"Enable":"Activé"
+     				}
+            },
+            "20": {
+                "name": "AVANCÉ Fonction permettant le changement de fréquence",
+                "help": "Cette fonction permettra à diminuer le niveau minimum de la variation en étendant l'impulsion de commande. En changeant le niveau minimum, l'utilisateur peut complètement tamiser les ampoules LED. Toutes les ampoules LED disponibles sur le marché n’ont pas cette possibilité de variation.ATTENTION ! Des paramétrages erronés peuvent entraîner un dysfonctionnement du module. INFO: CE PARAMETRE N'EST PAS DISPONIBLE SUR LES MODULES FGD211 v2.1-2.3"
+            },
+            "30": {
+                "name": "Alarme",
+                "help": "Alarme de tout type (alarme générale, inondation, fumée, CO, CO2, température). Valeur par défaut 3",
+                "list": {
+                	"DEACTIVATION - no response to alarm frames":"DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
+					"ALARM DIMMER ON - device turn ON upon receipt of alarm frame":"ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
+					"ALARM DIMMER OFF - device will turn OFF upon receipt of alarm frame":"ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
+					"ALARM FLASHING - device will turn ON and OFF periodically (see param.39)":"ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
+					}
+            },
+            "39": {
+                "name": "Durée du clignotement lors d’alarme",
+                "help": "Valeurs de configuration de ce paramètre: [1 - 65535][ms] Valeur par défaut: 600"
+            },
+            "40": {
+                "name": "Mise à jour du niveau de variations sans utiliser le commutateur",
+                "help": "Paramètres de configuration autorisés: de 1 à 99. La valeur change en fonction du niveau de luminosité"
+            },
+            "41": {
+                "name": "Ajout de fonctionnalités dans les scènes",
+                "help": "Le module offre la possibilité d'envoyer des commandes compatibles avec une commande d’activation de scène. L'information est transmise aux périphériques affectées au groupe d'association n°3. Les contrôleurs comme le Home Center 2 sont capables d'interpréter ces commandes afin d’activer des scènes, pour lesquelles un identifiant spécifique de scène spécifique a été attribué. L'utilisateur peut étendre la fonctionnalité du bouton relié aux entrées S1 et S2 en distinguant les actions des touches connectées à ces entrées. Par exemple: double-cliquer activerait la scène bonsoir et triple clic pourrait activer la scène Matin",
+                  "list": {
+                  	"Functionality deactivated":"Fonctionnalité désactivée",
+     				"Functionality activated":"Fonctionnalité activée"
+     				}	
+            }
+        }
 }
