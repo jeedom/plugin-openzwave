@@ -49,11 +49,11 @@
       <Help>Set this to enter real-time mode from remote. Contains seconds * poll frequency before going back to sleep. If you press the button once this value will be set.</Help>
     </Value>
     
-    <Value type="int" index="12" genre="config" label="serial number" size="4" value="" read_only="true" >
+    <Value type="int" index="12" genre="config" label="serial number" size="4" value="0" read_only="true" >
       <Help>The serial numbers written on the Power Reader are in HEX</Help>
     </Value>
     
-    <Value type="int" index="15" genre="config" label="Calibration status" size="4" value="" read_only="true" >
+    <Value type="int" index="15" genre="config" label="Calibration status" size="4" value="0" read_only="true" >
       <Help>The calibration progress is calculated as (value[1] - 65 + value[2] / value[3]) * 25
 			The calibration is finished successfully when value[0] = 2 and value[2] = value[3].
 			The calibration has failed if value[0] != 1 OR (value[0] = 2 AND value[2] != value[3])</Help>
