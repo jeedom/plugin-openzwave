@@ -250,7 +250,7 @@ Default setting: 10 (10%)</Help>
 Default setting: 3600 (3600s)</Help>
     </Value>
     <!-- size of two and max 255 seems off -->    
-    <Value type="byte" size="2" genre="config" instance="1" index="53" label="Energy reports" min="0" max="255" units="kWh" value="10">
+    <Value type="byte" size="2" genre="config" instance="1" index="59" label="Energy reports" min="0" max="255" units="kWh" value="10">
       <Help>Energy level change which will result in sending a new energy report. Available settings:
 0 - energy reports disabled; 
 1-255 (0,01 - 2,55 kWh) - report triggering threshold;
