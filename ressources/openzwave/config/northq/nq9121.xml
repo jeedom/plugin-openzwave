@@ -53,6 +53,12 @@
       <Help>The serial numbers written on the Power Reader are in HEX</Help>
     </Value>
     
+    <Value type="list" index="13" genre="config" label="Debug" units="" min="0" max="1" value="1" size="1">
+      <Help>Debug Mode</Help>
+      <Item label="Off" value="0"/>
+      <Item label="LED blinks at pulse counting" value="1"/>
+    </Value>
+    
     <Value type="int" index="15" genre="config" label="Calibration status" size="4" value="0" read_only="true" >
       <Help>The calibration progress is calculated as (value[1] - 65 + value[2] / value[3]) * 25
 			The calibration is finished successfully when value[0] = 2 and value[2] = value[3].
