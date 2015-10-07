@@ -19,8 +19,10 @@ if (!isConnect('admin')) {
 }
 ?>
 <div id='div_syncconfOpenzwaveAlert' style="display: none;"></div>
+<a class="btn btn-warning pull-right" data-state="1" id="bt_openzwaveLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
+<input class="form-control pull-right" id="in_openzwaveLogSearch" style="width : 300px;" placeholder="{{Rechercher}}" />
+<br/><br/><br/>
 <pre id='pre_openzwavesyncconf' style='overflow: auto; height: 90%;with:90%;'></pre>
-
 
 <script>
 	$.ajax({
@@ -35,46 +37,12 @@ if (!isConnect('admin')) {
 			handleAjaxError(request, status, error, $('#div_syncconfOpenzwaveAlert'));
 		},
 		success: function () {
-			getOpenzwaveLog(1);
+			 jeedom.log.autoupdate({
+               log : 'openzwave_syncconf',
+               display : $('#pre_openzwavesyncconf'),
+               search : $('#in_openzwaveLogSearch'),
+               control : $('#bt_openzwaveLogStopStart'),
+           });
 		}
 	});
-	function getOpenzwaveLog(_autoUpdate) {
-		$.ajax({
-			type: 'POST',
-			url: 'core/ajax/log.ajax.php',
-			data: {
-				action: 'get',
-				logfile: 'openzwave_syncconf',
-			},
-			dataType: 'json',
-			global: false,
-			error: function (request, status, error) {
-				setTimeout(function () {
-					getJeedomLog(_autoUpdate, _log)
-				}, 1000);
-			},
-			success: function (data) {
-				if (data.state != 'ok') {
-					$('#div_alert').showAlert({message: data.result, level: 'danger'});
-					return;
-				}
-				var log = '';
-				var regex = /<br\s*[\/]?>/gi;
-				for (var i in data.result.reverse()) {
-					log += data.result[i][2].replace(regex, "\n");
-				}
-				$('#pre_openzwavesyncconf').text(log);
-
-				$('#pre_openzwavesyncconf').scrollTop($('#pre_openzwavesyncconf').height() + 200000);
-				if (!$('#pre_openzwavesyncconf').is(':visible')) {
-					_autoUpdate = 0;
-				}
-				if (init(_autoUpdate, 0) == 1) {
-					t = setTimeout(function () {
-						getOpenzwaveLog(_autoUpdate)
-					}, 1000);
-				}
-			}
-		});
-	}
 </script>
