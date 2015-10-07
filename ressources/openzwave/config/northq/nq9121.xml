@@ -37,7 +37,7 @@
      </Help>
     </Value>
 
-    <Value type="int" index="9" genre="config" label="Pulse count" units="pulses/kWh" size="4" min="0" max="2147483647" value="0" >
+    <Value type="int" index="9" genre="config" label="Pulse count" units="" size="4" min="0" max="2147483647" value="0" >
       <Help>In order for the Power Reader to report the proper total meter consumption the value for this registered has to be initialized with total_meter_consumption_stated_on_the_meter * impulse factor.</Help>
     </Value>
 
@@ -45,7 +45,7 @@
       <Help>set to the number of seconds that it will take the controlling node to send a response / request to the wake up notification</Help>
     </Value>
 
-    <Value type="int" index="11" genre="config" label="Real-time mode" units="pulses/kWh" size="2" min="0" max="32767" value="0" >
+    <Value type="int" index="11" genre="config" label="Real-time mode" units="" size="2" min="0" max="32767" value="0" read_only="true" >
       <Help>Set this to enter real-time mode from remote. Contains seconds * poll frequency before going back to sleep. If you press the button once this value will be set.</Help>
     </Value>
     
