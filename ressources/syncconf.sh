@@ -9,7 +9,7 @@ echo "Lancement de la synchronisation des configurations"
 echo "Changement du répertoire courant"
 cd /tmp
 echo "Récupération du projet (cette étape peut durer quelques minutes)"
-sudo git clone https://github.com/jeedom/plugin-openzwave.git
+sudo git clone --depth=1 https://github.com/jeedom/plugin-openzwave.git 
 if [ $? -ne 0 ]; then
     echo "Unable to fetch Jeedom git.Please check your internet connexion and github access"
     exit 1
