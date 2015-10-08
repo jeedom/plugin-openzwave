@@ -7,22 +7,26 @@ SOFTWARE NOTICE AND LICENSE This file is part of Plugin openzwave for jeedom pro
 Plugin openzwave for jeedom is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 Plugin openzwave for jeedom is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with Plugin openzwave for jeedom. If not, see http://www.gnu.org/licenses.
-'''
+''' 
 import sys, os
-print "Check flask dependances"
+import time
+
+def add_log_entry(message, level="info"):
+    print('%s | %s | %s' % (time.strftime('%d-%m-%Y %H:%M:%S',time.localtime()), level, message.encode('utf8'),)) 
+
+add_log_entry("Check flask dependances")
 try:
     from flask import Flask, jsonify, abort, request, make_response, redirect, url_for
-    print "--> pass"
+    add_log_entry("--> pass")
 except Exception as e:
-    print "The dependances of openzwave plugin are not installed. Please, check the plugin openzwave configuration page for instructions"
-    print "Error : %s" % str(e)
+    add_log_entry("The dependances of openzwave plugin are not installed. Please, check the plugin openzwave configuration page for instructions",'error')
+    add_log_entry("Error : %s" % str(e),'error')
     sys.exit(1)
 
-print "Check other dependances"
+add_log_entry("Check other dependances")
 try:
     import logging
     import os.path
-    import time
     import shutil
     import platform
     import datetime
@@ -34,10 +38,10 @@ try:
     import signal
     import requests
     from louie import dispatcher, All
-    print "--> pass"
+    add_log_entry("--> pass")
 except Exception as e:
-    print "The dependances of openzwave plugin are not installed. Please, check the plugin openzwave configuration page for instructions"
-    print "Error : %s" % str(e)
+    add_log_entry("The dependances of openzwave plugin are not installed. Please, check the plugin openzwave configuration page for instructions",'error')
+    add_log_entry("Error : %s" % str(e),'error')
     sys.exit(1)
 
 if not os.path.exists('/tmp/python-openzwave-eggs'):
@@ -51,7 +55,7 @@ logger = logging.getLogger('openzwave')
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
-print("Check Openzwave")
+add_log_entry("Check Openzwave")
 import openzwave
 from openzwave.node import ZWaveNode
 from openzwave.value import ZWaveValue
@@ -60,7 +64,7 @@ from openzwave.controller import ZWaveController
 from openzwave.network import ZWaveNetwork
 from openzwave.option import ZWaveOption
 from openzwave.group import ZWaveGroup
-print("--> pass")
+add_log_entry("--> pass")
 
     
 device="auto"
@@ -176,7 +180,7 @@ COMMAND_CLASS_SENSOR_ALARM              = 156 # 0x9C
 #COMMAND_CLASS_MARK                      = 239 # 0xEF
 #COMMAND_CLASS_NON_INTEROPERABLE         = 240 # 0xF0
 
-print("validate startup arguments") 
+add_log_entry("validate startup arguments") 
 for arg in sys.argv:
     if arg.startswith("--device"):
         temp,device = arg.split("=")        
@@ -201,7 +205,7 @@ for arg in sys.argv:
         print("help : ")
         print("  --device=/dev/yourdevice ")
         print("  --log=Info|Debug")
-print("--> pass")  
+add_log_entry("--> pass")  
 
 def find_tty_usb(idVendor, idProduct):
     '''find_tty_usb('0658', '0200') -> '/dev/ttyUSB021' for Sigma Designs, Inc.'''    
@@ -232,17 +236,14 @@ def find_tty_usb(idVendor, idProduct):
 def debug_print(message):
     if log == 'Debug':
         add_log_entry(message, 'debug')
-        
-def add_log_entry(message, level="info"):
-    print('%s | %s | %s' % (time.strftime('%d-%m-%Y %H:%M:%S',time.localtime()), level, message.encode('utf8'),)) 
 
-print("check if port is available")     
+add_log_entry("check if port is available")     
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 result = sock.connect_ex(('127.0.0.1',int(port_server)))
 if result == 0:
     add_log_entry('The port %s is already in use. Please check your openzwave configuration plugin page' % (port_server,), 'error')
     sys.exit(1) 
-print("--> pass")   
+add_log_entry("--> pass")   
 
 #device = 'auto'
 if device == 'auto':
@@ -655,7 +656,13 @@ cycle = 1
 
 def send_changes(changes):
     debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
-    requests.post(callback+'?apikey='+apikey, json=changes,timeout= 30)
+    try:
+        r = requests.post(callback+'?apikey='+apikey, json=changes,timeout= 30)
+        if r.status_code != requests.codes.ok :
+            add_log_entry('Error on send request to jeedom, return code %s' % (str(r.status_code),), "error")
+    except Exception as error:
+        add_log_entry('Error on send request to jeedom %s' % (str(error),), "error")
+   
 
 def save_node_event(node_id, timestamp, value):
     global serverId
@@ -902,7 +909,7 @@ def extract_data(value, displayRaw = False):
     elif value.type == "Raw":
         result = binascii.b2a_hex(value.data)
         if displayRaw :
-            print('Raw Signal : %s' % result)
+            add_log_entry('Raw Signal : %s' % result)
         return result
     if value.type == "Decimal":
         precision = value.precision
@@ -931,7 +938,7 @@ def write_config():
     watchDog = 0  
     while(networkInformations.configFileSaveInProgress and watchDog <10):
         if log == 'Debug':
-            print ('.')
+            add_log_entry('.')
         time.sleep(1)
         watchDog +=1
     if networkInformations.configFileSaveInProgress:
