@@ -41,7 +41,6 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 $urlMasterLocal = false;
 try {
 	$request_http = new com_http(network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/openzwave/core/php/jeeZwave.php?apikey=' . config::byKey('api') . '&test=1');
-	$request_http->setNoSslCheck(false);
 	if ($request_http->exec(1, 1) == 'OK') {
 		$urlMasterLocal = true;
 	}
@@ -51,7 +50,6 @@ try {
 $urlMasterDistant = false;
 try {
 	$request_http = new com_http(network::getNetworkAccess('internal', 'proto:ip:port:comp') . '/plugins/openzwave/core/php/jeeZwave.php?apikey=' . config::byKey('api') . '&test=1');
-	$request_http->setNoSslCheck(false);
 	if ($request_http->exec(1, 1) == 'OK') {
 		$urlMasterDistant = true;
 	}
@@ -313,7 +311,7 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 		$('#md_modal').dialog({title: "{{Console}}"});
 		$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=console').dialog('open');
 	});
-	
+
 	$('#bt_syncconfigZwave').on('click',function(){
 		bootbox.confirm('{{Etes-vous sûr de vouloir synchroniser les configurations des modules ? }}', function (result) {
 			if (result) {
