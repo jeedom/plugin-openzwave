@@ -657,7 +657,7 @@ cycle = 1
 def send_changes(changes):
     debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
     try:
-        r = requests.post(callback+'?apikey='+apikey, json=changes,timeout= 30)
+        r = requests.post(callback+'?apikey='+apikey, json=changes,timeout=(0.5,30),verify=False)
         if r.status_code != requests.codes.ok :
             add_log_entry('Error on send request to jeedom, return code %s' % (str(r.status_code),), "error")
     except Exception as error:
@@ -692,7 +692,7 @@ def send_changes_async():
     changes_async = {}
     if changes.has_key('device') :
         debug_print('Send data async to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
-        requests.post(callback+'?apikey='+apikey, json=changes,timeout= 120)
+        requests.post(callback+'?apikey='+apikey, json=changes,timeout=(0.5,120),verify=False)
     dt = datetime.datetime.now() - start_time
     ms = (dt.days * 24 * 60 * 60 + dt.seconds) * 1000 + dt.microseconds / 1000.0
     timer_duration = cycle - ms
