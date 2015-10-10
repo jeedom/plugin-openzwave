@@ -568,8 +568,11 @@ def backup_xml_config(mode,homeId):
     #check if we need to clean the folder
     actualBackups = os.listdir(backupFolder)
     actualBackups.sort()
+    for backup in actualBackups:
+        if 'manual' in backup:
+            actualBackups.remove(backup)
     if len(actualBackups) > 12 :
-        add_log_entry('More than 12 backups found. Cleaning the folder')
+        add_log_entry('More than 12 autobackups found. Cleaning the folder')
         for fileToDelete in actualBackups[:-11]:
             os.unlink(os.path.join(backupFolder,fileToDelete))
     #make the backup
