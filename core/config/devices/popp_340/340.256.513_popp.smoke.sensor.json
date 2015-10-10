@@ -1,0 +1,107 @@
+{
+    "name": "Smoke Detector and Siren",
+    "doc": "",
+    "type": "Fumée",
+    "comlink": "3073-popp-detecteur-de-fumee-et-sirene-d-interieur-z-wave-0019962004100",
+    "remark": "",
+    "imglink": "popp.smoke-detector",
+    "battery_type": "1x9V",
+    "configuration": {
+        "conf_version": 1
+    },
+    "commands": [
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "",
+            "configuration": {
+                "class": "0x25",
+                "value": "data[0].val"
+            }
+        },
+        {
+            "name": "On",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": "0x25",
+                "value": "data[0].Set(255)"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": "0x25",
+                "value": "data[0].Set(0)"
+            }
+        },
+        {
+            "name": "Fumées",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "eventOnly": 1,
+            "configuration": {
+                "class": "0x30",
+                "instanceId": 0,
+                "value": "data[0].val"
+            },
+            "display": {
+                "invertBinary": "1"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "unite": "%",
+            "isVisible": 0,
+            "configuration": {
+                "class": "0x80",
+                "instanceId": 0,
+                "value": "data[0].val"
+            }
+        }
+    ],
+        "configuration": {
+            "1": {
+                "name": "Intervalle de sonnerie de la sirène",
+                "help": "La sirène fonctionne sur une période ou elle sonne s'arrête sonne etc... Ce paramètre permet de définir la durée totale en secondes de cette période (ON/OFF)"
+            },
+            "2": {
+                "name": "Intervalle de tonalité de la sirène",
+                "help": "La sirène fonctionne sur une période ou elle sonne s'arrête sonne etc... Ce paramètre permet de définir la durée en secondes de la période ON"
+            },
+            "3": {
+                "name": "Valeur Basic ON",
+                "help": "Valeur ON envoyée aux modules associés"
+            },
+            "4": {
+                "name": "Valeur basic OFF",
+                "help": "Valeur OFF envoyée aux modules associés"
+            },
+            "5":{
+                "name": "Lien avec autre sirène en cas de détection de fumée",
+                "help": "Ce détecteur de fumée peut informer d'autres détecteurs du même type d'une alerte fumée. Les autres allumeront donc aussi leur sirène.",
+				"list": {
+						"Inactive": "Désactivé",
+						"Active (default)": "Activé"
+						}
+            },
+            "6":{
+                "name": "Lien avec autre sirène en cas d'alerte batterie",
+                "help": "Ce détecteur de fumée peut informer d'autres détecteurs du même type d'une alerte batterie. Les autres allumeront donc aussi leur sirène.",
+				"list": {
+						"Inactive": "Désactivé",
+						"Active (default)": "Activé"
+						}
+            }
+        }
+}

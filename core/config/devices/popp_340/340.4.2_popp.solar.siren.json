@@ -43,6 +43,20 @@
             }
         },
         {
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "unite": "°C",
+            "isVisible": 1,
+            "eventOnly": 1,
+            "isHistorized": 1,
+            "configuration": {
+                "class": "0x31",
+                "instanceId": 0,
+                "value": "data[1].val"
+            }
+        },
+        {
             "name": "Sensor",
             "type": "info",
             "subtype": "binary",
@@ -55,20 +69,6 @@
             },
             "display": {
                 "invertBinary": "1"
-            }
-        },
-        {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "unite": "°C",
-            "isVisible": 1,
-            "eventOnly": 1,
-            "isHistorized": 1,
-            "configuration": {
-                "class": "0x31",
-                "instanceId": 0,
-                "value": "data[1].val"
             }
         },
         {
