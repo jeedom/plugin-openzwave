@@ -104,12 +104,7 @@
             },
             "4": {
                 "name": "Envoie de rapport tous les N réveils",
-                "help": "Si la valeur est renseignée, après x réveils un rapport sera envoyé",
-				"list": {
-						"Control Group 2": "Contrôle du groupe 2",
-						"All Switch ON": "Tous ON",
-						"All Switch OFF": "Tous OFF"
-						}
+                "help": "Si la valeur est renseignée, après x réveils un rapport sera envoyé"
             },
             "5":{
                 "name": "Mode de la sirène",
