@@ -27,4 +27,6 @@ cd /tmp/plugin-openzwave/ressources/openzwave/config
 sudo mv * /usr/share/nginx/www/jeedom/plugins/openzwave/ressources/openzwave/config/
 echo "Nettoyage du répertoire temporaire"
 sudo rm -R /tmp/plugin-openzwave
+sudo chown -R www-data:www-data /usr/share/nginx/www/jeedom/plugins/openzwave/ressources/openzwave/config/
+sudo chown -R www-data:www-data /usr/share/nginx/www/jeedom/plugins/openzwave/core/config/devices/
 echo "Vos configurations sont maintenant à jour !"
