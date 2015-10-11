@@ -61,12 +61,12 @@
             "help" : "Définit le délai entre 2 rapports en minute. 0 pour le désactiver"
         },
         "7" : {
-            "name" : "Délai entre 2 rapports de température",
-            "help" : "Définit le délai entre 2 rapports de température en minute. 0 pour le désactiver"
+            "name" : "Rapport automatique de température",
+            "help" : "Définit l'écart en degré, pour l'envoie automatique de rapports de température. 0 pour le désactiver"
         },
         "8" : {
-            "name" : "Délai entre 2 rapports d'humidité",
-            "help" : "Définit le délai entre 2 rapports d'humidité en minute. 0 pour le désactiver"
+            "name" : "Rapports automatique d'humidité",
+            "help" : "Définit l'écart en pourcent, pour l'envoie automatique de rapports d'humidité. 0 pour le désactiver"
         }
     }
     

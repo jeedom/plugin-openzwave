@@ -54,12 +54,12 @@
 		<Product type="0002" id="004a" name="Multi Sensor Gen5" config="aeotec/multisensor_gen5.xml"/>
 		<Product type="0002" id="0059" name="Recessed Door Sensor" config="aeotec/recessed_doorsensor_gen5.xml"/>
 		<Product type="0003" id="0006" name="Smart Energy Switch" config="aeotec/ses.xml"/>
-		<Product type="0003" id="0008" name="Smart Energy Illuminator"/>
-		<Product type="0003" id="000a" name="Smart Energy 220V Utility Switch"/>
+		<Product type="0003" id="0008" name="Smart Energy Illuminator" config="aeotec/sei.xml"/>
+		<Product type="0003" id="000a" name="Smart Energy 220V Utility Switch" config="aeotec/ses.xml"/>
 		<Product type="0003" id="000b" name="Smart Energy Strip"/>
 		<Product type="0003" id="000c" name="Micro Smart Energy Switch" config="aeotec/ses.xml"/>
-		<Product type="0003" id="000d" name="Micro Smart Energy Illuminator"/>
-		<Product type="0003" id="000e" name="Micro Motor Controller"/>
+		<Product type="0003" id="000d" name="Micro Smart Energy Illuminator" config="aeotec/sei2.xml"/>
+		<Product type="0003" id="000e" name="Micro Motor Controller" config="aeotec/mmc.xml"/>
 		<Product type="0003" id="0011" name="Micro Double Switch" config="aeotec/ses.xml"/>
         <Product type="0003" id="0018" name="Smart Switch (2nd Edition)" config="aeotec/ses2a.xml"/>
 		<Product type="0003" id="001a" name="Micro Switch (2nd Edition)"/>
@@ -69,7 +69,7 @@
 		<Product type="0003" id="004b" name="Smart Energy Switch Gen5" config="aeotec/ses2.xml"/>
 		<Product type="0103" id="004b" name="Smart Energy Switch Gen5" config="aeotec/ses2.xml"/>
 		<Product type="0003" id="004e" name="Heavy Duty Smart Switch Gen5" config="aeotec/hdss_gen5.xml" />
-		<Product type="0004" id="0025" name="Z-Wave Repeater"/>
+		<Product type="0004" id="0025" name="Z-Wave Repeater" config="aeotec/dsd37.xml" />
 		<Product type="0004" id="0050" name="DSD31 Siren Gen5" config="aeotec/dsd31.xml"/>
         	<!-- US-market products start with type prefix "01" -->
 		<Product type="0101" id="005a" name="Z-Stick Gen5" config="aeotec/zstickgen5.xml"/>
@@ -508,7 +508,7 @@
 	<Manufacturer id="0096" name="NorthQ">
 		<Product type="0001" id="0001" name="NQ-92021 Power Reader" config="northq/nq92021.xml"/>
 		<Product type="0001" id="0002" name="NQ-9021 Power Reader"/>
-		<Product type="0010" id="0001" name="NQ-9121 Gas Meter"/>
+		<Product type="0010" id="0001" name="NQ-9121 Gas Meter" config="northq/nq9121.xml" />
 	</Manufacturer>
 	<Manufacturer id="0040" name="Novar EDS">
 	</Manufacturer>
@@ -524,6 +524,7 @@
                 <Product type="0002" id="000c" name="PST02-A 4 in 1 Multi-Sensor" config="philio/pst02.xml"/>
 		<Product type="0002" id="000d" name="PST02-B PIR/Motion 3 in 1 Sensor" config="philio/pst02-b.xml"/>
 		<Product type="0002" id="000e" name="PST02-C Door/Window 3 in 1 sensor" config="philio/pst02-1c.xml"/>
+		<Product type="0009" id="0022" name="PSR04 Smart Color Button" config="philio/psr04.xml"/>
 	</Manufacturer>
 	<Manufacturer id="010e" name="Polycontrol">
 		<Product type="0002" id="0001" name="Danalock Keypad" config="polycontrol/keypad.xml"/>
@@ -531,6 +532,8 @@
 		<Product type="0001" id="0001" name="Polylock" config="polycontrol/polylock.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0154" name="Popp">
+		<Product type="0004" id="0002" name="Solar Powered Outdoor Siren" config="popp/solar-siren.xml" />
+		<Product type="0100" id="0201" name="Smoke Detector and Siren" config="popp/smoke-detector.xml" />
 		<Product type="1100" id="0001" name="123601 Plug-in Switch" config="popp/123601.xml" />
 		<Product type="1100" id="0002" name="123580 Plug-in Dimmer" config="popp/123580.xml" />
 		<Product type="0001" id="0001" name="123658 Plug-in Switch plus Power Meter" config="popp/123658.xml" />
@@ -736,7 +739,7 @@
 		<Product type="0100" id="0001" name="ZME_KFOB 4 Button Key Fob" config="zwave.me/kfob.xml"/>
 		<Product type="0100" id="0004" name="ZME_WCD2 Double Paddle Wall Controller" config="zwave.me/ZME_WCD2.xml"/>
 		<Product type="0100" id="0101" name="ZME_WALLC-S Secure Wall Controller" config="zwave.me/ZME_WALLC-S.xml" />
-		<Product type="0100" id="0102" name="ZME_KFOB-S 4 Button Key Fob" config="ZME_KFOB-S.xml" />
+		<Product type="0100" id="0102" name="ZME_KFOB-S 4 Button Key Fob" config="zwave.me/ZME_KFOB-S.xml" />
 		<Product type="0100" id="0200" name="Smoke Detector"/>
 		<Product type="0100" id="0201" name="Smoke Detector"/>
 		<Product type="0200" id="0001" name="iTemp Temperature Sensor" config="zwave.me/iTemp.xml"/>

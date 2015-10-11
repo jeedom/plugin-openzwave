@@ -41,7 +41,6 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 $urlMasterLocal = false;
 try {
 	$request_http = new com_http(network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/openzwave/core/php/jeeZwave.php?apikey=' . config::byKey('api') . '&test=1');
-	$request_http->setNoSslCheck(false);
 	if ($request_http->exec(1, 1) == 'OK') {
 		$urlMasterLocal = true;
 	}
@@ -51,7 +50,6 @@ try {
 $urlMasterDistant = false;
 try {
 	$request_http = new com_http(network::getNetworkAccess('internal', 'proto:ip:port:comp') . '/plugins/openzwave/core/php/jeeZwave.php?apikey=' . config::byKey('api') . '&test=1');
-	$request_http->setNoSslCheck(false);
 	if ($request_http->exec(1, 1) == 'OK') {
 		$urlMasterDistant = true;
 	}
@@ -146,6 +144,7 @@ foreach ($deamonRunningSlave as $name => $status) {
 					<a class="btn btn-success" id="bt_consoleZwave"><i class="fa fa-terminal"></i> {{Console}}</a>
 					<a class="btn btn-warning" id="bt_backupsZwave"><i class="fa fa-floppy-o"></i> {{Backups}}</a>
 					<a class="btn btn-danger" id="bt_fileconfigZwave"><i class="fa fa-file-o"></i> {{Configuration}}</a>
+					<a class="btn btn-success" id="bt_syncconfigZwave"><i class="fa fa-refresh"></i> {{Configs modules}}</a>
 				</div>
 			</div>
 			<?php }
@@ -195,12 +194,6 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-4 control-label">{{Mode "direct push" (recommandé)}}</label>
-			<div class="col-sm-2">
-				<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="directPush" />
-			</div>
-		</div>
-		<div class="form-group">
 			<label class="col-sm-4 control-label">{{Gestion du démon}}</label>
 			<div class="col-sm-8">
 				<a class="btn btn-success" id="bt_startopenZwaveDemon"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
@@ -234,12 +227,6 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 					<label class="col-sm-4 control-label">{{Port du Serveur (laisser vide par défault)}}</label>
 					<div class="col-sm-2">
 						<input class="slaveConfigKey form-control" data-l1key="port_server" placeholder="8083" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-4 control-label">{{Mode "direct push" (recommandé)}}</label>
-					<div class="col-sm-2">
-						<input type="checkbox" class="slaveConfigKey bootstrapSwitch" data-l1key="directPush" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -323,6 +310,15 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 	$('#bt_consoleZwave').on('click', function () {
 		$('#md_modal').dialog({title: "{{Console}}"});
 		$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=console').dialog('open');
+	});
+
+	$('#bt_syncconfigZwave').on('click',function(){
+		bootbox.confirm('{{Etes-vous sûr de vouloir synchroniser les configurations des modules ? }}', function (result) {
+			if (result) {
+				$('#md_modal').dialog({title: "{{Synchronisation des configurations}}"});
+				$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=syncconf.openzwave').dialog('open');
+			}
+		});
 	});
 
 	function stopopenZwaveDemon(type,id) {

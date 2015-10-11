@@ -24,6 +24,18 @@
                 "dashboard": "tile",
                 "mobile": "tile"
             }
-        }
+        },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "configuration": {
+                    "class": "0x80",
+                    "value": "data[0].val"
+                }
+            }
     ]
 }

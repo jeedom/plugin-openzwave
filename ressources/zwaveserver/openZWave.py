@@ -7,22 +7,26 @@ SOFTWARE NOTICE AND LICENSE This file is part of Plugin openzwave for jeedom pro
 Plugin openzwave for jeedom is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 Plugin openzwave for jeedom is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with Plugin openzwave for jeedom. If not, see http://www.gnu.org/licenses.
-'''
+''' 
 import sys, os
-print "Check flask dependances"
+import time
+
+def add_log_entry(message, level="info"):
+    print('%s | %s | %s' % (time.strftime('%d-%m-%Y %H:%M:%S',time.localtime()), level, message.encode('utf8'),)) 
+
+add_log_entry("Check flask dependances")
 try:
     from flask import Flask, jsonify, abort, request, make_response, redirect, url_for
-    print "--> pass"
+    add_log_entry("--> pass")
 except Exception as e:
-    print "The dependances of openzwave plugin are not installed. Please, check the plugin openzwave configuration page for instructions"
-    print "Error : %s" % str(e)
+    add_log_entry("The dependances of openzwave plugin are not installed. Please, check the plugin openzwave configuration page for instructions",'error')
+    add_log_entry("Error : %s" % str(e),'error')
     sys.exit(1)
 
-print "Check other dependances"
+add_log_entry("Check other dependances")
 try:
     import logging
     import os.path
-    import time
     import shutil
     import platform
     import datetime
@@ -34,10 +38,10 @@ try:
     import signal
     import requests
     from louie import dispatcher, All
-    print "--> pass"
+    add_log_entry("--> pass")
 except Exception as e:
-    print "The dependances of openzwave plugin are not installed. Please, check the plugin openzwave configuration page for instructions"
-    print "Error : %s" % str(e)
+    add_log_entry("The dependances of openzwave plugin are not installed. Please, check the plugin openzwave configuration page for instructions",'error')
+    add_log_entry("Error : %s" % str(e),'error')
     sys.exit(1)
 
 if not os.path.exists('/tmp/python-openzwave-eggs'):
@@ -51,7 +55,7 @@ logger = logging.getLogger('openzwave')
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
-print("Check Openzwave")
+add_log_entry("Check Openzwave")
 import openzwave
 from openzwave.node import ZWaveNode
 from openzwave.value import ZWaveValue
@@ -60,7 +64,7 @@ from openzwave.controller import ZWaveController
 from openzwave.network import ZWaveNetwork
 from openzwave.option import ZWaveOption
 from openzwave.group import ZWaveGroup
-print("--> pass")
+add_log_entry("--> pass")
 
     
 device="auto"
@@ -176,7 +180,7 @@ COMMAND_CLASS_SENSOR_ALARM              = 156 # 0x9C
 #COMMAND_CLASS_MARK                      = 239 # 0xEF
 #COMMAND_CLASS_NON_INTEROPERABLE         = 240 # 0xF0
 
-print("validate startup arguments") 
+add_log_entry("validate startup arguments") 
 for arg in sys.argv:
     if arg.startswith("--device"):
         temp,device = arg.split("=")        
@@ -201,7 +205,7 @@ for arg in sys.argv:
         print("help : ")
         print("  --device=/dev/yourdevice ")
         print("  --log=Info|Debug")
-print("--> pass")  
+add_log_entry("--> pass")  
 
 def find_tty_usb(idVendor, idProduct):
     '''find_tty_usb('0658', '0200') -> '/dev/ttyUSB021' for Sigma Designs, Inc.'''    
@@ -232,17 +236,14 @@ def find_tty_usb(idVendor, idProduct):
 def debug_print(message):
     if log == 'Debug':
         add_log_entry(message, 'debug')
-        
-def add_log_entry(message, level="info"):
-    print('%s | %s | %s' % (time.strftime('%d-%m-%Y %H:%M:%S',time.localtime()), level, message.encode('utf8'),)) 
 
-print("check if port is available")     
+add_log_entry("check if port is available")     
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 result = sock.connect_ex(('127.0.0.1',int(port_server)))
 if result == 0:
     add_log_entry('The port %s is already in use. Please check your openzwave configuration plugin page' % (port_server,), 'error')
     sys.exit(1) 
-print("--> pass")   
+add_log_entry("--> pass")   
 
 #device = 'auto'
 if device == 'auto':
@@ -567,8 +568,11 @@ def backup_xml_config(mode,homeId):
     #check if we need to clean the folder
     actualBackups = os.listdir(backupFolder)
     actualBackups.sort()
+    for backup in actualBackups:
+        if 'manual' in backup:
+            actualBackups.remove(backup)
     if len(actualBackups) > 12 :
-        add_log_entry('More than 12 backups found. Cleaning the folder')
+        add_log_entry('More than 12 autobackups found. Cleaning the folder')
         for fileToDelete in actualBackups[:-11]:
             os.unlink(os.path.join(backupFolder,fileToDelete))
     #make the backup
@@ -649,120 +653,77 @@ force_refresh_nodes = []
 
 check_config_files()
 
+changes_async = {}
+changes_async['device']={}
+cycle = 1
 
-if directPush == 1 :
-    print 'Direct push mode'
-    def send_changes(changes):
-        debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
-        requests.post(callback+'?apikey='+apikey, json=changes,timeout= 120)
+def send_changes(changes):
+    debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
+    try:
+        r = requests.post(callback+'?apikey='+apikey, json=changes,timeout=(0.5,30),verify=False)
+        if r.status_code != requests.codes.ok :
+            add_log_entry('Error on send request to jeedom, return code %s' % (str(r.status_code),), "error")
+    except Exception as error:
+        add_log_entry('Error on send request to jeedom %s' % (str(error),), "error")
+   
 
-    def save_node_event(node_id, timestamp, value):
-        global controller_state
-        changes = {}   
-        changes['controller']={}
-        changes['serverId'] = serverId
-        if value=="removed":
-            changes['controller']['excluded'] = {"value":node_id}
-        elif value=="added":
-            changes['controller']['included'] = {"value":node_id}
-            thread=threading.Thread(target=send_changes, args=(changes,))
-            thread.setDaemon(False)
-            thread.start()
-            return
-        elif value in [0,1,5] and controller_state != value :
-            controller_state = value
-            changes['controller']['state'] = {"value":value}
-        else:
-            return
-        send_changes(changes)
+def save_node_event(node_id, timestamp, value):
+    global serverId
+    global controller_state
+    changes = {}   
+    changes['controller']={}
+    changes['serverId'] = serverId
+    if value=="removed":
+        changes['controller']['excluded'] = {"value":node_id}
+    elif value=="added":
+        changes['controller']['included'] = {"value":node_id}
+        thread=threading.Thread(target=send_changes, args=(changes,))
+        thread.setDaemon(False)
+        thread.start()
+        return
+    elif value in [0,1,5] and controller_state != value :
+        controller_state = value
+        changes['controller']['state'] = {"value":value}
+    else:
+        return
+    send_changes(changes)
 
-    def save_node_value_event(node_id, timestamp, command_class, index, typeStandard, value, instance):
+def send_changes_async():
+    global changes_async
+    start_time = datetime.datetime.now()
+    changes = changes_async
+    changes_async = {}
+    if changes.has_key('device') :
+        debug_print('Send data async to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
+        requests.post(callback+'?apikey='+apikey, json=changes,timeout=(0.5,120),verify=False)
+    dt = datetime.datetime.now() - start_time
+    ms = (dt.days * 24 * 60 * 60 + dt.seconds) * 1000 + dt.microseconds / 1000.0
+    timer_duration = cycle - ms
+    if(timer_duration < 0.1):
+        timer_duration = 0.1
+    resend_changes = threading.Timer(timer_duration, send_changes_async)
+    resend_changes.start() 
+
+send_changes_async()
+
+def save_node_value_event(node_id, timestamp, command_class, index, typeStandard, value, instance):
+    global serverId
+    if typeStandard == 'bool' :
         changes = {}
         changes['serverId'] = serverId
         changes['device']={}
         changes['device'][node_id]=[]
         changes['device'][node_id].append({'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp})
         send_changes(changes)
-else :
-    print 'Stack push mode'
-    import sqlite3 as lite
-    cycle = 0.5
-
-    print "Check SQLite"
-    con = None
-    try:
-        con = lite.connect(":memory:", check_same_thread=False)
-        con.isolation_level = None
-        cur = con.cursor()    
-        cur.execute('SELECT SQLITE_VERSION()')
-        data = cur.fetchone()
-        print "--> SQLite version: %s" % data  
-        cur.execute("DROP TABLE IF EXISTS Events")  
-        cur.execute("CREATE TABLE IF NOT EXISTS Events(Node INT, Instance INT, Commandclass INT, Type TEXT, Id TEXT, Index_value INT, Value TEXT, Level INT, UpdateTime INT)")               
-    except lite.Error, e:
-        print "Error %s:" % e.args[0]
-        sys.exit(1)
-
-    def save_node_event(node_id, timestamp, value):
-        global con
-        cur = con.cursor()
-        #add a new cache entry for value 
-        cur.execute("INSERT INTO Events (Node, Instance, Commandclass, Type, Id, Index_value, Value, Level, Updatetime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (node_id, 0, 0, "", "", "", value, 0, timestamp))
-        
-    def save_node_value_event(node_id, timestamp, command_class, index, typeStandard, value, instance):
-        global con
-        cur = con.cursor()
-        #delete the existing cache entry, if exist
-        cur.execute("DELETE FROM Events where Node=? AND Commandclass=? AND Instance=? AND Index_value=?", (node_id, command_class, instance, index,))   
-        #add a new cache entry for value 
-        cur.execute("INSERT INTO Events (Node, Instance, Commandclass, Type, Id, Index_value, Value, Level, Updatetime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (node_id, instance, command_class, typeStandard, "", index, value, 0, timestamp))  
-
-    def get_zwave_changes():
-        global network
-        if network != None and network.state >= 5:   # STATE_STARTED 
-            if network.nodes:            
-                changes = {}   
-                changes['controller']={}
-                changes['device']={}
-                global con
-                con.row_factory = lite.Row
-                cur = con.cursor() 
-                cur.execute("SELECT * FROM Events")
-                rows = cur.fetchall()
-                cur.execute("DELETE FROM Events")
-                if (len(rows) < 1):
-                    return False 
-                for row in rows:
-                    if row["Commandclass"] == 0 and row["Value"]=="removed":
-                        changes['controller']['excluded'] = {"value":row["Node"]}
-                    elif row["Commandclass"] == 0 and row["Value"]=="added":
-                        changes['controller']['included'] = {"value":row["Node"]}
-                    elif row["Commandclass"] == 0 and row["Value"] in ["0","1","5"]:
-                        changes['controller']['state'] = {"value":int(row["Value"])}
-                    else :
-                        if row["Node"] not in changes['device']:
-                            changes['device'][row["Node"]]=[]
-                        changes['device'][row["Node"]].append({'instance':row["Instance"], 'CommandClass':hex(row["Commandclass"]), 'index':row["Index_value"],'value':row["Value"], 'type':row["Type"]})
-                return changes         
-        return False
-
-    def send_changes():
-        start_time = datetime.datetime.now()
-        changes = get_zwave_changes() 
-        if(changes != False):
-            changes['serverId'] = serverId
-            debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
-            requests.post(callback+'?apikey='+apikey, json=changes,timeout= 10)
-        dt = datetime.datetime.now() - start_time
-        ms = (dt.days * 24 * 60 * 60 + dt.seconds) * 1000 + dt.microseconds / 1000.0
-        timer_duration = cycle - ms
-        if(timer_duration < 0.1):
-            timer_duration = 0.1
-        resend_changes = threading.Timer(timer_duration, send_changes)
-        resend_changes.start() 
-
-    send_changes()
-
+    else :
+        global changes_async
+        changes_async['serverId'] = serverId
+        if not changes_async.has_key('device') :
+            changes_async['device']={}
+        if not changes_async['device'].has_key(node_id) :
+            changes_async['device'][node_id]={}
+        changes_async['device'][node_id][str(hex(command_class))+str(instance)+str(index)] = {'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp}
+    
 
 def network_started(network):
     add_log_entry("Openzwave network are started with homeId %0.8x." % (network.home_id,))    
@@ -805,9 +766,9 @@ def recovering_failed_nodes_asynchronous():
                     if hasattr(myNode, 'last_notification') :
                         #is in timeout or dead
                         if myNode.last_notification.code == 1 or myNode.last_notification.code == 5:
-                            debug_print('Do a test on node %s' % (device_id,)) 
+                            debug_print('Do a test on node %s' % (node_id,)) 
                             # a ping will try to resolve this situation with a NoOperation CC. 
-                            network.manager.testNetworkNode(network.home_id, device_id, 1) 
+                            network.manager.testNetworkNode(network.home_id, node_id, 1) 
                             #avoid stress network
                             time.sleep(3)  
         else:
@@ -951,7 +912,7 @@ def extract_data(value, displayRaw = False):
     elif value.type == "Raw":
         result = binascii.b2a_hex(value.data)
         if displayRaw :
-            print('Raw Signal : %s' % result)
+            add_log_entry('Raw Signal : %s' % result)
         return result
     if value.type == "Decimal":
         precision = value.precision
@@ -980,7 +941,7 @@ def write_config():
     watchDog = 0  
     while(networkInformations.configFileSaveInProgress and watchDog <10):
         if log == 'Debug':
-            print ('.')
+            add_log_entry('.')
         time.sleep(1)
         watchDog +=1
     if networkInformations.configFileSaveInProgress:
@@ -1680,9 +1641,9 @@ def set_value(device_id, valueId, data):
 
 refresh_workers = {}
 
-def create_worker(device_id, value_id, target_value):
+def create_worker(device_id, value_id, target_value, starting_value, counter):
     #create a new refresh worker
-    worker = threading.Timer(interval=refresh_interval, function=refresh_background, args=(device_id, value_id, target_value))
+    worker = threading.Timer(interval=refresh_interval, function=refresh_background, args=(device_id, value_id, target_value, starting_value, counter))
     # save worker
     refresh_workers[value_id] = worker
     #start refresh timer
@@ -1691,10 +1652,11 @@ def create_worker(device_id, value_id, target_value):
 def prepare_refresh(device_id, value_id, target_value=None):   
     #debug_print("prepare_refresh for nodeId:%s valueId:%s data:%s" % (device_id, value_id, target_value,))     
     stop_refresh(device_id, value_id)
-    create_worker(device_id, value_id, target_value)
+    starting_value = network.nodes[device_id].values[value_id].data 
+    create_worker(device_id, value_id, target_value, starting_value, 0)
     network.nodes[device_id].values[value_id].start_refresh_time = int(time.time()) 
 
-def refresh_background(device_id, value_id, target_value):
+def refresh_background(device_id, value_id, target_value, starting_value, counter):
     do_refresh = True
     actual_value = network.nodes[device_id].values[value_id].data 
     if target_value is not None:
@@ -1710,6 +1672,15 @@ def refresh_background(device_id, value_id, target_value):
                 #if delta is too small don't refresh
                 do_refresh = False
                 #debug_print("delta is too small don't refresh")
+    if do_refresh : 
+        #debug_print("check for changes, actual : %s , starting : %s (retry %s)" % (actual_value, starting_value, counter,))
+        #check if won't changes   
+        if starting_value == actual_value:
+            counter+=1
+            if counter >3:
+                do_refresh = False
+        else:
+            counter = 0                
     if do_refresh :
         #debug_print("refresh")
         network.nodes[device_id].values[value_id].refresh()   
@@ -1717,7 +1688,7 @@ def refresh_background(device_id, value_id, target_value):
         timeout = int(time.time()) - network.nodes[device_id].values[value_id].start_refresh_time 
         if (timeout < refresh_timeout):
             # I will start again a refresh timer
-            create_worker(device_id, value_id, target_value)
+            create_worker(device_id, value_id, target_value, starting_value, counter)
     else:
         #remove worker the consigne is set
         del refresh_workers[value_id]

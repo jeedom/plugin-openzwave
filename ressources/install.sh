@@ -5,11 +5,11 @@
 # The script is based on packages listed in debpkg_minimal.txt.
 
 #set -x  # make sure each command is printed in the terminal
-echo "Lancement da l'installation/mise à jour des dépendance openzwave"
+echo "Lancement de l'installation/mise à jour des dépendances openzwave"
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ARCH=`uname -m`
-PYTHON_OPENZWAVE_VERSION=6320ae88db5c6bcd3482d962269fa624055ab557
+PYTHON_OPENZWAVE_VERSION=4f43a0bdb4c3c42c9edd4c887eeb77758663ab64
 OPENZWAVE_VERSION=0a73afbe4114e8d6f0593b55f13a48130d095bb9
 
 function apt_install {
@@ -71,15 +71,20 @@ pip_install flask-restful
 if [  -z "$1" -a $(uname -a | grep cubox | wc -l ) -eq 1 -a ${ARCH} = "armv7l" ]; then
   echo "Armv7/Jeedomboard installation direct"
   sudo cp /opt/python-openzwave/zwcfg* /opt
+  sudo cp -r /opt/python-openzwave/xml_backups /opt
   sudo rm -fr /opt/python-openzwave
   sudo mkdir -p /opt/python-openzwave
   cp -R ${BASEDIR}/python-openzwave/armv7/*  /usr/local/lib/python2.*/dist-packages
   sudo cp /opt/zwcfg* /opt/python-openzwave
+  sudo cp -r /opt/xml_backups /opt/python-openzwave
+  sudo rm -fr /opt/xml_backups
+  sudo rm -f /opt/zwcfg*
 else
   sudo mkdir /opt
   if [ -d /opt/python-openzwave ]; then
     echo "Sauvegarde du fichier de conf";
     sudo cp /opt/python-openzwave/zwcfg* /opt
+    sudo cp -r /opt/python-openzwave/xml_backups /opt
     cd /opt/python-openzwave
     echo "Désinstallation de la version précédente";
     sudo make uninstall > /dev/null 2>&1
@@ -115,6 +120,9 @@ else
   sudo make install-api
   sudo mkdir /opt/python-openzwave/python-eggs
   sudo cp /opt/zwcfg* /opt/python-openzwave/.
+  sudo cp -r /opt/xml_backups /opt/python-openzwave
+  sudo rm -fr /opt/xml_backups
+  sudo rm -f /opt/zwcfg*
 fi
 
 sudo chown -R www-data:www-data /opt/python-openzwave

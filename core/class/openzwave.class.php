@@ -473,6 +473,16 @@ class openzwave extends eqLogic {
 		exec($cmd);
 	}
 
+	public static function syncconfOpenzwave($_background = true) {
+		log::remove('openzwave_syncconf');
+		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/syncconf.sh';
+		if ($_background) {
+			$cmd .= ' >> ' . log::getPathToLog('openzwave_syncconf') . ' 2>&1 &';
+		}
+		log::add('openzwave_syncconf', 'info', $cmd);
+		shell_exec($cmd);
+	}
+
 	public static function cron15() {
 		if (config::byKey('allowStartDeamon', 'openzwave', 1) == 1 && config::byKey('port', 'openzwave', 'none') != 'none' && !self::deamonRunning()) {
 			self::runDeamon();
@@ -536,7 +546,6 @@ class openzwave extends eqLogic {
 		$cmd .= ' --callback=' . $callback;
 		$cmd .= ' --apikey=' . $apikey;
 		$cmd .= ' --serverId=' . $serverId;
-		$cmd .= ' --directPush=' . config::byKey('directPush', 'openzwave');
 
 		log::add('openzwave', 'info', 'Lancement démon openzwave : ' . $cmd);
 		$result = exec($cmd . ' >> ' . log::getPathToLog('openzwave') . ' 2>&1 &');
