@@ -77,6 +77,8 @@ if [  -z "$1" -a $(uname -a | grep cubox | wc -l ) -eq 1 -a ${ARCH} = "armv7l" ]
   cp -R ${BASEDIR}/python-openzwave/armv7/*  /usr/local/lib/python2.*/dist-packages
   sudo cp /opt/zwcfg* /opt/python-openzwave
   sudo cp -r /opt/xml_backups /opt/python-openzwave
+  sudo rm -fr /opt/xml_backups
+  sudo rm -f /opt/zwcfg*
 else
   sudo mkdir /opt
   if [ -d /opt/python-openzwave ]; then
@@ -119,6 +121,8 @@ else
   sudo mkdir /opt/python-openzwave/python-eggs
   sudo cp /opt/zwcfg* /opt/python-openzwave/.
   sudo cp -r /opt/xml_backups /opt/python-openzwave
+  sudo rm -fr /opt/xml_backups
+  sudo rm -f /opt/zwcfg*
 fi
 
 sudo chown -R www-data:www-data /opt/python-openzwave
