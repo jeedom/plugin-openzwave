@@ -222,11 +222,11 @@
                 "name": "Modes de fonctionnement et fonction de positionnement.",
                 "help": "Modification de la fonction de positionnement du volet. Valeur par défaut 1",
                 "list": {
-                  "0 - Roller Blind Mode, without positioning":"Mode volet roulant avec positionnement",
-                  "1 - Roller Blind Mode, with positioning":"Mode volet roulant sans positionnement",
-                  "2 - Venetian Blind Mode, with positioning":"Mode volets vénitiens avec positionnement",
-                  "3 - Gate Mode, without positioning":"Activation de la fonction de positionnement du volet",
-                  "4 - Gate Mode, with positioning":"Désactivation de la fonction de positionnement du volet"
+                  "0 - Roller Blind Mode, without positioning":"0 - Mode volet roulant sans positionnement",
+                  "1 - Roller Blind Mode, with positioning":"1 - Mode volet roulant avec positionnement",
+                  "2 - Venetian Blind Mode, with positioning":"2 - Mode volets vénitiens avec positionnement",
+                  "3 - Gate Mode, without positioning":"3 - Mode Portail sans positionnement",
+                  "4 - Gate Mode, with positioning":"4 - Mode Portail avec positionnement"
                   }
             },
             "12": {
@@ -237,9 +237,9 @@
                 "name": "Rétablir la position précédente des lames",
                 "help": "En mode volets vénitiens (parametre 10 à 2), ce paramètre détermine le comportement des lames dans différentes situations.",
                 "list": {
-                  "0 - Lamellas return to previously set position only in case of the main controller operation":"Rétablir la position avec la box domotique uniquement",
-                  "1 - Lamellas return to previously set position in case of the main controller operation, momentary switch operation, or when the limit switch is reached":"Rétablir la position avec la box domotique, un poussoir ou une butée.",
-                  "2 - Lamellas return to previously set position in case of the main controller operation, momentary switch operation, when the limit switch is reached or after receiving a STOP control frame (Switch Multilevel Stop).":"Rétablir la position avec la box domotique, un poussoir, une butée ou un bouton « stop »."
+                  "0 - Lamellas return to previously set position only in case of the main controller operation":"0 - Rétablir la position avec la box domotique uniquement",
+                  "1 - Lamellas return to previously set position in case of the main controller operation, momentary switch operation, or when the limit switch is reached":"1 - Rétablir la position avec la box domotique, un poussoir ou une butée.",
+                  "2 - Lamellas return to previously set position in case of the main controller operation, momentary switch operation, when the limit switch is reached or after receiving a STOP control frame (Switch Multilevel Stop).":"2 - Rétablir la position avec la box domotique, un poussoir, une butée ou un bouton « stop »."
                   }
             },
             "14": {
