@@ -677,7 +677,6 @@ def save_node_event(node_id, timestamp, value):
         changes['controller']['excluded'] = {"value":node_id}
     elif value=="added":
         changes['controller']['included'] = {"value":node_id}
-        
     elif value in [0,1,5] and controller_state != value :
         controller_state = value
         changes['controller']['state'] = {"value":value}
