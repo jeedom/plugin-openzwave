@@ -655,7 +655,7 @@ check_config_files()
 
 changes_async = {}
 changes_async['device']={}
-cycle = 1
+cycle = 0.5
 
 def send_changes(changes):
     debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
@@ -707,7 +707,7 @@ send_changes_async()
 
 def save_node_value_event(node_id, timestamp, command_class, index, typeStandard, value, instance):
     global serverId
-    if typeStandard == 'bool' :
+    if typeStandard == 'bool' and False :
         changes = {}
         changes['serverId'] = serverId
         changes['device']={}
