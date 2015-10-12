@@ -677,16 +677,16 @@ def save_node_event(node_id, timestamp, value):
         changes['controller']['excluded'] = {"value":node_id}
     elif value=="added":
         changes['controller']['included'] = {"value":node_id}
-        thread=threading.Thread(target=send_changes, args=(changes,))
-        thread.setDaemon(False)
-        thread.start()
-        return
+        
     elif value in [0,1,5] and controller_state != value :
         controller_state = value
         changes['controller']['state'] = {"value":value}
     else:
         return
-    send_changes(changes)
+    thread=threading.Thread(target=send_changes, args=(changes,))
+    thread.setDaemon(False)
+    thread.start()
+    return
 
 def send_changes_async():
     global changes_async
@@ -714,7 +714,9 @@ def save_node_value_event(node_id, timestamp, command_class, index, typeStandard
         changes['device']={}
         changes['device'][node_id]=[]
         changes['device'][node_id].append({'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp})
-        send_changes(changes)
+        thread=threading.Thread(target=send_changes, args=(changes,))
+        thread.setDaemon(False)
+        thread.start()
     else :
         global changes_async
         changes_async['serverId'] = serverId
@@ -969,7 +971,7 @@ def node_queries_complete(network, node):
     #save config 
     write_config()       
     
-def save_valueAsynchronous(node, value, last_update):
+def save_value(node, value, last_update):
     #debug_print('A node value has been updated. nodeId:%s value:%s' % (node.node_id, value.label))
     if node.node_id in network.nodes :
         myNode = network.nodes[node.node_id]    
@@ -1015,9 +1017,7 @@ def prepare_value_notification(node, value):
     debug_print('send value notification %s %s %s' % (node.node_id, value.label, value.data_as_string))  
     thread = None
     try:
-        thread = threading.Thread(target=save_valueAsynchronous, args=(node, value, time.time()))
-        thread.setDaemon(False)
-        thread.start()
+        save_value(node, value, time.time());
     except Exception as error:
         add_log_entry('value_update %s' % (str(error), ), "error")
         if (thread != None):
