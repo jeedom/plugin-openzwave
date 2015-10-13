@@ -689,10 +689,12 @@ def save_node_event(node_id, timestamp, value):
 
 def send_changes_async():
     global changes_async
+    global serverId
     start_time = datetime.datetime.now()
     changes = changes_async
     changes_async = {}
     if changes.has_key('device') :
+        changes['serverId'] = serverId
         debug_print('Send data async to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
         requests.post(callback+'?apikey='+apikey, json=changes,timeout=(0.5,120),verify=False)
     dt = datetime.datetime.now() - start_time
@@ -706,25 +708,13 @@ def send_changes_async():
 send_changes_async()
 
 def save_node_value_event(node_id, timestamp, command_class, index, typeStandard, value, instance):
-    global serverId
-    if typeStandard == 'bool' and False :
-        changes = {}
-        changes['serverId'] = serverId
-        changes['device']={}
-        changes['device'][node_id]=[]
-        changes['device'][node_id].append({'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp})
-        thread=threading.Thread(target=send_changes, args=(changes,))
-        thread.setDaemon(False)
-        thread.start()
-    else :
-        global changes_async
-        changes_async['serverId'] = serverId
-        if not changes_async.has_key('device') :
-            changes_async['device']={}
-        if not changes_async['device'].has_key(node_id) :
-            changes_async['device'][node_id]={}
-        changes_async['device'][node_id][str(hex(command_class))+str(instance)+str(index)] = {'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp}
-    
+    global changes_async
+    if not changes_async.has_key('device') :
+        changes_async['device']={}
+    if not changes_async['device'].has_key(node_id) :
+        changes_async['device'][node_id]={}
+    changes_async['device'][node_id][str(hex(command_class))+str(instance)+str(index)] = {'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp}
+
 
 def network_started(network):
     add_log_entry("Openzwave network are started with homeId %0.8x." % (network.home_id,))    
