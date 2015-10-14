@@ -45,7 +45,7 @@ class openzwave extends eqLogic {
 		}
 	}
 
-	public static function listServerZwave($_autofix = true) {
+	public static function listServerZwave() {
 		if (self::$_listZwaveServer == null || count(self::$_listZwaveServer) == 0) {
 			self::$_listZwaveServer = array();
 			if (config::byKey('port', 'openzwave', 'none') != 'none' && config::byKey('allowStartDeamon', 'openzwave', 1) == 1) {
@@ -70,7 +70,8 @@ class openzwave extends eqLogic {
 					}
 				}
 			}
-			return self::$_listZwaveServer;
+		}
+		return self::$_listZwaveServer;
 	}
 
 	public static function health() {
@@ -130,7 +131,7 @@ class openzwave extends eqLogic {
 
 	public static function callOpenzwave($_url, $_serverId = 0, $_timeout = null, $_noError = false) {
 		if (self::$_listZwaveServer == null) {
-			self::listServerZwave(false);
+			self::listServerZwave();
 		}
 		if (!isset(self::$_listZwaveServer[$_serverId])) {
 			self::listServerZwave();
