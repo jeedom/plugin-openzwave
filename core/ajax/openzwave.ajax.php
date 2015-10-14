@@ -28,7 +28,7 @@ try {
 		openzwave::updateOpenzwave();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'syncconfOpenzwave') {
 		openzwave::syncconfOpenzwave();
 		ajax::success();
@@ -76,16 +76,6 @@ try {
 			}
 			log::clear('openzwave');
 			openzwave::runDeamon(init('debug', 0));
-		}
-		ajax::success();
-	}
-
-	if (init('action') == 'rewriteNginxAndRestartCron') {
-		openzwave::removeNginxRedirection();
-		openzwave::listServerZwave();
-		$cron = cron::byClassAndFunction('openzwave', 'pull');
-		if (is_object($cron)) {
-			$cron->stop();
 		}
 		ajax::success();
 	}

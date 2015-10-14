@@ -370,28 +370,7 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 	});
 	}
 
-	function openzwave_postSaveConfiguration(){
-		startopenZwaveDemon('local',0);
-		  $.ajax({// fonction permettant de faire de l'ajax
-	        type: "POST", // methode de transmission des données au fichier php
-	        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
-	        data: {
-	        	action: "rewriteNginxAndRestartCron",
-	        },
-	        dataType: 'json',
-	        error: function(request, status, error) {
-	        	handleAjaxError(request, status, error);
-	        },
-	        success: function(data) { // si l'appel a bien fonctionné
-	        if (data.state != 'ok') {
-	        	$('#div_alert').showAlert({message: data.result, level: 'danger'});
-	        	return;
-	        }
-	    }
-	});
-		}
-
-		function openzwave_postSaveSlaveConfiguration(_slave_id){
-			startopenZwaveDemon('remote',_slave_id);
-		}
-	</script>
+	function openzwave_postSaveSlaveConfiguration(_slave_id){
+		startopenZwaveDemon('remote',_slave_id);
+	}
+</script>

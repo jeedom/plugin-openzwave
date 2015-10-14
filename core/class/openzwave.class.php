@@ -54,11 +54,8 @@ class openzwave extends eqLogic {
 					'name' => 'Local',
 					'addr' => '127.0.0.1',
 					'port' => config::byKey('port_server', 'openzwave', 8083),
+					'path' => '/plugins/openzwave/core/php/jeeZwaveProxy.php?server_id=0&request=',
 				);
-				if ($_autofix & config::byKey('urlPath0', 'openzwave') == '') {
-					self::updateNginxRedirection();
-				}
-				self::$_listZwaveServer[0]['path'] = '/' . config::byKey('urlPath0', 'openzwave');
 			}
 			if (config::byKey('jeeNetwork::mode') == 'master') {
 				foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
@@ -68,39 +65,12 @@ class openzwave extends eqLogic {
 							'name' => $jeeNetwork->getName(),
 							'addr' => $jeeNetwork->getRealIp(),
 							'port' => $jeeNetwork->configByKey('port_server', 'openzwave', 8083),
+							'path' => '/plugins/openzwave/core/php/jeeZwaveProxy.php?server_id=' . $jeeNetwork->getId() . '&request=',
 						);
-						if ($_autofix && config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave') == '') {
-							self::updateNginxRedirection();
-						}
-						self::$_listZwaveServer[$jeeNetwork->getId()]['path'] = '/' . config::byKey('urlPath' . $jeeNetwork->getId(), 'openzwave');
 					}
 				}
 			}
-			if ($_autofix && count(self::$_listZwaveServer) > 0) {
-				foreach (self::$_listZwaveServer as $key => $value) {
-					$url = network::getNetworkAccess('internal', 'proto:ip:port') . $value['path'] . '/ZWaveAPI/Run/IsAlive()';
-					$ch = curl_init();
-					curl_setopt_array($ch, array(
-						CURLOPT_URL => $url,
-						CURLOPT_HEADER => false,
-						CURLOPT_RETURNTRANSFER => true,
-					));
-					curl_setopt($ch, CURLOPT_TIMEOUT_MS, 1000);
-					$result = curl_exec($ch);
-					curl_close($ch);
-					if (is_json($result)) {
-						$result = json_decode($result, true);
-					}
-					if (!is_array($result) || $result['result'] != true) {
-						self::removeNginxRedirection();
-						self::updateNginxRedirection();
-						self::$_listZwaveServer = null;
-						self::listServerZwave(false);
-					}
-				}
-			}
-		}
-		return self::$_listZwaveServer;
+			return self::$_listZwaveServer;
 	}
 
 	public static function health() {
@@ -156,39 +126,6 @@ class openzwave extends eqLogic {
 			}
 		}
 		return $return;
-	}
-
-	public static function updateNginxRedirection() {
-		foreach (self::listServerZwave(false) as $zwave) {
-			if (trim($zwave['addr']) == '' || trim($zwave['port']) == '') {
-				continue;
-			}
-			$urlPath = config::byKey('urlPath' . $zwave['id'], 'openzwave');
-			if ($urlPath == '') {
-				$urlPath = 'openzwave_' . $zwave['id'] . '_' . config::genKey(30);
-				config::save('urlPath' . $zwave['id'], $urlPath, 'openzwave');
-			}
-			$rules = array(
-				"location /" . $urlPath . "/ {\n" .
-				"proxy_pass http://" . $zwave['addr'] . ":" . $zwave['port'] . "/;\n" .
-				"proxy_redirect off;\n" .
-				"proxy_set_header Host \$host:\$server_port;\n" .
-				"proxy_set_header X-Real-IP \$remote_addr;\n" .
-				"}",
-			);
-			network::nginx_saveRule($rules);
-		}
-	}
-
-	public static function removeNginxRedirection() {
-		foreach (self::listServerZwave(false) as $zwave) {
-			$urlPath = config::byKey('urlPath' . $zwave['id'], 'openzwave');
-			$rules = array(
-				"location /" . $urlPath . "/ {\n",
-			);
-			network::nginx_removeRule($rules);
-			config::save('urlPath' . $zwave['id'], '', 'openzwave');
-		}
 	}
 
 	public static function callOpenzwave($_url, $_serverId = 0, $_timeout = null, $_noError = false) {

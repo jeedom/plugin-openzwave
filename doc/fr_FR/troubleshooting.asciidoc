@@ -8,11 +8,6 @@ Voir ici : https://wiki.jeedom.fr/index.php?title=OpenZwave#D.C3.A9bogage
 
 ''''
 
-Quand je vais sur la configuration j'ai des erreurs 404 ?::
-Il faut verifier si l'étape visudo de la doc d'installation à bien été faite (valable uniquement en DIY pas sur les images) https://www.jeedom.fr/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom:ici
-
-''''
-
 Quand je vais sur la santé j'ai des erreurs 404 ?::
 Cela arrive sur certaine configuration il faut essayer de désactiver le "direct push" (voir tout au début, la configuration du plugin) et relancer le démon
 
