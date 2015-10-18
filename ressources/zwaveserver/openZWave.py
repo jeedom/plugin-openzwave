@@ -68,7 +68,6 @@ add_log_entry("--> pass")
 
     
 device="auto"
-directPush=1
 log="None"
 #default_poll_interval = 1800000 # 30 minutes
 default_poll_interval = 300000 # 5 minutes
@@ -182,25 +181,24 @@ COMMAND_CLASS_SENSOR_ALARM              = 156 # 0x9C
 
 add_log_entry("validate startup arguments") 
 for arg in sys.argv:
-    if arg.startswith("--device"):
+    if arg.startswith("--device="):
         temp,device = arg.split("=")        
-    elif arg.startswith("--port"):
+    elif arg.startswith("--port="):
         temp,port_server = arg.split("=")
-    elif arg.startswith("--log"):
+    elif arg.startswith("--log="):
         temp,log = arg.split("=")
-    elif arg.startswith("--config"):
-        temp,config = arg.split("=")
+    elif arg.startswith("--config_folder="):
+        temp,config_folder = arg.split("=")
+    elif arg.startswith("--data_folder="):
+        temp,data_folder = arg.split("=")
     elif arg.startswith("--pidfile"):
         temp,pidfile = arg.split("=")
-    elif arg.startswith("--callback"):
+    elif arg.startswith("--callback="):
         temp,callback = arg.split("=")
-    elif arg.startswith("--apikey"):
+    elif arg.startswith("--apikey="):
         temp,apikey = arg.split("=")
-    elif arg.startswith("--serverId"):
+    elif arg.startswith("--serverId="):
         temp,serverId = arg.split("=")
-    elif arg.startswith("--directPush"):
-        temp,directPush = arg.split("=")
-        directPush = int(directPush)
     elif arg.startswith("--help"):
         print("help : ")
         print("  --device=/dev/yourdevice ")
@@ -495,6 +493,7 @@ def start_network():
     network.start()
     
 def cleanup_confing_file(fileName):
+    global data_folder
     add_log_entry('validate configuration file: %s' %(fileName,)) 
     if os.path.isfile(fileName) :
         try:            
@@ -512,7 +511,7 @@ def cleanup_confing_file(fileName):
         except Exception as e:
             add_log_entry(str(e), 'error')
             add_log_entry('Trying to find the most recent valid xml in backups')
-            backupFolder = "/opt/python-openzwave/xml_backups"
+            backupFolder = data_folder+"/xml_backups"
             try:
                 os.stat(backupFolder)
             except:
@@ -528,7 +527,7 @@ def cleanup_confing_file(fileName):
                     try:            
                         tree = etree.parse(os.path.join(backupFolder,candidateBackup))
                         finalFilename=candidateBackup[candidateBackup.find('zwcfg'):]
-                        shutil.copy2(os.path.join(backupFolder,candidateBackup), os.path.join("/opt/python-openzwave",finalFilename))
+                        shutil.copy2(os.path.join(backupFolder,candidateBackup), os.path.join(data_folder,finalFilename))
                         os.chmod(finalFilename, 0777)
                         add_log_entry('Found one valid backup. Using it')
                         foundValidBackup=1
@@ -540,7 +539,8 @@ def cleanup_confing_file(fileName):
                 add_log_entry('No valid backup found. Regenerating')
                      
 def check_config_files():
-    root = "/opt/python-openzwave"
+    global data_folder
+    root = data_folder
     pattern = "zwcfg_"
     alist_filter = ['xml'] 
     path=os.path.join(root,"")
@@ -550,15 +550,16 @@ def check_config_files():
             cleanup_confing_file(os.path.join(root,file))
 
 def backup_xml_config(mode,homeId):
+    global data_folder
     #backup xml config file
     add_log_entry('Backuping xml config file with mode : %s' % (mode))
     #prepare all variables
     dateTimestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
-    xmlToBackup = "/opt/python-openzwave/zwcfg_" + homeId +".xml"
+    xmlToBackup = data_folder+"/zwcfg_" + homeId +".xml"
     if not os.path.isfile(xmlToBackup) :
         add_log_entry('No config file found to backup', "error")
         return format_json_result(False,'No config file found to backup')
-    backupFolder = "/opt/python-openzwave/xml_backups"
+    backupFolder = data_folder+"/xml_backups"
     backupName = dateTimestamp+"_"+mode+"_zwcfg_"+homeId+".xml"
     #check if folder exist (more efficient way)
     try:
@@ -628,7 +629,7 @@ def graceful_stop_network():
     backup_xml_config('stop',homeId)
 
 #Define some manager options
-options = ZWaveOption(device, config_path=config, user_path="/opt/python-openzwave/", cmd_line="")
+options = ZWaveOption(device, config_path=config_folder, user_path=data_folder, cmd_line="")
 options.set_log_file("openzwave.log")
 options.set_append_log_file(False)
 options.set_console_output(False)
@@ -2730,13 +2731,14 @@ def remove_device_openzwave_config(device_id) :
     Remove a device from the openzwave config file and restart network to rediscover again
     """
     #ensure load latest file version
+    global data_folder;
     try:
         network.stop()
         add_log_entry('ZWave network is now stopped')
         time.sleep(5)
     except Exception,e:
         return format_json_result(False, str(e), 'error')    
-    fileName = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
+    fileName = data_folder+"/zwcfg_" + network.home_id_str +".xml"
     try:
         tree = etree.parse(fileName)
         node = tree.find("{http://code.google.com/p/open-zwave/}Node[@id='"+str(device_id)+"']")
@@ -2759,7 +2761,7 @@ def ghost_killer(device_id):
         return build_network_busy_message() 
     add_log_entry('Remove cc 0x84 (wake_up) for a ghost device: %s' %(device_id,)) 
     
-    fileName = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
+    fileName = data_folder+"/zwcfg_" + network.home_id_str +".xml"
     #ensure load latest file version
     try:
         network.stop()
@@ -3113,8 +3115,9 @@ def get_openzwave_logs() :
     """
     Read the openzwave log file
     """ 
+    global data_folder;
     try:
-        stdin,stdout = os.popen2("tail -n 1000 /opt/python-openzwave/openzwave.log")
+        stdin,stdout = os.popen2("tail -n 1000 "+data_folder+"/openzwave.log")
         stdin.close()
         lines = stdout.readlines(); stdout.close()
         return jsonify ({'result' : lines})
@@ -3124,11 +3127,12 @@ def get_openzwave_logs() :
 @app.route('/ZWaveAPI/Run/network.GetZWConfig()',methods = ['GET'])
 def get_openzwave_config() :
     #ensure load latest file version
+    global data_folder
     try:
         write_config()
     except Exception,e:
         return format_json_result(False, str(e), 'error')  
-    fileName = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
+    fileName = data_folder+"/zwcfg_" + network.home_id_str +".xml"
     try:
         with open(fileName, "r") as ins:
             f = ins.read()
@@ -3141,11 +3145,12 @@ def save_openzwave_config() :
     """
     Save the openzwave config file
     """ 
+    global data_folder
     try:
         network.stop()
         add_log_entry('ZWave network is now stopped')
         time.sleep(5)
-        fileName = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
+        fileName = data_folder+"/zwcfg_" + network.home_id_str +".xml"
         with open(fileName, "w") as ins:
             ins.write(request.data)
         start_network()
@@ -3170,6 +3175,7 @@ def remove_unknowns_devices_openzwave_config() :
     Remove unknowns devices from the openzwave config file
     """ 
     #ensure load latest file version
+    global data_folder
     try:
         network.stop()
         add_log_entry('ZWave network is now stopped')
@@ -3177,7 +3183,7 @@ def remove_unknowns_devices_openzwave_config() :
     except Exception,e:
         return format_json_result(False, str(e), 'error')
     
-    fileName = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
+    fileName = data_folder+"/zwcfg_" + network.home_id_str +".xml"
     try:
         tree = etree.parse(fileName)
         nodes = tree.findall(".//{http://code.google.com/p/open-zwave/}Product")
@@ -3231,10 +3237,11 @@ def get_openzwave_backups():
     """
     Return the list of all available backups
     """
+    global data_folder
     debug_print("List all backups")
     result = {}
     backupList = []
-    backupFolder = "/opt/python-openzwave/xml_backups"
+    backupFolder = data_folder+"/xml_backups"
     try:
         os.stat(backupFolder)
     except:
@@ -3254,14 +3261,15 @@ def restore_openzwave_backups(backup_name):
     """
     Manually restore a backup
     """
+    global data_folder
     add_log_entry('Restoring backup ' + backup_name)
-    backupFolder = "/opt/python-openzwave/xml_backups"
+    backupFolder = data_folder+"/xml_backups"
     try:
         os.stat(backupFolder)
     except:
         os.mkdir(backupFolder)
     backupFile = os.path.join(backupFolder,backup_name)
-    targetFile = "/opt/python-openzwave/zwcfg_" + network.home_id_str +".xml"
+    targetFile = data_folder+"/zwcfg_" + network.home_id_str +".xml"
     if not os.path.isfile(backupFile) :
         add_log_entry('No config file found to backup', "error")
         return format_json_result(False, 'No config file found with name ' + backup_name)
@@ -3293,8 +3301,9 @@ def manually_delete_backup(backup_name):
     """
     Manually delete a backup
     """
+    global data_folder
     add_log_entry('Manually deleting a backup')
-    backupFolder = "/opt/python-openzwave/xml_backups"
+    backupFolder = data_folder+"/xml_backups"
     backupFile = os.path.join(backupFolder,backup_name)
     if not os.path.isfile(backupFile) :
         add_log_entry('No config file found to delete', "error")

@@ -21,4 +21,4 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-echo json_encode(openzwave::callOpenzwave(init('request'), init('server_id')));
+echo json_encode(openzwave::callOpenzwave(str_replace('//', '/', init('request')), init('server_id')));
