@@ -474,7 +474,6 @@ class openzwave extends eqLogic {
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
 		$openzwave_path = realpath(dirname(__FILE__) . '/../../ressources/zwaveserver');
 		$config_path = realpath(dirname(__FILE__) . '/../../ressources/openzwave/config');
-		$log_path = realpath(dirname(__FILE__) . '/../../../../log');
 		$data_path = realpath(dirname(__FILE__) . '/../../data');
 		if (!file_exists($data_path)) {
 			mkdir($data_path);
@@ -489,7 +488,6 @@ class openzwave extends eqLogic {
 		$cmd .= ' --port=' . $port_server;
 		$cmd .= ' --config_folder=' . $config_path;
 		$cmd .= ' --data_folder=' . $data_path;
-		$cmd .= ' --log_folder=' . $log_path;
 		$cmd .= ' --callback=' . $callback;
 		$cmd .= ' --apikey=' . $apikey;
 		$cmd .= ' --serverId=' . $serverId;
