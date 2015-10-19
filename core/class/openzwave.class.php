@@ -465,13 +465,11 @@ class openzwave extends eqLogic {
 			$apikey = config::byKey('api');
 		}
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
-		$openzwave_path = realpath(dirname(__FILE__) . '/../../ressources/zwaveserver');
-		$config_path = realpath(dirname(__FILE__) . '/../../ressources/openzwave/config');
-		$data_path = realpath(dirname(__FILE__) . '/../../data');
+		$openzwave_path = dirname(__FILE__) . '/../../ressources/zwaveserver';
+		$config_path = dirname(__FILE__) . '/../../ressources/openzwave/config';
+		$data_path = dirname(__FILE__) . '/../../data';
 		if (!file_exists($data_path)) {
-			mkdir($data_path);
-			chown($data_path, 'www-data');
-			chmod($data_path, 0775);
+			exec('mkdir ' . $data_path . ' && chmod 775 -R ' . $data_path . ' && chown -R www-data:www-data ' . $data_path);
 		}
 		$log = ($_debug) ? 'Debug' : 'Info';
 		$cmd = '/usr/bin/python ' . $openzwave_path . '/openZWave.py ';
