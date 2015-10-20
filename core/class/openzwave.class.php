@@ -139,7 +139,7 @@ class openzwave extends eqLogic {
 		if (!isset(self::$_listZwaveServer[$_serverId])) {
 			return '';
 		}
-		$url = 'http://' . self::$_listZwaveServer[$_serverId]['addr'] . ':' . self::$_listZwaveServer[$_serverId]['port'] . $_url;
+		$url = 'http://' . self::$_listZwaveServer[$_serverId]['addr'] . ':' . self::$_listZwaveServer[$_serverId]['port'] . str_replace(' ', '%20',$_url);
 		$ch = curl_init();
 		curl_setopt_array($ch, array(
 			CURLOPT_URL => $url,
