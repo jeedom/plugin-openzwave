@@ -658,53 +658,33 @@ changes_async = {}
 changes_async['device']={}
 cycle = 0.5
 
-def send_changes(changes):
-    debug_print('Send data to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
-    try:
-        r = requests.post(callback+'?apikey='+apikey, json=changes,timeout=(0.5,30),verify=False)
-        if r.status_code != requests.codes.ok :
-            add_log_entry('Error on send request to jeedom, return code %s' % (str(r.status_code),), "error")
-    except Exception as error:
-        add_log_entry('Error on send request to jeedom %s' % (str(error),), "error")
-   
-
-def save_node_event(node_id, timestamp, value):
-    global serverId
-    global controller_state
-    changes = {}   
-    changes['controller']={}
-    changes['serverId'] = serverId
-    if value=="removed":
-        changes['controller']['excluded'] = {"value":node_id}
-    elif value=="added":
-        changes['controller']['included'] = {"value":node_id}
-    elif value in [0,1,5] and controller_state != value :
-        controller_state = value
-        changes['controller']['state'] = {"value":value}
-    else:
-        return
-    thread=threading.Thread(target=send_changes, args=(changes,))
-    thread.setDaemon(False)
-    thread.start()
-    return
-
 def send_changes_async():
     global changes_async
     global serverId
-    start_time = datetime.datetime.now()
-    changes = changes_async
-    changes_async = {}
-    if changes.has_key('device') :
-        changes['serverId'] = serverId
-        debug_print('Send data async to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
-        requests.post(callback+'?apikey='+apikey, json=changes,timeout=(0.5,120),verify=False)
-    dt = datetime.datetime.now() - start_time
-    ms = (dt.days * 24 * 60 * 60 + dt.seconds) * 1000 + dt.microseconds / 1000.0
-    timer_duration = cycle - ms
-    if(timer_duration < 0.1):
-        timer_duration = 0.1
-    resend_changes = threading.Timer(timer_duration, send_changes_async)
-    resend_changes.start() 
+    try:
+        start_time = datetime.datetime.now()
+        changes = changes_async
+        changes_async = {}
+        if changes.has_key('device') or changes.has_key('controller') :
+            changes['serverId'] = serverId
+            debug_print('Send data async to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
+            try:
+                r = requests.post(callback+'?apikey='+apikey, json=changes,timeout=(0.5,120),verify=False)
+                if r.status_code != requests.codes.ok :
+                    add_log_entry('Error on send request to jeedom, return code %s' % (str(r.status_code),), "error")
+            except Exception as error:
+                add_log_entry('Error on send request to jeedom %s' % (str(error),), "error")
+        dt = datetime.datetime.now() - start_time
+        ms = (dt.days * 24 * 60 * 60 + dt.seconds) * 1000 + dt.microseconds / 1000.0
+        timer_duration = cycle - ms
+        if(timer_duration < 0.1):
+            timer_duration = 0.1
+        resend_changes = threading.Timer(timer_duration, send_changes_async)
+        resend_changes.start() 
+    except Exception as error:
+        add_log_entry('Critical error on  send_changes_async %s' % (str(error),), "error")
+        resend_changes = threading.Timer(cycle, send_changes_async)
+        resend_changes.start() 
 
 send_changes_async()
 
@@ -716,6 +696,23 @@ def save_node_value_event(node_id, timestamp, command_class, index, typeStandard
         changes_async['device'][node_id]={}
     changes_async['device'][node_id][str(hex(command_class))+str(instance)+str(index)] = {'node_id':node_id,'instance':instance, 'CommandClass':hex(command_class), 'index':index,'value':value,'type':typeStandard,'updateTime' : timestamp}
 
+def save_node_event(node_id, timestamp, value):
+    global controller_state
+    global changes_async
+    if value=="removed":
+        if not changes_async.has_key('controller') :
+            changes_async['controller']={}
+        changes_async['controller']['excluded'] = {"value":node_id}
+    elif value=="added":
+        if not changes_async.has_key('controller') :
+            changes_async['controller']={}
+        changes_async['controller']['included'] = {"value":node_id}
+    elif value in [0,1,5] and controller_state != value :
+        if not changes_async.has_key('controller') :
+            changes_async['controller']={}
+        controller_state = value
+        changes_async['controller']['state'] = {"value":value}
+    return
 
 def network_started(network):
     add_log_entry("Openzwave network are started with homeId %0.8x." % (network.home_id,))    
