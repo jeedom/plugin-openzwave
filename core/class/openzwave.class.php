@@ -471,7 +471,7 @@ class openzwave extends eqLogic {
 		if (!file_exists($data_path)) {
 			exec('mkdir ' . $data_path . ' && chmod 775 -R ' . $data_path . ' && chown -R www-data:www-data ' . $data_path);
 		}
-		$log = ($_debug) ? 'Debug' : 'Info';
+		$log = ($_debug) ? 'Debug' : 'Error';
 		$cmd = '/usr/bin/python ' . $openzwave_path . '/openZWave.py ';
 		$cmd .= ' --pidfile=/tmp/openzwave.pid';
 		$cmd .= ' --device=' . $port;

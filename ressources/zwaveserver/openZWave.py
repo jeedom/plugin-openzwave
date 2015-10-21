@@ -11,7 +11,13 @@ You should have received a copy of the GNU General Public License along with Plu
 import sys, os
 import time
 
+log = 'Debug'
+
 def add_log_entry(message, level="info"):
+    if log == 'Error' and  level != 'error' :
+        return
+    if log == 'Info' and  level != 'debug' :
+        return
     print('%s | %s | %s' % (time.strftime('%d-%m-%Y %H:%M:%S',time.localtime()), level, message.encode('utf8'),)) 
 
 add_log_entry("Check flask dependances")
@@ -232,8 +238,7 @@ def find_tty_usb(idVendor, idProduct):
     return None
     
 def debug_print(message):
-    if log == 'Debug':
-        add_log_entry(message, 'debug')
+    add_log_entry(message, 'debug')
 
 add_log_entry("check if port is available")     
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
