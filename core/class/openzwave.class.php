@@ -54,7 +54,7 @@ class openzwave extends eqLogic {
 					'name' => 'Local',
 					'addr' => '127.0.0.1',
 					'port' => config::byKey('port_server', 'openzwave', 8083),
-					'path' => config::byKey('internalComplement', 'core', '') . '/plugins/openzwave/core/php/jeeZwaveProxy.php?server_id=0&request=',
+					'path' => 'plugins/openzwave/core/php/jeeZwaveProxy.php?server_id=0&request=',
 				);
 			}
 			if (config::byKey('jeeNetwork::mode') == 'master') {
@@ -65,7 +65,7 @@ class openzwave extends eqLogic {
 							'name' => $jeeNetwork->getName(),
 							'addr' => $jeeNetwork->getRealIp(),
 							'port' => $jeeNetwork->configByKey('port_server', 'openzwave', 8083),
-							'path' => $jeeNetwork->configByKey('internalComplement', 'core', '') . '/plugins/openzwave/core/php/jeeZwaveProxy.php?server_id=' . $jeeNetwork->getId() . '&request=',
+							'path' => 'plugins/openzwave/core/php/jeeZwaveProxy.php?server_id=' . $jeeNetwork->getId() . '&request=',
 						);
 					}
 				}
