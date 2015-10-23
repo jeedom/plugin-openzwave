@@ -20,6 +20,10 @@ if (!isConnect('admin')) {
 ?>
 <div id='div_updateOpenzwaveAlert' style="display: none;"></div>
 <div class="alert alert-warning">{{Attention la mise à jour peut être longue (20 min)}}</div>
+
+<a class="btn btn-warning pull-right" data-state="1" id="bt_openzwaveLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
+<input class="form-control pull-right" id="in_openzwaveLogSearch" style="width : 300px;" placeholder="{{Rechercher}}" />
+<br/><br/><br/>
 <pre id='pre_openzwaveupdate' style='overflow: auto; height: 90%;with:90%;'></pre>
 
 
@@ -36,51 +40,11 @@ if (!isConnect('admin')) {
 			handleAjaxError(request, status, error, $('#div_updateOpenzwaveAlert'));
 		},
 		success: function () {
-			getOpenzwaveLog(1);
+			jeedom.log.autoupdate({
+               display : $('#pre_openzwaveupdate'),
+               search : $('#in_openzwaveLogSearch'),
+               control : $('#bt_openzwaveLogStopStart'),
+           });
 		}
 	});
-	function getOpenzwaveLog(_autoUpdate) {
-		$.ajax({
-			type: 'POST',
-			url: 'core/ajax/log.ajax.php',
-			data: {
-				action: 'get',
-				logfile: 'openzwave_update',
-			},
-			dataType: 'json',
-			global: false,
-			error: function (request, status, error) {
-				setTimeout(function () {
-					getJeedomLog(_autoUpdate, _log)
-				}, 1000);
-			},
-			success: function (data) {
-				if (data.state != 'ok') {
-					$('#div_alert').showAlert({message: data.result, level: 'danger'});
-					return;
-				}
-				var log = '';
-				var regex = /<br\s*[\/]?>/gi;
-				for (var i in data.result.reverse()) {
-					log += data.result[i][2].replace(regex, "\n");
-					if(log.search("Everything is successfully installed") > 0){
-						$('#bt_stopopenZwaveDemon').click();
-						_autoUpdate=0;
-						clearTimeout(t);
-					}
-				}
-				$('#pre_openzwaveupdate').text(log);
-
-				$('#pre_openzwaveupdate').scrollTop($('#pre_openzwaveupdate').height() + 200000);
-				if (!$('#pre_openzwaveupdate').is(':visible')) {
-					_autoUpdate = 0;
-				}
-				if (init(_autoUpdate, 0) == 1) {
-					t = setTimeout(function () {
-						getOpenzwaveLog(_autoUpdate)
-					}, 1000);
-				}
-			}
-		});
-	}
 </script>
