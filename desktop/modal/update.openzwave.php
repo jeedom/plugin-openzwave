@@ -41,6 +41,7 @@ if (!isConnect('admin')) {
 		},
 		success: function () {
 			jeedom.log.autoupdate({
+               log : 'openzwave_update',
                display : $('#pre_openzwaveupdate'),
                search : $('#in_openzwaveLogSearch'),
                control : $('#bt_openzwaveLogStopStart'),
