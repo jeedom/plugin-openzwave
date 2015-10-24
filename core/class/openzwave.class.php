@@ -581,6 +581,9 @@ class openzwave extends eqLogic {
 				}
 			}
 		}
+		if (isset($device['battery_type'])) {
+			$this->setConfiguration('battery_type', $device['battery_type']);
+		}
 		nodejs::pushUpdate('jeedom::alert', array(
 			'level' => 'warning',
 			'message' => __('Création des commandes à partir d\'une configuration', __FILE__),
