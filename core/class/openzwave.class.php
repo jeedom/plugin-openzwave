@@ -349,7 +349,6 @@ class openzwave extends eqLogic {
 							if ($value['updateTime'] !== null) {
 								$batteryStatusDate = date('Y-m-d H:i:s', $value['updateTime']);
 							}
-							$eqLogic->batteryStatus($value['value'], $batteryStatusDate);
 							if (is_file(dirname(__FILE__) . '/../config/devices/' . $eqLogic->getConfFilePath())) {
 								$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $eqLogic->getConfFilePath());
 								if (is_json($content)) {
@@ -359,7 +358,7 @@ class openzwave extends eqLogic {
 									}
 								}
 							}
-							$eqLogic->save();
+							$eqLogic->batteryStatus($value['value'], $batteryStatusDate);
 						}
 					}
 				} catch (Exception $e) {
