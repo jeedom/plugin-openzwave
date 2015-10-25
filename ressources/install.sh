@@ -68,7 +68,7 @@ pip_install louie
 pip_install flask
 pip_install flask-restful
 
-if [  -z "$1" -a $(uname -a | grep cubox | wc -l ) -eq 1 -a ${ARCH} = "armv7l" ]; then
+if [  -z "$1" -a  $(uname -a | grep -E 'cubox|jeedom' | wc -l ) -eq 1  -a ${ARCH} = "armv7l" ]; then
   echo "Armv7/Jeedomboard installation direct"
   sudo cp /opt/python-openzwave/zwcfg* /opt
   sudo cp -r /opt/python-openzwave/xml_backups /opt
