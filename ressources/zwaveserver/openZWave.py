@@ -232,7 +232,7 @@ def find_tty_usb(idVendor, idProduct):
             continue
         for subdir in os.listdir(dn):
             if subdir.startswith(dnbase+':'):
-                for subsubdir in os.listdir(join(dn, subdir)):
+                for subsubdir in os.listdir(str.join(dn, subdir)):
                     if subsubdir.startswith('ttyUSB'):
                         return str.join('/dev', subsubdir)
     return None
@@ -1096,9 +1096,9 @@ def node_notification(args):
         myNode = network.nodes[device_id]
         #mark as updated
         myNode.last_update=time.time()
-        #try auto remove not upported nodes  
+        #try auto remove unsupported nodes
         if device_id in not_supported_nodes and network.state >= 7:   # STATE_AWAKED
-            debug_print('remove fake nodeId: %s' % (node.node_id)) 
+            debug_print('remove fake nodeId: %s' % (device_id))
             network.manager.removeFailedNode(network.home_id, device_id)
             return
         
@@ -1111,7 +1111,7 @@ def node_notification(args):
         if code == 3: 
             #get the device Wake-up Interval Step
             my_value =  get_value_by_label(device_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval Step', False)
-            if my_value != None:
+            if my_value is not None:
                 #add 2 seconds at device Wake-up Interval Step
                 wakeup_interval_step = my_value.data + 2.0   
             else:
@@ -2388,23 +2388,11 @@ def set_value6(device_id, instance_id, cc_id, value) :
                 return format_json_result(add_assoc(device_id, group, nodeTarget))
             except ValueError:
                 debug_print('Node not Ready for associations')
-                return format_json_result(False,'Node not Ready for associations')       
-        for val in network.nodes[device_id].get_switches() :
-            if network.nodes[device_id].values[val].instance - 1 == instance_id and hex(network.nodes[device_id].values[val].command_class)==cc_id:
-                Value['data'] = {}
-                Value['data'][val] = {'val':network.nodes[device_id].set_switch(val, value)}
-                return format_json_result() 
-        for val in network.nodes[device_id].get_dimmers() :
-            if network.nodes[device_id].values[val].instance - 1 == instance_id and hex(network.nodes[device_id].values[val].command_class)==cc_id:
-                Value['data'] = {}
-                Value['data'][val] = {'val':network.nodes[device_id].set_dimmer(val, value)}
-                return format_json_result() 
+                return format_json_result(False,'Node not Ready for associations')
         for val in network.nodes[device_id].get_values(class_id=int(cc_id,16), genre='All', type='All', readonly='All', writeonly='All') :
             if network.nodes[device_id].values[val].instance - 1 == instance_id:
-                Value['data'] = {}
                 network.nodes[device_id].values[val].data=value
-                Value['data'][val] = {'val': value}
-                return format_json_result()  
+                return format_json_result()
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')
     return format_json_result(False,'value not found')
