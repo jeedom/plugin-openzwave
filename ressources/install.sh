@@ -70,21 +70,13 @@ pip_install flask-restful
 
 if [  -z "$1" -a  $(uname -a | grep -E 'cubox|jeedom' | wc -l ) -eq 1  -a ${ARCH} = "armv7l" ]; then
   echo "Armv7/Jeedomboard installation direct"
-  sudo cp /opt/python-openzwave/zwcfg* /opt
-  sudo cp -r /opt/python-openzwave/xml_backups /opt
   sudo rm -fr /opt/python-openzwave
   sudo mkdir -p /opt/python-openzwave
   cp -R ${BASEDIR}/python-openzwave/armv7/*  /usr/local/lib/python2.*/dist-packages
   sudo cp /opt/zwcfg* /opt/python-openzwave
-  sudo cp -r /opt/xml_backups /opt/python-openzwave
-  sudo rm -fr /opt/xml_backups
-  sudo rm -f /opt/zwcfg*
 else
   sudo mkdir /opt
   if [ -d /opt/python-openzwave ]; then
-    echo "Sauvegarde du fichier de conf";
-    sudo cp /opt/python-openzwave/zwcfg* /opt
-    sudo cp -r /opt/python-openzwave/xml_backups /opt
     cd /opt/python-openzwave
     echo "Désinstallation de la version précédente";
     sudo make uninstall > /dev/null 2>&1
@@ -119,10 +111,6 @@ else
   sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
   sudo make install-api
   sudo mkdir /opt/python-openzwave/python-eggs
-  sudo cp /opt/zwcfg* /opt/python-openzwave/.
-  sudo cp -r /opt/xml_backups /opt/python-openzwave
-  sudo rm -fr /opt/xml_backups
-  sudo rm -f /opt/zwcfg*
 fi
 
 sudo chown -R www-data:www-data /opt/python-openzwave

@@ -17,6 +17,13 @@
  */
 
 function openzwave_update() {
+	if (!file_exists(dirname(__FILE__) . '/../data')) {
+		mkdir(dirname(__FILE__) . '/../data');
+	}
+	shell_exec('cp -R /opt/python-openzwave/xml_backups ' . dirname(__FILE__) . '/../data');
+	shell_exec('cp -R /opt/python-openzwave/zwcfg_*.xml ' . dirname(__FILE__) . '/../data');
+	shell_exec('rm -rf /opt/python-openzwave/xml_backups');
+	shell_exec('rm -rf /opt/python-openzwave/zwcfg_*.xml');
 	config::save('allowStartDeamon', 0, 'openzwave');
 	echo 'Stop zwave network...';
 	openzwave::stop();
