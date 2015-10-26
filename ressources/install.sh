@@ -9,8 +9,8 @@ echo "Lancement de l'installation/mise à jour des dépendances openzwave"
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ARCH=`uname -m`
-PYTHON_OPENZWAVE_VERSION=248ab7e2161229943daee3b9e533695c5e360861
-OPENZWAVE_VERSION=b0edcf768ce2da1ab599cf1a8705dbb8630a3992
+PYTHON_OPENZWAVE_VERSION=2cfca6369006b02a9594e8537208dd8fa735b185
+OPENZWAVE_VERSION=b258e9e245631e106516e66f4c416ce9d85900f3
 
 function apt_install {
   sudo apt-get -y install "$@"
@@ -55,7 +55,7 @@ sudo apt-get clean
 sudo apt-get update
 
 echo "Installation des dependances"
-apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml unzip
+apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml unzip libjpeg8-dev
 
 # Python
 echo "Installation des dependances Python"
@@ -68,10 +68,12 @@ pip_install louie
 pip_install flask
 pip_install flask-restful
 
-if [  -z "$1" -a  $(uname -a | grep -E 'cubox|jeedom' | wc -l ) -eq 1  -a ${ARCH} = "armv7l" ]; then
+if [  -z "$1" -a  $(uname -a | grep 'cubox' | wc -l ) -eq 1  -a ${ARCH} = "armv7l" ]; then
   echo "Armv7/Jeedomboard installation direct"
   sudo rm -fr /opt/python-openzwave
   sudo mkdir -p /opt/python-openzwave
+  sudo rm -fr /usr/local/lib/python2.7/dist-packages/libopenzwave*
+  sudo rm -fr /usr/local/lib/python2.7/dist-packages/openzwave* 
   cp -R ${BASEDIR}/python-openzwave/armv7/*  /usr/local/lib/python2.*/dist-packages
   sudo cp /opt/zwcfg* /opt/python-openzwave
 else
@@ -81,7 +83,6 @@ else
     echo "Désinstallation de la version précédente";
     sudo make uninstall > /dev/null 2>&1
     sudo rm -fr /usr/local/lib/python2.7/dist-packages/libopenzwave*
-    sudo rm -fr /usr/local/lib/python2.7/dist-packages/python_openzwave_*
     sudo rm -fr /usr/local/lib/python2.7/dist-packages/openzwave* 
     cd /opt
     sudo rm -fr /opt/python-openzwave
