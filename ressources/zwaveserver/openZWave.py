@@ -900,8 +900,8 @@ def normalize_short_value(value):
    
 def extract_data(value, displayRaw = False):
     if value.type == "Bool":
-        return value.data
-    elif value.units == "F":
+        return value.data    
+    elif value.label == 'Temperature' and value.units == 'F':
         return int(((float(value.data_as_string) - 32) * 5.0 / 9.0) * 100) / 100.0
     elif value.type == "Raw":
         result = binascii.b2a_hex(value.data)
@@ -1416,6 +1416,10 @@ def serialize_node_to_json(device_id):
                 value2 = normalize_short_value(myValue.data)
             else:
                 value2 = extract_data(myValue)
+            if myValue.label == 'Temperature' and myValue.units == 'F':
+                value_units = 'C'
+            else:
+                value_units = myValue.units
             instance2 = change_instance(myValue)            
             if myValue.index :
                 index2 = myValue.index
@@ -1446,7 +1450,7 @@ def serialize_node_to_json(device_id):
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['last']={"value":value2,"type":"int","updateTime":timestamp}
                 if myValue.command_class in [COMMAND_CLASS_WAKE_UP] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interval']={"value":value2,"type":"int","updateTime":timestamp}
-                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] = {"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":myValue.units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity, "pendingState":pendingState}
+                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] = {"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":value_units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity, "pendingState":pendingState}
                 
             elif myValue.command_class not in tmpNode['instances'][instance2]['commandClasses']:
                 tmpNode['instances'][instance2]['commandClasses'][myValue.command_class] = {"updateTime":timestamp}
@@ -1459,7 +1463,7 @@ def serialize_node_to_json(device_id):
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['last']={"value":value2,"type":"int","updateTime":timestamp}
                 if myValue.command_class in [COMMAND_CLASS_WAKE_UP] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interval']={"value":value2,"type":"int","updateTime":timestamp}
-                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] ={"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":myValue.units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity, "pendingState":pendingState}
+                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] ={"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":value_units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity, "pendingState":pendingState}
                 
             elif index2 not in tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'] :
                 if myValue.command_class in [128] :
@@ -1467,7 +1471,7 @@ def serialize_node_to_json(device_id):
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['last']={"value":value2,"type":"int","updateTime":timestamp}
                 if myValue.command_class in [COMMAND_CLASS_WAKE_UP] :
                     tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data']['interval']={"value":value2,"type":"int","updateTime":timestamp}
-                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] ={"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":myValue.units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity, "pendingState":pendingState}
+                tmpNode['instances'][instance2]['commandClasses'][myValue.command_class]['data'][index2] ={"val": value2, "name": myValue.label, "help": myValue.help,"type":typeStandard,"typeZW":myValue.type,"units":value_units,"data_items":data_items,"read_only":myValue.is_read_only,"write_only":myValue.is_write_only,"updateTime":timestamp, "genre":myValue.genre, "value_id": myValue.value_id, "poll_intensity":myValue.poll_intensity, "pendingState":pendingState}
                 
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
