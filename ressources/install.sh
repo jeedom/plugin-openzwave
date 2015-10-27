@@ -55,7 +55,7 @@ sudo apt-get clean
 sudo apt-get update
 
 echo "Installation des dependances"
-apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml unzip libjpeg8-dev
+apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml unzip
 
 # Python
 echo "Installation des dependances Python"
