@@ -1510,11 +1510,10 @@ def serialize_node_health(device_id):
         battery_level_data = None
         battery_level_last_update = None
         try:            
-            if myNode.get_battery_level() != None:
-                battery_level = get_value_by_index(device_id, COMMAND_CLASS_BATTERY, 1, 0)
-                if battery_level is not None:
-                    battery_level_data = battery_level.data
-                    battery_level_last_update = battery_level.last_update            
+            battery_level = get_value_by_index(device_id, COMMAND_CLASS_BATTERY, 1, 0, False)
+            if battery_level is not None:
+                battery_level_data = battery_level.data
+                battery_level_last_update = battery_level.last_update            
         except RuntimeError:
             pass
         tmpNode['data']['battery_level'] = {'value': battery_level_data, 'updateTime': battery_level_last_update}        
