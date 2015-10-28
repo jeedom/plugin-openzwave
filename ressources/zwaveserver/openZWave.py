@@ -1501,14 +1501,23 @@ def serialize_node_health(device_id):
         tmpNode['data']['type'] = {'basic' : myNode.basic,'generic': myNode.generic}
         tmpNode['data']['state'] = {'value' : myNode.query_stage, 'index' : query_stage_index}
         tmpNode['data']['isAwake'] = {'value' : myNode.is_awake}
-        tmpNode['data']['isReady'] = {'value' : myNode.is_ready}        
-        tmpNode['data']['can_wake_up'] = {'value' : myNode.can_wake_up()}        
-        if myNode.get_battery_level() != None:
-            battery_level = get_value_by_index(device_id, COMMAND_CLASS_BATTERY, 1, 0)
-            tmpNode['data']['battery_level'] = {'value' : battery_level.data, 'updateTime': battery_level.last_update}
-        else:
-            tmpNode['data']['battery_level'] = {'value' : None, 'updateTime':None}
-        
+        tmpNode['data']['isReady'] = {'value' : myNode.is_ready}              
+        try:            
+            can_wake_up = myNode.can_wake_up()  
+        except RuntimeError:
+            can_wake_up = False               
+        tmpNode['data']['can_wake_up'] = {'value' : can_wake_up}  
+        battery_level_data = None
+        battery_level_last_update = None
+        try:            
+            if myNode.get_battery_level() != None:
+                battery_level = get_value_by_index(device_id, COMMAND_CLASS_BATTERY, 1, 0)
+                if battery_level is not None:
+                    battery_level_data = battery_level.data
+                    battery_level_last_update = battery_level.last_update            
+        except RuntimeError:
+            pass
+        tmpNode['data']['battery_level'] = {'value': battery_level_data, 'updateTime': battery_level_last_update}        
         next_wakeup = None
         if hasattr(myNode, 'last_notification') : 
             notification = myNode.last_notification
