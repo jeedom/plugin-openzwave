@@ -16,7 +16,7 @@ log = 'Debug'
 def add_log_entry(message, level="info"):
     if log == 'Error' and  level != 'error' :
         return
-    if log == 'Info' and  level != 'debug' :
+    if log == 'Info' and  level == 'debug' :
         return
     print('%s | %s | %s' % (time.strftime('%d-%m-%Y %H:%M:%S',time.localtime()), level, message.encode('utf8'),)) 
 
