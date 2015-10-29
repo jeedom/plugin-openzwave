@@ -208,7 +208,7 @@ for arg in sys.argv:
     elif arg.startswith("--help"):
         print("help : ")
         print("  --device=/dev/yourdevice ")
-        print("  --log=Info|Debug")
+        print("  --log=Info|Debug|Error")
 add_log_entry("--> pass")  
 
 def find_tty_usb(idVendor, idProduct):
