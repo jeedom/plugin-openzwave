@@ -15,7 +15,6 @@ OPENZWAVE_VERSION=b258e9e245631e106516e66f4c416ce9d85900f3
 function apt_install {
   sudo apt-get -y install "$@"
   if [ $? -ne 0 ]; then
-    sudo service jeedom start
     echo "could not install $1 - abort"
     exit 1
   fi
@@ -24,13 +23,10 @@ function apt_install {
 function pip_install {
   sudo pip install "$@"
   if [ $? -ne 0 ]; then
-    sudo service jeedom start
     echo "could not install $p - abort"
     exit 1
   fi
 }
-
-sudo service jeedom stop
 
 if [ $(ps ax | grep z-way-server | grep -v grep | wc -l ) -ne 0 ]; then
   echo "Désactivation du z-way-server"
@@ -135,5 +131,4 @@ if [ $(grep 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200"
   sudo echo 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200", SYMLINK+="ttyUSB21"' >> /tmp/udev
   sudo mv /tmp/udev /etc/udev/rules.d/98-usb-serial.rules
 fi
-sudo service jeedom start
 echo "Everything is successfully installed!"
