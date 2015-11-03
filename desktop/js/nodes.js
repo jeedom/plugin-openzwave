@@ -264,8 +264,9 @@ $('#valuesModal').off('show.bs.modal').on('show.bs.modal', function (e) {
 $("body").off("click",".forceRefresh").on("click",".forceRefresh",function (e) {
 	var index = $(this).attr('data-valueidx');
 	var cc = $(this).attr('data-valuecc');
+	var instance = $(this).attr('data-valueinstance');
 	$.ajax({ 
-		url: path+"/ZWaveAPI/Run/devices["+app_nodes.selected_node+"].instances["+index+"].commandClasses["+cc+"].Get()", 
+		url: path+"/ZWaveAPI/Run/devices["+app_nodes.selected_node+"].instances["+instance+"].commandClasses["+cc+"].data["+index+"].Refresh()", 
 		dataType: 'json',
 		async: true, 
 		error: function (request, status, error) {

@@ -2233,6 +2233,18 @@ def get_value6(device_id, instance_id, index,cc_id) :
     else:
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(Value) 
+
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<int:cc_id>].data[<int:index>].Refresh()',methods = ['GET'])
+def refresh_one_value(device_id, instance_id, index, cc_id) :    
+    debug_print("refresh_one_value nodeId:%s instance:%s commandClasses:%s index:%s" % (device_id, instance_id, cc_id, index))
+    if device_id in network.nodes :
+        for val in network.nodes[device_id].get_values(class_id=cc_id) :
+            if network.nodes[device_id].values[val].instance - 1 == instance_id and network.nodes[device_id].values[val].index == index:
+                network.nodes[device_id].values[val].refresh()
+                return format_json_result()
+        return format_json_result(False, 'This device does not contain the specified value', 'warning')
+    else:
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (device_id,), 'warning')                
         
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[0x63].data[<int:index>].code',methods = ['GET'])
 def get_user_code(device_id, instance_id, index) :
