@@ -17,6 +17,7 @@
  */
 
 function openzwave_update() {
+	log::add('openzwave', 'error', __('Après toute installation/mise à jour pensez bien à mettre à jour les dépendances Openzwave (voir documentation)', __FILE__));
 	if (!file_exists(dirname(__FILE__) . '/../data')) {
 		mkdir(dirname(__FILE__) . '/../data');
 	}

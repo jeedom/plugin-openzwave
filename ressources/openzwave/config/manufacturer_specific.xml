@@ -413,9 +413,6 @@
 	<Manufacturer id="0090" name="Kwikset">
 		<Product type="0001" id="0001" name="Touchpad Electronic Deadbolt"/>
 	</Manufacturer>
-	<Manufacturer id="0019b" name="Thermo-Floor AS">
-		<Product type="0001" id="0001" name="Heatit Thermostat"/>
-	</Manufacturer>	
 	<Manufacturer id="0051" name="Lagotek Corp">
 	</Manufacturer>
 	<Manufacturer id="001d" name="Leviton">
@@ -637,6 +634,9 @@
 	</Manufacturer>
 	<Manufacturer id="010c" name="There">
 		<Product type="0001" id="0001" name="ThereGate"/>
+	</Manufacturer>
+	<Manufacturer id="0019b" name="Thermo-Floor AS">
+		<Product type="0001" id="0001" name="Heatit Thermostat"/>
 	</Manufacturer>
 	<Manufacturer id="008b" name="Trane">
 		<Product type="5452" id="5431" name="Model TZEMT400AB32MAA" config="trane/TZEMT400AB32MAA.xml"/>

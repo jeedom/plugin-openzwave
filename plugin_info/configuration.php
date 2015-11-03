@@ -73,12 +73,6 @@ if (!$urlMasterDistant) {
 } else {
 	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
 }
-echo '<label class="col-sm-2 control-label">{{OpenZwave}} (' . openzwave::getVersion('openzwave') . ')</label>';
-if (version_compare(config::byKey('openzwave_version', 'openzwave'), openzwave::getVersion('openzwave'), '>')) {
-	echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
-} else {
-	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
-}
 echo '<label class="col-sm-1 control-label">{{Compilation}}</label>';
 if (openzwave::compilationOk()) {
 	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
@@ -99,12 +93,6 @@ echo '</div>';
 foreach ($deamonRunningSlave as $name => $status) {
 	echo ' <div class="form-group"><label class="col-sm-4 control-label">{{Sur l\'esclave}} ' . $name . '</label>';
 	if (!$status) {
-		echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
-	} else {
-		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
-	}
-	echo '<label class="col-sm-3 control-label">{{OpenZwave}} (' . $deamonSlaveVersion[$name]['openzwave'] . ')</label>';
-	if (version_compare(config::byKey('openzwave_version', 'openzwave'), $deamonSlaveVersion[$name]['openzwave'], '>')) {
 		echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
 	} else {
 		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
