@@ -138,7 +138,7 @@
 				"name" : "Consommation 1",
 				"type" : "info",
 				"subtype" : "numeric",
-				"isVisible" : 1,
+				"isVisible" : 0,
 				"isHistorized" : 1,
 				"unite" : "kWh",
 				"configuration" :
@@ -168,7 +168,7 @@
 				"name" : "Consommation 2",
 				"type" : "info",
 				"subtype" : "numeric",
-				"isVisible" : 1,
+				"isVisible" : 0,
 				"isHistorized" : 1,
 				"unite" : "kWh",
 				"configuration" :

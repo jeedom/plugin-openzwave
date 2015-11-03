@@ -80,7 +80,7 @@
 				"name" : "Consommation",
 				"type" : "info",
 				"subtype" : "numeric",
-				"isVisible" : 1,
+				"isVisible" : 0,
 				"isHistorized" : 1,
 				"unite" : "kWh",
 				"configuration" :
