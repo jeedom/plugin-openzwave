@@ -22,8 +22,8 @@
 					"value" : "data[0].Set(255)"
 				},
                 "template": {
-                    "dashboard": "prise",
-                    "mobile": "prise"
+                    "dashboard": "light",
+                    "mobile": "light"
                 }
 			},
 			{
@@ -39,8 +39,8 @@
 					"value" : "data[0].Set(0)"
 				},
                 "template": {
-                    "dashboard": "prise",
-                    "mobile": "prise"
+                    "dashboard": "light",
+                    "mobile": "light"
                 }
 			},
 			{
@@ -70,8 +70,8 @@
 					"value" : "data[0].Set(255)"
 				},
                 "template": {
-                    "dashboard": "prise",
-                    "mobile": "prise"
+                    "dashboard": "light",
+                    "mobile": "light"
                 }
 			},
 			{
@@ -87,8 +87,8 @@
 					"value" : "data[0].Set(0)"
 				},
                 "template": {
-                    "dashboard": "prise",
-                    "mobile": "prise"
+                    "dashboard": "light",
+                    "mobile": "light"
                 }
 			},
 			{
