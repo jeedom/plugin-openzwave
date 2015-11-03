@@ -127,7 +127,7 @@
 				"unite" : "W",
 				"configuration" :
 				{
-					"instanceId" : 1,
+					"instanceId" : 0,
 					"class" : "0x32",
 					"value" : "data[8].val",
 					"minValue" : 0,
