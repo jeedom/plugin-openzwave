@@ -1,11 +1,11 @@
 {
-		"name": "Insert Dimmer",
+		"name": "Smart Energy Illuminator (DSC08101)",
         "doc" : "",
-        "type": "Micromodule",
-        "comlink" : "287-aeon-labs-micromodule-variateur-et-compteur-d-energie-g2-1220000011120",
+        "type": "Prise",
+        "comlink" : "283-aeon-labs-smart-energy-illuminator-z-wave-1220000010499",
         "remark" : "",
-        "imglink" : "aeotec.insert-dimmer",
-		"configuration" : {
+        "imglink" : "aeotec.smart-energy-illuminator",
+         "configuration" : {
         "conf_version" : 1
 		},
         "commands": [
@@ -13,7 +13,7 @@
                 "name": "On",
                 "type": "action",
                 "subtype": "other",
-                "isVisible":1,
+                "isVisible":0,
                 "configuration": {
                     "class": "0x26",
 					"instanceId": 0,
@@ -24,50 +24,51 @@
                 "name": "Off",
                 "type": "action",
                 "subtype": "other",
-                "isVisible":1,
+                "isVisible":0,
                 "configuration": {
                     "class": "0x26",
-					"instanceId": 0,
+			"instanceId": 0,
                     "value": "data[0].Set(0)"
                 }
             },
-            {
+	     {
                 "name": "Intensité",
                 "type": "action",
                 "subtype": "slider",
                 "isVisible":1,
-                "value": "Etat",
+		  "value": "Etat",
                 "configuration": {
                     "class": "0x26",
-					"instanceId": 0,
+			"instanceId": 0,
                     "value": "data[0].Set(#slider#)",
-                    "minValue": 0,
-                    "maxValue": 100
+			"minValue": 0,
+                    "maxValue": 99
                 },
                 "template": {
                     "dashboard": "light",
                     "mobile": "light"
                 }
             },
-			{
+            {
                 "name": "Etat",
                 "type": "info",
                 "subtype": "numeric",
                 "unite": "%",
                 "isVisible": 0,
+		  "isHistorized": 0,
                 "configuration": {
                     "class": "0x26",
                     "instanceId": 0,
                     "value": "data[0].val",
-                    "minValue": 0,
-                    "maxValue": 100
+			"maxValue": 100,
+			"minValue": 0
                 }
             },
 			{
                 "name": "Puissance",
                 "type": "info",
                 "subtype": "numeric",
-                "isVisible": 0,
+                "isVisible": 1,
                 "isHistorized": 1,
 				"unite": "W",
                 "configuration": {
@@ -82,12 +83,12 @@
                 "name": "Consommation",
                 "type": "info",
                 "subtype": "numeric",
-                "isVisible": 0,
-                "isHistorized": 0,
+                "isVisible": 1,
+                "isHistorized": 1,
 				"unite": "kWh",
                 "configuration": {
                     "class": "0x32",
-					"instanceId": 0,
+			"instanceId": 0,
                     "value": "data[0].val"
                 }
             }

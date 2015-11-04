@@ -1,5 +1,5 @@
 {
-		"name": "HEM 2 Pinces",
+		"name": "Home Energy Meter (DSB09104)",
         "doc" : "",
         "type": "Consommation",
         "comlink" : "2289-aeon-labs-compteur-de-consommation-electrique-z-wave-2c-200a-1220000010598",

@@ -1,5 +1,5 @@
 {
-	"name" : "Bulb RGBW",
+	"name" : "LED Bulb (ZW098)",
         "doc" : "",
         "type": "Ampoule",
         "comlink" : "2922-aeon-labs-ampoule-led-z-wave-plus-1220000012974",

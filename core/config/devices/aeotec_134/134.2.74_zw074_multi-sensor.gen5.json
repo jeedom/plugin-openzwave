@@ -1,14 +1,14 @@
-{
-        "name": "Multi-Sensor 6 en 1",
+{		
+		"name": "MultiSensor Gen5 (ZW074)",
         "doc" : "",
         "type": "Multicapteurs",
-        "comlink" : "2921-aeon-labs-detecteur-multifonctions-6-en-1-multisensor-z-wave-plus-gen5-1220000013100",
-        "remark" : "",
-        "imglink" : "aeotec.multisensor6",
-        "battery_type" : "2xCR123A",
-        "configuration" : {
+        "comlink" : "2681-aeon-labs-detecteur-multifonction-multisensor-z-wave-plus-gen5-1220000012684",
+        "remark" : "Attention ce module peut remonter de mauvaises données, il faut bien faire attention à la configuration",
+        "imglink" : "aeotec.multisensor-gen5",
+        "battery_type" : "4xAAA",
+		"configuration" : {
         "conf_version" : 1
-        },
+		},
         "commands": [
             {
                 "name": "Présence",
@@ -64,38 +64,6 @@
                 "configuration": {
                     "class": "0x31",
                     "value": "data[5].val"
-                }
-            },
-            {
-                "name": "Ultraviolet",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 1,
-                "isHistorized": 1,
-                "unite": "",
-                "configuration": {
-                    "class": "0x31",
-                    "value": "data[27].val"
-                }
-            },
-             {
-                "name": "Sabotage",
-                "type": "info",
-                "subtype": "binary",
-                "isVisible": 1,
-                "isHistorized": 1,
-
-                "configuration": {
-                    "class": "0x71",
-                    "value": "data[10].val",
-                    "calculValueOffset" : "#value#==3"
-                },
-                "display": {
-                    "invertBinary": "1"
-                },
-               "template": {
-                    "dashboard": "vibration",
-                    "mobile": "vibration"
                 }
             },
             {

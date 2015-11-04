@@ -1,32 +1,33 @@
 {
-		"name": "Door/Window Sensor",
+		"name": "Recessed Door Sensor (ZW089)",
         "doc" : "",
         "type": "Ouverture",
-        "comlink" : "2340-aeon-labs-detecteur-d-ouverture-z-wave-g2-1220000011830",
+        "comlink" : "",
         "remark" : "",
-        "imglink" : "aeotec.doorwindow",
-        "battery_type" : "2xAAA",
-		"configuration" : {
+        "imglink" : "aeotec.zw089",
+        "battery_type" : "1xCR2",
+        "configuration" : {
         "conf_version" : 1
 		},
-        "commands": [
+		"commands": [
             {
                 "name": "Etat",
                 "type": "info",
-                "subtype": "binary",
-                "isVisible": 1,
-                "isHistorized": 1,
+                "subType": "binary",
+                "isHistorized": "1",
                 "configuration": {
+                    "instanceId": "0",
                     "class": "0x30",
                     "value": "data[0].val"
-                },
-                "display": {
-                    "invertBinary": "1"
                 },
                 "template": {
                     "dashboard": "door",
                     "mobile": "door"
-                }
+                },
+                "display": {
+                    "invertBinary": "1"
+                },
+                "isVisible": "1"
             },
             {
                 "name": "Batterie",

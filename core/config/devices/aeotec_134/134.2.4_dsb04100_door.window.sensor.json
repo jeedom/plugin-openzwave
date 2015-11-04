@@ -1,5 +1,5 @@
 {
-		"name": "Door/Window Sensor",
+		"name": "Door/Window Sensor (DSB04100)",
         "doc" : "",
         "type": "Ouverture",
         "comlink" : "2340-aeon-labs-detecteur-d-ouverture-z-wave-g2-1220000011830",

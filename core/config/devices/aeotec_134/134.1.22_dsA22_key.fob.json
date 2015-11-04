@@ -1,10 +1,10 @@
 {
-	"name" : "Panic Button",
-    "doc" : "aeotec.panic_button_-_Telecommande",
+	"name" : "Key Fob (DSA22)",
+    "doc" : "aeotec.keyfob_-_Telecommande",
     "type": "Télécommande",
-    "comlink" : "278-aeon-labs-telecommande-z-wave-porte-cles-1-bouton",
-    "remark" : "",
-    "imglink" : "aeotec.panicbutton",
+    "comlink" : "2677-aeon-labs-telecommande-porte-cles-z-wave-plus-4-boutons-gen5",
+    "remark" : "Remplacé dans les boutiques par le keyfob Gen5",
+    "imglink" : "aeotec.keyfob",
     "battery_type" : "1xCR2450",
     "configuration" : {
         "conf_version" : 1
