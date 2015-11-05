@@ -30,6 +30,26 @@
 			<Item label="ALL ON is not active ALL OFF active" value="1" />
 			<Item label="ALL ON active ALL OFF is not active" value="2" />
 		</Value>
+		
+		<Value type="short" genre="config" instance="1" index="11" label="Set point set by I2" size="2" min="0" max="65535" value="65535">
+			<Help>
+				When I2 is pressed set point will be set according to the value of this parameter. 				
+				default value 65535
+				65535 – input I2 does not influence on the set point
+				From 0 to 990 – set point from 0.0 °C to 99.0 °C
+				From 1001 to 1150 – set point from -0.1 °C to -15.0 °C
+				</Help>
+		</Value>
+		
+		<Value type="short" genre="config" instance="1" index="12" label="Set point set by I3" size="2" min="0" max="65535" value="65535">
+			<Help>
+				When I3 is pressed set point will be set according to the value of this parameter. 				
+				default value 65535
+				65535 – input I2 does not influence on the set point
+				From 0 to 990 – set point from 0.0 °C to 99.0 °C
+				From 1001 to 1150 – set point from -0.1 °C to -15.0 °C
+				</Help>
+		</Value>
 
 		<Value type="list" genre="config" instance="1" index="30" label="Saving the state of the relay after a power failure" size="1" min="0" max="1" value="0">
 			<Help/>
