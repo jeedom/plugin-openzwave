@@ -5,6 +5,7 @@
         "comlink" : "3062-qubino-micromodule-commutateur-2-relais-et-consometre-z-wave-zmnhbd1-3830062070119",
         "remark" : "",
         "imglink" : "qubino.zmnhbdx",
+        "ignore" : 1,
 		"configuration" : {
         "conf_version" : 1
 		},
