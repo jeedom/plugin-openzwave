@@ -1,8 +1,8 @@
 {
 	"name" : "PSR04 Smart Color Button",
-    "doc" : "",
+    "doc" : "philio.psr04_-_Smart_Color_Button",
     "type": "Interrupteur",
-    "comlink" : "",
+    "comlink" : "3207-philio-interrupteurtelecommande-mural-z-wave-4713698571542",
     "remark" : "",
     "imglink" : "philio.psr04",
     "battery_type" : "Batterie",
