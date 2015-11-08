@@ -5,7 +5,7 @@
         "comlink" : "861-everspring-capteur-de-temperature-et-d-humidite-z-wave-st814-3700946500325",
         "remark" : "",
         "imglink" : "everspring.st814",
-        "battery_type" : "3xAA",
+        "battery_type" : "3x1.5V AAA",
     "configuration" : {
         "conf_version" : 5
     },

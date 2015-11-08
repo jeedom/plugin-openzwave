@@ -5,7 +5,7 @@
     "comlink" : "2995-nodon-interrupteur-mural-z-wave-plus-cozi-white-3700313920268",
     "remark" : "Fonctionne en mode scene et non central scene",
     "imglink" : "nodon.wallswitch",
-    "battery_type" : "1xCR2032",
+    "battery_type" : "1x3V CR2032",
     "configuration" : {
         "conf_version" : 1
     },

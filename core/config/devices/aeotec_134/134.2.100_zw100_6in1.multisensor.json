@@ -5,7 +5,7 @@
         "comlink" : "2921-aeon-labs-detecteur-multifonctions-6-en-1-multisensor-z-wave-plus-gen5-1220000013100",
         "remark" : "",
         "imglink" : "aeotec.multisensor6",
-        "battery_type" : "2xCR123A",
+        "battery_type" : "2x3V CR123A",
         "configuration" : {
         "conf_version" : 1
         },

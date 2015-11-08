@@ -4,7 +4,7 @@
         "comlink" : "2495-danfoss-tete-electronique-living-connect-z-wave-lc-13-5013567421497",
         "remark" : "",
         "imglink" : "danfoss.living-connect",
-        "battery_type" : "2xAA",
+        "battery_type" : "2x1.5V AAA",
         "configuration" : {
         "conf_version" : 1
         },

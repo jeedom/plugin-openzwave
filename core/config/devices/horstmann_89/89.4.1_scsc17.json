@@ -5,7 +5,7 @@
         "comlink" : "2419-secure-thermostat-electronique-programmable-z-wave-scs317-5015914370083",
         "remark" : "Module vendu sous la marque Secure",
         "imglink" : "horstmann.scs317",
-        "battery_type" : "2xAA",
+        "battery_type" : "2x1.5V AAA",
        "configuration" : {
         "conf_version" : 1
 		},

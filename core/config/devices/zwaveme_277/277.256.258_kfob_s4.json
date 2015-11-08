@@ -5,7 +5,7 @@
     "comlink" : "",
     "remark" : "",
     "imglink" : "zwaveme.keyfobs4",
-    "battery_type" : "1xCR2032",
+    "battery_type" : "1x3V CR2032",
     "configuration" : {
         "conf_version" : 1
     },
