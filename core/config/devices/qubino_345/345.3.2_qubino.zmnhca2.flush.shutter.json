@@ -12,7 +12,7 @@
             {
                 "name": "Etat",
                 "type": "info",
-                "subtype": "binary",
+                "subtype": "numeric",
                 "isVisible": 0,
                 "configuration": {
                     "class": "0x26",
