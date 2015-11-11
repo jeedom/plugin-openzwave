@@ -5,7 +5,7 @@
         "comlink" : "2435-vision-security-sirene-z-wave-zm1601-alimentee-sur-batterie",
         "remark" : "",
         "imglink" : "vision.zm1601",
-        "battery_type" : "4xAA",
+        "battery_type" : "4x1.5V AAA",
         "configuration" : {
         "conf_version" : 1
 		},

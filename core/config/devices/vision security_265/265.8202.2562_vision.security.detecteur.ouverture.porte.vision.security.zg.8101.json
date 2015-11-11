@@ -5,7 +5,7 @@
         "comlink" : "2434-vision-security-detecteur-de-porte-de-garage-z-wave-zg8101-0696859123412.html",
         "remark" : "",
         "imglink" : "vision.zg8101",
-        "battery_type" : "1xCR123A",
+        "battery_type" : "1x3V CR123A",
         "configuration" : {
         "conf_version" : 1
 		},

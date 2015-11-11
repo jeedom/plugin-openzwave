@@ -5,7 +5,7 @@
     "comlink" : "2751-fibaro-detecteur-de-fumee-z-wave-plus-fgsd-002-5902020528265",
     "remark" : "",
     "imglink" : "fibaro.fgsd102",
-    "battery_type" : "1xCR123A",
+    "battery_type" : "1x3V CR123A",
     "configuration" : {
         "conf_version" : 1
     },

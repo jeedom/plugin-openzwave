@@ -116,7 +116,7 @@
       <Help>Set External Switch/Button Control mode</Help>
       <Item label="Momentary button mode" value="0" />
       <Item label="2 state switch mode" value="1" />
-    </Value
+    </Value>
     <Value type="short" index="254" genre="config" label="Device tag" units="" min="0" max="65535" value="0">
       <Help>Device tag.</Help>
     </Value>

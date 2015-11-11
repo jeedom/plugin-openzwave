@@ -5,7 +5,7 @@
         "comlink" : "1982-secure-thermostat-srt321-avec-ecran-lcd-z-wave-5015914250071",
         "remark" : "Module vendu sous la marque Secure SRT321",
         "imglink" : "horstmann.hrt4",
-        "battery_type" : "2xAAA",
+        "battery_type" : "2x1.5V AAA",
         "configuration" : {
         "conf_version" : 1
 		},

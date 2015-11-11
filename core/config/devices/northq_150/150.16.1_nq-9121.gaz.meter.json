@@ -5,7 +5,7 @@
     "comlink" : "1539-northq-compteur-optique-de-consommation-de-gaz-z-wave",
     "remark" : "",
     "imglink" : "northq.nq9121",
-    "battery_type" : "2xAA",
+    "battery_type" : "2x1.5V AAA",
     "configuration" : {
     "conf_version" : 1
 	},

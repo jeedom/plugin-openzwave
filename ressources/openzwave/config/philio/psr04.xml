@@ -56,7 +56,7 @@
   <CommandClass id="133">
     <Associations num_groups="2">
       <Group index="1" max_associations="8" label="Reports" auto="true"/>
-      <Group index="2" max_associations="8" label="Light Control" auto="false"/>
+      <Group index="2" max_associations="8" label="Light Control" auto="true"/>
     </Associations>
   </CommandClass>
 

@@ -5,7 +5,7 @@
         "comlink" : "",
         "remark" : "",
         "imglink" : "everspring.tse03",
-        "battery_type" : "3xAA + 2xAAA",
+        "battery_type" : "3xAA + 2x1.5V AAA",
         "configuration" : {
         "conf_version" : 1
 		},
