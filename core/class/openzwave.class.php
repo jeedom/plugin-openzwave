@@ -191,6 +191,12 @@ class openzwave extends eqLogic {
 				'level' => 'warning',
 				'message' => __('Le controleur est occupé veuillez réessayer plus tard', __FILE__),
 			));
+			if (class_exists('event')) {
+				event::add('jeedom::alert', array(
+					'level' => 'warning',
+					'message' => __('Le controleur est occupé veuillez réessayer plus tard', __FILE__),
+				));
+			}
 			return;
 		}
 		if ($_logical_id !== null) {
@@ -199,11 +205,20 @@ class openzwave extends eqLogic {
 				if (config::byKey('autoRemoveExcludeDevice', 'openzwave') == 1) {
 					$eqLogic->remove();
 					nodejs::pushUpdate('zwave::includeDevice', '');
+					if (class_exists('event')) {
+						event::add('zwave::includeDevice', '');
+					}
 				}
 				nodejs::pushUpdate('jeedom::alert', array(
 					'level' => 'warning',
 					'message' => '',
 				));
+				if (class_exists('event')) {
+					event::add('jeedom::alert', array(
+						'level' => 'warning',
+						'message' => '',
+					));
+				}
 				return;
 			}
 			$result = self::callOpenzwave('/ZWaveAPI/Run/devices[' . $_logical_id . ']', $_serverId);
@@ -212,6 +227,12 @@ class openzwave extends eqLogic {
 					'level' => 'danger',
 					'message' => __('Aucun module trouvé correspondant à cette ID : ', __FILE__) . $_logical_id,
 				));
+				if (class_exists('event')) {
+					event::add('jeedom::alert', array(
+						'level' => 'warning',
+						'message' => __('Aucun module trouvé correspondant à cette ID : ', __FILE__) . $_logical_id,
+					));
+				}
 				return;
 			}
 			$eqLogic = new eqLogic();
@@ -234,10 +255,19 @@ class openzwave extends eqLogic {
 			$include_device = $eqLogic->getId();
 			$eqLogic->createCommand(false, $result);
 			nodejs::pushUpdate('zwave::includeDevice', $include_device);
+			if (class_exists('event')) {
+				event::add('zwave::includeDevice', $include_device);
+			}
 			nodejs::pushUpdate('jeedom::alert', array(
 				'level' => 'warning',
 				'message' => '',
 			));
+			if (class_exists('event')) {
+				event::add('jeedom::alert', array(
+					'level' => 'warning',
+					'message' => '',
+				));
+			}
 			return;
 		}
 
@@ -249,6 +279,12 @@ class openzwave extends eqLogic {
 				'level' => 'warning',
 				'message' => __('Le nombre de module trouvé est inférieure à 2', __FILE__),
 			));
+			if (class_exists('event')) {
+				event::add('jeedom::alert', array(
+					'level' => 'warning',
+					'message' => __('Le nombre de module trouvé est inférieure à 2', __FILE__),
+				));
+			}
 			return;
 		}
 		foreach ($results['devices'] as $nodeId => $result) {
@@ -301,10 +337,19 @@ class openzwave extends eqLogic {
 			}
 		}
 		nodejs::pushUpdate('zwave::includeDevice', $include_device);
+		if (class_exists('event')) {
+			event::add('zwave::includeDevice', $include_device);
+		}
 		nodejs::pushUpdate('jeedom::alert', array(
 			'level' => 'warning',
 			'message' => '',
 		));
+		if (class_exists('event')) {
+			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => '',
+			));
+		}
 	}
 
 	public static function changeIncludeState($_mode, $_state, $_serverId = 0) {
@@ -597,6 +642,12 @@ class openzwave extends eqLogic {
 			'level' => 'warning',
 			'message' => __('Création des commandes à partir d\'une configuration', __FILE__),
 		));
+		if (class_exists('event')) {
+			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => __('Création des commandes à partir d\'une configuration', __FILE__),
+			));
+		}
 		$commands = $device['commands'];
 		foreach ($commands as &$command) {
 			if (!isset($command['configuration']['instanceId'])) {
@@ -642,6 +693,12 @@ class openzwave extends eqLogic {
 			'level' => 'warning',
 			'message' => '',
 		));
+		if (class_exists('event')) {
+			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => '',
+			));
+		}
 	}
 
 	public function postSave() {
@@ -735,6 +792,12 @@ class openzwave extends eqLogic {
 			'level' => 'warning',
 			'message' => __('Création des commandes en mode automatique', __FILE__),
 		));
+		if (class_exists('event')) {
+			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => __('Création des commandes en mode automatique', __FILE__),
+			));
+		}
 		if ($_data == null) {
 			$results = self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . ']', $this->getConfiguration('serverID', 1));
 		} else {
@@ -899,6 +962,12 @@ class openzwave extends eqLogic {
 			'level' => 'warning',
 			'message' => '',
 		));
+		if (class_exists('event')) {
+			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => '',
+			));
+		}
 	}
 
 }

@@ -74,6 +74,14 @@ if (isset($results['controller'])) {
 					'state' => $results['controller']['state']['value'],
 					'serverId' => $results['serverId'])
 			);
+			if (class_exists('event')) {
+				event::add('zwave::controller.data.controllerState',
+					array(
+						'name' => ($results['serverId'] == 0) ? 'local' : $jeeNetwork->getName(),
+						'state' => $results['controller']['state']['value'],
+						'serverId' => $results['serverId'])
+				);
+			}
 		}
 	}
 	if (isset($results['controller']['excluded'])) {
@@ -81,6 +89,12 @@ if (isset($results['controller'])) {
 			'level' => 'warning',
 			'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
 		));
+		if (class_exists('event')) {
+			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
+			));
+		}
 		sleep(2);
 		openzwave::syncEqLogicWithOpenZwave($results['serverId'], $results['controller']['excluded']['value']);
 	}
@@ -90,12 +104,24 @@ if (isset($results['controller'])) {
 				'level' => 'warning',
 				'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration.Pause de ', __FILE__) . (10 - $i) . __(' pour synchronisation avec le module', __FILE__),
 			));
+			if (class_exists('event')) {
+				event::add('jeedom::alert', array(
+					'level' => 'warning',
+					'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration.Pause de ', __FILE__) . (10 - $i) . __(' pour synchronisation avec le module', __FILE__),
+				));
+			}
 			sleep(1);
 		}
 		nodejs::pushUpdate('jeedom::alert', array(
 			'level' => 'warning',
 			'message' => __('Inclusion en cours...', __FILE__),
 		));
+		if (class_exists('event')) {
+			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => __('Inclusion en cours...', __FILE__),
+			));
+		}
 		openzwave::syncEqLogicWithOpenZwave($results['serverId'], $results['controller']['included']['value']);
 	}
 }
