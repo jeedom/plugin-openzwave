@@ -50,32 +50,6 @@
                     "minValue":"5",
                     "maxValue":"30"
                 }
-            },                                
-            {
-                "name": "Off",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-                "isHistorized": 0,
-				"unite": "°C",
-                "configuration": {
-                    "class": "0x43",
-					"instanceId": 0,
-                    "value": "data[1].Set(5)"
-                }
-            },
-            {
-                "name": "Heat",
-                "type": "action",
-                "subType": "other",
-                "isVisible": 1,
-                "isHistorized": 0,
-				"unite": "°C",
-                "configuration": {
-                    "class": "0x43",
-					"instanceId": 0,
-                    "value": "data[1].Set(21)"
-                }
             },
             {
                 "name": "Etat de chauffe",
