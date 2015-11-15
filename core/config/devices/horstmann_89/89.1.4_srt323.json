@@ -1,6 +1,6 @@
 {
 		"name": "SRT 323 Electronic Room Thermostat and Temperature",
-        "doc" : "",
+        "doc" : "secure.srt323_-_Thermostat",
         "type": "Thermostat",
         "comlink" : "3218-secure-thermostat-srt323-avec-ecran-lcd-et-relai-integre-5015914250569",
         "remark" : "Module vendu sous la marque Secure SRT323",
