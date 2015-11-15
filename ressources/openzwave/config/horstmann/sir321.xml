@@ -4,7 +4,7 @@
   <!-- Configuration Parameters -->
   <CommandClass id="112">
     <Value type="list" instance="1" index="1" genre="config" label="Enable Fails Safe Timer" value="0">
-      <Help>Enables or not the temperature sensor reading</Help>
+      <Help>Enables or not the Fails Safe Timer</Help>
       <Item label="Disabled" value="0" />
 	  <Item label="Enabled" value="255" />
     </Value>
@@ -29,7 +29,7 @@
   <CommandClass id="133">   
     <Associations num_groups="2">
       <Group index="1" max_associations="4" label="Lifeline" auto="true"/>
-      <Group index="2" max_associations="4" label="Unsolicited Sensor Multilevel Reports"/>
+      <Group index="2" max_associations="4" label="Unsolicited Sensor Multilevel Reports" auto="true"/>
     </Associations>
   </CommandClass>
 
