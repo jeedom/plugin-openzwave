@@ -23,6 +23,20 @@
                 }
             },
             {
+                "name": "Etat de chauffe",
+                "type": "info",
+                "subtype": "binary",
+                "unite": "",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "configuration": {
+                    "class": "0x42",
+                    "instanceId": 0,
+                    "value": "data[0].val",
+                    "calculValueOffset" : "#value#=='Heating'"
+                }
+            },
+            {
                 "name": "ConsigneEtat",
                 "type": "info",
                 "subType": "numeric",
@@ -49,20 +63,10 @@
                     "value": "data[1].Set(#slider#)",
                     "minValue":"5",
                     "maxValue":"30"
-                }
-            },
-            {
-                "name": "Etat de chauffe",
-                "type": "info",
-                "subtype": "binary",
-                "unite": "",
-                "isVisible": 1,
-                "isHistorized": 0,
-                "configuration": {
-                    "class": "0x42",
-                    "instanceId": 0,
-                    "value": "data[0].val",
-                    "calculValueOffset" : "#value#=='Heating'"
+                },
+                "template": {
+                    "dashboard": "thermostat",
+                    "mobile": "thermostat"
                 }
             },
             {
