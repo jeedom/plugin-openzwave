@@ -47,7 +47,7 @@
                     "instanceId": "0",
                     "class": "0x43",
                     "value": "data[1].Set(#slider#)",
-                    "maxValue":"5",
+                    "minValue":"5",
                     "maxValue":"30"
                 }
             },                                
@@ -61,7 +61,7 @@
                 "configuration": {
                     "class": "0x43",
 					"instanceId": 0,
-                    "value": "data[0].Set(5)"
+                    "value": "data[1].Set(5)"
                 }
             },
             {
@@ -74,7 +74,7 @@
                 "configuration": {
                     "class": "0x43",
 					"instanceId": 0,
-                    "value": "data[0].Set(21)"
+                    "value": "data[1].Set(21)"
                 }
             },
             {
