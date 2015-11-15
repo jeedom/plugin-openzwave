@@ -34,7 +34,7 @@
       <Help>Temperature reporting interval in minutes (Default 5 minutes)</Help>
     </Value>
     <Value type="byte" instance="1" index="3" genre="config" label="Delta humidity change" min="0" max="255" value="5">
-      <Help>Change between humidity to trigger a humidity report (step 0.1) (Default 5 = 5% relative humidity)</Help>
+      <Help>Change between humidity to trigger a humidity report (Default 5 = 5% relative humidity)</Help>
     </Value>
     <Value type="byte" instance="1" index="4" genre="config" label="Humidity reporting interval" min="0" max="255" value="5">
       <Help>Humidity reporting interval in minutes (Default 5 minutes)</Help>

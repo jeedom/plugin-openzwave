@@ -1,6 +1,6 @@
 {
 		"name": "SES 302 Temperature Sensor",
-        "doc" : "",
+        "doc" : "secure.ses302_-_Temperature",
         "type": "Température",
         "comlink" : "3211-secure-sonde-de-temperature-sur-piles-z-wave-5015914840081",
         "remark" : "Module vendu sous la marque Secure",

@@ -1,6 +1,6 @@
 {
 		"name": "SES 303 Temperature and Humidity Sensor",
-        "doc" : "",
+        "doc" : "secure.ses303_-_Temperature_Humidite",
         "type": "Multicapteurs",
         "comlink" : "3227-secure-sonde-de-temperature-et-d-humidite-sur-piles-z-wave-5015914840098",
         "remark" : "Module vendu sous la marque Secure",

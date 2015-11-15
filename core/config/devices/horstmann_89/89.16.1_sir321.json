@@ -1,9 +1,9 @@
 {
 	"name" : "SIR 321 RF Countdown Timer",
-    "doc" : "",
+    "doc" : "secure.sir321_-_Timer",
     "type": "Timer",
     "comlink" : "3216-secure-minuterie-manuelle-3060120-minutes-z-wave-5015914083563",
-    "remark" : "",
+    "remark" : "Pas de gestion de Schedule, pas de remonté d'état",
     "imglink" : "horstmann.sir321",
     "configuration" : {
         "conf_version" : 1
