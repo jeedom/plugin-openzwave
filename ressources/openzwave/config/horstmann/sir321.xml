@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Product xmlns='http://code.google.com/p/open-zwave/'>
+   <CommandClass id="37">
+	 <Value type="bool" genre="user" instance="1" index="0" label="Switch" verify_changes="true"/>
+  </CommandClass>
+  <CommandClass id="32">
+	<Value type="bool" genre="user" instance="1" index="0" label="State"/>
+  </CommandClass>
   <!-- Configuration Parameters -->
   <CommandClass id="112">
     <Value type="list" instance="1" index="1" genre="config" label="Enable Fails Safe Timer" value="0">
