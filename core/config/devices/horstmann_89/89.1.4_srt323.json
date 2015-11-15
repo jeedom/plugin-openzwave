@@ -59,9 +59,9 @@
                 "isHistorized": 0,
 				"unite": "°C",
                 "configuration": {
-                    "class": "0x40",
+                    "class": "0x43",
 					"instanceId": 0,
-                    "value": "data[0].Set(Off)"
+                    "value": "data[0].Set(5)"
                 }
             },
             {
@@ -72,9 +72,9 @@
                 "isHistorized": 0,
 				"unite": "°C",
                 "configuration": {
-                    "class": "0x40",
+                    "class": "0x43",
 					"instanceId": 0,
-                    "value": "data[0].Set(Heat)"
+                    "value": "data[0].Set(21)"
                 }
             },
             {
