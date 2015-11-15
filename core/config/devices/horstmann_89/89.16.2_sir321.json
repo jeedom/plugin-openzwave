@@ -48,7 +48,7 @@
                 "name": "Température",
                 "type": "info",
                 "subtype": "numeric",
-                "isVisible": 0,
+                "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "°C",
                 "configuration": {

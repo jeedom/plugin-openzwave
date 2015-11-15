@@ -43,18 +43,6 @@
                     "class": "0x25",
                     "value": "data[0].Set(0)"
                 }
-            },
-            {
-                "name": "Température",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 0,
-                "isHistorized": 1,
-                "unite": "°C",
-                "configuration": {
-                    "class": "0x31",
-                    "value": "data[1].val"
-                }
             }
         ],
         "configuration": {
