@@ -68,14 +68,15 @@ if (isset($results['controller'])) {
 	if (isset($results['controller']['state'])) {
 		$jeeNetwork = jeeNetwork::byId($results['serverId']);
 		if (is_object($jeeNetwork) || $results['serverId'] == 0) {
-			nodejs::pushUpdate('zwave::controller.data.controllerState',
-				array(
-					'name' => ($results['serverId'] == 0) ? 'local' : $jeeNetwork->getName(),
-					'state' => $results['controller']['state']['value'],
-					'serverId' => $results['serverId'])
-			);
 			if (class_exists('event')) {
 				event::add('zwave::controller.data.controllerState',
+					array(
+						'name' => ($results['serverId'] == 0) ? 'local' : $jeeNetwork->getName(),
+						'state' => $results['controller']['state']['value'],
+						'serverId' => $results['serverId'])
+				);
+			} else {
+				nodejs::pushUpdate('zwave::controller.data.controllerState',
 					array(
 						'name' => ($results['serverId'] == 0) ? 'local' : $jeeNetwork->getName(),
 						'state' => $results['controller']['state']['value'],
@@ -85,12 +86,13 @@ if (isset($results['controller'])) {
 		}
 	}
 	if (isset($results['controller']['excluded'])) {
-		nodejs::pushUpdate('jeedom::alert', array(
-			'level' => 'warning',
-			'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
-		));
 		if (class_exists('event')) {
 			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
+			));
+		} else {
+			nodejs::pushUpdate('jeedom::alert', array(
 				'level' => 'warning',
 				'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
 			));
@@ -112,12 +114,13 @@ if (isset($results['controller'])) {
 			}
 			sleep(1);
 		}
-		nodejs::pushUpdate('jeedom::alert', array(
-			'level' => 'warning',
-			'message' => __('Inclusion en cours...', __FILE__),
-		));
 		if (class_exists('event')) {
 			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => __('Inclusion en cours...', __FILE__),
+			));
+		} else {
+			nodejs::pushUpdate('jeedom::alert', array(
 				'level' => 'warning',
 				'message' => __('Inclusion en cours...', __FILE__),
 			));
