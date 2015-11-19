@@ -68,6 +68,7 @@
       </Help>
 	  <Item label="Green" value="1"/>
       <Item label="Red" value="2"/>
+      <Item label="test" value="0"/>
     </Value>
   </CommandClass>
 </Product>
