@@ -2,12 +2,7 @@
 
 <Product xmlns='http://code.google.com/p/open-zwave/'>
   <!-- This thermostat's setpoint descriptions are 0 based, not 1 -->
-  <CommandClass id="67" base="0">
-	<Instance index="1" />
-	<Value label="Heating" units="C"/>
-	<Value instance="1" index="2" label="Cooling" units="C"/>
-	<Value instance="1" index="10" label="Auto" units="C"/>
-	</CommandClass>
+  <CommandClass id="67" base="0" />
   <!-- Configuration Parameters -->
   <CommandClass id="112">
     <Value type="short" index="1" genre="config" label="Temperature Threshold" min="1" max="100" value="5">
