@@ -447,8 +447,8 @@ load_data: function(){
                 for (z in nodes){
                 //console.log('add node '+z);
                 if(nodes[z].data.name.value != ''){
-                  if(isset(eqLogic_human_name[z])){
-                    graph.addNode(z,{'name':eqLogic_human_name[z], 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled, 'interview' : parseInt(nodes[z].data.state.value)});
+                  if(isset(eqLogic_human_name[$('#sel_zwaveNetworkServerId').value()+':'+z])){
+                    graph.addNode(z,{'name':eqLogic_human_name[$('#sel_zwaveNetworkServerId').value()+':'+z], 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled, 'interview' : parseInt(nodes[z].data.state.value)});
                   }else{
                     graph.addNode(z,{'name':'<span class="label label-primary">'+nodes[z].data.location.value+'</span> '+nodes[z].data.name.value, 'neighbours' : nodes[z].data.neighbours.value, 'generic' : nodes[z].data.neighbours.enabled, 'interview' : parseInt(nodes[z].data.state.value)});
                   }
@@ -800,8 +800,8 @@ show_infos: function (){
               }
               if(node.data.name.value != ''){
                 routingTableHeader += '<th class="tooltips" title="'+node.data.location.value+' '+ node.data.name.value+'" >' + nodeId + '</th>';
-                if(isset(eqLogic_human_name[nodeId])){
-                 var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'">'+eqLogic_human_name[nodeId]+'</span>';
+                if(isset(eqLogic_human_name[$('#sel_zwaveNetworkServerId').value()+':'+nodeId])){
+                 var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'">'+eqLogic_human_name[$('#sel_zwaveNetworkServerId').value()+':'+nodeId]+'</span>';
                }else{
                  var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'"><span class="label label-primary">'+node.data.location.value+'</span> '+node.data.name.value+'</span>';
                }
