@@ -3,7 +3,7 @@
     "doc" : "",
     "type": "Compteur",
     "comlink" : "1539-northq-compteur-optique-de-consommation-de-gaz-z-wave",
-    "remark" : "",
+    "remark" : "Activer le rafraichissement manuel à 5 minutes sur la valeur Gaz pour avoir les rapports",
     "imglink" : "northq.nq9121",
     "battery_type" : "2x1.5V AAA",
     "configuration" : {
