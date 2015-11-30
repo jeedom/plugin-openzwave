@@ -259,6 +259,7 @@
 	<Manufacturer id="009f" name="Exigent">
 	</Manufacturer>
 	<Manufacturer id="0085" name="Fakro">
+		<Product type="0001" id="0001" name="ZWS230 External Roller Shutter" config="fakro/zws230.xml" />
 	</Manufacturer>
 	<Manufacturer id="010f" name="FIBARO System">
 		<Product type="0501" id="0101" name="FGBS001 Universal Binary Sensor" config="fibaro/fgbs001.xml" />
