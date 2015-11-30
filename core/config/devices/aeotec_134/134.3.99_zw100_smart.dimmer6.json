@@ -13,7 +13,7 @@
                 "name": "On",
                 "type": "action",
                 "subtype": "other",
-                "isVisible":1,
+                "isVisible":0,
                 "configuration": {
                     "class": "0x26",
 					"instanceId": 0,
@@ -24,11 +24,33 @@
                 "name": "Off",
                 "type": "action",
                 "subtype": "other",
-                "isVisible":1,
+                "isVisible":0,
                 "configuration": {
                     "class": "0x26",
 					"instanceId": 0,
                     "value": "data[0].Set(0)"
+                }
+            },
+            {
+                "name": "Dim",
+                "type": "action",
+                "subtype": "other",
+                "isVisible":0,
+                "configuration": {
+                    "class": "0x26",
+					"instanceId": 0,
+                    "value": "data[2].PressButton()"
+                }
+            },
+            {
+                "name": "Bright",
+                "type": "action",
+                "subtype": "other",
+                "isVisible":0,
+                "configuration": {
+                    "class": "0x26",
+					"instanceId": 0,
+                    "value": "data[1].PressButton()"
                 }
             },
             {
