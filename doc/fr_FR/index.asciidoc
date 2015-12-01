@@ -5,6 +5,18 @@
 Plugin pour utiliser le moteur OpenZwave avec Jeedom.
 
 '''
+
+== Introduction
+Z-Wave communique en utilisant une technologie radio de faible puissance dans la bande de fréquence de 868,42 MHz. Spécifiquement conçue pour les applications de domotique.
+Le protocole radio Z-Wave est optimisé pour des échanges à faible bande passante (entre 9 et 40 kbit/s) et des appareils sur pile ou alimentés au secteur.
+
+Z-Wave fonctionne dans la gamme de fréquences sous-gigahertz, selon les régions (868 MHz en Europe, 908 MHz aux US, et d'autres fréquences suivant les bandes ISM des régions). La portée théorique est d'environ 30 mètre en intérieur et 100 mètres en extérieur. Le réseau Z-Wave utilise la technologie du maillage (mesh) pour augmenter la portée et la fiabilité.
+Z-Wave est conçue pour être facilement intégrée dans les produits électroniques de consommation, y compris les appareils à piles tels que les télécommandes, les détecteurs de fumée et capteurs de sécurité.
+
+Le Z-Wave+, apporte certaines améliorations au système dont une meilleur portée et améliore la durée des batteries entre autres. La rétrocompatibilité est totale avec le Z-Wave.
+
+
+'''
 include::configuration.asciidoc[]
 
 == Liste des modules compatible
