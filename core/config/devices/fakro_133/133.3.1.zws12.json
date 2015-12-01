@@ -1,10 +1,10 @@
 {
-		"name": "ZWS230 External Roller Shutter", 
+	"name": "ZWS12 Chain actuator 12VDC", 
     "doc" : "",
     "type": "Volets",
     "comlink" : "",
     "remark" : "",
-    "imglink" : "fakro.zws230", 
+    "imglink" : "fakro.zws12", 
 		"configuration" : {
         "conf_version" : 1
 		},
