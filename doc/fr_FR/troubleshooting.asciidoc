@@ -1,5 +1,5 @@
 J'ai le message d'erreur suivant "ImportError: No module named flask" ou "ImportError: No module named openzwave"::
-Un ou plusieurs module requit n'est pas trouvé. Veillez relancer la mise à jour des dépendances.
+Un ou plusieurs module requit n'est pas trouvé. Veuillez relancer la mise à jour des dépendances.
 
 ''''
 
@@ -9,7 +9,7 @@ Voir ici : https://wiki.jeedom.fr/index.php?title=OpenZwave#D.C3.A9bogage
 ''''
 
 Quand je vais sur la santé j'ai des erreurs 404 ?::
-Vérifier la configuration réseau jeedom. forcer la sauvegarde des parametres réseau, puis relancer le plugin Z-Wave.
+Vérifier la configuration réseau jeedom. forcer la sauvegarde des paramètres réseau, puis relancer le plugin Z-Wave.
 
 ''''
 
@@ -28,7 +28,7 @@ chmod +x /usr/share/nginx/www/jeedom/plugins/openzwave/ressources/install.sh
 
 ''''
 Je modifie les parametres de mon module et la ligne reste en jaune avec l'ancienne valeur
-Les modules sur pile vont appliquer les changement de paramètres seulment au prochain cycle de réveille. Il est toute fois possible de réveiller à la main un module, voir la documentation du module.
+Les modules sur pile vont appliquer les changement de paramètres seulement au prochain cycle de réveille. Il est toute fois possible de le réveiller à la main un module, voir la documentation du module.
 
 ''''
 Je modifie les parametres de mon module et la ligne passe en rouge

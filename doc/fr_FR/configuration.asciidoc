@@ -10,7 +10,7 @@ image:../images/openzwave1.png[]
 [TIP]
 Si vous êtes en mode déporté, le démon local peut être arrêté, c'est tout à fait normal.
 
-* *Configuration* : cette partie permet de configurer les paramètres généraux du plugin ainsi que la version actuel d'OpenZwave (si nous avez un NOK veuillez refaire à la partie "Mettre à jour OpenZwave"). Vous avez aussi une indication pour savoir si le moteur  Z-Wave arrivera bien à communiquer avec Jeeodom
+* *Configuration* : cette partie permet de configurer les paramètres généraux du plugin ainsi que la version actuel d'OpenZwave (si nous avez un NOK veuillez refaire à la partie "Mettre à jour OpenZwave"). Vous avez aussi une indication pour savoir si le moteur  Z-Wave arrive bien à communiquer avec Jeedom
 * *Général* :
 ** *Supprimer automatiquement les périphériques exclus* : permet de supprimer les périphérique exclus du réseaux  Z-Wave ou non
 ** *Soigner le réseau automatiquement 2 fois par semaine* : option pour activer un soin automatique du réseau  Z-Wave (vivement conseillée)
