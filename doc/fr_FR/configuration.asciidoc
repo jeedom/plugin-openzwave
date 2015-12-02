@@ -92,7 +92,7 @@ En fonction des types et sous-types, certaines options peuvent être absentes.
 * la classe de la commande Z-Wave (réservée aux experts).
 * la commande en elle-même (réservée aux experts).
 * "Valeur de retour d'état" et "Durée avant retour d'état" : permet d'indiquer à Jeedom qu'après un changement sur l'information sa valeur doit revenir à Y, X min après le changement. Exemple : dans le cas d'un détecteur de présence qui n'émet que lors d'une détection de présence, il est utile de mettre par exemple 0 en valeur et 4 en durée, pour que 4 min après une détection de mouvement (et s'il n'y a en pas eu de nouvelles depuis) Jeedom remette la valeur de l'information à 0 (plus de mouvement détecté).
-* historier : permet d'historier la donnée.
+* historier : permet d'historiser la donnée.
 * afficher : permet d'afficher la donnée sur le dashboard.
 * unité : unité de la donnée (peut être vide).
 * min/max : bornes de la donnée (peuvent être vides).
