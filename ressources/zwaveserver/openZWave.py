@@ -2234,6 +2234,10 @@ def get_value6(device_id, instance_id, index,cc_id) :
         add_log_entry('This network does not contain any node with the id %s' % (device_id,), 'warning')
     return jsonify(Value) 
 
+@app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ForceRefresh()',methods = ['GET'])
+def force_refresh_one_value(device_id, instance_id, index, cc_id) :
+    return refresh_one_value(device_id, instance_id, index, int(cc_id,16))
+    
 @app.route('/ZWaveAPI/Run/devices[<int:device_id>].instances[<int:instance_id>].commandClasses[<int:cc_id>].data[<int:index>].Refresh()',methods = ['GET'])
 def refresh_one_value(device_id, instance_id, index, cc_id) :    
     #debug_print("refresh_one_value nodeId:%s instance:%s commandClasses:%s index:%s" % (device_id, instance_id, cc_id, index))
