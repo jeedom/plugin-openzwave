@@ -2,3 +2,17 @@
 test.php
 core/config/common.config.php
 sftp-config.json
+
+.idea/.name
+
+.idea/deployment.xml
+
+.idea/misc.xml
+
+.idea/modules.xml
+
+.idea/plugin-openzwave.iml
+
+.idea/vcs.xml
+
+.idea/workspace.xml
