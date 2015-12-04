@@ -202,6 +202,9 @@ Tant que vous n'avez pas le bandeau vous n'êtes pas en mode inclusion.
 
 Si vous recliquez sur le bouton vous sortez du mode inclusion.
 
+[TIP]
+Il est recommandé avant une inclusion d'un nouveau module qui serait "nouveau" sur le marché, de lancer la commande "Config modules" via l'écran de configuration du plugin. Cette action va récupérer l'ensemble des dernières versions des fichiers de configurations openzwave ainsi que le mappings de commandes jeedom.
+
 [IMPORTANT]
 Lors d'une inclusion, il est conseillé que le module soit à moins d'un mètre de la box.
 
