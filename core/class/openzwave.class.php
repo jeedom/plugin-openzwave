@@ -493,6 +493,9 @@ class openzwave extends eqLogic {
 	}
 
 	public static function runDeamon($_debug = false) {
+		if (file_exists('/tmp/compilation_ozw_in_progress')) {
+			return;
+		}
 		if (config::byKey('allowStartDeamon', 'openzwave', 1) == 0) {
 			return;
 		}
