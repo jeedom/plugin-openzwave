@@ -432,6 +432,37 @@ class openzwave extends eqLogic {
 /*     * ********************************************************************** */
 /*     * ***********************OPENZWAVE MANAGEMENT*************************** */
 
+	public static function dependancy_info() {
+		$return = array();
+		$return['log'] = 'openzwave_update';
+		if (file_exists('/tmp/compilation_ozw_in_progress')) {
+			$return['state'] = 'in_progress';
+		} else {
+			$return['state'] = (self::compilationOk()) ? 'ok' : 'nok';
+			if (version_compare(config::byKey('openzwave_version', 'openzwave'), self::getVersion('openzwave'), '>')) {
+				$return['state'] = 'nok';
+			}
+		}
+		return $return;
+	}
+
+	public static function dependancy_install() {
+		if (file_exists('/tmp/compilation_ozw_in_progress')) {
+			return;
+		}
+		try {
+			self::stopDeamon();
+		} catch (Exception $e) {
+
+		}
+		log::remove('openzwave_update');
+		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh';
+		if ($_background) {
+			$cmd .= ' >> ' . log::getPathToLog('openzwave_update') . ' 2>&1 &';
+		}
+		exec($cmd);
+	}
+
 	public static function getVersion($_module) {
 		if ($_module == 'openzwave') {
 			try {
@@ -451,20 +482,6 @@ class openzwave extends eqLogic {
 			return false;
 		}
 		return true;
-	}
-
-	public static function updateOpenzwave($_background = true) {
-		try {
-			self::stopDeamon();
-		} catch (Exception $e) {
-
-		}
-		log::remove('openzwave_update');
-		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh';
-		if ($_background) {
-			$cmd .= ' >> ' . log::getPathToLog('openzwave_update') . ' 2>&1 &';
-		}
-		exec($cmd);
 	}
 
 	public static function syncconfOpenzwave($_background = true) {

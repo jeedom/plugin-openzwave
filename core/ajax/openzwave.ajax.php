@@ -24,11 +24,6 @@ try {
 		throw new Exception('401 Unauthorized');
 	}
 
-	if (init('action') == 'updateOpenzwave') {
-		openzwave::updateOpenzwave();
-		ajax::success();
-	}
-
 	if (init('action') == 'syncconfOpenzwave') {
 		openzwave::syncconfOpenzwave();
 		ajax::success();

@@ -12,5 +12,6 @@
     <allowRemote>1</allowRemote>
     <mobile>openzwave</mobile>
     <category>automation protocol</category>
+    <hasDependency>1</hasDependency>
 </info>
 

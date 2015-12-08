@@ -5,6 +5,7 @@
 # The script is based on packages listed in debpkg_minimal.txt.
 
 #set -x  # make sure each command is printed in the terminal
+touch /tmp/compilation_ozw_in_progress
 echo "Lancement de l'installation/mise à jour des dépendances openzwave"
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
@@ -16,6 +17,7 @@ function apt_install {
   sudo apt-get -y install "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $1 - abort"
+    rm /tmp/compilation_ozw_in_progress
     exit 1
   fi
 }
@@ -24,6 +26,7 @@ function pip_install {
   sudo pip install "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
+    rm /tmp/compilation_ozw_in_progress
     exit 1
   fi
 }
@@ -89,6 +92,7 @@ else
   sudo git clone https://github.com/OpenZWave/python-openzwave.git
   if [ $? -ne 0 ]; then
     echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
+    rm /tmp/compilation_ozw_in_progress
     exit 1
   fi
   cd python-openzwave
@@ -100,6 +104,7 @@ else
   sudo git clone https://github.com/OpenZWave/open-zwave.git openzwave
   if [ $? -ne 0 ]; then
     echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
+    rm /tmp/compilation_ozw_in_progress
     exit 1
   fi
   cd openzwave
@@ -131,4 +136,5 @@ if [ $(grep 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200"
   sudo echo 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200", SYMLINK+="ttyUSB21"' >> /tmp/udev
   sudo mv /tmp/udev /etc/udev/rules.d/98-usb-serial.rules
 fi
+rm /tmp/compilation_ozw_in_progress
 echo "Everything is successfully installed!"
