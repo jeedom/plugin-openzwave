@@ -434,15 +434,15 @@ class openzwave extends eqLogic {
 
 	public static function getVersion($_module) {
 		if ($_module == 'openzwave') {
-			if (!file_exists('/opt/python-openzwave/openzwave/cpp/src/vers.cpp')) {
-				return config::byKey('openzwave_version', 'openzwave');
+			try {
+				$network = self::callOpenzwave('/ZWaveAPI/Run/network.GetStatus()');
+				if (isset($network['OpenZwaveLibraryVersion'])) {
+					config::save('currentOzwVersion', $network['OpenZwaveLibraryVersion'], 'openzwave');
+				}
+			} catch (Exception $e) {
+
 			}
-			$result = trim(str_replace(array('"', 'char', 'ozw_version_string', '[]', '=', ';'), '', shell_exec('cat /opt/python-openzwave/openzwave/cpp/src/vers.cpp | grep ozw_version_string')));
-			$result = str_replace('-', '.', $result);
-			$result = explode('.', str_replace('..', '.', $result));
-			if (count($result) > 2) {
-				return $result[0] . '.' . $result[1] . '.' . $result[2];
-			}
+			return config::byKey('currentOzwVersion', 'openzwave', -1);
 		}
 	}
 

@@ -73,6 +73,12 @@ if (!$urlMasterDistant) {
 } else {
 	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
 }
+echo '<label class="col-sm-1 control-label">{{OpenZwave}}</label>';
+if (version_compare(config::byKey('openzwave_version', 'openzwave'), openzwave::getVersion('openzwave'), '>')) {
+	echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">' . openzwave::getVersion('openzwave') . '</span></div>';
+} else {
+	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">' . openzwave::getVersion('openzwave') . '</span></div>';
+}
 echo '<label class="col-sm-1 control-label">{{Compilation}}</label>';
 if (openzwave::compilationOk()) {
 	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
@@ -96,6 +102,12 @@ foreach ($deamonRunningSlave as $name => $status) {
 		echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
 	} else {
 		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
+	}
+	echo '<label class="col-sm-3 control-label">{{OpenZwave}}</label>';
+	if (version_compare(config::byKey('openzwave_version', 'openzwave'), $deamonSlaveVersion[$name]['openzwave'], '>')) {
+		echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">' . $deamonSlaveVersion[$name]['openzwave'] . '</span></div>';
+	} else {
+		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">' . $deamonSlaveVersion[$name]['openzwave'] . '</span></div>';
 	}
 	echo '<label class="col-sm-1 control-label">{{Compilation}}</label>';
 	if ($deamonSlaveVersion[$name]['compilation']) {
@@ -195,9 +207,9 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 if (config::byKey('jeeNetwork::mode') == 'master') {
 	foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
 		?>
-		<form class="form-horizontal slaveConfig" data-slave_id="<?php echo $jeeNetwork->getId();?>">
+		<form class="form-horizontal slaveConfig" data-slave_id="<?php echo $jeeNetwork->getId(); ?>">
 			<fieldset>
-				<legend>{{Démon sur l'esclave}} <?php echo $jeeNetwork->getName()?></legend>
+				<legend>{{Démon sur l'esclave}} <?php echo $jeeNetwork->getName() ?></legend>
 				<div class="form-group">
 					<label class="col-lg-4 control-label">{{Port clé Z-Wave}}</label>
 					<div class="col-lg-4">
