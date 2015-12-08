@@ -57,5 +57,9 @@ if ($jsonrpc->getMethod() == 'compilationOk') {
 	$jsonrpc->makeSuccess(openzwave::compilationOk());
 }
 
+if ($jsonrpc->getMethod() == 'syncconfOpenzwave') {
+	$jsonrpc->makeSuccess(openzwave::syncconfOpenzwave());
+}
+
 throw new Exception(__('Aucune methode correspondante pour le plugin openzwave : ' . $jsonrpc->getMethod(), __FILE__));
 ?>

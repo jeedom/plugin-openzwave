@@ -468,6 +468,11 @@ class openzwave extends eqLogic {
 	}
 
 	public static function syncconfOpenzwave($_background = true) {
+		if (config::byKey('jeeNetwork::mode') == 'master') {
+			foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
+				$jeeNetwork->sendRawRequest('syncconfOpenzwave', array('plugin' => 'openzwave'));
+			}
+		}
 		log::remove('openzwave_syncconf');
 		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/syncconf.sh';
 		if ($_background) {
