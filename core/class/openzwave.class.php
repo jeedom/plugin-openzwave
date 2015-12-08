@@ -83,20 +83,6 @@ class openzwave extends eqLogic {
 			'advice' => ($demon_state) ? '' : __('Peut être normal si vous êtes en déporté', __FILE__),
 			'state' => $demon_state,
 		);
-		$version = openzwave::getVersion('openzwave');
-		$return[] = array(
-			'test' => __('Version d\'openzwave', __FILE__),
-			'result' => $version,
-			'advice' => ($version) ? '' : __('Mettez à jour les dépendances', __FILE__),
-			'state' => version_compare(config::byKey('openzwave_version', 'openzwave'), $version, '<='),
-		);
-		$compilation = openzwave::compilationOk();
-		$return[] = array(
-			'test' => __('Compilation', __FILE__),
-			'result' => ($compilation) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'advice' => ($compilation) ? '' : __('Mettez à jour les dépendances', __FILE__),
-			'state' => $compilation,
-		);
 		if (config::byKey('jeeNetwork::mode') == 'master') {
 			foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
 				try {
@@ -109,20 +95,6 @@ class openzwave extends eqLogic {
 					'result' => ($demon_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
 					'advice' => '',
 					'state' => $demon_state,
-				);
-				$version = $jeeNetwork->sendRawRequest('getVersion', array('plugin' => 'openzwave', 'module' => 'openzwave'));
-				$return[] = array(
-					'test' => __('Version d\'openzwave sur ', __FILE__) . $jeeNetwork->getName(),
-					'result' => $version,
-					'advice' => ($demon_state) ? '' : __('Mettez à jour les dépendances', __FILE__),
-					'state' => version_compare(config::byKey('openzwave_version', 'openzwave'), $version, '<='),
-				);
-				$compilation = $jeeNetwork->sendRawRequest('compilationOk', array('plugin' => 'openzwave'));
-				$return[] = array(
-					'test' => __('Compilation sur', __FILE__) . $jeeNetwork->getName(),
-					'result' => ($compilation) ? __('OK', __FILE__) : __('NOK', __FILE__),
-					'advice' => ($compilation) ? '' : __('Mettez à jour les dépendances', __FILE__),
-					'state' => $compilation,
 				);
 			}
 		}
