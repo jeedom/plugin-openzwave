@@ -411,7 +411,7 @@ class openzwave extends eqLogic {
 			$return['state'] = 'in_progress';
 		} else {
 			$return['state'] = (self::compilationOk()) ? 'ok' : 'nok';
-			if ($return['state'] == 'ok' && version_compare(config::byKey('openzwave_version', 'openzwave'), self::getVersion('openzwave'), '>')) {
+			if ($return['state'] == 'ok' && self::getVersion('openzwave') != -1 && version_compare(config::byKey('openzwave_version', 'openzwave'), self::getVersion('openzwave'), '>')) {
 				$return['state'] = 'nok';
 			}
 		}
