@@ -429,13 +429,16 @@ class openzwave extends eqLogic {
 		}
 		log::remove('openzwave_update');
 		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh';
+		$cmd .= ' no_compil';
+		$cmd .= ' ' . network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp');
+		$cmd .= ' ' . config::byKey('api');
 		if ($_background) {
 			$cmd .= ' >> ' . log::getPathToLog('openzwave_update') . ' 2>&1 &';
 		}
 		exec($cmd);
 	}
 
-	public static function getVersion($_module) {
+	public static function getVersion($_module = 'openzwave') {
 		if ($_module == 'openzwave') {
 			try {
 				$network = self::callOpenzwave('/ZWaveAPI/Run/network.GetStatus()');

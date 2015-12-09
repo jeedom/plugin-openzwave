@@ -28,6 +28,12 @@ if (isset($_GET['test'])) {
 	die();
 }
 
+if (isset($_GET['startOpenzwave'])) {
+	openzwave::runDeamon();
+	openzwave::getVersion();
+	die();
+}
+
 $results = json_decode(file_get_contents("php://input"), true);
 if (!is_array($results)) {
 	die();
