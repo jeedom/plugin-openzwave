@@ -42,7 +42,10 @@ function openzwave_update() {
 		log::add('openzwave', 'error', 'Attention vous etes sur la nouvelle version d\'openzwave, des actions de votre part sont necessaire merci d\'aller voir https://jeedom.fr/blog/?p=1576');
 	}
 	echo "OK\n";
-	$dependancy_info = openzwave::dependancy_info();
+	$dependancy_info = array('state' => 'ok');
+	if (method_exists($plugin_id, 'dependancy_info')) {
+		$dependancy_info = openzwave::dependancy_info();
+	}
 	if ($dependancy_info['state'] == 'ok') {
 		echo 'Redemarrage zwave network...';
 		try {
