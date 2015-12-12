@@ -36,26 +36,18 @@ function openzwave_update() {
 		$cron->remove();
 	}
 	echo "OK\n";
-
-	echo 'Check zwave system...';
 	if (count(eqLogic::byType('zwave')) > 0) {
 		log::add('openzwave', 'error', 'Attention vous etes sur la nouvelle version d\'openzwave, des actions de votre part sont necessaire merci d\'aller voir https://jeedom.fr/blog/?p=1576');
 	}
-	echo "OK\n";
-	$dependancy_info = array('state' => 'ok');
-	if (method_exists($plugin_id, 'dependancy_info')) {
+	if (method_exists('openzwave', 'dependancy_info')) {
 		$dependancy_info = openzwave::dependancy_info();
-	}
-	if ($dependancy_info['state'] == 'ok') {
-		echo 'Redemarrage zwave network...';
-		try {
-			config::save('allowStartDeamon', 1, 'openzwave');
-			openzwave::runDeamon();
-		} catch (Exception $e) {
-
+		if ($dependancy_info['state'] != 'ok') {
+			echo __('Lancement de la mise à jour du serveur openzwave...', __FILE__);
+			openzwave::dependancy_install();
+			echo "OK\n";
 		}
-		echo "OK\n";
 	}
+
 }
 
 function openzwave_remove() {
