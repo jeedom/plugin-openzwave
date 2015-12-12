@@ -28,6 +28,11 @@ if (isset($_GET['test'])) {
 	die();
 }
 
+if (isset($_GET['stopOpenzwave'])) {
+	openzwave::stopDeamon();
+	die();
+}
+
 if (isset($_GET['startOpenzwave'])) {
 	openzwave::runDeamon();
 	openzwave::getVersion();

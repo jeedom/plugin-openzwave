@@ -7,11 +7,12 @@
 #set -x  # make sure each command is printed in the terminal
 touch /tmp/compilation_ozw_in_progress
 echo "Lancement de l'installation/mise à jour des dépendances openzwave"
+curl -G -k -s "$2/plugins/openzwave/core/php/jeeZwave.php" -d "apikey=$3" --data-urlencode "stopOpenzwave=1"
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ARCH=`uname -m`
 PYTHON_OPENZWAVE_VERSION=912677aa3090bb22d4c93a527955d5b0fca7a0b5 # 0.3.0b7
-OPENZWAVE_VERSION=8282e4566559b409bbebd2a8867fce8f2c1b4896 # 1.3.572
+OPENZWAVE_VERSION=ab1f4ba88998ada3f5555b22e1bc8eba27f2e4ce # 1.3.597
 
 function apt_install {
   sudo apt-get -y install "$@"
