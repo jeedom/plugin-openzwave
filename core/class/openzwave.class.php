@@ -496,7 +496,6 @@ class openzwave extends eqLogic {
 			return;
 		}
 		try {
-			self::stop();
 			self::stopDeamon();
 		} catch (Exception $e) {
 

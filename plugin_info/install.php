@@ -27,7 +27,6 @@ function openzwave_update() {
 	shell_exec('rm -rf /opt/python-openzwave/zwcfg_*.xml');
 	config::save('allowStartDeamon', 0, 'openzwave');
 	echo 'Stop zwave network...';
-	openzwave::stop();
 	openzwave::stopDeamon();
 	echo "OK\n";
 	echo 'Stop cron...';
@@ -45,9 +44,12 @@ function openzwave_update() {
 			echo __('Lancement de la mise à jour du serveur openzwave...', __FILE__);
 			openzwave::dependancy_install();
 			echo "OK\n";
+		} else {
+			openzwave::runDeamon();
 		}
+	} else {
+		openzwave::runDeamon();
 	}
-
 }
 
 function openzwave_remove() {
