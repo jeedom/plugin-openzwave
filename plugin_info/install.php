@@ -41,7 +41,7 @@ function openzwave_update() {
 	}
 	if (method_exists('openzwave', 'dependancy_info')) {
 		$dependancy_info = openzwave::dependancy_info();
-		if ($dependancy_info['state'] != 'ok') {
+		if (isset($dependancy_info['state']) && $dependancy_info['state'] != 'ok') {
 			echo __('Lancement de la mise à jour du serveur openzwave...', __FILE__);
 			openzwave::dependancy_install();
 			echo "OK\n";
