@@ -18,7 +18,7 @@
                         {
                             "instanceId": "0",
                             "class": "0x26",
-                            "value": "data[0].Set(99)"
+                            "value": "data[1].PressButton()"
                         },
                 "display":
                         {
@@ -34,7 +34,7 @@
                         {
                             "instanceId": "0",
                             "class": "0x26",
-                            "value": "data[0].Set(0)"
+                            "value": "data[2].PressButton()"
                         },
                 "display":
                         {
@@ -70,8 +70,8 @@
                         },
                 "template":
                         {
-                            "dashboard": "tooltip",
-                            "mobile": "tooltip"
+                            "dashboard": "store",
+                            "mobile": "store"
                         }
             },
             {
@@ -101,6 +101,45 @@
                 "display": {
                     "icon": "<i class=\"fa fa-stop\"><\/i>"
                 }
+            },
+						{
+			                "name": "Incliner",
+			                "type": "action",
+			                "subtype": "other",
+			                "isVisible": 0,
+			                "configuration": {
+			                    "instanceId": "0",
+			                    "class": "0x26",
+			                    "value": "data[7].PressButton()"
+			                },
+			                "display": {
+			                    "icon": "<i class=\"fa fa-plus\"><\/i>"
+			                }
+			            },
+						{
+			                "name": "Décliner",
+			                "type": "action",
+			                "subtype": "other",
+			                "isVisible": 0,
+			                "configuration": {
+			                    "instanceId": "0",
+			                    "class": "0x26",
+			                    "value": "data[8].PressButton()"
+			                },
+			                "display": {
+			                    "icon": "<i class=\"fa fa-minus\"><\/i>"
+			                }
+			            },
+						{
+			                "name": "Pas",
+			                "type": "info",
+			                "subtype": "numeric",
+			                "isVisible": 0,
+			                "configuration": {
+			                    "instanceId": "0",
+			                    "class": "0x26",
+			                    "value": "data[6].val"
+			                }
             }
         ]
 }

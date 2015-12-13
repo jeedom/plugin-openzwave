@@ -8,99 +8,138 @@
 		"configuration" : {
         "conf_version" : 1
 		},
-        "commands": [
-            {
-                "name": "Up",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-                "configuration":
-                        {
-                            "instanceId": "0",
-                            "class": "0x26",
-                            "value": "data[0].Set(99)"
-                        },
-                "display":
-                        {
-                            "icon": "<i class=\"fa fa-arrow-up\"></i>"
-                        }
-            },
-            {
-                "name": "Down",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-                "configuration":
-                        {
-                            "instanceId": "0",
-                            "class": "0x26",
-                            "value": "data[0].Set(0)"
-                        },
-                "display":
-                        {
-                            "icon": "<i class=\"fa fa-arrow-down\"></i>"
-                        }
-            },
-            {
-                "name": "Etat",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 0,
+		"commands": [
+				{
+						"name": "Up",
+						"type": "action",
+						"subtype": "other",
+						"isVisible": 1,
+						"configuration":
+										{
+												"instanceId": "0",
+												"class": "0x26",
+												"value": "data[1].PressButton()"
+										},
+						"display":
+										{
+												"icon": "<i class=\"fa fa-arrow-up\"></i>"
+										}
+				},
+				{
+						"name": "Down",
+						"type": "action",
+						"subtype": "other",
+						"isVisible": 1,
+						"configuration":
+										{
+												"instanceId": "0",
+												"class": "0x26",
+												"value": "data[2].PressButton()"
+										},
+						"display":
+										{
+												"icon": "<i class=\"fa fa-arrow-down\"></i>"
+										}
+				},
+				{
+						"name": "Etat",
+						"type": "info",
+						"subtype": "numeric",
+						"isVisible": 0,
 
-                "configuration":
-                        {
-                            "instanceId": "0",
-                            "class": "0x26",
-                            "value": "data[0].val"
-                        }
-            },
-            {
-                "name": "Positionnement",
-                "type": "action",
-                "subtype": "slider",
-                "isVisible": 1,
-                "value": "Etat",
-                "configuration":
-                        {
-                            "instanceId": "0",
-                            "class": "0x26",
-                            "value": "data[0].Set(#slider#)",
-                            "minValue": 0,
-                            "maxValue": 99
-                        },
-                "template":
-                        {
-                            "dashboard": "tooltip",
-                            "mobile": "tooltip"
-                        }
-            },
-            {
-                "name": "Rafraichir",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 0,
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x26",
-                    "value": "Get()"
-                },
-                "display": {
-                    "icon": "<i class=\"fa fa-refresh\"><\/i>"
-                }
-            },
-						{
-                "name": "Stop",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x26",
-                    "value": "data[2].ReleaseButton()"
-                },
-                "display": {
-                    "icon": "<i class=\"fa fa-stop\"><\/i>"
-                }
-            }
-        ]
+						"configuration":
+										{
+												"instanceId": "0",
+												"class": "0x26",
+												"value": "data[0].val"
+										}
+				},
+				{
+						"name": "Positionnement",
+						"type": "action",
+						"subtype": "slider",
+						"isVisible": 1,
+						"value": "Etat",
+						"configuration":
+										{
+												"instanceId": "0",
+												"class": "0x26",
+												"value": "data[0].Set(#slider#)",
+												"minValue": 0,
+												"maxValue": 99
+										},
+						"template":
+										{
+												"dashboard": "store",
+												"mobile": "store"
+										}
+				},
+				{
+						"name": "Rafraichir",
+						"type": "action",
+						"subtype": "other",
+						"isVisible": 0,
+						"configuration": {
+								"instanceId": "0",
+								"class": "0x26",
+								"value": "Get()"
+						},
+						"display": {
+								"icon": "<i class=\"fa fa-refresh\"><\/i>"
+						}
+				},
+				{
+						"name": "Stop",
+						"type": "action",
+						"subtype": "other",
+						"isVisible": 1,
+						"configuration": {
+								"instanceId": "0",
+								"class": "0x26",
+								"value": "data[2].ReleaseButton()"
+						},
+						"display": {
+								"icon": "<i class=\"fa fa-stop\"><\/i>"
+						}
+				},
+				{
+									"name": "Incliner",
+									"type": "action",
+									"subtype": "other",
+									"isVisible": 0,
+									"configuration": {
+											"instanceId": "0",
+											"class": "0x26",
+											"value": "data[7].PressButton()"
+									},
+									"display": {
+											"icon": "<i class=\"fa fa-plus\"><\/i>"
+									}
+							},
+				{
+									"name": "Décliner",
+									"type": "action",
+									"subtype": "other",
+									"isVisible": 0,
+									"configuration": {
+											"instanceId": "0",
+											"class": "0x26",
+											"value": "data[8].PressButton()"
+									},
+									"display": {
+											"icon": "<i class=\"fa fa-minus\"><\/i>"
+									}
+							},
+				{
+									"name": "Pas",
+									"type": "info",
+									"subtype": "numeric",
+									"isVisible": 0,
+									"configuration": {
+											"instanceId": "0",
+											"class": "0x26",
+											"value": "data[6].val"
+									}
+				}
+		]
 }
