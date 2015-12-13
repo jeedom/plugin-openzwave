@@ -69,9 +69,7 @@
                 "unite": "kPa",
                 "configuration": {
                     "class": "0x31",
-                    "value": "data[9].val",
-                    "maxValue": 1100,
-                    "minValue": 500
+                    "value": "data[9].val"
                 }
             },
 						{
