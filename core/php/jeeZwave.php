@@ -29,11 +29,13 @@ if (isset($_GET['test'])) {
 }
 
 if (isset($_GET['stopOpenzwave'])) {
+	config::save('allowStartDeamon', 0, 'openzwave');
 	openzwave::stopDeamon();
 	die();
 }
 
 if (isset($_GET['startOpenzwave'])) {
+	config::save('allowStartDeamon', 1, 'openzwave');
 	openzwave::runDeamon();
 	openzwave::getVersion();
 	die();
