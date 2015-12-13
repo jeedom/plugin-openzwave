@@ -138,6 +138,7 @@ if [ $(grep 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200"
   sudo mv /tmp/udev /etc/udev/rules.d/98-usb-serial.rules
 fi
 
+echo "Restart Zwave deamon : $2/plugins/openzwave/core/php/jeeZwave.php"
 curl -G -k -s "$2/plugins/openzwave/core/php/jeeZwave.php" -d "apikey=$3" --data-urlencode "startOpenzwave=1"
 echo "Everything is successfully installed!"
 rm /tmp/compilation_ozw_in_progress

@@ -35,6 +35,7 @@ if (isset($_GET['stopOpenzwave'])) {
 }
 
 if (isset($_GET['startOpenzwave'])) {
+	log::add('openzwave', 'debug', 'Restart Zwave deamon');
 	config::save('allowStartDeamon', 1, 'openzwave');
 	openzwave::runDeamon();
 	openzwave::getVersion();
