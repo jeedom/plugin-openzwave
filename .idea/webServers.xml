@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2f76f6e7-2dde-4802-b704-372f07b79fab" name="Jeedom Developement" url="http://10.0.77.222">
+        <fileTransfer host="10.0.77.222" port="22" rootFolder="/usr/share/nginx/www/jeedom/plugins/openzwave/" accessType="SFTP" password="dfe9dfc6dfcbdfdedfc5dfc5df93df93" username="jeedom">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

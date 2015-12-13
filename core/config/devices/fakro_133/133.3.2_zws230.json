@@ -1,10 +1,10 @@
 {
-	"name": "ZWS230 Chain actuator 230VAC", 
+	"name": "ZWS230 Chain actuator 230VAC",
     "doc" : "",
     "type": "Volets",
     "comlink" : "2362-fakro-moteur-pour-fenetre-de-toit-z-wave-zws230-5900988500378",
     "remark" : "",
-    "imglink" : "fakro.zws230", 
+    "imglink" : "fakro.zws230",
 		"configuration" : {
         "conf_version" : 1
 		},
@@ -86,6 +86,20 @@
                 },
                 "display": {
                     "icon": "<i class=\"fa fa-refresh\"><\/i>"
+                }
+            },
+						{
+                "name": "Stop",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x26",
+                    "value": "data[2].ReleaseButton()"
+                },
+                "display": {
+                    "icon": "<i class=\"fa fa-stop\"><\/i>"
                 }
             }
         ]

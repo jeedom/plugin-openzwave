@@ -1,10 +1,10 @@
 {
-	"name": "ARZ Roof Window Roller Shutter", 
+	"name": "ARZ Roof Window Roller Shutter",
     "doc" : "",
     "type": "Volets",
     "comlink" : "",
     "remark" : "",
-    "imglink" : "fakro.arz", 
+    "imglink" : "fakro.arz",
 		"configuration" : {
         "conf_version" : 1
 		},
@@ -70,8 +70,8 @@
                         },
                 "template":
                         {
-                            "dashboard": "tooltip",
-                            "mobile": "tooltip"
+                            "dashboard": "store",
+                            "mobile": "store"
                         }
             },
             {
@@ -86,6 +86,20 @@
                 },
                 "display": {
                     "icon": "<i class=\"fa fa-refresh\"><\/i>"
+                }
+            },
+						{
+                "name": "Stop",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x26",
+                    "value": "data[2].ReleaseButton()"
+                },
+                "display": {
+                    "icon": "<i class=\"fa fa-stop\"><\/i>"
                 }
             }
         ]
