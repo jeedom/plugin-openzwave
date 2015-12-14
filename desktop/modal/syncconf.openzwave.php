@@ -37,12 +37,31 @@ if (!isConnect('admin')) {
 			handleAjaxError(request, status, error, $('#div_syncconfOpenzwaveAlert'));
 		},
 		success: function () {
-			 jeedom.log.autoupdate({
-               log : 'openzwave_syncconf',
-               display : $('#pre_openzwavesyncconf'),
-               search : $('#in_openzwaveLogSearch'),
-               control : $('#bt_openzwaveLogStopStart'),
-           });
+			jeedom.log.autoupdate({
+				log : 'openzwave_syncconf',
+				display : $('#pre_openzwavesyncconf'),
+				search : $('#in_openzwaveLogSearch'),
+				control : $('#bt_openzwaveLogStopStart'),
+			});
+
+			$('#bt_openzwaveLogStopStart').on('click',function(){
+				if($(this).attr('data-state') == 1){
+					$(this).attr('data-state',0);
+					$(this).removeClass('btn-warning').addClass('btn-success');
+					$(this).html('<i class="fa fa-play"></i> {{Reprise}}');
+
+				}else{
+					$(this).removeClass('btn-success').addClass('btn-warning');
+					$(this).html('<i class="fa fa-pause"></i> {{Pause}}');
+					$(this).attr('data-state',1);
+					jeedom.log.autoupdate({
+						log : 'openzwave_syncconf',
+						display : $('#pre_openzwavesyncconf'),
+						search : $('#in_openzwaveLogSearch'),
+						control : $('#bt_openzwaveLogStopStart'),
+					});
+				}
+			});
 		}
 	});
 </script>
