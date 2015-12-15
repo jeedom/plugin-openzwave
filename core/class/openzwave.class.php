@@ -395,6 +395,7 @@ class openzwave extends eqLogic {
 		if (file_exists('/tmp/compilation_ozw_in_progress')) {
 			return;
 		}
+		config::save('currentOzwVersion', config::byKey('openzwave_version', 'openzwave'), 'openzwave');
 		log::remove('openzwave_update');
 		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh';
 		$cmd .= ' no_compil';
