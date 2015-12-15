@@ -275,7 +275,13 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 								<th>{{Type}}</th>
 								<th>{{Valeur}}</th>
 								<th>{{Modifier}}</th>
-								<th>{{Aide}}<div class="btn-group pull-right"><a id="copyParams" class="btn btn-info btn-sm copyParams"><i class="fa fa-copy"></i> {{Copier les paramètres d'un node existant}}</a></div></th>
+								<th>{{Aide}}
+								<div class="btn-group pull-right">
+								<a id="refreshParams" class="btn btn-info btn-sm refreshParams"><i class="fa fa-refresh"></i> {{Actualiser les paramètres}}</a>
+								</div>
+								<div class="btn-group pull-right">
+								<a id="copyParams" class="btn btn-info btn-sm copyParams"><i class="fa fa-copy"></i> {{Copier les paramètres d'un node existant}}</a>
+								</div></th>
 							</tr>
 							<tr id="template-parameter" style="display:none">
 								<td key="parameter-index"></td>
