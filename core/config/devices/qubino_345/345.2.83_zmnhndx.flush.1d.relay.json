@@ -5,7 +5,7 @@
         "comlink" : "2950-qubino-micromodule-contact-sec-z-wave-zmnhnd1-3830062070072",
         "remark" : "",
         "imglink" : "qubino.zmnhndx",
-        "ignore" : 1,
+        "ignore" : 0,
 		"configuration" : {
         "conf_version" : 1
 		},
