@@ -1,17 +1,17 @@
- {
-		"name": "ZS5101",
+{
+		"name": "ZP3102",
         "doc" : "",
-        "type": "Vibration",
-        "comlink" : "2157-vision-security-detecteur-de-choc-z-wave",
-        "remark" : "",
-        "imglink" : "vision.zs5101",
+        "type": "Multicapteurs",
+        "comlink" : "2605-zipato-detecteur-de-mouvement-et-capteur-de-temperature-z-wave-3858890730272",
+        "remark" : "Vendu aussi sous la marque Zipato. Ce module peut dans certaine circonstance rester éveillé lors de l’interview. Il faut enlever et remettre la pile pour remédier à la situation.",
+        "imglink" : "vision.zp3102",
         "battery_type" : "1x3V CR123A",
         "configuration" : {
         "conf_version" : 1
 		},
         "commands": [
-            {
-                "name": "Etat",
+		{
+                "name": "Présence",
                 "type": "info",
                 "subtype": "binary",
                 "isVisible": 1,
@@ -25,17 +25,28 @@
                     "invertBinary": "1"
                 },
                 "template": {
-                    "dashboard": "choc",
-                    "mobile": "choc"
+                    "dashboard": "presence",
+                    "mobile": "presence"
                 }
              },
+            {
+                "name": "Température",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+				"isHistorized": 1,
+                "unite": "°C",
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[1].val"
+                }
+            },
             {
                 "name": "Sabotage",
                 "type": "info",
                 "subtype": "binary",
                 "isVisible": 1,
                 "isHistorized": 0,
-
                 "configuration": {
                     "instanceId": 0,
                     "class": "0x71",
@@ -55,13 +66,13 @@
                 "type": "info",
                 "subtype": "numeric",
                 "isVisible": 0,
-                "isHistorized": 0,
+				"isHistorized": 1,
+                "unite": "%",
                 "configuration": {
-                    "instanceId": 0,
                     "class": "0x80",
-                    "value": "data[0].val",
-                    "unite": "%"
+                    "value": "data[0].val"
                 }
             }
+            
         ]
-    }
+	}
