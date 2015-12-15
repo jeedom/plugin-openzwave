@@ -74,33 +74,6 @@ class openzwave extends eqLogic {
 		return self::$_listZwaveServer;
 	}
 
-	public static function health() {
-		$return = array();
-		$demon_state = self::deamonRunning();
-		$return[] = array(
-			'test' => __('Démon local', __FILE__),
-			'result' => ($demon_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'advice' => ($demon_state) ? '' : __('Peut être normal si vous êtes en déporté', __FILE__),
-			'state' => $demon_state,
-		);
-		if (config::byKey('jeeNetwork::mode') == 'master') {
-			foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
-				try {
-					$demon_state = $jeeNetwork->sendRawRequest('deamonRunning', array('plugin' => 'openzwave'));
-				} catch (Exception $e) {
-					$demon_state = false;
-				}
-				$return[] = array(
-					'test' => __('Démon sur ', __FILE__) . $jeeNetwork->getName(),
-					'result' => ($demon_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-					'advice' => '',
-					'state' => $demon_state,
-				);
-			}
-		}
-		return $return;
-	}
-
 	public static function callOpenzwave($_url, $_serverId = 0, $_timeout = null, $_noError = false) {
 		if (self::$_listZwaveServer == null) {
 			self::listServerZwave();
@@ -434,7 +407,7 @@ class openzwave extends eqLogic {
 	public static function getVersion($_module = 'openzwave') {
 		if ($_module == 'openzwave') {
 			try {
-				$network = self::callOpenzwave('/ZWaveAPI/Run/network.GetStatus()');
+				$network = self::callOpenzwave('/ZWaveAPI/Run/network.GetStatus()', 0, 2000);
 				if (isset($network['OpenZwaveLibraryVersion'])) {
 					config::save('currentOzwVersion', $network['OpenZwaveLibraryVersion'], 'openzwave');
 				}
@@ -471,47 +444,41 @@ class openzwave extends eqLogic {
 		shell_exec($cmd);
 	}
 
-	public static function cron15() {
-		if (config::byKey('allowStartDeamon', 'openzwave', 1) == 1 && config::byKey('port', 'openzwave', 'none') != 'none' && !self::deamonRunning()) {
-			self::runDeamon();
-		}
-	}
-
-	public static function start() {
-		if (config::byKey('allowStartDeamon', 'openzwave', 1) == 1 && config::byKey('port', 'openzwave', 'none') != 'none' && !self::deamonRunning()) {
-			$continue = 0;
-			while ($continue < 4) {
-				self::runDeamon();
-				if (!self::deamonRunning()) {
-					$continue++;
-					sleep(60);
-				} else {
-					$continue = 99;
-				}
+	public static function deamon_info() {
+		$return = array();
+		$return['log'] = 'openzwavecmd';
+		$return['state'] = 'nok';
+		$pid_file = '/tmp/openzwave.pid';
+		if (file_exists($pid_file)) {
+			if (posix_getsid(trim(file_get_contents($pid_file)))) {
+				$return['state'] = 'ok';
+			} else {
+				unlink($pid_file);
 			}
 		}
-	}
-
-	public static function runDeamon($_debug = false) {
-		if (file_exists('/tmp/compilation_ozw_in_progress')) {
-			return;
-		}
-		if (config::byKey('allowStartDeamon', 'openzwave', 1) == 0) {
-			return;
-		}
-		try {
-			self::stopDeamon();
-		} catch (Exception $e) {
-
-		}
-		log::add('openzwave', 'info', 'Lancement du démon openzwave');
+		$return['launchable'] = 'ok';
 		$port = config::byKey('port', 'openzwave');
 		if ($port != 'auto') {
-			$port = jeedom::getUsbMapping($port, true);
+			$port = jeedom::getUsbMapping($port);
 			if (@!file_exists($port)) {
-				throw new Exception(__('Le port : ', __FILE__) . print_r($port, true) . __(' n\'existe pas', __FILE__));
+				$return['launchable'] = 'nok';
+				$return['launchable_message'] = __('Le port n\'est pas configuré', __FILE__);
 			}
 			exec('sudo chmod 777 ' . $port . ' > /dev/null 2>&1');
+		}
+		return $return;
+	}
+
+	public static function deamon_start($_debug = false) {
+		self::deamon_stop();
+		$deamon_info = self::deamon_info();
+		if ($deamon_info['launchable'] != 'ok') {
+			throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
+		}
+		log::remove('openzwavecmd');
+		$port = config::byKey('port', 'openzwave');
+		if ($port != 'auto') {
+			$port = jeedom::getUsbMapping($port);
 		}
 
 		if (config::byKey('jeeNetwork::mode') == 'slave') {
@@ -542,62 +509,49 @@ class openzwave extends eqLogic {
 		$cmd .= ' --apikey=' . $apikey;
 		$cmd .= ' --serverId=' . $serverId;
 
-		log::add('openzwave', 'info', 'Lancement démon openzwave : ' . $cmd);
-		$result = exec($cmd . ' >> ' . log::getPathToLog('openzwave') . ' 2>&1 &');
+		log::add('openzwavecmd', 'info', 'Lancement démon openzwave : ' . $cmd);
+		$result = exec($cmd . ' >> ' . log::getPathToLog('openzwavecmd') . ' 2>&1 &');
 		if (strpos(strtolower($result), 'error') !== false || strpos(strtolower($result), 'traceback') !== false) {
-			log::add('openzwave', 'error', $result);
+			log::add('openzwavecmd', 'error', $result);
 			return false;
 		}
 		$i = 0;
 		while ($i < 30) {
-			if (self::deamonRunning()) {
+			$deamon_info = self::deamon_info();
+			if ($deamon_info['state'] == 'ok') {
 				break;
 			}
 			sleep(1);
 			$i++;
 		}
-		if ($i >= 10) {
-			log::add('openzwave', 'error', 'Impossible de lancer le démon openzwave, vérifiez le port', 'unableStartDeamon');
+		if ($i >= 30) {
+			log::add('openzwavecmd', 'error', 'Impossible de lancer le démon openzwave, vérifiez le port', 'unableStartDeamon');
 			return false;
 		}
 		message::removeAll('openzwave', 'unableStartDeamon');
-		log::add('openzwave', 'info', 'Démon openzwave lancé');
+		log::add('openzwavecmd', 'info', 'Démon openzwave lancé');
 	}
 
-	public static function deamonRunning() {
-		$pid_file = '/tmp/openzwave.pid';
-		if (!file_exists($pid_file)) {
-			return false;
-		}
-		$pid = trim(file_get_contents($pid_file));
-		if (posix_getsid($pid)) {
-			return true;
-		}
-		unlink($pid_file);
-		return false;
-	}
-
-	public static function stop() {
-		if (self::deamonRunning()) {
+	public static function deamon_stop() {
+		$deamon_info = self::deamon_info();
+		if ($deamon_info['state'] == 'ok') {
 			try {
-				self::callOpenzwave('/ZWaveAPI/Run/network.Stop()');
+				self::callOpenzwave('/ZWaveAPI/Run/network.Stop()', 0, 30000);
 			} catch (Exception $e) {
 
 			}
 		}
-	}
-
-	public static function stopDeamon() {
-		self::stop();
 		$pid_file = '/tmp/openzwave.pid';
 		if (file_exists($pid_file)) {
 			$pid = intval(trim(file_get_contents($pid_file)));
 			posix_kill($pid, 15);
-			if (self::deamonRunning()) {
+			$deamon_info = self::deamon_info();
+			if ($deamon_info['state'] == 'ok') {
 				sleep(1);
 				posix_kill($pid, 9);
 			}
-			if (self::deamonRunning()) {
+			$deamon_info = self::deamon_info();
+			if ($deamon_info['state'] == 'ok') {
 				sleep(1);
 				exec('kill -9 ' . $pid . ' > /dev/null 2>&1');
 			}
@@ -605,7 +559,6 @@ class openzwave extends eqLogic {
 		exec('fuser -k ' . config::byKey('port_server', 'openzwave', 8083) . '/tcp > /dev/null 2>&1');
 		exec('sudo fuser -k ' . config::byKey('port_server', 'openzwave', 8083) . '/tcp > /dev/null 2>&1');
 		exec("ps aux | grep -ie 'openZWave.py' | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
-		return self::deamonRunning();
 	}
 
 	/*     * *********************Methode d'instance************************* */

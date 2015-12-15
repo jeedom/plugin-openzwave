@@ -28,27 +28,6 @@ if ($jsonrpc->getMethod() == 'deamonRunning') {
 	$jsonrpc->makeSuccess(openzwave::deamonRunning());
 }
 
-if ($jsonrpc->getMethod() == 'runDeamon') {
-	config::save('allowStartDeamon', 1, 'openzwave');
-	$port = config::byKey('port', 'openzwave', 'none');
-	if ($port == 'none') {
-		ajax::success();
-	}
-	openzwave::stopDeamon();
-	if (openzwave::deamonRunning()) {
-		throw new Exception(__('Impossible d\'arrêter le démon', __FILE__));
-	}
-	log::clear('openzwave');
-	$params['debug'] = (!isset($params['debug'])) ? 0 : $params['debug'];
-	openzwave::runDeamon($params['debug']);
-	$jsonrpc->makeSuccess('ok');
-}
-
-if ($jsonrpc->getMethod() == 'stopDeamon') {
-	config::save('allowStartDeamon', 0, 'openzwave');
-	$jsonrpc->makeSuccess(openzwave::stopDeamon());
-}
-
 if ($jsonrpc->getMethod() == 'getVersion') {
 	$jsonrpc->makeSuccess(openzwave::getVersion($params['module']));
 }

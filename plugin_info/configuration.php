@@ -21,78 +21,7 @@ if (!isConnect()) {
 	include_file('desktop', '404', 'php');
 	die();
 }
-$deamonRunningMaster = openzwave::deamonRunning();
-$deamonRunningSlave = array();
-$deamonSlaveVersion = array();
-if (config::byKey('jeeNetwork::mode') == 'master') {
-	foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
-		$deamonRunningSlave[$jeeNetwork->getName()] = false;
-		try {
-			$deamonRunningSlave[$jeeNetwork->getName()] = $jeeNetwork->sendRawRequest('deamonRunning', array('plugin' => 'openzwave'));
-		} catch (Exception $e) {
-
-		}
-	}
-}
-
-$urlMasterLocal = false;
-try {
-	$request_http = new com_http(network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/openzwave/core/php/jeeZwave.php?apikey=' . config::byKey('api') . '&test=1');
-	if ($request_http->exec(1, 1) == 'OK') {
-		$urlMasterLocal = true;
-	}
-} catch (Exception $e) {
-
-}
-$urlMasterDistant = false;
-try {
-	$request_http = new com_http(network::getNetworkAccess('internal', 'proto:ip:port:comp') . '/plugins/openzwave/core/php/jeeZwave.php?apikey=' . config::byKey('api') . '&test=1');
-	if ($request_http->exec(1, 1) == 'OK') {
-		$urlMasterDistant = true;
-	}
-} catch (Exception $e) {
-
-}
 ?>
-<form class="form-horizontal">
-	<fieldset>
-		<?php
-echo '<div class="form-group">';
-echo '<label class="col-sm-4 control-label">{{Retour local}}</label>';
-if (!$urlMasterLocal) {
-	echo '<div class="col-sm-1"><span class="label label-danger tooltips" style="font-size : 1em;" title="{{Vérifiez votre configuration sur la page de configuration réseaux, celle-ci est incorrecte et le démon ne pourra communiquer avec Jeedom}}">NOK</span></div>';
-} else {
-	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
-}
-echo '<label class="col-sm-1 control-label">{{Retour distant}}</label>';
-if (!$urlMasterDistant) {
-	echo '<div class="col-sm-1"><span class="label label-danger tooltips" style="font-size : 1em;" title="{{Vérifiez votre configuration sur la page de configuration réseaux, celle-ci est incorrecte et le démon ne pourra communiquer avec Jeedom}}">NOK</span></div>';
-} else {
-	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
-}
-echo '</div>';
-echo '<div class="form-group">';
-echo '<label class="col-sm-4 control-label">{{Démon local}}</label>';
-if (!$deamonRunningMaster) {
-	echo '<div class="col-sm-1"><span class="label label-danger tooltips" style="font-size : 1em;" title="{{Peut être normale si vous etes en deporté}}">NOK</span></div>';
-} else {
-	echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
-}
-
-echo '</div>';
-foreach ($deamonRunningSlave as $name => $status) {
-	echo ' <div class="form-group"><label class="col-sm-4 control-label">{{Sur l\'esclave}} ' . $name . '</label>';
-	if (!$status) {
-		echo '<div class="col-sm-1"><span class="label label-danger" style="font-size : 1em;">NOK</span></div>';
-	} else {
-		echo '<div class="col-sm-1"><span class="label label-success" style="font-size : 1em;">OK</span></div>';
-	}
-	echo '</div>';
-}
-?>
-	</fieldset>
-</form>
-
 <form class="form-horizontal">
 	<fieldset>
 		<legend><i class="fa fa-list-alt"></i> {{Général}}</legend>
@@ -153,14 +82,6 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 					<input class="configKey form-control" data-l1key="port_server" placeholder="8083" />
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">{{Gestion du démon}}</label>
-				<div class="col-sm-8">
-					<a class="btn btn-success" id="bt_startopenZwaveDemon"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-					<a class="btn btn-danger" id="bt_stopopenZwaveDemon"><i class='fa fa-stop'></i> {{Arrêter}}</a>
-					<a class="btn btn-warning" id="bt_launchOpenZwaveInDebug"><i class="fa fa-exclamation-triangle"></i> {{Lancer en mode debug}}</a>
-				</div>
-			</div>
 		</fieldset>
 	</form>
 	<?php
@@ -189,14 +110,6 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 							<input class="slaveConfigKey form-control" data-l1key="port_server" placeholder="8083" />
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="col-lg-4 control-label">{{Gestion du démon}}</label>
-						<div class="col-lg-8">
-							<a class="btn btn-success bt_restartOpenZwaveDeamon"><i class='fa fa-play'></i> {{(Re)démarrer}}</a>
-							<a class="btn btn-danger bt_stopZwaveDeamon"><i class='fa fa-stop'></i> {{Arrêter}}</a>
-							<a class="btn btn-warning bt_launchOpenZwaveInDebug"><i class="fa fa-exclamation-triangle"></i> {{Lancer en mode debug}}</a>
-						</div>
-					</div>
 				</fieldset>
 			</form>
 			<?php
@@ -205,40 +118,6 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 ?>
 
 	<script>
-		$('#bt_stopopenZwaveDemon').on('click', function() {
-			stopopenZwaveDemon('local',0);
-		});
-
-		$('#bt_startopenZwaveDemon').on('click', function() {
-			startopenZwaveDemon('local',0);
-		});
-		$('.bt_restartOpenZwaveDeamon').on('click', function() {
-			startopenZwaveDemon('remote',$(this).closest('.slaveConfig').attr('data-slave_id'));
-		});
-
-		$('.bt_stopZwaveDeamon').on('click', function() {
-			stopopenZwaveDemon('remote',$(this).closest('.slaveConfig').attr('data-slave_id'));
-		});
-
-		$('.bt_launchOpenZwaveInDebug').on('click', function () {
-			var slave_id = $(this).closest('.slaveConfig').attr('data-slave_id');
-			bootbox.confirm('{{Etes-vous sur de vouloir lancer le démon en mode debug ? N\'oubliez pas de le relancer en mode normale une fois terminé}}', function (result) {
-				if (result) {
-					$('#md_modal').dialog({title: "{{Openzwave en mode debug}}"});
-					$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=show.debug&slave_id='+slave_id).dialog('open');
-				}
-			});
-		});
-
-		$('#bt_launchOpenZwaveInDebug').on('click', function () {
-			bootbox.confirm('{{Etes-vous sûr de vouloir lancer le démon en mode debug ? N\'oubliez pas d\'arrêter/redémarrer le démon une fois terminé}}', function (result) {
-				if (result) {
-					$('#md_modal').dialog({title: "{{Openzwave en mode debug}}"});
-					$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=show.debug').dialog('open');
-				}
-			});
-		});
-
 		$('#bt_migrateZwave').on('click', function () {
 			bootbox.confirm('{{Etes-vous sûr de vouloir lancer la migration cette opération est irreversible}}', function (result) {
 				if (result) {
@@ -271,57 +150,4 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 				}
 			});
 		});
-
-		function stopopenZwaveDemon(type,id) {
-	    $.ajax({// fonction permettant de faire de l'ajax
-	        type: "POST", // methode de transmission des données au fichier php
-	        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
-	        data: {
-	        	action: "stopDeamon",
-	        	type: type,
-	        	id: id
-	        },
-	        dataType: 'json',
-	        error: function(request, status, error) {
-	        	handleAjaxError(request, status, error);
-	        },
-	        success: function(data) { // si l'appel a bien fonctionné
-	        if (data.state != 'ok') {
-	        	$('#div_alert').showAlert({message: data.result, level: 'danger'});
-	        	return;
-	        }
-	        $('#div_alert').showAlert({message: 'Le démon a été correctement arreté', level: 'success'});
-	        $('#ul_plugin .li_plugin[data-plugin_id=openzwave]').click();
-	    }
-	});
-
-	}
-
-	function startopenZwaveDemon(type,id) {
-	    $.ajax({// fonction permettant de faire de l'ajax
-	        type: "POST", // methode de transmission des données au fichier php
-	        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
-	        data: {
-	        	action: "startDeamon",
-	        	type: type,
-	        	id: id
-	        },
-	        dataType: 'json',
-	        error: function(request, status, error) {
-	        	handleAjaxError(request, status, error);
-	        },
-	        success: function(data) { // si l'appel a bien fonctionné
-	        if (data.state != 'ok') {
-	        	$('#div_alert').showAlert({message: data.result, level: 'danger'});
-	        	return;
-	        }
-	        $('#div_alert').showAlert({message: 'Le démon a été correctement lancé', level: 'success'});
-	        $('#ul_plugin .li_plugin[data-plugin_id=openzwave]').click();
-	    }
-	});
-	}
-
-	function openzwave_postSaveSlaveConfiguration(_slave_id){
-		startopenZwaveDemon('remote',_slave_id);
-	}
-</script>
+	</script>

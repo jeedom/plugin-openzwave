@@ -13,5 +13,6 @@
     <mobile>openzwave</mobile>
     <category>automation protocol</category>
     <hasDependency>1</hasDependency>
+    <hasOwnDeamon>1</hasOwnDeamon>
 </info>
 

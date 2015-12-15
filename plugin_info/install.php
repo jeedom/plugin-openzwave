@@ -33,17 +33,10 @@ function openzwave_update() {
 	if (count(eqLogic::byType('zwave')) > 0) {
 		log::add('openzwave', 'error', 'Attention vous etes sur la nouvelle version d\'openzwave, des actions de votre part sont necessaire merci d\'aller voir https://jeedom.fr/blog/?p=1576');
 	}
-	sleep(2);
-	if (openzwave::deamonRunning()) {
-		openzwave::runDeamon();
-	}
 }
 
 function openzwave_remove() {
-	config::save('allowStartDeamon', 0, 'openzwave');
-	if (openzwave::deamonRunning()) {
-		openzwave::stopDeamon();
-	}
+
 }
 
 ?>
