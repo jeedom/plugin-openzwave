@@ -1,0 +1,82 @@
+{		
+		"name": "MultiSensor Gen5 (ZW074)",
+        "doc" : "",
+        "type": "Multicapteurs",
+        "comlink" : "2681-aeon-labs-detecteur-multifonction-multisensor-z-wave-plus-gen5-1220000012684",
+        "remark" : "Attention ce module peut remonter de mauvaises données, il faut bien faire attention à la configuration",
+        "imglink" : "aeotec.multisensor-gen5",
+        "battery_type" : "4x1.5V AAA",
+		"configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "Présence",
+                "type": "info",
+                "subtype": "binary",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "configuration": {
+                    "class": "0x30",
+                    "value": "data[0].val"
+                },
+                "display": {
+                    "invertBinary": "1"
+                },
+                "template": {
+                    "dashboard": "presence",
+                    "mobile": "presence"
+                }
+            },
+            {
+                "name": "Température",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite": "°C",
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[1].val"
+                }
+            },
+            {
+                "name": "Luminosité",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite": "Lux",
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[3].val",
+                    "maxValue": 1000,
+                    "minValue": 0
+                }
+            },
+            {
+                "name": "Humidité",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite": "%",
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[5].val"
+                }
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "configuration": {
+                    "class": "0x80",
+                    "value": "data[0].val"
+                }
+            }
+        ]
+    }

@@ -1,0 +1,12 @@
+{
+	"name" : "USB Stick",
+    "doc" : "",
+    "type": "Contrôlleur",
+    "comlink" : "",
+    "remark" : "",
+    "imglink" : "zwaveme.uzb",
+    "battery_type" : "",
+    "configuration" : {
+        "conf_version" : 1
+    }    
+}

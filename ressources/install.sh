@@ -5,17 +5,20 @@
 # The script is based on packages listed in debpkg_minimal.txt.
 
 #set -x  # make sure each command is printed in the terminal
+touch /tmp/compilation_ozw_in_progress
 echo "Lancement de l'installation/mise à jour des dépendances openzwave"
+curl -G -k -s "$2/plugins/openzwave/core/php/jeeZwave.php" -d "apikey=$3" --data-urlencode "stopOpenzwave=1"
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ARCH=`uname -m`
-PYTHON_OPENZWAVE_VERSION=2cfca6369006b02a9594e8537208dd8fa735b185
-OPENZWAVE_VERSION=b258e9e245631e106516e66f4c416ce9d85900f3
+PYTHON_OPENZWAVE_VERSION=912677aa3090bb22d4c93a527955d5b0fca7a0b5 # 0.3.0b7
+OPENZWAVE_VERSION=ab1f4ba88998ada3f5555b22e1bc8eba27f2e4ce # 1.3.597
 
 function apt_install {
   sudo apt-get -y install "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $1 - abort"
+    rm /tmp/compilation_ozw_in_progress
     exit 1
   fi
 }
@@ -24,6 +27,7 @@ function pip_install {
   sudo pip install "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
+    rm /tmp/compilation_ozw_in_progress
     exit 1
   fi
 }
@@ -64,7 +68,7 @@ pip_install louie
 pip_install flask
 pip_install flask-restful
 
-if [  -z "$1" -a  $(uname -a | grep 'cubox' | wc -l ) -eq 1  -a ${ARCH} = "armv7l" ]; then
+if [ ${1} = "no_compil" -a  $(uname -a | grep 'cubox' | wc -l ) -eq 1  -a ${ARCH} = "armv7l" ]; then
   echo "Armv7/Jeedomboard installation direct"
   sudo rm -fr /opt/python-openzwave
   sudo mkdir -p /opt/python-openzwave
@@ -89,6 +93,7 @@ else
   sudo git clone https://github.com/OpenZWave/python-openzwave.git
   if [ $? -ne 0 ]; then
     echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
+    rm /tmp/compilation_ozw_in_progress
     exit 1
   fi
   cd python-openzwave
@@ -100,6 +105,7 @@ else
   sudo git clone https://github.com/OpenZWave/open-zwave.git openzwave
   if [ $? -ne 0 ]; then
     echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
+    rm /tmp/compilation_ozw_in_progress
     exit 1
   fi
   cd openzwave
@@ -131,4 +137,9 @@ if [ $(grep 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200"
   sudo echo 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200", SYMLINK+="ttyUSB21"' >> /tmp/udev
   sudo mv /tmp/udev /etc/udev/rules.d/98-usb-serial.rules
 fi
+
+echo "Restart Zwave deamon : $2/plugins/openzwave/core/php/jeeZwave.php"
+curl -G -k -s "$2/plugins/openzwave/core/php/jeeZwave.php" -d "apikey=$3" --data-urlencode "startOpenzwave=1"
 echo "Everything is successfully installed!"
+rm /tmp/compilation_ozw_in_progress
+

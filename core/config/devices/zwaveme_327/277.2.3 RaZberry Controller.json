@@ -1,0 +1,12 @@
+{
+	"name" : "RaZberry Controller",
+    "doc" : "",
+    "type": "Contrôlleur",
+    "comlink" : "",
+    "remark" : "",
+    "imglink" : "zwaveme.razberry",
+    "battery_type" : "",
+    "configuration" : {
+        "conf_version" : 1
+    }    
+}

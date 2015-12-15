@@ -7,10 +7,12 @@
     <licence>AGPL</licence>
     <author>Thomas MARTINEZ (tmartinez) - Jean-François AUGER (Nechry)</author>
     <installation></installation>
-    <require>1.188</require>
-    <version>1.8.0</version>
+    <require>2.0</require>
+    <version>2.0</version>
     <allowRemote>1</allowRemote>
     <mobile>openzwave</mobile>
     <category>automation protocol</category>
+    <hasDependency>1</hasDependency>
+    <hasOwnDeamon>1</hasOwnDeamon>
 </info>
 

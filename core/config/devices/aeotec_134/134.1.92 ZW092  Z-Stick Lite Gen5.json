@@ -1,0 +1,12 @@
+{
+	"name" : "Z-Stick Lite Gen5 (ZW092)",
+    "doc" : "",
+    "type": "Contrôlleur",
+    "comlink" : "",
+    "remark" : "",
+    "imglink" : "aeotec.zw092",
+    "battery_type" : "",
+    "configuration" : {
+        "conf_version" : 1
+    }    
+}

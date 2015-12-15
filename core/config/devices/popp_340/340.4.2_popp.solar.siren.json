@@ -20,7 +20,14 @@
             "configuration": {
                 "class": "0x25",
                 "value": "data[0].val"
-            }
+            },
+			"display": { 
+				"invertBinary": 1 
+			}, 
+			"template": { 
+				"dashboard": "alert", 
+				"mobile": "alert" 
+			}
         },
         {
             "name": "On",

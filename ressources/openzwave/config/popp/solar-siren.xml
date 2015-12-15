@@ -30,6 +30,12 @@
 			<Item label="Flash only" value="1" />
 			<Item label="Flash + Siren (Default)" value="2" />
 		</Value>
+		
+		<Value type="byte" genre="config" instance="1" index="6" label="Auto OFF" units="minutes" size="1" min="0" max="255" value="5">
+			<Help>If the value is set, the siren will be switched off automatically after a defined alarm time.
+				0: No auto off
+			</Help>
+		</Value>
 
 	</CommandClass>
 

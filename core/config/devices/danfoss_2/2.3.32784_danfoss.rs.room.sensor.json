@@ -1,0 +1,81 @@
+{
+        "name": "RS Room Sensor",
+        "type": "Thermostat",
+        "comlink" : "3069-danfoss-sonde-d-ambiance-z-wave-danfoss-link-rs",
+        "remark" : "",
+        "imglink" : "danfoss.room-sensor",
+        "battery_type" : "2x1.5V AA",
+        "configuration" : {
+        "conf_version" : 1
+        },
+        "commands": [
+            {
+                "name": "Température",
+                "type": "info",
+                "subtype": "numeric",
+                "unite": "°C",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "configuration": {
+                    "class": "0x31",
+                    "instanceId": 0,
+                    "value": "data[1].val"
+                }
+            },
+            {
+                "name": "Consigne-Chaud",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 0,
+                "unite": "°C",
+                "configuration": {
+                    "class": "0x43",
+                    "instanceId": 0,
+                    "value": "data[1].val",
+                    "maxValue": 28,
+                    "minValue": 12
+                }
+            },
+            {
+                "name": "Consigne-Froid",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "°C",
+                "configuration": {
+                    "class": "0x43",
+                    "instanceId": 0,
+                    "value": "data[2].val",
+                    "maxValue": 28,
+                    "minValue": 12
+                }
+            },
+            {
+                "name": "Diode",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "configuration": {
+                    "class": "0x87",
+                    "value": "data[0].Set(1)"
+                }
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "configuration": {
+                    "class": "0x80",
+                    "instanceId": 0,
+                    "value": "data[0].val",
+                    "maxValue": 100,
+                    "minValue": 0
+                }
+            }          
+        ]      
+}

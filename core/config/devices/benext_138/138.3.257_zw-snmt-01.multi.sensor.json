@@ -1,0 +1,70 @@
+{		
+		"name": "MoLite Sensor",
+        "doc" : "",
+        "type": "Multicapteurs",
+        "comlink" : "",
+        "remark" : "",
+        "imglink" : "benext.molite",
+        "battery_type" : "2x1.5V AAA",
+		"configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "Présence",
+                "type": "info",
+                "subtype": "binary",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "configuration": {
+                    "class": "0x30",
+                    "value": "data[0].val"
+                },
+                "display": {
+                    "invertBinary": "1"
+                },
+                "template": {
+                    "dashboard": "presence",
+                    "mobile": "presence"
+                }
+            },
+            {
+                "name": "Température",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite": "°C",
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[1].val"
+                }
+            },
+            {
+                "name": "Luminosité",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "unite": "Lux",
+                "configuration": {
+                    "class": "0x31",
+                    "value": "data[3].val",
+                    "maxValue": 1000,
+                    "minValue": 0
+                }
+            },            
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "configuration": {
+                    "class": "0x80",
+                    "value": "data[0].val"
+                }
+            }
+        ]
+    }

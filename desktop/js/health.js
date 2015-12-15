@@ -97,8 +97,8 @@ var app_health = {
         continue;
       }
       if(nodes[i].data.description.name != ''){
-        if(isset(eqLogic_human_name[i])){
-          var name = '<span class="nodeConfiguration cursor" data-node-id="'+i+'" data-server-id="'+$("#sel_zwaveHealthServerId").value()+'">'+eqLogic_human_name[i]+'</span>';
+        if(isset(eqLogic_human_name[$('#sel_zwaveHealthServerId').value()+':'+i])){
+          var name = '<span class="nodeConfiguration cursor" data-node-id="'+i+'" data-server-id="'+$("#sel_zwaveHealthServerId").value()+'">'+eqLogic_human_name[$('#sel_zwaveHealthServerId').value()+':'+i]+'</span>';
         }else{
           var name = '<span class="nodeConfiguration cursor" data-node-id="'+i+'" data-server-id="'+$("#sel_zwaveHealthServerId").value()+'"><span  class="label label-primary" style="font-size : 1em;">'+nodes[i].data.description.location+'</span> '+nodes[i].data.description.name+'</span>';
         }

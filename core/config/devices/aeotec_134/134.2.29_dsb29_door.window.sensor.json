@@ -1,0 +1,44 @@
+{
+		"name": "Door/Window Sensor 2E (DSB29)",
+        "doc" : "",
+        "type": "Ouverture",
+        "comlink" : "2340-aeon-labs-detecteur-d-ouverture-z-wave-g2-1220000011830",
+        "remark" : "",
+        "imglink" : "aeotec.doorwindow",
+        "battery_type" : "1x3V CR2",
+		"configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "Etat",
+                "type": "info",
+                "subtype": "binary",
+                "isVisible": 1,
+                "isHistorized": 1,
+                "configuration": {
+                    "class": "0x30",
+                    "value": "data[0].val"
+                },
+                "display": {
+                    "invertBinary": "1"
+                },
+                "template": {
+                    "dashboard": "door",
+                    "mobile": "door"
+                }
+            },
+            {
+                "name": "Batterie",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+                "unite": "%",
+                "configuration": {
+                    "class": "0x80",
+                    "value": "data[0].val"
+                }
+            }
+        ]
+    }

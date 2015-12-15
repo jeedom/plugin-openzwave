@@ -1,0 +1,131 @@
+{
+		"name" : "ZMNHDA2 Dimmer",
+        "doc" : "",
+        "type": "Micromodule",
+        "comlink" : "2567-qubino-micromodule-variateur-et-consometre-z-wave-zmnhda2-3830062070003",
+        "remark" : "",
+        "imglink" : "qubino.zmnhda2",
+      "configuration" : {
+        "conf_version" : 1
+		},
+      "commands" : [
+         {
+                "name": "Intensité",
+                "type": "action",
+                "subtype": "slider",
+                "isVisible": 1,
+                "value": "Etat",
+                "configuration": {
+                    "class": "0x26",
+                    "value": "data[0].Set(#slider#)"
+                },
+                "template": {
+                    "dashboard": "light",
+                    "mobile": "light"
+                }
+            },
+            {
+                "name": "On",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "configuration": {
+                    "class": "0x26",
+                    "value": "data[0].Set(99)"
+                }
+            },
+            {
+                "name": "Off",
+                "type": "action",
+                "subtype": "other",
+                "isVisible": 0,
+                "configuration": {
+                    "class": "0x26",
+                    "value": "data[0].Set(0)"
+                }
+            },
+            {
+                "name": "Etat",
+                "type": "info",
+                "subtype": "numeric",
+                "unite": "%",
+                "isVisible": 0,
+                "configuration": {
+                    "class": "0x26",
+                    "value": "data[0].val",
+                    "minValue": 0,
+                    "maxValue": 100
+                }
+            },
+			{
+				"name" : "Température",
+				"type" : "info",
+				"subtype" : "numeric",
+				"isVisible" : 1,
+				"isHistorized" : 1,
+				"unite" : "°C",
+				"configuration" :
+				{
+					"instanceId" : 0,
+					"class" : "0x31",
+					"value" : "data[1].val"
+				}
+			},
+			{
+				"name" : "Puissance",
+				"type" : "info",
+				"subtype" : "numeric",
+				"isVisible" : 1,
+				"isHistorized" : 1,
+				"unite" : "W",
+				"configuration" :
+				{
+					"instanceId" : 0,
+					"class" : "0x32",
+					"value" : "data[8].val",
+					"minValue" : 0,
+					"maxValue" : 1840
+				}
+			},
+			{
+				"name" : "Consommation",
+				"type" : "info",
+				"subtype" : "numeric",
+				"isVisible" : 0,
+				"isHistorized" : 1,
+				"unite" : "kWh",
+				"configuration" :
+				{
+					"instanceId" : 0,
+					"class" : "0x32",
+					"value" : "data[0].val"
+				}
+			},
+			{
+				"name" : "Etat I2",
+				"type" : "info",
+				"subtype" : "binary",
+				"isVisible" : 1,
+				"isHistorized" : 1,
+				"configuration" :
+				{
+					"instanceId" : 0,
+					"class" : "0x30",
+					"value" : "data[0].val"
+				}
+			},
+			{
+				"name" : "Etat I3",
+				"type" : "info",
+				"subtype" : "binary",
+				"isVisible" : 1,
+				"isHistorized" : 1,
+				"configuration" :
+				{
+					"instanceId" : 1,
+					"class" : "0x30",
+					"value" : "data[0].val"
+				}
+			}
+      ]
+   }

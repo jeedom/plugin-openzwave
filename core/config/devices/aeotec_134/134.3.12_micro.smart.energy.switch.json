@@ -1,5 +1,5 @@
 {
-		"name": "Insert Switch",
+		"name": "Micro Smart Switch",
         "doc" : "",
         "type": "Micromodule",
         "comlink" : "286-aeon-labs-micromodule-commutateur-et-compteur-d-energie-g2-1220000011014",

@@ -1,6 +1,6 @@
 == Configuration du plugin
 
-Après téléchargement du plugin, il vous suffit de l'activer et de configuer le port. Après sauvegarde le démon devrait se lancer. Le plugin est déjà configuré par défaut ; vous n'avez donc rien à faire de plus. Cependant vous pouvez modifier cette configuration.
+Après téléchargement du plugin, il vous suffit de l'activer et de configurer le port. Après sauvegarde le démon devrait se lancer. Le plugin est déjà configuré par défaut ; vous n'avez donc rien à faire de plus. Cependant vous pouvez modifier cette configuration.
 Voici le détail (certains paramètres peuvent n'être visibles qu'en mode expert) :
 
 image:../images/openzwave1.png[]
@@ -10,18 +10,23 @@ image:../images/openzwave1.png[]
 [TIP]
 Si vous êtes en mode déporté, le démon local peut être arrêté, c'est tout à fait normal.
 
-* *Configuration* : cette partie permet de configurer les paramètres généraux du plugin ainsi que la version actuel d'openzwave (si nous avez un NOK veuillez vous refairer à la partie "Mettre à jour OpenZwave"). Vous avez aussi une indication pour savoir si le moteur zwave arrivera bien à communiquer avec Jeeodom
+* *Configuration* : cette partie permet de configurer les paramètres généraux du plugin ainsi que la version actuel d'OpenZwave (si nous avez un NOK veuillez refaire à la partie "Mettre à jour OpenZwave"). Vous avez aussi une indication pour savoir si le moteur  Z-Wave arrive bien à communiquer avec Jeedom
 * *Général* :
-** *Supprimer automatiquement les périphériques exclus* : permet de supprimer les periphérique exclus du réseaux zwave ou non
-** *Soigner le réseau automatiquement 2 fois par semaine* : option pour activer un soin automatique du réseaux zwave (vivement conseillée)
+** *Supprimer automatiquement les périphériques exclus* : permet de supprimer les périphérique exclus du réseaux  Z-Wave ou non
+** *Soigner le réseau automatiquement 2 fois par semaine* : option pour activer un soin automatique du réseau  Z-Wave (vivement conseillée)
 * *Gestion avancée* :
-** Console : permet d'affichager la console zwave (voir plus bas)
+** Console : permet d'affichage la console  Z-Wave (voir plus bas)
 ** Backups : permet de gérer les backups du fichier de topologie réseaux
-** Configuration : permet de voir et modifier le fichier de topologie réseaux
+** Configuration : permet de voir et modifier le fichier de topologie réseaux (non recommandé)
+** Config modules : permet de récupérer les fichiers de configurations OpenZwave avec les paramètres des modules ainsi que la définition des commandes du module pour son utilisation. 
+[TIP]
+Lorsqu'un module est annoncé reconnue il faut lancer cette action (le redémarrage du plugin n'est pas requis)
+[IMPORTANT]
+Une fois les configurations récupérer il faut: exclure et ré-inclure le module qui a été reconnu. Ou lancer la Régénération de la détection du noeud, via l'onglet Actions du module (le plugin doit redémarrer), puis faire la loupe sur les commandes.
 * *Démon local* ou *Démon XXX* : paramètres de configuration locale (ou déportée, en fonction de l'intitulé) du démon.
 ** *Dépendance OpenZwave locale* : permet de lancer l'installation du moteur OpenZwave, si vous venez de l'installer il faut absolument lancer l'installation (à moins de vouloir utiliser le plugin en mode déporté, dans ce cas il faudra lancer l'installation à partir du jeedom deporté). Il est aussi possible que Jeedom vous redemande de faire cette étape suite à une mise à jour. C'est normale ca permet de mettre à jour OpenZwave
-** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-wave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 posssibilités à la fin de la liste
-** *Port socket interne* (modification dangereuse, doit être la même valeur sur tous les Jeedom déportés Z-wave)_ : permet de modifier le port de communication interne du démon.
+** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-wave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 possibilités à la fin de la liste
+** *Port socket interne* (modification dangereuse, doit être la même valeur sur tous les Jeedom déportés Z-wave) : permet de modifier le port de communication interne du démon.
 ** *Gestion du démon* : vous retrouvez ici les boutons de gestion du démon : 
 *** *Redémarrer* : permet de redémarrer le démon en mode normal.
 *** *Arrêter* : force l'arrêt du démon (attention cette option place le port sur l'option "Aucun" également).
@@ -65,7 +70,7 @@ Vous retrouvez ici toute la configuration de votre équipement :
 * *Activer* : permet de rendre votre équipement actif.
 * *Visible* : le rend visible sur le dashboard.
 * *Node ID* : ID du module sur le réseau Z-Wave. Peut être utile si, par exemple, vous voulez remplacer un module défaillant. Il suffit d'inclure le nouveau module, de récupérer son ID, et le mettre à la place de l'ID de l'ancien module et enfin de supprimer le nouveau module.
-* *Serveur* : serveur Z-Wave auquel est rataché votre module. Il est déconseillé de changer ça, à moins de savoir ce que vous faites.
+* *Serveur* : serveur Z-Wave auquel est rattaché votre module. Il est déconseillé de changer ça, à moins de savoir ce que vous faites.
 * *Délai maximum autorisé entre 2 messages (min)* : le délai maximum autorisé entre 2 messages avant que Jeedom ne déclare l'équipement en "timeout". 
 * *Commentaire* : vous permet de mettre des commentaires sur l'équipement (ex : pile changée le XX/XX/XXXX)
 * *Module* : ce champs n'apparaît que si il existe différents types de configuration pour votre module (cas pour les modules pouvant faire fils pilotes par exemple). Il vous permet lors de configurer la configuration à utiliser ou de la modifier par la suite
@@ -87,7 +92,7 @@ En fonction des types et sous-types, certaines options peuvent être absentes.
 * la classe de la commande Z-Wave (réservée aux experts).
 * la commande en elle-même (réservée aux experts).
 * "Valeur de retour d'état" et "Durée avant retour d'état" : permet d'indiquer à Jeedom qu'après un changement sur l'information sa valeur doit revenir à Y, X min après le changement. Exemple : dans le cas d'un détecteur de présence qui n'émet que lors d'une détection de présence, il est utile de mettre par exemple 0 en valeur et 4 en durée, pour que 4 min après une détection de mouvement (et s'il n'y a en pas eu de nouvelles depuis) Jeedom remette la valeur de l'information à 0 (plus de mouvement détecté).
-* historiser : permet d'historiser la donnée.
+* historier : permet d'historiser la donnée.
 * afficher : permet d'afficher la donnée sur le dashboard.
 * unité : unité de la donnée (peut être vide).
 * min/max : bornes de la donnée (peuvent être vides).
@@ -107,34 +112,54 @@ C'est ici que vous retrouverez toutes les informations sur votre module, la fen�
 Fournit un résumé complet de votre noeud avec différentes informations sur celui-ci, comme par exemple l'état des demandes qui permet de savoir si le noeud est en attente d'information ou la liste des noeuds voisins.
 
 [TIP]
-Sur cette onglet il est possible d'avoir des alertes en cas de soucis de configuration, Jeedom vous indiquera la marche à suivre pour corriger.
+Sur cet onglet il est possible d'avoir des alertes en cas de détection possible d'un souci de configuration, Jeedom vous indiquera la marche à suivre pour corriger. Il ne faut pas confondre une alerte avec et une erreur, l'alerte est dans une majorité des cas, une simple recommandation. 
 
 *Valeur*
 
 image:../images/openzwave6.png[]
 
-Vous retrouvez ici toutes les commandes possibles sur votre module et la possibilité de rajouter une interrogation forcée du module tous les X cycles.
-
-[IMPORTANT]
-Forcer l'interrogation du module n'est pas une bonne chose et peut impacter fortement les performances.
+Vous retrouvez ici toutes les commandes et état possibles sur votre module. Ils sont ordonnés par instance et classe de commande puis index. Le mapping des commandes est entièrement basé sur ces informations.
 
 [TIP]
-Il est possible d'avoir plus de commandes ici que sur Jeedom, c'est tout à fait normal. Dans Jeedom les commandes ont été sélectionnées.
+Forcer la mise à jour d'une valeur pour démarrer l'interrogation du module. Les module sur pile vont rafraichir une valeur seulement au prochain cycle de réveille. Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
+
+[TIP]
+Il est possible d'avoir plus de commandes ici que sur Jeedom, c'est tout à fait normal. Dans Jeedom les commandes ont été sélectionnées pour vous.
+
+[IMPORTANT]
+Certains modules n'envoient pas automatiquement leurs états, il faut dans ce cas activer le rafraichissement manuel à 5 minutes sur la ou les valeurs requissent. Il est recommandé de laisser en automatique le rafraichissement. Abuser du rafraichissement manuel peut impacter fortement les performances du réseau  Z-Wave, utilisez seulement pour les valeurs recommandées dans la documentation spécifique jeedom.
+
 
 *Parametres*
 
 image:../images/openzwave7.png[]
 
-Vous retrouver ici toutes les possibilités de configuration des paramètres de votre module ainsi que la possibilité de copier la configuration d'un autre noeud.
+Vous retrouvez ici toutes les possibilités de configuration des paramètres de votre module ainsi que la possibilité de copier la configuration d'un autre noeud.
+Lorsqu'un paramètre est modifié, la ligne correspondante passe en jaune, le paramètre est en attente d'être appliqué. Si le module accepte le paramètre la ligne redevienne transparente. Si toute fois le module refuse la valeur, la ligne passera alors en rouge avec la valeur appliqué retourné par le module.
+A l'inclusion, un nouveau module, est détecté avec les paramètres par défaut du constructeur. Sur certains modules, des fonctionnalités ne seront pas activent sans modifier un ou plusieurs paramètres. Référez-vous à la documentation du constructeur et de nos recommandations afin de bien paramétrer vos nouveaux modules. 
+
+[TIP]
+Les modules sur pile vont appliquer les changements de paramètres seulement au prochain cycle de réveille. Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
+
+[TIP]
+La commande Copier les paramètres d'un noeud existant vous permet d'appliquer l'ensemble de la configuration existante d'un autre module identique, sur le module en cours.
 
 *Associations*
 
 image:../images/openzwave8.png[]
 
-C'est ici que se retrouve la gestion des groupes de votre module.
+C'est ici que se retrouve la gestion des groupes d'association de votre module.
+Les modules Z-Wave peuvent contrôler d'autres modules Z-Wave. La relation entre un module de contrôle d'un autre appareil est appelé association. Afin de contrôler un autre appareil, le module de commande a besoin de maintenir une liste des appareils qui recevront le contrôle des commandes. Ces listes sont appelés groupes d'association et ils sont toujours liés à certains événements (par exemple, le bouton
+pressées, les déclencheurs de capteurs, ... ). Dans le cas où un événement se produit, tous les périphériques enregistrés dans le groupe d'association concerné recevront une commande basic. Voir la documentation du module, pour comprendre les différents groupes d'associations possible et leur comportement.
+
+[TIP]
+La majorité des modules un groupe d'association est réservé pour le contrôleur principal, il est utilisé pour remonter les informations au contrôleur. Il se nomme en généralement: Report ou LifeLine.
 
 [TIP]
 Il est possible que votre module ne possède aucun groupe.
+
+[TIP]
+La modification des groupes d'associations d'un modules sur pile sera appliquer au prochain cycle de réveille. Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
 
 *Systemes*
 
@@ -142,11 +167,17 @@ image:../images/openzwave9.png[]
 
 Onglet regroupant les paramètres système du module. A réserver aux experts !
 
+[TIP]
+Les modules sur piles se réveille a des cycles régulier, appelé L'intervalle de réveil (Wakeup Interval). L'intervalle de réveil est un compromis entre le temps maximal de vie de la batterie et des réponses souhaitées du dispositif. Pour maximiser la durée de vie de vos modules, adapter la valeur Wakeup Interval par exemple à 14400 secondes (4h), voir encore plus élevé selon les modules et leur usage.
+
 *Actions*
 
 image:../images/openzwave10.png[]
 
 Permet d'effectuer certaines actions génériques sur le module, comme la mise à jour des routes, le test du noeud ou la mise à jour des valeurs.
+
+[IMPORTANT]
+Il ne faut pas utiliser les actions sur un module si on ne sait pas ce que l'on fait. Certaines actions sont irréversible. Les actions peuvent aider é la résolutions de problèmes avec un ou des modules  Z-Wave. 
 
 *Statistique*
 
@@ -156,9 +187,11 @@ Cet onglet donne quelques statistiques de communication avec le noeud. Peut êtr
 
 == Mode inclusion
 
+Par défaut un module ne fait pas partie d'aucun réseau Z-Wave. Le module doit se joindre à un réseau Z-Wave existant pour communiquer avec les autres modules de ce réseau. Ce processus est appelé Inclusion. Les périphériques peuvent également laisser un réseau. Ce processus est appelé Exclusion. Les deux processus sont initiés par le contrôleur principal du réseau Z-Wave. 
+
 image:../images/openzwave17.png[]
 
-Ce bouton vous permet de passer en mode inclusion pour ajouter un module à votre réseau Z-Wave, il faut en faire de même sur votre module (voir la doc de celui-ci pour le passer en mode inclusion).
+Ce bouton vous permet de passer en mode inclusion (non sécurisé) pour ajouter un module à votre réseau Z-Wave, il faut en faire de même sur votre module (voir la doc de celui-ci pour le passer en mode inclusion).
 
 Une fois en mode inclusion : Jeedom vous le signale.
 
@@ -169,11 +202,20 @@ Tant que vous n'avez pas le bandeau vous n'êtes pas en mode inclusion.
 
 Si vous recliquez sur le bouton vous sortez du mode inclusion.
 
+[TIP]
+Il est recommandé avant une inclusion d'un nouveau module qui serait "nouveau" sur le marché, de lancer la commande "Config modules" via l'écran de configuration du plugin. Cette action va récupérer l'ensemble des dernières versions des fichiers de configurations openzwave ainsi que le mappings de commandes jeedom.
+
 [IMPORTANT]
 Lors d'une inclusion, il est conseillé que le module soit à moins d'un mètre de la box.
 
+[IMPORTANT]
+Certains modules requièrent une inclusion en mode sécurisé, par exemple pour les serrures de porte. L’inclusion sécurisée doit être lancé via l'onglet Actions de la Vue Réseau  Z-Wave.
+
 [TIP]
 A noter que l'interface mobile vous donne aussi accès à l'inclusion.
+
+[TIP]
+Si le module appartient déjà à un réseau, suivez le processus d'exclusion avant de l'inclure dans votre réseau. Sinon inclusion de ce module va échouer. 
 
 == Mode exclusion
 
@@ -191,6 +233,9 @@ Si vous recliquez sur le bouton vous sortez du mode exclusion.
 [TIP]
 A noter que l'interface mobile vous donne aussi accès à l'exclusion.
 
+[TIP]
+Un module n'a pas besoin d'être exclue par le même contrôleur sur lequel il a été préalablement inclue. D'où le fait qu'on recommande d'exécuter une exclusion avant chaque inclusion. 
+
 == Synchroniser
 
 image:../images/openzwave14.png[]
@@ -198,9 +243,12 @@ image:../images/openzwave14.png[]
 Bouton permettant de synchroniser les modules du réseau Z-Wave avec Jeedom.
 
 [TIP]
-Si vous n'avez pas l'image ou que Jeedom n'a pas reconnu votre module ce bouton peut permettre de corriger.
+Si vous n'avez pas l'image ou que Jeedom n'a pas reconnu votre module ce bouton peut permettre de corriger si l'interview du module est complété.
 
-== Réseaux Zwave
+[TIP]
+Si votre table de routage et ou l'écran de santé  Z-Wave vous avez de modules nommé Unknown, la synchronisation permettra de remédier a cette situation.
+
+== Réseaux  Z-Wave
 
 image:../images/openzwave19.png[]
 
@@ -210,22 +258,32 @@ image:../images/openzwave24.png[]
 
 === Résumé
 
-Le premier onglet vous donne le résumé de base de votre réseau Z-wave, vous retrouvez notament l'état du réseau Z-wave ainsi que le nombre d'éléments dans la file d'attente.
+Le premier onglet vous donne le résumé de base de votre réseau Z-wave, vous retrouvez notamment l'état du réseau Z-wave ainsi que le nombre d'éléments dans la file d'attente.
+
+[TIP]
+Le réseau est dit fonctionnel au moment où il atteint le statu Topology Loaded, c'est à  dire que l'ensemble des noeuds secteurs ont complété leurs interviews. Selon le nombre de modules, la répartition pile/secteur, le choix du dongle USB et le PC sur le quel tourne le plugin  Z-Wave, le réseau va atteindre cette état entre 1 et 5 minutes.  
+
+Un réseau Ready, signifie que l'ensemble de noeuds secteur et du piles ont complété leur interview.
+[TIP]
+Selon les modules que vous disposé, il est possible que le réseau n'atteigne jamais de lui-même le statu Ready. Les télécommande par exemple ne se réveillent pas d'elles même et ne compléteront jamais leurs interviews. Dans ce genre de cas, le réseau est tout à fait opérationnel et même si les télécommande n'ont pas compléter leur interview elle assurons leurs fonctionnalités au sein du réseau.
 
 === Actions
 
 image:../images/openzwave25.png[]
 
-Vous retrouvez ici toutes les actions possibles sur votre réseau Z-wave ainsi que leur description.
+Vous retrouvez ici toutes les actions possibles sur l'ensemble de votre réseau Z-wave. Chaque action est accompagnée d’une description sommaire.
 
 [IMPORTANT]
-Certaines actions sont vraiment risquées et l'équipe Jeedom ne pourra être tenue responsable en cas de mauvaise manipulation.
+Certaines actions sont vraiment risquées voir irréversible, l'équipe Jeedom ne pourra être tenue responsable en cas de mauvaise manipulation.
+
+[IMPORTANT]
+Certains modules requièrent une inclusion en mode sécurisé, par exemple pour les serrures de porte. L’inclusion sécurisée doit être lancé via l'action de cet écran.
 
 === Statistiques
 
 image:../images/openzwave26.png[]
 
-Vous retrouvez ici les statistiques générales sur votre réseau Z-wave.
+Vous retrouvez ici les statistiques générales sur l'ensemble de votre réseau Z-wave.
 
 === Graphique du réseau
 
@@ -233,7 +291,7 @@ image:../images/openzwave27.png[]
 
 Cet onglet vous donnera une représentation graphique des différents liens entre les noeuds.
 
-Voici la legende des couleurs : 
+Voici la légende des couleurs : 
 
 * *Gris* : interview non complet 
 * *Rouge* : dead, ou sans voisins
@@ -248,7 +306,7 @@ image:../images/openzwave28.png[]
 Affiche le nombre de routes disponibles pour la communication entre chaque noeud.
 
 [TIP]
-La légende est diponible tout en bas.
+La légende est disponible tout en bas.
 
 == Santé
 
@@ -260,13 +318,13 @@ image:../images/openzwave13.png[]
 
 Vous avez ici : 
 
-* *Module* : le nom de votre module, un clic dessus vous permet d'y accèder directement.
+* *Module* : le nom de votre module, un clic dessus vous permet d'y accéder directement.
 * *ID* : ID de votre module sur le réseau Z-Wave.
-* *Notification* : dernier type d'échange entre le module et le controleur
-* *Groupe* : indique si la configuration des groupes est ok (controleur au moins dans un groupe). Si vous n'avez rien c'est que le module ne supporte pas la notion de groupe, c'est normal
-* *Constructeur* : indique si la recuperation des informations d'identification du module est ok
-* *Voisin* : indique si la liste des voisins a bien était recupérée
-* *Statut* : Indique le status de l'interview du module
+* *Notification* : dernier type d'échange entre le module et le contrôleur
+* *Groupe* : indique si la configuration des groupes est ok (contrôleur au moins dans un groupe). Si vous n'avez rien c'est que le module ne supporte pas la notion de groupe, c'est normal
+* *Constructeur* : indique si la récupération des informations d'identification du module est ok
+* *Voisin* : indique si la liste des voisins a bien était récupéré
+* *Statut* : Indique le statu de l'interview (query stage) du module
 * *Batterie* : niveau de batterie du module (NA indique que le module est alimenté).
 * *Wakeup time* : pour les modules sur batterie, il donne la fréquence en secondes des instants où le module se réveille forcément.
 * *Paquet total* : affiche le nombre total de paquets reçus ou envoyés avec succès au module (maximum 30).
@@ -275,6 +333,12 @@ Vous avez ici :
 * *Dernière communication* : Date de dernière communication avec le module ainsi que l'heure de la prochaine communication prévue.
 * *Ping* : Permet d'envoyer un ping au module, peut être utilisé si le module est en dead pour voir si c'est réellement le cas.
 
+[TIP]
+La notification Timeout ne signifie pas nécessairement un problème de avec le module. Lancer un Ping et dans la majorité des cas il répondra par une notification NoOperation qui est l'écho du ping.
+
+[TIP]
+La Temporisation et le %OK sur des noeuds sur piles avant la complétion de leur interview n'est pas significative. En effet le noeud ne va pas répondre aux interrogations du contrôleur du fait qu'il est en sommeil profond.
+
 == Console
 
 La console permet de voir en temps réel ce qu'il se passe sur le réseau Z-wave.
@@ -282,21 +346,24 @@ La console permet de voir en temps réel ce qu'il se passe sur le réseau Z-wave
 image:../images/openzwave22.png[]
 
 [IMPORTANT]
-Les informations ici sont à destination du support, il ne faut donc pas s'inquiéter de voir des "Error" ou  "Warning" ici. Cela ne veut pas forcément dire que votre système a un soucis.
+Les informations ici sont à destination du support, il ne faut donc pas s'inquiéter de voir des "Error" ou  "Warning" ici. Cela ne veut pas forcément dire que votre système a un souci.
+
+[TIP]
+Les messages de la console sont plus ou moins détaillés selon que le plugin est démarré en mode Normal ou en Debug. 
 
 == Backups
 
-La partie backup va vous permetre de gérer les backups de la topologie de votre réseaux. A partir de cette écran vous pourrez : 
+La partie backup va vous permettre de gérer les backups de la topologie de votre réseau. A partir de cet écran vous pourrez : 
 
-* Lancer un backup (un backup est fait à chaque arrêt relance du réseaux et pendant les opérations critique). Les 12 dernieres backups sont conservés
-* Restaurer un backup (en le selectionnant dans la liste juste au dessus)
+* Lancer un backup (un backup est fait à chaque arrêt relance du réseaux et pendant les opérations critique). Les 12 derniers backups sont conservés
+* Restaurer un backup (en le sélectionnant dans la liste juste au-dessus)
 * Supprimer un backup
 
 image:../images/openzwave35.png[]
 
 == Configuration
 
-Cet onglet contient la configuration des vos modules Z-wave.
+Cet onglet contient la configuration de vos modules Z-wave.
 
 image:../images/openzwave23.png[]
 
@@ -312,16 +379,16 @@ Si Jeedom vous demande de mettre à jour OpenZwave ou si vous avez NOK au niveau
 image:../images/openzwave30.png[]
 
 [TIP]
-Cette opération n'est pas a faire à chaque mise à jour du plugin seulement si necessaire
+Cette opération n'est pas a faire à chaque mise à jour du plugin seulement si nécessaire
 
-Vous devez d'abord arreter le démon (c'est plus sur) : 
+Vous devez d'abord arrêter le démon (c'est plus sur) : 
 
 image:../images/openzwave31.png[]
 
-Ensuite il faut cliquer sur le bouton "Installer/Mettre à jour" en face de "Dépendance OpenZwave locale" (si vous etês en deporté il faut le faire sur les deportés) : 
+Ensuite il faut cliquer sur le bouton "Installer/Mettre à jour" en face de "Dépendance OpenZwave locale" (si vous êtes en déporté il faut le faire sur les déportés) : 
 
 image:../images/openzwave32.png[]
 
-La durée de cette opération peut varier en fonction de votre systeme (jusqu'a plus de 1h sur raspberry pi)
+La durée de cette opération peut varier en fonction de votre système (jusqu'à plus de 1h sur raspberry pi)
 
-Ensuite vous avez juste à cliquer sur redemarrer pour relancer le démon.
+Ensuite vous avez juste à cliquer sur redémarrer pour relancer le démon.

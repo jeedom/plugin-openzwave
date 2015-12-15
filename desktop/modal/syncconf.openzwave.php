@@ -37,12 +37,12 @@ if (!isConnect('admin')) {
 			handleAjaxError(request, status, error, $('#div_syncconfOpenzwaveAlert'));
 		},
 		success: function () {
-			 jeedom.log.autoupdate({
-               log : 'openzwave_syncconf',
-               display : $('#pre_openzwavesyncconf'),
-               search : $('#in_openzwaveLogSearch'),
-               control : $('#bt_openzwaveLogStopStart'),
-           });
+			jeedom.log.autoupdate({
+				log : 'openzwave_syncconf',
+				display : $('#pre_openzwavesyncconf'),
+				search : $('#in_openzwaveLogSearch'),
+				control : $('#bt_openzwaveLogStopStart'),
+			});
 		}
 	});
 </script>

@@ -74,61 +74,6 @@ class openzwave extends eqLogic {
 		return self::$_listZwaveServer;
 	}
 
-	public static function health() {
-		$return = array();
-		$demon_state = self::deamonRunning();
-		$return[] = array(
-			'test' => __('Démon local', __FILE__),
-			'result' => ($demon_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'advice' => ($demon_state) ? '' : __('Peut être normal si vous êtes en déporté', __FILE__),
-			'state' => $demon_state,
-		);
-		$version = openzwave::getVersion('openzwave');
-		$return[] = array(
-			'test' => __('Version d\'openzwave', __FILE__),
-			'result' => $version,
-			'advice' => ($version) ? '' : __('Mettez à jour les dépendances', __FILE__),
-			'state' => version_compare(config::byKey('openzwave_version', 'openzwave'), $version, '<='),
-		);
-		$compilation = openzwave::compilationOk();
-		$return[] = array(
-			'test' => __('Compilation', __FILE__),
-			'result' => ($compilation) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'advice' => ($compilation) ? '' : __('Mettez à jour les dépendances', __FILE__),
-			'state' => $compilation,
-		);
-		if (config::byKey('jeeNetwork::mode') == 'master') {
-			foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
-				try {
-					$demon_state = $jeeNetwork->sendRawRequest('deamonRunning', array('plugin' => 'openzwave'));
-				} catch (Exception $e) {
-					$demon_state = false;
-				}
-				$return[] = array(
-					'test' => __('Démon sur ', __FILE__) . $jeeNetwork->getName(),
-					'result' => ($demon_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-					'advice' => '',
-					'state' => $demon_state,
-				);
-				$version = $jeeNetwork->sendRawRequest('getVersion', array('plugin' => 'openzwave', 'module' => 'openzwave'));
-				$return[] = array(
-					'test' => __('Version d\'openzwave sur ', __FILE__) . $jeeNetwork->getName(),
-					'result' => $version,
-					'advice' => ($demon_state) ? '' : __('Mettez à jour les dépendances', __FILE__),
-					'state' => version_compare(config::byKey('openzwave_version', 'openzwave'), $version, '<='),
-				);
-				$compilation = $jeeNetwork->sendRawRequest('compilationOk', array('plugin' => 'openzwave'));
-				$return[] = array(
-					'test' => __('Compilation sur', __FILE__) . $jeeNetwork->getName(),
-					'result' => ($compilation) ? __('OK', __FILE__) : __('NOK', __FILE__),
-					'advice' => ($compilation) ? '' : __('Mettez à jour les dépendances', __FILE__),
-					'state' => $compilation,
-				);
-			}
-		}
-		return $return;
-	}
-
 	public static function callOpenzwave($_url, $_serverId = 0, $_timeout = null, $_noError = false) {
 		if (self::$_listZwaveServer == null) {
 			self::listServerZwave();
@@ -187,10 +132,17 @@ class openzwave extends eqLogic {
 			$state = 10;
 		}
 		if ($state < 7) {
-			nodejs::pushUpdate('jeedom::alert', array(
-				'level' => 'warning',
-				'message' => __('Le controleur est occupé veuillez réessayer plus tard', __FILE__),
-			));
+			if (class_exists('event')) {
+				event::add('jeedom::alert', array(
+					'level' => 'warning',
+					'message' => __('Le controleur est occupé veuillez réessayer plus tard', __FILE__),
+				));
+			} else {
+				nodejs::pushUpdate('jeedom::alert', array(
+					'level' => 'warning',
+					'message' => __('Le controleur est occupé veuillez réessayer plus tard', __FILE__),
+				));
+			}
 			return;
 		}
 		if ($_logical_id !== null) {
@@ -198,20 +150,38 @@ class openzwave extends eqLogic {
 			if (is_object($eqLogic)) {
 				if (config::byKey('autoRemoveExcludeDevice', 'openzwave') == 1) {
 					$eqLogic->remove();
-					nodejs::pushUpdate('zwave::includeDevice', '');
+					if (class_exists('event')) {
+						event::add('zwave::includeDevice', '');
+					} else {
+						nodejs::pushUpdate('zwave::includeDevice', '');
+					}
 				}
-				nodejs::pushUpdate('jeedom::alert', array(
-					'level' => 'warning',
-					'message' => '',
-				));
+				if (class_exists('event')) {
+					event::add('jeedom::alert', array(
+						'level' => 'warning',
+						'message' => '',
+					));
+				} else {
+					nodejs::pushUpdate('jeedom::alert', array(
+						'level' => 'warning',
+						'message' => '',
+					));
+				}
 				return;
 			}
 			$result = self::callOpenzwave('/ZWaveAPI/Run/devices[' . $_logical_id . ']', $_serverId);
 			if (count($result) == 0) {
-				nodejs::pushUpdate('jeedom::alert', array(
-					'level' => 'danger',
-					'message' => __('Aucun module trouvé correspondant à cette ID : ', __FILE__) . $_logical_id,
-				));
+				if (class_exists('event')) {
+					event::add('jeedom::alert', array(
+						'level' => 'warning',
+						'message' => __('Aucun module trouvé correspondant à cette ID : ', __FILE__) . $_logical_id,
+					));
+				} else {
+					nodejs::pushUpdate('jeedom::alert', array(
+						'level' => 'danger',
+						'message' => __('Aucun module trouvé correspondant à cette ID : ', __FILE__) . $_logical_id,
+					));
+				}
 				return;
 			}
 			$eqLogic = new eqLogic();
@@ -233,11 +203,22 @@ class openzwave extends eqLogic {
 			$eqLogic = openzwave::byId($eqLogic->getId());
 			$include_device = $eqLogic->getId();
 			$eqLogic->createCommand(false, $result);
-			nodejs::pushUpdate('zwave::includeDevice', $include_device);
-			nodejs::pushUpdate('jeedom::alert', array(
-				'level' => 'warning',
-				'message' => '',
-			));
+			if (class_exists('event')) {
+				event::add('zwave::includeDevice', $include_device);
+			} else {
+				nodejs::pushUpdate('zwave::includeDevice', $include_device);
+			}
+			if (class_exists('event')) {
+				event::add('jeedom::alert', array(
+					'level' => 'warning',
+					'message' => '',
+				));
+			} else {
+				nodejs::pushUpdate('jeedom::alert', array(
+					'level' => 'warning',
+					'message' => '',
+				));
+			}
 			return;
 		}
 
@@ -245,10 +226,17 @@ class openzwave extends eqLogic {
 		$findDevice = array();
 		$include_device = '';
 		if (count($results['devices']) < 2) {
-			nodejs::pushUpdate('jeedom::alert', array(
-				'level' => 'warning',
-				'message' => __('Le nombre de module trouvé est inférieure à 2', __FILE__),
-			));
+			if (class_exists('event')) {
+				event::add('jeedom::alert', array(
+					'level' => 'warning',
+					'message' => __('Le nombre de module trouvé est inférieure à 2', __FILE__),
+				));
+			} else {
+				nodejs::pushUpdate('jeedom::alert', array(
+					'level' => 'warning',
+					'message' => __('Le nombre de module trouvé est inférieure à 2', __FILE__),
+				));
+			}
 			return;
 		}
 		foreach ($results['devices'] as $nodeId => $result) {
@@ -300,11 +288,22 @@ class openzwave extends eqLogic {
 				}
 			}
 		}
-		nodejs::pushUpdate('zwave::includeDevice', $include_device);
-		nodejs::pushUpdate('jeedom::alert', array(
-			'level' => 'warning',
-			'message' => '',
-		));
+		if (class_exists('event')) {
+			event::add('zwave::includeDevice', $include_device);
+		} else {
+			nodejs::pushUpdate('zwave::includeDevice', $include_device);
+		}
+		if (class_exists('event')) {
+			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => '',
+			));
+		} else {
+			nodejs::pushUpdate('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => '',
+			));
+		}
 	}
 
 	public static function changeIncludeState($_mode, $_state, $_serverId = 0) {
@@ -378,17 +377,45 @@ class openzwave extends eqLogic {
 /*     * ********************************************************************** */
 /*     * ***********************OPENZWAVE MANAGEMENT*************************** */
 
-	public static function getVersion($_module) {
+	public static function dependancy_info() {
+		$return = array();
+		$return['log'] = 'openzwave_update';
+		if (file_exists('/tmp/compilation_ozw_in_progress')) {
+			$return['state'] = 'in_progress';
+		} else {
+			$return['state'] = (self::compilationOk()) ? 'ok' : 'nok';
+			if ($return['state'] == 'ok' && self::getVersion('openzwave') != -1 && version_compare(config::byKey('openzwave_version', 'openzwave'), self::getVersion('openzwave'), '>')) {
+				$return['state'] = 'nok';
+			}
+		}
+		return $return;
+	}
+
+	public static function dependancy_install() {
+		if (file_exists('/tmp/compilation_ozw_in_progress')) {
+			return;
+		}
+		config::save('currentOzwVersion', config::byKey('openzwave_version', 'openzwave'), 'openzwave');
+		log::remove('openzwave_update');
+		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh';
+		$cmd .= ' no_compil';
+		$cmd .= ' ' . network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp');
+		$cmd .= ' ' . config::byKey('api');
+		$cmd .= ' >> ' . log::getPathToLog('openzwave_update') . ' 2>&1 &';
+		exec($cmd);
+	}
+
+	public static function getVersion($_module = 'openzwave') {
 		if ($_module == 'openzwave') {
-			if (!file_exists('/opt/python-openzwave/openzwave/cpp/src/vers.cpp')) {
-				return config::byKey('openzwave_version', 'openzwave');
+			try {
+				$network = self::callOpenzwave('/ZWaveAPI/Run/network.GetStatus()', 0, 2000);
+				if (isset($network['OpenZwaveLibraryVersion'])) {
+					config::save('currentOzwVersion', $network['OpenZwaveLibraryVersion'], 'openzwave');
+				}
+			} catch (Exception $e) {
+
 			}
-			$result = trim(str_replace(array('"', 'char', 'ozw_version_string', '[]', '=', ';'), '', shell_exec('cat /opt/python-openzwave/openzwave/cpp/src/vers.cpp | grep ozw_version_string')));
-			$result = str_replace('-', '.', $result);
-			$result = explode('.', str_replace('..', '.', $result));
-			if (count($result) > 2) {
-				return $result[0] . '.' . $result[1] . '.' . $result[2];
-			}
+			return config::byKey('currentOzwVersion', 'openzwave', -1);
 		}
 	}
 
@@ -399,21 +426,16 @@ class openzwave extends eqLogic {
 		return true;
 	}
 
-	public static function updateOpenzwave($_background = true) {
-		try {
-			self::stopDeamon();
-		} catch (Exception $e) {
-
-		}
-		log::remove('openzwave_update');
-		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh';
-		if ($_background) {
-			$cmd .= ' >> ' . log::getPathToLog('openzwave_update') . ' 2>&1 &';
-		}
-		exec($cmd);
-	}
-
 	public static function syncconfOpenzwave($_background = true) {
+		if (config::byKey('jeeNetwork::mode') == 'master') {
+			foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
+				try {
+					$jeeNetwork->sendRawRequest('syncconfOpenzwave', array('plugin' => 'openzwave'));
+				} catch (Exception $e) {
+
+				}
+			}
+		}
 		log::remove('openzwave_syncconf');
 		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/syncconf.sh';
 		if ($_background) {
@@ -423,45 +445,41 @@ class openzwave extends eqLogic {
 		shell_exec($cmd);
 	}
 
-	public static function cron15() {
-		if (config::byKey('allowStartDeamon', 'openzwave', 1) == 1 && config::byKey('port', 'openzwave', 'none') != 'none' && !self::deamonRunning()) {
-			self::runDeamon();
-		}
-	}
-
-	public static function start() {
-		if (config::byKey('allowStartDeamon', 'openzwave', 1) == 1 && config::byKey('port', 'openzwave', 'none') != 'none' && !self::deamonRunning()) {
-			$continue = 0;
-			while ($continue < 4) {
-				self::runDeamon();
-				if (!self::deamonRunning()) {
-					$continue++;
-					sleep(60);
-				} else {
-					$continue = 99;
-				}
+	public static function deamon_info() {
+		$return = array();
+		$return['log'] = 'openzwavecmd';
+		$return['state'] = 'nok';
+		$pid_file = '/tmp/openzwave.pid';
+		if (file_exists($pid_file)) {
+			if (posix_getsid(trim(file_get_contents($pid_file)))) {
+				$return['state'] = 'ok';
+			} else {
+				unlink($pid_file);
 			}
 		}
-	}
-
-	public static function runDeamon($_debug = false) {
-		if (config::byKey('allowStartDeamon', 'openzwave', 1) == 0) {
-			return;
-		}
-		try {
-			self::stop();
-			self::stopDeamon();
-		} catch (Exception $e) {
-
-		}
-		log::add('openzwave', 'info', 'Lancement du démon openzwave');
+		$return['launchable'] = 'ok';
 		$port = config::byKey('port', 'openzwave');
 		if ($port != 'auto') {
-			$port = jeedom::getUsbMapping($port, true);
+			$port = jeedom::getUsbMapping($port);
 			if (@!file_exists($port)) {
-				throw new Exception(__('Le port : ', __FILE__) . print_r($port, true) . __(' n\'existe pas', __FILE__));
+				$return['launchable'] = 'nok';
+				$return['launchable_message'] = __('Le port n\'est pas configuré', __FILE__);
 			}
 			exec('sudo chmod 777 ' . $port . ' > /dev/null 2>&1');
+		}
+		return $return;
+	}
+
+	public static function deamon_start($_debug = false) {
+		self::deamon_stop();
+		$deamon_info = self::deamon_info();
+		if ($deamon_info['launchable'] != 'ok') {
+			throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
+		}
+		log::remove('openzwavecmd');
+		$port = config::byKey('port', 'openzwave');
+		if ($port != 'auto') {
+			$port = jeedom::getUsbMapping($port);
 		}
 
 		if (config::byKey('jeeNetwork::mode') == 'slave') {
@@ -492,62 +510,49 @@ class openzwave extends eqLogic {
 		$cmd .= ' --apikey=' . $apikey;
 		$cmd .= ' --serverId=' . $serverId;
 
-		log::add('openzwave', 'info', 'Lancement démon openzwave : ' . $cmd);
-		$result = exec($cmd . ' >> ' . log::getPathToLog('openzwave') . ' 2>&1 &');
+		log::add('openzwavecmd', 'info', 'Lancement démon openzwave : ' . $cmd);
+		$result = exec($cmd . ' >> ' . log::getPathToLog('openzwavecmd') . ' 2>&1 &');
 		if (strpos(strtolower($result), 'error') !== false || strpos(strtolower($result), 'traceback') !== false) {
-			log::add('openzwave', 'error', $result);
+			log::add('openzwavecmd', 'error', $result);
 			return false;
 		}
 		$i = 0;
 		while ($i < 30) {
-			if (self::deamonRunning()) {
+			$deamon_info = self::deamon_info();
+			if ($deamon_info['state'] == 'ok') {
 				break;
 			}
 			sleep(1);
 			$i++;
 		}
-		if ($i >= 10) {
-			log::add('openzwave', 'error', 'Impossible de lancer le démon openzwave, vérifiez le port', 'unableStartDeamon');
+		if ($i >= 30) {
+			log::add('openzwavecmd', 'error', 'Impossible de lancer le démon openzwave, vérifiez le port', 'unableStartDeamon');
 			return false;
 		}
 		message::removeAll('openzwave', 'unableStartDeamon');
-		log::add('openzwave', 'info', 'Démon openzwave lancé');
+		log::add('openzwavecmd', 'info', 'Démon openzwave lancé');
 	}
 
-	public static function deamonRunning() {
-		$pid_file = '/tmp/openzwave.pid';
-		if (!file_exists($pid_file)) {
-			return false;
-		}
-		$pid = trim(file_get_contents($pid_file));
-		if (posix_getsid($pid)) {
-			return true;
-		}
-		unlink($pid_file);
-		return false;
-	}
-
-	public static function stop() {
-		if (self::deamonRunning()) {
+	public static function deamon_stop() {
+		$deamon_info = self::deamon_info();
+		if ($deamon_info['state'] == 'ok') {
 			try {
-				self::callOpenzwave('/ZWaveAPI/Run/network.Stop()');
+				self::callOpenzwave('/ZWaveAPI/Run/network.Stop()', 0, 30000);
 			} catch (Exception $e) {
 
 			}
 		}
-	}
-
-	public static function stopDeamon() {
-		self::stop();
 		$pid_file = '/tmp/openzwave.pid';
 		if (file_exists($pid_file)) {
 			$pid = intval(trim(file_get_contents($pid_file)));
 			posix_kill($pid, 15);
-			if (self::deamonRunning()) {
+			$deamon_info = self::deamon_info();
+			if ($deamon_info['state'] == 'ok') {
 				sleep(1);
 				posix_kill($pid, 9);
 			}
-			if (self::deamonRunning()) {
+			$deamon_info = self::deamon_info();
+			if ($deamon_info['state'] == 'ok') {
 				sleep(1);
 				exec('kill -9 ' . $pid . ' > /dev/null 2>&1');
 			}
@@ -555,7 +560,6 @@ class openzwave extends eqLogic {
 		exec('fuser -k ' . config::byKey('port_server', 'openzwave', 8083) . '/tcp > /dev/null 2>&1');
 		exec('sudo fuser -k ' . config::byKey('port_server', 'openzwave', 8083) . '/tcp > /dev/null 2>&1');
 		exec("ps aux | grep -ie 'openZWave.py' | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
-		return self::deamonRunning();
 	}
 
 	/*     * *********************Methode d'instance************************* */
@@ -593,10 +597,17 @@ class openzwave extends eqLogic {
 		if (isset($device['battery_type'])) {
 			$this->setConfiguration('battery_type', $device['battery_type']);
 		}
-		nodejs::pushUpdate('jeedom::alert', array(
-			'level' => 'warning',
-			'message' => __('Création des commandes à partir d\'une configuration', __FILE__),
-		));
+		if (class_exists('event')) {
+			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => __('Création des commandes à partir d\'une configuration', __FILE__),
+			));
+		} else {
+			nodejs::pushUpdate('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => __('Création des commandes à partir d\'une configuration', __FILE__),
+			));
+		}
 		$commands = $device['commands'];
 		foreach ($commands as &$command) {
 			if (!isset($command['configuration']['instanceId'])) {
@@ -637,11 +648,17 @@ class openzwave extends eqLogic {
 			}
 		}
 		$this->save();
-
-		nodejs::pushUpdate('jeedom::alert', array(
-			'level' => 'warning',
-			'message' => '',
-		));
+		if (class_exists('event')) {
+			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => '',
+			));
+		} else {
+			nodejs::pushUpdate('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => '',
+			));
+		}
 	}
 
 	public function postSave() {
@@ -731,10 +748,17 @@ class openzwave extends eqLogic {
 			$this->loadCmdFromConf($_update);
 			return;
 		}
-		nodejs::pushUpdate('jeedom::alert', array(
-			'level' => 'warning',
-			'message' => __('Création des commandes en mode automatique', __FILE__),
-		));
+		if (class_exists('event')) {
+			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => __('Création des commandes en mode automatique', __FILE__),
+			));
+		} else {
+			nodejs::pushUpdate('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => __('Création des commandes en mode automatique', __FILE__),
+			));
+		}
 		if ($_data == null) {
 			$results = self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . ']', $this->getConfiguration('serverID', 1));
 		} else {
@@ -895,10 +919,17 @@ class openzwave extends eqLogic {
 				}
 			}
 		}
-		nodejs::pushUpdate('jeedom::alert', array(
-			'level' => 'warning',
-			'message' => '',
-		));
+		if (class_exists('event')) {
+			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => '',
+			));
+		} else {
+			nodejs::pushUpdate('jeedom::alert', array(
+				'level' => 'warning',
+				'message' => '',
+			));
+		}
 	}
 
 }

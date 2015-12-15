@@ -1,0 +1,82 @@
+{
+		"name": "Micro Motor Controller (DSC14104)",
+        "doc" : "",
+        "type": "Volets",
+        "comlink" : "284-aeon-labs-micromodule-z-wave-pour-volet-roulant-1220000010864",
+        "remark" : "",
+        "imglink" : "aeotec.blind-control",
+        "configuration" : {
+        "conf_version" : 1
+		},
+        "commands": [
+            {
+                "name": "Monter",
+                "type": "action",
+                "subtype": "other",
+                "isVisible":1,
+                "configuration": {
+                    "class": "0x26",
+					"instanceId": 0,
+                    "value": "data[0].Set(99)"
+                }
+            },
+            {
+                "name": "Descendre",
+                "type": "action",
+                "subtype": "other",
+                "isVisible":1,
+                "configuration": {
+                    "class": "0x26",
+					"instanceId": 0,
+                    "value": "data[0].Set(0)"
+                }
+            },
+            {
+                "name": "Etat",
+                "type": "info",
+                "subtype": "binary",
+                "unite": "",
+                "isVisible": 1,
+                "configuration": {
+                    "class": "0x26",
+                    "instanceId": 0,
+                    "value": "data[0].val"
+                },
+                "display": {
+                    "invertBinary": "1"
+                }, 
+                "template": {
+                    "dashboard": "store",
+                    "mobile": "store"
+                }
+            },
+			{
+                "name": "Puissance",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 1,
+				"unite": "W",
+                "configuration": {
+                    "class": "0x31",
+					"instanceId": 0,
+                    "value": "data[4].val",
+					"maxValue": 2500,
+                    "minValue": 0
+                }
+            },
+            {
+                "name": "Consommation",
+                "type": "info",
+                "subtype": "numeric",
+                "isVisible": 0,
+                "isHistorized": 0,
+				"unite": "kWh",
+                "configuration": {
+                    "class": "0x32",
+					"instanceId": 0,
+                    "value": "data[0].val"
+                }
+            }
+        ]
+    }

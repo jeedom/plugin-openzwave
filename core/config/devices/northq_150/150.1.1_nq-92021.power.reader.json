@@ -1,0 +1,39 @@
+{
+	"name": "Power Reader",
+    "doc" : "",
+    "type": "Compteur",
+    "comlink" : "1538-northq-compteur-optique-de-consommation-z-wave-adaptateur-ac-dc-5707162002242",
+    "remark" : "Activer le rafraichissement manuel à 5 minutes sur la valeur Energy pour avoir les rapports",
+    "imglink" : "northq.powerreader",
+    "battery_type" : "2x1.5V AAA",
+    "configuration" : {
+    "conf_version" : 1
+	},
+        "commands": [
+			{
+                "name": "Consommation",
+                "type": "info",
+                "subType": "numeric",
+                "isHistorized": "0",
+				"unite": "kwH",
+				"isVisible": 1,
+                "configuration": {
+                    "instanceId": "0",
+                    "class": "0x32",
+                    "value": "data[0].val"
+                }
+            },
+			{
+				"name": "Batterie",
+				"type": "info",
+				"subtype": "numeric",
+				"isVisible": 0,
+				"isHistorized": 0,
+				"unite": "%",
+				"configuration": {
+					"class": "0x80",
+					"value": "data[0].val"
+				}
+			}
+        ]
+    }

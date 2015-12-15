@@ -1,0 +1,29 @@
+{
+	"name" : "Minimote (DSA03202)",
+    "doc" : "aeotec.minimote_-_Telecommande",
+    "type": "Télécommande",
+    "comlink" : "291-aeon-labs-telecommande-z-wave-blanche-1220000010253",
+    "remark" : "",
+    "imglink" : "aeotec.minimote",
+    "battery_type" : "Batterie",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+        {
+            "name": "Boutons",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": "0x2b",
+                "value": "data[0].val"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        }
+    ]
+}

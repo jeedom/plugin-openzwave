@@ -44,7 +44,7 @@ $eqLogics = eqLogic::byType('openzwave');
 $tags = array();
 if (is_array($eqLogics)) {
 	foreach ($eqLogics as $eqLogic) {
-		$tags[$eqLogic->getLogicalId()] = $eqLogic->getHumanName(true);
+		$tags[$eqLogic->getConfiguration('serverID', 0) . ':' . $eqLogic->getLogicalId()] = $eqLogic->getHumanName(true);
 	}
 }
 sendVarTojs('eqLogic_human_name', $tags);

@@ -24,59 +24,8 @@ try {
 		throw new Exception('401 Unauthorized');
 	}
 
-	if (init('action') == 'updateOpenzwave') {
-		openzwave::updateOpenzwave();
-		ajax::success();
-	}
-
 	if (init('action') == 'syncconfOpenzwave') {
 		openzwave::syncconfOpenzwave();
-		ajax::success();
-	}
-
-	if (init('action') == 'stopDeamon') {
-		if (init('type', 'local') == 'remote') {
-			$jeeNetwork = jeeNetwork::byId(init('id'));
-			if (!is_object($jeeNetwork)) {
-				throw new Exception(__('Impossible de trouver l\'esclave : ', __FILE__) . init('id'));
-			}
-			$jsonrpc = $jeeNetwork->getJsonRpc();
-			if (!$jsonrpc->sendRequest('stopDeamon', array('plugin' => 'openzwave'))) {
-				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
-			}
-		} else {
-			openzwave::stopDeamon();
-			if (openzwave::deamonRunning()) {
-				throw new Exception(__('Impossible d\'arrêter le démon', __FILE__));
-			}
-			config::save('allowStartDeamon', 0, 'openzwave');
-		}
-		ajax::success();
-	}
-
-	if (init('action') == 'startDeamon') {
-		if (init('type', 'local') == 'remote') {
-			$jeeNetwork = jeeNetwork::byId(init('id'));
-			if (!is_object($jeeNetwork)) {
-				throw new Exception(__('Impossible de trouver l\'esclave : ', __FILE__) . init('id'));
-			}
-			$jsonrpc = $jeeNetwork->getJsonRpc();
-			if (!$jsonrpc->sendRequest('runDeamon', array('plugin' => 'openzwave', 'debug' => init('debug', 0)))) {
-				throw new Exception($jsonrpc->getError(), $jsonrpc->getErrorCode());
-			}
-		} else {
-			config::save('allowStartDeamon', 1, 'openzwave');
-			$port = config::byKey('port', 'openzwave', 'none');
-			if ($port == 'none') {
-				ajax::success();
-			}
-			openzwave::stopDeamon();
-			if (openzwave::deamonRunning()) {
-				throw new Exception(__('Impossible d\'arrêter le démon', __FILE__));
-			}
-			log::clear('openzwave');
-			openzwave::runDeamon(init('debug', 0));
-		}
 		ajax::success();
 	}
 
