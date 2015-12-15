@@ -3,7 +3,7 @@
         "doc" : "",
         "type": "Vibration",
         "comlink" : "2157-vision-security-detecteur-de-choc-z-wave",
-        "remark" : "",
+        "remark" : "Ce module peut dans certaine circonstance rester éveillé lors de l’interview. Il faut enlever et remettre la pile pour remédier à la situation.",
         "imglink" : "vision.zs5101",
         "battery_type" : "1x3V CR123A",
         "configuration" : {
