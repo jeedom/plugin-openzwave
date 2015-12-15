@@ -3,9 +3,9 @@
         "doc" : "",
         "type": "Micromodule",
         "comlink" : "3062-qubino-micromodule-commutateur-2-relais-et-consometre-z-wave-zmnhbd1-3830062070119",
-        "remark" : "",
+        "remark" : "Problème connue de remonté d'état, Switch1 et Puissance",
         "imglink" : "qubino.zmnhbdx",
-        "ignore" : 1,
+        "ignore" : 0,
 		"configuration" : {
         "conf_version" : 1
 		},
