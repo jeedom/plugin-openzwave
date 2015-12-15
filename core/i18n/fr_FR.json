@@ -38,15 +38,9 @@
         "Installation \/ Mise à jour": "Installation \/ Mise à jour",
         "Etes-vous sur de vouloir lancer le démon en mode debug ? N\\'oubliez pas de le relancer en mode normale une fois terminé": "Etes-vous sûr de vouloir lancer le démon en mode debug ? N\\'oubliez pas de le relancer en mode normal une fois terminé.",
         "Openzwave en mode debug": "Openzwave en mode debug",
-<<<<<<< HEAD
         "Etes-vous sûr de vouloir lancer le démon en mode debug ? N\\'oubliez pas d\\'arrêter\/redémarrer le démon une fois terminé": "Etes-vous sûr de vouloir lancer le démon en mode debug ? N\\'oubliez pas d\\'arrêter\/redémarrer le démon une fois terminé.",
         "Etes-vous sûr de vouloir lancer la migration cette opération est irreversible": "Etes-vous sûr de vouloir lancer la migration ? Cette opération est irreversible.",
         "Openzwave migration": "Migration de OpenZwave",
-=======
-        "Etes-vous sûr de vouloir lancer le démon en mode debug ? N\\'oubliez pas d\\'arrêter\/redémarrer le démon une fois terminé": "Etes-vous sûr de vouloir lancer le démon en mode debug ? N\\'oubliez pas d\\'arrêter\/redémarrer le démon une fois terminé",
-        "Etes-vous sûr de vouloir lancer la migration cette opération est irreversible": "Etes-vous sûr de vouloir lancer la migration, cette opération est irréversible",
-        "Openzwave migration": "Openzwave migration",
->>>>>>> pr/26
         "Stable": "Stable",
         "Developpement": "Développement"
     },
@@ -72,13 +66,8 @@
         "Durée avant retour d\\'état (min)": "Durée avant retour d\\'état (min)",
         "Historiser": "Historiser",
         "Afficher": "Afficher",
-<<<<<<< HEAD
-        "Evénement": "Evénement",
-        "Evenement sur changement": "Evénement sur changement",
-=======
         "Evénement": "Événement",
         "Evenement sur changement": "Événement sur changement",
->>>>>>> pr/26
         "Inverser": "Inverser",
         "Lifetime cache": "Durée de mise en cache",
         "Unité": "Unité",
@@ -95,13 +84,8 @@
         "Etes-vous sûr de vouloir récréer toute les commandes ? Cela va supprimer les commandes existante": "Etes-vous sûr de vouloir récréer toute les commandes ? Cela va supprimer les commandes existantes"
     },
     "plugins\/openzwave\/core\/class\/openzwave.class.php": {
-<<<<<<< HEAD
-        "Le port du openZwave est vide ou n'éxiste pas": "Le port du OpenZwave est vide ou n'éxiste pas",
-        "Echec de la requete http : ": "Echec de la requete HTTP : ",
-=======
         "Le port du openZwave est vide ou n'éxiste pas": "Le port du openZwave est vide ou n'éxiste pas",
         "Echec de la requete http : ": "Échec de la requête HTTP : ",
->>>>>>> pr/26
         "Réveillé": "Réveillé",
         "Endormi": "Endormi",
         "Création des commandes en mode automatique": "Création des commandes en mode automatique",
@@ -131,11 +115,7 @@
         "Serveur": "Serveur",
         "Délai maximum autorisé entre 2 messages (min)": "Délai maximum autorisé entre 2 messages (min)",
         "Informations": "Informations",
-<<<<<<< HEAD
-        "Detecter automatiquement le modele du module": "Detecter automatiquement le modèle du module",
-=======
         "Detecter automatiquement le modele du module": "Détecter automatiquement le modèle du module",
->>>>>>> pr/26
         "Voir l'arbre Z-Wave": "Voir l'arbre Z-Wave",
         "Paramètres": "Paramètres",
         "Configurer": "Configurer",
@@ -159,20 +139,11 @@
         "Sauvegarder": "Sauvegarder",
         "Version de la configuration": "Version de la configuration",
         "Derniere communication": "Dernière communication",
-<<<<<<< HEAD
         "Openzwave est en cours de démarrage sur Local.": "OpenZwave est en cours de démarrage sur Local.",
-=======
-        "Openzwave est en cours de démarrage sur Local.": "Openzwave est en cours de démarrage sur Local.",
->>>>>>> pr/26
-
         "Santé": "Santé"
     },
     "plugins\/openzwave\/core\/class\/openzwave.class.php": {
-<<<<<<< HEAD
-        "Echec de la requete http : ": "Echec de la requête HTTP : ",
-=======
         "Echec de la requete http : ": "Échec de la requête HTTP : ",
->>>>>>> pr/26
         "Réveillé": "Réveillé",
         "Endormi": "Endormi",
         "Actif": "Actif",
@@ -186,11 +157,7 @@
         "Incomplet": "Incomplet",
         "Création des commandes à partir d'une configuration": "Création des commandes à partir d'une configuration",
         "Le controleur est occupé, si vous etes en inclusion ou exclusion veuillez d'abord quitter ce mode": "Le contrôleur est occupé, si vous êtes en inclusion ou exclusion veuillez d'abord quitter ce mode",
-<<<<<<< HEAD
-        "Processus de demande d information sur le noeud complet": "Processus de demande d information sur le noeud complet",
-=======
         "Processus de demande d information sur le noeud complet": "Processus de demande d information sur le nœud complet",
->>>>>>> pr/26
         "Sur secteur": "Sur secteur",
         "Récupération des informations d associations": "Récupération des informations d associations",
         "Intérrogation du module pour récupérer sa configuration": "Interrogation du module pour récupérer sa configuration"
@@ -343,32 +310,13 @@
         "ID de noeud": "ID de nœud",
         "Classe de la commande": "Classe de la commande",
         "Mise à jour des noeuds voisins": "Mise à jour des noeuds voisins",
-<<<<<<< HEAD
-        "Force la mise à jour de la liste des noeuds voisin": "Force la mise à jour de la liste des noeuds voisins",
-        "Soigner le noeud": "Soigner le noeud",
-        "Soigner un noeud du réseau.": "Soigner un noeud du réseau.",
-        "Tester Noeud": "Tester Noeud",
-        "Tester le noeud. Envoyer une série de message à un noeud pour le tester.": "Tester le noeud. Envoyer une série de message à un noeud pour le tester.",
-        "Rafraîchir valeurs du noeud": "Rafraîchir valeurs du noeud",
-        "Déclenche une actualisation manuelle des valeurs du noeud.": "Déclenche une actualisation manuelle des valeurs du noeud.",
-        "Rafraîchir infos du noeud": "Rafraîchir infos du noeud",
-        "Déclencher l'obtention des données du noeud.": "Déclencher l'obtention des données du noeud.",
-        "Les données du noeud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.": "Les données du noeud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.",
-        "Noeud en échec": "Noeud en échec",
-        "Vérifie si le noeud est dans la liste des noeuds en erreur.": "Vérifie si le noeud est dans la liste des noeuds en erreur.",
-        "Supprimer noeud en erreur": "Supprimer noeud en erreur",
-        "Supprime le noeud du controleur": "Supprime le noeud du controleur",
-        "Le noeud doit être en échec.": "Le noeud doit être en échec.",
-        "Remplacer noeud en échec": "Remplacer noeud en échec",
-        "Remplace un module en échec par un autre. Si le noeud n'est pas dans la liste des noeuds en échec sur le contrôleur, ou que le noeud répond, la commande va échouer.": "Remplace un module en échec par un autre. Si le noeud n'est pas dans la liste des noeuds en échec sur le contrôleur, ou que le noeud répond, la commande va échouer.",
-        "Envoi infos du noeud": "Envoi infos du noeud",
-=======
         "Force la mise à jour de la liste des noeuds voisin": "Force la mise à jour de la liste des noeuds voisin",
         "Soigner le noeud": "Soigner le nœud",
         "Soigner un noeud du réseau.": "Soigner un nœud du réseau.",
         "Tester Noeud": "Tester le noeud",
         "Tester le noeud. Envoyer une série de message à un noeud pour le tester.": "Tester le nœud. Envoyer une série de message à un nœud pour le tester.",
         "Rafraîchir valeurs du noeud": "Rafraîchir valeurs du nœud",
+        "Actualiser les paramètres": "Actualiser les paramètres",
         "Déclenche une actualisation manuelle des valeurs du noeud.": "Déclenche une actualisation manuelle des valeurs du nœud.",
         "Rafraîchir infos du noeud": "Rafraîchir infos du nœud",
         "Déclencher l'obtention des données du noeud.": "Déclencher l'obtention des données du nœud.",
@@ -381,7 +329,6 @@
         "Remplacer noeud en échec": "Remplacer nœud en échec",
         "Remplace un module en échec par un autre. Si le noeud n'est pas dans la liste des noeuds en échec sur le contrôleur, ou que le noeud répond, la commande va échouer.": "Remplace un module en échec par un autre. Si le nœud n'est pas dans la liste des nœuds en échec sur le contrôleur, ou que le nœud répond, la commande va échouer.",
         "Envoi infos du noeud": "Envoi infos du nœud",
->>>>>>> pr/26
         "Envoi une trame d'info au noeud (NIF).": "Envoi une trame d'info au noeud (NIF).",
         "Temps de demande moyen (ms) :": "Temps de demande moyen (ms) :",
         "Temps de réponse moyen (ms) :": "Temps de réponse moyen (ms) :",
@@ -414,11 +361,7 @@
         "type de produit :": "type de produit :",
         "identifiant du produit :": "identifiant du produit :",
         "Controlleur": "Controlleur",
-<<<<<<< HEAD
-        "Controlleur static": "Contrôleur statique",
-=======
         "Controlleur static": "Contrôleur static",
->>>>>>> pr/26
         "Esclave": "Esclave",
         "Esclave pouvant être routé": "Esclave pouvant être routé",
         "Télécommande": "Télécommande",
@@ -447,30 +390,18 @@
         "Réveillé": "Réveillé",
         "Endormi": "Endormi",
         "Secteur": "Secteur",
-<<<<<<< HEAD
-        "Le controleur pense que ce noeud est en echec, essayé": "Le controleur pense que ce noeud est en echec, essayez",
-        "Noeud en échec": "Noeud en échec",
-=======
         "Le controleur pense que ce noeud est en echec, essayé": "Le controleur pense que ce nœud est en echec, essayez",
         "Noeud en échec": "Nœud en échec",
->>>>>>> pr/26
         "ou": "ou",
         "Tester Noeud": "Tester le nœud",
         "pour essayer de corriger.": "pour essayer de corriger.",
         "Le processus de demande n'a pas encore commencé pour ce noeud": "Le processus de demande n'a pas encore commencé pour ce nœud",
         "Récupération des informations du protocole": "Récupération des informations du protocole",
         "Interrogation du module pour voir si il est en vie": "Interrogation du module pour voir si il est en vie",
-<<<<<<< HEAD
-        "Début du processus de reveille du noeud si celui-ci dort": "Début du processus de reveille du noeud si celui-ci dort",
-        "Récupération des paramètre constructeur du noeud": "Récupération des paramètres constructeur du noeud",
-        "Récupération des informations sur les classe du noeud": "Récupération des informations sur les classe du noeud",
-        "Récupération des classes de sécurité du noeud": "Récupération des classes de sécurité du noeud",
-=======
         "Début du processus de reveille du noeud si celui-ci dort": "Début du processus de reveille du nœud si celui-ci dort",
         "Récupération des paramètre constructeur du noeud": "Récupération des paramètre constructeur du nœud",
         "Récupération des informations sur les classe du noeud": "Récupération des informations sur les classe du nœud",
         "Récupération des classes de sécurité du noeud": "Récupération des classes de sécurité du nœud",
->>>>>>> pr/26
         "Récupération des informations de version": "Récupération des informations de version",
         "Récupération des informations d'instance du noeud": "Récupération des informations d'instance du nœud",
         "Récupération des informations statistiques": "Récupération des informations statistiques",
@@ -480,15 +411,6 @@
         "Récupération des informations de sessions": "Récupération des informations de sessions",
         "Récupération des informations dynamique": "Récupération des informations dynamique",
         "Récupération des informations de configuration": "Récupération des informations de configuration",
-<<<<<<< HEAD
-        "Processus de demande d'information sur le noeud complet": "Processus de demande d'information sur le noeud complet",
-        "Le noeud à des capacité de routage (capable de faire passer des commandes à d'autre noeuds)": "Le noeud à des capacités de routage (capable de faire passer des commandes à d'autre noeuds)",
-        "Le noeud supporte les caracteristique de sécurité avancées": "Le noeud supporte les caracteristiques de sécurité avancées",
-        "Classe de sécurité:": "Classe de sécurité :",
-        "Le noeud est alimenté et écoute en permanence": "Le noeud est alimenté et écoute en permanence",
-        "Le noeud peut être reveillé": "Le noeud peut être reveillé",
-        "Le noeud est capable d'envoyer une trame réseaux": "Le noeud est capable d'envoyer une trame réseau",
-=======
         "Processus de demande d'information sur le noeud complet": "Processus de demande d'information sur le nœud complet",
         "Le noeud à des capacité de routage (capable de faire passer des commandes à d'autre noeuds)": "Le nœud à des capacité de routage (capable de faire passer des commandes à d'autre noeuds)",
         "Le noeud supporte les caracteristique de sécurité avancées": "Le nœud supporte les caracteristique de sécurité avancées",
@@ -496,44 +418,23 @@
         "Le noeud est alimenté et écoute en permanence": "Le nœud est alimenté et écoute en permanence",
         "Le noeud peut être reveillé": "Le nœud peut être reveillé",
         "Le noeud est capable d'envoyer une trame réseaux": "Le nœud est capable d'envoyer une trame réseaux",
->>>>>>> pr/26
         "Liste des voisins non disponible": "Liste des voisins non disponible",
         "Utilisez": "Utilisez",
         "Soigner le noeud": "Soigner le nœud",
         "Mise à jour des noeuds voisins": "Mise à jour des nœuds voisins",
         "pour corriger.": "pour corriger.",
-<<<<<<< HEAD
-        "La liste des noeuds voisin n'est pas encore disponible.": "La liste des noeuds voisins n'est pas encore disponible.",
-        "Les identifiances constructeur ne sont pas detectées.": "Les identifiants constructeur ne sont pas detectés.",
-        "Rafraîchir infos du noeud": "Rafraîchir infos du noeud",
-        "pour corriger": "pour corriger",
-        "Le noeud est dormant et nécessite un reveil avant qu'une commande puisse être exécutée.<br\/>Vous pouvez le reveiller manullement ou attend son délai de reveil.": "Le noeud est dormant et nécessite un reveil avant qu'une commande puisse être exécutée.<br\/>Vous pouvez le reveiller manuellement ou attendre son délai de reveil.",
-        "Voir l'interval de réveille dans l'onglet Système": "Voir l'interval de réveil dans l'onglet Système",
-=======
         "La liste des noeuds voisin n'est pas encore disponible.": "La liste des nœuds voisin n'est pas encore disponible.",
         "Les identifiances constructeur ne sont pas detectées.": "Les identifiants constructeur ne sont pas detectés.",
         "Rafraîchir infos du noeud": "Rafraîchir infos du nœud",
         "pour corriger": "pour corriger",
         "Le noeud est dormant et nécessite un reveil avant qu'une commande puisse être exécutée.<br\/>Vous pouvez le reveiller manullement ou attend son délai de reveil.": "Le nœud est dormant et nécessite un reveil avant qu'une commande puisse être exécutée.<br\/>Vous pouvez le reveiller manullement ou attend son délai de reveil.",
         "Voir l'interval de réveille dans l'onglet Système": "Voir l'interval de réveille dans l'onglet Système",
->>>>>>> pr/26
         "Supprimer": "Supprimer",
         "Ajouter un noeud": "Ajouter un nœud",
         "(nombre maximum d\\'association :": "(nombre maximum d\\'association :",
         "Copier les paramètres pour le module ": "Copier les paramètres pour le module ",
         "Aucun module identique trouvé": "Aucun module identique trouvé",
         "Groupe ": "Groupe ",
-<<<<<<< HEAD
-        "Ajouter une association pour le noeud": "Ajouter une association pour le noeud",
-        "Le controleur n'est inclus dans aucun groupe du module.": "Le contrôleur n'est inclus dans aucun groupe du module.",
-        "Le controleur pense que ce noeud est en echec, essayez ": "Le contrôleur pense que ce noeud est en échec, essayez ",
-        "Interrogation du module pour voir sil est en vie": "Interrogation du module pour voir sil est en vie",
-        "Début du processus de reveil du noeud si celui-ci dort": "Début du processus de reveil du noeud si celui-ci dort",
-        "Récupération des paramètres constructeur du noeud": "Récupération des paramètres constructeur du noeud",
-        "Récupération des informations sur les classes du noeud": "Récupération des informations sur les classes du noeud",
-        "Le noeud a des capacités de routage (capable de faire passer des commandes à d'autres noeuds)": "Le noeud a des capacités de routage (capable de faire passer des commandes à d'autres noeuds)",
-        "Le noeud supporte les caracteristiques de sécurité avancées": "Le noeud supporte les caracteristiques de sécurité avancées",
-=======
         "Ajouter une association pour le noeud": "Ajouter une association pour le nœud",
         "Le controleur n'est inclus dans aucun groupe du module.": "Le contrôleur n'est inclus dans aucun groupe du module.",
         "Le controleur pense que ce noeud est en echec, essayez ": "Le contrôleur pense que ce nœud est en echec, essayez ",
@@ -543,7 +444,6 @@
         "Récupération des informations sur les classes du noeud": "Récupération des informations sur les classes du nœud",
         "Le noeud a des capacités de routage (capable de faire passer des commandes à d'autres noeuds)": "Le nœud a des capacités de routage (capable de faire passer des commandes à d'autres nœuds)",
         "Le noeud supporte les caracteristiques de sécurité avancées": "Le nœud supporte les caracteristiques de sécurité avancées",
->>>>>>> pr/26
         "Les identifiants constructeur ne sont pas detectés.": "Les identifiants constructeur ne sont pas detectés.",
         "Le noeud est dormant et nécessite un reveil avant qu'une commande puisse être exécutée.<br\/>Vous pouvez le reveiller manuellement ou attendre son délai de réveil.": "Le nœud est dormant et nécessite un reveil avant qu'une commande puisse être exécutée.<br\/>Vous pouvez le reveiller manuellement ou attendre son délai de réveil.",
         "Voir l'interval de réveil dans l'onglet Système": "Voir l'interval de réveil dans l'onglet Système"
@@ -572,17 +472,10 @@
         "Temporisation moyenne": "Temporisation moyenne",
         "Récupération des informations de configuration": "Récupération des informations de configuration",
         "Intérrogation du module pour récupérer sa configuration": "Intérrogation du module pour récupérer sa configuration",
-<<<<<<< HEAD
-        "Processus de demande d'information sur le noeud complet": "Processus de demande d'information sur le noeud complet",
-        "Processus de demande d\\'information sur le noeud complet": "Processus de demande d\\'information sur le noeud complet",
-        "Processus de demande d information sur le noeud complet": "Processus de demande d information sur le noeud complet",
-        "Récupération des informations d associations": "Récupération des informations d\\'association",
-=======
         "Processus de demande d'information sur le noeud complet": "Processus de demande d'information sur le nœud complet",
         "Processus de demande d\\'information sur le noeud complet": "Processus de demande d\\'information sur le nœud complet",
         "Processus de demande d information sur le noeud complet": "Processus de demande d information sur le nœud complet",
         "Récupération des informations d associations": "Récupération des informations d associations",
->>>>>>> pr/26
         "Récupération de la liste des voisins": "Récupération de la liste des voisins",
         "Récupération des informations de sessions": "Récupération des informations de sessions",
         "Récupération des informations dynamiques": "Récupération des informations dynamiques"
