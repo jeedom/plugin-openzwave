@@ -21,11 +21,3 @@ include::configuration.asciidoc[]
 
 == Liste des modules compatible
 Vous trouverez la liste des modules compatibles link:https://jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-equipement.compatible.html[ici]
-
-'''
-== FAQ
-include::faq.asciidoc[]
-
-'''
-== Dépannage
-include::troubleshooting.asciidoc[]
