@@ -68,7 +68,7 @@ pip_install louie
 pip_install flask
 pip_install flask-restful
 
-if [ -a ${1} = "no_compil" -a  $(uname -a | grep 'cubox' | wc -l ) -eq 1  -a ${ARCH} = "armv7l" ]; then
+if [ ${1} = "no_compil" -a  $(uname -a | grep 'cubox' | wc -l ) -eq 1  -a ${ARCH} = "armv7l" ]; then
   echo "Armv7/Jeedomboard installation direct"
   sudo rm -fr /opt/python-openzwave
   sudo mkdir -p /opt/python-openzwave
