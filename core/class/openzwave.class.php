@@ -464,8 +464,9 @@ class openzwave extends eqLogic {
 			if (@!file_exists($port)) {
 				$return['launchable'] = 'nok';
 				$return['launchable_message'] = __('Le port n\'est pas configuré', __FILE__);
+			} else {
+				exec('sudo chmod 777 ' . $port . ' > /dev/null 2>&1');
 			}
-			exec('sudo chmod 777 ' . $port . ' > /dev/null 2>&1');
 		}
 		return $return;
 	}
