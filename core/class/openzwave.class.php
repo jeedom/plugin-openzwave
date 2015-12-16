@@ -398,9 +398,6 @@ class openzwave extends eqLogic {
 		config::save('currentOzwVersion', config::byKey('openzwave_version', 'openzwave'), 'openzwave');
 		log::remove('openzwave_update');
 		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh';
-		$cmd .= ' no_compil';
-		$cmd .= ' ' . network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp');
-		$cmd .= ' ' . config::byKey('api');
 		$cmd .= ' >> ' . log::getPathToLog('openzwave_update') . ' 2>&1 &';
 		exec($cmd);
 	}

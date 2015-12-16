@@ -7,7 +7,6 @@
 #set -x  # make sure each command is printed in the terminal
 touch /tmp/compilation_ozw_in_progress
 echo "Lancement de l'installation/mise à jour des dépendances openzwave"
-curl -G -k -s "$2/plugins/openzwave/core/php/jeeZwave.php" -d "apikey=$3" --data-urlencode "stopOpenzwave=1"
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ARCH=`uname -m`
@@ -68,7 +67,7 @@ pip_install louie
 pip_install flask
 pip_install flask-restful
 
-if [ ${1} = "no_compil" -a  $(uname -a | grep 'cubox' | wc -l ) -eq 1  -a ${ARCH} = "armv7l" ]; then
+if [ -z ${1} -a  $(uname -a | grep 'cubox' | wc -l ) -eq 1  -a ${ARCH} = "armv7l" ]; then
   echo "Armv7/Jeedomboard installation direct"
   sudo rm -fr /opt/python-openzwave
   sudo mkdir -p /opt/python-openzwave
@@ -137,9 +136,6 @@ if [ $(grep 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200"
   sudo echo 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200", SYMLINK+="ttyUSB21"' >> /tmp/udev
   sudo mv /tmp/udev /etc/udev/rules.d/98-usb-serial.rules
 fi
-
-echo "Restart Zwave deamon : $2/plugins/openzwave/core/php/jeeZwave.php"
-curl -G -k -s "$2/plugins/openzwave/core/php/jeeZwave.php" -d "apikey=$3" --data-urlencode "startOpenzwave=1"
 echo "Everything is successfully installed!"
 rm /tmp/compilation_ozw_in_progress
 
