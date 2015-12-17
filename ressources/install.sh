@@ -6,6 +6,7 @@
 
 #set -x  # make sure each command is printed in the terminal
 touch /tmp/compilation_ozw_in_progress
+echo 0 > /tmp/compilation_ozw_in_progress
 echo "Lancement de l'installation/mise à jour des dépendances openzwave"
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
@@ -48,25 +49,33 @@ fi
 if [ ! -d /opt ]; then
   sudo mkdir /opt
 fi
-
+echo 10 > /tmp/compilation_ozw_in_progress
 sudo rm -f /var/lib/dpkg/updates/*
 sudo apt-get clean
+echo 20 > /tmp/compilation_ozw_in_progress
 sudo apt-get update
-
+echo 30 > /tmp/compilation_ozw_in_progress
 echo "Installation des dependances"
 apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml unzip libjpeg-dev
-
+echo 40 > /tmp/compilation_ozw_in_progress
 # Python
 echo "Installation des dependances Python"
 pip_install sphinxcontrib-blockdiag
+echo 41 > /tmp/compilation_ozw_in_progress
 pip_install sphinxcontrib-actdiag
+echo 42 > /tmp/compilation_ozw_in_progress
 pip_install sphinxcontrib-nwdiag
+echo 43 > /tmp/compilation_ozw_in_progress
 pip_install sphinxcontrib-seqdiag
+echo 44 > /tmp/compilation_ozw_in_progress
 pip_install urwid
+echo 45 > /tmp/compilation_ozw_in_progress
 pip_install louie
+echo 46 > /tmp/compilation_ozw_in_progress
 pip_install flask
+echo 47 > /tmp/compilation_ozw_in_progress
 pip_install flask-restful
-
+echo 50 > /tmp/compilation_ozw_in_progress
 if [ -z ${1} -a  $(uname -a | grep 'cubox' | wc -l ) -eq 1  -a ${ARCH} = "armv7l" ]; then
   echo "Armv7/Jeedomboard installation direct"
   sudo rm -fr /opt/python-openzwave
@@ -75,12 +84,14 @@ if [ -z ${1} -a  $(uname -a | grep 'cubox' | wc -l ) -eq 1  -a ${ARCH} = "armv7l
   sudo rm -fr /usr/local/lib/python2.7/dist-packages/openzwave* 
   cp -R ${BASEDIR}/python-openzwave/armv7/*  /usr/local/lib/python2.*/dist-packages
   sudo cp /opt/zwcfg* /opt/python-openzwave
+  echo 80 > /tmp/compilation_ozw_in_progress
 else
   sudo mkdir /opt
   if [ -d /opt/python-openzwave ]; then
     cd /opt/python-openzwave
     echo "Désinstallation de la version précédente";
     sudo make uninstall > /dev/null 2>&1
+    echo 55 > /tmp/compilation_ozw_in_progress
     sudo rm -fr /usr/local/lib/python2.7/dist-packages/libopenzwave*
     sudo rm -fr /usr/local/lib/python2.7/dist-packages/openzwave* 
     cd /opt
@@ -95,29 +106,34 @@ else
     rm /tmp/compilation_ozw_in_progress
     exit 1
   fi
+  echo 60 > /tmp/compilation_ozw_in_progress
   cd python-openzwave
   sudo git reset --hard ${PYTHON_OPENZWAVE_VERSION}
   sudo pip uninstall -y Cython
   cd /opt/python-openzwave
   sudo make cython-deps
+  echo 65 > /tmp/compilation_ozw_in_progress
   sudo make repo-deps
+  echo 70 > /tmp/compilation_ozw_in_progress
   sudo git clone https://github.com/OpenZWave/open-zwave.git openzwave
   if [ $? -ne 0 ]; then
     echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
     rm /tmp/compilation_ozw_in_progress
     exit 1
   fi
+  echo 75 > /tmp/compilation_ozw_in_progress
   cd openzwave
   sudo git reset --hard ${OPENZWAVE_VERSION}
   cd /opt/python-openzwave
   sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
   sudo make install-api
+  echo 80 > /tmp/compilation_ozw_in_progress
   sudo mkdir /opt/python-openzwave/python-eggs
 fi
 
 sudo chown -R www-data:www-data /opt/python-openzwave
 sudo chmod -R 777 /opt/python-openzwave
-
+echo 90 > /tmp/compilation_ozw_in_progress
 if [ -e /dev/ttyAMA0 ];  then 
   sudo sed -i 's/console=ttyAMA0,115200//; s/kgdboc=ttyAMA0,115200//' /boot/cmdline.txt
   sudo sed -i 's|[^:]*:[^:]*:respawn:/sbin/getty[^:]*ttyAMA0[^:]*||' /etc/inittab
@@ -136,6 +152,7 @@ if [ $(grep 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200"
   sudo echo 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200", SYMLINK+="ttyUSB21"' >> /tmp/udev
   sudo mv /tmp/udev /etc/udev/rules.d/98-usb-serial.rules
 fi
+echo 100 > /tmp/compilation_ozw_in_progress
 echo "Everything is successfully installed!"
 rm /tmp/compilation_ozw_in_progress
 

@@ -380,13 +380,10 @@ class openzwave extends eqLogic {
 	public static function dependancy_info() {
 		$return = array();
 		$return['log'] = 'openzwave_update';
-		if (file_exists('/tmp/compilation_ozw_in_progress')) {
-			$return['state'] = 'in_progress';
-		} else {
-			$return['state'] = (self::compilationOk()) ? 'ok' : 'nok';
-			if ($return['state'] == 'ok' && self::getVersion('openzwave') != -1 && version_compare(config::byKey('openzwave_version', 'openzwave'), self::getVersion('openzwave'), '>')) {
-				$return['state'] = 'nok';
-			}
+		$return['progress_file'] = '/tmp/compilation_ozw_in_progress';
+		$return['state'] = (self::compilationOk()) ? 'ok' : 'nok';
+		if ($return['state'] == 'ok' && self::getVersion('openzwave') != -1 && version_compare(config::byKey('openzwave_version', 'openzwave'), self::getVersion('openzwave'), '>')) {
+			$return['state'] = 'nok';
 		}
 		return $return;
 	}
