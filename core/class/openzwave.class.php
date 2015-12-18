@@ -521,7 +521,7 @@ class openzwave extends eqLogic {
 			$i++;
 		}
 		if ($i >= 30) {
-			log::add('openzwavecmd', 'error', 'Impossible de lancer le démon openzwave, vérifiez le port', 'unableStartDeamon');
+			log::add('openzwavecmd', 'error', 'Impossible de lancer le démon openzwave, relancer le démon en debug et vérifiez la log', 'unableStartDeamon');
 			return false;
 		}
 		message::removeAll('openzwave', 'unableStartDeamon');
