@@ -1,7 +1,7 @@
 {
 	"name" : "Z-Stick Gen5 (ZW090)",
     "doc" : "",
-    "type": "Contrôlleur",
+    "type": "Contrôleur",
     "comlink" : "2917-aeon-labs-controleur-usb-z-wave-plus-z-stick-gen5-1220000012813",
     "remark" : "",
     "imglink" : "aeotec.zw090",

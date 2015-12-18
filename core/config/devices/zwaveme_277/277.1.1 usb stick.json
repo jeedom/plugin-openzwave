@@ -1,7 +1,7 @@
 {
 	"name" : "USB Stick",
     "doc" : "",
-    "type": "Contrôlleur",
+    "type": "Contrôleur",
     "comlink" : "",
     "remark" : "",
     "imglink" : "zwaveme.uzb",

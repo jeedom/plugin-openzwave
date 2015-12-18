@@ -1,7 +1,7 @@
 {
 	"name" : "RaZberry Controller",
     "doc" : "",
-    "type": "Contrôlleur",
+    "type": "Contrôleur",
     "comlink" : "",
     "remark" : "",
     "imglink" : "zwaveme.razberry",

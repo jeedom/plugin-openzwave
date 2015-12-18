@@ -1,7 +1,7 @@
 {
 	"name" : "Z-Wave Plus USB Controller",
     "doc" : "",
-    "type": "Contrôlleur",
+    "type": "Contrôleur",
     "comlink" : "3171-sigma-designs-controleur-z-wave-plus-usb",
     "remark" : "",
     "imglink" : "sigma.usb",

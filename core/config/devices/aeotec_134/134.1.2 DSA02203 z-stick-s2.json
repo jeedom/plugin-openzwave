@@ -1,7 +1,7 @@
 {
 	"name" : "Z-Stick S2 (DSA02203)",
     "doc" : "",
-    "type": "Contrôlleur",
+    "type": "Contrôleur",
     "comlink" : "",
     "remark" : "",
     "imglink" : "aeotec.dsa02203",

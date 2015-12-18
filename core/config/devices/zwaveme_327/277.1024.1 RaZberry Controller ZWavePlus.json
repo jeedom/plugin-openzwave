@@ -1,7 +1,7 @@
 {
 	"name" : "RaZberry Controller ZWave+",
     "doc" : "",
-    "type": "Contrôlleur",
+    "type": "Contrôleur",
     "comlink" : "2312-z-waveme-carte-d-extension-razberry-z-wave-pour-raspberry-pi-696859123290",
     "remark" : "",
     "imglink" : "zwaveme.razberry",
