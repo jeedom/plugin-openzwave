@@ -799,11 +799,11 @@ def recovering_failed_nodes_asynchronous():
                     if _network.manager.hasNodeFailed(_network.home_id, node_id):
                         # avoid stress network
                         time.sleep(10)
-                if my_node.is_listening_device and my_node.is_awake:
+                if my_node.is_listening_device and my_node.is_ready:
                     # check if a ping is require
                     if hasattr(my_node, 'last_notification'):
                         # is in timeout or dead
-                        if my_node.last_notification.code == 1 or my_node.last_notification.code == 5:
+                        if my_node.last_notification.code in [1, 5]:
                             debug_print('Do a test on node %s' % (node_id,)) 
                             # a ping will try to resolve this situation with a NoOperation CC. 
                             _network.manager.testNetworkNode(_network.home_id, node_id, 3)
