@@ -10,7 +10,7 @@
 		},
         "commands": [
             {
-				"name": "Flash Off / Siren Off",
+				"name": "All Off",
 				"type": "action",
 				"subtype": "other",
 				"isVisible": 1,
@@ -21,7 +21,7 @@
 				}
             },
             {
-				"name": "Flash On / Siren Off",
+				"name": "Flash",
 				"type": "action",
 				"subtype": "other",
 				"isVisible": 1,
@@ -32,7 +32,7 @@
 				}
             },
             {
-				"name": "Flash Off / Siren On",
+				"name": "Siren",
 				"type": "action",
 				"subtype": "other",
 				"isVisible": 1,
@@ -43,7 +43,7 @@
 				}
             },
             {
-				"name": "Flash On / Siren On",
+				"name": "Flash & Siren",
 				"type": "action",
 				"subtype": "other",
 				"isVisible": 1,

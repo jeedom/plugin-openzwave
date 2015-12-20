@@ -1,57 +1,57 @@
 {
-		"name": "SSA-02",
-        "doc" : "",
-        "type": "Sirène",
-        "comlink" : "980-fortrezz-sirene-z-wave-flash-rouge-ssa2-0661799486026",
-        "remark" : "",
-        "imglink" : "fortrezz.ssa02",
-        "configuration" : {
-        "conf_version" : 1
+	"name": "SSA-02",
+  "doc" : "",
+  "type": "Sirène",
+  "comlink" : "980-fortrezz-sirene-z-wave-flash-rouge-ssa2-0661799486026",
+  "remark" : "",
+  "imglink" : "fortrezz.ssa02",
+	"configuration" : {
+  	"conf_version" : 1
 		},
-        "commands": [
-            {
-				"name": "Flash Off / Siren Off",
-				"type": "action",
-				"subtype": "other",
-				"isVisible": 1,
-				"configuration": {
-					"class": "0x26",
-					"instanceId": 0,
-					"value": "data[0].Set(0)"
+	"commands": [
+		{
+			"name": "Off",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"configuration": {
+				"class": "0x26",
+				"instanceId": 0,
+				"value": "data[0].Set(0)"
 				}
-            },
-            {
-				"name": "Flash On / Siren Off",
-				"type": "action",
-				"subtype": "other",
-				"isVisible": 1,
-				"configuration": {
-					"class": "0x26",
-					"instanceId": 0,
-					"value": "data[0].Set(33)"
+		},
+		{
+			"name": "Flash",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"configuration": {
+				"class": "0x26",
+				"instanceId": 0,
+				"value": "data[0].Set(33)"
 				}
-            },
-            {
-				"name": "Flash Off / Siren On",
-				"type": "action",
-				"subtype": "other",
-				"isVisible": 1,
-				"configuration": {
-					"class": "0x26",
-					"instanceId": 0,
-					"value": "data[0].Set(66)"
+		},
+		{
+			"name": "Siren",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"configuration": {
+				"class": "0x26",
+				"instanceId": 0,
+				"value": "data[0].Set(66)"
 				}
-            },
-            {
-				"name": "Flash On / Siren On",
-				"type": "action",
-				"subtype": "other",
-				"isVisible": 1,
-				"configuration": {
-					"class": "0x26",
-					"instanceId": 0,
-					"value": "data[0].Set(99)"
+		},
+		{
+			"name": "Flash & Siren",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"configuration": {
+				"class": "0x26",
+				"instanceId": 0,
+				"value": "data[0].Set(99)"
 				}
-            }
-        ]
-    }
+		}
+	]
+}
