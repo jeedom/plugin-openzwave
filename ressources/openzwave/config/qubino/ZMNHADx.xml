@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Product xmlns='http://code.google.com/p/open-zwave/'>
-<!-- 
-	Qubino: ZMNHADx Flush 1 Relay 
-	
+<!--
+	Qubino: ZMNHADx Flush 1 Relay
+
 	ZMNHAD1 868,4 MHz
 	ZMNHAD2 921,4 MHz
 	ZMNHAD3 908,4 MHz
@@ -17,31 +17,31 @@
 			<Item label="Mono-stable switch type (push button)" value="0" />
 			<Item label="Bi-stable switch type" value="1" />
 		</Value>
-		
+
 		<Value type="list" genre="config" instance="1" index="2" label="Input 2 contact type" size="1" min="0" max="1" value="0">
 			<Help/>
 			<Item label="NO (normaly open) input type" value="0"/>
 			<Item label="NC (normaly close) input type" value="1"/>
-		</Value> 
-		
+		</Value>
+
 		<Value type="list" genre="config" instance="1" index="3" label="Input 3 contact type" size="1" min="0" max="1" value="0">
 			<Help/>
 			<Item label="NO (normaly open) input type" value="0"/>
 			<Item label="NC (normaly close) input type" value="1"/>
-		</Value> 
-		
+		</Value>
+
 		<Value type="list" genre="config" instance="1" index="10" label="Activate / deactivate functions ALL ON/ALL OFF" size="1" min="0" max="255" value="255">
 			<Help>Flush 1 relay module responds to commands ALL ON / ALL OFF that may be sent by the main controller or by other controller belonging to the system.</Help>
 			<Item label="ALL ON active, ALL OFF active" value="255" />
 			<Item label="ALL ON is not active ALL OFF is not active" value="0" />
 			<Item label="ALL ON is not active ALL OFF active" value="1" />
 			<Item label="ALL ON active ALL OFF is not active" value="2" />
-		</Value> 
-		
+		</Value>
+
 		<Value type="short" genre="config" instance="1" index="11" label="Automatic turning off relay after set time" min="0" max="32535" value="0">
 			<Help>0 => Auto OFF disabled. 1 - 32535  => 1 second (0,01s) - 32535 seconds (325,35s). Auto OFF enabled with define time, step is 1s or 10ms according to parameter 15. Default value 0</Help>
 		</Value>
-		
+
         <Value type="short" genre="config" instance="1" index="12" label="Automatic turning on relay after set time" min="0" max="32535" value="0">
             <Help>0 - Auto OFF disabled. 1 - 32535  => 1 second (0,01s) - 32535 seconds (325,35s). Auto ON enabled with define time, step is 1s or 10ms according to parameter 15. Default value 0</Help>
         </Value>
@@ -57,11 +57,11 @@
 			<Item label="Flush 1 relay module saves its state before power failure (it returns to the last position saved before a power failure)" value="0" />
 			<Item label="Flush 1 relay module does not save the state after a power failure, it returns to off position." value="1" />
 		</Value>
-		
+
 		<Value type="byte" genre="config" instance="1" index="40" label="Power reporting in Watts on power change" size="1" min="0" max="100" value="10">
 			<Help>Set value from 0 - 100 (0%- 100%). 0 = Reporting Disabled. 1 - 100 = 1% - 100% and reporting enabled. Power report is send (push) only when actual power in Watts in real time change for more than set percentage comparing to previous actual power in Watts, step is 1%. Default value 10%</Help>
 		</Value>
-		
+
 		<Value type="short" genre="config" instance="1" index="42" label="Power reporting in Watts by time interval" min="0" max="32535" value="300">
 			<Help>Set value means time interval (0 - 32535) in seconds, when power report is send. 0 = Reporting Disabled. 1 - 32535 = 1 second - 32535 seconds and reporting enabled. Power report is send with time interval set by entered value. Default value 300 (power report in Watts is send each 300s)</Help>
 		</Value>
@@ -111,7 +111,7 @@
 		<Associations num_groups="8">
 			<Group index="1" max_associations="1"  label="Lifeline group (reserved for communication with the main controller)" auto="true"/>
 			<Group index="2" max_associations="16" label="basic on/off (triggered at change of the output Q state and reflecting its state)" />
-			<Group index="3" max_associations="16" label="basic on/off (triggered at change of the input I2 state and reflecting its state)" />		  
+			<Group index="3" max_associations="16" label="basic on/off (triggered at change of the input I2 state and reflecting its state)" />
 			<Group index="4" max_associations="16" label="Notification report (triggered at change of the input I2 state and reflecting its state)" />
 			<Group index="5" max_associations="16" label="Binary sensor (triggered at change of the input I2 state and reflecting its state)" />
 			<Group index="6" max_associations="16" label="basic on/off (triggered at change of the input I3 state and reflecting its state)" />
@@ -120,22 +120,22 @@
 		</Associations>
 	</CommandClass>
 
-	<!-- Remove COMMAND_CLASS_BASIC
-	<CommandClass id="32" setasreport="true"/> -->
-	
-	<!-- COMMAND_CLASS_ALARM.  This class is supported but is missing from the list reported by the ZMNHADx -->
+	<!-- Map endpoints to instances -->
+	<CommandClass id="96" mapping="endpoints" />
+
+    <!-- COMMAND_CLASS_ALARM.  This class is supported but is missing from the list reported by the ZMNHADx -->
 	<CommandClass id="113" action="add" getsupported="false" />
 
-	<CommandClass id="48" create_vars="false">
-			<Instance index="1" />
-			<Value type="bool" genre="user" instance="1" index="0" label="Int2" read_only="true" write_only="false" value="false" />
-			<Value type="bool" genre="user" instance="2" index="0" label="Int3" read_only="true" write_only="false" value="false" />
-			<SensorMap index="0" type="0" />
-			<SensorMap index="1" type="0" />
+    <CommandClass id="48" create_vars="false">
+        <Instance index="2" />
+        <Value type="bool" genre="user" instance="1" index="0" label="Int2" read_only="true" write_only="false" value="false" />
+        <Value type="bool" genre="user" instance="2" index="0" label="Int3" read_only="true" write_only="false" value="false" />
+        <SensorMap index="0" type="8" />
 	</CommandClass>
 
-	
-	<!-- Map endpoints to instances -->
-	<CommandClass id="96" mapping="endpoints" /> 
+   <CommandClass id="37" create_vars="false">
+       <Instance index="1" />
+       <Value type="bool" genre="user" instance="1" index="0" label="Switch" read_only="false" />
+   </CommandClass>
 
 </Product>
