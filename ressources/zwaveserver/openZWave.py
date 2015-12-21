@@ -1974,7 +1974,7 @@ def set_polling2(node_id, value_id, frequency):
 
 
 @app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].SetPolling(<frequency>)', methods=['GET'])
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].SetPolling(<int:frequency>)', methods=['GET'])
 def set_polling_value(node_id, instance_id, cc_id, index, frequency):
     debug_print("set_polling_value for nodeId: %s instance: %s cc:%s index:%s at: %s" % (node_id, instance_id, cc_id, index, frequency,))
     if node_id in _network.nodes:
