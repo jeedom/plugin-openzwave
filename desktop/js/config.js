@@ -11,7 +11,7 @@ var app_config = {
                     handleAjaxError(request, status, error,$('#div_configOpenzwaveAlert'));
                 },
                 success: function(data) {
-                    $('#div_configOpenzwaveAlert').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
+                    $('#div_configOpenzwaveAlert').showAlert({message: '{{Sauvegarde de la configuration réussie. Le réseau va redémarrer}}', level: 'success'});
                 }
             });
         });
