@@ -85,9 +85,9 @@
                 "isHistorized": 1,
 				"unite": "W",
                 "configuration": {
-                    "class": "0x31",
+                    "class": "0x32",
 					"instanceId": 0,
-                    "value": "data[4].val",
+                    "value": "data[8].val",
 					"maxValue": 1150,
                     "minValue": 0
                 }
