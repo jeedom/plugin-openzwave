@@ -3238,10 +3238,10 @@ def save_openzwave_config():
     # Save the openzwave config file
     global _data_folder
     try:
+        filename = _data_folder + "/zwcfg_" + _network.home_id_str + ".xml"
         _network.stop()
         add_log_entry('ZWave network is now stopped')
         time.sleep(5)
-        filename = _data_folder + "/zwcfg_" + _network.home_id_str + ".xml"
         with open(filename, "w") as ins:
             ins.write(request.data)
         start_network()
