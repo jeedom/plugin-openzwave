@@ -13,7 +13,7 @@
             {
                 "name": "Présence",
                 "type": "info",
-                "subtype": "numeric",
+                "subtype": "binary",
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "",
