@@ -3,9 +3,9 @@
     "doc" : "",
     "type": "Fuite",
     "comlink" : "3182-aeon-labs-capteur-d-eau-z-wave-1220000012486",
-    "remark" : "",
+    "remark" : "Paramètre 121 doit être forcé a 4113",
     "imglink" : "aeotec.dsb45",
-    "battery_type" : "1x1.5V AAA",
+    "battery_type" : "2x1.5V AAA",
     "configuration" : {
         "conf_version" : 1
     },
@@ -18,7 +18,7 @@
 
 				"isHistorized": 1,
                 "configuration": {
-                    "class": "0x9C",
+                    "class": "0x30",
                     "instanceId": 0,
                     "value": "data[5].val"
                 },
