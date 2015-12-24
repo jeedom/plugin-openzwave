@@ -1,8 +1,8 @@
 {
-		"name": "ZM1602",
+		"name": "ZM1602+",
         "doc" : "",
         "type": "Sirène",
-        "comlink" : "2436-vision-security-sirene-z-wave-zm1602-alimentee-sur-secteur",
+        "comlink" : "2436-vision-security-sirene-z-wave-zm1602-alimentee-sur-secteur-0019962005602",
         "remark" : "",
         "imglink" : "vision.zm1602",
         "configuration" : {
