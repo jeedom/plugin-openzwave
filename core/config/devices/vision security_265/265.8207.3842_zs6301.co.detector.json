@@ -21,6 +21,9 @@
                 "value": "data[1].val",
                 "calculValueOffset" : "#value#==255"
             },
+            "display": {
+			        "invertBinary": "1"
+            },
             "template": {
                 "dashboard": "alert",
                 "mobile": "alert"
