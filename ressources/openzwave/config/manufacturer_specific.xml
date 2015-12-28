@@ -579,7 +579,7 @@
 	<Manufacturer id="0159" name="Qubino">
 		<Product type="0001" id="0001" name="ZMNHDA2 Flush Dimmer" config="qubino/ZMNHDA2.xml"/>
 		<Product type="0001" id="0051" name="ZMNHDD1 Flush Dimmer" config="qubino/ZMNHDDx.xml"/>
-		<Product type="0001" id="0052" name="ZMNHSDx Flush Dimmer" config="qubino/ZMNHSDx.xml"/>
+		<Product type="0001" id="0052" name="ZMNHSDx Din Dimmer" config="qubino/ZMNHSDx.xml"/>
 		<Product type="0002" id="0001" name="ZMNHBA2 Flush 2 Relays" config="qubino/ZMNHBA2.xml"/>
 		<Product type="0002" id="0051" name="ZMNHBDx Flush 2 Relays" config="qubino/ZMNHBDx.xml"/>
 		<Product type="0002" id="0002" name="ZMNHAA2 Flush 1 Relay" config="qubino/ZMNHAA2.xml"/>
@@ -591,6 +591,7 @@
 		<Product type="0004" id="0051" name="ZMNHJD1 Flush Dimmer Fil Pilote" config="qubino/ZMNHJD1.xml"/>
 		<Product type="0005" id="0001" name="ZMNHIA2 Flush on/off thermostat" config="qubino/ZMNHIA2.xml"/>
 		<Product type="0005" id="0003" name="ZMNHLA2 Flush PWM thermostat" config="qubino/ZMNHLAx.xml"/>
+		<Product type="0007" id="0052" name="ZMNHTAx Smart Meter" config="qubino/ZMNHTAx.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0130" name="Quby">
 		<Product type="0001" id="0001" name="Energy Management System"/>
