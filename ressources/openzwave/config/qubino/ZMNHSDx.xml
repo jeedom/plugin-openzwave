@@ -2,12 +2,12 @@
 <Product xmlns='http://code.google.com/p/open-zwave/'>
 
 <!-- 
-Qubino: ZMNHDDx Flush Dimmer Z-Wave+
-ZMNHDD1 868,4 MHz
-ZMNHDD2 921,4 MHz
-ZMNHDD3 908,4 MHz
-ZMNHDD4 869,0 MHz
-ZMNHDD5 916,0 MHz
+Qubino: ZMNHSDx Din Dimmer Z-Wave+
+ZMNHSD1 868,4 MHz
+ZMNHSD2 921,4 MHz
+ZMNHSD3 908,4 MHz
+ZMNHSD4 869,0 MHz
+ZMNHSD5 916,0 MHz
 -->
 
 	<!-- Configuration -->
@@ -135,7 +135,7 @@ ZMNHDD5 916,0 MHz
 
 	<!-- Association Groups -->
 	<CommandClass id="133">
-		<Associations num_groups="11">
+		<Associations num_groups="5">
 			<Group index="1" max_associations="1" label="Lifeline" auto="true"/>
 			<Group index="2" max_associations="16" label="Basic on/off"/>
 			<Group index="3" max_associations="16" label="Start level change/stop level change"/>

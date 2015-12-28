@@ -2,12 +2,12 @@
 <Product xmlns='http://code.google.com/p/open-zwave/'>
 
 <!-- 
-Qubino: ZMNHDDx Flush Dimmer Z-Wave+
-ZMNHDD1 868,4 MHz
-ZMNHDD2 921,4 MHz
-ZMNHDD3 908,4 MHz
-ZMNHDD4 869,0 MHz
-ZMNHDD5 916,0 MHz
+Qubino: ZMNHTAx Smart meter Z-Wave+
+ZMNHTA1 868,4 MHz
+ZMNHTA2 921,4 MHz
+ZMNHTA3 908,4 MHz
+ZMNHTA4 869,0 MHz
+ZMNHTA5 916,0 MHz
 -->
 
 	<!-- Configuration -->
@@ -92,7 +92,7 @@ ZMNHDD5 916,0 MHz
 
 	<!-- Association Groups -->
 	<CommandClass id="133">
-		<Associations num_groups="11">
+		<Associations num_groups="5">
 			<Group index="1" max_associations="1" label="Lifeline" auto="true"/>
 			<Group index="2" max_associations="16" label="Basic on/off (IR external relay)"/>
 			<Group index="3" max_associations="16" label="Switch binary report (IR external relay)"/>
