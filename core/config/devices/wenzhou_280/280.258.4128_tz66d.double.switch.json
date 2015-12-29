@@ -51,6 +51,17 @@
                 "instanceId": 0,
                 "value": "data[0].val"
             }
+        },
+        {
+            "name": "Bounton2",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "configuration": {
+                "class": "0x20",
+                "instanceId": 0,
+                "value": "data[0].val"
+            }
         }
     ]
 }
