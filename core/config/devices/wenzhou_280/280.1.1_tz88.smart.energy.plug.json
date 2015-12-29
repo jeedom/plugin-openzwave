@@ -1,0 +1,74 @@
+{
+    "name": "TZ88",
+    "doc" : "",
+    "type": "Prise",
+    "comlink" : "",
+    "remark" : "Vendu aussi sous la marque TkbHome",
+    "imglink" : "tkb.tz88",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+        {
+            "name": "On",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": "0x25",
+                "instanceId": 0,
+                "value": "data[0].Set(255)"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": "0x25",
+                "instanceId": 0,
+                "value": "data[0].Set(0)"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 1,
+            "configuration": {
+                "class": "0x25",
+                "instanceId": 0,
+                "value": "data[0].val"
+            }
+        },
+        {
+            "name": "Puissance",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "unite": "W",
+            "configuration": {
+                "class": "0x32",
+                "instanceId": 0,
+                "value": "data[8].val",
+                "maxValue": 2500,
+                "minValue": 0
+            }
+        },
+        {
+            "name": "Consommation",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "kWh",
+            "configuration": {
+                "class": "0x32",
+                "instanceId": 0,
+                "value": "data[0].val"
+            }
+        }
+    ]
+}

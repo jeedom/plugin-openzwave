@@ -1,0 +1,46 @@
+{
+    "name": "TZ66S",
+    "doc" : "",
+    "type": "Interrupteur",
+    "comlink" : "2060-tkb-home-tz66-s-interrupteur-simple-z-wave-blanc-6959174466508",
+    "remark" : "Vendu aussi sous la marque TkbHome",
+    "imglink" : "tkb.tz66s",
+    "configuration" : {
+        "conf_version" : 1
+    },
+    "commands": [
+        {
+            "name": "On",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": "0x25",
+                "instanceId": 0,
+                "value": "data[0].Set(255)"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": "0x25",
+                "instanceId": 0,
+                "value": "data[0].Set(0)"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 1,
+            "configuration": {
+                "class": "0x25",
+                "instanceId": 0,
+                "value": "data[0].val"
+            }
+        }
+    ]
+}
