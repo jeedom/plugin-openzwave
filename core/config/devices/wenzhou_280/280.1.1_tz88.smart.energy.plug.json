@@ -10,14 +10,35 @@
     },
     "commands": [
         {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+
+            "configuration": {
+                "class": "0x25",
+                "value": "data[0].val"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
             "name": "On",
             "type": "action",
             "subtype": "other",
             "isVisible": 1,
+            "value": "Etat",
             "configuration": {
                 "class": "0x25",
-                "instanceId": 0,
                 "value": "data[0].Set(255)"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
             }
         },
         {
@@ -25,33 +46,26 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 1,
+            "value": "Etat",
             "configuration": {
                 "class": "0x25",
-                "instanceId": 0,
                 "value": "data[0].Set(0)"
-            }
-        },
-        {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "configuration": {
-                "class": "0x25",
-                "instanceId": 0,
-                "value": "data[0].val"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
             }
         },
         {
             "name": "Puissance",
             "type": "info",
             "subtype": "numeric",
-            "isVisible": 0,
+            "isVisible": 1,
             "isHistorized": 1,
             "unite": "W",
+
             "configuration": {
                 "class": "0x32",
-                "instanceId": 0,
                 "value": "data[8].val",
                 "maxValue": 2500,
                 "minValue": 0
@@ -61,13 +75,16 @@
             "name": "Consommation",
             "type": "info",
             "subtype": "numeric",
-            "isVisible": 0,
+            "isVisible": 1,
             "isHistorized": 0,
             "unite": "kWh",
+
             "configuration": {
                 "class": "0x32",
-                "instanceId": 0,
                 "value": "data[0].val"
+            },
+            "template": {
+                "dashboard": "tile"
             }
         }
     ]
