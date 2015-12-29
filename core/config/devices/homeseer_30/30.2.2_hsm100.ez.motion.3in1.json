@@ -1,5 +1,5 @@
 {
-    "name": "EZ Motion 3 in 1",
+    "name": "EZMotion+ 3in1",
     "doc" : "",
     "type": "Multicapteurs",
     "comlink" : "",
@@ -17,7 +17,7 @@
             "subtype": "binary",
             "isVisible": 1,
             "configuration": {
-                "class": "0x20",
+                "class": "0x30",
                 "instanceId": 0,
                 "value": "data[0].val"
             },
@@ -36,7 +36,7 @@
             "isVisible": 1,
             "configuration": {
                 "class": "0x31",
-                "instanceId": 2,
+                "instanceId": 0,
                 "value": "data[1].val"
             }
         },
@@ -47,7 +47,7 @@
             "isVisible": 1,
             "configuration": {
                 "class": "0x31",
-                "instanceId": 1,
+                "instanceId": 0,
                 "value": "data[3].val"
             }
         },
