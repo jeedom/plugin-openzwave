@@ -15,18 +15,23 @@ if [ $? -ne 0 ]; then
     echo "Unable to fetch Jeedom git.Please check your internet connexion and github access"
     exit 1
 fi
-echo "Suppression des configurations Jeedom existantes"
-sudo rm -fr /usr/share/nginx/www/jeedom/plugins/openzwave/core/config/devices/*
-echo "Recopie des nouvelles configurations Jeedom"
-cd plugin-openzwave/core/config/devices
-sudo mv * /usr/share/nginx/www/jeedom/plugins/openzwave/core/config/devices/
-echo "Suppression des configurations Openzwave existantes"
-sudo rm -fr /usr/share/nginx/www/jeedom/plugins/openzwave/ressources/openzwave/config/*
-echo "Recopie des nouvelles configurations Openzwave"
-cd /tmp/plugin-openzwave/ressources/openzwave/config
-sudo mv * /usr/share/nginx/www/jeedom/plugins/openzwave/ressources/openzwave/config/
-echo "Nettoyage du répertoire temporaire"
-sudo rm -R /tmp/plugin-openzwave
-sudo chown -R www-data:www-data /usr/share/nginx/www/jeedom/plugins/openzwave/ressources/openzwave/config/
-sudo chown -R www-data:www-data /usr/share/nginx/www/jeedom/plugins/openzwave/core/config/devices/
-echo "Vos configurations sont maintenant à jour !"
+BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+if [ -d  ${BASEDIR}/../core/config/devices ]; then
+	echo "Suppression des configurations Jeedom existantes"
+	sudo rm -fr ${BASEDIR}/../core/config/devices/*
+	echo "Recopie des nouvelles configurations Jeedom"
+	cd plugin-openzwave/core/config/devices
+	sudo mv * ${BASEDIR}/../core/config/devices/
+	echo "Suppression des configurations Openzwave existantes"
+	sudo rm -fr ${BASEDIR}/../ressources/openzwave/config/*
+	echo "Recopie des nouvelles configurations Openzwave"
+	cd /tmp/plugin-openzwave/ressources/openzwave/config
+	sudo mv * ${BASEDIR}/../ressources/openzwave/config/
+	echo "Nettoyage du répertoire temporaire"
+	sudo rm -R /tmp/plugin-openzwave
+	sudo chown -R www-data:www-data ${BASEDIR}/../ressources/openzwave/config/
+	sudo chown -R www-data:www-data ${BASEDIR}/../core/config/devices/
+	echo "Vos configurations sont maintenant à jour !"
+else
+	echo 'Veuillez installer les dépendances'
+fi
