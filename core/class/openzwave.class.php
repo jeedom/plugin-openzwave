@@ -96,7 +96,7 @@ class openzwave extends eqLogic {
 		}
 		if ($_data !== null) {
 			curl_setopt($ch, CURLOPT_POST, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $this->getPost());
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $_data);
 		}
 
 		$result = curl_exec($ch);
