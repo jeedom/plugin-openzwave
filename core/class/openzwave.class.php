@@ -559,10 +559,6 @@ class openzwave extends eqLogic {
 
 	/*     * *********************Methode d'instance************************* */
 
-	public function ping() {
-		return true;
-	}
-
 	public function loadCmdFromConf($_update = false) {
 		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
 			return;
