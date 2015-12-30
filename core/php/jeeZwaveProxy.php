@@ -20,5 +20,8 @@ include_file('core', 'authentification', 'php');
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-
-echo json_encode(openzwave::callOpenzwave(str_replace('//', '/', init('request')), init('server_id')));
+if (strpos(init('request'), '/ZWaveAPI/Run/network.SaveZWConfig()') !== false) {
+	echo json_encode(openzwave::callOpenzwave(str_replace('//', '/', init('request')), init('server_id'), null, false, init('data')));
+} else {
+	echo json_encode(openzwave::callOpenzwave(str_replace('//', '/', init('request')), init('server_id')));
+}

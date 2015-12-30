@@ -74,7 +74,7 @@ class openzwave extends eqLogic {
 		return self::$_listZwaveServer;
 	}
 
-	public static function callOpenzwave($_url, $_serverId = 0, $_timeout = null, $_noError = false) {
+	public static function callOpenzwave($_url, $_serverId = 0, $_timeout = null, $_noError = false, $_data = null) {
 		if (self::$_listZwaveServer == null) {
 			self::listServerZwave();
 		}
@@ -94,6 +94,11 @@ class openzwave extends eqLogic {
 		if ($_timeout !== null) {
 			curl_setopt($ch, CURLOPT_TIMEOUT_MS, $_timeout);
 		}
+		if ($_data !== null) {
+			curl_setopt($ch, CURLOPT_POST, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $this->getPost());
+		}
+
 		$result = curl_exec($ch);
 		if ($_noError) {
 			curl_close($ch);

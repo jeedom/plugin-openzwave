@@ -1,7 +1,6 @@
 var app_config = {
     init: function(){
         $("#saveconf").click(function(){
-
             $.ajax({ 
                 type:'POST', 
                 url: path+"ZWaveAPI/Run/network.SaveZWConfig()", 
