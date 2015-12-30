@@ -371,6 +371,10 @@ class openzwave extends eqLogic {
 				} catch (Exception $e) {
 				}
 			}
+			try {
+				openzwave::syncconfOpenzwave();
+			} catch (Exception $e) {
+			}
 		}
 	}
 
