@@ -7,27 +7,25 @@
 			<Item label="Celsius" value="0" />
 			<Item label="Fahrenheit" value="1" />
 		</Value>
-	</CommandClass>
+        <Value type="byte" genre="config" instance="1" index="2" label="Temperature Reporting Threshold" min="1" max="50" value="1">
+            <Help>Threshold change in temperature to induce an automatic report.
+            1 to 50 ( Set up from 0.1°C to 5°C)
+            </Help>
+        </Value>
+        <Value type="byte" genre="config" instance="1" index="3" label="Humidity Reporting Threshold" units="%" min="1" max="50" value="10">
+            <Help>Threshold change in humidity to induce an automatic report.
+            1 to 50 ( Set up from 1%-50%)
+            </Help>
+        </Value>
+        <Value type="byte" genre="config" instance="1" index="4" label="Luminance Reporting Threshold" units="%" min="0" max="50" value="10">
+            <Help>
+                Threshold change in luminance to induce an automatic report.
+                0 is disabled.
+                5 to 50 ( Set up from 5%-50%)
+            </Help>
+        </Value>
 
-    <Value type="byte" genre="config" instance="1" index="2" label="Temperature Reporting Threshold" min="1" max="50" value="1">
-        <Help>Threshold change in temperature to induce an automatic report.
-        1 to 50 ( Set up from 0.1°C to 5°C)
-        </Help>
-    </Value>
-
-    <Value type="byte" genre="config" instance="1" index="3" label="Humidity Reporting Threshold" units="%" min="1" max="50" value="10">
-        <Help>Threshold change in humidity to induce an automatic report.
-        1 to 50 ( Set up from 1%-50%)
-        </Help>
-    </Value>
-
-    <Value type="byte" genre="config" instance="1" index="4" label="Luminance Reporting Threshold" units="%" min="0" max="50" value="10">
-        <Help>
-            Threshold change in luminance to induce an automatic report.
-            0 is disabled.
-            5 to 50 ( Set up from 5%-50%)
-        </Help>
-    </Value>
+    </CommandClass>
 
 	<!-- COMMAND_CLASS_BASIC -->
 	<CommandClass id="32" setasreport="true"/>
