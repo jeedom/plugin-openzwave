@@ -2666,6 +2666,32 @@ def release_button(node_id, instance_id, cc_id, index):
         return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
 
 
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ToggleSwitch()', methods=['GET'])
+def toggle_switch(node_id, instance_id, cc_id, index):
+    if node_id in _network.nodes:
+        if cc_id in [hex(COMMAND_CLASS_SWITCH_BINARY), hex(COMMAND_CLASS_SWITCH_MULTILEVEL)]:
+            for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
+                if cc_id == hex(COMMAND_CLASS_SWITCH_BINARY):
+                    switch_state = _network.nodes[node_id].get_switch_state(val)
+                    _network.nodes[node_id].set_switch(val, not switch_state)
+                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
+                    switch_state = _network.nodes[node_id].values[val].data > 0
+                    target_level = 0
+                    if switch_state:
+                        target_level = 0
+                    else:
+                        target_level = 255
+                    _network.nodes[node_id].values[val].data = target_level
+                    # dimmer don't report the final value until the value changes is completed
+                    prepare_refresh(node_id, val, target_level)
+
+                return format_json_result(True, 'Switch as toggle, state is now %s' % (not switch_state,))
+        else:
+            return format_json_result(False, 'commandClass %s cant toggle' % (cc_id,))
+    else:
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
+
+
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].RequestNodeNeighbourUpdate()', methods=['GET'])
 def request_node_neighbour_update(node_id):
     if not can_execute_network_command():
