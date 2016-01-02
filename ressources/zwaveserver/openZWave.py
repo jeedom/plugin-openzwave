@@ -469,31 +469,33 @@ class NodeNotification(object):
         self._receive_time = None
         
     def refresh(self, code, wake_up_time):
+        # save notification
+        self._code = code
         # reset time stamp
         self._receive_time = int(time.time())
-        if code == 0:
+        if self.code == 0:
             self._description = "Completed"
             self._help = "Completed messages"
-        elif code == 1:
+        elif self.code == 1:
             self._description = "Timeout"
             self._help = "Messages that timeout will send a Notification with this code"
-        elif code == 2:
+        elif self.code == 2:
             self._description = "NoOperation"
             self._help = "Report on NoOperation message sent completion"
-        elif code == 3:
+        elif self.code == 3:
             self._description = "Awake."
             self._help = "Report when a sleeping node wakes"
             self._next_wake_up = None  # clear and wait sleep to compute next expected wake up
-        elif code == 4:
+        elif self.code == 4:
             self._description = "Sleep."
             self._help = "Report when a node goes to sleep"
             # if they go to sleep, compute the next expected wake up time
             if wake_up_time is not None and wake_up_time > 0:
                 self._next_wake_up = self._receive_time + wake_up_time
-        elif code == 5:
+        elif self.code == 5:
             self._description = "Dead."
             self._help = "Report when a node is presumed dead"
-        elif code == 6:
+        elif self.code == 6:
             self._description = "Alive."
             self._help = "Report when a node is revived"
         else:
@@ -791,24 +793,27 @@ def recovering_failed_nodes_asynchronous():
             for node_id in list(_network.nodes):
                 my_node = _network.nodes[node_id]
                 if node_id in _not_supported_nodes:
-                    debug_print('Remove not valid nodeId: %s' % (node_id,))
+                    debug_print('=> Remove not valid nodeId: %s' % (node_id,))
                     _network.manager.removeFailedNode(_network.home_id, node_id)
+                    time.sleep(10)
                     continue
                 if my_node.is_failed:
-                    debug_print('Try recovering, presumed Dead, nodeId: %s' % (node_id,))
+                    debug_print('=> Try recovering, presumed Dead, nodeId: %s' % (node_id,))
                     if _network.manager.hasNodeFailed(_network.home_id, node_id):
                         # avoid stress network
                         time.sleep(10)
-                if my_node.is_listening_device and my_node.is_ready:
+                elif my_node.is_listening_device and my_node.is_ready:
                     # check if a ping is require
                     if hasattr(my_node, 'last_notification'):
+                        # debug_print('=> last_notification for nodeId: %s is: %s(%s)' % (node_id, my_node.last_notification.description, my_node.last_notification.code,))
                         # is in timeout or dead
                         if my_node.last_notification.code in [1, 5]:
-                            debug_print('Do a test on node %s' % (node_id,)) 
+                            debug_print('=> Do a test on node %s' % (node_id,))
                             # a ping will try to resolve this situation with a NoOperation CC. 
                             _network.manager.testNetworkNode(_network.home_id, node_id, 3)
                             # avoid stress network
                             time.sleep(10)
+            debug_print("Network sanity test/check completed!")
         else:
             debug_print("Network is loaded, skip sanity check this time")
         # wait for next run    
