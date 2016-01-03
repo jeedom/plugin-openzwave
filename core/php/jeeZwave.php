@@ -82,14 +82,12 @@ if (isset($results['controller'])) {
 	if (isset($results['controller']['state'])) {
 		$jeeNetwork = jeeNetwork::byId($results['serverId']);
 		if (is_object($jeeNetwork) || $results['serverId'] == 0) {
-
 			event::add('zwave::controller.data.controllerState',
 				array(
 					'name' => ($results['serverId'] == 0) ? 'local' : $jeeNetwork->getName(),
 					'state' => $results['controller']['state']['value'],
 					'serverId' => $results['serverId'])
 			);
-
 		}
 	}
 	if (isset($results['controller']['excluded'])) {
