@@ -386,7 +386,7 @@ function addCmdToTable(_cmd) {
     tr += '<span class="expertModeVisible"><input type="checkbox" data-size="mini" class="cmdAttr bootstrapSwitch" data-l1key="display" data-label-text=" {{Inverser}}" data-l2key="invertBinary" /></span> ';
     tr += '</td>';
     tr += '<td>';
-    tr += '<input class="cmdAttr form-control tooltips input-sm" data-l1key="unite"  style="width : 100px;" placeholder="Unité" title="{{Unité}}">';
+    tr += '<input class="cmdAttr form-control tooltips input-sm" data-l1key="unite" placeholder="Unité" title="{{Unité}}">';
     tr += '<input class="tooltips cmdAttr form-control input-sm expertModeVisible" data-l1key="configuration" data-l2key="minValue" placeholder="{{Min}}" title="{{Min}}" style="margin-top : 5px;"> ';
     tr += '<input class="tooltips cmdAttr form-control input-sm expertModeVisible" data-l1key="configuration" data-l2key="maxValue" placeholder="{{Max}}" title="{{Max}}" style="margin-top : 5px;">';
     tr += '</td>';
