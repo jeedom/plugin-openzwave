@@ -2,13 +2,9 @@
 <info>
     <id>openzwave</id>
     <name>Z-Wave</name>
-    <description>Plugin pour contrôler les équipements Z-Wave via une clé ZWave compatible openZwave</description>
-    <icon>fa fa-share-alt</icon>
     <licence>AGPL</licence>
     <author>Thomas MARTINEZ (tmartinez) - Jean-François AUGER (Nechry)</author>
-    <installation></installation>
-    <require>2.0</require>
-    <version>2.0</version>
+    <require>2</require>
     <allowRemote>1</allowRemote>
     <mobile>openzwave</mobile>
     <category>automation protocol</category>

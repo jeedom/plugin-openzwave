@@ -549,21 +549,10 @@ class openzwave extends eqLogic {
 		$pid_file = '/tmp/openzwave.pid';
 		if (file_exists($pid_file)) {
 			$pid = intval(trim(file_get_contents($pid_file)));
-			posix_kill($pid, 15);
-			$deamon_info = self::deamon_info();
-			if ($deamon_info['state'] == 'ok') {
-				sleep(1);
-				posix_kill($pid, 9);
-			}
-			$deamon_info = self::deamon_info();
-			if ($deamon_info['state'] == 'ok') {
-				sleep(1);
-				exec('kill -9 ' . $pid . ' > /dev/null 2>&1');
-			}
+			system::kill($pid);
 		}
-		exec('fuser -k ' . config::byKey('port_server', 'openzwave', 8083) . '/tcp > /dev/null 2>&1');
-		exec('sudo fuser -k ' . config::byKey('port_server', 'openzwave', 8083) . '/tcp > /dev/null 2>&1');
-		exec("ps aux | grep -ie 'openZWave.py' | awk '{print $2}' | xargs kill -9 > /dev/null 2>&1");
+		system::fuserk(config::byKey('port_server', 'openzwave', 8083));
+		system::kill('openZWave.py');
 	}
 
 	/*     * *********************Methode d'instance************************* */
