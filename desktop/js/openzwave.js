@@ -186,7 +186,7 @@ if($('.li_eqLogic.active').attr('data-assistant') != ''){
 }
 
 
-/**********************Node js requests *****************************/
+/**********************Envent js requests *****************************/
 $('body').on('zwave::controller.data.controllerState', function (_event,_options) {
     $.hideAlert();
     if (_options.state == 1) {
@@ -227,53 +227,6 @@ $('body').on('zwave::includeDevice', function (_event,_options) {
             window.location.href = 'index.php?v=d&p=openzwave&m=openzwave&id=' + _options;
         }
     }
-});
-
-$('body').one('nodeJsConnect', function () {
-    socket.on('zwave::controller.data.controllerState', function (_options) {
-        _options = json_decode(_options);
-        $.hideAlert();
-        if (_options.state == 1) {
-            $('.changeIncludeState[data-mode=1]:not(.card)').removeClass('btn-default').addClass('btn-success');
-            $('.changeIncludeState.card[data-mode=1]').css('background-color','#8000FF');
-            $('.changeIncludeState.card[data-mode=1] span center').text('{{Arrêter l\'inclusion}}');
-            $('.changeIncludeState[data-mode=1]').attr('data-state', 0);
-            $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Arrêter l\'inclusion}}');
-            $('#div_inclusionAlert'+_options.serverId).showAlert({message: '{{Vous êtes en mode inclusion}} '+_options.name+'. {{Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode}}', level: 'warning'});
-        }else if (_options.state == 5) {
-            $('.changeIncludeState[data-mode=0]:not(.card)').removeClass('btn-default').addClass('btn-danger');
-            $('.changeIncludeState.card[data-mode=0]').css('background-color','#8000FF');
-            $('.changeIncludeState.card[data-mode=0] span center').text('{{Arrêter l\'exclusion}}');
-            $('.changeIncludeState[data-mode=0]').attr('data-state', 0);
-            $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fa fa-sign-out fa-rotate-90"></i> {{Arrêter l\'exclusion}}');
-            $('#div_inclusionAlert'+_options.serverId).showAlert({message: '{{Vous êtes en mode exclusion sur}} '+_options.name+'. {{Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}', level: 'warning'});
-        }else{
-         $('.changeIncludeState.card[data-mode=0]').css('background-color','#ffffff');
-         $('.changeIncludeState.card[data-mode=1]').css('background-color','#ffffff');
-         $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Mode exclusion}}');
-         $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Mode inclusion}}');
-         $('.changeIncludeState.card[data-mode=1] span center').text('{{Mode inclusion}}');
-         $('.changeIncludeState.card[data-mode=0] span center').text('{{Mode exclusion}}');
-         $('.changeIncludeState[data-mode=1]').attr('data-state', 1);
-         $('.changeIncludeState[data-mode=0]').attr('data-state', 1);
-         $('.changeIncludeState[data-mode=1]:not(.card)').removeClass('btn-success').addClass('btn-default');
-         $('.changeIncludeState[data-mode=0]:not(.card)').removeClass('btn-danger').addClass('btn-default');
-     }
- });
-
-setTimeout(function () {
-    socket.on('zwave::includeDevice', function (_options) {
-        if (modifyWithoutSave) {
-            $('#div_inclusionAlert').showAlert({message: '{{Un périphérique vient d\'être inclus/exclu. Veuillez réactualiser la page}}', level: 'warning'});
-        } else {
-            if (_options == '') {
-                window.location.reload();
-            } else {
-                window.location.href = 'index.php?v=d&p=openzwave&m=openzwave&id=' + _options;
-            }
-        }
-    });
-}, 3000);
 });
 
 $('#bt_autoDetectModule').on('click',function(){
