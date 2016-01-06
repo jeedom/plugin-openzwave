@@ -851,15 +851,19 @@ var app_nodes = {
 		var basicDeviceClassDescription = "";
 		switch (basicDeviceClass) {
 			case 1:
+				// Controller
 				basicDeviceClassDescription = "{{Controlleur}}";
 				break;
 			case 2:
+				// Static Controller
 				basicDeviceClassDescription = "{{Controlleur static}}";
 				break;
 			case 3:
+				// Slave
 				basicDeviceClassDescription = "{{Esclave}}";
 				break;
 			case 4:
+				// Routing Slave
 				basicDeviceClassDescription = "{{Esclave pouvant être routé}}";
 				break;
 			default:
@@ -872,78 +876,87 @@ var app_nodes = {
 
 		//The ‘Generic’ device class defines the basic functionality that the devices will support as a controller or slave.
 		switch (genericDeviceClass) {
-			case 1: //REMOTE_CONTROLLER   = 0x01
+			case 1: // Generic Controller   = 0x01
 				genericDeviceClassDescription = "{{Télécommande}}";
 				break;
-			case 2: //STATIC_CONTROLLER   = 0x02,
+			case 2: // Static Controller   = 0x02,
 				genericDeviceClassDescription = "{{Controlleur statique}}";
 				break;
-			case 3: //AV_CONTROL_POINT    = 0x03,
+			case 3: // Av Control Point    = 0x03,
 				genericDeviceClassDescription = "{{A/V controleur}}";
 				break;
-			case 4: //DISPLAY             = 0x04,
+			case 4: // Display             = 0x04,
 				genericDeviceClassDescription = "{{Afficheur}}";
 				break;
-			case 7: //GARAGE_DOOR             = 0x07,
-				genericDeviceClassDescription = "{{Porte de garage}}";
+			case 5: // Network Extender             = 0x05,
+				genericDeviceClassDescription = "{{Répéteur de signal}}";
+				break;	
+			case 6: // Appliance             = 0x06,
+				genericDeviceClassDescription = "{{Appareil}}";
+				break;	
+			case 7: // Sensor Notification             = 0x07,
+				genericDeviceClassDescription = "{{Capteur de notification}}";
 				break;
-			case 8: //THERMOSTAT          = 0x08,
+			case 8: // Thermostat          = 0x08,
 				genericDeviceClassDescription = "{{Thermostat}}";
 				break;
-			case 9: //WINDOW_COVERING     = 0x09,
-				genericDeviceClassDescription = "{{Fenêtre}}";
+			case 9: // Window Covering     = 0x09,
+				genericDeviceClassDescription = "{{Couvre-fenêtres}}";
 				break;
-			case 15: //REPEATER_SLAVE      = 0x0f,
+			case 15: // Repeater Slave      = 0x0f,
 				genericDeviceClassDescription = "{{Repéteur esclave}}";
 				break;
-			case 16: //BINARY_SWITCH       = 0x10,
+			case 16: // Switch Binary       = 0x10,
 				genericDeviceClassDescription = "{{Interrupteur}}";
 				break;
-			case 17: //MULTILEVEL_SWITCH   = 0x11,
+			case 17: // Switch Multilevel   = 0x11,
 				genericDeviceClassDescription = "{{Interrupteur multi niveau}}";
 				break;
-			case 18: //REMOTE_SWITCH       = 0x12,
+			case 18: // Switch Remote       = 0x12,
 				genericDeviceClassDescription = "{{Interrupteur}}";
 				break;
-			case 19: // TOGGLE_SWITCH       = 0x13,
+			case 19: // Switch Toggle       = 0x13,
 				genericDeviceClassDescription = "{{Interrupteur}}";
 				break;
 			case 20: // Z_IP_GATEWAY       = 0x14,
 				genericDeviceClassDescription = "{{Z/IP Gateway}}";
 				break;
-			case 21: // Z_IP_NODE       = 0x15,
+			case 21: // Zip Node       = 0x15,
 				genericDeviceClassDescription = "{{Z/IP Node}}";
 				break;
-			case 22: //VENTILATION         = 0x16,
+			case 22: // Ventilation         = 0x16,
 				genericDeviceClassDescription = "{{Ventilation}}";
 				break;
-			case 30: //REMOTE_SWITCH2       = 0x18,
-				genericDeviceClassDescription = "{{Interrupteur}}";
+			case 23: // Security Panel         = 0x17,
+				genericDeviceClassDescription = "{{Panneau de sécurité}}";
 				break;
-			case 32: //BINARY_SENSOR       = 0x20,
+			case 30: // Wall Controller       = 0x18,
+				genericDeviceClassDescription = "{{Contrôleur murale}}";
+				break;
+			case 32: // Sensor Binary       = 0x20,
 				genericDeviceClassDescription = "{{Capteur binaire}}";
 				break;
-			case 33: //MULTILEVEL_SENSOR   = 0x21
+			case 33: // Sensor Multilevel   = 0x21
 				genericDeviceClassDescription = "{{Capteur multi niveau}}";
 				break;
 			case 34: //WATER_CONTROL   = 0x22
 				genericDeviceClassDescription = "{{Niveau d'eau}}";
 				break;
-			case 48: //PULSE_METER         = 0x30
+			case 48: // Meter Pulse       = 0x30
 				genericDeviceClassDescription = "{{Mesure d'impulsion}}";
-			case 49: //METER         = 0x31
+			case 49: // Meter         = 0x31
 				genericDeviceClassDescription = "{{Mesure}}";
 				break;
-			case 64: //ENTRY_CONTROL       = 0x40
+			case 64: // Entry Control       = 0x40
 				genericDeviceClassDescription = "{{Controle d'entrée}}";
 				break;
-			case 85: //NON_INTEROPERABLE        = 0x55
+			case 80: // Semi Interoperable        = 0x50
 				genericDeviceClassDescription = "{{Semi-Interoperable}}";
 				break;
-			case 161: //ALARM_SENSOR        = 0xa1
+			case 161: // Sensor Alarm        = 0xa1
 				genericDeviceClassDescription = "{{Alarme}}";
 				break;
-			case 255: //NON_INTEROPERABLE        = 0xff
+			case 255: // Non Interoperable        = 0xff
 				genericDeviceClassDescription = "{{Non-Interoperable}}";
 				break;
 			default:
