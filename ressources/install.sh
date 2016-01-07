@@ -76,60 +76,51 @@ pip_install flask
 echo 47 > /tmp/compilation_ozw_in_progress
 pip_install flask-restful
 echo 50 > /tmp/compilation_ozw_in_progress
-if [ -z ${1} -a  $(uname -a | grep 'cubox' | wc -l ) -eq 1  -a ${ARCH} = "armv7l" ]; then
-  echo "Armv7/Jeedomboard installation direct"
-  sudo rm -fr /opt/python-openzwave
-  sudo mkdir -p /opt/python-openzwave
+
+sudo mkdir /opt
+if [ -d /opt/python-openzwave ]; then
+  cd /opt/python-openzwave
+  echo "Désinstallation de la version précédente";
+  sudo make uninstall > /dev/null 2>&1
+  echo 55 > /tmp/compilation_ozw_in_progress
   sudo rm -fr /usr/local/lib/python2.7/dist-packages/libopenzwave*
   sudo rm -fr /usr/local/lib/python2.7/dist-packages/openzwave* 
-  cp -R ${BASEDIR}/python-openzwave/armv7/*  /usr/local/lib/python2.*/dist-packages
-  sudo cp /opt/zwcfg* /opt/python-openzwave
-  echo 80 > /tmp/compilation_ozw_in_progress
-else
-  sudo mkdir /opt
-  if [ -d /opt/python-openzwave ]; then
-    cd /opt/python-openzwave
-    echo "Désinstallation de la version précédente";
-    sudo make uninstall > /dev/null 2>&1
-    echo 55 > /tmp/compilation_ozw_in_progress
-    sudo rm -fr /usr/local/lib/python2.7/dist-packages/libopenzwave*
-    sudo rm -fr /usr/local/lib/python2.7/dist-packages/openzwave* 
-    cd /opt
-    sudo rm -fr /opt/python-openzwave
-  fi
-  # Installation de Python-OpenZwave
-  echo "Installation de Python-OpenZwave"
   cd /opt
-  sudo git clone https://github.com/OpenZWave/python-openzwave.git
-  if [ $? -ne 0 ]; then
-    echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
-    rm /tmp/compilation_ozw_in_progress
-    exit 1
-  fi
-  echo 60 > /tmp/compilation_ozw_in_progress
-  cd python-openzwave
-  sudo git reset --hard ${PYTHON_OPENZWAVE_VERSION}
-  sudo pip uninstall -y Cython
-  cd /opt/python-openzwave
-  sudo make cython-deps
-  echo 65 > /tmp/compilation_ozw_in_progress
-  sudo make repo-deps
-  echo 70 > /tmp/compilation_ozw_in_progress
-  sudo git clone https://github.com/OpenZWave/open-zwave.git openzwave
-  if [ $? -ne 0 ]; then
-    echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
-    rm /tmp/compilation_ozw_in_progress
-    exit 1
-  fi
-  echo 75 > /tmp/compilation_ozw_in_progress
-  cd openzwave
-  sudo git reset --hard ${OPENZWAVE_VERSION}
-  cd /opt/python-openzwave
-  sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
-  sudo make install-api
-  echo 80 > /tmp/compilation_ozw_in_progress
-  sudo mkdir /opt/python-openzwave/python-eggs
+  sudo rm -fr /opt/python-openzwave
 fi
+# Installation de Python-OpenZwave
+echo "Installation de Python-OpenZwave"
+cd /opt
+sudo git clone https://github.com/OpenZWave/python-openzwave.git
+if [ $? -ne 0 ]; then
+  echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
+  rm /tmp/compilation_ozw_in_progress
+  exit 1
+fi
+echo 60 > /tmp/compilation_ozw_in_progress
+cd python-openzwave
+sudo git reset --hard ${PYTHON_OPENZWAVE_VERSION}
+sudo pip uninstall -y Cython
+cd /opt/python-openzwave
+sudo make cython-deps
+echo 65 > /tmp/compilation_ozw_in_progress
+sudo make repo-deps
+echo 70 > /tmp/compilation_ozw_in_progress
+sudo git clone https://github.com/OpenZWave/open-zwave.git openzwave
+if [ $? -ne 0 ]; then
+  echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
+  rm /tmp/compilation_ozw_in_progress
+  exit 1
+fi
+echo 75 > /tmp/compilation_ozw_in_progress
+cd openzwave
+sudo git reset --hard ${OPENZWAVE_VERSION}
+cd /opt/python-openzwave
+sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
+sudo make install-api
+echo 80 > /tmp/compilation_ozw_in_progress
+sudo mkdir /opt/python-openzwave/python-eggs
+
 
 sudo chown -R www-data:www-data /opt/python-openzwave
 sudo chmod -R 777 /opt/python-openzwave
