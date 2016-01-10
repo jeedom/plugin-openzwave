@@ -20,15 +20,15 @@
           "value": "data[0].Set(#slider#)"
         },
         "template": {
-          "dashboard": "prise",
-          "mobile": "prise"
+          "dashboard": "light",
+          "mobile": "light"
         }
       },
       {
         "name": "On",
         "type": "action",
         "subtype": "other",
-        "isVisible": 1,
+        "isVisible": 0,
         "configuration": {
           "class": "0x26",
           "value": "data[0].Set(99)"
@@ -38,7 +38,7 @@
         "name": "Off",
         "type": "action",
         "subtype": "other",
-        "isVisible": 1,
+        "isVisible": 0,
         "configuration": {
           "class": "0x26",
           "value": "data[0].Set(0)"
@@ -49,7 +49,7 @@
         "type": "info",
         "subtype": "numeric",
         "unite": "%",
-        "isVisible": 1,
+        "isVisible": 0,
         "configuration": {
           "class": "0x26",
           "value": "data[0].val",
@@ -62,7 +62,7 @@
         "type": "info",
         "subtype": "numeric",
         "unite": "W",
-        "isVisible": 1,
+        "isVisible": 0,
         "configuration": {
           "class": "0x32",
           "value": "data[8].val",
@@ -75,11 +75,11 @@
         "type": "info",
         "subtype": "numeric",
         "unite": "kWh",
-        "isVisible": 1,
+        "isVisible": 0,
         "configuration": {
           "class": "0x32",
           "value": "data[0].val"
         }
       }
     ]
-  }
+}
