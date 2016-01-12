@@ -50,19 +50,19 @@
 		</Value>		
 		<Value type="list" genre="config" instance="1" index="11" label="I1 Functionality selection" size="2" min="1" max="65535" value="1">
 			<Help>Default value 1 
-				65535 – input I1 does not influence on the heat/ cool process 
-				1 – input I1 changes the mode of the thermostat between Off and Auto. In this case function on flood sensor (if connected) is disabled.
-				2 – input I1 influences on cooling and heating valves according to status of flood sensor. In this case function of Off and Auto selection by I1 is disabled</Help>
+				65535 - input I1 does not influence on the heat/ cool process 
+				1 - input I1 changes the mode of the thermostat between Off and Auto. In this case function on flood sensor (if connected) is disabled.
+				2 - input I1 influences on cooling and heating valves according to status of flood sensor. In this case function of Off and Auto selection by I1 is disabled</Help>
 			<Item label="Mode Off and Auto" value="1" />
 			<Item label="Disabled Mode Off and Auto" value="2" />
 			<Item label="No influence on the heat process" value="65535" />
 		</Value>
 		<Value type="short" genre="config" instance="1" index="12" label="I2 Functionality selection" size="2" min="0" max="65535" value="65535">
-			<Help>default value 65535 | 65535 – input I2 does not influence on the heat/ cool process | From 0 to 990 – Temperature set point from 0.0 °C to 99.0 °C. When I2 is pressed, temperature set point is automatically set to value defined here. In this case function of condense sensor is disabled. | From 1001 to 1150 – Temperature set point from -0.1 °C to -15.0
-			°C. When I2 is pressed, temperature setpoint is automatically set to value defined here. In this case function of condense sensor is disabled. | 2000 – Input I2 influences on the cooling valve according to status of condense sensor, In this case function of setpoint selection with I2 is disabled.</Help>
+			<Help>default value 65535 | 65535 - input I2 does not influence on the heat/ cool process | From 0 to 990 - Temperature set point from 0.0 °C to 99.0 °C. When I2 is pressed, temperature set point is automatically set to value defined here. In this case function of condense sensor is disabled. | From 1001 to 1150 - Temperature set point from -0.1 °C to -15.0
+			°C. When I2 is pressed, temperature setpoint is automatically set to value defined here. In this case function of condense sensor is disabled. | 2000 - Input I2 influences on the cooling valve according to status of condense sensor, In this case function of setpoint selection with I2 is disabled.</Help>
 		</Value>		
 		<Value type="short" genre="config" instance="1" index="13" label="I3 Functionality selection" size="2" min="0" max="65535" value="65535">
-			<Help>default value 65535 | 65535 – input I3 does not influence on the heat/ cool process | 1 – input I3 changes the mode of the thermostat between Heat and Cool. In this case function on window sensor is disabled. | 2 – input I3 influences on cooling and heating valves according to status of window sensor. In this case function of Heat and Cool selection by I3 is disabled</Help>
+			<Help>default value 65535 | 65535 - input I3 does not influence on the heat/ cool process | 1 - input I3 changes the mode of the thermostat between Heat and Cool. In this case function on window sensor is disabled. | 2 - input I3 influences on cooling and heating valves according to status of window sensor. In this case function of Heat and Cool selection by I3 is disabled</Help>
 		</Value>
 		<Value type="byte" genre="config" instance="1" index="40" label="Power reporting in Watts on power change" size="1" min="0" max="100" value="0">
 			<Help>Set value from 0 - 100 (0% - 100%). 0 - Reporting Disabled. 1 - 100 = 1% - 100% Reporting enabled. Power report is send (push) only when actual power in Watts in real time change for more than set percentage comparing to previous actual power in Watts, step is 1%. Default value 0</Help>
@@ -89,20 +89,20 @@
 			<Item label="PID value set to LAST VALUE" value="1"/>
 		</Value>		
 		<Value type="byte" genre="config" instance="1" index="54" label="PID deadband" size="1" min="0" max="127" value="5">
-			<Help>default value 5 (0,5 °C) | 0-127 – 0.0 °C to 12.7 °C, step is 0,1°C. NOTE: This parameter defines the zone where PID is not active. If the temperature difference between actual and setpoint is bigger than PID deadband, then the PID will start to regulate the system, otherwise the PID is zero or fixed</Help>
+			<Help>default value 5 (0,5 °C) | 0-127 - 0.0 °C to 12.7 °C, step is 0,1°C. NOTE: This parameter defines the zone where PID is not active. If the temperature difference between actual and setpoint is bigger than PID deadband, then the PID will start to regulate the system, otherwise the PID is zero or fixed</Help>
 		</Value>		
 		<Value type="byte" genre="config" instance="1" index="55" label="Integral sampling time" size="1" min="0" max="127" value="5">
-			<Help>default value 5 (0,5 °C) | 0-127 – 0.0 °C to 12.7 °C, step is 0,1°C. NOTE: Parameter defines the time between samples. On each sample the
+			<Help>default value 5 (0,5 °C) | 0-127 - 0.0 °C to 12.7 °C, step is 0,1°C. NOTE: Parameter defines the time between samples. On each sample the
 			controller capture difference between SP-act</Help>
 		</Value>		
 		<Value type="short" genre="config" instance="1" index="56" label="P parameter" size="2" min="0" max="1000" value="100">
-			<Help>default value 100 | 0 -1000 – P value, step is 1</Help>
+			<Help>default value 100 | 0 -1000 - P value, step is 1</Help>
 		</Value>		
 		<Value type="short" genre="config" instance="1" index="57" label="I parameter" size="2" min="0" max="1000" value="1">
-			<Help>default value 1 | 0 -1000 – I value, step is 1</Help>
+			<Help>default value 1 | 0 -1000 - I value, step is 1</Help>
 		</Value>		
 		<Value type="short" genre="config" instance="1" index="58" label="D parameter" size="2" min="0" max="1000" value="1">
-			<Help>default value 1 | 0 -1000 – D value, step is 1</Help>
+			<Help>default value 1 | 0 -1000 - D value, step is 1</Help>
 		</Value>		
 		<Value type="list" genre="config" instance="1" index="59" label="Thermostat mode" size="1" min="0" max="1" value="0">
 			<Help>default : Heat mode | Heat mode | Cool mode</Help>
@@ -110,10 +110,10 @@
 			<Item label="Cool mode (1)" value="1"/>
 		</Value>
 		<Value type="short" genre="config" instance="1" index="60" label="Too low temperature limit" size="2" min="0" max="1000" value="50">
-			<Help>Default value 50 (Too low temperature limit is 5.0°C) | 1 - 1000 = 0.1°C – 100.0°C, step is 0.1°C. Too low temperature limit is set by entered value. In case measured temperature is below set value, module sends BasicSet value.</Help>
+			<Help>Default value 50 (Too low temperature limit is 5.0°C) | 1 - 1000 = 0.1°C - 100.0°C, step is 0.1°C. Too low temperature limit is set by entered value. In case measured temperature is below set value, module sends BasicSet value.</Help>
 		</Value>		
 		<Value type="short" genre="config" instance="1" index="61" label="Too high temperature limit" size="2" min="0" max="1000" value="700">
-			<Help>Default value 700 (too high temperature limit is 70.0°C) | 1 - 1000 = 0.1°C – 100.0°C, step is 0.1°C. Too high temperature limit is set by entered value. In case measured temperature is higher than set value, module sends BasicSet value.</Help>
+			<Help>Default value 700 (too high temperature limit is 70.0°C) | 1 - 1000 = 0.1°C - 100.0°C, step is 0.1°C. Too high temperature limit is set by entered value. In case measured temperature is higher than set value, module sends BasicSet value.</Help>
 		</Value>		
 		<Value type="list" genre="config" instance="1" index="63" label="Output Switch selection" size="1" min="0" max="1" value="0">
 			<Help/>
@@ -121,22 +121,22 @@
 			<Item label="(NO) - When system is turned off the output is 230V" value="1"/>
 		</Value>		
 		<Value type="short" genre="config" instance="1" index="70" label="Input 1 status on delay" size="2" min="0" max="32000" value="0">
-			<Help>default value 0 | 1 – 32000 seconds. If the value of parameter is different to 0, means that the Influence of this input to heating or cooling will react after inserted time. Parameter 11 must be set to 2! NOTE: Device status on UI change immediately </Help>
+			<Help>default value 0 | 1 - 32000 seconds. If the value of parameter is different to 0, means that the Influence of this input to heating or cooling will react after inserted time. Parameter 11 must be set to 2! NOTE: Device status on UI change immediately </Help>
 		</Value>		
 		<Value type="short" genre="config" instance="1" index="71" label="Input I status off delay" size="2" min="0" max="32000" value="0">
-			<Help>default value 0 | 1 – 32000 seconds. If the value of parameter is different to 0, means that the Influence of this input to heating or cooling will react after inserted time. Parameter 11 must be set to 2! NOTE: Device status on UI change immediately</Help>
+			<Help>default value 0 | 1 - 32000 seconds. If the value of parameter is different to 0, means that the Influence of this input to heating or cooling will react after inserted time. Parameter 11 must be set to 2! NOTE: Device status on UI change immediately</Help>
 		</Value>		
 		<Value type="short" genre="config" instance="1" index="72" label="Input 2 status on delay" size="2" min="0" max="32000" value="0">
-			<Help>default value 0 | 1 – 32000 seconds. If the value of parameter is different to 0, means that the Influence of this input to heating or cooling will react after inserted time. Parameter 12 must be set to 2000!</Help>
+			<Help>default value 0 | 1 - 32000 seconds. If the value of parameter is different to 0, means that the Influence of this input to heating or cooling will react after inserted time. Parameter 12 must be set to 2000!</Help>
 		</Value>		
 		<Value type="short" genre="config" instance="1" index="73" label="Input 2 status off delay" size="2" min="0" max="32000" value="0">
-			<Help>default value 0 | 1 – 32000 seconds. If the value of parameter is different to 0, means that the Influence of this input to heating or cooling will react after inserted time. Parameter 12 must be set to 2000!</Help>
+			<Help>default value 0 | 1 - 32000 seconds. If the value of parameter is different to 0, means that the Influence of this input to heating or cooling will react after inserted time. Parameter 12 must be set to 2000!</Help>
 		</Value>		
 		<Value type="short" genre="config" instance="1" index="74" label="Input 3 status on delay" size="2" min="0" max="32000" value="0">
-			<Help>default value 0 | 1 – 32000 seconds. If the value of parameter is different to 0, means that the Influence of this input to heating or cooling will react after inserted time. Parameter 13 must be set to 2! NOTE: Device status on UI change immediately</Help>
+			<Help>default value 0 | 1 - 32000 seconds. If the value of parameter is different to 0, means that the Influence of this input to heating or cooling will react after inserted time. Parameter 13 must be set to 2! NOTE: Device status on UI change immediately</Help>
 		</Value>		
 		<Value type="short" genre="config" instance="1" index="75" label="Input 3 status off delay" size="2" min="0" max="32000" value="0">
-			<Help>default value 0 | 1 – 32000 seconds. If the value of parameter is different to 0, means that the Influence of this input to heating or cooling will react after inserted time. Parameter 13 must be set to 2! NOTE: Device status on UI change immediately</Help>
+			<Help>default value 0 | 1 - 32000 seconds. If the value of parameter is different to 0, means that the Influence of this input to heating or cooling will react after inserted time. Parameter 13 must be set to 2! NOTE: Device status on UI change immediately</Help>
 		</Value>		
 	</CommandClass>
 	

@@ -108,22 +108,22 @@
 		<Value type="byte" index="202" genre="config" label="Humidity Calibration" min="0" max="255" value="0">
 			<Help>The calibration value = standard value ‐ measure value.
 			(the available value range is [-50, 50]).
-			If measure value =80RH and the standard value = 75RH, so the calibration value= 75RH – 80RH= -5RH (0xFB).
-			If the measure value =85RH and the standard value = 90RH, so the calibration value= 90RH – 85RH=5RH (0x05).  
+			If measure value =80RH and the standard value = 75RH, so the calibration value= 75RH - 80RH= -5RH (0xFB).
+			If the measure value =85RH and the standard value = 90RH, so the calibration value= 90RH - 85RH=5RH (0x05).  
 			</Help>
 		</Value>
 		<Value type="short" index="203" genre="config" label="Luminance Calibration" min="0" max="65535"  value="0">
 			<Help>The calibration value = standard value ‐ measure value. 
 			(the available value range is [-1000, 1000]).
-			If measure value =800Lux and the standard value = 750Lux, so the calibration value= 750 – 800= ‐50 (0xFFCE). 
-			If the measure value =850Lux and the standard value = 900Lux, so the calibration value= 900 – 850=50 (0x0032). 
+			If measure value =800Lux and the standard value = 750Lux, so the calibration value= 750 - 800= ‐50 (0xFFCE). 
+			If the measure value =850Lux and the standard value = 900Lux, so the calibration value= 900 - 850=50 (0x0032). 
 			</Help>
 		</Value>
 		<Value type="byte" index="204" genre="config" label="Ultraviolet Calibration" min="0" max="255" value="0">
 			<Help>The calibration value = standard value ‐ measure value. 
 			(the available value range is [-10, 10]).
-			If measure value =9 and the standard value = 8, so the calibration value= 8 – 9= ‐1 (0xFE). 
-			If the measure value =7 and the standard value = 9, so the calibration value= 9 – 7=2 (0x02).  
+			If measure value =9 and the standard value = 8, so the calibration value= 8 - 9= ‐1 (0xFE). 
+			If the measure value =7 and the standard value = 9, so the calibration value= 9 - 7=2 (0x02).  
 			</Help>
 		</Value>
 		<Value type="list" index="252" genre="config" label="Enable/disable Lock Configuration" units="" min="0" max="1" value="0" size="1">

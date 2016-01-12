@@ -35,9 +35,9 @@
 			<Help>
 				When I2 is pressed set point will be set according to the value of this parameter. 				
 				default value 65535
-				65535 – input I2 does not influence on the set point
-				From 0 to 990 – set point from 0.0 °C to 99.0 °C
-				From 1001 to 1150 – set point from -0.1 °C to -15.0 °C
+				65535 - input I2 does not influence on the set point
+				From 0 to 990 - set point from 0.0 °C to 99.0 °C
+				From 1001 to 1150 - set point from -0.1 °C to -15.0 °C
 				</Help>
 		</Value>
 		
@@ -45,9 +45,9 @@
 			<Help>
 				When I3 is pressed set point will be set according to the value of this parameter. 				
 				default value 65535
-				65535 – input I2 does not influence on the set point
-				From 0 to 990 – set point from 0.0 °C to 99.0 °C
-				From 1001 to 1150 – set point from -0.1 °C to -15.0 °C
+				65535 - input I2 does not influence on the set point
+				From 0 to 990 - set point from 0.0 °C to 99.0 °C
+				From 1001 to 1150 - set point from -0.1 °C to -15.0 °C
 				</Help>
 		</Value>
 
@@ -80,7 +80,7 @@
 		<Value type="short" genre="config" instance="1" index="60" label="Minimum Temperature alarm" size="2" min="1" max="1000" value="50">
 			<Help>
 				Default value 50 (Minimum Temperature alarm is 5.0°C)
-				1 - 1000 = 0.1°C – 100.0°C, step is 0.1°C. 
+				1 - 1000 = 0.1°C - 100.0°C, step is 0.1°C. 
 				Minimum temperature alarm is set by entered value. In case is set value out of this range, module is changing set value automatically to default value
 				</Help>
 		</Value>
@@ -88,7 +88,7 @@
 		<Value type="short" genre="config" instance="1" index="61" label="Maximum Temperature alarm" size="2" min="1" max="1000" value="700">
 			<Help>
 				Default value 700 (Minimum Temperature alarm is 70.0°C)
-				1 - 1000 = 0.1°C – 100.0°C, step is 0.1°C. 
+				1 - 1000 = 0.1°C - 100.0°C, step is 0.1°C. 
 				Maximum temperature alarm is set by entered value. In case is set value out of this range, module is changing set value automatically to default value
 				</Help>
 		</Value>

@@ -22,7 +22,7 @@
 		</Value>
 
 		<Value type="byte" genre="config" instance="1" index="40" label="Power reporting in Watts on power change for Q1 or Q2" size="1" min="0" max="100" units="%" value="1">
-			<Help>Set value from 0 - 100 (0% - 100%). 0 - Reporting Disabled. 1 – 100 = 1% – 100% Reporting enabled. Power report is send (push) only when actual power (in Watts) in real time changes for more than set percentage comparing to previous actual power in Watts, step is 1%. Default value 1</Help>
+			<Help>Set value from 0 - 100 (0% - 100%). 0 - Reporting Disabled. 1 - 100 = 1% - 100% Reporting enabled. Power report is send (push) only when actual power (in Watts) in real time changes for more than set percentage comparing to previous actual power in Watts, step is 1%. Default value 1</Help>
 		</Value>
 	
 		<Value type="short" genre="config" instance="1" index="42" label="Power reporting in Watts by time interval for Q1 or Q2" min="0" max="65535" units="s" value="300">
@@ -39,8 +39,8 @@
 			<Help>
 				This parameter defines the time necessary for slats to make full turn (180 degrees)
 				default value 150 = 1,5 seconds
-				0 – Tilting time disabled
-				1 – 32767 = 0,01seconds – 327,67 seconds
+				0 - Tilting time disabled
+				1 - 32767 = 0,01seconds - 327,67 seconds
 				</Help>
 		</Value>
 		
@@ -55,8 +55,8 @@
 		<Value type="short" genre="config" instance="1" index="74" label="Motor moving up/down time" min="0" max="65535" value="0">
 			<Help>This parameter defines shutter motor moving time of complete opening or complete closing. 
 				Default value 0
-				0 – moving time disabled (working with limit switches). 
-				1 – 65535 = 0,1seconds – 6553,5seconds 
+				0 - moving time disabled (working with limit switches). 
+				1 - 65535 = 0,1seconds - 6553,5seconds 
 				After that time motor is stopped (relay goes to off state)</Help>
 		</Value>
 
@@ -80,7 +80,7 @@
 				If there is no power consumption during this max time (motor not connected, damaged or requires higher time to start, motor in end position) the relay will switch OFF. 
 				Time is defined by entering it manually.
 				default value 0 = time is set automatically
-				3 – 50 = 0,3seconds – 5seconds (100ms resolution)
+				3 - 50 = 0,3seconds - 5seconds (100ms resolution)
 				</Help>
 		</Value>
 		
@@ -88,7 +88,7 @@
 			<Help>
 				This parameter defines the minimum time delay between next motor movement (minimum time between switching motor off and on again).
 				default value 5 = 500ms
-				1 – 30 = 0,1seconds – 3seconds (100ms resolution)
+				1 - 30 = 0,1seconds - 3seconds (100ms resolution)
 				</Help>
 		</Value>
 		
@@ -96,9 +96,9 @@
 			<Help>
 				Set value is added or subtracted to actual measured value by sensor.
 				default value 32536
-				32536 – offset is 0.0C
-				From 1 to 100 – value from 0.1 °C to 10.0 °C is added to actual measured temperature.
-				From 1001 to 1100 – value from -0.1 °C to -10.0 °C is subtracted to actual measured temperature.
+				32536 - offset is 0.0C
+				From 1 to 100 - value from 0.1 °C to 10.0 °C is added to actual measured temperature.
+				From 1001 to 1100 - value from -0.1 °C to -10.0 °C is subtracted to actual measured temperature.
 			</Help>
 		</Value>
 		
@@ -106,8 +106,8 @@
 			<Help>
 				If digital temperature sensor is connected, module reports measured temperature on temperature change defined by this parameter
 				default value 5 = 0,5°C
-				0 – Reporting disabled
-				1-127 = 0,1°C – 12,7°C, step is 0,1°C
+				0 - Reporting disabled
+				1-127 = 0,1°C - 12,7°C, step is 0,1°C
 				</Help>
 		</Value>
 		
