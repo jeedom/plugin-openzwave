@@ -136,7 +136,7 @@
             },
             "9": {
                 "name": "Limite de fonctionnememt jour et nuit",
-                "help": "Ce paramètre définit la limite du niveau de luminosité pour le paramètre 8.Options pour ce paramètre 1 – 65535 lux. Valeur par défaut 200"
+                "help": "Ce paramètre définit la limite du niveau de luminosité pour le paramètre 8.Options pour ce paramètre 1 - 65535 lux. Valeur par défaut 200"
             },
             "12": {
                 "name": "Configuration des messages des classes de commande classiques BASIC COMMAND CLASS",
@@ -149,15 +149,15 @@
             },
             "14": {
                 "name": "Valeur du message de commande BASIC ON",
-                "help": "La valeur 255 permet d’activer le dispositif. Dans le cas du module Dimmer (variateur) la valeur 255 signifie qu`il va passer sur son dernier état mémorisé. Par exemple, si le Dimmer (variateur) était à 30%, ensuite désactivé puis réactivé à l`aide de la commande 255, celui-ci s`activera sur son dernier état, soit à 30%. Options pour ce paramètre 1 – 255. Valeur par défaut 255"
+                "help": "La valeur 255 permet d’activer le dispositif. Dans le cas du module Dimmer (variateur) la valeur 255 signifie qu`il va passer sur son dernier état mémorisé. Par exemple, si le Dimmer (variateur) était à 30%, ensuite désactivé puis réactivé à l`aide de la commande 255, celui-ci s`activera sur son dernier état, soit à 30%. Options pour ce paramètre 1 - 255. Valeur par défaut 255"
             },
             "16": {
                 "name": "Valeur du message de commande BASIC OFF",
-                "help": "Ce message de commande est envoyé au moment de l`annulation du mouvement après le temps de maintien du mouvement défini par le paramètre 6 (temps de maintien du mouvement). La valeur 0 permet de désactiver le dispositif, en revanche, la valeur 255 permet d’activer le dispositif. Dans le cas du module Dimmer (variateur) la valeur 255 signifie qu`il va passer sur son dernier état mémorisé. Par exemple, si le Dimmer (variateur) était à 30% , désactivé puis réactivé à l`aide de la commande 255, celui-ci s`activera sur son dernier état, soit à 30%. Options pour ce paramètre 1 – 255. Valeur par défaut 255"
+                "help": "Ce message de commande est envoyé au moment de l`annulation du mouvement après le temps de maintien du mouvement défini par le paramètre 6 (temps de maintien du mouvement). La valeur 0 permet de désactiver le dispositif, en revanche, la valeur 255 permet d’activer le dispositif. Dans le cas du module Dimmer (variateur) la valeur 255 signifie qu`il va passer sur son dernier état mémorisé. Par exemple, si le Dimmer (variateur) était à 30% , désactivé puis réactivé à l`aide de la commande 255, celui-ci s`activera sur son dernier état, soit à 30%. Options pour ce paramètre 1 - 255. Valeur par défaut 255"
             },
             "20": {
                 "name": "Sensibilité du capteur anti-sabotage",
-                "help": "Ce paramètre détermine de combien doit changer la charge du capteur du mouvement pour que le capteur anti-sabotage notifie un sabotage. Cette unité est exprimée en fonction de l’accélération terrestre g. Options pour ce paramètre: 0 – 122 (0,08 – 2 g ; multiplication par 0,016g ; 0 signifie que le capteur anti-sabotage est désactivé). Valeur par défaut: 15 (0,224g)"
+                "help": "Ce paramètre détermine de combien doit changer la charge du capteur du mouvement pour que le capteur anti-sabotage notifie un sabotage. Cette unité est exprimée en fonction de l’accélération terrestre g. Options pour ce paramètre: 0 - 122 (0,08 - 2 g ; multiplication par 0,016g ; 0 signifie que le capteur anti-sabotage est désactivé). Valeur par défaut: 15 (0,224g)"
             },
             "22": {
                 "name": "Temps de maintien de l`alarme du capteur anti-sabotage",
@@ -184,7 +184,7 @@
             },
             "40": {
                 "name": "Seuil de déclenchement des rapports de luminosité",
-                "help": "Ce paramètre détermine de combien devra changer la luminosité par rapport à la dernière valeur notifiée pour que cette nouvelle valeur soit également notifiée au contrôleur. Options pour ce paramètre 1 – 65535 lux. Valeur par défaut 200"
+                "help": "Ce paramètre détermine de combien devra changer la luminosité par rapport à la dernière valeur notifiée pour que cette nouvelle valeur soit également notifiée au contrôleur. Options pour ce paramètre 1 - 65535 lux. Valeur par défaut 200"
             },
             "42": {
                 "name": "Temps écoulé entre les rapports successifs des valeurs de luminosité",
@@ -196,11 +196,11 @@
             },
             "62": {
                 "name": "Temps entre les mesures successives de température",
-                "help": "Ce paramètre détermine la fréquence de mesures. Plus la durée entre les mesures sera courte, plus la température sera mesurée fréquemment au détriment de la durée de vie de la batterie. Options pour ce paramètre: 0 - 65535 (1 – 65535 secondes, 0 = la température n’est pas mesurée) Valeur par défaut: 900 (900 secondes)"
+                "help": "Ce paramètre détermine la fréquence de mesures. Plus la durée entre les mesures sera courte, plus la température sera mesurée fréquemment au détriment de la durée de vie de la batterie. Options pour ce paramètre: 0 - 65535 (1 - 65535 secondes, 0 = la température n’est pas mesurée) Valeur par défaut: 900 (900 secondes)"
             },
             "64": {
                 "name": "Temps entre les rapports successifs de température",
-                "help": "Ce paramètre détermine la fréquence des rapports de température envoyés au contrôleur.Options pour ce paramètre 0 - 65535 (1 – 65535 secondes, 0 = aucun rapport envoyé) Valeur par défaut: 0 (pas de rapport)"
+                "help": "Ce paramètre détermine la fréquence des rapports de température envoyés au contrôleur.Options pour ce paramètre 0 - 65535 (1 - 65535 secondes, 0 = aucun rapport envoyé) Valeur par défaut: 0 (pas de rapport)"
             },
             "66": {
                 "name": "Correction (offset) de la température",
@@ -208,11 +208,11 @@
             },
             "80": {
                 "name": "LED signaling mode",
-                "help": "Ce paramètre détermine le type d’allumage de la LED après avoir détecté un mouvement. Valeurs 1 à 9 – Clignotement prolongé au moment de l`envoi du rapport d’une détection. Aucun autre mouvement ne sera indiqué jusqu'a ce que l'alarme soit annulée. Valeurs 10 à 18 – Clignotement prolongé au moment de l`envoi du rapport d’une détection et clignotement court à chaque fois qu’un nouveau mouvement est détecté. Valeurs 19 à 26 – Clignotement prolongé au moment de l`envoi du rapport d’une détection et deux clignotements courts dès la détection d’un autre mouvement.",
+                "help": "Ce paramètre détermine le type d’allumage de la LED après avoir détecté un mouvement. Valeurs 1 à 9 - Clignotement prolongé au moment de l`envoi du rapport d’une détection. Aucun autre mouvement ne sera indiqué jusqu'a ce que l'alarme soit annulée. Valeurs 10 à 18 - Clignotement prolongé au moment de l`envoi du rapport d’une détection et clignotement court à chaque fois qu’un nouveau mouvement est détecté. Valeurs 19 à 26 - Clignotement prolongé au moment de l`envoi du rapport d’une détection et deux clignotements courts dès la détection d’un autre mouvement.",
                 "list": {
                 	"LED inactive.":"LED désactivée",
                 	"1 long blink, LED colour depends on the temperature. Set by parameters 86 and 87.":"1 long clignotement. Couleur en fonction de la température. Défini dans les paramètres 86 et 87.",
-                	"Flashlight mode - LED glows in white for 10 seconds.":"Mode lampe de poche – La LED s'illumine en blanc pendant 10 secondes.",
+                	"Flashlight mode - LED glows in white for 10 seconds.":"Mode lampe de poche - La LED s'illumine en blanc pendant 10 secondes.",
                 	"Long blink White.":"1 long clignotement. Couleur blanche",
                 	"Long blink Red.":"1 long clignotement. Couleur rouge",
                 	"Long blink Green.":"1 long clignotement. Couleur vert",
@@ -221,7 +221,7 @@
                 	"Long blink Cyan.":"1 long clignotement. Couleur cyan",
                 	"Long blink Magenta.":"1 long clignotement. Couleur magenta",
                 	"Long blink, then short blink, LED colour depends on the temperature. Set by parameters 86 and 87.":"1 long clignotement puis un court. Couleur en fonction de la température. Défini dans les paramètres 86 et 87.",
-                	"Flashlight mode - LED glows in white through 10 seconds.  Each next detected motion extends the glowing by next 10 seconds.":"Mode lampe de poche – La LED s'illumine en blanc pendant 10 secondes. Chaque détection supplémentaire allonge l'allumage de 10 secondes",
+                	"Flashlight mode - LED glows in white through 10 seconds.  Each next detected motion extends the glowing by next 10 seconds.":"Mode lampe de poche - La LED s'illumine en blanc pendant 10 secondes. Chaque détection supplémentaire allonge l'allumage de 10 secondes",
                 	"Long blink, then short blinks White.":"1 long clignotement puis un court. Couleur blanche",
                 	"Long blink, then short blinks Red.":"1 long clignotement puis un court. Couleur rouge",
                 	"Long blink, then short blinks Green.":"1 long clignotement puis un court. Couleur vert",
@@ -241,7 +241,7 @@
             },
             "81": {
                 "name": "Luminosité de la LED",
-                "help": "Ce paramètre détermine la luminosité de la LED après avoir détecté le mouvement. Options pour ce paramètre 0 – 100 (1% - 100%, 0 = la luminosité dépendra de l`éclairage du local – voir paramètres 82 et 83) Valeur par défaut: 50 (50%)"
+                "help": "Ce paramètre détermine la luminosité de la LED après avoir détecté le mouvement. Options pour ce paramètre 0 - 100 (1% - 100%, 0 = la luminosité dépendra de l`éclairage du local - voir paramètres 82 et 83) Valeur par défaut: 50 (50%)"
             },
             "82": {
                 "name": "Niveau d’éclairage du local/alentours au-dessous duquel la led s`allumera au niveau de 1% de sa luminosite maximale",
@@ -253,11 +253,11 @@
             },
             "86": {
                 "name": "Température minimale pour l'illumination de la led en bleu",
-                "help": "Ce paramètre est important seulement quand le paramètre 80 (signalisation de la détection du mouvement) a été configuré de manière adéquate. Options pour ce paramètre 0 jusqu`a la valeur du paramètre 87 (0 – 255 °C) Valeur par défaut: 18 (18 °C)"
+                "help": "Ce paramètre est important seulement quand le paramètre 80 (signalisation de la détection du mouvement) a été configuré de manière adéquate. Options pour ce paramètre 0 jusqu`a la valeur du paramètre 87 (0 - 255 °C) Valeur par défaut: 18 (18 °C)"
             },
             "87": {
                 "name": "Température maximale pour l'illumination de la led en rouge",
-                "help": "Ce paramètre est important seulement quand le paramètre 80 (signalisation de la détection du mouvement) a été configuré de manière adéquate. Options pour ce paramètre valeur du paramètre 86 jusqu`a 255 (1 – 255 °C) Valeur par défaut: 28 (28 °C"
+                "help": "Ce paramètre est important seulement quand le paramètre 80 (signalisation de la détection du mouvement) a été configuré de manière adéquate. Options pour ce paramètre valeur du paramètre 86 jusqu`a 255 (1 - 255 °C) Valeur par défaut: 28 (28 °C"
             },
             "89": {
                 "name": "Signalisation de détection du capteur anti-sabotage avec led allumée",

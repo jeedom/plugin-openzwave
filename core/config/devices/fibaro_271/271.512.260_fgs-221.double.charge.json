@@ -117,11 +117,11 @@
             },
             "4": {
                 "name": "Arrêt automatique pour relais 1.",
-                "help": "Valeurs de configuration de ce paramètre [1- 65535] (10ms – 6553,5s) Délai d’extinction automatique. \n Valeur par défaut 0 Auto OFF désactivé"
+                "help": "Valeurs de configuration de ce paramètre [1- 65535] (10ms - 6553,5s) Délai d’extinction automatique. \n Valeur par défaut 0 Auto OFF désactivé"
             },
             "5": {
                 "name": "Arrêt automatique pour relais 2.",
-                "help": "Valeurs de configuration de ce paramètre [1- 65535] (10ms – 6553,5s) Délai d’extinction automatique. \n Valeur par défaut 0 Auto OFF désactivé"
+                "help": "Valeurs de configuration de ce paramètre [1- 65535] (10ms - 6553,5s) Délai d’extinction automatique. \n Valeur par défaut 0 Auto OFF désactivé"
             },
             "6": {
                 "name": "Envoi de commandes au groupe no. 1",

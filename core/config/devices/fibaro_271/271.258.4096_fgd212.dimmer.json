@@ -126,7 +126,7 @@
             },
             "9": {
                 "name": "Etat de l’éclairage après une coupure de courant",
-                "help": "Options pour ce paramètre 1-255 (10ms – 2.5s). Valeur par défaut 1",
+                "help": "Options pour ce paramètre 1-255 (10ms - 2.5s). Valeur par défaut 1",
                 "list": {
                 	"State NOT saved at power failure, all outputs are set to OFF upon power restore":"Etats non sauvé lors de la coupure de courant, toutes les sorties seront à OFF lors de la remise du courant",
      				"State saved at power failure, all outputs are set to previous state upon power restore":"Etats sauvé lors de la coupure de courant, toute les sorties seront à l'état précedent lors de la remise du courant"

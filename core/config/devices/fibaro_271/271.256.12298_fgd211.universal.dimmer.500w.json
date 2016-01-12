@@ -95,11 +95,11 @@
             },
             "9": {
                 "name": "Temps nécessaire pour déplacer manuellement le variateur entre les valeurs extrêmes",
-                "help": "Options pour modifier le paramètre 1-255 (10ms – 2.5s). Valeur par défaut 1"
+                "help": "Options pour modifier le paramètre 1-255 (10ms - 2.5s). Valeur par défaut 1"
             },
             "10": {
                 "name": "Temps nécessaire pour déplacer automatiquement le variateur entre les valeurs extrêmes.",
-                "help": "Options pour modifier le paramètre 1-255 (10ms – 2.5s) 0 - cette valeur désactive le changement en douceur de l'intensité lumineuse. NOTE La valeur 0 est requise pour les dispositifs inductifs et capacitifs impropres à la gradation, (par exemple, les lampes fluorescentes, les moteurs, etc) Valeur par défaut 1"
+                "help": "Options pour modifier le paramètre 1-255 (10ms - 2.5s) 0 - cette valeur désactive le changement en douceur de l'intensité lumineuse. NOTE La valeur 0 est requise pour les dispositifs inductifs et capacitifs impropres à la gradation, (par exemple, les lampes fluorescentes, les moteurs, etc) Valeur par défaut 1"
             },
             "11": {
                 "name": "Pourcentage de variation d’une étape lors de contrôle manuel",

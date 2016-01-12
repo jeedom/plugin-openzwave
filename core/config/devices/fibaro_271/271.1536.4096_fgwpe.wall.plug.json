@@ -146,11 +146,11 @@
                 },
             "45": {
                 "name": "Rapports sur les changements de l’énergie consommée par les dispositifs contrôlés",
-                "help": "Une nouvelle valeur du rapport d’énergie est calculée en fonction de la dernière valeur du rapport. Valeurs disponibles pour ce paramètre : 1-254 (0,01kWh – 2,54kWh) - Valeur 255 – les changements de consommation d’énergie ne seront pas notifiés. Les rapports seront uniquement envoyés lors d’une demande."
+                "help": "Une nouvelle valeur du rapport d’énergie est calculée en fonction de la dernière valeur du rapport. Valeurs disponibles pour ce paramètre : 1-254 (0,01kWh - 2,54kWh) - Valeur 255 - les changements de consommation d’énergie ne seront pas notifiés. Les rapports seront uniquement envoyés lors d’une demande."
                 },
             "47": {
                 "name": "Période de temps entre des rapports de la puissance de la charge et l’énergie consommée",
-                "help": "Ce paramètre définit la période de temps entre les rapports envoyés lorsque les changements de la puissance de la charge n’ont pas été enregistrés. Par défaut, si les changements de la puissance de la charge n’ont pas été enregistrés, alors les rapports seront envoyés chaque heure. Valeurs disponibles pour ce paramètre : 1 - 65534s. La valeur 65535 – pas de rapports envoyés périodiquement. Les rapports seront envoyés uniquement dans le cas d’un changement de puissance de la charge/consommation (paramètres 40, 42, 43, 45) ou dans le cas d’une demande."
+                "help": "Ce paramètre définit la période de temps entre les rapports envoyés lorsque les changements de la puissance de la charge n’ont pas été enregistrés. Par défaut, si les changements de la puissance de la charge n’ont pas été enregistrés, alors les rapports seront envoyés chaque heure. Valeurs disponibles pour ce paramètre : 1 - 65534s. La valeur 65535 - pas de rapports envoyés périodiquement. Les rapports seront envoyés uniquement dans le cas d’un changement de puissance de la charge/consommation (paramètres 40, 42, 43, 45) ou dans le cas d’une demande."
                 },    
             "49": {
                 "name": "Mesure de la puissance consommée par le Wall Plug lui-même.",
@@ -162,11 +162,11 @@
                 },
             "50": {
                 "name": "Valeur BASSE",
-                "help": "Seuil de puissance inférieur – utilisé dans le paramètre 52. Valeurs disponibles pour ce paramètre : 0-25000 (0,0W - 2500W) - cette valeur ne pourra être supérieure à celle définie dans le paramètre 51."
+                "help": "Seuil de puissance inférieur - utilisé dans le paramètre 52. Valeurs disponibles pour ce paramètre : 0-25000 (0,0W - 2500W) - cette valeur ne pourra être supérieure à celle définie dans le paramètre 51."
                 },
             "51": {
                 "name": "Valeur HAUTE",
-                "help": "Seuil de puissance supérieur – utilisé dans le paramètre 52. Valeurs disponibles pour ce paramètre : 0-25000 (0,0W - 2500W) - cette valeur ne pourra être inférieur à celle définie dans le paramètre 51."
+                "help": "Seuil de puissance supérieur - utilisé dans le paramètre 52. Valeurs disponibles pour ce paramètre : 0-25000 (0,0W - 2500W) - cette valeur ne pourra être inférieur à celle définie dans le paramètre 51."
                 },
             "52": {
                 "name": "Configuration du comportement dans le cas du dépassement des seuils de puissance (Paramètre 50 et 51)",
