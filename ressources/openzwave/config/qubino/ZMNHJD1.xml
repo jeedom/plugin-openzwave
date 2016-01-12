@@ -43,7 +43,7 @@
 		
 		<Value type="list" genre="config" instance="1" index="11" label="Input 1 Functionality selection" size="1" min="0" max="6" value="1">
 			<Help/>
-			<Item label=“Nothing” value="0"/>
+			<Item label="Nothing"" value="0"/>
 			<Item label="Confort" value="1"/>
 			<Item label="Confort -1" value="2"/>
 			<Item label="Confort -2" value="3"/>		

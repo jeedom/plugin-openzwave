@@ -13,11 +13,11 @@
 		</Value>
 	
 		<Value type="byte" genre="config" instance="1" index="2" label="Temperature adjustments" size="1" min="0" max="255" value="0">
-			<Help>Temperature correction. For positive value 10 = 1 °C, for negative value x = 256 - (T°C * 10). Example, if need shift -2.6°C, value calculate: 256 - (2.6 * 10) = 230 Default: 0</Help>
+			<Help>Temperature correction. For positive value 10 = 1 C, for negative value x = 256 - (TC * 10). Example, if need shift -2.6C, value calculate: 256 - (2.6 * 10) = 230 Default: 0</Help>
 		</Value>
 
 		<Value type="byte" genre="config" instance="1" index="3" label="Send unsolicited temperature report" size="1" min="0" max="255" value="0">
-			<Help>Threshold temperature to send unsolicited report. 10 = 1°C</Help>
+			<Help>Threshold temperature to send unsolicited report. 10 = 1C</Help>
 		</Value>
 		
 		<Value type="short" genre="config" instance="1" index="4" label="Send unsolicited temperature report after N wake up" size="2" min="0" max="65535" value="15">

@@ -7,12 +7,12 @@
   <CommandClass id="112">
     <Value type="short" index="1" genre="config" label="Temperature Threshold" min="1" max="100" value="5">
       <Help>
-       Temperature Report threshold (1=0.1°C)
+       Temperature Report threshold (1=0.1C)
       </Help>
     </Value>
     <Value type="short" index="2" genre="config" label="Setpoint resolution" min="1" max="100" value="5">
       <Help>
-        Set-point display resolution (1=0.1°C)
+        Set-point display resolution (1=0.1C)
       </Help>
     </Value>
     <Value type="short" index="3" genre="config" label="Min/Override Setpoint" min="0" max="10" value="12">

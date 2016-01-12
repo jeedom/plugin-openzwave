@@ -118,8 +118,8 @@ ZMNHSD5 916,0 MHz
 		<Value type="short" genre="config" instance="1" index="110" label="Temperature sensor offset settings" min="1" max="32536" value="32536">
 			<Help>Set value is added or subtracted to actual measured value by sensor.
 			32536 : offset is 0.0C.
-			From 1 to 100 : value from 0.1 °C to 10.0 °C is added to actual measured temperature.
-			From 1001 to 1100 : value from -0.1 °C to -10.0 °C is subtracted to actual measured temperature.
+			From 1 to 100 : value from 0.1 C to 10.0 C is added to actual measured temperature.
+			From 1001 to 1100 : value from -0.1 C to -10.0 C is subtracted to actual measured temperature.
 			Default value 32536.
 			</Help>
 		</Value>
@@ -127,8 +127,8 @@ ZMNHSD5 916,0 MHz
 		<Value type="byte" genre="config" instance="1" index="120" label="Digital temperature sensor reporting" min="0" max="127" value="5">
 			<Help>If digital temperature sensor is connected, module reports measured temperature on temperature change defined by this parameter.
 			0 : Reporting disabled.
-			1- 127 = 0,1°C - 12,7°C, step is 0,1°C.
-			Default value 5 = 0,5°C change.
+			1- 127 = 0,1C - 12,7C, step is 0,1C.
+			Default value 5 = 0,5C change.
 			</Help>
 		</Value>
 	</CommandClass>

@@ -58,8 +58,8 @@
 			<Item label="No influence on the heat process" value="65535" />
 		</Value>
 		<Value type="short" genre="config" instance="1" index="12" label="I2 Functionality selection" size="2" min="0" max="65535" value="65535">
-			<Help>default value 65535 | 65535 - input I2 does not influence on the heat/ cool process | From 0 to 990 - Temperature set point from 0.0 °C to 99.0 °C. When I2 is pressed, temperature set point is automatically set to value defined here. In this case function of condense sensor is disabled. | From 1001 to 1150 - Temperature set point from -0.1 °C to -15.0
-			°C. When I2 is pressed, temperature setpoint is automatically set to value defined here. In this case function of condense sensor is disabled. | 2000 - Input I2 influences on the cooling valve according to status of condense sensor, In this case function of setpoint selection with I2 is disabled.</Help>
+			<Help>default value 65535 | 65535 - input I2 does not influence on the heat/ cool process | From 0 to 990 - Temperature set point from 0.0 C to 99.0 C. When I2 is pressed, temperature set point is automatically set to value defined here. In this case function of condense sensor is disabled. | From 1001 to 1150 - Temperature set point from -0.1 C to -15.0
+			C. When I2 is pressed, temperature setpoint is automatically set to value defined here. In this case function of condense sensor is disabled. | 2000 - Input I2 influences on the cooling valve according to status of condense sensor, In this case function of setpoint selection with I2 is disabled.</Help>
 		</Value>		
 		<Value type="short" genre="config" instance="1" index="13" label="I3 Functionality selection" size="2" min="0" max="65535" value="65535">
 			<Help>default value 65535 | 65535 - input I3 does not influence on the heat/ cool process | 1 - input I3 changes the mode of the thermostat between Heat and Cool. In this case function on window sensor is disabled. | 2 - input I3 influences on cooling and heating valves according to status of window sensor. In this case function of Heat and Cool selection by I3 is disabled</Help>
@@ -71,16 +71,16 @@
 			<Help>Set value means time interval (0 - 32767) in seconds, when power report is send. 0 - Reporting Disabled. 1 - 32767 = 1 second - 32767 seconds. Reporting enabled. Power report is send with time interval set by entered value. Default value 300 (power report in Watts is send each 300s)</Help>
 		</Value>
 		<Value type="byte" genre="config" instance="1" index="45" label="Antifreeze" size="1" min="0" max="255" value="50">
-			<Help>Set value means at which temperature the heating will be turned on even if the thermostat was manually set to off. The parameter can be set from 0 to 255 where 0 to 128 means from 0.0 °C to 12.8 °C and from 129 to 255 means from - 0.0 °C to -12.8 °C.</Help>
+			<Help>Set value means at which temperature the heating will be turned on even if the thermostat was manually set to off. The parameter can be set from 0 to 255 where 0 to 128 means from 0.0 C to 12.8 C and from 129 to 255 means from - 0.0 C to -12.8 C.</Help>
 		</Value>		
 		<Value type="byte" genre="config" instance="1" index="50" label="PWM maximum value" size="1" min="0" max="100" value="100">
-			<Help>default value 100 (Maximum PWM value) | 2–100 = 2%-100%, step is 1%. Max. PWM set by entered value. NOTE: The maximum level may not be lower than the minimum level! </Help>
+			<Help>default value 100 (Maximum PWM value) | 2-100 = 2%-100%, step is 1%. Max. PWM set by entered value. NOTE: The maximum level may not be lower than the minimum level! </Help>
 		</Value>		
 		<Value type="byte" genre="config" instance="1" index="51" label="PWM minimum value" size="1" min="0" max="100" value="0">
-			<Help>default value 0 (Minimum PWM value is 0%) | 1–99 = 1%-99%, step is 1%. Max. PWM set by entered value. NOTE: The Minimim level may not exceed Maximum level! </Help>
+			<Help>default value 0 (Minimum PWM value is 0%) | 1-99 = 1%-99%, step is 1%. Max. PWM set by entered value. NOTE: The Minimim level may not exceed Maximum level! </Help>
 		</Value>		
 		<Value type="byte" genre="config" instance="1" index="52" label="PWM cycle duration" size="1" min="0" max="127" value="10">
-			<Help>Default value 10 (Cycle duration set to 10s) | 1-127 = 1–127s, step is 1s. PWM cycle duration set by entered value. NOTE: PWM cycle duration define the summary of all ON plus OFF time periods. For example if Output is set to 70% with PWM cycle duration of 20s, output will be ON for 14s then OFF 6s, again 14s ON, etc…
+			<Help>Default value 10 (Cycle duration set to 10s) | 1-127 = 1-127s, step is 1s. PWM cycle duration set by entered value. NOTE: PWM cycle duration define the summary of all ON plus OFF time periods. For example if Output is set to 70% with PWM cycle duration of 20s, output will be ON for 14s then OFF 6s, again 14s ON, etc
 			</Help>
 		</Value>		
 		<Value type="list" genre="config" instance="1" index="53" label="PID value inside deadband" size="1" min="0" max="1" value="0">
@@ -89,10 +89,10 @@
 			<Item label="PID value set to LAST VALUE" value="1"/>
 		</Value>		
 		<Value type="byte" genre="config" instance="1" index="54" label="PID deadband" size="1" min="0" max="127" value="5">
-			<Help>default value 5 (0,5 °C) | 0-127 - 0.0 °C to 12.7 °C, step is 0,1°C. NOTE: This parameter defines the zone where PID is not active. If the temperature difference between actual and setpoint is bigger than PID deadband, then the PID will start to regulate the system, otherwise the PID is zero or fixed</Help>
+			<Help>default value 5 (0,5 C) | 0-127 - 0.0 C to 12.7 C, step is 0,1C. NOTE: This parameter defines the zone where PID is not active. If the temperature difference between actual and setpoint is bigger than PID deadband, then the PID will start to regulate the system, otherwise the PID is zero or fixed</Help>
 		</Value>		
 		<Value type="byte" genre="config" instance="1" index="55" label="Integral sampling time" size="1" min="0" max="127" value="5">
-			<Help>default value 5 (0,5 °C) | 0-127 - 0.0 °C to 12.7 °C, step is 0,1°C. NOTE: Parameter defines the time between samples. On each sample the
+			<Help>default value 5 (0,5 C) | 0-127 - 0.0 C to 12.7 C, step is 0,1C. NOTE: Parameter defines the time between samples. On each sample the
 			controller capture difference between SP-act</Help>
 		</Value>		
 		<Value type="short" genre="config" instance="1" index="56" label="P parameter" size="2" min="0" max="1000" value="100">
@@ -110,10 +110,10 @@
 			<Item label="Cool mode (1)" value="1"/>
 		</Value>
 		<Value type="short" genre="config" instance="1" index="60" label="Too low temperature limit" size="2" min="0" max="1000" value="50">
-			<Help>Default value 50 (Too low temperature limit is 5.0°C) | 1 - 1000 = 0.1°C - 100.0°C, step is 0.1°C. Too low temperature limit is set by entered value. In case measured temperature is below set value, module sends BasicSet value.</Help>
+			<Help>Default value 50 (Too low temperature limit is 5.0C) | 1 - 1000 = 0.1C - 100.0C, step is 0.1C. Too low temperature limit is set by entered value. In case measured temperature is below set value, module sends BasicSet value.</Help>
 		</Value>		
 		<Value type="short" genre="config" instance="1" index="61" label="Too high temperature limit" size="2" min="0" max="1000" value="700">
-			<Help>Default value 700 (too high temperature limit is 70.0°C) | 1 - 1000 = 0.1°C - 100.0°C, step is 0.1°C. Too high temperature limit is set by entered value. In case measured temperature is higher than set value, module sends BasicSet value.</Help>
+			<Help>Default value 700 (too high temperature limit is 70.0C) | 1 - 1000 = 0.1C - 100.0C, step is 0.1C. Too high temperature limit is set by entered value. In case measured temperature is higher than set value, module sends BasicSet value.</Help>
 		</Value>		
 		<Value type="list" genre="config" instance="1" index="63" label="Output Switch selection" size="1" min="0" max="1" value="0">
 			<Help/>

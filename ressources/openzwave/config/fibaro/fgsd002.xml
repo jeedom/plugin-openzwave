@@ -72,11 +72,11 @@
 		</Value>
 
 		<Value type="byte" genre="config" instance="1" index="21" label="Temperature report hysteresis"  value="10" min="1" max="100" size="1">
-			<Help>The temperature report will only be sent if there is a difference in temperature value from the previous value reported, defined in this parameter (hysteresis). Available settings: 1 - 100 (in 0,1°C steps). Default setting: 10 (1°C)</Help>
+			<Help>The temperature report will only be sent if there is a difference in temperature value from the previous value reported, defined in this parameter (hysteresis). Available settings: 1 - 100 (in 0,1C steps). Default setting: 10 (1C)</Help>
 		</Value>
 
 		<Value type="byte" genre="config" instance="1" index="30" label="Temperature threshold"  value="55" min="1" max="100" size="1">
-			<Help>Temperature value measured by the built-in temperature sensor above which the excess temperature notification is sent. Available settings: 1 - 100. Default setting: 55 (55°C)</Help>
+			<Help>Temperature value measured by the built-in temperature sensor above which the excess temperature notification is sent. Available settings: 1 - 100. Default setting: 55 (55C)</Help>
 		</Value>
 
 		<Value type="short" genre="config" instance="1" index="31" label="Excess temperature signaling interval"  value="1" min="1" max="8640" size="2">

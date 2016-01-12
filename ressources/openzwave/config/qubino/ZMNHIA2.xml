@@ -36,8 +36,8 @@
 				When I2 is pressed set point will be set according to the value of this parameter. 				
 				default value 65535
 				65535 - input I2 does not influence on the set point
-				From 0 to 990 - set point from 0.0 °C to 99.0 °C
-				From 1001 to 1150 - set point from -0.1 °C to -15.0 °C
+				From 0 to 990 - set point from 0.0 C to 99.0 C
+				From 1001 to 1150 - set point from -0.1 C to -15.0 C
 				</Help>
 		</Value>
 		
@@ -46,8 +46,8 @@
 				When I3 is pressed set point will be set according to the value of this parameter. 				
 				default value 65535
 				65535 - input I2 does not influence on the set point
-				From 0 to 990 - set point from 0.0 °C to 99.0 °C
-				From 1001 to 1150 - set point from -0.1 °C to -15.0 °C
+				From 0 to 990 - set point from 0.0 C to 99.0 C
+				From 1001 to 1150 - set point from -0.1 C to -15.0 C
 				</Help>
 		</Value>
 
@@ -66,29 +66,29 @@
 		</Value>
 
 		 <Value type="byte" genre="config" instance="1" index="43" label="Hysteresis On" size="1" min="0" max="255" value="132">
-             <Help>This parameter defines temperature min difference between real measured temperature and set-point temperature to turn heating on. The parameter can be set from 0 to 255 where 0 to 128 means from 0.0 °C to 12.8 °C and from 129 to 255 means from - 0.0 °C to -12.8 °C.</Help>
+             <Help>This parameter defines temperature min difference between real measured temperature and set-point temperature to turn heating on. The parameter can be set from 0 to 255 where 0 to 128 means from 0.0 C to 12.8 C and from 129 to 255 means from - 0.0 C to -12.8 C.</Help>
          </Value>
 
 		<Value type="byte" genre="config" instance="1" index="44" label="Hysteresis Off" size="1" min="0" max="255" value="132">
-			<Help>This parameter defines temperature min difference between real measured temperature and set-point temperature to turn heating off. The parameter can be set from 0 to 255 where 0 to 128 means from 0.0 °C to 12.8 °C and from 129 to 255 means from - 0.0 °C to -12.8 °C.</Help>
+			<Help>This parameter defines temperature min difference between real measured temperature and set-point temperature to turn heating off. The parameter can be set from 0 to 255 where 0 to 128 means from 0.0 C to 12.8 C and from 129 to 255 means from - 0.0 C to -12.8 C.</Help>
 		</Value>
 
         <Value type="byte" genre="config" instance="1" index="45" label="Antifreeze" size="1" min="0" max="255" value="50">
-			<Help>Set value means at which temperature the heating will be turned on even if the thermostat was manually set to off. The parameter can be set from 0 to 255 where 0 to 128 means from 0.0 °C to 12.8 °C and from 129 to 255 means from - 0.0 °C to -12.8 °C.</Help>
+			<Help>Set value means at which temperature the heating will be turned on even if the thermostat was manually set to off. The parameter can be set from 0 to 255 where 0 to 128 means from 0.0 C to 12.8 C and from 129 to 255 means from - 0.0 C to -12.8 C.</Help>
 		</Value>	
 		
 		<Value type="short" genre="config" instance="1" index="60" label="Minimum Temperature alarm" size="2" min="1" max="1000" value="50">
 			<Help>
-				Default value 50 (Minimum Temperature alarm is 5.0°C)
-				1 - 1000 = 0.1°C - 100.0°C, step is 0.1°C. 
+				Default value 50 (Minimum Temperature alarm is 5.0C)
+				1 - 1000 = 0.1C - 100.0C, step is 0.1C. 
 				Minimum temperature alarm is set by entered value. In case is set value out of this range, module is changing set value automatically to default value
 				</Help>
 		</Value>
 		
 		<Value type="short" genre="config" instance="1" index="61" label="Maximum Temperature alarm" size="2" min="1" max="1000" value="700">
 			<Help>
-				Default value 700 (Minimum Temperature alarm is 70.0°C)
-				1 - 1000 = 0.1°C - 100.0°C, step is 0.1°C. 
+				Default value 700 (Minimum Temperature alarm is 70.0C)
+				1 - 1000 = 0.1C - 100.0C, step is 0.1C. 
 				Maximum temperature alarm is set by entered value. In case is set value out of this range, module is changing set value automatically to default value
 				</Help>
 		</Value>

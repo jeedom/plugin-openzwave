@@ -21,7 +21,7 @@
 		</Value>
 
 		<Value type="list" genre="config" instance="1" index="2" label="LED indicator and acoustic alarm turned ON / OFF at any alarm type" min="0" max="3" value="3" size="1">
-			<Help>Allows for deactivating the LED indicator and the acoustic alarm, in case of detecting an alarm of any type. This doesn’t affect the communication with the Z-Wave network controller, i.e. the sensor will keep sending alarms, reports and all information to the associated devices. Modifying this parameter settings helps extending the battery life.</Help>
+			<Help>Allows for deactivating the LED indicator and the acoustic alarm, in case of detecting an alarm of any type. This doesn't affect the communication with the Z-Wave network controller, i.e. the sensor will keep sending alarms, reports and all information to the associated devices. Modifying this parameter settings helps extending the battery life.</Help>
 			<Item label="Acoustic and visual alarms inactive" value="0" />
 			<Item label="Acoustic alarm inactive, visual alarm active" value="1" />
 			<Item label="Acoustic alarm active, visual alarm inactive" value="2" />
@@ -74,7 +74,7 @@
 		</Value>
 
 		<Value type="list" genre="config" instance="1" index="83" label="Black Box sensitivity level" value="2"  min="1" max="3" size="1">
-			<Help>This parameter allows for specifying the moment in which the Black Box starts recording data. After the specified smoke and temperature values will be exceeded, the Fibaro Smoke Sensor’s Black Box will record them.</Help>
+			<Help>This parameter allows for specifying the moment in which the Black Box starts recording data. After the specified smoke and temperature values will be exceeded, the Fibaro Smoke Sensor's Black Box will record them.</Help>
 			<Item label="High" value="1" />
 			<Item label="Medium" value="2" />
 			<Item label="Low" value="3" />
@@ -97,7 +97,7 @@
 		</Value>
 
 		<Value type="list" genre="config" instance="1" index="88" label="Consider temperature measurement compensation" value="0" size="1">
-			<Help>This parameter allows for specifying the moment in which the Black Box starts recording data. After the specified smoke and temperature values will be exceeded, the Fibaro Smoke Sensor’s Black Box will record them.</Help>
+			<Help>This parameter allows for specifying the moment in which the Black Box starts recording data. After the specified smoke and temperature values will be exceeded, the Fibaro Smoke Sensor's Black Box will record them.</Help>
 			<Item label="Ignore temperature compensation" value="0" />
 			<Item label="Include temperature compensation" value="1" />
 		</Value>

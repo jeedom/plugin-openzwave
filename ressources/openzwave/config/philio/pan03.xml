@@ -32,7 +32,7 @@
 		</Value>
 
 		<Value type="byte" instance="1" index="6" genre="config" label="Manual ON/OFF Mode" min="0" max="1" value="0">
-			<Help>The On/Off function of S1, S2 and learn switch can be disabled or enabled by this parameter, default value is Enable. But the learning operation wonâ€™t be affected. When manual On/Off function is disabled, the RF command can only switch On but not Off. This is useful function for keeping the device in switch on state.</Help>
+			<Help>The On/Off function of S1, S2 and learn switch can be disabled or enabled by this parameter, default value is Enable. But the learning operation won't be affected. When manual On/Off function is disabled, the RF command can only switch On but not Off. This is useful function for keeping the device in switch on state.</Help>
 		</Value>
 
 		<Value type="byte" instance="1" index="7" genre="config" label="LED Indication Mode" min="1" max="3" value="1">
