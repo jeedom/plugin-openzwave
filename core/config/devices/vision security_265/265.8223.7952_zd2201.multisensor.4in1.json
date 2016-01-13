@@ -18,8 +18,8 @@
             "isVisible": 1,
             "isHistorized": 0,
             "configuration": {
-                "class": "0x30",
-                "value": "data[0].val"
+                "class": "0x71",
+                "value": "data[1].val"
             },
             "display": {
                 "invertBinary": "1"
@@ -27,6 +27,24 @@
             "template": {
                 "dashboard": "door",
                 "mobile": "door"
+            }
+        },
+        {
+            "name": "Sabotage",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": "0x71",
+                "value": "data[10].val"
+            },
+            "display": {
+                "invertBinary": "1"
+            },
+            "template": {
+                "dashboard": "alarm",
+                "mobile": "alarm"
             }
         },
         {
