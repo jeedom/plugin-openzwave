@@ -2,7 +2,7 @@
     "name": "TZ65D",
     "doc" : "",
     "type": "Interrupteur",
-    "comlink" : "",
+    "comlink" : "2056-tkb-home-tz65d-interrupteur-variateur-double-z-wave-blanc-6959174465006",
     "remark" : "Vendu aussi sous la marque TkbHome. Bouton de droit fonctionne en association seulement.",
     "imglink" : "tkb.tz65d",
     "configuration" : {
