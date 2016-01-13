@@ -44,7 +44,7 @@ $('body').on('zwave::notification', function (_event,_options) {
 $('body').on('zwave::includeDevice', function (_event,_options) {
   $('.eqLogicAttr[data-l1key=id]').value('');
   if (_options != '') {
-    $("#popup_configIncludeDevice").popup("open");
+    $("#div_configIncludeDevice").show();
     $('.eqLogicAttr[data-l1key=id]').value(_options);
 }
 });
@@ -119,15 +119,13 @@ $('#div_listIncludeSever').delegate('.changeIncludeState','click', function() {
 $('#bt_validateConfigDevice').on('click', function() {
     jeedom.eqLogic.save({
         type: 'zwave',
-        eqLogics: $("#popup_configIncludeDevice").getValues('.eqLogicAttr'),
+        eqLogics: $("#div_configIncludeDevice").getValues('.eqLogicAttr'),
         error: function(error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
             $('.eqLogicAttr[data-l1key=id]').value('');
-            $("#popup_configIncludeDevice").popup("open");
-
         },
         success: function() {
-            $("#popup_configIncludeDevice").popup("close");
+            $("#div_configIncludeDevice").hide();
         }
     });
 });
