@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Product xmlns='http://code.google.com/p/open-zwave/'>
 
+	<CommandClass id="64" getsupported="false" />
 	<!-- This thermostat's setpoint descriptions are 0 based, not 1 -->
 	<!-- COMMAND_CLASS_THERMOSTAT_SETPOINT get is not supported -->
-	<CommandClass id="67" base="0" getsupported="true"/>
+	<CommandClass id="67" base="0" getsupported="false"/>
 
 	<!-- The thermostat does not properly report its operating modes -->
 	<CommandClass id="64" name="COMMAND_CLASS_THERMOSTAT_MODE" version="1" request_flags="4" create_vars="true">
@@ -26,7 +27,7 @@
 			<Mode index="10" label="Auto Changeover" />
 		</SupportedModes>
 	</CommandClass>
-  
+
 	<CommandClass id="112">
 		<Value type="int" index="25" genre="config" label="Indicate a location for IR code  learning and start learning" min="0" max="22" value="0">
 			<Help>In case none of the code on the code list works for the targeted air conditioner, user can use IR code learning function. See manual at section &quot;IR Code Learning&quot; for a description of the procedure. Value 0-22</Help>
@@ -45,6 +46,12 @@
 		</Value>
 		<Value type="int" index="33" genre="config" label="Surround IR control" value="0">
 			<Help>Value 0 SWING OFF. Value 255 SWING AUTO (Default).</Help>
+		</Value>
+		<Value type="int" genre="config" instance="1" index="37" label="Temperature compensation" min="0" max="255" value="0">
+			<Help>
+				0-5 = 0 to +5 C.
+				251-255 = -5 to -1 C.
+			</Help>
 		</Value>
 	</CommandClass>
 
