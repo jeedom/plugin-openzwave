@@ -6,7 +6,7 @@
     "remark" : "Vendu aussi sous la marque Zipato.",
     "imglink" : "vision.zd2201",
     "battery_type" : "2x1.5V AAA",
-    "ignore" : 1,
+    "ignore" : 0,
     "configuration" : {
         "conf_version" : 1
     },
