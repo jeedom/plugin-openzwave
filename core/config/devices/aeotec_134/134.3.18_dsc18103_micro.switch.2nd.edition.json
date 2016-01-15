@@ -1,65 +1,81 @@
 {	
 	"name": "Micro Smart Switch (2nd Edition) (DSC18103)",
-        "doc" : "",
-        "type": "Prise",
-        "comlink" : "",
-        "remark" : "",
-        "imglink" : "aeotec.smartswitch2e",
+	"doc" : "",
+	"type": "Prise",
+	"comlink" : "",
+	"remark" : "",
+	"imglink" : "aeotec.smartswitch2e",
     "configuration" : {
         "conf_version" : 1
-		},
+	},
     "commands": [
-      {
-        "name": "On",
-        "type": "action",
-        "subtype": "other",
-        "isVisible": 1,
-        "configuration": {
-          "class": "0x25",
-          "value": "data[0].Set(255)"
-        }
-      },
-      {
-        "name": "Off",
-        "type": "action",
-        "subtype": "other",
-        "isVisible": 1,
-        "configuration": {
-          "class": "0x25",
-          "value": "data[0].Set(0)"
-        }
-      },
-      {
-        "name": "Etat",
-        "type": "info",
-        "subtype": "binary",
-        "isVisible": 1,
-        "configuration": {
-          "class": "0x25",
-          "value": "data[0].val"
-        }
-      },
-      {
-        "name": "Puissance",
-        "type": "info",
-        "subtype": "numeric",
-        "unite": "W",
-        "isVisible": 1,
-        "configuration": {
-          "class": "0x32",
-          "value": "data[8].val"
-        }
-      },
-      {
-        "name": "Consommation",
-        "type": "info",
-        "subtype": "numeric",
-        "unite": "kWh",
-        "isVisible": 0,
-        "configuration": {
-          "class": "0x32",
-          "value": "data[0].val"
-        }
-      }
+		{
+			"name": "Etat",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 0,
+			"isHistorized": 0,
+			"unite": "",
+			"configuration": {
+				"class": "0x25",
+				"value": "data[0].val"
+			},
+			"template": {
+				"dashboard": "light",
+				"mobile": "light"
+			}
+		},
+		{
+			"name": "On",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"value": "Etat",
+			"configuration": {
+				"class": "0x25",
+				"value": "data[0].Set(255)"
+			},
+			"template": {
+				"dashboard": "light",
+				"mobile": "light"
+			}
+		},
+		{
+			"name": "Off",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"value": "Etat",
+			"configuration": {
+				"class": "0x25",
+				"value": "data[0].Set(0)"
+			},
+			"template": {
+				"dashboard": "light",
+				"mobile": "light"
+			}
+		},
+		{
+			"name": "Puissance",
+			"type": "info",
+			"subtype": "numeric",
+			"unite": "W",
+			"isVisible": 1,
+			"configuration": {
+			  "class": "0x32",
+			  "value": "data[8].val"
+			}
+		},
+		{
+			"name": "Consommation",
+			"type": "info",
+			"subtype": "numeric",
+			"unite": "kWh",
+			"isVisible": 0,
+			"configuration": {
+			  "class": "0x32",
+			  "value": "data[0].val"
+			}
+		}
     ]
   }

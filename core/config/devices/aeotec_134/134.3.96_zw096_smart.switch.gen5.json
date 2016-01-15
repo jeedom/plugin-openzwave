@@ -1,117 +1,112 @@
 {
     "name" : "Smart Switch 6 (ZW096)",
-        "doc" : "",
-        "type": "Prise",
-        "comlink" : "2918-aeon-labs-mini-prise-commutateur-z-wave-plus-avec-consometre-smart-switch-6-1220000013049",
-        "remark" : "",
-        "imglink" : "aeotec.smartswitch",
+	"doc" : "",
+	"type": "Prise",
+	"comlink" : "2918-aeon-labs-mini-prise-commutateur-z-wave-plus-avec-consometre-smart-switch-6-1220000013049",
+	"remark" : "",
+	"imglink" : "aeotec.smartswitch",
     "configuration" : {
         "conf_version" : 1
     },
     "commands": [
-           {
-                "name": "Etat",
-                "type": "info",
-                "subtype": "binary",
-                "isVisible": 0,
-                "isHistorized": 0,
-                "unite": "",
-
-                "configuration": {
-                    "class": "0x25",
-                    "value": "data[0].val"
-                },
-                "template": {
-                    "dashboard": "prise",
-                    "mobile": "prise"
-                }
-            },
-            {
-                "name": "On",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-                "value": "Etat",
-                "configuration": {
-                    "class": "0x25",
-                    "value": "data[0].Set(255)"
-                },
-                "template": {
-                    "dashboard": "prise",
-                    "mobile": "prise"
-                }
-            },
-            {
-                "name": "Off",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-                "value": "Etat",
-                "configuration": {
-                    "class": "0x25",
-                    "value": "data[0].Set(0)"
-                },
-                "template": {
-                    "dashboard": "prise",
-                    "mobile": "prise"
-                }
-            },
-            {
-                "name": "Puissance",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 1,
-                "isHistorized": 1,
-                "unite": "W",
-
-                "configuration": {
-                    "class": "0x32",
-                    "value": "data[8].val",
-                    "maxValue": 2500,
-                    "minValue": 0
-                }
-            },
-            {
-                "name": "Consommation",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 1,
-                "isHistorized": 0,
-                "unite": "kWh",
-
-                "configuration": {
-                    "class": "0x32",
-                    "value": "data[0].val"
-                },
-                "template": {
-                    "dashboard": "tile"
-                }
-            },
-            {
-                "name": "Tension",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 1,
-                "isHistorized": 0,
-                "unite": "V",
-
-                "configuration": {
-                    "class": "0x32",
-                    "value": "data[16].val"
-                }
-            },
-            {
-                "name": "Courant",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 1,
-                "isHistorized": 0,
-                "unite": "A",
-
-                "configuration": {
-                    "class": "0x32",
-                    "value": "data[20].val"
-                }
-            }
-        ]
-   }
+		{
+			"name": "Etat",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 0,
+			"isHistorized": 0,
+			"unite": "",
+			"configuration": {
+				"class": "0x25",
+				"value": "data[0].val"
+			},
+			"template": {
+				"dashboard": "prise",
+				"mobile": "prise"
+			}
+		},
+		{
+			"name": "On",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"value": "Etat",
+			"configuration": {
+				"class": "0x25",
+				"value": "data[0].Set(255)"
+			},
+			"template": {
+				"dashboard": "prise",
+				"mobile": "prise"
+			}
+		},
+		{
+			"name": "Off",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"value": "Etat",
+			"configuration": {
+				"class": "0x25",
+				"value": "data[0].Set(0)"
+			},
+			"template": {
+				"dashboard": "prise",
+				"mobile": "prise"
+			}
+		},
+		{
+			"name": "Puissance",
+			"type": "info",
+			"subtype": "numeric",
+			"isVisible": 1,
+			"isHistorized": 1,
+			"unite": "W",
+			"configuration": {
+				"class": "0x32",
+				"value": "data[8].val",
+				"maxValue": 2500,
+				"minValue": 0
+			}
+		},
+		{
+			"name": "Consommation",
+			"type": "info",
+			"subtype": "numeric",
+			"isVisible": 1,
+			"isHistorized": 0,
+			"unite": "kWh",
+			"configuration": {
+				"class": "0x32",
+				"value": "data[0].val"
+			},
+			"template": {
+				"dashboard": "tile"
+			}
+		},
+		{
+			"name": "Tension",
+			"type": "info",
+			"subtype": "numeric",
+			"isVisible": 1,
+			"isHistorized": 0,
+			"unite": "V",
+			"configuration": {
+				"class": "0x32",
+				"value": "data[16].val"
+			}
+		},
+		{
+			"name": "Courant",
+			"type": "info",
+			"subtype": "numeric",
+			"isVisible": 1,
+			"isHistorized": 0,
+			"unite": "A",
+			"configuration": {
+				"class": "0x32",
+				"value": "data[20].val"
+			}
+		}
+	]
+}

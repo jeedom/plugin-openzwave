@@ -1,109 +1,139 @@
 {
-		"name": "Micro Double Smart Switch (DSC17103)",
-        "doc" : "",
-        "type": "Micromodule",
-        "comlink" : "",
-        "remark" : "Module pratiquement plus commercialisé",
-        "imglink" : "aeotec.double-microswitch",
-        "configuration" : {
-        "conf_version" : 1
+	"name": "Micro Double Smart Switch (DSC17103)",
+	"doc" : "",
+	"type": "Micromodule",
+	"comlink" : "",
+	"remark" : "Module pratiquement plus commercialisé",
+	"imglink" : "aeotec.double-microswitch",
+	"configuration" : {
+		"conf_version" : 1
+	},
+	"commands": [
+		{
+			"name": "Etat 1",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 0,
+			"isHistorized": 0,
+			"unite": "",
+			"configuration": {
+				"class": "0x25",
+				"instanceId": 1,
+				"value": "data[0].val"
+			},
+			"template": {
+				"dashboard": "light",
+				"mobile": "light"
+			}
 		},
-        "commands": [
-            {
-                "name": "On 1",
-                "type": "action",
-                "subtype": "other",
-                "isVisible":1,
-                "configuration": {
-                    "class": "0x25",
-					"instanceId": 1,
-                    "value": "data[0].Set(255)"
-                }
-            },
-            {
-                "name": "Off 1",
-                "type": "action",
-                "subtype": "other",
-                "isVisible":1,
-                "configuration": {
-                    "class": "0x25",
-					"instanceId": 1,
-                    "value": "data[0].Set(0)"
-                }
-            },
-            {
-                "name": "Etat 1",
-                "type": "info",
-                "subtype": "binary",
-                "unite": "",
-                "isVisible": 1,
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 1,
-                    "value": "data[0].val"
-                }
-            },
-            {
-                "name": "On 2",
-                "type": "action",
-                "subtype": "other",
-                "isVisible":1,
-                "configuration": {
-                    "class": "0x25",
-					"instanceId": 2,
-                    "value": "data[0].Set(255)"
-                }
-            },
-            {
-                "name": "Off2",
-                "type": "action",
-                "subtype": "other",
-                "isVisible":1,
-                "configuration": {
-                    "class": "0x25",
-					"instanceId": 2,
-                    "value": "data[0].Set(0)"
-                }
-            },
-            {
-                "name": "Etat2",
-                "type": "info",
-                "subtype": "binary",
-                "unite": "",
-                "isVisible": 1,
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 2,
-                    "value": "data[0].val"
-                }
-            },
-			{
-                "name": "Puissance",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 0,
-                "isHistorized": 1,
-				"unite": "W",
-                "configuration": {
-                    "class": "0x32",
-					"instanceId": 0,
-                    "value": "data[8].val",
-					"maxValue": 1150,
-                    "minValue": 0
-                }
-            },
-            {
-                "name": "Consommation",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 0,
-                "isHistorized": 0,
-				"unite": "kWh",
-                "configuration": {
-                    "class": "0x32",
-					"instanceId": 0,
-                    "value": "data[0].val"
-                }
-            }
-        ]
-    }
+		{
+			"name": "On 1",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"value": "Etat 1",
+			"configuration": {
+				"class": "0x25",
+				"instanceId": 1,
+				"value": "data[0].Set(255)"
+			},
+			"template": {
+				"dashboard": "light",
+				"mobile": "light"
+			}
+		},
+		{
+			"name": "Off 1",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"value": "Etat 1",
+			"configuration": {
+				"class": "0x25",
+				"instanceId": 1,
+				"value": "data[0].Set(0)"
+			},
+			"template": {
+				"dashboard": "light",
+				"mobile": "light"
+			}
+		},
+		{
+			"name": "Etat 2",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 0,
+			"isHistorized": 0,
+			"unite": "",
+			"configuration": {
+				"class": "0x25",
+				"instanceId": 2,
+				"value": "data[0].val"
+			},
+			"template": {
+				"dashboard": "light",
+				"mobile": "light"
+			}
+		},
+		{
+			"name": "On 2",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"value": "Etat 2",
+			"configuration": {
+				"class": "0x25",
+				"instanceId": 2,
+				"value": "data[0].Set(255)"
+			},
+			"template": {
+				"dashboard": "light",
+				"mobile": "light"
+			}
+		},
+		{
+			"name": "Off 2",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"value": "Etat 2",
+			"configuration": {
+				"class": "0x25",
+				"instanceId": 2,
+				"value": "data[0].Set(0)"
+			},
+			"template": {
+				"dashboard": "light",
+				"mobile": "light"
+			}
+		},
+		{
+			"name": "Puissance",
+			"type": "info",
+			"subtype": "numeric",
+			"isVisible": 0,
+			"isHistorized": 1,
+			"unite": "W",
+			"configuration": {
+				"class": "0x32",
+				"instanceId": 0,
+				"value": "data[8].val",
+				"maxValue": 1150,
+				"minValue": 0
+			}
+		},
+		{
+			"name": "Consommation",
+			"type": "info",
+			"subtype": "numeric",
+			"isVisible": 0,
+			"isHistorized": 0,
+			"unite": "kWh",
+			"configuration": {
+				"class": "0x32",
+				"instanceId": 0,
+				"value": "data[0].val"
+			}
+		}
+	]
+}
