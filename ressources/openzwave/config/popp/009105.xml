@@ -57,7 +57,7 @@
 		</Value>
 
 		<Value type="list" genre="config" instance="1" index="22" label="LED ON color" size="1" value="3">
-			<Help/>Color for ON state</Help>
+			<Help>Color for ON state</Help>
 			<Item label="Off" value="0" />
 			<Item label="Red" value="1" />
 			<Item label="Green" value="2" />
