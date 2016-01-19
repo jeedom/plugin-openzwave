@@ -769,7 +769,7 @@ def push_node_is_dead(node_id):
     node_location = my_node.location
     if is_none_or_empty(node_name):
         node_name = 'Unknown' 
-    changes = {message: 'Le noeud: %s %s (%s) du serveur zwave: %s, est présumé mort.' %(node_location, node_name , node_id, _server_id)}
+    changes = {'message': 'Le noeud: %s %s (%s) du serveur zwave: %s, est présumé mort.' %(node_location, node_name , node_id, _server_id)}
     try:
         r = requests.post(_callback + '?apikey=' + _apikey, json=changes, timeout=(0.5, 120), verify=False)
         if r.status_code != requests.codes.ok:
