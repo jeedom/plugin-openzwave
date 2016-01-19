@@ -768,8 +768,8 @@ def push_node_is_dead(node_id):
     node_name = my_node.name
     node_location = my_node.location
     if is_none_or_empty(node_name):
-        node_name = 'Unknown' 
-    changes = {'message': 'Le noeud: %s %s (%s) du serveur zwave: %s, est présumé mort.' %(node_location, node_name , node_id, _server_id)}
+        node_name = my_node.product_name
+    changes = {'message': 'Node: %s %s (%s) of Zwave server: %s is presumed dead' % (node_location, node_name, node_id, _server_id)}
     try:
         r = requests.post(_callback + '?apikey=' + _apikey, json=changes, timeout=(0.5, 120), verify=False)
         if r.status_code != requests.codes.ok:
@@ -1399,10 +1399,10 @@ def serialize_neighbour_to_json(node_id):
         node_name = my_node.name
         if _network.controller.node_id == node_id:
             node_name = my_node.product_name
-        if _network.controller.node_id == node_id:
+        if is_none_or_empty(node_name):
             node_name = my_node.product_name
         if is_none_or_empty(node_name):
-            node_name = 'Unknown'                
+            node_name = 'Unknown'
         json_result['data']['name'] = {'value': node_name}
         json_result['data']['neighbours'] = {'value': list(my_node.neighbors), 'enabled': my_node.generic != 1}
         json_result['data']['isVirtual'] = {'value': ''}
