@@ -763,6 +763,21 @@ def save_node_event(node_id, value):
     return
 
 
+def push_node_is_dead(node_id):
+    my_node = _network.nodes[node_id]
+    node_name = my_node.name
+    node_location = my_node.location
+    if is_none_or_empty(node_name):
+        node_name = 'Unknown' 
+    changes = {message: 'Le noeud: %s %s (%s) du serveur zwave: %s, est présumé mort.' %(node_location, node_name , node_id, _server_id)}
+    try:
+        r = requests.post(_callback + '?apikey=' + _apikey, json=changes, timeout=(0.5, 120), verify=False)
+        if r.status_code != requests.codes.ok:
+            add_log_entry('Error on send request to jeedom, return code %s' % (str(r.status_code),), "error")
+    except Exception as error:
+        add_log_entry('Error on send request to jeedom %s' % (str(error),), "error")
+
+
 def network_started(network):
     add_log_entry("Openzwave network are started with homeId %0.8x." % (network.home_id,))    
     _network_information.assign_controller_notification(ZWaveController.SIGNAL_CTRL_STARTING, "Network is started")
@@ -1212,6 +1227,8 @@ def node_notification(args):
             # perform a ping to avoid device still awake after the Wake-up Interval Step
             threading.Timer(interval=wake_up_interval_step, function=force_sleeping, args=(node_id, 1)).start()
         debug_print('NodeId %s send a notification: %s' % (node_id, my_node.last_notification.description,))
+        if code == 5:
+            push_node_is_dead(node_id)
 
 app = Flask(__name__, static_url_path='/static')
 
