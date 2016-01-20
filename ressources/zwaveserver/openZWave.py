@@ -817,9 +817,13 @@ def recovering_failed_nodes_asynchronous():
                     continue
                 if my_node.is_failed:
                     debug_print('=> Try recovering, presumed Dead, nodeId: %s' % (node_id,))
+                    # a ping will try to revive the node
+                    _network.manager.testNetworkNode(_network.home_id, node_id, 1)
+                    # avoid stress network
+                    time.sleep(5)
                     if _network.manager.hasNodeFailed(_network.home_id, node_id):
                         # avoid stress network
-                        time.sleep(10)
+                        time.sleep(5)
                 elif my_node.is_listening_device and my_node.is_ready:
                     # check if a ping is require
                     if hasattr(my_node, 'last_notification'):
