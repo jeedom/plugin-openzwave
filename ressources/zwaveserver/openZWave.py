@@ -763,19 +763,22 @@ def save_node_event(node_id, value):
     return
 
 
-def push_node_is_dead(node_id):
-    my_node = _network.nodes[node_id]
-    node_name = my_node.name
-    node_location = my_node.location
-    if is_none_or_empty(node_name):
-        node_name = my_node.product_name
-    changes = {'message': 'Le noeud: %s %s (%s) du serveur zwave: %s, est mort.' % (node_location, node_name, node_id, _server_id)}
-    try:
-        r = requests.post(_callback + '?apikey=' + _apikey, json=changes, timeout=(0.5, 120), verify=False)
-        if r.status_code != requests.codes.ok:
-            add_log_entry('Error on send request to jeedom, return code %s' % (str(r.status_code),), "error")
-    except Exception as error:
-        add_log_entry('Error on send request to jeedom %s' % (str(error),), "error")
+def push_node_notification(node_id, notification_code):
+    # check for notification Dead or Alive
+    if notification_code in [5, 6]:
+        if notification_code == 5:
+            # Report when a node is presumed dead
+            alert_type = 'node_dead'
+        else:
+            # Report when a node is revived
+            alert_type = 'node_alive'
+        changes = {'alert': {'type': alert_type , 'id': node_id, 'serverId': _server_id}}
+        try:
+            r = requests.post(_callback + '?apikey=' + _apikey, json=changes, timeout=(0.5, 120), verify=False)
+            if r.status_code != requests.codes.ok:
+                add_log_entry('Error on send request to jeedom, return code %s' % (str(r.status_code),), "error")
+        except Exception as error:
+            add_log_entry('Error on send request to jeedom %s' % (str(error),), "error")
 
 
 def network_started(network):
@@ -1227,8 +1230,7 @@ def node_notification(args):
             # perform a ping to avoid device still awake after the Wake-up Interval Step
             threading.Timer(interval=wake_up_interval_step, function=force_sleeping, args=(node_id, 1)).start()
         debug_print('NodeId %s send a notification: %s' % (node_id, my_node.last_notification.description,))
-        if code == 5:
-            push_node_is_dead(node_id)
+        push_node_notification(node_id)
 
 app = Flask(__name__, static_url_path='/static')
 
