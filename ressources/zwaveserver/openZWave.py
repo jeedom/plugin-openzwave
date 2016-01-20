@@ -1230,7 +1230,7 @@ def node_notification(args):
             # perform a ping to avoid device still awake after the Wake-up Interval Step
             threading.Timer(interval=wake_up_interval_step, function=force_sleeping, args=(node_id, 1)).start()
         debug_print('NodeId %s send a notification: %s' % (node_id, my_node.last_notification.description,))
-        push_node_notification(node_id)
+        push_node_notification(node_id, code)
 
 app = Flask(__name__, static_url_path='/static')
 
