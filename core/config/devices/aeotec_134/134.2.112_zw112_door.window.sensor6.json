@@ -5,7 +5,7 @@
         "comlink" : "",
         "remark" : "",
         "imglink" : "aeotec.doorwindow6",
-        "battery_type" : "Rechargeable internal",
+        "battery_type" : "Interne rechargeable",
 		"configuration" : {
         "conf_version" : 1
 		},
@@ -17,7 +17,7 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "configuration": {
-                    "class": "0x20",
+                    "class": "0x30",
                     "value": "data[0].val"
                 },
                 "display": {
