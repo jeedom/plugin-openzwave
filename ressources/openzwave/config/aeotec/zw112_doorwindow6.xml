@@ -37,7 +37,7 @@
 			<Item label="Unlock" value="0"/>
 			<Item label="Lock" value="1"/>
 		</Value>
-		<Value type="int" index="255" genre="config" label="Reset To Factory Defaults" size="4" value="1" >
+		<Value type="list" index="255" genre="config" label="Reset To Factory Defaults" size="4" value="1" >
 			<Help>Reset to factory defaults</Help>
             <Item label="Reset to factory default setting" value="0"/>
 			<Item label="Normal" value="1"/>
