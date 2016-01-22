@@ -1204,7 +1204,6 @@ var app_nodes = {
 						var id = instance + ":" + commandclass + ":" + index;
 						var genre = nodes[z].instances[instance].commandClasses[commandclass].data[index].genre;
 						var pending_state = nodes[z].instances[instance].commandClasses[commandclass].data[index].pendingState;
-						var expected_data = nodes[z].instances[instance].commandClasses[commandclass].data[index].expected_data;
 						if (genre == "Config") {
 							switch (pending_state) {
 								case 1:
@@ -1297,6 +1296,10 @@ var app_nodes = {
 							polling += '<span class="label label-default" style="font-size:1em;">' + nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
 						}
 					}
+					var expected_data = nodes[z].instances[instance].commandClasses[commandclass].data[index].expected_data;
+					var data_item = nodes[z].instances[instance].commandClasses[commandclass].data[index].val;
+					var data_units = nodes[z].instances[instance].commandClasses[commandclass].data[index].units;
+
 					row.find("td[key=variable-polling]").html(polling);
 					row.find("td[key=variable-updatetime]").html(app_nodes.timestampConverter(nodes[z].instances[instance].commandClasses[commandclass].data[index].updateTime));
 					row_system.find("td[key=system-instance]").html(instance);
@@ -1304,7 +1307,11 @@ var app_nodes = {
 					row_system.find("td[key=system-index]").html(index);
 					row_system.find("td[key=system-name]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].name);
 					row_system.find("td[key=system-type]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + ' (' + nodes[z].instances[instance].commandClasses[commandclass].data[index].type + ')');
-					row_system.find("td[key=system-value]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].val + " " + nodes[z].instances[instance].commandClasses[commandclass].data[index].units);
+					var system_data = data_item + " " + data_units;
+					if (expected_data != null) {
+							system_data += '<br>(<i>' +expected_data + " " + data_units +'</i>)';
+						}
+					row_system.find("td[key=system-value]").html(system_data);
 					if (nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only == false) {
 						row_system.find("td[key=system-edit]").html('<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></button>');
 					}
@@ -1317,10 +1324,20 @@ var app_nodes = {
 					}
 					row_parameter.find("td[key=parameter-index]").html(index);
 					row_parameter.find("td[key=parameter-type]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW);
+
+
+
 					if (typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('list') && typeof openzwave_node_translation['configuration'][index].list[nodes[z].instances[instance].commandClasses[commandclass].data[index].val] !== 'undefined') {
-						row_parameter.find("td[key=parameter-value]").html(openzwave_node_translation['configuration'][index].list[nodes[z].instances[instance].commandClasses[commandclass].data[index].val]);
+						var translation_item = openzwave_node_translation['configuration'][index].list[data_item];
+						if (expected_data != null) {
+							translation_item += '<br>(<i>' +openzwave_node_translation['configuration'][index].list[expected_data] +'</i>)';
+						}
+						row_parameter.find("td[key=parameter-value]").html(translation_item);
 					} else {
-						row_parameter.find("td[key=parameter-value]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].val);
+						if (expected_data != null) {
+							data_item += '<br>(<i>' +expected_data +'</i>)';
+						}
+						row_parameter.find("td[key=parameter-value]").html(data_item);
 					}
 					row_parameter.find("td[key=parameter-edit]").html('<button type="button" class="btn btn-xs btn-primary editParam" data-paramid="' + index + '" data-paramtype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-paramname="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-paramvalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></button>');
 					if (typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('help')) {
