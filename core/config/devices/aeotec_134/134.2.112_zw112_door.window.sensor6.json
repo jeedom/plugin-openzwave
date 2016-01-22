@@ -5,7 +5,7 @@
         "comlink" : "",
         "remark" : "",
         "imglink" : "aeotec.doorwindow6",
-        "battery_type" : "Interne rechargeable",
+        "battery_type" : "Batterie",
 		"configuration" : {
         "conf_version" : 1
 		},
