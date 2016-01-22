@@ -433,10 +433,14 @@ class PendingConfiguration(object):
     
     def __init__(self, expected_data, timeout):
         self._startTime = int(time.time())
-        self._expectedData = expected_data
+        self._expected_data = expected_data
         self._timeOut = timeout
         self._data = None 
         
+    @property
+    def expected_data(self):        
+        return self._expected_data
+    
     @property
     def data(self):        
         return self._data
@@ -450,7 +454,7 @@ class PendingConfiguration(object):
         if self._data is None:
             # is pending
             return 3
-        if self._data != self._expectedData:
+        if self._data != self._expected_data:
             # the node reject changes and set a default
             return 2
         # the parameter have be set successfully
@@ -1545,10 +1549,12 @@ def serialize_node_to_json(node_id):
             else:
                 index2 = 0            
             pending_state = None
+            expected_data = None
             data_items = concatenate_list(my_value.data_items)
             if hasattr(my_value, 'pendingConfiguration'):
                 if my_value.pendingConfiguration is not None:
                     pending_state = my_value.pendingConfiguration.state
+                    expected_data = my_value.pendingConfiguration.expected_data
             try:
                 timestamp = int(my_value.last_update)
             except TypeError:
@@ -1569,7 +1575,7 @@ def serialize_node_to_json(node_id):
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['last'] = {"value": value2, "type": "int", "updateTime": timestamp}
                 if my_value.command_class in [COMMAND_CLASS_WAKE_UP]:
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['interval'] = {"value": value2, "type": "int", "updateTime": timestamp}
-                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": my_value.label, "help": my_value.help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state}
+                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": my_value.label, "help": my_value.help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state, "expected_data": expected_data}
                 
             elif my_value.command_class not in json_result['instances'][instance2]['commandClasses']:
                 json_result['instances'][instance2]['commandClasses'][my_value.command_class] = {"updateTime": timestamp}
@@ -1582,7 +1588,7 @@ def serialize_node_to_json(node_id):
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['last'] = {"value": value2, "type": "int", "updateTime": timestamp}
                 if my_value.command_class in [COMMAND_CLASS_WAKE_UP]:
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['interval'] = {"value": value2, "type": "int", "updateTime": timestamp}
-                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": my_value.label, "help": my_value.help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state}
+                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": my_value.label, "help": my_value.help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state, "expected_data": expected_data}
                 
             elif index2 not in json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']:
                 if my_value.command_class in [128]:
@@ -1590,7 +1596,7 @@ def serialize_node_to_json(node_id):
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['last'] = {"value": value2, "type": "int", "updateTime": timestamp}
                 if my_value.command_class in [COMMAND_CLASS_WAKE_UP]:
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['interval'] = {"value": value2, "type": "int", "updateTime": timestamp}
-                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": my_value.label, "help": my_value.help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state}
+                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": my_value.label, "help": my_value.help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state, "expected_data": expected_data}
     else:
         add_log_entry('This network does not contain any node with the id %s' % (node_id,), 'warning')
     return json_result
@@ -2063,6 +2069,11 @@ def request_all_config_params(node_id):
     # Request the values of all known configurable parameters from a device
     debug_print("Request the values of all known configurable parameters from nodeId %s" % (node_id,))
     if node_id in _network.nodes:
+        for val in _network.nodes[node_id].get_values(class_id=COMMAND_CLASS_CONFIGURATION):
+            configuration_item = _network.nodes[node_id].values[val]
+            if hasattr(configuration_item, 'pendingConfiguration'):
+                if configuration_item.pendingConfiguration is not None:
+                    configuration_item.pendingConfiguration = None
         _network.manager.requestAllConfigParams(_network.home_id, node_id)
         return format_json_result()
     else:

@@ -1204,6 +1204,7 @@ var app_nodes = {
 						var id = instance + ":" + commandclass + ":" + index;
 						var genre = nodes[z].instances[instance].commandClasses[commandclass].data[index].genre;
 						var pending_state = nodes[z].instances[instance].commandClasses[commandclass].data[index].pendingState;
+						var expected_data = nodes[z].instances[instance].commandClasses[commandclass].data[index].expected_data;
 						if (genre == "Config") {
 							switch (pending_state) {
 								case 1:
