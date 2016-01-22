@@ -581,6 +581,7 @@ renderer.run();
 setTimeout(function(){ renderer.pause();renderer.reset(); }, 200);
 }
 });
+  //$('#graph_network').html('<div id="graph-node-legende"></div>');
 },
 show_stats: function (){
  var network = $(".network");

@@ -183,6 +183,36 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 
 				<div id="graph_network" class="tab-pane span12">
 					<div id="graph-node-name"></div>
+					<div id="graph-node-legende">
+					<table class="table table-bordered table-condensed" style="width: 500px;">
+						<thead>
+							<tr><th colspan="2">{{Légende}}</th></tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td bgcolor="#00a2e8" style="width: 40px"></td>
+								<td>{{Communication directe}}</td>
+							</tr>
+							<tr>
+								<td bgcolor="#7BCC7B" ></td>
+								<td>{{Virtuellement associé au contrôleur primaire}}</td>
+							</tr>
+							<tr>
+								<td bgcolor="#E5E500" ></td>
+								<td>{{Toutes les routes ont plus d'un saut}}</td>
+							</tr>
+							<tr>
+								<td bgcolor="#979797" ></td>
+								<td>{{interview non complet}}</td>
+							</tr>
+							<tr>
+								<td bgcolor="#d20606" ></td>
+								<td>{{Présumé mort ou Pas de voisin}}</td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+
 				</div>
 
 				<div id="route_network" class="tab-pane span12">
