@@ -181,12 +181,12 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 
 				</div>
 
-				<div id="graph_network" class="tab-pane span12">
-					<div id="graph-node-name"></div>
-					<div id="graph-node-legende">
-					<table class="table table-bordered table-condensed" style="width: 500px;">
+				<div id="graph_network" class="tab-pane">
+					<table class="table table-bordered table-condensed" style="width: 350px;position:fixed;margin-top : 25px;">
 						<thead>
-							<tr><th colspan="2">{{Légende}}</th></tr>
+							<tr>
+								<th colspan="2">{{Légende}}</th>
+							</tr>
 						</thead>
 						<tbody>
 							<tr>
@@ -211,11 +211,14 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 							</tr>
 						</tbody>
 					</table>
-					</div>
+
+					<div id="graph-node-name"></div>
+
+
 
 				</div>
 
-				<div id="route_network" class="tab-pane span12">
+				<div id="route_network" class="tab-pane">
 					<br/>
 					<div id="div_routingTable"></div>
 					<table class="table table-bordered table-condensed" style="width: 500px;">
