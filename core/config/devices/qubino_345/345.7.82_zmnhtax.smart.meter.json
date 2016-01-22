@@ -1,89 +1,90 @@
 {
-		"name" : "ZMNHTAx Smart Meter",
-        "doc" : "",
-        "type": "Rail-din",
-        "imglink" : "qubino.zmnhtax",
-      "configuration" : {
+	"name" : "ZMNHTAx Smart Meter",
+    "doc" : "",
+    "type": "Rail-din",
+    "imglink" : "qubino.zmnhtax",
+	"remark" : "Problème de remonté de la puissance, requière le rafraichissement manuel 5 minutes",
+    "configuration" : {
         "conf_version" : 1
+	},
+    "commands" : [
+        {
+			"name" : "On",
+			"type" : "action",
+			"subtype" : "other",
+			"isVisible" : 1,
+       		"value": "Etat",
+			"configuration" :
+			{
+				"instanceId" : 0,
+				"class" : "0x25",
+				"value" : "data[0].Set(255)"
+			},
+       		"template":
+       		{
+       			"dashboard": "light",
+       			"mobile": "light"
+       		}
 		},
-      "commands" : [
-         {
-				"name" : "On",
-				"type" : "action",
-				"subtype" : "other",
-				"isVisible" : 1,
-                		"value": "Etat",
-				"configuration" :
-				{
-					"instanceId" : 0,
-					"class" : "0x25",
-					"value" : "data[0].Set(255)"
-				},
-                		"template": 
-                		{
-                    			"dashboard": "light",
-                    			"mobile": "light"
-                		}
-			},
+		{
+			"name" : "Off",
+			"type" : "action",
+			"subtype" : "other",
+			"isVisible" : 1,
+       		"value": "Etat",
+			"configuration" :
 			{
-				"name" : "Off",
-				"type" : "action",
-				"subtype" : "other",
-				"isVisible" : 1,
-                		"value": "Etat",
-				"configuration" :
-				{
-					"instanceId" : 0,
-					"class" : "0x25",
-					"value" : "data[0].Set(0)"
-				},
-                		"template": 	
-                		{
-                    			"dashboard": "light",
-                    			"mobile": "light"
-                		}
+				"instanceId" : 0,
+				"class" : "0x25",
+				"value" : "data[0].Set(0)"
 			},
+       		"template":
+       		{
+       			"dashboard": "light",
+       			"mobile": "light"
+       		}
+		},
+		{
+			"name" : "Etat",
+			"type" : "info",
+			"subtype" : "binary",
+			"isVisible" : 0,
+			"isHistorized" : 0,
+			"eventOnly" : 1,
+			"configuration" :
 			{
-				"name" : "Etat",
-				"type" : "info",
-				"subtype" : "binary",
-				"isVisible" : 0,
-				"isHistorized" : 0,
-				"eventOnly" : 1,
-				"configuration" :
-				{
-					"instanceId" : 0,
-					"class" : "0x25",
-					"value" : "data[0].val"
-				}
-			},
-			{
-				"name" : "Puissance",
-				"type" : "info",
-				"subtype" : "numeric",
-				"isVisible" : 1,
-				"isHistorized" : 1,
-				"unite" : "W",
-				"configuration" :
-				{
-					"instanceId" : 0,
-					"class" : "0x32",
-					"value" : "data[8].val"
-				}
-			},
-			{
-				"name" : "Consommation",
-				"type" : "info",
-				"subtype" : "numeric",
-				"isVisible" : 0,
-				"isHistorized" : 1,
-				"unite" : "kWh",
-				"configuration" :
-				{
-					"instanceId" : 0,
-					"class" : "0x32",
-					"value" : "data[0].val"
-				}
+				"instanceId" : 0,
+				"class" : "0x25",
+				"value" : "data[0].val"
 			}
-      ]
+		},
+		{
+			"name" : "Puissance",
+			"type" : "info",
+			"subtype" : "numeric",
+			"isVisible" : 1,
+			"isHistorized" : 1,
+			"unite" : "W",
+			"configuration" :
+			{
+				"instanceId" : 0,
+				"class" : "0x32",
+				"value" : "data[8].val"
+			}
+		},
+		{
+			"name" : "Consommation",
+			"type" : "info",
+			"subtype" : "numeric",
+			"isVisible" : 0,
+			"isHistorized" : 1,
+			"unite" : "kWh",
+			"configuration" :
+			{
+				"instanceId" : 0,
+				"class" : "0x32",
+				"value" : "data[0].val"
+			}
+		}
+	    ]
    }
