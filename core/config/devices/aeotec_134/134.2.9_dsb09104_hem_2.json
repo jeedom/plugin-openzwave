@@ -2,8 +2,8 @@
 		"name": "Home Energy Meter (DSB09104)",
         "doc" : "",
         "type": "Consommation",
-        "comlink" : "2289-aeon-labs-compteur-de-consommation-electrique-z-wave-2c-200a-1220000010598",
-        "remark" : "",
+        "comlink" : "",
+        "remark" : "Remplacé par le Home Energy Meter 2G (DSB28)",
         "imglink" : "aeotec.hem",
         "battery_type" : "4x1.5V AAA",
 		"configuration" : {
