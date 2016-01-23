@@ -2,7 +2,7 @@
 	"name" : "Smartplug",
     "doc" : "nodon.smartplug_-_Prise",
     "type": "Prise",
-    "comlink" : "2939-nodon-octan-telecommande-murale-z-wave-3700313920282",
+    "comlink" : "2892-nodon-prise-intelligente-z-wave-type-schuko-3700313920206",
     "remark" : "",
     "imglink" : "nodon.smartplug",
     "configuration" : {
