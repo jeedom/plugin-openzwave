@@ -26,3 +26,7 @@ sftp-config.json
 .idea/inspectionProfiles/Project_Default.xml
 
 .idea/webServers.xml
+
+.idea/compiler.xml
+
+.idea/copyright/profiles_settings.xml
