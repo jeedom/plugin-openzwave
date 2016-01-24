@@ -659,6 +659,7 @@ def graceful_stop_network():
             dispatcher.disconnect(value_added, ZWaveNetwork.SIGNAL_VALUE_ADDED)
             dispatcher.disconnect(value_update, ZWaveNetwork.SIGNAL_VALUE_CHANGED)
             dispatcher.disconnect(value_refreshed, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
+            # dispatcher.disconnect(value_polling_enabled, ZWaveNetwork.SIGNAL_POLLING_ENABLED)
             dispatcher.disconnect(node_event, ZWaveNetwork.SIGNAL_NODE_EVENT)
             dispatcher.disconnect(scene_event, ZWaveNetwork.SIGNAL_SCENE_EVENT)
             dispatcher.disconnect(essential_node_queries_complete, ZWaveNetwork.SIGNAL_ESSENTIAL_NODE_QUERIES_COMPLETE)
@@ -1087,9 +1088,30 @@ def value_added(network, node, value):
     # debug_print('value_added. %s %s' % (node.node_id, value.label,))
     # mark initial data for skip notification during interview
     value.lastData = value.data 
+
+
+def value_polling_enabled(network, node, value):
+    # not yet handle correctly ozw lib and wrapper must updated to use this check
     # check if old polling is outside authorized range
     if value.poll_intensity > _maximum_poll_intensity:
         changes_value_polling(_maximum_poll_intensity, value)
+    # check if old polling is at lower index for CC and instance
+    if value.poll_intensity > 0:
+        debug_print('Poll intensity on nodeId:%s value %s command_class %s instance %s index %s' % (node.node_id, value.label, value.command_class, value.instance, value.index))
+        # get all CC of node
+        for val in node.get_values(class_id=value.command_class):
+            # filter on same instance
+            if node.values[val].instance == value.instance:
+                my_value = node.values[val]
+                # check is is the lower index is have polling attribute
+                if my_value.index < value.index & my_value.poll_intensity == 0:
+                    poll_intensity = value.poll_intensity
+                    # reset last polling
+                    value.disable_poll()
+                    # set polling of lower index
+                    changes_value_polling(poll_intensity, my_value)
+                    debug_print('Changes poll intensity on nodeId:%s form %s to %s' % (node.node_id, value.label, my_value.label,))
+                    break
 
 
 def prepare_value_notification(node, value):
@@ -1271,6 +1293,8 @@ dispatcher.connect(value_added, ZWaveNetwork.SIGNAL_VALUE_ADDED)
 dispatcher.connect(value_update, ZWaveNetwork.SIGNAL_VALUE_CHANGED)
 # A node value has been updated from the Z-Wave network.
 dispatcher.connect(value_refreshed, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
+# Polling of a node value has been successfully turned on.
+# dispatcher.connect(value_polling_enabled, ZWaveNetwork.SIGNAL_POLLING_ENABLED)
 # when a node sends a Basic_Set command to the controller.
 dispatcher.connect(node_event, ZWaveNetwork.SIGNAL_NODE_EVENT)
 # scene event
@@ -1721,12 +1745,12 @@ def serialize_controller_to_json():
 
 def changes_value_polling(intensity, value):
     if intensity == 0:  # disable the value polling for any value
-        value.disable_poll()
+        if value.poll_intensity > 0:
+            value.disable_poll()
     elif value.genre == "User" and not value.is_write_only:  # we activate the value polling only on user genre value and is not a writeOnly
         if intensity > _maximum_poll_intensity:
             intensity = _maximum_poll_intensity
         value.enable_poll(intensity)
-    write_config() 
 
 
 def convert_user_code_to_hex(value, length=2):
@@ -1997,10 +2021,15 @@ def reset_polling(node_id):
 def set_polling2(node_id, value_id, frequency):
     debug_print("set_polling for nodeId: %s ValueId %s at: %s" % (node_id, value_id, frequency,))
     if node_id in _network.nodes:
-        for val in _network.nodes[node_id].get_values():
-            my_value = _network.nodes[node_id].values[val]
+        my_node = _network.nodes[node_id]
+        for val in my_node.get_values():
+            my_value = my_node.values[val]
             if my_value.value_id == value_id:
                 changes_value_polling(frequency, my_value)
+                # reset other polling for this CC and instance
+                for value_id in my_node.get_values(class_id=my_value.command_class):
+                    if my_node.values[value_id].instance == my_value.instance and my_node.values[value_id].index != my_value.index_id:
+                        changes_value_polling(0, value_id)
                 return format_json_result()
         return format_json_result(False, 'valueId not found') 
     else:
@@ -2013,13 +2042,18 @@ def set_polling_value(node_id, instance_id, cc_id, index, frequency):
     debug_print("set_polling_value for nodeId: %s instance: %s cc:%s index:%s at: %s" % (node_id, instance_id, cc_id, index, frequency,))
     if node_id in _network.nodes:
         for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16)):
-            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[val].index == index:
+            if _network.nodes[node_id].values[val].instance - 1 == instance_id:
                 my_value = _network.nodes[node_id].values[val]
-                if frequency == 0:
-                    # disable the value polling for any value
+                if frequency == 0 & my_value.poll_intensity > 0:
+                    # disable the value polling for any values for this CC and instance
                     my_value.disable_poll()
                 else:
-                    changes_value_polling(frequency, my_value)
+                    if _network.nodes[node_id].values[val].index == index :
+                        changes_value_polling(frequency, my_value)
+                    else:
+                        # disable the value polling for other index of same instance
+                        if my_value.poll_intensity > 0:
+                            my_value.disable_poll()
         write_config()  
         return format_json_result()      
     else:
