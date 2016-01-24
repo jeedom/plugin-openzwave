@@ -1296,7 +1296,12 @@ var app_nodes = {
 							polling += '<span class="label label-default" style="font-size:1em;">' + nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
 						}
 					}
-					var expected_data = nodes[z].instances[instance].commandClasses[commandclass].data[index].expected_data;
+					var expected_data = null;
+					var pending_state = nodes[z].instances[instance].commandClasses[commandclass].data[index].pendingState;
+					if (pending_state >= 2){
+						expected_data = nodes[z].instances[instance].commandClasses[commandclass].data[index].expected_data;
+					}
+
 					var data_item = nodes[z].instances[instance].commandClasses[commandclass].data[index].val;
 					var data_units = nodes[z].instances[instance].commandClasses[commandclass].data[index].units;
 
