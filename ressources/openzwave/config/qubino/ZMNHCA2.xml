@@ -16,7 +16,7 @@
 		<Value type="byte" genre="config" instance="1" index="40" label="Power reporting in Watts on power change for Q1 or Q2" size="1" min="0" max="100" value="1">
 			<Help>Set value from 0 - 100 (0% - 100%). 0 - Reporting Disabled. 1 - 100 = 1% - 100% Reporting enabled. Power report is send (push) only when actual power (in Watts) in real time changes for more than set percentage comparing to previous actual power in Watts, step is 1%. Default value 1</Help>
 		</Value>
-	
+
 		<Value type="short" genre="config" instance="1" index="42" label="Power reporting in Watts by time interval for Q1 or Q2" min="0" max="65535" value="300">
 			<Help>Set value means time interval (0 - 65535) in seconds, when power report is send. 0 - Reporting Disabled. 1 - 65535 = 1second - 65535 seconds. Reporting enabled. Power report is send with time interval set by entered value. Default value 300 (power report in Watts is send each 300s)</Help>
 		</Value>
@@ -46,8 +46,8 @@
 	<!-- Association Groups -->
 	<CommandClass id="133">
 		<Associations num_groups="2">
-			<Group index="1" max_associations="5" label="Multilevel" auto="true"/>
-			<Group index="2" max_associations="1" label="Default reporting" auto="true"/>
+			<Group index="1" max_associations="5" label="Multilevel" auto="false"/>
+			<Group index="2" max_associations="1" label="Lifeline" auto="true"/>
 		</Associations>
 	</CommandClass>
 
