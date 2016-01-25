@@ -16,7 +16,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x25",
-                    "instanceId": 1,
+                    "instanceId": 2,
                     "value": "data[0].Set(255)"
                 }
             },
@@ -27,7 +27,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x25",
-                    "instanceId": 1,
+                    "instanceId": 2,
                     "value": "data[0].Set(0)"
                 }
             },
@@ -39,7 +39,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x25",
-                    "instanceId": 1,
+                    "instanceId": 2,
                     "value": "data[0].val"
                 }
             },
@@ -52,7 +52,7 @@
                 "unite": "W",
                 "configuration": {
                     "class": "0x32",
-                    "instanceId": 1,
+                    "instanceId": 2,
                     "value": "data[2].val",
                     "maxValue": 3200,
                     "minValue": 0
@@ -67,7 +67,7 @@
                 "unite": "kWh",
                 "configuration": {
                     "class": "0x32",
-                    "instanceId": 1,
+                    "instanceId": 2,
                     "value": "data[0].val"
                 }
             },
@@ -78,7 +78,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x25",
-                    "instanceId": 2,
+                    "instanceId": 0,
                     "value": "data[0].Set(255)"
                 }
             },
@@ -89,7 +89,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x25",
-                    "instanceId": 2,
+                    "instanceId": 0,
                     "value": "data[0].Set(0)"
                 }
             },
@@ -101,7 +101,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x25",
-                    "instanceId": 2,
+                    "instanceId": 0,
                     "value": "data[0].val"
                 }
             },
@@ -114,7 +114,7 @@
                 "unite": "W",
                 "configuration": {
                     "class": "0x32",
-                    "instanceId": 2,
+                    "instanceId": 0,
                     "value": "data[2].val",
                     "maxValue": 2000,
                     "minValue": 0
@@ -129,7 +129,7 @@
                 "unite": "kWh",
                 "configuration": {
                     "class": "0x32",
-                    "instanceId": 2,
+                    "instanceId": 0,
                     "value": "data[0].val"
                 }
             },
@@ -140,7 +140,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x25",
-                    "instanceId": 3,
+                    "instanceId": 1,
                     "value": "data[0].Set(255)"
                 }
             },
@@ -151,7 +151,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x25",
-                    "instanceId": 3,
+                    "instanceId": 1,
                     "value": "data[0].Set(0)"
                 }
             },
@@ -163,7 +163,7 @@
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x25",
-                    "instanceId": 3,
+                    "instanceId": 1,
                     "value": "data[0].val"
                 }
             },
@@ -176,7 +176,7 @@
                 "unite": "W",
                 "configuration": {
                     "class": "0x32",
-                    "instanceId": 3,
+                    "instanceId": 1,
                     "value": "data[2].val",
                     "maxValue": 2000,
                     "minValue": 0
@@ -191,7 +191,7 @@
                 "unite": "kWh",
                 "configuration": {
                     "class": "0x32",
-                    "instanceId": 3,
+                    "instanceId": 1,
                     "value": "data[0].val"
                 }
             }
