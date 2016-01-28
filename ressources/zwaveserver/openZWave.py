@@ -715,7 +715,7 @@ def send_changes_async():
         start_time = datetime.datetime.now()
         changes = _changes_async
         _changes_async = {}
-        if 'device' in changes or 'controller' in changes:
+        if 'device' in changes or 'controller' in changes or 'network' in changes:
             changes['serverId'] = _server_id
             # debug_print('Send data async to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
             debug_print('Push data to jeedom')
@@ -768,6 +768,19 @@ def save_node_event(node_id, value):
     return
 
 
+def save_network_state(network_state):
+    # STATE_STOPPED = 0
+    # STATE_FAILED = 1
+    # STATE_RESET = 3
+    # STATE_STARTED = 5
+    # STATE_AWAKED = 7
+    # STATE_READY = 10
+    global _changes_async
+    if 'network' not in _changes_async:
+        _changes_async['network'] = {}
+    _changes_async['network']['state'] = {"value": network_state}
+
+
 def push_node_notification(node_id, notification_code):
     # check for notification Dead or Alive
     if notification_code in [5, 6]:
@@ -789,6 +802,7 @@ def push_node_notification(node_id, notification_code):
 def network_started(network):
     add_log_entry("Openzwave network are started with homeId %0.8x." % (network.home_id,))    
     _network_information.assign_controller_notification(ZWaveController.SIGNAL_CTRL_STARTING, "Network is started")
+    save_network_state(network.state)
     if network.manager.getPollInterval() != _default_poll_interval:
         network.set_poll_interval(_default_poll_interval, False)
 
@@ -796,6 +810,7 @@ def network_started(network):
 def network_failed(network):
     add_log_entry("Openzwave network can't load", "error")
     _network_information.assign_controller_notification(ZWaveController.SIGNAL_CTRL_ERROR, "Network have failed")
+    save_network_state(network.state)
 
 
 def validate_association_groups_asynchronous():
@@ -901,13 +916,15 @@ def network_awaked(network):
     add_log_entry("Validate association groups will starting in %d sec" % (_validate_association_groups_timer,))
     threading.Thread(target=recovering_failed_nodes_asynchronous).start()
     # start listening for group changes
-    dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)    
+    dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
+    save_network_state(network.state)
 
 
 def network_ready(network):
     add_log_entry("Openzwave network is ready with %d nodes (%d are sleeping). All nodes are queried, the network is fully functional." % (network.nodes_count, get_sleeping_nodes_count(),))
     write_config()
     _network_information.assign_controller_notification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is ready")
+    save_network_state(network.state)
 
 
 def button_on(network, node):
