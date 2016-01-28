@@ -2761,7 +2761,7 @@ def toggle_switch(node_id, instance_id, cc_id, index):
         return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].data[0].SwitchAll(<int:state>)', methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)', methods=['GET'])
 def switch_all(node_id, state):
     # Method for switching all devices on or off together.  The devices must support
     # the SwitchAll command class.  The command is first broadcast to all nodes, and
