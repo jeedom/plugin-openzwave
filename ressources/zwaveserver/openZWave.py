@@ -761,11 +761,13 @@ def save_node_event(node_id, value):
             _changes_async['controller'] = {}
         _changes_async['controller']['included'] = {"value": node_id}
     elif value in [0, 1, 5] and _controller_state != value:
-        if 'controller' not in _changes_async:
-            _changes_async['controller'] = {}
+        # save controller state
         _controller_state = value
-        _changes_async['controller']['state'] = {"value": value}
-    return
+        # not controller notification before network is at least awaked
+        if _network.state >= 7:
+            if 'controller' not in _changes_async:
+                _changes_async['controller'] = {}
+            _changes_async['controller']['state'] = {"value": value}
 
 
 def save_network_state(network_state):
