@@ -2235,12 +2235,14 @@ def set_config(node_id, index_id, value, size):
     debug_print("set_config for nodeId:%s index:%s, value:%s, size:%s" % (node_id, index_id, value, size,))
     if size == 0:
         size = 2
+    if size > 4:
+        size = 4
     try:
         if node_id in _network.nodes:
-            _network.nodes[node_id].set_config_param(index_id, value, size)
-            my_value = get_value_by_index(node_id, COMMAND_CLASS_CONFIGURATION, 1, index_id)
+            result = _network.nodes[node_id].set_config_param(index_id, value, size)
+            my_value = get_value_by_index(node_id, COMMAND_CLASS_CONFIGURATION, 1, index_id, False)
             mark_pending_change(my_value, value)
-            return format_json_result()
+            return format_json_result(result)
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
     except Exception, exception:
@@ -2291,9 +2293,9 @@ def set_config3(node_id, index_id, value, size):
     value = int(value)
     try:
         if node_id in _network.nodes:
-            _network.nodes[node_id].set_config_param(index_id, value, size)
+            result = _network.nodes[node_id].set_config_param(index_id, value, size)
             mark_pending_change(get_value_by_index(node_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value)
-            return format_json_result()
+            return format_json_result(result)
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
     except Exception, exception:
