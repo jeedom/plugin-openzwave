@@ -22,9 +22,45 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 		} catch (Exception $e) {
 			$controlerState = null;
 		}
-		if ($state < 7) {
-			echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert' . $id . '" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Openzwave est en cours de démarrage sur ' . $server['name'] . '.}}</div>';
+
+		switch ($state) {
+			case 0: # STATE_STOPPED = 0
+				event::add('jeedom::alert', array(
+					'level' => 'danger',
+					'page' => 'openzwave',
+					'message' => __('Le réseaux Z-Wave est arreté sur le serveur ', __FILE__) . $server['name'],
+				));
+				break;
+			case 1: # STATE_FAILED = 1
+				event::add('jeedom::alert', array(
+					'level' => 'danger',
+					'page' => 'openzwave',
+					'message' => __('Le réseaux Z-Wave est en erreur sur le serveur ', __FILE__) . $server['name'],
+				));
+				break;
+			case 3: # STATE_RESET = 3
+				event::add('jeedom::alert', array(
+					'level' => 'danger',
+					'page' => 'openzwave',
+					'message' => __('Le réseaux Z-Wave est remis à zéro sur le serveur ', __FILE__) . $server['name'],
+				));
+				break;
+			case 5: # STATE_STARTED = 5
+				event::add('jeedom::alert', array(
+					'level' => 'warning',
+					'page' => 'openzwave',
+					'message' => __('Le réseaux Z-Wave est en cours de démarrage sur le serveur ', __FILE__) . $server['name'],
+				));
+				break;
+			case 5: # STATE_AWAKED = 7
+				event::add('jeedom::alert', array(
+					'level' => 'danger',
+					'page' => 'openzwave',
+					'message' => __('Le réseaux Z-Wave est actif sur le serveur ', __FILE__) . $server['name'],
+				));
+				break;
 		}
+
 		if ($controlerState === 0) {
 			echo '<div id="div_inclusionAlert' . $id . '"></div>';
 		}

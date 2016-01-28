@@ -340,6 +340,18 @@ class openzwave extends eqLogic {
 		}
 	}
 
+	public static function getNetworkNameByServerId($_serverId = '') {
+		if ($_serverId == 0) {
+			return __('Local', __FILE__);
+		} else {
+			$jeeNetwork = jeeNetwork::byId($_serverId);
+			if (is_object($jeeNetwork)) {
+				return $jeeNetwork->getName();
+			}
+		}
+		return $_serverId;
+	}
+
 /*     * ********************************************************************** */
 /*     * ***********************OPENZWAVE MANAGEMENT*************************** */
 

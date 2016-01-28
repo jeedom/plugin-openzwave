@@ -47,6 +47,10 @@ if (!is_array($results)) {
 	die();
 }
 
+if (!isset($results['serverId'])) {
+	$results['serverId'] = '';
+}
+
 if (isset($results['device'])) {
 	foreach ($results['device'] as $node_id => $datas) {
 		$eqLogic = openzwave::getEqLogicByLogicalIdAndServerId($node_id, $results['serverId']);
@@ -80,15 +84,12 @@ if (isset($results['device'])) {
 
 if (isset($results['controller'])) {
 	if (isset($results['controller']['state'])) {
-		$jeeNetwork = jeeNetwork::byId($results['serverId']);
-		if (is_object($jeeNetwork) || $results['serverId'] == 0) {
-			event::add('zwave::controller.data.controllerState',
-				array(
-					'name' => ($results['serverId'] == 0) ? 'local' : $jeeNetwork->getName(),
-					'state' => $results['controller']['state']['value'],
-					'serverId' => $results['serverId'])
-			);
-		}
+		event::add('zwave::controller.data.controllerState',
+			array(
+				'name' => openzwave::getNetworkNameByServerId($results['serverId']),
+				'state' => $results['controller']['state']['value'],
+				'serverId' => $results['serverId'])
+		);
 	}
 	if (isset($results['controller']['excluded'])) {
 		event::add('jeedom::alert', array(
@@ -114,6 +115,55 @@ if (isset($results['controller'])) {
 			'message' => __('Inclusion en cours...', __FILE__),
 		));
 		openzwave::syncEqLogicWithOpenZwave($results['serverId'], $results['controller']['included']['value']);
+	}
+}
+
+if (isset($results['network'])) {
+	if (isset($results['network']['state']) && isset($results['network']['state']['value'])) {
+		switch ($results['network']['state']['value']) {
+			case 0: # STATE_STOPPED = 0
+				event::add('jeedom::alert', array(
+					'level' => 'danger',
+					'page' => 'openzwave',
+					'message' => __('Le réseaux Z-Wave est arreté sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
+				));
+				break;
+			case 1: # STATE_FAILED = 1
+				event::add('jeedom::alert', array(
+					'level' => 'danger',
+					'page' => 'openzwave',
+					'message' => __('Le réseaux Z-Wave est en erreur sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
+				));
+				break;
+			case 3: # STATE_RESET = 3
+				event::add('jeedom::alert', array(
+					'level' => 'danger',
+					'page' => 'openzwave',
+					'message' => __('Le réseaux Z-Wave est remis à zéro sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
+				));
+				break;
+			case 5: # STATE_STARTED = 5
+				event::add('jeedom::alert', array(
+					'level' => 'warning',
+					'page' => 'openzwave',
+					'message' => __('Le réseaux Z-Wave est en cours de démarrage sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
+				));
+				break;
+			case 5: # STATE_AWAKED = 7
+				event::add('jeedom::alert', array(
+					'level' => 'warning',
+					'page' => 'openzwave',
+					'message' => '',
+				));
+				break;
+			case 10: # STATE_READY = 10
+				event::add('jeedom::alert', array(
+					'level' => 'warning',
+					'page' => 'openzwave',
+					'message' => '',
+				));
+				break;
+		}
 	}
 }
 
