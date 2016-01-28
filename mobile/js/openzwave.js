@@ -38,7 +38,7 @@
 });
 
 $('body').on('zwave::notification', function (_event,_options) {
-   $('#div_inclusionAlert').html(_options);
+ $('#div_inclusionAlert').html(_options);
 });
 
 $('body').on('zwave::includeDevice', function (_event,_options) {
@@ -71,31 +71,34 @@ $('#div_listIncludeSever').delegate('.changeIncludeState','click', function() {
         }
         var listServerZwave = data.result;
         $('#div_listIncludeSever').empty();
+        var html = '';
+        html += '<div id="div_inclusionAlert" style="text-align: center;font-size: 2em;"></div>';
+        $('#div_listIncludeSever').append(html);
         for(var i in listServerZwave){
             if(listServerZwave[i].name != null){
-             var html = '';
-             html += '<legend>'+listServerZwave[i].name+'</legend>';
-             html += '<div id="div_inclusionAlert'+i+'" style="text-align: center;font-size: 2em;"></div>';
-             html += '<div class="ui-grid-a">';
-             html += '<div class="ui-block-a">';
-             html += '<center>';
-             html += '<a href="#" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button changeIncludeState" data-mode="1" data-state="1" data-serverID="'+i+'" style="margin: 5px;">';
-             html += '<i class="fa fa-sign-in fa-rotate-90" style="font-size: 6em;"></i><br/>{{Inclusion}}';
-             html += '</a>';
-             html += '</center>';
-             html += '</div>';
-             html += '<div class="ui-block-b">';
-             html += '<center>';
-             html += '<a href="#" class="ui-btn ui-btn-raised clr-warning waves-effect waves-button changeIncludeState" data-mode="0" data-state="1" data-serverID="'+i+'" style="margin: 5px;">';
-             html += '<i class="fa fa-sign-out fa-rotate-90" style="font-size: 6em;"></i><br/>{{Exclusion}}';
-             html += '</a>';
-             html += '</center>';
-             html += '</div>';
-             html += '</div>';
-             $('#div_listIncludeSever').append(html);
-             var controllerState = getControllerState(i);
-             var networkState = controllerState.result.data.mode.value;
-             if (networkState == "0") {
+               var html = '';
+               html += '<legend>'+listServerZwave[i].name+'</legend>';
+               html += '<div id="div_inclusionAlert'+i+'" style="text-align: center;font-size: 2em;"></div>';
+               html += '<div class="ui-grid-a">';
+               html += '<div class="ui-block-a">';
+               html += '<center>';
+               html += '<a href="#" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button changeIncludeState" data-mode="1" data-state="1" data-serverID="'+i+'" style="margin: 5px;">';
+               html += '<i class="fa fa-sign-in fa-rotate-90" style="font-size: 6em;"></i><br/>{{Inclusion}}';
+               html += '</a>';
+               html += '</center>';
+               html += '</div>';
+               html += '<div class="ui-block-b">';
+               html += '<center>';
+               html += '<a href="#" class="ui-btn ui-btn-raised clr-warning waves-effect waves-button changeIncludeState" data-mode="0" data-state="1" data-serverID="'+i+'" style="margin: 5px;">';
+               html += '<i class="fa fa-sign-out fa-rotate-90" style="font-size: 6em;"></i><br/>{{Exclusion}}';
+               html += '</a>';
+               html += '</center>';
+               html += '</div>';
+               html += '</div>';
+               $('#div_listIncludeSever').append(html);
+               var controllerState = getControllerState(i);
+               var networkState = controllerState.result.data.mode.value;
+               if (networkState == "0") {
                 $('#div_inclusionAlert'+i).html('{{Aucun mode actif}}');
             }
             if (networkState == "1") {

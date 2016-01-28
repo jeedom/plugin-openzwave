@@ -181,9 +181,8 @@ class openzwave extends eqLogic {
 			$eqLogic->setIsVisible(1);
 			$eqLogic->save();
 			$eqLogic = openzwave::byId($eqLogic->getId());
-			$include_device = $eqLogic->getId();
 			$eqLogic->createCommand(false, $result);
-			event::add('zwave::includeDevice', $include_device);
+			event::add('zwave::includeDevice', $eqLogic->getId());
 			event::add('jeedom::alert', array(
 				'level' => 'warning',
 				'message' => '',
@@ -194,18 +193,15 @@ class openzwave extends eqLogic {
 		$results = self::callOpenzwave('/ZWaveAPI/Run/network.GetNodesList()', $_serverId);
 		$findDevice = array();
 		$include_device = '';
-		if (count($results['devices']) < 2) {
+		if (count($results['devices']) < 1) {
 			event::add('jeedom::alert', array(
 				'level' => 'warning',
-				'message' => __('Le nombre de module trouvé est inférieure à 2', __FILE__),
+				'message' => __('Le nombre de module trouvé est inférieure à 1', __FILE__),
 			));
 			return;
 		}
 		foreach ($results['devices'] as $nodeId => $result) {
 			$findDevice[$nodeId] = $nodeId;
-			if (isset($result['description']['is_static_controller']) && $result['description']['is_static_controller']) {
-				continue;
-			}
 			if (!isset($result['product']['is_valid']) || !$result['product']['is_valid']) {
 				continue;
 			}
@@ -240,7 +236,6 @@ class openzwave extends eqLogic {
 					$eqLogic->setConfiguration('product_id', $result['product']['product_id']);
 				}
 				$eqLogic->save();
-
 			}
 		}
 		if (config::byKey('autoRemoveExcludeDevice', 'openzwave') == 1) {
