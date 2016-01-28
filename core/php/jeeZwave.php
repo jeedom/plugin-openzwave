@@ -93,6 +93,7 @@ if (isset($results['controller'])) {
 	if (isset($results['controller']['excluded'])) {
 		event::add('jeedom::alert', array(
 			'level' => 'warning',
+			'page' => 'openzwave',
 			'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
 		));
 		sleep(2);
@@ -102,12 +103,14 @@ if (isset($results['controller'])) {
 		for ($i = 0; $i < 10; $i++) {
 			event::add('jeedom::alert', array(
 				'level' => 'warning',
+				'page' => 'openzwave',
 				'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration.Pause de ', __FILE__) . (10 - $i) . __(' pour synchronisation avec le module', __FILE__),
 			));
 			sleep(1);
 		}
 		event::add('jeedom::alert', array(
 			'level' => 'warning',
+			'page' => 'openzwave',
 			'message' => __('Inclusion en cours...', __FILE__),
 		));
 		openzwave::syncEqLogicWithOpenZwave($results['serverId'], $results['controller']['included']['value']);
