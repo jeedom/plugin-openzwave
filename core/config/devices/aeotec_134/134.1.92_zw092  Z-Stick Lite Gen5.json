@@ -8,7 +8,8 @@
     "battery_type" : "",
     "configuration" : {
         "conf_version" : 1
-    }   ,
+    },
+	"isVisible": 0,
 	"commands": [
 		{
 			"name": "Switch All On",
