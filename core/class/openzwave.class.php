@@ -143,7 +143,7 @@ class openzwave extends eqLogic {
 			));
 			return;
 		}
-		if ($_logical_id !== null) {
+		if ($_logical_id !== null && $_logical_id != 0) {
 			$eqLogic = self::getEqLogicByLogicalIdAndServerId($_logical_id, $_serverId);
 			if (is_object($eqLogic)) {
 				if (config::byKey('autoRemoveExcludeDevice', 'openzwave') == 1) {
