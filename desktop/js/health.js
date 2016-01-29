@@ -116,10 +116,12 @@ var app_health = {
       if(nodes[i].last_notification != undefined){
         if(nodes[i].last_notification.description == 'Timeout'){
           tbody += '<span class="label label-warning" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
-        }else if(nodes[i].last_notification.description == 'Dead.'){
+        }else if(nodes[i].last_notification.description == 'Dead'){
          tbody += '<span class="label label-danger" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
-       }else{
-        tbody += '<span class="label label-primary" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
+        }else if(nodes[i].last_notification.description != undefined){
+          tbody += '<span class="label label-primary" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
+        }else{
+        tbody += '<span class="label label-primary" style="font-size : 1em;" title="{{Non disponible}}">...</span>';
       }
     }
     tbody += '</td>';
@@ -182,12 +184,14 @@ if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.v
 }
 tbody += '</td>';
 tbody += '<td>';
-if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.total != null){
+if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.total >0){
   tbody += '<span class="label label-primary" style="font-size : 1em;">'+nodes[i].data.statistics.total+'</span>';
+}else if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.total != null){
+  tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.statistics.total+'</span>';
 }
 tbody += '</td>';
 tbody += '<td>';
-if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.delivered != null){
+if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.total >0 && nodes[i].data.statistics.delivered != null){
   if(nodes[i].data.statistics.delivered > 90){
     tbody += '<span class="label label-success" style="font-size : 1em;">'+nodes[i].data.statistics.delivered+'%</span>';
   }else if(nodes[i].data.statistics.delivered > 75){
@@ -198,7 +202,7 @@ if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.delivered !
 }
 tbody += '</td>';
 tbody += '<td>';
-if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.deliveryTime != null){
+if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.total >0 && nodes[i].data.statistics.deliveryTime != null){
   if(nodes[i].data.statistics.deliveryTime > 500){
     tbody += '<span class="label label-danger" style="font-size : 1em;">'+nodes[i].data.statistics.deliveryTime+'ms</span>';
   }else if(nodes[i].data.statistics.deliveryTime > 250){
@@ -209,7 +213,7 @@ if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.deliveryTim
 }
 tbody += '</td>';
 tbody += '<td>';
-if(nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null){
+if(nodes[i].last_notification.description != undefined && nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null){
   tbody += app_health.timestampConverter(nodes[i].data.lastReceived.updateTime,false);
   if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.next_wakeup != null){
     tbody += ' <i class="fa fa-arrow-right"></i> ' + app_health.timestampConverter(nodes[i].data.wakeup_interval.next_wakeup,true)+' <i class="fa fa-clock-o"></i>';
