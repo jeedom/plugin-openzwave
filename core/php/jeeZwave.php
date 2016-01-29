@@ -46,7 +46,7 @@ $results = json_decode(file_get_contents("php://input"), true);
 if (!is_array($results)) {
 	die();
 }
-
+//log::add('openzwave', 'debug', print_r($results, true));
 if (!isset($results['serverId'])) {
 	$results['serverId'] = '';
 }
@@ -149,7 +149,7 @@ if (isset($results['network'])) {
 					'message' => __('Le réseaux Z-Wave est en cours de démarrage sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
 				));
 				break;
-			case 5: # STATE_AWAKED = 7
+			case 7: # STATE_AWAKED = 7
 				event::add('jeedom::alert', array(
 					'level' => 'warning',
 					'page' => 'openzwave',
