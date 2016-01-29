@@ -71,7 +71,11 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 			echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert' . $id . '" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode exclusion sur ' . $server['name'] . '. Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}</div>';
 		}
 		if ($controlerState === null) {
-			echo '<div class="alert jqAlert alert-danger" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Impossible de contacter le serveur Z-wave ' . $server['name'] . '.}}</div>';
+			event::add('jeedom::alert', array(
+				'level' => 'danger',
+				'page' => 'openzwave',
+				'message' => __('Impossible de contacter le serveur Z-wave ', __FILE__) . $server['name'],
+			));
 		}
 	}
 }
