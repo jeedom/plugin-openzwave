@@ -786,7 +786,7 @@ var app_network = {
                     if (nodeId == 255){
                         return;
                     }
-                    if (skipPortableAndVirtual && (node.data.isVirtual.value || node.data.basicType.value == 1)){
+                    if (skipPortableAndVirtual &&  node.data.basicType.value == 1){
                         return;
                     }
                     var routesCount = app_network.getRoutesCount(nodeId);
@@ -807,11 +807,16 @@ var app_network = {
                         routingTableHeader += '<th class="tooltips" title="'+node.data.product_name.valuee+'" >' + nodeId + '</th>';
                         var name = '<span class="nodeConfiguration cursor" data-node-id="'+nodeId+'" data-server-id="'+$("#sel_zwaveNetworkServerId").value()+'">'+ node.data.product_name.value+'</span>';
                     }
-                    routingTable += '<tr><td style="width: 500px">' + name + '</td><td style="width: 35px">' + nodeId + '</td>';
+                    routingTable += '<tr><td style="width: 500px">' +name;
+                    if(node.data.isDead.value){
+                        routingTable += '  <i class="fa fa-heartbeat" style="color:red; text-align:right"  title="{{Présumé mort}}"></i>';
+                    }
+                    routingTable +='</td><td style="width: 35px">' + nodeId + '</td>';
+
                     $.each(devicesRouting, function (nnodeId, nnode) {
                         if (nnodeId == 255)
                             return;
-                        if (skipPortableAndVirtual && (nnode.data.isVirtual.value || nnode.data.basicType.value == 1))
+                        if (skipPortableAndVirtual &&  nnode.data.basicType.value == 1)
                             return;
                         var rtClass;
                         if (!routesCount[nnodeId])
@@ -819,20 +824,22 @@ var app_network = {
                         var routeHops = (routesCount[nnodeId][0] || '0')+"/";
                         routeHops += (routesCount[nnodeId][1] || '0')+"/";
                         routeHops += (routesCount[nnodeId][2] || '0');
-                        if (nodeId == nnodeId || node.data.isVirtual.value || nnode.data.isVirtual.value || node.data.basicType.value == 1 || nnode.data.basicType.value == 1) {
+                        if (nodeId == nnodeId || node.data.basicType.value == 1 || nnode.data.basicType.value == 1) {
                             rtClass = 'node-na-color';
                             routeHops = '';
+                        } else if (nnode.data.state.value < 13 || node.data.state.value < 13){
+                            rtClass = 'node-interview-not-completed-color';
                         } else if ($.inArray(parseInt(nnodeId, 10), node.data.neighbours.value) != -1)
                             rtClass = 'node-direct-link-color';
                         else if (routesCount[nnodeId] && routesCount[nnodeId][1] > 1)
-                            rtClass = 'node-more-of-one-up-color';
+                            rtClass = 'node-remote-control-color';
                         else if (routesCount[nnodeId] && routesCount[nnodeId][1] == 1)
-                            rtClass = 'node-interview-not-completed-color';
+                            rtClass = 'node-more-of-one-up-color';
                         else
                             rtClass = 'node-no-neighbourhood-color';
 
                         routingTable += '<td class=' + rtClass + ' style="width: 35px"><i class="fa fa-square fa-2x" title="' + routeHops + '"></i></td>';
-                       
+
                     });
                     routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="'+nodeId+'" class="btn btn-xs btn-primary requestNodeNeighboursUpdate tooltips" title="{{Mise à jour des noeuds voisins}}"><i class="fa fa-refresh"></i></button></td></tr>';
                 });

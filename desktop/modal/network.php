@@ -239,12 +239,16 @@ if (!isConnect('admin')) {
                             <td>{{Communication directe}}</td>
                         </tr>
                         <tr>
-                            <td class="node-more-of-one-up-color"><i class="fa fa-square fa-2x"></i></td>
+                            <td class="node-remote-control-color"><i class="fa fa-square fa-2x"></i></td>
                             <td>{{Au moins 2 routes avec un saut}}</td>
                         </tr>
                         <tr>
-                            <td class="node-interview-not-completed-color"><i class="fa fa-square fa-2x"></i></td>
+                            <td class="node-more-of-one-up-color"><i class="fa fa-square fa-2x"></i></td>
                             <td>{{Moins de 2 routes avec un saut}}</td>
+                        </tr>
+                        <tr>
+                            <td class="node-interview-not-completed-color"><i class="fa fa-square fa-2x"></i></td>
+                            <td>{{interview non completé}}</td>
                         </tr>
                         <tr>
                             <td class="node-no-neighbourhood-color"><i class="fa fa-square fa-2x"></i></td>
