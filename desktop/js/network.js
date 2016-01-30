@@ -430,7 +430,7 @@ request_node_neighbours_update: function(node_id){
 });
 },
 load_data: function(){      
-  $('#graph-node-name').empty();
+  $('#graph_network svg').remove();
   $.ajax({ 
     url: path+"ZWaveAPI/Run/network.GetNeighbours()", 
     dataType: 'json',

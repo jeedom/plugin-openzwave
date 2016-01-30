@@ -80,12 +80,12 @@ if (!isConnect('admin')) {
 <span class='pull-right'>
 	<select class="form-control expertModeVisible" style="width : 200px;" id="sel_zwaveNetworkServerId">
 		<?php
-foreach (openzwave::listServerZwave() as $id => $server) {
-	if (isset($server['name'])) {
-		echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
-	}
-}
-?>
+		foreach (openzwave::listServerZwave() as $id => $server) {
+			if (isset($server['name'])) {
+				echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
+			}
+		}
+		?>
 	</select>
 </span>
 <div id='div_networkOpenzwaveAlert' style="display: none;"></div>
@@ -211,11 +211,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 							</tr>
 						</tbody>
 					</table>
-
 					<div id="graph-node-name"></div>
-
-
-
 				</div>
 
 				<div id="route_network" class="tab-pane">
