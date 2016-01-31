@@ -117,6 +117,7 @@ _network_information = None
 _force_refresh_nodes = []
 _changes_async = {'device': {}}
 _cycle = 0.5
+_ghost_node_id = None
 
 COMMAND_CLASS_NO_OPERATION              = 0  # 0x00
 COMMAND_CLASS_BASIC                     = 32  # 0x20
@@ -824,6 +825,7 @@ def validate_association_groups_asynchronous():
 
 
 def recovering_failed_nodes_asynchronous():
+    global _ghost_node_id
     # wait 15 seconds on first launch
     time.sleep(15.0)    
     while True: 
@@ -832,6 +834,16 @@ def recovering_failed_nodes_asynchronous():
             debug_print("Perform network sanity test/check")
             for node_id in list(_network.nodes):
                 my_node = _network.nodes[node_id]
+                # first check if a ghost node wait to be removed
+                if _ghost_node_id is not None and node_id == _ghost_node_id and my_node.is_failed:
+                    add_log_entry('* Try to remove a Ghost node (nodeId: %s)' % (node_id,))
+                    _network.manager.removeFailedNode(_network.home_id, node_id)
+                    time.sleep(10)
+                    if _ghost_node_id not in _network.nodes:
+                        # reset ghost node flag
+                        _ghost_node_id = None
+                        add_log_entry('=> Ghost node removed (nodeId: %s)' % (node_id,))
+                    continue
                 if node_id in _not_supported_nodes:
                     debug_print('=> Remove not valid nodeId: %s' % (node_id,))
                     _network.manager.removeFailedNode(_network.home_id, node_id)
@@ -2993,6 +3005,7 @@ def remove_device_openzwave_config(node_id):
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GhostKiller()', methods=['GET'])
 def ghost_killer(node_id):
+    global _ghost_node_id
     # Remove cc 0x84 wake up for a ghost device in openzwave config file
     if not can_execute_network_command(0):
         return build_network_busy_message() 
@@ -3028,7 +3041,9 @@ def ghost_killer(node_id):
                     config_file = open(filename, "w")
                     config_file.write('<?xml version="1.0" encoding="utf-8" ?>\n')
                     config_file.writelines(etree.tostring(tree, pretty_print=True))
-                    config_file.close()  
+                    config_file.close()
+                    # save _ghost_node_id for next sanitary check
+                    _ghost_node_id = node_id
                 else:
                     message = 'commandClass wake_up not found'
         return format_json_result(found, message)
