@@ -183,7 +183,7 @@ if(nodes[i].data.battery_level != undefined && nodes[i].data.battery_level.value
 }else if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null){
   tbody += '<span class="label label-warning" style="font-size : 1em;">--</span>';
 }else{
-  tbody += '<span class="label label-primary" style="font-size : 1em;">{{Secteur}}</span>';
+  tbody += '<span class="label label-primary" style="font-size : 1em;" title="{{Secteur}}"><i class="fa fa-plug"></i></span>';
 }
 tbody += '</td>';
 tbody += '<td>';

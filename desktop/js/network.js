@@ -159,6 +159,10 @@ var app_network = {
             var nodeid = $(this).attr('data-nodeid');
             app_network.request_node_neighbours_update(nodeid);
         });
+        $("body").off("click",".healNetwork2").on("click",".healNetwork2",function() {
+            app_network.healNetwork();
+        });
+
     },
     console_refresh: function(){
         if(!$('#log').is(':visible')){
@@ -684,18 +688,22 @@ var app_network = {
         network.find(".network-controller-capabilities").html(infos.controllerCapabilities);
         network.find(".network-controller-node-capabilities").html(infos.controllerNodeCapabilities);
         var outgoingSendQueue = parseInt(infos.outgoingSendQueue,0);
-        var outgoingSendQueueWarning = "";
-        if(outgoingSendQueue<=5){
-            outgoingSendQueueDescription = "<i class='fa fa-circle greeniconcolor'></i>" ;
+        if(outgoingSendQueue==0){
+            outgoingSendQueueDescription = "<i class='fa fa-circle fa-lg greeniconcolor'></i>" ;
+        }
+        else if(outgoingSendQueue<=5){
+            outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg greeniconcolor'></i>" ;
         }
         else if(outgoingSendQueue<=15){
-            outgoingSendQueueDescription = "<i class='fa fa-circle yellowiconcolor'></i>" ;
+            outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg yellowiconcolor'></i>" ;
         }
         else{
-            outgoingSendQueueDescription = "<i class='fa fa-exclamation-circle rediconcolor'></i>" ;
+            outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg rediconcolor'></i>" ;
         }
+
         network.find(".network-outgoing-send-queue").html(outgoingSendQueue);
         network.find(".network-outgoing-send-queueWarning").html(outgoingSendQueueDescription);
+
 
         network.find(".network-controller-stats").html(infos.controllerStatistics);
         network.find(".network-device-path").html(infos.devicePath);
@@ -809,7 +817,7 @@ var app_network = {
                     }
                     routingTable += '<tr><td style="width: 500px">' +name;
                     if(node.data.isDead.value){
-                        routingTable += '  <i class="fa fa-heartbeat" style="color:red; text-align:right"  title="{{Présumé mort}}"></i>';
+                        routingTable += '  <i class="fa fa-exclamation-triangle fa-lg" style="color:red; text-align:right"  title="{{Présumé mort}}"></i>';
                     }
                     routingTable +='</td><td style="width: 35px">' + nodeId + '</td>';
 
@@ -843,7 +851,7 @@ var app_network = {
                     });
                     routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="'+nodeId+'" class="btn btn-xs btn-primary requestNodeNeighboursUpdate tooltips" title="{{Mise à jour des noeuds voisins}}"><i class="fa fa-refresh"></i></button></td></tr>';
                 });
-                $('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '<th>{{}}</th></tr></thead><tbody>' + routingTable + '</tbody></table>');
+                $('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '<th><button type="button" id="healNetwork2" class="btn btn-xs btn-success healNetwork2 tooltips" title="{{Soigner le réseau}}"><i class="fa fa-medkit"></i></button></th></tr></thead><tbody>' + routingTable + '</tbody></table>');
                 initTooltips();
             }
         });
