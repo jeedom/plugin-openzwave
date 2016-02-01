@@ -143,9 +143,9 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 		});
 
 		$('#bt_syncconfigZwave').on('click',function(){
-			bootbox.confirm('{{Etes-vous sûr de vouloir synchroniser les configurations des modules ? }}', function (result) {
+			bootbox.confirm('{{Etes-vous sûr de vouloir télécharger les dernières configurations des modules ?}}', function (result) {
 				if (result) {
-					$('#md_modal').dialog({title: "{{Synchronisation des configurations}}"});
+					$('#md_modal').dialog({title: "{{Téléchargement des configurations}}"});
 					$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=syncconf.openzwave').dialog('open');
 				}
 			});
