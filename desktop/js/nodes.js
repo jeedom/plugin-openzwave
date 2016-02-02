@@ -1100,7 +1100,17 @@ var app_nodes = {
 				"<button type='button' id='testNode' class='btn btn-info testNode'> {{Tester Noeud}}</button> " +
 				"{{pour essayer de corriger.}}</li>";
 		}
-
+		// activate available actions
+		$("#requestNodeNeighboursUpdate").prop("disabled", nodeIsFailed);
+		$("#healNode").prop("disabled",nodeIsFailed);
+		$("#refreshNodeValues").prop("disabled",nodeIsFailed);
+		$("#requestNodeDynamic").prop("disabled",nodeIsFailed);
+		$("#refreshNodeInfo").prop("disabled",nodeIsFailed);
+		$("#removeFailedNode").prop("disabled",!nodeIsFailed);
+		$("#replaceFailedNode").prop("disabled",!nodeIsFailed);
+		$("#sendNodeInformation").prop("disabled",nodeIsFailed);
+		$("#regenerateNodeCfgFile").prop("disabled",nodeIsFailed);
+		$("#removeGhostNode").prop("disabled",nodeIsFailed || battery_level == null);
 
 		if (nodeIsFailed) {
 			node.find(".node-queryStage").html("Dead");
@@ -1168,7 +1178,7 @@ var app_nodes = {
 			}
 			else {
 				node.find(".node-neighbours").html("...");
-				if (genericDeviceClass != 1) {
+				if (genericDeviceClass != 1 && (genericDeviceClass != 8 || nodes[z].data.isListening.value)) {
 					warningMessage += "<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <button type='button' id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</button> {{ou}} <button type='button' id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</button> {{pour corriger.}}</li>";
 					isWarning = true;
 				}
