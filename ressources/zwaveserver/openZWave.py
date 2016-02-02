@@ -1736,7 +1736,12 @@ def serialize_node_health(node_id):
         else:
             check_for_group = False
         json_result['data']['is_groups_ok'] = {'value': have_group, 'enabled': check_for_group}
-        json_result['data']['is_neighbours_ok'] = {'value': len(my_node.neighbors) > 0, 'neighbors': len(my_node.neighbors), 'enabled': my_node.generic != 1 and query_stage_index > 13}
+        is_neighbours_ok = query_stage_index > 13
+        if my_node.generic == 1:
+            is_neighbours_ok = False
+        if my_node.generic == 8 and not my_node.is_listening_device:
+            is_neighbours_ok = False
+        json_result['data']['is_neighbours_ok'] = {'value': len(my_node.neighbors) > 0, 'neighbors': len(my_node.neighbors), 'enabled': is_neighbours_ok}
         json_result['data']['is_manufacturer_specific_ok'] = {'value': not is_none_or_empty(my_node.manufacturer_id) and not is_none_or_empty(my_node.product_id) and not is_none_or_empty(my_node.product_type), 'enabled': query_stage_index >= 7}  # ManufacturerSpecific2
     else:
         add_log_entry('This network does not contain any node with the id %s' % (node_id,), 'warning')
