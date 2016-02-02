@@ -210,249 +210,249 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 							</div>
 						</div>
 
-			        <!--
-			        	<p>Id: <b><span class="node-id label label-default"></span></b></p>
-				        <p>Product Name: <b><span class="node-name label label-default">undefined</span></b></p>
-				        <p>Manufacturer: <b><span class="node-vendor label label-default">undefined</span></b></p>
-				        <p>Type: <b><span class="node-type label label-default">undefined</span></b></p>
-				        <p>Basic: <b><span class="node-basic label label-default">undefined</span></b> Generic: <b><span class="node-generic label label-default">undefined</span></b> Specific: <b><span class="node-specific label label-default">undefined</span></b></p>
-				        <p><b><span class="node-sleep label label-default">undefined</span></b></p>
-				        <p><b><span class="node-isFailed label label-default">undefined</span></b></p>
-				        <p>Query stage: <b><span class="node-queryStage label label-default">undefined</span></b>  <i class="fa fa-info-circle" id="node-queryStageDescrition"></i></p>
-				        <p>Is Locked : <b><span class="node-isLocked label label-default">undefined</span></b></p>
-				        <p>Neighbours: <span class="node-neighbours label label-default">undefined</span></p>
-				        <div class="panel panel-primary template">
-						  <div class="panel-heading">
-						    <h4 class="panel-title">Protocol Informations</h4>
-						  </div>
-						  <div class="panel-body">
-							<p>Maximum baud rate at which this device can communicate: <b><span class="node-maxBaudRate"></span></b> bit/sec</p>
-					        <p><b><span class="node-routing"></span></b></p>
-					        <p><b><span class="node-isSecurity"></span></b></p>
-					        <p><b><span class="node-listening"></span></b></p>
-					        <p><b><span class="node-isFrequentListening"></span></b></p>
-					        <p><b><span class="node-isBeaming"></span></b></p>
-					        <p><b><span class="node-security"></span></b></p>
-						  </div>
-						</div>
-					-->
+						<!--
+                            <p>Id: <b><span class="node-id label label-default"></span></b></p>
+                            <p>Product Name: <b><span class="node-name label label-default">undefined</span></b></p>
+                            <p>Manufacturer: <b><span class="node-vendor label label-default">undefined</span></b></p>
+                            <p>Type: <b><span class="node-type label label-default">undefined</span></b></p>
+                            <p>Basic: <b><span class="node-basic label label-default">undefined</span></b> Generic: <b><span class="node-generic label label-default">undefined</span></b> Specific: <b><span class="node-specific label label-default">undefined</span></b></p>
+                            <p><b><span class="node-sleep label label-default">undefined</span></b></p>
+                            <p><b><span class="node-isFailed label label-default">undefined</span></b></p>
+                            <p>Query stage: <b><span class="node-queryStage label label-default">undefined</span></b>  <i class="fa fa-info-circle" id="node-queryStageDescrition"></i></p>
+                            <p>Is Locked : <b><span class="node-isLocked label label-default">undefined</span></b></p>
+                            <p>Neighbours: <span class="node-neighbours label label-default">undefined</span></p>
+                            <div class="panel panel-primary template">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">Protocol Informations</h4>
+                              </div>
+                              <div class="panel-body">
+                                <p>Maximum baud rate at which this device can communicate: <b><span class="node-maxBaudRate"></span></b> bit/sec</p>
+                                <p><b><span class="node-routing"></span></b></p>
+                                <p><b><span class="node-isSecurity"></span></b></p>
+                                <p><b><span class="node-listening"></span></b></p>
+                                <p><b><span class="node-isFrequentListening"></span></b></p>
+                                <p><b><span class="node-isBeaming"></span></b></p>
+                                <p><b><span class="node-security"></span></b></p>
+                              </div>
+                            </div>
+                        -->
 
-				</div>
-				<div class="tab-pane" id="values">
-					<table class="table table-striped">
-						<tr>
-							<th>{{Nom}}</th>
-							<th>{{Valeur}}</th>
-							<th>{{Classe}}</th>
-							<th>{{Instance}}</th>
-							<th>{{Index}}</th>
-							<th>{{Type}}</th>
-							<th>{{Rafraichissement}}</th>
-							<th>{{Forcer la mise à jour}}</th>
-							<th>{{Date de mise à jour}}</th>
-						</tr>
-						<tr id="template-variable" style="display:none">
-							<td key="variable-name"></td>
-							<td key="variable-value"></td>
-							<td key="variable-cc"></td>
-							<td key="variable-instance"></td>
-							<td key="variable-index"></td>
-							<td key="variable-type"></td>
-							<td key="variable-polling"></td>
-							<td key="variable-refresh"></td>
-							<td key="variable-updatetime"></td>
-						</tr>
-						<tbody class="variables"></tbody>
-
-					</table>
-				</div>
-				<div class="tab-pane" id="parameters">
-					<div style="overflow: scroll;height : 100%;max-height: 96%;">
+					</div>
+					<div class="tab-pane" id="values">
 						<table class="table table-striped">
 							<tr>
-								<th>{{Index}}</th>
 								<th>{{Nom}}</th>
-								<th>{{Type}}</th>
 								<th>{{Valeur}}</th>
-								<th>{{Modifier}}</th>
-								<th>{{Aide}}
-								<div class="btn-group pull-right">
-								<a id="refreshParams" class="btn btn-info btn-sm refreshParams"><i class="fa fa-refresh"></i> {{Actualiser les paramètres}}</a>
-								</div>
-								<div class="btn-group pull-right">
-								<a id="copyParams" class="btn btn-info btn-sm copyParams"><i class="fa fa-copy"></i> {{Copier les paramètres d'un node existant}}</a>
-								</div></th>
+								<th>{{Classe}}</th>
+								<th>{{Instance}}</th>
+								<th>{{Index}}</th>
+								<th>{{Type}}</th>
+								<th>{{Rafraichissement}}</th>
+								<th>{{Forcer la mise à jour}}</th>
+								<th>{{Date de mise à jour}}</th>
 							</tr>
-							<tr id="template-parameter" style="display:none">
-								<td key="parameter-index"></td>
-								<td key="parameter-name"></td>
-								<td key="parameter-type"></td>
-								<td key="parameter-value"></td>
-								<td key="parameter-edit"></td>
-								<td key="parameter-help"></td>
+							<tr id="template-variable" style="display:none">
+								<td key="variable-name"></td>
+								<td key="variable-value"></td>
+								<td key="variable-cc"></td>
+								<td key="variable-instance"></td>
+								<td key="variable-index"></td>
+								<td key="variable-type"></td>
+								<td key="variable-polling"></td>
+								<td key="variable-refresh"></td>
+								<td key="variable-updatetime"></td>
 							</tr>
-							<tbody class="parameters"></tbody>
+							<tbody class="variables"></tbody>
 
 						</table>
 					</div>
+					<div class="tab-pane" id="parameters">
+						<div style="overflow: scroll;height : 100%;max-height: 96%;">
+							<table class="table table-striped">
+								<tr>
+									<th>{{Index}}</th>
+									<th>{{Nom}}</th>
+									<th>{{Type}}</th>
+									<th>{{Valeur}}</th>
+									<th>{{Modifier}}</th>
+									<th>{{Aide}}
+										<div class="btn-group pull-right">
+											<a id="refreshParams" class="btn btn-info btn-sm refreshParams"><i class="fa fa-refresh"></i> {{Actualiser les paramètres}}</a>
+										</div>
+										<div class="btn-group pull-right">
+											<a id="copyParams" class="btn btn-info btn-sm copyParams"><i class="fa fa-copy"></i> {{Copier les paramètres d'un node existant}}</a>
+										</div></th>
+								</tr>
+								<tr id="template-parameter" style="display:none">
+									<td key="parameter-index"></td>
+									<td key="parameter-name"></td>
+									<td key="parameter-type"></td>
+									<td key="parameter-value"></td>
+									<td key="parameter-edit"></td>
+									<td key="parameter-help"></td>
+								</tr>
+								<tbody class="parameters"></tbody>
+
+							</table>
+						</div>
+					</div>
+					<div class="tab-pane" id="groups">
+						<button type="button" id="addGroup" class="btn btn-primary addGroup"><i class="fa fa-plus"></i> {{Ajouter une association}}</button>
+						<br>
+
+						<table class="table table-striped">
+							<tr>
+								<th>{{ID du groupe}}</th>
+								<th>{{ID de noeud}}</th>
+								<th></th>
+							</tr>
+							<tr id="template-group" style="display:none">
+								<td key="group-groupeindex"></td>
+								<td key="group-nodeindex"></td>
+								<td key="group-delete"></td>
+							</tr>
+							<tbody class="groups"></tbody>
+
+						</table>
+					</div>
+					<div class="tab-pane" id="systems">
+						<table class="table table-striped">
+							<tr>
+								<th>{{Nom}}</th>
+								<th>{{Valeur}}</th>
+								<th>{{Modifier}}</th>
+								<th>{{Classe de la commande}}</th>
+								<th>{{Instance}}</th>
+								<th>{{Index}}</th>
+								<th>{{Type}}</th>
+								<th>{{Date de mise à jour}}</th>
+							</tr>
+							<tr id="template-system" style="display:none">
+								<td key="system-name"></td>
+								<td key="system-value"></td>
+								<td key="system-edit"></td>
+								<td key="system-cc"></td>
+								<td key="system-instance"></td>
+								<td key="system-index"></td>
+								<td key="system-type"></td>
+								<td key="system-updatetime"></td>
+							</tr>
+							<tbody class="system_variables"></tbody>
+
+						</table>
+					</div>
+
+					<div class="tab-pane" id="actions">
+						<table class="table table-striped">
+							<tr>
+								<td><button type="button" id="requestNodeNeighboursUpdate" class="btn btn-primary requestNodeNeighboursUpdate"><i class="fa fa-sitemap"></i> {{Mise à jour des nœud voisins}}</button></td>
+								<td>{{Force la mise à jour de la liste des nœuds voisins.}}</td>
+							</tr>
+							<tr>
+								<td><button type="button" id="healNode" class="btn btn-success healNode"><i class="fa fa-medkit"></i> {{Soigner le nœud}}</button></td>
+								<td>{{Soigner le nœud au sein du réseau.}}</td>
+							</tr>
+							<tr>
+								<td><button type="button" id="testNode" class="btn btn-info testNode"><i class="fa fa-check-square-o"></i> {{Tester le nœud}}</button></td>
+								<td>{{Envoyer une série de message à un noeud pour le tester s'il répond.}}</td>
+							</tr>
+							<tr>
+								<td><button type="button" id="refreshNodeValues" class="btn btn-success"><i class="fa fa-refresh"></i> {{Rafraîchir les valeurs du nœud}}</button></td>
+								<td>{{Demande l'actualisation de l'ensemble des valeurs du nœud.}}</td>
+							</tr>
+							<tr>
+								<td><button type="button" id="requestNodeDynamic" class="btn btn-success"><i class="fa fa-refresh"></i> {{Récupère les CC dynamique}}</button></td>
+								<td>{{Récupère les données de commande classe dynamiques du nœud.}}</td>
+							</tr>
+							<tr>
+								<td><button type="button" id="refreshNodeInfo" class="btn btn-success refreshNodeInfo"><i class="fa fa-retweet"></i> {{Rafraîchir infos du nœud}}</button></td>
+								<td>{{Déclencher l'obtention des information du nœud.}} <br>{{Les données du nœud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.}}</td>
+							</tr>
+							<tr>
+								<td><button type="button" id="hasNodeFailed" class="btn btn-primary hasNodeFailed"><i class="fa fa-question"></i> {{Nœud en échec ?}}</button></td>
+								<td>{{Vérifie si le nœud est dans la liste des nœuds en erreur.}}</td>
+							</tr>
+							<tr>
+								<td><button type="button" id="removeFailedNode" class="btn btn-danger"><i class="fa fa-times"></i> {{Supprimer le nœud en échec}}</button></td>
+								<td>{{Permet de supprimer un nœud marqué comme défaillant par le contrôleur.}}<br>{{Le nœud doit être en échec.}}</td>
+							</tr>
+							<tr>
+								<td><button type="button" id="replaceFailedNode" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Remplacer nœud en échec}}</button></td>
+								<td>{{Remplace un module en échec par un autre. Si le nœud n'est pas dans la liste des nœuds en échec sur le contrôleur, ou que le nœud répond, la commande va échouer.}}</td>
+							</tr>
+							<tr>
+								<td><button type="button" id="sendNodeInformation" class="btn btn-info"><i class="fa fa-info-circle"></i> {{Envoi infos du nœud}}</button></td>
+								<td>{{Envoi une trame d'info au noeud (NIF).}}</td>
+							</tr>
+							<tr>
+								<td><button type="button" id="regenerateNodeCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Regénérer la détection du nœud}}</button></td>
+								<td>{{Supprime les informations du noeud dans le fichier de config afin qu'il soit à nouveau détecté.}}<br>
+									{Le noeud sera automatiquement supprimé dans les 5 minutes suivant le redémarrage du réseau}}
+									{{(Attention : Relance le réseau)}}</td>
+							</tr>
+							<tr>
+								<td><button type="button" id="removeGhostNode" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Suppression automatique du nœud fantôme}}</button></td>
+								<td>{{Permet de supprimer un nœud sur pile qui n'est plus accessible sur le réseau.}}<br>
+									{Le nœud sera automatiquement supprimé dans les 5 minutes suivant le redémarrage du réseau}}
+									{{(Attention : Relance le réseau)}}
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="tab-pane" id="statistics">
+						<!--
+                        Statistics:
+                        cdef struct NodeData:
+                                * sentCnt                  # Number of messages sent from this node.
+                                * sentFailed               # Number of sent messages failed
+                                * retries                  # Number of message retries
+                                * receivedCnt              # Number of messages received from this node.
+                                * receivedDups             # Number of duplicated messages received;
+                                * receivedUnsolicited      # Number of messages received unsolicited
+                                * sentTS                   # Last message sent time
+                                * receivedTS               # Last message received time
+                                * lastRequestRTT           # Last message request RTT
+                                * averageRequestRTT        # Average Request Round Trip Time (ms).
+                                * lastResponseRTT          # Last message response RTT
+                                * averageResponseRTT       # Average Reponse round trip time.
+                                * quality                  # Node quality measure
+                                * lastReceivedMessage      # Place to hold last received message
+                            -->
+						<table class="table table-striped table-condensed">
+							<tr>
+								<td><b>{{Temps de demande moyen (ms) :}}</b></td><td><span class="stats_av_req_rtt"></span></td>
+							</tr><tr>
+								<td><b>{{Temps de réponse moyen (ms) :}}</b></td><td><span class="stats_av_res_rtt"></span></td>
+							</tr><tr>
+								<td><b>{{Dernier message de réponse RTT:}}</b></td><td><span class="stats_la_req_rtt"></span></td>
+							</tr><tr>
+								<td><b>{{Dernière réponse RTT :}}</b></td><td><span class="stats_la_res_rtt"></span></td>
+							</tr><tr>
+								<td><b>{{Qualité de la communication avec ce noeud :}}</b></td><td><span class="stats_quality"></span></td>
+							</tr><tr>
+								<td><b>{{Nombre de messages reçus par ce noeud :}}</b></td><td><span class="stats_rec_cnt"></span></td>
+							</tr><tr>
+								<td><b>{{Nombre de messages reçus en double :}}</b></td><td><span class="stats_rec_dups"></span></td>
+							</tr><tr>
+								<td><b>{{Heure du dernier message reçu :}}</b></td><td><span class="stats_rec_ts"></span></td>
+							</tr><tr>
+								<td><b>{{Nombre de messages reçus spontanément :}}</b></td><td><span class="stats_rec_uns"></span></td>
+							</tr><tr>
+								<td><b>{{Nombre de tentatives d'envoi :}}</b></td><td><span class="stats_retries"></span></td>
+							</tr><tr>
+								<td><b>{{Nombre de messages envoyés par ce noeud :}}</b></td><td><span class="stats_sen_cnt"></span></td>
+							</tr><tr>
+								<td><b>{{Nombre de messages envoyés en erreur :}}</b></td><td><span class="stats_sen_failed"></span></td>
+							</tr><tr>
+								<td><b>{{Heure du dernier message envoyé :}}</b></td><td><span class="stats_sen_ts"></span></td>
+							</tr>
+						</table>
+					</div>
 				</div>
-				<div class="tab-pane" id="groups">
-					<button type="button" id="addGroup" class="btn btn-primary addGroup"><i class="fa fa-plus"></i> {{Ajouter une association}}</button>
-					<br>
+			</div>
+		</div>
 
-					<table class="table table-striped">
-						<tr>
-							<th>{{ID du groupe}}</th>
-							<th>{{ID de noeud}}</th>
-							<th></th>
-						</tr>
-						<tr id="template-group" style="display:none">
-							<td key="group-groupeindex"></td>
-							<td key="group-nodeindex"></td>
-							<td key="group-delete"></td>
-						</tr>
-						<tbody class="groups"></tbody>
-
-					</table>
-				</div>
-				<div class="tab-pane" id="systems">
-					<table class="table table-striped">
-						<tr>
-							<th>{{Nom}}</th>
-							<th>{{Valeur}}</th>
-							<th>{{Modifier}}</th>
-							<th>{{Classe de la commande}}</th>
-							<th>{{Instance}}</th>
-							<th>{{Index}}</th>
-							<th>{{Type}}</th>
-							<th>{{Date de mise à jour}}</th>
-						</tr>
-						<tr id="template-system" style="display:none">
-							<td key="system-name"></td>
-							<td key="system-value"></td>
-							<td key="system-edit"></td>
-							<td key="system-cc"></td>
-							<td key="system-instance"></td>
-							<td key="system-index"></td>
-							<td key="system-type"></td>
-							<td key="system-updatetime"></td>
-						</tr>
-						<tbody class="system_variables"></tbody>
-
-					</table>
-				</div>
-
-				<div class="tab-pane" id="actions">
-					<table class="table table-striped">
-						<tr>
-							<td><button type="button" id="requestNodeNeighboursUpdate" class="btn btn-primary requestNodeNeighboursUpdate"><i class="fa fa-sitemap"></i> {{Mise à jour des nœud voisins}}</button></td>
-							<td>{{Force la mise à jour de la liste des nœuds voisins.}}</td>
-						</tr>
-						<tr>
-							<td><button type="button" id="healNode" class="btn btn-success healNode"><i class="fa fa-medkit"></i> {{Soigner le nœud}}</button></td>
-							<td>{{Soigner le nœud au sein du réseau.}}</td>
-						</tr>
-						<tr>
-							<td><button type="button" id="testNode" class="btn btn-info testNode"><i class="fa fa-check-square-o"></i> {{Tester le nœud}}</button></td>
-							<td>{{Envoyer une série de message à un noeud pour le tester s'il répond.}}</td>
-						</tr>
-						<tr>
-							<td><button type="button" id="refreshNodeValues" class="btn btn-success"><i class="fa fa-refresh"></i> {{Rafraîchir les valeurs du nœud}}</button></td>
-							<td>{{Demande l'actualisation de l'ensemble des valeurs du nœud.}}</td>
-						</tr>
-						<tr>
-							<td><button type="button" id="requestNodeDynamic" class="btn btn-success"><i class="fa fa-refresh"></i> {{Récupère les CC dynamique}}</button></td>
-							<td>{{Récupère les données de commande classe dynamiques du nœud.}}</td>
-						</tr>
-						<tr>
-							<td><button type="button" id="refreshNodeInfo" class="btn btn-success refreshNodeInfo"><i class="fa fa-retweet"></i> {{Rafraîchir infos du nœud}}</button></td>
-							<td>{{Déclencher l'obtention des information du nœud.}} <br>{{Les données du nœud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.}}</td>
-						</tr>
-						<tr>
-							<td><button type="button" id="hasNodeFailed" class="btn btn-primary hasNodeFailed"><i class="fa fa-question"></i> {{Nœud en échec ?}}</button></td>
-							<td>{{Vérifie si le nœud est dans la liste des nœuds en erreur.}}</td>
-						</tr>
-						<tr>
-							<td><button type="button" id="removeFailedNode" class="btn btn-danger"><i class="fa fa-times"></i> {{Supprimer le nœud en échec}}</button></td>
-							<td>{{Permet de supprimer un nœud marqué comme défaillant par le contrôleur.}}<br>{{Le nœud doit être en échec.}}</td>
-						</tr>
-						<tr>
-							<td><button type="button" id="replaceFailedNode" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Remplacer nœud en échec}}</button></td>
-							<td>{{Remplace un module en échec par un autre. Si le nœud n'est pas dans la liste des nœuds en échec sur le contrôleur, ou que le nœud répond, la commande va échouer.}}</td>
-						</tr>
-						<tr>
-							<td><button type="button" id="sendNodeInformation" class="btn btn-info"><i class="fa fa-info-circle"></i> {{Envoi infos du nœud}}</button></td>
-							<td>{{Envoi une trame d'info au noeud (NIF).}}</td>
-						</tr>
-						<tr>
-							<td><button type="button" id="regenerateNodeCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Regénérer la détection du nœud}}</button></td>
-							<td>{{Supprime les informations du noeud dans le fichier de config afin qu'il soit à nouveau détecté.}}<br>
-								{Le noeud sera automatiquement supprimé dans les 5 minutes suivant le redémarrage du réseau}}
-								{{(Attention : Relance le réseau)}}</td>
-						</tr>
-						<tr>
-							<td><button type="button" id="removeGhostNode" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Suppression automatique du nœud fantôme}}</button></td>
-							<td>{{Permet de supprimer un nœud sur pile qui n'est plus accessible sur le réseau.}}<br>
-								{Le nœud sera automatiquement supprimé dans les 5 minutes suivant le redémarrage du réseau}}
-								{{(Attention : Relance le réseau)}}
-							</td>
-						</tr>
-					</table>
-				</div>
-				<div class="tab-pane" id="statistics">
-				    	<!--
-				    	Statistics:
-				    	cdef struct NodeData:
-						        * sentCnt                  # Number of messages sent from this node.
-						        * sentFailed               # Number of sent messages failed
-						        * retries                  # Number of message retries
-						        * receivedCnt              # Number of messages received from this node.
-						        * receivedDups             # Number of duplicated messages received;
-						        * receivedUnsolicited      # Number of messages received unsolicited
-						        * sentTS                   # Last message sent time
-						        * receivedTS               # Last message received time
-						        * lastRequestRTT           # Last message request RTT
-						        * averageRequestRTT        # Average Request Round Trip Time (ms).
-						        * lastResponseRTT          # Last message response RTT
-						        * averageResponseRTT       # Average Reponse round trip time.
-						        * quality                  # Node quality measure
-						        * lastReceivedMessage      # Place to hold last received message
-						    -->
-						    <table class="table table-striped table-condensed">
-						    	<tr>
-						    		<td><b>{{Temps de demande moyen (ms) :}}</b></td><td><span class="stats_av_req_rtt"></span></td>
-						    	</tr><tr>
-						    	<td><b>{{Temps de réponse moyen (ms) :}}</b></td><td><span class="stats_av_res_rtt"></span></td>
-						    </tr><tr>
-						    <td><b>{{Dernier message de réponse RTT:}}</b></td><td><span class="stats_la_req_rtt"></span></td>
-						</tr><tr>
-						<td><b>{{Dernière réponse RTT :}}</b></td><td><span class="stats_la_res_rtt"></span></td>
-					</tr><tr>
-					<td><b>{{Qualité de la communication avec ce noeud :}}</b></td><td><span class="stats_quality"></span></td>
-				</tr><tr>
-				<td><b>{{Nombre de messages reçus par ce noeud :}}</b></td><td><span class="stats_rec_cnt"></span></td>
-			</tr><tr>
-			<td><b>{{Nombre de messages reçus en double :}}</b></td><td><span class="stats_rec_dups"></span></td>
-		</tr><tr>
-		<td><b>{{Heure du dernier message reçu :}}</b></td><td><span class="stats_rec_ts"></span></td>
-	</tr><tr>
-	<td><b>{{Nombre de messages reçus spontanément :}}</b></td><td><span class="stats_rec_uns"></span></td>
-</tr><tr>
-<td><b>{{Nombre de tentatives d'envoi :}}</b></td><td><span class="stats_retries"></span></td>
-</tr><tr>
-<td><b>{{Nombre de messages envoyés par ce noeud :}}</b></td><td><span class="stats_sen_cnt"></span></td>
-</tr><tr>
-<td><b>{{Nombre de messages envoyés en erreur :}}</b></td><td><span class="stats_sen_failed"></span></td>
-</tr><tr>
-<td><b>{{Heure du dernier message envoyé :}}</b></td><td><span class="stats_sen_ts"></span></td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-
-</div>
+	</div>
 
 </div>
 <?php include_file('desktop', 'nodes', 'js', 'openzwave');?>
