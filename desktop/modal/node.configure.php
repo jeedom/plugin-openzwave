@@ -345,52 +345,57 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 				<div class="tab-pane" id="actions">
 					<table class="table table-striped">
 						<tr>
-							<td><button type="button" id="requestNodeNeighboursUpdate" class="btn btn-primary requestNodeNeighboursUpdate"><i class="fa fa-sitemap"></i> {{Mise à jour des noeuds voisins}}</button></td>
-							<td>{{Force la mise à jour de la liste des noeuds voisin}}</td>
+							<td><button type="button" id="requestNodeNeighboursUpdate" class="btn btn-primary requestNodeNeighboursUpdate"><i class="fa fa-sitemap"></i> {{Mise à jour des nœud voisins}}</button></td>
+							<td>{{Force la mise à jour de la liste des nœuds voisins.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="healNode" class="btn btn-success healNode"><i class="fa fa-medkit"></i> {{Soigner le noeud}}</button></td>
-							<td>{{Soigner un noeud du réseau.}}</td>
+							<td><button type="button" id="healNode" class="btn btn-success healNode"><i class="fa fa-medkit"></i> {{Soigner le nœud}}</button></td>
+							<td>{{Soigner le nœud au sein du réseau.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="testNode" class="btn btn-info testNode"><i class="fa fa-check-square-o"></i> {{Tester Noeud}}</button></td>
-							<td>{{Tester le noeud. Envoyer une série de message à un noeud pour le tester.}}</td>
+							<td><button type="button" id="testNode" class="btn btn-info testNode"><i class="fa fa-check-square-o"></i> {{Tester le nœud}}</button></td>
+							<td>{{Envoyer une série de message à un noeud pour le tester s'il répond.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="refreshNodeValues" class="btn btn-success"><i class="fa fa-refresh"></i> {{Rafraîchir valeurs du noeud}}</button></td>
-							<td>{{Déclenche une actualisation manuelle des valeurs du noeud.}}</td>
+							<td><button type="button" id="refreshNodeValues" class="btn btn-success"><i class="fa fa-refresh"></i> {{Rafraîchir les valeurs du nœud}}</button></td>
+							<td>{{Demande l'actualisation de l'ensemble des valeurs du nœud.}}</td>
 						</tr>
 						<tr>
 							<td><button type="button" id="requestNodeDynamic" class="btn btn-success"><i class="fa fa-refresh"></i> {{Récupère les CC dynamique}}</button></td>
-							<td>{{Récupère seulement les données de CC dynamiques pour le nœud.}}</td>
+							<td>{{Récupère les données de commande classe dynamiques du nœud.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="refreshNodeInfo" class="btn btn-success refreshNodeInfo"><i class="fa fa-retweet"></i> {{Rafraîchir infos du noeud}}</button></td>
-							<td>{{Déclencher l'obtention des données du noeud.}} <br>{{Les données du noeud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.}}</td>
+							<td><button type="button" id="refreshNodeInfo" class="btn btn-success refreshNodeInfo"><i class="fa fa-retweet"></i> {{Rafraîchir infos du nœud}}</button></td>
+							<td>{{Déclencher l'obtention des information du nœud.}} <br>{{Les données du nœud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="hasNodeFailed" class="btn btn-primary hasNodeFailed"><i class="fa fa-question"></i> {{Noeud en échec}}</button></td>
-							<td>{{Vérifie si le noeud est dans la liste des noeuds en erreur.}}</td>
+							<td><button type="button" id="hasNodeFailed" class="btn btn-primary hasNodeFailed"><i class="fa fa-question"></i> {{Nœud en échec ?}}</button></td>
+							<td>{{Vérifie si le nœud est dans la liste des nœuds en erreur.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="removeFailedNode" class="btn btn-danger"><i class="fa fa-times"></i> {{Supprimer noeud en erreur}}</button></td>
-							<td>{{Supprime le noeud du controleur}}<br>{{Le noeud doit être en échec.}}</td>
+							<td><button type="button" id="removeFailedNode" class="btn btn-danger"><i class="fa fa-times"></i> {{Supprimer le nœud en échec}}</button></td>
+							<td>{{Permet de supprimer un nœud marqué comme défaillant par le contrôleur.}}<br>{{Le nœud doit être en échec.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="replaceFailedNode" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Remplacer noeud en échec}}</button></td>
-							<td>{{Remplace un module en échec par un autre. Si le noeud n'est pas dans la liste des noeuds en échec sur le contrôleur, ou que le noeud répond, la commande va échouer.}}</td>
+							<td><button type="button" id="replaceFailedNode" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Remplacer nœud en échec}}</button></td>
+							<td>{{Remplace un module en échec par un autre. Si le nœud n'est pas dans la liste des nœuds en échec sur le contrôleur, ou que le nœud répond, la commande va échouer.}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="sendNodeInformation" class="btn btn-info"><i class="fa fa-info-circle"></i> {{Envoi infos du noeud}}</button></td>
+							<td><button type="button" id="sendNodeInformation" class="btn btn-info"><i class="fa fa-info-circle"></i> {{Envoi infos du nœud}}</button></td>
 							<td>{{Envoi une trame d'info au noeud (NIF).}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="regenerateNodeCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Regénérer la détection du noeud}}</button></td>
-							<td>{{Supprime les informations du node dans le fichier de config afin qu'il soit regénéré. (Attention : Relance le réseau)}}</td>
+							<td><button type="button" id="regenerateNodeCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Regénérer la détection du nœud}}</button></td>
+							<td>{{Supprime les informations du noeud dans le fichier de config afin qu'il soit à nouveau détecté.}}<br>
+								{Le noeud sera automatiquement supprimé dans les 5 minutes suivant le redémarrage du réseau}}
+								{{(Attention : Relance le réseau)}}</td>
 						</tr>
 						<tr>
-							<td><button type="button" id="removeGhostNode" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Supprimer le noeud fantome}}</button></td>
-							<td>{{Supprime le noeud si celui-ci est un fantôme. (Attention : Relance le réseau)}}</td>
+							<td><button type="button" id="removeGhostNode" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Suppression automatique du nœud fantôme}}</button></td>
+							<td>{{Permet de supprimer un nœud sur pile qui n'est plus accessible sur le réseau.}}<br>
+								{Le nœud sera automatiquement supprimé dans les 5 minutes suivant le redémarrage du réseau}}
+								{{(Attention : Relance le réseau)}}
+							</td>
 						</tr>
 					</table>
 				</div>
