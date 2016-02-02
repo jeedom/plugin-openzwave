@@ -23,7 +23,7 @@
 				The minimum interval is 4 minutes
 			</Help>
         </Value>
-        <Value type="list" genre="config" instance="1" index="121" label="Report Type to Send" size="1" min="0" max="3" value="256">
+        <Value type="list" genre="config" instance="1" index="121" label="Report Type to Send" size="1" min="0" max="3" value="1">
             <Help>
                 Configure which sensor report will be sent when the door is Opened/Closed
             </Help>
