@@ -703,33 +703,38 @@ var app_network = {
 
         network.find(".network-outgoing-send-queue").html(outgoingSendQueue);
         network.find(".network-outgoing-send-queueWarning").html(outgoingSendQueueDescription);
-
-
         network.find(".network-controller-stats").html(infos.controllerStatistics);
         network.find(".network-device-path").html(infos.devicePath);
         network.find(".network-oz-library-version").html(infos.OpenZwaveLibraryVersion);
         network.find(".network-poz-library-version").html(infos.PythonOpenZwaveLibraryVersion);
         network.find(".network-node-neighbours").html(infos.neighbors);
-
         network.find(".network-notification").html(infos.notification.state);
         network.find(".network-notificationMessage").html(infos.notification.details);
         network.find(".network-notificationTime").html(app_network.timestampConverter(infos.notification.timestamp));
 
-        var disabledCommand = infos.state<5;
-
+        var disabledCommand = infos.state<5 || outgoingSendQueue>0;
+        // add remove commands
         $("#addDevice").prop("disabled",disabledCommand);
+        $("#addDeviceSecure").prop("disabled",disabledCommand);
         $("#removeDevice").prop("disabled",disabledCommand);
-        $("#cancelCommand").prop("disabled",disabledCommand);
+        $("#cancelCommand").prop("disabled",infos.mode == 0);
+        // regular network commands
         $("#testNetwork").prop("disabled",disabledCommand);
         $("#healNetwork").prop("disabled",disabledCommand);
+        $("#healNetwork2").prop("disabled",disabledCommand);
+        $("#requestNodeNeighboursUpdate").prop("disabled",disabledCommand);
+        // advanced network commands
         $("#createNewPrimary").prop("disabled",disabledCommand);
         $("#replicationSend").prop("disabled",disabledCommand);
         $("#requestNetworkUpdate").prop("disabled",disabledCommand);
         $("#transferPrimaryRole").prop("disabled",disabledCommand);
-        $("#writeConfigFile").prop("disabled",disabledCommand);
-        $("#softReset").prop("disabled",disabledCommand);
-        $("#hardReset").prop("disabled",disabledCommand);
-
+        $("#receiveConfiguration").prop("disabled",disabledCommand);
+        // helper commands
+        $("#writeConfigFile").prop("disabled",infos.state<5);
+        $("#regenerateNodesCfgFile").prop("disabled",infos.state<5 || infos.mode != 0);
+        // dangerous commands
+        $("#softReset").prop("disabled",infos.state<5 || infos.mode != 0);
+        $("#hardReset").prop("disabled",infos.state<5 || infos.mode != 0);
 
     },
     update: function (){
