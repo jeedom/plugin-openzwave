@@ -479,6 +479,7 @@
         "Récupération de la liste des voisins": "Récupération de la liste des voisins",
         "Récupération des informations de sessions": "Récupération des informations de sessions",
         "Récupération des informations dynamiques": "Récupération des informations dynamiques"
+    },
     "plugins\/openzwave\/desktop\/modal\/network.php": {
         "Confirmation": "Confirmation",
         "Remettre à zéro le contrôleur et effacer ses paramètres de configuration réseau.": "Remettre à zéro le contrôleur et effacer ses paramètres de configuration réseau.",
