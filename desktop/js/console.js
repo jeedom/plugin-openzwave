@@ -1,5 +1,5 @@
 var app_console = {
-	updater: false,
+    updater: false,
     init: function(){
         $("#stopLiveLog").off("click").on("click",function() {
             clearInterval(app_console.updater);
@@ -7,21 +7,21 @@ var app_console = {
             $("#startLiveLog").show();
         });
         $("#startLiveLog").off("click").on("click",function() {
-         app_console.updater = setInterval(function(){ app_console.refresh() },2000);
-         $("#startLiveLog").hide();
-         $("#stopLiveLog").show();
-     });
+            app_console.updater = setInterval(function(){ app_console.refresh() },2000);
+            $("#startLiveLog").hide();
+            $("#stopLiveLog").show();
+        });
         $(".console-out").html("");
     },
     show: function(){
-    	$("#startLiveLog").hide();
+        $("#startLiveLog").hide();
         app_console.updater = setInterval(function(){ app_console.refresh() },2000);
     },
     refresh: function(){
-    	$.ajax({ 
-            url: path+"ZWaveAPI/Run/network.GetOZLogs()", 
+        $.ajax({
+            url: path+"ZWaveAPI/Run/network.GetOZLogs()",
             dataType: 'json',
-            async: true, 
+            async: true,
             global : false,
             error: function (request, status, error) {
                 handleAjaxError(request, status, error,$('#div_consoleOpenzwaveAlert'));
@@ -32,16 +32,16 @@ var app_console = {
                     return;
                 }
                 if(data['result']){
-                 $(".console-out").html(data['result']);
-                 var h = parseInt($('#log')[0].scrollHeight);
-                 $('#log').scrollTop(h);
-             }else{
-               $(".console-out").append("error...");
-           }
-       }
-   });
+                    $(".console-out").html(data['result']);
+                    var h = parseInt($('#log')[0].scrollHeight);
+                    $('#log').scrollTop(h);
+                }else{
+                    $(".console-out").append("error...");
+                }
+            }
+        });
     },
     hide: function(){
-    	clearInterval(app_console.updater);
+        clearInterval(app_console.updater);
     }
 }

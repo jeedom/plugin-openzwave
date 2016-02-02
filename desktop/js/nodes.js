@@ -890,10 +890,10 @@ var app_nodes = {
 				break;
 			case 5: // Network Extender             = 0x05,
 				genericDeviceClassDescription = "{{Répéteur de signal}}";
-				break;	
+				break;
 			case 6: // Appliance             = 0x06,
 				genericDeviceClassDescription = "{{Appareil}}";
-				break;	
+				break;
 			case 7: // Sensor Notification             = 0x07,
 				genericDeviceClassDescription = "{{Capteur de notification}}";
 				break;
@@ -1314,8 +1314,8 @@ var app_nodes = {
 					row_system.find("td[key=system-type]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + ' (' + nodes[z].instances[instance].commandClasses[commandclass].data[index].type + ')');
 					var system_data = data_item + " " + data_units;
 					if (expected_data != null) {
-							system_data += '<br>(<i>' +expected_data + " " + data_units +'</i>)';
-						}
+						system_data += '<br>(<i>' +expected_data + " " + data_units +'</i>)';
+					}
 					row_system.find("td[key=system-value]").html(system_data);
 					if (nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only == false) {
 						row_system.find("td[key=system-edit]").html('<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></button>');

@@ -15,10 +15,10 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- $('#bt_syncEqLogic').on('click', function () {
+$('#bt_syncEqLogic').on('click', function () {
     syncEqLogicWithOpenZwave();
 });
- $('.changeIncludeState').on('click', function () {
+$('.changeIncludeState').on('click', function () {
     var nbZwayServer = 0;
     var serverId = 1;
     for(var i in listServerZwave){
@@ -53,21 +53,21 @@
             '</div> ' +
             '</form> </div>  </div>',
             buttons: {
-              "Annuler": {
-                className: "btn-default",
-                callback: function () {
-                }
-            },
-            success: {
-                label: "D'accord",
-                className: "btn-primary",
-                callback: function () {
-                  changeIncludeState(mode, state,$('#sel_serverZway').value());
-              }
-          },
-      }
-  });
-}
+                "Annuler": {
+                    className: "btn-default",
+                    callback: function () {
+                    }
+                },
+                success: {
+                    label: "D'accord",
+                    className: "btn-primary",
+                    callback: function () {
+                        changeIncludeState(mode, state,$('#sel_serverZway').value());
+                    }
+                },
+            }
+        });
+    }
 });
 
 $('body').delegate('.nodeConfiguration','click',function(){
@@ -111,21 +111,21 @@ if (is_numeric(getUrlVars('logical_id')) && is_numeric(getUrlVars('server_id')))
 $("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
 function printEqLogic(_eqLogic){
-   if($('.li_eqLogic.active').attr('data-eqlogic_id') != ''){
-    $('#img_device').attr("src", $('.eqLogicDisplayCard[data-eqLogic_id='+$('.li_eqLogic.active').attr('data-eqlogic_id')+'] img').attr('src'));
-}else{
-    $('#img_device').attr("src",'plugins/openzwave/doc/images/openzwave_icon.png');
-}
-if($('.li_eqLogic.active').attr('data-assistant') != ''){
-    $('#bt_deviceAssistant').show();
-    $('#bt_deviceAssistant').off().on('click',function(){
-     $('#md_modal').dialog({title: "{{Assistant de configuration}}"});
-     $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=device.assistant&id='+_eqLogic.id+'&serverId='+ _eqLogic.configuration.serverID+'&logical_id='+ _eqLogic.logicalId).dialog('open');
- });
-}else{
-    $('#bt_deviceAssistant').hide();
-}
- $.ajax({// fonction permettant de faire de l'ajax
+    if($('.li_eqLogic.active').attr('data-eqlogic_id') != ''){
+        $('#img_device').attr("src", $('.eqLogicDisplayCard[data-eqLogic_id='+$('.li_eqLogic.active').attr('data-eqlogic_id')+'] img').attr('src'));
+    }else{
+        $('#img_device').attr("src",'plugins/openzwave/doc/images/openzwave_icon.png');
+    }
+    if($('.li_eqLogic.active').attr('data-assistant') != ''){
+        $('#bt_deviceAssistant').show();
+        $('#bt_deviceAssistant').off().on('click',function(){
+            $('#md_modal').dialog({title: "{{Assistant de configuration}}"});
+            $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=device.assistant&id='+_eqLogic.id+'&serverId='+ _eqLogic.configuration.serverID+'&logical_id='+ _eqLogic.logicalId).dialog('open');
+        });
+    }else{
+        $('#bt_deviceAssistant').hide();
+    }
+    $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // méthode de transmission des données au fichier php
         url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
         data: {
@@ -140,20 +140,20 @@ if($('.li_eqLogic.active').attr('data-assistant') != ''){
             handleAjaxError(request, status, error);
         },
         success: function (data) { // si l'appel a bien fonctionné
-        if(isset(data.result.name)){
-            $('.eqLogicAttr[data-l1key=configuration][data-l2key=product_name]').value(data.result.name);
+            if(isset(data.result.name)){
+                $('.eqLogicAttr[data-l1key=configuration][data-l2key=product_name]').value(data.result.name);
+            }
+            if(isset(data.result.doc) && data.result.doc != ''){
+                $('#bt_deviceDocumentation').attr('href','https://www.jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-' + data.result.doc+'.html');
+                $('#bt_deviceDocumentation').show();
+            }else{
+                $('#bt_deviceDocumentation').hide();
+            }
+            modifyWithoutSave = false;
         }
-        if(isset(data.result.doc) && data.result.doc != ''){
-            $('#bt_deviceDocumentation').attr('href','https://www.jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-' + data.result.doc+'.html');
-            $('#bt_deviceDocumentation').show();
-        }else{
-            $('#bt_deviceDocumentation').hide();
-        }
-        modifyWithoutSave = false;
-    }
-});
+    });
 
-  $.ajax({// fonction permettant de faire de l'ajax
+    $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // méthode de transmission des données au fichier php
         url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
         data: {
@@ -166,23 +166,23 @@ if($('.li_eqLogic.active').attr('data-assistant') != ''){
             handleAjaxError(request, status, error);
         },
         success: function (data) { // si l'appel a bien fonctionné
-        $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').empty();
-        if(data.result.length > 1 ){
-            option = '';
-            for(var i in data.result){
-                option += '<option value="'+data.result[i]+'">'+data.result[i]+'</option>';
+            $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').empty();
+            if(data.result.length > 1 ){
+                option = '';
+                for(var i in data.result){
+                    option += '<option value="'+data.result[i]+'">'+data.result[i]+'</option>';
+                }
+                $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').append(option);
+                $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').closest('.form-group').show();
+                if(isset(_eqLogic.configuration.fileconf)){
+                    $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').value(_eqLogic.configuration.fileconf);
+                }
+            }else{
+                $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').closest('.form-group').hide();
             }
-            $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').append(option);
-            $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').closest('.form-group').show();
-            if(isset(_eqLogic.configuration.fileconf)){
-                $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').value(_eqLogic.configuration.fileconf);
-            }
-        }else{
-            $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').closest('.form-group').hide();
+            modifyWithoutSave = false;
         }
-        modifyWithoutSave = false;
-    }
-});
+    });
 }
 
 
@@ -204,17 +204,17 @@ $('body').on('zwave::controller.data.controllerState', function (_event,_options
         $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fa fa-sign-out fa-rotate-90"></i> {{Arrêter l\'exclusion}}');
         $('#div_inclusionAlert'+_options.serverId).showAlert({message: '{{Vous êtes en mode exclusion sur}} '+_options.name+'. {{Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}', level: 'warning'});
     }else{
-     $('.changeIncludeState.card[data-mode=0]').css('background-color','#ffffff');
-     $('.changeIncludeState.card[data-mode=1]').css('background-color','#ffffff');
-     $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Mode exclusion}}');
-     $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Mode inclusion}}');
-     $('.changeIncludeState.card[data-mode=1] span center').text('{{Mode inclusion}}');
-     $('.changeIncludeState.card[data-mode=0] span center').text('{{Mode exclusion}}');
-     $('.changeIncludeState[data-mode=1]').attr('data-state', 1);
-     $('.changeIncludeState[data-mode=0]').attr('data-state', 1);
-     $('.changeIncludeState[data-mode=1]:not(.card)').removeClass('btn-success').addClass('btn-default');
-     $('.changeIncludeState[data-mode=0]:not(.card)').removeClass('btn-danger').addClass('btn-default');
- }
+        $('.changeIncludeState.card[data-mode=0]').css('background-color','#ffffff');
+        $('.changeIncludeState.card[data-mode=1]').css('background-color','#ffffff');
+        $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Mode exclusion}}');
+        $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Mode inclusion}}');
+        $('.changeIncludeState.card[data-mode=1] span center').text('{{Mode inclusion}}');
+        $('.changeIncludeState.card[data-mode=0] span center').text('{{Mode exclusion}}');
+        $('.changeIncludeState[data-mode=1]').attr('data-state', 1);
+        $('.changeIncludeState[data-mode=0]').attr('data-state', 1);
+        $('.changeIncludeState[data-mode=1]:not(.card)').removeClass('btn-success').addClass('btn-default');
+        $('.changeIncludeState[data-mode=0]:not(.card)').removeClass('btn-danger').addClass('btn-default');
+    }
 });
 
 $('body').on('zwave::includeDevice', function (_event,_options) {
@@ -231,31 +231,31 @@ $('body').on('zwave::includeDevice', function (_event,_options) {
 
 $('#bt_autoDetectModule').on('click',function(){
 
- bootbox.confirm('{{Etes-vous sûr de vouloir récréer toute les commandes ? Cela va supprimer les commandes existante}}', function (result) {
-    if (result) {
- $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // méthode de transmission des données au fichier php
-        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
-        data: {
-            action: "autoDetectModule",
-            id: $('.eqLogicAttr[data-l1key=id]').value(),
-        },
-        dataType: 'json',
-        global: false,
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
+    bootbox.confirm('{{Etes-vous sûr de vouloir récréer toute les commandes ? Cela va supprimer les commandes existante}}', function (result) {
+        if (result) {
+            $.ajax({// fonction permettant de faire de l'ajax
+                type: "POST", // méthode de transmission des données au fichier php
+                url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+                data: {
+                    action: "autoDetectModule",
+                    id: $('.eqLogicAttr[data-l1key=id]').value(),
+                },
+                dataType: 'json',
+                global: false,
+                error: function (request, status, error) {
+                    handleAjaxError(request, status, error);
+                },
+                success: function (data) { // si l'appel a bien fonctionné
+                    if (data.state != 'ok') {
+                        $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                        return;
+                    }
+                    $('#div_alert').showAlert({message: '{{Opération réalisée avec succès}}', level: 'success'});
+                    $('.li_eqLogic[data-eqLogic_id='+$('.eqLogicAttr[data-l1key=id]').value()+']').click();
+                }
+            });
         }
-        $('#div_alert').showAlert({message: '{{Opération réalisée avec succès}}', level: 'success'});
-        $('.li_eqLogic[data-eqLogic_id='+$('.eqLogicAttr[data-l1key=id]').value()+']').click();
-    }
-});
-}
-});
+    });
 });
 
 function syncEqLogicWithOpenZwave() {
@@ -270,13 +270,13 @@ function syncEqLogicWithOpenZwave() {
             handleAjaxError(request, status, error);
         },
         success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            window.location.reload();
         }
-        window.location.reload();
-    }
-});
+    });
 }
 
 function changeIncludeState(_mode, _state,_serverID) {
@@ -294,12 +294,12 @@ function changeIncludeState(_mode, _state,_serverID) {
             handleAjaxError(request, status, error);
         },
         success: function (data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
         }
-    }
-});
+    });
 }
 
 function addCmdToTable(_cmd) {
