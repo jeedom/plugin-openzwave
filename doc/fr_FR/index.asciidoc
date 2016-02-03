@@ -18,6 +18,19 @@ Le Z-Wave+, apporte certaines améliorations dont une meilleur portée et améli
 
 '''
 include::configuration.asciidoc[]
+'''
+include::appliance.asciidoc[]
+'''
+include::node.asciidoc[]
+'''
+include::addremove.asciidoc[]
+'''
+include::network.asciidoc[]
+'''
+include::health.asciidoc[]
+'''
+include::advancedconfiguration.asciidoc[]
+
 
 == Liste des modules compatible
 Vous trouverez la liste des modules compatibles link:https://jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-equipement.compatible.html[ici]

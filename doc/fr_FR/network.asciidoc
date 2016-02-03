@@ -1,0 +1,59 @@
+== Réseaux  Z-Wave
+
+image:../images/openzwave19.png[]
+
+Vous retrouvez ici des informations générales sur votre réseau Z-wave.
+
+image:../images/openzwave24.png[]
+
+=== Résumé
+
+Le premier onglet vous donne le résumé de base de votre réseau Z-wave, vous retrouvez notamment l'état du réseau Z-wave ainsi que le nombre d'éléments dans la file d'attente.
+
+[TIP]
+Le réseau est dit fonctionnel au moment où il atteint le statu Topology Loaded, c'est à  dire que l'ensemble des noeuds secteurs ont complété leurs interviews. Selon le nombre de modules, la répartition pile/secteur, le choix du dongle USB et le PC sur le quel tourne le plugin  Z-Wave, le réseau va atteindre cette état entre 1 et 5 minutes.
+
+Un réseau Ready, signifie que l'ensemble de noeuds secteur et du piles ont complété leur interview.
+[TIP]
+Selon les modules que vous disposé, il est possible que le réseau n'atteigne jamais de lui-même le statu Ready. Les télécommande par exemple ne se réveillent pas d'elles même et ne compléteront jamais leurs interviews. Dans ce genre de cas, le réseau est tout à fait opérationnel et même si les télécommande n'ont pas compléter leur interview elle assurons leurs fonctionnalités au sein du réseau.
+
+=== Actions
+
+image:../images/openzwave25.png[]
+
+Vous retrouvez ici toutes les actions possibles sur l'ensemble de votre réseau Z-wave. Chaque action est accompagnée d’une description sommaire.
+
+[IMPORTANT]
+Certaines actions sont vraiment risquées voir irréversible, l'équipe Jeedom ne pourra être tenue responsable en cas de mauvaise manipulation.
+
+[IMPORTANT]
+Certains modules requièrent une inclusion en mode sécurisé, par exemple pour les serrures de porte. L’inclusion sécurisée doit être lancé via l'action de cet écran.
+
+=== Statistiques
+
+image:../images/openzwave26.png[]
+
+Vous retrouvez ici les statistiques générales sur l'ensemble de votre réseau Z-wave.
+
+=== Graphique du réseau
+
+image:../images/openzwave27.png[]
+
+Cet onglet vous donnera une représentation graphique des différents liens entre les noeuds.
+
+Voici la légende des couleurs :
+
+* *Gris* : interview non complet
+* *Rouge* : dead, ou sans voisins
+* *Jaune* : ne communique pas directement avec le contrôleur principal.
+* *Vert* : pour les contrôleurs (comme les remote) ils sont virtuelle associé au contrôleur primaire.
+* *Bleu* : lien direct avec le contrôleur primaire.
+
+=== Table de routage
+
+image:../images/openzwave28.png[]
+
+Affiche le nombre de routes disponibles pour la communication entre chaque noeud.
+
+[TIP]
+La légende est disponible tout en bas.

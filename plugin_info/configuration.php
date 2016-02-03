@@ -44,7 +44,7 @@ if (!isConnect()) {
 				<div class="col-lg-5">
 					<a class="btn btn-success" id="bt_consoleZwave"><i class="fa fa-terminal"></i> {{Console}}</a>
 					<a class="btn btn-warning" id="bt_backupsZwave"><i class="fa fa-floppy-o"></i> {{Backups}}</a>
-					<a class="btn btn-danger" id="bt_fileconfigZwave"><i class="fa fa-file-o"></i> {{Configuration}}</a>
+					<a class="btn btn-danger" id="bt_fileconfigZwave"><i class="fa fa-file-o"></i> {{zwcfg}}</a>
 					<a class="btn btn-success" id="bt_syncconfigZwave"><i class="fa fa-refresh"></i> {{Configs modules}}</a>
 				</div>
 			</div>

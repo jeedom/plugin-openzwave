@@ -1,0 +1,30 @@
+== Santé
+
+image:../images/openzwave12.png[]
+
+Cette fenêtre résume l'état de votre réseau Z-Wave :
+
+image:../images/openzwave13.png[]
+
+Vous avez ici :
+
+* *Module* : le nom de votre module, un clic dessus vous permet d'y accéder directement.
+* *ID* : ID de votre module sur le réseau Z-Wave.
+* *Notification* : dernier type d'échange entre le module et le contrôleur
+* *Groupe* : indique si la configuration des groupes est ok (contrôleur au moins dans un groupe). Si vous n'avez rien c'est que le module ne supporte pas la notion de groupe, c'est normal
+* *Constructeur* : indique si la récupération des informations d'identification du module est ok
+* *Voisin* : indique si la liste des voisins a bien était récupéré
+* *Statut* : Indique le statu de l'interview (query stage) du module
+* *Batterie* : niveau de batterie du module (NA indique que le module est alimenté).
+* *Wakeup time* : pour les modules sur batterie, il donne la fréquence en secondes des instants où le module se réveille forcément.
+* *Paquet total* : affiche le nombre total de paquets reçus ou envoyés avec succès au module (maximum 30).
+* *%OK* : affiche le pourcentage de paquets envoyés/reçus avec succès.
+* *Temporisation* : affiche le délai moyen d'envoi de paquet en ms.
+* *Dernière communication* : Date de dernière communication avec le module ainsi que l'heure de la prochaine communication prévue.
+* *Ping* : Permet d'envoyer un ping au module, peut être utilisé si le module est en dead pour voir si c'est réellement le cas.
+
+[TIP]
+La notification Timeout ne signifie pas nécessairement un problème de avec le module. Lancer un Ping et dans la majorité des cas il répondra par une notification NoOperation qui est l'écho du ping.
+
+[TIP]
+La Temporisation et le %OK sur des noeuds sur piles avant la complétion de leur interview n'est pas significative. En effet le noeud ne va pas répondre aux interrogations du contrôleur du fait qu'il est en sommeil profond.

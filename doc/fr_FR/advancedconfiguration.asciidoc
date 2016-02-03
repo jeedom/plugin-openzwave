@@ -1,0 +1,53 @@
+== Console
+
+La console permet de voir en temps réel ce qu'il se passe sur le réseau Z-wave.
+
+image:../images/openzwave22.png[]
+
+[IMPORTANT]
+Les informations ici sont à destination du support, il ne faut donc pas s'inquiéter de voir des "Error" ou  "Warning" ici. Cela ne veut pas forcément dire que votre système a un souci.
+
+[TIP]
+Les messages de la console sont plus ou moins détaillés selon que le plugin est démarré en mode Normal ou en Debug.
+
+== Backups
+
+La partie backup va vous permettre de gérer les backups de la topologie de votre réseau. A partir de cet écran vous pourrez :
+
+* Lancer un backup (un backup est fait à chaque arrêt relance du réseaux et pendant les opérations critique). Les 12 derniers backups sont conservés
+* Restaurer un backup (en le sélectionnant dans la liste juste au-dessus)
+* Supprimer un backup
+
+image:../images/openzwave35.png[]
+
+== Configuration
+
+Cet onglet contient la configuration de vos modules Z-wave.
+
+image:../images/openzwave23.png[]
+
+[IMPORTANT]
+Cette partie est réservée aux experts, toute modification ici (autre que sur demande du support) peut entrainer de graves problèmes sur le réseau Z-wave et peut ne pas être prise en charge par le support.
+
+
+
+== Mettre à jour OpenZwave
+
+Si Jeedom vous demande de mettre à jour OpenZwave ou si vous avez NOK au niveau de la version OpenZwave :
+
+image:../images/openzwave30.png[]
+
+[TIP]
+Cette opération n'est pas a faire à chaque mise à jour du plugin seulement si nécessaire
+
+Vous devez d'abord arrêter le démon (c'est plus sur) :
+
+image:../images/openzwave31.png[]
+
+Ensuite il faut cliquer sur le bouton "Installer/Mettre à jour" en face de "Dépendance OpenZwave locale" (si vous êtes en déporté il faut le faire sur les déportés) :
+
+image:../images/openzwave32.png[]
+
+La durée de cette opération peut varier en fonction de votre système (jusqu'à plus de 1h sur raspberry pi)
+
+Ensuite vous avez juste à cliquer sur redémarrer pour relancer le démon.
