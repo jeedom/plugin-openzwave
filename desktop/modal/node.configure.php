@@ -387,13 +387,13 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 							<tr>
 								<td><button type="button" id="regenerateNodeCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Regénérer la détection du nœud}}</button></td>
 								<td>{{Supprime les informations du noeud dans le fichier de config afin qu'il soit à nouveau détecté.}}<br>
-									{Le noeud sera automatiquement supprimé dans les 5 minutes suivant le redémarrage du réseau}}
+									{{Le noeud sera automatiquement supprimé dans les 5 minutes suivant le redémarrage du réseau}}
 									{{(Attention : Relance le réseau)}}</td>
 							</tr>
 							<tr>
 								<td><button type="button" id="removeGhostNode" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Suppression automatique du nœud fantôme}}</button></td>
 								<td>{{Permet de supprimer un nœud sur pile qui n'est plus accessible sur le réseau.}}<br>
-									{Le nœud sera automatiquement supprimé dans les 5 minutes suivant le redémarrage du réseau}}
+									{{Le nœud sera automatiquement supprimé dans les 5 minutes suivant le redémarrage du réseau}}
 									{{(Attention : Relance le réseau)}}
 								</td>
 							</tr>
