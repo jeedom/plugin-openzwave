@@ -4,78 +4,76 @@ Après le téléchargement du plugin, il vous suffit de l'activer et de le confi
 Use fois sauvegardé, le démon devrait se lancer.
 Le plugin est préconfiguré avec des valeurs par défaut ; vous n'avez normalement rien à faire de plus.
 Cependant vous pouvez modifier la configuration.
-Voici le détail (certains paramètres peuvent n'être visibles qu'en mode expert) :
-
 image:../images/openzwave1.png[]
 
- * *Configuration* : cette partie vous donne le statut du démon (aussi bien en local qu'en déporté,
- ici en local).
 
-[TIP]
-Si vous êtes en mode déporté, le démon local peut être arrêté, c'est tout à fait normal.
-
-
-* *Dépendances* : cette partie permet de valider et d'installer les dépendances requisent au bon fonctionnement du plugin Zwave
+* *Dépendances* : cette partie permet de valider et d'installer les dépendances requises au bon fonctionnement du plugin Zwave  (aussi bien en local qu'en déporté,
+ici en local)
 image:../images/openzwave30.png[]
-** Un Statut OK confirme que les dépendances sont satisfaite.
-** Si le status est NOK, il faudra réinstaller les déppendances à l'aide du bouton
+
+** Un Statut *OK* confirme que les dépendances sont satisfaites.
+** Si le statut est *NOK*, il faudra réinstaller les dépendances à l'aide du bouton
 image:../images/openzwave32.png[]
 [TIP]
 La mise à jour des dépendances peut prendre plus de 20 minutes selon votre matériel. La progression est affichée en temps réel et un log est accessible.
 [IMPORTANT]
-La mise à jour des dépendances est normalment a effectuer seulement si le Status est NOK, mais il est toute fois possible que, pour régler certain problème, vous serez appellé a refaire l'installation des dépendances.
+La mise à jour des dépendances est normalement à effectuer seulement si le Statut est *NOK*, mais il est toutefois possible que, pour régler certain problème, vous serez appelé a refaire l'installation des dépendances.
+[TIP]
+Si vous êtes en mode déporté, les dépendances du démon local peut être NOK, c'est tout à fait normal.
 
-* *Démon* : cette partie permet de valider l'état actuel du ou des démons et de configurer la gestion automatique de ceux ci.
+
+* *Démon* : cette partie permet de valider l'état actuel du ou des démons et de configurer la gestion automatique de ceux-ci.
 image:../images/openzwave31.png[]
-L'ensemble des démon local ou déporté seront affiché avec leurs différentes informations
+Le démon local et l'ensemble des démons déportés seront affiché avec leurs différentes informations
 
 ** Le *Statut* indique que le démon est actuellement en fonction.
-** La *Configuration* indique si la configuration du démon est bien complété.
-** Le bouton *(Re)Démarrer* permet de forcer le redémarrage du plugin, en mode normal ou de le lancer un première fois.
+** La *Configuration* indique si la configuration du démon est valide.
+** Le bouton *(Re)Démarrer* permet de forcer le redémarrage du plugin, en mode normal ou de le lancer une première fois.
 ** Le bouton *Arrête*, visible seulement si la gestion automatique est désactivé, force l'arrêt du démon.
 ** Le bouton *Debug* permet de relancer le démon avec les instructions et trace de Debug. Cette option peut être utile pour comprendre, pourquoi le démon plante ou ne remonte pas une valeur.
-** Le bonton *Log* permet de voir directement de log du démon.
-** La *Gestion automatique* permet a jeedom de lancer automatiquement le demon au démarrage de jeedom ainsi que le relancer en cas de problème.
+** Le bouton *Log* permet de voir directement de log du démon.
+** La *Gestion automatique* permet à jeedom de lancer automatiquement le demon au démarrage de jeedom ainsi que le relancer en cas de problème.
 ** Le *Denier lancement* est comme son nom l'indique la date du dernier lancement connue du demon.
 [IMPORTANT]
 En mode débug le démon est très verbeux il est recommander d'utiliser ce mode seulement si vous devez diagnostiquer un problème particulier.
-Il est pas recommandé de laisser tourner le démon en Debug de façon permanante, si un utilise une SD card. Une fois le debug terminé, il ne faut pas oublier de cliquer sur "Redémarrer" pour sortir du mode debug !!
+Il n’est pas recommandé de laisser tourner le démon en Debug en permanence, si on utilise une *SD-Card*. Une fois le debug terminé, il ne faut pas oublier de cliquer sur "Redémarrer" pour sortir du mode debug !!
 
 
 
 * *Configuration* : cette partie permet de configurer les paramètres généraux du plugin
 image:../images/openzwave53.png[]
 * *Général* :
-** *Supprimer automatiquement les périphériques exclus* : permet de supprimer les périphérique exclus du réseaux  Z-Wave ou non
-** *Soigner le réseau automatiquement 2 fois par semaine* : option pour activer un soin automatique du réseau  Z-Wave (vivement conseillée en début d'installation si on déplace régilièrement les modules de places)
+** *Supprimer automatiquement les périphériques exclus* : Oui, permet de supprimer les périphérique exclus du réseau  Z-Wave. L’option Non, permet de conserver les équipements dans jeedom même s’ils ont été exclus du réseau. L’équipement devra être alors supprimé manuellement ou réutiliser en lui assignant un nouvel ID Z-Wave si on exécute une migration de contrôleur principal.
+** *Soigner le réseau automatiquement 2 fois par semaine* : option pour activer un soin automatique du réseau  Z-Wave (vivement conseillée en début d'installation si on déplace régulièrement les modules)
 * *Gestion avancée* :
 ** *Console* : permet d'affichage la console  Z-Wave (voir plus bas)
-** *Backups* : permet de gérer les backups du fichier de topologie réseaux
-** *zwcfg* : permet de voir et modifier le fichier de topologie réseaux (non recommandé)
+** *Backups* : permet de gérer les backups du fichier de topologie réseaux (voir plus bas)
+** *zwcfg* : permet de voir et modifier le fichier de topologie réseaux (voir plus bas)
 ** *Config modules* : permet de récupérer, manuellement, les fichiers de configurations OpenZwave avec les paramètres des modules ainsi que la définition des commandes de modules pour leurs utilisations.
 [TIP]
-La récupération des configuration de module s'effectue automatiquement chaque nuit.
+La récupération des configurations de module s'effectue automatiquement chaque nuit.
 [TIP]
-Le redémarrage du demon suite à la mise à jour des configurations de module est innutile.
+Le redémarrage du demon suite à la mise à jour des configurations de module est inutile.
 [IMPORTANT]
-Si vous avez un module non reconnue et qu'une mise à jour de configuration vient d'être appliqué, vous pouvez manuellement lancer la récupération des
-configuration de modules.
+Si vous avez un module non reconnue et qu'une mise à jour de configuration vient d'être appliquée, vous pouvez manuellement lancer la récupération des configurations de modules.
 
-** Une fois les configurations récupérer il faudra, selon les changements apportés:
-*** Pour un nouveau module sans configuration ni commande: exclure et ré-inclure le module.
-*** Pour un module pour le quel seul les paramatres ont été mise à jour: lancer la Régénération de la détection du noeud, via l'onglet Actions du module (le plugin doit redémarrer).
-*** Pour un module dont le mapping de commandes à été corrigé: la loupe sur les commandes, voire plus bas.
+* Une fois les configurations récupérer il faudra, selon les changements apportés:
+
+** Pour un nouveau module sans configuration ni commande: exclure et ré-inclure le module.
+** Pour un module pour le quel seul les paramètres ont été mise à jour: lancer la Régénération de la détection du nœud, via l'onglet Actions du module (le plugin doit redémarrer).
+** Pour un module dont le « mapping » de commandes a été corrigé: la loupe sur les commandes, voire plus bas.
 [TIP]
 Dans le doute, l'exclure et ré-inclure le module est recommandé.
 
+
 * *Démon local* ou *Démon XXX* : paramètres la configuration locale (ou déportée, en fonction de l'intitulé) du démon.
 image:../images/openzwave33.png[]
-** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-wave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 possibilités à la fin de la liste
-** *Port du Serveur* (modification dangereuse, doit être la même valeur sur tous les Jeedom déportés Z-wave) : permet de modifier le port de communication interne du démon.
+** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-Wave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 possibilités à la fin de la liste
+** *Port du Serveur* (modification dangereuse, doit être la même valeur sur tous les Jeedom déportés Z-Wave) : permet de modifier le port de communication interne du démon.
 [TIP]
 N'oubliez pas de
 image:../images/openzwave34.png[]
 si vous effectuez une modification.
 
 [IMPORTANT]
-Si vous utilisez Ubuntu : Pour que le démon marche il faut absolument avoir ubuntu 15.04 (les versions inferieurs ont un bug et le demon n'arrive pas à se lancer). Attention si vous faite une mise à jour à partir de 14.04 il faut une fois en 15.04 relancer l'installation des dépendance
+Si vous utilisez Ubuntu : Pour que le démon marche il faut absolument avoir ubuntu 15.04 (les versions inferieurs ont un bug et le demon n'arrive pas à se lancer). Attention si vous faite une mise à jour à partir de 14.04 il faut une fois en 15.04 relancer l'installation des dépendances.

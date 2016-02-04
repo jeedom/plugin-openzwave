@@ -1,0 +1,20 @@
+== Mettre à jour OpenZwave
+
+Si Jeedom vous demande de mettre à jour OpenZwave ou si vous avez NOK au niveau des dépendances :
+
+image:../images/openzwave30.png[]
+
+[TIP]
+Cette opération n'est pas a faire à chaque mise à jour du plugin seulement si nécessaire.
+
+Vous devez d'abord arrêter le démon (c'est plus sur) :
+
+image:../images/openzwave31.png[]
+
+Ensuite il faut cliquer sur le bouton "Relancer" en face de "Dépendance locale" (si vous êtes en déporté il faut le faire sur les déportés) :
+
+image:../images/openzwave32.png[]
+
+La durée de cette opération peut varier en fonction de votre système (jusqu'à plus de 1h sur raspberry pi)
+
+Ensuite vous avez juste à cliquer sur redémarrer pour relancer le démon.

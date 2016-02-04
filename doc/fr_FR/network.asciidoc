@@ -2,26 +2,53 @@
 
 image:../images/openzwave19.png[]
 
-Vous retrouvez ici des informations générales sur votre réseau Z-wave.
+Vous retrouvez ici des informations générales sur votre réseau Z-Wave.
 
 image:../images/openzwave24.png[]
 
 === Résumé
 
-Le premier onglet vous donne le résumé de base de votre réseau Z-wave, vous retrouvez notamment l'état du réseau Z-wave ainsi que le nombre d'éléments dans la file d'attente.
+Le premier onglet vous donne le résumé de base de votre réseau Z-Wave, vous retrouvez notamment l'état du réseau Z-Wave ainsi que le nombre d'éléments dans la file d'attente.
+
+** Informations
+* Donne des informations générales sur le réseau, la date de démarrage, le temps requis pour l'obtention du réseau dans un état dit fonctionnel.
+* Le nombre de nœuds total du réseau ainsi que le nombre qui dorment dans le moment.
+* L'intervalle des demandes est associé au rafraichissement manuel. Il prédéfinie dans le moteur Z-Wave à 5 minutes.
+* Les voisins du contrôleur.
+
+** Etat
+image:../images/openzwave49.png[]
+Un ensemble d'information sur l'état actuel du réseau à savoir.
+* Etat actuel, peut-être *Driver Initialised*, *Topology loaded* ou *Ready*.
+* Queue sortante, indique le nombre de messages en queue dans le contrôleur en attente d’être envoyé.
+Cette valeur est généralement élevé durant le démarrage du réseau lorsque l'état est encore en *Driver Initialised*.
+Une fois que le réseau à au minimum atteint *Topology loaded*, des mécanismes interne au serveur Z-Wave vont forcer des mises à jour de valeurs, il est alors tout à fait normale de voir monter le nombre de message. Celui-ci va rapidement retourner à 0.
+La dernière notification du contrôleur ainsi que le détail du message sont des informations techniques mais qui nous permettre de comprendre les derniers échanges avec le contrôleur.
+[TIP]
+Le réseau est dit fonctionnel au moment où il atteint le statu *Topology Loaded*, c'est à  dire que l'ensemble des nœuds secteurs ont complété leurs interviews. Selon le nombre de modules, la répartition pile/secteur, le choix du dongle USB et le PC sur le quel tourne le plugin  Z-Wave, le réseau va atteindre cette état entre une et cinq minutes.
+
+Un réseau *Ready*, signifie que l'ensemble de nœuds secteur et ceux sur piles ont complété leur interview.
 
 [TIP]
-Le réseau est dit fonctionnel au moment où il atteint le statu Topology Loaded, c'est à  dire que l'ensemble des noeuds secteurs ont complété leurs interviews. Selon le nombre de modules, la répartition pile/secteur, le choix du dongle USB et le PC sur le quel tourne le plugin  Z-Wave, le réseau va atteindre cette état entre 1 et 5 minutes.
+Selon les modules que vous disposé, il est possible que le réseau n'atteigne jamais de lui-même le statu *Ready*. Les télécommande par exemple ne se réveillent pas d'elles même et ne compléteront jamais leurs interviews. Dans ce genre de cas, le réseau est tout à fait opérationnel et même si les télécommande n'ont pas compléter leur interview elle assure leurs fonctionnalités au sein du réseau.
 
-Un réseau Ready, signifie que l'ensemble de noeuds secteur et du piles ont complété leur interview.
-[TIP]
-Selon les modules que vous disposé, il est possible que le réseau n'atteigne jamais de lui-même le statu Ready. Les télécommande par exemple ne se réveillent pas d'elles même et ne compléteront jamais leurs interviews. Dans ce genre de cas, le réseau est tout à fait opérationnel et même si les télécommande n'ont pas compléter leur interview elle assurons leurs fonctionnalités au sein du réseau.
+** Capacités
+
+Permet de savoir si le contrôleur est un contrôleur principal ou secondaire.
+
+** Système
+
+Affiche divers informations système.
+
+* Information sur le port USB utilisé.
+* Version de la librairie OpenZwave
+* Version de la librairie Python-OpenZwave
 
 === Actions
 
 image:../images/openzwave25.png[]
 
-Vous retrouvez ici toutes les actions possibles sur l'ensemble de votre réseau Z-wave. Chaque action est accompagnée d’une description sommaire.
+Vous retrouvez ici toutes les actions possibles sur l'ensemble de votre réseau Z-Wave. Chaque action est accompagnée d’une description sommaire.
 
 [IMPORTANT]
 Certaines actions sont vraiment risquées voir irréversible, l'équipe Jeedom ne pourra être tenue responsable en cas de mauvaise manipulation.
@@ -33,27 +60,40 @@ Certains modules requièrent une inclusion en mode sécurisé, par exemple pour 
 
 image:../images/openzwave26.png[]
 
-Vous retrouvez ici les statistiques générales sur l'ensemble de votre réseau Z-wave.
+Vous retrouvez ici les statistiques générales sur l'ensemble de votre réseau Z-Wave.
 
 === Graphique du réseau
 
 image:../images/openzwave27.png[]
 
-Cet onglet vous donnera une représentation graphique des différents liens entre les noeuds.
+Cet onglet vous donnera une représentation graphique des différents liens entre les nœuds.
 
-Voici la légende des couleurs :
+Explication la légende des couleurs :
 
-* *Gris* : interview non complet
-* *Rouge* : dead, ou sans voisins
-* *Jaune* : ne communique pas directement avec le contrôleur principal.
-* *Vert* : pour les contrôleurs (comme les remote) ils sont virtuelle associé au contrôleur primaire.
-* *Bleu* : lien direct avec le contrôleur primaire.
+* *Vert* : Communication direct avec le contrôleur, idéal.
+* *Blue* : Pour les contrôleurs, comme les télécommandes, ils sont associé au contrôleur primaire, mais n'ont pas de voisin.
+* *Jaune* : Toute les routes ont plus d’un saut avant d'arriver au contrôleur.
+* *Gris* : L'interview n'est pas encore complété, les liens seront réellement connue une fois l'interview complété.
+* *Rouge* : présumé mort, ou sans voisins, ne participe pas/plus au maillage du réseau.
+
+
 
 === Table de routage
 
 image:../images/openzwave28.png[]
 
-Affiche le nombre de routes disponibles pour la communication entre chaque noeud.
+Affiche le nombre de routes disponibles pour la communication entre chaque nœud.
+
+Explication la légende des couleurs :
+
+* *Vert* : Communication direct avec le contrôleur, idéal.
+* *Blue* : Au moins 2 routes avec un saut.
+* *Jaune* : Moins de 2 route avec un saut.
+* *Gris* : L'interview n'est pas encore complété, la sera réellement mise à jour une fois l'interview complété.
+* *Rouge* : Toutes les routes ont plus d'un saut. Peut engendrer des latences.
+
+[IMPORTANT]
+Un module présumé mort, ne participe pas/plus au maillage du réseau. Il sera marqué ici d'un point d'exclamation rouge dans un triangle.
 
 [TIP]
-La légende est disponible tout en bas.
+Vous pouvez lancer manuellement la mise à jour des voisins, par module ou pour l'ensemble du réseau à l'aide des boutons disponible dans la table de routage.

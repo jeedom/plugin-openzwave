@@ -1,0 +1,11 @@
+== Console
+
+La console permet de voir en temps réel ce qu'il se passe sur le réseau Z-wave.
+
+image:../images/openzwave22.png[]
+
+[IMPORTANT]
+Les informations ici sont à destination du support, il ne faut donc pas s'inquiéter de voir des "Error" ou  "Warning" ici. Cela ne veut pas forcément dire que votre système a un souci.
+
+[TIP]
+Les messages de la console sont plus ou moins détaillés selon que le plugin est démarré en mode Normal ou en Debug.
