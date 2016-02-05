@@ -1590,10 +1590,14 @@ def serialize_node_to_json(node_id):
                 standard_type = get_standard_value_type(my_value.type)
             else:
                 standard_type = 'int'
-            if my_value.type == 'Short':
-                value2 = normalize_short_value(my_value.data)
+
+            if my_value.is_write_only:
+                value2 = None
             else:
-                value2 = extract_data(my_value)
+                if my_value.type == 'Short':
+                    value2 = normalize_short_value(my_value.data)
+                else:
+                    value2 = extract_data(my_value)
             if my_value.label == 'Temperature' and my_value.units == 'F':
                 value_units = 'C'
             else:
