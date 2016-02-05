@@ -28,7 +28,7 @@
 		<Value type="int" genre="config" instance="1" index="35" label="Timeout of calibration steps" size="1" min="0" max="65000" value="30">
             <Help>Set the timeout of all calibration steps for the Sensor</Help>
         </Value>
-		<Value type="byte" genre="config" instance="1" index="36" label="Get the numbers of alarm music" size="1" value="5" read_only="True">
+		<Value type="byte" genre="config" instance="1" index="36" label="Get the numbers of alarm music" size="1" value="5" read_only="true">
             <Help>
 				Get the numbers of alarm music. (not support Set CC) 
 			</Help>
@@ -90,7 +90,7 @@
 				Value=1 to value=10, which map to the volume level 1 to level 10
 			</Help>
         </Value>
-		<Value type="byte" genre="config" instance="1" index="45" label="Get the environment temperature" size="2" min="0" max="500" value="0" read_only="True">
+		<Value type="byte" genre="config" instance="1" index="45" label="Get the environment temperature" size="2" min="0" max="500" value="0" read_only="true">
             <Help>
 				The temperature value contains one decimal point. 
 				E.g. If the report value=252(0x00FC), the temperature is 25.2. 
