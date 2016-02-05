@@ -1625,7 +1625,7 @@ def serialize_node_to_json(node_id):
                 json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'] = {"updateTime": timestamp}
                 if not my_node.is_ready:
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['interviewDone'] = {}
-                if my_value.command_class in [128]:
+                if my_value.command_class in [COMMAND_CLASS_BATTERY]:
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['supported'] = {"value": True, "type": "bool", "updateTime": timestamp}
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['last'] = {"value": value2, "type": "int", "updateTime": timestamp}
                 if my_value.command_class in [COMMAND_CLASS_WAKE_UP]:
@@ -1638,7 +1638,7 @@ def serialize_node_to_json(node_id):
                 json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'] = {"updateTime": timestamp}
                 if not my_node.is_ready:
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['interviewDone'] = {}
-                if my_value.command_class in [128]:
+                if my_value.command_class in [COMMAND_CLASS_BATTERY]:
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['supported'] = {"value": True, "type": "bool", "updateTime": timestamp}
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['last'] = {"value": value2, "type": "int", "updateTime": timestamp}
                 if my_value.command_class in [COMMAND_CLASS_WAKE_UP]:
@@ -1646,7 +1646,7 @@ def serialize_node_to_json(node_id):
                 json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": my_value.label, "help": my_value.help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state, "expected_data": expected_data}
                 
             elif index2 not in json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']:
-                if my_value.command_class in [128]:
+                if my_value.command_class in [COMMAND_CLASS_BATTERY]:
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['supported'] = {"value": True, "type": "bool", "updateTime": timestamp}
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['last'] = {"value": value2, "type": "int", "updateTime": timestamp}
                 if my_value.command_class in [COMMAND_CLASS_WAKE_UP]:
