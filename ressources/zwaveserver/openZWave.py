@@ -1393,7 +1393,7 @@ def get_value_by_id(node_id, value_id):
 
 
 def mark_pending_change(my_value, data, wake_up_time=0):
-    if my_value is not None:
+    if my_value is not None and not my_value.is_write_only:
         my_value.pendingConfiguration = PendingConfiguration(data, wake_up_time)
 
 
