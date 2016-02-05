@@ -12,7 +12,7 @@
 			Value = Others, Enable and select a startup ringtone for the Garage Door Controller
 			</Help>			
 		</Value>
-		<Value type="list" genre="config" instance="1" index="34" label="Sensor Calibration" min="10" max="1" value="0" size="1">
+		<Value type="list" genre="config" instance="1" index="34" label="Sensor Calibration" min="10" max="1" value="0" size="1" write_only="true">
 			<Help>
 			Calibration Steps:
 			1. Let the garage door move to full close position.
@@ -74,10 +74,10 @@
 			<Item label="Sensor is not removed" value="0"/>
 			<Item label="Sensor is removed" value="1"/>
 		</Value>
-		<Value type="byte" genre="config" index="42" label="Configuration report for the battery state of Sensor" min="0" max="1" value="0">
+		<Value type="list" genre="config" index="42" label="Configuration report for the battery state of Sensor" size="1" min="0" max="15" value="0">
 			<Help>It will report the battery power state to associated nodes automatically when the battery power is in low battery.</Help>
 			<Item label="Battery power is much more" value="0"/>
-			<Item label="Battery power of Sensor is in low battery" value="1"/>
+			<Item label="Battery power of Sensor is in low battery" value="15"/>
 		</Value>
 		<Value type="byte" genre="config" index="43" label="Start playing or Stop playing the ringtone" min="0" max="100" value="0">
 			<Help>
