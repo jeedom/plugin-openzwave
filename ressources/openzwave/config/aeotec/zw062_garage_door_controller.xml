@@ -97,16 +97,17 @@
 				Rang is 0 to 500 (0 to 50.0). 
 			</Help>
         </Value>
-		<Value type="byte" genre="config" index="47" label="Define the function of Button- or Button+" min="0" max="1" value="0">
+		<Value type="list" genre="config" index="47" label="Define the function of Button- or Button+" min="0" max="1" value="0">
 			<Help>
 			Value=0, short pressing the Button +/- will be used to adjust the volume of sound. Long pressing the Button +/- will be used to switch the sound to the next.
 			Value=1, short pressing the Button +/- will be used to switch the sound to the next. Long pressing the Button +/- will be used to adjust the volume of sound.
 			</Help>
-			<Item label="Adjust the volume / Switch the sound to the next" value="0"/>
-			<Item label="Switch the sound to the next / Adjust the volume" value="1"/>
+			<Item label="Volume" value="0"/>
+			<Item label="Sound" value="1"/>
 		</Value>
-		<Value type="list" genre="config" index="80" label="Report type when the state of garage door is changed" min="1" max="2" value="2">
+		<Value type="list" genre="config" index="80" label="Report type when the state of garage door is changed" min="0" max="2" value="2">
 			<Help>It will send the Hail CC/configuration report CC when the state of garage door is changed</Help>
+			<Item label="Reserved" value="0"/>
 			<Item label="Hail" value="1"/>
 			<Item label="Barrier operator" value="2"/>
 		</Value>
@@ -141,5 +142,4 @@
 			<Group index="2" max_associations="5" label="Retransmit Switch CC" />
 		</Associations>
 	</CommandClass>
-
 </Product>
