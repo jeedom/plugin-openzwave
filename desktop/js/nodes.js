@@ -1353,7 +1353,11 @@ var app_nodes = {
                         row_parameter.find("td[key=parameter-value]").html(data_item);
                     }
                     if (nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only == false) {
-                        row_parameter.find("td[key=parameter-edit]").html('<button type="button" class="btn btn-xs btn-primary editParam" data-paramid="' + index + '" data-paramtype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-paramname="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-paramvalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></button>');
+                        data_item = nodes[z].instances[instance].commandClasses[commandclass].data[index].val;
+                        if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only){
+                            data_item = '';
+                        }
+                        row_parameter.find("td[key=parameter-edit]").html('<button type="button" class="btn btn-xs btn-primary editParam" data-paramid="' + index + '" data-paramtype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-paramname="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-paramvalue="' + data_item + '"><i class="fa fa-wrench"></i></button>');
                     }
                     if (typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('help')) {
                         row_parameter.find("td[key=parameter-help]").html(openzwave_node_translation['configuration'][index].help);
