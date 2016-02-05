@@ -1,0 +1,47 @@
+{		
+	"name": "Garage Door Controller (ZW062)",
+	"doc" : "",
+	"type": "Porte",
+	"comlink" : "",
+	"remark" : "",
+	"imglink" : "aeotec.garagedoorcontroller",
+	"ignore" : 1,
+	"configuration" : {
+		"conf_version" : 1
+	},
+	"commands": [
+		{
+			"name": "Open/Close",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"configuration": {
+				"class": "0x25",
+				"value": "data[0].Set(255)"
+			},
+			"template": {
+				"dashboard": "prise",
+				"mobile": "prise"
+			}
+		},
+		{
+			"name": "Position",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 1,
+			"isHistorized": 1,
+			"configuration": {
+				"class": "0x30",
+				"value": "data[0].val"
+			},
+			"display": {
+				"invertBinary": "1"
+			},
+			"template": {
+				"dashboard": "door",
+				"mobile": "door"
+			}
+		}
+	]
+}
+
