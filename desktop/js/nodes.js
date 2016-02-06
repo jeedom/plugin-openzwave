@@ -1276,7 +1276,9 @@ var app_nodes = {
                     if (nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only == false) {
                         value += '<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></button> ';
                     }
-                    value += nodes[z].instances[instance].commandClasses[commandclass].data[index].val + " " + nodes[z].instances[instance].commandClasses[commandclass].data[index].units;
+                    if ( nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false){
+                        value += nodes[z].instances[instance].commandClasses[commandclass].data[index].val + " " + nodes[z].instances[instance].commandClasses[commandclass].data[index].units;
+                    }
                     row.find("td[key=variable-value]").html(value);
                     var polling = '<span style="width : 22px;"></span>';
                     if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false & first_index_polling) {
@@ -1313,16 +1315,22 @@ var app_nodes = {
                     }
 
                     var data_item = nodes[z].instances[instance].commandClasses[commandclass].data[index].val;
+                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only){
+                        data_item = '';
+                    }
                     var data_units = nodes[z].instances[instance].commandClasses[commandclass].data[index].units;
 
                     row.find("td[key=variable-polling]").html(polling);
-                    row.find("td[key=variable-updatetime]").html(app_nodes.timestampConverter(nodes[z].instances[instance].commandClasses[commandclass].data[index].updateTime));
+                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false){
+                        row.find("td[key=variable-updatetime]").html(app_nodes.timestampConverter(nodes[z].instances[instance].commandClasses[commandclass].data[index].updateTime));
+                    }
                     row_system.find("td[key=system-instance]").html(instance);
                     row_system.find("td[key=system-cc]").html(commandclass + ' (0x' + Number(commandclass).toString(16) + ')');
                     row_system.find("td[key=system-index]").html(index);
                     row_system.find("td[key=system-name]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].name);
                     row_system.find("td[key=system-type]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + ' (' + nodes[z].instances[instance].commandClasses[commandclass].data[index].type + ')');
                     var system_data = data_item + " " + data_units;
+
                     if (expected_data != null) {
                         system_data += '<br>(<i>' +expected_data + " " + data_units +'</i>)';
                     }
@@ -1330,7 +1338,9 @@ var app_nodes = {
                     if (nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only == false) {
                         row_system.find("td[key=system-edit]").html('<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></button>');
                     }
-                    row_system.find("td[key=system-updatetime]").html(app_nodes.timestampConverter(nodes[z].instances[instance].commandClasses[commandclass].data[index].updateTime));
+                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false) {
+                        row_system.find("td[key=system-updatetime]").html(app_nodes.timestampConverter(nodes[z].instances[instance].commandClasses[commandclass].data[index].updateTime));
+                    }
                     if (typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('name')) {
                         row_parameter.find("td[key=parameter-name]").html(
                             openzwave_node_translation['configuration'][index].name);
