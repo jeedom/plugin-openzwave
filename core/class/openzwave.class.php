@@ -573,14 +573,13 @@ class openzwave extends eqLogic {
 			}
 			foreach ($this->getCmd('info', $command['configuration']['instanceId'] . '.' . $command['configuration']['class'], null, true) as $cmd) {
 				if ($cmd->getConfiguration('value') == $command['configuration']['value']) {
-					if ($cmd->getDisplay('generic_type') == '' && $command['display']['generic_type']) {
+					if ($cmd->getDisplay('generic_type') == '' && isset($command['display']['generic_type'])) {
 						$cmd->setDisplay('generic_type', $command['display']['generic_type']);
 						$cmd->save();
 					}
 					continue 2;
 				}
 			}
-
 			try {
 				$cmd = new openzwaveCmd();
 				$cmd->setOrder($cmd_order);
