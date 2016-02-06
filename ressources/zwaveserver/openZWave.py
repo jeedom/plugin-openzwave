@@ -1161,7 +1161,7 @@ def prepare_value_notification(node, value):
             return
     # update for next run
     value.lastData = value.data    
-    if value.genre == 'System' or value.genre == 'Config':
+    if value.genre == 'System':
         value.last_update = time.time()
         return
     command_class = _network.manager.COMMAND_CLASS_DESC[value.command_class].replace("COMMAND_CLASS_", "").replace("_", " ").lower().capitalize()
@@ -1170,7 +1170,7 @@ def prepare_value_notification(node, value):
     try:
         save_value(node, value, time.time())
     except Exception as error:
-        add_log_entry('value_update %s' % (str(error), ), "error")
+        add_log_entry('prepare_value_notification %s' % (str(error), ), "error")
         if thread is not None:
             thread.stop()
 
