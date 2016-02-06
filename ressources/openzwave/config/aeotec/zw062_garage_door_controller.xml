@@ -79,7 +79,7 @@
 			<Item label="Battery power is much more" value="0"/>
 			<Item label="Battery power of Sensor is in low battery" value="15"/>
 		</Value>
-		<Value type="byte" genre="config" index="43" label="Start playing or Stop playing the ringtone" min="0" max="100" value="0">
+		<Value type="byte" genre="config" index="43" label="Start playing or Stop playing the ringtone" min="0" max="100" value="0" write_only="true">
 			<Help>
 			Value=0xff, stop playing ringtone.
 			Value=1 to 100, start playing the ringtone that you selected. 
