@@ -41,6 +41,55 @@
 				"dashboard": "door",
 				"mobile": "door"
 			}
+		},
+		{
+			"name": "Volume",
+			"type": "info",
+			"subtype": "numeric",
+			"isVisible": 1,
+			"isHistorized": 1,
+			"unite": "",
+			"configuration": {
+				"class": "0x70",
+				"value": "data[44].val"
+			},
+			"template": {
+				"dashboard": "tile",
+				"mobile": "tile"
+			}
+		},
+		{
+			"name": "Température",
+			"type": "info",
+			"subtype": "numeric",
+			"isVisible": 1,
+			"isHistorized": 1,
+			"unite": "°C",
+			"configuration": {
+				"class": "0x70",
+				"value": "data[45].val",
+				"calculValueOffset" : "#value#/10.0"
+			}
+		},
+		{
+			"name": "Sabotage",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 1,
+			"isHistorized": 1,
+
+			"configuration": {
+				"class": "0x70",
+				"value": "data[41].val",
+				"calculValueOffset" : "#value#=='Sensor is removed'"
+			},
+			"display": {
+				"invertBinary": "0"
+			},
+			"template": {
+				"dashboard": "vibration",
+				"mobile": "vibration"
+			}
 		}
 	]
 }
