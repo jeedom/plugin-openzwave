@@ -1,9 +1,9 @@
 == Mode inclusion
 
-A sa sortie d'usine, un module ne fait pas partie d'aucun réseau Z-Wave.
+A sa sortie d'usine, un module ne fait partie d'aucun réseau Z-Wave.
 Le module doit se joindre à un réseau Z-Wave existant pour communiquer avec les autres modules de ce réseau.
 Ce processus est appelé *Inclusion*.
-Les périphériques peuvent également laisser un réseau. Ce processus est appelé *Exclusion*.
+Les périphériques peuvent également sortir d'un réseau. Ce processus est appelé *Exclusion*.
 Les deux processus sont initiés par le contrôleur principal du réseau Z-Wave.
 
 image:../images/openzwave17.png[]
@@ -16,29 +16,29 @@ Une fois en mode inclusion : Jeedom vous le signale.
 image:../images/openzwave18.png[]
 
 [TIP]
-Tant que vous n'avez pas le bandeau vous n'êtes pas en mode inclusion.
+Tant que vous n'avez pas le bandeau, vous n'êtes pas en mode inclusion.
 
 Si vous recliquez sur le bouton vous sortez du mode inclusion.
 
 [TIP]
-Il est recommandé avant une inclusion d'un nouveau module qui serait "nouveau" sur le marché, de lancer la commande *Config modules*
+Il est recommandé avant l'inclusion d'un nouveau module qui serait "nouveau" sur le marché, de lancer la commande *Config modules*
 via l'écran de configuration du plugin. Cette action va récupérer l'ensemble des dernières versions des fichiers de configurations
-openzwave ainsi que le mappings de commandes jeedom.
+openzwave ainsi que le mapping de commandes Jeedom.
 
 [IMPORTANT]
-Lors d'une inclusion, il est conseillé que le module soit à proximité du contrôleur principal soit, moins d'un mètre de la box.
+Lors d'une inclusion, il est conseillé que le module soit à proximité du contrôleur principal, soit à moins d'un mètre de la box.
 
 [TIP]
 Certains modules requièrent une inclusion en mode sécurisé, par exemple pour les serrures de porte. L’inclusion sécurisée doit être lancé via
-L’onglet Actions de la Vue *Réseau Z-Wave*.
+l’onglet Actions de la Vue *Réseau Z-Wave*.
 image:../images/openzwave41.png[]
 
 [TIP]
 A noter que l'interface mobile vous donne aussi accès à l'inclusion.
 
 [TIP]
-Si le module appartient déjà à un réseau, suivez le processus d'exclusion avant de l'inclure dans votre réseau. Sinon inclusion de ce module va échouer.
-Il est d'ailleurs recommandé d'exécuter une exclusion avant l'inclusion, même si le produit est neuf, sorties du carton.
+Si le module appartient déjà à un réseau, suivez le processus d'exclusion avant de l'inclure dans votre réseau. Sinon l'inclusion de ce module va échouer.
+Il est d'ailleurs recommandé d'exécuter une exclusion avant l'inclusion, même si le produit est neuf, sorti du carton.
 
 == Mode exclusion
 
@@ -49,7 +49,7 @@ Ce bouton vous permet de passer en mode exclusion, cela pour retirer un module d
 image:../images/openzwave16.png[]
 
 [TIP]
-Tant que vous n'avez pas le bandeau vous n'êtes pas en mode exclusion.
+Tant que vous n'avez pas le bandeau, vous n'êtes pas en mode exclusion.
 
 Si vous recliquez sur le bouton vous sortez du mode exclusion.
 
@@ -57,21 +57,21 @@ Si vous recliquez sur le bouton vous sortez du mode exclusion.
 A noter que l'interface mobile vous donne aussi accès à l'exclusion.
 
 [TIP]
-Un module n'a pas besoin d'être exclue par le même contrôleur sur lequel il a été préalablement inclue. D'où le fait qu'on recommande d'exécuter une exclusion avant chaque inclusion.
+Un module n'a pas besoin d'être exclu par le même contrôleur sur lequel il a été préalablement inclu. D'où le fait qu'on recommande d'exécuter une exclusion avant chaque inclusion.
 
 == Synchroniser
 
 image:../images/openzwave14.png[]
 
-Bouton permettant de synchroniser les modules du réseau Z-Wave avec les équipements Jeedom. Les modules sont associés au contrôleur principal, les équipements dans Jeedom sont créé automatiquement lors de leur inclusion. Ils sont aussi supprimés automatiquement lors de l'exclusion, si l'option *Supprimer automatiquement les périphériques exclus* est activé.
+Bouton permettant de synchroniser les modules du réseau Z-Wave avec les équipements Jeedom. Les modules sont associés au contrôleur principal, les équipements dans Jeedom sont créés automatiquement lors de leur inclusion. Ils sont aussi supprimés automatiquement lors de l'exclusion, si l'option *Supprimer automatiquement les périphériques exclus* est activé.
 
-Si vous avez inclue des modules sans jeedom (requière un dongle avec pile comme le Aeon-labs Z-Stick GEN5) une synchronisation sera nécessaire suite au branchement de la clé, une fois le démon démarré et fonctionnel.
-
-[TIP]
-Si vous n'avez pas l'image ou que Jeedom n'a pas reconnu votre module ce bouton peut permettre de corriger, sous réserve que l'interview du module est complété.
+Si vous avez inclu des modules sans Jeedom (requiert un dongle avec pile comme le Aeon-labs Z-Stick GEN5), une synchronisation sera nécessaire suite au branchement de la clé, une fois le démon démarré et fonctionnel.
 
 [TIP]
-Si votre table de routage et ou l'écran de santé  Z-Wave vous avez de modules nommé *Unknown*, la synchronisation permettra de remédier à cette situation.
+Si vous n'avez pas l'image ou que Jeedom n'a pas reconnu votre module, ce bouton peut permettre de corriger (sous réserve que l'interview du module soit complète).
 
-Le Bouton synchroniser visibles qu'en mode expert
+[TIP]
+Si sur votre table de routage et/ou sur l'écran de santé Z-Wave vous avez des modules nommés *Unknown*, la synchronisation permettra de remédier à cette situation.
+
+Le bouton Synchroniser n'est visible qu'en mode expert :
 image:../images/openzwave51.png[]
