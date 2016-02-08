@@ -14,6 +14,9 @@
                 "name": "Statut",
                 "type": "info",
                 "subtype": "binary",
+                "display": {
+                    "generic_type": "LOCK_STATE"
+                },
                 "isVisible": 1,
                 "isHistorized": 1,
                 "configuration": {
@@ -30,6 +33,9 @@
                 "name": "Verrouillage",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+                    "generic_type": "LOCK_CLOSE"
+                },
                 "isVisible": 1,
                 "isHistorized": 0,
                 "configuration": {
@@ -42,6 +48,9 @@
                 "name": "Déverrouillage",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+                    "generic_type": "LOCK_OPEN"
+                },
                 "isVisible": 1,
                 "isHistorized": 0,
                 "configuration": {
@@ -54,6 +63,9 @@
                 "name": "Batterie",
                 "type": "info",
                 "subtype": "numeric",
+                "display": {
+                    "generic_type": "BATTERY"
+                },
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "%",

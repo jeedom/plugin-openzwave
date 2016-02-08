@@ -13,6 +13,9 @@
 				"name" : "On 1",
 				"type" : "action",
 				"subtype" : "other",
+				"display": {
+	                "generic_type": "ENERGY_ON"
+	            },
 				"isVisible" : 1,
                 "value": "Etat 1",
 				"configuration" :
@@ -30,6 +33,9 @@
 				"name" : "Off 1",
 				"type" : "action",
 				"subtype" : "other",
+				"display": {
+	                "generic_type": "ENERGY_OFF"
+	            },
 				"isVisible" : 1,
                 "value": "Etat 1",
 				"configuration" :
@@ -47,6 +53,9 @@
 				"name" : "Etat 1",
 				"type" : "info",
 				"subtype" : "binary",
+				"display": {
+	                "generic_type": "ENERGY_STATE"
+	            },
 				"isVisible" : 0,
 				"isHistorized" : 0,
 				"eventOnly" : 1,
@@ -61,6 +70,9 @@
 				"name" : "On 2",
 				"type" : "action",
 				"subtype" : "other",
+				"display": {
+	                "generic_type": "ENERGY_ON"
+	            },
 				"isVisible" : 1,
                 "value": "Etat 2",
 				"configuration" :
@@ -78,6 +90,9 @@
 				"name" : "Off 2",
 				"type" : "action",
 				"subtype" : "other",
+				"display": {
+	                "generic_type": "ENERGY_OFF"
+	            },
 				"isVisible" : 1,
                 "value": "Etat 2",
 				"configuration" :
@@ -95,6 +110,9 @@
 				"name" : "Etat 2",
 				"type" : "info",
 				"subtype" : "binary",
+				"display": {
+	                "generic_type": "ENERGY_STATE"
+	            },
 				"isVisible" : 0,
 				"isHistorized" : 0,
 				"configuration" :
@@ -108,6 +126,9 @@
 				"name" : "Température",
 				"type" : "info",
 				"subtype" : "numeric",
+				"display": {
+	                "generic_type": "TEMPERATURE"
+	            },
 				"isVisible" : 1,
 				"isHistorized" : 1,
 				"unite" : "°C",
@@ -122,6 +143,9 @@
 				"name" : "Puissance 1",
 				"type" : "info",
 				"subtype" : "numeric",
+				"display": {
+	                "generic_type": "POWER"
+	            },
 				"isVisible" : 1,
 				"isHistorized" : 1,
 				"unite" : "W",
@@ -138,6 +162,9 @@
 				"name" : "Consommation 1",
 				"type" : "info",
 				"subtype" : "numeric",
+				"display": {
+	                "generic_type": "CONSUMPTION"
+	            },
 				"isVisible" : 0,
 				"isHistorized" : 1,
 				"unite" : "kWh",
@@ -152,6 +179,9 @@
 				"name" : "Puissance 2",
 				"type" : "info",
 				"subtype" : "numeric",
+				"display": {
+	                "generic_type": "POWER"
+	            },
 				"isVisible" : 1,
 				"isHistorized" : 1,
 				"unite" : "W",
@@ -168,6 +198,9 @@
 				"name" : "Consommation 2",
 				"type" : "info",
 				"subtype" : "numeric",
+				"display": {
+	                "generic_type": "CONSUMPTION"
+	            },
 				"isVisible" : 0,
 				"isHistorized" : 1,
 				"unite" : "kWh",

@@ -13,6 +13,9 @@
                 "name": "Consommation",
                 "type": "info",
                 "subtype": "numeric",
+                "display": {
+	                "generic_type": "CONSUMPTION"
+	            },
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "kWh",
@@ -28,6 +31,9 @@
                 "name": "Etat",
                 "type": "info",
                 "subtype": "binary",
+                "display": {
+	                "generic_type": "ENERGY_STATE"
+	            },
                 "isVisible": 1,
                 "isHistorized": 0,
                 "unite": "",
@@ -44,6 +50,9 @@
                 "name": "On",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+	                "generic_type": "ENERGY_ON"
+	            },
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x25",
@@ -54,6 +63,9 @@
                 "name": "Off",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+	                "generic_type": "ENERGY_OFF"
+	            },
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x25",

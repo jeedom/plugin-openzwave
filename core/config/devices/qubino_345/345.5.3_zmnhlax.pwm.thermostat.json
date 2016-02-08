@@ -13,6 +13,9 @@
                 "name": "Température",
                 "type": "info",
                 "subtype": "numeric",
+                "display": {
+	                "generic_type": "THERMOSTAT_TEMPERATURE"
+	            },
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "°C",
@@ -25,6 +28,9 @@
                 "name": "Mode",
                 "type": "info",
                 "subtype": "string",
+                "display": {
+	                "generic_type": "THERMOSTAT_MODE"
+	            },
                 "isVisible": 1,
                 "isHistorized": 0,
                 "unite": "",
@@ -37,6 +43,9 @@
                 "name": "Off",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+	                "generic_type": "THERMOSTAT_SET_MODE"
+	            },
                 "isVisible": 1,
                 "isHistorized": 0,
 				"unite": "°C",
@@ -50,6 +59,9 @@
                 "name": "Auto",
                 "type": "action",
                 "subType": "other",
+                "display": {
+	                "generic_type": "THERMOSTAT_SET_MODE"
+	            },
                 "isVisible": 1,
                 "isHistorized": 0,
 				"unite": "°C",
@@ -63,6 +75,9 @@
                 "name": "ConsigneEtat",
                 "type": "info",
                 "subType": "numeric",
+                "display": {
+	                "generic_type": "THERMOSTAT_SETPOINT"
+	            },
 				"isVisible": 0,
 				"unite": "°C",
                 "configuration": {
@@ -77,6 +92,9 @@
                 "name": "Consigne",
                 "type": "action",
                 "subType": "slider",
+                "display": {
+	                "generic_type": "THERMOSTAT_SET_SETPOINT"
+	            },
 				"isVisible": 1,
 				"unite": "°C",
 				"value": "ConsigneEtat",
@@ -92,6 +110,9 @@
                 "name": "Input2",
                 "type": "info",
                 "subtype": "binary",
+                "display": {
+	                "generic_type": "GENERIC"
+	            },
                 "isVisible": 1,
                 "isHistorized": 1,
                 "configuration": {
@@ -104,6 +125,9 @@
                 "name": "Input3",
                 "type": "info",
                 "subtype": "binary",
+                "display": {
+	                "generic_type": "GENERIC"
+	            },
                 "isVisible": 1,
                 "isHistorized": 1,
                 "configuration": {
@@ -116,6 +140,9 @@
 				"name" : "Power",
 				"type" : "info",
 				"subtype" : "numeric",
+				"display": {
+	                "generic_type": "POWER"
+	            },
 				"isVisible" : 1,
 				"isHistorized" : 1,
 				"unite" : "W",
@@ -132,6 +159,9 @@
 				"name" : "Consommation",
 				"type" : "info",
 				"subtype" : "numeric",
+				"display": {
+	                "generic_type": "CONSUMPTION"
+	            },
 				"isVisible" : 0,
 				"isHistorized" : 1,
 				"unite" : "kWh",

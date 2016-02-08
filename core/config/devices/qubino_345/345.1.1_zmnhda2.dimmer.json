@@ -13,6 +13,9 @@
                 "name": "Intensité",
                 "type": "action",
                 "subtype": "slider",
+                "display": {
+	                "generic_type": "LIGHT_SLIDER"
+	            },
                 "isVisible": 1,
                 "value": "Etat",
                 "configuration": {
@@ -28,6 +31,9 @@
                 "name": "On",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+	                "generic_type": "LIGHT_ON"
+	            },
                 "isVisible": 0,
                 "configuration": {
                     "class": "0x26",
@@ -38,6 +44,9 @@
                 "name": "Off",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+	                "generic_type": "LIGHT_OFF"
+	            },
                 "isVisible": 0,
                 "configuration": {
                     "class": "0x26",
@@ -48,6 +57,9 @@
                 "name": "Etat",
                 "type": "info",
                 "subtype": "numeric",
+                "display": {
+	                "generic_type": "LIGHT_STATE"
+	            },
                 "unite": "%",
                 "isVisible": 0,
                 "configuration": {
@@ -61,6 +73,9 @@
 				"name" : "Température",
 				"type" : "info",
 				"subtype" : "numeric",
+				"display": {
+	                "generic_type": "TEMPERATURE"
+	            },
 				"isVisible" : 1,
 				"isHistorized" : 1,
 				"unite" : "°C",
@@ -75,6 +90,9 @@
 				"name" : "Puissance",
 				"type" : "info",
 				"subtype" : "numeric",
+				"display": {
+	                "generic_type": "POWER"
+	            },
 				"isVisible" : 1,
 				"isHistorized" : 1,
 				"unite" : "W",
@@ -91,6 +109,9 @@
 				"name" : "Consommation",
 				"type" : "info",
 				"subtype" : "numeric",
+				"display": {
+	                "generic_type": "CONSUMPTION"
+	            },
 				"isVisible" : 0,
 				"isHistorized" : 1,
 				"unite" : "kWh",
@@ -105,6 +126,9 @@
 				"name" : "Etat I2",
 				"type" : "info",
 				"subtype" : "binary",
+				"display": {
+	                "generic_type": "GENERIC"
+	            },
 				"isVisible" : 1,
 				"isHistorized" : 1,
 				"configuration" :
@@ -118,6 +142,9 @@
 				"name" : "Etat I3",
 				"type" : "info",
 				"subtype" : "binary",
+				"display": {
+	                "generic_type": "GENERIC"
+	            },
 				"isVisible" : 1,
 				"isHistorized" : 1,
 				"configuration" :

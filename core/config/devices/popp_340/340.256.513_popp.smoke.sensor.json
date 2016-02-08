@@ -14,6 +14,9 @@
             "name": "Etat",
             "type": "info",
             "subtype": "binary",
+            "display": {
+                "generic_type": "SIREN_STATE"
+            },
             "isVisible": 1,
             "isHistorized": 0,
             "unite": "",
@@ -26,6 +29,9 @@
             "name": "On",
             "type": "action",
             "subtype": "other",
+            "display": {
+                "generic_type": "SIREN_ON"
+            },
             "isVisible": 1,
             "configuration": {
                 "class": "0x25",
@@ -36,6 +42,9 @@
             "name": "Off",
             "type": "action",
             "subtype": "other",
+            "display": {
+                "generic_type": "SIREN_OFF"
+            },
             "isVisible": 1,
             "configuration": {
                 "class": "0x25",
@@ -54,13 +63,17 @@
                 "value": "data[0].val"
             },
             "display": {
-                "invertBinary": "1"
+                "invertBinary": "1",
+                "generic_type": "SMOKE"
             }
         },
         {
             "name": "Batterie",
             "type": "info",
             "subtype": "numeric",
+            "display": {
+                "generic_type": "BATTERY"
+            },
             "unite": "%",
             "isVisible": 0,
             "configuration": {

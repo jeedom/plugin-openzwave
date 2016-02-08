@@ -13,6 +13,9 @@
                 "name": "Etat",
                 "type": "info",
                 "subtype": "numeric",
+                "display": {
+	                "generic_type": "FLAP_STATE"
+	            },
                 "isVisible": 0,
                 "configuration": {
                     "class": "0x26",
@@ -27,6 +30,9 @@
                 "name": "Positionnement",
                 "type": "action",
                 "subtype": "slider",
+                "display": {
+	                "generic_type": "FLAP_SLIDER"
+	            },
                 "isVisible": 1,
                 "value": "Etat",
                 "configuration":
@@ -47,6 +53,9 @@
                 "name": "Descendre",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+	                "generic_type": "FLAP_DOWN"
+	            },
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x26",
@@ -60,6 +69,9 @@
                 "name": "Monter",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+	                "generic_type": "FLAP_UP"
+	            },
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x26",
@@ -73,6 +85,9 @@
                 "name": "Température",
                 "type": "info",
                 "subtype": "numeric",
+                "display": {
+	                "generic_type": "TEMPERATURE"
+	            },
                 "isVisible": 0,
 				"isHistorized": 1,
                 "unite": "°C",
@@ -89,6 +104,9 @@
 				"name" : "Puissance",
 				"type" : "info",
 				"subtype" : "numeric",
+				"display": {
+	                "generic_type": "POWER"
+	            },
 				"isVisible" : 1,
 				"isHistorized" : 1,
 				"unite" : "W",
@@ -105,6 +123,9 @@
 				"name" : "Consommation",
 				"type" : "info",
 				"subtype" : "numeric",
+				"display": {
+	                "generic_type": "CONSUMPTION"
+	            },
 				"isVisible" : 0,
 				"isHistorized" : 1,
 				"unite" : "kWh",
@@ -119,6 +140,9 @@
                 "name": "Stop",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+	                "generic_type": "FLAP_STOP"
+	            },
                 "isVisible": 1,
                 "configuration": {
                     "instanceId": "0",
@@ -133,6 +157,9 @@
                 "name": "Stop BSO",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+	                "generic_type": "FLAP_BSO_STOP"
+	            },
                 "isVisible": 0,
                 "configuration": {
                     "instanceId": "0",
@@ -147,6 +174,9 @@
                 "name": "Incliner",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+	                "generic_type": "FLAP_BSO_UP"
+	            },
                 "isVisible": 0,
                 "configuration": {
                     "instanceId": "0",
@@ -161,6 +191,9 @@
                 "name": "Décliner",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+	                "generic_type": "FLAP_BSO_DOWN"
+	            },
                 "isVisible": 0,
                 "configuration": {
                     "instanceId": "0",
@@ -175,9 +208,11 @@
                 "name": "Pas",
                 "type": "info",
                 "subtype": "numeric",
+                "display": {
+	                "generic_type": "GENERIC"
+	            },
                 "isVisible": 0,
-
-                "configuration": {
+				"configuration": {
                     "instanceId": "0",
                     "class": "0x26",
                     "value": "data[6].val"
@@ -187,6 +222,9 @@
                 "name": "Rafraichir",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+	                "generic_type": "DONT"
+	            },
                 "isVisible": 0,
                 "configuration": {
                     "class": "0x26",

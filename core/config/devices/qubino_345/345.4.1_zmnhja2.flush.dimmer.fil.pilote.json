@@ -13,6 +13,9 @@
 				"name" : "Etat",
 				"type" : "info",
 				"subtype" : "numeric",
+				"display": {
+	                "generic_type": "HEATING_STATE"
+	            },
 				"isVisible" : 1,
 				"isHistorized" : 0,
 				"eventOnly" : 1,
@@ -39,7 +42,8 @@
 					"value" : "data[0].Set(0)"
 				},
                 "display": {
-                    "icon": "<i class=\"fa fa-power-off\"><\/i>"
+                    "icon": "<i class=\"fa fa-power-off\"><\/i>",
+                    "generic_type": "HEATING_OFF"
                 }
 			},
 			{
@@ -54,7 +58,8 @@
 					"value" : "data[0].Set(99)"
 				},
                 "display": {
-                    "icon": "<i class=\"icon jeedom-thermo-chaud\"><\/i>"
+                    "icon": "<i class=\"icon jeedom-thermo-chaud\"><\/i>",
+                    "generic_type": "HEATING_ON"
                 }
 			},
 			{
@@ -69,7 +74,8 @@
 					"value" : "data[0].Set(30)"
 				},
                 "display": {
-                    "icon": "<i class=\"icon divers-triangular42\"><\/i>"
+                    "icon": "<i class=\"icon divers-triangular42\"><\/i>",
+                    "generic_type": "HEATING_OTHER"
                 }
 			},
 			{
@@ -84,7 +90,8 @@
 					"value" : "data[0].Set(20)"
 				},
                 "display": {
-                    "icon": "<i class=\"icon nature-snowflake\"><\/i>"
+                    "icon": "<i class=\"icon nature-snowflake\"><\/i>",
+                    "generic_type": "HEATING_OTHER"
                 }
 			},
 			{
@@ -99,7 +106,8 @@
 					"value" : "data[0].Set(50)"
 				},
                 "display": {
-                    "icon": "<i class=\"icon jeedom-thermo-moyen\"><\/i>"
+                    "icon": "<i class=\"icon jeedom-thermo-moyen\"><\/i>",
+                    "generic_type": "HEATING_OTHER"
                 }
 			},
 			{
@@ -114,13 +122,17 @@
 					"value" : "data[0].Set(40)"
 				},
                 "display": {
-                    "icon": "<i class=\"icon jeedom-thermo-froid\"><\/i>"
+                    "icon": "<i class=\"icon jeedom-thermo-froid\"><\/i>",
+                    "generic_type": "HEATING_OTHER"
                 }
 			},
 			{
 				"name" : "Température",
 				"type" : "info",
 				"subtype" : "numeric",
+				"display": {
+	                "generic_type": "TEMPERATURE"
+	            },
 				"isVisible" : 0,
 				"isHistorized" : 1,
 				"eventOnly" : 1,
@@ -146,7 +158,8 @@
 					"value" : "data[1].val"
 				},
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+                    "generic_type": "GENERIC"
                 }
 			},
 			{
@@ -163,7 +176,8 @@
 					"value" : "data[1].val"
 				},
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+                    "generic_type": "GENERIC"
                 }
 			},
 			{
@@ -180,7 +194,8 @@
 					"value" : "data[1].val"
 				},
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+                    "generic_type": "GENERIC"
                 }
 			}
 		]
