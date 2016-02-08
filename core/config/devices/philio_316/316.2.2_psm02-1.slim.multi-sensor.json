@@ -25,7 +25,8 @@
 					"returnStateValue": 0
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+					"generic_type": "PRESENCE"
                 },
                 "template": {
                     "dashboard": "presence",
@@ -45,7 +46,8 @@
                     "value": "data[1].val"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+					"generic_type": "OPENING"
                 },
                 "template": {
                     "dashboard": "door",
@@ -58,7 +60,9 @@
                 "subtype": "numeric",
                 "isVisible": 1,
                 "isHistorized": 1,
-
+				"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
                 "configuration": {
                     "instanceId": 0,
                     "class": "0x31",
@@ -72,7 +76,9 @@
                 "subtype": "numeric",
                 "isVisible": 1,
                 "isHistorized": 1,
-
+				"display": {
+                    		"generic_type": "BRIGHTNESS"
+                	},
                 "configuration": {
                     "instanceId": 0,
                     "class": "0x31",
@@ -97,7 +103,8 @@
 					"returnStateValue": 0
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+					"generic_type": "SABOTAGE"
                 }
             },
             {
@@ -106,7 +113,9 @@
                 "subtype": "numeric",
                 "isVisible": 0,
                 "isHistorized": 0,
-
+				"display": {
+                    		"generic_type": "BATTERY"
+                	},
                 "configuration": {
                     "instanceId": 0,
                     "class": "0x80",

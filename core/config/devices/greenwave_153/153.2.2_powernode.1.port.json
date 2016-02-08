@@ -20,7 +20,8 @@
                     "value": "data[0].val"
                 },
                 "display": {
-                    "invertBinary": "0"
+                    "invertBinary": "0",
+					"generic_type": "ENERGY_STATE"
                 },
                 "isVisible": "0"
             },
@@ -39,7 +40,8 @@
                     "mobile": "prise"
                 },
                 "display": {
-                    "invertBinary": "0"
+                    "invertBinary": "0",
+					"generic_type": "ENERGY_ON"
                 },
                 "value": "Etat",
                 "isVisible": "1"
@@ -59,7 +61,8 @@
                     "mobile": "prise"
                 },
                 "display": {
-                    "invertBinary": "0"
+                    "invertBinary": "0",
+					"generic_type": "ENERGY_OFF"
                 },
                 "value": "Etat",
                 "isVisible": "1"
@@ -82,7 +85,8 @@
                     "mobile": "default"
                 },
                 "display": {
-                    "invertBinary": "0"
+                    "invertBinary": "0",
+					"generic_type": "POWER"
                 },
                 "isVisible": "1"
             },
@@ -102,7 +106,8 @@
                     "mobile": "tile"
                 },
                 "display": {
-                    "invertBinary": "0"
+                    "invertBinary": "0",
+					"generic_type": "CONSUMPTION"
                 },
                 "isVisible": "1"
             }

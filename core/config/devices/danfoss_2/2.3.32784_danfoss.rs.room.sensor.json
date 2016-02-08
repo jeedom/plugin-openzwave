@@ -16,6 +16,9 @@
                 "unite": "°C",
                 "isVisible": 1,
                 "isHistorized": 1,
+				"display": {
+                    		"generic_type": "THERMOSTAT_TEMPERATURE"
+                	},
                 "configuration": {
                     "class": "0x31",
                     "instanceId": 0,
@@ -29,6 +32,9 @@
                 "isVisible": 1,
                 "isHistorized": 0,
                 "unite": "°C",
+				"display": {
+                    		"generic_type": "THERMOSTAT_SETPOINT"
+                	},
                 "configuration": {
                     "class": "0x43",
                     "instanceId": 0,
@@ -44,6 +50,9 @@
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "°C",
+				"display": {
+                    		"generic_type": "THERMOSTAT_SETPOINT"
+                	},
                 "configuration": {
                     "class": "0x43",
                     "instanceId": 0,
@@ -57,6 +66,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 0,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x87",
                     "value": "data[0].Set(1)"
@@ -69,6 +81,9 @@
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "%",
+				"display": {
+                    		"generic_type": "BATTERY"
+                	},
                 "configuration": {
                     "class": "0x80",
                     "instanceId": 0,

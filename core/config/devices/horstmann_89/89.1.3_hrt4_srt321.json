@@ -17,6 +17,9 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "°C",
+				"display": {
+                    		"generic_type": "THERMOSTAT_TEMPERATURE"
+                	},
                 "configuration": {
                     "class": "0x31",
                     "value": "data[1].val"
@@ -29,6 +32,9 @@
                 "isVisible": 1,
                 "isHistorized": 0,
 				"unite": "°C",
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x40",
 					"instanceId": 0,
@@ -42,6 +48,9 @@
                 "isVisible": 1,
                 "isHistorized": 0,
 				"unite": "°C",
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x40",
 					"instanceId": 0,
@@ -54,6 +63,9 @@
                 "subType": "numeric",
 				"isVisible": 0,
 				"unite": "°C",
+				"display": {
+                    		"generic_type": "THERMOSTAT_SETPOINT"
+                	},
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x43",
@@ -69,6 +81,9 @@
 				"isVisible": 1,
 				"unite": "°C",
 				"value": "ConsigneEtat",
+				"display": {
+                    		"generic_type": "THERMOSTAT_SET_SETPOINT"
+                	},
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x43",
@@ -83,6 +98,9 @@
                 "subtype": "other",
                 "isVisible":0,
                 "isHistorized": 0,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x25",
 					"instanceId": 0,
@@ -95,6 +113,9 @@
                 "subtype": "other",
                 "isVisible":0,
                 "isHistorized": 0,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x25",
 					"instanceId": 0,
@@ -108,6 +129,9 @@
                 "unite": "",
                 "isVisible": 0,
                 "isHistorized": 0,
+				"display": {
+                    		"generic_type": "THERMOSTAT_STATE"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 0,

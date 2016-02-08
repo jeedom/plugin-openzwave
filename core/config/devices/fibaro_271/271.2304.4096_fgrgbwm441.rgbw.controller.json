@@ -15,6 +15,9 @@
                 "subtype": "color",
                 "isVisible": 1,
                 "value": "Etat couleur",
+				"display": {
+                    		"generic_type": "LIGHT_SET_COLOR"
+                	},
                 "configuration": {
                     "class": "0x33",
                     "value": "data[0].Set(#color#)"
@@ -27,7 +30,9 @@
                 "isVisible": 0,
                 "isHistorized": 1,
                 "unite": "W",
-
+				"display": {
+                    		"generic_type": "POWER"
+                	},
                 "configuration": {
                     "class": "0x31",
                     "value": "data[4].val",
@@ -42,7 +47,9 @@
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "kWh",
-
+				"display": {
+                    		"generic_type": "CONSUMPTION"
+                	},
                 "configuration": {
                     "class": "0x32",
                     "value": "data[0].val"
@@ -61,7 +68,8 @@
                     "value": "data[0].Set(72,6,1)"
                 },
                 "display": {
-                    "icon": "<i class=\"icon jeedom-feu\"><\/i>"
+                    "icon": "<i class=\"icon jeedom-feu\"><\/i>",
+					"generic_type": "DONT"
                 }
             },
             {
@@ -74,7 +82,8 @@
                     "value": "data[0].Set(72,7,1)"
                 },
                 "display": {
-                    "icon": "<i class=\"icon meteo-orage\"><\/i>"
+                    "icon": "<i class=\"icon meteo-orage\"><\/i>",
+					"generic_type": "DONT"
                 }
             },
             {
@@ -87,7 +96,8 @@
                     "value": "data[0].Set(72,8,1)"
                 },
                 "display": {
-                    "icon": "<i class=\"icon meteo-soleil\"><\/i>"
+                    "icon": "<i class=\"icon meteo-soleil\"><\/i>",
+					"generic_type": "DONT"
                 }
             },
             {
@@ -100,7 +110,8 @@
                     "value": "data[0].Set(72,9,1)"
                 },
                 "display": {
-                    "icon": "<i class=\"icon divers-triangular42\"><\/i>"
+                    "icon": "<i class=\"icon divers-triangular42\"><\/i>",
+					"generic_type": "DONT"
                 }
             },
             {
@@ -113,7 +124,8 @@
                     "value": "data[0].Set(72,10,1)"
                 },
                 "display": {
-                    "icon": "<i class=\"icon jeedom-alerte\"><\/i>"
+                    "icon": "<i class=\"icon jeedom-alerte\"><\/i>",
+					"generic_type": "DONT"
                 }
             },
             {
@@ -126,7 +138,8 @@
                     "value": "data[1].Set(Cool White)"
                 },
                 "display": {
-                    "icon": "<i class=\"icon nature-snowflake\"><\/i>"
+                    "icon": "<i class=\"icon nature-snowflake\"><\/i>",
+					"generic_type": "DONT"
                 }
             },
             {
@@ -139,7 +152,8 @@
                     "value": "data[1].Set(Warm White)"
                 },
                 "display": {
-                    "icon": "<i class=\"icon meteo-brouillard\"><\/i>"
+                    "icon": "<i class=\"icon meteo-brouillard\"><\/i>",
+					"generic_type": "DONT"
                 }
             },
 			{
@@ -152,7 +166,8 @@
                     "value": "data[0].Set(99)"
                 },
                 "display": {
-                    "icon": "<i class=\"icon jeedom-lumiere-on\"><\/i>"
+                    "icon": "<i class=\"icon jeedom-lumiere-on\"><\/i>",
+					"generic_type": "LIGHT_ON"
                 }
             },
 			{
@@ -165,7 +180,8 @@
                     "value": "data[0].Set(0)"
                 },
                 "display": {
-                    "icon": "<i class=\"icon jeedom-lumiere-off\"><\/i>"
+                    "icon": "<i class=\"icon jeedom-lumiere-off\"><\/i>",
+					"generic_type": "LIGHT_OFF"
                 }
             },
 			{
@@ -174,6 +190,9 @@
                 "subtype": "slider",
                 "isVisible": 1,
                 "value": "Etat",
+				"display": {
+                    		"generic_type": "LIGHT_SLIDER"
+                	},
                 "configuration": {
                     "class": "0x26",
                     "value": "data[0].Set(#slider#)",
@@ -187,7 +206,9 @@
                 "subtype": "numeric",
                 "unite": "%",
                 "isVisible": 0,
-
+				"display": {
+                    		"generic_type": "LIGHT_STATE"
+                	},
                 "configuration": {
                     "class": "0x26",
                     "value": "data[0].val",
@@ -201,7 +222,9 @@
                 "subtype": "string",
                 "unite": "",
                 "isVisible": 0,
-
+				"display": {
+                    		"generic_type": "LIGHT_COLOR"
+                	},
                 "configuration": {
                     "class": "0x33",
                     "value": "data[0].val"

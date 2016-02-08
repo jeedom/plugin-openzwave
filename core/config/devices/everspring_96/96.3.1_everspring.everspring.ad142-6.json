@@ -16,6 +16,9 @@
                 "isVisible": 1,
                 "isHistorized": 0,
                 "unite": "%",
+				"display": {
+                    		"generic_type": "LIGHT_STATE"
+                	},
                 "configuration": {
                     "class": "0x26",
                     "value": "data[0].val"
@@ -30,6 +33,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "LIGHT_ON"
+                	},
                 "configuration": {
                     "class": "0x26",
                     "value": "data[0].Set(99)"
@@ -40,6 +46,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "LIGHT_OFF"
+                	},
                 "configuration": {
                     "class": "0x26",
                     "value": "data[0].Set(0)"
@@ -50,6 +59,9 @@
                 "type": "action",
                 "subtype": "slider",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "LIGHT_SLIDER"
+                	},
                 "configuration": {
                     "class": "0x26",
                     "value": "data[0].Set(#slider#)"

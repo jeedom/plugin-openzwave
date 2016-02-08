@@ -17,6 +17,9 @@
             "isVisible": 1,
             "unite" : "%",
             "isHistorized": 1,
+			"display": {
+                    		"generic_type": "HUMIDITY"
+                	},
             "configuration": {
                 "class": "0x31",
                 "value": "data[5].val"
@@ -29,6 +32,9 @@
             "isVisible": 1,
             "unite" : "°C",
             "isHistorized": 1,
+			"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
             "configuration": {
                 "class": "0x31",
                 "value": "data[1].val"

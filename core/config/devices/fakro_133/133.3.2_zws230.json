@@ -22,7 +22,8 @@
                         },
                 "display":
                         {
-                            "icon": "<i class=\"fa fa-arrow-up\"></i>"
+                            "icon": "<i class=\"fa fa-arrow-up\"></i>",
+							"generic_type": "FLAP_UP"
                         }
             },
             {
@@ -38,7 +39,8 @@
                         },
                 "display":
                         {
-                            "icon": "<i class=\"fa fa-arrow-down\"></i>"
+                            "icon": "<i class=\"fa fa-arrow-down\"></i>",
+							"generic_type": "FLAP_DOWN"
                         }
             },
             {
@@ -46,7 +48,9 @@
                 "type": "info",
                 "subtype": "numeric",
                 "isVisible": 0,
-
+				"display": {
+                    		"generic_type": "FLAP_STATE"
+                	},
                 "configuration":
                         {
                             "instanceId": "0",
@@ -60,6 +64,9 @@
                 "subtype": "slider",
                 "isVisible": 1,
                 "value": "Etat",
+				"display": {
+                    		"generic_type": "FLAP_SLIDER"
+                	},
                 "configuration":
                         {
                             "instanceId": "0",
@@ -85,7 +92,8 @@
                     "value": "Get()"
                 },
                 "display": {
-                    "icon": "<i class=\"fa fa-refresh\"><\/i>"
+                    "icon": "<i class=\"fa fa-refresh\"><\/i>",
+					"generic_type": "DONT"
                 }
             },
 						{
@@ -99,7 +107,8 @@
                     "value": "data[2].ReleaseButton()"
                 },
                 "display": {
-                    "icon": "<i class=\"fa fa-stop\"><\/i>"
+                    "icon": "<i class=\"fa fa-stop\"><\/i>",
+					"generic_type": "STOP"
                 }
             },
 						{
@@ -113,7 +122,8 @@
 			                    "value": "data[7].PressButton()"
 			                },
 			                "display": {
-			                    "icon": "<i class=\"fa fa-plus\"><\/i>"
+			                    "icon": "<i class=\"fa fa-plus\"><\/i>",
+								"generic_type": "DONT"
 			                }
 			            },
 						{
@@ -127,7 +137,8 @@
 			                    "value": "data[8].PressButton()"
 			                },
 			                "display": {
-			                    "icon": "<i class=\"fa fa-minus\"><\/i>"
+			                    "icon": "<i class=\"fa fa-minus\"><\/i>",
+								"generic_type": "DONT"
 			                }
 			            },
 						{
@@ -135,6 +146,9 @@
 			                "type": "info",
 			                "subtype": "numeric",
 			                "isVisible": 0,
+							"display": {
+                    			"generic_type": "DONT"
+                			},
 			                "configuration": {
 			                    "instanceId": "0",
 			                    "class": "0x26",

@@ -21,7 +21,8 @@
                     "value": "data[1].val"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+					"generic_type": "SMOKE"
                 },
                  "template": {
                     "dashboard": "feu",
@@ -34,6 +35,9 @@
                 "subtype": "numeric",
                 "unite": "%",
                 "isVisible": 0,
+				"display": {
+                    		"generic_type": "BATTERY"
+                	},
                 "configuration": {
                     "class": "0x80",
                     "instanceId": 0,

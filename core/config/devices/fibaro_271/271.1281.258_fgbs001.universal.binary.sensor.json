@@ -14,6 +14,9 @@
         "type": "info",
         "subtype": "binary",
         "isVisible": 1,
+		"display": {
+                    		"generic_type": "LIGHT_STATE"
+                	},
         "configuration": {
           "class": "0x30",
           "instanceId": 0,
@@ -25,6 +28,9 @@
         "type": "info",
         "subtype": "binary",
         "isVisible": 1,
+		"display": {
+                    		"generic_type": "LIGHT_STATE"
+                	},
         "configuration": {
           "class": "0x30",
           "instanceId": 1,
@@ -38,6 +44,9 @@
         "isVisible": 1,
         "isHistorized": 1,
         "unite": "°C",
+		"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
         "configuration": {
           "class": "0x31",
           "instanceId": 0,
@@ -51,6 +60,9 @@
         "isVisible": 1,
         "isHistorized": 1,
         "unite": "°C",
+		"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
         "configuration": {
           "class": "0x31",
           "instanceId": 1,
@@ -64,6 +76,9 @@
         "isVisible": 1,
         "isHistorized": 1,
         "unite": "°C",
+		"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
         "configuration": {
           "class": "0x31",
           "instanceId": 2,
@@ -77,6 +92,9 @@
         "isVisible": 1,
         "isHistorized": 1,
         "unite": "°C",
+		"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
         "configuration": {
           "class": "0x31",
           "instanceId": 3,

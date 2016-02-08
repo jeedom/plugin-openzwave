@@ -14,6 +14,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "value": "data[0].Set(255)"
@@ -24,6 +27,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "value": "data[0].Set(0)"
@@ -36,6 +42,9 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "°C",
+				"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
                 "configuration": {
                     "class": "0x31",
                     "value": "data[1].val"

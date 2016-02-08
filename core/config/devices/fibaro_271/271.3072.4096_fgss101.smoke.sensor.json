@@ -22,7 +22,8 @@
           "value": "data[1].val"
         },
         "display": {
-          "invertBinary": "1"
+          "invertBinary": "1",
+			"generic_type": "SMOKE"
         },
         "template": {
           "dashboard": "feu",
@@ -41,7 +42,8 @@
           "value": "data[4].val"
         },
         "display": {
-          "invertBinary": "1"
+          "invertBinary": "1",
+		  "generic_type": "DONT"
         },
         "template": {
           "dashboard": "feu",
@@ -59,7 +61,8 @@
           "value": "data[0].val"
         },
         "display": {
-          "invertBinary": "1"
+          "invertBinary": "1",
+		  "generic_type": "SABOTAGE"
         }
       },
       {
@@ -70,6 +73,9 @@
         "isVisible": 1,
         "eventOnly": 1,
         "isHistorized": 1,
+		"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
         "configuration": {
           "class": "0x31",
           "instanceId": 0,
@@ -82,6 +88,9 @@
         "subtype": "numeric",
         "unite": "%",
         "isVisible": 0,
+		"display": {
+                    		"generic_type": "BATTERY"
+                	},
         "configuration": {
           "class": "0x80",
           "instanceId": 0,

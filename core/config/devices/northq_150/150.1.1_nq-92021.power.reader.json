@@ -17,6 +17,9 @@
                 "isHistorized": "0",
 				"unite": "kwH",
 				"isVisible": 1,
+				"display": {
+                    		"generic_type": "CONSUMPTION"
+                	},
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x32",
@@ -30,6 +33,9 @@
 				"isVisible": 0,
 				"isHistorized": 0,
 				"unite": "%",
+				"display": {
+                    		"generic_type": "BATTERY"
+                	},
 				"configuration": {
 					"class": "0x80",
 					"value": "data[0].val"

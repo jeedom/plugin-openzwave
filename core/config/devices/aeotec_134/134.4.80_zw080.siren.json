@@ -21,7 +21,8 @@
                     "value": "data[0].val"
                 },
 				"display": { 
-					"invertBinary": 1 
+					"invertBinary": 1,
+					"generic_type": "DONT" 
 				}, 
 				"template": { 
 					"dashboard": "alert", 
@@ -33,6 +34,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "value": "data[0].Set(255)"
@@ -43,6 +47,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "value": "data[0].Set(0)"

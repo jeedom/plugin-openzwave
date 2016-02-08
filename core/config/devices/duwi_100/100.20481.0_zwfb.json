@@ -16,6 +16,9 @@
             "subtype": "numeric",
             "isVisible": 1,
             "isHistorized": 0,
+			"display": {
+                    		"generic_type": "DONT"
+                	},
             "configuration": {
                 "class": "0x2b",
                 "value": "data[0].val"
@@ -32,6 +35,9 @@
             "isVisible": 0,
             "isHistorized": 0,
             "unite": "%",
+			"display": {
+                    		"generic_type": "BATTERY"
+                	},
             "configuration": {
                 "class": "0x80",
                 "value": "data[0].val"

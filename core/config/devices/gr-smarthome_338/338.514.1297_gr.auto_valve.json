@@ -14,7 +14,10 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 1,
-            "value": "Etat", 
+            "value": "Etat",
+			"display": {
+                    		"generic_type": "DONT"
+                	}, 
             "configuration": {
                 "class": "0x25",
                 "instanceId": 0,
@@ -26,7 +29,10 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 1,
-            "value": "Etat", 
+            "value": "Etat",
+			"display": {
+                    		"generic_type": "DONT"
+                	}, 
             "configuration": {
                 "class": "0x25",
                 "instanceId": 0,
@@ -38,6 +44,9 @@
             "type": "info",
             "subtype": "binary",
             "isVisible": 0,
+			"display": {
+                    		"generic_type": "DONT"
+                	},
             "configuration": {
                 "class": "0x25",
                 "instanceId": 0,

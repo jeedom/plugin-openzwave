@@ -17,6 +17,9 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "°C",
+				"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
                 "configuration": {
                     "class": "0x31",
                     "value": "data[1].val"
@@ -29,6 +32,9 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "%",
+				"display": {
+                    		"generic_type": "HUMIDITY"
+                	},
                 "configuration": {
                     "class": "0x31",
                     "value": "data[5].val"
@@ -41,6 +47,9 @@
                 "isVisible": 0,
                 "isHistorized": 1,
                 "unite": "°C",
+				"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
                 "configuration": {
                     "class": "0x31",
                     "instanceId": 2,
@@ -54,6 +63,9 @@
                 "isVisible": 0,
                 "isHistorized": 1,
                 "unite": "°C",
+				"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
                 "configuration": {
                     "class": "0x31",
                     "instanceId": 3,
@@ -67,6 +79,9 @@
                 "isVisible": 0,
                 "isHistorized": 1,
                 "unite": "°C",
+				"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
                 "configuration": {
                     "class": "0x31",
                     "instanceId": 4,
@@ -80,6 +95,9 @@
                 "isVisible": 0,
                 "isHistorized": 1,
                 "unite": "°C",
+				"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
                 "configuration": {
                     "class": "0x31",
                     "instanceId": 5,
@@ -93,6 +111,9 @@
                 "unite": "%",
                 "isVisible": 0,
                 "isHistorized": 0,
+				"display": {
+                    		"generic_type": "BATTERY"
+                	},
                 "configuration": {
                     "class": "0x80",
                     "instanceId": 0,

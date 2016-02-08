@@ -21,7 +21,8 @@
                     "value": "data[5].val"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+					"generic_type": "FLOOD"
                 }
             }
         ]

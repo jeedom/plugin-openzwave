@@ -16,6 +16,9 @@
                 "subtype": "binary",
                 "isVisible": 1,
                 "isHistorized": 0,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "value": "data[0].val"
@@ -26,6 +29,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 0,
@@ -37,6 +43,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 0,

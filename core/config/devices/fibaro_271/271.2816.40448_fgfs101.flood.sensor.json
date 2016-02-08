@@ -23,7 +23,8 @@
                     "value": "data[5].val"
                 },
                "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+					"generic_type": "FLOOD"
                 },
                 "template": {
                     "dashboard": "inondation",
@@ -36,7 +37,9 @@
                 "subtype": "numeric",
 				"unite": "°C",
                 "isVisible": 1,
-
+				"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
 				"isHistorized": 1,
                 "configuration": {
                     "class": "0x31",
@@ -57,7 +60,8 @@
                     "returnStateValue": "0"
                 },
                "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+					"generic_type": "SABOTAGE"
                 }
             },			
             {
@@ -66,6 +70,9 @@
                 "subtype": "numeric",
 				"unite": "%",
 				"isVisible": 0,
+				"display": {
+                    		"generic_type": "BATTERY"
+                	},
                 "configuration": {
                     "class": "0x80",
                     "instanceId": 0,

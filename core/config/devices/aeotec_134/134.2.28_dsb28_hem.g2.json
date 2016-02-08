@@ -16,6 +16,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "KWh",
+				"display": {
+                    		"generic_type": "CONSUMPTION"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 0,
@@ -31,6 +34,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "KWh",
+				"display": {
+                    		"generic_type": "CONSUMPTION"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 1,
@@ -46,6 +52,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "KWh",
+				"display": {
+                    		"generic_type": "CONSUMPTION"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 2,
@@ -61,6 +70,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "KWh",
+				"display": {
+                    		"generic_type": "CONSUMPTION"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 3,
@@ -76,6 +88,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "W",
+				"display": {
+                    		"generic_type": "POWER"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 0,
@@ -91,6 +106,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "W",
+				"display": {
+                    		"generic_type": "POWER"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 1,
@@ -106,6 +124,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "W",
+				"display": {
+                    		"generic_type": "POWER"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 2,
@@ -121,6 +142,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "W",
+				"display": {
+                    		"generic_type": "POWER"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 3,
@@ -136,6 +160,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "V",
+				"display": {
+                    		"generic_type": "VOLTAGE"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 0,
@@ -151,6 +178,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "V",
+				"display": {
+                    		"generic_type": "VOLTAGE"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 1,
@@ -166,6 +196,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "V",
+				"display": {
+                    		"generic_type": "VOLTAGE"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 2,
@@ -181,6 +214,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "V",
+				"display": {
+                    		"generic_type": "VOLTAGE"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 3,
@@ -196,6 +232,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "A",
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 0,
@@ -211,6 +250,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "A",
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 1,
@@ -226,6 +268,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "A",
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 2,
@@ -241,6 +286,9 @@
                 "isVisible":1,
                 "isHistorized": 1,
 				"unite": "A",
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x32",
 					"instanceId": 3,

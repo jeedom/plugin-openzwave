@@ -15,6 +15,9 @@
                 "subtype": "numeric",
                 "isVisible": 1,
                 "isHistorized": 0,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x5b",
                     "maxValue": 14,

@@ -13,6 +13,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible":1,
+				"display": {
+                    		"generic_type": "LIGHT_ON"
+                	},
                 "configuration": {
                     "class": "0x25",
 					"instanceId": 0,
@@ -24,6 +27,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible":1,
+				"display": {
+                    		"generic_type": "LIGHT_OFF"
+                	},
                 "configuration": {
                     "class": "0x25",
 					"instanceId": 0,
@@ -37,6 +43,9 @@
                 "unite": "",
                 "isVisible": 1,
                 "eventOnly": 1,
+				"display": {
+                    		"generic_type": "LIGHT_STATE"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 0,

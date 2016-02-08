@@ -21,7 +21,8 @@
                     "value": "data[0].val"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+					"generic_type": "PRESENCE"
                 },
                 "template": {
                     "dashboard": "presence",
@@ -35,6 +36,9 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "°C",
+				"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
                 "configuration": {
                     "class": "0x31",
                     "value": "data[1].val"
@@ -47,6 +51,9 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "Lux",
+				"display": {
+                    		"generic_type": "BRIGHTNESS"
+                	},
                 "configuration": {
                     "class": "0x31",
                     "value": "data[3].val",
@@ -61,6 +68,9 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "%",
+				"display": {
+                    		"generic_type": "HUMIDITY"
+                	},
                 "configuration": {
                     "class": "0x31",
                     "value": "data[5].val"
@@ -73,6 +83,9 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "",
+				"display": {
+                    		"generic_type": "UV"
+                	},
                 "configuration": {
                     "class": "0x31",
                     "value": "data[27].val"
@@ -91,7 +104,8 @@
                     "calculValueOffset" : "#value#==3"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+					"generic_type": "SABOTAGE"
                 },
                "template": {
                     "dashboard": "vibration",
@@ -105,6 +119,9 @@
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "%",
+				"display": {
+                    		"generic_type": "BATTERY"
+                	},
                 "configuration": {
                     "class": "0x80",
                     "value": "data[0].val"

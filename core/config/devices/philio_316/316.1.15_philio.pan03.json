@@ -15,6 +15,9 @@
         "subtype": "other",
         "isVisible": 1,
         "value": "Etat",
+		"display": {
+                    		"generic_type": "LIGHT_ON"
+                	},
         "configuration": {
             "class": "0x25",
             "instanceId": 0,
@@ -31,6 +34,9 @@
         "subtype": "other",
         "isVisible": 1,
         "value": "Etat",
+		"display": {
+                    		"generic_type": "LIGHT_OFF"
+                	},
         "configuration": {
             "class": "0x25",
             "instanceId": 0,
@@ -46,6 +52,9 @@
         "type": "info",
         "subtype": "binary",
         "isVisible": 0,
+		"display": {
+                    		"generic_type": "LIGHT_STATE"
+                	},
         "configuration": {
             "class": "0x25",
             "instanceId": 0,
@@ -59,6 +68,9 @@
         "isVisible": 1,
         "isHistorized": 1,
         "unite": "W",
+		"display": {
+                    		"generic_type": "POWER"
+                	},
         "configuration": {
             "class": "0x32",
             "instanceId": 0,
@@ -74,6 +86,9 @@
         "isVisible": 0,
         "isHistorized": 0,
         "unite": "A",
+		"display": {
+                    		"generic_type": "DONT"
+                	},
         "configuration": {
             "class": "0x32",
             "instanceId": 0,
@@ -87,6 +102,9 @@
         "isVisible": 0,
         "isHistorized": 0,
         "unite": "V",
+		"display": {
+                    		"generic_type": "VOLTAGE"
+                	},
         "configuration": {
             "class": "0x32",
             "instanceId": 0,
@@ -100,6 +118,9 @@
         "isVisible": 1,
         "isHistorized": 1,
         "unite": "kWh",
+		"display": {
+                    		"generic_type": "CONSUMPTION"
+                	},
         "configuration": {
             "class": "0x32",
             "instanceId": 0,

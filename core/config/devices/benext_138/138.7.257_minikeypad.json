@@ -16,6 +16,9 @@
                 "subtype": "numeric",
                 "isVisible": 1,
                 "isHistorized": 1,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x71",
                     "value": "data[9].val",
@@ -40,7 +43,8 @@
 					"returnStateValue": 0
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+					"generic_type": "SABOTAGE"
                 }
             },
             {
@@ -48,6 +52,9 @@
                 "type": "info",
                 "subtype": "string",
                 "isVisible": 0,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x63",
                     "value": "data[0].val"
@@ -60,6 +67,9 @@
                 "isVisible": 0,
                 "isHistorized": 1,
                 "unite": "%",
+				"display": {
+                    		"generic_type": "BATTERY"
+                	},
                 "configuration": {
                     "class": "0x80",
                     "value": "data[0].val",

@@ -15,6 +15,9 @@
                 "type": "info",
                 "subType": "binary",
                 "isHistorized": "0",
+				"display": {
+                    		"generic_type": "LIGHT_STATE"
+                	},
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x25",
@@ -27,6 +30,9 @@
                 "type": "action",
                 "subType": "other",
                 "isHistorized": "0",
+				"display": {
+                    		"generic_type": "LIGHT_ON"
+                	},
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x25",
@@ -44,6 +50,9 @@
                 "type": "action",
                 "subType": "other",
                 "isHistorized": "0",
+				"display": {
+                    		"generic_type": "LIGHT_OFF"
+                	},
                 "configuration": {
                     "instanceId": "0",
                     "class": "0x25",
@@ -61,6 +70,9 @@
                 "type": "info",
                 "subType": "binary",
                 "isHistorized": "0",
+				"display": {
+                    		"generic_type": "LIGHT_STATE"
+                	},
                 "configuration": {
                     "instanceId": "1",
                     "class": "0x25",
@@ -73,6 +85,9 @@
                 "type": "action",
                 "subType": "other",
                 "isHistorized": "0",
+				"display": {
+                    		"generic_type": "LIGHT_ON"
+                	},
                 "configuration": {
                     "instanceId": "1",
                     "class": "0x25",
@@ -90,6 +105,9 @@
                 "type": "action",
                 "subType": "other",
                 "isHistorized": "0",
+				"display": {
+                    		"generic_type": "LIGHT_OFF"
+                	},
                 "configuration": {
                     "instanceId": "1",
                     "class": "0x25",

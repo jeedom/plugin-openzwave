@@ -20,7 +20,8 @@
                     "value": "data[0].val"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+					"generic_type": "OPENING"
                 }
             },
             {
@@ -30,6 +31,9 @@
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "%",
+				"display": {
+                    		"generic_type": "BATTERY"
+                	},
                 "configuration": {
                     "class": "0x80",
                     "value": "data[0].val"
