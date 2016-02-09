@@ -1,13 +1,13 @@
 ==  Dépannage et diagnostique
 
-* *Mon module est pas détecté ou ne remonte pas ces identifiant produit et type*
+=== Mon module est pas détecté ou ne remonte pas ces identifiant produit et type
 image:../images/openzwave46.png[]
 
 Lancer la Régénération de la détection du nœud depuis l'onglet Actions du module.
 
 Si vous avez plusieurs module dans ce cas de figure, lancer *Régénérer la détection de nœuds inconnues* depuis l'écran *Réseau ZWave* onglet *Actions*.
 
-* *Mon module est présumé mort par le contrôleur "Dead"*
+=== Mon module est présumé mort par le contrôleur "Dead"
 image:../images/openzwave42.png[]
 
 Si le module est toujours branché et joignable, un suivre les solutions proposés dans l'écran du module.
@@ -18,7 +18,7 @@ Si le module est partie en réparation et un nouveau module de remplacement a é
 L'id de l'ancien module sera conservé ainsi que ces commandes.
 
 
-* *Comment utiliser la commande SwicthAll*
+=== Comment utiliser la commande SwicthAll
 image:../images/openzwave47.png[]
 
 Elle est disponible via votre nœud contrôleur.
@@ -27,7 +27,7 @@ Votre contrôleur devrait avoir les commandes Swicth All On et Swicth All Off.
 Si votre contrôleur n'apparait pas dans votre liste de module, lancé la synchronisation.
 
 
-* *Mon module n'a pas de commande Scène ou Bouton*
+=== Mon module n'a pas de commande Scène ou Bouton
 image:../images/openzwave54.png[]
 
 Vous pouvez ajouter la commande dans l'écran de "mapping" des commandes.

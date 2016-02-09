@@ -1,6 +1,8 @@
-== Mode inclusion
-
+== inclusion / exclusion
 A sa sortie d'usine, un module ne fait partie d'aucun réseau Z-Wave.
+
+=== Mode inclusion
+
 Le module doit se joindre à un réseau Z-Wave existant pour communiquer avec les autres modules de ce réseau.
 Ce processus est appelé *Inclusion*.
 Les périphériques peuvent également sortir d'un réseau. Ce processus est appelé *Exclusion*.
@@ -40,7 +42,7 @@ A noter que l'interface mobile vous donne aussi accès à l'inclusion.
 Si le module appartient déjà à un réseau, suivez le processus d'exclusion avant de l'inclure dans votre réseau. Sinon l'inclusion de ce module va échouer.
 Il est d'ailleurs recommandé d'exécuter une exclusion avant l'inclusion, même si le produit est neuf, sorti du carton.
 
-== Mode exclusion
+=== Mode exclusion
 
 image:../images/openzwave15.png[]
 
@@ -59,7 +61,7 @@ A noter que l'interface mobile vous donne aussi accès à l'exclusion.
 [TIP]
 Un module n'a pas besoin d'être exclu par le même contrôleur sur lequel il a été préalablement inclu. D'où le fait qu'on recommande d'exécuter une exclusion avant chaque inclusion.
 
-== Synchroniser
+=== Synchroniser
 
 image:../images/openzwave14.png[]
 

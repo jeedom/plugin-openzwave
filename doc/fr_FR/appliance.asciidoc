@@ -15,6 +15,7 @@ Comme à beaucoup d'endroits sur Jeedom, placer la souris tout à gauche permet 
 Les boutons sur la ligne tout en haut *Synhroniser*, *Réseau-Zwave* et *Santé*, sont visible seulement si vous êtes en mode *Expert*.
 image:../images/openzwave51.png[]
 
+=== Général
 Vous retrouvez ici toute la configuration de votre équipement :
 
 image:../images/openzwave4.png[]
@@ -34,6 +35,7 @@ image:../images/openzwave4.png[]
 * *Assistant* : disponible uniquement sur certains modules, il vous aide à configurer le module (cas sur le zipato keyboard par exemple)
 * *Documentation* : ce bouton vous permet d'ouvrir directement la doc Jeedom concernant ce module.
 
+=== Commandes
 En dessous vous retrouvez la liste des commandes :
 image:../images/openzwave29.png[]
 [TIP]

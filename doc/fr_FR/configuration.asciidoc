@@ -7,8 +7,8 @@ Cependant vous pouvez modifier la configuration.
 image:../images/openzwave1.png[]
 
 
-* *Dépendances* : cette partie permet de valider et d'installer les dépendances requises au bon fonctionnement du plugin Zwave  (aussi bien en local qu'en déporté,
-ici en local)
+=== Dépendances
+Cette partie permet de valider et d'installer les dépendances requises au bon fonctionnement du plugin Zwave  (aussi bien en local qu'en déporté, ici en local)
 image:../images/openzwave30.png[]
 
 ** Un Statut *OK* confirme que les dépendances sont satisfaites.
@@ -22,7 +22,8 @@ La mise à jour des dépendances est normalement à effectuer seulement si le St
 Si vous êtes en mode déporté, les dépendances du démon local peut être NOK, c'est tout à fait normal.
 
 
-* *Démon* : cette partie permet de valider l'état actuel du ou des démons et de configurer la gestion automatique de ceux-ci.
+=== Démon
+Cette partie permet de valider l'état actuel du ou des démons et de configurer la gestion automatique de ceux-ci.
 image:../images/openzwave31.png[]
 Le démon local et l'ensemble des démons déportés seront affiché avec leurs différentes informations
 
@@ -40,7 +41,8 @@ Il n’est pas recommandé de laisser tourner le démon en Debug en permanence, 
 
 
 
-* *Configuration* : cette partie permet de configurer les paramètres généraux du plugin
+=== Configuration
+Cette partie permet de configurer les paramètres généraux du plugin
 image:../images/openzwave53.png[]
 * *Général* :
 ** *Supprimer automatiquement les périphériques exclus* : Oui, permet de supprimer les périphérique exclus du réseau  Z-Wave. L’option Non, permet de conserver les équipements dans jeedom même s’ils ont été exclus du réseau. L’équipement devra être alors supprimé manuellement ou réutiliser en lui assignant un nouvel ID Z-Wave si on exécute une migration de contrôleur principal.
@@ -66,7 +68,8 @@ Si vous avez un module non reconnue et qu'une mise à jour de configuration vien
 Dans le doute, l'exclure et ré-inclure le module est recommandé.
 
 
-* *Démon local* ou *Démon XXX* : paramètres la configuration locale (ou déportée, en fonction de l'intitulé) du démon.
+=== Démon local ou *Démon XXX*
+Paramètres la configuration locale (ou déportée, en fonction de l'intitulé) du démon.
 image:../images/openzwave33.png[]
 ** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-Wave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 possibilités à la fin de la liste
 ** *Port du Serveur* (modification dangereuse, doit être la même valeur sur tous les Jeedom déportés Z-Wave) : permet de modifier le port de communication interne du démon.
