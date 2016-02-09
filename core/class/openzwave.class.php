@@ -571,7 +571,7 @@ class openzwave extends eqLogic {
 			if (!isset($command['configuration']['class'])) {
 				$command['configuration']['class'] = '';
 			}
-			foreach ($this->getCmd('info', $command['configuration']['instanceId'] . '.' . $command['configuration']['class'], null, true) as $cmd) {
+			foreach ($this->getCmd(null, $command['configuration']['instanceId'] . '.' . $command['configuration']['class'], null, true) as $cmd) {
 				if ($cmd->getConfiguration('value') == $command['configuration']['value']) {
 					if ($cmd->getDisplay('generic_type') == '' && isset($command['display']['generic_type'])) {
 						$cmd->setDisplay('generic_type', $command['display']['generic_type']);
@@ -579,6 +579,9 @@ class openzwave extends eqLogic {
 					}
 					continue 2;
 				}
+			}
+			if ($_update) {
+				continue;
 			}
 			try {
 				$cmd = new openzwaveCmd();
