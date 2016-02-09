@@ -17,6 +17,9 @@
 			"subtype": "other",
 			"isVisible": 0,
 			"value": "",
+			"display": {
+                    		"generic_type": "ENERGY_ON"
+                	},
 			"configuration": {
 				"class": "0xF0",
 				"value": "SwitchAll(255)"
@@ -28,6 +31,9 @@
 			"subtype": "other",
 			"isVisible": 0,
 			"value": "",
+			"display": {
+                    		"generic_type": "ENERGY_OFF"
+                	},
 			"configuration": {
 				"class": "0xF0",
 				"value": "SwitchAll(0)"

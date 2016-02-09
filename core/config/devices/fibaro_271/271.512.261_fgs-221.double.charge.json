@@ -14,6 +14,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "ENERGY_ON"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 0,
@@ -25,6 +28,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "ENERGY_OFF"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 0,
@@ -36,6 +42,9 @@
                 "type": "info",
                 "subtype": "binary",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "ENERGY_STATE"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 0,
@@ -47,6 +56,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "ENERGY_ON"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 1,
@@ -58,6 +70,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "ENERGY_OFF"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 1,
@@ -69,6 +84,9 @@
                 "type": "info",
                 "subtype": "binary",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "ENERGY_STATE"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 1,

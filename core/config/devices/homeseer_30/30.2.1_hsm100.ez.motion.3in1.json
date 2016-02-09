@@ -22,7 +22,8 @@
                 "value": "data[0].val"
             },
             "display": {
-                "invertBinary": "1"
+                "invertBinary": "1",
+				"generic_type": "PRESENCE"
             },
             "template": {
                 "dashboard": "presence",
@@ -34,6 +35,9 @@
             "type": "info",
             "subtype": "numeric",
             "isVisible": 1,
+			"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
             "configuration": {
                 "class": "0x31",
                 "instanceId": 2,
@@ -45,6 +49,9 @@
             "type": "info",
             "subtype": "numeric",
             "isVisible": 1,
+			"display": {
+                    		"generic_type": "BRIGHTNESS"
+                	},
             "configuration": {
                 "class": "0x31",
                 "instanceId": 1,
@@ -58,6 +65,9 @@
             "isVisible": 0,
             "isHistorized": 0,
             "unite": "%",
+			"display": {
+                    		"generic_type": "BATTERY"
+                	},
             "configuration": {
                 "class": "0x80",
                 "instanceId": 0,

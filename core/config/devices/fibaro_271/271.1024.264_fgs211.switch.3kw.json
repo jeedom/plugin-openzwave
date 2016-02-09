@@ -14,7 +14,10 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 1,
-            "value": "Etat", 
+            "value": "Etat",
+			"display": {
+                    		"generic_type": "LIGHT_ON"
+                	}, 
             "configuration": {
                 "class": "0x25",
                 "instanceId": 0,
@@ -30,6 +33,9 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 1,
+			"display": {
+                    		"generic_type": "LIGHT_OFF"
+                	},
             "value": "Etat", 
             "configuration": {
                 "class": "0x25",
@@ -46,6 +52,9 @@
             "type": "info",
             "subtype": "binary",
             "isVisible": 0,
+			"display": {
+                    		"generic_type": "LIGHT_STATE"
+                	},
             "configuration": {
                 "class": "0x25",
                 "instanceId": 0,

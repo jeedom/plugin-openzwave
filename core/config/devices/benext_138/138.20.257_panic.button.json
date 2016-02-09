@@ -25,7 +25,8 @@
                     "mobile": "alert"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+					"generic_type": "DONT"
                 }
             },
             {
@@ -43,7 +44,8 @@
                     "mobile": "alert"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+					"generic_type": "DONT"
                 }
             },
             {
@@ -53,6 +55,9 @@
                 "isVisible": 0,
                 "isHistorized": 1,
                 "unite": "%",
+				"display": {
+                    		"generic_type": "BATTERY"
+                	},
                 "configuration": {
                     "class": "0x80",
                     "value": "data[0].val",

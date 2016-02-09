@@ -34,6 +34,9 @@
             "type": "info",
             "subtype": "numeric",
             "isVisible": 1,
+			"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
             "configuration": {
                 "class": "0x31",
                 "instanceId": 0,
@@ -45,6 +48,9 @@
             "type": "info",
             "subtype": "numeric",
             "isVisible": 1,
+			"display": {
+                    		"generic_type": "BRIGHTNESS"
+                	},
             "configuration": {
                 "class": "0x31",
                 "instanceId": 0,
@@ -58,6 +64,9 @@
             "isVisible": 0,
             "isHistorized": 0,
             "unite": "%",
+			"display": {
+                    		"generic_type": "BATTERY"
+                	},
             "configuration": {
                 "class": "0x80",
                 "instanceId": 0,

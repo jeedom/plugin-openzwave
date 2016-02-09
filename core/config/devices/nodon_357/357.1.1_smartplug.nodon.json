@@ -15,7 +15,9 @@
                 "subtype": "binary",
                 "isVisible": 0,
                 "isHistorized": 0,
-
+				"display": {
+                    		"generic_type": "ENERGY_STATE"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "value": "data[0].val"
@@ -27,6 +29,9 @@
                 "subtype": "other",
                 "isVisible": 1,
                 "value": "Etat",
+				"display": {
+                    		"generic_type": "ENERGY_ON"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "value": "data[0].Set(255)"
@@ -42,6 +47,9 @@
                 "subtype": "other",
                 "isVisible": 1,
                 "value": "Etat",
+				"display": {
+                    		"generic_type": "ENERGY_OFF"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "value": "data[0].Set(0)"
@@ -56,7 +64,9 @@
                 "type": "info",
                 "subtype": "binary",
                 "isVisible": 1,
-
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x71",
                     "value": "data[1].val",

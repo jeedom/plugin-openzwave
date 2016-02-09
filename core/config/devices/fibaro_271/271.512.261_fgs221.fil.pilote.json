@@ -14,6 +14,9 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 1,
+			"display": {
+                    		"generic_type": "HEATING_ON"
+                	},
             "configuration": {
                 "class": "0x25",
                 "instanceId": "0&&1",
@@ -25,6 +28,9 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 1,
+			"display": {
+                    		"generic_type": "HEATING_OTHER"
+                	},
             "configuration": {
                 "class": "0x25",
                 "instanceId": "0&&1",
@@ -36,6 +42,9 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 1,
+			"display": {
+                    		"generic_type": "HEATING_OTHER"
+                	},
             "configuration": {
                 "class": "0x25",
                 "instanceId": "0&&1",
@@ -47,6 +56,9 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 1,
+			"display": {
+                    		"generic_type": "HEATING_OFF"
+                	},
             "configuration": {
                 "class": "0x25",
                 "instanceId": "0&&1",
@@ -58,6 +70,9 @@
             "type": "info",
             "subtype": "numeric",
             "isVisible": 1,
+			"display": {
+                    		"generic_type": "HEATING_STATE"
+                	},
             "configuration": {
                 "instanceId": "0&&1",
                 "value": "pilotWire"

@@ -14,6 +14,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 2,
@@ -25,6 +28,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 2,
@@ -37,6 +43,9 @@
                 "subtype": "numeric",
                 "unite": "",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "DONT"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 2,
@@ -50,6 +59,9 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "W",
+				"display": {
+                    		"generic_type": "POWER"
+                	},
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 2,
@@ -65,6 +77,9 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "kWh",
+				"display": {
+                    		"generic_type": "CONSUMPTION"
+                	},
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 2,
@@ -76,6 +91,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "ENERGY_ON"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 0,
@@ -87,6 +105,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "ENERGY_OFF"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 0,
@@ -99,6 +120,9 @@
                 "subtype": "numeric",
                 "unite": "",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "STATE"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 0,
@@ -112,6 +136,9 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "W",
+				"display": {
+                    		"generic_type": "POWER"
+                	},
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 0,
@@ -127,6 +154,9 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "kWh",
+				"display": {
+                    		"generic_type": "CONSUMPTION"
+                	},
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 0,
@@ -138,6 +168,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "ENERGY_ON"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 1,
@@ -149,6 +182,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "ENERGY_OFF"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 1,
@@ -161,6 +197,9 @@
                 "subtype": "numeric",
                 "unite": "",
                 "isVisible": 1,
+				"display": {
+                    		"generic_type": "ENERGY_STATE"
+                	},
                 "configuration": {
                     "class": "0x25",
                     "instanceId": 1,
@@ -174,6 +213,9 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "W",
+				"display": {
+                    		"generic_type": "POWER"
+                	},
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 1,
@@ -189,6 +231,9 @@
                 "isVisible": 1,
                 "isHistorized": 1,
                 "unite": "kWh",
+				"display": {
+                    		"generic_type": "CONSUMPTION"
+                	},
                 "configuration": {
                     "class": "0x32",
                     "instanceId": 1,

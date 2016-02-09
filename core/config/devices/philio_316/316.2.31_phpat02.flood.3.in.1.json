@@ -22,7 +22,8 @@
                     "value": "data[8].val"
                 },
                "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+					"generic_type": "FLOOD"
                 },
                 "template": {
                     "dashboard": "inondation",
@@ -35,6 +36,9 @@
                 "subtype": "numeric",
                 "isVisible": 1,
                 "isHistorized": 0,
+				"display": {
+                    		"generic_type": "TEMPERATURE"
+                	},
                 "configuration": {
                     "instanceId": 0,
                     "class": "0x31",
@@ -48,6 +52,9 @@
                 "subtype": "numeric",
                 "isVisible": 1,
                 "isHistorized": 0,
+				"display": {
+                    		"generic_type": "HUMIDITY"
+                	},
                 "configuration": {
                     "instanceId": 0,
                     "class": "0x31",
@@ -63,6 +70,9 @@
                 "subtype": "numeric",
                 "isVisible": 0,
                 "isHistorized": 0,
+				"display": {
+                    		"generic_type": "BATTERY"
+                	},
                 "configuration": {
                     "instanceId": 0,
                     "class": "0x80",

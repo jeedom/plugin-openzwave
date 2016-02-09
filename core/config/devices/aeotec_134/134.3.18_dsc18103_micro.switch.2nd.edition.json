@@ -16,6 +16,9 @@
 			"isVisible": 0,
 			"isHistorized": 0,
 			"unite": "",
+			"display": {
+                    		"generic_type": "LIGHT_STATE"
+                	},
 			"configuration": {
 				"class": "0x25",
 				"value": "data[0].val"
@@ -31,6 +34,9 @@
 			"subtype": "other",
 			"isVisible": 1,
 			"value": "Etat",
+			"display": {
+                    		"generic_type": "LIGHT_ON"
+                	},
 			"configuration": {
 				"class": "0x25",
 				"value": "data[0].Set(255)"
@@ -46,6 +52,9 @@
 			"subtype": "other",
 			"isVisible": 1,
 			"value": "Etat",
+			"display": {
+                    		"generic_type": "LIGHT_OFF"
+                	},
 			"configuration": {
 				"class": "0x25",
 				"value": "data[0].Set(0)"
@@ -60,6 +69,9 @@
 			"type": "info",
 			"subtype": "numeric",
 			"unite": "W",
+			"display": {
+                    		"generic_type": "POWER"
+                	},
 			"isVisible": 1,
 			"configuration": {
 			  "class": "0x32",
@@ -72,6 +84,9 @@
 			"subtype": "numeric",
 			"unite": "kWh",
 			"isVisible": 0,
+			"display": {
+                    		"generic_type": "CONSUMPTION"
+                	},
 			"configuration": {
 			  "class": "0x32",
 			  "value": "data[0].val"
