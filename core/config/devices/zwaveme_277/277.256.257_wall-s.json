@@ -15,6 +15,9 @@
             "type": "info",
             "subtype": "numeric",
             "isVisible": 1,
+            "display": {
+                	"generic_type": "GENERIC"
+    		},
             "isHistorized": 0,
             "configuration": {
                 "class": "0x2b",
@@ -29,6 +32,9 @@
 						"name": "Batterie",
 						"type": "info",
 						"subtype": "numeric",
+						"display": {
+                					"generic_type": "BATTERIE"
+    						},
 						"isVisible": 0,
 						"isHistorized": 0,
 						"unite": "%",
