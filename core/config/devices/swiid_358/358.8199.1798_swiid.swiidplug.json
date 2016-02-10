@@ -15,6 +15,9 @@
             "isHistorized": 0,
             "isVisible": 0,
             "subtype": "binary",
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            },
             "type": "info",
             "configuration": {
                 "class": "0x25",
@@ -25,6 +28,9 @@
 			"name": "On",
 			"type": "action",
 			"subtype": "other",
+			"display": {
+                		"generic_type": "ENERGY_ON"
+            		},
 			"isVisible": 1,
 			"value": "Etat",
 			"configuration": {
@@ -40,6 +46,9 @@
 			"name": "Off",
 			"type": "action",
 			"subtype": "other",
+			"display": {
+                		"generic_type": "ENERGY_OFF"
+            		},
 			"isVisible": 1,
 			"value": "Etat",
 			"configuration": {
