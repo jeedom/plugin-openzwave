@@ -13,6 +13,9 @@
                 "name": "Couleur",
                 "type": "action",
                 "subtype": "color",
+                "display": {
+                	"generic_type": "LIGHT_SET_COLOR"
+    		},
                 "isVisible": 1,
                 "value": "Etat couleur",
                 "configuration": {
@@ -24,6 +27,9 @@
                 "name": "Blanc Froid",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+                	"generic_type": "DONT"
+    		},
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x33",
@@ -38,6 +44,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+                "display": {
+                	"generic_type": "DONT"
+    		},
                 "configuration": {
                     "class": "0x33",
                     "value": "data[1].Set(Warm White)"
@@ -49,6 +58,9 @@
 			{
                 "name": "On",
                 "type": "action",
+                "display": {
+                	"generic_type": "LIGHT_ON"
+    		},
                 "subtype": "other",
                 "isVisible": 1,
                 "configuration": {
@@ -62,6 +74,9 @@
 			{
                 "name": "Off",
                 "type": "action",
+                "display": {
+                	"generic_type": "LIGHT_OFF"
+    		},
                 "subtype": "other",
                 "isVisible": 1,
                 "configuration": {
@@ -76,6 +91,9 @@
                 "name": "Intensité",
                 "type": "action",
                 "subtype": "slider",
+                "display": {
+                	"generic_type": "LIGHT_SLIDER"
+    		},
                 "isVisible": 1,
                 "value": "Etat",
                 "configuration": {
@@ -88,6 +106,9 @@
             {
                 "name": "Etat",
                 "type": "info",
+                "display": {
+                	"generic_type": "LIGHT_STATE"
+    		},
                 "subtype": "numeric",
                 "unite": "%",
                 "isVisible": 0,
@@ -102,6 +123,9 @@
             {
                 "name": "Etat couleur",
                 "type": "info",
+                "display": {
+                	"generic_type": "LIGHT_COLOR"
+    		},
                 "subtype": "string",
                 "unite": "",
                 "isVisible": 0,
