@@ -13,6 +13,9 @@
 				"name" : "On",
 				"type" : "action",
 				"subtype" : "other",
+				"display": {
+                			"generic_type": "ENERGY_ON"
+            			},
 				"isVisible" : 1,
                 		"value": "Etat",
 				"configuration" :
@@ -30,6 +33,9 @@
 			{
 				"name" : "Off",
 				"type" : "action",
+				"display": {
+                			"generic_type": "ENERGY_OFF"
+            			},
 				"subtype" : "other",
 				"isVisible" : 1,
                 		"value": "Etat",
@@ -49,6 +55,9 @@
 				"name" : "Etat",
 				"type" : "info",
 				"subtype" : "binary",
+				"display": {
+                			"generic_type": "ENERGY_STATE"
+            			},
 				"isVisible" : 0,
 				"isHistorized" : 0,
 				"eventOnly" : 1,
@@ -62,6 +71,9 @@
 			{
 				"name" : "Température",
 				"type" : "info",
+				"display": {
+                			"generic_type": "TEMPERATURE"
+            			},
 				"subtype" : "numeric",
 				"isVisible" : 1,
 				"isHistorized" : 1,
@@ -76,6 +88,9 @@
 			{
 				"name" : "Puissance",
 				"type" : "info",
+				"display": {
+                			"generic_type": "POWER"
+            			},
 				"subtype" : "numeric",
 				"isVisible" : 1,
 				"isHistorized" : 1,
@@ -92,6 +107,9 @@
 			{
 				"name" : "Consommation",
 				"type" : "info",
+				"display": {
+                			"generic_type": "CONSUMPTION"
+            			},
 				"subtype" : "numeric",
 				"isVisible" : 0,
 				"isHistorized" : 1,
