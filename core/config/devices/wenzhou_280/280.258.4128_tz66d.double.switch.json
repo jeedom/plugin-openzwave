@@ -13,6 +13,9 @@
             "name": "On",
             "type": "action",
             "subtype": "other",
+            "display": {
+                	"generic_type": "LIGHT_ON"
+    		},
             "isVisible": 1,
             "value": "Etat",
             "configuration": {
@@ -31,6 +34,9 @@
             "subtype": "other",
             "isVisible": 1,
             "value": "Etat",
+            "display": {
+                	"generic_type": "LIGHT_OFF"
+    		},
             "configuration": {
                 "class": "0x25",
                 "instanceId": 0,
@@ -46,6 +52,9 @@
             "type": "info",
             "subtype": "binary",
             "isVisible": 0,
+            "display": {
+                	"generic_type": "LIGHT_STATE"
+    		},
             "configuration": {
                 "class": "0x25",
                 "instanceId": 0,
@@ -55,6 +64,9 @@
         {
             "name": "Bounton2",
             "type": "info",
+            "display": {
+                	"generic_type": "LIGHT_STATE"
+    		},
             "subtype": "binary",
             "isVisible": 0,
             "configuration": {
