@@ -12,6 +12,9 @@
             {
                 "name": "Etat",
                 "type": "info",
+                "display": {
+                	"generic_type": "SIREN_STATE"
+    		},
                 "subtype": "binary",
                 "isVisible": 1,
                 "isHistorized": 0,
@@ -24,6 +27,9 @@
             {
                 "name": "On",
                 "type": "action",
+                "display": {
+                	"generic_type": "SIREN_ON"
+    		},
                 "subtype": "other",
                 "isVisible": 1,
                 "configuration": {
@@ -34,6 +40,9 @@
             {
                 "name": "Off",
                 "type": "action",
+                "display": {
+                	"generic_type": "SIREN_OFF"
+    		},
                 "subtype": "other",
                 "isVisible": 1,
                 "configuration": {
