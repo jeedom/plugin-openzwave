@@ -16,6 +16,7 @@ Les boutons sur la ligne tout en haut *Synhroniser*, *Réseau-Zwave* et *Santé*
 image:../images/openzwave51.png[]
 
 === Général
+
 Vous retrouvez ici toute la configuration de votre équipement :
 
 image:../images/openzwave4.png[]
@@ -36,8 +37,11 @@ image:../images/openzwave4.png[]
 * *Documentation* : ce bouton vous permet d'ouvrir directement la doc Jeedom concernant ce module.
 
 === Commandes
+
 En dessous vous retrouvez la liste des commandes :
+
 image:../images/openzwave29.png[]
+
 [TIP]
 En fonction des types et sous-types, certaines options peuvent être absentes.
 
@@ -57,6 +61,28 @@ En fonction des types et sous-types, certaines options peuvent être absentes.
 * Tester : permet de tester la commande.
 * supprimer (signe -) : permet de supprimer la commande.
 
-Certain module on plusieurs jeux de commandes préconfigurées
+
+[IMPORTANT]
+Le bouton *Tester* dans le cas d'une commande de type Info, ne vas pas interroger le module directement mais la valeur disponible dans le cache de Jeedom.
+Le test retournera la bonne valeur seulement si le module en question a transmis une nouvelle valeur correspondant à définition de la commande.
+Il est alors tout à fait normal de ne pas obtenir de résultat suite à la création d'une nouvelle commande Info, spécialement sur un module sur pile qui notifie rarement Jeedom.
+
+=== Jeux de Commandes
+
+Certains modules on plusieurs jeux de commandes préconfigurées
+
 image:../images/openzwave45.png[]
+
 Vous pouvez sélectionner via les choix possible si le module le permet.
+
+=== Documentation et Assistant
+
+Pour un certain nombre de module, une aide spécifique pour la mise en place ainsi que de recommandantion de parametres sont disponible.
+
+image:../images/openzwave55.png[]
+
+Le bouton *Documentation* permet d'accèder à la documentation spécifique du module pour Jeedom.
+
+Des modules particuliers dispose aussi d'un assistant spécifique afin de façiliter l'application de certain parametres ou fonctionnements.
+
+Le bouton *Assistant* permet d'accèder à l'écran assistant spécifique du module.

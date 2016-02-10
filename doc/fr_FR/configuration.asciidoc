@@ -44,6 +44,7 @@ Il n’est pas recommandé de laisser tourner le démon en Debug en permanence, 
 === Configuration
 Cette partie permet de configurer les paramètres généraux du plugin
 image:../images/openzwave53.png[]
+
 * *Général* :
 ** *Supprimer automatiquement les périphériques exclus* : Oui, permet de supprimer les périphérique exclus du réseau  Z-Wave. L’option Non, permet de conserver les équipements dans jeedom même s’ils ont été exclus du réseau. L’équipement devra être alors supprimé manuellement ou réutiliser en lui assignant un nouvel ID Z-Wave si on exécute une migration de contrôleur principal.
 ** *Soigner le réseau automatiquement 2 fois par semaine* : option pour activer un soin automatique du réseau  Z-Wave (vivement conseillée en début d'installation si on déplace régulièrement les modules)
@@ -59,7 +60,7 @@ Le redémarrage du demon suite à la mise à jour des configurations de module e
 [IMPORTANT]
 Si vous avez un module non reconnue et qu'une mise à jour de configuration vient d'être appliquée, vous pouvez manuellement lancer la récupération des configurations de modules.
 
-* Une fois les configurations récupérer il faudra, selon les changements apportés:
+Une fois les configurations récupérer il faudra, selon les changements apportés:
 
 ** Pour un nouveau module sans configuration ni commande: exclure et ré-inclure le module.
 ** Pour un module pour le quel seul les paramètres ont été mise à jour: lancer la Régénération de la détection du nœud, via l'onglet Actions du module (le plugin doit redémarrer).
@@ -68,11 +69,13 @@ Si vous avez un module non reconnue et qu'une mise à jour de configuration vien
 Dans le doute, l'exclure et ré-inclure le module est recommandé.
 
 
-=== Démon local ou *Démon XXX*
+=== Démon local ou Démon XXX
 Paramètres la configuration locale (ou déportée, en fonction de l'intitulé) du démon.
 image:../images/openzwave33.png[]
+
 ** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-Wave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 possibilités à la fin de la liste
 ** *Port du Serveur* (modification dangereuse, doit être la même valeur sur tous les Jeedom déportés Z-Wave) : permet de modifier le port de communication interne du démon.
+
 [TIP]
 N'oubliez pas de
 image:../images/openzwave34.png[]
