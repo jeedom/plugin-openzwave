@@ -174,13 +174,18 @@ if (isset($results['message'])) {
 if (isset($results['alert'])) {
 	switch ($results['alert']['type']) {
 		case 'node_dead':
+			$message = '';
 			$eqLogic = openzwave::getEqLogicByLogicalIdAndServerId($results['alert']['id'], $results['alert']['serverId']);
 			if (is_object($eqLogic)) {
-				$message = __('Le noeud', __FILE__) . ' ' . $eqLogic->getHumanName() . ' (' . $results['alert']['id'] . ') ' . __('est présumé mort', __FILE__);
+				if ($eqLogic->getIsEnable()) {
+					$message = __('Le noeud', __FILE__) . ' ' . $eqLogic->getHumanName() . ' (' . $results['alert']['id'] . ') ' . __('est présumé mort', __FILE__);
+				}
 			} else {
 				$message = __('Le noeud', __FILE__) . ' ' . $results['alert']['id'] . ' ' . __('est présumé mort', __FILE__);
 			}
-			log::add('openzwave', 'error', $message, 'node_dead_' . $results['alert']['id'] . '_' . $results['alert']['serverId']);
+			if ($message != '') {
+				log::add('openzwave', 'error', $message, 'node_dead_' . $results['alert']['id'] . '_' . $results['alert']['serverId']);
+			}
 			break;
 		case 'node_alive':
 			message::removeAll('openzwave', 'node_dead_' . $results['alert']['id'] . '_' . $results['alert']['serverId']);
