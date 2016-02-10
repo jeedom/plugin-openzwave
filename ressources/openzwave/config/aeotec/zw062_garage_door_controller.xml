@@ -32,7 +32,7 @@
 				Get the numbers of alarm music. (not support Set CC) 
 			</Help>
         </Value>
-        <Value type="int" genre="config" instance="1" index="37" label="Configure the alarm mode for when the garage door is opening" size="4" value="16843024">
+        <Value type="int" genre="config" instance="1" index="37" label="Configure the alarm mode for when the garage door is opening" size="4" value="167905281">
             <Help>
                 1, Value1: configure the frequency of blinking for the Alarm LED，there are 10 levels that 1 to10 level, the minimum frequency is level 1 and the max frequency is level 10.
 				2, Value2: configure the alarm sound (there are 4 types sound saved in EEPROM and user also can update it).
@@ -40,7 +40,7 @@
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt. 
             </Help>
         </Value>
-		<Value type="int" genre="config" instance="1" index="38" label="Configure the alarm mode when the garage door is closing" size="4" value="16843021">
+		<Value type="int" genre="config" instance="1" index="38" label="Configure the alarm mode when the garage door is closing" size="4" value="134416385">
             <Help>
                 1, Value1: configure the frequency of blinking for the Alarm LED，there are 10 levels that 1 to10 level, the minimum frequency is level 1 and the max frequency is level 10.
 				2, Value2: configure the alarm sound (there are 4 types sound saved in EEPROM and user also can update it).
@@ -48,7 +48,7 @@
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt. 
             </Help>
         </Value>
-		<Value type="int" genre="config" instance="1" index="39" label="Configuration alarm mode when the garage door is in unknown state" size="4" value="16843020">
+		<Value type="int" genre="config" instance="1" index="39" label="Configuration alarm mode when the garage door is in unknown state" size="4" value="100927488">
             <Help>
                 1, Value1: configure the frequency of blinking for the Alarm LED，there are 10 levels that 1 to10 level, the minimum frequency is level 1 and the max frequency is level 10.
 				2, Value2: configure the alarm sound (there are 4 types sound saved in EEPROM and user also can update it).
@@ -56,7 +56,7 @@
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt.
             </Help>
         </Value>
-		<Value type="int" genre="config" instance="1" index="40" label="Configure the alarm mode when the garage door is in closed position" size="4" value="16843012">
+		<Value type="int" genre="config" instance="1" index="40" label="Configure the alarm mode when the garage door is in closed position" size="4" value="33883392">
             <Help>
                 1, Value1: configure the frequency of blinking for the Alarm LED，there are 10 levels that 1 to10 level, the minimum frequency is level 1 and the max frequency is level 10.
 				2, Value2: configure the alarm sound (there are 4 types sound saved in EEPROM and user also can update it).
@@ -64,7 +64,7 @@
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt.
             </Help>
         </Value>
-		<Value type="list" genre="config" index="41" label="Configuration report for the tamper switch State" value="0">
+		<Value type="list" genre="config" index="41" label="Configuration report for the tamper switch State" size="4" value="0">
 			<Help>
 			Note:
 			1. The Garage Door Controller will send this configuration report to gateway controller or associated nodes automatically if the Sensor is removed.
@@ -72,7 +72,7 @@
 			</Help>
 			<Item label="Sensor is not removed" value="0"/>
 			<Item label="Sensor is removed" value="15"/>
-
+            <Item label="Relieve the alarm state" value="1431655765"/>
 		</Value>
 		<Value type="list" genre="config" index="42" label="Configuration report for the battery state of Sensor" size="1" min="0" max="15" value="0">
 			<Help>It will report the battery power state to associated nodes automatically when the battery power is in low battery.</Help>
