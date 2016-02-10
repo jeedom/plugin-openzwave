@@ -13,6 +13,9 @@
                 "name": "Etat",
                 "type": "info",
                 "subtype": "binary",
+                "display": {
+                	"generic_type": "LIGHT_STATE"
+            	},
                 "isVisible": 0,
                 "isHistorized": 0,
 
@@ -26,6 +29,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+                "display": {
+                	"generic_type": "LIGHT_ON"
+            	},
                 "value": "Etat",
                 "configuration": {
                     "class": "0x25",
@@ -41,6 +47,9 @@
                 "type": "action",
                 "subtype": "other",
                 "isVisible": 1,
+                "display": {
+                	"generic_type": "LIGHT_OFF"
+            	},
                 "value": "Etat",
                 "configuration": {
                     "class": "0x25",
