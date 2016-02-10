@@ -13,6 +13,9 @@
             {
                 "name": "Batterie",
                 "type": "info",
+                "display": {
+                	"generic_type": "BATTERY"
+    		},
                 "subtype": "numeric",
                 "isVisible": 0,
                 "isHistorized": 0,
@@ -35,7 +38,8 @@
                     "value": "data[0].val"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+                    "generic_type": "OPENING"
                 }
             },
 			{
@@ -52,7 +56,8 @@
                     "calculValueOffset" : "#value#==3"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+                    "generic_type": "SABOTAGE"
                 },
                 "template": {
                     "dashboard": "vibration",
