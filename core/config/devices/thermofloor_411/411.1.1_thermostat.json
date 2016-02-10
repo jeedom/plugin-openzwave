@@ -13,6 +13,9 @@
                 "name": "Température",
                 "type": "info",
                 "subType": "numeric",
+                "display": {
+                	"generic_type": "THERMOSTAT_TEMPERATURE"
+            	},
                 "isHistorized": "0",
 				"unite": "°C",
 				"isVisible": 1,
@@ -25,6 +28,9 @@
             {
                 "name": "Off",
                 "type": "action",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_MODE"
+            	},
                 "subType": "other",
 				"isVisible": 1,
                 "configuration": {
@@ -36,6 +42,9 @@
             {
                 "name": "Confort",
                 "type": "action",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_MODE"
+            	},
                 "subType": "other",
 				"isVisible": 1,
                 "configuration": {
@@ -47,6 +56,9 @@
             {
                 "name": "ECO",
                 "type": "action",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_MODE"
+            	},
                 "subType": "other",
 				"isVisible": 1,
                 "configuration": {
