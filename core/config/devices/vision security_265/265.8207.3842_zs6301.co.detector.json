@@ -22,7 +22,7 @@
                 "calculValueOffset" : "#value#==255"
             },
             "display": {
-			        "invertBinary": "1"
+			        "invertBinary": "1",
 			        "generic_type": "CO2"
             },
             "template": {
