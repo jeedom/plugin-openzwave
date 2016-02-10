@@ -31,7 +31,7 @@
 			"isVisible": 1,
 			"isHistorized": 1,
 			"configuration": {
-				"class": "0x30",
+				"class": "0x20",
 				"value": "data[0].val"
 			},
 			"display": {
@@ -74,14 +74,13 @@
 		{
 			"name": "Sabotage",
 			"type": "info",
-			"subtype": "binary",
+			"subtype": "string",
 			"isVisible": 1,
 			"isHistorized": 1,
 
 			"configuration": {
 				"class": "0x70",
-				"value": "data[41].val",
-				"calculValueOffset" : "#value#=='Sensor is removed'"
+				"value": "data[41].val"
 			},
 			"display": {
 				"invertBinary": "0"
