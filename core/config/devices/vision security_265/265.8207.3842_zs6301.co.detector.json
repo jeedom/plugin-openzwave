@@ -23,6 +23,7 @@
             },
             "display": {
 			        "invertBinary": "1"
+			        "generic_type": "CO2"
             },
             "template": {
                 "dashboard": "alert",
@@ -33,6 +34,9 @@
             "name": "Battery",
             "type": "info",
             "subtype": "numeric",
+            "display": {
+                	"generic_type": "BATTERY"
+    		},
             "unite": "%",
             "isVisible": 0,
             "configuration": {
