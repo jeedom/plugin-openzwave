@@ -14,6 +14,9 @@
                 "name": "Mode",
                 "type": "info",
                 "subType": "string",
+                "display": {
+                	"generic_type": "THERMOSTAT_MODE"
+            	},
                 "isHistorized": "0",
 				"unite": "",
 				"isVisible": 1,
@@ -40,6 +43,9 @@
                 "name": "Température",
                 "type": "info",
                 "subType": "numeric",
+                "display": {
+                	"generic_type": "THERMOSTAT_TEMPERATURE"
+            	},
                 "isHistorized": "0",
 				"unite": "°C",
 				"isVisible": 1,
@@ -52,6 +58,9 @@
             {
                "name": "Off",
                 "type": "action",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_MODE"
+            	},
                 "subType": "other",
 				"isVisible": 1,
                 "configuration": {
@@ -64,6 +73,9 @@
                 "name": "On",
                 "type": "action",
                 "subType": "other",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_MODE"
+            	},
 				"isVisible": 1,
                 "configuration": {
                     "instanceId": "0",
@@ -75,6 +87,9 @@
                 "name": "Clim",
                 "type": "action",
                 "subType": "other",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_MODE"
+            	},
 				"isVisible": 1,
                 "configuration": {
                     "instanceId": "0",
@@ -86,6 +101,9 @@
                 "name": "Chauffe",
                 "type": "action",
                 "subType": "other",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_MODE"
+            	},
 				"isVisible": 1,
                 "configuration": {
                     "instanceId": "0",
@@ -97,6 +115,9 @@
                 "name": "Dry",
                 "type": "action",
                 "subType": "other",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_MODE"
+            	},
 				"isVisible": 1,
                 "configuration": {
                     "instanceId": "0",
@@ -108,6 +129,9 @@
                 "name": "Ventilateur Seul",
                 "type": "action",
                 "subType": "other",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_MODE"
+            	},
 				"isVisible": 1,
                 "configuration": {
                     "instanceId": "0",
@@ -119,6 +143,9 @@
                 "name": "Consigne Chaud",
                 "type": "action",
                 "subType": "slider",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_SETPOINT"
+            	},
 				"isVisible": 1,
 				"value": "Temp Chauffe",
                 "configuration": {
@@ -131,6 +158,9 @@
                 "name": "Consigne Clim",
                 "type": "action",
                 "subType": "slider",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_SETPOINT"
+            	},
 				"isVisible": 1,
 				"value": "Temp Clim",
                 "configuration": {
@@ -143,6 +173,9 @@
                 "name": "Temp Chauffe",
                 "type": "info",
                 "subType": "numeric",
+                "display": {
+                	"generic_type": "THERMOSTAT_SETPOINT"
+            	},
                 "isHistorized": "0",
 				"unite": "°C",
 				"isVisible": 0,
@@ -157,6 +190,9 @@
                 "type": "info",
                 "subType": "numeric",
                 "isHistorized": "0",
+                "display": {
+                	"generic_type": "THERMOSTAT_SETPOINT"
+            	},
 				"unite": "°C",
 				"isVisible": 0,
                 "configuration": {
@@ -169,6 +205,9 @@
                 "name": "Auto Bas",
                 "type": "action",
                 "subType": "other",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_MODE"
+            	},
 				"isVisible": 1,
                 "configuration": {
                     "instanceId": "0",
@@ -180,6 +219,9 @@
                 "name": "On Bas",
                 "type": "action",
                 "subType": "other",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_MODE"
+            	},
 				"isVisible": 1,
                 "configuration": {
                     "instanceId": "0",
@@ -191,6 +233,9 @@
                 "name": "Auto Haut",
                 "type": "action",
                 "subType": "other",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_MODE"
+            	},
 				"isVisible": 1,
                 "configuration": {
                     "instanceId": "0",
@@ -202,6 +247,9 @@
                 "name": "On Haut",
                 "type": "action",
                 "subType": "other",
+                "display": {
+                	"generic_type": "THERMOSTAT_SET_MODE"
+            	},
 				"isVisible": 1,
                 "configuration": {
                     "instanceId": "0",
@@ -212,6 +260,9 @@
 			{
 				"name": "Batterie",
 				"type": "info",
+				"display": {
+                			"generic_type": "BATTERY"
+            			},
 				"subtype": "numeric",
 				"isVisible": 0,
 				"isHistorized": 0,
