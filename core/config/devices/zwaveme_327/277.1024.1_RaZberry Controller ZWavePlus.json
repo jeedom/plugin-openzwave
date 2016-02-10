@@ -16,7 +16,7 @@
 			"type": "action",
 			"subtype": "other",
 			"display": {
-                		"generic_type": "GENERIC"
+                		"generic_type": "DONT"
     			},
 			"isVisible": 0,
 			"value": "",
@@ -30,7 +30,7 @@
 			"type": "action",
 			"subtype": "other",
 			"display": {
-                		"generic_type": "GENERIC"
+                		"generic_type": "DONT"
     			},
 			"isVisible": 0,
 			"value": "",
