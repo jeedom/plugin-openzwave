@@ -15,6 +15,9 @@
 			"name": "Switch All On",
 			"type": "action",
 			"subtype": "other",
+			"display": {
+                		"generic_type": "DONT"
+            		},
 			"isVisible": 0,
 			"value": "",
 			"configuration": {
@@ -25,6 +28,9 @@
 		{
 			"name": "Switch All Off",
 			"type": "action",
+			"display": {
+                		"generic_type": "DONT"
+            		},
 			"subtype": "other",
 			"isVisible": 0,
 			"value": "",
