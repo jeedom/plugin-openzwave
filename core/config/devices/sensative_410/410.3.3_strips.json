@@ -25,7 +25,8 @@
 	            "mobile": "door"
 	        },
 	        "display": {
-	            "invertBinary": "1"
+	            "invertBinary": "1",
+	            "generic_type": "OPENING"
 	        }
 	    }
     ]
