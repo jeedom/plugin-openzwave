@@ -22,7 +22,8 @@
                     "value": "data[0].val"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+                    "generic_type": "PRESENCE"
                 },
                 "template": {
                     "dashboard": "presence",
@@ -33,6 +34,9 @@
                 "name": "Température",
                 "type": "info",
                 "subtype": "numeric",
+                "display": {
+                	"generic_type": "TEMPERATURE"
+    		},
                 "isVisible": 1,
 				"isHistorized": 1,
                 "unite": "°C",
@@ -54,7 +58,8 @@
                     "calculValueOffset" : "#value#==3"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+                    "generic_type": "SABOTAGE"
                 },
                 "template": {
                     "dashboard": "vibration",
@@ -64,6 +69,9 @@
             {
                 "name": "Batterie",
                 "type": "info",
+                "display": {
+                	"generic_type": "BATTERY"
+    		},
                 "subtype": "numeric",
                 "isVisible": 0,
 				"isHistorized": 1,
