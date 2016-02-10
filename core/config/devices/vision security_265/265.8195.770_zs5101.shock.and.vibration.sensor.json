@@ -22,7 +22,8 @@
                     "value": "data[0].val"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+                    "generic_type": "SHOCK"
                 },
                 "template": {
                     "dashboard": "choc",
@@ -42,7 +43,8 @@
                     "calculValueOffset" : "#value#==3"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
+                    "generic_type": "SABOTAGE"
                 },
                 "template": {
                     "dashboard": "vibration",
@@ -53,6 +55,9 @@
                 "name": "Batterie",
                 "type": "info",
                 "subtype": "numeric",
+                "display": {
+                	"generic_type": "BATTERY"
+    		},
                 "isVisible": 0,
                 "isHistorized": 0,
                 "unite": "%",
