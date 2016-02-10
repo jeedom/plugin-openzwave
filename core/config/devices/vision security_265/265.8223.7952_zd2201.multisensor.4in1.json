@@ -22,7 +22,8 @@
                 "value": "data[1].val"
             },
             "display": {
-                "invertBinary": "1"
+                "invertBinary": "1",
+                "generic_type": "OPENING"
             },
             "template": {
                 "dashboard": "door",
@@ -40,7 +41,8 @@
                 "value": "data[10].val"
             },
             "display": {
-                "invertBinary": "1"
+                "invertBinary": "1",
+                "generic_type": "SABOTAGE"
             },
             "template": {
                 "dashboard": "alarm",
@@ -51,6 +53,9 @@
             "name": "Température",
             "type": "info",
             "subtype": "numeric",
+            "display": {
+                	"generic_type": "TEMPERATURE"
+    		},
             "isVisible": 1,
             "isHistorized": 1,
             "unite": "°C",
@@ -65,6 +70,9 @@
             "subtype": "numeric",
             "isVisible": 1,
             "isHistorized": 1,
+            "display": {
+                	"generic_type": "BRIGHTNESS"
+    		},
             "unite": "Lux",
             "configuration": {
                 "class": "0x31",
@@ -77,6 +85,9 @@
             "name": "Humidité",
             "type": "info",
             "subtype": "numeric",
+            "display": {
+                	"generic_type": "HUMIDITY"
+    		},
             "isVisible": 1,
             "isHistorized": 1,
             "unite": "%",
@@ -88,6 +99,9 @@
         {
             "name": "Batterie",
             "type": "info",
+            "display": {
+                	"generic_type": "BATTERY"
+    		},
             "subtype": "numeric",
             "isVisible": 0,
             "isHistorized": 0,
