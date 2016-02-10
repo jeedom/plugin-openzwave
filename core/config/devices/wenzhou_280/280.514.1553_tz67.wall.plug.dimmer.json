@@ -13,6 +13,9 @@
             "name": "Intensité",
             "type": "action",
             "subtype": "slider",
+            "display": {
+                	"generic_type": "LIGHT_SLIDER"
+    		},
             "isVisible": 1,
             "value": "Etat",
             "configuration": {
@@ -29,6 +32,9 @@
         {
             "name": "On",
             "type": "action",
+            "display": {
+                	"generic_type": "LIGHT_ON"
+    		},
             "subtype": "other",
             "isVisible": 0,
             "configuration": {
@@ -40,6 +46,9 @@
             "name": "Off",
             "type": "action",
             "subtype": "other",
+            "display": {
+                	"generic_type": "LIGHT_OFF"
+    		},
             "isVisible": 0,
             "configuration": {
                 "class": "0x26",
@@ -49,6 +58,9 @@
         {
             "name": "Etat",
             "type": "info",
+            "display": {
+                	"generic_type": "LIGHT_STATE"
+    		},
             "subtype": "numeric",
             "unite": "%",
             "isVisible": 0,
