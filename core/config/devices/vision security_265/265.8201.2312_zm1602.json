@@ -14,6 +14,9 @@
                 "type": "info",
                 "subtype": "binary",
                 "isVisible": 1,
+                "display": {
+                	"generic_type": "SIREN_STATE"
+    		},
                 "isHistorized": 0,
                 "unite": "",
                 "configuration": {
@@ -25,6 +28,9 @@
                 "name": "On",
                 "type": "action",
                 "subtype": "other",
+                "display": {
+                	"generic_type": "SIREN_ON"
+    		},
                 "isVisible": 1,
                 "configuration": {
                     "class": "0x25",
@@ -34,6 +40,9 @@
             {
                 "name": "Off",
                 "type": "action",
+                "display": {
+                	"generic_type": "SIREN_OFF"
+    		},
                 "subtype": "other",
                 "isVisible": 1,
                 "configuration": {
