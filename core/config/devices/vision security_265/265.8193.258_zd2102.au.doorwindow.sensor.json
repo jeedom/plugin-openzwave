@@ -21,7 +21,8 @@
 					"value": "data[0].val"
 				},
 				"display": {
-					"invertBinary": "1"
+					"invertBinary": "1",
+					"generic_type": "OPENING"
 				},
 				"template": {
 					"dashboard": "door",
@@ -33,6 +34,9 @@
 				"type": "info",
 				"subtype": "numeric",
 				"isVisible": 0,
+				"display": {
+                			"generic_type": "BATTERY"
+            			},
 				"isHistorized": 0,
 				"unite": "%",
 				"configuration": {
