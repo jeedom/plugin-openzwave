@@ -22,7 +22,8 @@
                 "calculValueOffset" : "#value#==255"
             },
             "display": {
-			        "invertBinary": "1"
+			        "invertBinary": "1",
+			        "generic_type": "CO2"
             },
             "template": {
                 "dashboard": "alert",
@@ -32,6 +33,9 @@
         {
             "name": "Battery",
             "type": "info",
+            "display": {
+                	"generic_type": "BATTERY"
+    		},
             "subtype": "numeric",
             "unite": "%",
             "isVisible": 0,
