@@ -580,9 +580,6 @@ class openzwave extends eqLogic {
 					continue 2;
 				}
 			}
-			if ($_update) {
-				continue;
-			}
 			try {
 				$cmd = new openzwaveCmd();
 				$cmd->setOrder($cmd_order);
