@@ -16,6 +16,9 @@
 			"type": "action",
 			"subtype": "other",
 			"isVisible": 0,
+			"display": {
+                		"generic_type": "DONT"
+    			},
 			"value": "",
 			"configuration": {
 				"class": "0xF0",
@@ -27,6 +30,9 @@
 			"type": "action",
 			"subtype": "other",
 			"isVisible": 0,
+			"display": {
+                		"generic_type": "DONT"
+    			},
 			"value": "",
 			"configuration": {
 				"class": "0xF0",
