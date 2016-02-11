@@ -17,6 +17,7 @@ import sys
 import os
 import time
 import math
+from os.path import join
 
 _log_level = 'Debug'
 
@@ -234,34 +235,29 @@ for arg in sys.argv:
         print("help: ")
         print("  --device=/dev/yourdevice ")
         print("  --log=Info|Debug|Error")
-add_log_entry("--> pass")  
-
+add_log_entry("--> pass")
 
 def find_tty_usb(id_vendor, id_product):
-    # find_tty_usb('0658', '0200') -> '/dev/ttyUSB021' for Sigma Designs, Inc.
+    """find_tty_usb('0658', '0200') -> '/dev/ttyUSB021' for Sigma Designs, Inc."""
     # Note: if searching for a lot of pairs, it would be much faster to search
-    # for the entire lot at once instead of going over all the usb devices each time.
-    debug_print('check for idVendor:%s idProduct: %s' % (id_vendor, id_product,))
+    # for the entire lot at once instead of going over all the usb devices
+    # each time.
+    # print('check for idVendor:%s idProduct: %s' % (id_vendor, id_product,))
     for device_base in os.listdir('/sys/bus/usb/devices'):
-        dn = str.join('/sys/bus/usb/devices', device_base)
-        # debug_print(dn)
-        if not os.path.exists(str.join(dn, 'idVendor')):
+        dn = join('/sys/bus/usb/devices', device_base)
+        if not os.path.exists(join(dn, 'idVendor')):
             continue
-        idv = open(str.join(dn, 'idVendor')).read().strip()
-        # debug_print(idv)
+        idv = open(join(dn, 'idVendor')).read().strip()
         if idv != id_vendor:
             continue
-        idp = open(str.join(dn, 'idProduct')).read().strip()
-        # debug_print(idp)
+        idp = open(join(dn, 'idProduct')).read().strip()
         if idp != id_product:
             continue
         for subdir in os.listdir(dn):
-            if subdir.startswith(device_base + ':'):
-                for sub_subdir in os.listdir(str.join(dn, subdir)):
+            if subdir.startswith(device_base+':'):
+                for sub_subdir in os.listdir(join(dn, subdir)):
                     if sub_subdir.startswith('ttyUSB'):
-                        return str.join('/dev', sub_subdir)
-    return None
-
+                        return join('/dev', sub_subdir)
 
 def debug_print(message):
     add_log_entry(message, 'debug')
