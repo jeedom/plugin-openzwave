@@ -33,3 +33,48 @@ image:../images/openzwave54.png[]
 Vous pouvez ajouter la commande dans l'écran de "mapping" des commandes.
 
 Il s'agit d'une commande *Info* en CC *0x2b* Instance *0* commande *data[0].val*
+
+
+=== Transférer les modules sur un nouveau contrôleur
+Pour différentes raisons vous pouvez être amené à devoir transférer l'ensemble de vos modules sur un nouveau contrôleur principal.
+
+Vous décidé de passer du *raZberry* à un *Z-Stick Gen5* ou parce que, vous devez effectuer un *Reset* complet du contrôleur principal.
+
+Voici différentes étapes pour y arriver sans perdre vos scénarios, widget et historique de valeur:
+
+** 1) Faire un backup Jeedom.
+** 2) Pensez noter (copie écran) vos valeurs de paramètres pour chaque modules, ils seront perdu suite à l'exclusion.
+** 3) Dans la configuration Z-Wave décocher l'option "Supprimer automatiquement les périphériques exclus" et sauvegarder, le réseau redémarre.
+** 4a) Dans le cas d'un *Reset* Faire le Reset du contrôleur principal et redémarrer le plugin.
+** 4b) Pour un nouveau contrôleur, stopper Jeedom, débrancher l'ancien contrôleur et brancher le nouveau. Démarrer Jeedom.
+** 5) Pour chaque équipements Z-Wave, modifier l'ID ZWave à *0*.
+** 6) Ouvrir 2 pages du plugin Z-Wave dans des onglets différent.
+** 7) (Via le premier onglet) Aller sur la page de configuration d'un module que vous désirez inclure au nouveau contrôleur.
+** 8) (Via deuxième onglet) Faire une exclusion puis une inclusion du module. Un nouvel équipement sera créé.
+** 9) Copier l'ID Z-Wave du nouvel équipement, puis supprimer cet équipement.
+** 10) Retourner sur l'onglet de l'ancien module (1er onglet) puis coller le nouvel ID à la place de l'ancien ID.
+** 11) Les paramètres ZWave ont étés perdue lors de l'exclusion/inclusion, pensez à remettre vos paramètres spécifique si vous n'utilisez les valeurs par défaut.
+** 11) Répéter les étapes 7 à 11 pour chaque module à transférer.
+** 12) A la fin vous devriez plus avoir d'équipement en ID 0.
+** 13) Vérifier que tous les modules sont bien nommé dans l'écran de santé Z-Wave. Lancer la Synchronisation si ce n'est pas le cas.
+
+
+=== Remplacer un module défaillant
+Comment refaire l'inclusion d'un module défaillant sans perdre vos scénarios, widget et historique de valeur
+
+Si le module est présumé "Dead" :
+** Noter (copie écran) vos valeurs de paramètres, ils seront perdu suite à l'inclusion.
+** Allez sur l'onglet actions du module et lancer la commande "Remplacer noeud en échec".
+** Le controlleur est en mode inclusion, procéder à l'inclusion selon la documentation du module.
+** Remettre vos paramètres spécifique.
+
+Si le module n'est pas présumé "Dead" mais toujours accessible:
+** Dans la configuration zwave décocher l'option "Supprimer automatiquement les périphériques exclus".
+** Noter (copie écran) vos valeurs de paramètres, ils seront perdu suite à l'inclusion.
+** Exclure le module défaillant.
+** Aller sur la page de configuration du module défaillant.
+** Ouvrir la page du plugin zwave dans un nouvel onglet.
+** Faire l'inclusion du module.
+** Copier l'ID du nouveau module, puis supprimer cet équipement.
+** Retourner sur l'onglet de l'ancien module puis coller le nouvel ID à la place de l'ancien ID.
+** Remettre vos paramètres spécifique.
