@@ -63,12 +63,14 @@ Voici différentes étapes pour y arriver sans perdre vos scénarios, widget et 
 Comment refaire l'inclusion d'un module défaillant sans perdre vos scénarios, widget et historique de valeur
 
 Si le module est présumé "Dead" :
+
 ** Noter (copie écran) vos valeurs de paramètres, ils seront perdu suite à l'inclusion.
 ** Allez sur l'onglet actions du module et lancer la commande "Remplacer noeud en échec".
 ** Le controlleur est en mode inclusion, procéder à l'inclusion selon la documentation du module.
 ** Remettre vos paramètres spécifique.
 
 Si le module n'est pas présumé "Dead" mais toujours accessible:
+
 ** Dans la configuration zwave décocher l'option "Supprimer automatiquement les périphériques exclus".
 ** Noter (copie écran) vos valeurs de paramètres, ils seront perdu suite à l'inclusion.
 ** Exclure le module défaillant.
