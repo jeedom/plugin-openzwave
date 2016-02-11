@@ -80,3 +80,22 @@ Si le module n'est pas présumé "Dead" mais toujours accessible:
 ** Copier l'ID du nouveau module, puis supprimer cet équipement.
 ** Retourner sur l'onglet de l'ancien module puis coller le nouvel ID à la place de l'ancien ID.
 ** Remettre vos paramètres spécifique.
+
+
+=== Suppression de nœud fantôme
+Si vous avez perdue toute communication avec un module sur pile et que vous souhaité l'exclure du réseau, il est possible que l'exclusion n’aboutisse pas ou que le nœud reste présent dans votre réseau.
+
+Un assistant automatique de nœud fantôme est disponible.
+
+** Allez sur l'onglet actions du module à supprimer.
+** Il aura probablement un statu *CacheLoad*.
+** Lancer la commande *Supprimer nœud fantôme*.
+** Le réseau Z-Wave, ce stop, l'assistant automatique modifier le fichier *zwcfg* pour supprimer la CC WakeUp du module, le réseau redémarre.
+** Fermer l'écran du module.
+** Ouvrir l'écran de Santé Z-Wave.
+** Attendre que le cycle de démarrage soit complété (topology loaded).
+** Le module sera normalement marqué comme étant présumé mort (Dead).
+** La minute suivante vous devriez voir le nœud disparaître de l'écran de santé.
+** Si dans la configuration Z-Wave vous avez décoché l'option "Supprimer automatiquement les périphériques exclus", il vous faudra supprimer manuellement l'équipement correspondant.
+
+Cette assistant est disponible seulement pour les modules sur piles.
