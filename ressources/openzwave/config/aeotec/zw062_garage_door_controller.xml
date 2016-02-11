@@ -24,7 +24,7 @@
 			<Item label="Normal" value="0"/>
       <Item label="Do calibration" value="1"/>
 		</Value>
-		<Value type="int" genre="config" instance="1" index="35" label="Timeout of calibration steps" size="1" min="0" max="65000" value="30">
+		<Value type="short" genre="config" instance="1" index="35" label="Timeout of calibration steps" min="0" max="65000" value="30">
             <Help>Set the timeout of all calibration steps for the Sensor</Help>
         </Value>
 		<Value type="byte" genre="config" instance="1" index="36" label="Get the numbers of alarm music" size="1" value="5" read_only="true">
