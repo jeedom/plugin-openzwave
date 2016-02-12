@@ -26,6 +26,21 @@ Votre contrôleur devrait avoir les commandes Swicth All On et Swicth All Off.
 
 Si votre contrôleur n'apparait pas dans votre liste de module, lancé la synchronisation.
 
+image:../images/openzwave57.png[]
+
+La Commande Classe Swicth All est en général supporté sur les interrupteurs et les variateurs. Son comportement est paramétrable sur chaque module qui la supporte.
+
+On peut donc soit:
+
+** Désactiver la Commande Classe Swicth All.
+** Activé pour le On et le Off.
+** Activer le On seulement.
+** Activer le Off seulement.
+
+Le choix d'options dépend d'un constructeur à l'autre.
+
+Il faut donc bien prendre le temps de passer en revue l'ensemble de ses interrupteurs/variateurs avant de mettre en place un scénario si vous ne piloté pas que des lumières.
+
 
 === Mon module n'a pas de commande Scène ou Bouton
 image:../images/openzwave54.png[]
