@@ -34,6 +34,27 @@ Vous pouvez ajouter la commande dans l'écran de "mapping" des commandes.
 
 Il s'agit d'une commande *Info* en CC *0x2b* Instance *0* commande *data[0].val*
 
+Le mode scène doit être activé dans les paramètre du module. Voir la documentation de votre module pour plus de détails.
+
+
+=== Forcer le rafraîchissement de valeurs
+
+Il est  possible de forcer à la demande le rafraîchissement des valeurs d'une instance pour une commande classe spécifique.
+
+Il est possible de faire via une requête http ou de créer une commande dans l'écran de mapping d'un équipement.
+
+image:../images/openzwave56.png[]
+
+Il s'agit d'une commande *Action* choisir la *CC* souhaité pour une *Instance* donnée avec la commande *data[0].ForceRefresh()*
+
+L'ensemble des index de l'instance pour cette commande Classe seront mise à jour. Les nœuds sur piles, attendront leur prochain réveille avant d'effectuer la mise à jour de leur valeurs.
+
+Vous pouvez aussi utiliser par script en lançant une requête http au serveur REST Z-Wave.
+
+Remplacer ip_jeedom, node_id, instance_id, cc_id et index
+
+\http://ip_jeedom:8083/ZWaveAPI/Run/devices[node_id].instances[instance_id].commandClasses[cc_id].data[index].ForceRefresh()
+
 
 === Transférer les modules sur un nouveau contrôleur
 Pour différentes raisons vous pouvez être amené à devoir transférer l'ensemble de vos modules sur un nouveau contrôleur principal.
