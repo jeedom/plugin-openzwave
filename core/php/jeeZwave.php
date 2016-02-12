@@ -55,7 +55,7 @@ if (isset($results['device'])) {
 	foreach ($results['device'] as $node_id => $datas) {
 		$eqLogic = openzwave::getEqLogicByLogicalIdAndServerId($node_id, $results['serverId']);
 		if (is_object($eqLogic)) {
-			if (strpos($eqLogic->getConfiguration('fileconf'), 'fibaro.fgs221.fil.pilote') !== false) {
+			if (strpos($eqLogic->getConfiguration('fileconf'), 'fgs221.fil.pilote') !== false) {
 				foreach ($eqLogic->getCmd('info', '0&&1.0x0', null, true) as $cmd) {
 					if ($cmd->getConfiguration('value') == 'pilotWire') {
 						$cmd->event($cmd->getPilotWire());
