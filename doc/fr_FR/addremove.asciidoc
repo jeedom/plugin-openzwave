@@ -73,7 +73,7 @@ Si vous avez inclu des modules sans Jeedom (requiert un dongle avec pile comme l
 Si vous n'avez pas l'image ou que Jeedom n'a pas reconnu votre module, ce bouton peut permettre de corriger (sous réserve que l'interview du module soit complète).
 
 [TIP]
-Si sur votre table de routage et/ou sur l'écran de santé Z-Wave vous avez des modules nommés *Unknown*, la synchronisation permettra de remédier à cette situation.
+Si sur votre table de routage et/ou sur l'écran de santé Z-Wave vous avez un ou des modules nommés avec leurs *nom générique*, la synchronisation permettra de remédier à cette situation.
 
 Le bouton Synchroniser n'est visible qu'en mode expert :
 image:../images/openzwave51.png[]

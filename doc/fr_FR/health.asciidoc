@@ -25,17 +25,31 @@ Vous avez ici :
 
 [TIP]
 La commande Ping peut être utilisée si le module est présumé mort "DEATH" afin de confirmer si c'est réellement le cas.
+
 [TIP]
 Les modules qui dorment répondront seulement au Ping lors de leur prochain réveille.
+
 [TIP]
 La notification Timeout ne signifie pas nécessairement un problème de avec le module. Lancer un Ping et dans la majorité des cas le module répondra par Une Notification *NoOperation* qui confirme un retour fructueux du Ping.
+
 [TIP]
 La Temporisation et le %OK sur des nœuds sur piles avant la complétion de leur interview n'est pas significative. En effet le nœud ne va pas répondre aux interrogations du contrôleur du fait qu'il est en sommeil profond.
+
 [TIP]
 Le serveur Z-Wave s'occupe automatiquement de lancer des tests sur les modules en Timeout aux 15 minutes
+
 [TIP]
 Le serveur Z-Wave essaie automatiquement de remonter les module présumé mort.
+
 [TIP]
 Une alerte sera envoyée à Jeedom si le module est présumé mort. Vous pouvez activer une notification pour en être informé le plus rapidement possible. Voir la configuration des Messages dans l'écran de Configuration de Jeedom.
 
 image:../images/openzwave43.png[]
+
+[TIP]
+Si sur votre table de routage et/ou sur l'écran de santé Z-Wave vous avez un ou des modules nommés avec leurs *nom générique*, la synchronisation permettra de remédier à cette situation.
+
+[TIP]
+Si sur votre table de routage et/ou sur l'écran de santé Z-Wave vous avez un ou des modules nommés *Unknown*, cela signifie que l'interview du module n'a pas été complété avec succès.
+Vous avez probablement un *NOK* dans la colonne constructeur.
+Ouvrir le détail du/des modules, pour essayer les subjections de solution proposés. (voir section Dépannage et diagnostique, plus bas)
