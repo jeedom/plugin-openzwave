@@ -21,7 +21,7 @@
                     "value": "data[0].val"
                 },
                 "display": {
-                    "invertBinary": "1"
+                    "invertBinary": "1",
 					"generic_type": "PRESENCE"
                 },
                 "template": {
