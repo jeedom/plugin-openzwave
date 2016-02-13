@@ -993,7 +993,6 @@ class openzwaveCmd extends cmd {
 			$this->setConfiguration('class', '0x' . dechex($this->getConfiguration('class')));
 		}
 		$this->setLogicalId($this->getConfiguration('instanceId') . '.' . $this->getConfiguration('class'));
-		$this->setEventOnly(1);
 	}
 
 	public function sendZwaveResquest($_url, $_options = array()) {
