@@ -186,8 +186,7 @@
                     "class": "0x32",
 					"instanceId": 1,
                     "value": "data[0].val",
-					"maxValue": 80,
-                    "minValue": 0
+					"minValue": 0
                 }
             },
 			{
@@ -204,8 +203,7 @@
                     "class": "0x32",
 					"instanceId": 2,
                     "value": "data[0].val",
-					"maxValue": 80,
-                    "minValue": 0
+					"minValue": 0
                 }
             },
 			{
@@ -222,8 +220,7 @@
                     "class": "0x32",
 					"instanceId": 3,
                     "value": "data[0].val",
-					"maxValue": 80,
-                    "minValue": 0
+					"minValue": 0
                 }
             },
 			{
@@ -240,8 +237,7 @@
                     "class": "0x32",
 					"instanceId": 0,
                     "value": "data[0].val",
-					"maxValue": 80,
-                    "minValue": 0
+					"minValue": 0
                 }
             }
         ]
