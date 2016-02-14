@@ -24,18 +24,6 @@ if (!is_object($jsonrpc)) {
 }
 $params = $jsonrpc->getParams();
 
-if ($jsonrpc->getMethod() == 'deamonRunning') {
-	$jsonrpc->makeSuccess(openzwave::deamonRunning());
-}
-
-if ($jsonrpc->getMethod() == 'getVersion') {
-	$jsonrpc->makeSuccess(openzwave::getVersion($params['module']));
-}
-
-if ($jsonrpc->getMethod() == 'compilationOk') {
-	$jsonrpc->makeSuccess(openzwave::compilationOk());
-}
-
 if ($jsonrpc->getMethod() == 'syncconfOpenzwave') {
 	$jsonrpc->makeSuccess(openzwave::syncconfOpenzwave());
 }
