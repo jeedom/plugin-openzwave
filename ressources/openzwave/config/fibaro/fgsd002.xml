@@ -67,7 +67,7 @@
 			<Item label="Smoke ACTIVE, tamper ACTIVE" value="3" />
 		</Value>
 
-		<Value type="byte" genre="config" instance="1" index="20" label="Temperature report interval"  value="1" min="0" max="8640" size="2">
+		<Value type="short" genre="config" instance="1" index="20" label="Temperature report interval"  value="1" min="0" max="8640" >
 			<Help>Time interval between consecutive temperature reports. Report is sent when new temperature value is different from the one previously reported - according to the set hysteresis (parameter 21). Available settings: 0,1-8640 (multiply by 10 seconds) [10s-24h]. Default setting: 1 (10s)</Help>
 		</Value>
 
