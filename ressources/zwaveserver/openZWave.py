@@ -865,6 +865,14 @@ def recovering_failed_nodes_asynchronous():
                             _network.manager.testNetworkNode(_network.home_id, node_id, 3)
                             # avoid stress network
                             time.sleep(10)
+                elif not my_node.is_listening_device and my_node.is_ready :
+                    if hasattr(my_node, 'last_notification'):
+                        # check if controller think is awake
+                        if my_node.is_awake or my_node.last_notification.code == 3 :
+                            debug_print('trying to lull the node %s' % (node_id,))
+                            # a ping will force the node to return sleep after the NoOperation CC. Will force node notification update
+                            _network.manager.testNetworkNode(_network.home_id, node_id, 1)
+
             debug_print("Network sanity test/check completed!")
         else:
             debug_print("Network is loaded, skip sanity check this time")
@@ -1248,9 +1256,9 @@ def force_sleeping(node_id, count=1):
         my_node = _network.nodes[node_id]
         debug_print('check if node %s still awake' % (node_id,))
         # check if still awake
-        if my_node.is_awake:
+        if my_node.is_awake or (hasattr(my_node, 'last_notification') and my_node.last_notification.code == 3):
             debug_print('trying to lull the node %s' % (node_id,))
-            # a ping will force the node to return sleep after the NoOperation CC. 
+            # a ping will force the node to return sleep after the NoOperation CC. Will force notification update too
             _network.manager.testNetworkNode(_network.home_id, node_id, count)
 
 
