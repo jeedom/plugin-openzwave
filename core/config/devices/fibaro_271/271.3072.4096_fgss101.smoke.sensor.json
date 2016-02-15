@@ -1,101 +1,99 @@
 {
-	"name" : "FGSS-001 Smoke Sensor",
-    "doc" : "",
-    "type": "Fumée",
-    "comlink" : "2751-fibaro-detecteur-de-fumee-z-wave-plus-fgsd-002-5902020528265",
-    "remark" : "Remplacé par son équivalent aux normes le FGSD-002",
-    "imglink" : "fibaro.fgss001",
-    "battery_type" : "1x3V CR123A",
-    "configuration" : {
-        "conf_version" : 1
-    },
-    "commands": [
-      {
-        "name": "Fumées",
-        "type": "info",
-        "subtype": "binary",
-        "isVisible": 1,
-        "eventOnly": 1,
-        "configuration": {
-          "class": "0x9C",
-          "instanceId": 0,
-          "value": "data[1].val"
-        },
-        "display": {
-          "invertBinary": "1",
+	"name": "FGSS-001 Smoke Sensor",
+	"doc": "",
+	"type": "Fumée",
+	"comlink": "2751-fibaro-detecteur-de-fumee-z-wave-plus-fgsd-002-5902020528265",
+	"remark": "Remplacé par son équivalent aux normes le FGSD-002",
+	"imglink": "fibaro.fgss001",
+	"battery_type": "1x3V CR123A",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Fumées",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"eventOnly": 1,
+		"configuration": {
+			"class": "0x9C",
+			"instanceId": 0,
+			"value": "data[1].val"
+		},
+		"display": {
+			"invertBinary": "1",
 			"generic_type": "SMOKE"
-        },
-        "template": {
-          "dashboard": "feu",
-          "mobile": "feu"
-        }
-      },
-	  {
-        "name": "Chaleur",
-        "type": "info",
-        "subtype": "binary",
-        "isVisible": 0,
-        "eventOnly": 1,
-        "configuration": {
-          "class": "0x9C",
-          "instanceId": 0,
-          "value": "data[4].val"
-        },
-        "display": {
-          "invertBinary": "1",
-		  "generic_type": "DONT"
-        },
-        "template": {
-          "dashboard": "feu",
-          "mobile": "feu"
-        }
-      },
-      {
-        "name": "Sabotage",
-        "type": "info",
-        "subtype": "binary",
-        "eventOnly": 1,
-        "configuration": {
-          "class": "0x9C",
-          "instanceId": 0,
-          "value": "data[0].val"
-        },
-        "display": {
-          "invertBinary": "1",
-		  "generic_type": "SABOTAGE"
-        }
-      },
-      {
-        "name": "Température",
-        "type": "info",
-        "subtype": "numeric",
-        "unite": "°C",
-        "isVisible": 1,
-        "eventOnly": 1,
-        "isHistorized": 1,
+		},
+		"template": {
+			"dashboard": "feu",
+			"mobile": "feu"
+		}
+	},
+	{
+		"name": "Chaleur",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
+		"eventOnly": 1,
+		"configuration": {
+			"class": "0x9C",
+			"instanceId": 0,
+			"value": "data[4].val"
+		},
 		"display": {
-                    		"generic_type": "TEMPERATURE"
-                	},
-        "configuration": {
-          "class": "0x31",
-          "instanceId": 0,
-          "value": "data[1].val"
-        }
-      },
-      {
-        "name": "Batterie",
-        "type": "info",
-        "subtype": "numeric",
-        "unite": "%",
-        "isVisible": 0,
+			"invertBinary": "1",
+			"generic_type": "DONT"
+		},
+		"template": {
+			"dashboard": "feu",
+			"mobile": "feu"
+		}
+	},
+	{
+		"name": "Sabotage",
+		"type": "info",
+		"subtype": "binary",
+		"eventOnly": 1,
+		"configuration": {
+			"class": "0x9C",
+			"instanceId": 0,
+			"value": "data[0].val"
+		},
 		"display": {
-                    		"generic_type": "BATTERY"
-                	},
-        "configuration": {
-          "class": "0x80",
-          "instanceId": 0,
-          "value": "data[0].val"
-        }
-      }
-    ]
-   }
+			"invertBinary": "1",
+			"generic_type": "SABOTAGE"
+		}
+	},
+	{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "°C",
+		"isVisible": 1,
+		"eventOnly": 1,
+		"isHistorized": 1,
+		"display": {
+			"generic_type": "TEMPERATURE"
+		},
+		"configuration": {
+			"class": "0x31",
+			"instanceId": 0,
+			"value": "data[1].val"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"instanceId": 0,
+			"value": "data[0].val"
+		}
+	}]
+}
