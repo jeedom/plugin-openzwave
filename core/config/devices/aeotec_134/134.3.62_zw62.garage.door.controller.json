@@ -1,91 +1,87 @@
-{		
+{
 	"name": "Garage Door Controller (ZW062)",
-	"doc" : "",
+	"doc": "",
 	"type": "Porte",
-	"comlink" : "",
-	"remark" : "",
-	"imglink" : "aeotec.garagedoorcontroller",
-	"ignore" : 0,
-	"configuration" : {
-		"conf_version" : 1
+	"comlink": "",
+	"remark": "",
+	"imglink": "aeotec.garagedoorcontroller",
+	"ignore": 0,
+	"configuration": {
+		"conf_version": 1
 	},
-	"commands": [
-		{
-			"name": "Open/Close",
-			"type": "action",
-			"subtype": "other",
-			"isVisible": 1,
-			"configuration": {
-				"class": "0x25",
-				"value": "data[0].Set(255)"
-			},
-			"template": {
-				"dashboard": "prise",
-				"mobile": "prise"
-			}
+	"commands": [{
+		"name": "Open/Close",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(255)"
 		},
-		{
-			"name": "Position",
-			"type": "info",
-			"subtype": "binary",
-			"isVisible": 1,
-			"isHistorized": 1,
-			"configuration": {
-				"class": "0x20",
-				"value": "data[0].val"
-			},
-			"display": {
-				"invertBinary": "1"
-			},
-			"template": {
-				"dashboard": "door",
-				"mobile": "door"
-			}
-		},
-		{
-			"name": "Volume",
-			"type": "info",
-			"subtype": "numeric",
-			"isVisible": 1,
-			"isHistorized": 1,
-			"unite": "",
-			"configuration": {
-				"class": "0x70",
-				"value": "data[44].val"
-			},
-			"template": {
-				"dashboard": "tile",
-				"mobile": "tile"
-			}
-		},
-		{
-			"name": "Température",
-			"type": "info",
-			"subtype": "numeric",
-			"isVisible": 1,
-			"isHistorized": 1,
-			"unite": "°C",
-			"configuration": {
-				"class": "0x70",
-				"value": "data[45].val",
-				"calculValueOffset" : "#value#/10.0"
-			}
-		},
-		{
-			"name": "Sabotage",
-			"type": "info",
-			"subtype": "string",
-			"isVisible": 1,
-			"isHistorized": 1,
-
-			"configuration": {
-				"class": "0x70",
-				"value": "data[41].val"
-			},
-			"display": {
-				"invertBinary": "0"
-			}
+		"template": {
+			"dashboard": "prise",
+			"mobile": "prise"
 		}
-	]
+	},
+	{
+		"name": "Position",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"class": "0x20",
+			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": "1"
+		},
+		"template": {
+			"dashboard": "door",
+			"mobile": "door"
+		}
+	},
+	{
+		"name": "Volume",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "",
+		"configuration": {
+			"class": "0x70",
+			"value": "data[44].val"
+		},
+		"template": {
+			"dashboard": "tile",
+			"mobile": "tile"
+		}
+	},
+	{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "°C",
+		"configuration": {
+			"class": "0x70",
+			"value": "data[45].val",
+			"calculValueOffset": "#value#/10.0"
+		}
+	},
+	{
+		"name": "Sabotage",
+		"type": "info",
+		"subtype": "string",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"class": "0x70",
+			"value": "data[41].val"
+		},
+		"display": {
+			"invertBinary": "0"
+		}
+	}]
 }
-
