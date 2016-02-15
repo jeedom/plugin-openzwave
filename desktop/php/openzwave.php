@@ -119,7 +119,7 @@ foreach ($eqLogics as $eqLogic) {
  </div>
 
  <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
-   <legend>{{Gestion}}</legend>
+   <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
    <div class="eqLogicThumbnailContainer">
      <?php
 if ($controlerState == 1) {
@@ -174,7 +174,7 @@ if ($controlerState == 5) {
       <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Santé}}</center></span>
     </div>
   </div>
-  <legend>{{Mes équipements Z-Wave}}</legend>
+  <legend><i class="fa fa-table"></i>  {{Mes équipements Z-Wave}}</legend>
   <div class="eqLogicThumbnailContainer">
 
     <?php
@@ -272,7 +272,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 <div class="col-sm-5">
   <form class="form-horizontal">
     <fieldset>
-      <legend>{{Informations}}
+      <legend><i class="fa fa-info-circle"></i>  {{Informations}}
        <i id="bt_autoDetectModule" class="fa fa-search expertModeVisible pull-right tooltips cursor" title="{{Detecter automatiquement le modele du module}}"></i>
        <i id="bt_displayZwaveData" title="{{Voir l'arbre Z-Wave}}" class="fa fa-tree expertModeVisible pull-right tooltips cursor"></i>
      </legend>
@@ -317,7 +317,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 </div>
 </div>
 
-<legend>Commandes</legend>
+<legend><i class="fa fa-list-alt"></i>  {{Commandes}}</legend>
 <a class="btn btn-success btn-sm cmdAction expertModeVisible" data-action="add"><i class="fa fa-plus-circle"></i> {{Commandes}}</a><br/><br/>
 <table id="table_cmd" class="table table-bordered table-condensed">
   <thead>
