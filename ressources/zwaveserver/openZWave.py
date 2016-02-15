@@ -1534,14 +1534,14 @@ def serialize_node_to_json(node_id):
             product_type = None
                     
         json_result['data'] = {}
-        json_result['data']['manufacturerId'] = {'value': manufacturer_id, 'hex': '0x' + my_node.manufacturer_id}
+        json_result['data']['manufacturerId'] = {'value': manufacturer_id, 'hex': my_node.manufacturer_id}
         json_result['data']['vendorString'] = {'value': my_node.manufacturer_name}
-        json_result['data']['manufacturerProductId'] = {'value': product_id, 'hex': '0x' + my_node.product_id}
+        json_result['data']['manufacturerProductId'] = {'value': product_id, 'hex': my_node.product_id}
         json_result['data']['product_name'] = {'value': my_node.product_name}
         json_result['data']['location'] = {'value': my_node.location}
         json_result['data']['name'] = {'value': my_node.name}
         json_result['data']['version'] = {'value': my_node.version}
-        json_result['data']['manufacturerProductType'] = {'value': product_type, 'hex': '0x' + my_node.product_type}
+        json_result['data']['manufacturerProductType'] = {'value': product_type, 'hex': my_node.product_type}
         json_result['data']['neighbours'] = {'value': list(my_node.neighbors)}
         json_result['data']['isVirtual'] = {'value': ''}
         if _network.controller.node_id == node_id and my_node.basic == 1:
