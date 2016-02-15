@@ -1,45 +1,43 @@
 {
 	"name": "NQ-9121 Gaz Meter",
-    "doc" : "",
-    "type": "Compteur",
-    "comlink" : "1539-northq-compteur-optique-de-consommation-de-gaz-z-wave",
-    "remark" : "Activer le rafraichissement manuel à 5 minutes sur la valeur Gaz pour avoir les rapports",
-    "imglink" : "northq.nq9121",
-    "battery_type" : "2x1.5V AAA",
-    "configuration" : {
-    "conf_version" : 1
+	"doc": "",
+	"type": "Compteur",
+	"comlink": "1539-northq-compteur-optique-de-consommation-de-gaz-z-wave",
+	"remark": "Activer le rafraichissement manuel à 5 minutes sur la valeur Gaz pour avoir les rapports",
+	"imglink": "northq.nq9121",
+	"battery_type": "2x1.5V AAA",
+	"configuration": {
+		"conf_version": 1
 	},
-        "commands": [
-			{
-                "name": "Consommation",
-                "type": "info",
-                "subType": "numeric",
-                "isHistorized": "0",
-				"unite": "cubic meters",
-				"isVisible": 1,
-				"display": {
-                    		"generic_type": "CONSUMPTION"
-                	},
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x32",
-                    "value": "data[0].val"
-                }
-            },
-			{
-				"name": "Batterie",
-				"type": "info",
-				"subtype": "numeric",
-				"isVisible": 0,
-				"isHistorized": 0,
-				"unite": "%",
-				"display": {
-                    		"generic_type": "BATTERY"
-                	},
-				"configuration": {
-					"class": "0x80",
-					"value": "data[0].val"
-				}
-			}
-        ]
-    }
+	"commands": [{
+		"name": "Consommation",
+		"type": "info",
+		"subType": "numeric",
+		"isHistorized": "0",
+		"unite": "cubic meters",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x32",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "%",
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"value": "data[0].val"
+		}
+	}]
+}

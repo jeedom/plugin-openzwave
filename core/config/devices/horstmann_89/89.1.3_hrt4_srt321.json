@@ -1,142 +1,140 @@
 {
-		"name": "HRT4-ZW Transmitter",
-        "doc" : "",
-        "type": "Thermostat",
-        "comlink" : "1982-secure-thermostat-srt321-avec-ecran-lcd-z-wave-5015914250071",
-        "remark" : "Module vendu sous la marque Secure SRT321",
-        "imglink" : "horstmann.hrt4",
-        "battery_type" : "2x1.5V AAA",
-        "configuration" : {
-        "conf_version" : 1
+	"name": "HRT4-ZW Transmitter",
+	"doc": "",
+	"type": "Thermostat",
+	"comlink": "1982-secure-thermostat-srt321-avec-ecran-lcd-z-wave-5015914250071",
+	"remark": "Module vendu sous la marque Secure SRT321",
+	"imglink": "horstmann.hrt4",
+	"battery_type": "2x1.5V AAA",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "°C",
+		"display": {
+			"generic_type": "THERMOSTAT_TEMPERATURE"
 		},
-        "commands": [
-            {
-                "name": "Température",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 1,
-                "isHistorized": 1,
-                "unite": "°C",
-				"display": {
-                    		"generic_type": "THERMOSTAT_TEMPERATURE"
-                	},
-                "configuration": {
-                    "class": "0x31",
-                    "value": "data[1].val"
-                }
-            },                                  
-            {
-                "name": "Off",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-                "isHistorized": 0,
-				"unite": "°C",
-				"display": {
-                    		"generic_type": "DONT"
-                	},
-                "configuration": {
-                    "class": "0x40",
-					"instanceId": 0,
-                    "value": "data[0].Set(Off)"
-                }
-            },
-            {
-                "name": "Heat",
-                "type": "action",
-                "subType": "other",
-                "isVisible": 1,
-                "isHistorized": 0,
-				"unite": "°C",
-				"display": {
-                    		"generic_type": "DONT"
-                	},
-                "configuration": {
-                    "class": "0x40",
-					"instanceId": 0,
-                    "value": "data[0].Set(Heat)"
-                }
-            },
-            {
-                "name": "ConsigneEtat",
-                "type": "info",
-                "subType": "numeric",
-				"isVisible": 0,
-				"unite": "°C",
-				"display": {
-                    		"generic_type": "THERMOSTAT_SETPOINT"
-                	},
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x43",
-                    "value": "data[1].val",
-                    "minValue":"5",
-                    "maxValue":"30"
-                }
-            },
-            {
-                "name": "Consigne",
-                "type": "action",
-                "subType": "slider",
-				"isVisible": 1,
-				"unite": "°C",
-				"value": "ConsigneEtat",
-				"display": {
-                    		"generic_type": "THERMOSTAT_SET_SETPOINT"
-                	},
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x43",
-                    "value": "data[1].Set(#slider#)",
-                    "minValue":"5",
-                    "maxValue":"30"
-                }
-            },
-            {
-                "name": "On",
-                "type": "action",
-                "subtype": "other",
-                "isVisible":0,
-                "isHistorized": 0,
-				"display": {
-                    		"generic_type": "DONT"
-                	},
-                "configuration": {
-                    "class": "0x25",
-					"instanceId": 0,
-                    "value": "data[0].Set(255)"
-                }
-            },
-            {
-                "name": "Off",
-                "type": "action",
-                "subtype": "other",
-                "isVisible":0,
-                "isHistorized": 0,
-				"display": {
-                    		"generic_type": "DONT"
-                	},
-                "configuration": {
-                    "class": "0x25",
-					"instanceId": 0,
-                    "value": "data[0].Set(0)"
-                }
-            },
-            {
-                "name": "Etat",
-                "type": "info",
-                "subtype": "binary",
-                "unite": "",
-                "isVisible": 0,
-                "isHistorized": 0,
-				"display": {
-                    		"generic_type": "THERMOSTAT_STATE"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 0,
-                    "value": "data[0].val"
-                }
-            }         
-        ]        
-    }
+		"configuration": {
+			"class": "0x31",
+			"value": "data[1].val"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x40",
+			"instanceId": 0,
+			"value": "data[0].Set(Off)"
+		}
+	},
+	{
+		"name": "Heat",
+		"type": "action",
+		"subType": "other",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x40",
+			"instanceId": 0,
+			"value": "data[0].Set(Heat)"
+		}
+	},
+	{
+		"name": "ConsigneEtat",
+		"type": "info",
+		"subType": "numeric",
+		"isVisible": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "THERMOSTAT_SETPOINT"
+		},
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x43",
+			"value": "data[1].val",
+			"minValue": "5",
+			"maxValue": "30"
+		}
+	},
+	{
+		"name": "Consigne",
+		"type": "action",
+		"subType": "slider",
+		"isVisible": 1,
+		"unite": "°C",
+		"value": "ConsigneEtat",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_SETPOINT"
+		},
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x43",
+			"value": "data[1].Set(#slider#)",
+			"minValue": "5",
+			"maxValue": "30"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].Set(255)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"unite": "",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "THERMOSTAT_STATE"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].val"
+		}
+	}]
+}

@@ -1,139 +1,153 @@
 {
-		"name": "PAN06 Double Charge",
-    "doc" : "",
-    "type": "Micromodule",
-    "comlink" : "2482-philio-micromodule-commutateur-double-z-wave-4713698570019",
-    "remark" : "",
-    "imglink" : "philio.pan06",
-        "configuration" : {
-        "conf_version" : 1
+	"name": "PAN06 Double Charge",
+	"doc": "",
+	"type": "Micromodule",
+	"comlink": "2482-philio-micromodule-commutateur-double-z-wave-4713698570019",
+	"remark": "",
+	"imglink": "philio.pan06",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "On All",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
 		},
-        "commands": [
-            {
-                "name": "On All",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-				"display": {
-                    		"generic_type": "DONT"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 1,
-                    "value": "data[0].Set(255)"
-                }
-            },
-            {
-                "name": "Off All",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-				"display": {
-                    		"generic_type": "DONT"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 1,
-                    "value": "data[0].Set(0)"
-                }
-            },
-            {
-                "name": "Etat All",
-                "type": "info",
-                "subtype": "binary",
-                "isVisible": 1,
-				"display": {
-                    		"generic_type": "DONT"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 1,
-                    "value": "data[0].val"
-                }
-            },
-            {
-                "name": "On 1",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-				"display": {
-                    		"generic_type": "ENERGY_ON"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 2,
-                    "value": "data[0].Set(255)"
-                }
-            },
-            {
-                "name": "Off 1",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-				"display": {
-                    		"generic_type": "ENERGY_OFF"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 2,
-                    "value": "data[0].Set(0)"
-                }
-            },
-            {
-                "name": "Etat 1",
-                "type": "info",
-                "subtype": "binary",
-                "isVisible": 1,
-				"display": {
-                    		"generic_type": "ENERGY_STATE"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 2,
-                    "value": "data[0].val"
-                }
-            },
-            {
-                "name": "On 2",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-				"display": {
-                    		"generic_type": "ENERGY_ON"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 3,
-                    "value": "data[0].Set(255)"
-                }
-            },
-            {
-                "name": "Off 2",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-				"display": {
-                    		"generic_type": "ENERGY_OFF"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 3,
-                    "value": "data[0].val"
-                }
-            },
-            {
-                "name": "Etat 2",
-                "type": "info",
-                "subtype": "binary",
-                "isVisible": 1,
-				"display": {
-                    		"generic_type": "ENERGY_STATE"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 3,
-                    "value": "data[0].val"
-                }
-            }
-        ]
-    }
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 1,
+			"value": "data[0].Set(255)"
+		}
+	},
+	{
+		"name": "Off All",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 1,
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Etat All",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 1,
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "On 1",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 2,
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Off 1",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 2,
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Etat 1",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 2,
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "On 2",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 3,
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Off 2",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 3,
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Etat 2",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 3,
+			"value": "data[0].val"
+		}
+	}]
+}

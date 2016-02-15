@@ -1,131 +1,129 @@
 {
-    "name": "PAN03 Switch Module Single load",
-    "doc" : "",
-    "type": "Micromodule",
-    "comlink" : "2959-zipato-micromodule-commutateur-z-wave-avec-mesure-d-energie-3858890733242",
-    "remark" : "Vendu aussi sous la marque Zipato",
-    "imglink" : "philio.pan03",
-    "configuration" : {
-        "conf_version" : 1
-    },
-    "commands": [
-    {
-        "name": "On",
-        "type": "action",
-        "subtype": "other",
-        "isVisible": 1,
-        "value": "Etat",
+	"name": "PAN03 Switch Module Single load",
+	"doc": "",
+	"type": "Micromodule",
+	"comlink": "2959-zipato-micromodule-commutateur-z-wave-avec-mesure-d-energie-3858890733242",
+	"remark": "Vendu aussi sous la marque Zipato",
+	"imglink": "philio.pan03",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
 		"display": {
-                    		"generic_type": "LIGHT_ON"
-                	},
-        "configuration": {
-            "class": "0x25",
-            "instanceId": 0,
-            "value": "data[0].Set(255)"
-        },
-            "template": {
-                "dashboard": "light",
-                "mobile": "light"
-            }
-    },
-    {
-        "name": "Off",
-        "type": "action",
-        "subtype": "other",
-        "isVisible": 1,
-        "value": "Etat",
+			"generic_type": "LIGHT_ON"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
 		"display": {
-                    		"generic_type": "LIGHT_OFF"
-                	},
-        "configuration": {
-            "class": "0x25",
-            "instanceId": 0,
-            "value": "data[0].Set(0)"
-        },
-            "template": {
-                "dashboard": "light",
-                "mobile": "light"
-            }
-    },
-    {
-        "name": "Etat",
-        "type": "info",
-        "subtype": "binary",
-        "isVisible": 0,
+			"generic_type": "LIGHT_OFF"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
 		"display": {
-                    		"generic_type": "LIGHT_STATE"
-                	},
-        "configuration": {
-            "class": "0x25",
-            "instanceId": 0,
-            "value": "data[0].val"
-        }
-    },
-    {
-        "name": "Puissance",
-        "type": "info",
-        "subtype": "numeric",
-        "isVisible": 1,
-        "isHistorized": 1,
-        "unite": "W",
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "Puissance",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "W",
 		"display": {
-                    		"generic_type": "POWER"
-                	},
-        "configuration": {
-            "class": "0x32",
-            "instanceId": 0,
-            "value": "data[8].val",
-            "maxValue": 3200,
-            "minValue": 0
-        }
-    },
-    {
-        "name": "Intensité",
-        "type": "info",
-        "subtype": "numeric",
-        "isVisible": 0,
-        "isHistorized": 0,
-        "unite": "A",
+			"generic_type": "POWER"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[8].val",
+			"maxValue": 3200,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Intensité",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "A",
 		"display": {
-                    		"generic_type": "DONT"
-                	},
-        "configuration": {
-            "class": "0x32",
-            "instanceId": 0,
-            "value": "data[20].val"
-        }
-    },
-    {
-        "name": "Voltage",
-        "type": "info",
-        "subtype": "numeric",
-        "isVisible": 0,
-        "isHistorized": 0,
-        "unite": "V",
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[20].val"
+		}
+	},
+	{
+		"name": "Voltage",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "V",
 		"display": {
-                    		"generic_type": "VOLTAGE"
-                	},
-        "configuration": {
-            "class": "0x32",
-            "instanceId": 0,
-            "value": "data[16].val"
-        }
-    },
-    {
-        "name": "Consommation",
-        "type": "info",
-        "subtype": "numeric",
-        "isVisible": 1,
-        "isHistorized": 1,
-        "unite": "kWh",
+			"generic_type": "VOLTAGE"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[16].val"
+		}
+	},
+	{
+		"name": "Consommation",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "kWh",
 		"display": {
-                    		"generic_type": "CONSUMPTION"
-                	},
-        "configuration": {
-            "class": "0x32",
-            "instanceId": 0,
-            "value": "data[0].val"
-        }
-    }
-    ]
+			"generic_type": "CONSUMPTION"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[0].val"
+		}
+	}]
 }

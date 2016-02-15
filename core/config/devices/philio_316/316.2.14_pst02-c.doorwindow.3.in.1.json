@@ -1,85 +1,82 @@
 {
-	"name" : "PST02-B 3 en 1",
-    "doc" : "philio.pst02c_-_3_en_1_Ouverture",
-    "type": "Multicapteurs",
-    "comlink" : "2606-zipato-detecteur-z-wave-3-en-1-ouverture-luminosite-temperature-3858890730371",
-    "remark" : "Vendu aussi sous la marque Zipato",
-    "imglink" : "philio.pst02c",
-    "battery_type" : "1x3V CR123A",
-    "configuration" : {
-        "conf_version" : 1
-    },
-    "commands": [
-            {
-                "name": "Ouverture",
-                "type": "info",
-                "subtype": "binary",
-                "isVisible": 1,
-                "isHistorized": 0,
-
-                "configuration": {
-                    "instanceId": 0,
-                    "class": "0x30",
-                    "value": "data[0].val"
-                },
-                "display": {
-                    "invertBinary": "1",
-					"generic_type": "OPENING"
-                },
-                "template": {
-                    "dashboard": "door",
-                    "mobile": "door"
-                }
-            },
-            {
-                "name": "Température",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 1,
-                "isHistorized": 1,
-				"display": {
-                    		"generic_type": "TEMPERATURE"
-                	},
-                "configuration": {
-                    "instanceId": 0,
-                    "class": "0x31",
-                    "value": "data[1].val",
-                    "unite": "°C"
-                }
-            },
-            {
-                "name": "Luminosité",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 1,
-                "isHistorized": 1,
-				"display": {
-                    		"generic_type": "BRIGHTNESS"
-                	},
-                "configuration": {
-                    "instanceId": 0,
-                    "class": "0x31",
-                    "value": "data[3].val",
-                    "unite": "%",
-                    "maxValue": 100,
-                    "minValue": 0
-                }
-            },
-            {
-                "name": "Batterie",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 0,
-                "isHistorized": 0,
-				"display": {
-                    		"generic_type": "BATTERY"
-                	},
-                "configuration": {
-                    "instanceId": 0,
-                    "class": "0x80",
-                    "value": "data[0].val",
-                    "unite": "%"
-                }
-            }
-        ]
+	"name": "PST02-B 3 en 1",
+	"doc": "philio.pst02c_-_3_en_1_Ouverture",
+	"type": "Multicapteurs",
+	"comlink": "2606-zipato-detecteur-z-wave-3-en-1-ouverture-luminosite-temperature-3858890730371",
+	"remark": "Vendu aussi sous la marque Zipato",
+	"imglink": "philio.pst02c",
+	"battery_type": "1x3V CR123A",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Ouverture",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x30",
+			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "OPENING"
+		},
+		"template": {
+			"dashboard": "door",
+			"mobile": "door"
+		}
+	},
+	{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"display": {
+			"generic_type": "TEMPERATURE"
+		},
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x31",
+			"value": "data[1].val",
+			"unite": "°C"
+		}
+	},
+	{
+		"name": "Luminosité",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"display": {
+			"generic_type": "BRIGHTNESS"
+		},
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x31",
+			"value": "data[3].val",
+			"unite": "%",
+			"maxValue": 100,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x80",
+			"value": "data[0].val",
+			"unite": "%"
+		}
+	}]
 }
