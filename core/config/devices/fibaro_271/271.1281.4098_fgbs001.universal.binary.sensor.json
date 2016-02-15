@@ -14,7 +14,11 @@
 		"subtype": "binary",
 		"isVisible": 1,
 		"display": {
-			"generic_type": "LIGHT_STATE"
+			"generic_type": "OPENING"
+		},
+		"template": {
+			"dashboard": "door",
+			"mobile": "door"
 		},
 		"configuration": {
 			"class": "0x30",
@@ -28,7 +32,11 @@
 		"subtype": "binary",
 		"isVisible": 1,
 		"display": {
-			"generic_type": "LIGHT_STATE"
+			"generic_type": "OPENING"
+		},
+		"template": {
+			"dashboard": "door",
+			"mobile": "door"
 		},
 		"configuration": {
 			"class": "0x30",
