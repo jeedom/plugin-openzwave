@@ -1,72 +1,70 @@
 {
 	"name": "ZW EDAN 300 Dimmer",
-        "type": "Interrupteur",
-        "comlink" : "749-duwi-interrupteur-variateur-everlux-z-wave-4008297054337",
-        "remark" : "Il faut activer le polling pour avoir une remonté d'état",
-        "imglink" : "duwi.edan-300",
-        "configuration" : {
-        "conf_version" : 1
+	"type": "Interrupteur",
+	"comlink": "749-duwi-interrupteur-variateur-everlux-z-wave-4008297054337",
+	"remark": "Il faut activer le polling pour avoir une remonté d'état",
+	"imglink": "duwi.edan-300",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Intensité",
+		"type": "action",
+		"subtype": "slider",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "LIGHT_SLIDER"
 		},
-        "commands": [
-            {
-                "name": "Intensité",
-                "type": "action",
-                "subtype": "slider",
-                "isVisible": 1,
-                "value": "Etat",
-				"display": {
-                    		"generic_type": "LIGHT_SLIDER"
-                	},
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(#slider#)"
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                }
-            },
-            {
-                "name": "On",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 0,
-				"display": {
-                    		"generic_type": "LIGHT_ON"
-                	},
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(255)"
-                }
-            },
-            {
-                "name": "Off",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 0,
-				"display": {
-                    		"generic_type": "LIGHT_OFF"
-                	},
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(0)"
-                }
-            },
-            {
-                "name": "Etat",
-                "type": "info",
-                "subtype": "numeric",
-                "unite": "%",
-                "isVisible": 0,
-				"display": {
-                    		"generic_type": "LIGHT_STATE"
-                	},
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].val",
-                    "minValue": 0,
-                    "maxValue": 99
-                }
-            }
-        ]
-    }
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(#slider#)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(255)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].val",
+			"minValue": 0,
+			"maxValue": 99
+		}
+	}]
+}

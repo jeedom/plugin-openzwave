@@ -1,75 +1,75 @@
 {
-	"name" : "Miniplug Dimmer",
-    "doc" : "everspring.AD147-6_-_Miniplug_Dimmer",
-    "type": "Prise",
-    "comlink" : "2687-everspring-mini-prise-variateur-z-wave-plus-ad147-6-prise-francaise-3700946500370",
-    "remark" : "",
-    "imglink" : "everspring.AD147-6",
-    "configuration" : {
-        "conf_version" : 1
-    },
-    "commands": [
-            {
-                "name": "Intensité",
-                "type": "action",
-                "subtype": "slider",
-                "isVisible": 1,
-                "value": "Etat",
-				"display": {
-                    		"generic_type": "LIGHT_SLIDER"
-                	},
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(#slider#)",
-                    "minValue": 0,
-                    "maxValue": 99
-                },
-                "template": {
-                    "dashboard": "prise",
-                    "mobile": "prise"
-                }
-            },
-            {
-                "name": "On",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 0,
-				"display": {
-                    		"generic_type": "LIGHT_ON"
-                	},
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(99)"
-                }
-            },
-            {
-                "name": "Off",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 0,
-				"display": {
-                    		"generic_type": "LIGHT_OFF"
-                	},
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(0)"
-                }
-            },
-            {
-                "name": "Etat",
-                "type": "info",
-                "subtype": "numeric",
-                "unite": "%",
-                "isVisible": 0,
-				"display": {
-                    		"generic_type": "LIGHT_STATE"
-                	},
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].val",
-                    "minValue": 0,
-                    "maxValue": 99
-                }
-            }
-        ]
+	"name": "Miniplug Dimmer",
+	"doc": "everspring.AD147-6_-_Miniplug_Dimmer",
+	"type": "Prise",
+	"comlink": "2687-everspring-mini-prise-variateur-z-wave-plus-ad147-6-prise-francaise-3700946500370",
+	"remark": "",
+	"imglink": "everspring.AD147-6",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Intensité",
+		"type": "action",
+		"subtype": "slider",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "LIGHT_SLIDER"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(#slider#)",
+			"minValue": 0,
+			"maxValue": 99
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"value": "Etat",
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(99)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"value": "Etat",
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].val",
+			"minValue": 0,
+			"maxValue": 99
+		}
+	}]
 }

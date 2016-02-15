@@ -1,76 +1,74 @@
- {
-		"name": "TSE03 Door Bell",
-        "doc" : "",
-        "type": "Carillon",
-        "comlink" : "",
-        "remark" : "",
-        "imglink" : "everspring.tse03",
-        "battery_type" : "3xAA + 2x1.5V AAA",
-        "configuration" : {
-        "conf_version" : 1
+{
+	"name": "TSE03 Door Bell",
+	"doc": "",
+	"type": "Carillon",
+	"comlink": "",
+	"remark": "",
+	"imglink": "everspring.tse03",
+	"battery_type": "3xAA + 2x1.5V AAA",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x25",
+			"value": "data[0].val"
 		},
-        "commands": [
-            {
-                "name": "Etat",
-                "type": "info",
-                "subtype": "binary",
-                "isVisible": 1,
-                "isHistorized": 0,
-                "configuration": {
-                    "instanceId": 0,
-                    "class": "0x25",
-                    "value": "data[0].val"
-                },
-                "display": {
-                    "invertBinary": "1",
-					"generic_type": "DONT"
-                },
-                "template": {
-                    "dashboard": "bell",
-                    "mobile": "bell"
-                }
-            },
-            {
-                "name": "On",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-				"display": {
-                    		"generic_type": "DONT"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "value": "data[0].Set(255)"
-                }
-            },
-            {
-                "name": "Off",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-				"display": {
-                    		"generic_type": "DONT"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "value": "data[0].Set(0)"
-                }
-            },
-            {
-                "name": "Batterie",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 0,
-                "isHistorized": 0,
-				"display": {
-                    		"generic_type": "BATTERY"
-                	},
-                "configuration": {
-                    "instanceId": 0,
-                    "class": "0x80",
-                    "value": "data[0].val",
-                    "unite": "%"
-                }
-            }
-        ]
-    }
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "DONT"
+		},
+		"template": {
+			"dashboard": "bell",
+			"mobile": "bell"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(255)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x80",
+			"value": "data[0].val",
+			"unite": "%"
+		}
+	}]
+}

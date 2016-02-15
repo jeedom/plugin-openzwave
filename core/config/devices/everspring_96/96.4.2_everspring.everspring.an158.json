@@ -1,99 +1,97 @@
-{		
-		"name": "AN158",
-        "doc" : "",
-        "type": "Prise",
-        "comlink" : "835-everspring-module-prise-on-off-z-wave-mesure-d-energie-an158-2-ger-3700946500097",
-        "remark" : "",
-        "imglink" : "everspring.an158",
-		"configuration" : {
-        "conf_version" : 1
+{
+	"name": "AN158",
+	"doc": "",
+	"type": "Prise",
+	"comlink": "835-everspring-module-prise-on-off-z-wave-mesure-d-energie-an158-2-ger-3700946500097",
+	"remark": "",
+	"imglink": "everspring.an158",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "",
+		"display": {
+			"generic_type": "ENERGY_STATE"
 		},
-        "commands": [
-            {
-                "name": "Etat",
-                "type": "info",
-                "subtype": "binary",
-                "isVisible": 0,
-                "isHistorized": 0,
-                "unite": "",
-				"display": {
-                    		"generic_type": "LIGHT_STATE"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "value": "data[0].val"
-                }
-            },
-            {
-                "name": "On",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-                "value": "Etat",
-				"display": {
-                    		"generic_type": "LIGHT_ON"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "value": "data[0].Set(255)"
-                },
-                "template": {
-                    "dashboard": "prise",
-                    "mobile": "prise"
-                }
-            },
-            {
-                "name": "Off",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-                "value": "Etat",
-				"display": {
-                    		"generic_type": "LIGHT_OFF"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "value": "data[0].Set(0)"
-                },
-                "template": {
-                    "dashboard": "prise",
-                    "mobile": "prise"
-                }
-            },
-            {
-                "name": "Puissance",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 1,
-                "isHistorized": 1,
-                "unite": "W",
-				"display": {
-                    		"generic_type": "POWER"
-                	},
-                "configuration": {
-                    "class": "0x32",
-                    "value": "data[8].val",
-                    "maxValue": 3000,
-                    "minValue": 0
-                }
-            },
-            {
-                "name": "Consommation",
-                "type": "info",
-                "subtype": "numeric",
-                "isVisible": 1,
-                "isHistorized": 0,
-                "unite": "kWh",
-				"display": {
-                    		"generic_type": "CONSUMPTION"
-                	},
-                "configuration": {
-                    "class": "0x32",
-                    "value": "data[0].val"
-                },
-                "template": {
-                    "dashboard": "tile"
-                }
-            }
-        ]
-    }
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "ENERGY_ON"
+		},
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "prise",
+			"mobile": "prise"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "ENERGY_OFF"
+		},
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "prise",
+			"mobile": "prise"
+		}
+	},
+	{
+		"name": "Puissance",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "W",
+		"display": {
+			"generic_type": "POWER"
+		},
+		"configuration": {
+			"class": "0x32",
+			"value": "data[8].val",
+			"maxValue": 3000,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Consommation",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "kWh",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"configuration": {
+			"class": "0x32",
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "tile"
+		}
+	}]
+}

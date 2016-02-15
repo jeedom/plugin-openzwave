@@ -1,57 +1,54 @@
 {
-		"name": "SE812",
-        "doc" : "",
-        "type": "Sirène",
-        "comlink" : "845-everspring-sirene-z-wave-se812-3700946500189",
-        "remark" : "",
-        "imglink" : "everspring.se812",
-        "battery_type" : "4xLR14",
-        "configuration" : {
-        "conf_version" : 1
+	"name": "SE812",
+	"doc": "",
+	"type": "Sirène",
+	"comlink": "845-everspring-sirene-z-wave-se812-3700946500189",
+	"remark": "",
+	"imglink": "everspring.se812",
+	"battery_type": "4xLR14",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "DONT"
 		},
-        "commands": [
-            {
-                "name": "Etat",
-                "type": "info",
-                "subtype": "binary",
-                "isVisible": 1,
-                "isHistorized": 0,
-				"display": {
-                    		"generic_type": "DONT"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "value": "data[0].val"
-                }
-            },
-			{
-                "name": "On",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-				"display": {
-                    		"generic_type": "DONT"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 0,
-                    "value": "data[0].Set(255)"
-                }
-            },
-			{
-                "name": "Off",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-				"display": {
-                    		"generic_type": "DONT"
-                	},
-                "configuration": {
-                    "class": "0x25",
-                    "instanceId": 0,
-                    "value": "data[0].Set(0)"
-                }
-            }
-			
-        ]
-    }
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].Set(255)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].Set(0)"
+		}
+	}]
+}
