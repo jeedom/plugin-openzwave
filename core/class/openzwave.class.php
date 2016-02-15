@@ -429,7 +429,7 @@ class openzwave extends eqLogic {
 			if (posix_getsid(trim(file_get_contents($pid_file)))) {
 				$return['state'] = 'ok';
 			} else {
-				unlink($pid_file);
+				shell_exec('sudo rm -rf ' . $pid_file . ' 2>&1 > /dev/null;rm -rf ' . $pid_file . ' 2>&1 > /dev/null;');
 			}
 		}
 		$return['launchable'] = 'ok';
