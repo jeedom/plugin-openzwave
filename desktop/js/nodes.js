@@ -972,6 +972,7 @@ var app_nodes = {
         node.find(".node-specific").html(specificDeviceClassDescription);
         var battery_level = nodes[z].data.battery_level.value
         var nodeCanSleep = nodes[z].data.can_wake_up.value;
+
         if (battery_level != null) {
             if (nodeCanSleep) {
                 if (nodes[z].data.isAwake.value) {
@@ -986,8 +987,13 @@ var app_nodes = {
             node.find(".node-battery").html(battery_level + ' %');
             node.find(".node-battery-span").show();
         }
+        else if (nodeCanSleep){
+            node.find(".node-sleep").html("---");
+            node.find(".node-battery-span").hide();
+        }
         else {
-            node.find(".node-sleep").html("{{Secteur}}");
+            node.find(".node-sleep").removeClass("label-default");
+            node.find(".node-sleep").html('<i class="fa fa-plug text-success fa-lg"></i>');
             node.find(".node-battery-span").hide();
         }
 
@@ -1110,7 +1116,7 @@ var app_nodes = {
         $("#replaceFailedNode").prop("disabled",!nodeIsFailed);
         $("#sendNodeInformation").prop("disabled",nodeIsFailed);
         $("#regenerateNodeCfgFile").prop("disabled",nodeIsFailed);
-        $("#removeGhostNode").prop("disabled",nodeIsFailed || battery_level == null);
+        $("#removeGhostNode").prop("disabled",nodeIsFailed || !nodeCanSleep);
 
         if (nodeIsFailed) {
             node.find(".node-queryStage").html("Dead");
