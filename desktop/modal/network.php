@@ -248,7 +248,7 @@ if (!isConnect('admin')) {
                         </tr>
                         <tr>
                             <td class="node-interview-not-completed-color"><i class="fa fa-square fa-2x"></i></td>
-                            <td>{{interview non completé}}</td>
+                            <td>{{Interview non completé}}</td>
                         </tr>
                         <tr>
                             <td class="node-no-neighbourhood-color"><i class="fa fa-square fa-2x"></i></td>
