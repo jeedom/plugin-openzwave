@@ -13,6 +13,7 @@
 		"type": "action",
 		"subtype": "other",
 		"isVisible": 1,
+		"value": "Etat 1",
 		"display": {
 			"generic_type": "LIGHT_ON"
 		},
@@ -31,6 +32,7 @@
 		"type": "action",
 		"subtype": "other",
 		"isVisible": 1,
+		"value": "Etat 1",
 		"display": {
 			"generic_type": "LIGHT_OFF"
 		},
@@ -63,6 +65,7 @@
 		"type": "action",
 		"subtype": "other",
 		"isVisible": 1,
+		"value": "Etat 2",
 		"display": {
 			"generic_type": "LIGHT_ON"
 		},
@@ -81,6 +84,7 @@
 		"type": "action",
 		"subtype": "other",
 		"isVisible": 1,
+		"value": "Etat 2",
 		"display": {
 			"generic_type": "LIGHT_OFF"
 		},
