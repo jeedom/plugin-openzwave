@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Aeon Labs Door/Window Sensor Gen5 base on Engineering Spec 08/01/2016 -->
+<!-- Aeon Labs Door/Window Sensor Gen5 (ZW120) base on Engineering Spec 08/01/2016 -->
 <Product xmlns='http://code.google.com/p/open-zwave/'>
 	<!-- Configuration Parameters -->
 	<CommandClass id="112">
