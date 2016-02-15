@@ -1,72 +1,69 @@
- {
-		"name": "ZS5101",
-        "doc" : "",
-        "type": "Vibration",
-        "comlink" : "2157-vision-security-detecteur-de-choc-z-wave",
-        "remark" : "Ce module peut dans certaine circonstance rester éveillé lors de l’interview. Il faut enlever et remettre la pile pour remédier à la situation.",
-        "imglink" : "vision.zs5101",
-        "battery_type" : "1x3V CR123A",
-        "configuration" : {
-        "conf_version" : 1
+{
+	"name": "ZS5101",
+	"doc": "",
+	"type": "Vibration",
+	"comlink": "2157-vision-security-detecteur-de-choc-z-wave",
+	"remark": "Ce module peut dans certaine circonstance rester éveillé lors de l’interview. Il faut enlever et remettre la pile pour remédier à la situation.",
+	"imglink": "vision.zs5101",
+	"battery_type": "1x3V CR123A",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x20",
+			"value": "data[0].val"
 		},
-        "commands": [
-            {
-                "name": "Etat",
-                "type": "info",
-                "subtype": "binary",
-                "isVisible": 1,
-                "isHistorized": 0,
-                "configuration": {
-                    "instanceId": 0,
-                    "class": "0x20",
-                    "value": "data[0].val"
-                },
-                "display": {
-                    "invertBinary": "1",
-                    "generic_type": "SHOCK"
-                },
-                "template": {
-                    "dashboard": "choc",
-                    "mobile": "choc"
-                }
-             },
-            {
-                "name": "Sabotage",
-                "type": "info",
-                "subtype": "binary",
-                "isVisible": 1,
-                "isHistorized": 0,
-
-                "configuration": {
-                    "instanceId": 0,
-                    "class": "0x71",
-                    "value": "data[10].val",
-                    "calculValueOffset" : "#value#==3"
-                },
-                "display": {
-                    "invertBinary": "1",
-                    "generic_type": "SABOTAGE"
-                },
-                "template": {
-                    "dashboard": "vibration",
-                    "mobile": "vibration"
-                }
-            },
-            {
-                "name": "Batterie",
-                "type": "info",
-                "subtype": "numeric",
-                "display": {
-                	"generic_type": "BATTERY"
-    		},
-                "isVisible": 0,
-                "isHistorized": 0,
-                "configuration": {
-                    "instanceId": 0,
-                    "class": "0x80",
-                    "value": "data[0].val",
-                    "unite": "%"
-                }
-            }
-        ]
-    }
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "SHOCK"
+		},
+		"template": {
+			"dashboard": "choc",
+			"mobile": "choc"
+		}
+	},
+	{
+		"name": "Sabotage",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x71",
+			"value": "data[10].val",
+			"calculValueOffset": "#value#==3"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "SABOTAGE"
+		},
+		"template": {
+			"dashboard": "vibration",
+			"mobile": "vibration"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"isVisible": 0,
+		"isHistorized": 0,
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x80",
+			"value": "data[0].val",
+			"unite": "%"
+		}
+	}]
+}

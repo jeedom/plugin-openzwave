@@ -1,129 +1,127 @@
 {
-	"name" : "Heatit Z-Wave thermostat",
-    "doc" : "",
-    "type": "Thermostat",
-    "comlink" : "2731-thermofloor-thermostat-z-wave-heatit-3600w-16a-blanc-7071236011934",
-    "remark" : "",
-    "imglink" : "heatit.thermostat",
-    "configuration" : {
-        "conf_version" : 1
-    },
-    "commands": [
-            {
-                "name": "Température",
-                "type": "info",
-                "subType": "numeric",
-                "display": {
-                	"generic_type": "THERMOSTAT_TEMPERATURE"
-            	},
-                "isHistorized": "0",
-				"unite": "°C",
-				"isVisible": 1,
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x31",
-                    "value": "data[1].val"
-                }
-            },
-            {
-                "name": "Off",
-                "type": "action",
-                "display": {
-                	"generic_type": "THERMOSTAT_SET_MODE"
-            	},
-                "subType": "other",
-				"isVisible": 1,
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x40",
-                    "value": "data[0].Set(Off)"
-                }
-            },
-            {
-                "name": "Confort",
-                "type": "action",
-                "display": {
-                	"generic_type": "THERMOSTAT_SET_MODE"
-            	},
-                "subType": "other",
-				"isVisible": 1,
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x40",
-                    "value": "data[0].Set(Heat)"
-                }
-            },
-            {
-                "name": "ECO",
-                "type": "action",
-                "display": {
-                	"generic_type": "THERMOSTAT_SET_MODE"
-            	},
-                "subType": "other",
-				"isVisible": 1,
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x40",
-                    "value": "data[0].Set(Heat Econ)"
-                }
-            },
-            {
-                "name": "CoolingEtat",
-                "type": "info",
-                "subType": "numeric",
-				"isVisible": 0,
-				"unite": "°C",
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x43",
-                    "value": "data[2].val",
-                    "maxValue":"5",
-                    "maxValue":"30"
-                }
-            },
-            {
-                "name": "Cooling",
-                "type": "action",
-                "subType": "slider",
-				"isVisible": 0,
-				"value": "CoolingEtat",
-				"unite": "°C",
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x43",
-                    "value": "data[2].Set(#slider#)",
-                    "maxValue":"5",
-                    "maxValue":"30"
-                }
-            },
-            {
-                "name": "AirEtat",
-                "type": "info",
-                "subType": "numeric",
-				"isVisible": 0,
-				"unite": "°C",
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x43",
-                    "value": "data[8].val",
-                    "maxValue":"5",
-                    "maxValue":"30"
-                }
-            },
-            {
-                "name": "Dry Air",
-                "type": "action",
-                "subType": "slider",
-				"isVisible": 1,
-				"value": "ConsigneEtat",
-				"unite": "°C",
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x43",
-                    "value": "data[8].Set(#slider#)",
-                    "maxValue":"5",
-                    "maxValue":"30"
-                }
-            }            
-    ]
+	"name": "Heatit Z-Wave thermostat",
+	"doc": "",
+	"type": "Thermostat",
+	"comlink": "2731-thermofloor-thermostat-z-wave-heatit-3600w-16a-blanc-7071236011934",
+	"remark": "",
+	"imglink": "heatit.thermostat",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Température",
+		"type": "info",
+		"subType": "numeric",
+		"display": {
+			"generic_type": "THERMOSTAT_TEMPERATURE"
+		},
+		"isHistorized": "0",
+		"unite": "°C",
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x31",
+			"value": "data[1].val"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_MODE"
+		},
+		"subType": "other",
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x40",
+			"value": "data[0].Set(Off)"
+		}
+	},
+	{
+		"name": "Confort",
+		"type": "action",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_MODE"
+		},
+		"subType": "other",
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x40",
+			"value": "data[0].Set(Heat)"
+		}
+	},
+	{
+		"name": "ECO",
+		"type": "action",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_MODE"
+		},
+		"subType": "other",
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x40",
+			"value": "data[0].Set(Heat Econ)"
+		}
+	},
+	{
+		"name": "CoolingEtat",
+		"type": "info",
+		"subType": "numeric",
+		"isVisible": 0,
+		"unite": "°C",
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x43",
+			"value": "data[2].val",
+			"maxValue": "5",
+			"maxValue": "30"
+		}
+	},
+	{
+		"name": "Cooling",
+		"type": "action",
+		"subType": "slider",
+		"isVisible": 0,
+		"value": "CoolingEtat",
+		"unite": "°C",
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x43",
+			"value": "data[2].Set(#slider#)",
+			"maxValue": "5",
+			"maxValue": "30"
+		}
+	},
+	{
+		"name": "AirEtat",
+		"type": "info",
+		"subType": "numeric",
+		"isVisible": 0,
+		"unite": "°C",
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x43",
+			"value": "data[8].val",
+			"maxValue": "5",
+			"maxValue": "30"
+		}
+	},
+	{
+		"name": "Dry Air",
+		"type": "action",
+		"subType": "slider",
+		"isVisible": 1,
+		"value": "ConsigneEtat",
+		"unite": "°C",
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x43",
+			"value": "data[8].Set(#slider#)",
+			"maxValue": "5",
+			"maxValue": "30"
+		}
+	}]
 }

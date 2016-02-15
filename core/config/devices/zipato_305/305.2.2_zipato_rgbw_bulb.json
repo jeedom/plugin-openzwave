@@ -1,139 +1,135 @@
 {
-	"name" : "Bulb RGBW",
-    "doc" : "",
-    "type": "Ampoule",
-    "comlink" : "2541-zipato-ampoule-led-rgbw-z-wave-3858890731026",
-    "remark" : "",
-    "imglink" : "zipato.bulb",
-    "configuration" : {
-        "conf_version" : 1
-    },
-    "commands": [
-            {
-                "name": "Couleur",
-                "type": "action",
-                "subtype": "color",
-                "display": {
-                	"generic_type": "LIGHT_SET_COLOR"
-    		},
-                "isVisible": 1,
-                "value": "Etat couleur",
-                "configuration": {
-                    "class": "0x33",
-                    "value": "data[0].Set(#color#)"
-                }
-            },
-            {
-                "name": "Blanc Froid",
-                "type": "action",
-                "subtype": "other",
-                "display": {
-                	"generic_type": "DONT"
-    		},
-                "isVisible": 1,
-                "configuration": {
-                    "class": "0x33",
-                    "value": "data[1].Set(Cool White)"
-                },
-                "display": {
-                    "icon": "<i class=\"icon nature-snowflake\"><\/i>"
-                }
-            },
-            {
-                "name": "Blanc Chaud",
-                "type": "action",
-                "subtype": "other",
-                "isVisible": 1,
-                "display": {
-                	"generic_type": "DONT"
-    		},
-                "configuration": {
-                    "class": "0x33",
-                    "value": "data[1].Set(Warm White)"
-                },
-                "display": {
-                    "icon": "<i class=\"icon meteo-soleil\"><\/i>"
-                }
-            },
-			{
-                "name": "On",
-                "type": "action",
-                "display": {
-                	"generic_type": "LIGHT_ON"
-    		},
-                "subtype": "other",
-                "isVisible": 1,
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(99)"
-                },
-                "display": {
-                    "icon": "<i class=\"icon jeedom-lumiere-on\"><\/i>"
-                }
-            },
-			{
-                "name": "Off",
-                "type": "action",
-                "display": {
-                	"generic_type": "LIGHT_OFF"
-    		},
-                "subtype": "other",
-                "isVisible": 1,
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(0)"
-                },
-                "display": {
-                    "icon": "<i class=\"icon jeedom-lumiere-off\"><\/i>"
-                }
-            },
-			{
-                "name": "Intensité",
-                "type": "action",
-                "subtype": "slider",
-                "display": {
-                	"generic_type": "LIGHT_SLIDER"
-    		},
-                "isVisible": 1,
-                "value": "Etat",
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(#slider#)",
-                    "minValue": 0,
-                    "maxValue": 99
-				}
-            },
-            {
-                "name": "Etat",
-                "type": "info",
-                "display": {
-                	"generic_type": "LIGHT_STATE"
-    		},
-                "subtype": "numeric",
-                "unite": "%",
-                "isVisible": 0,
-
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].val",
-                    "minValue": 0,
-                    "maxValue": 99
-                }
-            },
-            {
-                "name": "Etat couleur",
-                "type": "info",
-                "display": {
-                	"generic_type": "LIGHT_COLOR"
-    		},
-                "subtype": "string",
-                "unite": "",
-                "isVisible": 0,
-
-                "configuration": {
-                    "class": "0x33",
-                    "value": "data[0].val"
-                }
-            }
-        ]
-   }
+	"name": "Bulb RGBW",
+	"doc": "",
+	"type": "Ampoule",
+	"comlink": "2541-zipato-ampoule-led-rgbw-z-wave-3858890731026",
+	"remark": "",
+	"imglink": "zipato.bulb",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Couleur",
+		"type": "action",
+		"subtype": "color",
+		"display": {
+			"generic_type": "LIGHT_SET_COLOR"
+		},
+		"isVisible": 1,
+		"value": "Etat couleur",
+		"configuration": {
+			"class": "0x33",
+			"value": "data[0].Set(#color#)"
+		}
+	},
+	{
+		"name": "Blanc Froid",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x33",
+			"value": "data[1].Set(Cool White)"
+		},
+		"display": {
+			"icon": "<i class=\"icon nature-snowflake\"><\/i>"
+		}
+	},
+	{
+		"name": "Blanc Chaud",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x33",
+			"value": "data[1].Set(Warm White)"
+		},
+		"display": {
+			"icon": "<i class=\"icon meteo-soleil\"><\/i>"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"subtype": "other",
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(99)"
+		},
+		"display": {
+			"icon": "<i class=\"icon jeedom-lumiere-on\"><\/i>"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"subtype": "other",
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		},
+		"display": {
+			"icon": "<i class=\"icon jeedom-lumiere-off\"><\/i>"
+		}
+	},
+	{
+		"name": "Intensité",
+		"type": "action",
+		"subtype": "slider",
+		"display": {
+			"generic_type": "LIGHT_SLIDER"
+		},
+		"isVisible": 1,
+		"value": "Etat",
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(#slider#)",
+			"minValue": 0,
+			"maxValue": 99
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].val",
+			"minValue": 0,
+			"maxValue": 99
+		}
+	},
+	{
+		"name": "Etat couleur",
+		"type": "info",
+		"display": {
+			"generic_type": "LIGHT_COLOR"
+		},
+		"subtype": "string",
+		"unite": "",
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x33",
+			"value": "data[0].val"
+		}
+	}]
+}

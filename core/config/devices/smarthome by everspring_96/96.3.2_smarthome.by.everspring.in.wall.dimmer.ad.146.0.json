@@ -1,75 +1,73 @@
 {
-	"name" : "AD146-0 Variateur",
-    "doc" : "smart_Home_by_Everspring.AD146-0_-_In_Wall_Dimmer",
-    "type": "Micromodule",
-    "comlink" : "2688-smarthome-europe-micromodule-variateur-mural-z-wave-plus-ad146-3700946500356",
-    "remark" : "",
-    "imglink" : "smarthomebyeverspring.AD146-0",
-    "configuration" : {
-        "conf_version" : 1
-    },
-    "commands": [
-            {
-                "name": "Intensité",
-                "type": "action",
-                "subtype": "slider",
-                "isVisible": 1,
-                "display": {
-                	"generic_type": "LIGHT_SLIDER"
-            	},
-                "value": "Etat",
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(#slider#)",
-                    "minValue": 0,
-                    "maxValue": 99
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                }
-            },
-            {
-                "name": "On",
-                "type": "action",
-                "subtype": "other",
-                "display": {
-                	"generic_type": "LIGHT_ON"
-            	},
-                "isVisible": 0,
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(99)"
-                }
-            },
-            {
-                "name": "Off",
-                "type": "action",
-                "subtype": "other",
-                "display": {
-                	"generic_type": "LIGHT_OFF"
-            	},
-                "isVisible": 0,
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(0)"
-                }
-            },
-            {
-                "name": "Etat",
-                "type": "info",
-                "display": {
-                	"generic_type": "LIGHT_STATE"
-            	},
-                "subtype": "numeric",
-                "unite": "%",
-                "isVisible": 0,
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].val",
-                    "minValue": 0,
-                    "maxValue": 99
-                }
-            }
-        ]
+	"name": "AD146-0 Variateur",
+	"doc": "smart_Home_by_Everspring.AD146-0_-_In_Wall_Dimmer",
+	"type": "Micromodule",
+	"comlink": "2688-smarthome-europe-micromodule-variateur-mural-z-wave-plus-ad146-3700946500356",
+	"remark": "",
+	"imglink": "smarthomebyeverspring.AD146-0",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Intensité",
+		"type": "action",
+		"subtype": "slider",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "LIGHT_SLIDER"
+		},
+		"value": "Etat",
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(#slider#)",
+			"minValue": 0,
+			"maxValue": 99
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(99)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].val",
+			"minValue": 0,
+			"maxValue": 99
+		}
+	}]
 }

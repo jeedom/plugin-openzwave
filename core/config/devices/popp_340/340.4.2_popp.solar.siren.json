@@ -1,140 +1,138 @@
 {
-    "name": "Solar Powered Outdoor Siren",
-    "doc": "",
-    "type": "Sirène",
-    "comlink": "3180-popp-sirene-exterieure-solaire-z-wave-0019962005107",
-    "remark": "",
-    "imglink": "popp.solar-siren",
-    "battery_type": "Batterie",
-    "configuration": {
-        "conf_version": 1
-    },
-    "commands": [
-        {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 0,
-            "unite": "",
-            "configuration": {
-                "class": "0x25",
-                "value": "data[0].val"
-            },
-			"display": { 
-				"invertBinary": 1,
-				"generic_type": "SIREN_STATE"
-			}, 
-			"template": { 
-				"dashboard": "alert", 
-				"mobile": "alert" 
+	"name": "Solar Powered Outdoor Siren",
+	"doc": "",
+	"type": "Sirène",
+	"comlink": "3180-popp-sirene-exterieure-solaire-z-wave-0019962005107",
+	"remark": "",
+	"imglink": "popp.solar-siren",
+	"battery_type": "Batterie",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "",
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": 1,
+			"generic_type": "SIREN_STATE"
+		},
+		"template": {
+			"dashboard": "alert",
+			"mobile": "alert"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "SIREN_ON"
+		},
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(255)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "SIREN_OFF"
+		},
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "TEMPERATURE"
+		},
+		"unite": "°C",
+		"isVisible": 1,
+		"eventOnly": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"class": "0x31",
+			"instanceId": 0,
+			"value": "data[1].val"
+		}
+	},
+	{
+		"name": "Sensor",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
+		"eventOnly": 1,
+		"configuration": {
+			"class": "0x30",
+			"instanceId": 0,
+			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "GENERIC"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"unite": "%",
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x80",
+			"instanceId": 0,
+			"value": "data[0].val"
+		}
+	}],
+	"configuration": {
+		"1": {
+			"name": "Mode de déclenchement de la sirène en cas de sabotage",
+			"help": "Ce paramètre permet de définir le déclenchement de la sirène sur sabotage",
+			"list": {
+				"The Siren triggers automatically when it's removed from the holder. Must be turned off, using the button or from the controller (Default)": "La sirène sonne si sabotage. Doit être arrétée via le bouton ou via le contrôleur",
+				"The Siren triggers automatically when it's removed from the holder and turns off, when placed back on the holder": "La sirène sonne si sabotage et arrête de sonner si remise en place",
+				"Siren doesn't trigger at all, when removed from the holder. Service Mode": "La sirène ne sonne pas si sabotage (mode service)"
 			}
-        },
-        {
-            "name": "On",
-            "type": "action",
-            "subtype": "other",
-            "display": {
-                "generic_type": "SIREN_ON"
-            },
-            "isVisible": 1,
-            "configuration": {
-                "class": "0x25",
-                "value": "data[0].Set(255)"
-            }
-        },
-        {
-            "name": "Off",
-            "type": "action",
-            "subtype": "other",
-            "display": {
-                "generic_type": "SIREN_OFF"
-            },
-            "isVisible": 1,
-            "configuration": {
-                "class": "0x25",
-                "value": "data[0].Set(0)"
-            }
-        },
-        {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "display": {
-                "generic_type": "TEMPERATURE"
-            },
-            "unite": "°C",
-            "isVisible": 1,
-            "eventOnly": 1,
-            "isHistorized": 1,
-            "configuration": {
-                "class": "0x31",
-                "instanceId": 0,
-                "value": "data[1].val"
-            }
-        },
-        {
-            "name": "Sensor",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 0,
-            "eventOnly": 1,
-            "configuration": {
-                "class": "0x30",
-                "instanceId": 0,
-                "value": "data[0].val"
-            },
-            "display": {
-                "invertBinary": "1",
-                "generic_type": "GENERIC"
-            }
-        },
-        {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "display": {
-                "generic_type": "BATTERY"
-            },
-            "unite": "%",
-            "isVisible": 0,
-            "configuration": {
-                "class": "0x80",
-                "instanceId": 0,
-                "value": "data[0].val"
-            }
-        }
-    ],
-        "configuration": {
-            "1": {
-                "name": "Mode de déclenchement de la sirène en cas de sabotage",
-                "help": "Ce paramètre permet de définir le déclenchement de la sirène sur sabotage",
-				"list": {
-						"The Siren triggers automatically when it's removed from the holder. Must be turned off, using the button or from the controller (Default)": "La sirène sonne si sabotage. Doit être arrétée via le bouton ou via le contrôleur",
-						"The Siren triggers automatically when it's removed from the holder and turns off, when placed back on the holder": "La sirène sonne si sabotage et arrête de sonner si remise en place",
-						"Siren doesn't trigger at all, when removed from the holder. Service Mode": "La sirène ne sonne pas si sabotage (mode service)"
-						}
-            },
-            "2": {
-                "name": "Ajustements de température",
-                "help": "Permet de corriger la température : Pour des valeurs positives 10 = 1 °C, pour des valeurs négatives x = 256 - (T°C * 10). Example, si vous voulez -2.6°C, alors 256 - (2.6 * 10) = 230. Pour aucune correction 0"
-            },
-            "3": {
-                "name": "Envoie de rapport de température",
-                "help": "Ecart de température pour envoyer un rapport. 10 = 1°C"
-            },
-            "4": {
-                "name": "Envoie de rapport tous les N réveils",
-                "help": "Si la valeur est renseignée, après x réveils un rapport sera envoyé"
-            },
-            "5":{
-                "name": "Mode de la sirène",
-                "help": "Permet de régler si la sirène doit sonner, clignoter ou les deux",
-				"list": {
-						"Siren only": "Sirène",
-						"Flash only": "Flash",
-						"Flash + Siren (Default)": "Les deux"
-						}
-            }
-        }
+		},
+		"2": {
+			"name": "Ajustements de température",
+			"help": "Permet de corriger la température : Pour des valeurs positives 10 = 1 °C, pour des valeurs négatives x = 256 - (T°C * 10). Example, si vous voulez -2.6°C, alors 256 - (2.6 * 10) = 230. Pour aucune correction 0"
+		},
+		"3": {
+			"name": "Envoie de rapport de température",
+			"help": "Ecart de température pour envoyer un rapport. 10 = 1°C"
+		},
+		"4": {
+			"name": "Envoie de rapport tous les N réveils",
+			"help": "Si la valeur est renseignée, après x réveils un rapport sera envoyé"
+		},
+		"5": {
+			"name": "Mode de la sirène",
+			"help": "Permet de régler si la sirène doit sonner, clignoter ou les deux",
+			"list": {
+				"Siren only": "Sirène",
+				"Flash only": "Flash",
+				"Flash + Siren (Default)": "Les deux"
+			}
+		}
+	}
 }

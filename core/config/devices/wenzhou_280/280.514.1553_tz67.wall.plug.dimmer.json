@@ -1,75 +1,73 @@
 {
-    "name": "TZ67",
-    "doc" : "",
-    "type": "Prise",
-    "comlink" : "",
-    "remark" : "Vendu aussi sous la marque TkbHome.",
-    "imglink" : "tkb.tz67",
-    "configuration" : {
-        "conf_version" : 1
-    },
-    "commands": [
-        {
-            "name": "Intensité",
-            "type": "action",
-            "subtype": "slider",
-            "display": {
-                	"generic_type": "LIGHT_SLIDER"
-    		},
-            "isVisible": 1,
-            "value": "Etat",
-            "configuration": {
-                "class": "0x26",
-                "value": "data[0].Set(#slider#)",
-                "minValue": 0,
-                "maxValue": 99
-            },
-            "template": {
-                "dashboard": "light",
-                "mobile": "light"
-            }
-        },
-        {
-            "name": "On",
-            "type": "action",
-            "display": {
-                	"generic_type": "LIGHT_ON"
-    		},
-            "subtype": "other",
-            "isVisible": 0,
-            "configuration": {
-                "class": "0x26",
-                "value": "data[0].Set(99)"
-            }
-        },
-        {
-            "name": "Off",
-            "type": "action",
-            "subtype": "other",
-            "display": {
-                	"generic_type": "LIGHT_OFF"
-    		},
-            "isVisible": 0,
-            "configuration": {
-                "class": "0x26",
-                "value": "data[0].Set(0)"
-            }
-        },
-        {
-            "name": "Etat",
-            "type": "info",
-            "display": {
-                	"generic_type": "LIGHT_STATE"
-    		},
-            "subtype": "numeric",
-            "unite": "%",
-            "isVisible": 0,
-            "configuration": {
-                "class": "0x26",
-                "value": "data[0].val",
-                "minValue": 0,
-                "maxValue": 99
-            }
-        }
-    ]
+	"name": "TZ67",
+	"doc": "",
+	"type": "Prise",
+	"comlink": "",
+	"remark": "Vendu aussi sous la marque TkbHome.",
+	"imglink": "tkb.tz67",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Intensité",
+		"type": "action",
+		"subtype": "slider",
+		"display": {
+			"generic_type": "LIGHT_SLIDER"
+		},
+		"isVisible": 1,
+		"value": "Etat",
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(#slider#)",
+			"minValue": 0,
+			"maxValue": 99
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"subtype": "other",
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(99)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].val",
+			"minValue": 0,
+			"maxValue": 99
+		}
+	}]
 }

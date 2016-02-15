@@ -1,71 +1,69 @@
 {
-		"name": "ZM1601",
-        "doc" : "",
-        "type": "Sirène",
-        "comlink" : "2435-vision-security-sirene-z-wave-zm1601-alimentee-sur-batterie",
-        "remark" : "",
-        "imglink" : "vision.zm1601",
-        "battery_type" : "4x1.5V AAA",
-        "configuration" : {
-        "conf_version" : 1
+	"name": "ZM1601",
+	"doc": "",
+	"type": "Sirène",
+	"comlink": "2435-vision-security-sirene-z-wave-zm1601-alimentee-sur-batterie",
+	"remark": "",
+	"imglink": "vision.zm1601",
+	"battery_type": "4x1.5V AAA",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Etat",
+		"type": "info",
+		"display": {
+			"generic_type": "SIREN_STATE"
 		},
-        "commands": [
-            {
-                "name": "Etat",
-                "type": "info",
-                "display": {
-                	"generic_type": "SIREN_STATE"
-    		},
-                "subtype": "binary",
-                "isVisible": 1,
-                "isHistorized": 0,
-                "unite": "",
-                "configuration": {
-                    "class": "0x25",
-                    "value": "data[0].val"
-                }
-            },
-            {
-                "name": "On",
-                "type": "action",
-                "display": {
-                	"generic_type": "SIREN_ON"
-    		},
-                "subtype": "other",
-                "isVisible": 1,
-                "configuration": {
-                    "class": "0x25",
-                    "value": "data[0].Set(255)"
-                }
-            },
-            {
-                "name": "Off",
-                "type": "action",
-                "subtype": "other",
-                "display": {
-                	"generic_type": "SIREN_OFF"
-    		},
-                "isVisible": 1,
-                "configuration": {
-                    "class": "0x25",
-                    "value": "data[0].Set(0)"
-                }
-            },
-            {
-                "name": "Batterie",
-                "type": "info",
-                "display": {
-                	"generic_type": "BATTERY"
-    		},
-                "subtype": "numeric",
-                "isVisible": 0,
-                "isHistorized": 0,
-                "configuration": {
-                    "class": "0x80",
-                    "instanceId": 0,
-                    "value": "data[0].val",
-                    "unite": "%"
-                }
-            }
-        ]
-    }
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "",
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"display": {
+			"generic_type": "SIREN_ON"
+		},
+		"subtype": "other",
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(255)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "SIREN_OFF"
+		},
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"configuration": {
+			"class": "0x80",
+			"instanceId": 0,
+			"value": "data[0].val",
+			"unite": "%"
+		}
+	}]
+}

@@ -1,344 +1,342 @@
 {
-		"name": "ZWE060 6 boutons",
-    "doc" : "",
-    "type": "Interrupteur",
-    "comlink" : "",
-    "remark" : "",	
-    "imglink" : "vitrum.zwe060",
-	"ignore" : 1,
-    "configuration" : {
-        "conf_version" : 1
+	"name": "ZWE060 6 boutons",
+	"doc": "",
+	"type": "Interrupteur",
+	"comlink": "",
+	"remark": "",
+	"imglink": "vitrum.zwe060",
+	"ignore": 1,
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Etat",
+		"type": "info",
+		"subType": "binary",
+		"display": {
+			"generic_type": "LIGHT_STATE"
 		},
-        "commands": [
-            {
-                "name": "Etat",
-                "type": "info",
-                "subType": "binary",
-                "display": {
-                	"generic_type": "LIGHT_STATE"
-    		},
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x26",
-                    "value": "data[0].val"
-                },
-                "isVisible": "0"
-            },
-            {
-                "name": "On",
-                "type": "action",
-                "subType": "other",
-                "display": {
-                	"generic_type": "LIGHT_ON"
-    		},
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x26",
-                    "value": "data[0].Set(255)"
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                },
-                "value": "Etat",
-                "isVisible": "1"
-            },
-            {
-                "name": "Off",
-                "type": "action",
-                "subType": "other",
-                "display": {
-                	"generic_type": "LIGHT_OFF"
-    		},
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "0",
-                    "class": "0x26",
-                    "value": "data[0].Set(0)"
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                },
-                "value": "Etat",
-                "isVisible": "1"
-            },
-            {
-                "name": "Etat2",
-                "type": "info",
-                "subType": "binary",
-                "display": {
-                	"generic_type": "LIGHT_STATE"
-    		},
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "2",
-                    "class": "0x26",
-                    "value": "data[0].val"
-                },
-                "isVisible": "0"
-            },
-            {
-                "name": "On2",
-                "type": "action",
-                "subType": "other",
-                "isHistorized": "0",
-                "display": {
-                	"generic_type": "LIGHT_ON"
-    		},
-                "configuration": {
-                    "instanceId": "2",
-                    "class": "0x26",
-                    "value": "data[0].Set(255)"
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                },
-                "value": "Etat2",
-                "isVisible": "1"
-            },
-            {
-                "name": "Off2",
-                "type": "action",
-                "subType": "other",
-                "display": {
-                	"generic_type": "LIGHT_OFF"
-    		},
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "2",
-                    "class": "0x26",
-                    "value": "data[0].Set(0)"
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                },
-                "value": "Etat2",
-                "isVisible": "1"
-            },
-            {
-                "name": "Etat3",
-                "type": "info",
-                "subType": "binary",
-                "display": {
-                	"generic_type": "LIGHT_STATE"
-    		},
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "3",
-                    "class": "0x26",
-                    "value": "data[0].val"
-                },
-                "isVisible": "0"
-            },
-            {
-                "name": "On3",
-                "type": "action",
-                "subType": "other",
-                "display": {
-                	"generic_type": "LIGHT_ON"
-    		},
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "3",
-                    "class": "0x26",
-                    "value": "data[0].Set(255)"
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                },
-                "value": "Etat3",
-                "isVisible": "1"
-            },
-            {
-                "name": "Off3",
-                "type": "action",
-                "subType": "other",
-                "display": {
-                	"generic_type": "LIGHT_OFF"
-    		},
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "3",
-                    "class": "0x26",
-                    "value": "data[0].Set(0)"
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                },
-                "value": "Etat3",
-                "isVisible": "1"
-            },
-            {
-                "name": "Etat4",
-                "type": "info",
-                "subType": "binary",
-                "isHistorized": "0",
-                "display": {
-                	"generic_type": "LIGHT_STATE"
-    		},
-                "configuration": {
-                    "instanceId": "4",
-                    "class": "0x26",
-                    "value": "data[0].val"
-                },
-                "isVisible": "0"
-            },
-            {
-                "name": "On4",
-                "type": "action",
-                "subType": "other",
-                "display": {
-                	"generic_type": "LIGHT_ON"
-    		},
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "4",
-                    "class": "0x26",
-                    "value": "data[0].Set(255)"
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                },
-                "value": "Etat4",
-                "isVisible": "1"
-            },
-            {
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x26",
+			"value": "data[0].val"
+		},
+		"isVisible": "0"
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x26",
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		},
+		"value": "Etat",
+		"isVisible": "1"
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		},
+		"value": "Etat",
+		"isVisible": "1"
+	},
+	{
+		"name": "Etat2",
+		"type": "info",
+		"subType": "binary",
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "2",
+			"class": "0x26",
+			"value": "data[0].val"
+		},
+		"isVisible": "0"
+	},
+	{
+		"name": "On2",
+		"type": "action",
+		"subType": "other",
+		"isHistorized": "0",
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"configuration": {
+			"instanceId": "2",
+			"class": "0x26",
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		},
+		"value": "Etat2",
+		"isVisible": "1"
+	},
+	{
+		"name": "Off2",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "2",
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		},
+		"value": "Etat2",
+		"isVisible": "1"
+	},
+	{
+		"name": "Etat3",
+		"type": "info",
+		"subType": "binary",
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "3",
+			"class": "0x26",
+			"value": "data[0].val"
+		},
+		"isVisible": "0"
+	},
+	{
+		"name": "On3",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "3",
+			"class": "0x26",
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		},
+		"value": "Etat3",
+		"isVisible": "1"
+	},
+	{
+		"name": "Off3",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "3",
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		},
+		"value": "Etat3",
+		"isVisible": "1"
+	},
+	{
+		"name": "Etat4",
+		"type": "info",
+		"subType": "binary",
+		"isHistorized": "0",
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"instanceId": "4",
+			"class": "0x26",
+			"value": "data[0].val"
+		},
+		"isVisible": "0"
+	},
+	{
+		"name": "On4",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "4",
+			"class": "0x26",
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		},
+		"value": "Etat4",
+		"isVisible": "1"
+	},
+	{
 		"name": "Off4",
-                "type": "action",
-                "subType": "other",
-                "display": {
-                	"generic_type": "LIGHT_OFF"
-    		},
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "4",
-                    "class": "0x26",
-                    "value": "data[0].Set(0)"
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                },
-                "value": "Etat4",
-                "isVisible": "1"
-            },
-            {
-                "name": "Etat5",
-                "type": "info",
-                "subType": "binary",
-                "isHistorized": "0",
-                "display": {
-                	"generic_type": "LIGHT_STATE"
-    		},
-                "configuration": {
-                    "instanceId": "5",
-                    "class": "0x26",
-                    "value": "data[0].val"
-                },
-                "isVisible": "0"
-            },
-            {
-                "name": "On5",
-                "type": "action",
-                "display": {
-                	"generic_type": "LIGHT_ON"
-    		},
-                "subType": "other",
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "5",
-                    "class": "0x26",
-                    "value": "data[0].Set(255)"
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                },
-                "value": "Etat5",
-                "isVisible": "1"
-            },
-            {
-                "name": "Off5",
-                "type": "action",
-                "subType": "other",
-                "display": {
-                	"generic_type": "LIGHT_OFF"
-    		},
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "5",
-                    "class": "0x26",
-                    "value": "data[0].Set(0)"
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                },
-                "value": "Etat5",
-                "isVisible": "1"
-            },
-            {
-                "name": "Etat6",
-                "type": "info",
-                "subType": "binary",
-                "display": {
-                	"generic_type": "LIGHT_STATE"
-    		},
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "6",
-                    "class": "0x26",
-                    "value": "data[0].val"
-                },
-                "isVisible": "0"
-            },
-            {
-                "name": "On6",
-                "type": "action",
-                "subType": "other",
-                "display": {
-                	"generic_type": "LIGHT_ON"
-    		},
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "6",
-                    "class": "0x26",
-                    "value": "data[0].Set(255)"
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                },
-                "value": "Etat6",
-                "isVisible": "1"
-            },
-            {
-               "name": "Off6",
-                "type": "action",
-                "subType": "other",
-                "display": {
-                	"generic_type": "LIGHT_OFF"
-    		},
-                "isHistorized": "0",
-                "configuration": {
-                    "instanceId": "6",
-                    "class": "0x26",
-                    "value": "data[0].Set(0)"
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                },
-                "value": "Etat6",
-                "isVisible": "1"
-            }
-        ]
-    }
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "4",
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		},
+		"value": "Etat4",
+		"isVisible": "1"
+	},
+	{
+		"name": "Etat5",
+		"type": "info",
+		"subType": "binary",
+		"isHistorized": "0",
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"instanceId": "5",
+			"class": "0x26",
+			"value": "data[0].val"
+		},
+		"isVisible": "0"
+	},
+	{
+		"name": "On5",
+		"type": "action",
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"subType": "other",
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "5",
+			"class": "0x26",
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		},
+		"value": "Etat5",
+		"isVisible": "1"
+	},
+	{
+		"name": "Off5",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "5",
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		},
+		"value": "Etat5",
+		"isVisible": "1"
+	},
+	{
+		"name": "Etat6",
+		"type": "info",
+		"subType": "binary",
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "6",
+			"class": "0x26",
+			"value": "data[0].val"
+		},
+		"isVisible": "0"
+	},
+	{
+		"name": "On6",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "6",
+			"class": "0x26",
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		},
+		"value": "Etat6",
+		"isVisible": "1"
+	},
+	{
+		"name": "Off6",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"isHistorized": "0",
+		"configuration": {
+			"instanceId": "6",
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		},
+		"value": "Etat6",
+		"isVisible": "1"
+	}]
+}

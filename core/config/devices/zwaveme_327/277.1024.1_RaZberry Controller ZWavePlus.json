@@ -1,43 +1,41 @@
 {
-	"name" : "RaZberry Controller ZWave+",
-    "doc" : "",
-    "type": "Contrôleur",
-    "comlink" : "2312-z-waveme-carte-d-extension-razberry-z-wave-pour-raspberry-pi-696859123290",
-    "remark" : "",
-    "imglink" : "zwaveme.razberry",
-    "battery_type" : "",
-    "configuration" : {
-        "conf_version" : 1
-    },
+	"name": "RaZberry Controller ZWave+",
+	"doc": "",
+	"type": "Contrôleur",
+	"comlink": "2312-z-waveme-carte-d-extension-razberry-z-wave-pour-raspberry-pi-696859123290",
+	"remark": "",
+	"imglink": "zwaveme.razberry",
+	"battery_type": "",
+	"configuration": {
+		"conf_version": 1
+	},
 	"isVisible": 0,
-	"commands": [
-		{
-			"name": "Switch All On",
-			"type": "action",
-			"subtype": "other",
-			"display": {
-                		"generic_type": "DONT"
-    			},
-			"isVisible": 0,
-			"value": "",
-			"configuration": {
-				"class": "0xF0",
-				"value": "SwitchAll(255)"
-			}
+	"commands": [{
+		"name": "Switch All On",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "DONT"
 		},
-		{
-			"name": "Switch All Off",
-			"type": "action",
-			"subtype": "other",
-			"display": {
-                		"generic_type": "DONT"
-    			},
-			"isVisible": 0,
-			"value": "",
-			"configuration": {
-				"class": "0xF0",
-				"value": "SwitchAll(0)"
-			}
+		"isVisible": 0,
+		"value": "",
+		"configuration": {
+			"class": "0xF0",
+			"value": "SwitchAll(255)"
 		}
-	]    
+	},
+	{
+		"name": "Switch All Off",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"isVisible": 0,
+		"value": "",
+		"configuration": {
+			"class": "0xF0",
+			"value": "SwitchAll(0)"
+		}
+	}]
 }
