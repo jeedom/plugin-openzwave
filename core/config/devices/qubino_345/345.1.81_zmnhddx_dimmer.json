@@ -1,158 +1,151 @@
 {
-		"name" : "ZMNHDDx Dimmer",
-        "doc" : "",
-        "type": "Micromodule",
-        "comlink" : "3063-qubino-micromodule-variateur-et-consometre-z-wave-zmnhdd1-3830062070096",
-        "remark" : "Remplace le ZMNHDA2",
-        "imglink" : "qubino.zmnhddx",
-      "configuration" : {
-        "conf_version" : 1
+	"name": "ZMNHDDx Dimmer",
+	"doc": "",
+	"type": "Micromodule",
+	"comlink": "3063-qubino-micromodule-variateur-et-consometre-z-wave-zmnhdd1-3830062070096",
+	"remark": "Remplace le ZMNHDA2",
+	"imglink": "qubino.zmnhddx",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Intensité",
+		"type": "action",
+		"subtype": "slider",
+		"display": {
+			"generic_type": "LIGHT_SLIDER"
 		},
-      "commands" : [
-         {
-                "name": "Intensité",
-                "type": "action",
-                "subtype": "slider",
-                "display": {
-	                "generic_type": "LIGHT_SLIDER"
-	            },
-                "isVisible": 1,
-                "value": "Etat",
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(#slider#)"
-                },
-                "template": {
-                    "dashboard": "light",
-                    "mobile": "light"
-                }
-            },
-            {
-                "name": "On",
-                "type": "action",
-                "subtype": "other",
-                "display": {
-	                "generic_type": "LIGHT_ON"
-	            },
-                "isVisible": 0,
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(99)"
-                }
-            },
-            {
-                "name": "Off",
-                "type": "action",
-                "subtype": "other",
-                "display": {
-	                "generic_type": "LIGHT_OFF"
-	            },
-                "isVisible": 0,
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].Set(0)"
-                }
-            },
-            {
-                "name": "Etat",
-                "type": "info",
-                "subtype": "numeric",
-                "display": {
-	                "generic_type": "LIGHT_STATE"
-	            },
-                "unite": "%",
-                "isVisible": 0,
-                "configuration": {
-                    "class": "0x26",
-                    "value": "data[0].val",
-                    "minValue": 0,
-                    "maxValue": 100
-                }
-            },
-			{
-				"name" : "Température",
-				"type" : "info",
-				"subtype" : "numeric",
-				"display": {
-	                "generic_type": "TEMPERATURE"
-	            },
-				"isVisible" : 1,
-				"isHistorized" : 1,
-				"unite" : "°C",
-				"configuration" :
-				{
-					"instanceId" : 0,
-					"class" : "0x31",
-					"value" : "data[1].val"
-				}
-			},
-			{
-				"name" : "Puissance",
-				"type" : "info",
-				"subtype" : "numeric",
-				"display": {
-	                "generic_type": "POWER"
-	            },
-				"isVisible" : 1,
-				"isHistorized" : 1,
-				"unite" : "W",
-				"configuration" :
-				{
-					"instanceId" : 0,
-					"class" : "0x32",
-					"value" : "data[8].val",
-					"minValue" : 0,
-					"maxValue" : 1840
-				}
-			},
-			{
-				"name" : "Consommation",
-				"type" : "info",
-				"subtype" : "numeric",
-				"display": {
-	                "generic_type": "CONSUMPTION"
-	            },
-				"isVisible" : 0,
-				"isHistorized" : 1,
-				"unite" : "kWh",
-				"configuration" :
-				{
-					"instanceId" : 0,
-					"class" : "0x32",
-					"value" : "data[0].val"
-				}
-			},
-			{
-				"name" : "Etat I2",
-				"type" : "info",
-				"subtype" : "binary",
-				"display": {
-	                "generic_type": "GENERIC"
-	            },
-				"isVisible" : 1,
-				"isHistorized" : 1,
-				"configuration" :
-				{
-					"instanceId" : 0,
-					"class" : "0x30",
-					"value" : "data[0].val"
-				}
-			},
-			{
-				"name" : "Etat I3",
-				"type" : "info",
-				"subtype" : "binary",
-				"display": {
-	                "generic_type": "GENERIC"
-	            },
-				"isVisible" : 1,
-				"isHistorized" : 1,
-				"configuration" :
-				{
-					"instanceId" : 1,
-					"class" : "0x30",
-					"value" : "data[0].val"
-				}
-			}
-      ]
-   }
+		"isVisible": 1,
+		"value": "Etat",
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(#slider#)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(99)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"unite": "%",
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].val",
+			"minValue": 0,
+			"maxValue": 100
+		}
+	},
+	{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "TEMPERATURE"
+		},
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "°C",
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x31",
+			"value": "data[1].val"
+		}
+	},
+	{
+		"name": "Puissance",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "POWER"
+		},
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "W",
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x32",
+			"value": "data[8].val",
+			"minValue": 0,
+			"maxValue": 1840
+		}
+	},
+	{
+		"name": "Consommation",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"isVisible": 0,
+		"isHistorized": 1,
+		"unite": "kWh",
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x32",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "Etat I2",
+		"type": "info",
+		"subtype": "binary",
+		"display": {
+			"generic_type": "GENERIC"
+		},
+		"isVisible": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x30",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "Etat I3",
+		"type": "info",
+		"subtype": "binary",
+		"display": {
+			"generic_type": "GENERIC"
+		},
+		"isVisible": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"instanceId": 1,
+			"class": "0x30",
+			"value": "data[0].val"
+		}
+	}]
+}
