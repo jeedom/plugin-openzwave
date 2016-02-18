@@ -699,6 +699,8 @@ options.addOptionString("NetworkKey", "0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
 options.set_security_strategy('CUSTOM')  # The security strategy: SUPPORTED | ESSENTIAL | CUSTOM
 options.set_custom_secured_cc('0x62,0x4c,0x63')  # What List of Custom CC should we always encrypt if SecurityStrategy is CUSTOM
 options.addOptionBool('EnforceSecureReception', False)  # if we receive a clear text message for a CC that is Secured, should we drop the message
+options.addOptionBool('RefreshAllUserCodes', False)  # Some Devices have a big UserCode Table, that can mean startup times when refreshing Session Variables is very long
+options.addOptionBool('ThreadTerminateTimeout', 5000)  #
 options.lock()
 
 
