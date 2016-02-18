@@ -22,7 +22,7 @@
 	<!-- Association Groups -->
 	<CommandClass id="133">
 		<Associations num_groups="4">
-			<Group index="1" max_associations="1" label="Lifeline" auto="true"/>
+			<Group index="1" max_associations="1" label="Lifeline"/>
 			<Group index="2" max_associations="5" label="Wind speed is higher than 6 m/s (22 Km/h)" />
 			<Group index="3" max_associations="5" label="At the end of the dawn if it becomes bright (luminance rising)" />
 			<Group index="4" max_associations="5" label="At the end of the dusk if it becomes bright (luminance decreasing)" />

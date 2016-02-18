@@ -36,7 +36,7 @@
   <CommandClass id="133">   
     <Associations num_groups="5">
       <Group index="1" max_associations="4" label="Thermostat Mode Set" />
-      <Group index="2" max_associations="4" label="Binary Switch Set" />
+      <Group index="2" max_associations="4" label="Binary Switch Set" auto="true"/>
       <Group index="3" max_associations="4" label="Unsolicited Battery Level Reports" auto="true"/>
       <Group index="4" max_associations="4" label="Thermostat Set Point Reports" auto="true"/>
       <Group index="5" max_associations="4" label="Unsolicited Sensor Multilevel Reports" auto="true"/>

@@ -23,7 +23,7 @@
   <!-- Association Groups -->
   <CommandClass id="133">   
     <Associations num_groups="5">
-      <Group index="1" max_associations="1" label="Lifeline" auto="true"/>
+      <Group index="1" max_associations="1" label="Lifeline"/>
       <Group index="2" max_associations="4" label="Thermostat Operating State Reports" auto="true"/>
       <Group index="3" max_associations="4" label="Unsolicited Battery Level Reports" auto="true"/>
       <Group index="4" max_associations="4" label="Thermostat Set Point Reports" auto="true"/>

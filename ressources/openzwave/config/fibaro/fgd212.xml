@@ -138,7 +138,7 @@ Default setting: 15</Help>
       <Item label="S1 operates as S2, S2 operates as S1" value="1"/>      
     </Value>
     <Value type="list" genre="config" instance="1" index="30" label="Load control mode" size="1" value="2">
-      <Help>Forced auto-calibration will set this parameter's value to 2.</Help>
+      <Help>Forced auto-calibration will set this parameter’s value to 2.</Help>
       <Item label="forced leading edge control" value="0"/>
       <Item label="forced trailing edge control" value="1"/>      
       <Item label="control mode selected automatically (based on auto-calibration)" value="2"/>      
@@ -278,11 +278,11 @@ Default setting: 10 (0,1 kWh)</Help>
   <!-- Association Groups -->  
   <CommandClass id="133">
     <Associations num_groups="5">
-      <Group index="1" max_associations="1" label="Lifeline" auto="true"/>
-      <Group index="2" max_associations="10" label="On/Off(S1)" auto="false"/>
-      <Group index="3" max_associations="10" label="Dimmer(S1)" auto="false"/>
-      <Group index="4" max_associations="10" label="On/Off(S2)" auto="false"/>
-      <Group index="5" max_associations="10" label="Dimmer(S2)" auto="false"/>
+      <Group index="1" max_associations="1" label="Lifeline"/>
+      <Group index="2" max_associations="10" label="On/Off(S1)"/>
+      <Group index="3" max_associations="10" label="Dimmer(S1)"/>
+      <Group index="4" max_associations="10" label="On/Off(S2)"/>
+      <Group index="5" max_associations="10" label="Dimmer(S2)"/>
     </Associations>
   </CommandClass>
 </Product>

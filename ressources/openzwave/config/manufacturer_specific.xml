@@ -74,7 +74,19 @@
         	<!-- US-market products start with type prefix "01" -->
 		<Product type="0101" id="005a" name="Z-Stick Gen5" config="aeotec/zstickgen5.xml"/>
 		<Product type="0102" id="0059" name="Recessed Door Sensor Gen5" config="aeotec/recessed_doorsensor_gen5.xml"/>
+	        <Product type="0004" id="0038" name="DoorBell Gen5" config="aeotec/doorbell_gen5.xml" />
+	        <Product type="0104" id="0038" name="DoorBell Gen5" config="aeotec/doorbell_gen5.xml" />
+	        <Product type="0204" id="0038" name="DoorBell Gen5" config="aeotec/doorbell_gen5.xml" />
+		<Product type="0304" id="0038" name="DoorBell Gen5" config="aeotec/doorbell_gen5.xml" />
+	        <Product type="0904" id="0038" name="DoorBell Gen5" config="aeotec/doorbell_gen5.xml" />
+		<Product type="1D04" id="0038" name="DoorBell Gen5" config="aeotec/doorbell_gen5.xml" />
+		<Product type="1A04" id="0038" name="DoorBell Gen5" config="aeotec/doorbell_gen5.xml" />
+		<Product type="0A04" id="0038" name="DoorBell Gen5" config="aeotec/doorbell_gen5.xml" />
+	        <Product type="0002" id="0061" name="Dry Contact Sensor Gen5" config="aeotec/drycontactsensor.xml" />
+	        <Product type="0102" id="0061" name="Dry Contact Sensor Gen5" config="aeotec/drycontactsensor.xml" />
+	        <Product type="0202" id="0061" name="Dry Contact Sensor Gen5" config="aeotec/drycontactsensor.xml" />
 	        <!-- AU-market products start with type prefix "02" -->
+		<Product type="0201" id="005a" name="Z-Stick Gen5" config="aeotec/zstickgen5.xml"/>
 		<Product type="0202" id="0059" name="Recessed Door Sensor Gen5" config="aeotec/recessed_doorsensor_gen5.xml"/>
 		<Product type="0003" id="0060" name="Smart Switch 6" config="aeotec/ss6.xml" />
 		<Product type="0103" id="0060" name="Smart Switch 6" config="aeotec/ss6.xml" />
@@ -88,6 +100,7 @@
 		<Product type="0003" id="0063" name="Smart Dimmer 6" config="aeotec/sd6.xml" />
 		<Product type="0103" id="0063" name="Smart Dimmer 6" config="aeotec/sd6.xml" />
 		<Product type="0203" id="0063" name="Smart Dimmer 6" config="aeotec/sd6.xml" />
+		<Product type="1D03" id="0063" name="Smart Dimmer 6" config="aeotec/sd6.xml" />
 		<Product type="0002" id="0070" name="Door Window Sensor 6" config="aeotec/zw112_doorwindow6.xml" />
 		<Product type="0102" id="0070" name="Door Window Sensor 6" config="aeotec/zw112_doorwindow6.xml" />
 		<Product type="0202" id="0070" name="Door Window Sensor 6" config="aeotec/zw112_doorwindow6.xml" />
@@ -119,7 +132,7 @@
 	<Manufacturer id="008a" name="BeNext">
 		<Product type="0001" id="0100" name="myGate"/>
 		<Product type="0002" id="0100" name="myDisplay"/>
-		<Product type="0003" id="0100" name="DHS-ZW-SNMT-01 Multi Sensor" config="BeNext/Molite.xml"/>
+		<Product type="0003" id="0100" name="MoLiTe Sensor" config="BeNext/Molite.xml"/>
 		<Product type="0003" id="0101" name="DHS-ZW-SNMT-01 Multi Sensor" config="BeNext/Molite.xml"/>
 		<Product type="0004" id="0100" name="Door Sensor" config="BeNext/DoorSensor.xml"/>
 		<Product type="0004" id="0101" name="Door Sensor" config="BeNext/DoorSensor.xml"/>
@@ -130,12 +143,15 @@
 		<Product type="0007" id="0101" name="Tag Reader" config="BeNext/TagReader.xml"/>
 		<Product type="0008" id="0101" name="Power Switch"/>
 		<Product type="000d" id="0100" name="Built-in Dimmer" config="BeNext/BuiltinDimmer.xml"/>
-		<Product type="0014" id="0101" name="Panic Button"  config="BeNext/PanicButton.xml"/>
+		<Product type="0014" id="0100" name="Panic Button" config="BeNext/PanicButton.xml"/>
+		<Product type="0014" id="0101" name="Panic Button" config="BeNext/PanicButton.xml"/>
+		<Product type="0015" id="0100" name="Panic Watch"/>
 		<Product type="0017" id="0100" name="Scene Controller" config="BeNext/SceneController.xml"/>
 		<Product type="0018" id="0100" name="Plug-in Dimmer" config="BeNext/PluginDimmer.xml"/>
 		<Product type="001e" id="0001" name="1Pole Switch" config="BeNext/1poleswitch.xml"/>
 		<Product type="001f" id="0001" name="2Pole Switch" config="BeNext/2poleswitch.xml"/>
-		<Product type="0020" id="0001" name="Energy Switch" config="BeNext/EnergySwitch.xml"/>
+		<Product type="0020" id="0001" name="Energy Switch plus" config="BeNext/EnergySwitch.xml"/>
+		<Product type="0021" id="0001" name="Heating Control" config="BeNext/HeatingControl.xml"/>
 	</Manufacturer>
 	<Manufacturer id="002c" name="BeSafer">
 	</Manufacturer>
@@ -178,8 +194,13 @@
 	<Manufacturer id="0030" name="Cytech Tech">
 		<Product type="0001" id="0001" name="Comfort 9000 with UCM/Zwave"/>
 	</Manufacturer>
+	<Manufacturer id="0108" name="D-Link Corporation">
+		<Product type="0002" id="000e" name="DCH-Z110 Door/Window 3 in 1 sensor" config="dlink/dch-z110.xml"/>
+		<Product type="0004" id="000a" name="DCH-Z510 Siren" config="dlink/dch-z510.xml"/>
+	</Manufacturer>
 	<Manufacturer id="0002" name="Danfoss">
 		<Product type="0003" id="8010" name="RS Room Sensor" config="danfoss/rsroom.xml"/>
+		<Product type="0005" id="0175" name="Devolo Home Control Radiator Thermostat" config="danfoss/z.xml"/>
 		<Product type="0005" id="0003" name="Z Thermostat" config="danfoss/z.xml"/>
 		<Product type="0005" id="0004" name="Z Thermostat 014G0013" config="danfoss/z.xml"/>
 		<Product type="0064" id="0001" name="RA Plus-W Radiator Thermostat"/>
@@ -215,10 +236,17 @@
 	</Manufacturer>
 	<Manufacturer id="0148" name="EUROtronic">
 		<Product type="0001" id="0001" name="EUR_STELLAZ Wall Radiator Thermostat Valve Control" config="eurotronic/eur_stellaz.xml"/>
+		<Product type="0002" id="0001" name="EUR_COMETZ Wall Radiator Thermostat Valve Control" config="eurotronic/eur_cometz.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0128" name="Eneco">
 		<Product type="0000" id="0000" name="ED2.0 Meter Adapter"/>
 		<Product type="0128" id="0000" name="ED2.0 Display"/>
+	</Manufacturer>
+	<Manufacturer id="011a" name="Enerwave">
+		<Product type="0801" id="0b03" name="ZWN-SC7 7-Button Scene Controller" config="enerwave/zwn-sc7.xml"/>
+		<Product type="0101" id="0102" name="ZW15S 15A On/Off Switch" config="enerwave/zw15s.xml"/>
+		<Product type="0101" id="0603" name="ZW20R 20A Tamper Resistant Duplex Receptacle" config="enerwave/zw20r.xml"/>
+		<Product type="0102" id="0201" name="ZW500D 500W In-Wall Preset Dimmer Switch" config="enerwave/zw500d.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0060" name="Everspring">
 		<Product type="0001" id="0001" name="HSP02 Motion Detector" config="everspring/hsp02.xml"/>
@@ -285,7 +313,9 @@
 		<Product type="0100" id="100a" name="FGD211 Universal Dimmer 500W" config="fibaro/fgd211.xml" />
 		<Product type="0100" id="300a" name="FGD211 Universal Dimmer 500W" config="fibaro/fgd211.xml" />
 		<Product type="0102" id="1000" name="FGD212 Dimmer 2" config="fibaro/fgd212.xml" />
+		<Product type="0102" id="3000" name="FGD212 Dimmer 2" config="fibaro/fgd212.xml" />
 		<Product type="0700" id="1000" name="FGK101 Door Opening Sensor" config="fibaro/fgk001.xml" />
+		<Product type="0700" id="2000" name="FGK10x Door Opening Sensor" config="fibaro/fgk001.xml" />
 		<Product type="0700" id="4000" name="FGK101 Door Opening Sensor" config="fibaro/fgk001.xml" />
 		<Product type="0300" id="0104" name="FGR221 Roller Shutter Controller" config="fibaro/fgr221.xml"/>
 		<Product type="0300" id="100a" name="FGR221 Roller Shutter Controller" config="fibaro/fgr221.xml"/>
@@ -293,7 +323,7 @@
 		<Product type="0300" id="0107" name="FGR221 Roller Shutter Controller" config="fibaro/fgr221.xml"/>
 		<Product type="0300" id="0109" name="FGR221 Roller Shutter Controller" config="fibaro/fgr221.xml"/>
 		<Product type="0301" id="1001" name="FGRM222 Roller Shutter Controller 2" config="fibaro/fgrm222.xml"/>
-		<Product type="0302" id="1000" name="FGR222 Roller Shutter Controller 2" config="fibaro/fgr222.xml"/>
+		<Product type="0302" id="1000" name="FGRM222 Roller Shutter Controller 2" config="fibaro/fgrm222.xml"/>
 		<Product type="0400" id="0104" name="FGS211 Switch 3kW" config="fibaro/fgs211.xml" />
 		<Product type="0400" id="0105" name="FGS211 Switch 3kW" config="fibaro/fgs211.xml" />
 		<Product type="0400" id="0106" name="FGS211 Switch 3kW" config="fibaro/fgs211.xml" />
@@ -312,10 +342,11 @@
 		<Product type="0202" id="1002" name="FGS222 Double Relay Switch 2x1.5kW" config="fibaro/fgs222.xml" />
 		<Product type="0600" id="1000" name="FGWPE Wall Plug" config="fibaro/fgwpe.xml" />
 		<Product type="0800" id="1001" name="FGMS001 Motion Sensor" config="fibaro/fgms.xml" />
+		<Product type="0800" id="2001" name="FGMS001 Motion Sensor" config="fibaro/fgms.xml" />
 		<Product type="0800" id="4001" name="FGMS001 Motion Sensor" config="fibaro/fgms.xml" />
 		<Product type="0801" id="1001" name="FGMS001 Motion Sensor" config="fibaro/fgms.xml" />
-		<Product type="0b00" id="3001" name="FGFS101 Flood Sensor" config ="fibaro/fgfs101.xml" />
-		<Product type="0b00" id="1001" name="FGFS101 Flood Sensor" config ="fibaro/fgfs101.xml" />
+		<Product type="0b00" id="3001" name="FGFS101 Flood Sensor" config="fibaro/fgfs101.xml" />
+		<Product type="0b00" id="1001" name="FGFS101 Flood Sensor" config="fibaro/fgfs101.xml" />
 		<Product type="0b00" id="9e00" name="FGFS101 Flood Sensor" config="fibaro/fgfs101.xml" />
 		<Product type="0900" id="1000" name="FGRGBWM441 RGBW Controller" config="fibaro/fgrgbwm441.xml" />
 		<Product type="0900" id="4000" name="FGRGBWM441 RGBW Controller" config="fibaro/fgrgbwm441.xml" />
@@ -336,6 +367,7 @@
 		<Product type="0313" id="010b" name="SSA2 - Siren/Strobe Light Alarm" onfig="fortrezz/ssa2.xml"/>
 		<Product type="0331" id="010b" name="SSA3 - Siren/Strobe Light Alarm" config="fortrezz/ssa3.xml"/>
 		<Product type="0341" id="0205" name="SSA3 - Siren/Strobe Light Alarm" config="fortrezz/ssa3.xml"/>
+		<Product type="0453" id="0110" name="MIMOlite Wireless Interface/Bridge Module" config="fortrezz/mimolite.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0110" name="Frostdale">
 		<Product type="2411" id="0001" name="Nanogrid: FDN2nxx light switch - where n is 1, 2, 3 or 4 buttons"/>
@@ -370,6 +402,7 @@
 		<Product type="0001" id="0002" name="ZTroller" config="homeseer/ztroller.xml"/>
 		<Product type="0002" id="0001" name="HSM100 Wireless Multi-Sensor" config="homeseer/hsm100.xml"/>
 		<Product type="0002" id="0002" name="EZMotion+ 3-in-1 Sensor" config="homeseer/ezmotionplus.xml"/>
+		<Product type="0004" id="0001" name="HSM200 Wireless Multi-Sensor" config="homeseer/hsm200.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0039" name="Honeywell">
 		<Product type="0011" id="0001" name="TH8320ZW1000 Touchscreen Thermostat" config="honeywell/th8320zw1000.xml"/>
@@ -458,8 +491,8 @@
 		<Product type="1102" id="0243" name="VRCS2-MRZ 2-Button Scene Controller with Switches"/>
 	</Manufacturer>
 	<Manufacturer id="014f" name="Linear">
-                <Product type="4450" id="3030" name="PD300Z-2 Plug-in Dimmer Module"/>
-                <Product type="4457" id="3034" name="WD500Z-1 Wall Dimmer Switch"/>
+                <Product type="4450" id="3030" name="PD300Z-2 Plug-in Dimmer Module" config="linear/PD300Z-2.xml"/>
+                <Product type="4457" id="3034" name="WD500Z-1 Wall Dimmer Switch" config="linear/WD500Z-1.xml"/>
                 <Product type="4457" id="3331" name="WD1000Z-1 Wall Dimmer Switch"/>
                 <Product type="5246" id="3133" name="FS20Z Isolated Contact Fixture Module"/>
                 <Product type="5250" id="3030" name="PS15Z-2 Plug-in Appliance Module"/>
@@ -498,6 +531,7 @@
 	<Manufacturer id="007a" name="Merten">
 		<Product type="8001" id="0001" name="Plug-in Appliance Module"/>
 		<Product type="8002" id="0001" name="Plug-in Dimmer Module"/>
+		<Product type="8003" id="0001" name="Plug-in Roller Shutter Module" config="merten/507801.xml"/>
 		<Product type="4003" id="0001" name="Wall Dimmer Module"/>
 		<Product type="4002" id="0001" name="Wall Appliance Module"/>
 		<Product type="4004" id="0001" name="Wall Roller Shutter Module" config="merten/50x5xx.xml"/>
@@ -539,7 +573,7 @@
 		<Product type="0001" id="0001" name="PAN11-4 Smart Energy Plug In Switch"/>
 		<Product type="0001" id="0003" name="PAN04-1 Double Relay Switch 2x1.5kW with Power Measurement" config="philio/pan04.xml"/>
 		<Product type="0001" id="0004" name="PAN06-1 In Wall Dual Relay (1 Way) Switch Module"/>
-		<Product type="0001" id="0006" name="PAN08-1 In Wall Roller Shutter Controller"/>
+		<Product type="0001" id="0006" name="PAN08-1 In Wall Roller Shutter Controller" config="philio/pan08.xml"/>
 		<Product type="0001" id="000f" name="PAN03 Switch Module with meter 3 KW X1" config="philio/pan03.xml"/>
 		<Product type="0001" id="0012" name="PAN04-1 Double Relay Switch 2x1.5kW with Power Measurement" config="philio/pan04.xml"/>
 		<Product type="0002" id="0002" name="PSM02-1 Slim Multi-Sensor" config="philio/psm02.xml"/>
@@ -726,10 +760,12 @@
 		<Product type="0001" id="0001" name="TZ88 Smart Energy Plug-in Switch" config="wenzhou/tz88.xml"/>
 		<Product type="0002" id="0001" name="SM103 Door/Window Sensor" config="wenzhou/sm103.xml"/>
 		<Product type="0002" id="0002" name="TSP01 3 in 1 PIR Motion Sensor" config="wenzhou/tsp01.xml" />
+		<Product type="0003" id="0002" name="TZ68 On/Off Switch Socket" config="wenzhou/tz68.xml"/>
 		<Product type="0808" id="0808" name="TZ65D Dual Wall Dimmer" config="wenzhou/tz65d.xml"/>
-		<Product type="0101" id="0103" name="TZ68E On/Off Switch Socket"/>
+		<Product type="0101" id="0103" name="TZ68 On/Off Switch Socket" config="wenzhou/tz68.xml"/>
 		<Product type="0102" id="1020" name="TZ66D Dual Wall Switch" config="wenzhou/tz66d.xml"/>
 		<Product type="0202" id="0611" name="TZ67 Wall Plug Dimmer" config="wenzhou/tz67.xml"/>
+
 	</Manufacturer>
 	<Manufacturer id="0149" name="wiDom">
 		<Product type="0012" id="0104" name="UBS104 Universal Relay Switch" config="widom/UBS104.xml"/>
