@@ -1,5 +1,5 @@
 {
-	"name": "PH-PAT02 Multisensor 3in1",
+	"name": "PH-PAT02-A Multisensor 3in1",
 	"doc": "",
 	"type": "Multicapteurs",
 	"comlink": "3152-zipato-detecteur-d-inondation-3-en-1-z-wave-plus-3858890733112",
@@ -35,14 +35,14 @@
 		"subtype": "numeric",
 		"isVisible": 1,
 		"isHistorized": 0,
+		"unite": "°C",
 		"display": {
 			"generic_type": "TEMPERATURE"
 		},
 		"configuration": {
 			"instanceId": 0,
 			"class": "0x31",
-			"value": "data[1].val",
-			"unite": "°C"
+			"value": "data[1].val"
 		}
 	},
 	{
@@ -51,6 +51,7 @@
 		"subtype": "numeric",
 		"isVisible": 1,
 		"isHistorized": 0,
+		"unite": "%",
 		"display": {
 			"generic_type": "HUMIDITY"
 		},
@@ -58,7 +59,6 @@
 			"instanceId": 0,
 			"class": "0x31",
 			"value": "data[5].val",
-			"unite": "%",
 			"maxValue": 100,
 			"minValue": 0
 		}
@@ -69,14 +69,14 @@
 		"subtype": "numeric",
 		"isVisible": 0,
 		"isHistorized": 0,
+		"unite": "%",
 		"display": {
 			"generic_type": "BATTERY"
 		},
 		"configuration": {
 			"instanceId": 0,
 			"class": "0x80",
-			"value": "data[0].val",
-			"unite": "%"
+			"value": "data[0].val"
 		}
 	}]
 }
