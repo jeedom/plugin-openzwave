@@ -135,3 +135,32 @@ Un assistant automatique de nœud fantôme est disponible.
 ** Si dans la configuration Z-Wave vous avez décoché l'option "Supprimer automatiquement les périphériques exclus", il vous faudra supprimer manuellement l'équipement correspondant.
 
 Cette assistant est disponible seulement pour les modules sur piles.
+
+
+
+=== Actions post inclusion
+
+On recommande d'effectuer l'inclusion à moins 1M du contrôleur principal, or ce ne sera pas la position final de votre nouveau module.
+Voici quelques bonnes pratiques à faire suite à l’inclusion d'un nouveau module dans votre réseau.
+
+Une fois l'inclusion terminé, il faut appliquer un certain nombre de paramètres à notre nouveau module afin d'en tirer le maximum. Rappel, les modules suite à l'inclusion ont les paramètres par défaut du constructeur.
+Profiter d'être au côté du contrôleur et de l'interface Jeedom pour bien paramétrer votre nouveau module. Il sera aussi plus simple de réveiller le module pour voir l'effet immédiat du changement.
+Certain module ont une documentation spécifique Jeedom afin de vous aider avec les différents paramètres ainsi que des valeurs recommandées.
+
+Tester votre module, valider les remontées d'information, retour d'état et actions possible dans le cas d'un actuateur.
+
+Lors de l'interview votre nouveau module a recherché ces voisins. Toute fois les modules de votre réseau ne connaissent pas encore votre nouveau module.
+
+Déplacer votre module à son emplacement définitif. Lancer la mise à jour de ces voisins et réveillé le encore une fois.
+
+image:../images/openzwave58.png[]
+
+On constate qu'il voit un certain nombre de voisins mais que les voisin eux, ne le voit pas.
+
+Pour remédier à cette situation il faut lancer l'action soigner le réseau, afin de demander à tous les modules de retrouver leurs voisins.
+
+Cette action peut prendre 24 heures avant d'être terminé, vos modules sur pile effectueront l'action seulement à leur prochain réveil.
+
+image:../images/openzwave59.png[]
+
+L'option de soigner le réseau 2x par semaine permet de faire ce processus sans action de votre part, elle est utile lors de la mise en place de nouveau modules et ou lors qu'on les déplace.

@@ -42,6 +42,10 @@ A noter que l'interface mobile vous donne aussi accès à l'inclusion.
 Si le module appartient déjà à un réseau, suivez le processus d'exclusion avant de l'inclure dans votre réseau. Sinon l'inclusion de ce module va échouer.
 Il est d'ailleurs recommandé d'exécuter une exclusion avant l'inclusion, même si le produit est neuf, sorti du carton.
 
+[TIP]
+Une fois le module à son emplacement définitif, il faut lancer l'action soigner le réseau, afin de demander à tous les modules de rafraichir l'ensemble des voisins.
+
+
 === Mode exclusion
 
 image:../images/openzwave15.png[]
