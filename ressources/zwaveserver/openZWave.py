@@ -3402,14 +3402,21 @@ def get_openzwave_config():
 @app.route('/ZWaveAPI/Run/network.SaveZWConfig()', methods=['POST'])
 def save_openzwave_config():
     # Save the openzwave config file
+    add_log_entry('Edit openzwave configuration file')
+    if len(request.data) == 0:
+        return format_json_result(False, 'zwcfg data content not present', 'error')
     global _data_folder
     try:
         filename = _data_folder + "/zwcfg_" + _network.home_id_str + ".xml"
         _network.stop()
-        add_log_entry('ZWave network is now stopped')
-        time.sleep(5)
+        while _network.state != 0:
+            add_log_entry('%s (%s)' %(_network.state_str, _network.state,))
+            time.sleep(1)
+        add_log_entry(_network.state_str)
+        add_log_entry('Write new config file: %s' %(filename,))
         with open(filename, "w") as ins:
             ins.write(request.data)
+        add_log_entry('Restart network')
         start_network()
         return format_json_result() 
     except Exception, exception:
