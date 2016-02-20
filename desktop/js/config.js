@@ -4,6 +4,7 @@ var app_config = {
             $.ajax({
                 type:'POST',
                 url: path+"ZWaveAPI/Run/network.SaveZWConfig()",
+                dataType: 'json',
                 data: {
                     data : $("#zwcfgfile").val()
                 },
