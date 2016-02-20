@@ -11,8 +11,7 @@
     -->
     <!-- Configuration  -->
     <CommandClass id="112">
-        <Value type="list" genre="config" instance="1" index="10" label="Activate / deactivate functions ALL ON/ALL OFF" size="1"
-               min="0" max="255" value="255">
+        <Value type="list" genre="config" instance="1" index="10" label="Activate / deactivate functions ALL ON/ALL OFF" size="1" min="0" max="255" value="255">
             <Help>Responds to commands ALL ON / ALL OFF that may be sent by the main controller or by other controller belonging to the system.</Help>
             <Item label="ALL ON active, ALL OFF active" value="255" />
             <Item label="ALL ON is not active ALL OFF is not active" value="0" />
@@ -68,7 +67,6 @@
             <Item label="UI control, momentary switch operation, limit switch is reached" value="1" />
             <Item label="UI control, push button, limit switch is reached, STOP Frame" value="2" />
         </Value>
-
 
         <Value type="short" genre="config" instance="1" index="74" label="Motor moving up/down time" min="0" max="32767" value="0">
             <Help>
@@ -133,7 +131,7 @@
             <Help>If digital temperature sensor is connected, module reports measured temperature on temperature change defined by this parameter.
                 Available settings: 0 - Reporting disabled.
                 1 - 127 = 0,1C - 12,7C, step is 0,1C.
-                </Help>
+            </Help>
         </Value>
 
     </CommandClass>
