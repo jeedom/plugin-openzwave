@@ -3403,8 +3403,11 @@ def get_openzwave_config():
 def save_openzwave_config():
     # Save the openzwave config file
     add_log_entry('Edit openzwave configuration file')
-    if len(request.data) == 0:
-        return format_json_result(False, 'zwcfg data content not present', 'error')
+    data = request.data #values['data']
+    if data is None:
+        return format_json_result(False, 'zwcfg data content is null', 'error')
+    if len(data) == 0:
+        return format_json_result(False, 'zwcfg data content is empty', 'error')
     global _data_folder
     try:
         filename = _data_folder + "/zwcfg_" + _network.home_id_str + ".xml"
@@ -3415,7 +3418,7 @@ def save_openzwave_config():
         add_log_entry(_network.state_str)
         add_log_entry('Write new config file: %s' %(filename,))
         with open(filename, "w") as ins:
-            ins.write(request.data)
+            ins.write(data)
         add_log_entry('Restart network')
         start_network()
         return format_json_result() 
