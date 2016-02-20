@@ -59,20 +59,6 @@ var app_network = {
                 alert('You haven\'t confirmed with YES');
             }
         });
-        $("#bt_saveconfCfg").click(function(){
-            $.ajax({
-                type:'POST',
-                url: path+"ZWaveAPI/Run/network.SaveZWConfig()",
-                contentType: "text/plain",
-                data: $("#zwcfgfile").val(),
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-                },
-                success: function(data) {
-                    $('#div_networkOpenzwaveAlert').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
-                }
-            });
-        });
         $("#tab_config").off("click").on("click",function() {
             $.ajax({
                 url: path+"ZWaveAPI/Run/network.GetZWConfig()",

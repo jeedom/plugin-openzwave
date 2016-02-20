@@ -121,32 +121,32 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 		$('#bt_migrateZwave').on('click', function () {
 			bootbox.confirm('{{Etes-vous sûr de vouloir lancer la migration cette opération est irreversible}}', function (result) {
 				if (result) {
-					$('#md_modal').dialog({title: "{{Openzwave migration}}"});
-					$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=migrate.zwave').dialog('open');
+					$('#md_modal2').dialog({title: "{{Openzwave migration}}"});
+					$('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=migrate.zwave').dialog('open');
 				}
 			});
 		});
 
 		$('#bt_backupsZwave').on('click', function () {
-			$('#md_modal').dialog({title: "{{Backups}}"});
-			$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=backup').dialog('open');
+			$('#md_modal2').dialog({title: "{{Backups}}"});
+			$('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=backup').dialog('open');
 		});
 
 		$('#bt_fileconfigZwave').on('click', function () {
-			$('#md_modal').dialog({title: "{{Configuration}}"});
-			$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=config').dialog('open');
+			$('#md_modal2').dialog({title: "{{Configuration}}"});
+			$('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=config').dialog('open');
 		});
 
 		$('#bt_consoleZwave').on('click', function () {
-			$('#md_modal').dialog({title: "{{Console}}"});
-			$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=console').dialog('open');
+			$('#md_modal2').dialog({title: "{{Console}}"});
+			$('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=console').dialog('open');
 		});
 
 		$('#bt_syncconfigZwave').on('click',function(){
 			bootbox.confirm('{{Etes-vous sûr de vouloir télécharger les dernières configurations des modules ?}}', function (result) {
 				if (result) {
-					$('#md_modal').dialog({title: "{{Téléchargement des configurations}}"});
-					$('#md_modal').load('index.php?v=d&plugin=openzwave&modal=syncconf.openzwave').dialog('open');
+					$('#md_modal2').dialog({title: "{{Téléchargement des configurations}}"});
+					$('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=syncconf.openzwave').dialog('open');
 				}
 			});
 		});
