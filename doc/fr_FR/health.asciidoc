@@ -53,3 +53,40 @@ Si sur votre table de routage et/ou sur l'écran de santé Z-Wave vous avez un o
 Si sur votre table de routage et/ou sur l'écran de santé Z-Wave vous avez un ou des modules nommés *Unknown*, cela signifie que l'interview du module n'a pas été complété avec succès.
 Vous avez probablement un *NOK* dans la colonne constructeur.
 Ouvrir le détail du/des modules, pour essayer les subjections de solution proposés. (voir section Dépannage et diagnostique, plus bas)
+
+
+=== Statut de l'interview
+
+Etape de l'interview d'un module après le démarrage du démon.
+
+* *None* Initialisation du processus de recherche de noeud.
+* *ProtocolInfo* Récupérer des informations de protocole, si ce noeud est en écoute (listener), sa vitesse maximale et ses classes de périphériques.
+* *Probe* Ping le module pour voir s'il est réveillé.
+* *WakeUp* Démarrer le processus de réveil, s'il s'agit d'un noeud endormit.
+* *ManufacturerSpecific1* Récupérer le nom du fabricant et de produits ids si ProtocolInfo le permet.
+* *NodeInfo* Récupérer les infos sur la prise en charge des classes de commandes supportées.
+* *NodePlusInfo* Récupérer les infos ZWave+ sur la prise en charge des classes de commandes supportées.
+* *SecurityReport* Récupérer la liste des classes de commande qui nécessitent de la sécurité.
+* *ManufacturerSpecific2* Récupérer le nom du fabricant et les identifiants de produits.
+* *Versions* Récupérer des informations de version.
+* *Instances* Récupérer des informations multi-instances de classe de commande.
+* *Static* Récupérer des informations statiques (ne change pas).
+* *CacheLoad* Ping le module lors du redémarrage avec config cache de l'appareil.
+* *Associations* Récupérer des informations sur les associations.
+* *Neighbors* Récupérer la liste des noeuds voisins.
+* *Session* Récupérer des informations de session (changements rarement).
+* *Dynamic* Récupérer des informations dynamiques (change fréquemment).
+* *Configuration* Récupérer des informations de paramètre configurable (seulement fait sur demande).
+* *Complete* processus de l'interview est terminée pour ce noeud.
+
+=== Notification
+
+Détails des notifications envoyé par les modules
+
+* *Completed* Action terminé avec succès.
+* *Timeout* Rapport de délai rapporté lors de l'envoie d'un message.
+* *NoOperation* Rapport sur un test du noeud (Ping), que le message a été envoyé avec succès.
+* *Awake* Signaler quand un noeud vient de se réveiller
+* *Sleep* Signaler quand un noeud c'est endormit.
+* *Dead* Signaler quand un nœud est présumé mort.
+* *Alive* Signaler quand un nœud est relancé.
