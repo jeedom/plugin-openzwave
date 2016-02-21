@@ -34,7 +34,7 @@
         </Value>
         <Value type="int" genre="config" instance="1" index="37" label="Configure the alarm mode for when the garage door is opening" size="4" value="167905281">
             <Help>
-                1, Value1: configure the frequency of blinking for the Alarm LED，there are 10 levels that 1 to10 level, the minimum frequency is level 1 and the max frequency is level 10.
+                1, Value1: configure the frequency of blinking for the Alarm LEd, there are 10 levels that 1 to10 level, the minimum frequency is level 1 and the max frequency is level 10.
 				2, Value2: configure the alarm sound (there are 4 types sound saved in EEPROM and user also can update it).
 				3, Value3: configure the volume of alarm sound (there are 10 levels, the min volume is 1 level and the max volume is 10 levels).
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt.
@@ -42,7 +42,7 @@
         </Value>
 		<Value type="int" genre="config" instance="1" index="38" label="Configure the alarm mode when the garage door is closing" size="4" value="134416385">
             <Help>
-                1, Value1: configure the frequency of blinking for the Alarm LED，there are 10 levels that 1 to10 level, the minimum frequency is level 1 and the max frequency is level 10.
+                1, Value1: configure the frequency of blinking for the Alarm LED, there are 10 levels that 1 to10 level, the minimum frequency is level 1 and the max frequency is level 10.
 				2, Value2: configure the alarm sound (there are 4 types sound saved in EEPROM and user also can update it).
 				3, Value3: configure the volume of alarm sound (there are 10 levels, the min volume is 1 level and the max volume is 10 levels).
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt.
@@ -50,7 +50,7 @@
         </Value>
 		<Value type="int" genre="config" instance="1" index="39" label="Configuration alarm mode when the garage door is in unknown state" size="4" value="100927488">
             <Help>
-                1, Value1: configure the frequency of blinking for the Alarm LED，there are 10 levels that 1 to10 level, the minimum frequency is level 1 and the max frequency is level 10.
+                1, Value1: configure the frequency of blinking for the Alarm LED, there are 10 levels that 1 to10 level, the minimum frequency is level 1 and the max frequency is level 10.
 				2, Value2: configure the alarm sound (there are 4 types sound saved in EEPROM and user also can update it).
 				3, Value3: configure the volume of alarm sound (there are 10 levels, the min volume is 1 level and the max volume is 10 levels).
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt.
@@ -58,7 +58,7 @@
         </Value>
 		<Value type="int" genre="config" instance="1" index="40" label="Configure the alarm mode when the garage door is in closed position" size="4" value="33883392">
             <Help>
-                1, Value1: configure the frequency of blinking for the Alarm LED，there are 10 levels that 1 to10 level, the minimum frequency is level 1 and the max frequency is level 10.
+                1, Value1: configure the frequency of blinking for the Alarm LED, there are 10 levels that 1 to10 level, the minimum frequency is level 1 and the max frequency is level 10.
 				2, Value2: configure the alarm sound (there are 4 types sound saved in EEPROM and user also can update it).
 				3, Value3: configure the volume of alarm sound (there are 10 levels, the min volume is 1 level and the max volume is 10 levels).
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt.
