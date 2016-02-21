@@ -1433,6 +1433,8 @@ def convert_query_stage_to_int(stage):
         return 4
     elif stage == "NodeInfo":
         return 5
+    elif stage == "NodePlusInfo":
+        return 5
     elif stage == "SecurityReport":
         return 6
     elif stage == "ManufacturerSpecific2":
@@ -1443,7 +1445,7 @@ def convert_query_stage_to_int(stage):
         return 9
     elif stage == "Static":
         return 10
-    elif stage == "Probe1":
+    elif stage == "CacheLoad":
         return 11
     elif stage == "Associations":
         return 12
