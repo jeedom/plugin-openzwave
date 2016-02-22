@@ -164,3 +164,25 @@ Cette action peut prendre 24 heures avant d'être terminé, vos modules sur pile
 image:../images/openzwave59.png[]
 
 L'option de soigner le réseau 2x par semaine permet de faire ce processus sans action de votre part, elle est utile lors de la mise en place de nouveau modules et ou lors qu'on les déplace.
+
+
+=== Pas de remontée état de la pile
+
+Les modules Z-Wave n'envoie que très rarement l'état de leurs piles au contrôleur.
+Certain vont le faire à l'inclusion puis seulement lorsque celle-ci atteint 20% ou une autre valeur de seuil critique.
+
+Pour vous aider à mieux suivre l'état de vos piles l'écran Batteries sous le menu Analyse vous donnes une vue d'ensemble de l'état de vos piles.
+Un mécanisme de notification de piles faibles est aussi disponible.
+
+La valeur remontée de l'écran Piles est la dernière connue dans le cache.
+
+Toutes les nuits, le plugin Z-Wave demande à chaque module de rafraichir la valeur Battery. Au prochain réveil, le module envoie la valeur à Jeedom pour être ajouté au cache.
+Donc il faut en général attendre au moins 24h avant l'obtention d'une valeur dans l'écran Batteries.
+
+[TIP]
+Il est bien entendu possible de rafraichir manuellement la valeur Battery via l'onglet Valeurs du module puis, soit attendre le prochain réveil ou encore de réveiller manuellement le module pour obtenir une remontée immédiate.
+Le cycle de réveil (Wake-up Interval) du module est défini dans l'onglet Système du module. Pour optimiser la vie de vos piles il est recommandé d'espacer au maximum ce délai. Pour 4h il faudrait appliquer 14400, 12h 43200.
+Certains modules doivent écouter régulièrement des messages du contrôleur comme les Thermostats dans ce cas il faut pense a 15min  soit 900. Chaque module est différent il n'y a donc pas de règle exact c'est au cas par cas et selon l’expérience.
+
+[TIP]
+La décharge d'une pile n'est pas linéaire, certain module vont montrer un grosse perte en pourcentage dans les premiers jours de mise en service, puis ne plus bouger durant des semaines pour ce vider rapidement une fois passé les 20%.
