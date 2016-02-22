@@ -78,7 +78,8 @@
 			"class": "0x31",
 			"instanceId": 0,
 			"value": "data[1].val"
-		}
+		},
+		"display":{"generic_type": "TEMPERATURE"}
 	},
 	{
 		"name": "Alerte Test",
@@ -95,7 +96,7 @@
 		},
 		"display": {
 			"invertBinary": "1",
-			"generic_type": "TEMPERATURE"
+			"generic_type": "DONT"
 		}
 	},
 	{
