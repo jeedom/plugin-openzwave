@@ -1594,6 +1594,24 @@ def serialize_node_to_json(node_id):
             
         for val in my_node.get_values():
             my_value = my_node.values[val]
+            if my_value.command_class is None:
+                continue
+            # avoid encoding exception
+            try:
+                label = my_value.label
+            except Exception, exception:
+                label = exception.message
+                add_log_entry('Value label contains unsupported text: %s' %(str(exception),), "error")
+            try:
+                value_help = my_value.help
+            except Exception, exception:
+                value_help = exception.message
+                add_log_entry('Value help contains unsupported text: %s' %(str(exception),), "error")
+            # assume is Celsius
+            if label == 'Temperature' and my_value.units == 'F':
+                value_units = 'C'
+            else:
+                value_units = my_value.units
             if my_value.genre != 'Basic':
                 standard_type = get_standard_value_type(my_value.type)
             else:
@@ -1606,10 +1624,6 @@ def serialize_node_to_json(node_id):
                     value2 = normalize_short_value(my_value.data)
                 else:
                     value2 = extract_data(my_value)
-            if my_value.label == 'Temperature' and my_value.units == 'F':
-                value_units = 'C'
-            else:
-                value_units = my_value.units
             instance2 = change_instance(my_value)
             if my_value.index:
                 index2 = my_value.index
@@ -1626,9 +1640,7 @@ def serialize_node_to_json(node_id):
                 timestamp = int(my_value.last_update)
             except TypeError:
                 timestamp = int(1)
-            
-            if my_value.command_class is None:
-                continue    
+
             if instance2 not in json_result['instances']:
                 json_result['instances'][instance2] = {"updateTime": timestamp}
                 json_result['instances'][instance2]['commandClasses'] = {"updateTime": timestamp}
@@ -1642,7 +1654,7 @@ def serialize_node_to_json(node_id):
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['last'] = {"value": value2, "type": "int", "updateTime": timestamp}
                 if my_value.command_class in [COMMAND_CLASS_WAKE_UP]:
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['interval'] = {"value": value2, "type": "int", "updateTime": timestamp}
-                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": my_value.label, "help": my_value.help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state, "expected_data": expected_data}
+                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": label, "help": value_help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state, "expected_data": expected_data}
                 
             elif my_value.command_class not in json_result['instances'][instance2]['commandClasses']:
                 json_result['instances'][instance2]['commandClasses'][my_value.command_class] = {"updateTime": timestamp}
@@ -1655,7 +1667,7 @@ def serialize_node_to_json(node_id):
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['last'] = {"value": value2, "type": "int", "updateTime": timestamp}
                 if my_value.command_class in [COMMAND_CLASS_WAKE_UP]:
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['interval'] = {"value": value2, "type": "int", "updateTime": timestamp}
-                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": my_value.label, "help": my_value.help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state, "expected_data": expected_data}
+                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": label, "help": value_help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state, "expected_data": expected_data}
                 
             elif index2 not in json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']:
                 if my_value.command_class in [COMMAND_CLASS_BATTERY]:
@@ -1663,7 +1675,7 @@ def serialize_node_to_json(node_id):
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['last'] = {"value": value2, "type": "int", "updateTime": timestamp}
                 if my_value.command_class in [COMMAND_CLASS_WAKE_UP]:
                     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['interval'] = {"value": value2, "type": "int", "updateTime": timestamp}
-                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": my_value.label, "help": my_value.help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state, "expected_data": expected_data}
+                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": label, "help": value_help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state, "expected_data": expected_data}
     else:
         add_log_entry('This network does not contain any node with the id %s' % (node_id,), 'warning')
     return json_result
