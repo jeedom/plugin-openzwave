@@ -45,7 +45,7 @@
 		"display": {
 			"generic_type": "THERMOSTAT_SET_MODE"
 		},
-		"subType": "string",
+		"subType": "other",
 		"isVisible": 1,
 		"configuration": {
 			"instanceId": "0",
@@ -60,7 +60,7 @@
 		"display": {
 			"generic_type": "THERMOSTAT_SET_MODE"
 		},
-		"subType": "string",
+		"subType": "other",
 		"isVisible": 1,
 		"configuration": {
 			"instanceId": "0",
@@ -75,7 +75,7 @@
 		"display": {
 			"generic_type": "THERMOSTAT_SET_MODE"
 		},
-		"subType": "string",
+		"subType": "other",
 		"isVisible": 1,
 		"configuration": {
 			"instanceId": "0",
