@@ -25,12 +25,27 @@
 		}
 	},
 	{
+		"name": "Mode Actuel",
+		"type": "info",
+		"display": {
+			"generic_type": "THERMOSTAT_MODE"
+		},
+		"subType": "string",
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x40",
+			"value": "data[0].val"
+		}
+	},
+	{
 		"name": "Off",
 		"type": "action",
+		"value":"Mode Actuel",
 		"display": {
 			"generic_type": "THERMOSTAT_SET_MODE"
 		},
-		"subType": "other",
+		"subType": "string",
 		"isVisible": 1,
 		"configuration": {
 			"instanceId": "0",
@@ -41,10 +56,11 @@
 	{
 		"name": "Confort",
 		"type": "action",
+		"value":"Mode Actuel",
 		"display": {
 			"generic_type": "THERMOSTAT_SET_MODE"
 		},
-		"subType": "other",
+		"subType": "string",
 		"isVisible": 1,
 		"configuration": {
 			"instanceId": "0",
@@ -55,10 +71,11 @@
 	{
 		"name": "ECO",
 		"type": "action",
+		"value":"Mode Actuel",
 		"display": {
 			"generic_type": "THERMOSTAT_SET_MODE"
 		},
-		"subType": "other",
+		"subType": "string",
 		"isVisible": 1,
 		"configuration": {
 			"instanceId": "0",
