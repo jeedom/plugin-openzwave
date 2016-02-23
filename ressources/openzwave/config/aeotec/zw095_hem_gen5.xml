@@ -46,7 +46,6 @@
       <Help>
 	Percentage change in wattage to induce a automatic report (Clamp 2).
       </Help>
-    </Value> 
     </Value>
     <Value type="button" index="100" genre="config" label="Reset #101-103" write_only="true" affects="101,102,103">
       <Help>
