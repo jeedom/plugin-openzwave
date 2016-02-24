@@ -13,7 +13,7 @@ Fournit un résumé complet de votre nœud avec différentes informations sur ce
 [TIP]
 Sur cet onglet il est possible d'avoir des alertes en cas de détection possible d'un souci de configuration, Jeedom vous indiquera la marche à suivre pour corriger. Il ne faut pas confondre une alerte avec et une erreur, l'alerte est dans une majorité des cas, une simple recommandation.
 
-=== Valeur
+=== Valeurs
 
 image:../images/openzwave6.png[]
 
@@ -33,7 +33,7 @@ image:../images/openzwave38.png[]
 L'ensemble des valeurs (index) de l'instance d'une commande classe seront remonté en activant le rafraichissement manuel sur le plus petit index de l'instance de la commande classe.
 Répéter pour chaque instance si nécessaire.
 
-=== Parametres
+=== Paramètres
 
 image:../images/openzwave7.png[]
 
@@ -88,7 +88,7 @@ Il est possible que votre module ne possède aucun groupe.
 La modification des groupes d'associations d'un modules sur pile sera appliquer au prochain cycle de réveille.
 Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
 
-=== Systemes
+=== Systèmes
 
 Onglet regroupant les paramètres système du module.
 
@@ -112,7 +112,7 @@ Certaines actions seront actives selon le type de module et ces possibilités ou
 [IMPORTANT]
 Il ne faut pas utiliser les actions sur un module si on ne sait pas ce que l'on fait. Certaines actions sont irréversibles. Les actions peuvent aider à la résolutions de problèmes avec un ou des modules Z-Wave.
 
-=== Statistique
+=== Statistiques
 
 Cet onglet donne quelques statistiques de communication avec le nœud.
 
