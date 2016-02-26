@@ -292,7 +292,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
    </div>
 
    <div class="form-group">
-    <label class="col-sm-2 control-label">{{Marque}}</label>
+    <label class="col-sm-2 control-label">{{Modèle}}</label>
     <div class="col-sm-10">
       <span class="tooltips label label-default" style='font-size : 1em;'>
         <span class="eqLogicAttr" data-l1key="configuration" data-l2key="product_name"></span>
