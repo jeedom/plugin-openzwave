@@ -835,7 +835,7 @@ var app_network = {
                         else if (routesCount[nnodeId] && routesCount[nnodeId][1] == 1)
                             rtClass = 'node-more-of-one-up-color';
                         else
-                            rtClass = 'node-no-neighbourhood-color';
+                            rtClass = 'node-more-of-two-up-color';
 
                         routingTable += '<td class=' + rtClass + ' style="width: 35px"><i class="fa fa-square fa-2x" title="' + routeHops + '"></i></td>';
 

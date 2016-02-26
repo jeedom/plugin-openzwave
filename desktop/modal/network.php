@@ -42,6 +42,7 @@ if (!isConnect('admin')) {
     .node-direct-link-color {color:#7BCC7B;}
     .node-remote-control-color {color:#00a2e8;}
     .node-more-of-one-up-color {color:#E5E500;}
+    .node-more-of-two-up-color {color:#FFAA00;}
     .node-interview-not-completed-color {color:#979797;}
     .node-no-neighbourhood-color {color:#d20606;}
     .node-na-color {color:white;}
@@ -247,12 +248,12 @@ if (!isConnect('admin')) {
                             <td>{{Moins de 2 routes avec un saut}}</td>
                         </tr>
                         <tr>
-                            <td class="node-interview-not-completed-color"><i class="fa fa-square fa-2x"></i></td>
-                            <td>{{Interview non completé}}</td>
+                            <td class="node-more-of-two-up-color"><i class="fa fa-square fa-2x"></i></td>
+                            <td>{{Toutes les routes ont plus d'un saut}}</td>
                         </tr>
                         <tr>
-                            <td class="node-no-neighbourhood-color"><i class="fa fa-square fa-2x"></i></td>
-                            <td>{{Toutes les routes ont plus d'un saut}}</td>
+                            <td class="node-interview-not-completed-color"><i class="fa fa-square fa-2x"></i></td>
+                            <td>{{Interview non completé}}</td>
                         </tr>
                         </tbody>
                     </table>
