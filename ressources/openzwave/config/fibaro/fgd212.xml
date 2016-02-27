@@ -178,7 +178,7 @@ Default setting: 15</Help>
       <Item label="device permanently disabled until re-enabling by comand or external switch" value="0" />
       <Item label="three atempts to turn on the load" value="1" />
     </Value>
-	<Value type="byte" size="2" genre="config" instance="1" index="39" label="Power limit - OVERLOAD" min="1" max="350" units="Watt" value="250">
+	<Value type="short" genre="config" instance="1" index="39" label="Power limit - OVERLOAD" min="1" max="350" units="Watt" value="250">
       <Help>Reaching the defined value will result in turning off the load. Additional apparent power limit of 350VA is active by default. Available settings: 0 - functionality disabled; 1-350 - 1W-350W; Default setting: 250</Help>
     </Value>
     <Value type="list" genre="config" instance="1" index="40" label="Response to General Purpose Alarm" size="1" value="3">
