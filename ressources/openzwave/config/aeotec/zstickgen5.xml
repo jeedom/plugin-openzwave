@@ -3,8 +3,8 @@
 <Product xmlns='http://code.google.com/p/open-zwave/'>
 	<!-- Configuration Parameters -->
 	<CommandClass id="112">
-		<Value type="list" index="81" genre="config" label="LED indicator light configuration" min="0" max="1" value="1" size="1">
-			<Help>When the USB power supply, the LED indicator light configuration</Help>
+		<Value type="list" index="81" genre="config" label="LED indicator configuration" min="0" max="1" value="1" size="1">
+			<Help>Enable/Disable LED indicator when plugged in</Help>
 			<Item label="Disable" value="0" />
 			<Item label="Enable" value="1" />
 		</Value>		
