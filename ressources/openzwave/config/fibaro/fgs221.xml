@@ -97,7 +97,7 @@
       <Item label="ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)" value="3"/>                
     </Value>
     
-    <Value type="byte" genre="config" instance="1" index="39" label="ALARM FLASHING alarm time" value="600" size="2">
+    <Value type="short" genre="config" instance="1" index="39" label="ALARM FLASHING alarm time" value="600" size="2">
       <Help>Amount of time (ms) the device keeps on flashing after receipt of Alarm Frame. Default setting: 600</Help>
     </Value>
     

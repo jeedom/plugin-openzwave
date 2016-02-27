@@ -90,7 +90,7 @@
 				Value=1 to value=10, which map to the volume level 1 to level 10
 			</Help>
         </Value>
-		<Value type="byte" genre="config" instance="1" index="45" label="Get the environment temperature" size="2" min="0" max="500" value="0" read_only="true">
+		<Value type="short" genre="config" instance="1" index="45" label="Get the environment temperature" size="2" min="0" max="500" value="0" read_only="true">
             <Help>
 				The temperature value contains one decimal point.
 				E.g. If the report value=252(0x00FC), the temperature is 25.2.
