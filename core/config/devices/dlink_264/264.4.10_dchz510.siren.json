@@ -1,0 +1,145 @@
+{
+	"name": "DCH-Z510",
+	"doc": "",
+	"type": "Sirène",
+	"comlink": "",
+	"remark": "",
+	"imglink": "dlink.dchz510",
+	"battery_type": "",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "Sabotage",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
+		"isHistorized": 1,
+		"configuration": {
+			"class": "0x30",
+			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "SABOTAGE"
+		},
+		"template": {
+			"dashboard": "vibration",
+			"mobile": "vibration"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].Set(255)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Durée alarme",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[31].val"
+		}
+	},
+	{
+		"name": "30s",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"instanceId": 0,
+			"value": "data[31].Set(1)"
+		}
+	},
+	{
+		"name": "3min",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"instanceId": 0,
+			"value": "data[31].Set(6)"
+		}
+	},
+	{
+		"name": "6min",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"instanceId": 0,
+			"value": "data[31].Set(12)"
+		}
+	},
+	{
+		"name": "30min",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"instanceId": 0,
+			"value": "data[31].Set(60)"
+		}
+	}]
+}
