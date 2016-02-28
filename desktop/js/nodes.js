@@ -970,33 +970,35 @@ var app_nodes = {
         node.find(".node-basic").html(basicDeviceClassDescription);
         node.find(".node-generic").html(genericDeviceClassDescription);
         node.find(".node-specific").html(specificDeviceClassDescription);
-        var battery_level = nodes[z].data.battery_level.value
-        var nodeCanSleep = nodes[z].data.can_wake_up.value;
 
-        if (battery_level != null) {
-            if (nodeCanSleep) {
-                if (nodes[z].data.isAwake.value) {
-                    node.find(".node-sleep").html("{{Réveillé}}");
-                }
-                else {
-                    node.find(".node-sleep").html("{{Endormi}}");
-                }
-            } else {
-                node.find(".node-sleep").html("{{Endormi}}");
-            }
-            node.find(".node-battery").html(battery_level + ' %');
-            node.find(".node-battery-span").show();
-        }
-        else if (nodeCanSleep){
-            node.find(".node-sleep").html("---");
-            node.find(".node-battery-span").hide();
-        }
-        else {
+        if (nodes[z].data.isListening.value) {
             node.find(".node-sleep").removeClass("label-default");
             node.find(".node-sleep").html('<i class="fa fa-plug text-success fa-lg"></i>');
             node.find(".node-battery-span").hide();
         }
+        else{
+            var battery_level = nodes[z].data.battery_level.value
+            var nodeCanSleep = nodes[z].data.can_wake_up.value;
 
+            if (battery_level != null) {
+                if (nodeCanSleep) {
+                    if (nodes[z].data.isAwake.value) {
+                        node.find(".node-sleep").html("{{Réveillé}}");
+                    }
+                    else {
+                        node.find(".node-sleep").html("{{Endormi}}");
+                    }
+                } else {
+                    node.find(".node-sleep").html("{{Endormi}}");
+                }
+                node.find(".node-battery").html(battery_level + ' %');
+                node.find(".node-battery-span").show();
+            }
+            else if (nodeCanSleep){
+                node.find(".node-sleep").html("---");
+                node.find(".node-battery-span").hide();
+            }
+        }
         var queryStageIndex = 0;
         var queryStageDescrition = "";
         switch (queryStage) {
@@ -1115,7 +1117,12 @@ var app_nodes = {
         $("#removeFailedNode").prop("disabled",!nodeIsFailed);
         $("#replaceFailedNode").prop("disabled",!nodeIsFailed);
         $("#sendNodeInformation").prop("disabled",nodeIsFailed);
-        $("#regenerateNodeCfgFile").prop("disabled",nodeIsFailed);
+        // always allow the special action
+        $("#regenerateNodeCfgFile").prop("disabled",false);
+        // remote control don't wakeup, we will trick the flag
+        if(genericDeviceClass == 1){
+            nodeCanSleep = true;
+        }
         $("#removeGhostNode").prop("disabled",nodeIsFailed || !nodeCanSleep);
 
         if (nodeIsFailed) {
