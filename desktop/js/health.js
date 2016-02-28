@@ -164,28 +164,32 @@ var app_health = {
       }
       tbody += '</td>';
       tbody += '<td>';
-      if(nodes[i].data.battery_level != undefined && nodes[i].data.battery_level.value != null) {
-        var updateTime ='';
-        if (nodes[i].data.battery_level.updateTime != undefined){
-          updateTime = app_health.timestampConverter(nodes[i].data.battery_level.updateTime,false);
-        }
-
-
-        if (nodes[i].data.battery_level.value > 75) {
-          tbody += '<span class="label label-success" style="font-size : 1em;" title="'+updateTime+'">' + nodes[i].data.battery_level.value + '%</span>';
-        } else if (nodes[i].data.battery_level.value > 50) {
-          tbody += '<span class="label label-warning" style="font-size : 1em;" title="'+updateTime+'">' + nodes[i].data.battery_level.value + '%</span>';
-        } else {
-          tbody += '<span class="label label-danger" style="font-size : 1em;" title="'+updateTime+'">' + nodes[i].data.battery_level.value + '%</span>';
-        }
-      }else if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null){
-        tbody += '<span class="label label-warning" style="font-size : 1em;">--</span>';
-      }else{
+      if (nodes[i].data.isListening.value) {
         tbody += '<span class="label label-primary" style="font-size : 1em;" title="{{Secteur}}"><i class="fa fa-plug"></i></span>';
+      }
+      else{
+        if(nodes[i].data.battery_level != undefined && nodes[i].data.battery_level.value != null) {
+          var updateTime ='';
+          if (nodes[i].data.battery_level.updateTime != undefined){
+            updateTime = app_health.timestampConverter(nodes[i].data.battery_level.updateTime,false);
+          }
+
+
+          if (nodes[i].data.battery_level.value > 75) {
+            tbody += '<span class="label label-success" style="font-size : 1em;" title="'+updateTime+'">' + nodes[i].data.battery_level.value + '%</span>';
+          } else if (nodes[i].data.battery_level.value > 50) {
+            tbody += '<span class="label label-warning" style="font-size : 1em;" title="'+updateTime+'">' + nodes[i].data.battery_level.value + '%</span>';
+          } else {
+            tbody += '<span class="label label-danger" style="font-size : 1em;" title="'+updateTime+'">' + nodes[i].data.battery_level.value + '%</span>';
+          }
+        }else if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null){
+          tbody += '<span class="label label-warning" style="font-size : 1em;">--</span>';
+        }
       }
       tbody += '</td>';
       tbody += '<td>';
-      if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null){
+
+      if(!nodes[i].data.isListening.value && nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null){
         tbody += '<span class="label label-info" style="font-size : 1em;">'+nodes[i].data.wakeup_interval.value+'</span>';
       }
       tbody += '</td>';
