@@ -5,16 +5,7 @@
 Ce plugin permet l'exploitation de modules Z-Wave par l'intermédiaire de la librairie OpenZwave.
 
 '''
-
-== Introduction
-Z-Wave communique en utilisant une technologie radio de faible puissance dans la bande de fréquence de 868,42 MHz. Spécifiquement conçu pour les applications de domotique.
-Le protocole radio Z-Wave est optimisé pour des échanges à faible bande passante (entre 9 et 40 kbit/s) et des appareils sur pile ou alimentés sur secteur.
-
-Z-Wave fonctionne dans la gamme de fréquences sous-gigahertz, selon les régions (868 MHz en Europe, 908 MHz aux US, et d'autres fréquences suivant les bandes ISM des régions). La portée théorique est d'environ 30 mètres en intérieur et 100 mètres en extérieur. Le réseau Z-Wave utilise la technologie du maillage (mesh) pour augmenter la portée et la fiabilité.
-Z-Wave est conçu pour être facilement intégré dans les produits électroniques de basse consommation, y compris les appareils à piles tels que les télécommandes, les détecteurs de fumée et capteurs de sécurité.
-
-Le Z-Wave+, apporte certaines améliorations dont une meilleure portée et améliore la durée de vie des batteries entre autres. La rétrocompatibilité est totale avec le Z-Wave.
-
+include::introduction.asciidoc[]
 
 '''
 include::configuration.asciidoc[]
