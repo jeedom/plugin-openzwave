@@ -10,7 +10,7 @@
 		"conf_version": 1
 	},
 	"commands": [{
-		"name": "Présence",
+		"name": "Ouverture",
 		"type": "info",
 		"subtype": "binary",
 		"isVisible": 1,
@@ -21,11 +21,11 @@
 		},
 		"display": {
 			"invertBinary": "1",
-			"generic_type": "PRESENCE"
+			"generic_type": "OPENING"
 		},
 		"template": {
-			"dashboard": "presence",
-			"mobile": "presence"
+			"dashboard": "door",
+			"mobile": "door"
 		}
 	},
 	{
