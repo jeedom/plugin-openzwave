@@ -80,9 +80,15 @@ Explication la légende des couleurs :
 
 === Table de routage
 
+Chaque nœud est en mesure de déterminer quels autres nœuds est communication direct.
+Ces nœuds sont appelés voisins.
+Au cours de l'inclusion et/ou plus tard sur demande, le nœud est en mesure d'informer le contrôleur la liste de voisins.
+Grâce à ces informations, le contrôleur est capable de construire une table qui a toutes les informations sur les routes de communication possibles dans un réseau.
+
 image:../images/openzwave28.png[]
 
-Affiche le nombre de routes disponibles pour la communication entre chaque nœud.
+Les lignes du tableau contiennent les nœuds de source et les colonnes contiennent les nœuds de destination.
+Ce référer à la légende pour comprendre les couleurs de cellule qui indiquent les liens entre deux nœuds.
 
 Explication la légende des couleurs :
 
@@ -90,7 +96,7 @@ Explication la légende des couleurs :
 * *Blue* : Au moins 2 routes avec un saut.
 * *Jaune* : Moins de 2 route avec un saut.
 * *Gris* : L'interview n'est pas encore complété, la sera réellement mise à jour une fois l'interview complété.
-* *Rouge* : Toutes les routes ont plus d'un saut. Peut engendrer des latences.
+* *Orange* : Toutes les routes ont plus d'un saut. Peut engendrer des latences.
 
 [IMPORTANT]
 Un module présumé mort, ne participe pas/plus au maillage du réseau. Il sera marqué ici d'un point d'exclamation rouge dans un triangle.
