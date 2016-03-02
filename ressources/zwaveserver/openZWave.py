@@ -2835,6 +2835,33 @@ def switch_all(node_id, state):
     else:
         debug_print("SwitchAll On")
         _network.switch_all(True)
+    for node_id in _network.nodes:
+        my_node = _network.nodes[node_id]
+        if my_node.is_failed:
+            continue
+        value_ids = my_node.get_switches_all()
+        if value_ids is not None and len(value_ids)>0:
+            for value_id in value_ids:
+                # debug_print(my_node.values[value_id].data)
+                if my_node.values[value_id].data == "Disabled":
+                    continue
+                elif my_node.values[value_id].data == "On and Off Enabled":
+                    pass
+                if my_node.values[value_id].data == "Off Enabled" and state != 0:
+                    continue
+                if my_node.values[value_id].data == "On Enabled" and state == 0:
+                    continue
+                instance = my_node.values[value_id].instance
+                for switch in my_node.get_switches():
+                    if my_node.values[switch].instance == instance:
+                        my_node.values[switch].refresh()
+                        # debug_print("refresh switch")
+                for dimmer in my_node.get_dimmers():
+                    if my_node.values[dimmer].instance == instance:
+                        my_node.values[dimmer].refresh()
+                        # debug_print("refresh dimmer")
+
+
     return format_json_result()
 
 
