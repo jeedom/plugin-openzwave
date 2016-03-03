@@ -26,16 +26,14 @@
 		"name": "Blanc Froid",
 		"type": "action",
 		"subtype": "other",
-		"display": {
-			"generic_type": "DONT"
-		},
 		"isVisible": 1,
 		"configuration": {
 			"class": "0x33",
 			"value": "data[1].Set(Cool White)"
 		},
 		"display": {
-			"icon": "<i class=\"icon nature-snowflake\"><\/i>"
+			"icon": "<i class=\"icon nature-snowflake\"><\/i>",
+			"generic_type": "LIGHT_MODE"
 		}
 	},
 	{
@@ -43,23 +41,18 @@
 		"type": "action",
 		"subtype": "other",
 		"isVisible": 1,
-		"display": {
-			"generic_type": "DONT"
-		},
 		"configuration": {
 			"class": "0x33",
 			"value": "data[1].Set(Warm White)"
 		},
 		"display": {
-			"icon": "<i class=\"icon meteo-soleil\"><\/i>"
+			"icon": "<i class=\"icon meteo-soleil\"><\/i>",
+			"generic_type": "LIGHT_MODE"
 		}
 	},
 	{
 		"name": "On",
 		"type": "action",
-		"display": {
-			"generic_type": "LIGHT_ON"
-		},
 		"subtype": "other",
 		"isVisible": 1,
 		"configuration": {
@@ -67,15 +60,13 @@
 			"value": "data[0].Set(99)"
 		},
 		"display": {
-			"icon": "<i class=\"icon jeedom-lumiere-on\"><\/i>"
+			"icon": "<i class=\"icon jeedom-lumiere-on\"><\/i>",
+			"generic_type": "LIGHT_ON"
 		}
 	},
 	{
 		"name": "Off",
 		"type": "action",
-		"display": {
-			"generic_type": "LIGHT_OFF"
-		},
 		"subtype": "other",
 		"isVisible": 1,
 		"configuration": {
@@ -83,7 +74,8 @@
 			"value": "data[0].Set(0)"
 		},
 		"display": {
-			"icon": "<i class=\"icon jeedom-lumiere-off\"><\/i>"
+			"icon": "<i class=\"icon jeedom-lumiere-off\"><\/i>",
+			"generic_type": "LIGHT_OFF"
 		}
 	},
 	{
