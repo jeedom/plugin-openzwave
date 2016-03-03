@@ -3625,6 +3625,10 @@ if __name__ == '__main__':
     pid = str(os.getpid())
     file(_pid_file, 'w').write("%s\n" % pid)
     try:
-        app.run(host='0.0.0.0', port=int(_port_server), debug=False)
+        if _log_level == 'Debug' :
+            print('REST server starting in %s mode' %(_log_level,))
+            app.run(host='0.0.0.0', port=int(_port_server), debug=True, threaded=True, use_reloader=False, use_debugger=True)
+        else:
+            app.run(host='0.0.0.0', port=int(_port_server), debug=False)
     except Exception, ex:
         print "Fatal Error: %s" % str(ex)
