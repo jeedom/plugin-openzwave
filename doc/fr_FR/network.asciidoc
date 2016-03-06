@@ -13,24 +13,24 @@ Le premier onglet vous donne le résumé de base de votre réseau Z-Wave, vous r
 ** Informations
 * Donne des informations générales sur le réseau, la date de démarrage, le temps requis pour l'obtention du réseau dans un état dit fonctionnel.
 * Le nombre de nœuds total du réseau ainsi que le nombre qui dorment dans le moment.
-* L'intervalle des demandes est associé au rafraichissement manuel. Il prédéfinie dans le moteur Z-Wave à 5 minutes.
+* L'intervalle des demandes est associé au rafraichissement manuel. Il est prédéfini dans le moteur Z-Wave à 5 minutes.
 * Les voisins du contrôleur.
 
 ** Etat
 image:../images/openzwave49.png[]
-Un ensemble d'information sur l'état actuel du réseau à savoir.
+Un ensemble d'informations sur l'état actuel du réseau,  à savoir :
 * Etat actuel, peut-être *Driver Initialised*, *Topology loaded* ou *Ready*.
 * Queue sortante, indique le nombre de messages en queue dans le contrôleur en attente d’être envoyé.
-Cette valeur est généralement élevé durant le démarrage du réseau lorsque l'état est encore en *Driver Initialised*.
-Une fois que le réseau à au minimum atteint *Topology loaded*, des mécanismes interne au serveur Z-Wave vont forcer des mises à jour de valeurs, il est alors tout à fait normale de voir monter le nombre de message. Celui-ci va rapidement retourner à 0.
-La dernière notification du contrôleur ainsi que le détail du message sont des informations techniques mais qui nous permettre de comprendre les derniers échanges avec le contrôleur.
+Cette valeur est généralement élevée durant le démarrage du réseau lorsque l'état est encore en *Driver Initialised*.
+Une fois que le réseau a au minimum atteint *Topology loaded*, des mécanismes internes au serveur Z-Wave vont forcer des mises à jour de valeurs, il est alors tout à fait normal de voir monter le nombre de messages. Celui-ci va rapidement retourner à 0.
+La dernière notification du contrôleur ainsi que le détail du message sont des informations techniques mais qui nous permettent de comprendre les derniers échanges avec le contrôleur.
 [TIP]
-Le réseau est dit fonctionnel au moment où il atteint le statu *Topology Loaded*, c'est à  dire que l'ensemble des nœuds secteurs ont complété leurs interviews. Selon le nombre de modules, la répartition pile/secteur, le choix du dongle USB et le PC sur le quel tourne le plugin  Z-Wave, le réseau va atteindre cette état entre une et cinq minutes.
+Le réseau est dit fonctionnel au moment où il atteint le statut *Topology Loaded*, c'est à  dire que l'ensemble des nœuds secteurs ont complété leurs interviews. Selon le nombre de modules, la répartition pile/secteur, le choix du dongle USB et le PC sur lequel tourne le plugin  Z-Wave, le réseau va atteindre cette état entre une et cinq minutes.
 
-Un réseau *Ready*, signifie que l'ensemble de nœuds secteur et ceux sur piles ont complété leur interview.
+Un réseau *Ready*, signifie que tous les nœuds secteur et sur pile ont complété leur interview.
 
 [TIP]
-Selon les modules que vous disposé, il est possible que le réseau n'atteigne jamais de lui-même le statu *Ready*. Les télécommande par exemple ne se réveillent pas d'elles même et ne compléteront jamais leurs interviews. Dans ce genre de cas, le réseau est tout à fait opérationnel et même si les télécommande n'ont pas compléter leur interview elle assure leurs fonctionnalités au sein du réseau.
+Selon les modules dont vous disposez, il est possible que le réseau n'atteigne jamais de lui-même le statut *Ready*. Les télécommandes, par exemple, ne se réveillent pas d'elles-mêmes et ne compléteront jamais leurs interviews. Dans ce genre de cas, le réseau est tout à fait opérationnel et même si les télécommandes n'ont pas complétées leur interview, elles assurent leurs fonctionnalités au sein du réseau.
 
 ** Capacités
 
@@ -38,7 +38,7 @@ Permet de savoir si le contrôleur est un contrôleur principal ou secondaire.
 
 ** Système
 
-Affiche divers informations système.
+Affiche diverses informations système.
 
 * Information sur le port USB utilisé.
 * Version de la librairie OpenZwave
@@ -51,10 +51,10 @@ image:../images/openzwave25.png[]
 Vous retrouvez ici toutes les actions possibles sur l'ensemble de votre réseau Z-Wave. Chaque action est accompagnée d’une description sommaire.
 
 [IMPORTANT]
-Certaines actions sont vraiment risquées voir irréversible, l'équipe Jeedom ne pourra être tenue responsable en cas de mauvaise manipulation.
+Certaines actions sont vraiment risquées voire irréversibles, l'équipe Jeedom ne pourra être tenue responsable en cas de mauvaise manipulation.
 
 [IMPORTANT]
-Certains modules requièrent une inclusion en mode sécurisé, par exemple pour les serrures de porte. L’inclusion sécurisée doit être lancé via l'action de cet écran.
+Certains modules requièrent une inclusion en mode sécurisé, par exemple pour les serrures de porte. L’inclusion sécurisée doit être lancée via l'action de cet écran.
 
 === Statistiques
 
@@ -70,18 +70,18 @@ Cet onglet vous donnera une représentation graphique des différents liens entr
 
 Explication la légende des couleurs :
 
-* *Vert* : Communication direct avec le contrôleur, idéal.
-* *Blue* : Pour les contrôleurs, comme les télécommandes, ils sont associé au contrôleur primaire, mais n'ont pas de voisin.
+* *Vert* : Communication directe avec le contrôleur, idéal.
+* *Blue* : Pour les contrôleurs, comme les télécommandes, ils sont associés au contrôleur primaire, mais n'ont pas de voisin.
 * *Jaune* : Toute les routes ont plus d’un saut avant d'arriver au contrôleur.
 * *Gris* : L'interview n'est pas encore complété, les liens seront réellement connue une fois l'interview complété.
-* *Rouge* : présumé mort, ou sans voisins, ne participe pas/plus au maillage du réseau.
+* *Rouge* : présumé mort, ou sans voisin, ne participe pas/plus au maillage du réseau.
 
 Le réseau Z-Wave est constitué de trois différents types de nœuds avec trois fonctions principales.
-La principale différence entre les trois types de nœuds est leur connaissance du la table de routage du réseau et par la suite leur capacité d'envoyer des messages au réseau:
+La principale différence entre les trois types de nœuds est leur connaissance de la table de routage du réseau et par la suite leur capacité à envoyer des messages au réseau:
 
 .Propriétés des appareils Z-Wave
 |===
-| |Voisins |Route |Fonctions possible
+| |Voisins |Route |Fonctions possibles
 
 |Contrôleur
 |Connaît tous les voisins
@@ -90,13 +90,13 @@ La principale différence entre les trois types de nœuds est leur connaissance 
 
 |Esclave
 |Connaît tous les voisins
-|N'a pas d'informations sur la table de routage
+|N'a pas d'information sur la table de routage
 |Ne peut répondre au nœud qu'il a reçu le message. Par conséquent, ne peut pas envoyer des messages non sollicités
 
 |Esclaves de routage
 |Connaît tous ses voisins
 |A la connaissance partielle de la table de routage
-|Peut répondre au nœud qu'il a reçu le message de et peut envoyer des messages non sollicités à un certain nombre de nœuds prédéfinis, il a une route
+|Peut répondre au nœud qu'il a reçu le message de et peut envoyer des messages non sollicités à un certain nombre de nœuds |prédéfinis, il a une route
 |===
 
 En résumé:
@@ -104,32 +104,32 @@ En résumé:
 * Chaque appareil Z -Wave peut recevoir et accuser réception de messages
 * Les contrôleurs peuvent envoyer des messages à tous les nœuds du réseau, sollicités ou non « Le maître peut parler quand il veut et à qui il veut »
 * Les esclaves ne peuvent pas envoyer des messages non sollicités, mais seule réponse aux demandes «  L'esclave ne parle est lui demande »
-* Les esclaves de routage peuvent répondre à des demandes et ils sont autorisés à envoyer des messages non sollicités à certains nœuds du contrôleur a prédéfinis « L'esclave est toujours un esclave, mais sur autorisation, il peut parler up »
+* Les esclaves de routage peuvent répondre à des demandes et ils sont autorisés à envoyer des messages non sollicités à certains nœuds que le contrôleur a prédéfini « L'esclave est toujours un esclave, mais sur autorisation, il peut parler »
 
 
 
 === Table de routage
 
-Chaque nœud est en mesure de déterminer quels autres nœuds est communication direct.
+Chaque nœud est en mesure de déterminer quels autres nœuds sont en communication directe.
 Ces nœuds sont appelés voisins.
-Au cours de l'inclusion et/ou plus tard sur demande, le nœud est en mesure d'informer le contrôleur la liste de voisins.
-Grâce à ces informations, le contrôleur est capable de construire une table qui a toutes les informations sur les routes de communication possibles dans un réseau.
+Au cours de l'inclusion et/ou plus tard sur demande, le nœud est en mesure d'informer le contrôleur de la liste de voisins.
+Grâce à ces informations, le contrôleur est capable de construire une table qui a toutes les informations sur les routes possibles de communication dans un réseau.
 
 image:../images/openzwave28.png[]
 
 Les lignes du tableau contiennent les nœuds de source et les colonnes contiennent les nœuds de destination.
-Ce référer à la légende pour comprendre les couleurs de cellule qui indiquent les liens entre deux nœuds.
+Se référer à la légende pour comprendre les couleurs de cellule qui indiquent les liens entre deux nœuds.
 
 Explication la légende des couleurs :
 
-* *Vert* : Communication direct avec le contrôleur, idéal.
+* *Vert* : Communication directe avec le contrôleur, idéal.
 * *Blue* : Au moins 2 routes avec un saut.
-* *Jaune* : Moins de 2 route avec un saut.
-* *Gris* : L'interview n'est pas encore complété, la sera réellement mise à jour une fois l'interview complété.
+* *Jaune* : Moins de 2 routes avec un saut.
+* *Gris* : L'interview n'est pas encore complété, sera réellement mis à jour une fois l'interview complété.
 * *Orange* : Toutes les routes ont plus d'un saut. Peut engendrer des latences.
 
 [IMPORTANT]
 Un module présumé mort, ne participe pas/plus au maillage du réseau. Il sera marqué ici d'un point d'exclamation rouge dans un triangle.
 
 [TIP]
-Vous pouvez lancer manuellement la mise à jour des voisins, par module ou pour l'ensemble du réseau à l'aide des boutons disponible dans la table de routage.
+Vous pouvez lancer manuellement la mise à jour des voisins, par module ou pour l'ensemble du réseau à l'aide des boutons disponibles dans la table de routage.
