@@ -21,7 +21,12 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 if (strpos(init('request'), '/ZWaveAPI/Run/network.SaveZWConfig()') !== false) {
-	echo json_encode(openzwave::callOpenzwave(str_replace('//', '/', init('request')), init('server_id'), null, false, array('data' => init('data'))));
+	$data_path = dirname(__FILE__) . '/../../data';
+	if (!file_exists($data_path)) {
+		exec('mkdir ' . $data_path . ' && chmod 775 -R ' . $data_path . ' && chown -R www-data:www-data ' . $data_path);
+	}
+	file_put_contents($data_path . '/zwcfg_new.xml', init('data'));
+	echo json_encode(openzwave::callOpenzwave(str_replace('//', '/', init('request')), init('server_id')));
 } else {
 	echo json_encode(openzwave::callOpenzwave(str_replace('//', '/', init('request')), init('server_id')));
 }
