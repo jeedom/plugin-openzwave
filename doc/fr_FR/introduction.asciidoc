@@ -1,6 +1,6 @@
 == Introduction
-Z-Wave communique en utilisant une technologie radio de faible puissance dans la bande de fréquence de 868,42 MHz. Spécifiquement conçu pour les applications de domotique.
-Le protocole radio Z-Wave est optimisé pour des échanges à faible bande passante (entre 9 et 40 kbit/s) et des appareils sur pile ou alimentés sur secteur.
+Z-Wave communique en utilisant une technologie radio de faible puissance dans la bande de fréquence de 868,42 MHz. Il est spécifiquement conçu pour les applications de domotique.
+Le protocole radio Z-Wave est optimisé pour des échanges à faible bande passante (entre 9 et 40 kbit/s) entre des appareils sur pile ou alimentés sur secteur.
 
 Z-Wave fonctionne dans la gamme de fréquences sous-gigahertz, selon les régions (868 MHz en Europe, 908 MHz aux US, et d'autres fréquences suivant les bandes ISM des régions). La portée théorique est d'environ 30 mètres en intérieur et 100 mètres en extérieur. Le réseau Z-Wave utilise la technologie du maillage (mesh) pour augmenter la portée et la fiabilité.
 Z-Wave est conçu pour être facilement intégré dans les produits électroniques de basse consommation, y compris les appareils à piles tels que les télécommandes, les détecteurs de fumée et capteurs de sécurité.
@@ -22,7 +22,7 @@ Exemples de sources radioélectriques:
 Si vous disposez un contrôleur USB (Z-Stick), il est recommandé de l'éloigner de la box à l'aide d'une simple rallonge USB de 1M par exemple.
 
 
-La distance entre d'autres émetteurs sans fil tels que les téléphones sans fil ou transmissions radio audio doivent être au moins 3 mètres.
+La distance entre d'autres émetteurs sans fil tels que les téléphones sans fil ou transmissions radio audio doit être d'au moins 3 mètres.
 Les sources de radio suivantes doivent être prises en compte :
 
 ** Perturbations par commutateur de moteurs électriques
@@ -33,7 +33,7 @@ Les sources de radio suivantes doivent être prises en compte :
 
 === Epaisseur efficace des murs
 
-Les emplacements des modules doivent être choisis de telle manière que la ligne de connexion directe ne fonctionne que sur une très courte distance au travers la matière (un mur), afin d’éviter au maximum les atténuations.
+Les emplacements des modules doivent être choisis de telle manière que la ligne de connexion directe ne fonctionne que sur une très courte distance au travers de la matière (un mur), afin d’éviter au maximum les atténuations.
 
 image:../images/openzwave60.png[]
 
@@ -42,24 +42,24 @@ Les parties métalliques du bâtiment ou des meubles peuvent bloquer les ondes �
 === Maillage et Routage
 
 Les nœuds Z-Wave sur secteur peuvent transmettre et répéter les messages qui ne sont pas à portée directe du contrôleur.
-Ce qui permet une plus grande flexibilité de communication, même si il n'y a pas de connexion sans fil directe ou si une connexion n’est temporairement pas disponible, à cause d'un changement dans la pièce ou le bâtiment.
+Ce qui permet une plus grande flexibilité de communication, même si il n'y a pas de connexion sans fil directe ou si une connexion est temporairement indisponible, à cause d'un changement dans la pièce ou le bâtiment.
 
 image:../images/openzwave61.png[]
 
-Le contrôleur *Id 1* peut communiquer directement avec les nœuds 2, 3 et 4. Le nœud 6 est en dehors de sa portée radio, cependant, il se trouve dans la zone de couverture radio du nœud 2. Par conséquent, le contrôleur peut communiquer au nœud 6 via le nœud 2. De cette façon, à partir de le contrôleur via le nœud 2 vers le nœud 6 est appelé route.
-Dans le cas où la communication directe entre le nœud 1 et le nœud 2 est bloqué, mais il y a encore une autre option pour communiquer au nœud 6, en utilisant le nœud 3 comme un autre répéteur du signal.
+Le contrôleur *Id 1* peut communiquer directement avec les nœuds 2, 3 et 4. Le nœud 6 est en dehors de sa portée radio, cependant, il se trouve dans la zone de couverture radio du nœud 2. Par conséquent, le contrôleur peut communiquer avec le nœud 6 via le nœud 2. De cette façon, le chemin du contrôleur via le nœud 2 vers le nœud 6, est appelé route.
+Dans le cas où la communication directe entre le nœud 1 et le nœud 2 est bloquée, il y a encore une autre option pour communiquer avec le nœud 6, en utilisant le nœud 3 comme un autre répéteur du signal.
 
-Il devient évident que plus l’on possède de nœuds secteur plus les options de routage augmente et par conséquent, la stabilité du réseau.
-Le protocole Z-Wave est capable de router les messages par l'intermédiaire d'un maximum de quatre nœuds de répétition. C’est un compromis entre la taille du réseau et la stabilité et la durée maximale d'un message est autorisée à se déplacer dans le réseau.
+Il devient évident que plus l’on possède de nœuds secteur, plus les options de routage augmentent , et plus la stabilité du réseau augmente.
+Le protocole Z-Wave est capable de router les messages par l'intermédiaire d'un maximum de quatre nœuds de répétition. C’est un compromis entre la taille du réseau, la stabilité et la durée maximale d'un message.
 
 [TIP]
-Il est fortement recommandé en début d'installation d'avoir un ratio entre nœuds secteur et nœud sur piles de 2/3 en secteur afin d'avoir un bon maillage réseau.
-Privilégier des micros module aux smart-plug, les micros modules seront à un emplacement définitif et ne seront pas débranché, ils ont aussi en général une meilleur portée.
-Un  bon départ est l'éclairage des zones communes. Il permettra de bien répartir les modules secteurs à des endroits stratégiques dans votre domicile.
-Par la suite vous pourrez ajouter autant de module sur piles que souhaité, si vos routes de base sont bonnes.
+Il est fortement recommandé en début d'installation d'avoir un ratio entre nœuds secteur et nœud sur piles de 2/3, afin d'avoir un bon maillage réseau.
+Privilégier des micromodules aux smart-plugs. Les micros modules seront à un emplacement définitif et ne seront pas débranchés, ils ont aussi en général une meilleure portée.
+Un bon départ est l'éclairage des zones communes. Il permettra de bien répartir les modules secteurs à des endroits stratégiques dans votre domicile.
+Par la suite vous pourrez ajouter autant de modules sur pile que souhaité, si vos routes de base sont bonnes.
 
 [TIP]
 Le *Graphique du réseau* ainsi que la *table de routage* permettent de visualiser la qualité de votre réseau.
 
 [TIP]
-Il existe des modules répéteur pour combler des zones ou aucun module secteur à une utilité.
+Il existe des modules répéteur pour combler des zones où aucun module secteur n'a d'utilité.
