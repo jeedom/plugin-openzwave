@@ -210,7 +210,7 @@ COMMAND_CLASS_SENSOR_ALARM              = 156  # 0x9C
 # COMMAND_CLASS_MARK                      = 239  # 0xEF
 # COMMAND_CLASS_NON_INTEROPERABLE         = 240  # 0xF0
 
-add_log_entry("validate startup arguments")
+add_log_entry("Validate startup arguments")
 
 for arg in sys.argv:
     if arg.startswith("--device="):
@@ -231,11 +231,26 @@ for arg in sys.argv:
         temp, _apikey = arg.split("=")
     elif arg.startswith("--serverId="):
         temp, _server_id = arg.split("=")
-    elif arg.startswith("--help"):
-        print("help: ")
-        print("  --device=/dev/yourdevice ")
-        print("  --log=Info|Debug|Error")
+
+if _device is None or len(_device) == 0:
+    add_log_entry('Dongle Key is not specified. Please check your Z-Wave (openzwave) configuration plugin page', 'error')
+    sys.exit(1)
+
 add_log_entry("--> pass")
+
+add_log_entry("Validate callback configuration")
+try:
+    add_log_entry("...try to get response from: %s" %(_callback,))
+    response = requests.get(_callback, verify=False)
+    if response.status_code != requests.codes.ok:
+        add_log_entry('Callback error: %s %s. Please check your network configuration page'% (response.status.code, response.status.message,), 'error')
+        sys.exit(1)
+    else:
+        add_log_entry("--> pass")
+except Exception as e:
+    add_log_entry('Callback result as a unknown error: %s. Please check your network configuration page'% (e.message,), 'error')
+    sys.exit(1)
+
 
 def find_tty_usb(id_vendor, id_product):
     """find_tty_usb('0658', '0200') -> '/dev/ttyUSB021' for Sigma Designs, Inc."""
@@ -262,11 +277,11 @@ def find_tty_usb(id_vendor, id_product):
 def debug_print(message):
     add_log_entry(message, 'debug')
 
-add_log_entry("check if port is available")     
+add_log_entry("Check if the port REST server available")
 _sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 port_available = _sock.connect_ex(('127.0.0.1', int(_port_server)))
 if port_available == 0:
-    add_log_entry('The port %s is already in use. Please check your openzwave configuration plugin page' % (_port_server,), 'error')
+    add_log_entry('The port %s is already in use. Please check your Z-Wave (openzwave) configuration plugin page' % (_port_server,), 'error')
     sys.exit(1) 
 add_log_entry("--> pass")   
 
@@ -538,7 +553,7 @@ def start_network():
 
 def cleanup_configuration_file(filename):
     global _data_folder
-    add_log_entry('validate configuration file: %s' % (filename,))
+    add_log_entry('... check: %s' % (filename,))
     if os.path.isfile(filename):
         try:            
             tree = etree.parse(filename)
@@ -591,6 +606,7 @@ def check_config_files():
     filters = ['xml']
     path = os.path.join(root, "")
     actual_configurations = os.listdir(root)
+    add_log_entry('Validate zwcfg configuration file(s)')
     for configuration_file in actual_configurations:
         if configuration_file[-3:] in filters and pattern in configuration_file:
             cleanup_configuration_file(os.path.join(root, configuration_file))
