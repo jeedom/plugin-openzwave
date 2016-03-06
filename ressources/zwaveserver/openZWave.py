@@ -540,7 +540,7 @@ class NodeNotification(object):
         
 
 def start_network():
-    global _network_information, _force_refresh_nodes
+    global _network_information, _force_refresh_nodes, _network
     # reset flags
     _force_refresh_nodes = []
     if _network_information is None:
@@ -655,8 +655,10 @@ def backup_xml_config(mode, home_id):
 def graceful_stop_network():
     add_log_entry('Graceful stopping the ZWave network.')   
     global _network
+    global _network_is_running
     home_id = _network.home_id_str
     if _network is not None:
+        _network_is_running = False
         _network.stop()
         # We disconnect to the louie dispatcher
         # noinspection PyBroadException
@@ -666,6 +668,7 @@ def graceful_stop_network():
             dispatcher.disconnect(network_failed, ZWaveNetwork.SIGNAL_DRIVER_FAILED)
             dispatcher.disconnect(network_awaked, ZWaveNetwork.SIGNAL_NETWORK_AWAKED)
             dispatcher.disconnect(network_ready, ZWaveNetwork.SIGNAL_NETWORK_READY)
+            dispatcher.disconnect(network_stopped, ZWaveNetwork.SIGNAL_NETWORK_STOPPED)
             dispatcher.disconnect(node_new, ZWaveNetwork.SIGNAL_NODE_NEW)
             dispatcher.disconnect(node_added, ZWaveNetwork.SIGNAL_NODE_ADDED)
             dispatcher.disconnect(node_removed, ZWaveNetwork.SIGNAL_NODE_REMOVED)
@@ -817,11 +820,19 @@ def push_node_notification(node_id, notification_code):
 
 
 def network_started(network):
-    add_log_entry("Openzwave network are started with homeId %0.8x." % (network.home_id,))    
+    add_log_entry("Openzwave network are started with homeId %0.8x." % (network.home_id,))
+    global _network_is_running
+    _network_is_running = True
     _network_information.assign_controller_notification(ZWaveController.SIGNAL_CTRL_STARTING, "Network is started")
     save_network_state(network.state)
     if network.manager.getPollInterval() != _default_poll_interval:
         network.set_poll_interval(_default_poll_interval, False)
+
+
+def network_stopped(network):
+    add_log_entry("Openzwave network are %s" %(network.state_str,))
+    global _network_is_running
+    _network_is_running = False
 
 
 def network_failed(network):
@@ -831,6 +842,8 @@ def network_failed(network):
 
 
 def validate_association_groups_asynchronous():
+    if not _network_is_running :
+        return
     debug_print("Check association")
     for node_id in list(_network.nodes):
         if validate_association_groups(node_id):
@@ -842,9 +855,9 @@ def recovering_failed_nodes_asynchronous():
     global _ghost_node_id
     # wait 15 seconds on first launch
     time.sleep(15.0)    
-    while True: 
+    while True:
         # if controller is busy skip this run
-        if can_execute_network_command(0):      
+        if  can_execute_network_command(0):
             debug_print("Perform network sanity test/check")
             for node_id in list(_network.nodes):
                 my_node = _network.nodes[node_id]
@@ -1073,6 +1086,8 @@ def extract_data(value, display_raw=False, convert_fahrenheit=True):
 def can_execute_network_command(allowed_queue_count=5):
     global _network
     if _network is None:
+        return False
+    if not _network_is_running:
         return False
     if not _network.controller.is_primary_controller:
         return True
@@ -1317,9 +1332,11 @@ def node_notification(args):
 
 app = Flask(__name__, static_url_path='/static')
 
+_network_is_running = False
 # Create a network object
 # noinspection PyRedeclaration
 _network = ZWaveNetwork(options, autostart=False)
+
 
 # We connect to the louie dispatcher
 dispatcher.connect(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
@@ -1327,6 +1344,7 @@ dispatcher.connect(network_failed, ZWaveNetwork.SIGNAL_NETWORK_FAILED)
 dispatcher.connect(network_failed, ZWaveNetwork.SIGNAL_DRIVER_FAILED)
 dispatcher.connect(network_awaked, ZWaveNetwork.SIGNAL_NETWORK_AWAKED)
 dispatcher.connect(network_ready, ZWaveNetwork.SIGNAL_NETWORK_READY)
+dispatcher.connect(network_stopped, ZWaveNetwork.SIGNAL_NETWORK_STOPPED)
 
 start_network()
 
@@ -3053,8 +3071,9 @@ def get_node_statistics(node_id):
 def remove_device_openzwave_config(node_id):
     # Remove a device from the openzwave config file and restart network to rediscover again
     # ensure load latest file version
-    global _data_folder
+    global _data_folder, _network_is_running
     try:
+        _network_is_running = False
         _network.stop()
         add_log_entry('ZWave network is now stopped')
         time.sleep(5)
@@ -3077,7 +3096,7 @@ def remove_device_openzwave_config(node_id):
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GhostKiller()', methods=['GET'])
 def ghost_killer(node_id):
-    global _ghost_node_id
+    global _ghost_node_id, _network_is_running
     # Remove cc 0x84 wake up for a ghost device in openzwave config file
     if not can_execute_network_command(0):
         return build_network_busy_message() 
@@ -3086,6 +3105,7 @@ def ghost_killer(node_id):
     filename = _data_folder + "/zwcfg_" + _network.home_id_str + ".xml"
     # ensure load latest file version
     try:
+        _network_is_running = False
         _network.stop()
         add_log_entry('ZWave network is now stopped')
         time.sleep(5)
@@ -3333,8 +3353,9 @@ def stop_network():
 
 
 @app.route('/ZWaveAPI/Run/network.GetStatus()', methods=['GET'])
-def get_network_status(): 
-    if _network is not None and _network.state >= 5:   # STATE_STARTED
+def get_network_status():
+    global _network
+    if _network is not None and _network.state >= 5 and _network_is_running:
         json_result = {'nodesCount': _network.nodes_count, 'sleepingNodesCount': get_sleeping_nodes_count(),
                        'scenesCount': _network.scenes_count, 'pollInterval': _network.manager.getPollInterval(),
                        'isReady': _network.is_ready, 'stateDescription': _network.state_str, 'state': _network.state,
@@ -3359,20 +3380,24 @@ def get_network_status():
 
 @app.route('/ZWaveAPI/Run/network.GetNeighbours()', methods=['GET'])
 def get_network_neighbours():
+    global _network
     neighbours = {'updateTime': int(time.time())}
     nodes_data = {}
-    for node_id in list(_network.nodes):
-        nodes_data[node_id] = serialize_neighbour_to_json(node_id)
+    if _network is not None and _network.state >= 5 and _network_is_running:
+        for node_id in list(_network.nodes):
+            nodes_data[node_id] = serialize_neighbour_to_json(node_id)
     neighbours['devices'] = nodes_data
     return jsonify(neighbours)
 
 
 @app.route('/ZWaveAPI/Run/network.GetHealth()', methods=['GET'])
 def get_network_health():
+    global _network
     network_health = {'updateTime': int(time.time())}
     nodes_data = {}
-    for node_id in list(_network.nodes):
-        nodes_data[node_id] = serialize_node_health(node_id)
+    if _network is not None and _network.state >= 5 and _network_is_running:
+        for node_id in list(_network.nodes):
+            nodes_data[node_id] = serialize_node_health(node_id)
     network_health['devices'] = nodes_data
     return jsonify(network_health)
 
@@ -3415,9 +3440,10 @@ def get_nodes_list():
 @app.route('/ZWaveAPI/Run/network.GetControllerStatus()', methods=['GET'])
 def get_controller_status():
     # Get the controller status
+    global _network
     try:
         controller_status = {}
-        if _network is not None and _network.state >= 5:   # STATE_STARTED
+        if _network is not None and _network.state >= 5 and _network_is_running:
             if _network.controller:
                 controller_status = serialize_controller_to_json()
         return jsonify({'result': controller_status})
@@ -3443,6 +3469,7 @@ def get_openzwave_logs():
 def get_openzwave_config():
     # ensure load latest file version
     global _data_folder
+    global _network
     try:
         write_config()
     except Exception, exception:
@@ -3456,26 +3483,26 @@ def get_openzwave_config():
         return format_json_result(False, str(exception), 'error')
 
 
-@app.route('/ZWaveAPI/Run/network.SaveZWConfig()', methods=['POST'])
+@app.route('/ZWaveAPI/Run/network.SaveZWConfig()', methods=['GET'])
 def save_openzwave_config():
     # Save the openzwave config file
-    add_log_entry('Edit openzwave configuration file')
-    data = request.data #values['data']
-    if data is None:
-        return format_json_result(False, 'zwcfg data content is null', 'error')
-    if len(data) == 0:
-        return format_json_result(False, 'zwcfg data content is empty', 'error')
+    add_log_entry('Replace zwcfg configuration file')
     global _data_folder
+    global _network
+    global _network_is_running
+    new_filename = _data_folder + "/zwcfg_new.xml"
+    if not os.path.isfile(new_filename):
+        return format_json_result(False, 'zwcfg_new.xml not exist: %s' %(new_filename,), 'error')
     try:
         filename = _data_folder + "/zwcfg_" + _network.home_id_str + ".xml"
+        _network_is_running = False
         _network.stop()
         while _network.state != 0:
             add_log_entry('%s (%s)' %(_network.state_str, _network.state,))
             time.sleep(1)
-        add_log_entry(_network.state_str)
-        add_log_entry('Write new config file: %s' %(filename,))
-        with open(filename, "w") as ins:
-            ins.write(data)
+        add_log_entry('Replace zwcfg file: %s' %(filename,))
+        shutil.copy2(new_filename, filename)
+        os.chmod(filename, 0777)
         add_log_entry('Restart network')
         start_network()
         return format_json_result() 
@@ -3498,7 +3525,10 @@ def remove_unknowns_devices_openzwave_config():
     # Remove unknowns devices from the openzwave config file
     # ensure load latest file version
     global _data_folder
+    global _network
+    global _network_is_running
     try:
+        _network_is_running = False
         _network.stop()
         add_log_entry('ZWave network is now stopped')
         time.sleep(5)
@@ -3543,7 +3573,7 @@ def set_poll_interval(seconds, interval_between_polls):
 def refresh_all_battery_level():
     debug_print("refresh_all_battery_level")
     battery_levels = {}
-    if _network is not None and _network.state >= 7:
+    if _network is not None and _network.state >= 7 and _network_is_running:
         for node_id in list(_network.nodes):
             node = _network.nodes[node_id]
             if not node.is_listening_device:
@@ -3583,6 +3613,8 @@ def get_openzwave_backups():
 def restore_openzwave_backups(backup_name):
     # Manually restore a backup
     global _data_folder
+    global _network
+    global _network_is_running
     add_log_entry('Restoring backup ' + backup_name)
     backup_folder = _data_folder + "/xml_backups"
     # noinspection PyBroadException
@@ -3602,6 +3634,7 @@ def restore_openzwave_backups(backup_name):
         except:
             add_log_entry('The backup file seems invalid', "error")
             return format_json_result(False, 'The backup file (' + backup_name + ') seems invalid')
+        _network_is_running = False
         _network.stop()
         add_log_entry('ZWave network is now stopped')
         time.sleep(3)
