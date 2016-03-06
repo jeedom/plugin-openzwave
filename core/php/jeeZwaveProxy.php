@@ -25,6 +25,12 @@ if (strpos(init('request'), '/ZWaveAPI/Run/network.SaveZWConfig()') !== false) {
 	if (!file_exists($data_path)) {
 		exec('mkdir ' . $data_path . ' && chmod 775 -R ' . $data_path . ' && chown -R www-data:www-data ' . $data_path);
 	}
+	if (file_exists($data_path . '/zwcfg_new.xml')) {
+		unlink($data_path . '/zwcfg_new.xml');
+	}
+	if (file_exists($data_path . '/zwcfg_new.xml')) {
+		exec('sudo rm -rf ' . $data_path . '/zwcfg_new.xml');
+	}
 	file_put_contents($data_path . '/zwcfg_new.xml', init('data'));
 	echo json_encode(openzwave::callOpenzwave(str_replace('//', '/', init('request')), init('server_id')));
 } else {
