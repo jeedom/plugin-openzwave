@@ -3,7 +3,7 @@
 	"doc": "",
 	"type": "Multicapteurs",
 	"comlink": "3067-philio-detecteur-z-wave-3-en-1-mouvement-luminosite-temperature-4713698570170",
-	"remark": "Vendu aussi sous la marque Zipato",
+	"remark": "modifier les paramètres: 5 Operation Mode sur 12 et le 7 Customer Function sur 18. Vendu aussi sous la marque Zipato",
 	"imglink": "philio.pst021b",
 	"battery_type": "1x3V CR123A",
 	"configuration": {
@@ -17,9 +17,8 @@
 		"isHistorized": 0,
 		"configuration": {
 			"instanceId": 0,
-			"class": "0x71",
-			"value": "data[10].val",
-			"calculValueOffset": "#value#==8"
+			"class": "0x30",
+			"value": "data[0].val"
 		},
 		"display": {
 			"invertBinary": "1",
@@ -68,7 +67,7 @@
 		"name": "Sabotage",
 		"type": "info",
 		"subtype": "binary",
-		"isVisible": 1,
+		"isVisible": 0,
 		"isHistorized": 0,
 		"configuration": {
 			"instanceId": 0,
