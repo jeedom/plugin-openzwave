@@ -75,6 +75,9 @@ image:../images/openzwave45.png[]
 
 Vous pouvez sélectionner via les choix possible si le module le permet.
 
+[IMPORTANT]
+Vous devez effectuer la loupe pour appliquer le nouveau jeux de commandes.
+
 === Documentation et Assistant
 
 Pour un certain nombre de module, une aide spécifique pour la mise en place ainsi que de recommandantion de parametres sont disponible.
