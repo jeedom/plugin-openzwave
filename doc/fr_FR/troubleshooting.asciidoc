@@ -186,3 +186,54 @@ Certains modules doivent écouter régulièrement des messages du contrôleur co
 
 [TIP]
 La décharge d'une pile n'est pas linéaire, certain module vont montrer un grosse perte en pourcentage dans les premiers jours de mise en service, puis ne plus bouger durant des semaines pour ce vider rapidement une fois passé les 20%.
+
+
+=== Contrôleur est en cours d'initialisation
+
+Lorsque vous démarré le démon Z-Wave si vous essayé de lancer immédiatement une inclusion/exclusion vous risquez d'obtenir ce message:
+* "Le controleur est en cours d'initialisation veuillez réessayer dans quelques minutes"
+
+[TIP]
+Suite au démarrage du démon, le contrôleur passe sur l'ensemble des modules afin de refaire leur interview. Ce comportement est tout à fait normal en Openzwave.
+
+Si toute fois après plusieurs minutes (plus de 10 minutes) vous avez toujours ce message ce n'est plus normal.
+
+Il faut essayer les différentes étapes:
+
+* S'assurer que voyant de l'écran santé jeedom sont au vert.
+* S'assurer que la configuration du plugin est en ordre.
+* S'assurer que vous avez bien sélectionné le bon port de la clé ZWave.
+* S'assurer que votre configuration Réseau Jeedom est juste. (Attention si vous avez fait un Restore d’une installation DIY vers image officielle, le suffixe /jeedom ne dois pas y figurer)
+* Regarder le log du plugin afin de voir si une erreur n'est pas remontée.
+* Regarder la *Console* du plugin ZWave, afin de voir si une erreur n'est pas remontée.
+* Lancer le Demon en *Debug* regarder à nouveau la *Console* et les logs du plugin.
+* Redémarrer complètement Jeedom.
+* Il faut s'assurer que vous avez bien un contrôleur Z-Wave, les Razberry sont souvent confondue avec les EnOcean (erreur lors de la commande).
+
+Il faut maintenant débuter les tests hardwares:
+
+* Le Razberry est bien branché au port GPIO.
+* L'alimentation USB est suffisante.
+
+Si le problème persiste toujours, il faut réinitialiser le contrôleur:
+
+* Arrêter complément votre jeedom via le menu d'arrêt dans le profile utilisateur.
+* Débrancher l'alimentation.
+* Retirer le dongle USB ou le Razberry selon le cas, environ 5 minutes.
+* Rebrancher le tout et essayer à nouveau.
+
+=== Le contrôleur ne répond plus
+
+Plus aucune commande n'est transmise aux modules mais les retours d'états sont remontés vers jeedom.
+
+Il est possible que la queue de messages du contrôleur soit remplie.
+Voir l'écran Réseau Z-Wave si le nombre de messages en attente ne fait qu'augmenter.
+
+Il faut dans ce cas relancer le Demon Z-Wave.
+
+Si le problème persiste, il faut réinitialiser le contrôleur:
+
+* Arrêter complément votre jeedom via le menu d'arrêt dans le profile utilisateur.
+* Débrancher l'alimentation.
+* Retirer le dongle USB ou le Razberry selon le cas, environ 5 minutes.
+* Rebrancher le tout et essayer à nouveau.
