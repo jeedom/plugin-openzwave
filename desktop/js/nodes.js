@@ -971,110 +971,120 @@ var app_nodes = {
         node.find(".node-generic").html(genericDeviceClassDescription);
         node.find(".node-specific").html(specificDeviceClassDescription);
 
-        if (nodes[z].data.isListening.value) {
-            node.find(".node-sleep").removeClass("label-default");
-            node.find(".node-sleep").html('<i class="fa fa-plug text-success fa-lg"></i>');
-            node.find(".node-battery-span").hide();
-        }
-        else{
-            var battery_level = nodes[z].data.battery_level.value
-            var nodeCanSleep = nodes[z].data.can_wake_up.value;
-
-            if (battery_level != null) {
-                if (nodeCanSleep) {
-                    if (nodes[z].data.isAwake.value) {
-                        node.find(".node-sleep").html("{{Réveillé}}");
-                    }
-                    else {
-                        node.find(".node-sleep").html("{{Endormi}}");
-                    }
-                } else {
-                    node.find(".node-sleep").html("{{Endormi}}");
-                }
-                node.find(".node-battery").html(battery_level + ' %');
-                node.find(".node-battery-span").show();
-            }
-            else if (nodeCanSleep){
-                node.find(".node-sleep").html("---");
-                node.find(".node-battery-span").hide();
-            }
-        }
         var queryStageIndex = 0;
         var queryStageDescrition = "";
         switch (queryStage) {
             case "None":
-                queryStageDescrition = "{{Le processus de demande n'a pas encore commencé pour ce noeud}}";
+                queryStageDescrition = "{{Initialisation du processus de recherche de noeud}}";
                 queryStageIndex = 0;
                 break;
             case "ProtocolInfo":
-                queryStageDescrition = "{{Récupération des informations du protocole}}";
+                queryStageDescrition = "{{Récupérer des informations de protocole}}";
                 queryStageIndex = 1;
                 break;
             case "Probe":
-                queryStageDescrition = "{{Interrogation du module pour voir sil est en vie}}";
+                queryStageDescrition = "{{Ping le module pour voir s’il est réveillé}}";
                 queryStageIndex = 2;
                 break;
             case "WakeUp":
-                queryStageDescrition = "{{Début du processus de reveil du noeud si celui-ci dort}}";
+                queryStageDescrition = "{{Démarrer le processus de réveil}}";
                 queryStageIndex = 3;
                 break;
             case "ManufacturerSpecific1":
-                queryStageDescrition = "{{Récupération des paramètres constructeur du noeud}}";
+                queryStageDescrition = "{{Récupérer le nom du fabricant et de produits ids}}";
                 queryStageIndex = 4;
                 break;
             case "NodeInfo":
-                queryStageDescrition = "{{Récupération des informations sur les classes du noeud}}";
+                queryStageDescrition = "{{Récupérer les infos sur la prise en charge des classes de commandes supportées}}";
+                queryStageIndex = 5;
+                break;
+            case "NodePlusInfo":
+                queryStageDescrition = "{{Récupérer les infos ZWave+ sur la prise en charge des classes de commandes supportées}}";
                 queryStageIndex = 5;
                 break;
             case "SecurityReport":
-                queryStageDescrition = "{{Récupération des classes de sécurité du noeud}}";
+                queryStageDescrition = "{{Récupérer la liste des classes de commande qui nécessitent de la sécurité}}";
                 queryStageIndex = 6;
                 break;
             case "ManufacturerSpecific2":
-                queryStageDescrition = "{{Récupération des paramètres constructeur du noeud}}";
+                queryStageDescrition = "{{Récupérer le nom du fabricant et les identifiants de produits}}";
                 queryStageIndex = 7;
                 break;
             case "Versions":
-                queryStageDescrition = "{{Récupération des informations de version}}";
+                queryStageDescrition = "{{Récupérer des informations de version}}";
                 queryStageIndex = 8;
                 break;
             case "Instances":
-                queryStageDescrition = "{{Récupération des informations d'instance du noeud}}";
+                queryStageDescrition = "{{Récupérer des informations multi-instances de classe de commande}}";
                 queryStageIndex = 9;
                 break;
             case "Static":
-                queryStageDescrition = "{{Récupération des informations statistiques}}";
+                queryStageDescrition = "{{Récupérer des informations statiques}}";
                 queryStageIndex = 10;
                 break;
-            case "Probe1":
-                queryStageDescrition = "{{Intérrogation du module pour récupérer sa configuration}}";
+            case "CacheLoad":
+                queryStageDescrition = "{{Ping le module lors du redémarrage avec config cache de l’appareil}}";
                 queryStageIndex = 11;
                 break;
             case "Associations":
-                queryStageDescrition = "{{Récupération des informations d'associations}}";
+                queryStageDescrition = "{{Récupérer des informations sur les associations}}";
                 queryStageIndex = 12;
                 break;
             case "Neighbors":
-                queryStageDescrition = "{{Récupération de la liste des voisins}}";
+                queryStageDescrition = "{{Récupérer la liste des noeuds voisins}}";
                 queryStageIndex = 13;
                 break;
             case "Session":
-                queryStageDescrition = "{{Récupération des informations de sessions}}";
+                queryStageDescrition = "{{Récupérer des informations de session}}";
                 queryStageIndex = 14;
                 break;
             case "Dynamic":
-                queryStageDescrition = "{{Récupération des informations dynamique}}";
+                queryStageDescrition = "{{Récupérer des informations dynamiques}}";
                 queryStageIndex = 15;
                 break;
             case "Configuration":
-                queryStageDescrition = "{{Récupération des informations de configuration}}";
+                queryStageDescrition = "{{Récupérer des informations de paramètre configurable}}";
                 queryStageIndex = 16;
                 break;
             case "Complete":
-                queryStageDescrition = "{{Processus de demande d'information sur le noeud complet}}";
+                queryStageDescrition = "{{Processus de l’interview est terminée}}";
                 queryStageIndex = 17;
                 node.find(".node-queryStage").removeClass("label-default").addClass("label-success");
                 break;
+        }
+        if (queryStageIndex >2){
+            if (nodes[z].data.isListening.value) {
+                node.find(".node-sleep").removeClass("label-default");
+                node.find(".node-sleep").html('<i class="fa fa-plug text-success fa-lg"></i>');
+                node.find(".node-battery-span").hide();
+            }
+            else{
+                var battery_level = nodes[z].data.battery_level.value
+                var nodeCanSleep = nodes[z].data.can_wake_up.value;
+
+                if (battery_level != null) {
+                    if (nodeCanSleep) {
+                        if (nodes[z].data.isAwake.value) {
+                            node.find(".node-sleep").html("{{Réveillé}}");
+                        }
+                        else {
+                            node.find(".node-sleep").html("{{Endormi}}");
+                        }
+                    } else {
+                        node.find(".node-sleep").html("{{Endormi}}");
+                    }
+                    node.find(".node-battery").html(battery_level + ' %');
+                    node.find(".node-battery-span").show();
+                }
+                else if (nodeCanSleep){
+                    node.find(".node-sleep").html("---");
+                    node.find(".node-battery-span").hide();
+                }
+            }
+        }
+        else{
+            node.find(".node-sleep").html("---");
+            node.find(".node-battery-span").hide();
         }
         if (controller_id != -1) {
             var node_groups = nodes[z].groups;
