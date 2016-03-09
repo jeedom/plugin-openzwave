@@ -2063,12 +2063,10 @@ def get_assoc(node_id):
     return jsonify(config)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x85].Remove(<int:value>,<int:value2>)', methods=['GET'])
-def remove_assoc(node_id, value, value2):
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x85].Remove(<int:group_index>,<int:target_node_id>)', methods=['GET'])
+def remove_assoc(node_id, group_index, target_node_id):
     if _network_information.controller_is_busy:
-        return format_json_result(False, 'Controller is busy') 
-    group_index = value
-    target_node_id = value2
+        return format_json_result(False, 'Controller is busy')
     debug_print("remove_assoc to nodeId: %s in group %s with nodeId: %s" % (node_id, group_index, target_node_id,))
     if node_id in _network.nodes:
         _network.manager.removeAssociation(_network.home_id, node_id, group_index, target_node_id)
@@ -2077,15 +2075,37 @@ def remove_assoc(node_id, value, value2):
         return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x85].Add(<int:value>,<int:value2>)', methods=['GET'])
-def add_assoc(node_id, value, value2):
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x85].Add(<int:group_index>,<int:target_node_id>)', methods=['GET'])
+def add_assoc(node_id, group_index, target_node_id):
     if _network_information.controller_is_busy:
         return format_json_result(False, 'Controller is busy')   
-    group_index = value
-    target_node_id = value2
     debug_print("add_assoc to nodeId: %s in group %s with nodeId: %s" % (node_id, group_index, target_node_id,))
     if node_id in _network.nodes:
         _network.manager.addAssociation(_network.home_id, node_id, group_index, target_node_id)
+        return format_json_result()
+    else:
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
+
+
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].Associations[<int:group_index>].Remove(<int:target_node_id>,<int:target_node_instance>)', methods=['GET'])
+def remove_association(node_id, group_index, target_node_id, target_node_instance):
+    if _network_information.controller_is_busy:
+        return format_json_result(False, 'Controller is busy')
+    debug_print("remove_association to nodeId: %s in group %s with nodeId: %s instance %s" % (node_id, group_index, target_node_id, target_node_instance,))
+    if node_id in _network.nodes:
+        _network.manager.removeAssociation(_network.home_id, node_id, group_index, target_node_id, target_node_instance)
+        return format_json_result()
+    else:
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
+
+
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].Associations[<int:group_index>].Add(<int:target_node_id>,<int:target_node_instance>)', methods=['GET'])
+def add_association(node_id, group_index, target_node_id, target_node_instance):
+    if _network_information.controller_is_busy:
+        return format_json_result(False, 'Controller is busy')
+    debug_print("add_association to nodeId: %s in group %s with nodeId: %s instance %s" % (node_id, group_index, target_node_id, target_node_instance,))
+    if node_id in _network.nodes:
+        _network.manager.addAssociation(_network.home_id, node_id, group_index, target_node_id, target_node_instance)
         return format_json_result()
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
