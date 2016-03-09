@@ -478,15 +478,15 @@ var app_network = {
                         graph.removeNode(node.id);
                         //break;
                     }
-                    nodecolor='#7BCC7B';
+                    nodecolor='#7BCC7B'; //node-direct-link-color
                     if (node.data.generic!=1) {
-                        nodecolor='#00a2e8';
+                        nodecolor='#00a2e8'; //node-remote-control-color
                     }else if (node.data.neighbours.length < 1 && node.id != 1 && node.data.interview >= 13) {
-                        nodecolor='#d20606';
+                        nodecolor='#d20606'; //node-no-neighbourhood-color
                     } else if (node.data.neighbours.indexOf(1) == -1 && node.id != 1 && node.data.interview >= 13) {
-                        nodecolor='#E5E500';
+                        nodecolor='#E5E500'; //node-more-of-one-up-color
                     } else if (node.data.interview < 13) {
-                        nodecolor='#979797';
+                        nodecolor='#979797'; //node-interview-not-completed-color
                     }
                     var ui = Viva.Graph.svg('g'),
 
