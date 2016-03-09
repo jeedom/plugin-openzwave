@@ -31,7 +31,7 @@ openzwave ainsi que le mapping de commandes Jeedom.
 Lors d'une inclusion, il est conseillé que le module soit à proximité du contrôleur principal, soit à moins d'un mètre de la box.
 
 [TIP]
-Certains modules requièrent une inclusion en mode sécurisé, par exemple pour les serrures de porte. L’inclusion sécurisée doit être lancé via
+Certains modules requièrent une inclusion en mode sécurisé, par exemple pour les serrures de porte. L’inclusion sécurisée doit être lancée via
 l’onglet Actions de la Vue *Réseau Z-Wave*.
 image:../images/openzwave41.png[]
 
