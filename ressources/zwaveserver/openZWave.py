@@ -1511,7 +1511,11 @@ def serialize_neighbour_to_json(node_id):
         if is_none_or_empty(node_name):
             node_name = 'Unknown'
         json_result['data']['name'] = {'value': node_name}
-        json_result['data']['neighbours'] = {'value': list(my_node.neighbors), 'enabled': my_node.generic != 1}
+
+        neighbour_is_enabled = my_node.generic != 1
+        if my_node.generic == 8 and not my_node.is_listening_device:
+            neighbour_is_enabled = False
+        json_result['data']['neighbours'] = {'value': list(my_node.neighbors), 'enabled': neighbour_is_enabled}
         json_result['data']['isDead'] = {'value': my_node.is_failed}
         if _network.controller.node_id == node_id and my_node.basic == 1:
             json_result['data']['basicType'] = {'value': 2}
