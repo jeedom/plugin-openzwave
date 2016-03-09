@@ -1061,10 +1061,11 @@ var app_nodes = {
             else{
                 var battery_level = nodes[z].data.battery_level.value
                 var nodeCanSleep = nodes[z].data.can_wake_up.value;
-
+                node.find(".node-sleep").removeClass("label-success").addClass("label-default")
                 if (battery_level != null) {
                     if (nodeCanSleep) {
                         if (nodes[z].data.isAwake.value) {
+                            node.find(".node-sleep").removeClass("label-default").addClass("label-success")
                             node.find(".node-sleep").html("{{Réveillé}}");
                         }
                         else {
