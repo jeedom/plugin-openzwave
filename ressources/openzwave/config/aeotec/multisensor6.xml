@@ -46,7 +46,7 @@
 			3. The high byte is the part of integer, the low byte is the fractional part. 
 			</Help>
 		</Value>
-		<Value type="short" index="42" genre="config" label="Humidity Reporting Threshold" units="%" min="0" max="100" value="10" size="2">
+		<Value type="byte" index="42" genre="config" label="Humidity Reporting Threshold" units="%" min="0" max="100" value="10" size="1">
 			<Help>Threshold change in humidity to induce an automatic report. 
 			Note: 
 			The default value is 10, which means that if the current humidity gap is more than 10%, it will send out a humidity report. 
