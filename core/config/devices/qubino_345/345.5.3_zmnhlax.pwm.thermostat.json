@@ -136,7 +136,7 @@
 		}
 	},
 	{
-		"name": "Power",
+		"name": "Puissance",
 		"type": "info",
 		"subtype": "numeric",
 		"display": {

@@ -95,7 +95,7 @@
 		}
 	},
 	{
-		"name": "Voltage",
+		"name": "Tension",
 		"type": "info",
 		"subtype": "numeric",
 		"isVisible": 0,

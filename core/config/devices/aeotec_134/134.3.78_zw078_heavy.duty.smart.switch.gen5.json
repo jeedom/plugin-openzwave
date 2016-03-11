@@ -134,7 +134,7 @@
 		}
 	},
 	{
-		"name": "Courant",
+		"name": "Intensité",
 		"type": "info",
 		"subtype": "numeric",
 		"isVisible": 1,
