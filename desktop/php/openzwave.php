@@ -279,7 +279,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 <div class="col-sm-5">
   <form class="form-horizontal">
     <fieldset>
-      <legend><i class="fa fa-info-circle"></i>  {{Informations}}
+      <legend><i class="fa fa-info-circle"></i>{{Informations}}
        <i id="bt_autoDetectModule" class="fa fa-search expertModeVisible pull-right tooltips cursor" title="{{Detecter automatiquement le modele du module}}"></i>
        <i id="bt_displayZwaveData" title="{{Voir l'arbre Z-Wave}}" class="fa fa-tree expertModeVisible pull-right tooltips cursor"></i>
      </legend>
