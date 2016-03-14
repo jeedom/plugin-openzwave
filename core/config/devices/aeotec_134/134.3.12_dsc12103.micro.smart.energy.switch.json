@@ -1,10 +1,10 @@
 {
-	"name": "Micro Smart Switch (2nd Edition) (DSC18103)",
+	"name": "Micro Smart Energy Switch (DSC12103)",
 	"doc": "",
-	"type": "Prise",
-	"comlink": "",
+	"type": "Micromodule",
+	"comlink": "286-aeon-labs-micromodule-commutateur-et-compteur-d-energie-g2-1220000011014",
 	"remark": "",
-	"imglink": "aeotec.smartswitch2e",
+	"imglink": "aeotec.insert-switch",
 	"configuration": {
 		"conf_version": 1
 	},
@@ -16,15 +16,11 @@
 		"isHistorized": 0,
 		"unite": "",
 		"display": {
-			"generic_type": "LIGHT_STATE"
+			"generic_type": "ENERGY_STATE"
 		},
 		"configuration": {
 			"class": "0x25",
 			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
 		}
 	},
 	{
@@ -34,7 +30,7 @@
 		"isVisible": 1,
 		"value": "Etat",
 		"display": {
-			"generic_type": "LIGHT_ON"
+			"generic_type": "ENERGY_ON"
 		},
 		"configuration": {
 			"class": "0x25",
@@ -52,7 +48,7 @@
 		"isVisible": 1,
 		"value": "Etat",
 		"display": {
-			"generic_type": "LIGHT_OFF"
+			"generic_type": "ENERGY_OFF"
 		},
 		"configuration": {
 			"class": "0x25",
@@ -67,27 +63,33 @@
 		"name": "Puissance",
 		"type": "info",
 		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 1,
 		"unite": "W",
 		"display": {
 			"generic_type": "POWER"
 		},
-		"isVisible": 1,
 		"configuration": {
 			"class": "0x32",
-			"value": "data[8].val"
+			"instanceId": 0,
+			"value": "data[8].val",
+			"maxValue": 2500,
+			"minValue": 0
 		}
 	},
 	{
 		"name": "Consommation",
 		"type": "info",
 		"subtype": "numeric",
-		"unite": "kWh",
 		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "kWh",
 		"display": {
 			"generic_type": "CONSUMPTION"
 		},
 		"configuration": {
 			"class": "0x32",
+			"instanceId": 0,
 			"value": "data[0].val"
 		}
 	}]

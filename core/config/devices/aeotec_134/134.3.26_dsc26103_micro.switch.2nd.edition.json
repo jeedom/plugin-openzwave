@@ -1,10 +1,10 @@
 {
-	"name": "Micro Switch (2nd Edition) (DSC26103)",
+	"name": "Micro Switch (DSC26103)",
 	"doc": "",
-	"type": "Prise",
+	"type": "Micromodule",
 	"comlink": "",
 	"remark": "",
-	"imglink": "aeotec.smartswitch2e",
+	"imglink": "aeotec.insert-switch",
 	"configuration": {
 		"conf_version": 1
 	},
