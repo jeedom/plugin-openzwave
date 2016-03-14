@@ -306,21 +306,19 @@ class openzwave extends eqLogic {
 					foreach ($results as $node_id => $value) {
 						$batteryStatusDate = date('Y-m-d H:i:s');
 						$eqLogic = self::getEqLogicByLogicalIdAndServerId($node_id, $serverID);
-						if (is_object($eqLogic) && $eqLogic->getConfiguration('noBatterieCheck', 0) != 1) {
-							if ($value['updateTime'] !== null) {
-								$batteryStatusDate = date('Y-m-d H:i:s', $value['updateTime']);
-							}
-							if (is_file(dirname(__FILE__) . '/../config/devices/' . $eqLogic->getConfFilePath())) {
-								$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $eqLogic->getConfFilePath());
-								if (is_json($content)) {
-									$device = json_decode($content, true);
-									if (is_array($device) && isset($device['battery_type'])) {
-										$eqLogic->setConfiguration('battery_type', $device['battery_type']);
-									}
+						if ($value['updateTime'] !== null) {
+							$batteryStatusDate = date('Y-m-d H:i:s', $value['updateTime']);
+						}
+						if (is_file(dirname(__FILE__) . '/../config/devices/' . $eqLogic->getConfFilePath())) {
+							$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $eqLogic->getConfFilePath());
+							if (is_json($content)) {
+								$device = json_decode($content, true);
+								if (is_array($device) && isset($device['battery_type'])) {
+									$eqLogic->setConfiguration('battery_type', $device['battery_type']);
 								}
 							}
-							$eqLogic->batteryStatus($value['value'], $batteryStatusDate);
 						}
+						$eqLogic->batteryStatus($value['value'], $batteryStatusDate);
 					}
 				} catch (Exception $e) {
 
