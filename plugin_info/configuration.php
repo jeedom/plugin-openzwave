@@ -82,6 +82,12 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 					<input class="configKey form-control" data-l1key="port_server" placeholder="8083" />
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">{{Mettre à jour la configuration des modules automatiquement}}</label>
+				<div class="col-sm-2">
+					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_updateConf" checked/>
+				</div>
+			</div>
 		</fieldset>
 	</form>
 	<?php
@@ -110,6 +116,12 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 							<input class="slaveConfigKey form-control" data-l1key="port_server" placeholder="8083" />
 						</div>
 					</div>
+					<div class="form-group">
+				<label class="col-sm-4 control-label">{{Mettre à jour la configuration des modules automatiquement}}</label>
+				<div class="col-sm-2">
+					<input type="checkbox" class="slaveConfigKey bootstrapSwitch" data-l1key="auto_updateConf" checked/>
+				</div>
+			</div>
 				</fieldset>
 			</form>
 			<?php
