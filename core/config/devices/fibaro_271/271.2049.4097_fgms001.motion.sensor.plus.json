@@ -1,10 +1,10 @@
 {
-	"name": "FGMS-001 Motion Sensor ZWave+",
-	"doc": "fibaro.fgms001_-_Motion",
+	"name": "FGMS-001-ZW5 Motion Sensor ZWave+",
+	"doc": "fibaro.fgms001ZW5_-_Motion",
 	"type": "Multicapteurs",
-	"comlink": "2535-fibaro-detecteur-de-mouvement-multifonctions-z-wave-fgms-001-5902020528258",
+	"comlink": "3422-fibaro-detecteur-de-mouvement-multifonctions-z-wave-fgms-001-5902020528579",
 	"remark": "Par défaut possède une configuration très économique. Lire la documentation pour le configurer correctement. Faire les associations à jeedom pour les groupes 1, 4 et 5",
-	"imglink": "fibaro.fgms001",
+	"imglink": "fibaro.fgms001zw5",
 	"battery_type": "1x3V CR123A",
 	"configuration": {
 		"conf_version": 1
@@ -61,7 +61,7 @@
 		}
 	},
 	{
-		"name": "Intensité sismique",
+		"name": "Sismique",
 		"type": "info",
 		"subtype": "numeric",
 		"isVisible": 1,
