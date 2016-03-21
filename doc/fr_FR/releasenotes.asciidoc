@@ -1,0 +1,99 @@
+==  Release Notes
+
+.Version 2016-xx-xx
+
+* New Features
+
+** Ajout d'une route pour gérer les multi instances associations.
+** Ajout des Query Stage manquants.
+** Ajout de la validation de la sélection du Dongle USB au démarrage du démon.
+** Ajout de la validation et test du callback au démarrage du démon.
+
+* Improvements/Enhancements
+
+** Meilleure remonté de l'état des piles.
+** Conformité du résumé / santé pour les thermostats sur piles.
+** Meilleur détection de modules sur piles.
+** Optimisation du mode Debug pour le serveur REST.
+** Forcer une actualisation de l'état des interrupteurs et dimer suite à l'envoie d'une commande switch all.
+
+* Bug Fixes
+
+** Correction de la sauvegarde du fichier zwcfg.
+
+.Version 2016-03-01
+
+* New Features
+
+** Ajout du bouton Configuration via l'écran de gestion des équipements.
+** Ajout des nouveaux états de l'interview de module.
+** Modification de libellés dans les UI.
+
+* Improvements/Enhancements
+
+** Meilleur gestion des boutons Actions de modules.
+** Documentation Ajout de sections.
+** Optimisation du mécanisme de détection d'état du démon.
+** Mécanisme de protestation lors de la récupération de la description des paramètres s’il contient des caractères non valide.
+** Ne plus remonté les informations de l'état de la pile sur un module branché sur secteur.
+** Mise à jour de la documentation.
+
+* Bug Fixes
+
+** Documentation Corrections orthographiques et grammaticales.
+** Validation du contenue du fichier zwcfg avant de l'appliquer.
+** Correction de l'installation.
+
+.2016-02-12
+
+* Improvements/Enhancements
+
+** Pas d'alerte de nœud mort si celui-ci est désactivé.
+
+* Bug Fixes
+
+** Correction fil pilote fibaro retour d'état.
+** Correction d'un bug qui recréer les commandes lors de la mise à jour.
+
+.Version 2016.02.09
+
+* New Features
+
+** Ajout du push notification en case de node_event, permet la mise à place d’une cmd info en CC 0x20 pour récupérer des événement sur les nodes.
+** Ajout de la route ForceRefresh \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ForceRefresh()
+pouvant être utiliser dans les commandes.
+** Ajout du route SwitchAll \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)
+disponible via le contrôleur principal.
+** Ajout du route ToggleSwitch \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ToggleSwitch()
+pouvant être utiliser dans les commandes.
+** Ajout d’une push notification en cas de noeud présumé mort.
+** Ajout de la commande “refresh all parameters” dans l’onglet Paramètres.
+** Ajout de l’information du paramètre en attente d’être appliqué.
+** Ajout de notification réseau.
+** Ajout d’une légende dans le graph réseau.
+** Ajout de la fonction soigner réseau via la table de routage.
+** Suppression automatique de nœud fantôme en un seul click.
+** Gestion des actions sur nœud selon l’état du noeud et le type.
+** Gestion des actions réseau selon l’état du réseau.
+** Mise à jour de configuration de module automatique tous les nuits.
+
+* Improvements/Enhancements
+
+** Refactoring complet du code du serveur REST, optimisation de vitesse de démarrage, lisibilité, respect de convention de nommage.
+** Mise à l’équerre des logs.
+** Simplification de la gestion du refresh manuel 5min avec possibilité d’appliquer sur les nœuds sur piles.
+** Mise à jour de la librairie open-zwave en 1.4
+** Modification du test sanitaire pour réanimer les nœuds présumé mort plus facilement sans actions utilisateurs.
+** Utilisation de couleur vive de la table de routage et du graphe réseau.
+** Uniformisation des couleurs de la table de routage et du graphe réseau.
+** Optimisation des informations de la page de santé Z-Wave selon l’état de l’interview.
+** Meilleur gestion des paramètres en lecteur seul ou en écriture seul dans l’onglet Paramètres.
+** Amélioration des warning sur les thermostats sur piles.
+
+* Bug Fixes
+
+** Température convertie en Celsius retourne l’unité C à la place de F.
+** Correction du rafraichissement des valeurs au démarrage.
+** Correction du Refresh par valeur dans l’onglet Valeurs.
+** Correction des noms génériques des modules.
+** Correction du ping sur les nœud en Timeout lors du test sanitaire.
