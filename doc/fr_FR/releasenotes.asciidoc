@@ -1,6 +1,6 @@
 ==  Release Notes
 
-.Version 2016-xx-xx
+.Version (Beta) 2016-xx-xx
 
 * New Features
 
