@@ -8,6 +8,7 @@
 ** Ajout des Query Stage manquants.
 ** Ajout de la validation de la sélection du Dongle USB au démarrage du démon.
 ** Ajout de la validation et test du callback au démarrage du démon.
+** Ajout d'une option pour désactiver la mise à jour automatique des config de module.
 
 * Improvements/Enhancements
 
