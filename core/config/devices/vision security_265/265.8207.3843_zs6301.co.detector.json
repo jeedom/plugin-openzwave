@@ -3,8 +3,9 @@
 	"doc": "",
 	"type": "CO",
 	"comlink": "2159-vision-security-detecteur-de-monoxyde-de-carbone-z-wave",
-	"remark": "",
+	"remark": "Ce module peut dans certaine circonstance rester éveillé lors de l’interview. Il faut enlever et remettre la pile pour remédier à la situation.",
 	"imglink": "vision.zs6301",
+	"ignore": 0,
 	"battery_type": "1x3V CR123A",
 	"configuration": {
 		"conf_version": 1

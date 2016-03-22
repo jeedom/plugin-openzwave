@@ -5,6 +5,7 @@
 	"comlink": "2889-mcohome-interrupteur-tactile-en-verre-z-wave-2-charges-blanc",
 	"remark": "",
 	"imglink": "mco.mhs412",
+	"ignore": 1,
 	"configuration": {
 		"conf_version": 1
 	},

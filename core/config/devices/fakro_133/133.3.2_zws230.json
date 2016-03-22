@@ -5,6 +5,7 @@
 	"comlink": "2362-fakro-moteur-pour-fenetre-de-toit-z-wave-zws230-5900988500378",
 	"remark": "",
 	"imglink": "fakro.zws230",
+	"ignore": 1,
 	"configuration": {
 		"conf_version": 1
 	},
