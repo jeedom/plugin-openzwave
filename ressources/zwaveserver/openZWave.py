@@ -2047,6 +2047,23 @@ def refresh_assoc(node_id):
         return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
 
 
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].findAssociations()', methods=['GET'])
+def find_associations(node_id):
+    debug_print("findAssociations for nodeId: %s" % (node_id,))
+    json_result = {}
+    for other_node_id in list(_network.nodes):
+        other_node = _network.nodes[other_node_id]
+        if other_node.groups:
+            for group in list(other_node.groups):
+                if node_id in other_node.groups[group].associations:
+                    value = {'index': other_node.groups[group].index, 'label': other_node.groups[group].label}
+                    try:
+                        json_result[other_node_id].append(value)
+                    except KeyError:
+                        json_result[other_node_id] = [value]
+    return jsonify(json_result)
+
+
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[133].data', methods=['GET'])
 def get_assoc(node_id):
     debug_print("get_assoc for nodeId: %s" % (node_id,))
