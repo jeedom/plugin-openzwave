@@ -28,7 +28,7 @@
 	</CommandClass>
   
 	<CommandClass id="112">
-		<Value type="list" index="25" genre="config" label="Indicate a location for IR code  learning and start learning" size="1" min="0" max="22" value="0" write_only="true">
+		<Value type="list" index="25" genre="config" label="Indicate a location for IR code learning and start learning" size="1" min="0" max="22" value="0" write_only="true">
 			<Help>
 				In case none of the code on the code list works for the targeted air conditioner, user can use IR code learning function.
 				See manual at section &quot;IR Code Learning&quot; for a description of the procedure. Value 0-22
