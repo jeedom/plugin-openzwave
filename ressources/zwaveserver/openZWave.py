@@ -1447,7 +1447,7 @@ def concatenate_list(list_values, separator=';'):
             return ""
         else:
             if isinstance(list_values, set):
-                return separator.join(str(s) for s in list_values)
+                return separator.join(str(s) for s in sorted(list_values))
             return list_values
     except Exception as error:
         add_log_entry(str(error), "error")
@@ -2286,23 +2286,24 @@ def get_config(node_id):
     if node_id in _network.nodes:
         for val in _network.nodes[node_id].values:
             list_values = []
-            if _network.nodes[node_id].values[val].command_class == COMMAND_CLASS_CONFIGURATION:
+            my_value = _network.nodes[node_id].values[val]
+            if my_value.command_class == COMMAND_CLASS_CONFIGURATION:
                 config[_network.nodes[node_id].values[val].index] = {}
-                if _network.nodes[node_id].values[val].type == "List":
-                    result_data = _network.manager.getValueListSelectionNum(_network.nodes[node_id].values[val].value_id)
-                    values = _network.nodes[node_id].values[val].data_items
+                if my_value.type == "List" and not my_value.is_read_only:
+                    result_data = _network.manager.getValueListSelectionNum(my_value.value_id)
+                    values = my_value.data_items
                     for index_item, value_item in enumerate(values):
                         list_values.append(value_item)
-                        if value_item == _network.nodes[node_id].values[val].data_as_string:
+                        if value_item == my_value.data_as_string:
                             result_data = index_item
-                elif _network.nodes[node_id].values[val].type == "Bool" and not _network.nodes[node_id].values[val].data:
+                elif my_value.type == "Bool" and not my_value.data:
                     result_data = 0
-                elif _network.nodes[node_id].values[val].type == "Bool" and _network.nodes[node_id].values[val].data:
+                elif my_value.type == "Bool" and my_value.data:
                     result_data = 1
                 else:
-                    result_data = _network.nodes[node_id].values[val].data
-                config[_network.nodes[node_id].values[val].index]['val'] = {'value2': _network.nodes[node_id].values[val].data, 'value': result_data, 'value3': _network.nodes[node_id].values[val].label, 'value4': list_values, 'updateTime': int(timestamp), 'invalidateTime': 0}
-                config[_network.nodes[node_id].values[val].index]['size'] = {'value': len(str(result_data))}
+                    result_data = my_value.data
+                config[my_value.index]['val'] = {'value2': my_value.data, 'value': result_data, 'value3': my_value.label, 'value4': sorted(list_values), 'updateTime': int(timestamp), 'invalidateTime': 0}
+                # config[my_value.index]['size'] = {'value': 1}
     else:
         add_log_entry('This network does not contain any node with the id %s' % (node_id,), 'warning')
     return jsonify(config)
