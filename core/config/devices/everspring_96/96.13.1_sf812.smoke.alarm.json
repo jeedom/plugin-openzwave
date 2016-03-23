@@ -5,6 +5,7 @@
 	"comlink": "848-everspring-detecteur-de-fumee-z-wave-sf812-3700946500219",
 	"remark": "",
 	"imglink": "everspring.sf812",
+	"ignore": 1,
 	"battery_type": "1x9V",
 	"configuration": {
 		"conf_version": 1
