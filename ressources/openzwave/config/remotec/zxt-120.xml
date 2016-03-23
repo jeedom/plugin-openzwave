@@ -35,26 +35,26 @@
 			</Help>
 			<Item label="OFF" value="0" />
 			<Item label="ON (resume)" value="1" />
-			<Item label="19 C cool" value="2" />
-			<Item label="20 C cool" value="3" />
-			<Item label="21 C cool" value="4" />
-			<Item label="22 C cool" value="5" />
-			<Item label="23 C cool" value="6" />
-			<Item label="24 C cool" value="7" />
-			<Item label="25 C cool" value="8" />
-			<Item label="26 C cool" value="9" />
-			<Item label="27 C cool" value="10" />
-			<Item label="28 C cool" value="11" />
-			<Item label="19 C heat" value="12" />
-			<Item label="20 C heat" value="13" />
-			<Item label="21 C heat" value="14" />
-			<Item label="22 C heat" value="15" />
-			<Item label="23 C heat" value="16" />
-			<Item label="24 C heat" value="17" />
-			<Item label="25 C heat" value="18" />
-			<Item label="26 C heat" value="19" />
-			<Item label="27 C heat" value="20" />
-			<Item label="28 C heat" value="21" />
+			<Item label="cool 19 C" value="2" />
+			<Item label="cool 20 C" value="3" />
+			<Item label="cool 21 C" value="4" />
+			<Item label="cool 22 C" value="5" />
+			<Item label="cool 23 C" value="6" />
+			<Item label="cool 24 C" value="7" />
+			<Item label="cool 25 C" value="8" />
+			<Item label="cool 26 C" value="9" />
+			<Item label="cool 27 C" value="10" />
+			<Item label="cool 28 C" value="11" />
+			<Item label="heat 19 C" value="12" />
+			<Item label="heat 20 C" value="13" />
+			<Item label="heat 21 C" value="14" />
+			<Item label="heat 22 C" value="15" />
+			<Item label="heat 23 C" value="16" />
+			<Item label="heat 24 C" value="17" />
+			<Item label="heat 25 C" value="18" />
+			<Item label="heat 26 C" value="19" />
+			<Item label="heat 27 C" value="20" />
+			<Item label="heat 28 C" value="21" />
 		</Value>
 		<Value type="list" index="26" genre="config" label="Learning status register" size="1" read_only="true">
 			<Help>Note: The status value 0x01 and 0x04 will be reset to 0 when the ZXT-120 receive a get command to this parameter.
@@ -103,15 +103,15 @@
 			</Help>
 			<Item label="0 C" value="0" />
 			<Item label="1 C" value="1" />
-			<Item label="2 C cool" value="2" />
-			<Item label="3 C cool" value="3" />
-			<Item label="4 C cool" value="4" />
-			<Item label="5 C cool" value="5" />
-			<Item label="-1 C cool" value="255" />
-			<Item label="-2 C cool" value="254" />
-			<Item label="-3 C cool" value="253" />
-			<Item label="-4 C cool" value="252" />
-			<Item label="-5 C cool" value="251" />
+			<Item label="2 C" value="2" />
+			<Item label="3 C" value="3" />
+			<Item label="4 C" value="4" />
+			<Item label="5 C" value="5" />
+			<Item label="-1 C" value="255" />
+			<Item label="-2 C" value="254" />
+			<Item label="-3 C" value="253" />
+			<Item label="-4 C" value="252" />
+			<Item label="-5 C" value="251" />
 		</Value>
 	</CommandClass>
 
