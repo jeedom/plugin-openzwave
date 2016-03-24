@@ -9,6 +9,8 @@
 ** Ajout de la validation de la sélection du Dongle USB au démarrage du démon.
 ** Ajout de la validation et test du callback au démarrage du démon.
 ** Ajout d'une option pour désactiver la mise à jour automatique des config de module.
+** Ajout d'une route pour modifier à l'éxécution les trace de log du serveur REST. Note: aucun effect sur le niveau ozw. /http://ip_jeedom:8083/ZWaveAPI/Run/ChangeLogLevel(level) level => 40:Error, 20: Debug 10 Info
+
 
 * Improvements/Enhancements
 
