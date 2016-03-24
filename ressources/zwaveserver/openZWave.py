@@ -3711,7 +3711,24 @@ def manually_delete_backup(backup_name):
 @app.route('/ZWaveAPI/Run/IsAlive()', methods=['GET'])
 def rest_is_alive():    
     return format_json_result()
-    
+
+
+@app.route('/ZWaveAPI/Run/ChangeLogLevel(<int:level>)', methods=['GET'])
+def rest_change_log_level(level):
+    # Changing REST Logging Level, not affect ozw
+
+    global _log_level
+    if level == 40:
+        _log_level = 'Error'
+    elif level == 20:
+        _log_level = 'Debug'
+    elif level == 10:
+        _log_level = 'Info'
+    else:
+        _log_level = 'Notset'
+    return format_json_result(success=True, detail=('Log level is set: %s' % (_log_level,)), log_level='info', code=0)
+
+
 if __name__ == '__main__':
     pid = str(os.getpid())
     file(_pid_file, 'w').write("%s\n" % pid)
