@@ -96,7 +96,7 @@ var app_health = {
       if(nodes[i].data == undefined){
         continue;
       }
-      if(isset(eqLogic_human_name[$('#sel_zwaveHealthServerId').value()+':'+i])){
+      if(typeof eqLogic_human_name !== 'undefined' && isset(eqLogic_human_name[$('#sel_zwaveHealthServerId').value()+':'+i])){
         var name = '<span class="nodeConfiguration cursor" data-node-id="'+i+'" data-server-id="'+$("#sel_zwaveHealthServerId").value()+'">'+eqLogic_human_name[$('#sel_zwaveHealthServerId').value()+':'+i]+'</span>';
       }else if(nodes[i].data.description.name != ''){
         var name = '<span class="nodeConfiguration cursor" data-node-id="'+i+'" data-server-id="'+$("#sel_zwaveHealthServerId").value()+'"><span  class="label label-primary" style="font-size : 1em;">'+nodes[i].data.description.location+'</span> '+nodes[i].data.description.name+'</span>';
