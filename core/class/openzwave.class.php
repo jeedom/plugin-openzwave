@@ -687,12 +687,6 @@ class openzwave extends eqLogic {
 				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].commandClasses[0x70].Set(' . $key . ',' . $value . ',1)', $this->getConfiguration('serverID', 1));
 			}
 		}
-		if (isset($device['recommended']['groups'])) {
-			$groups = $device['recommended']['params'];
-			foreach ($groups as $key => $value) {
-				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].commandClasses[0x70].Set(' . $key . ',' . $value . ',1)', $this->getConfiguration('serverID', 1));
-			}
-		}
 	}
 
 	public function getImgFilePath() {
