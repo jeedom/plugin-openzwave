@@ -12,7 +12,7 @@ echo "Lancement de l'installation/mise à jour des dépendances openzwave"
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ARCH=`uname -m`
 PYTHON_OPENZWAVE_VERSION=9ed302eec778d1c6bb3395a368e34fc33a01cce3 # 0.3.0b8
-OPENZWAVE_VERSION=1c2511bb46d935864f0a6ff19fd804028b7beab3 # 1.4.8
+OPENZWAVE_VERSION=5c7ac3329a4b18c644bd34a70454c102a3fdb0ef # 1.4.78
 
 function apt_install {
   sudo apt-get -y install "$@"
