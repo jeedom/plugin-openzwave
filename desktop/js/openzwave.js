@@ -149,6 +149,36 @@ function printEqLogic(_eqLogic){
             }else{
                 $('#bt_deviceDocumentation').hide();
             }
+			if(isset(data.result.recommended) && data.result.recommended != ''){
+               $('#bt_deviceRecommended').show();
+			   $('#bt_deviceRecommended').on('click', function () {
+				bootbox.confirm('{{Voulez-vous appliquer la configuration recommandée par l\'équipe Jeedom (paramètre, wakeup, refresh, associations ...) }}', function (result) {
+					if (result) {
+						$.ajax({// fonction permettant de faire de l'ajax
+						type: "POST", // methode de transmission des données au fichier php
+						url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+						data: {
+							action: "applyRecommended",
+							id: _eqLogic.id,
+						},
+						dataType: 'json',
+						error: function (request, status, error) {
+							handleAjaxError(request, status, error);
+						},
+						success: function (data) { // si l'appel a bien fonctionné
+						if (data.state != 'ok') {
+							$('#div_alert').showAlert({message: data.result, level: 'danger'});
+							return;
+						}
+						$('#div_alert').showAlert({message: '{{Configuration appliquée}}', level: 'success'});
+						}
+						});
+					}
+				});
+			});
+            }else{
+                $('#bt_deviceRecommended').hide();
+            }
             modifyWithoutSave = false;
         }
     });

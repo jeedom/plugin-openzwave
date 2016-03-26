@@ -668,6 +668,32 @@ class openzwave extends eqLogic {
 		}
 		return false;
 	}
+	
+	public function applyRecommended() {
+		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
+			return;
+		}
+		$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath());
+		if (!is_json($content)) {
+			return;
+		}
+		$device = json_decode($content, true);
+		if (!is_array($device) || !isset($device['recommended'])) {
+			return true;
+		}
+		if (isset($device['recommended']['params'])) {
+			$params = $device['recommended']['params'];
+			foreach ($params as $key => $value) {
+				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].commandClasses[0x70].Set(' . $key . ',' . $value . ',1)', $this->getConfiguration('serverID', 1));
+			}
+		}
+		if (isset($device['recommended']['groups'])) {
+			$groups = $device['recommended']['params'];
+			foreach ($groups as $key => $value) {
+				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].commandClasses[0x70].Set(' . $key . ',' . $value . ',1)', $this->getConfiguration('serverID', 1));
+			}
+		}
+	}
 
 	public function getImgFilePath() {
 		$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');

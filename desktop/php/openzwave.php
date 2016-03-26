@@ -307,6 +307,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
       <a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fa fa-wrench"></i> {{Configuration}}</a>
       <a class="btn btn-info" id="bt_deviceAssistant" title='{{Assistant de configuration spécifique}}' style="display:none;"><i class="fa fa-question-circle"></i> {{Assistant}}</a>
       <a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank" style="display:none;"><i class="fa fa-book"></i> {{Documentation}}</a>
+	  <a class="btn btn-warning" id="bt_deviceRecommended" title='{{Configuration recommandé}}' style="display:none;"><i class="fa fa-gears"></i> {{Assistant paramétrage}}</a>
     </div>
   </div>
   <center>
