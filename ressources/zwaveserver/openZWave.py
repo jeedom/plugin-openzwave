@@ -3184,7 +3184,39 @@ def ghost_killer(node_id):
     except Exception, exception:
         return format_json_result(False, str(exception), 'error')
     finally:
-        start_network()            
+        start_network()
+
+
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetPendingChanges()', methods=['GET'])
+def get_pending_changes(node_id):
+    try:
+        if node_id in _network.nodes:
+            pending_changes = 0
+            my_node = _network.nodes[node_id]
+            # find pending config and system
+            for val in my_node.get_values():
+                my_value = my_node.values[val]
+                if my_value.command_class is None:
+                    continue
+                if my_value.is_write_only:
+                    continue
+                if my_value.is_read_only:
+                    continue
+                pending_state = None
+                if hasattr(my_value, 'pendingConfiguration'):
+                    if my_value.pendingConfiguration is not None:
+                        pending_state = my_value.pendingConfiguration.state
+                if pending_state is None or pending_state == 1:
+                    continue
+                pending_changes += 1
+            if pending_changes == 0:
+                return format_json_result()
+            return format_json_result(False, str(pending_changes))
+        else:
+            return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
+    except Exception, exception:
+        return format_json_result(False, str(exception), 'error')
+
 
 """
 controllers routes
