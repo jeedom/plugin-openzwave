@@ -33,8 +33,8 @@
     <Value type="byte" size="2" genre="config" instance="1" index="8" label="Time of a dimming step at manual control" min="0" max="255" units="sec" value="5">
       <Help>Available settings: 0-255 (0s - 2,55s) Default setting: 1</Help>
     </Value>
-    <Value type="list" genre="config" instance="1" index="9" label="Saving state before power faillure" size="1" value="1">
-      <Help>Saving state before power faillure. Default 1.</Help>
+    <Value type="list" genre="config" instance="1" index="9" label="Saving state before power failure" size="1" value="1">
+      <Help>Saving state before power failure. Default 1.</Help>
       <Item label="State NOT saved at power failure, all outputs are set to OFF upon power restore" value="0"/>
       <Item label="State saved at power failure, all outputs are set to previous state upon power restore" value="1"/>
     </Value>
