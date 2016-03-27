@@ -67,6 +67,18 @@
 			<Item label="Smoke ACTIVE, tamper ACTIVE" value="3" />
 		</Value>
 
+		<Value type="byte" genre="config" instance="1" index="14" label="Associations in Z-Wave network security mode" min="0" max="15" value="0" size="1">
+			<Help>This parameter defines how commands are sent in specified association groups: as secure or non-secure. Parameter is active only in Z-Wave network security mode. It doesnt apply to 1st Lifeline group.
+				Available settings: 0 - 15
+				0 - all groups sent as non-secure
+				1 - 2nd group sent as secure
+				2 - 3rd group sent as secure
+				4 - 4th group sent as secure
+				8 - 5th group sent as secure
+				Parameter values may be combined, e.g. 1+2=3 means that 2nd and 3rd group are sent as secure.
+				Default setting: 15 (all groups sent as secure)</Help>
+		</Value>
+
 		<Value type="short" genre="config" instance="1" index="20" label="Temperature report interval"  value="1" min="0" max="8640" >
 			<Help>Time interval between consecutive temperature reports. Report is sent when new temperature value is different from the one previously reported - according to the set hysteresis (parameter 21). Available settings: 0,1-8640 (multiply by 10 seconds) [10s-24h]. Default setting: 1 (10s)</Help>
 		</Value>
