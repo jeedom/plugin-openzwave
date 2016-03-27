@@ -79,7 +79,7 @@
 	  Default setting: 240 (240s. - 4 minutes)</Help>      
     </Value>
 	
-	<Value type="list" genre="config" instance="1" index="29" label="Forced Roller Shutter calibration" value="0" size="1">
+	<Value type="list" genre="config" instance="1" index="29" label="Forced Roller Shutter calibration" value="0" size="1" write_only="true">
       <Help>By modifying the parameters setting from 0 to 1 a Roller Shutter enters the calibration mode. The parameter relevant only if a Roller Shutter is set to work in positioning mode (parameter 10 set to 1, 2 or 4).</Help>
 	  <Item label="Default" value="0"/>
       <Item label="Start calibration process" value="1"/>	  
