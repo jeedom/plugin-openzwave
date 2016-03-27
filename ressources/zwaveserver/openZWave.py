@@ -472,7 +472,57 @@ class PendingConfiguration(object):
         # the parameter have be set successfully
         return 1
 
-            
+
+class PendingAssociation(object):
+
+    def __init__(self, pending_added, pending_removed, timeout):
+        self._startTime = int(time.time())
+        self._pending_added = pending_added
+        self._pending_removed = pending_removed
+        self._timeOut = timeout
+        self._associations = None
+
+    @property
+    def pending_added(self):
+        return self._pending_added
+
+    @pending_added.setter
+    def pending_added(self, value):
+        self._pending_added = value
+        self._pending_removed = None
+
+    @property
+    def pending_removed(self):
+        return self._pending_removed
+
+    @pending_removed.setter
+    def pending_removed(self, value):
+        self._pending_removed = value
+        self._pending_added = None
+
+    @property
+    def associations(self):
+        return self._associations
+
+    @associations.setter
+    def associations(self, value):
+        self._associations = value
+
+    @property
+    def state(self):
+        if self._associations is None:
+            # is pending
+            return 3
+        if self._pending_added is not None and self._pending_added in self._associations:
+            # the association have be added successfully
+            return 1
+        if self._pending_removed is not None and not (self._pending_removed in self._associations):
+            # the association have be removed successfully
+            return 1
+        # the association reject
+        return 2
+
+
 class NodeNotification(object):
     
     def __init__(self, code, wake_up_time=None):
@@ -1277,6 +1327,7 @@ def node_group_changed(network, node):
     validate_association_groups(node.node_id)
 
 
+
 def get_wake_up_interval(node_id):
     interval = get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval', False)
     if interval is not None:
@@ -1549,6 +1600,12 @@ def validate_association_groups(node_id):
                         debug_print("Remove association for nodeId: %s index %s with not exist target: %s" % (node_id, group_index, target_node_id,))
                         _network.manager.removeAssociation(_network.home_id, node_id, group_index, target_node_id)
                         fake_found = True
+            if hasattr(my_node, 'pendingAssociations'):
+                for index_group in list(my_node.pendingAssociations):
+                    pending_association = my_node.pendingAssociations[index_group]
+                    if pending_association is not None:
+                        pending_association.associations = my_node.groups[index_group].associations
+
     return fake_found
 
 
@@ -2086,6 +2143,12 @@ def remove_assoc(node_id, group_index, target_node_id):
         return format_json_result(False, 'Controller is busy')
     debug_print("remove_assoc to nodeId: %s in group %s with nodeId: %s" % (node_id, group_index, target_node_id,))
     if node_id in _network.nodes:
+        my_node = _network.nodes[node_id]
+        if hasattr(my_node, 'pendingAssociations'):
+            pass
+        else:
+            my_node.pendingAssociations = dict()
+        my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = None, pending_removed = target_node_id, timeout = 0)
         _network.manager.removeAssociation(_network.home_id, node_id, group_index, target_node_id)
         return format_json_result()
     else:
@@ -2098,7 +2161,14 @@ def add_assoc(node_id, group_index, target_node_id):
         return format_json_result(False, 'Controller is busy')   
     debug_print("add_assoc to nodeId: %s in group %s with nodeId: %s" % (node_id, group_index, target_node_id,))
     if node_id in _network.nodes:
+        my_node = _network.nodes[node_id]
+        if hasattr(my_node, 'pendingAssociations'):
+            pass
+        else:
+            my_node.pendingAssociations = dict()
+        my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = target_node_id, pending_removed = None, timeout = 0)
         _network.manager.addAssociation(_network.home_id, node_id, group_index, target_node_id)
+
         return format_json_result()
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
@@ -2110,6 +2180,12 @@ def remove_association(node_id, group_index, target_node_id, target_node_instanc
         return format_json_result(False, 'Controller is busy')
     debug_print("remove_association to nodeId: %s in group %s with nodeId: %s instance %s" % (node_id, group_index, target_node_id, target_node_instance,))
     if node_id in _network.nodes:
+        my_node = _network.nodes[node_id]
+        if hasattr(my_node, 'pendingAssociations'):
+            pass
+        else:
+            my_node.pendingAssociations = dict()
+        my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = None, pending_removed = target_node_id, timeout = 0)
         _network.manager.removeAssociation(_network.home_id, node_id, group_index, target_node_id, target_node_instance)
         return format_json_result()
     else:
@@ -2122,6 +2198,12 @@ def add_association(node_id, group_index, target_node_id, target_node_instance):
         return format_json_result(False, 'Controller is busy')
     debug_print("add_association to nodeId: %s in group %s with nodeId: %s instance %s" % (node_id, group_index, target_node_id, target_node_instance,))
     if node_id in _network.nodes:
+        my_node = _network.nodes[node_id]
+        if hasattr(my_node, 'pendingAssociations'):
+            pass
+        else:
+            my_node.pendingAssociations = dict()
+        my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = target_node_id, pending_removed = None, timeout = 0)
         _network.manager.addAssociation(_network.home_id, node_id, group_index, target_node_id, target_node_instance)
         return format_json_result()
     else:
@@ -3209,6 +3291,16 @@ def get_pending_changes(node_id):
                 if pending_state is None or pending_state == 1:
                     continue
                 pending_changes += 1
+
+            if hasattr(my_node, 'pendingAssociations'):
+                for index_group in list(my_node.pendingAssociations):
+                    pending_association = my_node.pendingAssociations[index_group]
+                    pending_state = None
+                    if pending_association is not None:
+                        pending_state = pending_association.state
+                    if pending_state is None or pending_state == 1:
+                        continue
+                    pending_changes += 1
             if pending_changes == 0:
                 return format_json_result()
             return format_json_result(False, str(pending_changes))
