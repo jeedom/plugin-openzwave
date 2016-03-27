@@ -4,7 +4,7 @@
   <!-- Configuration -->
   <CommandClass id="112">
     <Value type="list" genre="config" instance="1" index="1" label="Enable/Disable ALL ON/OFF" value="255" size="1">
-      <Help>Activate/Deactive ALL ON/OFF</Help>
+      <Help>Enable/Disable ALL ON/OFF</Help>
       <Item label="ALL ON disabled/ ALL OFF disabled" value="0" />
       <Item label="ALL ON disabled/ ALL OFF active" value="1" />
       <Item label="ALL ON active / ALL OFF disabled" value="2" />
@@ -53,7 +53,7 @@
     </Value>
     
     <Value type="list" genre="config" instance="1" index="15" label="Dimmer/Roller shutter control" value="0" size="1">
-      <Help>Enable/Disable opoeration of dimmer or roller shutter devices associated to group 1.
+      <Help>Enable/Disable operation of dimmer or roller shutter devices associated to group 1.
         Available only when using mono-stable inputs (buttons) - Hold button 1 or double-tap for operation (only mono-stable input (button)). Default setting: 0</Help>
       <Item label="Disable Dimmer/Roller shutter control" value="0"/>
       <Item label="Enable Dimmer/Roller shutter control" value="1"/>

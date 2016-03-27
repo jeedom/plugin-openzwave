@@ -5,7 +5,7 @@
   <!-- Configuration -->
   <CommandClass id="112">
     <Value type="list" genre="config" instance="1" index="1" label="Enable/Disable ALL ON/OFF" size="1" value="255">
-      <Help>Activate/Deactive ALL ON/OFF. Default 255.</Help>
+      <Help>Enable/Disable ALL ON/OFF. Default 255.</Help>
       <Item label="ALL ON active / ALL OFF active" value="255" />
       <Item label="ALL ON disabled/ ALL OFF disabled" value="0" />
       <Item label="ALL ON disabled/ ALL OFF active" value="1" />
