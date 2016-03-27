@@ -136,7 +136,7 @@
       <Group index="2" max_associations="5" label="Input 2"/>
       <Group index="3" max_associations="5" label="Input 3"/>
       <Group index="4" max_associations="5" label="Input 4"/>
-      <Group index="5" max_associations="1" label="Controller Updates" auto="true"/>
+      <Group index="5" max_associations="1" label="Lifeline" auto="true"/>
     </Associations>
   </CommandClass>
 
