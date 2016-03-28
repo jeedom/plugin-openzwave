@@ -1,0 +1,93 @@
+{
+	"name": "HAN02",
+	"doc": "",
+	"type": "Ouverture",
+	"comlink": "",
+	"remark": "",
+	"imglink": "everspring.han02",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"class": "0x30",
+			"instanceId": 0,
+			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "OPENING"
+		},
+		"template": {
+			"dashboard": "door",
+			"mobile": "door"
+		}
+	},
+	{
+		"name": "Etat basic",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"class": "0x20",
+			"instanceId": 0,
+			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "OPENING"
+		},
+		"template": {
+			"dashboard": "door",
+			"mobile": "door"
+		}
+	},
+		{
+			"name": "Etat2",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 1,
+			"isHistorized": 1,
+			"configuration": {
+				"class": "0x30",
+				"instanceId": 1,
+				"value": "data[0].val"
+			},
+			"display": {
+				"invertBinary": "1",
+				"generic_type": "OPENING"
+			},
+			"template": {
+				"dashboard": "door",
+				"mobile": "door"
+			}
+		},
+		{
+			"name": "Etat2 basic",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 1,
+			"isHistorized": 1,
+			"configuration": {
+				"class": "0x20",
+				"instanceId": 1,
+				"value": "data[0].val"
+			},
+			"display": {
+				"invertBinary": "1",
+				"generic_type": "OPENING"
+			},
+			"template": {
+				"dashboard": "door",
+				"mobile": "door"
+			}
+		}
+	]
+
+}
