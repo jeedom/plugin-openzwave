@@ -16,6 +16,7 @@
         1 – 127 : delay 1 - 127 second to Off
       </Help>
     </Value>
+  </CommandClass>
 
   <!-- Basic set as report -->
   <CommandClass id="32" setasreport="true"/>
