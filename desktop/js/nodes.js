@@ -105,12 +105,34 @@ var app_nodes = {
         $("#sendNodeInformation").off("click").on("click", function () {
             app_nodes.send_node_information(app_nodes.selected_node);
         });
+
         $("#regenerateNodeCfgFile").off("click").on("click", function () {
-            bootbox.confirm("{{Etes-vous sûr ? Cela va redémarrer votre réseau}}", function (result) {
-                if (result) {
-                    app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node);
+        bootbox.dialog({
+            message: "{{Désirez-vous lancer, la régénération, pour tous les modules identiques à celui-ci  (marque et modèle) ou seulement pour ce module ?}}",
+            title: "{{Attention, cette action entraîne un redémarrage de votre réseau.}}",
+            buttons: {
+                success: {
+                    label: "{{Tous les modules identiques}}",
+                    className: "btn-success",
+                    callback: function() {
+                        app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node, 1);
+                    }
+                },
+                danger: {
+                    label: "{{Ce module seulement}}",
+                    className: "btn-primary",
+                    callback: function() {
+                        app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node, 0);
+                    }
+                },
+                main: {
+                    label: "{{Annuler}}",
+                    className: "btn-danger",
+                    callback: function() {
+                    }
                 }
-            });
+            }
+        });
         });
         $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
             $('#copyParamsModal').modal('show');
@@ -699,9 +721,9 @@ var app_nodes = {
             }
         });
     },
-    send_regenerate_node_cfg_file: function (node_id) {
+    send_regenerate_node_cfg_file: function (node_id, all) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].RemoveDeviceZWConfig()",
+            url: path + "ZWaveAPI/Run/devices[" + node_id + "].RemoveDeviceZWConfig(" + all + ")",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {

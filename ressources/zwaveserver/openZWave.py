@@ -3191,31 +3191,47 @@ def get_node_statistics(node_id):
         return format_json_result(False, str(exception), 'error')
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].RemoveDeviceZWConfig()', methods=['GET'])
-def remove_device_openzwave_config(node_id):
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].RemoveDeviceZWConfig(<int:all>)', methods=['GET'])
+def remove_device_openzwave_config(node_id, all):
     # Remove a device from the openzwave config file and restart network to rediscover again
     # ensure load latest file version
     global _data_folder, _network_is_running
-    try:
-        _network_is_running = False
-        _network.stop()
-        add_log_entry('ZWave network is now stopped')
-        time.sleep(5)
-    except Exception, exception:
-        return format_json_result(False, str(exception), 'error')
-    filename = _data_folder + "/zwcfg_" + _network.home_id_str + ".xml"
-    try:
-        tree = etree.parse(filename)
-        node = tree.find("{http://code.google.com/p/open-zwave/}Node[@id='" + str(node_id) + "']")
-        tree.getroot().remove(node)
-        working_file = open(filename, "w")
-        working_file.write('<?xml version="1.0" encoding="utf-8" ?>\n')
-        working_file.writelines(etree.tostring(tree, pretty_print=True))
-        working_file.close()
-        start_network()
-        return format_json_result()
-    except Exception, exception:
-        return format_json_result(False, str(exception), 'error')
+
+    if node_id in _network.nodes:
+        my_node = _network.nodes[node_id]
+        manufacturer_id = my_node.manufacturer_id
+        product_id = my_node.product_id
+        product_type = my_node.product_type
+        list_to_remove = [node_id]
+        if all != 0 :
+            for child_id in list(_network.nodes):
+                node = _network.nodes[child_id]
+                if child_id != node_id and node.manufacturer_id == manufacturer_id and node.product_id == product_id and node.product_type == product_type:
+                    list_to_remove.append(child_id)
+        try:
+            _network_is_running = False
+            _network.stop()
+            add_log_entry('ZWave network is now stopped')
+            time.sleep(5)
+        except Exception, exception:
+            return format_json_result(False, str(exception), 'error')
+        filename = _data_folder + "/zwcfg_" + _network.home_id_str + ".xml"
+        try:
+            tree = etree.parse(filename)
+            for child_id in list_to_remove:
+                debug_print("Remove xml element for node %s" % (child_id,))
+                node = tree.find("{http://code.google.com/p/open-zwave/}Node[@id='" + str(child_id) + "']")
+                tree.getroot().remove(node)
+            working_file = open(filename, "w")
+            working_file.write('<?xml version="1.0" encoding="utf-8" ?>\n')
+            working_file.writelines(etree.tostring(tree, pretty_print=True))
+            working_file.close()
+            start_network()
+            return format_json_result()
+        except Exception, exception:
+            return format_json_result(False, str(exception), 'error')
+    else:
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GhostKiller()', methods=['GET'])
