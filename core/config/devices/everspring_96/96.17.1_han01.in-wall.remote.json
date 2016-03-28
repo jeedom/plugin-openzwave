@@ -1,7 +1,7 @@
 {
 	"name": "HAN01",
 	"doc": "",
-	"type": "Ouverture",
+	"type": "Micromodule",
 	"comlink": "2497-everspring-micromodule-commutateur-z-wave-han01-3700946500042",
 	"remark": "",
 	"imglink": "everspring.han01",
@@ -12,38 +12,51 @@
 		"name": "Etat",
 		"type": "info",
 		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"configuration": {
-			"class": "0x30",
-			"value": "data[0].val"
-		},
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "",
 		"display": {
-			"invertBinary": "1",
-			"generic_type": "OPENING"
+			"generic_type": "ENERGY_STATE"
 		},
-		"template": {
-			"dashboard": "door",
-			"mobile": "door"
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].val"
 		}
 	},
 		{
-			"name": "Etat basic",
-			"type": "info",
-			"subtype": "binary",
+			"name": "On",
+			"type": "action",
+			"subtype": "other",
 			"isVisible": 1,
-			"isHistorized": 1,
-			"configuration": {
-				"class": "0x20",
-				"value": "data[0].val"
-			},
+			"value": "Etat",
 			"display": {
-				"invertBinary": "1",
-				"generic_type": "OPENING"
+				"generic_type": "ENERGY_ON"
+			},
+			"configuration": {
+				"class": "0x25",
+				"value": "data[0].Set(255)"
 			},
 			"template": {
-				"dashboard": "door",
-				"mobile": "door"
+				"dashboard": "light",
+				"mobile": "light"
+			}
+		},
+		{
+			"name": "Off",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"value": "Etat",
+			"display": {
+				"generic_type": "ENERGY_OFF"
+			},
+			"configuration": {
+				"class": "0x25",
+				"value": "data[0].Set(0)"
+			},
+			"template": {
+				"dashboard": "light",
+				"mobile": "light"
 			}
 		}]
 }
