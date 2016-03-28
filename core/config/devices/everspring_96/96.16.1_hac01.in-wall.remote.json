@@ -1,7 +1,7 @@
 {
 	"name": "HAC01",
 	"doc": "",
-	"type": "Micromodule",
+	"type": "Ouverture",
 	"comlink": "837-everspring-micromodule-emetteur-z-wave-hac01-3700946500110",
 	"remark": "",
 	"imglink": "everspring.hac01",
@@ -13,39 +13,37 @@
 		"type": "info",
 		"subtype": "binary",
 		"isVisible": 1,
-		"isHistorized": 0,
-		"display": {
-			"generic_type": "LIGHT_STATE"
-		},
+		"isHistorized": 1,
 		"configuration": {
-			"class": "0x25",
+			"class": "0x30",
 			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "OPENING"
+		},
+		"template": {
+			"dashboard": "door",
+			"mobile": "door"
 		}
 	},
 	{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
+		"name": "Etat basic",
+		"type": "info",
+		"subtype": "binary",
 		"isVisible": 1,
-		"display": {
-			"generic_type": "LIGHT_ON"
-		},
+		"isHistorized": 1,
 		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(255)"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "LIGHT_OFF"
+			"class": "0x20",
+			"value": "data[0].val"
 		},
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(0)"
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "OPENING"
+		},
+		"template": {
+			"dashboard": "door",
+			"mobile": "door"
 		}
 	}]
 }
