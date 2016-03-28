@@ -97,16 +97,110 @@ var app_nodes = {
             app_nodes.remove_failed_node(app_nodes.selected_node);
         });
         $("#removeGhostNode").off("click").on("click", function () {
-            app_nodes.remove_ghost_node(app_nodes.selected_node);
+
+            bootbox.dialog({
+                title: "{{Suppression automatique du nœud fantôme}}",
+                message:
+                '<form class="form-horizontal"> ' +
+                '<label class="control-label" > {{Les étapes suivantes seront éxécutées:}} </label> ' +
+                '<br>' +
+                '<ul>' +
+                '<li class="active">{{Arrêt du réseau Z-Wave.}}</li>' +
+                '<li class="active">{{Retirer classe de commande de Wake Up du fichier ZWCFG.}}</li>' +
+                '<li class="active">{{Redémarrage du réseau Z-Wave.}}</li>' +
+                '<li class="active">{{Attendre que le réseau soit à nouveau opérationnel (2-5 minutes).}}</li>' +
+                '<li class="active">{{Nœud passe en échec}}</li>' +
+                '<li class="active">{{Supprimer le nœud en échec}}</li>' +
+                '<li class="active">{{Validation du la suppression}}</li>' +
+                '</ul>' +
+                '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
+                '</form>',
+                buttons: {
+                    success: {
+                        label: "{{Lancer}}",
+                        className: "btn-success",
+                        callback: function () {
+                            app_nodes.remove_ghost_node(app_nodes.selected_node);
+                        }
+                    },
+                    main: {
+                        label: "{{Annuler}}",
+                        className: "btn-danger",
+                        callback: function() {}
+                    }
+                }
+            }
+            );
+
+
         });
         $("#replaceFailedNode").off("click").on("click", function () {
-            app_nodes.replace_failed_node(app_nodes.selected_node);
+            bootbox.dialog({
+                    title: "{{Remplacer nœud en échec}}",
+                    message:
+                    '<form class="form-horizontal"> ' +
+                    '<label class="control-label" > {{Cette action permet de remplacer un nœud en échec.}} </label> ' +
+                    '<br>' +
+                    '<label class="lbl lbl-warning" for="name">{{Attention, le controleur sera automatiquement en mode inclusion. Veuillez lancer la procédure sur votre module après la confirmation de cette action.}}</label> ' +
+                    '</form>',
+                    buttons: {
+                        success: {
+                            label: "{{Remplacer}}",
+                            className: "btn-success",
+                            callback: function () {
+                                app_nodes.replace_failed_node(app_nodes.selected_node);
+                            }
+                        },
+                        main: {
+                            label: "{{Annuler}}",
+                            className: "btn-danger",
+                            callback: function() {}
+                        }
+                    }
+                }
+            );
         });
         $("#sendNodeInformation").off("click").on("click", function () {
             app_nodes.send_node_information(app_nodes.selected_node);
         });
 
-        $("#regenerateNodeCfgFile").off("click").on("click", function () {
+        $("#regenerateNodeCfgFile").off("click").on("click", function ()
+        {
+            var productName = nodes[app_nodes.selected_node].data.product_name.value;
+            var manufacturerName = nodes[app_nodes.selected_node].data.vendorString.value;
+
+            bootbox.dialog({
+                title: "{{Regénérer la détection du nœud}}",
+                message:
+                '<form class="form-horizontal"> ' +
+                '<label class="control-label" > {{Lancer la regénérer sur ?}} </label> ' +
+                '<div> <div class="radio"> <label > ' +
+                '<input type="radio" name="awesomeness" id="awesomeness-1" value="0" checked="checked"> {{Ce module seulement}} </label> ' +
+                '</div><div class="radio"> <label > ' +
+                '<input type="radio" name="awesomeness" id="awesomeness-0" value="1"> ' +
+                ' {{Tous les modules}} <b>' + manufacturerName + ' ' + productName +'</b></label> ' +
+                '</div> ' +
+                '</div><br>' +
+                '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
+                '</form>',
+                buttons: {
+                    success: {
+                        label: "{{Lancer}}",
+                        className: "btn-success",
+                        callback: function () {
+                            var all = $("input[name='awesomeness']:checked").val()
+                            app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node, all);
+                        }
+                    },
+                    main: {
+                        label: "{{Annuler}}",
+                        className: "btn-danger",
+                        callback: function() {}
+                    }
+                }
+            }
+        );
+        /*
         bootbox.dialog({
             message: "{{Désirez-vous lancer, la régénération, pour tous les modules identiques à celui-ci  (marque et modèle) ou seulement pour ce module ?}}",
             title: "{{Attention, cette action entraîne un redémarrage de votre réseau.}}",
@@ -132,7 +226,7 @@ var app_nodes = {
                     }
                 }
             }
-        });
+        });*/
         });
         $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
             $('#copyParamsModal').modal('show');
