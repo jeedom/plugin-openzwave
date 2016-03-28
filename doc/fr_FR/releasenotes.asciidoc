@@ -4,6 +4,20 @@
 
 * New Features
 
+** N/A
+
+* Improvements/Enhancements
+
+** Possibilité de lancer la rénégéaration de la détection du noeud pour l'enmsble des modules identiques (marque et modèle).
+
+* Bug Fixes
+
+** N/A
+
+.Version (Beta) 2016-03-26
+
+* New Features
+
 ** Ajout d'une route pour gérer les multi instances associations.
 ** Ajout des Query Stage manquants.
 ** Ajout de la validation de la sélection du Dongle USB au démarrage du démon.
