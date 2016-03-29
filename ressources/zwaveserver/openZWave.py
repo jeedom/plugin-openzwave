@@ -3307,6 +3307,7 @@ def get_pending_changes(node_id):
                 if pending_state is None or pending_state == 1:
                     continue
                 pending_changes += 1
+                debug_print("pending Configuration for cc: %s index %s" % (my_value.command_class, my_value.index,))
 
             if hasattr(my_node, 'pendingAssociations'):
                 for index_group in list(my_node.pendingAssociations):
@@ -3317,6 +3318,7 @@ def get_pending_changes(node_id):
                     if pending_state is None or pending_state == 1:
                         continue
                     pending_changes += 1
+                    debug_print("pending Association index %s state: %s (add: %s, remove: %s) associatiosn: %s" % (index_group, pending_association.state, pending_association.pending_added, pending_association.pending_removed, pending_association.associations,))
             if pending_changes == 0:
                 return format_json_result()
             return format_json_result(False, str(pending_changes))
