@@ -101,5 +101,17 @@
 			"maxValue": 100,
 			"minValue": 0
 		}
-	}]
+	}],
+	"recommended" : {
+		"params" : {
+			"5" : 12,
+			"6" : 5,
+			"7" : 18
+		},
+		"groups" : {
+			"1" : "add"
+		},
+	"wakeup" : 7200,
+	"needswakeup" : true
+    }
 }
