@@ -170,7 +170,11 @@ function printEqLogic(_eqLogic){
 							$('#div_alert').showAlert({message: data.result, level: 'danger'});
 							return;
 						}
-						$('#div_alert').showAlert({message: '{{Configuration appliquée}}', level: 'success'});
+						if (data.result == "wakeup") {
+							$('#div_alert').showAlert({message: '{{Configuration appliquée. Cependant ce module nécessite un réveil pour que celle-ci soit effective.}}', level: 'success'});
+						} else { 
+							$('#div_alert').showAlert({message: '{{Configuration appliquée et effective.}}', level: 'success'});
+						}
 						}
 						});
 					}
@@ -331,6 +335,38 @@ function changeIncludeState(_mode, _state,_serverID) {
         }
     });
 }
+
+function printPending(){
+	$.ajax({// fonction permettant de faire de l'ajax
+            type: "POST", // methode de transmission des données au fichier php
+            url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+            data: {
+            	action: "printPending",
+				id: $('.eqLogicAttr[data-l1key=id]').value(),
+            },
+            dataType: 'json',
+			async: true,
+			global : false,
+            error: function (request, status, error) {
+            	handleAjaxError(request, status, error);
+            },
+			success: function(data) {
+            if (data.state != 'ok') {
+            	$('#div_alert').showAlert({message: data.result, level: 'danger'});
+            	return;
+            }
+			if (data.result != "ok") {
+				$('.isPending').empty().append('  <i class="fa fa-refresh"></i> ' + data.result + ' modification(s) de paramétrage en stand by');
+			} else {
+				$('.isPending').empty();
+			}
+        }
+    });
+}
+
+window.setInterval(function(){
+	printPending();
+}, 5000);
 
 function addCmdToTable(_cmd) {
     if (!isset(_cmd)) {
