@@ -687,15 +687,19 @@ class openzwave extends eqLogic {
 				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].commandClasses[0x70].Set(' . $key . ',' . $value . ',1)', $this->getConfiguration('serverID', 1));
 			}
 		}
-		if (isset($device['recommended']['groups'])) {
+		if (isset($device['recommended']['groups'])){
 			$groups = $device['recommended']['groups'];
 			foreach ($groups as $key => $value) {
 				if ($value == "add"){
 					openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x85].Add(' . $key . ',1)', $this->getConfiguration('serverID', 1));
-				} else if ($value == "remove") {
+				} else if ($value == "remove"){
 					openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x85].Remove(' . $key . ',1)', $this->getConfiguration('serverID', 1));
 				}
 			}
+		}
+		if (isset($device['recommended']['wakeup'])){
+			$wakeup = $device['recommended']['wakeup'];
+			openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x84].data[0].Set(' . $wakeup . ')', $this->getConfiguration('serverID', 1));
 		}
 		if (isset($device['recommended']['needswakeup']) && $device['recommended']['needswakeup'] == true) {
 			return "wakeup";
@@ -704,7 +708,7 @@ class openzwave extends eqLogic {
 	}
 	
 	public function printPending() {
-		$pendingresult = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].GetPendingChanges()', $this->getConfiguration('serverID', 1));
+		$pendingresult = openzwave::callOpenzwave('	', $this->getConfiguration('serverID', 1));
 		if (isset($pendingresult['result']) && $pendingresult['result'] != true){
 			return $pendingresult['data'];
 		}
