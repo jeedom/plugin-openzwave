@@ -105,6 +105,14 @@ try {
 		}
 		ajax::success($eqLogic->applyRecommended());
 	}
+	
+	if (init('action') == 'printPending') {
+		$eqLogic = openzwave::byId(init('id'));
+		if (!is_object($eqLogic)) {
+			ajax::success();
+		}
+		ajax::success($eqLogic->printPending());
+	}
 
 	if (init('action') == 'getConfiguration') {
 		if (init('translation') == 1 && config::byKey('language', 'core', 'fr_FR') != 'fr_FR') {
