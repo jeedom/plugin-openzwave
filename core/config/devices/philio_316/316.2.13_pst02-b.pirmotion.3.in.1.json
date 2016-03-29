@@ -103,14 +103,14 @@
 		}
 	}],
 	"recommended" : {
-		"params" : {
-			"5" : 12,
-			"6" : 5,
-			"7" : 18
-		},
-		"groups" : {
-			"1" : "add"
-		},
+		"params" : [
+          {"index": 5, "value" : 12},
+          {"index": 6, "value" : 5},
+          {"index": 7, "value" : 18}
+        ],
+		"groups" : [
+          {"index": 1, "value": "add"}
+        ],
 	"wakeup" : 7200,
 	"needswakeup" : true
     }

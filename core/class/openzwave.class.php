@@ -683,17 +683,17 @@ class openzwave extends eqLogic {
 		}
 		if (isset($device['recommended']['params'])) {
 			$params = $device['recommended']['params'];
-			foreach ($params as $key => $value) {
-				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].commandClasses[0x70].Set(' . $key . ',' . $value . ',1)', $this->getConfiguration('serverID', 1));
+			foreach ($params as $value) {
+				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].commandClasses[0x70].Set(' . $value['index'] . ',' . $value['value'] . ',1)', $this->getConfiguration('serverID', 1));
 			}
 		}
 		if (isset($device['recommended']['groups'])){
 			$groups = $device['recommended']['groups'];
-			foreach ($groups as $key => $value) {
-				if ($value == "add"){
-					openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x85].Add(' . $key . ',1)', $this->getConfiguration('serverID', 1));
-				} else if ($value == "remove"){
-					openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x85].Remove(' . $key . ',1)', $this->getConfiguration('serverID', 1));
+			foreach ($groups as $value) {
+				if ($value == $value['add']){
+					openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x85].Add(' . $value['index'] . ',1)', $this->getConfiguration('serverID', 1));
+				} else if ($value == $value['remove']){
+					openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x85].Remove(' . $value['index'] . ',1)', $this->getConfiguration('serverID', 1));
 				}
 			}
 		}
