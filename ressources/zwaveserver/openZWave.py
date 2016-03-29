@@ -1544,8 +1544,42 @@ def convert_query_stage_to_int(stage):
         return 16
     elif stage == "Complete":
         return 17
-    return 0 
+    return 0
 
+
+def check_pending_changes(node_id):
+    my_node = _network.nodes[node_id]
+    pending_changes = 0
+    # find pending config and system
+    for val in my_node.get_values():
+        my_value = my_node.values[val]
+        if my_value.command_class is None:
+            continue
+        if my_value.is_write_only:
+            continue
+        if my_value.is_read_only:
+            continue
+        pending_state = None
+        if hasattr(my_value, 'pendingConfiguration'):
+            if my_value.pendingConfiguration is not None:
+                pending_state = my_value.pendingConfiguration.state
+        if pending_state is None or pending_state == 1:
+            continue
+        pending_changes += 1
+        debug_print("pending Configuration for cc: %s index %s" % (my_value.command_class, my_value.index,))
+    if hasattr(my_node, 'pendingAssociations'):
+        for index_group in list(my_node.pendingAssociations):
+            pending_association = my_node.pendingAssociations[index_group]
+            pending_state = None
+            if pending_association is not None:
+                pending_state = pending_association.state
+            if pending_state is None or pending_state == 1:
+                continue
+            pending_changes += 1
+            debug_print("pending Association index %s state: %s (add: %s, remove: %s) associatiosn: %s" % (
+                index_group, pending_association.state, pending_association.pending_added,
+                pending_association.pending_removed, pending_association.associations,))
+    return pending_changes
 
 def serialize_neighbour_to_json(node_id):
     json_result = {}
@@ -1862,6 +1896,7 @@ def serialize_node_health(node_id):
             is_neighbours_ok = False
         json_result['data']['is_neighbours_ok'] = {'value': len(my_node.neighbors) > 0, 'neighbors': len(my_node.neighbors), 'enabled': is_neighbours_ok}
         json_result['data']['is_manufacturer_specific_ok'] = {'value': not is_none_or_empty(my_node.manufacturer_id) and not is_none_or_empty(my_node.product_id) and not is_none_or_empty(my_node.product_type), 'enabled': query_stage_index >= 7}  # ManufacturerSpecific2
+        json_result['data']['pending_changes'] = {'value': check_pending_changes(node_id)}
     else:
         add_log_entry('This network does not contain any node with the id %s' % (node_id,), 'warning')
     return json_result
@@ -3317,36 +3352,7 @@ def ghost_killer(node_id):
 def get_pending_changes(node_id):
     try:
         if node_id in _network.nodes:
-            pending_changes = 0
-            my_node = _network.nodes[node_id]
-            # find pending config and system
-            for val in my_node.get_values():
-                my_value = my_node.values[val]
-                if my_value.command_class is None:
-                    continue
-                if my_value.is_write_only:
-                    continue
-                if my_value.is_read_only:
-                    continue
-                pending_state = None
-                if hasattr(my_value, 'pendingConfiguration'):
-                    if my_value.pendingConfiguration is not None:
-                        pending_state = my_value.pendingConfiguration.state
-                if pending_state is None or pending_state == 1:
-                    continue
-                pending_changes += 1
-                debug_print("pending Configuration for cc: %s index %s" % (my_value.command_class, my_value.index,))
-
-            if hasattr(my_node, 'pendingAssociations'):
-                for index_group in list(my_node.pendingAssociations):
-                    pending_association = my_node.pendingAssociations[index_group]
-                    pending_state = None
-                    if pending_association is not None:
-                        pending_state = pending_association.state
-                    if pending_state is None or pending_state == 1:
-                        continue
-                    pending_changes += 1
-                    debug_print("pending Association index %s state: %s (add: %s, remove: %s) associatiosn: %s" % (index_group, pending_association.state, pending_association.pending_added, pending_association.pending_removed, pending_association.associations,))
+            pending_changes = check_pending_changes(node_id)
             if pending_changes == 0:
                 return format_json_result()
             return format_json_result(False, str(pending_changes))
