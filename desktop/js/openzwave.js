@@ -171,7 +171,7 @@ function printEqLogic(_eqLogic){
 							return;
 						}
 						if (data.result == "wakeup") {
-							$('#div_alert').showAlert({message: '{{Configuration appliquée. Cependant ce module nécessite un réveil pour que celle-ci soit effective.}}', level: 'success'});
+							$('#div_alert').showAlert({message: '{{Configuration appliquée. Cependant ce module nécessite un réveil s\'il est sur batterie pour que celle-ci soit effective.}}', level: 'success'});
 						} else { 
 							$('#div_alert').showAlert({message: '{{Configuration appliquée et effective.}}', level: 'success'});
 						}
