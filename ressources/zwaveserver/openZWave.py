@@ -2144,11 +2144,12 @@ def remove_assoc(node_id, group_index, target_node_id):
     debug_print("remove_assoc to nodeId: %s in group %s with nodeId: %s" % (node_id, group_index, target_node_id,))
     if node_id in _network.nodes:
         my_node = _network.nodes[node_id]
-        if hasattr(my_node, 'pendingAssociations'):
-            pass
-        else:
-            my_node.pendingAssociations = dict()
-        my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = None, pending_removed = target_node_id, timeout = 0)
+        if target_node_id in my_node.groups[group_index].associations:
+            if hasattr(my_node, 'pendingAssociations'):
+                pass
+            else:
+                my_node.pendingAssociations = dict()
+            my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = None, pending_removed = target_node_id, timeout = 0)
         _network.manager.removeAssociation(_network.home_id, node_id, group_index, target_node_id)
         return format_json_result()
     else:
@@ -2162,13 +2163,13 @@ def add_assoc(node_id, group_index, target_node_id):
     debug_print("add_assoc to nodeId: %s in group %s with nodeId: %s" % (node_id, group_index, target_node_id,))
     if node_id in _network.nodes:
         my_node = _network.nodes[node_id]
-        if hasattr(my_node, 'pendingAssociations'):
-            pass
-        else:
-            my_node.pendingAssociations = dict()
-        my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = target_node_id, pending_removed = None, timeout = 0)
+        if not (target_node_id in my_node.groups[group_index].associations):
+            if hasattr(my_node, 'pendingAssociations'):
+                pass
+            else:
+                my_node.pendingAssociations = dict()
+            my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = target_node_id, pending_removed = None, timeout = 0)
         _network.manager.addAssociation(_network.home_id, node_id, group_index, target_node_id)
-
         return format_json_result()
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
@@ -2181,11 +2182,12 @@ def remove_association(node_id, group_index, target_node_id, target_node_instanc
     debug_print("remove_association to nodeId: %s in group %s with nodeId: %s instance %s" % (node_id, group_index, target_node_id, target_node_instance,))
     if node_id in _network.nodes:
         my_node = _network.nodes[node_id]
-        if hasattr(my_node, 'pendingAssociations'):
-            pass
-        else:
-            my_node.pendingAssociations = dict()
-        my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = None, pending_removed = target_node_id, timeout = 0)
+        if target_node_id in my_node.groups[group_index].associations:
+            if hasattr(my_node, 'pendingAssociations'):
+                pass
+            else:
+                my_node.pendingAssociations = dict()
+            my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = None, pending_removed = target_node_id, timeout = 0)
         _network.manager.removeAssociation(_network.home_id, node_id, group_index, target_node_id, target_node_instance)
         return format_json_result()
     else:
@@ -2199,11 +2201,12 @@ def add_association(node_id, group_index, target_node_id, target_node_instance):
     debug_print("add_association to nodeId: %s in group %s with nodeId: %s instance %s" % (node_id, group_index, target_node_id, target_node_instance,))
     if node_id in _network.nodes:
         my_node = _network.nodes[node_id]
-        if hasattr(my_node, 'pendingAssociations'):
-            pass
-        else:
-            my_node.pendingAssociations = dict()
-        my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = target_node_id, pending_removed = None, timeout = 0)
+        if not (target_node_id in my_node.groups[group_index].associations):
+            if hasattr(my_node, 'pendingAssociations'):
+                pass
+            else:
+                my_node.pendingAssociations = dict()
+            my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = target_node_id, pending_removed = None, timeout = 0)
         _network.manager.addAssociation(_network.home_id, node_id, group_index, target_node_id, target_node_instance)
         return format_json_result()
     else:
