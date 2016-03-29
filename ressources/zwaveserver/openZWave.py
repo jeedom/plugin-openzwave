@@ -2277,6 +2277,31 @@ def set_polling_value(node_id, instance_id, cc_id, index, frequency):
         return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
 
 
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].SetPolling(<int:frequency>)', methods=['GET'])
+def set_polling_instance(node_id, instance_id, cc_id, frequency):
+    debug_print("set_polling_instance for nodeId: %s instance: %s cc:%s at: %s" % (node_id, instance_id, cc_id, frequency,))
+    if node_id in _network.nodes:
+        polling_apply = False
+        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16)):
+            if _network.nodes[node_id].values[val].instance - 1 == instance_id:
+                my_value = _network.nodes[node_id].values[val]
+                if frequency == 0 & my_value.poll_intensity > 0:
+                    # disable the value polling for any values for this CC and instance
+                    my_value.disable_poll()
+                else:
+                    if not polling_apply :
+                        polling_apply = True
+                        changes_value_polling(frequency, my_value)
+                    else:
+                        # disable the value polling for other index of same instance
+                        if my_value.poll_intensity > 0:
+                            my_value.disable_poll()
+        write_config()
+        return format_json_result()
+    else:
+        return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
+
+
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[132].data.interval.value', methods=['GET'])
 def get_wake_up(node_id):
     if node_id in _network.nodes:
