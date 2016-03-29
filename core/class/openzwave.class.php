@@ -706,7 +706,6 @@ class openzwave extends eqLogic {
 			foreach ($pollinglist as $key => $value){
 				$instancepolling = $value['instance'];
 				$ccpolling = $value['cc'];			
-				log::add('openzwave_syncconf', 'info', '/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[' . $instancepolling . '].commandClasses[0x' . $ccpolling .'].SetPolling(1)');
 				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[' . $instancepolling . '].commandClasses[0x' . $ccpolling .'].SetPolling(1)', $this->getConfiguration('serverID', 1));
 			}
 		}
@@ -717,7 +716,7 @@ class openzwave extends eqLogic {
 	}
 	
 	public function printPending() {
-		$pendingresult = openzwave::callOpenzwave('	', $this->getConfiguration('serverID', 1));
+		$pendingresult = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].GetPendingChanges()', $this->getConfiguration('serverID', 1));
 		if (isset($pendingresult['result']) && $pendingresult['result'] != true){
 			return $pendingresult['data'];
 		}
