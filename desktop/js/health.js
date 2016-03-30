@@ -223,6 +223,13 @@ var app_health = {
       }
       tbody += '</td>';
       tbody += '<td>';
+	  if(nodes[i].data.pending_changes != undefined && nodes[i].data.pending_changes.value >0){
+        tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.pending_changes.value+'</span>';
+      }else if(nodes[i].data.pending_changes != undefined && nodes[i].data.pending_changes.value == 0){
+		tbody += '<span class="label label-success" style="font-size : 1em;">OK</span>';
+      }
+      tbody += '</td>';
+      tbody += '<td>';
       if(nodes[i].last_notification.description != undefined && nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null){
         tbody += app_health.timestampConverter(nodes[i].data.lastReceived.updateTime,false);
         if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.next_wakeup != null){

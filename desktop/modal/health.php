@@ -52,6 +52,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 			<th>{{Paquet total}}</th>
 			<th>{{% OK}}</th>
 			<th>{{Temporisation}}</th>
+			<th>{{En stand by}}</th>
 			<th>{{Dernière communication}}</th>
 			<th>{{Ping}}</th>
 		</tr>
