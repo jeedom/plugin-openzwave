@@ -690,9 +690,9 @@ class openzwave extends eqLogic {
 		if (isset($device['recommended']['groups'])){
 			$groups = $device['recommended']['groups'];
 			foreach ($groups as $value) {
-				if ($value == $value['add']){
+				if ($value['value'] == 'add'){
 					openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x85].Add(' . $value['index'] . ',1)', $this->getConfiguration('serverID', 1));
-				} else if ($value == $value['remove']){
+				} else if ($value['value'] == 'remove'){
 					openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x85].Remove(' . $value['index'] . ',1)', $this->getConfiguration('serverID', 1));
 				}
 			}
