@@ -194,6 +194,9 @@ class openzwave extends eqLogic {
 			$eqLogic->setIsVisible(1);
 			$eqLogic->save();
 			$eqLogic = openzwave::byId($eqLogic->getId());
+			if (config::byKey('auto_applyRecommended', 'openzwave') == 1) {
+				$eqLogic->applyRecommended();
+			}
 			$eqLogic->createCommand(false, $result);
 			event::add('zwave::includeDevice', $eqLogic->getId());
 			event::add('jeedom::alert', array(

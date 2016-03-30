@@ -38,6 +38,18 @@ if (!isConnect()) {
 					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_health" />
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">{{Mettre à jour la configuration des modules automatiquement}}</label>
+				<div class="col-sm-2">
+					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_updateConf" checked/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">{{Appliquer le paramétrage recommandé à l'inclusion}}</label>
+				<div class="col-sm-2">
+					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_applyRecommended" checked/>
+				</div>
+			</div>
 			<legend><i class="fa fa-cog"></i>  {{Gestion avancée}}</legend>
 			<div class="form-group">
 				<label class="col-lg-4 control-label">{{Options avancées}}</label>
@@ -80,12 +92,6 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 				<label class="col-sm-4 control-label">{{Port du Serveur (laisser vide par défault)}}</label>
 				<div class="col-sm-2">
 					<input class="configKey form-control" data-l1key="port_server" placeholder="8083" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">{{Mettre à jour la configuration des modules automatiquement}}</label>
-				<div class="col-sm-2">
-					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_updateConf" checked/>
 				</div>
 			</div>
 		</fieldset>
