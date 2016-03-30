@@ -4,11 +4,14 @@
 
 * New Features
 
-** N/A
+** Ajout d'un assistant de configuration recommandé.
+** Ajout d'option pour activer/désactiver l'assiatant de configuration recommandé.
+** Ajout d'option pour activer/désactiver la mise à jour des configurations des modules chaque nuit.
 
 * Improvements/Enhancements
 
 ** Possibilité de lancer la rénégéaration de la détection du noeud pour l'enmsble des modules identiques (marque et modèle).
+** Affichage dans l'écran de santé si des élément de configuration ne sont pas appliqués
 
 * Bug Fixes
 
