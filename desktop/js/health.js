@@ -92,6 +92,7 @@ var app_health = {
   },
   show_infos: function (nodes){
     var tbody = '';
+    var now = Math.floor(new Date().getTime() / 1000);
     for(var i in nodes){
       if(nodes[i].data == undefined){
         continue;
@@ -150,9 +151,9 @@ var app_health = {
       tbody += '</td>';
       tbody += '<td>';
       if(nodes[i].data.pending_changes != undefined && nodes[i].data.pending_changes.value >0){
-        tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.pending_changes.value+'</span>';
+        tbody += '<span class="label label-warning" style="font-size : 1em;" title="' +nodes[i].data.pending_changes.value + ' {{configuration en attente d\'être appliqué}}" >'+nodes[i].data.pending_changes.value+'</span>';
       }else if(nodes[i].data.pending_changes != undefined && nodes[i].data.pending_changes.value == 0){
-        tbody += '<span class="label label-success" style="font-size : 1em;">OK</span>';
+        tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
       }
       tbody += '</td>';
       tbody += '<td>';
@@ -197,7 +198,13 @@ var app_health = {
       tbody += '<td>';
 
       if(!nodes[i].data.isListening.value && nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null){
-        tbody += '<span class="label label-info" style="font-size : 1em;">'+nodes[i].data.wakeup_interval.value+'</span>';
+        if(nodes[i].data.wakeup_interval.value ==0 || nodes[i].data.wakeup_interval.value > 86400){
+          tbody += '<span class="label label-warning" style="font-size : 1em;">'
+        }
+        else{
+          tbody += '<span class="label label-info" style="font-size : 1em;">'
+        }
+        tbody += nodes[i].data.wakeup_interval.value+'</span>';
       }
       tbody += '</td>';
       tbody += '<td>';
@@ -233,7 +240,17 @@ var app_health = {
       if(nodes[i].last_notification.description != undefined && nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null){
         tbody += app_health.timestampConverter(nodes[i].data.lastReceived.updateTime,false);
         if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.next_wakeup != null){
-          tbody += ' <i class="fa fa-arrow-right"></i> ' + app_health.timestampConverter(nodes[i].data.wakeup_interval.next_wakeup,true)+' <i class="fa fa-clock-o"></i>';
+          if (now > nodes[i].data.wakeup_interval.next_wakeup) {
+            tbody += ' <i class="fa fa-arrow-right text-danger"></i> <span class="label label-warning" style="font-size : 1em;" title="{{Le noeud ne s\'est pas réveillé comme prévue}}"> ' + app_health.timestampConverter(nodes[i].data.wakeup_interval.next_wakeup,true)+' </span>';
+          }
+          else{
+            tbody += ' <i class="fa fa-arrow-right"></i> '+ app_health.timestampConverter(nodes[i].data.wakeup_interval.next_wakeup,true)+' <i class="fa fa-clock-o"></i>';
+          }
+        }
+      }
+      else if (nodes[i].data.isListening.value == false && nodes[i].data.last_notification == undefined && nodes[i].data.wakeup_interval != undefined && nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null){
+        if(now > nodes[i].data.lastReceived.updateTime + nodes[i].data.wakeup_interval.value){
+          tbody += '<span class="label label" style="font-size : 1.5em;" title="{{Le noeud n\'a donné aucun signe de vie}}"><i class="fa fa-exclamation-circle text-danger"></i></span>';
         }
       }
       tbody += '</td>';

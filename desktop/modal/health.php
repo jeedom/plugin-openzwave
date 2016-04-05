@@ -43,9 +43,9 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 			<th>{{Module}}</th>
 			<th>{{ID}}</th>
 			<th>{{Notification}}</th>
-			<th>{{Groupe}}</th>
+			<th>{{Groupes}}</th>
 			<th>{{Constructeur}}</th>
-			<th>{{Voisin}}</th>
+			<th>{{Voisins}}</th>
 			<th>{{Configuration}}</th>
 			<th>{{Statut}}</th>
 			<th>{{Batterie}}</th>
