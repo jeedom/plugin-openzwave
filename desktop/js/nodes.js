@@ -116,17 +116,17 @@ var app_nodes = {
                 '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
                 '</form>',
                 buttons: {
+                    main: {
+                        label: "{{Annuler}}",
+                        className: "btn-danger",
+                        callback: function() {}
+                    },
                     success: {
                         label: "{{Lancer}}",
                         className: "btn-success",
                         callback: function () {
                             app_nodes.remove_ghost_node(app_nodes.selected_node);
                         }
-                    },
-                    main: {
-                        label: "{{Annuler}}",
-                        className: "btn-danger",
-                        callback: function() {}
                     }
                 }
             }
@@ -144,17 +144,17 @@ var app_nodes = {
                     '<label class="lbl lbl-warning" for="name">{{Attention, le controleur sera automatiquement en mode inclusion. Veuillez lancer la procédure sur votre module après la confirmation de cette action.}}</label> ' +
                     '</form>',
                     buttons: {
+                        main: {
+                            label: "{{Annuler}}",
+                            className: "btn-danger",
+                            callback: function() {}
+                        },
                         success: {
                             label: "{{Remplacer}}",
                             className: "btn-success",
                             callback: function () {
                                 app_nodes.replace_failed_node(app_nodes.selected_node);
                             }
-                        },
-                        main: {
-                            label: "{{Annuler}}",
-                            className: "btn-danger",
-                            callback: function() {}
                         }
                     }
                 }
@@ -184,6 +184,11 @@ var app_nodes = {
                 '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
                 '</form>',
                 buttons: {
+                    main: {
+                        label: "{{Annuler}}",
+                        className: "btn-danger",
+                        callback: function() {}
+                    },
                     success: {
                         label: "{{Lancer}}",
                         className: "btn-success",
@@ -191,12 +196,8 @@ var app_nodes = {
                             var all = $("input[name='awesomeness']:checked").val()
                             app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node, all);
                         }
-                    },
-                    main: {
-                        label: "{{Annuler}}",
-                        className: "btn-danger",
-                        callback: function() {}
                     }
+
                 }
             }
         );
@@ -1247,7 +1248,7 @@ var app_nodes = {
         // always allow the special action
         $("#regenerateNodeCfgFile").prop("disabled",false);
         // remote control don't wakeup, we will trick the flag
-        if(genericDeviceClass == 1){
+        if(genericDeviceClass == 1 || genericDeviceClass == 24){
             nodeCanSleep = true;
         }
         $("#removeGhostNode").prop("disabled",nodeIsFailed || !nodeCanSleep);
