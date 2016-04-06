@@ -1047,9 +1047,6 @@ var app_nodes = {
             case 23: // Security Panel         = 0x17,
                 genericDeviceClassDescription = "{{Panneau de sécurité}}";
                 break;
-            case 24: // Gesture Control         = 0x18,
-                genericDeviceClassDescription = "{{Contrôleur gestuel}}";
-                break;
             case 30: // Wall Controller       = 0x18,
                 genericDeviceClassDescription = "{{Contrôleur murale}}";
                 break;
