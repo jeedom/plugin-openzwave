@@ -261,7 +261,7 @@ var app_health = {
                     }
                 }
             }
-            else if (nodes[i].data.isListening.value == false && nodes[i].data.last_notification == undefined && nodes[i].data.wakeup_interval != undefined && nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null){
+            else if (nodes[i].data.isListening.value == false && nodes[i].data.last_notification == undefined && nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null && nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null){
                 if(now > nodes[i].data.lastReceived.updateTime + nodes[i].data.wakeup_interval.value){
                     tbody += '<span class="label label" style="font-size : 1.5em;" title="{{Le noeud n\'a donné aucun signe de vie}}"><i class="fa fa-exclamation-circle text-danger"></i></span>';
                 }
