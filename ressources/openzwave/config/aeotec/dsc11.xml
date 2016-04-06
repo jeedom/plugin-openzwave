@@ -8,7 +8,7 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584527
   <!-- Configuration Parameters -->
   <CommandClass id="112">
    <Value type="list" index="4" genre="config" label="Report threshold" units="" min="0" max="1" size="1" value="1">
-      <Help>Enable selective reporting only when power change reaches a certain threshold or percentage set in 4.11 below. 
+      <Help>Enable selective reporting only when power change reaches a certain threshold or percentage set in 4.11 below.
 	  This is used to reduce network traffic.</Help>
       <Item label="Disable," value="0" />
       <Item label="Enable" value="1" />
