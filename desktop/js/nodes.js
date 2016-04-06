@@ -1169,6 +1169,7 @@ var app_nodes = {
                 node.find(".node-queryStage").removeClass("label-default").addClass("label-success");
                 break;
         }
+        var nodeCanSleep = nodes[z].data.can_wake_up.value;
         if (queryStageIndex >2){
             if (nodes[z].data.isListening.value) {
                 node.find(".node-sleep").removeClass("label-default");
@@ -1177,7 +1178,6 @@ var app_nodes = {
             }
             else{
                 var battery_level = nodes[z].data.battery_level.value
-                var nodeCanSleep = nodes[z].data.can_wake_up.value;
                 node.find(".node-sleep").removeClass("label-success").addClass("label-default")
                 if (battery_level != null) {
                     if (nodeCanSleep) {
@@ -1248,7 +1248,7 @@ var app_nodes = {
         // always allow the special action
         $("#regenerateNodeCfgFile").prop("disabled",false);
         // remote control don't wakeup, we will trick the flag
-        if(genericDeviceClass == 1 || genericDeviceClass == 24){
+        if(genericDeviceClass == 1 ){
             nodeCanSleep = true;
         }
         $("#removeGhostNode").prop("disabled",nodeIsFailed || !nodeCanSleep);
