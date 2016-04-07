@@ -1253,13 +1253,10 @@ def prepare_value_notification(node, value):
         return
     command_class = _network.manager.COMMAND_CLASS_DESC[value.command_class].replace("COMMAND_CLASS_", "").replace("_", " ").lower().capitalize()
     debug_print("Received %s report from node %s: %s=%s%s" % (command_class, node.node_id, value.label, extract_data(value, False, False), value.units))
-    thread = None
     try:
         save_value(node, value, time.time())
     except Exception as error:
-        add_log_entry('prepare_value_notification %s' % (str(error), ), "error")
-        if thread is not None:
-            thread.stop()
+        add_log_entry('An unknown error occurred while sending notification: %s. (Node %s: %s=%s)' % (str(error), node.node_id, value.label, extract_data(value, False, False),), "error")
 
 
 def value_update(network, node, value): 
