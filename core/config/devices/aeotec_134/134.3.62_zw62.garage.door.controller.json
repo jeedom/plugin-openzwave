@@ -14,7 +14,7 @@
 		"type": "action",
 		"subtype": "other",
 		"isVisible": 1,
-		"data": "Position",
+		"value": "Position",
 		"configuration": {
 			"class": "0x25",
 			"value": "data[0].Set(255)"
