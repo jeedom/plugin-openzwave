@@ -41,6 +41,11 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584687
 				2, Value2: configure the alarm sound (there are 4 types sound saved in EEPROM and user also can update it).
 				3, Value3: configure the volume of alarm sound (there are 10 levels, the min volume is 1 level and the max volume is 10 levels).
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt.
+				1 - 10	  	  ->  	Configure the flash frequency of the alarm LED, there are 10 levels can be set.
+				256 - 356	  ->  	Select an alarm sound, there are 4 alarm sounds in the flash memory card can be selected.
+				65535 - 65545 ->  	Configure the volume of alarm sound, there are 10 levels can be set.
+				16777215	  ->  	Disable the alarm mode.
+				16777216	  ->  	Enable the alarm mode.
             </Help>
         </Value>
 		<Value type="int" genre="config" instance="1" index="38" label="Configure the alarm mode when the garage door is closing" size="4" value="134416385">
@@ -49,6 +54,11 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584687
 				2, Value2: configure the alarm sound (there are 4 types sound saved in EEPROM and user also can update it).
 				3, Value3: configure the volume of alarm sound (there are 10 levels, the min volume is 1 level and the max volume is 10 levels).
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt.
+				1 - 10	  	  ->  	Configure the flash frequency of the alarm LED, there are 10 levels can be set.
+				256 - 356	  ->  	Select an alarm sound, there are 4 alarm sounds in the flash memory card can be selected.
+				65535 - 65545 ->  	Configure the volume of alarm sound, there are 10 levels can be set.
+				16777215	  ->  	Disable the alarm mode.
+				16777216	  ->  	Enable the alarm mode.
             </Help>
         </Value>
 		<Value type="int" genre="config" instance="1" index="39" label="Configuration alarm mode when the garage door is in unknown state" size="4" value="100927488">
@@ -57,6 +67,11 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584687
 				2, Value2: configure the alarm sound (there are 4 types sound saved in EEPROM and user also can update it).
 				3, Value3: configure the volume of alarm sound (there are 10 levels, the min volume is 1 level and the max volume is 10 levels).
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt.
+				1 - 10	  	  ->  	Configure the flash frequency of the alarm LED, there are 10 levels can be set.
+				256 - 356	  ->  	Select an alarm sound, there are 4 alarm sounds in the flash memory card can be selected.
+				65535 - 65545 ->  	Configure the volume of alarm sound, there are 10 levels can be set.
+				16777215	  ->  	Disable the alarm mode.
+				16777216	  ->  	Enable the alarm mode.
             </Help>
         </Value>
 		<Value type="int" genre="config" instance="1" index="40" label="Configure the alarm mode when the garage door is in closed position" size="4" value="33883392">
@@ -65,6 +80,11 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584687
 				2, Value2: configure the alarm sound (there are 4 types sound saved in EEPROM and user also can update it).
 				3, Value3: configure the volume of alarm sound (there are 10 levels, the min volume is 1 level and the max volume is 10 levels).
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt.
+				1 - 10	  	  ->  	Configure the flash frequency of the alarm LED, there are 10 levels can be set.
+				256 - 356	  ->  	Select an alarm sound, there are 4 alarm sounds in the flash memory card can be selected.
+				65535 - 65545 ->  	Configure the volume of alarm sound, there are 10 levels can be set.
+				16777215	  ->  	Disable the alarm mode.
+				16777216	  ->  	Enable the alarm mode.
             </Help>
         </Value>
 		<Value type="list" genre="config" index="41" label="Configuration report for the tamper switch State" size="4" value="0">
