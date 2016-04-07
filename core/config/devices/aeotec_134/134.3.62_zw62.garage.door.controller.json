@@ -71,7 +71,18 @@
 			"calculValueOffset": "#value#/10.0"
 		}
 	},
-	{
+		{
+			"name": "Actualiser Température",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 0,
+			"value": "",
+			"configuration": {
+				"class": "0x70",
+				"value": "data[45].ForceRefresh()"
+			}
+		},
+		{
 		"name": "Sabotage",
 		"type": "info",
 		"subtype": "string",
