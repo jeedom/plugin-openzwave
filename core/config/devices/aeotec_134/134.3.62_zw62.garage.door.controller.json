@@ -27,7 +27,7 @@
 	{
 		"name": "Position",
 		"type": "info",
-		"subtype": "binary",
+		"subtype": "numeric",
 		"isVisible": 0,
 		"isHistorized": 1,
 		"configuration": {
