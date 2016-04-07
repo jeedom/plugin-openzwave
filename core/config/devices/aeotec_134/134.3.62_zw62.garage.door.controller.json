@@ -14,20 +14,21 @@
 		"type": "action",
 		"subtype": "other",
 		"isVisible": 1,
+		"data": "Position",
 		"configuration": {
 			"class": "0x25",
 			"value": "data[0].Set(255)"
 		},
 		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
+			"dashboard": "GarageDoor_BarrierOperatorBasic",
+			"mobile": "GarageDoor_BarrierOperatorBasic"
 		}
 	},
 	{
 		"name": "Position",
 		"type": "info",
 		"subtype": "binary",
-		"isVisible": 1,
+		"isVisible": 0,
 		"isHistorized": 1,
 		"configuration": {
 			"class": "0x20",
