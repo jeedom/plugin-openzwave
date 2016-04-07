@@ -14,10 +14,12 @@
 ** Affichage dans l'écran de santé si des élément de configuration ne sont pas appliqués.
 ** Affichage dans l'écran de santé si un module sur piles n'e c'est jamais réveillé.
 ** Affichage dans l'écran de santé si un module sur piles à dépassé le temps du réveil prévue.
+** Ajout de traces lors d'erreur de notifications.
 
 * Bug Fixes
 
-** N/A
+** Gestion des boutons action du modules.
+** Correction de description de nom generique de class.
 
 .Version (Beta) 2016-03-26
 
