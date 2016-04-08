@@ -1,0 +1,80 @@
+{
+	"name": "Door sensor",
+	"doc": "",
+	"type": "Ouverture",
+	"comlink": "",
+	"remark": "",
+	"imglink": "benext.door",
+	"battery_type": "2x1.5V AAA",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Interne",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"class": "0x20",
+			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "OPENING"
+		},
+		"template": {
+			"dashboard": "door",
+			"mobile": "door"
+		}
+	},
+	{
+		"name": "Externe",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"class": "0x30",
+			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "OPENING"
+		},
+		"template": {
+			"dashboard": "door",
+			"mobile": "door"
+		}
+	},
+	{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "°C",
+		"display": {
+			"generic_type": "TEMPERATURE"
+		},
+		"configuration": {
+			"class": "0x31",
+			"value": "data[1].val"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "%",
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"value": "data[0].val"
+		}
+	}]
+}
