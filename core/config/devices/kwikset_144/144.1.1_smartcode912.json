@@ -1,5 +1,5 @@
 {
-	"name": "Smartcode 912",
+	"name": "Electronic Deadbolt Smartcode",
 	"doc": "",
 	"type": "Serrure",
 	"comlink": "",
@@ -59,6 +59,25 @@
 			"value": "data[0].Set(0)"
 		}
 	},
+	{
+		"name": "Lock State",
+		"type": "info",
+		"subtype": "binary",
+		"display": {
+			"generic_type": "LOCK_STATE"
+		},
+		"isVisible": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"instanceId": "1",
+			"class": "0x62",
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "lock",
+			"mobile": "lock"
+		}
+	},	
 	{
 		"name": "Batterie",
 		"type": "info",

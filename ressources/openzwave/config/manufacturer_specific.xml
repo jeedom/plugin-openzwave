@@ -478,8 +478,7 @@
 	<Manufacturer id="0091" name="Kamstrup">
 	</Manufacturer>
 	<Manufacturer id="0090" name="Kwikset">
-		<Product type="0001" id="0001" name="Touchpad Electronic Deadbolt"/>
-		<Product type="0000" id="0000" name="Smartcode 912" config="kwikset/smartcode912.xml"/>
+		<Product type="0001" id="0001" name="Touchpad Electronic Deadbolt" config="kwikset/smartcode.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0051" name="Lagotek Corp">
 	</Manufacturer>
