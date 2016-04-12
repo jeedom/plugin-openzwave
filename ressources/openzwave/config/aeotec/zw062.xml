@@ -134,7 +134,7 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584687
 			<Item label="Hail" value="1"/>
 			<Item label="Barrier operator" value="2"/>
 		</Value>
-		<Value type="list" index="241" genre="config" label="Pair the Sensor with Garage Door Controller" size="4" >
+		<Value type="list" index="241" genre="config" label="Pair the Sensor with Garage Door Controller" size="4" value="0">
 			<Help>
 			Value=0x55555501, which will trigger to start the pairing of Sensor (installed on the top of the garage door), at this time, the Network LED on the Garage Door Controller will blink slowly and then short press Temper Switch back of the Sensor.
 			If pairing is successful, the Network LED will stop blinking and the Garage Door Controller will send the configuration report with value=0x01FF to primary controller/gateway. Otherwise, repeat the operation.
@@ -144,7 +144,6 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584687
 			<Item label="Normal" value="0"/>
             <Item label="Start the pairing of Sensor" value="1431655681"/>
             <Item label="Pairing is successful" value="511"/>
-            0x01FF
 		</Value>
 		<Value type="list" genre="config" index="252" label="Lock/Unlock Configuration" min="0" max="1" value="0">
 			<Help>Lock/ unlock all configuration parameters</Help>

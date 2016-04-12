@@ -32,12 +32,12 @@
 		<Value type="byte" genre="config" instance="1" index="5" label="Auto Latch time" min="0" max="60" value="0">
 			<Help>How many seconds from the lock has been unlatched to it automatically close again. If 0 then it's disabled</Help>
 		</Value>
-		<Value type="list" genre="config" instance="1" index="6" label="Sound" min="0" max="1" value="1"" size="1">
+		<Value type="list" genre="config" instance="1" index="6" label="Sound" min="0" max="1" value="1" size="1">
 			<Help>Disable or enable the beep sound from latch or unlatch operations(</Help>
 			<Item label="Disable" value="0"/>
 			<Item label="Enable" value="1"/>
 		</Value>
-		<Value type="list" genre="config" instance="1" index="7" label="Battery Type" min="0" max="1" value="0"" size="1">
+		<Value type="list" genre="config" instance="1" index="7" label="Battery Type" min="0" max="1" value="0" size="1">
 			<Help>Set the type of battery that powers the device. This affect the returned battery state.</Help>
 			<Item label="3.6V" value="0"/>
 			<Item label="3.0V" value="1"/>
@@ -45,7 +45,7 @@
 		<Value type="byte" genre="config" instance="1" index="8" label="Battery Alarm Percent" min="0" max="100" value="0">
 			<Help>When the battery level is equal to, or under this value, the device will notify with a beep sound after latch or unlatch</Help>
 		</Value>
-		<Value type="list" genre="config" instance="1" index="9" label="Turn and Go" min="0" max="1" value="0"" size="1">
+		<Value type="list" genre="config" instance="1" index="9" label="Turn and Go" min="0" max="1" value="0" size="1">
 			<Help>Used if the lock is using a optional rotation sensor. Latch and Go on will turn automatically when manual turn is detected.</Help>
 			<Item label="Off" value="0"/>
 			<Item label="On" value="1"/>
@@ -57,7 +57,7 @@
 			When used the lock will brake for x amount of seconds and then turn 75 degrees back. 
 			Made for special doors without door lever.(Only when unlatching).</Help>
 		</Value>
-		<Value type="list" genre="config" instance="1" index="11" label="Async" min="0" max="1" value="0"" size="1">
+		<Value type="list" genre="config" instance="1" index="11" label="Async" min="0" max="1" value="0" size="1">
 			<Help>
 			Used if the lock is using an optional rotation sensor. 
 			When async is enabled the lock will auto calibrate if already unlatched and asked to Unlatch again (used for special door locks where the key turn is asynced from the inside nob.)
@@ -65,7 +65,7 @@
 			<Item label="Off" value="0"/>
 			<Item label="On" value="1"/>
 		</Value>
-		<Value type="list" genre="config" instance="1" index="12" label="Door lock operation report type" min="0" max="2" value="0"" size="1">
+		<Value type="list" genre="config" instance="1" index="12" label="Door lock operation report type" min="0" max="2" value="0" size="1">
 			<Help>
 			0 = Simple supported by all controllers that support door locks. 
 			1 = Advanced, more specific reports through notification Command Class. 
