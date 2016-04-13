@@ -4,22 +4,37 @@
 
 * New Features
 
+**  n/a
+
+* Improvements/Enhancements
+
+**  n/a
+
+* Bug Fixes
+** n/a
+
+.Version (Beta) 2016-04-13
+
+* New Features
+
 ** Ajout d'un assistant de configuration recommandé.
-** Ajout d'option pour activer/désactiver l'assiatant de configuration recommandé.
+** Ajout d'option pour activer/désactiver l'assistant de configuration recommandé lors de l'inclusion de nouveaux modules.
 ** Ajout d'option pour activer/désactiver la mise à jour des configurations des modules chaque nuit.
 
 * Improvements/Enhancements
 
-** Possibilité de lancer la rénégéaration de la détection du noeud pour l'enmsble des modules identiques (marque et modèle).
-** Affichage dans l'écran de santé si des élément de configuration ne sont pas appliqués.
+** Possibilité de lancer la régénération de la détection du nœud pour l’ensemble des modules identiques (marque et modèle).
+** Affichage dans l'écran de santé si des éléments de configuration ne sont pas appliqués.
+** Affichage dans l'écran d'équipent si des éléments de configuration ne sont pas appliqués.
 ** Affichage dans l'écran de santé si un module sur piles n'e c'est jamais réveillé.
-** Affichage dans l'écran de santé si un module sur piles à dépassé le temps du réveil prévue.
+** Affichage dans l'écran de santé si un module sur piles a dépassé le temps du réveil prévue.
 ** Ajout de traces lors d'erreur de notifications.
 
 * Bug Fixes
 
-** Gestion des boutons action du modules.
-** Correction de description de nom generique de class.
+** Gestion des boutons action du module.
+** Correction de description de nom générique de class.
+
 
 .Version (Beta) 2016-03-26
 
