@@ -291,5 +291,16 @@
 			"maxValue": 60,
 			"minValue": 0
 		}
-	}]
+	}],
+	"recommended" : {
+		"params" : [
+          {"index": 101, "value" : 1794},
+		  {"index": 102, "value" : 14337},
+		  {"index": 103, "value" : 458756},
+		  {"index": 111, "value" : 120},
+		  {"index": 112, "value" : 1800},
+		  {"index": 113, "value" : 14400}
+        ],
+		"needswakeup" : false
+    }
 }

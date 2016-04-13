@@ -124,5 +124,14 @@
 			"class": "0x80",
 			"value": "data[0].val"
 		}
-	}]
+	}],
+	"recommended" : {
+		"params" : [
+          {"index": 5, "value" : 'Binary Sensor Report'},
+		  {"index": 101, "value" : 240}
+		  {"index": 111, "value" : 900}
+        ],
+		"wakeup" : 14400,
+		"needswakeup" : true
+    }
 }

@@ -92,5 +92,18 @@
 			"instanceId": 0,
 			"value": "data[0].val"
 		}
-	}]
+	}],
+	"recommended" : {
+		"params" : [
+		  {"index": 1, "value" : 'Voltage'},         
+          {"index": 80, "value" : 'Basic'},          
+          {"index": 101, "value" : 4},
+		  {"index": 102, "value" : 8},
+		  {"index": 103, "value" : 2},
+		  {"index": 111, "value" : 120},
+		  {"index": 112, "value" : 1800},
+		  {"index": 113, "value" : 14400}
+        ],		
+		"needswakeup" : false
+    }
 }

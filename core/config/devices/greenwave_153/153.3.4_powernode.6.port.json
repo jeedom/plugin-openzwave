@@ -590,6 +590,6 @@
 			{ "instanceId": "4", "class": "0x32" },
             { "instanceId": "5", "class": "0x32" }
         ],
-	"needswakeup" : false
+		"needswakeup" : false
     }
 }

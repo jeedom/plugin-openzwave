@@ -43,5 +43,12 @@
 			"class": "0x80",
 			"value": "data[0].val"
 		}
-	}]
+	}],
+	"recommended" : {
+		"params" : [       
+          {"index": 121, "value" : 16}
+        ],
+		"wakeup" : 14400,
+		"needswakeup" : true
+    }
 }

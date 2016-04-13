@@ -96,5 +96,14 @@
 		"template": {
 			"dashboard": "tile"
 		}
-	}]
+	}],
+	"recommended" : {		
+		"groups" : [
+          {"index": 1, "value": "add"}
+        ],
+		"polling": [
+            { "instanceId": "0", "class": "0x32" }
+        ],
+		"needswakeup" : false
+    }
 }

@@ -152,5 +152,20 @@
 		"template": {
 			"dashboard": "tile"
 		}
-	}]
+	}],
+	"recommended" : {
+		"params" : [
+          {"index": 80, "value" : 'Hail'},          
+          {"index": 101, "value" : 4},
+		  {"index": 102, "value" : 8},
+		  {"index": 103, "value" : 1},
+		  {"index": 111, "value" : 120},
+		  {"index": 112, "value" : 900},
+		  {"index": 113, "value" : 14400}
+        ],
+		"groups" : [
+          {"index": 2, "value": "add"}
+        ],
+		"needswakeup" : false
+    }
 }

@@ -74,5 +74,13 @@
 			"maxValue": 100,
 			"minValue": 0
 		}
-	}]
+	}],
+	"recommended" : {
+		"polling": [
+            { "instanceId": "1", "class": "0x31" },
+			{ "instanceId": "2", "class": "0x31" }
+        ],
+		"wakeup" : 3600,
+		"needswakeup" : true
+    }
 }

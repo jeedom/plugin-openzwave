@@ -39,5 +39,15 @@
 			"class": "0x80",
 			"value": "data[0].val"
 		}
-	}]
+	}],
+	"recommended" : {
+		"params" : [
+          {"index": 10, "value" : 3}
+        ],		
+		"polling": [
+            { "instanceId": "0", "class": "0x32" }
+        ],
+		"wakeup" : 900,
+		"needswakeup" : true
+    }
 }

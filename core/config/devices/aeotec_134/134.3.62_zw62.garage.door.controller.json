@@ -95,5 +95,11 @@
 		"display": {
 			"invertBinary": "0"
 		}
-	}]
+	}],
+	"recommended" : {
+		"params" : [
+		  {"index": 80, "value" : 'Hail'}          
+        ],		
+		"needswakeup" : false
+    }
 }

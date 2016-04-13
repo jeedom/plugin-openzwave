@@ -1,10 +1,10 @@
 {
-	"name": "Recessed Door Sensor (ZW089)",
+	"name": "Recessed Door Sensor (DSB54)",
 	"doc": "",
 	"type": "Ouverture",
 	"comlink": "",
 	"remark": "",
-	"imglink": "aeotec.zw089",
+	"imglink": "aeotec.dsb54",
 	"battery_type": "1x3V CR2",
 	"configuration": {
 		"conf_version": 1
@@ -43,5 +43,12 @@
 			"class": "0x80",
 			"value": "data[0].val"
 		}
-	}]
+	}],
+	"recommended" : {
+		"params" : [       
+          {"index": 121, "value" : 16}
+        ],
+		"wakeup" : 14400,
+		"needswakeup" : true
+    }
 }
