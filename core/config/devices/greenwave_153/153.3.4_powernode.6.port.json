@@ -571,5 +571,25 @@
 		"template": {
 			"dashboard": "badge-Multiprise"
 		}
-	}]
+	}],
+	"recommended" : {
+		"params" : [
+          {"index": 1, "value" : 255},          
+          {"index": 3, "value" : 'Remember last state'},
+		  {"index": 4, "value" : 'Disable'}
+        ],
+		"groups" : [
+          {"index": 1, "value": "add"},
+		  {"index": 3, "value": "add"}
+        ],
+		"polling": [
+            { "instanceId": "0", "class": "0x32" },
+			{ "instanceId": "1", "class": "0x32" },
+			{ "instanceId": "2", "class": "0x32" },
+			{ "instanceId": "3", "class": "0x32" },
+			{ "instanceId": "4", "class": "0x32" },
+            { "instanceId": "5", "class": "0x32" }
+        ],
+	"needswakeup" : false
+    }
 }
