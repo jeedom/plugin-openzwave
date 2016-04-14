@@ -708,8 +708,12 @@ class openzwave extends eqLogic {
 			$pollinglist = $device['recommended']['polling'];
 			foreach ($pollinglist as $value){
 				$instancepolling = $value['instanceId'];
+				$indexpolling = 0;
+				if (isset($value['index'])){
+					$indexpolling = $value['index'];
+				}
 				$ccpolling = $value['class'];
-				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[' . $instancepolling . '].commandClasses[' . $ccpolling .'].SetPolling(1)', $this->getConfiguration('serverID', 1));
+				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[' . $instancepolling . '].commandClasses[' . $ccpolling .'].data['. $indexpolling .'].SetPolling(1)', $this->getConfiguration('serverID', 1));
 			}
 		}
 		if (isset($device['recommended']['needswakeup']) && $device['recommended']['needswakeup'] == true) {
