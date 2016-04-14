@@ -356,7 +356,7 @@ function printPending(){
             	return;
             }
 			if (data.result != "ok") {
-				$('.isPending').empty().append('  <i class="fa fa-refresh"></i> ' + data.result + ' modification(s) de paramétrage en stand by');
+				$('.isPending').empty().append('  <i class="fa fa-spinner fa-pulse"></i> ' + data.result + ' modification(s) en attente d\'être appliquée');
 			} else {
 				$('.isPending').empty();
 			}
