@@ -1771,40 +1771,44 @@ def serialize_node_to_json(node_id):
                 json_result['instances'][instance2] = {"updateTime": timestamp}
                 json_result['instances'][instance2]['commandClasses'] = {"updateTime": timestamp}
                 json_result['instances'][instance2]['commandClasses']['data'] = {"updateTime": timestamp}
-                json_result['instances'][instance2]['commandClasses'][my_value.command_class] = {"name": my_node.get_command_class_as_string(my_value.command_class)}
-                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'] = {"updateTime": timestamp}
-                if not my_node.is_ready:
-                    json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['interviewDone'] = {}
-                if my_value.command_class in [COMMAND_CLASS_BATTERY]:
-                    json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['supported'] = {"value": True, "type": "bool", "updateTime": timestamp}
-                    json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['last'] = {"value": value2, "type": "int", "updateTime": timestamp}
-                if my_value.command_class in [COMMAND_CLASS_WAKE_UP]:
-                    json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['interval'] = {"value": value2, "type": "int", "updateTime": timestamp}
-                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": label, "help": value_help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state, "expected_data": expected_data}
-                
+                serialize_command_class_info(instance2, json_result, my_node, my_value, timestamp)
+                serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,
+                                             pending_state, standard_type, timestamp, value2, value_help, value_units)
             elif my_value.command_class not in json_result['instances'][instance2]['commandClasses']:
                 json_result['instances'][instance2]['commandClasses'][my_value.command_class] = {"updateTime": timestamp}
-                json_result['instances'][instance2]['commandClasses'][my_value.command_class] = {"name": my_node.get_command_class_as_string(my_value.command_class)}
-                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'] = {"updateTime": timestamp}
-                if not my_node.is_ready:
-                    json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['interviewDone'] = {}
-                if my_value.command_class in [COMMAND_CLASS_BATTERY]:
-                    json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['supported'] = {"value": True, "type": "bool", "updateTime": timestamp}
-                    json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['last'] = {"value": value2, "type": "int", "updateTime": timestamp}
-                if my_value.command_class in [COMMAND_CLASS_WAKE_UP]:
-                    json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['interval'] = {"value": value2, "type": "int", "updateTime": timestamp}
-                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": label, "help": value_help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state, "expected_data": expected_data}
-                
+                serialize_command_class_info(instance2, json_result, my_node, my_value, timestamp)
+                serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,
+                                             pending_state, standard_type, timestamp, value2, value_help, value_units)
             elif index2 not in json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']:
-                if my_value.command_class in [COMMAND_CLASS_BATTERY]:
-                    json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['supported'] = {"value": True, "type": "bool", "updateTime": timestamp}
-                    json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['last'] = {"value": value2, "type": "int", "updateTime": timestamp}
-                if my_value.command_class in [COMMAND_CLASS_WAKE_UP]:
-                    json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']['interval'] = {"value": value2, "type": "int", "updateTime": timestamp}
-                json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2, "name": label, "help": value_help, "type": standard_type, "typeZW": my_value.type, "units": value_units, "data_items": data_items, "read_only": my_value.is_read_only, "write_only": my_value.is_write_only, "updateTime": timestamp, "genre": my_value.genre, "value_id": my_value.value_id, "poll_intensity": my_value.poll_intensity, "pendingState": pending_state, "expected_data": expected_data}
+                serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,
+                                             pending_state, standard_type, timestamp, value2, value_help, value_units)
     else:
         add_log_entry('This network does not contain any node with the id %s' % (node_id,), 'warning')
     return json_result
+
+
+def serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,
+                                 pending_state, standard_type, timestamp, value2, value_help, value_units):
+    json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2,
+                                                                                                     "name": label,
+                                                                                                     "help": value_help,
+                                                                                                     "type": standard_type,
+                                                                                                     "typeZW": my_value.type,
+                                                                                                     "units": value_units,
+                                                                                                     "data_items": data_items,
+                                                                                                     "read_only": my_value.is_read_only,
+                                                                                                     "write_only": my_value.is_write_only,
+                                                                                                     "updateTime": timestamp,
+                                                                                                     "genre": my_value.genre,
+                                                                                                     "value_id": my_value.value_id,
+                                                                                                     "poll_intensity": my_value.poll_intensity,
+                                                                                                     "pendingState": pending_state,
+                                                                                                     "expected_data": expected_data}
+
+
+def serialize_command_class_info(instance2, json_result, my_node, my_value, timestamp):
+    json_result['instances'][instance2]['commandClasses'][my_value.command_class] = {"name": my_node.get_command_class_as_string(my_value.command_class)}
+    json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'] = {"updateTime": timestamp}
 
 
 def serialize_node_health(node_id):
