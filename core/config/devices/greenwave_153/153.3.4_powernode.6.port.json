@@ -575,8 +575,8 @@
 	"recommended" : {
 		"params" : [
           {"index": 1, "value" : 255},          
-          {"index": 3, "value" : 'Remember last state'},
-		  {"index": 4, "value" : 'Disable'}
+          {"index": 3, "value" : "Remember last state"},
+		  {"index": 4, "value" : "Disable"}
         ],
 		"groups" : [
           {"index": 1, "value": "add"},

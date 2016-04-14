@@ -92,7 +92,7 @@
 	}],
 	"recommended" : {
 		"params" : [
-          {"index": 4, "value" : 'Enabled'},
+          {"index": 4, "value" : "Enabled"},
 		  {"index": 101, "value" : 224},
 		  {"index": 102, "value" : 1},
 		  {"index": 111, "value" : 3600},

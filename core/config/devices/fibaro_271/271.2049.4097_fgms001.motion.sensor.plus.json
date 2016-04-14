@@ -291,7 +291,7 @@
 	},
 	"recommended" : {
 		"params" : [       
-          {"index": 24, "value" : 'Tamper + Cancellation'}
+          {"index": 24, "value" : "Tamper + Cancellation"}
         ],
 		"groups" : [
           {"index": 1, "value": "add"},

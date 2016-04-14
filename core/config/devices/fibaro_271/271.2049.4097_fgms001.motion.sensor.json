@@ -271,5 +271,12 @@
 				"LED indicates tamper alarm.": "La détection du capteur anti-sabotage est signalée par la LED allumée"
 			}
 		}
-	}
+	},
+	"recommended" : {
+		"params" : [       
+          {"index": 24, "value" : "Tamper + Cancellation"}
+        ],		
+		"wakeup" : 7200,
+		"needswakeup" : true
+    }
 }

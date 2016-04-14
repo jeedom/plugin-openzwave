@@ -98,7 +98,7 @@
 	}],
 	"recommended" : {
 		"params" : [
-		  {"index": 80, "value" : 'Hail'}          
+		  {"index": 80, "value" : "Hail"}          
         ],		
 		"needswakeup" : false
     }
