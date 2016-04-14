@@ -583,12 +583,12 @@
 		  {"index": 3, "value": "add"}
         ],
 		"polling": [
-            { "instanceId": "0", "class": "0x32" },
-			{ "instanceId": "1", "class": "0x32" },
-			{ "instanceId": "2", "class": "0x32" },
-			{ "instanceId": "3", "class": "0x32" },
-			{ "instanceId": "4", "class": "0x32" },
-            { "instanceId": "5", "class": "0x32" }
+            { "instanceId": "0", "index": 0, "class": "0x32" },
+			{ "instanceId": "1", "index": 0, "class": "0x32" },
+			{ "instanceId": "2", "index": 0, "class": "0x32" },
+			{ "instanceId": "3", "index": 0, "class": "0x32" },
+			{ "instanceId": "4", "index": 0, "class": "0x32" },
+            { "instanceId": "5", "index": 0, "class": "0x32" }
         ],
 		"needswakeup" : false
     }
