@@ -4,11 +4,11 @@
 
 * New Features
 
-**  n/a
+**  Ajout d'une notification info lors de l'application de Set_Point afin de pourvoir exploiter la consigne demandé sous forme de cmd info.
 
 * Improvements/Enhancements
 
-**  n/a
+**  Mise à jour de la documentation
 
 * Bug Fixes
 ** n/a
