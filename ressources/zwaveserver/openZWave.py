@@ -2832,6 +2832,9 @@ def set_value7(node_id, instance_id, cc_id, index, value):
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     # dimmer don't report the final value until the value changes is completed
                     prepare_refresh(node_id, val, value)
+                if int(cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SET_POINT:
+                    debug_print("COMMAND_CLASS_THERMOSTAT_SET_POINT")
+                    save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SET_POINT, index, get_standard_value_type(_network.nodes[node_id].values[val].type), value, instance_id+10)
                 return format_json_result()
         return format_json_result(False, 'value not found')
     else:
@@ -2850,6 +2853,9 @@ def set_value8(node_id, instance_id, cc_id, index, value):
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     # dimmer don't report the final value until the value changes is completed
                     prepare_refresh(node_id, val, value)
+                if int(cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SET_POINT:
+                    debug_print("COMMAND_CLASS_THERMOSTAT_SET_POINT")
+                    save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SET_POINT, index, get_standard_value_type(_network.nodes[node_id].values[val].type), value, instance_id+10)
                 return format_json_result()
         return format_json_result(False, 'value not found')
     else:
