@@ -48,6 +48,9 @@ image:../images/openzwave53.png[]
 * *Général* :
 ** *Supprimer automatiquement les périphériques exclus* : L'option Oui, permet de supprimer les périphériques exclus du réseau  Z-Wave. L’option Non, permet de conserver les équipements dans jeedom même s’ils ont été exclus du réseau. L’équipement devra être alors supprimé manuellement ou réutilisé en lui assignant un nouvel ID Z-Wave si on exécute une migration du contrôleur principal.
 ** *Soigner le réseau automatiquement 2 fois par semaine* : option pour activer un soin automatique du réseau  Z-Wave (vivement conseillée en début d'installation si on déplace régulièrement les modules)
+** *Mettre à jour la configuration des modules automatiquement, chaque jour à minuit* : option pour activer la mise à jour des configuration de module openzwave ainsi de les fichier de commande Z-Wave.
+** *Appliquer le jeu de configuration recommandé à l'inclusion* : option pour appliquer directement à l'inclusion le jeu de configuration recommandé par l'équipe Jeedom (conseillée)
+
 * *Gestion avancée* :
 ** *Console* : permet l'affichage de la console Z-Wave (voir plus bas)
 ** *Backups* : permet de gérer les backups du fichier de topologie réseaux (voir plus bas)
