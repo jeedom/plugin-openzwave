@@ -161,7 +161,7 @@ function printEqLogic(_eqLogic){
                            '<ul>' +
                            '<li class="active">{{Paramètres.}}</li>' +
                            '<li class="active">{{Associations.}}</li>' +
-                           '<li class="active">{{Interval de réveil.}}</li>' +
+                           '<li class="active">{{Intervalle de réveil.}}</li>' +
                            '<li class="active">{{Rafraîchissement.}}</li>' +
                            '</ul>' +
                            '</form>',
