@@ -1,5 +1,5 @@
 {
-	"name": "Garage Door Controller (ZW062)",
+	"name": "Garage Door Controller Gen5 (ZW062)",
 	"doc": "aeotec.zw062_garage_door_controller",
 	"type": "Porte",
 	"comlink": "3403-aeon-labs-controleur-de-porte-de-garage-z-wave-gen5",
