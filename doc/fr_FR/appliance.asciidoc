@@ -68,6 +68,16 @@ Le bouton *Tester* dans le cas d'une commande de type Info, ne vas pas interroge
 Le test retournera la bonne valeur seulement si le module en question a transmis une nouvelle valeur correspondant à définition de la commande.
 Il est alors tout à fait normal de ne pas obtenir de résultat suite à la création d'une nouvelle commande Info, spécialement sur un module sur pile qui notifie rarement Jeedom.
 
+
+[TIP]
+La *loupe* permet de recréer l'ensemble des commandes pour le module en cours.
+Si aucune commande n’est présente ou si les commandes sont erronées la loupe devrait remédier à la situation.
+
+
+[IMPORTANT]
+La *loupe* va supprimer les commandes existantes, si les commandes étaient utilisé dans des scénarios, vous devrez alors corriger vos scénarios ou autre endroit où les commandes étaient exploitées.
+
+
 === Jeux de Commandes
 
 Certains modules ont plusieurs jeux de commandes préconfigurées
