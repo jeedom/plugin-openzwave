@@ -152,6 +152,59 @@ function printEqLogic(_eqLogic){
 			if(isset(data.result.recommended) && data.result.recommended != ''){
                $('#bt_deviceRecommended').show();
 			   $('#bt_deviceRecommended').on('click', function () {
+                   bootbox.dialog({
+                           title: "{{Configuration recommandée}}",
+                           message:
+                           '<form class="form-horizontal"> ' +
+                           '<label class="control-label" > {{Voulez-vous appliquer le jeu de configuration recommandée par l\'équipe Jeedom ?}} </label> ' +
+                           '<br><br>' +
+                           '<ul>' +
+                           '<li class="active">{{Paramètres.}}</li>' +
+                           '<li class="active">{{Associations.}}</li>' +
+                           '<li class="active">{{Interval de réveil.}}</li>' +
+                           '<li class="active">{{Rafraîchissement.}}</li>' +
+                           '</ul>' +
+                           '</form>',
+                           buttons: {
+                               main: {
+                                   label: "{{Annuler}}",
+                                   className: "btn-danger",
+                                   callback: function() {}
+                               },
+                               success: {
+                                   label: "{{Appliquer}}",
+                                   className: "btn-success",
+                                   callback: function () {
+                                       $.ajax({// fonction permettant de faire de l'ajax
+                                           type: "POST", // methode de transmission des données au fichier php
+                                           url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+                                           data: {
+                                               action: "applyRecommended",
+                                               id: _eqLogic.id,
+                                           },
+                                           dataType: 'json',
+                                           error: function (request, status, error) {
+                                               handleAjaxError(request, status, error);
+                                           },
+                                           success: function (data) { // si l'appel a bien fonctionné
+                                               if (data.state != 'ok') {
+                                                   $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                                                   return;
+                                               }
+                                               if (data.result == "wakeup") {
+                                                   $('#div_alert').showAlert({message: '{{Configuration appliquée. Cependant ce module nécessite un réveil pour que celle-ci soit effective.}}', level: 'success'});
+                                               } else {
+                                                   $('#div_alert').showAlert({message: '{{Configuration appliquée et effective.}}', level: 'success'});
+                                               }
+                                           }
+                                       });
+                                   }
+                               }
+                           }
+                       }
+                   );
+
+                 /*
 				bootbox.confirm('{{Voulez-vous appliquer la configuration recommandée par l\'équipe Jeedom (paramètre, wakeup, refresh, associations ...) }}', function (result) {
 					if (result) {
 						$.ajax({// fonction permettant de faire de l'ajax
@@ -178,7 +231,7 @@ function printEqLogic(_eqLogic){
 						}
 						});
 					}
-				});
+				});*/
 			});
             }else{
                 $('#bt_deviceRecommended').hide();
