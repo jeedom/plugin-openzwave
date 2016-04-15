@@ -305,9 +305,9 @@ foreach (openzwave::listServerZwave() as $id => $server) {
     <label class="col-sm-2 control-label">{{Paramètres}}</label>
     <div class="col-sm-10">
       <a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fa fa-wrench"></i> {{Configuration}}</a>
-      <a class="btn btn-info" id="bt_deviceAssistant" title='{{Assistant de configuration spécifique}}' style="display:none;"><i class="fa fa-question-circle"></i> {{Assistant}}</a>
+      <a class="btn btn-info" id="bt_deviceAssistant" title='{{Assistant de configuration spécifique}}' style="display:none;"><i class="fa fa-magic"></i> {{Assistant}}</a>
       <a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank" style="display:none;"><i class="fa fa-book"></i> {{Documentation}}</a>
-	  <a class="btn btn-warning" id="bt_deviceRecommended" title='{{Configuration recommandé}}' style="display:none;"><i class="fa fa-magic"></i> {{Assistant paramétrage}}</a>
+	  <a class="btn btn-warning" id="bt_deviceRecommended" title="{{Appliquer appliquer le jeu de configuration recommandée par l'équipe Jeedom}}" style="display:none;"><i class="fa fa-thumbs-up"></i> {{Configuration recommandée}}</a>
     </div>
   </div>
   <center>
