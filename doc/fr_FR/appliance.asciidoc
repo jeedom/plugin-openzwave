@@ -90,3 +90,43 @@ Le bouton *Documentation* permet d'accèder à la documentation spécifique du m
 Des modules particuliers disposent aussi d'un assistant spécifique afin de faciliter l'application de certains paramètres ou fonctionnements.
 
 Le bouton *Assistant* permet d'accèder à l'écran assistant spécifique du module.
+
+
+=== Configuration recommandée
+
+image:../images/openzwave62.png[]
+
+Permet d'appliquer un jeu de configuration recommandée par l'équipe Jeedom.
+
+[TIP]
+Lors de leur inclusion, les modules ont les paramètres par défaut du constructeur et certaines fonctions ne sont pas activées par défaut.
+
+Les éléments suivants, selon le cas, seront appliqués pour simplifier l'utilisation du module.
+
+* *Paramètres* permettant la mise en service rapide de l'ensemble des fonctionnalisées du module.
+* *Groupes d'association* requis au bon fonctionnement.
+* *Intervalle de réveil*, pour les modules sur pile.
+* Activation du *rafraîchissement manuel* pour les modules ne remontant pas d'eux même leur changements d'états.
+
+Pour appliquer le jeu de configuration recommandé, cliquer sur le bouton : *Configuration recommandée*,
+Puis veillez confirmer l'application des configurations recommandées.
+
+image:../images/openzwave63.png[]
+
+L'assistant active les différents éléments de configurations.
+
+Une confirmation du bon déroulement sera affichée sous forme de bandeau
+
+image:../images/openzwave64.png[]
+
+[IMPORTANT]
+Les modules sur piles doivent être réveillés pour appliquer le jeu de configuration.
+
+La page de l'équipement vous informe si des éléments n'ont pas encore été activés sur le module.
+Veillez-vous référer à la documentation du module pour le réveiller manuellement ou attendre le prochain cycle de réveil.
+
+image:../images/openzwave65.png[]
+
+
+[TIP]
+Il est possible d'activer automatiquement l'application du jeu de configuration recommandé lors de l'inclusion de nouveau module, voir la section Configuration du plugin pour plus de détails.
