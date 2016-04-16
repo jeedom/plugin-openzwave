@@ -45,7 +45,7 @@ if (!isConnect()) {
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label">{{Appliquer le paramétrage recommandé à l'inclusion}}</label>
+				<label class="col-sm-4 control-label">{{Appliquer le jeu de configuration recommandée à l'inclusion}}</label>
 				<div class="col-sm-2">
 					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_applyRecommended" checked/>
 				</div>
