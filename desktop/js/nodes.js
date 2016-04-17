@@ -245,6 +245,42 @@ var app_nodes = {
             var node = $(this).data('nodeindex');
             app_nodes.delete_group(app_nodes.selected_node, group, node);
         });
+        $("body").off("click", ".findUsage").on("click", ".findUsage", function (e) {
+
+            var associations = nodes[app_nodes.selected_node].associations;
+            var message = '<form class="form-horizontal"> ' +
+                '<label class="control-label" > {{Dans quelles associations le module est utilisé:}} </label> ' +
+                '<br>' +
+                '<ul>';
+            $.each(associations, function (key, val) {
+                message += '<li class="active">';
+                if (nodes[key].description.name != '') {
+                    message += nodes[key].description.location + ' - <b>' + nodes[key].description.name +'</b>';
+                } else {
+                    message += '<b>' + nodes[key].description.product_name +'</b>';
+                }
+                message += '<br><ul class="fa-ul">'
+                $.each(val, function (key2, val2) {
+                    message += '<li><i class="fa fa-arrow-right btn-success" aria-hidden="true"></i>  ' + val2.label + ' (' + val2.index + ')</li>';
+                });
+                message += '</ul></li>';
+            })
+            message += '</ul>' +
+            '</form>';
+            
+            bootbox.dialog({
+                    title: "{{Mes associations}}",
+                    message: message,
+                    buttons: {
+                        main: {
+                            label: "{{OK}}",
+                            className: "btn-success"
+                        }
+                    }
+                }
+            );
+
+        });
         $('#copyParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
             var modal = $(this);
             modal.find('.modal-body').html(' ');
@@ -1594,5 +1630,9 @@ var app_nodes = {
                 $("#groups").append(newPanel);
             }
         }
+        $("#groups").append('<br>');
+        $("#groups").append('<button type="button" id="findUsage" class="btn btn-primary btn-sm findUsage"><i class="fa fa-share-alt"></i> {{Mes associations}}</button>');
+
+
     },
 }

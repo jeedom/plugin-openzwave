@@ -299,7 +299,6 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 					<div class="tab-pane" id="groups">
 						<button type="button" id="addGroup" class="btn btn-primary addGroup"><i class="fa fa-plus"></i> {{Ajouter une association}}</button>
 						<br>
-
 						<table class="table table-striped">
 							<tr>
 								<th>{{ID du groupe}}</th>
@@ -312,8 +311,8 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 								<td key="group-delete"></td>
 							</tr>
 							<tbody class="groups"></tbody>
-
 						</table>
+						
 					</div>
 					<div class="tab-pane" id="systems">
 						<table class="table table-striped">

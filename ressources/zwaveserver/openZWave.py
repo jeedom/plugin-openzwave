@@ -1714,6 +1714,7 @@ def serialize_node_to_json(node_id):
         for groupIndex in list(my_node.groups):
             group = my_node.groups[groupIndex]
             json_result['groups'][groupIndex] = {"label": group.label, "maximumAssociations": group.max_associations, "associations": concatenate_list(group.associations)}
+        json_result['associations'] = serialize_associations(node_id)
         if hasattr(my_node, 'last_notification'):
             notification = my_node.last_notification
             json_result['last_notification'] = {"receiveTime": notification.receive_time,
@@ -2156,6 +2157,11 @@ def refresh_assoc(node_id):
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].findAssociations()', methods=['GET'])
 def find_associations(node_id):
     debug_print("findAssociations for nodeId: %s" % (node_id,))
+    json_result = serialize_associations(node_id)
+    return jsonify(json_result)
+
+
+def serialize_associations(node_id):
     json_result = {}
     for other_node_id in list(_network.nodes):
         other_node = _network.nodes[other_node_id]
@@ -2167,7 +2173,7 @@ def find_associations(node_id):
                         json_result[other_node_id].append(value)
                     except KeyError:
                         json_result[other_node_id] = [value]
-    return jsonify(json_result)
+    return json_result
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[133].data', methods=['GET'])
