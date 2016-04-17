@@ -6,6 +6,7 @@
 * New Features
 
 ** Ajout d'option pour désactiver l'actualisation en arrière-plan des variateurs.
+** Affichage des associations avec qui un module est en association (find usage).
 
 * Improvements/Enhancements
 
