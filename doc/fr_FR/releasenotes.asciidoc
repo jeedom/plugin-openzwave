@@ -1,6 +1,22 @@
 ==  Release Notes
 
-.Version (Alpha) 2016-xx-xx
+
+.Version (Alpha) 2016-x-x
+
+* New Features
+
+** Ajout d'option pour désactiver l'actualisation en arrière-plan des variateurs.
+
+* Improvements/Enhancements
+
+**  n/a
+
+* Bug Fixes
+
+** n/a
+
+
+.Version (Beta) 2016-04-17
 
 * New Features
 
@@ -11,6 +27,7 @@
 **  Mise à jour de la documentation
 
 * Bug Fixes
+
 ** n/a
 
 .Version (Beta) 2016-04-13
