@@ -513,6 +513,10 @@ class openzwave extends eqLogic {
 			exec('mkdir ' . $data_path . ' && chmod 775 -R ' . $data_path . ' && chown -R www-data:www-data ' . $data_path);
 		}
 		$log = ($_debug) ? 'Debug' : 'Error';
+        $suppressRefresh = 0;
+        if (config::byKey('suppress_refresh', 'openzwave') == 1) {
+            $suppressRefresh = 1;
+        }
 		$cmd = '/usr/bin/python ' . $openzwave_path . '/openZWave.py ';
 		$cmd .= ' --pidfile=/tmp/openzwave.pid';
 		$cmd .= ' --device=' . $port;
@@ -523,6 +527,7 @@ class openzwave extends eqLogic {
 		$cmd .= ' --callback=' . $callback;
 		$cmd .= ' --apikey=' . $apikey;
 		$cmd .= ' --serverId=' . $serverId;
+        $cmd .= ' --suppressRefresh=' . $suppressRefresh;
 
 		log::add('openzwavecmd', 'info', 'Lancement démon openzwave : ' . $cmd);
 		$result = exec($cmd . ' >> ' . log::getPathToLog('openzwavecmd') . ' 2>&1 &');

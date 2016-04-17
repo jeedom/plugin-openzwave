@@ -119,6 +119,7 @@ _force_refresh_nodes = []
 _changes_async = {'device': {}}
 _cycle = 0.5
 _ghost_node_id = None
+_suppress_refresh = False
 
 COMMAND_CLASS_NO_OPERATION              = 0  # 0x00
 COMMAND_CLASS_BASIC                     = 32  # 0x20
@@ -231,6 +232,11 @@ for arg in sys.argv:
         temp, _apikey = arg.split("=")
     elif arg.startswith("--serverId="):
         temp, _server_id = arg.split("=")
+    elif arg.startswith("--suppressRefresh="):
+        temp, suppress_refresh = arg.split("=")
+        _suppress_refresh = suppress_refresh == 1
+
+
 
 if _device is None or len(_device) == 0:
     add_log_entry('Dongle Key is not specified. Please check your Z-Wave (openzwave) configuration plugin page', 'error')
@@ -2000,6 +2006,8 @@ def create_worker(node_id, value_id, target_value, starting_value, counter):
 
 
 def prepare_refresh(node_id, value_id, target_value=None):
+    if _suppress_refresh :
+        return
     # debug_print("prepare_refresh for nodeId:%s valueId:%s data:%s" % (node_id, value_id, target_value,))
     stop_refresh(node_id, value_id)
     starting_value = _network.nodes[node_id].values[value_id].data

@@ -50,6 +50,12 @@ if (!isConnect()) {
 					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_applyRecommended" checked/>
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">{{Désactiver l'actualisation en arrière-plan des variateurs}}</label>
+				<div class="col-sm-2">
+					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="suppress_refresh" checked/>
+				</div>
+			</div>
 			<legend><i class="fa fa-cog"></i>  {{Gestion avancée}}</legend>
 			<div class="form-group">
 				<label class="col-lg-4 control-label">{{Options avancées}}</label>
