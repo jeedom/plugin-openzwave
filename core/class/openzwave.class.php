@@ -74,6 +74,30 @@ class openzwave extends eqLogic {
 		return self::$_listZwaveServer;
 	}
 
+	public static function callOpenzwaveAsync($_url, $_serverId = 0)
+	{
+		if (self::$_listZwaveServer == null) {
+			self::listServerZwave();
+		}
+		if (!isset(self::$_listZwaveServer[$_serverId])) {
+			self::listServerZwave();
+		}
+		if (!isset(self::$_listZwaveServer[$_serverId])) {
+			return '';
+		}
+		$url = 'http://' . self::$_listZwaveServer[$_serverId]['addr'] . ':' . self::$_listZwaveServer[$_serverId]['port'] . str_replace(' ', '%20', $_url);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER , FALSE);
+        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_VERBOSE, FALSE);
+        curl_exec($ch);
+        curl_close($ch);
+		return '';
+	}
+
 	public static function callOpenzwave($_url, $_serverId = 0, $_timeout = null, $_noError = false, $_data = null) {
 		if (self::$_listZwaveServer == null) {
 			self::listServerZwave();
@@ -337,6 +361,17 @@ class openzwave extends eqLogic {
 			if (config::byKey('auto_updateConf', 'openzwave') == 1) {
 				try {
 					openzwave::syncconfOpenzwave();
+				} catch (Exception $e) {
+				}
+			}
+		}
+	}
+
+	public static function cron15() {
+		if (config::byKey('jeeNetwork::mode') == 'master') {
+			foreach (self::listServerZwave() as $serverID => $server) {
+				try {
+					self::callOpenzwaveAsync('/ZWaveAPI/Run/network.PerformSanityChecks()', $serverID);
 				} catch (Exception $e) {
 				}
 			}

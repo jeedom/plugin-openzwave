@@ -902,63 +902,67 @@ def validate_association_groups_asynchronous():
 
 
 def recovering_failed_nodes_asynchronous():
-    global _ghost_node_id
     # wait 15 seconds on first launch
-    time.sleep(15.0)    
+    time.sleep(15.0)
     while True:
-        # if controller is busy skip this run
-        if  can_execute_network_command(0):
-            debug_print("Perform network sanity test/check")
-            for node_id in list(_network.nodes):
-                my_node = _network.nodes[node_id]
-                # first check if a ghost node wait to be removed
-                if _ghost_node_id is not None and node_id == _ghost_node_id and my_node.is_failed:
-                    add_log_entry('* Try to remove a Ghost node (nodeId: %s)' % (node_id,))
-                    _network.manager.removeFailedNode(_network.home_id, node_id)
-                    time.sleep(10)
-                    if _ghost_node_id not in _network.nodes:
-                        # reset ghost node flag
-                        _ghost_node_id = None
-                        add_log_entry('=> Ghost node removed (nodeId: %s)' % (node_id,))
-                    continue
-                if node_id in _not_supported_nodes:
-                    debug_print('=> Remove not valid nodeId: %s' % (node_id,))
-                    _network.manager.removeFailedNode(_network.home_id, node_id)
-                    time.sleep(10)
-                    continue
-                if my_node.is_failed:
-                    debug_print('=> Try recovering, presumed Dead, nodeId: %s' % (node_id,))
-                    # a ping will try to revive the node
-                    _network.manager.testNetworkNode(_network.home_id, node_id, 1)
+        sanity_checks()
+        # wait for next run
+        time.sleep(_recovering_failed_nodes_timer)
+
+
+def sanity_checks():
+    global _ghost_node_id
+    # if controller is busy skip this run
+    if can_execute_network_command(0):
+        debug_print("Perform network sanity test/check")
+        for node_id in list(_network.nodes):
+            my_node = _network.nodes[node_id]
+            # first check if a ghost node wait to be removed
+            if _ghost_node_id is not None and node_id == _ghost_node_id and my_node.is_failed:
+                add_log_entry('* Try to remove a Ghost node (nodeId: %s)' % (node_id,))
+                _network.manager.removeFailedNode(_network.home_id, node_id)
+                time.sleep(10)
+                if _ghost_node_id not in _network.nodes:
+                    # reset ghost node flag
+                    _ghost_node_id = None
+                    add_log_entry('=> Ghost node removed (nodeId: %s)' % (node_id,))
+                continue
+            if node_id in _not_supported_nodes:
+                debug_print('=> Remove not valid nodeId: %s' % (node_id,))
+                _network.manager.removeFailedNode(_network.home_id, node_id)
+                time.sleep(10)
+                continue
+            if my_node.is_failed:
+                debug_print('=> Try recovering, presumed Dead, nodeId: %s' % (node_id,))
+                # a ping will try to revive the node
+                _network.manager.testNetworkNode(_network.home_id, node_id, 1)
+                # avoid stress network
+                time.sleep(5)
+                if _network.manager.hasNodeFailed(_network.home_id, node_id):
                     # avoid stress network
                     time.sleep(5)
-                    if _network.manager.hasNodeFailed(_network.home_id, node_id):
+            elif my_node.is_listening_device and my_node.is_ready:
+                # check if a ping is require
+                if hasattr(my_node, 'last_notification'):
+                    # debug_print('=> last_notification for nodeId: %s is: %s(%s)' % (node_id, my_node.last_notification.description, my_node.last_notification.code,))
+                    # is in timeout or dead
+                    if my_node.last_notification.code in [1, 5]:
+                        debug_print('=> Do a test on node %s' % (node_id,))
+                        # a ping will try to resolve this situation with a NoOperation CC.
+                        _network.manager.testNetworkNode(_network.home_id, node_id, 3)
                         # avoid stress network
-                        time.sleep(5)
-                elif my_node.is_listening_device and my_node.is_ready:
-                    # check if a ping is require
-                    if hasattr(my_node, 'last_notification'):
-                        # debug_print('=> last_notification for nodeId: %s is: %s(%s)' % (node_id, my_node.last_notification.description, my_node.last_notification.code,))
-                        # is in timeout or dead
-                        if my_node.last_notification.code in [1, 5]:
-                            debug_print('=> Do a test on node %s' % (node_id,))
-                            # a ping will try to resolve this situation with a NoOperation CC. 
-                            _network.manager.testNetworkNode(_network.home_id, node_id, 3)
-                            # avoid stress network
-                            time.sleep(10)
-                elif not my_node.is_listening_device and my_node.is_ready :
-                    if hasattr(my_node, 'last_notification'):
-                        # check if controller think is awake
-                        if my_node.is_awake or my_node.last_notification.code == 3 :
-                            debug_print('trying to lull the node %s' % (node_id,))
-                            # a ping will force the node to return sleep after the NoOperation CC. Will force node notification update
-                            _network.manager.testNetworkNode(_network.home_id, node_id, 1)
+                        time.sleep(10)
+            elif not my_node.is_listening_device and my_node.is_ready:
+                if hasattr(my_node, 'last_notification'):
+                    # check if controller think is awake
+                    if my_node.is_awake or my_node.last_notification.code == 3:
+                        debug_print('trying to lull the node %s' % (node_id,))
+                        # a ping will force the node to return sleep after the NoOperation CC. Will force node notification update
+                        _network.manager.testNetworkNode(_network.home_id, node_id, 1)
 
-            debug_print("Network sanity test/check completed!")
-        else:
-            debug_print("Network is loaded, skip sanity check this time")
-        # wait for next run    
-        time.sleep(_recovering_failed_nodes_timer)
+        debug_print("Network sanity test/check completed!")
+    else:
+        debug_print("Network is loaded, skip sanity check this time")
 
 
 def refresh_configuration_asynchronous():
@@ -1013,10 +1017,11 @@ def network_awaked(network):
     association = threading.Timer(_validate_association_groups_timer, validate_association_groups_asynchronous)
     association.start()
     add_log_entry("Validate association groups will starting in %d sec" % (_validate_association_groups_timer,))
-    threading.Thread(target=recovering_failed_nodes_asynchronous).start()
+    # threading.Thread(target=recovering_failed_nodes_asynchronous).start()
     # start listening for group changes
     dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
     save_network_state(network.state)
+    sanity_checks()
 
 
 def network_ready(network):
@@ -3889,6 +3894,13 @@ def manually_delete_backup(backup_name):
     else:
         os.unlink(backup_file)
     return format_json_result(True, backup_name + ' successfully deleted')
+
+
+@app.route('/ZWaveAPI/Run/network.PerformSanityChecks()', methods=['POST'])
+def perform_sanity_checks():
+    sanity_checks()
+    return format_json_result()
+
 
 
 @app.route('/ZWaveAPI/Run/IsAlive()', methods=['GET'])
