@@ -131,8 +131,6 @@ var app_nodes = {
                 }
             }
             );
-
-
         });
         $("#replaceFailedNode").off("click").on("click", function () {
             bootbox.dialog({
@@ -201,33 +199,6 @@ var app_nodes = {
                 }
             }
         );
-        /*
-        bootbox.dialog({
-            message: "{{Désirez-vous lancer, la régénération, pour tous les modules identiques à celui-ci  (marque et modèle) ou seulement pour ce module ?}}",
-            title: "{{Attention, cette action entraîne un redémarrage de votre réseau.}}",
-            buttons: {
-                success: {
-                    label: "{{Tous les modules identiques}}",
-                    className: "btn-success",
-                    callback: function() {
-                        app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node, 1);
-                    }
-                },
-                danger: {
-                    label: "{{Ce module seulement}}",
-                    className: "btn-primary",
-                    callback: function() {
-                        app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node, 0);
-                    }
-                },
-                main: {
-                    label: "{{Annuler}}",
-                    className: "btn-danger",
-                    callback: function() {
-                    }
-                }
-            }
-        });*/
         });
         $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
             $('#copyParamsModal').modal('show');
@@ -248,12 +219,13 @@ var app_nodes = {
         $("body").off("click", ".findUsage").on("click", ".findUsage", function (e) {
 
             var associations = nodes[app_nodes.selected_node].associations;
-            var message = '<form class="form-horizontal"> ' +
-                '<label class="control-label" > {{Dans quelles associations le module est utilisé:}} </label> ' +
+            var description = nodes[app_nodes.selected_node].data.name.value;
+            var message = '<form class="form-horizontal"><div class="panel-body"> ' +
+                '<p  style="font-size : 1em;"> {{Liste des groupes d\'associations où le module }} <b><span class="node-name label label-default" style="font-size : 1em;">' + description +'</span></b> {{est utilisé:}} </p> ' +
                 '<br>' +
                 '<ul>';
             $.each(associations, function (key, val) {
-                message += '<li class="active">';
+                message += '<li class="active"><p>';
                 if (nodes[key].description.name != '') {
                     message += nodes[key].description.location + ' - <b>' + nodes[key].description.name +'</b>';
                 } else {
@@ -263,13 +235,13 @@ var app_nodes = {
                 $.each(val, function (key2, val2) {
                     message += '<li><i class="fa fa-arrow-right btn-success" aria-hidden="true"></i>  ' + val2.label + ' (' + val2.index + ')</li>';
                 });
-                message += '</ul></li>';
+                message += '</ul></p></li>';
             })
             message += '</ul>' +
-            '</form>';
+            '</div></form>';
             
             bootbox.dialog({
-                    title: "{{Mes associations}}",
+                    title: "{{Associé via quels modules}}",
                     message: message,
                     buttons: {
                         main: {
@@ -1631,7 +1603,7 @@ var app_nodes = {
             }
         }
         $("#groups").append('<br>');
-        $("#groups").append('<button type="button" id="findUsage" class="btn btn-primary btn-sm findUsage"><i class="fa fa-share-alt"></i> {{Mes associations}}</button>');
+        $("#groups").append('<button type="button" id="findUsage" class="btn btn-primary btn-sm findUsage"><i class="fa fa-share-alt"></i> {{Associé via quels modules}}</button>');
 
 
     },
