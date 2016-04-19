@@ -33,6 +33,10 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 	.greeniconcolor {color:green;}
 	.yellowiconcolor {color:#FFD700;}
 	.rediconcolor {color:red;}
+
+	.pendingcolor{color:#FFD700}
+	.rejectcolor{color:#e74c3c}
+
 	.modal-dialog-center {
 		margin: 0;
 		position: absolute;

@@ -1594,11 +1594,29 @@ var app_nodes = {
                         tr_groups += "<tr gid='" + id + "'><td>" + node_id + " : " + node_name + "</td><td align='right'><button type='button' class='btn btn-danger btn-sm deleteGroup' data-groupindex='" + z + "' data-nodeindex='" + node_id + "'><i class='fa fa-trash-o'></i> {{Supprimer}}</button></td></tr>";
                     }
                 }
+                var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right">';
                 if (values.length < node_groups[z].maximumAssociations || values[val] == "") {
-                    var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="' + z + '"><i class="fa fa-plus"></i> {{Ajouter un noeud}}</a></div><h3 class="panel-title" style="padding-top:10px;">' + z + ' : ' + node_groups[z].label + ' {{(nombre maximum d\'association :}} ' + node_groups[z].maximumAssociations + ')</h3></div><div class="panel-body"><table class="table">' + tr_groups + '</table></div></div>';
+                    newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="' + z + '">';
                 } else {
-                    var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right"><a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="' + z + '"><i class="fa fa-plus"></i> {{Ajouter un noeud}}</a></div><h3 class="panel-title" style="padding-top:10px;">' + z + ' : ' + node_groups[z].label + ' {{(nombre maximum d\'association :}} ' + node_groups[z].maximumAssociations + ')</h3></div><div class="panel-body"><table class="table">' + tr_groups + '</table></div></div>';
+                    newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="' + z + '">';
                 }
+                newPanel += '<i class="fa fa-plus"></i> {{Ajouter un noeud}}</a></div>';
+                var pending_state = node_groups[z].pending;
+                switch (pending_state) {
+                    case 1:
+                        newPanel += '<h3 class="panel-title" style="padding-top:10px;">';
+                        break;
+                    case 2:
+                        newPanel += '<h3 class="panel-title rejectcolor" style="padding-top:10px;">';
+                        break;
+                    case 3:
+                        newPanel += '<h3 class="panel-title pendingcolor" style="padding-top:10px;"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i>  ';
+                        break;
+                    default:
+                        newPanel += '<h3 class="panel-title" style="padding-top:10px;">';
+                }
+                newPanel += z + ' : ' + node_groups[z].label + ' {{(nombre maximum d\'association :}} ' + node_groups[z].maximumAssociations + ')</h3></div>';
+                newPanel += '<div class="panel-body"><table class="table">' + tr_groups + '</table></div></div>';
                 $("#groups").append(newPanel);
             }
         }

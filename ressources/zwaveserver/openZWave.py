@@ -1329,11 +1329,15 @@ def node_event(network, node, value):
     save_node_value_event(node.node_id, int(time.time()), COMMAND_CLASS_BASIC, 0, standard_type, value, 0)
 
 
-def node_group_changed(network, node):
-    debug_print('Group changed for nodeId %s' % (node.node_id,)) 
-    # TODO: reset group changed for pending associations
+def node_group_changed(network, node, groupidx):
+    debug_print('Group changed for nodeId %s index %s' % (node.node_id, groupidx,))
     validate_association_groups(node.node_id)
-
+    # check pending for this group index
+    if hasattr(node, 'pendingAssociations'):
+        if groupidx in node.pendingAssociations:
+            pending_association = node.pendingAssociations[groupidx]
+            if pending_association is not None:
+                pending_association.associations = node.groups[groupidx].associations
 
 
 def get_wake_up_interval(node_id):
@@ -1642,12 +1646,6 @@ def validate_association_groups(node_id):
                         debug_print("Remove association for nodeId: %s index %s with not exist target: %s" % (node_id, group_index, target_node_id,))
                         _network.manager.removeAssociation(_network.home_id, node_id, group_index, target_node_id)
                         fake_found = True
-            if hasattr(my_node, 'pendingAssociations'):
-                for index_group in list(my_node.pendingAssociations):
-                    pending_association = my_node.pendingAssociations[index_group]
-                    if pending_association is not None:
-                        pending_association.associations = my_node.groups[index_group].associations
-
     return fake_found
 
 
@@ -1713,7 +1711,13 @@ def serialize_node_to_json(node_id):
         json_result['groups'] = {"updateTime": timestamp}
         for groupIndex in list(my_node.groups):
             group = my_node.groups[groupIndex]
-            json_result['groups'][groupIndex] = {"label": group.label, "maximumAssociations": group.max_associations, "associations": concatenate_list(group.associations)}
+            pending_state = 1
+            if hasattr(my_node, 'pendingAssociations'):
+                if groupIndex in my_node.pendingAssociations:
+                    pending_association = my_node.pendingAssociations[groupIndex]
+                    if pending_association.state is not None:
+                        pending_state = pending_association.state
+            json_result['groups'][groupIndex] = {"label": group.label, "maximumAssociations": group.max_associations, "associations": concatenate_list(group.associations), "pending": pending_state}
         json_result['associations'] = serialize_associations(node_id)
         if hasattr(my_node, 'last_notification'):
             notification = my_node.last_notification
