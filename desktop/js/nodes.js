@@ -1610,13 +1610,25 @@ var app_nodes = {
                         newPanel += '<h3 class="panel-title rejectcolor" style="padding-top:10px;">';
                         break;
                     case 3:
-                        newPanel += '<h3 class="panel-title pendingcolor" style="padding-top:10px;"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i>  ';
+                        newPanel += '<h3 class="panel-title pendingcolor" style="padding-top:10px;">';
                         break;
                     default:
                         newPanel += '<h3 class="panel-title" style="padding-top:10px;">';
                 }
-                newPanel += z + ' : ' + node_groups[z].label + ' {{(nombre maximum d\'association :}} ' + node_groups[z].maximumAssociations + ')</h3></div>';
-                newPanel += '<div class="panel-body"><table class="table">' + tr_groups + '</table></div></div>';
+                newPanel += z + ' : ' + node_groups[z].label + ' {{(nombre maximum d\'association :}} ' + node_groups[z].maximumAssociations + ')';
+
+                switch (pending_state) {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        newPanel += '  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>';
+                        break;
+                    default:
+                        break;
+                }
+                newPanel += '</h3></div><div class="panel-body"><table class="table">' + tr_groups + '</table></div></div>';
                 $("#groups").append(newPanel);
             }
         }

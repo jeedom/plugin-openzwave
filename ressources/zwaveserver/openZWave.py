@@ -1578,7 +1578,7 @@ def check_pending_changes(node_id):
         if pending_state is None or pending_state == 1:
             continue
         pending_changes += 1
-        debug_print("pending Configuration for cc: %s index %s" % (my_value.command_class, my_value.index,))
+        # debug_print("pending Configuration for cc: %s index %s" % (my_value.command_class, my_value.index,))
     if hasattr(my_node, 'pendingAssociations'):
         for index_group in list(my_node.pendingAssociations):
             pending_association = my_node.pendingAssociations[index_group]
@@ -1588,9 +1588,9 @@ def check_pending_changes(node_id):
             if pending_state is None or pending_state == 1:
                 continue
             pending_changes += 1
-            debug_print("pending Association index %s state: %s (add: %s, remove: %s) associatiosn: %s" % (
-                index_group, pending_association.state, pending_association.pending_added,
-                pending_association.pending_removed, pending_association.associations,))
+            # debug_print("pending Association index %s state: %s (add: %s, remove: %s) associations: %s" % (
+            #     index_group, pending_association.state, pending_association.pending_added,
+            #     pending_association.pending_removed, pending_association.associations,))
     return pending_changes
 
 def serialize_neighbour_to_json(node_id):
@@ -1706,7 +1706,8 @@ def serialize_node_to_json(node_id):
         json_result['data']['security'] = {'value': my_node.security}
         json_result['data']['lastReceived'] = {'updateTime': timestamp}
         json_result['data']['maxBaudRate'] = {'value': my_node.max_baud_rate}
-        
+
+        pending_changes = 0
         json_result['instances'] = {"updateTime": timestamp}
         json_result['groups'] = {"updateTime": timestamp}
         for groupIndex in list(my_node.groups):
@@ -1717,6 +1718,8 @@ def serialize_node_to_json(node_id):
                     pending_association = my_node.pendingAssociations[groupIndex]
                     if pending_association.state is not None:
                         pending_state = pending_association.state
+                        if pending_state is not None and pending_state > 1:
+                            pending_changes +=1
             json_result['groups'][groupIndex] = {"label": group.label, "maximumAssociations": group.max_associations, "associations": concatenate_list(group.associations), "pending": pending_state}
         json_result['associations'] = serialize_associations(node_id)
         if hasattr(my_node, 'last_notification'):
@@ -1778,6 +1781,8 @@ def serialize_node_to_json(node_id):
                 if my_value.pendingConfiguration is not None:
                     pending_state = my_value.pendingConfiguration.state
                     expected_data = my_value.pendingConfiguration.expected_data
+                    if pending_state is not None and pending_state > 1:
+                        pending_changes +=1
             try:
                 timestamp = int(my_value.last_update)
             except TypeError:
@@ -1798,6 +1803,7 @@ def serialize_node_to_json(node_id):
             elif index2 not in json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']:
                 serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,
                                              pending_state, standard_type, timestamp, value2, value_help, value_units)
+        json_result['data']['pending_changes'] = {'count': pending_changes}
     else:
         add_log_entry('This network does not contain any node with the id %s' % (node_id,), 'warning')
     return json_result
