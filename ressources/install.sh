@@ -11,8 +11,8 @@ echo "Lancement de l'installation/mise à jour des dépendances openzwave"
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ARCH=`uname -m`
-PYTHON_OPENZWAVE_VERSION=9ed302eec778d1c6bb3395a368e34fc33a01cce3 # 0.3.0b8
-OPENZWAVE_VERSION=5c7ac3329a4b18c644bd34a70454c102a3fdb0ef # 1.4.78
+PYTHON_OPENZWAVE_VERSION=c79ee347a3a71685bd98b93adcfdf0d5d570a88c # 0.3.0b8
+OPENZWAVE_VERSION=733975be76930768dbd98a076bf9bcec4dd641a1 # 1.4.167
 
 function apt_install {
   sudo apt-get -y install "$@"
@@ -116,7 +116,7 @@ echo 75 > /tmp/compilation_ozw_in_progress
 cd openzwave
 sudo git reset --hard ${OPENZWAVE_VERSION}
 cd /opt/python-openzwave
-sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
+# sudo sed -i '253s/.*//' openzwave/cpp/src/value_classes/ValueID.h
 sudo make install-api
 echo 80 > /tmp/compilation_ozw_in_progress
 sudo mkdir /opt/python-openzwave/python-eggs
