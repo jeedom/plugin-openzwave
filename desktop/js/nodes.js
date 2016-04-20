@@ -279,12 +279,16 @@ var app_nodes = {
         $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
             var modal = $(this);
             var group = $(this).data('groupindex');
-            var arr_exists_nodes = nodes[app_nodes.selected_node].groups[group].associations.split(';');
+            var arr_exists_nodes = [];
+            for(var i in nodes[app_nodes.selected_node].groups[group].associations) {
+                arr_exists_nodes.push(nodes[app_nodes.selected_node].groups[group].associations[i][0]);
+            }
             modal.find('.modal-body').html(' ');
             modal.find('.modal-title').text('{{Groupe }}' + group + ' : {{Ajouter une association pour le noeud}} ' + app_nodes.selected_node);
             var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
             $.each(nodes, function (key, val) {
-                if (arr_exists_nodes.indexOf(key) == -1 && key != app_nodes.selected_node) {
+                if (arr_exists_nodes.indexOf(parseInt(key)) == -1 && key != app_nodes.selected_node) {
+                    console.log(arr_exists_nodes.indexOf(key));
                     if (val.description.name != '') {
                         options_node += '<option value="' + key + '">' + key + ' : ' + val.description.location + ' - ' + val.description.name + '</option>';
                     } else {
@@ -1219,14 +1223,11 @@ var app_nodes = {
             for (zz in node_groups) {
                 if (!isNaN(zz)) {
                     hasGroup = true;
-                    var values = node_groups[zz].associations.split(';');
-                    tr_groups = "";
-                    for (val in values) {
-                        if (values.length > 0 && values[val] != "") {
-                            var node_id = values[val];
-                            if (node_id == controller_id) {
-                                found = 1;
-                            }
+                    for(var i in node_groups[zz].associations){
+                        var node_id = node_groups[zz].associations[i][0];
+                        if (node_id == controller_id) {
+                            found = 1;
+                            break;
                         }
                     }
                 }
@@ -1576,26 +1577,29 @@ var app_nodes = {
         $("#groups").append('<br>');
         for (z in node_groups) {
             if (!isNaN(z)) {
-                var values = node_groups[z].associations.split(';');
                 tr_groups = "";
-                for (val in values) {
-                    if (values.length > 0 && values[val] != "") {
-                        var id = z + '-' + values[val];
-                        var node_id = values[val];
-                        if (nodes[node_id]) {
-                            if (nodes[node_id].description.name != '') {
-                                var node_name = nodes[node_id].description.location + ' ' + nodes[node_id].description.name;
-                            } else {
-                                var node_name = nodes[node_id].description.product_name;
-                            }
+                for(var i in node_groups[z].associations){
+                    var node_id = node_groups[z].associations[i][0];
+                    var instance_group = node_groups[z].associations[i][1];
+                    var id = z + '-' + node_id;
+                    if (nodes[node_id]) {
+                        if (nodes[node_id].description.name != '') {
+                            var node_name = nodes[node_id].description.location + ' ' + nodes[node_id].description.name;
                         } else {
-                            var node_name = "UNDEFINED";
+                            var node_name = nodes[node_id].description.product_name;
                         }
-                        tr_groups += "<tr gid='" + id + "'><td>" + node_id + " : " + node_name + "</td><td align='right'><button type='button' class='btn btn-danger btn-sm deleteGroup' data-groupindex='" + z + "' data-nodeindex='" + node_id + "'><i class='fa fa-trash-o'></i> {{Supprimer}}</button></td></tr>";
+                        if (instance_group>0){
+                            node_name += " (" + instance_group +")";
+                        }
+                    } else {
+                        var node_name = "UNDEFINED";
                     }
+                    tr_groups += "<tr gid='" + id + "'><td>" + node_id + " : " + node_name + "</td><td align='right'>";
+                    tr_groups += "<button type='button' class='btn btn-danger btn-sm deleteGroup' data-groupindex='" + z + "' data-nodeindex='" + node_id + "'><i class='fa fa-trash-o'></i> {{Supprimer}}</button>"
+                    tr_groups += "</td></tr>";
                 }
                 var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right">';
-                if (values.length < node_groups[z].maximumAssociations || values[val] == "") {
+                if (count(values) < node_groups[z].maximumAssociations ) {
                     newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="' + z + '">';
                 } else {
                     newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="' + z + '">';

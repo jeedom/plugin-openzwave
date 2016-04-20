@@ -1720,7 +1720,7 @@ def serialize_node_to_json(node_id):
                         pending_state = pending_association.state
                         if pending_state is not None and pending_state > 1:
                             pending_changes +=1
-            json_result['groups'][groupIndex] = {"label": group.label, "maximumAssociations": group.max_associations, "associations": concatenate_list(group.associations), "pending": pending_state}
+            json_result['groups'][groupIndex] = {"label": group.label, "maximumAssociations": group.max_associations, "associations": list(group.associations_instances), "pending": pending_state}
         json_result['associations'] = serialize_associations(node_id)
         if hasattr(my_node, 'last_notification'):
             notification = my_node.last_notification
