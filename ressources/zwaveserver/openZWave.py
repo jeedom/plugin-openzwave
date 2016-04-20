@@ -1736,7 +1736,7 @@ def serialize_node_to_json(node_id):
         json_result['command_classes'] = {}
         for command_class in my_node.command_classes:
             json_result['command_classes'][command_class] = {'name': my_node.get_command_class_as_string(command_class), 'hex': '0x' + convert_user_code_to_hex(command_class)}
-            
+        instances = [];
         for val in my_node.get_values():
             my_value = my_node.values[val]
             if my_value.command_class is None:
@@ -1788,6 +1788,9 @@ def serialize_node_to_json(node_id):
             except TypeError:
                 timestamp = int(1)
 
+            if my_value.genre == 'User' and not my_value.instance in instances:
+                instances.append(my_node.values[val].instance)
+
             if instance2 not in json_result['instances']:
                 json_result['instances'][instance2] = {"updateTime": timestamp}
                 json_result['instances'][instance2]['commandClasses'] = {"updateTime": timestamp}
@@ -1804,6 +1807,7 @@ def serialize_node_to_json(node_id):
                 serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,
                                              pending_state, standard_type, timestamp, value2, value_help, value_units)
         json_result['data']['pending_changes'] = {'count': pending_changes}
+        json_result['multi_instance'] = {'support': COMMAND_CLASS_MULTI_INSTANCE_ASSOCIATION in my_node.command_classes, 'instances': len(instances)}
     else:
         add_log_entry('This network does not contain any node with the id %s' % (node_id,), 'warning')
     return json_result
@@ -3686,6 +3690,12 @@ def get_nodes_list():
                   
         json_node['description'] = {'name': node_name, 'location': node_location, 'product_name': my_node.product_name, 'is_static_controller': my_node.basic == 2}
         json_node['product'] = {'manufacturer_id': manufacturer_id, 'product_type': product_type, 'product_id': product_id, 'is_valid': manufacturer_id is not None and product_id is not None and product_type is not None}
+        instances = [];
+        for val in my_node.get_values(genre='User'):
+            if my_node.values[val].instance in instances:
+                continue
+            instances.append(my_node.values[val].instance)
+        json_node['multi_instance'] = {'support': COMMAND_CLASS_MULTI_INSTANCE_ASSOCIATION in my_node.command_classes, 'instances': len(instances)}
         nodes_data[node_id] = json_node
     nodes_list['devices'] = nodes_data
     return jsonify(nodes_list)
