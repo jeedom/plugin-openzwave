@@ -296,17 +296,19 @@ var app_nodes = {
             var node_keys = [];
             $.each(nodes, function (key, val) {
                 if(key != app_nodes.selected_node){
-                    if (val.multi_instance.instances == 0){
-                        node_keys.push(key +';0');
-                    }
-                    else{
-                        if (support_multi_instance){
-                            for(i = 1; i <= val.multi_instance.instances; i++ ){
-                                node_keys.push(key +';' +i);
-                            }
+                    if (val.capabilities.isListening){
+                        if (val.multi_instance.instances == 0){
+                            node_keys.push(key +';0');
                         }
                         else{
-                            node_keys.push(key +';0');
+                            if (support_multi_instance & val.multi_instance.support == 1){
+                                for(i = 1; i <= val.multi_instance.instances; i++ ){
+                                    node_keys.push(key +';' +i);
+                                }
+                            }
+                            else{
+                                node_keys.push(key +';0');
+                            }
                         }
                     }
                 }
@@ -327,7 +329,7 @@ var app_nodes = {
                 } else {
                     options_node += '<option value="' + node_keys[i] + '">' + nodeId + ' : ' + node.description.product_name;
                 }
-                if (support_multi_instance & node.multi_instance.instances > 1){
+                if (support_multi_instance & node.multi_instance.instances > 1 & node.multi_instance.support == 1){
                     var instanceDisplay = nodeInstance-1;
                     options_node += ' (' + instanceDisplay + ')';
                 }
