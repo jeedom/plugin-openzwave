@@ -11,8 +11,9 @@
 
 * Improvements/Enhancements
 
+** Mise à jour du wrapper python openzwave en version 0.3.0b9.
 ** Mise en évidence des groupes d'associations qui sont en attentent d'être appliqué.
-** Mise à jour de la librairie openzwave 1.4.167 et du wrapper python openzwave.
+** Mise à jour de la librairie openzwave 1.4.167.
 ** Modification du système d'association directe.
 
 * Bug Fixes
