@@ -32,7 +32,7 @@
             <Item label="On failed recognition" value="2" />
             <Item label="Successful and failed recognition is signalled" value="3" />
         </Value>
-        <Value type="short" genre="config" instance="1" index="5" label=" Powering mode - interval of updating the current mode" units="minutes" value="4" min="0" max="1080" size="2">
+        <Value type="short" genre="config" instance="1" index="5" label="Powering mode - interval of updating the current mode" units="minutes" value="4" min="0" max="1080" size="2">
             <Help>
                 This parameter determines how often the device checks if the USB power supply is connected and updates powering mode if needed.
                 0 - powering mode is not updated
@@ -56,7 +56,7 @@
             <Item label="Enabled" value="0" />
             <Item label="Disabled" value="1" />
         </Value>
-        <Value type="byte" genre="config" instance="1" index="10" label=" Scenes sent to the controller" value="15" size="1">
+        <Value type="byte" genre="config" instance="1" index="10" label="Scenes sent to the controller" value="15" size="1">
             <Help>
                 Defines which actions result in sending scenes to 1st Lifeline group
                 1 - scenes for Flick UP gesture enabled

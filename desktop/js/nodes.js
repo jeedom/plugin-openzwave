@@ -64,11 +64,9 @@ var app_nodes = {
                 });
             }
         });
-
         $("#tab-groups").off("click").on("click", function () {
             app_nodes.show_groups();
         });
-
         $("#tab-stats").off("click").on("click", function () {
             app_nodes.load_stats(app_nodes.selected_node);
         });
@@ -97,7 +95,6 @@ var app_nodes = {
             app_nodes.remove_failed_node(app_nodes.selected_node);
         });
         $("#removeGhostNode").off("click").on("click", function () {
-
             bootbox.dialog({
                 title: "{{Suppression automatique du nœud fantôme}}",
                 message:
@@ -118,8 +115,7 @@ var app_nodes = {
                 buttons: {
                     main: {
                         label: "{{Annuler}}",
-                        className: "btn-danger",
-                        callback: function() {}
+                        className: "btn-danger"
                     },
                     success: {
                         label: "{{Lancer}}",
@@ -144,8 +140,7 @@ var app_nodes = {
                     buttons: {
                         main: {
                             label: "{{Annuler}}",
-                            className: "btn-danger",
-                            callback: function() {}
+                            className: "btn-danger"
                         },
                         success: {
                             label: "{{Remplacer}}",
@@ -161,12 +156,10 @@ var app_nodes = {
         $("#sendNodeInformation").off("click").on("click", function () {
             app_nodes.send_node_information(app_nodes.selected_node);
         });
-
         $("#regenerateNodeCfgFile").off("click").on("click", function ()
         {
             var productName = nodes[app_nodes.selected_node].data.product_name.value;
             var manufacturerName = nodes[app_nodes.selected_node].data.vendorString.value;
-
             bootbox.dialog({
                 title: "{{Regénérer la détection du nœud}}",
                 message:
@@ -195,7 +188,6 @@ var app_nodes = {
                             app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node, all);
                         }
                     }
-
                 }
             }
         );
@@ -213,11 +205,11 @@ var app_nodes = {
         });
         $("body").off("click", ".deleteGroup").on("click", ".deleteGroup", function (e) {
             var group = $(this).data('groupindex');
-            var node = $(this).data('nodeindex');
-            app_nodes.delete_group(app_nodes.selected_node, group, node);
+            var node = $(this).data('nodeid');
+            var instance = $(this).data('nodeinstance');
+            app_nodes.delete_group(app_nodes.selected_node, group, node, instance);
         });
         $("body").off("click", ".findUsage").on("click", ".findUsage", function (e) {
-
             var associations = nodes[app_nodes.selected_node].associations;
             var description = nodes[app_nodes.selected_node].data.name.value;
             var message = '<form class="form-horizontal"><div class="panel-body"> ' +
@@ -239,7 +231,6 @@ var app_nodes = {
             })
             message += '</ul>' +
             '</div></form>';
-            
             bootbox.dialog({
                     title: "{{Associé via quels modules}}",
                     message: message,
@@ -251,7 +242,6 @@ var app_nodes = {
                     }
                 }
             );
-
         });
         $('#copyParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
             var modal = $(this);
@@ -276,25 +266,6 @@ var app_nodes = {
             }
             modal.find('.modal-body').append(options_node);
         });
-        $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
-            var modal = $(this);
-            var group = $(this).data('groupindex');
-            var arr_exists_nodes = nodes[app_nodes.selected_node].groups[group].associations.split(';');
-            modal.find('.modal-body').html(' ');
-            modal.find('.modal-title').text('{{Groupe }}' + group + ' : {{Ajouter une association pour le noeud}} ' + app_nodes.selected_node);
-            var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
-            $.each(nodes, function (key, val) {
-                if (arr_exists_nodes.indexOf(key) == -1 && key != app_nodes.selected_node) {
-                    if (val.description.name != '') {
-                        options_node += '<option value="' + key + '">' + key + ' : ' + val.description.location + ' - ' + val.description.name + '</option>';
-                    } else {
-                        options_node += '<option value="' + key + '">' + key + ' : ' + val.description.product_name + '</option>';
-                    }
-                }
-            });
-            options_node += '</select></div>';
-            modal.find('.modal-body').append(options_node);
-        });
         $("#saveCopyParams").off("click").on("click", function (e) {
             var toNode = app_nodes.selected_node;
             var fromNode = $('#newvaluenode').val();
@@ -314,11 +285,74 @@ var app_nodes = {
                 }
             });
         });
+        $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
+            var modal = $(this);
+            var group = $(this).data('groupindex');
+            var associations = [];
+            for(var i in nodes[app_nodes.selected_node].groups[group].associations) {
+                associations.push(nodes[app_nodes.selected_node].groups[group].associations[i][0] + ";" + nodes[app_nodes.selected_node].groups[group].associations[i][1]);
+            }
+            var support_multi_instance = nodes[app_nodes.selected_node].multi_instance.support == 1;
+            var node_keys = [];
+            $.each(nodes, function (key, val) {
+                if(key != app_nodes.selected_node){
+                    if (val.capabilities.isListening){
+                        if (val.multi_instance.instances == 0){
+                            node_keys.push(key +';0');
+                        }
+                        else{
+                            if (support_multi_instance & val.multi_instance.support == 1){
+                                for(i = 1; i <= val.multi_instance.instances; i++ ){
+                                    node_keys.push(key +';' +i);
+                                }
+                            }
+                            else{
+                                node_keys.push(key +';0');
+                            }
+                        }
+                    }
+                }
+            });
+            modal.find('.modal-body').html(' ');
+            modal.find('.modal-title').text('{{Groupe }}' + group + ' : {{Ajouter une association pour le noeud}} ' + app_nodes.selected_node);
+            var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
+            for(var i in node_keys){
+                if(associations.indexOf(node_keys[i])>=0){
+                    continue;
+                }
+                var values = node_keys[i].split(";");
+                var nodeId = parseInt(values[0]);
+                var node = nodes[nodeId];
+                var nodeInstance = values[1];
+                if (node.description.name != '') {
+                    options_node += '<option value="' + node_keys[i] + '">' + nodeId + ' : ' + node.description.location + ' - ' + node.description.name;
+                } else {
+                    options_node += '<option value="' + node_keys[i] + '">' + nodeId + ' : ' + node.description.product_name;
+                }
+                if (support_multi_instance & node.multi_instance.instances > 1 & node.multi_instance.support == 1){
+                    var instanceDisplay = nodeInstance-1;
+                    options_node += ' (' + instanceDisplay + ')';
+                }
+                options_node += '</option>'
+            }
+            options_node += '</select></div>';
+            modal.find('.modal-body').append(options_node);
+        });
         $("#saveGroups").off("click").on("click", function (e) {
-            var groupGroup = $('#groupsModal').data('groupindex');
-            var groupNode = $('#newvaluenode').val();
+            var groupIndex = $('#groupsModal').data('groupindex');
+            var values = $('#newvaluenode').val().split(";");
+            var nodeId = values[0];
+            var nodeInstance = values[1];
+            var url = '';
+            if (nodeInstance>0){
+                url = path + "ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].Associations[" + groupIndex + "].Add(" + nodeId + "," + nodeInstance + ")";
+            }
+            else{
+                url = path + "ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[0].commandClasses[0x85].Add(" + groupIndex + "," + nodeId + ")";
+            }
+
             $.ajax({
-                url: path + "ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[0].commandClasses[0x85].Add(" + groupGroup + "," + groupNode + ")",
+                url: url,
                 dataType: 'json',
                 async: true,
                 error: function (request, status, error) {
@@ -612,9 +646,15 @@ var app_nodes = {
             $('#li_state').hide();
         }, 3000);
     },
-    delete_group: function (node_id, group, node) {
+    delete_group: function (node_id, group, node, instance) {
+        var url = "";
+        if (instance > 0){
+            url = path + "ZWaveAPI/Run/devices[" + node_id + "].Associations[" + group + "].Remove(" + node + "," + instance + ")";
+        }else{
+            url = path + "ZWaveAPI/Run/devices[" + node_id + "].instances[0].commandClasses[0x85].Remove(" + group + "," + node + ")"
+        }
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].instances[0].commandClasses[0x85].Remove(" + group + "," + node + ")",
+            url: url,
             dataType: 'json',
             async: true,
             success: function (data) {
@@ -938,14 +978,11 @@ var app_nodes = {
             var nodeIsFailed = false;
         }
         var queryStage = nodes[z].data.state.value;
-
         $("#node").attr("nid", z);
         // select the copied block
         var node = $(".node");
         var isWarning = false;
-
         var warningMessage = "";
-
         node.find(".node-id").html(z);              // set the nodeid
         if (nodes[z].data.name.value == '') {
             var name = '';
@@ -959,10 +996,7 @@ var app_nodes = {
         node.find(".node-location").html(location);
         node.find(".node-name").html(name);
         node.find(".node-vendor").html(manufacturerName);
-
-
         node.find(".node-zwave-id").html("{{Identifiant du fabricant :}} <span class='label label-default' style='font-size : 1em;'>" + nodes[z].data.manufacturerId.value + " [" + nodes[z].data.manufacturerId.hex + "]</span> {{Type de produit :}} <span class='label label-default' style='font-size : 1em;'>" + nodes[z].data.manufacturerProductType.value + ' [' + nodes[z].data.manufacturerProductType.hex + "]</span> {{Identifiant du produit :}} <span class='label label-default' style='font-size : 1em;'>" + nodes[z].data.manufacturerProductId.value + ' [' + nodes[z].data.manufacturerProductId.hex + "]</span>");
-
         node.find(".node-lastSeen").html(app_nodes.timestampConverter(nodes[z].data.lastReceived.updateTime));
         if (nodes[z].last_notification.next_wakeup != null) {
             node.find(".node-next-wakeup").html(app_nodes.timestampConverter(nodes[z].last_notification.next_wakeup));
@@ -970,8 +1004,6 @@ var app_nodes = {
         } else {
             node.find(".node-next-wakeup-span").hide();
         }
-
-
         var basicDeviceClass = parseInt(nodes[z].data.basicType.value, 0);
         var basicDeviceClassDescription = "";
         switch (basicDeviceClass) {
@@ -1214,24 +1246,21 @@ var app_nodes = {
         }
         if (controller_id != -1) {
             var node_groups = nodes[z].groups;
-            var found = 0;
+            var found = false;
             var hasGroup = false;
             for (zz in node_groups) {
                 if (!isNaN(zz)) {
                     hasGroup = true;
-                    var values = node_groups[zz].associations.split(';');
-                    tr_groups = "";
-                    for (val in values) {
-                        if (values.length > 0 && values[val] != "") {
-                            var node_id = values[val];
-                            if (node_id == controller_id) {
-                                found = 1;
-                            }
+                    for(var i in node_groups[zz].associations){
+                        var node_id = node_groups[zz].associations[i][0];
+                        if (node_id == controller_id) {
+                            found = true;
+                            break;
                         }
                     }
                 }
             }
-            if (hasGroup && found == 0 && queryStageIndex > 12) {
+            if (hasGroup && !found && queryStageIndex > 12) {
                 isWarning = true;
                 warningMessage += "<li>{{Le controleur n'est inclus dans aucun groupe du module.}}</li>";
             }
@@ -1573,29 +1602,35 @@ var app_nodes = {
         var tr_groups = "";
         var node_groups = nodes[app_nodes.selected_node].groups;
         $("#groups").empty();
-        $("#groups").append('<br>');
+        $("#groups").append('<br/>');
+        $("#groups").append('<a class="btn btn-info btn-sm findUsage pull-right"><i class="fa fa-sitemap"></i> {{Associé à quels modules}}</a>');
+        $("#groups").append('<br/><br/>');
         for (z in node_groups) {
             if (!isNaN(z)) {
-                var values = node_groups[z].associations.split(';');
                 tr_groups = "";
-                for (val in values) {
-                    if (values.length > 0 && values[val] != "") {
-                        var id = z + '-' + values[val];
-                        var node_id = values[val];
-                        if (nodes[node_id]) {
-                            if (nodes[node_id].description.name != '') {
-                                var node_name = nodes[node_id].description.location + ' ' + nodes[node_id].description.name;
-                            } else {
-                                var node_name = nodes[node_id].description.product_name;
-                            }
+                for(var i in node_groups[z].associations){
+                    var node_id = node_groups[z].associations[i][0];
+                    var node_instance = node_groups[z].associations[i][1];
+                    var id = z + '-' + node_id + '-' + node_instance;
+                    if (nodes[node_id]) {
+                        if (nodes[node_id].description.name != '') {
+                            var node_name = nodes[node_id].description.location + ' ' + nodes[node_id].description.name;
                         } else {
-                            var node_name = "UNDEFINED";
+                            var node_name = nodes[node_id].description.product_name;
                         }
-                        tr_groups += "<tr gid='" + id + "'><td>" + node_id + " : " + node_name + "</td><td align='right'><button type='button' class='btn btn-danger btn-sm deleteGroup' data-groupindex='" + z + "' data-nodeindex='" + node_id + "'><i class='fa fa-trash-o'></i> {{Supprimer}}</button></td></tr>";
+                        if (node_instance > 0){
+                            var instanceDisplay = node_instance-1;
+                            node_name += " (Instance: " + instanceDisplay +")";
+                        }
+                    } else {
+                        var node_name = "UNDEFINED";
                     }
+                    tr_groups += "<tr gid='" + id + "'><td>" + node_id + " : " + node_name + "</td><td align='right'>";
+                    tr_groups += "<button type='button' class='btn btn-danger btn-sm deleteGroup' data-groupindex='" + z + "' data-nodeid='" + node_id + "' data-nodeinstance='" + node_instance + "'><i class='fa fa-trash-o'></i> {{Supprimer}}</button>"
+                    tr_groups += "</td></tr>";
                 }
                 var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right">';
-                if (values.length < node_groups[z].maximumAssociations || values[val] == "") {
+                if (count(values) < node_groups[z].maximumAssociations ) {
                     newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="' + z + '">';
                 } else {
                     newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="' + z + '">';
@@ -1632,8 +1667,7 @@ var app_nodes = {
                 $("#groups").append(newPanel);
             }
         }
-        $("#groups").append('<br>');
-        $("#groups").append('<button type="button" id="findUsage" class="btn btn-primary btn-sm findUsage"><i class="fa fa-share-alt"></i> {{Associé via quels modules}}</button>');
+
 
 
     },

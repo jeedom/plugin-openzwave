@@ -1,22 +1,25 @@
 ==  Release Notes
 
 
-.Version (Alpha) 2016-x-x
+.Version (Beta) 2016-04-22
 
 * New Features
 
 ** Ajout d'option pour désactiver l'actualisation en arrière-plan des variateurs.
 ** Affichage des associations avec qui un module est en association (find usage).
+** Ajout du support de la CC MULTI_INSTANCE_ASSOCIATION.
 
 * Improvements/Enhancements
 
+** Mise à jour du wrapper python openzwave en version 0.3.0b9.
 ** Mise en évidence des groupes d'associations qui sont en attentent d'être appliqué.
-** Mise à jour de la librairie openzwave 1.4.167 et du wrapper python openzwave.
+** Mise à jour de la librairie openzwave 1.4.167.
+** Modification du système d'association directe.
 
 * Bug Fixes
 
 ** Correction de la découverte des groupes d'associations.
-
+** Correction de l'erreur "Exception KeyError: (91,) in 'libopenzwave.notif_callback' ignored".
 
 .Version (Beta) 2016-04-17
 
