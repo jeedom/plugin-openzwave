@@ -20,6 +20,7 @@
 
 ** Correction de la découverte des groupes d'associations.
 ** Correction de l'erreur "Exception KeyError: (91,) in 'libopenzwave.notif_callback' ignored".
+** Correction de la sélection de la documentation de module pour les modules avec plusieurs profiles. 
 
 .Version (Beta) 2016-04-17
 
