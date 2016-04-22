@@ -126,7 +126,7 @@ try {
 			}
 		}
 		if (count($files) > 0) {
-			if (init('json') && init('json')!= '') {
+			if (init('json')!= '') {
 				$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . init('json'));
 				if (!is_json($content)) {
 					$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $files[0]);
