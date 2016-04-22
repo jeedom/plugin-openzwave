@@ -91,10 +91,10 @@
 			"configuration": {
 				"class": "0x70",
 				"value": "data[41].val",
-				"calculValueOffset": "'#value#'=='Sensor is removed'"
+				"calculValueOffset": "#value#=='Sensor is removed'"
 			},
 			"display": {
-				"invertBinary": "0",
+				"invertBinary": "1",
 				"generic_type": "SABOTAGE"
 			}
 		}
