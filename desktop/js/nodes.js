@@ -1602,9 +1602,9 @@ var app_nodes = {
         var tr_groups = "";
         var node_groups = nodes[app_nodes.selected_node].groups;
         $("#groups").empty();
-        $("#groups").append('<br>');
-        $("#groups").append('<div><button type="button" id="findUsage" class="btn btn-info btn-sm findUsage" style="float: right;"><i class="fa fa-share-alt"></i> {{Associé via quels modules}}</button></div>');
-        $("#groups").append('<br><br>');
+        $("#groups").append('<br/>');
+        $("#groups").append('<a class="btn btn-info btn-sm findUsage pull-right"><i class="fa fa-sitemap"></i> {{Associé à quels modules}}</a>');
+        $("#groups").append('<br/><br/>');
         for (z in node_groups) {
             if (!isNaN(z)) {
                 tr_groups = "";
