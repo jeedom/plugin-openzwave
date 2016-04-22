@@ -126,7 +126,14 @@ try {
 			}
 		}
 		if (count($files) > 0) {
-			$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $files[0]);
+			if (init('json') && init('json')!= '') {
+				$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . init('json'));
+				if (!is_json($content)) {
+					$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $files[0]);
+				}
+			} else {
+				$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $files[0]);
+			}
 			if (!is_json($content)) {
 				ajax::success();
 			}

@@ -133,6 +133,7 @@ function printEqLogic(_eqLogic){
           manufacturer_id: _eqLogic.configuration.manufacturer_id,
           product_type: _eqLogic.configuration.product_type,
           product_id: _eqLogic.configuration.product_id,
+		  json: _eqLogic.configuration.fileconf,
         },
         dataType: 'json',
         global: false,
