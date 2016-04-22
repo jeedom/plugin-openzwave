@@ -1601,11 +1601,10 @@ var app_nodes = {
         var $template = $(".template");
         var tr_groups = "";
         var node_groups = nodes[app_nodes.selected_node].groups;
-
-
-
         $("#groups").empty();
         $("#groups").append('<br>');
+        $("#groups").append('<div><button type="button" id="findUsage" class="btn btn-info btn-sm findUsage" style="float: right;"><i class="fa fa-share-alt"></i> {{Associé via quels modules}}</button></div>');
+        $("#groups").append('<br><br>');
         for (z in node_groups) {
             if (!isNaN(z)) {
                 tr_groups = "";
@@ -1668,8 +1667,7 @@ var app_nodes = {
                 $("#groups").append(newPanel);
             }
         }
-        $("#groups").append('<br>');
-        $("#groups").append('<button type="button" id="findUsage" class="btn btn-primary btn-sm findUsage"><i class="fa fa-share-alt"></i> {{Associé via quels modules}}</button>');
+
 
 
     },
