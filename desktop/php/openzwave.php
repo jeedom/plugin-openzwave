@@ -279,8 +279,8 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 <div class="col-sm-5">
   <form class="form-horizontal">
     <fieldset>
-      <legend><i class="fa fa-info-circle"></i>  {{Informations}} 
-	  <span class="label label-warning isPending tooltips" style="font-size:0.7em;cursor:default" title="Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage"></span>
+      <legend><i class="fa fa-info-circle"></i>  {{Informations}}
+	  <span class="label label-warning isPending tooltips" style="font-size:0.6em;cursor:default;position:relative;top:-4px;left:20px;" title="Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage"></span>
        <i id="bt_autoDetectModule" class="fa fa-search expertModeVisible pull-right tooltips cursor" title="{{Detecter automatiquement le modele du module}}"></i>
        <i id="bt_displayZwaveData" title="{{Voir l'arbre Z-Wave}}" class="fa fa-tree expertModeVisible pull-right tooltips cursor"></i>
      </legend>
