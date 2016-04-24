@@ -42,7 +42,7 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584687
 				3, Value3: configure the volume of alarm sound (there are 10 levels, the min volume is 1 level and the max volume is 10 levels).
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt.
                 value is sum:
-                1677721 x led_frequency
+                16777216 x led_frequency
                 + 65536 x alarm_sound
                 + 256 x volume
                 + 1 x alarm_mode
@@ -55,7 +55,7 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584687
 				3, Value3: configure the volume of alarm sound (there are 10 levels, the min volume is 1 level and the max volume is 10 levels).
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt.
                 value is sum:
-                1677721 x led_frequency
+                16777216 x led_frequency
                 + 65536 x alarm_sound
                 + 256 x volume
                 + 1 x alarm_mode
@@ -68,7 +68,7 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584687
 				3, Value3: configure the volume of alarm sound (there are 10 levels, the min volume is 1 level and the max volume is 10 levels).
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt.
                 value is sum:
-                1677721 x led_frequency
+                16777216 x led_frequency
                 + 65536 x alarm_sound
                 + 256 x volume
                 + 1 x alarm_mode
@@ -81,7 +81,7 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584687
 				3, Value3: configure the volume of alarm sound (there are 10 levels, the min volume is 1 level and the max volume is 10 levels).
 				4, Value4=0, disable the alarm prompt. Value4=1, enable the alarm prompt.
                 value is sum:
-                1677721 x led_frequency
+                16777216 x led_frequency
 				+ 65536 x alarm_sound
 				+ 256 x volume
 				+ 1 x alarm_mode
