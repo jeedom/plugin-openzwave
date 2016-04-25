@@ -219,6 +219,7 @@
 	<Manufacturer id="0031" name="Destiny Networks">
 	</Manufacturer>
 	<Manufacturer id="175" name="Devolo">
+		<Product type="0002" id="000e" name="Door/Window Contact MT 02648" config="devolo/mt02648.xml"/>
     </Manufacturer>
 	<Manufacturer id="0050" name="Digital 5">
 	</Manufacturer>
