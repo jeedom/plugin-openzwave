@@ -74,8 +74,8 @@ class openzwave extends eqLogic {
 		return self::$_listZwaveServer;
 	}
 
-	public static function callOpenzwaveAsync($_url, $_serverId = 0)
-	{
+	public static function callOpenzwaveAsync($_url, $_serverId = 0) {
+		ob_start();
 		if (self::$_listZwaveServer == null) {
 			self::listServerZwave();
 		}
@@ -86,16 +86,17 @@ class openzwave extends eqLogic {
 			return '';
 		}
 		$url = 'http://' . self::$_listZwaveServer[$_serverId]['addr'] . ':' . self::$_listZwaveServer[$_serverId]['port'] . str_replace(' ', '%20', $_url);
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER , FALSE);
-        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-        curl_setopt($ch, CURLOPT_POST, TRUE);
-        curl_setopt($ch, CURLOPT_VERBOSE, FALSE);
-        curl_exec($ch);
-        curl_close($ch);
-		return '';
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, FALSE);
+		curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+		curl_setopt($ch, CURLOPT_POST, TRUE);
+		curl_setopt($ch, CURLOPT_VERBOSE, FALSE);
+		curl_exec($ch);
+		curl_close($ch);
+		ob_end_clean();
+		return;
 	}
 
 	public static function callOpenzwave($_url, $_serverId = 0, $_timeout = null, $_noError = false, $_data = null) {
@@ -513,10 +514,10 @@ class openzwave extends eqLogic {
 			exec('mkdir ' . $data_path . ' && chmod 775 -R ' . $data_path . ' && chown -R www-data:www-data ' . $data_path);
 		}
 		$log = ($_debug) ? 'Debug' : 'Error';
-        $suppressRefresh = 0;
-        if (config::byKey('suppress_refresh', 'openzwave') == 1) {
-            $suppressRefresh = 1;
-        }
+		$suppressRefresh = 0;
+		if (config::byKey('suppress_refresh', 'openzwave') == 1) {
+			$suppressRefresh = 1;
+		}
 		$cmd = '/usr/bin/python ' . $openzwave_path . '/openZWave.py ';
 		$cmd .= ' --pidfile=/tmp/openzwave.pid';
 		$cmd .= ' --device=' . $port;
@@ -527,7 +528,7 @@ class openzwave extends eqLogic {
 		$cmd .= ' --callback=' . $callback;
 		$cmd .= ' --apikey=' . $apikey;
 		$cmd .= ' --serverId=' . $serverId;
-        $cmd .= ' --suppressRefresh=' . $suppressRefresh;
+		$cmd .= ' --suppressRefresh=' . $suppressRefresh;
 
 		log::add('openzwavecmd', 'info', 'Lancement démon openzwave : ' . $cmd);
 		$result = exec($cmd . ' >> ' . log::getPathToLog('openzwavecmd') . ' 2>&1 &');
@@ -711,7 +712,7 @@ class openzwave extends eqLogic {
 		}
 		return false;
 	}
-	
+
 	public function applyRecommended() {
 		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
 			return;
@@ -730,30 +731,30 @@ class openzwave extends eqLogic {
 				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].commandClasses[0x70].Set(' . $value['index'] . ',' . $value['value'] . ',1)', $this->getConfiguration('serverID', 1));
 			}
 		}
-		if (isset($device['recommended']['groups'])){
+		if (isset($device['recommended']['groups'])) {
 			$groups = $device['recommended']['groups'];
 			foreach ($groups as $value) {
-				if ($value['value'] == 'add'){
+				if ($value['value'] == 'add') {
 					openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x85].Add(' . $value['index'] . ',1)', $this->getConfiguration('serverID', 1));
-				} else if ($value['value'] == 'remove'){
+				} else if ($value['value'] == 'remove') {
 					openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x85].Remove(' . $value['index'] . ',1)', $this->getConfiguration('serverID', 1));
 				}
 			}
 		}
-		if (isset($device['recommended']['wakeup'])){
+		if (isset($device['recommended']['wakeup'])) {
 			$wakeup = $device['recommended']['wakeup'];
 			openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x84].data[0].Set(' . $wakeup . ')', $this->getConfiguration('serverID', 1));
 		}
-		if (isset($device['recommended']['polling'])){
+		if (isset($device['recommended']['polling'])) {
 			$pollinglist = $device['recommended']['polling'];
-			foreach ($pollinglist as $value){
+			foreach ($pollinglist as $value) {
 				$instancepolling = $value['instanceId'];
 				$indexpolling = 0;
-				if (isset($value['index'])){
+				if (isset($value['index'])) {
 					$indexpolling = $value['index'];
 				}
 				$ccpolling = $value['class'];
-				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[' . $instancepolling . '].commandClasses[' . $ccpolling .'].data['. $indexpolling .'].SetPolling(1)', $this->getConfiguration('serverID', 1));
+				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[' . $instancepolling . '].commandClasses[' . $ccpolling . '].data[' . $indexpolling . '].SetPolling(1)', $this->getConfiguration('serverID', 1));
 			}
 		}
 		if (isset($device['recommended']['needswakeup']) && $device['recommended']['needswakeup'] == true) {
@@ -761,10 +762,10 @@ class openzwave extends eqLogic {
 		}
 		return;
 	}
-	
+
 	public function printPending() {
 		$pendingresult = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].GetPendingChanges()', $this->getConfiguration('serverID', 1));
-		if (isset($pendingresult['result']) && $pendingresult['result'] != true){
+		if (isset($pendingresult['result']) && $pendingresult['result'] != true) {
 			return $pendingresult['data'];
 		}
 		return "ok";
