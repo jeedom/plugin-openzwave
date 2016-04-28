@@ -34,11 +34,11 @@
        </Help>
     </Value>
 	
-    <Value type="byte" index="5" genre="config" label="Operation Mode" min="0" max="127" value="0">
+    <Value type="byte" index="5" genre="config" label="Operation Mode" min="0" max="127" value="4">
        <Help>
           Bit 0: Reserve. 
           Bit 1: 1 means enable test mode, 0 means disable normal mode. Notice: This bit only effect by the DIP Switch setting to program mode. 
-          Bit 2: Reserve.
+          Bit 2: Set to 1.
           Bit 3: Setting the temperature scale. 0: Fahrenheit, 1:Celsius. 
           Bit 4: Disable the illumination report after event triggered (1: Disable, 0: Enable). 
           Bit 5: Disable the temperature report after event triggered (1: Disable, 0: Enable). 
@@ -47,12 +47,12 @@
        </Help>
     </Value>
 
-    <Value type="byte" index="6" genre="config" label="Multi-Sensor Function Switch" min="0" max="127" value="4">
+    <Value type="byte" index="6" genre="config" label="Multi-Sensor Function Switch" min="0" max="127" value="5">
        <Help>
           Multi-Sensor Function switch. Using bit to control.
-          Bit 0: Reserve. 
+          Bit 0: Set to 1.
           Bit 1: Disable PIR integrate Illumination to turn ON the lighting nodes in the association group 2 (1: Disable, 0: Enable). 
-          Bit 2: Reserve.
+          Bit 2: Set to 1.
           Bit 3: Reserve. 
           Bit 4: Reserve. 
           Bit 5: Reserve. 
