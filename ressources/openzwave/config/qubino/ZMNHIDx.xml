@@ -11,14 +11,6 @@ ref: http://qubino.com/download/1506/
 -->
 <Product xmlns='http://code.google.com/p/open-zwave/'>
 
-    <!-- The thermostat does not properly report its operating modes -->
-    <CommandClass id="64">
-        <SupportedModes>
-            <Mode index="0" label="Off" />
-            <Mode index="1" label="Heat" />
-        </SupportedModes>
-    </CommandClass>
-
     <CommandClass id="67" override_precision="2"  />
     <!-- Configuration -->
     <CommandClass id="112">
