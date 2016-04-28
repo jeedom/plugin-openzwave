@@ -81,7 +81,6 @@
 		"isVisible": 0,
 		"unite": "°C",
 		"configuration": {
-			"instanceId": 0,
 			"class": "0x43",
                         "instanceId": 1,
 			"value": "data[1].val",
@@ -100,9 +99,8 @@
 		"unite": "°C",
 		"value": "ConsigneEtat",
 		"configuration": {
-			"instanceId": 1,
 			"class": "0x43",
-                        "instanceId": 0,
+                        "instanceId": 1,
 			"value": "data[1].Set(#slider#)",
 			"minValue": "5",
 			"maxValue": "30"
