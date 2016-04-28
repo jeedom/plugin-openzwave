@@ -10,8 +10,16 @@ ZMNHID5 916,0 MHz
 ref: http://qubino.com/download/1506/
 -->
 <Product xmlns='http://code.google.com/p/open-zwave/'>
-    <!-- This thermostat's setpoint descriptions are 0 based, not 1 -->
-    <CommandClass id="67" base="0" />
+
+    <!-- The thermostat does not properly report its operating modes -->
+    <CommandClass id="64">
+        <SupportedModes>
+            <Mode index="0" label="Off" />
+            <Mode index="1" label="Heat" />
+        </SupportedModes>
+    </CommandClass>
+
+    <CommandClass id="67" override_precision="2"  />
     <!-- Configuration -->
     <CommandClass id="112">
         <Value type="list" genre="config" instance="1" index="1" label="Input I1 switch type" size="1" min="0" max="1" value="1">
@@ -78,17 +86,31 @@ ref: http://qubino.com/download/1506/
             <Help>Set value from 0 - 100 (0% - 100%). 0 - Reporting Disabled. 1 - 100 = 1% - 100% Reporting enabled. Power report is send (push) only when actual power in Watts in real time change for more than set percentage comparing to previous actual power in Watts, step is 1%. Default value 3</Help>
         </Value>
         <Value type="short" genre="config" instance="1" index="42" label="Power reporting in Watts by time interval" min="0" max="65535" value="300">
-            <Help>Set value means time interval (0 - 65535) in seconds, when power report is send. 0 - Reporting Disabled. 1 - 65535 = 1 second - 65535 seconds. Reporting enabled. Power report is send with time interval set by entered value. Default value 300 (power report in Watts is send each 300s)</Help>
+            <Help>Set value means time interval (0 - 65535) in seconds, when power report is send. 0 - Reporting Disabled.
+                1 - 65535 = 1 second - 65535 seconds.
+                Reporting enabled.
+                Power report is send with time interval set by entered value.
+                Default value 300 (power report in Watts is send each 300s)</Help>
         </Value>
-        <Value type="byte" genre="config" instance="1" index="43" label="Hysteresis On" size="1" min="0" max="255" value="132">
-            <Help>This parameter defines temperature min difference between real measured temperature and set-point temperature to turn heating on. The parameter can be set from 0 to 255 where 0 to 128 means from 0.0 C to 12.8 C and from 129 to 255 means from - 0.0 C to -12.8 C.</Help>
+        <Value type="short" genre="config" instance="1" index="43" label="Hysteresis On" size="2" min="0" max="255" value="132">
+            <Help>This parameter defines temperature min difference between real measured temperature and set-point temperature to turn heating on.
+                The parameter can be set from 0 to 255 where 0 to 128 means from 0.0 C to 12.8 C and from 129 to 255 means from - 0.0 C to -12.8 C.
+                Default value 132 (-0.5 C)
+            </Help>
         </Value>
-        <Value type="byte" genre="config" instance="1" index="44" label="Hysteresis Off" size="1" min="0" max="255" value="132">
-            <Help>This parameter defines temperature min difference between real measured temperature and set-point temperature to turn heating off. The parameter can be set from 0 to 255 where 0 to 128 means from 0.0 C to 12.8 C and from 129 to 255 means from - 0.0 C to -12.8 C.</Help>
+        <Value type="short" genre="config" instance="1" index="44" label="Hysteresis Off" size="2" min="0" max="255" value="5">
+            <Help>This parameter defines temperature min difference between real measured temperature and set-point temperature to turn heating off.
+                The parameter can be set from 0 to 255 where 0 to 128 means from 0.0 C to 12.8 C and from 129 to 255 means from - 0.0 C to -12.8 C.
+                Default value 5 (+0.5 C)
+            </Help>
         </Value>
-
-        <Value type="byte" genre="config" instance="1" index="45" label="Antifreeze" size="1" min="0" max="255" value="50">
-            <Help>Set value means at which temperature the heating will be turned on even if the thermostat was manually set to off. The parameter can be set from 0 to 255 where 0 to 128 means from 0.0 C to 12.8 C and from 129 to 255 means from - 0.0 C to -12.8 C.</Help>
+        <Value type="short" genre="config" instance="1" index="45" label="Antifreeze" size="2" min="0" max="255" value="50">
+            <Help>Set value means at which temperature the device will be turned on even if the thermostat was manually set to off.
+                0 - 127 = 0.0C - 12.7 C.
+                128 - 254 = -0.1C - 12.6 C.
+                255 - Antifreeze functionality disabled.
+                Default value 50 (5.0 C).
+            </Help>
         </Value>
         <Value type="short" genre="config" instance="1" index="60" label="Too low temperature limit" size="2" min="1" max="1000" value="50">
             <Help>

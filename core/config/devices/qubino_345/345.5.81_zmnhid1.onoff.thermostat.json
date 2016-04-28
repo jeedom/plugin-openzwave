@@ -55,7 +55,7 @@
 		}
 	},
 	{
-		"name": "Auto",
+		"name": "Heat",
 		"type": "action",
 		"subType": "other",
 		"display": {
@@ -67,7 +67,7 @@
 		"configuration": {
 			"class": "0x40",
 			"instanceId": 0,
-			"value": "data[0].Set(Auto)"
+			"value": "data[0].Set(Heat)"
 		}
 	},
 	{
