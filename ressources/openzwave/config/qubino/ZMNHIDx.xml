@@ -12,6 +12,8 @@ ref: http://qubino.com/download/1506/
 <Product xmlns='http://code.google.com/p/open-zwave/'>
 
     <CommandClass id="67" override_precision="2"  />
+    <!-- Map endpoints to instances -->
+    <CommandClass id="96" mapping="endpoints" />
     <!-- Configuration -->
     <CommandClass id="112">
         <Value type="list" genre="config" instance="1" index="1" label="Input I1 switch type" size="1" min="0" max="1" value="1">
