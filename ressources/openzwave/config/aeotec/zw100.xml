@@ -57,7 +57,7 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584695
 		<Value type="short" index="43" genre="config" label="Luminance Reporting Threshold" units="LUX" min="0" max="1000" value="100" size="2">
 			<Help>Threshold change in luminance to induce an automatic report. </Help>
 		</Value>
-		<Value type="short" index="44" genre="config" label="Battery Reporting Threshold" units="%" min="0" max="100" value="10" size="2">
+		<Value type="byte" index="44" genre="config" label="Battery Reporting Threshold" units="%" min="0" max="100" value="10" size="1">
 			<Help>Threshold change in battery level to induce an  automatic report. 
 			Note: 
 			The default value is 10, which means that if the current battery level gap is more than 10%, it will send out a battery report.  
