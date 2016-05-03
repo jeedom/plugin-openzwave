@@ -1,68 +1,16 @@
 ==  Release Notes
 
-
-.Version (Beta) 2016-04-22
+.Version 2016-05-03
 
 * New Features
 
 ** Ajout d'option pour désactiver l'actualisation en arrière-plan des variateurs.
 ** Affichage des associations avec qui un module est en association (find usage).
 ** Ajout du support de la CC MULTI_INSTANCE_ASSOCIATION.
-
-* Improvements/Enhancements
-
-** Mise à jour du wrapper python openzwave en version 0.3.0b9.
-** Mise en évidence des groupes d'associations qui sont en attentent d'être appliqué.
-** Mise à jour de la librairie openzwave 1.4.167.
-** Modification du système d'association directe.
-
-* Bug Fixes
-
-** Correction de la découverte des groupes d'associations.
-** Correction de l'erreur "Exception KeyError: (91,) in 'libopenzwave.notif_callback' ignored".
-** Correction de la sélection de la documentation de module pour les modules avec plusieurs profiles. 
-
-.Version (Beta) 2016-04-17
-
-* New Features
-
 **  Ajout d'une notification info lors de l'application de Set_Point afin de pourvoir exploiter la consigne demandé sous forme de cmd info.
-
-* Improvements/Enhancements
-
-**  Mise à jour de la documentation
-
-* Bug Fixes
-
-** n/a
-
-.Version (Beta) 2016-04-13
-
-* New Features
-
 ** Ajout d'un assistant de configuration recommandé.
 ** Ajout d'option pour activer/désactiver l'assistant de configuration recommandé lors de l'inclusion de nouveaux modules.
 ** Ajout d'option pour activer/désactiver la mise à jour des configurations des modules chaque nuit.
-
-* Improvements/Enhancements
-
-** Possibilité de lancer la régénération de la détection du nœud pour l’ensemble des modules identiques (marque et modèle).
-** Affichage dans l'écran de santé si des éléments de configuration ne sont pas appliqués.
-** Affichage dans l'écran d'équipent si des éléments de configuration ne sont pas appliqués.
-** Affichage dans l'écran de santé si un module sur piles n'e c'est jamais réveillé.
-** Affichage dans l'écran de santé si un module sur piles a dépassé le temps du réveil prévue.
-** Ajout de traces lors d'erreur de notifications.
-
-* Bug Fixes
-
-** Gestion des boutons action du module.
-** Correction de description de nom générique de class.
-
-
-.Version (Beta) 2016-03-26
-
-* New Features
-
 ** Ajout d'une route pour gérer les multi instances associations.
 ** Ajout des Query Stage manquants.
 ** Ajout de la validation de la sélection du Dongle USB au démarrage du démon.
@@ -70,9 +18,19 @@
 ** Ajout d'une option pour désactiver la mise à jour automatique des config de module.
 ** Ajout d'une route pour modifier à l'éxécution les trace de log du serveur REST. Note: aucun effect sur le niveau ozw. http://ip_jeedom:8083/ZWaveAPI/Run/ChangeLogLevel(level) level => 40:Error, 20: Debug 10 Info
 
-
 * Improvements/Enhancements
 
+** Mise à jour du wrapper python openzwave en version 0.3.0b9.
+** Mise en évidence des groupes d'associations qui sont en attentent d'être appliqué.
+** Mise à jour de la librairie openzwave 1.4.167.
+** Modification du système d'association directe.
+** Mise à jour de la documentation
+** Possibilité de lancer la régénération de la détection du nœud pour l’ensemble des modules identiques (marque et modèle).
+** Affichage dans l'écran de santé si des éléments de configuration ne sont pas appliqués.
+** Affichage dans l'écran d'équipent si des éléments de configuration ne sont pas appliqués.
+** Affichage dans l'écran de santé si un module sur piles n'e c'est jamais réveillé.
+** Affichage dans l'écran de santé si un module sur piles a dépassé le temps du réveil prévue.
+** Ajout de traces lors d'erreur de notifications.
 ** Meilleure remonté de l'état des piles.
 ** Conformité du résumé / santé pour les thermostats sur piles.
 ** Meilleur détection de modules sur piles.
@@ -81,7 +39,13 @@
 
 * Bug Fixes
 
+** Correction de la découverte des groupes d'associations.
+** Correction de l'erreur "Exception KeyError: (91,) in 'libopenzwave.notif_callback' ignored".
+** Correction de la sélection de la documentation de module pour les modules avec plusieurs profiles. 
+** Gestion des boutons action du module.
+** Correction de description de nom générique de class.
 ** Correction de la sauvegarde du fichier zwcfg.
+
 
 .Version 2016-03-01
 
