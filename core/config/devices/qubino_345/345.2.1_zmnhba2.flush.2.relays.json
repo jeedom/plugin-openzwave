@@ -18,7 +18,7 @@
 		"isVisible": 1,
 		"value": "Etat 1",
 		"configuration": {
-			"instanceId": 0,
+			"instanceId": 1,
 			"class": "0x25",
 			"value": "data[0].Set(255)"
 		},
@@ -37,7 +37,7 @@
 		"isVisible": 1,
 		"value": "Etat 1",
 		"configuration": {
-			"instanceId": 0,
+			"instanceId": 1,
 			"class": "0x25",
 			"value": "data[0].Set(0)"
 		},
@@ -57,7 +57,7 @@
 		"isHistorized": 0,
 		"eventOnly": 1,
 		"configuration": {
-			"instanceId": 0,
+			"instanceId": 1,
 			"class": "0x25",
 			"value": "data[0].val"
 		}
@@ -72,7 +72,7 @@
 		"isVisible": 1,
 		"value": "Etat 2",
 		"configuration": {
-			"instanceId": 1,
+			"instanceId": 2,
 			"class": "0x25",
 			"value": "data[0].Set(255)"
 		},
@@ -91,7 +91,7 @@
 		"isVisible": 1,
 		"value": "Etat 2",
 		"configuration": {
-			"instanceId": 1,
+			"instanceId": 2,
 			"class": "0x25",
 			"value": "data[0].Set(0)"
 		},
@@ -110,7 +110,7 @@
 		"isVisible": 0,
 		"isHistorized": 0,
 		"configuration": {
-			"instanceId": 1,
+			"instanceId": 2,
 			"class": "0x25",
 			"value": "data[0].val"
 		}
@@ -142,7 +142,7 @@
 		"isHistorized": 1,
 		"unite": "W",
 		"configuration": {
-			"instanceId": 0,
+			"instanceId": 1,
 			"class": "0x32",
 			"value": "data[8].val",
 			"minValue": 0,
@@ -160,7 +160,7 @@
 		"isHistorized": 1,
 		"unite": "kWh",
 		"configuration": {
-			"instanceId": 0,
+			"instanceId": 1,
 			"class": "0x32",
 			"value": "data[0].val"
 		}
@@ -176,7 +176,7 @@
 		"isHistorized": 1,
 		"unite": "W",
 		"configuration": {
-			"instanceId": 1,
+			"instanceId": 2,
 			"class": "0x32",
 			"value": "data[8].val",
 			"minValue": 0,
@@ -194,7 +194,7 @@
 		"isHistorized": 1,
 		"unite": "kWh",
 		"configuration": {
-			"instanceId": 1,
+			"instanceId": 2,
 			"class": "0x32",
 			"value": "data[0].val"
 		}
