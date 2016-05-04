@@ -3407,7 +3407,7 @@ controllers routes
 """
 
 
-@app.route('/ZWaveAPI/Run/controller.AddNodeToNetwork(<int:state>,<do_security>)', methods=['GET'])
+@app.route('/ZWaveAPI/Run/controller.AddNodeToNetwork(<int:state>,<int:do_security>)', methods=['GET'])
 def start_node_inclusion(state, do_security):
     if _network_information.controller_is_busy:
         return format_json_result(False, 'Controller is busy')
