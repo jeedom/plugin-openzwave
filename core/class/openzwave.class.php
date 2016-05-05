@@ -406,7 +406,7 @@ class openzwave extends eqLogic {
 	}
 
 	public static function compilationOk() {
-		if (shell_exec('ls /usr/local/lib/python2.*/dist-packages/openzwave*.egg/libopenzwave.so | wc -l') == 0) {
+		if (shell_exec('ls /usr/local/lib/python2.*/dist-packages/openzwave*.egg/libopenzwave.so 2>/dev/null | wc -l') == 0) {
 			return false;
 		}
 		return true;
