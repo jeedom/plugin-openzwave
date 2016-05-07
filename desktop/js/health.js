@@ -158,7 +158,7 @@ var app_health = {
             // pending changes
             tbody += '<td>';
             if(nodes[i].data.pending_changes != undefined && nodes[i].data.pending_changes.value >0){
-                tbody += '<span class="label label-warning" style="font-size : 1em;" title="' +nodes[i].data.pending_changes.value + ' {{configuration en attente d\'être appliqué}}" >'+nodes[i].data.pending_changes.value+'</span>';
+                tbody += '<span class="label label-warning" style="font-size : 1em;" title="' +nodes[i].data.pending_changes.value + ' {{configuration(s) en attente d\'être appliquée(s)}}" >'+nodes[i].data.pending_changes.value+'</span>';
             }else if(nodes[i].data.pending_changes != undefined && nodes[i].data.pending_changes.value == 0){
                 tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
             }

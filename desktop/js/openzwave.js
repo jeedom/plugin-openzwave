@@ -411,7 +411,7 @@ modifyWithoutSave = false;
                return;
              }
              if (data.result != "ok") {
-              $('.isPending').empty().append('  <i class="fa fa-spinner fa-pulse"></i> ' + data.result + ' modification(s) en attente d\'être appliquée');
+              $('.isPending').empty().append('  <i class="fa fa-spinner fa-pulse"></i> ' + data.result + ' modification(s) en attente d\'être appliquée(s)');
             } else {
               $('.isPending').empty();
             }
