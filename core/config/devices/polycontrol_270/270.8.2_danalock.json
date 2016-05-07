@@ -6,6 +6,7 @@
 	"remark": "",
 	"imglink": "polycontrol.danalock",
 	"battery_type": "1xER26500M",
+	"ignore": 1,
 	"configuration": {
 		"conf_version": 1
 	},
