@@ -6,7 +6,7 @@
 	"remark": "Ce module peut dans certaine circonstance rester éveillé lors de l’interview. Il faut enlever et remettre la pile pour remédier à la situation.",
 	"imglink": "vision.zs6301",
 	"ignore": 0,
-	"battery_type": "1x3V CR123A",
+	"battery_type": "3x1.5V AA",
 	"configuration": {
 		"conf_version": 1
 	},
