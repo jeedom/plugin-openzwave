@@ -296,12 +296,12 @@ var app_nodes = {
             var node_keys = [];
             $.each(nodes, function (key, val) {
                 if(key != app_nodes.selected_node){
-                    if (val.capabilities.isListening){
+                    if (val.capabilities.isListening || val.capabilities.isFlir){
                         if (val.multi_instance.instances == 0){
                             node_keys.push(key +';0');
                         }
                         else{
-                            if (support_multi_instance & val.multi_instance.support == 1){
+                            if (support_multi_instance){
                                 for(i = 1; i <= val.multi_instance.instances; i++ ){
                                     node_keys.push(key +';' +i);
                                 }
