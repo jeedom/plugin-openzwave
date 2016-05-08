@@ -250,7 +250,10 @@ var app_health = {
             tbody += '</td>';
             // communication time
             tbody += '<td>';
-            if(nodes[i].last_notification.description != undefined && nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null){
+            if (nodes[i].data.isListening.value){
+                tbody += app_health.timestampConverter(nodes[i].data.lastReceived.updateTime,false);
+            }
+            else if(nodes[i].last_notification.description != undefined && nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null){
                 tbody += app_health.timestampConverter(nodes[i].data.lastReceived.updateTime,false);
                 if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.next_wakeup != null){
                     if (now > nodes[i].data.wakeup_interval.next_wakeup) {
