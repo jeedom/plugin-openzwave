@@ -1838,6 +1838,24 @@ def serialize_command_class_info(instance2, json_result, my_node, my_value, time
     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'] = {"updateTime": timestamp}
 
 
+def serialize_node_notification(node_id):
+    json_result = {}
+    if node_id in _not_supported_nodes:
+        return json_result
+    my_node = _network.nodes[node_id]
+    if hasattr(my_node, 'last_notification'):
+        notification = my_node.last_notification
+        return {"receiveTime": notification.receive_time,
+                "description": notification.description,
+                "isFailed": my_node.is_failed
+                }
+    else:
+        return {"receiveTime": None,
+                "description": None,
+                "isFailed": my_node.is_failed
+                }
+
+
 def serialize_node_health(node_id):
     json_result = {}
     if node_id in _not_supported_nodes:
@@ -3397,6 +3415,28 @@ def get_pending_changes(node_id):
             if pending_changes == 0:
                 return format_json_result()
             return format_json_result(False, str(pending_changes))
+        else:
+            return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
+    except Exception, exception:
+        return format_json_result(False, str(exception), 'error')
+
+
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetHealth()', methods=['GET'])
+def get_node_health(node_id):
+    try:
+        if node_id in _network.nodes:
+            return format_json_result(serialize_node_health(node_id))
+        else:
+            return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
+    except Exception, exception:
+        return format_json_result(False, str(exception), 'error')
+
+
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetLastNotification()', methods=['GET'])
+def get_node_last_notification(node_id):
+    try:
+        if node_id in _network.nodes:
+            return format_json_result(serialize_node_notification(node_id))
         else:
             return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
     except Exception, exception:
