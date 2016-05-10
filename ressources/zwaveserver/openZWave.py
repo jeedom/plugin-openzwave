@@ -1263,11 +1263,12 @@ def prepare_value_notification(node, value):
         value.last_update = time.time()
         return
     command_class = _network.manager.COMMAND_CLASS_DESC[value.command_class].replace("COMMAND_CLASS_", "").replace("_", " ").lower().capitalize()
-    debug_print("Received %s report from node %s: %s=%s%s" % (command_class, node.node_id, value.label, extract_data(value, False, False), value.units))
+    data = extract_data(value, False, False)
+    debug_print("Received %s report from node %s: %s=%s%s" % (command_class, node.node_id, value.label, data, value.units))
     try:
         save_value(node, value, time.time())
     except Exception as error:
-        add_log_entry('An unknown error occurred while sending notification: %s. (Node %s: %s=%s)' % (str(error), node.node_id, value.label, extract_data(value, False, False),), "error")
+        add_log_entry('An unknown error occurred while sending notification: %s. (Node %s: %s=%s)' % (str(error), node.node_id, value.label, data,), "error")
 
 
 def value_update(network, node, value): 
