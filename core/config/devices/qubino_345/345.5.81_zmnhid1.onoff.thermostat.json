@@ -20,6 +20,7 @@
 		"unite": "°C",
 		"configuration": {
 			"class": "0x31",
+			"instanceId": 0,
 			"value": "data[1].val"
 		}
 	},
@@ -35,7 +36,7 @@
 		"unite": "",
 		"configuration": {
 			"class": "0x40",
-                        "instanceId": 1,
+            "instanceId": 0,
 			"value": "data[0].val"
 		}
 	},
@@ -51,7 +52,7 @@
 		"unite": "°C",
 		"configuration": {
 			"class": "0x40",
-			"instanceId": 1,
+			"instanceId": 0,
 			"value": "data[0].Set(Off)"
 		}
 	},
@@ -67,7 +68,7 @@
 		"unite": "°C",
 		"configuration": {
 			"class": "0x40",
-			"instanceId": 1,
+			"instanceId": 0,
 			"value": "data[0].Set(Auto)"
 		}
 	},
@@ -82,7 +83,7 @@
 		"unite": "°C",
 		"configuration": {
 			"class": "0x43",
-                        "instanceId": 1,
+            "instanceId": 0,
 			"value": "data[1].val",
 			"minValue": "5",
 			"maxValue": "30"
@@ -100,7 +101,7 @@
 		"value": "ConsigneEtat",
 		"configuration": {
 			"class": "0x43",
-                        "instanceId": 1,
+            "instanceId": 0,
 			"value": "data[1].Set(#slider#)",
 			"minValue": "5",
 			"maxValue": "30"
