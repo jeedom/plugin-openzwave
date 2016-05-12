@@ -120,7 +120,8 @@
 		},
 		"configuration": {
 			"class": "0x32",
-			"value": "data[20].val"
+			"value": "data[20].val",
+			"calculValueOffset": "#value#/100"
 		}
 	}]
 }
