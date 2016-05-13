@@ -347,7 +347,7 @@ class openzwave extends eqLogic {
 		if (config::byKey('jeeNetwork::mode') == 'master') {
 			foreach (self::listServerZwave() as $serverID => $server) {
 				try {
-					self::callOpenzwave('/ZWaveAPI/Run/network.PerformSanityChecks()', $serverID, 30);
+					self::callOpenzwave('/ZWaveAPI/Run/network.PerformSanityChecks()', $serverID);
 				} catch (Exception $e) {
 				}
 			}
@@ -1074,11 +1074,7 @@ class openzwaveCmd extends cmd {
 	public function sendZwaveResquest($_url, $_options = array()) {
 		$eqLogic = $this->getEqLogic();
 		if ($this->getType() == 'action') {
-			if (isset($_options['speedAndNoErrorReport']) && $_options['speedAndNoErrorReport'] == true) {
-				openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1), 1, true);
-			} else {
-				openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1));
-			}
+			openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1));
 			return;
 		}
 		$result = openzwave::callOpenzwave($_url, $eqLogic->getConfiguration('serverID', 1));
