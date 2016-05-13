@@ -250,7 +250,14 @@ var app_nodes = {
             var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
             var foundIdentical = 0;
             $.each(nodes, function (key, val) {
-                if (key != app_nodes.selected_node && val.description.product_name == nodes[app_nodes.selected_node].data.product_name.value) {
+                var manufacturerId = nodes[app_nodes.selected_node].data.manufacturerId.value;
+                var manufacturerProductId = nodes[app_nodes.selected_node].data.manufacturerProductId.value;
+                var manufacturerProductType = nodes[app_nodes.selected_node].data.manufacturerProductType.value;
+
+                if (key != app_nodes.selected_node && val.product.is_valid &&
+                    val.product.manufacturer_id == manufacturerId &&
+                    val.product.product_id == manufacturerProductId &&
+                    val.product.product_type == manufacturerProductType) {
                     foundIdentical = 1;
                     if (val.description.name != '') {
                         options_node += '<option value="' + key + '">' + key + ' : ' + val.description.location + ' - ' + val.description.name + '</option>';
