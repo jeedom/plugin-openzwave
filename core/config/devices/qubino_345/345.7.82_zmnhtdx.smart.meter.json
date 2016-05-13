@@ -1,9 +1,9 @@
 {
-	"name": "ZMNHTAx Smart Meter",
+	"name": "ZMNHTDx Smart meter",
 	"doc": "",
 	"type": "Rail-din",
-	"imglink": "qubino.zmnhtax",
-	"remark": "Problème de remonté de la puissance, requière le rafraichissement manuel 5 minutes",
+	"imglink": "qubino.zmnhtdx",
+	"remark": "",
 	"configuration": {
 		"conf_version": 1
 	},
