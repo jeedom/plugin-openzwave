@@ -28,13 +28,13 @@
 			<Item label="ALL ON is not active ALL OFF active" value="1" />
 			<Item label="ALL ON active ALL OFF is not active" value="2" />
 		</Value> 		
-		<Value type="short" genre="config" instance="1" index="11" label="Automatic turning off relay after set time" min="0" max="32535" value="0">
+		<Value type="short" genre="config" instance="1" index="11" label="Automatic turning off relay after set time" size="2" min="0" max="32535" value="0">
 			<Help>
 			0 => Auto OFF disabled. 
 			1 - 32535  => 1 second (0,01s) - 32535 seconds (325,35s). 
 			Auto OFF enabled with define time, step is 1s or 10ms according to parameter 15. Default value 0</Help>
 		</Value>		
-        <Value type="short" genre="config" instance="1" index="12" label="Automatic turning on relay after set time" min="0" max="32535" value="0">
+        <Value type="short" genre="config" instance="1" index="12" label="Automatic turning on relay after set time" size="2" min="0" max="32535" value="0">
             <Help>
 			0 - Auto OFF disabled. 
 			1 - 32535  => 1 second (0,01s) - 32535 seconds (325,35s).
@@ -66,7 +66,7 @@
 			<Item label="Smoke Alarm; Smoke detected, unknown location" value="6" />
 			<Item label="Sensor binary" value="9" />
         </Value>
-		<Value type="short" genre="config" instance="1" index="110" label="Temperature sensor offset settings" min="0" max="32535" value="32535">
+		<Value type="short" genre="config" instance="1" index="110" label="Temperature sensor offset settings" size="2" min="0" max="32535" value="32535">
             <Help>Set value is added or subtracted to actual measured value by sensor. 
 			Available configuration parameters : default value 32536. 32536  offset is 0.0C. 
 			From 1 to 100 = value from 0.1C to 10.0C is added to actual measured temperature.
