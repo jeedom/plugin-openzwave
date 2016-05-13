@@ -236,8 +236,6 @@ for arg in sys.argv:
         temp, suppress_refresh = arg.split("=")
         _suppress_refresh = suppress_refresh == 1
 
-
-
 if _device is None or len(_device) == 0:
     add_log_entry('Dongle Key is not specified. Please check your Z-Wave (openzwave) configuration plugin page', 'error')
     sys.exit(1)
@@ -2169,7 +2167,15 @@ def not_found404(error):
 
 @app.teardown_appcontext
 def close_network(error):
-    return error
+    if error is not None:
+        add_log_entry('%s %s' % (error, 'teardown'), "error")
+
+
+@app.errorhandler(Exception)
+def unhandled_exception(exception):
+    add_log_entry('Unhandled Exception: %s', (exception,))
+    return make_response(jsonify({'error': 'Unhandled Exception'}), 500)
+
 
 '''
 devices routes
@@ -2511,7 +2517,7 @@ def get_config(node_id):
 def copy_configuration(source_id, target_id):
     if _network_information.controller_is_busy:
         return format_json_result(False, 'Controller is busy')
-    debug_print("copy_configuration from source_id:%s to target_id:%s'" % (source_id, target_id,))
+    debug_print("copy_configuration from source_id:%s to target_id:%s" % (source_id, target_id,))
     items = 0
     if source_id in _network.nodes:
         if target_id in _network.nodes:
@@ -3731,7 +3737,7 @@ def get_nodes_list():
                   
         json_node['description'] = {'name': node_name, 'location': node_location, 'product_name': my_node.product_name, 'is_static_controller': my_node.basic == 2}
         json_node['product'] = {'manufacturer_id': manufacturer_id, 'product_type': product_type, 'product_id': product_id, 'is_valid': manufacturer_id is not None and product_id is not None and product_type is not None}
-        instances = [];
+        instances = []
         for val in my_node.get_values(genre='User'):
             if my_node.values[val].instance in instances:
                 continue
@@ -4009,6 +4015,6 @@ if __name__ == '__main__':
             print('REST server starting in %s mode' %(_log_level,))
             app.run(host='0.0.0.0', port=int(_port_server), debug=True, threaded=True, use_reloader=False, use_debugger=True)
         else:
-            app.run(host='0.0.0.0', port=int(_port_server), debug=False)
+            app.run(host='0.0.0.0', port=int(_port_server), debug=False, threaded=True, use_reloader=False, use_debugger=False)
     except Exception, ex:
         print "Fatal Error: %s" % str(ex)
