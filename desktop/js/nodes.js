@@ -246,8 +246,8 @@ var app_nodes = {
         $('#copyParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
             var modal = $(this);
             modal.find('.modal-body').html(' ');
-            modal.find('.modal-title').text('{{Copier les paramètres pour le module}} ' + app_nodes.selected_node);
-            var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
+            modal.find('.modal-title').text('{{Sélection du module source}}');
+            var options_node = '<div><b>Source : </b>  <select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
             var foundIdentical = 0;
             $.each(nodes, function (key, val) {
                 var manufacturerId = nodes[app_nodes.selected_node].data.manufacturerId.value;
@@ -267,6 +267,14 @@ var app_nodes = {
                 }
             });
             options_node += '</select></div>';
+
+            options_node += '<div><br><b>Destination : </b> ' + app_nodes.selected_node + ' ';
+            if(nodes[app_nodes.selected_node].data.name.value != ''){
+                options_node += nodes[app_nodes.selected_node].data.location.value+ ' - ' + nodes[app_nodes.selected_node].data.name.value;
+            }
+            else{
+                options_node += nodes[app_nodes.selected_node].data.product_name.value;
+            }
             if (foundIdentical == 0) {
                 modal.find('#saveCopyParams').hide();
                 options_node = '{{Aucun module identique trouvé}}';

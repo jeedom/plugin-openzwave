@@ -117,7 +117,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-				<button type="button" class="btn btn-primary" id="saveCopyParams">Copier les paramètres</button>
+				<button type="button" class="btn btn-primary" id="saveCopyParams">Appliquer les paramètres</button>
 			</div>
 		</div>
 	</div>
@@ -284,7 +284,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 											<a id="refreshParams" class="btn btn-info btn-sm refreshParams"><i class="fa fa-refresh"></i> {{Actualiser les paramètres}}</a>
 										</div>
 										<div class="btn-group pull-right">
-											<a id="copyParams" class="btn btn-info btn-sm copyParams"><i class="fa fa-copy"></i> {{Copier les paramètres d'un node existant}}</a>
+											<a id="copyParams" class="btn btn-info btn-sm copyParams"><i class="fa fa-copy"></i> {{Appliquer les paramètres d'un module existant}}</a>
 										</div></th>
 								</tr>
 								<tr id="template-parameter" style="display:none">
