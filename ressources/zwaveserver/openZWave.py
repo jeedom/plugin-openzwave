@@ -236,6 +236,7 @@ for arg in sys.argv:
         temp, suppress_refresh = arg.split("=")
         _suppress_refresh = suppress_refresh == 1
 
+
 if _device is None or len(_device) == 0:
     add_log_entry('Dongle Key is not specified. Please check your Z-Wave (openzwave) configuration plugin page', 'error')
     sys.exit(1)
@@ -1740,6 +1741,10 @@ def serialize_node_to_json(node_id):
             my_value = my_node.values[val]
             if my_value.command_class is None:
                 continue
+
+            if my_value.instance > 1 and my_value.command_class in [COMMAND_CLASS_ZWAVE_PLUS_INFO, COMMAND_CLASS_VERSION]:
+                continue
+
             # avoid encoding exception
             try:
                 label = my_value.label
@@ -3979,7 +3984,7 @@ def manually_delete_backup(backup_name):
     return format_json_result(True, backup_name + ' successfully deleted')
 
 
-@app.route('/ZWaveAPI/Run/network.PerformSanityChecks()', methods=['POST'])
+@app.route('/ZWaveAPI/Run/network.PerformSanityChecks()', methods=['GET'])
 def perform_sanity_checks():
     sanity_checks()
     return format_json_result()
