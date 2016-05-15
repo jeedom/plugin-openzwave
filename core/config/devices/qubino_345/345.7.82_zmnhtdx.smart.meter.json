@@ -8,16 +8,16 @@
 		"conf_version": 1
 	},
 	"commands": [{
-		"name": "On",
+		"name": "On1",
 		"type": "action",
 		"subtype": "other",
 		"display": {
 			"generic_type": "ENERGY_ON"
 		},
 		"isVisible": 1,
-		"value": "Etat",
+		"value": "Etat1",
 		"configuration": {
-			"instanceId": 0,
+			"instanceId": 1,
 			"class": "0x25",
 			"value": "data[0].Set(255)"
 		},
@@ -27,16 +27,16 @@
 		}
 	},
 	{
-		"name": "Off",
+		"name": "Off1",
 		"type": "action",
 		"subtype": "other",
 		"display": {
 			"generic_type": "ENERGY_OFF"
 		},
 		"isVisible": 1,
-		"value": "Etat",
+		"value": "Etat1",
 		"configuration": {
-			"instanceId": 0,
+			"instanceId": 1,
 			"class": "0x25",
 			"value": "data[0].Set(0)"
 		},
@@ -46,7 +46,7 @@
 		}
 	},
 	{
-		"name": "Etat",
+		"name": "Etat1",
 		"type": "info",
 		"subtype": "binary",
 		"display": {
@@ -56,11 +56,65 @@
 		"isHistorized": 0,
 		"eventOnly": 1,
 		"configuration": {
-			"instanceId": 0,
+			"instanceId": 1,
 			"class": "0x25",
 			"value": "data[0].val"
 		}
 	},
+		{
+			"name": "On2",
+			"type": "action",
+			"subtype": "other",
+			"display": {
+				"generic_type": "ENERGY_ON"
+			},
+			"isVisible": 1,
+			"value": "Etat2",
+			"configuration": {
+				"instanceId": 2,
+				"class": "0x25",
+				"value": "data[0].Set(255)"
+			},
+			"template": {
+				"dashboard": "prise",
+				"mobile": "prise"
+			}
+		},
+		{
+			"name": "Off2",
+			"type": "action",
+			"subtype": "other",
+			"display": {
+				"generic_type": "ENERGY_OFF"
+			},
+			"isVisible": 1,
+			"value": "Etat2",
+			"configuration": {
+				"instanceId": 2,
+				"class": "0x25",
+				"value": "data[0].Set(0)"
+			},
+			"template": {
+				"dashboard": "prise",
+				"mobile": "prise"
+			}
+		},
+		{
+			"name": "Etat2",
+			"type": "info",
+			"subtype": "binary",
+			"display": {
+				"generic_type": "ENERGY_STATE"
+			},
+			"isVisible": 0,
+			"isHistorized": 0,
+			"eventOnly": 1,
+			"configuration": {
+				"instanceId": 2,
+				"class": "0x25",
+				"value": "data[0].val"
+			}
+		},
 	{
 		"name": "Puissance",
 		"type": "info",
