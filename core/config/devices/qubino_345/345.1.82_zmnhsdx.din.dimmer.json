@@ -68,22 +68,6 @@
 		}
 	},
 	{
-		"name": "Température",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "°C",
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x31",
-			"value": "data[1].val"
-		}
-	},
-	{
 		"name": "Puissance",
 		"type": "info",
 		"subtype": "numeric",
