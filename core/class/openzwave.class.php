@@ -348,14 +348,12 @@ class openzwave extends eqLogic {
 	}
 
 	public static function cron15() {
-		if (config::byKey('jeeNetwork::mode') == 'master') {
+		if (config::byKey('jeeNetwork::mode') == 'master' && config::byKey('enabled_sanity_tests', 'openzwave') == 1) {
 			foreach (self::listServerZwave() as $serverID => $server) {
-				if (config::byKey('enabled_sanity_tests', 'openzwave') == 1) {
-					try {
-						self::callOpenzwave('/ZWaveAPI/Run/network.PerformSanityChecks()', $serverID, null, false, null, true);
-					} catch (Exception $e) {
+				try {
+					self::callOpenzwave('/ZWaveAPI/Run/network.PerformSanityChecks()', $serverID, null, false, null, true);
+				} catch (Exception $e) {
 
-					}
 				}
 			}
 		}
