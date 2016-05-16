@@ -48,6 +48,7 @@ try:
     import datetime
     import binascii
     import threading
+
     from threading import Event, Thread
     import socket
     from lxml import etree
@@ -111,6 +112,8 @@ _validate_association_groups_timer = 45.0
 _recovering_failed_nodes_timer = 900.0  # 15 minutes
 # perform sanitary jobs
 _recovering_failed_nodes_jobs_timer = 900.0  # 15 minutes
+_maximum_number_notifications = 25
+_sanity_checks_delay = 15.0
 
 _network = None
 _network_information = None
@@ -237,6 +240,7 @@ for arg in sys.argv:
         _suppress_refresh = suppress_refresh == 1
 
 
+
 if _device is None or len(_device) == 0:
     add_log_entry('Dongle Key is not specified. Please check your Z-Wave (openzwave) configuration plugin page', 'error')
     sys.exit(1)
@@ -313,6 +317,7 @@ _not_supported_nodes = [0, 255]
 _user_values_to_refresh = ["Level", "Sensor", "Switch", "Power", "Temperature", "Alarm Type", "Alarm Type", "Power Management"]
 
 
+
 class ControllerMode:
     def __init__(self):
         pass
@@ -329,8 +334,9 @@ class ControllerMode:
         def __init__(self):
             pass
 
-  
+
 class NetworkInformation(object):
+
 
     def __init__(self):
         self._actualMode = ControllerMode.Idle
@@ -339,7 +345,7 @@ class NetworkInformation(object):
         self._config_file_save_in_progress = False
         self._controller_is_busy = False
         self._controller_state = ZWaveController.STATE_STARTING
-        self._last_controller_notification = {"state": self._controller_state, "details": '', "error": None, "error_description": None, "timestamp": int(time.time())}
+        self._last_controller_notifications = [{"state": self._controller_state, "details": '', "error": None, "error_description": None, "timestamp": int(time.time())}]
         self._error = None
         self._error_description = None
     
@@ -380,8 +386,8 @@ class NetworkInformation(object):
         return self._controller_state
     
     @property
-    def last_controller_notification(self):
-        return self._last_controller_notification
+    def last_controller_notifications(self):
+        return self._last_controller_notifications
     
     @property
     def error(self):        
@@ -400,21 +406,15 @@ class NetworkInformation(object):
         if self._awake_time is not None:
             return self._awake_time - self._start_time
         return None
-    
+
     def assign_controller_notification(self, state, details, error=None, error_description=None):
         self._controller_state = state
-        self._last_controller_notification['state'] = state
-        self._last_controller_notification['details'] = details
-        if error == 'None':
-            self._last_controller_notification['error'] = None
-            self._last_controller_notification['error_description'] = None
-        else:
-            self._last_controller_notification['error'] = error
-            self._last_controller_notification['error_description'] = error_description
-        self._last_controller_notification['timestamp'] = int(time.time())
-        self._error = error
-        self._error_description = error_description
-        
+
+        if len(self._last_controller_notifications) == _maximum_number_notifications:
+            self._last_controller_notifications.pop()
+
+        self._last_controller_notifications.insert(0, {"state": state, "details": details, "error": error, "error_description": error_description, "timestamp": int(time.time())})
+
         if state == ZWaveController.STATE_WAITING:
             self.controller_is_busy = True
         elif state == ZWaveController.STATE_INPROGRESS:
@@ -441,9 +441,9 @@ class NetworkInformation(object):
         self._config_file_save_in_progress = False
         self._controller_is_busy = False
         self._controller_state = ZWaveController.STATE_STARTING
-        self._last_controller_notification = {"state": self._controller_state, "details": '', "error": None, "error_description": None, "timestamp": int(time.time())}
         self._error = None
         self._error_description = None
+        self._last_controller_notifications = [{"state": self._controller_state, "details": '', "error": self._error, "error_description": self._error_description, "timestamp": int(time.time())}]
 
 
 class PendingConfiguration(object):
@@ -908,17 +908,17 @@ def validate_association_groups_asynchronous():
 
 def recovering_failed_nodes_asynchronous():
     # wait 15 seconds on first launch
-    time.sleep(15.0)
+    time.sleep(_sanity_checks_delay)
     while True:
         sanity_checks()
         # wait for next run
         time.sleep(_recovering_failed_nodes_timer)
 
 
-def sanity_checks():
+def sanity_checks(force=False):
     global _ghost_node_id
     # if controller is busy skip this run
-    if can_execute_network_command(0):
+    if force or can_execute_network_command(0):
         debug_print("Perform network sanity test/check")
         for node_id in list(_network.nodes):
             my_node = _network.nodes[node_id]
@@ -1026,7 +1026,10 @@ def network_awaked(network):
     # start listening for group changes
     dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
     save_network_state(network.state)
-    sanity_checks()
+    if _ghost_node_id is not None:
+        add_log_entry("Last step for Removing Ghost node will start in %d sec" % (_sanity_checks_delay,))
+        sanity_checks_job = threading.Timer(_sanity_checks_delay, sanity_checks, [True])
+        sanity_checks_job.start()
 
 
 def network_ready(network):
@@ -1976,7 +1979,7 @@ def serialize_controller_to_json():
     json_result['data']['nodeId'] = {'value': _network.controller.node_id}
     json_result['data']['mode'] = {'value': get_network_mode()}
     json_result['data']['softwareVersion'] = {'ozw_library': _network.controller.ozw_library_version, 'python_library': _network.controller.python_library_version}
-    json_result['data']['notification'] = _network_information.last_controller_notification
+    json_result['data']['notification'] = _network_information.last_controller_notifications[0]
     json_result['data']['isBusy'] = {"value": _network_information.controller_is_busy}
     json_result['data']['networkstate'] = {"value": _network.state}
     return json_result
@@ -3676,7 +3679,7 @@ def get_network_status():
                        'OpenZwaveLibraryVersion': _network.manager.getOzwLibraryVersionNumber(),
                        'PythonOpenZwaveLibraryVersion': _network.manager.getPythonLibraryVersionNumber(),
                        'neighbors': concatenate_list(_network.controller.node.neighbors),
-                       'notification': _network_information.last_controller_notification,
+                       'notifications': list(_network_information.last_controller_notifications),
                        'isBusy': _network_information.controller_is_busy, 'startTime': _network_information.start_time,
                        'isPrimaryController': _network.controller.is_primary_controller,
                        'isStaticUpdateController': _network.controller.is_static_update_controller,

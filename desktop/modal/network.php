@@ -121,6 +121,7 @@ if (!isConnect('admin')) {
         <div id="content">
             <ul id="tabs_network" class="nav nav-tabs" data-tabs="tabs">
                 <li class="active"><a href="#summary_network" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Résumé}}</a></li>
+                <li><a href="#notifications" data-toggle="tab"><i class="fa fa-bell-o"></i> {{Notifications}}</a></li>
                 <li><a href="#actions_network" data-toggle="tab"><i class="fa fa-sliders"></i> {{Actions}}</a></li>
                 <li><a href="#statistics_network" data-toggle="tab"><i class="fa fa-bar-chart"></i> {{Statistiques}}</a></li>
                 <li id="tab_graph"><a href="#graph_network" data-toggle="tab"><i class="fa fa-picture-o"></i> {{Graphique du réseau}}</a></li>
@@ -161,9 +162,6 @@ if (!isConnect('admin')) {
                         <div class="panel-body">
                             <p><span class="network-state-led">{{inconnu}}</span> {{Etat actuel :}} <span class="network-state-description label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
                             <p><span class="network-outgoing-send-queueWarning">{{inconnu}}</span> {{Queue sortante :}} <span class="network-outgoing-send-queue label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
-                            <p>{{Dernière notification du contrôleur :}} <span class="network-notification label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
-                            <p>{{Détails du message :}} <span class="network-notificationMessage label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
-                            <p>{{Reçu à :}} <span class="network-notificationTime label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
                         </div>
                     </div>
 
@@ -172,8 +170,7 @@ if (!isConnect('admin')) {
                             <h4 class="panel-title">{{Capacités}}</h4>
                         </div>
                         <div class="panel-body">
-                            <p>{{Contrôleur :}} <span class="network-controller-capabilities label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
-                            <p>{{Noeud :}} <span class="network-controller-node-capabilities label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
+                            <lu class="network-controller-node-capabilities" style="font-size : 1em;"></lu>
                         </div>
                     </div>
                     <div class="panel panel-primary">
@@ -181,7 +178,7 @@ if (!isConnect('admin')) {
                             <h4 class="panel-title">{{Système}}</h4>
                         </div>
                         <div class="panel-body">
-                            <p>{{Chemin du module :}} <span class="network-device-path label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
+                            <p>{{Chemin du contrôleur Z-Wave :}} <span class="network-device-path label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
                             <p>{{Version de la librairie OpenZwave :}}<span class="network-oz-library-version label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
                             <p>{{Version de la librairie Python-OpenZwave :}} <span class="network-poz-library-version label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
                         </div>
@@ -190,6 +187,23 @@ if (!isConnect('admin')) {
                 </div>
 
 
+                <div class="tab-pane" id="notifications">
+                    <br>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>{{Etat}}</th>
+                                <th>{{Détails}}</th>
+                                <th>{{Reçu}}</th>
+                            </tr>
+                            <tr id="template-system" style="display:none">
+                                <td key="notifications-name"></td>
+                                <td key="notifications-value"></td>
+                                <td key="notifications-edit"></td>
+                            </tr>
+                            <tbody class="notification_variables"></tbody>
+
+                        </table>
+                </div>
 
                 <div id="graph_network" class="tab-pane">
                     <table class="table table-bordered table-condensed" style="width: 350px;position:fixed;margin-top : 25px;" >

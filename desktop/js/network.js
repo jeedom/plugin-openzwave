@@ -671,8 +671,27 @@ var app_network = {
             }
         }
         network.find(".network-state-led").html(stateled);
-        network.find(".network-controller-capabilities").html(infos.controllerCapabilities);
-        network.find(".network-controller-node-capabilities").html(infos.controllerNodeCapabilities);
+
+        var node_capabilities = ''; //beaming;listening;primaryController;staticUpdateController
+        if(infos.controllerNodeCapabilities.indexOf('primaryController') != -1){
+            node_capabilities += '<li>{{Contrôleur Primaire}}</li>'
+        }
+        if(infos.controllerNodeCapabilities.indexOf('staticUpdateController') != -1){
+            node_capabilities += '<li>{{Contrôleur statique de mise à jour (SUC)}}</li>'
+        }
+        if(infos.controllerNodeCapabilities.indexOf('bridgeController') != -1){
+            node_capabilities += '<li>{{Contrôleur secondaire}}</li>'
+        }
+        if(infos.controllerNodeCapabilities.indexOf('listening') != -1){
+            node_capabilities += '<li>{{Le noeud est alimenté et écoute en permanence}}</li>'
+        }
+        if(infos.controllerNodeCapabilities.indexOf('beaming') != -1){
+            node_capabilities += '<li>{{Le noeud est capable d\'envoyer une trame réseaux}}</li>';
+        }
+        network.find(".network-controller-node-capabilities").html(node_capabilities);
+
+
+
         var outgoingSendQueue = parseInt(infos.outgoingSendQueue,0);
         if(outgoingSendQueue==0){
             outgoingSendQueueDescription = "<i class='fa fa-circle fa-lg greeniconcolor'></i>" ;
@@ -694,9 +713,16 @@ var app_network = {
         network.find(".network-oz-library-version").html(infos.OpenZwaveLibraryVersion);
         network.find(".network-poz-library-version").html(infos.PythonOpenZwaveLibraryVersion);
         network.find(".network-node-neighbours").html(infos.neighbors);
-        network.find(".network-notification").html(infos.notification.state);
-        network.find(".network-notificationMessage").html(infos.notification.details);
-        network.find(".network-notificationTime").html(app_network.timestampConverter(infos.notification.timestamp));
+        
+        var table_notifications = '';
+        for (i = 0; i < infos.notifications.length; i++) {
+            table_notifications += '<tr>';
+            table_notifications += '<td>' + infos.notifications[i].state + '</td>';
+            table_notifications += '<td>' + infos.notifications[i].details + '</td>';
+            table_notifications += '<td>' + app_network.timestampConverter(infos.notifications[i].timestamp) + '</td>';
+            table_notifications += '</tr>';
+        }
+        network.find(".notification_variables").html(table_notifications);
 
         var disabledCommand = infos.state<5 || outgoingSendQueue>0;
         // add remove commands

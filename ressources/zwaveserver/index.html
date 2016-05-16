@@ -43,9 +43,9 @@
       $(".network-sleeping-nodes-count").html(data.sleepingNodesCount);
       $(".network-state-description").html(data.stateDescription);
       $(".network-outgoing-send-queue").html(parseInt(data.outgoingSendQueue,0));
-      $(".network-notification").html(data.notification.state);
-      $(".network-notificationMessage").html(data.notification.details);
-      $(".network-notificationTime").html(timestampConverter(data.notification.timestamp));
+      $(".network-notification").html(data.notifications[0].state);
+      $(".network-notificationMessage").html(data.notifications[0].details);
+      $(".network-notificationTime").html(timestampConverter(data.notifications[0].timestamp));
       $(".network-oz-library-version").html(data.OpenZwaveLibraryVersion);
       $(".network-poz-library-version").html(data.PythonOpenZwaveLibraryVersion);
     }
