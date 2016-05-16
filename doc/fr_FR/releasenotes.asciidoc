@@ -34,7 +34,7 @@
 ** Ajout d'option pour désactiver l'actualisation en arrière-plan des variateurs.
 ** Affichage des associations avec qui un module est en association (find usage).
 ** Ajout du support de la CC MULTI_INSTANCE_ASSOCIATION.
-**  Ajout d'une notification info lors de l'application de Set_Point afin de pourvoir exploiter la consigne demandé sous forme de cmd info.
+** Ajout d'une notification info lors de l'application de Set_Point afin de pourvoir exploiter la consigne demandé sous forme de cmd info.
 ** Ajout d'un assistant de configuration recommandé.
 ** Ajout d'option pour activer/désactiver l'assistant de configuration recommandé lors de l'inclusion de nouveaux modules.
 ** Ajout d'option pour activer/désactiver la mise à jour des configurations des modules chaque nuit.
