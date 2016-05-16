@@ -4,7 +4,10 @@
 
 * New Features
 
-** N/A
+** Ajout d'une option pour activer/désactiver les controls sanitaire sur l'ensemble des module.
+** Ajout d'un onglet Notifications pour visualiser les dernières 25 notifications du contrôleur.
+** Ajout d'une route pour récupérer la santé d'un noeud. /ZWaveAPI/Run/devices[<int:node_id>].GetHealth()
+** Ajout d'une route pour récupérer la dernière notification d'un noeud. /ZWaveAPI/Run/devices[<int:node_id>].GetLastNotification()
 
 * Improvements/Enhancements
 
@@ -13,11 +16,16 @@
 ** Mise à jour du wrapper python openzwave en version 0.3.0.
 ** Mise à jour de la librairie openzwave 1.4.244.
 ** Ne pas afficher d'avertissement de wakeup expiré pour les modules sur piles allimenté par secteur.
+** Validation qu'un module est identique au niveau ids pour permettre la copie de paramètres.
+** Simplification de l'assistant de copie de paramètres.
+** Masquer des valeurs de l'onglet système qui n'ont pas lieu d'être affichées.
+** Affichage de la description des capacitées du controlleur.
 
 * Bug Fixes
 
 ** Correction orthographe.
 ** Correction de l'inclusion en mode sécurisée.
+** Correction de l'appel asynchrone. (error: [Errno 32] Broken pipe)
 
 .Version 2016-05-04
 
