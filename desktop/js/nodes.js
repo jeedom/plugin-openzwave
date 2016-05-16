@@ -311,7 +311,7 @@ var app_nodes = {
             var node_keys = [];
             $.each(nodes, function (key, val) {
                 if(key != app_nodes.selected_node){
-                    if (val.capabilities.isListening || val.capabilities.isFlir){
+                    if (val.capabilities.isListening || val.capabilities.isFlirs){
                         if (val.multi_instance.instances == 0){
                             node_keys.push(key +';0');
                         }
