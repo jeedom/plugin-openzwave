@@ -74,7 +74,7 @@ class openzwave extends eqLogic {
 		return self::$_listZwaveServer;
 	}
 
-	public static function callOpenzwave($_url, $_serverId = 0, $_timeout = null, $_noError = false, $_data = null) {
+	public static function callOpenzwave($_url, $_serverId = 0, $_timeout = null, $_noError = false, $_data = null, $_async = false) {
 		if (self::$_listZwaveServer == null) {
 			self::listServerZwave();
 		}
@@ -85,6 +85,10 @@ class openzwave extends eqLogic {
 			return '';
 		}
 		$url = 'http://' . self::$_listZwaveServer[$_serverId]['addr'] . ':' . self::$_listZwaveServer[$_serverId]['port'] . str_replace(' ', '%20', $_url);
+		if ($_async) {
+			shell_exec('curl -s -G "' . $url . '" >> /dev/null 2>&1 &');
+			return;
+		}
 		$ch = curl_init();
 		curl_setopt_array($ch, array(
 			CURLOPT_URL => $url,
@@ -348,8 +352,9 @@ class openzwave extends eqLogic {
 			foreach (self::listServerZwave() as $serverID => $server) {
 				if (config::byKey('enabled_sanity_tests', 'openzwave') == 1) {
 					try {
-						self::callOpenzwave('/ZWaveAPI/Run/network.PerformSanityChecks()', $serverID);
+						self::callOpenzwave('/ZWaveAPI/Run/network.PerformSanityChecks()', $serverID, null, false, null, true);
 					} catch (Exception $e) {
+
 					}
 				}
 			}
