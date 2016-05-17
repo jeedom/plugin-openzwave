@@ -456,10 +456,10 @@ var app_network = {
                     }
                 }
                 var graphics = Viva.Graph.View.svgGraphics(),
-                    nodeSize = 24,
+                nodeSize = 24,
                 // we use this method to highlight all realted links
                 // when user hovers mouse over a node:
-                    highlightRelatedNodes = function(nodeId, isOn) {
+                highlightRelatedNodes = function(nodeId, isOn) {
                         // just enumerate all realted nodes and update link color:
                         graph.forEachLinkedNode(nodeId, function(node, link){
                             var linkUI = graphics.getLinkUI(link.id);
@@ -491,11 +491,11 @@ var app_network = {
                     var ui = Viva.Graph.svg('g'),
 
                     // Create SVG text element with user id as content
-                        svgText = Viva.Graph.svg('text').attr('y', '0px').text(node.id),
-                        img = Viva.Graph.svg('rect')
-                            .attr("width", 10)
-                            .attr("height", 10)
-                            .attr("fill", nodecolor);
+                    svgText = Viva.Graph.svg('text').attr('y', '0px').text(node.id),
+                    img = Viva.Graph.svg('rect')
+                    .attr("width", 10)
+                    .attr("height", 10)
+                    .attr("fill", nodecolor);
                     ui.append(svgText);
                     ui.append(img);
                     $(ui).hover(function() { // mouse over
@@ -553,9 +553,9 @@ var app_network = {
                         dashvalue='5, 2';
                     }
                     return Viva.Graph.svg('line')
-                        .attr('stroke', '#B7B7B7')
-                        .attr('stroke-dasharray', dashvalue)
-                        .attr('stroke-width', '0.4px');
+                    .attr('stroke', '#B7B7B7')
+                    .attr('stroke-dasharray', dashvalue)
+                    .attr('stroke-width', '0.4px');
                 });
                 var renderer = Viva.Graph.View.renderer(graph, {
                     layout: layout,
@@ -717,9 +717,9 @@ var app_network = {
         var table_notifications = '';
         for (i = 0; i < infos.notifications.length; i++) {
             table_notifications += '<tr>';
+            table_notifications += '<td>' + app_network.timestampConverter(infos.notifications[i].timestamp) + '</td>';
             table_notifications += '<td>' + infos.notifications[i].state + '</td>';
             table_notifications += '<td>' + infos.notifications[i].details + '</td>';
-            table_notifications += '<td>' + app_network.timestampConverter(infos.notifications[i].timestamp) + '</td>';
             table_notifications += '</tr>';
         }
         network.find(".notification_variables").html(table_notifications);
@@ -803,7 +803,7 @@ var app_network = {
                 handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
             },
             success: function (data) { // si l'appel a bien fonctionné
-                devicesRouting = data.devices;
+            devicesRouting = data.devices;
                 var skipPortableAndVirtual = true; // to minimize routing table by removing not interesting lines
                 var routingTable = '';
                 var routingTableHeader = '';
@@ -855,7 +855,7 @@ var app_network = {
                         } else if (nnode.data.state.value < 13 || node.data.state.value < 13){
                             rtClass = 'node-interview-not-completed-color';
                         } else if ($.inArray(parseInt(nnodeId, 10), node.data.neighbours.value) != -1)
-                            rtClass = 'node-direct-link-color';
+                        rtClass = 'node-direct-link-color';
                         else if (routesCount[nnodeId] && routesCount[nnodeId][1] > 1)
                             rtClass = 'node-remote-control-color';
                         else if (routesCount[nnodeId] && routesCount[nnodeId][1] == 1)
@@ -868,10 +868,10 @@ var app_network = {
                     });
                     routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="'+nodeId+'" class="btn btn-xs btn-primary requestNodeNeighboursUpdate tooltips" title="{{Mise à jour des noeuds voisins}}"><i class="fa fa-refresh"></i></button></td></tr>';
                 });
-                $('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '<th><button type="button" id="healNetwork2" class="btn btn-xs btn-success healNetwork2 tooltips" title="{{Soigner le réseau}}"><i class="fa fa-medkit"></i></button></th></tr></thead><tbody>' + routingTable + '</tbody></table>');
-                initTooltips();
-            }
-        });
+$('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '<th><button type="button" id="healNetwork2" class="btn btn-xs btn-success healNetwork2 tooltips" title="{{Soigner le réseau}}"><i class="fa fa-medkit"></i></button></th></tr></thead><tbody>' + routingTable + '</tbody></table>');
+initTooltips();
+}
+});
 
-    }
+}
 }

@@ -16,7 +16,7 @@
  */
 
 if (!isConnect('admin')) {
-    throw new Exception('401 Unauthorized');
+	throw new Exception('401 Unauthorized');
 }
 ?>
 <script type="text/javascript" src="plugins/openzwave/3rdparty/vivagraph/vivagraph.min.js"></script>
@@ -88,13 +88,13 @@ if (!isConnect('admin')) {
 <span class='pull-right'>
 	<select class="form-control expertModeVisible" style="width : 200px;" id="sel_zwaveNetworkServerId">
         <?php
-        foreach (openzwave::listServerZwave() as $id => $server) {
-            if (isset($server['name'])) {
-                echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
-            }
-        }
-        ?>
-    </select>
+foreach (openzwave::listServerZwave() as $id => $server) {
+	if (isset($server['name'])) {
+		echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
+	}
+}
+?>
+  </select>
 </span>
 <div id='div_networkOpenzwaveAlert' style="display: none;"></div>
 <div id="confirmModal" class="modal fade modal-dialog-center" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
@@ -189,30 +189,24 @@ if (!isConnect('admin')) {
 
                 <div class="tab-pane" id="notifications">
                     <br>
-                        <table class="table table-striped">
-                            <tr>
-                                <th>{{Etat}}</th>
-                                <th>{{Détails}}</th>
-                                <th>{{Reçu}}</th>
-                            </tr>
-                            <tr id="template-system" style="display:none">
-                                <td key="notifications-name"></td>
-                                <td key="notifications-value"></td>
-                                <td key="notifications-edit"></td>
-                            </tr>
-                            <tbody class="notification_variables"></tbody>
+                    <table class="table table-striped">
+                        <tr>
+                         <th>{{Reçu}}</th>
+                         <th>{{Etat}}</th>
+                         <th>{{Détails}}</th>
+                     </tr>
+                     <tbody class="notification_variables"></tbody>
+                 </table>
+             </div>
 
-                        </table>
-                </div>
-
-                <div id="graph_network" class="tab-pane">
-                    <table class="table table-bordered table-condensed" style="width: 350px;position:fixed;margin-top : 25px;" >
-                        <thead>
+             <div id="graph_network" class="tab-pane">
+                <table class="table table-bordered table-condensed" style="width: 350px;position:fixed;margin-top : 25px;" >
+                    <thead>
                         <tr>
                             <th colspan="2">{{Légende}}</th>
                         </tr>
-                        </thead>
-                        <tbody>
+                    </thead>
+                    <tbody>
                         <tr>
                             <td class="node-direct-link-color" style="width: 35px"><i class="fa fa-square fa-2x"></i></td>
                             <td>{{Communication directe}}</td>
@@ -233,19 +227,19 @@ if (!isConnect('admin')) {
                             <td class="node-no-neighbourhood-color"><i class="fa fa-square fa-2x"></i></td>
                             <td>{{Présumé mort ou Pas de voisin}}</td>
                         </tr>
-                        </tbody>
-                    </table>
-                    <div id="graph-node-name"></div>
-                </div>
+                    </tbody>
+                </table>
+                <div id="graph-node-name"></div>
+            </div>
 
-                <div id="route_network" class="tab-pane">
-                    <br/>
-                    <div id="div_routingTable"></div>
-                    <table class="table table-bordered table-condensed" style="width: 500px;">
-                        <thead>
+            <div id="route_network" class="tab-pane">
+                <br/>
+                <div id="div_routingTable"></div>
+                <table class="table table-bordered table-condensed" style="width: 500px;">
+                    <thead>
                         <tr><th colspan="2">{{Légende}}</th></tr>
-                        </thead>
-                        <tbody>
+                    </thead>
+                    <tbody>
                         <tr>
                             <td colspan="2">{{Nombre de [routes directes / avec 1 saut / 2 sauts]}}</td>
                         </tr>
@@ -269,47 +263,47 @@ if (!isConnect('admin')) {
                             <td class="node-interview-not-completed-color"><i class="fa fa-square fa-2x"></i></td>
                             <td>{{Interview non completé}}</td>
                         </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
+            </div>
 
-                <div class="tab-pane" id="actions_network">
-                    <table class="table">
-                        <tr>
-                            <td><button type="button" id="addDevice" class="btn btn-success"><i class="fa fa-plus-circle"></i> {{Ajouter module (inclusion)}}</button></td>
-                            <td>{{Ajouter un nouveau module au réseau Z-Wave.}}</td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" id="addDeviceSecure" class="btn btn-warning"><i class="fa fa-plus-circle"></i> {{Ajouter module en mode sécurisé (inclusion)}}</button></td>
-                            <td>{{Ajouter un nouveau module au réseau Z-Wave en mode sécurisé (peut ne pas marcher si le module ne le supporte pas bien).}}</td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" id="removeDevice" class="btn btn-danger"><i class="fa fa-minus-circle"></i> {{Supprimer module (Exclusion)}}</button></td>
-                            <td>{{Supprimer un module du réseau Z-Wave.}}</td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" id="cancelCommand" class="btn btn-warning"><i class="fa fa-times"></i> {{Annuler commande}}</button></td>
-                            <td>{{Annule toutes les commandes en cours sur le contrôleur.}}</td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" id="testNetwork" class="btn btn-primary"><i class="fa fa-check-square-o"></i> {{Test du réseau}}</button></td>
-                            <td>{{Envoie une série de messages sur le réseau pour le tester.}}</td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" id="healNetwork" class="btn btn-success"><i class="fa fa-medkit"></i> {{Soigner le réseau}}</button></td>
-                            <td>{{Soigner le réseau Z-Wave noeud par noeud.}}<br>{{Essaye de soigner tous les noeuds (un par un) en mettant à jour la liste des voisins et les routes optionnelles.}}</td>
-                        </tr>
+            <div class="tab-pane" id="actions_network">
+                <table class="table">
+                    <tr>
+                        <td><button type="button" id="addDevice" class="btn btn-success"><i class="fa fa-plus-circle"></i> {{Ajouter module (inclusion)}}</button></td>
+                        <td>{{Ajouter un nouveau module au réseau Z-Wave.}}</td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="addDeviceSecure" class="btn btn-warning"><i class="fa fa-plus-circle"></i> {{Ajouter module en mode sécurisé (inclusion)}}</button></td>
+                        <td>{{Ajouter un nouveau module au réseau Z-Wave en mode sécurisé (peut ne pas marcher si le module ne le supporte pas bien).}}</td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="removeDevice" class="btn btn-danger"><i class="fa fa-minus-circle"></i> {{Supprimer module (Exclusion)}}</button></td>
+                        <td>{{Supprimer un module du réseau Z-Wave.}}</td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="cancelCommand" class="btn btn-warning"><i class="fa fa-times"></i> {{Annuler commande}}</button></td>
+                        <td>{{Annule toutes les commandes en cours sur le contrôleur.}}</td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="testNetwork" class="btn btn-primary"><i class="fa fa-check-square-o"></i> {{Test du réseau}}</button></td>
+                        <td>{{Envoie une série de messages sur le réseau pour le tester.}}</td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="healNetwork" class="btn btn-success"><i class="fa fa-medkit"></i> {{Soigner le réseau}}</button></td>
+                        <td>{{Soigner le réseau Z-Wave noeud par noeud.}}<br>{{Essaye de soigner tous les noeuds (un par un) en mettant à jour la liste des voisins et les routes optionnelles.}}</td>
+                    </tr>
 
 
-                        <tr>
-                            <td><button type="button" id="createNewPrimary" class="btn btn-danger"><i class="fa fa-file"></i> {{Créer un nouveau noeud primaire}}</button></td>
-                            <td>{{Put the target controller into receive configuration mode.\nThe PC Z-Wave Controller must be within 2m of the controller that is being made the primary.. Nécessite SUC.}}</td>
-                        </tr>
+                    <tr>
+                        <td><button type="button" id="createNewPrimary" class="btn btn-danger"><i class="fa fa-file"></i> {{Créer un nouveau noeud primaire}}</button></td>
+                        <td>{{Put the target controller into receive configuration mode.\nThe PC Z-Wave Controller must be within 2m of the controller that is being made the primary.. Nécessite SUC.}}</td>
+                    </tr>
 
-                        <tr>
-                            <td><button type="button" id="receiveConfiguration" class="btn btn-danger"><i class="fa fa-file"></i> {{Receive Configuration}}</button></td>
-                            <td>{{Transfering the network configuration from another controller.\n\nPlease bring the other controller within 2m of the PC controller and set it to send its network configuration.}}</td>
-                        </tr>
+                    <tr>
+                        <td><button type="button" id="receiveConfiguration" class="btn btn-danger"><i class="fa fa-file"></i> {{Receive Configuration}}</button></td>
+                        <td>{{Transfering the network configuration from another controller.\n\nPlease bring the other controller within 2m of the PC controller and set it to send its network configuration.}}</td>
+                    </tr>
 
                         <!--
                         <tr>
@@ -322,79 +316,79 @@ if (!isConnect('admin')) {
                             <td>{{Mise à jour du contrôleur avec les informations du réseau du SUC/SIS.}}</td>
                         </tr>
                     -->
-                        <tr>
-                            <td><button type="button" id="transferPrimaryRole" class="btn btn-primary"><i class="fa fa-external-link"></i> {{Transférer le rôle primaire}}</button></td>
-                            <td>{{Changer de contrôleur primaire. Le contrôleur primaire existant devient contrôleur secondaire. Please bring the new controller within 2m of the PC controller and set it to receive the network configuration.}}</td>
-                        </tr>
+                    <tr>
+                        <td><button type="button" id="transferPrimaryRole" class="btn btn-primary"><i class="fa fa-external-link"></i> {{Transférer le rôle primaire}}</button></td>
+                        <td>{{Changer de contrôleur primaire. Le contrôleur primaire existant devient contrôleur secondaire. Please bring the new controller within 2m of the PC controller and set it to receive the network configuration.}}</td>
+                    </tr>
 
 
-                        <tr>
-                            <td><button type="button" id="writeconfigfile" class="btn btn-info"><i class="fa fa-pencil"></i> {{Ecrire le fichier de configuration}}</button></td>
-                            <td>{{Ecrit le fichier de configuration OpenZwave.}}</td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" id="regenerateNodesCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Regénérer la détection des noeuds inconnus}}</button></td>
-                            <td>{{Supprime les informations des noeuds inconnus dans le fichier de config afin qu'il soit regénéré. (Attention : Relance le réseau)}}</td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" id="softReset" class="btn btn-warning"><i class="fa fa-times"></i> {{Redémarrage}}</button></td>
-                            <td>{{Redémarrage du contrôleur. Redémarre le contrôleur sans effacer les paramètres de sa configuration réseau.}}</td>
-                        </tr>
-                        <tr>
-                            <td><button type="button" id="hardReset" class="btn btn-danger"><i class="fa fa-eraser"></i> {{Remise à zéro}}</button></td>
-                            <td>{{Remise à zéro du contrôleur.}} <b>{{Remet à zéro un contrôleur et efface ses paramètres de configuration réseau.}}</b><br> {{Le contrôleur devient un contrôleur primaire, prêt pour ajouter de nouveaux modules à un nouveau réseau.}}</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="tab-pane" id="statistics_network">
-
-                    <table class="table table-condensed table-striped">
-                        <tr>
-                            <td><b>{{Nombre d'émissions lues :}}</b></td><td> <span class="stats_broadcastReadCnt"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre d'émissions envoyées :}}</b></td><td> <span class="stats_broadcastWriteCnt"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de bits ACK reçus :}}</b></td><td> <span class="stats_ACKCnt"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de messages non-sollicités alors qu'en attente d'ACK :}}</b></td><td> <span class="stats_ACKWaiting"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de bits CAN reçus :}}</b></td><td> <span class="stats_CANCnt"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de bits NAK reçus :}}</b></td><td> <span class="stats_NAKCnt"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de bits jamais arrivés :}}</b></td><td> <span class="stats_OOFCnt"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de bits SOF reçus :}}</b></td><td> <span class="stats_SOFCnt"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de mauvais checksums :}}</b></td><td> <span class="stats_badChecksum"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de retours inattendus :}}</b></td><td> <span class="stats_callbacks"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de ACK retournés en erreur :}}</b></td><td> <span class="stats_noack"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de lectures en échec dues au timeout :}}</b></td><td> <span class="stats_readAborts"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de messages d'échec dus au réseau occupé :}}</b></td><td> <span class="stats_netbusy"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de messages correctement reçus :}}</b></td><td> <span class="stats_readCnt"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de messages correctement envoyés :}}</b></td><td> <span class="stats_writeCnt"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de messages non remis au réseau :}}</b></td><td> <span class="stats_nondelivery"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de messages jetés ou non délivrés :}}</b></td><td> <span class="stats_dropped"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de messages en échec à cause d'un mauvais routage :}}</b></td><td> <span class="stats_badroutes"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de messages retransmis :}}</b></td><td> <span class="stats_retries"></span></td>
-                        </tr><tr>
-                            <td><b>{{Nombre de messages reçus avec statut de routage occupé :}}</b></td><td> <span class="stats_routedbusy"></span></td>
-                        </tr>
-                    </table>
-                </div>
+                    <tr>
+                        <td><button type="button" id="writeconfigfile" class="btn btn-info"><i class="fa fa-pencil"></i> {{Ecrire le fichier de configuration}}</button></td>
+                        <td>{{Ecrit le fichier de configuration OpenZwave.}}</td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="regenerateNodesCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Regénérer la détection des noeuds inconnus}}</button></td>
+                        <td>{{Supprime les informations des noeuds inconnus dans le fichier de config afin qu'il soit regénéré. (Attention : Relance le réseau)}}</td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="softReset" class="btn btn-warning"><i class="fa fa-times"></i> {{Redémarrage}}</button></td>
+                        <td>{{Redémarrage du contrôleur. Redémarre le contrôleur sans effacer les paramètres de sa configuration réseau.}}</td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="hardReset" class="btn btn-danger"><i class="fa fa-eraser"></i> {{Remise à zéro}}</button></td>
+                        <td>{{Remise à zéro du contrôleur.}} <b>{{Remet à zéro un contrôleur et efface ses paramètres de configuration réseau.}}</b><br> {{Le contrôleur devient un contrôleur primaire, prêt pour ajouter de nouveaux modules à un nouveau réseau.}}</td>
+                    </tr>
+                </table>
             </div>
-        </div>
-    </div>
+            <div class="tab-pane" id="statistics_network">
+
+                <table class="table table-condensed table-striped">
+                    <tr>
+                        <td><b>{{Nombre d'émissions lues :}}</b></td><td> <span class="stats_broadcastReadCnt"></span></td>
+                    </tr><tr>
+                    <td><b>{{Nombre d'émissions envoyées :}}</b></td><td> <span class="stats_broadcastWriteCnt"></span></td>
+                </tr><tr>
+                <td><b>{{Nombre de bits ACK reçus :}}</b></td><td> <span class="stats_ACKCnt"></span></td>
+            </tr><tr>
+            <td><b>{{Nombre de messages non-sollicités alors qu'en attente d'ACK :}}</b></td><td> <span class="stats_ACKWaiting"></span></td>
+        </tr><tr>
+        <td><b>{{Nombre de bits CAN reçus :}}</b></td><td> <span class="stats_CANCnt"></span></td>
+    </tr><tr>
+    <td><b>{{Nombre de bits NAK reçus :}}</b></td><td> <span class="stats_NAKCnt"></span></td>
+</tr><tr>
+<td><b>{{Nombre de bits jamais arrivés :}}</b></td><td> <span class="stats_OOFCnt"></span></td>
+</tr><tr>
+<td><b>{{Nombre de bits SOF reçus :}}</b></td><td> <span class="stats_SOFCnt"></span></td>
+</tr><tr>
+<td><b>{{Nombre de mauvais checksums :}}</b></td><td> <span class="stats_badChecksum"></span></td>
+</tr><tr>
+<td><b>{{Nombre de retours inattendus :}}</b></td><td> <span class="stats_callbacks"></span></td>
+</tr><tr>
+<td><b>{{Nombre de ACK retournés en erreur :}}</b></td><td> <span class="stats_noack"></span></td>
+</tr><tr>
+<td><b>{{Nombre de lectures en échec dues au timeout :}}</b></td><td> <span class="stats_readAborts"></span></td>
+</tr><tr>
+<td><b>{{Nombre de messages d'échec dus au réseau occupé :}}</b></td><td> <span class="stats_netbusy"></span></td>
+</tr><tr>
+<td><b>{{Nombre de messages correctement reçus :}}</b></td><td> <span class="stats_readCnt"></span></td>
+</tr><tr>
+<td><b>{{Nombre de messages correctement envoyés :}}</b></td><td> <span class="stats_writeCnt"></span></td>
+</tr><tr>
+<td><b>{{Nombre de messages non remis au réseau :}}</b></td><td> <span class="stats_nondelivery"></span></td>
+</tr><tr>
+<td><b>{{Nombre de messages jetés ou non délivrés :}}</b></td><td> <span class="stats_dropped"></span></td>
+</tr><tr>
+<td><b>{{Nombre de messages en échec à cause d'un mauvais routage :}}</b></td><td> <span class="stats_badroutes"></span></td>
+</tr><tr>
+<td><b>{{Nombre de messages retransmis :}}</b></td><td> <span class="stats_retries"></span></td>
+</tr><tr>
+<td><b>{{Nombre de messages reçus avec statut de routage occupé :}}</b></td><td> <span class="stats_routedbusy"></span></td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 </div>
