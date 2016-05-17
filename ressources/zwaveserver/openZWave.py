@@ -240,6 +240,8 @@ for arg in sys.argv:
         _suppress_refresh = suppress_refresh == 1
 
 
+_log_level = 'Debug'
+
 
 if _device is None or len(_device) == 0:
     add_log_entry('Dongle Key is not specified. Please check your Z-Wave (openzwave) configuration plugin page', 'error')
@@ -2061,8 +2063,11 @@ def refresh_background(node_id, value_id, target_value, starting_value, counter)
     if target_value is not None:
         if isinstance(target_value, basestring):
             # color CC test
+            actual_value = actual_value.lower()
+            target_value = target_value.lower()
             do_refresh = actual_value != target_value
-            # debug_print("delta %s: %s" % (actual_value, target_value,))
+            # if do_refresh:
+                # debug_print("delta %s: %s" % (actual_value, target_value,))
         else:
             # check if target is reported
             delta = abs(actual_value - target_value)
