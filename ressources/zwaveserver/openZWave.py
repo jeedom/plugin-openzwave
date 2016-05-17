@@ -240,7 +240,6 @@ for arg in sys.argv:
         _suppress_refresh = suppress_refresh == 1
 
 
-_log_level = 'Debug'
 
 
 if _device is None or len(_device) == 0:
