@@ -1,8 +1,8 @@
 {
-	"name": "ZMNHDDx Din Dimmer",
+	"name": "ZMNHSDx Din Dimmer",
 	"doc": "",
 	"type": "Rail-din",
-	"comlink": "3063-qubino-micromodule-variateur-et-consometre-z-wave-zmnhdd1-3830062070096",
+	"comlink": "3256-qubino-module-rail-din-variateur-z-wave-zmnhsd1-3830062070386",
 	"imglink": "qubino.zmnhsdx",
 	"configuration": {
 		"conf_version": 1

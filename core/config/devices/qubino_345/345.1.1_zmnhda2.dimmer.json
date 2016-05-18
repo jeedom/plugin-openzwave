@@ -2,8 +2,8 @@
 	"name": "ZMNHDA2 Dimmer",
 	"doc": "",
 	"type": "Micromodule",
-	"comlink": "2567-qubino-micromodule-variateur-et-consometre-z-wave-zmnhda2-3830062070003",
-	"remark": "",
+	"comlink": "",
+	"remark": "Remplacé par le ZMNHDDx Dimmer",
 	"imglink": "qubino.zmnhda2",
 	"configuration": {
 		"conf_version": 1

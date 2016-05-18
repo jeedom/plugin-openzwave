@@ -3,7 +3,7 @@
 	"doc": "",
 	"type": "Micromodule",
 	"comlink": "3063-qubino-micromodule-variateur-et-consometre-z-wave-zmnhdd1-3830062070096",
-	"remark": "Remplace le ZMNHDA2",
+	"remark": "",
 	"imglink": "qubino.zmnhddx",
 	"configuration": {
 		"conf_version": 1
