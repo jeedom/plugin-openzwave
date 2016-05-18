@@ -14,7 +14,7 @@
 ** Permettre la sélection des modules FLiRS lors des associations direct.  
 ** Permettre la sélection de tous les instances des modules lors des associations direct.
 ** Mise à jour du wrapper python openzwave en version 0.3.0.
-** Mise à jour de la librairie openzwave 1.4.244.
+** Mise à jour de la librairie openzwave 1.4.248.
 ** Ne pas afficher d'avertissement de wakeup expiré pour les modules sur piles allimenté par secteur.
 ** Validation qu'un module est identique au niveau ids pour permettre la copie de paramètres.
 ** Simplification de l'assistant de copie de paramètres.
