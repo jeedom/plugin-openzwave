@@ -5,7 +5,7 @@
 	"comlink": "2888-mcohome-interrupteur-tactile-en-verre-z-wave-1-charge-blanc-2015032300123",
 	"remark": "Equivalent au MH-S411",
 	"imglink": "mco.mhs311",
-	"ignore": 1,
+	"ignore": 0,
 	"configuration": {
 		"conf_version": 1
 	},
