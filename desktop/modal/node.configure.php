@@ -372,7 +372,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 								<td>{{Déclencher l'obtention des information du nœud.}} <br>{{Les données du nœud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.}}</td>
 							</tr>
 							<tr>
-								<td><button type="button" id="hasNodeFailed" class="btn btn-primary hasNodeFailed"><i class="fa fa-question"></i> {{Nœud en échec ?}}</button></td>
+								<td><button type="button" id="hasNodeFailed" class="btn btn-primary hasNodeFailed"><i class="fa fa-heartbeat" aria-hidden="true"></i> {{Nœud en échec ?}}</button></td>
 								<td>{{Vérifie si le nœud est dans la liste des nœuds en erreur.}}</td>
 							</tr>
 							<tr>
@@ -380,7 +380,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 								<td>{{Permet de supprimer un nœud marqué comme défaillant par le contrôleur.}}<br>{{Le nœud doit être en échec.}}</td>
 							</tr>
 							<tr>
-								<td><button type="button" id="replaceFailedNode" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Remplacer nœud en échec}}</button></td>
+								<td><button type="button" id="replaceFailedNode" class="btn btn-warning"><i class="fa fa-chain-broken" aria-hidden="true"></i> {{Remplacer nœud en échec}}</button></td>
 								<td>{{Remplace un module en échec par un autre. Si le nœud n'est pas dans la liste des nœuds en échec sur le contrôleur, ou que le nœud répond, la commande va échouer.}}</td>
 							</tr>
 							<tr>
@@ -388,15 +388,15 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 								<td>{{Envoi une trame d'info au noeud (NIF).}}</td>
 							</tr>
 							<tr>
-								<td><button type="button" id="regenerateNodeCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Regénérer la détection du nœud}}</button></td>
+								<td><button type="button" id="regenerateNodeCfgFile" class="btn btn-warning"><i class="fa fa-search" aria-hidden="true"></i> {{Regénérer la détection du nœud}}</button></td>
 								<td>{{Supprime les informations du noeud dans le fichier de config afin qu'il soit à nouveau détecté.}}<br>
-									{{Le noeud sera automatiquement supprimé dans les 5 minutes suivant le redémarrage du réseau}}
+									{{Le noeud sera automatiquement supprimé dans les 5 à 10 minutes suivant le redémarrage du réseau}}
 									{{(Attention : Relance le réseau)}}</td>
 							</tr>
 							<tr>
-								<td><button type="button" id="removeGhostNode" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Suppression automatique du nœud fantôme}}</button></td>
+								<td><button type="button" id="removeGhostNode" class="btn btn-warning"><i class="fa fa-bug" aria-hidden="true"></i> {{Suppression automatique du nœud fantôme}}</button></td>
 								<td>{{Permet de supprimer un nœud sur pile qui n'est plus accessible sur le réseau.}}<br>
-									{{Le nœud sera automatiquement supprimé dans les 5 minutes suivant le redémarrage du réseau}}
+									{{Le nœud sera automatiquement supprimé dans les 5 à 15 minutes suivant le redémarrage du réseau}}
 									{{(Attention : Relance le réseau)}}
 								</td>
 							</tr>

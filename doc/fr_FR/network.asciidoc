@@ -10,20 +10,25 @@ image:../images/openzwave24.png[]
 
 Le premier onglet vous donne le résumé de base de votre réseau Z-Wave, vous retrouvez notamment l'état du réseau Z-Wave ainsi que le nombre d'éléments dans la file d'attente.
 
-** Informations
+*Informations*
+
 * Donne des informations générales sur le réseau, la date de démarrage, le temps requis pour l'obtention du réseau dans un état dit fonctionnel.
 * Le nombre de nœuds total du réseau ainsi que le nombre qui dorment dans le moment.
 * L'intervalle des demandes est associé au rafraichissement manuel. Il est prédéfini dans le moteur Z-Wave à 5 minutes.
 * Les voisins du contrôleur.
 
-** Etat
+*Etat*
+
 image:../images/openzwave49.png[]
+
 Un ensemble d'informations sur l'état actuel du réseau,  à savoir :
+
 * Etat actuel, peut-être *Driver Initialised*, *Topology loaded* ou *Ready*.
 * Queue sortante, indique le nombre de messages en queue dans le contrôleur en attente d’être envoyé.
 Cette valeur est généralement élevée durant le démarrage du réseau lorsque l'état est encore en *Driver Initialised*.
+
 Une fois que le réseau a au minimum atteint *Topology loaded*, des mécanismes internes au serveur Z-Wave vont forcer des mises à jour de valeurs, il est alors tout à fait normal de voir monter le nombre de messages. Celui-ci va rapidement retourner à 0.
-La dernière notification du contrôleur ainsi que le détail du message sont des informations techniques mais qui nous permettent de comprendre les derniers échanges avec le contrôleur.
+
 [TIP]
 Le réseau est dit fonctionnel au moment où il atteint le statut *Topology Loaded*, c'est à  dire que l'ensemble des nœuds secteurs ont complété leurs interviews. Selon le nombre de modules, la répartition pile/secteur, le choix du dongle USB et le PC sur lequel tourne le plugin  Z-Wave, le réseau va atteindre cette état entre une et cinq minutes.
 
@@ -32,17 +37,30 @@ Un réseau *Ready*, signifie que tous les nœuds secteur et sur pile ont complé
 [TIP]
 Selon les modules dont vous disposez, il est possible que le réseau n'atteigne jamais de lui-même le statut *Ready*. Les télécommandes, par exemple, ne se réveillent pas d'elles-mêmes et ne compléteront jamais leurs interviews. Dans ce genre de cas, le réseau est tout à fait opérationnel et même si les télécommandes n'ont pas complétées leur interview, elles assurent leurs fonctionnalités au sein du réseau.
 
-** Capacités
+*Capacités*
 
 Permet de savoir si le contrôleur est un contrôleur principal ou secondaire.
 
-** Système
+*Système*
 
 Affiche diverses informations système.
 
 * Information sur le port USB utilisé.
 * Version de la librairie OpenZwave
 * Version de la librairie Python-OpenZwave
+
+=== Notifications
+
+Vous retrouvez ici les dernière notifications du contrôleur ainsi que le détail du message correspondant.
+Les notifications sont ordonnée par leur date d'arrivées, la plus ressante en premier.
+
+image:../images/openzwave66.png[]
+
+[TIP]
+Ce sont des informations techniques, mais qui nous permettent de comprendre les derniers échanges avec le contrôleur.
+
+[IMPORTANT]
+Une notification indiquant qu'une commande à échoué, ne signifie pas obligatoirement un problème sur votre réseau.
 
 === Actions
 
@@ -55,6 +73,9 @@ Certaines actions sont vraiment risquées voire irréversibles, l'équipe Jeedom
 
 [IMPORTANT]
 Certains modules requièrent une inclusion en mode sécurisé, par exemple pour les serrures de porte. L’inclusion sécurisée doit être lancée via l'action de cet écran.
+
+[TIP]
+Si une action ne peut-être lancé, elle sera désactivée jusqu'au moment où elle pourra être à nouveau exécutée. 
 
 === Statistiques
 

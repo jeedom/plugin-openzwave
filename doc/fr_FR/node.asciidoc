@@ -59,7 +59,9 @@ Les modules sur pile vont appliquer les changements de paramètres seulement au 
 Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
 
 [TIP]
-La commande *Copier les paramètres d'un nœud existant* vous permet d'appliquer l'ensemble de la configuration existante d'un autre module identique, sur le module en cours.
+La commande *Appliquer les paramètres d'un nœud existant* vous permet d'appliquer l'ensemble de la configuration existante d'un autre module identique, sur le module en cours.
+
+image:../images/openzwave69.png[]
 
 [TIP]
 La commande *Actualiser les paramètres* force le module à actualiser les paramètres sauvegardés dans le module.
@@ -88,6 +90,19 @@ Il est possible que votre module ne possède aucun groupe.
 La modification des groupes d'associations d'un module sur pile sera appliquée au prochain cycle de réveil.
 Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
 
+Pour connaitre avec quels autres modules le module en cours est associé, il suffie de cliquer sur le menu *Associé à quels modules*
+
+image:../images/openzwave67.png[]
+
+L'ensemble des modules utilisant le module en cours ainsi que le nom des groupes d'association seront affichés.
+
+*Associations multi-instances*
+
+certain module supporte une commande classe multi-instance associations.
+Lorsqu'un module supporte cette CC, il est possible de spécifier a quelle instance on souhaite créer l'association
+
+image:../images/openzwave70.png[]
+
 === Systèmes
 
 Onglet regroupant les paramètres système du module.
@@ -111,6 +126,27 @@ Certaines actions seront actives selon le type de module et ses possibilités ou
 
 [IMPORTANT]
 Il ne faut pas utiliser les actions sur un module si on ne sait pas ce que l'on fait. Certaines actions sont irréversibles. Les actions peuvent aider à la résolution de problèmes avec un ou des modules Z-Wave.
+
+[TIP]
+La *Régénération de la détection du noeud* permet de détecter le module pour reprendre les derniers jeux de paramètres.
+Cette action est requise lorsqu'on vous informe qu'une mise a jour de paramètre et ou de comportement du module est requit pour le bon fonctionnement.
+La Régénération de la détection du noeud implique un redémarrage du réseau, l'assistant l'effectue automatiquement.
+
+[TIP]
+Si vous avez plusieurs module identique dont il est requis d'exécuter la *Régénération de la détection du noeud*, il est possible de la lancer une fois pour tout les modules identiques.
+
+image:../images/openzwave68.png[]
+
+[TIP]
+Si un module sur pile n'est plus joignable et que vous souhaité l'exclure, que l'exclusion ne s'effectue pas, vous pouvez lancer *Supprimer le noeud fantôme*
+Un assistant effectuera différente action afin de supprimer le module dit fantôme. Cette action implique de redémarrer le réseau et peux prendre plusieurs minutes avant d'être complété.
+
+image:../images/openzwave71.png[]
+
+Une fois lancé, il est recommandé de fermer l'écran de configuration du module et de surveiller la suppression du module via l'écran de santé zwave.
+
+[IMPORTANT]
+Seul le module sur pile peuvent être supprimé via cette assistant.
 
 === Statistiques
 

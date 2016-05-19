@@ -1283,9 +1283,9 @@ var app_nodes = {
         if (nodeIsFailed) {
             isWarning = true;
             warningMessage += "<li>{{Le controleur pense que ce noeud est en echec, essayez }} " +
-                "<button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'>{{Noeud en échec}}</button> " +
+                "<button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</button> " +
                 "{{ou}} " +
-                "<button type='button' id='testNode' class='btn btn-info testNode'> {{Tester Noeud}}</button> " +
+                "<button type='button' id='testNode' class='btn btn-info testNode'><i class='fa fa-check-square-o'></i> {{Tester le nœud}}</button> " +
                 "{{pour essayer de corriger.}}</li>";
         }
         // activate available actions
