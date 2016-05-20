@@ -18,21 +18,27 @@
 require_once dirname(__FILE__) . "/../../../../core/php/core.inc.php";
 include_file('core', 'authentification', 'php');
 if (!isConnect('admin')) {
-	throw new Exception('{{401 - Accès non autorisé}}');
+	echo '401 - Accès non autorisé';
+	die();
 }
-if (strpos(init('request'), '/ZWaveAPI/Run/network.SaveZWConfig()') !== false) {
-	$data_path = dirname(__FILE__) . '/../../data';
-	if (!file_exists($data_path)) {
-		exec('mkdir ' . $data_path . ' && chmod 775 -R ' . $data_path . ' && chown -R www-data:www-data ' . $data_path);
+try {
+	if (strpos(init('request'), '/ZWaveAPI/Run/network.SaveZWConfig()') !== false) {
+		$data_path = dirname(__FILE__) . '/../../data';
+		if (!file_exists($data_path)) {
+			exec('mkdir ' . $data_path . ' && chmod 775 -R ' . $data_path . ' && chown -R www-data:www-data ' . $data_path);
+		}
+		if (file_exists($data_path . '/zwcfg_new.xml')) {
+			unlink($data_path . '/zwcfg_new.xml');
+		}
+		if (file_exists($data_path . '/zwcfg_new.xml')) {
+			exec('sudo rm -rf ' . $data_path . '/zwcfg_new.xml');
+		}
+		file_put_contents($data_path . '/zwcfg_new.xml', init('data'));
+		echo json_encode(openzwave::callOpenzwave(str_replace('//', '/', init('request')), init('server_id')));
+	} else {
+		echo json_encode(openzwave::callOpenzwave(str_replace('//', '/', init('request')), init('server_id')));
 	}
-	if (file_exists($data_path . '/zwcfg_new.xml')) {
-		unlink($data_path . '/zwcfg_new.xml');
-	}
-	if (file_exists($data_path . '/zwcfg_new.xml')) {
-		exec('sudo rm -rf ' . $data_path . '/zwcfg_new.xml');
-	}
-	file_put_contents($data_path . '/zwcfg_new.xml', init('data'));
-	echo json_encode(openzwave::callOpenzwave(str_replace('//', '/', init('request')), init('server_id')));
-} else {
-	echo json_encode(openzwave::callOpenzwave(str_replace('//', '/', init('request')), init('server_id')));
+} catch (Exception $e) {
+	http_response_code(500);
+	die($e->getMessage());
 }

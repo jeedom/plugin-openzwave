@@ -71,21 +71,6 @@ var app_network = {
                 }
             });
         });
-        $("#stopLiveLog").off("click").on("click",function() {
-            clearInterval(app_network.console_updater);
-            $("#stopLiveLog").hide();
-            $("#startLiveLog").show();
-        });
-        $("#startLiveLog").off("click").on("click",function() {
-            app_network.console_updater = setInterval(app_network.console_refresh,2000);
-            $("#startLiveLog").hide();
-            $("#stopLiveLog").show();
-        });
-        $(".console-out").html("");
-        $("#tab_console").off("click").on("click",function() {
-            $("#startLiveLog").hide();
-            app_network.console_updater = setInterval(app_network.console_refresh,2000);
-        });
         $("#tab_graph").off("click").on("click",function() {
             app_network.load_data();
         });
@@ -149,33 +134,6 @@ var app_network = {
             app_network.healNetwork();
         });
 
-    },
-    console_refresh: function(){
-        if(!$('#log').is(':visible')){
-            clearInterval(app_network.console_updater);
-        }
-        $.ajax({
-            url: path+"ZWaveAPI/Run/network.GetOZLogs()",
-            dataType: 'json',
-            async: true,
-            global : false,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error,$('#div_networkOpenzwaveAlert'));
-            },
-            success: function(data) {
-                if (!$(".console-out").is(':visible')) {
-                    clearInterval(app_console.updater);
-                    return;
-                }
-                if(data['result']){
-                    $(".console-out").html(data['result']);
-                    var h = parseInt($('#log')[0].scrollHeight);
-                    $('#log').scrollTop(h);
-                }else{
-                    $(".console-out").append("error...");
-                }
-            }
-        });
     },
     addDevice: function(_secure){
         var secure = 0;
