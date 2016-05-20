@@ -222,6 +222,8 @@ logging.info('Apikey : '+str(_apikey))
 logging.info('Callback : '+str(_callback))
 logging.info('Cycle : '+str(_cycle))
 
+jeedom_com = jeedom_com(apikey = _apikey,url = _callback,cycle=_cycle)
+
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
@@ -744,67 +746,21 @@ options.lock()
 
 check_config_files()
 
-def send_changes_async():
-    global _changes_async
-    global _server_id
-    try:
-        start_time = datetime.datetime.now()
-        changes = _changes_async
-        _changes_async = {}
-        if 'device' in changes or 'controller' in changes or 'network' in changes:
-            changes['serverId'] = _server_id
-            # logging.debug('Send data async to jeedom %s => %s' % (callback+'?apikey='+apikey,str(changes),))
-            logging.debug('Push data to jeedom')
-            try:
-                r = requests.post(_callback + '?apikey=' + _apikey, json=changes, timeout=(0.5, 120), verify=False)
-                if r.status_code != requests.codes.ok:
-                    logging.error('Error on send request to jeedom, return code %s' % (str(r.status_code),))
-            except Exception as error:
-                logging.error('Error on send request to jeedom %s' % (str(error),))
-        dt = datetime.datetime.now() - start_time
-        ms = (dt.days * 24 * 60 * 60 + dt.seconds) * 1000 + dt.microseconds / 1000.0
-        timer_duration = _cycle - ms
-        if timer_duration < 0.1:
-            timer_duration = 0.1
-        resend_changes = threading.Timer(timer_duration, send_changes_async)
-        resend_changes.start() 
-    except Exception as error:
-        logging.error('Critical error on  send_changes_async %s' % (str(error),))
-        resend_changes = threading.Timer(_cycle, send_changes_async)
-        resend_changes.start() 
-
-send_changes_async()
-
-
 def save_node_value_event(node_id, timestamp, command_class, value_index, standard_type, value, instance):
-    global _changes_async
-    if 'device' not in _changes_async:
-        _changes_async['device'] = {}
-    if node_id not in _changes_async['device']:
-        _changes_async['device'][node_id] = {}
-    _changes_async['device'][node_id][str(hex(command_class)) + str(instance) + str(value_index)] = {'node_id': node_id, 'instance': instance, 'CommandClass': hex(command_class), 'index': value_index, 'value': value, 'type': standard_type, 'updateTime': timestamp}
-
+    jeedom_com.add_changes('devices::'+str(node_id)+'::'+str(hex(command_class)) + str(instance) + str(value_index),{'node_id': node_id, 'instance': instance, 'CommandClass': hex(command_class), 'index': value_index, 'value': value, 'type': standard_type, 'updateTime': timestamp});
 
 def save_node_event(node_id, value):
     global _controller_state
-    global _changes_async
     if value == "removed":
-        if 'controller' not in _changes_async:
-            _changes_async['controller'] = {}
-        _changes_async['controller']['excluded'] = {"value": node_id}
+        jeedom_com.add_changes('controller::excluded',{"value": node_id})
     elif value == "added":
-        if 'controller' not in _changes_async:
-            _changes_async['controller'] = {}
-        _changes_async['controller']['included'] = {"value": node_id}
+         jeedom_com.add_changes('controller::included',{"value": node_id})
     elif value in [0, 1, 5] and _controller_state != value:
         # save controller state
         _controller_state = value
         # not controller notification before network is at least awaked
         if _network.state >= 7:
-            if 'controller' not in _changes_async:
-                _changes_async['controller'] = {}
-            _changes_async['controller']['state'] = {"value": value}
-
+            jeedom_com.add_changes('controller::state',{"value": value})
 
 def save_network_state(network_state):
     # STATE_STOPPED = 0
@@ -813,11 +769,7 @@ def save_network_state(network_state):
     # STATE_STARTED = 5
     # STATE_AWAKED = 7
     # STATE_READY = 10
-    global _changes_async
-    if 'network' not in _changes_async:
-        _changes_async['network'] = {}
-    _changes_async['network']['state'] = {"value": network_state}
-
+    jeedom_com.add_changes('controller::state',{"value": network_state})
 
 def push_node_notification(node_id, notification_code):
     # check for notification Dead or Alive
@@ -828,13 +780,7 @@ def push_node_notification(node_id, notification_code):
         else:
             # Report when a node is revived
             alert_type = 'node_alive'
-        changes = {'alert': {'type': alert_type , 'id': node_id, 'serverId': _server_id}}
-        try:
-            r = requests.post(_callback + '?apikey=' + _apikey, json=changes, timeout=(0.5, 120), verify=False)
-            if r.status_code != requests.codes.ok:
-                logging.error('Error on send request to jeedom, return code %s' % (str(r.status_code),))
-        except Exception as error:
-            logging.error('Error on send request to jeedom %s' % (str(error),))
+        jeedom_com.send_change_immediate(changes);
 
 
 def network_started(network):
