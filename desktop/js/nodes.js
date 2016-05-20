@@ -344,7 +344,7 @@ var app_nodes = {
                 } else {
                     options_node += '<option value="' + node_keys[i] + '">' + nodeId + ' : ' + node.description.product_name;
                 }
-                if (support_multi_instance & node.multi_instance.instances > 1 & node.multi_instance.support == 1){
+                if (support_multi_instance & node.multi_instance.instances > 1 ){
                     var instanceDisplay = nodeInstance-1;
                     options_node += ' (' + instanceDisplay + ')';
                 }
