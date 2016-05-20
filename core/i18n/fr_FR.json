@@ -1,7 +1,7 @@
 {
     "plugins\/openzwave\/plugin_info\/info.xml": {
         "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave": "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible OpenZwave",
-        "Il faut installer le serveur OpenZwave :\n    \t- \"wget http:\/\/127.0.0.1\/jeedom\/plugins\/openzwave\/ressources\/install.sh -v -O install.sh; .\/install.sh\"\n        - Puis installer le plugin zwave\n    ": "Il faut installer le serveur OpenZwave :\n    \t- \"wget http:\/\/127.0.0.1\/jeedom\/plugins\/openzwave\/ressources\/install.sh -v -O install.sh; .\/install.sh\"\n        - Puis installer le plugin zwave\n    ",
+        "Il faut installer le serveur OpenZwave :\n    \t- \"wget http:\/\/127.0.0.1\/jeedom\/plugins\/openzwave\/resources\/install.sh -v -O install.sh; .\/install.sh\"\n        - Puis installer le plugin zwave\n    ": "Il faut installer le serveur OpenZwave :\n    \t- \"wget http:\/\/127.0.0.1\/jeedom\/plugins\/openzwave\/resources\/install.sh -v -O install.sh; .\/install.sh\"\n        - Puis installer le plugin zwave\n    ",
         "Il faut installer le serveur OpenZwave :\n    \t- Veuillez suivre la procédure d'installation ci-dessous\n    ": "Il faut installer le serveur OpenZwave :\n    \t- Veuillez suivre la procédure d'installation ci-dessous\n    "
     },
     "plugins\/openzwave\/plugin_info\/configuration.php": {

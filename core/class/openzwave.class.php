@@ -392,7 +392,7 @@ class openzwave extends eqLogic {
 		}
 		config::save('currentOzwVersion', config::byKey('openzwave_version', 'openzwave'), 'openzwave');
 		log::remove('openzwave_update');
-		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/install.sh';
+		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../resources/install.sh';
 		$cmd .= ' >> ' . log::getPathToLog('openzwave_update') . ' 2>&1 &';
 		exec($cmd);
 	}
@@ -429,7 +429,7 @@ class openzwave extends eqLogic {
 			}
 		}
 		log::remove('openzwave_syncconf');
-		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../ressources/syncconf.sh';
+		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../resources/syncconf.sh';
 		if ($_background) {
 			$cmd .= ' >> ' . log::getPathToLog('openzwave_syncconf') . ' 2>&1 &';
 		}
@@ -486,8 +486,8 @@ class openzwave extends eqLogic {
 			$apikey = config::byKey('api');
 		}
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
-		$openzwave_path = dirname(__FILE__) . '/../../ressources/zwaveserver';
-		$config_path = dirname(__FILE__) . '/../../ressources/openzwave/config';
+		$openzwave_path = dirname(__FILE__) . '/../../resources';
+		$config_path = dirname(__FILE__) . '/../../resources/openzwave/config';
 		$data_path = dirname(__FILE__) . '/../../data';
 		if (!file_exists($data_path)) {
 			exec('mkdir ' . $data_path . ' && chmod 775 -R ' . $data_path . ' && chown -R www-data:www-data ' . $data_path);
@@ -497,7 +497,7 @@ class openzwave extends eqLogic {
 		if (config::byKey('suppress_refresh', 'openzwave') == 1) {
 			$suppressRefresh = 1;
 		}
-		$cmd = '/usr/bin/python ' . $openzwave_path . '/openZWave.py ';
+		$cmd = '/usr/bin/python ' . $openzwave_path . '/openzwaved.py ';
 		$cmd .= ' --pidfile=/tmp/openzwaved.pid';
 		$cmd .= ' --device=' . $port;
 		$cmd .= ' --loglevel=' . log::convertLogLevel(log::getLogLevel('openzwave'));
@@ -510,6 +510,7 @@ class openzwave extends eqLogic {
 		$cmd .= ' --suppressRefresh=' . $suppressRefresh;
 
 		log::add('openzwave', 'info', 'Lancement démon openzwave : ' . $cmd);
+		exec($cmd . ' >> ' . log::getPathToLog('openzwave') . ' 2>&1 &');
 		$i = 0;
 		while ($i < 30) {
 			$deamon_info = self::deamon_info();
@@ -541,7 +542,7 @@ class openzwave extends eqLogic {
 			$pid = intval(trim(file_get_contents($pid_file)));
 			system::kill($pid);
 		}
-		system::kill('openZWave.py');
+		system::kill('openzwaved.py');
 		$port = config::byKey('port', 'openzwave');
 		if ($port != 'auto') {
 			system::fuserk(jeedom::getUsbMapping($port));
