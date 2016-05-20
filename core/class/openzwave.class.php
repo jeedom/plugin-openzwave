@@ -23,7 +23,7 @@ class openzwave extends eqLogic {
 
 	private static $_nbZwaveServer = 1;
 	private static $_listZwaveServer = null;
-	public static $_excludeOnSendPlugin = array('.log');
+	public static $_excludeOnSendPlugin = array('openzwave.log');
 
 	/*     * ***********************Methode static*************************** */
 
