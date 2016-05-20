@@ -491,7 +491,7 @@ class openzwave extends eqLogic {
 		}
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
 		$openzwave_path = dirname(__FILE__) . '/../../resources';
-		$config_path = dirname(__FILE__) . '/../../resources/openzwave/config';
+		$config_path = dirname(__FILE__) . '/../../resources/openzwaved/config';
 		$data_path = dirname(__FILE__) . '/../../data';
 		if (!file_exists($data_path)) {
 			exec('mkdir ' . $data_path . ' && chmod 775 -R ' . $data_path . ' && chown -R www-data:www-data ' . $data_path);

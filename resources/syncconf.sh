@@ -23,13 +23,13 @@ if [ -d  ${BASEDIR}/../core/config/devices ]; then
 	cd plugin-openzwave/core/config/devices
 	sudo mv * ${BASEDIR}/../core/config/devices/
 	echo "Suppression des configurations Openzwave existantes"
-	sudo rm -fr ${BASEDIR}/../resources/openzwave/config/*
+	sudo rm -fr ${BASEDIR}/../resources/openzwaved/config/*
 	echo "Recopie des nouvelles configurations Openzwave"
-	cd /tmp/plugin-openzwave/resources/openzwave/config
-	sudo mv * ${BASEDIR}/../resources/openzwave/config/
+	cd /tmp/plugin-openzwave/resources/openzwaved/config
+	sudo mv * ${BASEDIR}/../resources/openzwaved/config/
 	echo "Nettoyage du répertoire temporaire"
 	sudo rm -R /tmp/plugin-openzwave
-	sudo chown -R www-data:www-data ${BASEDIR}/../resources/openzwave/config/
+	sudo chown -R www-data:www-data ${BASEDIR}/../resources/openzwaved/config/
 	sudo chown -R www-data:www-data ${BASEDIR}/../core/config/devices/
 	echo "Vos configurations sont maintenant à jour !"
 else
