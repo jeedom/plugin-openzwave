@@ -18,14 +18,14 @@ fi
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 if [ -d  ${BASEDIR}/../core/config/devices ]; then
 	echo "Suppression des configurations Jeedom existantes"
-	sudo rm -fr ${BASEDIR}/../core/config/devices/*
+	sudo rm -rf ${BASEDIR}/../core/config/devices/*
 	echo "Recopie des nouvelles configurations Jeedom"
 	cd plugin-openzwave/core/config/devices
 	sudo mv * ${BASEDIR}/../core/config/devices/
 	echo "Suppression des configurations Openzwave existantes"
-	sudo rm -fr ${BASEDIR}/../resources/openzwaved/config/*
+	sudo rm -rf ${BASEDIR}/../resources/openzwaved/config/*
 	echo "Recopie des nouvelles configurations Openzwave"
-	cd /tmp/plugin-openzwave/resources/openzwaved/config
+	cd /tmp/plugin-openzwave/resources/openzwave/config
 	sudo mv * ${BASEDIR}/../resources/openzwaved/config/
 	echo "Nettoyage du répertoire temporaire"
 	sudo rm -R /tmp/plugin-openzwave
