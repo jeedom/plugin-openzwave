@@ -20,6 +20,7 @@
 ** Simplification de l'assistant de copie de paramètres.
 ** Masquer des valeurs de l'onglet système qui n'ont pas lieu d'être affichées.
 ** Affichage de la description des capacitées du controlleur.
+** Mise à jour de la documentation.
 
 * Bug Fixes
 
