@@ -580,7 +580,7 @@ def cleanup_configuration_file(filename):
             working_file.writelines(etree.tostring(tree, pretty_print=True))
             working_file.close()
         except Exception as exception:
-            logging.error(str(exception), 'error')
+            logging.error(str(exception))
             logging.info('Trying to find the most recent valid xml in backups')
             backup_folder = _data_folder + "/xml_backups"
             # noinspection PyBroadException
@@ -605,7 +605,7 @@ def cleanup_configuration_file(filename):
                         found_valid_backup = 1
                         break
                     except Exception as exception:
-                        logging.error(str(exception), 'error')
+                        logging.error(str(exception))
                         continue
             if found_valid_backup == 0:
                 logging.info('No valid backup found. Regenerating')
@@ -1073,8 +1073,7 @@ def can_execute_network_command(allowed_queue_count=5):
 def write_config():  
     watchdog = 0
     while _network_information.config_file_save_in_progress and watchdog < 10:
-        if _log_level == 'Debug':
-            logging.info('.')
+        logging.debug('.')
         time.sleep(1)
         watchdog += 1
     if _network_information.config_file_save_in_progress:
@@ -3915,16 +3914,16 @@ def rest_is_alive():
 @app.route('/ZWaveAPI/Run/ChangeLogLevel(<int:level>)', methods=['GET'])
 def rest_change_log_level(level):
     # Changing REST Logging Level, not affect ozw
-
     global _log_level
     if level == 40:
-        _log_level = 'Error'
+        _log_level = 'error'
     elif level == 20:
-        _log_level = 'Debug'
+        _log_level = 'debug'
     elif level == 10:
-        _log_level = 'Info'
+        _log_level = 'info'
     else:
-        _log_level = 'Notset'
+        _log_level = 'none'
+    jeedom_utils.set_log_level(_log_level)
     return format_json_result(success=True, detail=('Log level is set: %s' % (_log_level,)), log_level='info', code=0)
 
 

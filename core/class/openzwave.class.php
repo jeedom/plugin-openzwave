@@ -397,8 +397,12 @@ class openzwave extends eqLogic {
 		exec($cmd);
 	}
 
-	public static function getVersion($_module = 'openzwave') {
+	public static function getVersion($_module = 'openzwave', $_refresh = false) {
 		if ($_module == 'openzwave') {
+			$version = config::byKey('currentOzwVersion', 'openzwave', -1);
+			if (!$_refresh && $version != -1) {
+				return config::byKey('currentOzwVersion', 'openzwave', -1);
+			}
 			try {
 				$network = self::callOpenzwave('/ZWaveAPI/Run/network.GetStatus()', 0, 2000);
 				if (isset($network['OpenZwaveLibraryVersion'])) {
