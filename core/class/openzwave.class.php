@@ -442,9 +442,8 @@ class openzwave extends eqLogic {
 
 	public static function deamon_info() {
 		$return = array();
-		$return['log'] = 'openzwavecmd';
 		$return['state'] = 'nok';
-		$pid_file = '/tmp/openzwave.pid';
+		$pid_file = '/tmp/openzwaved.pid';
 		if (file_exists($pid_file)) {
 			if (posix_getsid(trim(file_get_contents($pid_file)))) {
 				$return['state'] = 'ok';
@@ -472,7 +471,6 @@ class openzwave extends eqLogic {
 		if ($deamon_info['launchable'] != 'ok') {
 			throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
 		}
-		log::remove('openzwavecmd');
 		$port = config::byKey('port', 'openzwave');
 		if ($port != 'auto') {
 			$port = jeedom::getUsbMapping($port);
@@ -500,9 +498,9 @@ class openzwave extends eqLogic {
 			$suppressRefresh = 1;
 		}
 		$cmd = '/usr/bin/python ' . $openzwave_path . '/openZWave.py ';
-		$cmd .= ' --pidfile=/tmp/openzwave.pid';
+		$cmd .= ' --pidfile=/tmp/openzwaved.pid';
 		$cmd .= ' --device=' . $port;
-		$cmd .= ' --log=' . $log;
+		$cmd .= ' --loglevel=' . log::convertLogLevel(log::getLogLevel('openzwave'));
 		$cmd .= ' --port=' . $port_server;
 		$cmd .= ' --config_folder=' . $config_path;
 		$cmd .= ' --data_folder=' . $data_path;
@@ -511,12 +509,7 @@ class openzwave extends eqLogic {
 		$cmd .= ' --serverId=' . $serverId;
 		$cmd .= ' --suppressRefresh=' . $suppressRefresh;
 
-		log::add('openzwavecmd', 'info', 'Lancement démon openzwave : ' . $cmd);
-		$result = exec($cmd . ' >> ' . log::getPathToLog('openzwavecmd') . ' 2>&1 &');
-		if (strpos(strtolower($result), 'error') !== false || strpos(strtolower($result), 'traceback') !== false) {
-			log::add('openzwavecmd', 'error', $result);
-			return false;
-		}
+		log::add('openzwave', 'info', 'Lancement démon openzwave : ' . $cmd);
 		$i = 0;
 		while ($i < 30) {
 			$deamon_info = self::deamon_info();
@@ -527,11 +520,11 @@ class openzwave extends eqLogic {
 			$i++;
 		}
 		if ($i >= 30) {
-			log::add('openzwavecmd', 'error', 'Impossible de lancer le démon openzwave, relancer le démon en debug et vérifiez la log', 'unableStartDeamon');
+			log::add('openzwave', 'error', 'Impossible de lancer le démon openzwave, relancer le démon en debug et vérifiez la log', 'unableStartDeamon');
 			return false;
 		}
 		message::removeAll('openzwave', 'unableStartDeamon');
-		log::add('openzwavecmd', 'info', 'Démon openzwave lancé');
+		log::add('openzwave', 'info', 'Démon openzwave lancé');
 	}
 
 	public static function deamon_stop() {
@@ -543,13 +536,17 @@ class openzwave extends eqLogic {
 
 			}
 		}
-		$pid_file = '/tmp/openzwave.pid';
+		$pid_file = '/tmp/openzwaved.pid';
 		if (file_exists($pid_file)) {
 			$pid = intval(trim(file_get_contents($pid_file)));
 			system::kill($pid);
 		}
-		system::fuserk(config::byKey('port_server', 'openzwave', 8083));
 		system::kill('openZWave.py');
+		$port = config::byKey('port', 'openzwave');
+		if ($port != 'auto') {
+			system::fuserk(jeedom::getUsbMapping($port));
+		}
+		sleep(1);
 	}
 
 	/*     * *********************Methode d'instance************************* */
