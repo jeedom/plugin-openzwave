@@ -224,6 +224,9 @@ logging.info('Cycle : '+str(_cycle))
 
 jeedom_com = jeedom_com(apikey = _apikey,url = _callback,cycle=_cycle)
 
+if not jeedom_com.test():
+    sys.exit(1)
+
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
@@ -244,8 +247,7 @@ if _device is None or len(_device) == 0:
 
 logging.info("--> pass")
 
-if not jeedom_com.test():
-    sys.exit(1)
+
 
 logging.info("Check if the port REST server available")
 _sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
