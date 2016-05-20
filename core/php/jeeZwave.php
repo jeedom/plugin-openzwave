@@ -46,13 +46,12 @@ $results = json_decode(file_get_contents("php://input"), true);
 if (!is_array($results)) {
 	die();
 }
-//log::add('openzwave', 'debug', print_r($results, true));
 if (!isset($results['serverId'])) {
 	$results['serverId'] = '';
 }
 
-if (isset($results['device'])) {
-	foreach ($results['device'] as $node_id => $datas) {
+if (isset($results['devices'])) {
+	foreach ($results['devices'] as $node_id => $datas) {
 		$eqLogic = openzwave::getEqLogicByLogicalIdAndServerId($node_id, $results['serverId']);
 		if (is_object($eqLogic)) {
 			if (strpos($eqLogic->getConfiguration('fileconf'), 'fgs221.fil.pilote') !== false) {

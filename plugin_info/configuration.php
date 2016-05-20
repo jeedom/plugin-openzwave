@@ -62,12 +62,11 @@ if (!isConnect()) {
 					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="enabled_sanity_tests" checked/>
 				</div>
 			</div>
-			
+
 			<legend><i class="fa fa-cog"></i>  {{Gestion avancée}}</legend>
 			<div class="form-group">
 				<label class="col-lg-4 control-label">{{Options avancées}}</label>
 				<div class="col-lg-5">
-					<a class="btn btn-success" id="bt_consoleZwave"><i class="fa fa-terminal"></i> {{Console}}</a>
 					<a class="btn btn-warning" id="bt_backupsZwave"><i class="fa fa-floppy-o"></i> {{Backups}}</a>
 					<a class="btn btn-danger" id="bt_fileconfigZwave"><i class="fa fa-file-o"></i> {{Zwcfg}}</a>
 					<a class="btn btn-success" id="bt_syncconfigZwave"><i class="fa fa-refresh"></i> {{Configs modules}}</a>
@@ -166,11 +165,6 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 		$('#bt_fileconfigZwave').on('click', function () {
 			$('#md_modal2').dialog({title: "{{Configuration}}"});
 			$('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=config').dialog('open');
-		});
-
-		$('#bt_consoleZwave').on('click', function () {
-			$('#md_modal2').dialog({title: "{{Console}}"});
-			$('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=console').dialog('open');
 		});
 
 		$('#bt_syncconfigZwave').on('click',function(){
