@@ -501,7 +501,7 @@ class openzwave extends eqLogic {
 		if (config::byKey('suppress_refresh', 'openzwave') == 1) {
 			$suppressRefresh = 1;
 		}
-		$cmd = '/usr/bin/python ' . $openzwave_path . '/openzwaved.py ';
+		$cmd = '/usr/bin/python ' . $openzwave_path . '/openzwaved/openzwaved.py ';
 		$cmd .= ' --pidfile=/tmp/openzwaved.pid';
 		$cmd .= ' --device=' . $port;
 		$cmd .= ' --loglevel=' . log::convertLogLevel(log::getLogLevel('openzwave'));
