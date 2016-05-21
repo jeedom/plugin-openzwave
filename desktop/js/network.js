@@ -676,8 +676,14 @@ var app_network = {
         for (i = 0; i < infos.notifications.length; i++) {
             table_notifications += '<tr>';
             table_notifications += '<td>' + app_network.timestampConverter(infos.notifications[i].timestamp) + '</td>';
-            table_notifications += '<td>' + infos.notifications[i].state + '</td>';
+            //table_notifications += '<td>' + infos.notifications[i].state + '</td>';
             table_notifications += '<td>' + infos.notifications[i].details + '</td>';
+            if(infos.notifications[i].error_description != null & infos.notifications[i].error_description != 'None.'){
+                table_notifications += '<td>' + infos.notifications[i].error_description + '</td>';
+            }
+            else{
+                table_notifications += '<td></td>';
+            }
             table_notifications += '</tr>';
         }
         network.find(".notification_variables").html(table_notifications);

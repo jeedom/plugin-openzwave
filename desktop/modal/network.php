@@ -192,8 +192,9 @@ foreach (openzwave::listServerZwave() as $id => $server) {
                     <table class="table table-striped">
                         <tr>
                          <th>{{Reçu}}</th>
-                         <th>{{Etat}}</th>
+                        <!-- <th>{{Etat}}</th>-->
                          <th>{{Détails}}</th>
+                         <th>{{Erreur}}</th>
                      </tr>
                      <tbody class="notification_variables"></tbody>
                  </table>
