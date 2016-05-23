@@ -16,6 +16,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+header('Content-Type: application/json');
 try {
 	require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
@@ -97,7 +98,7 @@ try {
 		}
 		ajax::success($eqLogic->getConfFilePath(true));
 	}
-	
+
 	if (init('action') == 'applyRecommended') {
 		$eqLogic = openzwave::byId(init('id'));
 		if (!is_object($eqLogic)) {
@@ -105,7 +106,7 @@ try {
 		}
 		ajax::success($eqLogic->applyRecommended());
 	}
-	
+
 	if (init('action') == 'printPending') {
 		$eqLogic = openzwave::byId(init('id'));
 		if (!is_object($eqLogic)) {
@@ -126,7 +127,7 @@ try {
 			}
 		}
 		if (count($files) > 0) {
-			if (init('json')!= '') {
+			if (init('json') != '') {
 				$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . init('json'));
 				if (!is_json($content)) {
 					$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $files[0]);
