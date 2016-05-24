@@ -633,6 +633,7 @@
 		<Product type="4001" id="0000" name="ZW ESJ Blind Control" config="duwi/ZWESJ300.xml" />
 		<Product type="5001" id="0000" name="ZW FB Wireless remote control 10-channel" config="duwi/zwfb.xml"/>
 		<Product type="5002" id="0000" name="Wireless Flush Mounted Switch" />
+		<Product type="1000" id="0009" name="Wall Dimmer Set for Busch-Jaeger DURO 2000" config="duwi/05458.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0016" name="PowerLynx">
 	</Manufacturer>
