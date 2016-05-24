@@ -21,6 +21,7 @@ if (!isConnect('admin')) {
 	echo '401 - Accès non autorisé';
 	die();
 }
+ajax::init();
 try {
 	if (strpos(init('request'), '/ZWaveAPI/Run/network.SaveZWConfig()') !== false) {
 		$data_path = dirname(__FILE__) . '/../../data';
