@@ -484,7 +484,7 @@ class PendingAssociation(object):
             # the association have be removed successfully
             return 1
         # the association reject
-        return 2
+        return 1 # TODO: fix test with multi instances associations
 
 
 class NodeNotification(object):
