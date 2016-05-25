@@ -718,7 +718,7 @@ options.set_log_file("../../../log/openzwaved")
 options.set_append_log_file(False)
 options.set_console_output(False)
 if _log_level = 'notice':
-    options.set_save_log_level('Error')
+    options.set_save_log_level('Warning')
 else:
     options.set_save_log_level(_log_level[0].upper() + _log_level[1:])
     
