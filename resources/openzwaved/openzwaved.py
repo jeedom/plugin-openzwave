@@ -94,7 +94,7 @@ _network_information = None
 
 _force_refresh_nodes = []
 _changes_async = {'device': {}}
-_cycle = 0.5
+_cycle = 0.3
 _ghost_node_id = None
 _suppress_refresh = False
 
