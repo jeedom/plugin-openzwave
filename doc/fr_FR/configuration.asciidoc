@@ -2,7 +2,7 @@
 
 Après le téléchargement du plugin, il vous suffit de l'activer et de le configurer.
 Une fois la sauvegarde effectuée, le démon devrait se lancer.
-Le plugin est préconfiguré avec des valeurs par défaut ; vous n'avez normalement rien à faire de plus.
+Le plugin est préconfiguré avec des valeurs par défaut ; vous n'avez normalement plus rien à faire.
 Cependant vous pouvez modifier la configuration.
 image:../images/openzwave1.png[]
 
@@ -36,7 +36,7 @@ Le démon local et l'ensemble des démons déportés seront affichés avec leurs
 ** La *Gestion automatique* permet à jeedom de lancer automatiquement le démon au démarrage de jeedom, ainsi que de le relancer en cas de problème.
 ** Le *Dernier lancement* est comme son nom l'indique la date du dernier lancement connue du demon.
 [IMPORTANT]
-En mode débug le démon est très verbeux il est recommandé d'utiliser ce mode seulement si vous devez diagnostiquer un problème particulier.
+En mode débug le démon est très verbeux, il est recommandé d'utiliser ce mode seulement si vous devez diagnostiquer un problème particulier.
 Il n’est pas recommandé de laisser tourner le démon en Debug en permanence, si on utilise une *SD-Card*. Une fois le debug terminé, il ne faut pas oublier de cliquer sur "Redémarrer" pour sortir du mode debug !!
 
 
@@ -48,7 +48,7 @@ image:../images/openzwave53.png[]
 * *Général* :
 ** *Supprimer automatiquement les périphériques exclus* : L'option Oui, permet de supprimer les périphériques exclus du réseau  Z-Wave. L’option Non, permet de conserver les équipements dans jeedom même s’ils ont été exclus du réseau. L’équipement devra être alors supprimé manuellement ou réutilisé en lui assignant un nouvel ID Z-Wave si on exécute une migration du contrôleur principal.
 ** *Soigner le réseau automatiquement 2 fois par semaine* : option pour activer un soin automatique du réseau  Z-Wave (vivement conseillée en début d'installation si on déplace régulièrement les modules)
-** *Mettre à jour la configuration des modules automatiquement, chaque jour à minuit* : option pour activer la mise à jour des configuration de module openzwave ainsi de les fichier de commande Z-Wave.
+** *Mettre à jour la configuration des modules automatiquement, chaque jour à minuit* : option pour activer la mise à jour des configuration de module openzwave ainsi que les fichiers de commande Z-Wave.
 ** *Appliquer le jeu de configuration recommandé à l'inclusion* : option pour appliquer directement à l'inclusion le jeu de configuration recommandé par l'équipe Jeedom (conseillée)
 
 * *Gestion avancée* :
@@ -67,7 +67,7 @@ Une fois les configurations récupérées, il faudra selon les changements appor
 
 ** Pour un nouveau module sans configuration ni commande : exclure et ré-inclure le module.
 ** Pour un module pour lequel seuls les paramètres ont été mis à jour : lancer la régénération de la détection du nœud, via l'onglet Actions du module (le plugin doit redémarrer).
-** Pour un module dont le « mapping » de commandes a été corrigé : la loupe sur les commandes, voire plus bas.
+** Pour un module dont le « mapping » de commandes a été corrigé : la loupe sur les commandes, voir plus bas.
 [TIP]
 Dans le doute, exclure et ré-inclure le module est recommandé.
 
