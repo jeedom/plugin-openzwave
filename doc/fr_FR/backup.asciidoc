@@ -1,8 +1,8 @@
 == Backups
 
-La partie backup va vous permettre de gérer les backups de la topologie de votre réseau. C'est votre fichier zwcfgxxx.xml, il constitue le dernier état connue de votre réseau, c'est une forme de cache de votre réseau. A partir de cet écran vous pourrez :
+La partie backup va vous permettre de gérer les backups de la topologie de votre réseau. C'est votre fichier zwcfgxxx.xml, il constitue le dernier état connu de votre réseau, c'est une forme de cache de votre réseau. A partir de cet écran vous pourrez :
 
-* Lancer un backup (un backup est fait à chaque arrêt relance du réseaux et pendant les opérations critique). Les 12 derniers backups sont conservés
+* Lancer un backup (un backup est fait à chaque arrêt relance du réseau et pendant les opérations critiques). Les 12 derniers backups sont conservés
 * Restaurer un backup (en le sélectionnant dans la liste juste au-dessus)
 * Supprimer un backup
 
