@@ -1,6 +1,6 @@
 == Console
 
-La console permet de voir en temps réel ce qu'il se passe sur le réseau Z-wave.
+La console permet de voir en temps réel ce qui se passe sur le réseau Z-wave.
 
 image:../images/openzwave22.png[]
 
