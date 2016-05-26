@@ -717,7 +717,7 @@ options = ZWaveOption(_device, config_path=_config_folder, user_path=_data_folde
 options.set_log_file("../../../log/openzwaved")
 options.set_append_log_file(False)
 options.set_console_output(False)
-if _log_level = 'notice':
+if _log_level == 'notice':
     options.set_save_log_level('Warning')
 else:
     options.set_save_log_level(_log_level[0].upper() + _log_level[1:])
