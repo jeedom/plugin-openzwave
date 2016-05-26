@@ -27,15 +27,15 @@ Un ensemble d'informations sur l'état actuel du réseau,  à savoir :
 * Queue sortante, indique le nombre de messages en queue dans le contrôleur en attente d’être envoyé.
 Cette valeur est généralement élevée durant le démarrage du réseau lorsque l'état est encore en *Driver Initialised*.
 
-Une fois que le réseau a au minimum atteint *Topology loaded*, des mécanismes internes au serveur Z-Wave vont forcer des mises à jour de valeurs, il est alors tout à fait normal de voir monter le nombre de messages. Celui-ci va rapidement retourner à 0.
+Une fois que le réseau a au minimum atteint *Topology loaded*, des mécanismes internes au serveur Z-Wave vont forcer des mises à jour de valeurs, il est alors tout-à-fait normal de voir monter le nombre de messages. Celui-ci va rapidement retourner à 0.
 
 [TIP]
-Le réseau est dit fonctionnel au moment où il atteint le statut *Topology Loaded*, c'est à  dire que l'ensemble des nœuds secteurs ont complété leurs interviews. Selon le nombre de modules, la répartition pile/secteur, le choix du dongle USB et le PC sur lequel tourne le plugin  Z-Wave, le réseau va atteindre cette état entre une et cinq minutes.
+Le réseau est dit fonctionnel au moment où il atteint le statut *Topology Loaded*, c'est-à-dire que l'ensemble des nœuds secteurs ont complété leurs interviews. Selon le nombre de modules, la répartition pile/secteur, le choix du dongle USB et le PC sur lequel tourne le plugin  Z-Wave, le réseau va atteindre cette état entre une et cinq minutes.
 
 Un réseau *Ready*, signifie que tous les nœuds secteur et sur pile ont complété leur interview.
 
 [TIP]
-Selon les modules dont vous disposez, il est possible que le réseau n'atteigne jamais de lui-même le statut *Ready*. Les télécommandes, par exemple, ne se réveillent pas d'elles-mêmes et ne compléteront jamais leurs interviews. Dans ce genre de cas, le réseau est tout à fait opérationnel et même si les télécommandes n'ont pas complétées leur interview, elles assurent leurs fonctionnalités au sein du réseau.
+Selon les modules dont vous disposez, il est possible que le réseau n'atteigne jamais de lui-même le statut *Ready*. Les télécommandes, par exemple, ne se réveillent pas d'elles-mêmes et ne compléteront jamais leur interview. Dans ce genre de cas, le réseau est tout-à-fait opérationnel et même si les télécommandes n'ont pas complété leur interview, elles assurent leurs fonctionnalités au sein du réseau.
 
 *Capacités*
 
@@ -51,8 +51,8 @@ Affiche diverses informations système.
 
 === Notifications
 
-Vous retrouvez ici les dernière notifications du contrôleur ainsi que le détail du message correspondant.
-Les notifications sont ordonnée par leur date d'arrivées, la plus ressante en premier.
+Vous retrouvez ici les dernières notifications du contrôleur ainsi que le détail du message correspondant.
+Les notifications sont ordonnées par leur date d'arrivée, la plus récente en premier.
 
 image:../images/openzwave66.png[]
 
@@ -60,7 +60,7 @@ image:../images/openzwave66.png[]
 Ce sont des informations techniques, mais qui nous permettent de comprendre les derniers échanges avec le contrôleur.
 
 [IMPORTANT]
-Une notification indiquant qu'une commande à échoué, ne signifie pas obligatoirement un problème sur votre réseau.
+Une notification indiquant qu'une commande a échoué, ne signifie pas obligatoirement un problème sur votre réseau.
 
 === Actions
 
@@ -75,7 +75,7 @@ Certaines actions sont vraiment risquées voire irréversibles, l'équipe Jeedom
 Certains modules requièrent une inclusion en mode sécurisé, par exemple pour les serrures de porte. L’inclusion sécurisée doit être lancée via l'action de cet écran.
 
 [TIP]
-Si une action ne peut-être lancé, elle sera désactivée jusqu'au moment où elle pourra être à nouveau exécutée. 
+Si une action ne peut être lancée, elle sera désactivée jusqu'au moment où elle pourra être à nouveau exécutée. 
 
 === Statistiques
 
@@ -94,7 +94,7 @@ Explication la légende des couleurs :
 * *Vert* : Communication directe avec le contrôleur, idéal.
 * *Blue* : Pour les contrôleurs, comme les télécommandes, ils sont associés au contrôleur primaire, mais n'ont pas de voisin.
 * *Jaune* : Toute les routes ont plus d’un saut avant d'arriver au contrôleur.
-* *Gris* : L'interview n'est pas encore complété, les liens seront réellement connue une fois l'interview complété.
+* *Gris* : L'interview n'est pas encore complété, les liens seront réellement connus une fois l'interview complété.
 * *Rouge* : présumé mort, ou sans voisin, ne participe pas/plus au maillage du réseau.
 
 Le réseau Z-Wave est constitué de trois différents types de nœuds avec trois fonctions principales.
@@ -117,14 +117,14 @@ La principale différence entre les trois types de nœuds est leur connaissance 
 |Esclaves de routage
 |Connaît tous ses voisins
 |A la connaissance partielle de la table de routage
-|Peut répondre au nœud qu'il a reçu le message de et peut envoyer des messages non sollicités à un certain nombre de nœuds |prédéfinis, il a une route
+|Peut répondre au nœud qu'il a reçu le message et peut envoyer des messages non sollicités à un certain nombre de nœuds |prédéfinis, il a une route
 |===
 
 En résumé:
 
 * Chaque appareil Z -Wave peut recevoir et accuser réception de messages
 * Les contrôleurs peuvent envoyer des messages à tous les nœuds du réseau, sollicités ou non « Le maître peut parler quand il veut et à qui il veut »
-* Les esclaves ne peuvent pas envoyer des messages non sollicités, mais seule réponse aux demandes «  L'esclave ne parle est lui demande »
+* Les esclaves ne peuvent pas envoyer des messages non sollicités, mais seulement une réponse aux demandes «L'esclave ne parle que si on le lui demande »
 * Les esclaves de routage peuvent répondre à des demandes et ils sont autorisés à envoyer des messages non sollicités à certains nœuds que le contrôleur a prédéfini « L'esclave est toujours un esclave, mais sur autorisation, il peut parler »
 
 
