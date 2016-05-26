@@ -4,29 +4,29 @@
 
 * New Features
 
-** Ajout d'une option pour activer/désactiver les controls sanitaire sur l'ensemble des module.
+** Ajout d'une option pour activer/désactiver les controles sanitaires sur l'ensemble des modules.
 ** Ajout d'un onglet Notifications pour visualiser les dernières 25 notifications du contrôleur.
 ** Ajout d'une route pour récupérer la santé d'un noeud. /ZWaveAPI/Run/devices[<int:node_id>].GetHealth()
 ** Ajout d'une route pour récupérer la dernière notification d'un noeud. /ZWaveAPI/Run/devices[<int:node_id>].GetLastNotification()
 
 * Improvements/Enhancements
 
-** Permettre la sélection des modules FLiRS lors des associations direct.  
-** Permettre la sélection de tous les instances des modules lors des associations direct.
+** Permettre la sélection des modules FLiRS lors des associations directes.  
+** Permettre la sélection de toutes les instances des modules lors des associations directes.
 ** Mise à jour du wrapper python openzwave en version 0.3.0.
 ** Mise à jour de la librairie openzwave 1.4.248.
-** Ne pas afficher d'avertissement de wakeup expiré pour les modules sur piles allimenté par secteur.
-** Validation qu'un module est identique au niveau ids pour permettre la copie de paramètres.
-** Simplification de l'assistant de copie de paramètres.
+** Ne pas afficher d'avertissement de wakeup expiré pour les modules sur piles alimentées par secteur.
+** Validation qu'un module est identique au niveau ids pour permettre la copie des paramètres.
+** Simplification de l'assistant de copie des paramètres.
 ** Masquer des valeurs de l'onglet système qui n'ont pas lieu d'être affichées.
-** Affichage de la description des capacitées du controlleur.
+** Affichage de la description des capacités du contrôleur.
 ** Mise à jour de la documentation.
 ** Correction de l'orthographe de la documentation, merci @Juan-Pedro aka: kiko.
 
 * Bug Fixes
 
 ** Correction orthographe.
-** Correction de l'inclusion en mode sécurisée.
+** Correction de l'inclusion en mode sécurisé.
 ** Correction de l'appel asynchrone. (error: [Errno 32] Broken pipe)
 
 .Version 2016-05-04
@@ -36,41 +36,41 @@
 ** Ajout d'option pour désactiver l'actualisation en arrière-plan des variateurs.
 ** Affichage des associations avec qui un module est en association (find usage).
 ** Ajout du support de la CC MULTI_INSTANCE_ASSOCIATION.
-** Ajout d'une notification info lors de l'application de Set_Point afin de pourvoir exploiter la consigne demandé sous forme de cmd info.
-** Ajout d'un assistant de configuration recommandé.
-** Ajout d'option pour activer/désactiver l'assistant de configuration recommandé lors de l'inclusion de nouveaux modules.
+** Ajout d'une notification info lors de l'application de Set_Point afin de pourvoir exploiter la consigne demandée sous forme de cmd info.
+** Ajout d'un assistant de configuration recommandée.
+** Ajout d'option pour activer/désactiver l'assistant de configuration recommandée lors de l'inclusion de nouveaux modules.
 ** Ajout d'option pour activer/désactiver la mise à jour des configurations des modules chaque nuit.
 ** Ajout d'une route pour gérer les multi instances associations.
 ** Ajout des Query Stage manquants.
 ** Ajout de la validation de la sélection du Dongle USB au démarrage du démon.
 ** Ajout de la validation et test du callback au démarrage du démon.
 ** Ajout d'une option pour désactiver la mise à jour automatique des config de module.
-** Ajout d'une route pour modifier à l'éxécution les trace de log du serveur REST. Note: aucun effect sur le niveau ozw. http://ip_jeedom:8083/ZWaveAPI/Run/ChangeLogLevel(level) level => 40:Error, 20: Debug 10 Info
+** Ajout d'une route pour modifier à l'éxécution les traces de log du serveur REST. Note: aucun effect sur le niveau ozw. http://ip_jeedom:8083/ZWaveAPI/Run/ChangeLogLevel(level) level => 40:Error, 20: Debug 10 Info
 
 * Improvements/Enhancements
 
 ** Mise à jour du wrapper python openzwave en version 0.3.0b9.
-** Mise en évidence des groupes d'associations qui sont en attentent d'être appliqué.
+** Mise en évidence des groupes d'associations qui sont en attente d'être appliqués.
 ** Mise à jour de la librairie openzwave 1.4.167.
 ** Modification du système d'association directe.
 ** Mise à jour de la documentation
 ** Possibilité de lancer la régénération de la détection du nœud pour l’ensemble des modules identiques (marque et modèle).
 ** Affichage dans l'écran de santé si des éléments de configuration ne sont pas appliqués.
-** Affichage dans l'écran d'équipent si des éléments de configuration ne sont pas appliqués.
-** Affichage dans l'écran de santé si un module sur piles n'e c'est jamais réveillé.
-** Affichage dans l'écran de santé si un module sur piles a dépassé le temps du réveil prévue.
+** Affichage dans l'écran d'équipement si des éléments de configuration ne sont pas appliqués.
+** Affichage dans l'écran de santé si un module sur piles ne s'est jamais réveillé.
+** Affichage dans l'écran de santé si un module sur piles a dépassé le temps du réveil prévu.
 ** Ajout de traces lors d'erreur de notifications.
-** Meilleure remonté de l'état des piles.
+** Meilleure remontée de l'état des piles.
 ** Conformité du résumé / santé pour les thermostats sur piles.
 ** Meilleur détection de modules sur piles.
 ** Optimisation du mode Debug pour le serveur REST.
-** Forcer une actualisation de l'état des interrupteurs et dimer suite à l'envoie d'une commande switch all.
+** Forcer une actualisation de l'état des interrupteurs et dimer suite à l'envoi d'une commande switch all.
 
 * Bug Fixes
 
 ** Correction de la découverte des groupes d'associations.
 ** Correction de l'erreur "Exception KeyError: (91,) in 'libopenzwave.notif_callback' ignored".
-** Correction de la sélection de la documentation de module pour les modules avec plusieurs profiles. 
+** Correction de la sélection de la documentation de module pour les modules avec plusieurs profils. 
 ** Gestion des boutons action du module.
 ** Correction de description de nom générique de class.
 ** Correction de la sauvegarde du fichier zwcfg.
@@ -89,14 +89,14 @@
 ** Meilleur gestion des boutons Actions de modules.
 ** Documentation Ajout de sections.
 ** Optimisation du mécanisme de détection d'état du démon.
-** Mécanisme de protestation lors de la récupération de la description des paramètres s’il contient des caractères non valide.
-** Ne plus remonté les informations de l'état de la pile sur un module branché sur secteur.
+** Mécanisme de protestation lors de la récupération de la description des paramètres s’il contient des caractères non valides.
+** Ne plus remonter les informations de l'état de la pile sur un module branché sur secteur.
 ** Mise à jour de la documentation.
 
 * Bug Fixes
 
 ** Documentation Corrections orthographiques et grammaticales.
-** Validation du contenue du fichier zwcfg avant de l'appliquer.
+** Validation du contenu du fichier zwcfg avant de l'appliquer.
 ** Correction de l'installation.
 
 .2016-02-12
@@ -114,23 +114,23 @@
 
 * New Features
 
-** Ajout du push notification en case de node_event, permet la mise à place d’une cmd info en CC 0x20 pour récupérer des événement sur les nodes.
+** Ajout du push notification en case de node_event, permet la mise en place d’une cmd info en CC 0x20 pour récupérer des événement sur les nodes.
 ** Ajout de la route ForceRefresh \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ForceRefresh()
-pouvant être utiliser dans les commandes.
+pouvant être utilisée dans les commandes.
 ** Ajout du route SwitchAll \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)
 disponible via le contrôleur principal.
-** Ajout du route ToggleSwitch \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ToggleSwitch()
-pouvant être utiliser dans les commandes.
+** Ajout de la route ToggleSwitch \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ToggleSwitch()
+pouvant être utilisée dans les commandes.
 ** Ajout d’une push notification en cas de noeud présumé mort.
 ** Ajout de la commande “refresh all parameters” dans l’onglet Paramètres.
 ** Ajout de l’information du paramètre en attente d’être appliqué.
 ** Ajout de notification réseau.
-** Ajout d’une légende dans le graph réseau.
+** Ajout d’une légende dans le graphe réseau.
 ** Ajout de la fonction soigner réseau via la table de routage.
 ** Suppression automatique de nœud fantôme en un seul click.
 ** Gestion des actions sur nœud selon l’état du noeud et le type.
 ** Gestion des actions réseau selon l’état du réseau.
-** Mise à jour de configuration de module automatique tous les nuits.
+** Mise à jour de la configuration de module automatique toutes les nuits.
 
 * Improvements/Enhancements
 
@@ -138,17 +138,17 @@ pouvant être utiliser dans les commandes.
 ** Mise à l’équerre des logs.
 ** Simplification de la gestion du refresh manuel 5min avec possibilité d’appliquer sur les nœuds sur piles.
 ** Mise à jour de la librairie open-zwave en 1.4
-** Modification du test sanitaire pour réanimer les nœuds présumé mort plus facilement sans actions utilisateurs.
-** Utilisation de couleur vive de la table de routage et du graphe réseau.
+** Modification du test sanitaire pour réanimer les nœuds présumés morts plus facilement sans actions utilisateurs.
+** Utilisation de couleurs vives de la table de routage et du graphe réseau.
 ** Uniformisation des couleurs de la table de routage et du graphe réseau.
 ** Optimisation des informations de la page de santé Z-Wave selon l’état de l’interview.
-** Meilleur gestion des paramètres en lecteur seul ou en écriture seul dans l’onglet Paramètres.
+** Meilleur gestion des paramètres en lecture seule ou en écriture seule dans l’onglet Paramètres.
 ** Amélioration des warning sur les thermostats sur piles.
 
 * Bug Fixes
 
 ** Température convertie en Celsius retourne l’unité C à la place de F.
-** Correction du rafraichissement des valeurs au démarrage.
+** Correction du rafraîchissement des valeurs au démarrage.
 ** Correction du Refresh par valeur dans l’onglet Valeurs.
 ** Correction des noms génériques des modules.
-** Correction du ping sur les nœud en Timeout lors du test sanitaire.
+** Correction du ping sur les nœuds en Timeout lors du test sanitaire.
