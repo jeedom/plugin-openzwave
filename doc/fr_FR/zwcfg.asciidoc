@@ -1,8 +1,8 @@
 == zwcfg
 
-Permet d'éditer manuellement votre fichier de configuration zwcfgxxx.xml. La sauvegarde entraine un redémarrage automatique du moteur openzwave.
+Permet d'éditer manuellement votre fichier de configuration zwcfgxxx.xml. La sauvegarde entraîne un redémarrage automatique du moteur openzwave.
 
 image:../images/openzwave23.png[]
 
 [IMPORTANT]
-Cette partie est réservée aux experts, toute modification ici (autre que sur demande du support) peut entrainer de graves problèmes sur le réseau Z-Wave et peut ne pas être prise en charge par le support.
+Cette partie est réservée aux experts, toute modification ici (autre que sur demande du support) peut entraîner de graves problèmes sur le réseau Z-Wave et peut ne pas être prise en charge par le support.

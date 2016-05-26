@@ -1,20 +1,20 @@
-==  Dépannage et diagnostique
+==  Dépannage et diagnostic
 
-=== Mon module est pas détecté ou ne remonte pas ces identifiant produit et type
+=== Mon module est pas détecté ou ne remonte pas ses identifiants produit et type
 image:../images/openzwave46.png[]
 
 Lancer la Régénération de la détection du nœud depuis l'onglet Actions du module.
 
-Si vous avez plusieurs module dans ce cas de figure, lancer *Régénérer la détection de nœuds inconnues* depuis l'écran *Réseau ZWave* onglet *Actions*.
+Si vous avez plusieurs modules dans ce cas de figure, lancer *Régénérer la détection de nœuds inconnues* depuis l'écran *Réseau ZWave* onglet *Actions*.
 
 === Mon module est présumé mort par le contrôleur "Dead"
 image:../images/openzwave42.png[]
 
-Si le module est toujours branché et joignable, un suivre les solutions proposés dans l'écran du module.
+Si le module est toujours branché et joignable, suivre les solutions proposées dans l'écran du module.
 
-Si le module a été décommissions ou réel défectueux, vous pouvez l'exclure du réseau en utilisant *supprimer le nœud en erreur* via onglet *Actions*.
+Si le module a été décommissioné ou est réellement défectueux, vous pouvez l'exclure du réseau en utilisant *supprimer le nœud en erreur* via onglet *Actions*.
 
-Si le module est partie en réparation et un nouveau module de remplacement a été livré, vous pouvez lancer *Remplacer nœud en échec* via onglet *Actions*, le contrôleur déclenche l'inclusion puis vous devez procéder à l'inclusion sur le module.
+Si le module est parti en réparation et un nouveau module de remplacement a été livré, vous pouvez lancer *Remplacer nœud en échec* via onglet *Actions*, le contrôleur déclenche l'inclusion puis vous devez procéder à l'inclusion sur le module.
 L'id de l'ancien module sera conservé ainsi que ces commandes.
 
 
@@ -24,11 +24,11 @@ image:../images/openzwave47.png[]
 Elle est disponible via votre nœud contrôleur.
 Votre contrôleur devrait avoir les commandes Switch All On et Switch All Off.
 
-Si votre contrôleur n'apparait pas dans votre liste de module, lancé la synchronisation.
+Si votre contrôleur n'apparaît pas dans votre liste de module, lancez la synchronisation.
 
 image:../images/openzwave57.png[]
 
-La Commande Classe Switch All est en général supporté sur les interrupteurs et les variateurs. Son comportement est paramétrable sur chaque module qui la supporte.
+La Commande Classe Switch All est en général supportée sur les interrupteurs et les variateurs. Son comportement est paramétrable sur chaque module qui la supporte.
 
 On peut donc soit:
 
@@ -39,7 +39,7 @@ On peut donc soit:
 
 Le choix d'options dépend d'un constructeur à l'autre.
 
-Il faut donc bien prendre le temps de passer en revue l'ensemble de ses interrupteurs/variateurs avant de mettre en place un scénario si vous ne piloté pas que des lumières.
+Il faut donc bien prendre le temps de passer en revue l'ensemble de ses interrupteurs/variateurs avant de mettre en place un scénario si vous ne pilotez pas que des lumières.
 
 
 === Mon module n'a pas de commande Scène ou Bouton
@@ -49,7 +49,7 @@ Vous pouvez ajouter la commande dans l'écran de "mapping" des commandes.
 
 Il s'agit d'une commande *Info* en CC *0x2b* Instance *0* commande *data[0].val*
 
-Le mode scène doit être activé dans les paramètre du module. Voir la documentation de votre module pour plus de détails.
+Le mode scène doit être activé dans les paramètres du module. Voir la documentation de votre module pour plus de détails.
 
 
 === Forcer le rafraîchissement de valeurs
@@ -60,9 +60,9 @@ Il est possible de faire via une requête http ou de créer une commande dans l'
 
 image:../images/openzwave56.png[]
 
-Il s'agit d'une commande *Action* choisir la *CC* souhaité pour une *Instance* donnée avec la commande *data[0].ForceRefresh()*
+Il s'agit d'une commande *Action* choisir la *CC* souhaitée pour une *Instance* donnée avec la commande *data[0].ForceRefresh()*
 
-L'ensemble des index de l'instance pour cette commande Classe seront mise à jour. Les nœuds sur piles, attendront leur prochain réveille avant d'effectuer la mise à jour de leur valeurs.
+L'ensemble des index de l'instance pour cette commande Classe sera mise à jour. Les nœuds sur piles, attendront leur prochain réveil avant d'effectuer la mise à jour de leur valeurs.
 
 Vous pouvez aussi utiliser par script en lançant une requête http au serveur REST Z-Wave.
 
@@ -74,59 +74,59 @@ Remplacer ip_jeedom, node_id, instance_id, cc_id et index
 === Transférer les modules sur un nouveau contrôleur
 Pour différentes raisons vous pouvez être amené à devoir transférer l'ensemble de vos modules sur un nouveau contrôleur principal.
 
-Vous décidé de passer du *raZberry* à un *Z-Stick Gen5* ou parce que, vous devez effectuer un *Reset* complet du contrôleur principal.
+Vous décidez de passer du *raZberry* à un *Z-Stick Gen5* ou parce que, vous devez effectuer un *Reset* complet du contrôleur principal.
 
 Voici différentes étapes pour y arriver sans perdre vos scénarios, widget et historique de valeur:
 
 ** 1) Faire un backup Jeedom.
-** 2) Pensez noter (copie écran) vos valeurs de paramètres pour chaque modules, ils seront perdu suite à l'exclusion.
-** 3) Dans la configuration Z-Wave décocher l'option "Supprimer automatiquement les périphériques exclus" et sauvegarder, le réseau redémarre.
+** 2) Pensez à noter (copie écran) vos valeurs de paramètres pour chaque module, ils seront perdus suite à l'exclusion.
+** 3) Dans la configuration Z-Wave décocher l'option "Supprimer automatiquement les périphériques exclus" et sauvegarder. Le réseau redémarre.
 ** 4a) Dans le cas d'un *Reset* Faire le Reset du contrôleur principal et redémarrer le plugin.
 ** 4b) Pour un nouveau contrôleur, stopper Jeedom, débrancher l'ancien contrôleur et brancher le nouveau. Démarrer Jeedom.
 ** 5) Pour chaque équipements Z-Wave, modifier l'ID ZWave à *0*.
-** 6) Ouvrir 2 pages du plugin Z-Wave dans des onglets différent.
+** 6) Ouvrir 2 pages du plugin Z-Wave dans des onglets différents.
 ** 7) (Via le premier onglet) Aller sur la page de configuration d'un module que vous désirez inclure au nouveau contrôleur.
 ** 8) (Via deuxième onglet) Faire une exclusion puis une inclusion du module. Un nouvel équipement sera créé.
 ** 9) Copier l'ID Z-Wave du nouvel équipement, puis supprimer cet équipement.
 ** 10) Retourner sur l'onglet de l'ancien module (1er onglet) puis coller le nouvel ID à la place de l'ancien ID.
-** 11) Les paramètres ZWave ont étés perdue lors de l'exclusion/inclusion, pensez à remettre vos paramètres spécifique si vous n'utilisez les valeurs par défaut.
+** 11) Les paramètres ZWave ont été perdus lors de l'exclusion/inclusion, pensez à remettre vos paramètres spécifiques si vous n'utilisez les valeurs par défaut.
 ** 11) Répéter les étapes 7 à 11 pour chaque module à transférer.
-** 12) A la fin vous devriez plus avoir d'équipement en ID 0.
-** 13) Vérifier que tous les modules sont bien nommé dans l'écran de santé Z-Wave. Lancer la Synchronisation si ce n'est pas le cas.
+** 12) A la fin vous ne devriez plus avoir d'équipement en ID 0.
+** 13) Vérifier que tous les modules sont bien nommés dans l'écran de santé Z-Wave. Lancer la Synchronisation si ce n'est pas le cas.
 
 
 === Remplacer un module défaillant
-Comment refaire l'inclusion d'un module défaillant sans perdre vos scénarios, widget et historique de valeur
+Comment refaire l'inclusion d'un module défaillant sans perdre vos scénarios, widgets et historiques de valeur
 
 Si le module est présumé "Dead" :
 
-** Noter (copie écran) vos valeurs de paramètres, ils seront perdu suite à l'inclusion.
+** Noter (copie écran) vos valeurs de paramètres, elles seront perdues suite à l'inclusion.
 ** Allez sur l'onglet actions du module et lancer la commande "Remplacer noeud en échec".
-** Le controlleur est en mode inclusion, procéder à l'inclusion selon la documentation du module.
-** Remettre vos paramètres spécifique.
+** Le contrôleur est en mode inclusion, procéder à l'inclusion selon la documentation du module.
+** Remettre vos paramètres spécifiques.
 
-Si le module n'est pas présumé "Dead" mais toujours accessible:
+Si le module n'est pas présumé "Dead" mais est toujours accessible:
 
 ** Dans la configuration zwave décocher l'option "Supprimer automatiquement les périphériques exclus".
-** Noter (copie écran) vos valeurs de paramètres, ils seront perdu suite à l'inclusion.
+** Noter (copie écran) vos valeurs de paramètres, elles seront perdues suite à l'inclusion.
 ** Exclure le module défaillant.
 ** Aller sur la page de configuration du module défaillant.
 ** Ouvrir la page du plugin zwave dans un nouvel onglet.
 ** Faire l'inclusion du module.
 ** Copier l'ID du nouveau module, puis supprimer cet équipement.
 ** Retourner sur l'onglet de l'ancien module puis coller le nouvel ID à la place de l'ancien ID.
-** Remettre vos paramètres spécifique.
+** Remettre vos paramètres spécifiques.
 
 
 === Suppression de nœud fantôme
-Si vous avez perdue toute communication avec un module sur pile et que vous souhaité l'exclure du réseau, il est possible que l'exclusion n’aboutisse pas ou que le nœud reste présent dans votre réseau.
+Si vous avez perdu toute communication avec un module sur pile et que vous souhaitez l'exclure du réseau, il est possible que l'exclusion n’aboutisse pas ou que le nœud reste présent dans votre réseau.
 
 Un assistant automatique de nœud fantôme est disponible.
 
 ** Allez sur l'onglet actions du module à supprimer.
 ** Il aura probablement un statu *CacheLoad*.
 ** Lancer la commande *Supprimer nœud fantôme*.
-** Le réseau Z-Wave, ce stop, l'assistant automatique modifier le fichier *zwcfg* pour supprimer la CC WakeUp du module, le réseau redémarre.
+** Le réseau Z-Wave s'arrête. L'assistant automatique modifie le fichier *zwcfg* pour supprimer la CC WakeUp du module. Le réseau redémarre.
 ** Fermer l'écran du module.
 ** Ouvrir l'écran de Santé Z-Wave.
 ** Attendre que le cycle de démarrage soit complété (topology loaded).
@@ -140,38 +140,38 @@ Cette assistant est disponible seulement pour les modules sur piles.
 
 === Actions post inclusion
 
-On recommande d'effectuer l'inclusion à moins 1M du contrôleur principal, or ce ne sera pas la position final de votre nouveau module.
+On recommande d'effectuer l'inclusion à moins 1M du contrôleur principal, or ce ne sera pas la position finale de votre nouveau module.
 Voici quelques bonnes pratiques à faire suite à l’inclusion d'un nouveau module dans votre réseau.
 
-Une fois l'inclusion terminé, il faut appliquer un certain nombre de paramètres à notre nouveau module afin d'en tirer le maximum. Rappel, les modules suite à l'inclusion ont les paramètres par défaut du constructeur.
-Profiter d'être au côté du contrôleur et de l'interface Jeedom pour bien paramétrer votre nouveau module. Il sera aussi plus simple de réveiller le module pour voir l'effet immédiat du changement.
-Certain module ont une documentation spécifique Jeedom afin de vous aider avec les différents paramètres ainsi que des valeurs recommandées.
+Une fois l'inclusion terminée, il faut appliquer un certain nombre de paramètres à notre nouveau module afin d'en tirer le maximum. Rappel, les modules suite à l'inclusion ont les paramètres par défaut du constructeur.
+Profiter d'être à côté du contrôleur et de l'interface Jeedom pour bien paramétrer votre nouveau module. Il sera aussi plus simple de réveiller le module pour voir l'effet immédiat du changement.
+Certains modules ont une documentation spécifique Jeedom afin de vous aider avec les différents paramètres ainsi que des valeurs recommandées.
 
-Tester votre module, valider les remontées d'information, retour d'état et actions possible dans le cas d'un actuateur.
+Tester votre module, valider les remontées d'informations, retour d'état et actions possibles dans le cas d'un actuateur.
 
-Lors de l'interview votre nouveau module a recherché ces voisins. Toute fois les modules de votre réseau ne connaissent pas encore votre nouveau module.
+Lors de l'interview votre nouveau module a recherché ses voisins. Toutefois les modules de votre réseau ne connaissent pas encore votre nouveau module.
 
-Déplacer votre module à son emplacement définitif. Lancer la mise à jour de ces voisins et réveillé le encore une fois.
+Déplacer votre module à son emplacement définitif. Lancer la mise à jour de ces voisins et réveiller-le encore une fois.
 
 image:../images/openzwave58.png[]
 
-On constate qu'il voit un certain nombre de voisins mais que les voisin eux, ne le voit pas.
+On constate qu'il voit un certain nombre de voisins mais que les voisin, eux, ne le voient pas.
 
 Pour remédier à cette situation il faut lancer l'action soigner le réseau, afin de demander à tous les modules de retrouver leurs voisins.
 
-Cette action peut prendre 24 heures avant d'être terminé, vos modules sur pile effectueront l'action seulement à leur prochain réveil.
+Cette action peut prendre 24 heures avant d'être terminée, vos modules sur pile effectueront l'action seulement à leur prochain réveil.
 
 image:../images/openzwave59.png[]
 
-L'option de soigner le réseau 2x par semaine permet de faire ce processus sans action de votre part, elle est utile lors de la mise en place de nouveau modules et ou lors qu'on les déplace.
+L'option de soigner le réseau 2x par semaine permet de faire ce processus sans action de votre part, elle est utile lors de la mise en place de nouveaux modules et ou lorsqu'on les déplace.
 
 
 === Pas de remontée état de la pile
 
 Les modules Z-Wave n'envoie que très rarement l'état de leurs piles au contrôleur.
-Certain vont le faire à l'inclusion puis seulement lorsque celle-ci atteint 20% ou une autre valeur de seuil critique.
+Certains vont le faire à l'inclusion puis seulement lorsque celle-ci atteint 20% ou une autre valeur de seuil critique.
 
-Pour vous aider à mieux suivre l'état de vos piles l'écran Batteries sous le menu Analyse vous donnes une vue d'ensemble de l'état de vos piles.
+Pour vous aider à mieux suivre l'état de vos piles l'écran Batteries sous le menu Analyse vous donne une vue d'ensemble de l'état de vos piles.
 Un mécanisme de notification de piles faibles est aussi disponible.
 
 La valeur remontée de l'écran Piles est la dernière connue dans le cache.
@@ -182,33 +182,33 @@ Donc il faut en général attendre au moins 24h avant l'obtention d'une valeur d
 [TIP]
 Il est bien entendu possible de rafraichir manuellement la valeur Battery via l'onglet Valeurs du module puis, soit attendre le prochain réveil ou encore de réveiller manuellement le module pour obtenir une remontée immédiate.
 Le cycle de réveil (Wake-up Interval) du module est défini dans l'onglet Système du module. Pour optimiser la vie de vos piles il est recommandé d'espacer au maximum ce délai. Pour 4h il faudrait appliquer 14400, 12h 43200.
-Certains modules doivent écouter régulièrement des messages du contrôleur comme les Thermostats dans ce cas il faut pense a 15min  soit 900. Chaque module est différent il n'y a donc pas de règle exact c'est au cas par cas et selon l’expérience.
+Certains modules doivent écouter régulièrement des messages du contrôleur comme les Thermostats dans ce cas il faut penser à 15min  soit 900. Chaque module est différent il n'y a donc pas de règle exact c'est au cas par cas et selon l’expérience.
 
 [TIP]
-La décharge d'une pile n'est pas linéaire, certain module vont montrer un grosse perte en pourcentage dans les premiers jours de mise en service, puis ne plus bouger durant des semaines pour ce vider rapidement une fois passé les 20%.
+La décharge d'une pile n'est pas linéaire, certains modules vont montrer un grosse perte en pourcentage dans les premiers jours de mise en service, puis ne plus bouger durant des semaines pour se vider rapidement une fois passé les 20%.
 
 
 === Contrôleur est en cours d'initialisation
 
-Lorsque vous démarré le démon Z-Wave si vous essayé de lancer immédiatement une inclusion/exclusion vous risquez d'obtenir ce message:
+Lorsque vous démarrez le démon Z-Wave, si vous essayez de lancer immédiatement une inclusion/exclusion vous risquez d'obtenir ce message:
 * "Le controleur est en cours d'initialisation veuillez réessayer dans quelques minutes"
 
 [TIP]
-Suite au démarrage du démon, le contrôleur passe sur l'ensemble des modules afin de refaire leur interview. Ce comportement est tout à fait normal en Openzwave.
+Suite au démarrage du démon, le contrôleur passe sur l'ensemble des modules afin de refaire leur interview. Ce comportement est tout-à-fait normal en Openzwave.
 
-Si toute fois après plusieurs minutes (plus de 10 minutes) vous avez toujours ce message ce n'est plus normal.
+Si toutefois après plusieurs minutes (plus de 10 minutes) vous avez toujours ce message ce n'est plus normal.
 
 Il faut essayer les différentes étapes:
 
-* S'assurer que voyant de l'écran santé jeedom sont au vert.
+* S'assurer que les voyants de l'écran santé jeedom soient au vert.
 * S'assurer que la configuration du plugin est en ordre.
 * S'assurer que vous avez bien sélectionné le bon port de la clé ZWave.
-* S'assurer que votre configuration Réseau Jeedom est juste. (Attention si vous avez fait un Restore d’une installation DIY vers image officielle, le suffixe /jeedom ne dois pas y figurer)
+* S'assurer que votre configuration Réseau Jeedom est juste. (Attention si vous avez fait un Restore d’une installation DIY vers image officielle, le suffixe /jeedom ne doit pas y figurer)
 * Regarder le log du plugin afin de voir si une erreur n'est pas remontée.
 * Regarder la *Console* du plugin ZWave, afin de voir si une erreur n'est pas remontée.
 * Lancer le Demon en *Debug* regarder à nouveau la *Console* et les logs du plugin.
 * Redémarrer complètement Jeedom.
-* Il faut s'assurer que vous avez bien un contrôleur Z-Wave, les Razberry sont souvent confondue avec les EnOcean (erreur lors de la commande).
+* Il faut s'assurer que vous avez bien un contrôleur Z-Wave, les Razberry sont souvent confondus avec les EnOcean (erreur lors de la commande).
 
 Il faut maintenant débuter les tests hardwares:
 
@@ -217,7 +217,7 @@ Il faut maintenant débuter les tests hardwares:
 
 Si le problème persiste toujours, il faut réinitialiser le contrôleur:
 
-* Arrêter complément votre jeedom via le menu d'arrêt dans le profile utilisateur.
+* Arrêter complément votre jeedom via le menu d'arrêt dans le profil utilisateur.
 * Débrancher l'alimentation.
 * Retirer le dongle USB ou le Razberry selon le cas, environ 5 minutes.
 * Rebrancher le tout et essayer à nouveau.
@@ -233,7 +233,7 @@ Il faut dans ce cas relancer le Demon Z-Wave.
 
 Si le problème persiste, il faut réinitialiser le contrôleur:
 
-* Arrêter complément votre jeedom via le menu d'arrêt dans le profile utilisateur.
+* Arrêter complément votre jeedom via le menu d'arrêt dans le profil utilisateur.
 * Débrancher l'alimentation.
 * Retirer le dongle USB ou le Razberry selon le cas, environ 5 minutes.
 * Rebrancher le tout et essayer à nouveau.
