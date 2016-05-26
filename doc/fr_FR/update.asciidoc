@@ -7,7 +7,7 @@ image:../images/openzwave30.png[]
 [TIP]
 Cette opération n'est pas a faire à chaque mise à jour du plugin seulement si nécessaire.
 
-Vous devez d'abord arrêter le démon (c'est plus sur) :
+Vous devez d'abord arrêter le démon (c'est plus sûr) :
 
 image:../images/openzwave31.png[]
 
