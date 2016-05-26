@@ -90,22 +90,22 @@ Il est possible que votre module ne possède aucun groupe.
 La modification des groupes d'associations d'un module sur pile sera appliquée au prochain cycle de réveil.
 Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
 
-Pour connaitre avec quels autres modules le module en cours est associé, il suffie de cliquer sur le menu *Associé à quels modules*
+Pour connaitre avec quels autres modules le module en cours est associé, il suffit de cliquer sur le menu *Associé à quels modules*
 
 image:../images/openzwave67.png[]
 
-L'ensemble des modules utilisant le module en cours ainsi que le nom des groupes d'association seront affichés.
+L'ensemble des modules utilisant le module en cours ainsi que le nom des groupes d'associations seront affichés.
 
 *Associations multi-instances*
 
 certain module supporte une commande classe multi-instance associations.
-Lorsqu'un module supporte cette CC, il est possible de spécifier a quelle instance on souhaite créer l'association
+Lorsqu'un module supporte cette CC, il est possible de spécifier avec quelle instance on souhaite créer l'association
 
 image:../images/openzwave70.png[]
 
 === Systèmes
 
-Onglet regroupant les paramètres système du module.
+Onglet regroupant les paramètres systèmes du module.
 
 image:../images/openzwave9.png[]
 
@@ -129,24 +129,24 @@ Il ne faut pas utiliser les actions sur un module si on ne sait pas ce que l'on 
 
 [TIP]
 La *Régénération de la détection du noeud* permet de détecter le module pour reprendre les derniers jeux de paramètres.
-Cette action est requise lorsqu'on vous informe qu'une mise a jour de paramètre et ou de comportement du module est requit pour le bon fonctionnement.
+Cette action est requise lorsqu'on vous informe qu'une mise a jour de paramètres et ou de comportement du module est requit pour le bon fonctionnement.
 La Régénération de la détection du noeud implique un redémarrage du réseau, l'assistant l'effectue automatiquement.
 
 [TIP]
-Si vous avez plusieurs module identique dont il est requis d'exécuter la *Régénération de la détection du noeud*, il est possible de la lancer une fois pour tout les modules identiques.
+Si vous avez plusieurs modules identiques dont il est requis d'exécuter la *Régénération de la détection du noeud*, il est possible de la lancer une fois pour tous les modules identiques.
 
 image:../images/openzwave68.png[]
 
 [TIP]
-Si un module sur pile n'est plus joignable et que vous souhaité l'exclure, que l'exclusion ne s'effectue pas, vous pouvez lancer *Supprimer le noeud fantôme*
-Un assistant effectuera différente action afin de supprimer le module dit fantôme. Cette action implique de redémarrer le réseau et peux prendre plusieurs minutes avant d'être complété.
+Si un module sur pile n'est plus joignable et que vous souhaitez l'exclure, que l'exclusion ne s'effectue pas, vous pouvez lancer *Supprimer le noeud fantôme*
+Un assistant effectuera différentes actions afin de supprimer le module dit fantôme. Cette action implique de redémarrer le réseau et peut prendre plusieurs minutes avant d'être complétée.
 
 image:../images/openzwave71.png[]
 
 Une fois lancé, il est recommandé de fermer l'écran de configuration du module et de surveiller la suppression du module via l'écran de santé zwave.
 
 [IMPORTANT]
-Seul le module sur pile peuvent être supprimé via cette assistant.
+Seul les modules sur pile peuvent être supprimés via cette assistant.
 
 === Statistiques
 
