@@ -30,7 +30,7 @@ La commande Ping peut être utilisée si le module est présumé mort "DEATH" af
 Les modules qui dorment répondront seulement au Ping lors de leur prochain réveil.
 
 [TIP]
-La notification Timeout ne signifie pas nécessairement un problème avec le module. Lancer un Ping et dans la majorité des cas le module répondra par Une Notification *NoOperation* qui confirme un retour fructueux du Ping.
+La notification Timeout ne signifie pas nécessairement un problème avec le module. Lancer un Ping et dans la majorité des cas le module répondra par une Notification *NoOperation* qui confirme un retour fructueux du Ping.
 
 [TIP]
 La Temporisation et le %OK sur des nœuds sur piles avant la complétion de leur interview n'est pas significative. En effet le nœud ne va pas répondre aux interrogations du contrôleur du fait qu'il est en sommeil profond.
