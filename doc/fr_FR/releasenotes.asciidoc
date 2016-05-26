@@ -21,6 +21,7 @@
 ** Masquer des valeurs de l'onglet système qui n'ont pas lieu d'être affichées.
 ** Affichage de la description des capacitées du controlleur.
 ** Mise à jour de la documentation.
+** Correction de l'orthographe de la documentation, merci @Juan-Pedro aka: kiko.
 
 * Bug Fixes
 
