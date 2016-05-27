@@ -312,7 +312,7 @@ var app_nodes = {
             $.each(nodes, function (key, val) {
                 if(key != app_nodes.selected_node){
                     if (val.capabilities.isListening || val.capabilities.isFlirs){
-                        if (val.multi_instance.instances == 0){
+                        if (val.multi_instance.instances <= 1){
                             node_keys.push(key +';0');
                         }
                         else{
@@ -1633,7 +1633,7 @@ var app_nodes = {
                         } else {
                             var node_name = nodes[node_id].description.product_name;
                         }
-                        if (node_instance > 0){
+                        if (node_instance > 1){
                             var instanceDisplay = node_instance-1;
                             node_name += " (Instance: " + instanceDisplay +")";
                         }
