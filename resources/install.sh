@@ -132,6 +132,11 @@ fi
 
 if [ -e /dev/ttymxc0 ];  then 
   sudo systemctl mask serial-getty@ttymxc0.service
+  sudo systemctl stop serial-getty@ttymxc0.service
+fi
+if [ -e /dev/ttyAMA0 ];  then 
+  sudo systemctl mask serial-getty@ttyAMA0.service
+  sudo systemctl stop serial-getty@ttyAMA0.service
 fi
 
 if [ $(grep 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200"' /etc/udev/rules.d/98-usb-serial.rules | wc -l) -eq 0 ]; then
