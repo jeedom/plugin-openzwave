@@ -66,7 +66,7 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584701
 	Set report types for groups 1, 2 and 3 to default.
       </Help>
     </Value>
-    <Value type="int" index="101" genre="config" label="Report type sent in Reporting Group 1" units="" value="0">
+    <Value type="int" index="101" genre="config" label="Report type sent in Reporting Group 1" size="4" value="0">
       <Help>
 	Defines the type of report sent for reporting group 1. 2 is multisensor report. 4 is meter report for watts. 8 is meter report for kilowatts.
 	 Value 1 (msb) Reserved
@@ -79,7 +79,7 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584701
 		     bit 0 Voltage
       </Help>
     </Value>
-    <Value type="int" index="102" genre="config" label="Report type sent in Reporting Group 2" units="" value="0">
+    <Value type="int" index="102" genre="config" label="Report type sent in Reporting Group 2" size="4" value="0">
       <Help>
 	Defines the type of report sent for reporting group 1. 2 is multisensor report. 4 is meter report for watts. 8 is meter report for kilowatts.
 	 Value 1 (msb) Reserved
@@ -92,7 +92,7 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584701
 		     bit 0 Voltage
       </Help>
     </Value>
-    <Value type="int" index="103" genre="config" label="Report type sent in Reporting Group 3" units="" value="0">
+    <Value type="int" index="103" genre="config" label="Report type sent in Reporting Group 3" size="4" value="0">
       <Help>
 	Defines the type of report sent for reporting group 1. 2 is multisensor report. 4 is meter report for watts. 8 is meter report for kilowatts.
 	 Value 1 (msb) Reserved
@@ -110,17 +110,17 @@ https://aeotec.freshdesk.com/helpdesk/attachments/6009584701
 	Set time interval for sending reports for groups 1, 2 and 3 to default.
       </Help>
     </Value>
-    <Value type="int" index="111" genre="config" label="Send Interval for Reporting Group 1" units="seconds" min="0" max="65535" value="3">
+    <Value type="int" index="111" genre="config" label="Send Interval for Reporting Group 1" units="seconds" size="4" min="0" max="4294967295" value="3">
       <Help>
 	Defines the time interval when the defined report for group 1 is sent.
       </Help>
     </Value>
-    <Value type="int" index="112" genre="config" label="Send Interval for Reporting Group 2" units="seconds" min="0" max="65535" value="600">
+    <Value type="int" index="112" genre="config" label="Send Interval for Reporting Group 2" units="seconds" size="4" min="0" max="4294967295" value="600">
       <Help>
 	Defines the time interval when the defined report for group 2 is sent.
       </Help>
     </Value>
-    <Value type="int" index="113" genre="config" label="Send Interval for Reporting Group 3" units="seconds" min="0" max="65535" value="600">
+    <Value type="int" index="113" genre="config" label="Send Interval for Reporting Group 3" units="seconds" size="4" min="0" max="4294967295" value="600">
       <Help>
 	Defines the time interval when the defined report for group 3 is sent.
       </Help>
