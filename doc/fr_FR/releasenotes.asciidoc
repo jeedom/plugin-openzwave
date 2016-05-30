@@ -6,10 +6,8 @@
 
 ** Ajout d'une option pour activer/désactiver les controles sanitaires sur l'ensemble des modules.
 ** Ajout d'un onglet Notifications pour visualiser les dernières 25 notifications du contrôleur.
-** Ajout d'une route pour récupérer la santé d'un noeud. 
-http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].GetHealth()
-** Ajout d'une route pour récupérer la dernière notification d'un noeud.
-http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].GetLastNotification()
+** Ajout d'une route pour récupérer la santé d'un noeud. ip_jeedom:8083/ZWaveAPI/Run/devices[node_id].GetHealth()
+** Ajout d'une route pour récupérer la dernière notification d'un noeud. ip_jeedom:8083/ZWaveAPI/Run/devices[node_id].GetLastNotification()
 
 * Improvements/Enhancements
 
