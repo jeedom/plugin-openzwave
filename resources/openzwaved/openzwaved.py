@@ -214,7 +214,7 @@ for arg in sys.argv:
 _cycle = float(_cycle)
 jeedom_utils.set_log_level(_log_level)
 
-logging.info('Start edisiod')
+logging.info('Start openzwaved')
 logging.info('Log level : '+str(_log_level))
 logging.info('PID file : '+str(_pidfile))
 logging.info('Device : '+str(_device))
