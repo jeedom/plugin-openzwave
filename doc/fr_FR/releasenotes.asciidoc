@@ -1,5 +1,19 @@
 ==  Release Notes
 
+.Version 2016-xx-xx (Beta)
+
+* New Features
+
+** N/A
+
+* Improvements/Enhancements
+
+** Adaptation pour la version jeedom core 2.3
+
+* Bug Fixes
+
+** N/A
+
 .Version 2016-05-30
 
 * New Features
