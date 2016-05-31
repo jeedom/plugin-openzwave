@@ -312,11 +312,11 @@ class openzwave extends eqLogic {
 				try {
 					$results = self::callOpenzwave('/ZWaveAPI/Run/network.RefreshAllBatteryLevel()', $serverID);
 					foreach ($results as $node_id => $value) {
-						$batteryStatusDate = date('Y-m-d H:i:s');
-						$eqLogic = self::getEqLogicByLogicalIdAndServerId($node_id, $serverID);
-						if ($value['updateTime'] !== null) {
-							$batteryStatusDate = date('Y-m-d H:i:s', $value['updateTime']);
+						if ($value['updateTime'] == null) {
+							continue;
 						}
+						$eqLogic = self::getEqLogicByLogicalIdAndServerId($node_id, $serverID);
+						$batteryStatusDate = date('Y-m-d H:i:s', $value['updateTime']);
 						if (is_file(dirname(__FILE__) . '/../config/devices/' . $eqLogic->getConfFilePath())) {
 							$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $eqLogic->getConfFilePath());
 							if (is_json($content)) {
