@@ -3852,6 +3852,8 @@ def refresh_all_battery_level():
     battery_levels = {}
     if _network is not None and _network.state >= 7 and _network_is_running:
         for node_id in list(_network.nodes):
+            if node_id in _disabled_nodes :
+                continue
             node = _network.nodes[node_id]
             if not node.is_listening_device:
                 logging.debug('Refresh battery level for nodeId: %s' % (node_id,))
