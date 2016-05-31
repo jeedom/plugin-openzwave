@@ -496,11 +496,21 @@ class openzwave extends eqLogic {
 		if (!file_exists($data_path)) {
 			exec('mkdir ' . $data_path . ' && chmod 775 -R ' . $data_path . ' && chown -R www-data:www-data ' . $data_path);
 		}
-		$log = ($_debug) ? 'Debug' : 'Error';
+
 		$suppressRefresh = 0;
 		if (config::byKey('suppress_refresh', 'openzwave') == 1) {
 			$suppressRefresh = 1;
 		}
+        $disabledNodes = '';
+        foreach(self::byType('openzwave') as $eqLogic){
+            if(! $eqLogic->getIsEnable() and $eqLogic->getConfiguration('serverID', 1) == $serverId){
+                $disabledNodes .= $eqLogic->getLogicalId() . ',';
+            }
+        }
+        if (strlen($disabledNodes) != 0){
+            $disabledNodes = rtrim($disabledNodes, ',');
+        }
+
 		$cmd = '/usr/bin/python ' . $openzwave_path . '/openzwaved/openzwaved.py ';
 		$cmd .= ' --pidfile=/tmp/openzwaved.pid';
 		$cmd .= ' --device=' . $port;
@@ -512,6 +522,7 @@ class openzwave extends eqLogic {
 		$cmd .= ' --apikey=' . $apikey;
 		$cmd .= ' --serverId=' . $serverId;
 		$cmd .= ' --suppressRefresh=' . $suppressRefresh;
+        $cmd .= ' --disabledNodes=' . $disabledNodes;
 
 		log::add('openzwave', 'info', 'Lancement démon openzwave : ' . $cmd);
 		exec($cmd . ' >> ' . log::getPathToLog('openzwave') . ' 2>&1 &');
@@ -659,7 +670,7 @@ class openzwave extends eqLogic {
 			$name = str_replace(array_keys($replace), $replace, $this->getName());
 			$humanLocation = urlencode(trim($location));
 			$humanName = urlencode(trim($name));
-			self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].SetDeviceName(' . $humanLocation . ',' . $humanName . ')', $this->getConfiguration('serverID', 1));
+			self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].SetDeviceName(' . $humanLocation . ',' . $humanName . ',' .$this->getIsEnable() .')', $this->getConfiguration('serverID', 1));
 		} catch (Exception $e) {
 
 		}

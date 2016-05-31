@@ -97,6 +97,7 @@ _changes_async = {'device': {}}
 _cycle = 0.3
 _ghost_node_id = None
 _suppress_refresh = False
+_disabled_nodes = []
 
 COMMAND_CLASS_NO_OPERATION              = 0  # 0x00
 COMMAND_CLASS_BASIC                     = 32  # 0x20
@@ -210,6 +211,10 @@ for arg in sys.argv:
     elif arg.startswith("--suppressRefresh="):
         temp, suppress_refresh = arg.split("=")
         _suppress_refresh = suppress_refresh == 1
+    elif arg.startswith("--disabledNodes="):
+        temp, disabled_nodes = arg.split("=")
+        _disabled_nodes = [int(node_id) for node_id in disabled_nodes.split(',')]
+
 
 _cycle = float(_cycle)
 jeedom_utils.set_log_level(_log_level)
@@ -221,6 +226,8 @@ logging.info('Device : '+str(_device))
 logging.info('Apikey : '+str(_apikey))
 logging.info('Callback : '+str(_callback))
 logging.info('Cycle : '+str(_cycle))
+
+logging.info('_disabled_nodes : '+str(_disabled_nodes))
 
 jeedom_com = jeedom_com(apikey = _apikey,url = _callback,cycle=_cycle)
 
@@ -832,6 +839,8 @@ def sanity_checks(force=False):
     if force or can_execute_network_command(0):
         logging.debug("Perform network sanity test/check")
         for node_id in list(_network.nodes):
+            if node_id in _disabled_nodes :
+                continue
             my_node = _network.nodes[node_id]
             # first check if a ghost node wait to be removed
             if _ghost_node_id is not None and node_id == _ghost_node_id and my_node.is_failed:
@@ -1276,6 +1285,8 @@ def node_notification(args):
     node_id = int(args['nodeId'])
     if node_id in _not_supported_nodes:
         return
+    if node_id in _disabled_nodes :
+        return
     if node_id in _network.nodes:
         my_node = _network.nodes[node_id]
         # mark as updated
@@ -1619,6 +1630,7 @@ def serialize_node_to_json(node_id):
         json_result['data']['security'] = {'value': my_node.security}
         json_result['data']['lastReceived'] = {'updateTime': timestamp}
         json_result['data']['maxBaudRate'] = {'value': my_node.max_baud_rate}
+        json_result['data']['is_enable'] = {'value': int(node_id) not in _disabled_nodes}
 
         pending_changes = 0
         json_result['instances'] = {"updateTime": timestamp}
@@ -2391,12 +2403,16 @@ def refresh_config(node_id, index_id):
         return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,), 'warning')
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetDeviceName(<string:location>,<string:name>)', methods=['GET'])
-def set_device_name(node_id, location, name):
-    if _network_information.controller_is_busy:
-        return format_json_result(False, 'Controller is busy')
-    logging.debug("setName for node_id:%s New Name ; '%s'" % (node_id, name,))
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetDeviceName(<string:location>,<string:name>,<int:is_enable>)', methods=['GET'])
+def set_device_name(node_id, location, name, is_enable):
+    logging.debug("set_device_name node_id:%s new name ; '%s'. Is enable: %s" % (node_id, name, is_enable,))
     if node_id in _network.nodes:
+        global _disabled_nodes
+        if node_id in _disabled_nodes and is_enable:
+            _disabled_nodes.remove(node_id)
+        elif node_id not in _disabled_nodes and not is_enable:
+            _disabled_nodes.append(node_id)
+
         name = name.encode('utf8')
         name = name.replace('+', ' ')
         _network.nodes[node_id].set_field('name', name)
@@ -3083,6 +3099,8 @@ def request_node_neighbour_update(node_id):
         return build_network_busy_message()  
     logging.debug("request_node_neighbour_update for node %s" % (node_id,))
     if node_id in _network.nodes:
+        if node_id in _disabled_nodes :
+            return format_json_result(False, 'Node is disabled', 'warning')
         return format_json_result(_network.manager.requestNodeNeighborUpdate(_network.home_id, node_id))
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,))
@@ -3109,6 +3127,8 @@ def heal_node(node_id, perform_return_routes_initialization=False):
     try:
         logging.info("Heal network node (%s) by requesting the node rediscover their neighbors" % (node_id,))
         if node_id in _network.nodes:
+            if node_id in _disabled_nodes :
+                return format_json_result(False, 'Node is disabled', 'warning')
             _network.manager.healNetworkNode(_network.home_id, node_id, perform_return_routes_initialization)
             return format_json_result()
         else:
@@ -3145,6 +3165,8 @@ def replace_failed_node(node_id):
         return build_network_busy_message()  
     logging.info("replace_failed_node node %s" % (node_id,))
     if node_id in _network.nodes:
+        if node_id in _disabled_nodes :
+            return format_json_result(False, 'Node is disabled', 'warning')
         return format_json_result(_network.manager.replaceFailedNode(_network.home_id, node_id))
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,))
@@ -3157,6 +3179,8 @@ def send_node_information(node_id):
         return build_network_busy_message()  
     logging.debug("send_node_information node %s" % (node_id,))
     if node_id in _network.nodes:
+        if node_id in _disabled_nodes :
+            return format_json_result(False, 'Node is disabled', 'warning')
         return format_json_result(_network.manager.sendNodeInformation(_network.home_id, node_id))
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,))
@@ -3169,6 +3193,8 @@ def has_node_failed(node_id):
         return build_network_busy_message()  
     logging.info("has_node_failed node %s" % (node_id,))
     if node_id in _network.nodes:
+        if node_id in _disabled_nodes :
+            return format_json_result(False, 'Node is disabled', 'warning')
         return format_json_result(_network.manager.hasNodeFailed(_network.home_id, node_id))
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,))
@@ -3182,6 +3208,8 @@ def refresh_node_info(node_id):
         return build_network_busy_message()  
     logging.debug("refresh_node_info node %s" % (node_id,))
     if node_id in _network.nodes:
+        if node_id in _disabled_nodes :
+            return format_json_result(False, 'Node is disabled', 'warning')
         return format_json_result(_network.manager.refreshNodeInfo(_network.home_id, node_id))
     else:
         return format_json_result(False, 'This network does not contain any node with the id %s' % (node_id,))
@@ -3191,6 +3219,8 @@ def refresh_node_info(node_id):
 def refresh_all_values(node_id):
     #  manual refresh of all value of a node, we will receive a refreshed value form value refresh notification
     if node_id in _network.nodes:
+        if node_id in _disabled_nodes :
+            return format_json_result(False, 'Node is disabled', 'warning')
         current_node = _network.nodes[node_id]
         try:
             counter = 0
@@ -3220,6 +3250,8 @@ def test_node(node_id=0, count=3):
     try:
         logging.debug("test_network node %s" % (node_id,))
         if node_id in _network.nodes:
+            if node_id in _disabled_nodes :
+                return format_json_result(False, 'Node is disabled', 'warning')
             _network.manager.testNetworkNode(_network.home_id, node_id, count)
             return format_json_result()
         else:
@@ -3233,6 +3265,8 @@ def get_node_statistics(node_id):
     # Retrieve statistics per node
     try:
         if node_id in _network.nodes:
+            if node_id in _disabled_nodes :
+                return format_json_result(False, 'Node is disabled', 'warning')
             query_stage_description = _network.manager.getNodeQueryStage(_network.home_id, node_id)
             query_stage_code = _network.manager.getNodeQueryStageCode(query_stage_description)
             return jsonify({'statistics': _network.manager.getNodeStatistics(_network.home_id, node_id),
@@ -3480,6 +3514,8 @@ def heal_network(perform_return_routes_initialization=False):
         if _network.nodes[node_id].generic == 1:
             logging.debug("skip Remote controller (nodeId: %s) (they don't have neighbors)" % (node_id,))
             continue
+        if node_id in _disabled_nodes :
+            continue
         _network.manager.healNetworkNode(_network.home_id, node_id, perform_return_routes_initialization)
     return format_json_result()
 
@@ -3616,7 +3652,8 @@ def get_network_neighbours():
     nodes_data = {}
     if _network is not None and _network.state >= 5 and _network_is_running:
         for node_id in list(_network.nodes):
-            nodes_data[node_id] = serialize_neighbour_to_json(node_id)
+            if node_id not in _disabled_nodes :
+                nodes_data[node_id] = serialize_neighbour_to_json(node_id)
     neighbours['devices'] = nodes_data
     return jsonify(neighbours)
 
@@ -3628,7 +3665,8 @@ def get_network_health():
     nodes_data = {}
     if _network is not None and _network.state >= 5 and _network_is_running:
         for node_id in list(_network.nodes):
-            nodes_data[node_id] = serialize_node_health(node_id)
+            if node_id not in _disabled_nodes :
+                nodes_data[node_id] = serialize_node_health(node_id)
     network_health['devices'] = nodes_data
     return jsonify(network_health)
 
@@ -3661,7 +3699,7 @@ def get_nodes_list():
             node_name = my_node.product_name
             node_location = 'Jeedom'
                   
-        json_node['description'] = {'name': node_name, 'location': node_location, 'product_name': my_node.product_name, 'is_static_controller': my_node.basic == 2}
+        json_node['description'] = {'name': node_name, 'location': node_location, 'product_name': my_node.product_name, 'is_static_controller': my_node.basic == 2, 'is_enable': int(node_id) not in _disabled_nodes}
         json_node['product'] = {'manufacturer_id': manufacturer_id, 'product_type': product_type, 'product_id': product_id, 'is_valid': manufacturer_id is not None and product_id is not None and product_type is not None}
         instances = []
         for val in my_node.get_values(genre='User'):
