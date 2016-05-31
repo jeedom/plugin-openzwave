@@ -778,7 +778,7 @@ def save_network_state(network_state):
     # STATE_AWAKED = 7
     # STATE_READY = 10
     jeedom_com.add_changes('serverId',_server_id)
-    jeedom_com.add_changes('controller::state',{"value": network_state})
+    jeedom_com.add_changes('controller::state',{"value": Idle})
 
 def push_node_notification(node_id, notification_code):
     # check for notification Dead or Alive
@@ -1883,10 +1883,7 @@ def get_network_mode():
             return AddDevice
         elif _network_information.actual_mode == ControllerMode.RemoveDevice:
             return RemoveDevice
-        else:
-            return Idle
-    else:
-        return Idle
+    return Idle
 
 
 def serialize_controller_to_json():    
