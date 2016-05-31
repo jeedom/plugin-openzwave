@@ -214,7 +214,7 @@ for arg in sys.argv:
     elif arg.startswith("--disabledNodes="):
         temp, disabled_nodes = arg.split("=")
         if disabled_nodes != '':
-            _disabled_nodes = [int(node_id) for node_id in disabled_nodes.split(',')]
+            _disabled_nodes = [int(disabled_node_id) for disabled_node_id in disabled_nodes.split(',')]
 
 
 _cycle = float(_cycle)
@@ -840,9 +840,6 @@ def sanity_checks(force=False):
     if force or can_execute_network_command(0):
         logging.debug("Perform network sanity test/check")
         for node_id in list(_network.nodes):
-            if node_id in _disabled_nodes :
-                continue
-            my_node = _network.nodes[node_id]
             # first check if a ghost node wait to be removed
             if _ghost_node_id is not None and node_id == _ghost_node_id and my_node.is_failed:
                 logging.info('* Try to remove a Ghost node (nodeId: %s)' % (node_id,))
@@ -858,6 +855,9 @@ def sanity_checks(force=False):
                 _network.manager.removeFailedNode(_network.home_id, node_id)
                 time.sleep(10)
                 continue
+            if node_id in _disabled_nodes :
+                continue
+            my_node = _network.nodes[node_id]
             if my_node.is_failed:
                 logging.debug('=> Try recovering, presumed Dead, nodeId: %s' % (node_id,))
                 # a ping will try to revive the node
