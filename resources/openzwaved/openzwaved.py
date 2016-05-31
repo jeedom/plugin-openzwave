@@ -213,7 +213,8 @@ for arg in sys.argv:
         _suppress_refresh = suppress_refresh == 1
     elif arg.startswith("--disabledNodes="):
         temp, disabled_nodes = arg.split("=")
-        _disabled_nodes = [int(node_id) for node_id in disabled_nodes.split(',')]
+        if disabled_nodes != '':
+            _disabled_nodes = [int(node_id) for node_id in disabled_nodes.split(',')]
 
 
 _cycle = float(_cycle)
