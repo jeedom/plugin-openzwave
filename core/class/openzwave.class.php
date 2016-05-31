@@ -507,9 +507,7 @@ class openzwave extends eqLogic {
 				$disabledNodes .= $eqLogic->getLogicalId() . ',';
 			}
 		}
-		if (strlen($disabledNodes) != 0) {
-			$disabledNodes = rtrim($disabledNodes, ',');
-		}
+		$disabledNodes = trim($disabledNodes, ',');
 
 		$cmd = '/usr/bin/python ' . $openzwave_path . '/openzwaved/openzwaved.py ';
 		$cmd .= ' --pidfile=/tmp/openzwaved.pid';
@@ -522,7 +520,9 @@ class openzwave extends eqLogic {
 		$cmd .= ' --apikey=' . $apikey;
 		$cmd .= ' --serverId=' . $serverId;
 		$cmd .= ' --suppressRefresh=' . $suppressRefresh;
-		$cmd .= ' --disabledNodes=' . $disabledNodes;
+		if ($disabledNodes != '') {
+			$cmd .= ' --disabledNodes=' . $disabledNodes;
+		}
 
 		log::add('openzwave', 'info', 'Lancement démon openzwave : ' . $cmd);
 		exec($cmd . ' >> ' . log::getPathToLog('openzwave') . ' 2>&1 &');
