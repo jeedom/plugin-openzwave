@@ -708,6 +708,9 @@ class openzwave extends eqLogic {
 	}
 
 	public function applyRecommended() {
+        if (!$this->getIsEnable()){
+            return;
+        }
 		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
 			return;
 		}
