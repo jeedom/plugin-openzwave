@@ -6,7 +6,7 @@
   "remark": "Inclusion en mode sécurisé",
   "imglink": "polycontrol.danalock",
   "battery_type": "4x3V CR123A",
-  "ignore": 1,
+  "ignore": 0,
   "configuration": {
     "conf_version": 1
   },
