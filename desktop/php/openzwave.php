@@ -342,8 +342,7 @@ sendVarTojs('eqLogic_human_name', $tags);
                                         class="fa fa-book"></i> {{Documentation}}</a>
                                 <a class="btn btn-warning" id="bt_deviceRecommended"
                                    title="{{Appliquer appliquer le jeu de configuration recommandée par l'équipe Jeedom}}"
-                                   style="display:none;"><i class="fa fa-thumbs-up"></i> {{Configuration
-                                    recommandée}}</a>
+                                   style="display:none;"><i class="fa fa-thumbs-up"></i> {{Configuration recommandée}}</a>
                             </div>
                         </div>
                         <center>
