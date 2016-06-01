@@ -1844,6 +1844,7 @@ def serialize_node_health(node_id):
                                               'product_name': my_node.product_name}
         json_result['data']['type'] = {'basic': my_node.basic, 'generic': my_node.generic}
         json_result['data']['state'] = {'value': my_node.query_stage, 'index': query_stage_index}
+        json_result['data']['isEnable'] = {'value': int(node_id) not in _disabled_nodes}
         json_result['data']['isAwake'] = {'value': my_node.is_awake}
         json_result['data']['isReady'] = {'value': my_node.is_ready}
         try:
@@ -3841,8 +3842,7 @@ def get_network_health():
     nodes_data = {}
     if _network is not None and _network.state >= 5 and _network_is_running:
         for node_id in list(_network.nodes):
-            if node_id not in _disabled_nodes:
-                nodes_data[node_id] = serialize_node_health(node_id)
+            nodes_data[node_id] = serialize_node_health(node_id)
     network_health['devices'] = nodes_data
     return jsonify(network_health)
 
