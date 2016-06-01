@@ -778,7 +778,7 @@ def save_network_state(network_state):
     # STATE_AWAKED = 7
     # STATE_READY = 10
     jeedom_com.add_changes('serverId',_server_id)
-    jeedom_com.add_changes('controller::state',{"value": Idle})
+    jeedom_com.add_changes('network::state',{"value": network_state})
 
 def push_node_notification(node_id, notification_code):
     # check for notification Dead or Alive
