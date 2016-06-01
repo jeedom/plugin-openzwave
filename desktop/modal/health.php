@@ -16,21 +16,23 @@
  */
 
 if (!isConnect('admin')) {
-	throw new Exception('401 Unauthorized');
+    throw new Exception('401 Unauthorized');
 }
 $eqLogics = openzwave::byType('openzwave');
 ?>
-<span class="pull-left alert" id="span_state" style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;margin-bottom:0px;"><span style="position:relative; top : -7px;">{{Demande envoyée}}</span></span>
+<span class="pull-left alert" id="span_state"
+      style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;margin-bottom:0px;"><span
+        style="position:relative; top : -7px;">{{Demande envoyée}}</span></span>
 <span class='pull-right'>
 <a class="btn btn-primary pull-right" id="bt_pingAllDevice"><i class="fa fa-eye"></i> {{Ping de tous}}</a>
 	<select class="form-control expertModeVisible" style="width : 200px;" id="sel_zwaveHealthServerId">
 		<?php
-foreach (openzwave::listServerZwave() as $id => $server) {
-	if (isset($server['name'])) {
-		echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
-	}
-}
-?>
+        foreach (openzwave::listServerZwave() as $id => $server) {
+            if (isset($server['name'])) {
+                echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
+            }
+        }
+        ?>
 	</select>
 </span>
 
@@ -38,42 +40,42 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 
 <div id='div_networkHealthAlert' style="display: none;"></div>
 <table class="table table-condensed tablesorter" id="table_healthNetwork">
-	<thead>
-		<tr>
-			<th>{{Module}}</th>
-			<th>{{ID}}</th>
-			<th>{{Notification}}</th>
-			<th>{{Groupes}}</th>
-			<th>{{Constructeur}}</th>
-			<th>{{Voisins}}</th>
-			<th>{{Configuration}}</th>
-			<th>{{Statut}}</th>
-			<th>{{Batterie}}</th>
-			<th>{{Wakeup time}}</th>
-			<th>{{Paquet total}}</th>
-			<th>{{% OK}}</th>
-			<th>{{Temporisation}}</th>			
-			<th>{{Dernière notification}}</th>
-			<th>{{Ping}}</th>
-		</tr>
-	</thead>
-	<tbody>
+    <thead>
+    <tr>
+        <th>{{Module}}</th>
+        <th>{{ID}}</th>
+        <th>{{Notification}}</th>
+        <th>{{Groupes}}</th>
+        <th>{{Constructeur}}</th>
+        <th>{{Voisins}}</th>
+        <th>{{Configuration}}</th>
+        <th>{{Statut}}</th>
+        <th>{{Batterie}}</th>
+        <th>{{Wakeup time}}</th>
+        <th>{{Paquet total}}</th>
+        <th>{{% OK}}</th>
+        <th>{{Temporisation}}</th>
+        <th>{{Dernière notification}}</th>
+        <th>{{Ping}}</th>
+    </tr>
+    </thead>
+    <tbody>
 
-	</tbody>
+    </tbody>
 </table>
-<?php include_file('desktop', 'health', 'js', 'openzwave');?>
+<?php include_file('desktop', 'health', 'js', 'openzwave'); ?>
 <script>
-	var path = $('#sel_zwaveHealthServerId option:selected').attr('data-path')+'/';
-	$("#sel_zwaveHealthServerId").on("change",function() {
-		path = $('#sel_zwaveHealthServerId option:selected').attr('data-path')+'/';
-		window["app_health"].init();
-		window["app_health"].show();
-	});
-	var nodes = {};
-	if (window["app_health"]!=undefined){
-		window["app_health"].init();
-		window["app_health"].show();
-	}
-	$('.tab-pane').height($('#md_modal').height() - 50);
-	$('.tab-pane').css('overflow','scroll');
+    var path = $('#sel_zwaveHealthServerId option:selected').attr('data-path') + '/';
+    $("#sel_zwaveHealthServerId").on("change", function () {
+        path = $('#sel_zwaveHealthServerId option:selected').attr('data-path') + '/';
+        window["app_health"].init();
+        window["app_health"].show();
+    });
+    var nodes = {};
+    if (window["app_health"] != undefined) {
+        window["app_health"].init();
+        window["app_health"].show();
+    }
+    $('.tab-pane').height($('#md_modal').height() - 50);
+    $('.tab-pane').css('overflow', 'scroll');
 </script>

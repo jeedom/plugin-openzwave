@@ -18,176 +18,176 @@
 require_once dirname(__FILE__) . "/../../../../core/php/core.inc.php";
 
 if (!jeedom::apiAccess(init('apikey'))) {
-	connection::failed();
-	echo 'Clef API non valide, vous n\'etes pas autorisé à effectuer cette action (jeeZwave)';
-	die();
+    connection::failed();
+    echo 'Clef API non valide, vous n\'etes pas autorisé à effectuer cette action (jeeZwave)';
+    die();
 }
 
 if (isset($_GET['test'])) {
-	echo 'OK';
-	die();
+    echo 'OK';
+    die();
 }
 
 if (isset($_GET['stopOpenzwave'])) {
-	config::save('allowStartDeamon', 0, 'openzwave');
-	openzwave::stopDeamon();
-	die();
+    config::save('allowStartDeamon', 0, 'openzwave');
+    openzwave::stopDeamon();
+    die();
 }
 
 if (isset($_GET['startOpenzwave'])) {
-	log::add('openzwave', 'debug', 'Restart Zwave deamon');
-	config::save('allowStartDeamon', 1, 'openzwave');
-	openzwave::runDeamon();
-	openzwave::getVersion();
-	die();
+    log::add('openzwave', 'debug', 'Restart Zwave deamon');
+    config::save('allowStartDeamon', 1, 'openzwave');
+    openzwave::runDeamon();
+    openzwave::getVersion();
+    die();
 }
 
 $results = json_decode(file_get_contents("php://input"), true);
 if (!is_array($results)) {
-	die();
+    die();
 }
 if (!isset($results['serverId'])) {
-	$results['serverId'] = '';
+    $results['serverId'] = '';
 }
 
 if (isset($results['devices'])) {
-	foreach ($results['devices'] as $node_id => $datas) {
-		$eqLogic = openzwave::getEqLogicByLogicalIdAndServerId($node_id, $results['serverId']);
-		if (is_object($eqLogic)) {
-			if (strpos($eqLogic->getConfiguration('fileconf'), 'fgs221.fil.pilote') !== false) {
-				foreach ($eqLogic->getCmd('info', '0&&1.0x0', null, true) as $cmd) {
-					if ($cmd->getConfiguration('value') == 'pilotWire') {
-						$cmd->event($cmd->getPilotWire());
-					}
-				}
-				continue;
-			}
-			foreach ($datas as $result) {
-				if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && ($eqLogic->getConfiguration('product_id') == '4096' || $eqLogic->getConfiguration('product_id') == '16384') && $result['CommandClass'] == '0x26') {
-					foreach ($eqLogic->getCmd('info', '0.0x26', null, true) as $cmd) {
-						if ($cmd->getConfiguration('value') == '#color#') {
-							$cmd->event($cmd->getRGBColor());
-							break;
-						}
-					}
-				}
-				foreach ($eqLogic->getCmd('info', $result['instance'] . '.' . $result['CommandClass'], null, true) as $cmd) {
-					if ($cmd->getConfiguration('value') == 'data[' . $result['index'] . '].val') {
-						$cmd->handleUpdateValue($result);
-					}
-				}
-			}
-		}
-	}
+    foreach ($results['devices'] as $node_id => $datas) {
+        $eqLogic = openzwave::getEqLogicByLogicalIdAndServerId($node_id, $results['serverId']);
+        if (is_object($eqLogic)) {
+            if (strpos($eqLogic->getConfiguration('fileconf'), 'fgs221.fil.pilote') !== false) {
+                foreach ($eqLogic->getCmd('info', '0&&1.0x0', null, true) as $cmd) {
+                    if ($cmd->getConfiguration('value') == 'pilotWire') {
+                        $cmd->event($cmd->getPilotWire());
+                    }
+                }
+                continue;
+            }
+            foreach ($datas as $result) {
+                if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && ($eqLogic->getConfiguration('product_id') == '4096' || $eqLogic->getConfiguration('product_id') == '16384') && $result['CommandClass'] == '0x26') {
+                    foreach ($eqLogic->getCmd('info', '0.0x26', null, true) as $cmd) {
+                        if ($cmd->getConfiguration('value') == '#color#') {
+                            $cmd->event($cmd->getRGBColor());
+                            break;
+                        }
+                    }
+                }
+                foreach ($eqLogic->getCmd('info', $result['instance'] . '.' . $result['CommandClass'], null, true) as $cmd) {
+                    if ($cmd->getConfiguration('value') == 'data[' . $result['index'] . '].val') {
+                        $cmd->handleUpdateValue($result);
+                    }
+                }
+            }
+        }
+    }
 }
 
 if (isset($results['controller'])) {
-	if (isset($results['controller']['state'])) {
-		event::add('zwave::controller.data.controllerState',
-			array(
-				'name' => openzwave::getNetworkNameByServerId($results['serverId']),
-				'state' => $results['controller']['state']['value'],
-				'serverId' => $results['serverId'])
-		);
-	}
-	if (isset($results['controller']['excluded'])) {
-		event::add('jeedom::alert', array(
-			'level' => 'warning',
-			'page' => 'openzwave',
-			'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
-		));
-		sleep(2);
-		openzwave::syncEqLogicWithOpenZwave($results['serverId'], $results['controller']['excluded']['value']);
-	}
-	if (isset($results['controller']['included'])) {
-		for ($i = 0; $i < 10; $i++) {
-			event::add('jeedom::alert', array(
-				'level' => 'warning',
-				'page' => 'openzwave',
-				'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration.Pause de ', __FILE__) . (10 - $i) . __(' pour synchronisation avec le module', __FILE__),
-			));
-			sleep(1);
-		}
-		event::add('jeedom::alert', array(
-			'level' => 'warning',
-			'page' => 'openzwave',
-			'message' => __('Inclusion en cours...', __FILE__),
-		));
-		openzwave::syncEqLogicWithOpenZwave($results['serverId'], $results['controller']['included']['value']);
-	}
+    if (isset($results['controller']['state'])) {
+        event::add('zwave::controller.data.controllerState',
+            array(
+                'name' => openzwave::getNetworkNameByServerId($results['serverId']),
+                'state' => $results['controller']['state']['value'],
+                'serverId' => $results['serverId'])
+        );
+    }
+    if (isset($results['controller']['excluded'])) {
+        event::add('jeedom::alert', array(
+            'level' => 'warning',
+            'page' => 'openzwave',
+            'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
+        ));
+        sleep(2);
+        openzwave::syncEqLogicWithOpenZwave($results['serverId'], $results['controller']['excluded']['value']);
+    }
+    if (isset($results['controller']['included'])) {
+        for ($i = 0; $i < 10; $i++) {
+            event::add('jeedom::alert', array(
+                'level' => 'warning',
+                'page' => 'openzwave',
+                'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration.Pause de ', __FILE__) . (10 - $i) . __(' pour synchronisation avec le module', __FILE__),
+            ));
+            sleep(1);
+        }
+        event::add('jeedom::alert', array(
+            'level' => 'warning',
+            'page' => 'openzwave',
+            'message' => __('Inclusion en cours...', __FILE__),
+        ));
+        openzwave::syncEqLogicWithOpenZwave($results['serverId'], $results['controller']['included']['value']);
+    }
 }
 
 if (isset($results['network'])) {
-	if (isset($results['network']['state']) && isset($results['network']['state']['value'])) {
-		switch ($results['network']['state']['value']) {
-			case 0: # STATE_STOPPED = 0
-				event::add('jeedom::alert', array(
-					'level' => 'danger',
-					'page' => 'openzwave',
-					'message' => __('Le réseaux Z-Wave est arreté sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
-				));
-				break;
-			case 1: # STATE_FAILED = 1
-				event::add('jeedom::alert', array(
-					'level' => 'danger',
-					'page' => 'openzwave',
-					'message' => __('Le réseaux Z-Wave est en erreur sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
-				));
-				break;
-			case 3: # STATE_RESET = 3
-				event::add('jeedom::alert', array(
-					'level' => 'danger',
-					'page' => 'openzwave',
-					'message' => __('Le réseaux Z-Wave est remis à zéro sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
-				));
-				break;
-			case 5: # STATE_STARTED = 5
-				event::add('jeedom::alert', array(
-					'level' => 'warning',
-					'page' => 'openzwave',
-					'message' => __('Le réseaux Z-Wave est en cours de démarrage sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
-				));
-				break;
-			case 7: # STATE_AWAKED = 7
-				event::add('jeedom::alert', array(
-					'level' => 'warning',
-					'page' => 'openzwave',
-					'message' => '',
-				));
-				break;
-			case 10: # STATE_READY = 10
-				event::add('jeedom::alert', array(
-					'level' => 'warning',
-					'page' => 'openzwave',
-					'message' => '',
-				));
-				break;
-		}
-	}
+    if (isset($results['network']['state']) && isset($results['network']['state']['value'])) {
+        switch ($results['network']['state']['value']) {
+            case 0: # STATE_STOPPED = 0
+                event::add('jeedom::alert', array(
+                    'level' => 'danger',
+                    'page' => 'openzwave',
+                    'message' => __('Le réseaux Z-Wave est arreté sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
+                ));
+                break;
+            case 1: # STATE_FAILED = 1
+                event::add('jeedom::alert', array(
+                    'level' => 'danger',
+                    'page' => 'openzwave',
+                    'message' => __('Le réseaux Z-Wave est en erreur sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
+                ));
+                break;
+            case 3: # STATE_RESET = 3
+                event::add('jeedom::alert', array(
+                    'level' => 'danger',
+                    'page' => 'openzwave',
+                    'message' => __('Le réseaux Z-Wave est remis à zéro sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
+                ));
+                break;
+            case 5: # STATE_STARTED = 5
+                event::add('jeedom::alert', array(
+                    'level' => 'warning',
+                    'page' => 'openzwave',
+                    'message' => __('Le réseaux Z-Wave est en cours de démarrage sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
+                ));
+                break;
+            case 7: # STATE_AWAKED = 7
+                event::add('jeedom::alert', array(
+                    'level' => 'warning',
+                    'page' => 'openzwave',
+                    'message' => '',
+                ));
+                break;
+            case 10: # STATE_READY = 10
+                event::add('jeedom::alert', array(
+                    'level' => 'warning',
+                    'page' => 'openzwave',
+                    'message' => '',
+                ));
+                break;
+        }
+    }
 }
 
 if (isset($results['message'])) {
-	log::add('openzwave', 'error', $results['message']);
+    log::add('openzwave', 'error', $results['message']);
 }
 
 if (isset($results['alert'])) {
-	switch ($results['alert']['type']) {
-		case 'node_dead':
-			$message = '';
-			$eqLogic = openzwave::getEqLogicByLogicalIdAndServerId($results['alert']['id'], $results['alert']['serverId']);
-			if (is_object($eqLogic)) {
-				if ($eqLogic->getIsEnable()) {
-					$message = __('Le noeud', __FILE__) . ' ' . $eqLogic->getHumanName() . ' (' . $results['alert']['id'] . ') ' . __('est présumé mort', __FILE__);
-				}
-			} else {
-				$message = __('Le noeud', __FILE__) . ' ' . $results['alert']['id'] . ' ' . __('est présumé mort', __FILE__);
-			}
-			if ($message != '') {
-				log::add('openzwave', 'error', $message, 'node_dead_' . $results['alert']['id'] . '_' . $results['alert']['serverId']);
-			}
-			break;
-		case 'node_alive':
-			message::removeAll('openzwave', 'node_dead_' . $results['alert']['id'] . '_' . $results['alert']['serverId']);
-			break;
-	}
+    switch ($results['alert']['type']) {
+        case 'node_dead':
+            $message = '';
+            $eqLogic = openzwave::getEqLogicByLogicalIdAndServerId($results['alert']['id'], $results['alert']['serverId']);
+            if (is_object($eqLogic)) {
+                if ($eqLogic->getIsEnable()) {
+                    $message = __('Le noeud', __FILE__) . ' ' . $eqLogic->getHumanName() . ' (' . $results['alert']['id'] . ') ' . __('est présumé mort', __FILE__);
+                }
+            } else {
+                $message = __('Le noeud', __FILE__) . ' ' . $results['alert']['id'] . ' ' . __('est présumé mort', __FILE__);
+            }
+            if ($message != '') {
+                log::add('openzwave', 'error', $message, 'node_dead_' . $results['alert']['id'] . '_' . $results['alert']['serverId']);
+            }
+            break;
+        case 'node_alive':
+            message::removeAll('openzwave', 'node_dead_' . $results['alert']['id'] . '_' . $results['alert']['serverId']);
+            break;
+    }
 }

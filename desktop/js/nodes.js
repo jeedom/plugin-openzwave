@@ -1,4 +1,3 @@
-
 var app_nodes = {
     selected_node: 0,
     updater: false,
@@ -96,43 +95,41 @@ var app_nodes = {
         });
         $("#removeGhostNode").off("click").on("click", function () {
             bootbox.dialog({
-                title: "{{Suppression automatique du nœud fantôme}}",
-                message:
-                '<form class="form-horizontal"> ' +
-                '<label class="control-label" > {{Les étapes suivantes seront éxécutées:}} </label> ' +
-                '<br>' +
-                '<ul>' +
-                '<li class="active">{{Arrêt du réseau Z-Wave.}}</li>' +
-                '<li class="active">{{Retirer classe de commande de Wake Up du fichier ZWCFG.}}</li>' +
-                '<li class="active">{{Redémarrage du réseau Z-Wave.}}</li>' +
-                '<li class="active">{{Attendre que le réseau soit à nouveau opérationnel (2-5 minutes).}}</li>' +
-                '<li class="active">{{Nœud passe en échec}}</li>' +
-                '<li class="active">{{Supprimer le nœud en échec}}</li>' +
-                '<li class="active">{{Validation du la suppression}}</li>' +
-                '</ul>' +
-                '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
-                '</form>',
-                buttons: {
-                    main: {
-                        label: "{{Annuler}}",
-                        className: "btn-danger"
-                    },
-                    success: {
-                        label: "{{Lancer}}",
-                        className: "btn-success",
-                        callback: function () {
-                            app_nodes.remove_ghost_node(app_nodes.selected_node);
+                    title: "{{Suppression automatique du nœud fantôme}}",
+                    message: '<form class="form-horizontal"> ' +
+                    '<label class="control-label" > {{Les étapes suivantes seront éxécutées:}} </label> ' +
+                    '<br>' +
+                    '<ul>' +
+                    '<li class="active">{{Arrêt du réseau Z-Wave.}}</li>' +
+                    '<li class="active">{{Retirer classe de commande de Wake Up du fichier ZWCFG.}}</li>' +
+                    '<li class="active">{{Redémarrage du réseau Z-Wave.}}</li>' +
+                    '<li class="active">{{Attendre que le réseau soit à nouveau opérationnel (2-5 minutes).}}</li>' +
+                    '<li class="active">{{Nœud passe en échec}}</li>' +
+                    '<li class="active">{{Supprimer le nœud en échec}}</li>' +
+                    '<li class="active">{{Validation du la suppression}}</li>' +
+                    '</ul>' +
+                    '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
+                    '</form>',
+                    buttons: {
+                        main: {
+                            label: "{{Annuler}}",
+                            className: "btn-danger"
+                        },
+                        success: {
+                            label: "{{Lancer}}",
+                            className: "btn-success",
+                            callback: function () {
+                                app_nodes.remove_ghost_node(app_nodes.selected_node);
+                            }
                         }
                     }
                 }
-            }
             );
         });
         $("#replaceFailedNode").off("click").on("click", function () {
             bootbox.dialog({
                     title: "{{Remplacer nœud en échec}}",
-                    message:
-                    '<form class="form-horizontal"> ' +
+                    message: '<form class="form-horizontal"> ' +
                     '<label class="control-label" > {{Cette action permet de remplacer un nœud en échec.}} </label> ' +
                     '<br>' +
                     '<label class="lbl lbl-warning" for="name">{{Attention, le controleur sera automatiquement en mode inclusion. Veuillez lancer la procédure sur votre module après la confirmation de cette action.}}</label> ' +
@@ -156,41 +153,40 @@ var app_nodes = {
         $("#sendNodeInformation").off("click").on("click", function () {
             app_nodes.send_node_information(app_nodes.selected_node);
         });
-        $("#regenerateNodeCfgFile").off("click").on("click", function ()
-        {
+        $("#regenerateNodeCfgFile").off("click").on("click", function () {
             var productName = nodes[app_nodes.selected_node].data.product_name.value;
             var manufacturerName = nodes[app_nodes.selected_node].data.vendorString.value;
             bootbox.dialog({
-                title: "{{Regénérer la détection du nœud}}",
-                message:
-                '<form class="form-horizontal"> ' +
-                '<label class="control-label" > {{Lancer la regénérer sur ?}} </label> ' +
-                '<div> <div class="radio"> <label > ' +
-                '<input type="radio" name="awesomeness" id="awesomeness-1" value="0" checked="checked"> {{Ce module seulement}} </label> ' +
-                '</div><div class="radio"> <label > ' +
-                '<input type="radio" name="awesomeness" id="awesomeness-0" value="1"> ' +
-                ' {{Tous les modules}} <b>' + manufacturerName + ' ' + productName +'</b></label> ' +
-                '</div> ' +
-                '</div><br>' +
-                '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
-                '</form>',
-                buttons: {
-                    main: {
-                        label: "{{Annuler}}",
-                        className: "btn-danger",
-                        callback: function() {}
-                    },
-                    success: {
-                        label: "{{Lancer}}",
-                        className: "btn-success",
-                        callback: function () {
-                            var all = $("input[name='awesomeness']:checked").val()
-                            app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node, all);
+                    title: "{{Regénérer la détection du nœud}}",
+                    message: '<form class="form-horizontal"> ' +
+                    '<label class="control-label" > {{Lancer la regénérer sur ?}} </label> ' +
+                    '<div> <div class="radio"> <label > ' +
+                    '<input type="radio" name="awesomeness" id="awesomeness-1" value="0" checked="checked"> {{Ce module seulement}} </label> ' +
+                    '</div><div class="radio"> <label > ' +
+                    '<input type="radio" name="awesomeness" id="awesomeness-0" value="1"> ' +
+                    ' {{Tous les modules}} <b>' + manufacturerName + ' ' + productName + '</b></label> ' +
+                    '</div> ' +
+                    '</div><br>' +
+                    '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
+                    '</form>',
+                    buttons: {
+                        main: {
+                            label: "{{Annuler}}",
+                            className: "btn-danger",
+                            callback: function () {
+                            }
+                        },
+                        success: {
+                            label: "{{Lancer}}",
+                            className: "btn-success",
+                            callback: function () {
+                                var all = $("input[name='awesomeness']:checked").val()
+                                app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node, all);
+                            }
                         }
                     }
                 }
-            }
-        );
+            );
         });
         $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
             $('#copyParamsModal').modal('show');
@@ -213,15 +209,15 @@ var app_nodes = {
             var associations = nodes[app_nodes.selected_node].associations;
             var description = nodes[app_nodes.selected_node].data.name.value;
             var message = '<form class="form-horizontal"><div class="panel-body"> ' +
-                '<p  style="font-size : 1em;"> {{Liste des groupes d\'associations où le module }} <b><span class="node-name label label-default" style="font-size : 1em;">' + description +'</span></b> {{est utilisé:}} </p> ' +
+                '<p  style="font-size : 1em;"> {{Liste des groupes d\'associations où le module }} <b><span class="node-name label label-default" style="font-size : 1em;">' + description + '</span></b> {{est utilisé:}} </p> ' +
                 '<br>' +
                 '<ul>';
             $.each(associations, function (key, val) {
                 message += '<li class="active"><p>';
                 if (nodes[key].description.name != '') {
-                    message += nodes[key].description.location + ' - <b>' + nodes[key].description.name +'</b>';
+                    message += nodes[key].description.location + ' - <b>' + nodes[key].description.name + '</b>';
                 } else {
-                    message += '<b>' + nodes[key].description.product_name +'</b>';
+                    message += '<b>' + nodes[key].description.product_name + '</b>';
                 }
                 message += '<br><ul class="fa-ul">'
                 $.each(val, function (key2, val2) {
@@ -230,7 +226,7 @@ var app_nodes = {
                 message += '</ul></p></li>';
             })
             message += '</ul>' +
-            '</div></form>';
+                '</div></form>';
             bootbox.dialog({
                     title: "{{Associé via quels modules}}",
                     message: message,
@@ -269,10 +265,10 @@ var app_nodes = {
             options_node += '</select></div>';
 
             options_node += '<div><br><b>Destination : </b> ' + app_nodes.selected_node + ' ';
-            if(nodes[app_nodes.selected_node].data.name.value != ''){
-                options_node += nodes[app_nodes.selected_node].data.location.value+ ' - ' + nodes[app_nodes.selected_node].data.name.value;
+            if (nodes[app_nodes.selected_node].data.name.value != '') {
+                options_node += nodes[app_nodes.selected_node].data.location.value + ' - ' + nodes[app_nodes.selected_node].data.name.value;
             }
-            else{
+            else {
                 options_node += nodes[app_nodes.selected_node].data.product_name.value;
             }
             if (foundIdentical == 0) {
@@ -304,25 +300,25 @@ var app_nodes = {
             var modal = $(this);
             var group = $(this).data('groupindex');
             var associations = [];
-            for(var i in nodes[app_nodes.selected_node].groups[group].associations) {
+            for (var i in nodes[app_nodes.selected_node].groups[group].associations) {
                 associations.push(nodes[app_nodes.selected_node].groups[group].associations[i][0] + ";" + nodes[app_nodes.selected_node].groups[group].associations[i][1]);
             }
             var support_multi_instance = nodes[app_nodes.selected_node].multi_instance.support == 1;
             var node_keys = [];
             $.each(nodes, function (key, val) {
-                if(key != app_nodes.selected_node){
-                    if (val.capabilities.isListening || val.capabilities.isFlirs){
-                        if (val.multi_instance.instances <= 1){
-                            node_keys.push(key +';0');
+                if (key != app_nodes.selected_node) {
+                    if (val.capabilities.isListening || val.capabilities.isFlirs) {
+                        if (val.multi_instance.instances <= 1) {
+                            node_keys.push(key + ';0');
                         }
-                        else{
-                            if (support_multi_instance){
-                                for(i = 1; i <= val.multi_instance.instances; i++ ){
-                                    node_keys.push(key +';' +i);
+                        else {
+                            if (support_multi_instance) {
+                                for (i = 1; i <= val.multi_instance.instances; i++) {
+                                    node_keys.push(key + ';' + i);
                                 }
                             }
-                            else{
-                                node_keys.push(key +';0');
+                            else {
+                                node_keys.push(key + ';0');
                             }
                         }
                     }
@@ -331,8 +327,8 @@ var app_nodes = {
             modal.find('.modal-body').html(' ');
             modal.find('.modal-title').text('{{Groupe }}' + group + ' : {{Ajouter une association pour le noeud}} ' + app_nodes.selected_node);
             var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
-            for(var i in node_keys){
-                if(associations.indexOf(node_keys[i])>=0){
+            for (var i in node_keys) {
+                if (associations.indexOf(node_keys[i]) >= 0) {
                     continue;
                 }
                 var values = node_keys[i].split(";");
@@ -344,8 +340,8 @@ var app_nodes = {
                 } else {
                     options_node += '<option value="' + node_keys[i] + '">' + nodeId + ' : ' + node.description.product_name;
                 }
-                if (support_multi_instance & node.multi_instance.instances > 1 ){
-                    var instanceDisplay = nodeInstance-1;
+                if (support_multi_instance & node.multi_instance.instances > 1) {
+                    var instanceDisplay = nodeInstance - 1;
                     options_node += ' (' + instanceDisplay + ')';
                 }
                 options_node += '</option>'
@@ -359,10 +355,10 @@ var app_nodes = {
             var nodeId = values[0];
             var nodeInstance = values[1];
             var url = '';
-            if (nodeInstance>0){
+            if (nodeInstance > 0) {
                 url = path + "ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].Associations[" + groupIndex + "].Add(" + nodeId + "," + nodeInstance + ")";
             }
-            else{
+            else {
                 url = path + "ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[0].commandClasses[0x85].Add(" + groupIndex + "," + nodeId + ")";
             }
 
@@ -663,9 +659,9 @@ var app_nodes = {
     },
     delete_group: function (node_id, group, node, instance) {
         var url = "";
-        if (instance > 0){
+        if (instance > 0) {
             url = path + "ZWaveAPI/Run/devices[" + node_id + "].Associations[" + group + "].Remove(" + node + "," + instance + ")";
-        }else{
+        } else {
             url = path + "ZWaveAPI/Run/devices[" + node_id + "].instances[0].commandClasses[0x85].Remove(" + group + "," + node + ")"
         }
         $.ajax({
@@ -1225,13 +1221,13 @@ var app_nodes = {
                 break;
         }
         var nodeCanSleep = nodes[z].data.can_wake_up.value;
-        if (queryStageIndex >2){
+        if (queryStageIndex > 2) {
             if (nodes[z].data.isListening.value) {
                 node.find(".node-sleep").removeClass("label-default");
                 node.find(".node-sleep").html('<i class="fa fa-plug text-success fa-lg"></i>');
                 node.find(".node-battery-span").hide();
             }
-            else{
+            else {
                 var battery_level = nodes[z].data.battery_level.value
                 node.find(".node-sleep").removeClass("label-success").addClass("label-default")
                 if (battery_level != null) {
@@ -1249,13 +1245,13 @@ var app_nodes = {
                     node.find(".node-battery").html(battery_level + ' %');
                     node.find(".node-battery-span").show();
                 }
-                else if (nodeCanSleep){
+                else if (nodeCanSleep) {
                     node.find(".node-sleep").html("---");
                     node.find(".node-battery-span").hide();
                 }
             }
         }
-        else{
+        else {
             node.find(".node-sleep").html("---");
             node.find(".node-battery-span").hide();
         }
@@ -1266,7 +1262,7 @@ var app_nodes = {
             for (zz in node_groups) {
                 if (!isNaN(zz)) {
                     hasGroup = true;
-                    for(var i in node_groups[zz].associations){
+                    for (var i in node_groups[zz].associations) {
                         var node_id = node_groups[zz].associations[i][0];
                         if (node_id == controller_id) {
                             found = true;
@@ -1290,20 +1286,20 @@ var app_nodes = {
         }
         // activate available actions
         $("#requestNodeNeighboursUpdate").prop("disabled", nodeIsFailed);
-        $("#healNode").prop("disabled",nodeIsFailed);
-        $("#refreshNodeValues").prop("disabled",nodeIsFailed);
-        $("#requestNodeDynamic").prop("disabled",nodeIsFailed);
-        $("#refreshNodeInfo").prop("disabled",nodeIsFailed);
-        $("#removeFailedNode").prop("disabled",!nodeIsFailed);
-        $("#replaceFailedNode").prop("disabled",!nodeIsFailed);
-        $("#sendNodeInformation").prop("disabled",nodeIsFailed);
+        $("#healNode").prop("disabled", nodeIsFailed);
+        $("#refreshNodeValues").prop("disabled", nodeIsFailed);
+        $("#requestNodeDynamic").prop("disabled", nodeIsFailed);
+        $("#refreshNodeInfo").prop("disabled", nodeIsFailed);
+        $("#removeFailedNode").prop("disabled", !nodeIsFailed);
+        $("#replaceFailedNode").prop("disabled", !nodeIsFailed);
+        $("#sendNodeInformation").prop("disabled", nodeIsFailed);
         // always allow the special action
-        $("#regenerateNodeCfgFile").prop("disabled",false);
+        $("#regenerateNodeCfgFile").prop("disabled", false);
         // remote control don't wakeup, we will trick the flag
-        if(genericDeviceClass == 1 ){
+        if (genericDeviceClass == 1) {
             nodeCanSleep = true;
         }
-        $("#removeGhostNode").prop("disabled",nodeIsFailed || !nodeCanSleep);
+        $("#removeGhostNode").prop("disabled", nodeIsFailed || !nodeCanSleep);
 
         if (nodeIsFailed) {
             node.find(".node-queryStage").html("Dead");
@@ -1469,7 +1465,7 @@ var app_nodes = {
                     if (nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only == false) {
                         value += '<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></button> ';
                     }
-                    if ( nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false){
+                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false) {
                         value += nodes[z].instances[instance].commandClasses[commandclass].data[index].val + " " + nodes[z].instances[instance].commandClasses[commandclass].data[index].units;
                     }
                     row.find("td[key=variable-value]").html(value);
@@ -1503,18 +1499,18 @@ var app_nodes = {
                     }
                     var expected_data = null;
                     var pending_state = nodes[z].instances[instance].commandClasses[commandclass].data[index].pendingState;
-                    if (pending_state >= 2){
+                    if (pending_state >= 2) {
                         expected_data = nodes[z].instances[instance].commandClasses[commandclass].data[index].expected_data;
                     }
 
                     var data_item = nodes[z].instances[instance].commandClasses[commandclass].data[index].val;
-                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only){
+                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only) {
                         data_item = '';
                     }
                     var data_units = nodes[z].instances[instance].commandClasses[commandclass].data[index].units;
 
                     row.find("td[key=variable-polling]").html(polling);
-                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false){
+                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false) {
                         row.find("td[key=variable-updatetime]").html(app_nodes.timestampConverter(nodes[z].instances[instance].commandClasses[commandclass].data[index].updateTime));
                     }
                     row_system.find("td[key=system-instance]").html(instance);
@@ -1525,7 +1521,7 @@ var app_nodes = {
                     var system_data = data_item + " " + data_units;
 
                     if (expected_data != null) {
-                        system_data += '<br>(<i>' +expected_data + " " + data_units +'</i>)';
+                        system_data += '<br>(<i>' + expected_data + " " + data_units + '</i>)';
                     }
                     row_system.find("td[key=system-value]").html(system_data);
                     if (nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only == false) {
@@ -1546,18 +1542,18 @@ var app_nodes = {
                     if (typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('list') && typeof openzwave_node_translation['configuration'][index].list[nodes[z].instances[instance].commandClasses[commandclass].data[index].val] !== 'undefined') {
                         var translation_item = openzwave_node_translation['configuration'][index].list[data_item];
                         if (expected_data != null) {
-                            translation_item += '<br>(<i>' +openzwave_node_translation['configuration'][index].list[expected_data] +'</i>)';
+                            translation_item += '<br>(<i>' + openzwave_node_translation['configuration'][index].list[expected_data] + '</i>)';
                         }
                         row_parameter.find("td[key=parameter-value]").html(translation_item);
                     } else {
                         if (expected_data != null) {
-                            data_item += '<br>(<i>' +expected_data +'</i>)';
+                            data_item += '<br>(<i>' + expected_data + '</i>)';
                         }
                         row_parameter.find("td[key=parameter-value]").html(data_item);
                     }
                     if (nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only == false) {
                         data_item = nodes[z].instances[instance].commandClasses[commandclass].data[index].val;
-                        if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only){
+                        if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only) {
                             data_item = '';
                         }
                         row_parameter.find("td[key=parameter-edit]").html('<button type="button" class="btn btn-xs btn-primary editParam" data-paramid="' + index + '" data-paramtype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-paramname="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-paramvalue="' + data_item + '"><i class="fa fa-wrench"></i></button>');
@@ -1623,7 +1619,7 @@ var app_nodes = {
         for (z in node_groups) {
             if (!isNaN(z)) {
                 tr_groups = "";
-                for(var i in node_groups[z].associations){
+                for (var i in node_groups[z].associations) {
                     var node_id = node_groups[z].associations[i][0];
                     var node_instance = node_groups[z].associations[i][1];
                     var id = z + '-' + node_id + '-' + node_instance;
@@ -1633,9 +1629,9 @@ var app_nodes = {
                         } else {
                             var node_name = nodes[node_id].description.product_name;
                         }
-                        if (node_instance > 1){
-                            var instanceDisplay = node_instance-1;
-                            node_name += " (Instance: " + instanceDisplay +")";
+                        if (node_instance > 1) {
+                            var instanceDisplay = node_instance - 1;
+                            node_name += " (Instance: " + instanceDisplay + ")";
                         }
                     } else {
                         var node_name = "UNDEFINED";
@@ -1645,7 +1641,7 @@ var app_nodes = {
                     tr_groups += "</td></tr>";
                 }
                 var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right">';
-                if (count(values) < node_groups[z].maximumAssociations ) {
+                if (count(values) < node_groups[z].maximumAssociations) {
                     newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="' + z + '">';
                 } else {
                     newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="' + z + '">';
@@ -1682,7 +1678,6 @@ var app_nodes = {
                 $("#groups").append(newPanel);
             }
         }
-
 
 
     },

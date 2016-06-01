@@ -1,108 +1,107 @@
-
 var app_health = {
     // note variable nodes is global!
 
     updater: false,
 
-    timestampConverter :function(time,_hourOnly){
-        if(time==1)
+    timestampConverter: function (time, _hourOnly) {
+        if (time == 1)
             return "N/A";
         var ret;
-        var date = new Date(time*1000);
+        var date = new Date(time * 1000);
         var hours = date.getHours();
-        if(hours<10){
-            hours="0"+hours;
+        if (hours < 10) {
+            hours = "0" + hours;
         }
         var minutes = date.getMinutes();
-        if(minutes<10){
-            minutes="0"+minutes;
+        if (minutes < 10) {
+            minutes = "0" + minutes;
         }
         var num = date.getDate();
-        if(num<10){
-            num="0"+num;
+        if (num < 10) {
+            num = "0" + num;
         }
-        var month = date.getMonth()+1;
-        if(month<10){
-            month="0"+month;
+        var month = date.getMonth() + 1;
+        if (month < 10) {
+            month = "0" + month;
         }
         var year = date.getFullYear();
-        var formattedTime = hours + ':' + minutes ;
+        var formattedTime = hours + ':' + minutes;
         var formattedDate = num + "/" + month + "/" + year;
-        if(_hourOnly){
+        if (_hourOnly) {
             return formattedTime;
         }
-        return formattedDate+' '+formattedTime;
+        return formattedDate + ' ' + formattedTime;
     },
-    init: function(){
+    init: function () {
         app_health.load_data(true);
-        app_health.updater = setInterval(function(){
-            if($('#table_healthNetwork').is(':visible')){
+        app_health.updater = setInterval(function () {
+            if ($('#table_healthNetwork').is(':visible')) {
                 app_health.load_data(false);
-            }else{
+            } else {
                 app_health.hide();
             }
         }, 2000);
-        $('#bt_pingAllDevice').off().on('click',function(){
+        $('#bt_pingAllDevice').off().on('click', function () {
             $.ajax({
-                url: path+"ZWaveAPI/Run/controller.TestNetwork()",
+                url: path + "ZWaveAPI/Run/controller.TestNetwork()",
                 dataType: 'json',
                 async: true,
                 error: function (request, status, error) {
-                    handleAjaxError(request, status, error,$('#div_networkHealthAlert'));
+                    handleAjaxError(request, status, error, $('#div_networkHealthAlert'));
                 },
-                success: function(data) {
+                success: function (data) {
                     app_health.sendOk();
                     app_health.load_data(false);
                 }
             });
         });
 
-        $('#table_healthNetwork').off().delegate('.bt_pingDevice','click',function(){
+        $('#table_healthNetwork').off().delegate('.bt_pingDevice', 'click', function () {
             $.ajax({
-                url: path+"ZWaveAPI/Run/devices["+$(this).attr('data-id')+"].TestNode()",
+                url: path + "ZWaveAPI/Run/devices[" + $(this).attr('data-id') + "].TestNode()",
                 dataType: 'json',
                 async: true,
                 error: function (request, status, error) {
-                    handleAjaxError(request, status, error,$('#div_networkHealthAlert'));
+                    handleAjaxError(request, status, error, $('#div_networkHealthAlert'));
                 },
-                success: function(data) {
+                success: function (data) {
                     app_health.sendOk();
                     app_health.load_data(false);
                 }
             });
         });
     },
-    hide: function(){
+    hide: function () {
         clearInterval(app_health.updater);
     },
-    load_data: function(_global){
+    load_data: function (_global) {
         $.ajax({
-            url: path+"ZWaveAPI/Run/network.GetHealth()",
+            url: path + "ZWaveAPI/Run/network.GetHealth()",
             dataType: 'json',
             async: true,
-            global : _global,
+            global: _global,
             error: function (request, status, error) {
-                handleAjaxError(request, status, error,$('#div_networkHealthAlert'));
+                handleAjaxError(request, status, error, $('#div_networkHealthAlert'));
             },
-            success: function(data) {
+            success: function (data) {
                 infos = data;
                 app_health.show_infos(data.devices);
             }
         });
     },
-    show_infos: function (nodes){
+    show_infos: function (nodes) {
         var tbody = '';
         var now = Math.floor(new Date().getTime() / 1000);
-        for(var i in nodes){
-            if(nodes[i].data == undefined){
+        for (var i in nodes) {
+            if (nodes[i].data == undefined) {
                 continue;
             }
-            if(typeof eqLogic_human_name !== 'undefined' && isset(eqLogic_human_name[$('#sel_zwaveHealthServerId').value()+':'+i])){
-                var name = '<span class="nodeConfiguration cursor" data-node-id="'+i+'" data-server-id="'+$("#sel_zwaveHealthServerId").value()+'">'+eqLogic_human_name[$('#sel_zwaveHealthServerId').value()+':'+i]+'</span>';
-            }else if(nodes[i].data.description.name != ''){
-                var name = '<span class="nodeConfiguration cursor" data-node-id="'+i+'" data-server-id="'+$("#sel_zwaveHealthServerId").value()+'"><span  class="label label-primary" style="font-size : 1em;">'+nodes[i].data.description.location+'</span> '+nodes[i].data.description.name+'</span>';
-            }else{
-                var name = '<span class="nodeConfiguration cursor" data-node-id="'+i+'" data-server-id="'+$("#sel_zwaveHealthServerId").value()+'">'+ nodes[i].data.description.product_name+'</span>';
+            if (typeof eqLogic_human_name !== 'undefined' && isset(eqLogic_human_name[$('#sel_zwaveHealthServerId').value() + ':' + i])) {
+                var name = '<span class="nodeConfiguration cursor" data-node-id="' + i + '" data-server-id="' + $("#sel_zwaveHealthServerId").value() + '">' + eqLogic_human_name[$('#sel_zwaveHealthServerId').value() + ':' + i] + '</span>';
+            } else if (nodes[i].data.description.name != '') {
+                var name = '<span class="nodeConfiguration cursor" data-node-id="' + i + '" data-server-id="' + $("#sel_zwaveHealthServerId").value() + '"><span  class="label label-primary" style="font-size : 1em;">' + nodes[i].data.description.location + '</span> ' + nodes[i].data.description.name + '</span>';
+            } else {
+                var name = '<span class="nodeConfiguration cursor" data-node-id="' + i + '" data-server-id="' + $("#sel_zwaveHealthServerId").value() + '">' + nodes[i].data.description.product_name + '</span>';
             }
             tbody += '<tr>';
             // device name
@@ -115,67 +114,67 @@ var app_health = {
             tbody += '</td>';
             // Notification
             tbody += '<td>';
-            if(nodes[i].last_notification != undefined){
-                if(nodes[i].last_notification.description == 'Timeout'){
-                    tbody += '<span class="label label-warning" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
-                }else if(nodes[i].last_notification.description == 'Dead'){
-                    tbody += '<span class="label label-danger" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
-                }else if(nodes[i].last_notification.description != undefined){
-                    tbody += '<span class="label label-primary" style="font-size : 1em;" title="'+nodes[i].last_notification.help+'">'+nodes[i].last_notification.description+'</span>';
-                }else{
+            if (nodes[i].last_notification != undefined) {
+                if (nodes[i].last_notification.description == 'Timeout') {
+                    tbody += '<span class="label label-warning" style="font-size : 1em;" title="' + nodes[i].last_notification.help + '">' + nodes[i].last_notification.description + '</span>';
+                } else if (nodes[i].last_notification.description == 'Dead') {
+                    tbody += '<span class="label label-danger" style="font-size : 1em;" title="' + nodes[i].last_notification.help + '">' + nodes[i].last_notification.description + '</span>';
+                } else if (nodes[i].last_notification.description != undefined) {
+                    tbody += '<span class="label label-primary" style="font-size : 1em;" title="' + nodes[i].last_notification.help + '">' + nodes[i].last_notification.description + '</span>';
+                } else {
                     tbody += '<span class="label label-primary" style="font-size : 1em;" title="{{Non disponible}}">...</span>';
                 }
             }
             tbody += '</td>';
             // have valid groups
             tbody += '<td>';
-            if(nodes[i].data.is_groups_ok != undefined && nodes[i].data.is_groups_ok.value){
+            if (nodes[i].data.is_groups_ok != undefined && nodes[i].data.is_groups_ok.value) {
                 tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-            }else{
-                if(nodes[i].data.is_groups_ok.enabled){
+            } else {
+                if (nodes[i].data.is_groups_ok.enabled) {
                     tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
                 }
             }
             tbody += '</td>';
             // have valid zwave ids
             tbody += '<td>';
-            if(nodes[i].data.is_manufacturer_specific_ok != undefined && nodes[i].data.is_manufacturer_specific_ok.value){
+            if (nodes[i].data.is_manufacturer_specific_ok != undefined && nodes[i].data.is_manufacturer_specific_ok.value) {
                 tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-            }else{
+            } else {
                 tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
             }
             tbody += '</td>';
             // neighbours test
             tbody += '<td>';
-            if(nodes[i].data.is_neighbours_ok != undefined && nodes[i].data.is_neighbours_ok.value){
+            if (nodes[i].data.is_neighbours_ok != undefined && nodes[i].data.is_neighbours_ok.value) {
                 tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-            }else{
-                if(nodes[i].data.is_neighbours_ok.enabled){
+            } else {
+                if (nodes[i].data.is_neighbours_ok.enabled) {
                     tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
                 }
             }
             tbody += '</td>';
             // pending changes
             tbody += '<td>';
-            if(nodes[i].data.pending_changes != undefined && nodes[i].data.pending_changes.value >0){
-                tbody += '<span class="label label-warning" style="font-size : 1em;" title="' +nodes[i].data.pending_changes.value + ' {{configuration(s) en attente d\'être appliquée(s)}}" >'+nodes[i].data.pending_changes.value+'</span>';
-            }else if(nodes[i].data.pending_changes != undefined && nodes[i].data.pending_changes.value == 0){
+            if (nodes[i].data.pending_changes != undefined && nodes[i].data.pending_changes.value > 0) {
+                tbody += '<span class="label label-warning" style="font-size : 1em;" title="' + nodes[i].data.pending_changes.value + ' {{configuration(s) en attente d\'être appliquée(s)}}" >' + nodes[i].data.pending_changes.value + '</span>';
+            } else if (nodes[i].data.pending_changes != undefined && nodes[i].data.pending_changes.value == 0) {
                 tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
             }
             tbody += '</td>';
             // status
             tbody += '<td>';
-            if(nodes[i].data.isFailed != undefined && !nodes[i].data.isFailed.value){
-                if(nodes[i].data.state != undefined){
-                    if(nodes[i].data.state.value == 'Complete'){
-                        tbody += '<span class="label label-success" style="font-size : 1em;">'+nodes[i].data.state.value+'</span>';
-                    }else{
-                        tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.state.value+'</span>';
+            if (nodes[i].data.isFailed != undefined && !nodes[i].data.isFailed.value) {
+                if (nodes[i].data.state != undefined) {
+                    if (nodes[i].data.state.value == 'Complete') {
+                        tbody += '<span class="label label-success" style="font-size : 1em;">' + nodes[i].data.state.value + '</span>';
+                    } else {
+                        tbody += '<span class="label label-warning" style="font-size : 1em;">' + nodes[i].data.state.value + '</span>';
                     }
-                }else{
+                } else {
                     tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
                 }
-            }else{
+            } else {
                 tbody += '<span class="label label-danger" style="font-size : 1em;">{{DEATH}}</span>';
             }
             tbody += '</td>';
@@ -184,108 +183,110 @@ var app_health = {
             if (nodes[i].data.isListening.value) {
                 tbody += '<span class="label label-primary" style="font-size : 1em;" title="{{Secteur}}"><i class="fa fa-plug"></i></span>';
             }
-            else{
-                if(nodes[i].data.battery_level != undefined && nodes[i].data.battery_level.value != null) {
-                    var updateTime ='';
-                    if (nodes[i].data.battery_level.updateTime != undefined){
-                        updateTime = app_health.timestampConverter(nodes[i].data.battery_level.updateTime,false);
+            else {
+                if (nodes[i].data.battery_level != undefined && nodes[i].data.battery_level.value != null) {
+                    var updateTime = '';
+                    if (nodes[i].data.battery_level.updateTime != undefined) {
+                        updateTime = app_health.timestampConverter(nodes[i].data.battery_level.updateTime, false);
                     }
 
 
                     if (nodes[i].data.battery_level.value > 75) {
-                        tbody += '<span class="label label-success" style="font-size : 1em;" title="'+updateTime+'">' + nodes[i].data.battery_level.value + '%</span>';
+                        tbody += '<span class="label label-success" style="font-size : 1em;" title="' + updateTime + '">' + nodes[i].data.battery_level.value + '%</span>';
                     } else if (nodes[i].data.battery_level.value > 50) {
-                        tbody += '<span class="label label-warning" style="font-size : 1em;" title="'+updateTime+'">' + nodes[i].data.battery_level.value + '%</span>';
+                        tbody += '<span class="label label-warning" style="font-size : 1em;" title="' + updateTime + '">' + nodes[i].data.battery_level.value + '%</span>';
                     } else {
-                        tbody += '<span class="label label-danger" style="font-size : 1em;" title="'+updateTime+'">' + nodes[i].data.battery_level.value + '%</span>';
+                        tbody += '<span class="label label-danger" style="font-size : 1em;" title="' + updateTime + '">' + nodes[i].data.battery_level.value + '%</span>';
                     }
-                }else if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null){
+                } else if (nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null) {
                     tbody += '<span class="label label-warning" style="font-size : 1em;">--</span>';
                 }
             }
             tbody += '</td>';
             // wakeup interval
             tbody += '<td>';
-            if(!nodes[i].data.isListening.value && nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null){
-                if(nodes[i].data.wakeup_interval.value ==0 || nodes[i].data.wakeup_interval.value > 86400){
+            if (!nodes[i].data.isListening.value && nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null) {
+                if (nodes[i].data.wakeup_interval.value == 0 || nodes[i].data.wakeup_interval.value > 86400) {
                     tbody += '<span class="label label-warning" style="font-size : 1em;">'
                 }
-                else{
+                else {
                     tbody += '<span class="label label-info" style="font-size : 1em;">'
                 }
-                tbody += nodes[i].data.wakeup_interval.value+'</span>';
+                tbody += nodes[i].data.wakeup_interval.value + '</span>';
             }
             tbody += '</td>';
             // statistics total
             tbody += '<td>';
-            if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.total >0){
-                tbody += '<span class="label label-primary" style="font-size : 1em;">'+nodes[i].data.statistics.total+'</span>';
-            }else if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.total != null){
-                tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.statistics.total+'</span>';
+            if (nodes[i].data.statistics != undefined && nodes[i].data.statistics.total > 0) {
+                tbody += '<span class="label label-primary" style="font-size : 1em;">' + nodes[i].data.statistics.total + '</span>';
+            } else if (nodes[i].data.statistics != undefined && nodes[i].data.statistics.total != null) {
+                tbody += '<span class="label label-warning" style="font-size : 1em;">' + nodes[i].data.statistics.total + '</span>';
             }
             tbody += '</td>';
             // statistics % ok
             tbody += '<td>';
-            if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.total >0 && nodes[i].data.statistics.delivered != null){
-                if(nodes[i].data.statistics.delivered > 90){
-                    tbody += '<span class="label label-success" style="font-size : 1em;">'+nodes[i].data.statistics.delivered+'%</span>';
-                }else if(nodes[i].data.statistics.delivered > 75){
-                    tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.statistics.delivered+'%</span>';
-                }else{
-                    tbody += '<span class="label label-danger" style="font-size : 1em;">'+nodes[i].data.statistics.delivered+'%</span>';
+            if (nodes[i].data.statistics != undefined && nodes[i].data.statistics.total > 0 && nodes[i].data.statistics.delivered != null) {
+                if (nodes[i].data.statistics.delivered > 90) {
+                    tbody += '<span class="label label-success" style="font-size : 1em;">' + nodes[i].data.statistics.delivered + '%</span>';
+                } else if (nodes[i].data.statistics.delivered > 75) {
+                    tbody += '<span class="label label-warning" style="font-size : 1em;">' + nodes[i].data.statistics.delivered + '%</span>';
+                } else {
+                    tbody += '<span class="label label-danger" style="font-size : 1em;">' + nodes[i].data.statistics.delivered + '%</span>';
                 }
             }
             tbody += '</td>';
             // statistics delivery time
             tbody += '<td>';
-            if(nodes[i].data.statistics != undefined && nodes[i].data.statistics.total >0 && nodes[i].data.statistics.deliveryTime != null){
-                if(nodes[i].data.statistics.deliveryTime > 500){
-                    tbody += '<span class="label label-danger" style="font-size : 1em;">'+nodes[i].data.statistics.deliveryTime+'ms</span>';
-                }else if(nodes[i].data.statistics.deliveryTime > 250){
-                    tbody += '<span class="label label-warning" style="font-size : 1em;">'+nodes[i].data.statistics.deliveryTime+'ms</span>';
-                }else{
-                    tbody += '<span class="label label-success" style="font-size : 1em;">'+nodes[i].data.statistics.deliveryTime+'ms</span>';
+            if (nodes[i].data.statistics != undefined && nodes[i].data.statistics.total > 0 && nodes[i].data.statistics.deliveryTime != null) {
+                if (nodes[i].data.statistics.deliveryTime > 500) {
+                    tbody += '<span class="label label-danger" style="font-size : 1em;">' + nodes[i].data.statistics.deliveryTime + 'ms</span>';
+                } else if (nodes[i].data.statistics.deliveryTime > 250) {
+                    tbody += '<span class="label label-warning" style="font-size : 1em;">' + nodes[i].data.statistics.deliveryTime + 'ms</span>';
+                } else {
+                    tbody += '<span class="label label-success" style="font-size : 1em;">' + nodes[i].data.statistics.deliveryTime + 'ms</span>';
                 }
             }
             tbody += '</td>';
             // communication time
             tbody += '<td>';
-            if (nodes[i].data.isListening.value){
-                tbody += app_health.timestampConverter(nodes[i].data.lastReceived.updateTime,false);
+            if (nodes[i].data.isListening.value) {
+                tbody += app_health.timestampConverter(nodes[i].data.lastReceived.updateTime, false);
             }
-            else if(nodes[i].last_notification.description != undefined && nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null){
-                tbody += app_health.timestampConverter(nodes[i].data.lastReceived.updateTime,false);
-                if(nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.next_wakeup != null){
+            else if (nodes[i].last_notification.description != undefined && nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null) {
+                tbody += app_health.timestampConverter(nodes[i].data.lastReceived.updateTime, false);
+                if (nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.next_wakeup != null) {
                     if (now > nodes[i].data.wakeup_interval.next_wakeup) {
-                        tbody += ' <i class="fa fa-arrow-right text-danger"></i> <span class="label label-warning" style="font-size : 1em;" title="{{Le noeud ne s\'est pas réveillé comme prévue}}"> ' + app_health.timestampConverter(nodes[i].data.wakeup_interval.next_wakeup,true)+' </span>';
+                        tbody += ' <i class="fa fa-arrow-right text-danger"></i> <span class="label label-warning" style="font-size : 1em;" title="{{Le noeud ne s\'est pas réveillé comme prévue}}"> ' + app_health.timestampConverter(nodes[i].data.wakeup_interval.next_wakeup, true) + ' </span>';
                     }
-                    else{
-                        tbody += ' <i class="fa fa-arrow-right"></i> '+ app_health.timestampConverter(nodes[i].data.wakeup_interval.next_wakeup,true)+' <i class="fa fa-clock-o"></i>';
+                    else {
+                        tbody += ' <i class="fa fa-arrow-right"></i> ' + app_health.timestampConverter(nodes[i].data.wakeup_interval.next_wakeup, true) + ' <i class="fa fa-clock-o"></i>';
                     }
                 }
             }
-            else if (nodes[i].data.isListening.value == false && nodes[i].data.last_notification == undefined && nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null && nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null){
-                if(now > nodes[i].data.lastReceived.updateTime + nodes[i].data.wakeup_interval.value){
+            else if (nodes[i].data.isListening.value == false && nodes[i].data.last_notification == undefined && nodes[i].data.wakeup_interval != undefined && nodes[i].data.wakeup_interval.value != null && nodes[i].data.lastReceived != undefined && nodes[i].data.lastReceived.updateTime != null) {
+                if (now > nodes[i].data.lastReceived.updateTime + nodes[i].data.wakeup_interval.value) {
                     tbody += '<span class="label label" style="font-size : 1.5em;" title="{{Le noeud ne s\'est pas encore réveillé une fois depuis le lancement du démon}}"><i class="fa fa-exclamation-circle text-danger"></i></span>';
                 }
             }
             tbody += '</td>';
             // ping cmd
             tbody += '<td>';
-            tbody += '<a class="btn btn-info btn-xs bt_pingDevice" data-id="'+i+'"><i class="fa fa-eye"></i> {{Ping}}</a>';
+            tbody += '<a class="btn btn-info btn-xs bt_pingDevice" data-id="' + i + '"><i class="fa fa-eye"></i> {{Ping}}</a>';
             tbody += '</td>';
             tbody += '</tr>';
         }
         $('#table_healthNetwork tbody').empty().append(tbody);
     },
-    update: function (){
+    update: function () {
 
     },
-    sendOk : function(){
+    sendOk: function () {
         $('#span_state').show();
-        setTimeout(function(){ $('#span_state').hide(); }, 3000);
+        setTimeout(function () {
+            $('#span_state').hide();
+        }, 3000);
     },
-    show: function (){
+    show: function () {
 
     },
 

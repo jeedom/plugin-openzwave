@@ -17,136 +17,136 @@
  */
 
 try {
-	require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
+    require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+    include_file('core', 'authentification', 'php');
 
-	if (!isConnect('admin')) {
-		throw new Exception('401 Unauthorized');
-	}
+    if (!isConnect('admin')) {
+        throw new Exception('401 Unauthorized');
+    }
 
-	ajax::init();
+    ajax::init();
 
-	if (init('action') == 'syncconfOpenzwave') {
-		openzwave::syncconfOpenzwave();
-		ajax::success();
-	}
+    if (init('action') == 'syncconfOpenzwave') {
+        openzwave::syncconfOpenzwave();
+        ajax::success();
+    }
 
-	if (init('action') == 'syncEqLogicWithOpenZwave') {
-		foreach (openzwave::listServerZwave() as $serverID => $server) {
-			if (isset($server['name'])) {
-				openzwave::syncEqLogicWithOpenZwave($serverID);
-			}
-		}
-		ajax::success();
-	}
+    if (init('action') == 'syncEqLogicWithOpenZwave') {
+        foreach (openzwave::listServerZwave() as $serverID => $server) {
+            if (isset($server['name'])) {
+                openzwave::syncEqLogicWithOpenZwave($serverID);
+            }
+        }
+        ajax::success();
+    }
 
-	if (init('action') == 'sendNoOperation') {
-		$eqLogic = openzwave::byId(init('id'));
-		if (!is_object($eqLogic)) {
-			throw new Exception(__('Zwave eqLogic non trouvé : ', __FILE__) . init('id'));
-		}
-		ajax::success($eqLogic->sendNoOperation());
-	}
+    if (init('action') == 'sendNoOperation') {
+        $eqLogic = openzwave::byId(init('id'));
+        if (!is_object($eqLogic)) {
+            throw new Exception(__('Zwave eqLogic non trouvé : ', __FILE__) . init('id'));
+        }
+        ajax::success($eqLogic->sendNoOperation());
+    }
 
-	if (init('action') == 'changeIncludeState') {
-		openzwave::changeIncludeState(init('mode'), init('state'), init('serverID'));
-		ajax::success();
-	}
+    if (init('action') == 'changeIncludeState') {
+        openzwave::changeIncludeState(init('mode'), init('state'), init('serverID'));
+        ajax::success();
+    }
 
-	if (init('action') == 'restartDeamon') {
-		$cron = cron::byClassAndFunction('zwave', 'pull');
-		if (is_object($cron)) {
-			$cron->stop();
-		}
-		ajax::success();
-	}
+    if (init('action') == 'restartDeamon') {
+        $cron = cron::byClassAndFunction('zwave', 'pull');
+        if (is_object($cron)) {
+            $cron->stop();
+        }
+        ajax::success();
+    }
 
-	if (init('action') == 'getControllerState') {
-		ajax::success(openzwave::callOpenzwave('/ZWaveAPI/Run/network.GetControllerStatus()', init('serverID')));
-	}
+    if (init('action') == 'getControllerState') {
+        ajax::success(openzwave::callOpenzwave('/ZWaveAPI/Run/network.GetControllerStatus()', init('serverID')));
+    }
 
-	if (init('action') == 'callRazberry') {
-		ajax::success(openzwave::callOpenzwave(init('call'), init('serverId', 1)));
-	}
+    if (init('action') == 'callRazberry') {
+        ajax::success(openzwave::callOpenzwave(init('call'), init('serverId', 1)));
+    }
 
-	if (init('action') == 'listServerZwave') {
-		ajax::success(openzwave::listServerZwave());
-	}
+    if (init('action') == 'listServerZwave') {
+        ajax::success(openzwave::listServerZwave());
+    }
 
-	if (init('action') == 'autoDetectModule') {
-		$eqLogic = openzwave::byId(init('id'));
-		if (!is_object($eqLogic)) {
-			throw new Exception(__('Zwave eqLogic non trouvé : ', __FILE__) . init('id'));
-		}
-		foreach ($eqLogic->getCmd() as $cmd) {
-			$cmd->remove();
-		}
-		$eqLogic->createCommand(true);
-		ajax::success();
-	}
+    if (init('action') == 'autoDetectModule') {
+        $eqLogic = openzwave::byId(init('id'));
+        if (!is_object($eqLogic)) {
+            throw new Exception(__('Zwave eqLogic non trouvé : ', __FILE__) . init('id'));
+        }
+        foreach ($eqLogic->getCmd() as $cmd) {
+            $cmd->remove();
+        }
+        $eqLogic->createCommand(true);
+        ajax::success();
+    }
 
-	if (init('action') == 'migrateZwave') {
-		$cmd = 'sudo php ' . dirname(__FILE__) . '/../../script/migrate.php';
-		$cmd .= ' >> ' . log::getPathToLog('openzwave_migrate') . ' 2>&1 &';
-		exec($cmd);
-		ajax::success();
-	}
+    if (init('action') == 'migrateZwave') {
+        $cmd = 'sudo php ' . dirname(__FILE__) . '/../../script/migrate.php';
+        $cmd .= ' >> ' . log::getPathToLog('openzwave_migrate') . ' 2>&1 &';
+        exec($cmd);
+        ajax::success();
+    }
 
-	if (init('action') == 'getAllPossibleConf') {
-		$eqLogic = openzwave::byId(init('id'));
-		if (!is_object($eqLogic)) {
-			ajax::success();
-		}
-		ajax::success($eqLogic->getConfFilePath(true));
-	}
+    if (init('action') == 'getAllPossibleConf') {
+        $eqLogic = openzwave::byId(init('id'));
+        if (!is_object($eqLogic)) {
+            ajax::success();
+        }
+        ajax::success($eqLogic->getConfFilePath(true));
+    }
 
-	if (init('action') == 'applyRecommended') {
-		$eqLogic = openzwave::byId(init('id'));
-		if (!is_object($eqLogic)) {
-			ajax::success();
-		}
-		ajax::success($eqLogic->applyRecommended());
-	}
+    if (init('action') == 'applyRecommended') {
+        $eqLogic = openzwave::byId(init('id'));
+        if (!is_object($eqLogic)) {
+            ajax::success();
+        }
+        ajax::success($eqLogic->applyRecommended());
+    }
 
-	if (init('action') == 'printPending') {
-		$eqLogic = openzwave::byId(init('id'));
-		if (!is_object($eqLogic)) {
-			ajax::success();
-		}
-		ajax::success($eqLogic->printPending());
-	}
+    if (init('action') == 'printPending') {
+        $eqLogic = openzwave::byId(init('id'));
+        if (!is_object($eqLogic)) {
+            ajax::success();
+        }
+        ajax::success($eqLogic->printPending());
+    }
 
-	if (init('action') == 'getConfiguration') {
-		if (init('translation') == 1 && config::byKey('language', 'core', 'fr_FR') != 'fr_FR') {
-			ajax::success();
-		}
-		$id = init('manufacturer_id') . '.' . init('product_type') . '.' . init('product_id');
-		$files = ls(dirname(__FILE__) . '/../config/devices', $id . '_*.json', false, array('files', 'quiet'));
-		foreach (ls(dirname(__FILE__) . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
-			foreach (ls(dirname(__FILE__) . '/../config/devices/' . $folder, $id . '_*.json', false, array('files', 'quiet')) as $file) {
-				$files[] = $folder . $file;
-			}
-		}
-		if (count($files) > 0) {
-			if (init('json') != '') {
-				$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . init('json'));
-				if (!is_json($content)) {
-					$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $files[0]);
-				}
-			} else {
-				$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $files[0]);
-			}
-			if (!is_json($content)) {
-				ajax::success();
-			}
-			ajax::success(json_decode($content, true));
-		}
-		ajax::success();
-	}
+    if (init('action') == 'getConfiguration') {
+        if (init('translation') == 1 && config::byKey('language', 'core', 'fr_FR') != 'fr_FR') {
+            ajax::success();
+        }
+        $id = init('manufacturer_id') . '.' . init('product_type') . '.' . init('product_id');
+        $files = ls(dirname(__FILE__) . '/../config/devices', $id . '_*.json', false, array('files', 'quiet'));
+        foreach (ls(dirname(__FILE__) . '/../config/devices', '*', false, array('folders', 'quiet')) as $folder) {
+            foreach (ls(dirname(__FILE__) . '/../config/devices/' . $folder, $id . '_*.json', false, array('files', 'quiet')) as $file) {
+                $files[] = $folder . $file;
+            }
+        }
+        if (count($files) > 0) {
+            if (init('json') != '') {
+                $content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . init('json'));
+                if (!is_json($content)) {
+                    $content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $files[0]);
+                }
+            } else {
+                $content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $files[0]);
+            }
+            if (!is_json($content)) {
+                ajax::success();
+            }
+            ajax::success(json_decode($content, true));
+        }
+        ajax::success();
+    }
 
-	throw new Exception('Aucune methode correspondante');
-	/*     * *********Catch exeption*************** */
+    throw new Exception('Aucune methode correspondante');
+    /*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+    ajax::error(displayExeption($e), $e->getCode());
 }
 ?>

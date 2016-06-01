@@ -16,14 +16,14 @@
  */
 
 if (!isConnect('admin')) {
-	throw new Exception('{{401 - Accès non autorisé}}');
+    throw new Exception('{{401 - Accès non autorisé}}');
 }
 if (init('id') == '') {
-	throw new Exception('{{EqLogic ID ne peut être vide}}');
+    throw new Exception('{{EqLogic ID ne peut être vide}}');
 }
 $eqLogic = eqLogic::byId(init('id'));
 if (!is_object($eqLogic)) {
-	throw new Exception('{{EqLogic non trouvé}}');
+    throw new Exception('{{EqLogic non trouvé}}');
 }
 sendVarToJS('configureDeviceId', init('id'));
 sendVarToJS('configureDeviceLogicalId', $eqLogic->getLogicalId());

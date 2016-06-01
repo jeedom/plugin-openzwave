@@ -15,34 +15,34 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 if (!isConnect('admin')) {
-	throw new Exception('{{401 - Accès non autorisé}}');
+    throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
 <div id='div_syncconfOpenzwaveAlert' style="display: none;"></div>
 <a class="btn btn-warning pull-right" data-state="1" id="bt_openzwaveLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
-<input class="form-control pull-right" id="in_openzwaveLogSearch" style="width : 300px;" placeholder="{{Rechercher}}" />
+<input class="form-control pull-right" id="in_openzwaveLogSearch" style="width : 300px;" placeholder="{{Rechercher}}"/>
 <br/><br/><br/>
 <pre id='pre_openzwavesyncconf' style='overflow: auto; height: 90%;with:90%;'></pre>
 
 <script>
-	$.ajax({
-		type: 'POST',
-		url: 'plugins/openzwave/core/ajax/openzwave.ajax.php',
-		data: {
-			action: 'syncconfOpenzwave',
-		},
-		dataType: 'json',
-		global: false,
-		error: function (request, status, error) {
-			handleAjaxError(request, status, error, $('#div_syncconfOpenzwaveAlert'));
-		},
-		success: function () {
-			jeedom.log.autoupdate({
-				log : 'openzwave_syncconf',
-				display : $('#pre_openzwavesyncconf'),
-				search : $('#in_openzwaveLogSearch'),
-				control : $('#bt_openzwaveLogStopStart'),
-			});
-		}
-	});
+    $.ajax({
+        type: 'POST',
+        url: 'plugins/openzwave/core/ajax/openzwave.ajax.php',
+        data: {
+            action: 'syncconfOpenzwave',
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error, $('#div_syncconfOpenzwaveAlert'));
+        },
+        success: function () {
+            jeedom.log.autoupdate({
+                log: 'openzwave_syncconf',
+                display: $('#pre_openzwavesyncconf'),
+                search: $('#in_openzwaveLogSearch'),
+                control: $('#bt_openzwaveLogStopStart'),
+            });
+        }
+    });
 </script>

@@ -16,36 +16,38 @@
  */
 
 if (!isConnect('admin')) {
-	throw new Exception('{{401 - Accès non autorisé}}');
+    throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
 <div id='div_openzwaveMigrateDebug' style="display: none;"></div>
-<a class="btn btn-warning pull-right" data-state="1" id="bt_openzwaveMigrateLogStopStart"><i class="fa fa-pause"></i> {{Pause}}</a>
-<input class="form-control pull-right" id="in_openzwaveMigrateLogSearch" style="width : 300px;" placeholder="{{Rechercher}}" />
+<a class="btn btn-warning pull-right" data-state="1" id="bt_openzwaveMigrateLogStopStart"><i class="fa fa-pause"></i>
+    {{Pause}}</a>
+<input class="form-control pull-right" id="in_openzwaveMigrateLogSearch" style="width : 300px;"
+       placeholder="{{Rechercher}}"/>
 <br/><br/>
 
 <pre id='pre_zwavemigrate' style='overflow: auto; height: 90%;with:90%;'></pre>
 
 
 <script>
-	$.ajax({
-		type: 'POST',
-		url: 'plugins/openzwave/core/ajax/openzwave.ajax.php',
-		data: {
-			action: 'migrateZwave',
-		},
-		dataType: 'json',
-		global: false,
-		error: function (request, status, error) {
-			handleAjaxError(request, status, error, $('#div_updateZwayAlert'));
-		},
-		success: function () {
-			  jeedom.log.autoupdate({
-                log : 'openzwave_migrate',
-                display : $('#pre_zwavemigrate'),
-                search : $('#in_openzwaveMigrateLogSearch'),
-                control : $('#bt_openzwaveMigrateLogStopStart'),
+    $.ajax({
+        type: 'POST',
+        url: 'plugins/openzwave/core/ajax/openzwave.ajax.php',
+        data: {
+            action: 'migrateZwave',
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error, $('#div_updateZwayAlert'));
+        },
+        success: function () {
+            jeedom.log.autoupdate({
+                log: 'openzwave_migrate',
+                display: $('#pre_zwavemigrate'),
+                search: $('#in_openzwaveMigrateLogSearch'),
+                control: $('#bt_openzwaveMigrateLogStopStart'),
             });
-		}
-	});
+        }
+    });
 </script>

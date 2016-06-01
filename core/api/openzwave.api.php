@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 /* This file is part of Jeedom.
  *
@@ -20,12 +20,12 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 global $jsonrpc;
 if (!is_object($jsonrpc)) {
-	throw new Exception(__('JSONRPC object not defined', __FILE__), -32699);
+    throw new Exception(__('JSONRPC object not defined', __FILE__), -32699);
 }
 $params = $jsonrpc->getParams();
 
 if ($jsonrpc->getMethod() == 'syncconfOpenzwave') {
-	$jsonrpc->makeSuccess(openzwave::syncconfOpenzwave());
+    $jsonrpc->makeSuccess(openzwave::syncconfOpenzwave());
 }
 
 throw new Exception(__('Aucune methode correspondante pour le plugin openzwave : ' . $jsonrpc->getMethod(), __FILE__));

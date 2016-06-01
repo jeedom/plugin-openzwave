@@ -16,26 +16,28 @@
  */
 
 if (!isConnect('admin')) {
-	throw new Exception('401 Unauthorized');
+    throw new Exception('401 Unauthorized');
 }
 ?>
-<span class="pull-left alert" id="span_state" style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;margin-bottom:0px;"><span style="position:relative; top : -7px;">{{Demande envoyée}}</span></span>
+<span class="pull-left alert" id="span_state"
+      style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;margin-bottom:0px;"><span
+        style="position:relative; top : -7px;">{{Demande envoyée}}</span></span>
 <span class='pull-right'>
 	<select class="form-control expertModeVisible" style="width : 200px;" id="sel_zwaveBackupServerId">
 		<?php
-foreach (openzwave::listServerZwave() as $id => $server) {
-	if (isset($server['name'])) {
-		echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
-	}
-}
-?>
+        foreach (openzwave::listServerZwave() as $id => $server) {
+            if (isset($server['name'])) {
+                echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
+            }
+        }
+        ?>
 	</select>
 </span>
 
 <br/><br/>
 
 <div id='div_backupAlert' style="display: none;"></div>
- <form class="form-horizontal">
+<form class="form-horizontal">
     <fieldset>
         <div class="form-group">
             <label class="col-sm-4 col-xs-6 control-label">{{Créer une sauvegarde}}</label>
@@ -52,19 +54,21 @@ foreach (openzwave::listServerZwave() as $id => $server) {
         <div class="form-group">
             <label class="col-sm-4 col-xs-6 control-label">{{Restaurer/Supprimer la sauvegarde}}</label>
             <div class="col-sm-4 col-xs-6">
-                <a class="btn btn-warning" id="bt_restoreBackup"><i class="fa fa-refresh fa-spin" style="display : none;"></i> <i class="fa fa-file"></i> {{Restaurer}}</a>
+                <a class="btn btn-warning" id="bt_restoreBackup"><i class="fa fa-refresh fa-spin"
+                                                                    style="display : none;"></i> <i
+                        class="fa fa-file"></i> {{Restaurer}}</a>
                 <a class="btn btn-danger" id="bt_removeBackup"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
             </div>
         </div>
     </fieldset>
 </form>
 </div>
-<?php include_file('desktop', 'backup', 'js', 'openzwave');?>
+<?php include_file('desktop', 'backup', 'js', 'openzwave'); ?>
 <script>
-	var path = $('#sel_zwaveBackupServerId option:selected').attr('data-path')+'/';
-	$("#sel_zwaveBackupServerId").on("change",function() {
-		path = $('#sel_zwaveBackupServerId option:selected').attr('data-path')+'/';
+    var path = $('#sel_zwaveBackupServerId option:selected').attr('data-path') + '/';
+    $("#sel_zwaveBackupServerId").on("change", function () {
+        path = $('#sel_zwaveBackupServerId option:selected').attr('data-path') + '/';
         updateListBackup();
-	});
+    });
     updateListBackup();
 </script>
