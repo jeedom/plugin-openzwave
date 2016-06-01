@@ -56,9 +56,9 @@ except ImportError:
 
 if not os.path.exists('/tmp/python-openzwave-eggs'):
     os.makedirs('/tmp/python-openzwave-eggs')
-    
+
 os.environ['PYTHON_EGG_CACHE'] = '/tmp/python-openzwave-eggs'
-    
+
 _device = "auto"
 # noinspection PyRedeclaration
 _log_level = "error"
@@ -99,79 +99,79 @@ _ghost_node_id = None
 _suppress_refresh = False
 _disabled_nodes = []
 
-COMMAND_CLASS_NO_OPERATION              = 0  # 0x00
-COMMAND_CLASS_BASIC                     = 32  # 0x20
-COMMAND_CLASS_CONTROLLER_REPLICATION    = 33  # 0x21
-COMMAND_CLASS_APPLICATION_STATUS        = 34  # 0x22
+COMMAND_CLASS_NO_OPERATION = 0  # 0x00
+COMMAND_CLASS_BASIC = 32  # 0x20
+COMMAND_CLASS_CONTROLLER_REPLICATION = 33  # 0x21
+COMMAND_CLASS_APPLICATION_STATUS = 34  # 0x22
 # COMMAND_CLASS_ZIP_SERVICES              = 35  # 0x23
 # COMMAND_CLASS_ZIP_SERVER                = 36  # 0x24
-COMMAND_CLASS_SWITCH_BINARY             = 37  # 0x25
-COMMAND_CLASS_SWITCH_MULTILEVEL         = 38  # 0x26
-COMMAND_CLASS_SWITCH_ALL                = 39  # 0x27
-COMMAND_CLASS_SWITCH_TOGGLE_BINARY      = 40  # 0x28
-COMMAND_CLASS_SWITCH_TOGGLE_MULTILEVEL  = 41  # 0x29
+COMMAND_CLASS_SWITCH_BINARY = 37  # 0x25
+COMMAND_CLASS_SWITCH_MULTILEVEL = 38  # 0x26
+COMMAND_CLASS_SWITCH_ALL = 39  # 0x27
+COMMAND_CLASS_SWITCH_TOGGLE_BINARY = 40  # 0x28
+COMMAND_CLASS_SWITCH_TOGGLE_MULTILEVEL = 41  # 0x29
 # COMMAND_CLASS_CHIMNEY_FAN               = 42  # 0x2A
-COMMAND_CLASS_SCENE_ACTIVATION          = 43  # 0x2B
+COMMAND_CLASS_SCENE_ACTIVATION = 43  # 0x2B
 # COMMAND_CLASS_SCENE_ACTUATOR_CONF       = 44  # 0x2C
 # COMMAND_CLASS_SCENE_CONTROLLER_CONF     = 45  # 0x2D
 # COMMAND_CLASS_ZIP_CLIENT                = 46  # 0x2E
 # COMMAND_CLASS_ZIP_ADV_SERVICES          = 47  # 0x2F
-COMMAND_CLASS_SENSOR_BINARY             = 48  # 0x30
-COMMAND_CLASS_SENSOR_MULTILEVEL         = 49  # 0x31
-COMMAND_CLASS_METER                     = 50  # 0x32
-COMMAND_CLASS_COLOR                     = 51  # 0x33
+COMMAND_CLASS_SENSOR_BINARY = 48  # 0x30
+COMMAND_CLASS_SENSOR_MULTILEVEL = 49  # 0x31
+COMMAND_CLASS_METER = 50  # 0x32
+COMMAND_CLASS_COLOR = 51  # 0x33
 # COMMAND_CLASS_ZIP_ADV_CLIENT            = 52  # 0x34
-COMMAND_CLASS_METER_PULSE               = 53  # 0x35
+COMMAND_CLASS_METER_PULSE = 53  # 0x35
 # COMMAND_CLASS_THERMOSTAT_HEATING        = 56  # 0x38
 # COMMAND_CLASS_METER_TBL_CONFIG          = 60  # 0x3C
 # COMMAND_CLASS_METER_TBL_MONITOR         = 61  # 0x3D
 # COMMAND_CLASS_METER_TBL_PUSH            = 62  # 0x3E
-COMMAND_CLASS_THERMOSTAT_MODE           = 64  # 0x40
+COMMAND_CLASS_THERMOSTAT_MODE = 64  # 0x40
 COMMAND_CLASS_THERMOSTAT_OPERATING_STATE = 66  # 0x42
-COMMAND_CLASS_THERMOSTAT_SET_POINT       = 67  # 0x43
-COMMAND_CLASS_THERMOSTAT_FAN_MODE       = 68  # 0x44
-COMMAND_CLASS_THERMOSTAT_FAN_STATE      = 69  # 0x45
-COMMAND_CLASS_CLIMATE_CONTROL_SCHEDULE  = 70  # 0x46
+COMMAND_CLASS_THERMOSTAT_SET_POINT = 67  # 0x43
+COMMAND_CLASS_THERMOSTAT_FAN_MODE = 68  # 0x44
+COMMAND_CLASS_THERMOSTAT_FAN_STATE = 69  # 0x45
+COMMAND_CLASS_CLIMATE_CONTROL_SCHEDULE = 70  # 0x46
 # COMMAND_CLASS_THERMOSTAT_SETBACK        = 71  # 0x47
-COMMAND_CLASS_DOOR_LOCK_LOGGING         = 76  # 0x4C
+COMMAND_CLASS_DOOR_LOCK_LOGGING = 76  # 0x4C
 # COMMAND_CLASS_SCHEDULE_ENTRY_LOCK       = 78  # 0x4E
-COMMAND_CLASS_BASIC_WINDOW_COVERING     = 80  # 0x50
+COMMAND_CLASS_BASIC_WINDOW_COVERING = 80  # 0x50
 # COMMAND_CLASS_MTP_WINDOW_COVERING       = 81  # 0x51
-COMMAND_CLASS_CRC_16_ENCAP              = 86  # 0x56
-COMMAND_CLASS_DEVICE_RESET_LOCALLY      = 90  # 0x5A
-COMMAND_CLASS_CENTRAL_SCENE              = 91  # 0x5B
-COMMAND_CLASS_ZWAVE_PLUS_INFO           = 94  # 0x5E
-COMMAND_CLASS_MULTI_INSTANCE            = 96  # 0x60
-COMMAND_CLASS_DOOR_LOCK                 = 98  # 0x62
-COMMAND_CLASS_USER_CODE                 = 99  # 0x63
-COMMAND_CLASS_BARRIER_OPERATOR          = 102  # 0x66
-COMMAND_CLASS_CONFIGURATION             = 112  # 0x70
-COMMAND_CLASS_ALARM                     = 113  # 0x71
-COMMAND_CLASS_MANUFACTURER_SPECIFIC     = 114  # 0x72
-COMMAND_CLASS_POWER_LEVEL                = 115  # 0x73
-COMMAND_CLASS_PROTECTION                = 117  # 0x75
-COMMAND_CLASS_LOCK                      = 118  # 0x76
-COMMAND_CLASS_NODE_NAMING               = 119  # 0x77
+COMMAND_CLASS_CRC_16_ENCAP = 86  # 0x56
+COMMAND_CLASS_DEVICE_RESET_LOCALLY = 90  # 0x5A
+COMMAND_CLASS_CENTRAL_SCENE = 91  # 0x5B
+COMMAND_CLASS_ZWAVE_PLUS_INFO = 94  # 0x5E
+COMMAND_CLASS_MULTI_INSTANCE = 96  # 0x60
+COMMAND_CLASS_DOOR_LOCK = 98  # 0x62
+COMMAND_CLASS_USER_CODE = 99  # 0x63
+COMMAND_CLASS_BARRIER_OPERATOR = 102  # 0x66
+COMMAND_CLASS_CONFIGURATION = 112  # 0x70
+COMMAND_CLASS_ALARM = 113  # 0x71
+COMMAND_CLASS_MANUFACTURER_SPECIFIC = 114  # 0x72
+COMMAND_CLASS_POWER_LEVEL = 115  # 0x73
+COMMAND_CLASS_PROTECTION = 117  # 0x75
+COMMAND_CLASS_LOCK = 118  # 0x76
+COMMAND_CLASS_NODE_NAMING = 119  # 0x77
 # COMMAND_CLASS_FIRMWARE_UPDATE_MD        = 122  # 0x7A
 # COMMAND_CLASS_GROUPING_NAME             = 123  # 0x7B
 # COMMAND_CLASS_REMOTE_ASSOCIATION_ACTIVATE =124  # 0x7C
 # COMMAND_CLASS_REMOTE_ASSOCIATION        = 125  # 0x7D
-COMMAND_CLASS_BATTERY                   = 128  # 0x80
-COMMAND_CLASS_CLOCK                     = 129  # 0x81
-COMMAND_CLASS_HAIL                      = 130  # 0x82
-COMMAND_CLASS_WAKE_UP                   = 132  # 0x84
-COMMAND_CLASS_ASSOCIATION               = 133  # 0x85
-COMMAND_CLASS_VERSION                   = 134  # 0x86
-COMMAND_CLASS_INDICATOR                 = 135  # 0x87
-COMMAND_CLASS_PROPRIETARY               = 136  # 0x88
-COMMAND_CLASS_LANGUAGE                  = 137  # 0x89
+COMMAND_CLASS_BATTERY = 128  # 0x80
+COMMAND_CLASS_CLOCK = 129  # 0x81
+COMMAND_CLASS_HAIL = 130  # 0x82
+COMMAND_CLASS_WAKE_UP = 132  # 0x84
+COMMAND_CLASS_ASSOCIATION = 133  # 0x85
+COMMAND_CLASS_VERSION = 134  # 0x86
+COMMAND_CLASS_INDICATOR = 135  # 0x87
+COMMAND_CLASS_PROPRIETARY = 136  # 0x88
+COMMAND_CLASS_LANGUAGE = 137  # 0x89
 # COMMAND_CLASS_TIME                      = 138  # 0x8A
-COMMAND_CLASS_TIME_PARAMETERS           = 139  # 0x8B
+COMMAND_CLASS_TIME_PARAMETERS = 139  # 0x8B
 # COMMAND_CLASS_GEOGRAPHIC_LOCATION       = 150  # 0x8C
 # COMMAND_CLASS_COMPOSITE                 = 141  # 0x8D
 COMMAND_CLASS_MULTI_INSTANCE_ASSOCIATION = 142  # 0x8E
-COMMAND_CLASS_MULTI_CMD                 = 143  # 0x8F
-COMMAND_CLASS_ENERGY_PRODUCTION         = 144  # 0x90
+COMMAND_CLASS_MULTI_CMD = 143  # 0x8F
+COMMAND_CLASS_ENERGY_PRODUCTION = 144  # 0x90
 # COMMAND_CLASS_MANUFACTURER_PROPRIETARY  = 145  # 0x91
 # COMMAND_CLASS_SCREEN_MD                 = 146  # 0x92
 # COMMAND_CLASS_SCREEN_ATTRIBUTES         = 147  # 0x93
@@ -179,11 +179,11 @@ COMMAND_CLASS_ENERGY_PRODUCTION         = 144  # 0x90
 # COMMAND_CLASS_AV_CONTENT_DIRECTORY_MD   = 149  # 0x95
 # COMMAND_CLASS_AV_RENDERER_STATUS        = 150  # 0x96
 # COMMAND_CLASS_AV_CONTENT_SEARCH_MD      = 151  # 0x97
-COMMAND_CLASS_SECURITY                  = 152  # 0x98
+COMMAND_CLASS_SECURITY = 152  # 0x98
 # COMMAND_CLASS_AV_TAGGING_MD             = 153  # 0x99
 # COMMAND_CLASS_IP_CONFIGURATION          = 154  # 0x9A
 COMMAND_CLASS_ASSOCIATION_COMMAND_CONFIGURATION = 155  # 0x9B
-COMMAND_CLASS_SENSOR_ALARM              = 156  # 0x9C
+COMMAND_CLASS_SENSOR_ALARM = 156  # 0x9C
 # COMMAND_CLASS_SILENCE_ALARM             = 157  # 0x9D
 # COMMAND_CLASS_SENSOR_CONFIGURATION      = 158  # 0x9E
 # COMMAND_CLASS_MARK                      = 239  # 0xEF
@@ -216,26 +216,25 @@ for arg in sys.argv:
         if disabled_nodes != '':
             _disabled_nodes = [int(disabled_node_id) for disabled_node_id in disabled_nodes.split(',')]
 
-
 _cycle = float(_cycle)
 jeedom_utils.set_log_level(_log_level)
 
 logging.info('Start openzwaved')
-logging.info('Log level : '+str(_log_level))
-logging.debug('PID file : '+str(_pidfile))
-logging.info('Device : '+str(_device))
-logging.debug('Apikey : '+str(_apikey))
-logging.info('Callback : '+str(_callback))
-logging.info('Cycle : '+str(_cycle))
+logging.info('Log level : ' + str(_log_level))
+logging.debug('PID file : ' + str(_pidfile))
+logging.info('Device : ' + str(_device))
+logging.debug('Apikey : ' + str(_apikey))
+logging.info('Callback : ' + str(_callback))
+logging.info('Cycle : ' + str(_cycle))
 
-logging.debug('Initial disabled nodes list: '+str(_disabled_nodes))
+logging.debug('Initial disabled nodes list: ' + str(_disabled_nodes))
 
-jeedom_com = jeedom_com(apikey = _apikey,url = _callback,cycle=_cycle)
+jeedom_com = jeedom_com(apikey=_apikey, url=_callback, cycle=_cycle)
 
 if not jeedom_com.test():
     sys.exit(1)
 
-reload(sys)  
+reload(sys)
 sys.setdefaultencoding('utf8')
 
 logging.info("Check Openzwave")
@@ -246,6 +245,7 @@ logging.info("Check Openzwave")
 from openzwave.controller import ZWaveController
 from openzwave.network import ZWaveNetwork
 from openzwave.option import ZWaveOption
+
 # from openzwave.group import ZWaveGroup
 logging.info("--> pass")
 
@@ -255,21 +255,21 @@ if _device is None or len(_device) == 0:
 
 logging.info("--> pass")
 
-
-
 logging.info("Check if the port REST server available")
 _sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 port_available = _sock.connect_ex(('127.0.0.1', int(_port_server)))
 if port_available == 0:
-    logging.error('The port %s is already in use. Please check your Z-Wave (openzwave) configuration plugin page' % (_port_server,), 'error')
-    sys.exit(1) 
-logging.info("--> pass")   
+    logging.error('The port %s is already in use. Please check your Z-Wave (openzwave) configuration plugin page' % (
+    _port_server,), 'error')
+    sys.exit(1)
+logging.info("--> pass")
 
 # device = 'auto'
 if _device == 'auto':
     know_sticks = [{'idVendor': '0658', 'idProduct': '0200', 'name': 'Sigma Designs, Inc'},
-                   {'idVendor': '10c4', 'idProduct': 'ea60', 'name': 'Cygnal Integrated Products, Inc. CP210x UART Bridge'}]
-    
+                   {'idVendor': '10c4', 'idProduct': 'ea60',
+                    'name': 'Cygnal Integrated Products, Inc. CP210x UART Bridge'}]
+
     for stick in know_sticks:
         _device = jeedom_utils.find_tty_usb(stick['idVendor'], stick['idProduct'])
         if _device is not None:
@@ -285,7 +285,9 @@ RemoveDevice = 5
 
 _not_supported_nodes = [0, 255]
 
-_user_values_to_refresh = ["Level", "Sensor", "Switch", "Power", "Temperature", "Alarm Type", "Alarm Type", "Power Management"]
+_user_values_to_refresh = ["Level", "Sensor", "Switch", "Power", "Temperature", "Alarm Type", "Alarm Type",
+                           "Power Management"]
+
 
 class ControllerMode:
     def __init__(self):
@@ -303,8 +305,8 @@ class ControllerMode:
         def __init__(self):
             pass
 
-class NetworkInformation(object):
 
+class NetworkInformation(object):
     def __init__(self):
         self._actualMode = ControllerMode.Idle
         self._start_time = int(time.time())
@@ -312,62 +314,64 @@ class NetworkInformation(object):
         self._config_file_save_in_progress = False
         self._controller_is_busy = False
         self._controller_state = ZWaveController.STATE_STARTING
-        self._last_controller_notifications = [{"state": self._controller_state, "details": '', "error": None, "error_description": None, "timestamp": int(time.time())}]
+        self._last_controller_notifications = [
+            {"state": self._controller_state, "details": '', "error": None, "error_description": None,
+             "timestamp": int(time.time())}]
         self._error = None
         self._error_description = None
-    
+
     @property
     def actual_mode(self):
         return self._actualMode
-    
+
     @actual_mode.setter
     def actual_mode(self, value):
         self._actualMode = value
-        
+
     @property
     def start_time(self):
         return self._start_time
-    
+
     @start_time.setter
     def start_time(self, value):
         self._start_time = value
-        
+
     @property
     def config_file_save_in_progress(self):
         return self._config_file_save_in_progress
-    
+
     @config_file_save_in_progress.setter
     def config_file_save_in_progress(self, value):
         self._config_file_save_in_progress = value
-        
+
     @property
     def controller_is_busy(self):
         return self._controller_is_busy
-    
+
     @controller_is_busy.setter
     def controller_is_busy(self, value):
         self._controller_is_busy = value
-        
+
     @property
     def controller_state(self):
         return self._controller_state
-    
+
     @property
     def last_controller_notifications(self):
         return self._last_controller_notifications
-    
+
     @property
-    def error(self):        
+    def error(self):
         return self._error
-    
+
     @property
-    def error_description(self):        
+    def error_description(self):
         return self._error_description
-    
+
     def set_as_awake(self):
         self._awake_time = int(time.time())
         self.assign_controller_notification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is awake")
-        
+
     @property
     def controller_awake_delay(self):
         if self._awake_time is not None:
@@ -380,7 +384,9 @@ class NetworkInformation(object):
         if len(self._last_controller_notifications) == _maximum_number_notifications:
             self._last_controller_notifications.pop()
 
-        self._last_controller_notifications.insert(0, {"state": state, "details": details, "error": error, "error_description": error_description, "timestamp": int(time.time())})
+        self._last_controller_notifications.insert(0, {"state": state, "details": details, "error": error,
+                                                       "error_description": error_description,
+                                                       "timestamp": int(time.time())})
 
         if state == ZWaveController.STATE_WAITING:
             self.controller_is_busy = True
@@ -392,10 +398,10 @@ class NetworkInformation(object):
             self.controller_is_busy = False
             # reset flag
             self.actual_mode = ControllerMode.Idle
-            
+
     def generate_jeedom_message(self):
         if self.actual_mode == ControllerMode.AddDevice:
-            return AddDevice         
+            return AddDevice
         elif self.actual_mode == ControllerMode.RemoveDevice:
             return RemoveDevice
         else:
@@ -410,31 +416,32 @@ class NetworkInformation(object):
         self._controller_state = ZWaveController.STATE_STARTING
         self._error = None
         self._error_description = None
-        self._last_controller_notifications = [{"state": self._controller_state, "details": '', "error": self._error, "error_description": self._error_description, "timestamp": int(time.time())}]
+        self._last_controller_notifications = [{"state": self._controller_state, "details": '', "error": self._error,
+                                                "error_description": self._error_description,
+                                                "timestamp": int(time.time())}]
 
 
 class PendingConfiguration(object):
-    
     def __init__(self, expected_data, timeout):
         self._startTime = int(time.time())
         self._expected_data = expected_data
         self._timeOut = timeout
-        self._data = None 
-        
+        self._data = None
+
     @property
-    def expected_data(self):        
+    def expected_data(self):
         return self._expected_data
-    
+
     @property
-    def data(self):        
+    def data(self):
         return self._data
-    
+
     @data.setter
-    def data(self, value):        
+    def data(self, value):
         self._data = value
-        
+
     @property
-    def state(self):  
+    def state(self):
         if self._data is None:
             # is pending
             return 3
@@ -446,7 +453,6 @@ class PendingConfiguration(object):
 
 
 class PendingAssociation(object):
-
     def __init__(self, pending_added, pending_removed, timeout):
         self._startTime = int(time.time())
         self._pending_added = pending_added
@@ -492,20 +498,19 @@ class PendingAssociation(object):
             # the association have be removed successfully
             return 1
         # the association reject
-        return 1 # TODO: fix test with multi instances associations
+        return 1  # TODO: fix test with multi instances associations
 
 
 class NodeNotification(object):
-    
     def __init__(self, code, wake_up_time=None):
-        self._code = code 
-        self._description = code 
-        self._help = code 
+        self._code = code
+        self._description = code
+        self._help = code
         self._wake_up_time = wake_up_time
         self._next_wake_up = None
         self.refresh(code, wake_up_time)
         self._receive_time = None
-        
+
     def refresh(self, code, wake_up_time):
         # save notification
         self._code = code
@@ -539,27 +544,27 @@ class NodeNotification(object):
         else:
             self._description = "Unknown state"
             self._help = ""
-            
+
     @property
-    def code(self):        
+    def code(self):
         return self._code
-    
+
     @property
-    def receive_time(self):        
+    def receive_time(self):
         return self._receive_time
-    
+
     @property
-    def description(self):        
+    def description(self):
         return self._description
-    
+
     @property
-    def help(self):        
+    def help(self):
         return self._help
-    
+
     @property
     def next_wake_up(self):
         return self._next_wake_up
-        
+
 
 def start_network():
     global _network_information, _force_refresh_nodes, _network
@@ -577,7 +582,7 @@ def cleanup_configuration_file(filename):
     global _data_folder
     logging.info('... check: %s' % (filename,))
     if os.path.isfile(filename):
-        try:            
+        try:
             tree = etree.parse(filename)
             nodes = tree.findall(".//{http://code.google.com/p/open-zwave/}Product")
             for node in nodes:
@@ -606,10 +611,11 @@ def cleanup_configuration_file(filename):
             found_valid_backup = 0
             for candidateBackup in actual_backups:
                 if candidateBackup[-3:] in filters and pattern in candidateBackup:
-                    try:            
+                    try:
                         tree = etree.parse(os.path.join(backup_folder, candidateBackup))
                         final_filename = candidateBackup[candidateBackup.find('zwcfg'):]
-                        shutil.copy2(os.path.join(backup_folder, candidateBackup), os.path.join(_data_folder, final_filename))
+                        shutil.copy2(os.path.join(backup_folder, candidateBackup),
+                                     os.path.join(_data_folder, final_filename))
                         os.chmod(final_filename, 0777)
                         logging.info('Found one valid backup. Using it')
                         found_valid_backup = 1
@@ -675,7 +681,7 @@ def backup_xml_config(mode, home_id):
 
 
 def graceful_stop_network():
-    logging.info('Graceful stopping the ZWave network.')   
+    logging.info('Graceful stopping the ZWave network.')
     global _network
     global _network_is_running
     home_id = _network.home_id_str
@@ -707,7 +713,7 @@ def graceful_stop_network():
             dispatcher.disconnect(nodes_queried_some_dead, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
             dispatcher.disconnect(button_on, ZWaveNetwork.SIGNAL_BUTTON_ON)
             dispatcher.disconnect(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
-            dispatcher.disconnect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION) 
+            dispatcher.disconnect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION)
             dispatcher.disconnect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
             dispatcher.disconnect(controller_waiting, ZWaveNetwork.SIGNAL_CONTROLLER_WAITING)
             dispatcher.disconnect(controller_command, ZWaveNetwork.SIGNAL_CONTROLLER_COMMAND)
@@ -720,6 +726,7 @@ def graceful_stop_network():
     logging.info('The Openzwave REST-server was stopped in a normal way')
     backup_xml_config('stop', home_id)
 
+
 # Define some manager options
 options = ZWaveOption(_device, config_path=_config_folder, user_path=_data_folder, cmd_line="")
 options.set_log_file("../../../log/openzwaved")
@@ -729,46 +736,58 @@ if _log_level == 'notice':
     options.set_save_log_level('Warning')
 else:
     options.set_save_log_level(_log_level[0].upper() + _log_level[1:])
-    
+
 options.set_logging(True)
-options.set_associate(True)                       
-options.set_save_configuration(True)              
+options.set_associate(True)
+options.set_save_configuration(True)
 options.set_poll_interval(_default_poll_interval)
-options.set_interval_between_polls(False)         
+options.set_interval_between_polls(False)
 options.set_notify_transactions(True)  # Notifications when transaction complete is reported.
-options.set_suppress_value_refresh(False)  # if true, notifications for refreshed (but unchanged) values will not be sent.
-options.set_driver_max_attempts(5) 
-options.addOptionBool("AssumeAwake", False)        
+options.set_suppress_value_refresh(
+    False)  # if true, notifications for refreshed (but unchanged) values will not be sent.
+options.set_driver_max_attempts(5)
+options.addOptionBool("AssumeAwake", False)
 # options.addOptionInt("RetryTimeout", 6000)  # Timeout before retrying to send a message. Defaults to 40 Seconds
-options.addOptionString("NetworkKey", "0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10", True)
+options.addOptionString("NetworkKey",
+                        "0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10",
+                        True)
 options.set_security_strategy('CUSTOM')  # The security strategy: SUPPORTED | ESSENTIAL | CUSTOM
-options.set_custom_secured_cc('0x62,0x4c,0x63')  # What List of Custom CC should we always encrypt if SecurityStrategy is CUSTOM
-options.addOptionBool('EnforceSecureReception', False)  # if we receive a clear text message for a CC that is Secured, should we drop the message
-options.addOptionBool('RefreshAllUserCodes', False)  # Some Devices have a big UserCode Table, that can mean startup times when refreshing Session Variables is very long
+options.set_custom_secured_cc(
+    '0x62,0x4c,0x63')  # What List of Custom CC should we always encrypt if SecurityStrategy is CUSTOM
+options.addOptionBool('EnforceSecureReception',
+                      False)  # if we receive a clear text message for a CC that is Secured, should we drop the message
+options.addOptionBool('RefreshAllUserCodes',
+                      False)  # Some Devices have a big UserCode Table, that can mean startup times when refreshing Session Variables is very long
 options.addOptionBool('ThreadTerminateTimeout', 5000)  #
 options.lock()
 
 check_config_files()
 
+
 def save_node_value_event(node_id, timestamp, command_class, value_index, standard_type, value, instance):
-    jeedom_com.add_changes('serverId',_server_id)
-    jeedom_com.add_changes('devices::'+str(node_id)+'::'+str(hex(command_class)) + str(instance) + str(value_index),{'node_id': node_id, 'instance': instance, 'CommandClass': hex(command_class), 'index': value_index, 'value': value, 'type': standard_type, 'updateTime': timestamp})
+    jeedom_com.add_changes('serverId', _server_id)
+    jeedom_com.add_changes(
+        'devices::' + str(node_id) + '::' + str(hex(command_class)) + str(instance) + str(value_index),
+        {'node_id': node_id, 'instance': instance, 'CommandClass': hex(command_class), 'index': value_index,
+         'value': value, 'type': standard_type, 'updateTime': timestamp})
+
 
 def save_node_event(node_id, value):
     global _controller_state
     if value == "removed":
-        jeedom_com.add_changes('serverId',_server_id)
-        jeedom_com.add_changes('controller::excluded',{"value": node_id})
+        jeedom_com.add_changes('serverId', _server_id)
+        jeedom_com.add_changes('controller::excluded', {"value": node_id})
     elif value == "added":
-        jeedom_com.add_changes('serverId',_server_id)
-        jeedom_com.add_changes('controller::included',{"value": node_id})
+        jeedom_com.add_changes('serverId', _server_id)
+        jeedom_com.add_changes('controller::included', {"value": node_id})
     elif value in [0, 1, 5] and _controller_state != value:
         # save controller state
         _controller_state = value
         # not controller notification before network is at least awaked
         if _network.state >= 7:
-            jeedom_com.add_changes('serverId',_server_id)
-            jeedom_com.add_changes('controller::state',{"value": value})
+            jeedom_com.add_changes('serverId', _server_id)
+            jeedom_com.add_changes('controller::state', {"value": value})
+
 
 def save_network_state(network_state):
     # STATE_STOPPED = 0
@@ -777,8 +796,9 @@ def save_network_state(network_state):
     # STATE_STARTED = 5
     # STATE_AWAKED = 7
     # STATE_READY = 10
-    jeedom_com.add_changes('serverId',_server_id)
-    jeedom_com.add_changes('network::state',{"value": network_state})
+    jeedom_com.add_changes('serverId', _server_id)
+    jeedom_com.add_changes('network::state', {"value": network_state})
+
 
 def push_node_notification(node_id, notification_code):
     # check for notification Dead or Alive
@@ -789,7 +809,7 @@ def push_node_notification(node_id, notification_code):
         else:
             # Report when a node is revived
             alert_type = 'node_alive'
-        changes = {'alert': {'type': alert_type , 'id': node_id, 'serverId': _server_id}}
+        changes = {'alert': {'type': alert_type, 'id': node_id, 'serverId': _server_id}}
         jeedom_com.send_change_immediate(changes)
 
 
@@ -804,7 +824,7 @@ def network_started(network):
 
 
 def network_stopped(network):
-    logging.info("Openzwave network are %s" %(network.state_str,))
+    logging.info("Openzwave network are %s" % (network.state_str,))
     global _network_is_running
     _network_is_running = False
 
@@ -816,7 +836,7 @@ def network_failed(network):
 
 
 def validate_association_groups_asynchronous():
-    if not _network_is_running :
+    if not _network_is_running:
         return
     logging.debug("Check association")
     for node_id in list(_network.nodes):
@@ -855,7 +875,7 @@ def sanity_checks(force=False):
                 _network.manager.removeFailedNode(_network.home_id, node_id)
                 time.sleep(10)
                 continue
-            if node_id in _disabled_nodes :
+            if node_id in _disabled_nodes:
                 continue
             my_node = _network.nodes[node_id]
             if my_node.is_failed:
@@ -901,7 +921,7 @@ def refresh_configuration_asynchronous():
     else:
         # I will try again in 2 minutes
         retry_job = threading.Timer(240.0, refresh_configuration_asynchronous)
-        retry_job.start()        
+        retry_job.start()
 
 
 def refresh_user_values_asynchronous():
@@ -917,7 +937,7 @@ def refresh_user_values_asynchronous():
                         if current_value.type == 'Button':
                             continue
                         if current_value.is_write_only:
-                            continue   
+                            continue
                         if current_value.label in _user_values_to_refresh:
                             current_value.refresh()
                 while not can_execute_network_command(0):
@@ -927,18 +947,20 @@ def refresh_user_values_asynchronous():
         logging.debug("Network is loaded, do not execute this time")
         # I will try again in 2 minutes
         retry_job = threading.Timer(240.0, refresh_user_values_asynchronous)
-        retry_job.start()           
+        retry_job.start()
 
 
 def network_awaked(network):
-    logging.info("Openzwave network is awake: %d nodes were found (%d are sleeping). All listening nodes are queried, but some sleeping nodes may be missing." % (network.nodes_count, get_sleeping_nodes_count(),))
+    logging.info(
+        "Openzwave network is awake: %d nodes were found (%d are sleeping). All listening nodes are queried, but some sleeping nodes may be missing." % (
+        network.nodes_count, get_sleeping_nodes_count(),))
     logging.debug("Controller is: %s" % (network.controller,))
     _network_information.set_as_awake()
     configuration = threading.Timer(_refresh_configuration_timer, refresh_configuration_asynchronous)
-    configuration.start() 
+    configuration.start()
     logging.info("Refresh configuration parameters will starting in %d sec" % (_refresh_configuration_timer,))
     user_values = threading.Timer(_refresh_user_values_timer, refresh_user_values_asynchronous)
-    user_values.start() 
+    user_values.start()
     logging.info("Refresh user values will starting in %d sec" % (_refresh_user_values_timer,))
     association = threading.Timer(_validate_association_groups_timer, validate_association_groups_asynchronous)
     association.start()
@@ -954,27 +976,29 @@ def network_awaked(network):
 
 
 def network_ready(network):
-    logging.info("Openzwave network is ready with %d nodes (%d are sleeping). All nodes are queried, the network is fully functional." % (network.nodes_count, get_sleeping_nodes_count(),))
+    logging.info(
+        "Openzwave network is ready with %d nodes (%d are sleeping). All nodes are queried, the network is fully functional." % (
+        network.nodes_count, get_sleeping_nodes_count(),))
     write_config()
     _network_information.assign_controller_notification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is ready")
     save_network_state(network.state)
 
 
 def button_on(network, node):
-    logging.info('Controller button on pressed event') 
+    logging.info('Controller button on pressed event')
 
 
 def button_off(network, node):
-    logging.info('Controller button off pressed event') 
+    logging.info('Controller button off pressed event')
 
 
-def nodes_queried(network):    
-    write_config() 
+def nodes_queried(network):
+    write_config()
 
 
 def nodes_queried_some_dead(network):
-    write_config()  
-    logging.info("All nodes have been queried, but some node ar mark dead") 
+    write_config()
+    logging.info("All nodes have been queried, but some node ar mark dead")
 
 
 def node_new(network, node_id):
@@ -984,12 +1008,12 @@ def node_new(network, node_id):
     _force_refresh_nodes.append(node_id)
 
 
-def node_added(network, node):    
+def node_added(network, node):
     logging.info('A node has been added to OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
     if node.node_id in _not_supported_nodes:
         logging.debug('remove fake nodeId: %s' % (node.node_id,))
         node_cleaner = threading.Timer(60.0, network.manager.removeFailedNode, [network.home_id, node.node_id])
-        node_cleaner.start()        
+        node_cleaner.start()
         return
     node.last_update = time.time()
     if network.state >= 7:  # STATE_AWAKE
@@ -1050,7 +1074,7 @@ def convert_fahrenheit_celsius(value):
 
 def extract_data(value, display_raw=False, convert_fahrenheit=True):
     if value.type == "Bool":
-        return value.data    
+        return value.data
     elif value.label == 'Temperature' and value.units == 'F' and convert_fahrenheit:
         return convert_fahrenheit_celsius(value)
     elif value.type == "Raw":
@@ -1086,14 +1110,14 @@ def can_execute_network_command(allowed_queue_count=5):
     return True
 
 
-def write_config():  
+def write_config():
     watchdog = 0
     while _network_information.config_file_save_in_progress and watchdog < 10:
         logging.debug('.')
         time.sleep(1)
         watchdog += 1
     if _network_information.config_file_save_in_progress:
-        return        
+        return
     _network_information.config_file_save_in_progress = True
     try:
         _network.write_config()
@@ -1105,18 +1129,20 @@ def write_config():
         _network_information.config_file_save_in_progress = False
 
 
-def essential_node_queries_complete(network, node):   
-    logging.info('The essential queries on a node have been completed. id:[%s] model:[%s].' % (node.node_id, node.product_name,))
+def essential_node_queries_complete(network, node):
+    logging.info(
+        'The essential queries on a node have been completed. id:[%s] model:[%s].' % (node.node_id, node.product_name,))
     my_node = network.nodes[node.node_id]
     my_node.last_update = time.time()
     # at this time is not good to save value, I skip this step
 
 
 def node_queries_complete(network, node):
-    logging.info('All the initialisation queries on a node have been completed. id:[%s] model:[%s].' % (node.node_id, node.product_name,))        
+    logging.info('All the initialisation queries on a node have been completed. id:[%s] model:[%s].' % (
+    node.node_id, node.product_name,))
     node.last_update = time.time()
     # save config
-    write_config()       
+    write_config()
 
 
 def save_value(node, value, last_update):
@@ -1130,15 +1156,16 @@ def save_value(node, value, last_update):
         my_node.last_update = last_update
         # if value.genre != 'Basic':
         value.last_update = last_update
-        save_node_value_event(node.node_id, int(time.time()), value.command_class, value.index, get_standard_value_type(value.type), extract_data(value, False), change_instance(value))    
+        save_node_value_event(node.node_id, int(time.time()), value.command_class, value.index,
+                              get_standard_value_type(value.type), extract_data(value, False), change_instance(value))
 
 
-def value_added(network, node, value):  
+def value_added(network, node, value):
     if node.node_id in _not_supported_nodes:
         return
     # logging.debug('value_added. %s %s' % (node.node_id, value.label,))
     # mark initial data for skip notification during interview
-    value.lastData = value.data 
+    value.lastData = value.data
 
 
 def value_polling_enabled(network, node, value):
@@ -1148,7 +1175,8 @@ def value_polling_enabled(network, node, value):
         changes_value_polling(_maximum_poll_intensity, value)
     # check if old polling is at lower index for CC and instance
     if value.poll_intensity > 0:
-        logging.debug('Poll intensity on nodeId:%s value %s command_class %s instance %s index %s' % (node.node_id, value.label, value.command_class, value.instance, value.index))
+        logging.debug('Poll intensity on nodeId:%s value %s command_class %s instance %s index %s' % (
+        node.node_id, value.label, value.command_class, value.instance, value.index))
         # get all CC of node
         for val in node.get_values(class_id=value.command_class):
             # filter on same instance
@@ -1161,7 +1189,8 @@ def value_polling_enabled(network, node, value):
                     value.disable_poll()
                     # set polling of lower index
                     changes_value_polling(poll_intensity, my_value)
-                    logging.info('Changes poll intensity on nodeId:%s form %s to %s' % (node.node_id, value.label, my_value.label,))
+                    logging.info('Changes poll intensity on nodeId:%s form %s to %s' % (
+                    node.node_id, value.label, my_value.label,))
                     break
 
 
@@ -1173,34 +1202,37 @@ def prepare_value_notification(node, value):
             if value.type == 'Short':
                 data = normalize_short_value(value.data)
             value.pendingConfiguration.data = data
-            
+
     if not node.is_ready:
         # check if have the attribute
         if hasattr(value, 'lastData') and value.lastData == value.data:
             # we skip notification to avoid value refresh during the interview process
             return
     # update for next run
-    value.lastData = value.data    
+    value.lastData = value.data
     if value.genre == 'System':
         value.last_update = time.time()
         return
-    command_class = _network.manager.COMMAND_CLASS_DESC[value.command_class].replace("COMMAND_CLASS_", "").replace("_", " ").lower().capitalize()
+    command_class = _network.manager.COMMAND_CLASS_DESC[value.command_class].replace("COMMAND_CLASS_", "").replace("_",
+                                                                                                                   " ").lower().capitalize()
     data = extract_data(value, False, False)
-    logging.info("Received %s report from node %s: %s=%s%s" % (command_class, node.node_id, value.label, data, value.units))
+    logging.info(
+        "Received %s report from node %s: %s=%s%s" % (command_class, node.node_id, value.label, data, value.units))
     try:
         save_value(node, value, time.time())
     except Exception as error:
-        logging.error('An unknown error occurred while sending notification: %s. (Node %s: %s=%s)' % (str(error), node.node_id, value.label, data,))
+        logging.error('An unknown error occurred while sending notification: %s. (Node %s: %s=%s)' % (
+        str(error), node.node_id, value.label, data,))
 
 
-def value_update(network, node, value): 
+def value_update(network, node, value):
     if node.node_id in _not_supported_nodes:
         return
     # logging.debug('value_update. %s %s' % (node.node_id, value.label,))
     prepare_value_notification(node, value)
 
 
-def value_refreshed(network, node, value): 
+def value_refreshed(network, node, value):
     if node.node_id in _not_supported_nodes:
         return
     # logging.debug('value_refreshed. %s %s' % (node.node_id, value.label,))
@@ -1230,7 +1262,7 @@ def controller_command(network, controller, node, node_id, state_int, state, sta
     logging.info('%s (%s)' % (state_full, state))
     if error_int > 0:
         logging.error('%s (%s)' % (error_full, error,))
-    
+
     # save actual state
     _network_information.assign_controller_notification(state, state_full, error, error_full)
     # notify jeedom
@@ -1286,25 +1318,25 @@ def node_notification(args):
     node_id = int(args['nodeId'])
     if node_id in _not_supported_nodes:
         return
-    if node_id in _disabled_nodes :
+    if node_id in _disabled_nodes:
         return
     if node_id in _network.nodes:
         my_node = _network.nodes[node_id]
         # mark as updated
         my_node.last_update = time.time()
         # try auto remove unsupported nodes
-        if node_id in _not_supported_nodes and _network.state >= 7:   # STATE_AWAKE
+        if node_id in _not_supported_nodes and _network.state >= 7:  # STATE_AWAKE
             logging.info('remove fake nodeId: %s' % (node_id,))
             _network.manager.removeFailedNode(_network.home_id, node_id)
             return
-        
+
         wake_up_time = get_wake_up_interval(node_id)
         if not hasattr(my_node, 'last_notification'):
             my_node.last_notification = NodeNotification(code, wake_up_time)
         else:
             # I refresh notification, the wake up time can be modified from last time, we need to calculate the next expected wake up time
             my_node.last_notification.refresh(code, wake_up_time)
-        if code == 3: 
+        if code == 3:
             # get the device Wake-up Interval Step
             my_value = get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval Step', False)
             if my_value is not None:
@@ -1318,13 +1350,13 @@ def node_notification(args):
         logging.info('NodeId %s send a notification: %s' % (node_id, my_node.last_notification.description,))
         push_node_notification(node_id, code)
 
+
 app = Flask(__name__, static_url_path='/static')
 
 _network_is_running = False
 # Create a network object
 # noinspection PyRedeclaration
 _network = ZWaveNetwork(options, autostart=False)
-
 
 # We connect to the louie dispatcher
 dispatcher.connect(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
@@ -1396,7 +1428,8 @@ def get_value_by_label(node_id, command_class, instance, label, trace=True):
             if my_node.values[value_id].instance == instance and my_node.values[value_id].label == label:
                 return my_node.values[value_id]
     if trace:
-        logging.debug("get_value_by_label Value not found for node_id:%s, cc:%s, instance:%s, label:%s" % (node_id, command_class, instance, label,))
+        logging.debug("get_value_by_label Value not found for node_id:%s, cc:%s, instance:%s, label:%s" % (
+        node_id, command_class, instance, label,))
     return None
 
 
@@ -1407,7 +1440,8 @@ def get_value_by_index(node_id, command_class, instance, index_id, trace=True):
             if my_node.values[value_id].instance == instance and my_node.values[value_id].index == index_id:
                 return my_node.values[value_id]
     if trace:
-        logging.debug("get_value_by_index Value not found for node_id:%s, cc:%s, instance:%s, index:%s" % (node_id, command_class, instance, index_id,))
+        logging.debug("get_value_by_index Value not found for node_id:%s, cc:%s, instance:%s, index:%s" % (
+        node_id, command_class, instance, index_id,))
     return None
 
 
@@ -1438,7 +1472,7 @@ def concatenate_list(list_values, separator=';'):
     return ""
 
 
-def convert_query_stage_to_int(stage):    
+def convert_query_stage_to_int(stage):
     if stage == "None":
         return 0
     elif stage == "ProtocolInfo":
@@ -1514,6 +1548,7 @@ def check_pending_changes(node_id):
             #     pending_association.pending_removed, pending_association.associations,))
     return pending_changes
 
+
 def serialize_neighbour_to_json(node_id):
     json_result = {}
     if node_id in _network.nodes:
@@ -1545,7 +1580,7 @@ def serialize_neighbour_to_json(node_id):
         json_result['data']['state'] = {'value': convert_query_stage_to_int(my_node.query_stage)}
         json_result['data']['isListening'] = {'value': my_node.is_listening_device}
         json_result['data']['isRouting'] = {'value': my_node.is_routing_device}
-        
+
     else:
         logging.warning('This network does not contain any node with the id %s' % (node_id,))
     return json_result
@@ -1564,7 +1599,8 @@ def validate_association_groups(node_id):
                     for target_node_id in list(group.associations):
                         if target_node_id in _network.nodes and target_node_id not in _not_supported_nodes:
                             continue
-                        logging.debug("Remove association for nodeId: %s index %s with not exist target: %s" % (node_id, group_index, target_node_id,))
+                        logging.debug("Remove association for nodeId: %s index %s with not exist target: %s" % (
+                        node_id, group_index, target_node_id,))
                         _network.manager.removeAssociation(_network.home_id, node_id, group_index, target_node_id)
                         fake_found = True
     return fake_found
@@ -1592,7 +1628,7 @@ def serialize_node_to_json(node_id):
             product_type = int(my_node.product_type, 16)
         except ValueError:
             product_type = None
-                    
+
         json_result['data'] = {}
         json_result['data']['manufacturerId'] = {'value': manufacturer_id, 'hex': my_node.manufacturer_id}
         json_result['data']['vendorString'] = {'value': my_node.manufacturer_name}
@@ -1615,7 +1651,7 @@ def serialize_node_to_json(node_id):
         json_result['data']['isAwake'] = {'value': my_node.is_awake, "updateTime": timestamp}
         json_result['data']['isReady'] = {'value': my_node.is_ready, "updateTime": timestamp}
         json_result['data']['isInfoReceived'] = {'value': my_node.is_info_received}
-             
+
         json_result['data']['can_wake_up'] = {'value': my_node.can_wake_up()}
         json_result['data']['battery_level'] = {'value': my_node.get_battery_level()}
         json_result['data']['isFailed'] = {'value': my_node.is_failed}
@@ -1641,8 +1677,10 @@ def serialize_node_to_json(node_id):
                     if pending_association.state is not None:
                         pending_state = pending_association.state
                         if pending_state is not None and pending_state > 1:
-                            pending_changes +=1
-            json_result['groups'][groupIndex] = {"label": group.label, "maximumAssociations": group.max_associations, "associations": list(group.associations_instances), "pending": pending_state}
+                            pending_changes += 1
+            json_result['groups'][groupIndex] = {"label": group.label, "maximumAssociations": group.max_associations,
+                                                 "associations": list(group.associations_instances),
+                                                 "pending": pending_state}
         json_result['associations'] = serialize_associations(node_id)
         if hasattr(my_node, 'last_notification'):
             notification = my_node.last_notification
@@ -1654,17 +1692,19 @@ def serialize_node_to_json(node_id):
                                                 }
         else:
             json_result['last_notification'] = {}
-            
+
         json_result['command_classes'] = {}
         for command_class in my_node.command_classes:
-            json_result['command_classes'][command_class] = {'name': my_node.get_command_class_as_string(command_class), 'hex': '0x' + convert_user_code_to_hex(command_class)}
+            json_result['command_classes'][command_class] = {'name': my_node.get_command_class_as_string(command_class),
+                                                             'hex': '0x' + convert_user_code_to_hex(command_class)}
         instances = []
         for val in my_node.get_values():
             my_value = my_node.values[val]
             if my_value.command_class is None:
                 continue
 
-            if my_value.instance > 1 and my_value.command_class in [COMMAND_CLASS_ZWAVE_PLUS_INFO, COMMAND_CLASS_VERSION]:
+            if my_value.instance > 1 and my_value.command_class in [COMMAND_CLASS_ZWAVE_PLUS_INFO,
+                                                                    COMMAND_CLASS_VERSION]:
                 continue
 
             # avoid encoding exception
@@ -1672,12 +1712,12 @@ def serialize_node_to_json(node_id):
                 label = my_value.label
             except Exception, exception:
                 label = exception.message
-                logging.error('Value label contains unsupported text: %s' %(str(exception),))
+                logging.error('Value label contains unsupported text: %s' % (str(exception),))
             try:
                 value_help = my_value.help
             except Exception, exception:
                 value_help = exception.message
-                logging.error('Value help contains unsupported text: %s' %(str(exception),))
+                logging.error('Value help contains unsupported text: %s' % (str(exception),))
             # assume is Celsius
             if label == 'Temperature' and my_value.units == 'F':
                 value_units = 'C'
@@ -1699,7 +1739,7 @@ def serialize_node_to_json(node_id):
             if my_value.index:
                 index2 = my_value.index
             else:
-                index2 = 0            
+                index2 = 0
             pending_state = None
             expected_data = None
             data_items = concatenate_list(my_value.data_items)
@@ -1708,7 +1748,7 @@ def serialize_node_to_json(node_id):
                     pending_state = my_value.pendingConfiguration.state
                     expected_data = my_value.pendingConfiguration.expected_data
                     if pending_state is not None and pending_state > 1:
-                        pending_changes +=1
+                        pending_changes += 1
             try:
                 timestamp = int(my_value.last_update)
             except TypeError:
@@ -1725,7 +1765,8 @@ def serialize_node_to_json(node_id):
                 serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,
                                              pending_state, standard_type, timestamp, value2, value_help, value_units)
             elif my_value.command_class not in json_result['instances'][instance2]['commandClasses']:
-                json_result['instances'][instance2]['commandClasses'][my_value.command_class] = {"updateTime": timestamp}
+                json_result['instances'][instance2]['commandClasses'][my_value.command_class] = {
+                    "updateTime": timestamp}
                 serialize_command_class_info(instance2, json_result, my_node, my_value, timestamp)
                 serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,
                                              pending_state, standard_type, timestamp, value2, value_help, value_units)
@@ -1733,7 +1774,8 @@ def serialize_node_to_json(node_id):
                 serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,
                                              pending_state, standard_type, timestamp, value2, value_help, value_units)
         json_result['data']['pending_changes'] = {'count': pending_changes}
-        json_result['multi_instance'] = {'support': COMMAND_CLASS_MULTI_INSTANCE_ASSOCIATION in my_node.command_classes, 'instances': len(instances)}
+        json_result['multi_instance'] = {'support': COMMAND_CLASS_MULTI_INSTANCE_ASSOCIATION in my_node.command_classes,
+                                         'instances': len(instances)}
     else:
         logging.warning('This network does not contain any node with the id %s' % (node_id,))
     return json_result
@@ -1759,7 +1801,8 @@ def serialize_command_class_data(data_items, expected_data, index2, instance2, j
 
 
 def serialize_command_class_info(instance2, json_result, my_node, my_value, timestamp):
-    json_result['instances'][instance2]['commandClasses'][my_value.command_class] = {"name": my_node.get_command_class_as_string(my_value.command_class)}
+    json_result['instances'][instance2]['commandClasses'][my_value.command_class] = {
+        "name": my_node.get_command_class_as_string(my_value.command_class)}
     json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'] = {"updateTime": timestamp}
 
 
@@ -1800,23 +1843,24 @@ def serialize_node_health(node_id):
             node_name = my_node.product_name
         if is_none_or_empty(node_name):
             node_name = 'Unknown'
-        json_result['data']['description'] = {'name': node_name, 'location': my_node.location, 'product_name': my_node.product_name}
+        json_result['data']['description'] = {'name': node_name, 'location': my_node.location,
+                                              'product_name': my_node.product_name}
         json_result['data']['type'] = {'basic': my_node.basic, 'generic': my_node.generic}
         json_result['data']['state'] = {'value': my_node.query_stage, 'index': query_stage_index}
         json_result['data']['isAwake'] = {'value': my_node.is_awake}
         json_result['data']['isReady'] = {'value': my_node.is_ready}
-        try:            
+        try:
             can_wake_up = my_node.can_wake_up()
         except RuntimeError:
-            can_wake_up = False               
+            can_wake_up = False
         json_result['data']['can_wake_up'] = {'value': can_wake_up}
         battery_level_data = None
         battery_level_last_update = None
-        try:            
+        try:
             battery_level = get_value_by_index(node_id, COMMAND_CLASS_BATTERY, 1, 0, False)
             if battery_level is not None:
                 battery_level_data = battery_level.data
-                battery_level_last_update = battery_level.last_update            
+                battery_level_last_update = battery_level.last_update
         except RuntimeError:
             pass
         json_result['data']['battery_level'] = {'value': battery_level_data, 'updateTime': battery_level_last_update}
@@ -1838,7 +1882,7 @@ def serialize_node_health(node_id):
         json_result['data']['isFrequentListening'] = {'value': my_node.is_frequent_listening_device}
         json_result['data']['lastReceived'] = {'updateTime': timestamp}
         json_result['data']['maxBaudRate'] = {'value': my_node.max_baud_rate}
-                        
+
         statistics = _network.manager.getNodeStatistics(_network.home_id, node_id)
         sent_ok = statistics['sentCnt']
         sent_failed = statistics['sentFailed']
@@ -1846,9 +1890,10 @@ def serialize_node_health(node_id):
         if send_total > 0:
             percent_delivered = (sent_ok * 100) / send_total
         else:
-            percent_delivered = 0            
+            percent_delivered = 0
         average_request_rtt = statistics['averageRequestRTT']
-        json_result['data']['statistics'] = {'total': send_total, 'delivered': percent_delivered, 'deliveryTime': average_request_rtt}
+        json_result['data']['statistics'] = {'total': send_total, 'delivered': percent_delivered,
+                                             'deliveryTime': average_request_rtt}
 
         have_group = False
         if my_node.groups and query_stage_index >= 12 and my_node.generic != 2:
@@ -1856,7 +1901,7 @@ def serialize_node_health(node_id):
             for groupIndex in list(my_node.groups):
                 if len(my_node.groups[groupIndex].associations) > 0:
                     have_group = True
-                    break            
+                    break
         else:
             check_for_group = False
         json_result['data']['is_groups_ok'] = {'value': have_group, 'enabled': check_for_group}
@@ -1865,8 +1910,12 @@ def serialize_node_health(node_id):
             is_neighbours_ok = False
         if my_node.generic == 8 and not my_node.is_listening_device:
             is_neighbours_ok = False
-        json_result['data']['is_neighbours_ok'] = {'value': len(my_node.neighbors) > 0, 'neighbors': len(my_node.neighbors), 'enabled': is_neighbours_ok}
-        json_result['data']['is_manufacturer_specific_ok'] = {'value': not is_none_or_empty(my_node.manufacturer_id) and not is_none_or_empty(my_node.product_id) and not is_none_or_empty(my_node.product_type), 'enabled': query_stage_index >= 7}  # ManufacturerSpecific2
+        json_result['data']['is_neighbours_ok'] = {'value': len(my_node.neighbors) > 0,
+                                                   'neighbors': len(my_node.neighbors), 'enabled': is_neighbours_ok}
+        json_result['data']['is_manufacturer_specific_ok'] = {
+            'value': not is_none_or_empty(my_node.manufacturer_id) and not is_none_or_empty(
+                my_node.product_id) and not is_none_or_empty(my_node.product_type),
+            'enabled': query_stage_index >= 7}  # ManufacturerSpecific2
         json_result['data']['pending_changes'] = {'value': check_pending_changes(node_id)}
     else:
         logging.warning('This network does not contain any node with the id %s' % (node_id,))
@@ -1886,7 +1935,7 @@ def get_network_mode():
     return Idle
 
 
-def serialize_controller_to_json():    
+def serialize_controller_to_json():
     json_result = {'data': {}}
     json_result['data']['roles'] = {'isPrimaryController': _network.controller.is_primary_controller,
                                     'isStaticUpdateController': _network.controller.is_static_update_controller,
@@ -1894,7 +1943,8 @@ def serialize_controller_to_json():
                                     }
     json_result['data']['nodeId'] = {'value': _network.controller.node_id}
     json_result['data']['mode'] = {'value': get_network_mode()}
-    json_result['data']['softwareVersion'] = {'ozw_library': _network.controller.ozw_library_version, 'python_library': _network.controller.python_library_version}
+    json_result['data']['softwareVersion'] = {'ozw_library': _network.controller.ozw_library_version,
+                                              'python_library': _network.controller.python_library_version}
     json_result['data']['notification'] = _network_information.last_controller_notifications[0]
     json_result['data']['isBusy'] = {"value": _network_information.controller_is_busy}
     json_result['data']['networkstate'] = {"value": _network.state}
@@ -1943,26 +1993,28 @@ def set_value(node_id, value_id, data):
                 else:
                     result_message = 'fails (unknown error)'
                 if my_result == 1:
-                    return format_json_result()                    
+                    return format_json_result()
                 return format_json_result(False, result_message, 'warning')
         return format_json_result(False, 'valueId not exist', 'warning')
     else:
         return format_node_not_fund(node_id)
+
 
 refresh_workers = {}
 
 
 def create_worker(node_id, value_id, target_value, starting_value, counter):
     # create a new refresh worker
-    worker = threading.Timer(interval=_refresh_interval, function=refresh_background, args=(node_id, value_id, target_value, starting_value, counter))
+    worker = threading.Timer(interval=_refresh_interval, function=refresh_background,
+                             args=(node_id, value_id, target_value, starting_value, counter))
     # save worker
     refresh_workers[value_id] = worker
     # start refresh timer
-    worker.start() 
+    worker.start()
 
 
 def prepare_refresh(node_id, value_id, target_value=None):
-    if _suppress_refresh :
+    if _suppress_refresh:
         return
     # logging.debug("prepare_refresh for nodeId:%s valueId:%s data:%s" % (node_id, value_id, target_value,))
     stop_refresh(node_id, value_id)
@@ -1981,7 +2033,7 @@ def refresh_background(node_id, value_id, target_value, starting_value, counter)
             target_value = target_value.lower()
             do_refresh = actual_value != target_value
             # if do_refresh:
-                # logging.debug("delta %s: %s" % (actual_value, target_value,))
+            # logging.debug("delta %s: %s" % (actual_value, target_value,))
         else:
             # check if target is reported
             delta = abs(actual_value - target_value)
@@ -1998,7 +2050,7 @@ def refresh_background(node_id, value_id, target_value, starting_value, counter)
             if counter > 3:
                 do_refresh = False
         else:
-            counter = 0                
+            counter = 0
     if do_refresh:
         # logging.debug("refresh")
         _network.nodes[node_id].values[value_id].refresh()
@@ -2030,7 +2082,7 @@ def get_sleeping_nodes_count():
     for idNode in list(_network.nodes):
         if not _network.nodes[idNode].is_awake:
             sleeping_nodes_count += 1
-    return sleeping_nodes_count  
+    return sleeping_nodes_count
 
 
 def convert_level_to_color(level):
@@ -2084,13 +2136,14 @@ def format_exception_result(exception):
 def format_node_disabled():
     return format_json_result(False, 'Node is disabled', 'warning')
 
+
 '''
 default routes
 '''
 
 
 @app.before_first_request
-def _run_on_start():    
+def _run_on_start():
     pass
 
 
@@ -2109,7 +2162,7 @@ def not_found400(error):
 
 @app.errorhandler(404)
 def not_found404(error):
-    logging.error('%s %s' % (error, request.url)) 
+    logging.error('%s %s' % (error, request.url))
     return make_response(jsonify({'error': 'Not found'}), 404)
 
 
@@ -2173,13 +2226,17 @@ def get_assoc(node_id):
             config['supported'] = {'value': True}
             for group in list(_network.nodes[node_id].groups):
                 config[_network.nodes[node_id].groups[group].index] = {}
-                config[_network.nodes[node_id].groups[group].index]['nodes'] = {'value': list(_network.nodes[node_id].groups[group].associations), 'updateTime': int(timestamp), 'invalidateTime': 0}
+                config[_network.nodes[node_id].groups[group].index]['nodes'] = {
+                    'value': list(_network.nodes[node_id].groups[group].associations), 'updateTime': int(timestamp),
+                    'invalidateTime': 0}
     else:
         logging.warning('This network does not contain any node with the id %s' % (node_id,))
     return jsonify(config)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x85].Remove(<int:group_index>,<int:target_node_id>)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x85].Remove(<int:group_index>,<int:target_node_id>)',
+    methods=['GET'])
 def remove_assoc(node_id, group_index, target_node_id):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2191,14 +2248,17 @@ def remove_assoc(node_id, group_index, target_node_id):
                 pass
             else:
                 my_node.pendingAssociations = dict()
-            my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = None, pending_removed = target_node_id, timeout = 0)
+            my_node.pendingAssociations[group_index] = PendingAssociation(pending_added=None,
+                                                                          pending_removed=target_node_id, timeout=0)
         _network.manager.removeAssociation(_network.home_id, node_id, group_index, target_node_id)
         return format_json_result()
     else:
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x85].Add(<int:group_index>,<int:target_node_id>)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x85].Add(<int:group_index>,<int:target_node_id>)',
+    methods=['GET'])
 def add_assoc(node_id, group_index, target_node_id):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2210,18 +2270,22 @@ def add_assoc(node_id, group_index, target_node_id):
                 pass
             else:
                 my_node.pendingAssociations = dict()
-            my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = target_node_id, pending_removed = None, timeout = 0)
+            my_node.pendingAssociations[group_index] = PendingAssociation(pending_added=target_node_id,
+                                                                          pending_removed=None, timeout=0)
         _network.manager.addAssociation(_network.home_id, node_id, group_index, target_node_id)
         return format_json_result()
     else:
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].Associations[<int:group_index>].Remove(<int:target_node_id>,<int:target_node_instance>)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].Associations[<int:group_index>].Remove(<int:target_node_id>,<int:target_node_instance>)',
+    methods=['GET'])
 def remove_association(node_id, group_index, target_node_id, target_node_instance):
     if _network_information.controller_is_busy:
         return format_controller_busy()
-    logging.info("remove_association to nodeId: %s in group %s with nodeId: %s instance %s" % (node_id, group_index, target_node_id, target_node_instance,))
+    logging.info("remove_association to nodeId: %s in group %s with nodeId: %s instance %s" % (
+    node_id, group_index, target_node_id, target_node_instance,))
     if node_id in _network.nodes:
         my_node = _network.nodes[node_id]
         if target_node_id in my_node.groups[group_index].associations:
@@ -2229,18 +2293,22 @@ def remove_association(node_id, group_index, target_node_id, target_node_instanc
                 pass
             else:
                 my_node.pendingAssociations = dict()
-            my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = None, pending_removed = target_node_id, timeout = 0)
+            my_node.pendingAssociations[group_index] = PendingAssociation(pending_added=None,
+                                                                          pending_removed=target_node_id, timeout=0)
         _network.manager.removeAssociation(_network.home_id, node_id, group_index, target_node_id, target_node_instance)
         return format_json_result()
     else:
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].Associations[<int:group_index>].Add(<int:target_node_id>,<int:target_node_instance>)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].Associations[<int:group_index>].Add(<int:target_node_id>,<int:target_node_instance>)',
+    methods=['GET'])
 def add_association(node_id, group_index, target_node_id, target_node_instance):
     if _network_information.controller_is_busy:
         return format_controller_busy()
-    logging.info("add_association to nodeId: %s in group %s with nodeId: %s instance %s" % (node_id, group_index, target_node_id, target_node_instance,))
+    logging.info("add_association to nodeId: %s in group %s with nodeId: %s instance %s" % (
+    node_id, group_index, target_node_id, target_node_instance,))
     if node_id in _network.nodes:
         my_node = _network.nodes[node_id]
         if not (target_node_id in my_node.groups[group_index].associations):
@@ -2248,7 +2316,8 @@ def add_association(node_id, group_index, target_node_id, target_node_instance):
                 pass
             else:
                 my_node.pendingAssociations = dict()
-            my_node.pendingAssociations[group_index] = PendingAssociation(pending_added = target_node_id, pending_removed = None, timeout = 0)
+            my_node.pendingAssociations[group_index] = PendingAssociation(pending_added=target_node_id,
+                                                                          pending_removed=None, timeout=0)
         _network.manager.addAssociation(_network.home_id, node_id, group_index, target_node_id, target_node_instance)
         return format_json_result()
     else:
@@ -2274,7 +2343,7 @@ def reset_polling(node_id):
         for val in _network.nodes[node_id].get_values():
             my_value = _network.nodes[node_id].values[val]
             changes_value_polling(0, my_value)
-        return format_json_result()  
+        return format_json_result()
     else:
         return format_node_not_fund(node_id)
 
@@ -2290,7 +2359,8 @@ def set_polling2(node_id, value_id, frequency):
                 changes_value_polling(frequency, my_value)
                 # reset other polling for this CC and instance
                 for value_id in my_node.get_values(class_id=my_value.command_class):
-                    if my_node.values[value_id].instance == my_value.instance and my_node.values[value_id].index != my_value.index_id:
+                    if my_node.values[value_id].instance == my_value.instance and my_node.values[
+                        value_id].index != my_value.index_id:
                         changes_value_polling(0, value_id)
                 return format_json_result()
         return format_json_result(False, 'valueId: %s not found' % (value_id,), 'warning')
@@ -2299,9 +2369,11 @@ def set_polling2(node_id, value_id, frequency):
 
 
 @app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].SetPolling(<int:frequency>)', methods=['GET'])
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].SetPolling(<int:frequency>)',
+    methods=['GET'])
 def set_polling_value(node_id, instance_id, cc_id, index, frequency):
-    logging.info("set_polling_value for nodeId: %s instance: %s cc:%s index:%s at: %s" % (node_id, instance_id, cc_id, index, frequency,))
+    logging.info("set_polling_value for nodeId: %s instance: %s cc:%s index:%s at: %s" % (
+    node_id, instance_id, cc_id, index, frequency,))
     if node_id in _network.nodes:
         for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16)):
             if _network.nodes[node_id].values[val].instance - 1 == instance_id:
@@ -2310,21 +2382,24 @@ def set_polling_value(node_id, instance_id, cc_id, index, frequency):
                     # disable the value polling for any values for this CC and instance
                     my_value.disable_poll()
                 else:
-                    if _network.nodes[node_id].values[val].index == index :
+                    if _network.nodes[node_id].values[val].index == index:
                         changes_value_polling(frequency, my_value)
                     else:
                         # disable the value polling for other index of same instance
                         if my_value.poll_intensity > 0:
                             my_value.disable_poll()
-        write_config()  
-        return format_json_result()      
+        write_config()
+        return format_json_result()
     else:
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].SetPolling(<int:frequency>)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].SetPolling(<int:frequency>)',
+    methods=['GET'])
 def set_polling_instance(node_id, instance_id, cc_id, frequency):
-    logging.info("set_polling_instance for nodeId: %s instance: %s cc:%s at: %s" % (node_id, instance_id, cc_id, frequency,))
+    logging.info(
+        "set_polling_instance for nodeId: %s instance: %s cc:%s at: %s" % (node_id, instance_id, cc_id, frequency,))
     if node_id in _network.nodes:
         polling_apply = False
         for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16)):
@@ -2334,7 +2409,7 @@ def set_polling_instance(node_id, instance_id, cc_id, frequency):
                     # disable the value polling for any values for this CC and instance
                     my_value.disable_poll()
                 else:
-                    if not polling_apply :
+                    if not polling_apply:
                         polling_apply = True
                         changes_value_polling(frequency, my_value)
                     else:
@@ -2370,10 +2445,13 @@ def set_wake_up(node_id, wake_up_time):
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].SetChangeVerified(<int:index>,<int:verified>)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].SetChangeVerified(<int:index>,<int:verified>)',
+    methods=['GET'])
 def set_change_verified(node_id, instance_id, cc_id, index, verified):
     # Sets a flag indicating whether value changes noted upon a refresh should be verified
-    logging.info("set_change_verified nodeId:%s instance:%s commandClasses:%s index:%s verified:%s" % (node_id, instance_id, cc_id, index, verified,))
+    logging.info("set_change_verified nodeId:%s instance:%s commandClasses:%s index:%s verified:%s" % (
+    node_id, instance_id, cc_id, index, verified,))
     if node_id in _network.nodes:
         for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16)):
             my_value = _network.nodes[node_id].values[val]
@@ -2408,12 +2486,13 @@ def refresh_config(node_id, index_id):
         for val in _network.nodes[node_id].get_values(class_id=COMMAND_CLASS_CONFIGURATION):
             if _network.nodes[node_id].values[val].index == index_id:
                 _network.nodes[node_id].values[val].refresh()
-        return format_json_result()  
+        return format_json_result()
     else:
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetDeviceName(<string:location>,<string:name>,<int:is_enable>)', methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetDeviceName(<string:location>,<string:name>,<int:is_enable>)',
+           methods=['GET'])
 def set_device_name(node_id, location, name, is_enable):
     logging.info("set_device_name node_id:%s new name ; '%s'. Is enable: %s" % (node_id, name, is_enable,))
     if node_id in _network.nodes:
@@ -2458,7 +2537,9 @@ def get_config(node_id):
                     result_data = 1
                 else:
                     result_data = my_value.data
-                config[my_value.index]['val'] = {'value2': my_value.data, 'value': result_data, 'value3': my_value.label, 'value4': sorted(list_values), 'updateTime': int(timestamp), 'invalidateTime': 0}
+                config[my_value.index]['val'] = {'value2': my_value.data, 'value': result_data,
+                                                 'value3': my_value.label, 'value4': sorted(list_values),
+                                                 'updateTime': int(timestamp), 'invalidateTime': 0}
                 # config[my_value.index]['size'] = {'value': 1}
     else:
         logging.warning('This network does not contain any node with the id %s' % (node_id,), 'warning')
@@ -2482,23 +2563,28 @@ def copy_configuration(source_id, target_id):
                         if configuration_value.type == 'Button':
                             continue
                         if configuration_value.is_write_only:
-                            continue                
+                            continue
                         try:
-                            target_value = get_value_by_index(target_id, COMMAND_CLASS_CONFIGURATION, 1, configuration_value.index)
+                            target_value = get_value_by_index(target_id, COMMAND_CLASS_CONFIGURATION, 1,
+                                                              configuration_value.index)
                             if target_value is not None:
                                 if configuration_value.type == 'List':
                                     _network.manager.setValue(target_value.value_id, configuration_value.data)
                                     accepted = True
                                 else:
-                                    accepted = target.set_config_param(configuration_value.index, configuration_value.data)
+                                    accepted = target.set_config_param(configuration_value.index,
+                                                                       configuration_value.data)
                                 if accepted:
                                     items += 1
                                     mark_pending_change(target_value, configuration_value.data)
                         except Exception as error:
-                            logging.error('Copy configuration %s (index:%s): %s' % (configuration_value.label, configuration_value.index, str(error), ))
+                            logging.error('Copy configuration %s (index:%s): %s' % (
+                            configuration_value.label, configuration_value.index, str(error),))
                 my_result = items != 0
             else:
-                return format_json_result(False, 'The two nodes must be with same: manufacturer_id, product_type and product_id', 'warning')
+                return format_json_result(False,
+                                          'The two nodes must be with same: manufacturer_id, product_type and product_id',
+                                          'warning')
         else:
             return format_node_not_fund(target_id)
     else:
@@ -2520,7 +2606,8 @@ def set_configuration_item(node_id, value_id, item):
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<int:value>,<int:size>)', methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<int:value>,<int:size>)',
+           methods=['GET'])
 def set_config(node_id, index_id, value, size):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2541,14 +2628,16 @@ def set_config(node_id, index_id, value, size):
         return format_exception_result(exception)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<string:value>,<int:size>)', methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<string:value>,<int:size>)',
+           methods=['GET'])
 def set_config2(node_id, index_id, value, size):
     if _network_information.controller_is_busy:
         return format_controller_busy()
     logging.info("set_config2 for node_id:%s change index:%s to '%s' size:(%s)" % (node_id, index_id, value, size,))
     try:
         if node_id in _network.nodes:
-            for value_id in _network.nodes[node_id].get_values(class_id=COMMAND_CLASS_CONFIGURATION, genre='All', type='All', readonly='All', writeonly='All'):
+            for value_id in _network.nodes[node_id].get_values(class_id=COMMAND_CLASS_CONFIGURATION, genre='All',
+                                                               type='All', readonly='All', writeonly='All'):
                 if _network.nodes[node_id].values[value_id].index == index_id:
                     value = value.replace("@", "/")
                     my_value = _network.nodes[node_id].values[value_id]
@@ -2563,11 +2652,11 @@ def set_config2(node_id, index_id, value, size):
                     elif my_value.type == 'Bool':
                         if value.lower() == 'true':
                             value = True
-                        else: 
+                        else:
                             value = False
                         _network.manager.setValue(value_id, value)
                         mark_pending_change(my_value, value)
-                    return format_json_result()   
+                    return format_json_result()
             return format_json_result(False, 'Configuration index:%s not found' % (index_id,), 'warning')
         else:
             return format_node_not_fund(node_id)
@@ -2575,7 +2664,8 @@ def set_config2(node_id, index_id, value, size):
         return format_exception_result(exception)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<float:value>,<int:size>)', methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<float:value>,<int:size>)',
+           methods=['GET'])
 def set_config3(node_id, index_id, value, size):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2594,11 +2684,14 @@ def set_config3(node_id, index_id, value, size):
         return format_exception_result(exception)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<int:value>,<int:size>)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<int:value>,<int:size>)',
+    methods=['GET'])
 def set_config4(node_id, instance_id, index_id2, index_id, value, size):
     if _network_information.controller_is_busy:
         return format_controller_busy()
-    logging.info("set_config4 for nodeId:%s instance_id:%s, index:%s, value:%s, size:%s" % (node_id, instance_id, index_id, value, size,))
+    logging.info("set_config4 for nodeId:%s instance_id:%s, index:%s, value:%s, size:%s" % (
+    node_id, instance_id, index_id, value, size,))
     if size == 0:
         size = 2
     value = int(value)
@@ -2615,11 +2708,14 @@ def set_config4(node_id, instance_id, index_id2, index_id, value, size):
         return format_exception_result(exception)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<string:value>,<int:size>)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<string:value>,<int:size>)',
+    methods=['GET'])
 def set_config5(node_id, instance_id, index_id2, index_id, value, size):
     if _network_information.controller_is_busy:
         return format_controller_busy()
-    logging.info("set_config5 for nodeId:%s instance_id:%s, index:%s, value:%s, size:%s" % (node_id, instance_id, index_id, value, size,))
+    logging.info("set_config5 for nodeId:%s instance_id:%s, index:%s, value:%s, size:%s" % (
+    node_id, instance_id, index_id, value, size,))
     if size == 0:
         size = 2
     value = int(value)
@@ -2634,11 +2730,14 @@ def set_config5(node_id, instance_id, index_id2, index_id, value, size):
         return format_exception_result(exception)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<float:value>,<int:size>)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<float:value>,<int:size>)',
+    methods=['GET'])
 def set_config6(node_id, instance_id, index_id2, index_id, value, size):
     if _network_information.controller_is_busy:
         return format_controller_busy()
-    logging.info("set_config6 for nodeId:%s instance_id:%s, index:%s, value:%s, size:%s" % (node_id, instance_id, index_id, value, size,))
+    logging.info("set_config6 for nodeId:%s instance_id:%s, index:%s, value:%s, size:%s" % (
+    node_id, instance_id, index_id, value, size,))
     if size == 0:
         size = 2
     value = int(value)
@@ -2678,7 +2777,8 @@ def request_node_dynamic(node_id):
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Get()', methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Get()',
+           methods=['GET'])
 def get_value(node_id, instance_id, cc_id):
     if node_id in _network.nodes:
         try:
@@ -2704,11 +2804,14 @@ def get_value(node_id, instance_id, cc_id):
     return format_json_result()
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].val', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].val',
+    methods=['GET'])
 def get_value6(node_id, instance_id, index, cc_id):
     if node_id in _network.nodes:
         for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16)):
-            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[val].index == index:
+            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[
+                val].index == index:
                 if _network.nodes[node_id].values[val].units == 'F':
                     return str(convert_fahrenheit_celsius(_network.nodes[node_id].values[val]))
                 else:
@@ -2718,17 +2821,22 @@ def get_value6(node_id, instance_id, index, cc_id):
     return jsonify({})
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ForceRefresh()', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ForceRefresh()',
+    methods=['GET'])
 def force_refresh_one_value(node_id, instance_id, index, cc_id):
     return refresh_one_value(node_id, instance_id, index, int(cc_id, 16))
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<int:cc_id>].data[<int:index>].Refresh()', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<int:cc_id>].data[<int:index>].Refresh()',
+    methods=['GET'])
 def refresh_one_value(node_id, instance_id, index, cc_id):
     # logging.debug("refresh_one_value nodeId:%s instance:%s commandClasses:%s index:%s" % (node_id, instance_id, cc_id, index))
     if node_id in _network.nodes:
         for val in _network.nodes[node_id].get_values(class_id=cc_id):
-            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[val].index == index:
+            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[
+                val].index == index:
                 _network.nodes[node_id].values[val].refresh()
                 return format_json_result()
         return format_json_result(False, 'This device does not contain the specified value', 'warning')
@@ -2736,9 +2844,12 @@ def refresh_one_value(node_id, instance_id, index, cc_id):
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x63].data[<int:index>].code', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x63].data[<int:index>].code',
+    methods=['GET'])
 def get_user_code(node_id, instance_id, index):
-    logging.debug("getValueRaw nodeId:%s instance:%s commandClasses:%s index:%s" % (node_id, instance_id, hex(COMMAND_CLASS_USER_CODE), index))
+    logging.debug("getValueRaw nodeId:%s instance:%s commandClasses:%s index:%s" % (
+    node_id, instance_id, hex(COMMAND_CLASS_USER_CODE), index))
     my_result = {}
     if node_id in _network.nodes:
         my_node = _network.nodes[node_id]
@@ -2755,7 +2866,7 @@ def get_user_code(node_id, instance_id, index):
                         chunks, chunk_size = len(raw_data), len(raw_data) / 10
                         user_code = [int(raw_data[i:i + chunk_size], 16) for i in range(0, chunks, chunk_size)]
                     except TypeError:
-                        timestamp = int(1)                 
+                        timestamp = int(1)
                 my_result = {'invalidateTime': int(time.time() - datetime.timedelta(seconds=30).total_seconds()),
                              'type': get_standard_value_type(my_value.type),
                              'value': user_code,
@@ -2767,9 +2878,11 @@ def get_user_code(node_id, instance_id, index):
     return jsonify(my_result)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x63].data', methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x63].data',
+           methods=['GET'])
 def get_user_codes(node_id, instance_id):
-    logging.debug("getValueAllRaw nodeId:%s instance:%s commandClasses:%s" % (node_id, instance_id, hex(COMMAND_CLASS_USER_CODE),))
+    logging.debug("getValueAllRaw nodeId:%s instance:%s commandClasses:%s" % (
+    node_id, instance_id, hex(COMMAND_CLASS_USER_CODE),))
     result_value = {}
     if node_id in _network.nodes:
         my_node = _network.nodes[node_id]
@@ -2806,15 +2919,22 @@ def set_user_code(node_id, slot_id, value):
     return jsonify(result_value)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x63].SetRaw(<int:slot_id>,[<value1>,<value2>,<value3>,<value4>,<value5>,<value6>,<value7>,<value8>,<value9>,<value10>],1)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x63].SetRaw(<int:slot_id>,[<value1>,<value2>,<value3>,<value4>,<value5>,<value6>,<value7>,<value8>,<value9>,<value10>],1)',
+    methods=['GET'])
 def set_user_code2(node_id, slot_id, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10):
-    logging.info("set_user_code2 nodeId:%s slot:%s user code:%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" % (node_id, slot_id, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10,))
+    logging.info("set_user_code2 nodeId:%s slot:%s user code:%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" % (
+    node_id, slot_id, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10,))
     result_value = {}
     if node_id in _network.nodes:
         for val in _network.nodes[node_id].get_values(class_id=COMMAND_CLASS_USER_CODE):
             if _network.nodes[node_id].values[val].index == slot_id:
                 result_value['data'] = {}
-                value = convert_user_code_to_hex(value1) + convert_user_code_to_hex(value2) + convert_user_code_to_hex(value3) + convert_user_code_to_hex(value4) + convert_user_code_to_hex(value5) + convert_user_code_to_hex(value6) + convert_user_code_to_hex(value7) + convert_user_code_to_hex(value8) + convert_user_code_to_hex(value9) + convert_user_code_to_hex(value10)
+                value = convert_user_code_to_hex(value1) + convert_user_code_to_hex(value2) + convert_user_code_to_hex(
+                    value3) + convert_user_code_to_hex(value4) + convert_user_code_to_hex(
+                    value5) + convert_user_code_to_hex(value6) + convert_user_code_to_hex(
+                    value7) + convert_user_code_to_hex(value8) + convert_user_code_to_hex(
+                    value9) + convert_user_code_to_hex(value10)
                 original_value = value
                 value = binascii.a2b_hex(value)
                 _network.nodes[node_id].values[val].data = value
@@ -2825,38 +2945,50 @@ def set_user_code2(node_id, slot_id, value1, value2, value3, value4, value5, val
     return jsonify(result_value)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<int:value>)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<int:value>)',
+    methods=['GET'])
 def set_value7(node_id, instance_id, cc_id, index, value):
-    logging.info("set_value7 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (node_id, instance_id, cc_id, index, value,))
+    logging.info("set_value7 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (
+    node_id, instance_id, cc_id, index, value,))
     if node_id in _network.nodes:
-        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
-            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[val].index == index:
+        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All',
+                                                      writeonly='All'):
+            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[
+                val].index == index:
                 _network.nodes[node_id].values[val].data = value
                 if _network.nodes[node_id].values[val].genre == 'System':
                     if _network.nodes[node_id].values[val].type == 'Bool':
                         if value == 0:
                             value = False
                         else:
-                            value = True                        
+                            value = True
                     mark_pending_change(_network.nodes[node_id].values[val], value)
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     # dimmer don't report the final value until the value changes is completed
                     prepare_refresh(node_id, val, value)
                 if int(cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SET_POINT:
                     logging.debug("COMMAND_CLASS_THERMOSTAT_SET_POINT")
-                    save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SET_POINT, index, get_standard_value_type(_network.nodes[node_id].values[val].type), value, instance_id+10)
+                    save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SET_POINT, index,
+                                          get_standard_value_type(_network.nodes[node_id].values[val].type), value,
+                                          instance_id + 10)
                 return format_json_result()
         return format_json_result(False, 'value not found', 'warning')
     else:
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<float:value>)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<float:value>)',
+    methods=['GET'])
 def set_value8(node_id, instance_id, cc_id, index, value):
-    logging.info("set_value8 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (node_id, instance_id, cc_id, index, value,))
+    logging.info("set_value8 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (
+    node_id, instance_id, cc_id, index, value,))
     if node_id in _network.nodes:
-        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
-            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[val].index == index:
+        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All',
+                                                      writeonly='All'):
+            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[
+                val].index == index:
                 _network.nodes[node_id].values[val].data = value
                 if _network.nodes[node_id].values[val].genre == 'System':
                     mark_pending_change(_network.nodes[node_id].values[val], value)
@@ -2865,19 +2997,26 @@ def set_value8(node_id, instance_id, cc_id, index, value):
                     prepare_refresh(node_id, val, value)
                 if int(cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SET_POINT:
                     logging.debug("COMMAND_CLASS_THERMOSTAT_SET_POINT")
-                    save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SET_POINT, index, get_standard_value_type(_network.nodes[node_id].values[val].type), value, instance_id+10)
+                    save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SET_POINT, index,
+                                          get_standard_value_type(_network.nodes[node_id].values[val].type), value,
+                                          instance_id + 10)
                 return format_json_result()
         return format_json_result(False, 'value not found', 'warning')
     else:
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<string:value>)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<string:value>)',
+    methods=['GET'])
 def set_value9(node_id, instance_id, cc_id, index, value):
-    logging.info("set_value9 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (node_id, instance_id, cc_id, index, value,))
+    logging.info("set_value9 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (
+    node_id, instance_id, cc_id, index, value,))
     if node_id in _network.nodes:
-        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
-            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[val].index == index:
+        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All',
+                                                      writeonly='All'):
+            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[
+                val].index == index:
                 last_value = _network.nodes[node_id].values[val].data
                 _network.nodes[node_id].values[val].data = value
                 if _network.nodes[node_id].values[val].genre == 'System':
@@ -2885,17 +3024,19 @@ def set_value9(node_id, instance_id, cc_id, index, value):
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     # dimmer don't report the final value until the value changes is completed
                     prepare_refresh(node_id, val, value)
-                if cc_id == hex(COMMAND_CLASS_COLOR):                       
+                if cc_id == hex(COMMAND_CLASS_COLOR):
                     if len(last_value) == 9 and len(value) > 9:
-                        value = value[:9]     
+                        value = value[:9]
                     prepare_refresh(node_id, val, value.upper())
-                return format_json_result() 
+                return format_json_result()
         return format_json_result(False, 'value not found', 'warning')
     else:
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Set(<string:value>)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Set(<string:value>)',
+    methods=['GET'])
 def set_value6(node_id, instance_id, cc_id, value):
     logging.info("set_value6 nodeId:%s instance:%s commandClasses:%s  data:%s" % (node_id, instance_id, cc_id, value,))
     if cc_id == str(COMMAND_CLASS_WAKE_UP):
@@ -2913,7 +3054,8 @@ def set_value6(node_id, instance_id, cc_id, value):
                 return format_json_result(add_assoc(node_id, group, target_node))
             except ValueError:
                 return format_json_result(False, 'Node is not Ready for associations', 'warning')
-        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
+        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All',
+                                                      writeonly='All'):
             if _network.nodes[node_id].values[val].instance - 1 == instance_id:
                 _network.nodes[node_id].values[val].data = value
                 return format_json_result()
@@ -2927,17 +3069,18 @@ def get_color(node_id):
     logging.debug("get_color nodeId:%s" % (node_id,))
     my_result = {}
     if node_id in _network.nodes:
-        red_level = 0  
-        green_level = 0 
-        blue_level = 0 
+        red_level = 0
+        green_level = 0
+        blue_level = 0
         white_level = 0
-        for val in _network.nodes[node_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User', type='Byte', readonly='All', writeonly=False):
+        for val in _network.nodes[node_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User',
+                                                      type='Byte', readonly='All', writeonly=False):
             my_value = _network.nodes[node_id].values[val]
             if my_value.label != 'Level':
                 continue
             if my_value.instance < 2:
-                continue            
-            
+                continue
+
             if my_value.instance == 3:
                 red_level = convert_level_to_color(my_value.data)
             elif my_value.instance == 4:
@@ -2945,16 +3088,19 @@ def get_color(node_id):
             elif my_value.instance == 5:
                 blue_level = convert_level_to_color(my_value.data)
             elif my_value.instance == 6:
-                white_level = convert_level_to_color(my_value.data) 
+                white_level = convert_level_to_color(my_value.data)
         my_result['data'] = {'red': red_level, 'green': green_level, 'blue': blue_level, 'white': white_level}
     else:
         logging.warning('This network does not contain any node with the id %s' % (node_id,))
     return jsonify(my_result)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetColor(<int:red_level>,<int:green_level>,<int:blue_level>,<int:white_level>)', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].SetColor(<int:red_level>,<int:green_level>,<int:blue_level>,<int:white_level>)',
+    methods=['GET'])
 def set_color(node_id, red_level, green_level, blue_level, white_level):
-    logging.info("set_color nodeId:%s red:%s green:%s blue:%s white:%s" % (node_id, red_level, green_level, blue_level, white_level,))
+    logging.info("set_color nodeId:%s red:%s green:%s blue:%s white:%s" % (
+    node_id, red_level, green_level, blue_level, white_level,))
     my_result = False
     if node_id in _network.nodes:
         intensity_value = None
@@ -2962,7 +3108,8 @@ def set_color(node_id, red_level, green_level, blue_level, white_level):
         green_value = None
         blue_value = None
         # white_value = None
-        for val in _network.nodes[node_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User', type='Byte', readonly='All', writeonly=False):
+        for val in _network.nodes[node_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User',
+                                                      type='Byte', readonly='All', writeonly=False):
             my_value = _network.nodes[node_id].values[val]
             if my_value.label != 'Level':
                 continue
@@ -2990,22 +3137,28 @@ def set_color(node_id, red_level, green_level, blue_level, white_level):
     return format_json_result(my_result)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()',
+    methods=['GET'])
 def press_button(node_id, instance_id, cc_id, index):
     # Start an activity in a device
     logging.info("press_button nodeId:%s, instance:%s, cc:%s, index:%s" % (node_id, instance_id, cc_id, index,))
     if node_id in _network.nodes:
-        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
-            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[val].index == index:
+        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All',
+                                                      writeonly='All'):
+            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[
+                val].index == index:
                 _network.manager.pressButton(_network.nodes[node_id].values[val].value_id)
                 # special case for dimmer and store
-                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and _network.nodes[node_id].values[val].label in ['Bright', 'Dim', 'Open', 'Close']:
+                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and _network.nodes[node_id].values[val].label in [
+                    'Bright', 'Dim', 'Open', 'Close']:
                     # assume Dim / Close as target value
                     value = 1
                     if _network.nodes[node_id].values[val].label in ['Bright', 'Open']:
                         value = 99
                     # dimmer don't report the final value until the value changes is completed
-                    value_level = get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL, _network.nodes[node_id].values[val].instance, 'Level')
+                    value_level = get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
+                                                     _network.nodes[node_id].values[val].instance, 'Level')
                     if value_level:
                         prepare_refresh(node_id, value_level.value_id, value)
                 return format_json_result()
@@ -3014,31 +3167,40 @@ def press_button(node_id, instance_id, cc_id, index):
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ReleaseButton()', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ReleaseButton()',
+    methods=['GET'])
 def release_button(node_id, instance_id, cc_id, index):
     # Stop an activity in a device
     if node_id in _network.nodes:
-        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
-            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[val].index == index:
+        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All',
+                                                      writeonly='All'):
+            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[
+                val].index == index:
                 _network.manager.releaseButton(_network.nodes[node_id].values[val].value_id)
                 # stop refresh if running in background
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
-                    value_level = get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL, _network.nodes[node_id].values[val].instance, 'Level')
+                    value_level = get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
+                                                     _network.nodes[node_id].values[val].instance, 'Level')
                     if value_level:
                         stop_refresh(node_id, value_level.value_id)
-                
+
                 return format_json_result()
         return format_json_result(False, 'button not found', 'warning')
     else:
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ToggleSwitch()', methods=['GET'])
+@app.route(
+    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ToggleSwitch()',
+    methods=['GET'])
 def toggle_switch(node_id, instance_id, cc_id, index):
     if node_id in _network.nodes:
         if cc_id in [hex(COMMAND_CLASS_SWITCH_BINARY), hex(COMMAND_CLASS_SWITCH_MULTILEVEL)]:
-            for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
-                if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[val].index == index:
+            for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All',
+                                                          readonly='All', writeonly='All'):
+                if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[
+                    val].index == index:
                     if cc_id == hex(COMMAND_CLASS_SWITCH_BINARY):
                         switch_state = _network.nodes[node_id].get_switch_state(val)
                         _network.nodes[node_id].set_switch(val, not switch_state)
@@ -3060,7 +3222,8 @@ def toggle_switch(node_id, instance_id, cc_id, index):
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)', methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)',
+           methods=['GET'])
 def switch_all(node_id, state):
     # Method for switching all devices on or off together.  The devices must support
     # the SwitchAll command class.  The command is first broadcast to all nodes, and
@@ -3077,7 +3240,7 @@ def switch_all(node_id, state):
         if my_node.is_failed:
             continue
         value_ids = my_node.get_switches_all()
-        if value_ids is not None and len(value_ids)>0:
+        if value_ids is not None and len(value_ids) > 0:
             for value_id in value_ids:
                 # logging.debug(my_node.values[value_id].data)
                 if my_node.values[value_id].data == "Disabled":
@@ -3098,7 +3261,6 @@ def switch_all(node_id, state):
                         my_node.values[dimmer].refresh()
                         # logging.debug("refresh dimmer")
 
-
     return format_json_result()
 
 
@@ -3108,7 +3270,7 @@ def request_node_neighbour_update(node_id):
         return format_controller_busy()
     logging.info("request_node_neighbour_update for node %s" % (node_id,))
     if node_id in _network.nodes:
-        if node_id in _disabled_nodes :
+        if node_id in _disabled_nodes:
             return format_node_disabled()
         return format_json_result(_network.manager.requestNodeNeighborUpdate(_network.home_id, node_id), 'warning')
     else:
@@ -3136,7 +3298,7 @@ def heal_node(node_id, perform_return_routes_initialization=False):
     try:
         logging.info("Heal network node (%s) by requesting the node rediscover their neighbors" % (node_id,))
         if node_id in _network.nodes:
-            if node_id in _disabled_nodes :
+            if node_id in _disabled_nodes:
                 return format_node_disabled()
             _network.manager.healNetworkNode(_network.home_id, node_id, perform_return_routes_initialization)
             return format_json_result()
@@ -3164,7 +3326,7 @@ def get_serialized_device(node_id):
         return jsonify(serialize_node_to_json(node_id))
     else:
         logging.warning('This network does not contain any node with the id %s' % (node_id,))
-    return jsonify({})             
+    return jsonify({})
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].ReplaceFailedNode()', methods=['GET'])
@@ -3174,7 +3336,7 @@ def replace_failed_node(node_id):
         return format_controller_busy()
     logging.info("replace_failed_node node %s" % (node_id,))
     if node_id in _network.nodes:
-        if node_id in _disabled_nodes :
+        if node_id in _disabled_nodes:
             return format_node_disabled()
         return format_json_result(_network.manager.replaceFailedNode(_network.home_id, node_id))
     else:
@@ -3188,7 +3350,7 @@ def send_node_information(node_id):
         return format_controller_busy()
     logging.info("send_node_information node %s" % (node_id,))
     if node_id in _network.nodes:
-        if node_id in _disabled_nodes :
+        if node_id in _disabled_nodes:
             return format_node_disabled()
         return format_json_result(_network.manager.sendNodeInformation(_network.home_id, node_id))
     else:
@@ -3202,7 +3364,7 @@ def has_node_failed(node_id):
         return format_controller_busy()
     logging.info("has_node_failed node %s" % (node_id,))
     if node_id in _network.nodes:
-        if node_id in _disabled_nodes :
+        if node_id in _disabled_nodes:
             return format_node_disabled()
         return format_json_result(_network.manager.hasNodeFailed(_network.home_id, node_id))
     else:
@@ -3217,7 +3379,7 @@ def refresh_node_info(node_id):
         return format_controller_busy()
     logging.info("refresh_node_info node %s" % (node_id,))
     if node_id in _network.nodes:
-        if node_id in _disabled_nodes :
+        if node_id in _disabled_nodes:
             return format_node_disabled()
         return format_json_result(_network.manager.refreshNodeInfo(_network.home_id, node_id))
     else:
@@ -3228,7 +3390,7 @@ def refresh_node_info(node_id):
 def refresh_all_values(node_id):
     #  manual refresh of all value of a node, we will receive a refreshed value form value refresh notification
     if node_id in _network.nodes:
-        if node_id in _disabled_nodes :
+        if node_id in _disabled_nodes:
             return format_node_disabled()
         current_node = _network.nodes[node_id]
         try:
@@ -3242,7 +3404,7 @@ def refresh_all_values(node_id):
                     continue
                 current_value.refresh()
                 counter += 1
-            message = 'Refreshed values count: %s' % (counter,)            
+            message = 'Refreshed values count: %s' % (counter,)
             return format_json_result(True, message)
         except Exception, exception:
             return format_exception_result(exception)
@@ -3259,7 +3421,7 @@ def test_node(node_id=0, count=3):
     try:
         logging.info("test_network node %s" % (node_id,))
         if node_id in _network.nodes:
-            if node_id in _disabled_nodes :
+            if node_id in _disabled_nodes:
                 return format_node_disabled()
             _network.manager.testNetworkNode(_network.home_id, node_id, count)
             return format_json_result()
@@ -3269,15 +3431,12 @@ def test_node(node_id=0, count=3):
         return format_exception_result(exception)
 
 
-
-
-
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetNodeStatistics()', methods=['GET'])
 def get_node_statistics(node_id):
     # Retrieve statistics per node
     try:
         if node_id in _network.nodes:
-            if node_id in _disabled_nodes :
+            if node_id in _disabled_nodes:
                 return format_node_disabled()
             query_stage_description = _network.manager.getNodeQueryStage(_network.home_id, node_id)
             query_stage_code = _network.manager.getNodeQueryStageCode(query_stage_description)
@@ -3303,7 +3462,7 @@ def remove_device_openzwave_config(node_id, all):
         product_id = my_node.product_id
         product_type = my_node.product_type
         list_to_remove = [node_id]
-        if all != 0 :
+        if all != 0:
             for child_id in list(_network.nodes):
                 node = _network.nodes[child_id]
                 if child_id != node_id and node.manufacturer_id == manufacturer_id and node.product_id == product_id and node.product_type == product_type:
@@ -3341,7 +3500,7 @@ def ghost_killer(node_id):
     if not can_execute_network_command(0):
         return format_controller_busy()
     logging.info('Remove cc 0x84 (wake_up) for a ghost device: %s' % (node_id,))
-    
+
     filename = _data_folder + "/zwcfg_" + _network.home_id_str + ".xml"
     # ensure load latest file version
     try:
@@ -3351,15 +3510,15 @@ def ghost_killer(node_id):
         time.sleep(5)
     except Exception, exception:
         return format_exception_result(exception)
-    try: 
-        found = False       
-        message = None    
+    try:
+        found = False
+        message = None
         tree = etree.parse(filename)
         namespace = tree.getroot().tag[1:].split("}")[0]
         node = tree.find("{%s}Node[@id='%s']" % (namespace, node_id,))
         if node is None:
             message = 'node not found'
-        else:            
+        else:
             command_classes = node.find(".//{%s}CommandClasses" % namespace)
             if command_classes is None:
                 message = 'commandClasses not found'
@@ -3435,10 +3594,11 @@ def start_node_inclusion(state, do_security):
             return format_controller_busy()
         if do_security == 1:
             do_security = True
-            logging.info("Start the Inclusion Process to add a Node to the Network with Security CC if the node is supports it")
+            logging.info(
+                "Start the Inclusion Process to add a Node to the Network with Security CC if the node is supports it")
         else:
             do_security = False
-            logging.info("Start the Inclusion Process to add a Node to the Network")        
+            logging.info("Start the Inclusion Process to add a Node to the Network")
         execution_result = _network.manager.addNode(_network.home_id, do_security)
         if execution_result:
             _network_information.actual_mode = ControllerMode.AddDevice
@@ -3464,11 +3624,11 @@ def start_node_exclusion(state):
     elif state == 0:
         logging.info("Remove a Device from the Z-Wave Network (Cancel)")
         _network.manager.cancelControllerCommand(_network.home_id)
-        return format_json_result() 
+        return format_json_result()
 
 
 @app.route('/ZWaveAPI/Run/controller.CancelCommand()', methods=['GET'])
-def cancel_command():    
+def cancel_command():
     # Cancels any in-progress command running on a controller.
     logging.info("Cancels any in-progress command running on a controller.")
     try:
@@ -3512,21 +3672,21 @@ def replication_send(node_id):
 def heal_network(perform_return_routes_initialization=False):
     if not can_execute_network_command(0):
         return format_controller_busy()
-    logging.info("Heal network by requesting node's rediscover their neighbors") 
+    logging.info("Heal network by requesting node's rediscover their neighbors")
     for node_id in list(_network.nodes):
         if node_id in _not_supported_nodes:
             logging.debug("skip not supported (nodeId: %s)" % (node_id,))
             continue
         if _network.nodes[node_id].is_failed:
             logging.debug("skip presume dead (nodeId: %s)" % (node_id,))
-            continue        
+            continue
         if _network.nodes[node_id].query_stage != "Complete":
             logging.debug("skip query stage not complete (nodeId: %s)" % (node_id,))
             continue
         if _network.nodes[node_id].generic == 1:
             logging.debug("skip Remote controller (nodeId: %s) (they don't have neighbors)" % (node_id,))
             continue
-        if node_id in _disabled_nodes :
+        if node_id in _disabled_nodes:
             continue
         _network.manager.healNetworkNode(_network.home_id, node_id, perform_return_routes_initialization)
     return format_json_result()
@@ -3553,7 +3713,7 @@ def test_network(count=3):
             if node_id in _not_supported_nodes:
                 logging.debug("skip not supported (nodeId: %s)" % (node_id,))
                 continue
-            if node_id in _disabled_nodes :
+            if node_id in _disabled_nodes:
                 continue
             _network.manager.testNetworkNode(_network.home_id, node_id, count)
         return format_json_result()
@@ -3612,10 +3772,11 @@ def hard_reset():
         logging.info('The controller becomes a primary controller ready to add devices to a new network')
         time.sleep(3)
         start_network()
-        return format_json_result()        
+        return format_json_result()
     except Exception, exception:
         return format_exception_result(exception)
-            
+
+
 """
 network routes
 """
@@ -3625,8 +3786,8 @@ network routes
 def network_start():
     logging.info('******** The ZWave network is being started ********')
     try:
-        start_network()     
-        return format_json_result()   
+        start_network()
+        return format_json_result()
     except Exception, exception:
         return format_exception_result(exception)
 
@@ -3634,7 +3795,7 @@ def network_start():
 @app.route('/ZWaveAPI/Run/network.Stop()', methods=['GET'])
 def stop_network():
     graceful_stop_network()
-    return format_json_result() 
+    return format_json_result()
 
 
 @app.route('/ZWaveAPI/Run/network.GetStatus()', methods=['GET'])
@@ -3670,7 +3831,7 @@ def get_network_neighbours():
     nodes_data = {}
     if _network is not None and _network.state >= 5 and _network_is_running:
         for node_id in list(_network.nodes):
-            if node_id not in _disabled_nodes :
+            if node_id not in _disabled_nodes:
                 nodes_data[node_id] = serialize_neighbour_to_json(node_id)
     neighbours['devices'] = nodes_data
     return jsonify(neighbours)
@@ -3683,7 +3844,7 @@ def get_network_health():
     nodes_data = {}
     if _network is not None and _network.state >= 5 and _network_is_running:
         for node_id in list(_network.nodes):
-            if node_id not in _disabled_nodes :
+            if node_id not in _disabled_nodes:
                 nodes_data[node_id] = serialize_node_health(node_id)
     network_health['devices'] = nodes_data
     return jsonify(network_health)
@@ -3707,25 +3868,32 @@ def get_nodes_list():
         try:
             product_type = int(my_node.product_type, 16)
         except ValueError:
-            product_type = None      
-        
+            product_type = None
+
         node_name = my_node.name
         node_location = my_node.location
         if is_none_or_empty(node_name):
-            node_name = 'Unknown'  
+            node_name = 'Unknown'
         if _network.controller.node_id == node_id:
             node_name = my_node.product_name
             node_location = 'Jeedom'
-                  
-        json_node['description'] = {'name': node_name, 'location': node_location, 'product_name': my_node.product_name, 'is_static_controller': my_node.basic == 2, 'is_enable': int(node_id) not in _disabled_nodes}
-        json_node['product'] = {'manufacturer_id': manufacturer_id, 'product_type': product_type, 'product_id': product_id, 'is_valid': manufacturer_id is not None and product_id is not None and product_type is not None}
+
+        json_node['description'] = {'name': node_name, 'location': node_location, 'product_name': my_node.product_name,
+                                    'is_static_controller': my_node.basic == 2,
+                                    'is_enable': int(node_id) not in _disabled_nodes}
+        json_node['product'] = {'manufacturer_id': manufacturer_id, 'product_type': product_type,
+                                'product_id': product_id,
+                                'is_valid': manufacturer_id is not None and product_id is not None and product_type is not None}
         instances = []
         for val in my_node.get_values(genre='User'):
             if my_node.values[val].instance in instances:
                 continue
             instances.append(my_node.values[val].instance)
-        json_node['multi_instance'] = {'support': COMMAND_CLASS_MULTI_INSTANCE_ASSOCIATION in my_node.command_classes, 'instances': len(instances)}
-        json_node['capabilities'] = {'isListening': my_node.is_listening_device, 'isRouting': my_node.is_routing_device, 'isBeaming': my_node.is_beaming_device, 'isFlirs': my_node.is_frequent_listening_device}
+        json_node['multi_instance'] = {'support': COMMAND_CLASS_MULTI_INSTANCE_ASSOCIATION in my_node.command_classes,
+                                       'instances': len(instances)}
+        json_node['capabilities'] = {'isListening': my_node.is_listening_device, 'isRouting': my_node.is_routing_device,
+                                     'isBeaming': my_node.is_beaming_device,
+                                     'isFlirs': my_node.is_frequent_listening_device}
 
         nodes_data[node_id] = json_node
     nodes_list['devices'] = nodes_data
@@ -3787,20 +3955,20 @@ def save_openzwave_config():
     global _network_is_running
     new_filename = _data_folder + "/zwcfg_new.xml"
     if not os.path.isfile(new_filename):
-        return format_json_result(False, 'zwcfg_new.xml not exist: %s' %(new_filename,), 'error')
+        return format_json_result(False, 'zwcfg_new.xml not exist: %s' % (new_filename,), 'error')
     try:
         filename = _data_folder + "/zwcfg_" + _network.home_id_str + ".xml"
         _network_is_running = False
         _network.stop()
         while _network.state != 0:
-            logging.info('%s (%s)' %(_network.state_str, _network.state,))
+            logging.info('%s (%s)' % (_network.state_str, _network.state,))
             time.sleep(1)
-        logging.info('Replace zwcfg file: %s' %(filename,))
+        logging.info('Replace zwcfg file: %s' % (filename,))
         shutil.copy2(new_filename, filename)
         os.chmod(filename, 0777)
         logging.info('Restart network')
         start_network()
-        return format_json_result() 
+        return format_json_result()
     except Exception, exception:
         return format_exception_result(exception)
 
@@ -3829,7 +3997,7 @@ def remove_unknowns_devices_openzwave_config():
         time.sleep(5)
     except Exception, exception:
         return format_exception_result(exception)
-    
+
     filename = _data_folder + "/zwcfg_" + _network.home_id_str + ".xml"
     try:
         tree = etree.parse(filename)
@@ -3852,8 +4020,9 @@ def set_poll_interval(seconds, interval_between_polls):
     # Set the time period between polls of a node's state
     if not can_execute_network_command():
         return format_controller_busy()
-    try:        
-        logging.info('set_poll_interval seconds:%s, interval Between Polls: %s' % (seconds, bool(interval_between_polls)), )
+    try:
+        logging.info(
+            'set_poll_interval seconds:%s, interval Between Polls: %s' % (seconds, bool(interval_between_polls)), )
         if _network.state < _network.STATE_AWAKED:
             return jsonify({'result': False, 'reason': 'network state must a minimum set to awake'})
         if seconds < 30:
@@ -3864,13 +4033,13 @@ def set_poll_interval(seconds, interval_between_polls):
         return format_exception_result(exception)
 
 
-@app.route('/ZWaveAPI/Run/network.RefreshAllBatteryLevel()', methods=['GET'])       
+@app.route('/ZWaveAPI/Run/network.RefreshAllBatteryLevel()', methods=['GET'])
 def refresh_all_battery_level():
     logging.debug("refresh_all_battery_level")
     battery_levels = {}
     if _network is not None and _network.state >= 7 and _network_is_running:
         for node_id in list(_network.nodes):
-            if node_id in _disabled_nodes :
+            if node_id in _disabled_nodes:
                 continue
             node = _network.nodes[node_id]
             if not node.is_listening_device:
@@ -3882,7 +4051,7 @@ def refresh_all_battery_level():
     return jsonify(battery_levels)
 
 
-@app.route('/ZWaveAPI/Run/network.GetOZBackups()', methods=['GET'])       
+@app.route('/ZWaveAPI/Run/network.GetOZBackups()', methods=['GET'])
 def get_openzwave_backups():
     # Return the list of all available backups
     global _data_folder
@@ -3906,7 +4075,7 @@ def get_openzwave_backups():
     return jsonify(my_result)
 
 
-@app.route('/ZWaveAPI/Run/network.RestoreBackup(<backup_name>)', methods=['GET'])       
+@app.route('/ZWaveAPI/Run/network.RestoreBackup(<backup_name>)', methods=['GET'])
 def restore_openzwave_backups(backup_name):
     # Manually restore a backup
     global _data_folder
@@ -3941,14 +4110,14 @@ def restore_openzwave_backups(backup_name):
     return format_json_result(True, backup_name + ' successfully restored')
 
 
-@app.route('/ZWaveAPI/Run/network.ManualBackup()', methods=['GET'])       
+@app.route('/ZWaveAPI/Run/network.ManualBackup()', methods=['GET'])
 def manually_backup_config():
     # Manually create a backup
     logging.info('Manually creating a backup')
     return backup_xml_config('manual', _network.home_id_str)
 
 
-@app.route('/ZWaveAPI/Run/network.DeleteBackup(<backup_name>)', methods=['GET'])       
+@app.route('/ZWaveAPI/Run/network.DeleteBackup(<backup_name>)', methods=['GET'])
 def manually_delete_backup(backup_name):
     # Manually delete a backup
     global _data_folder
@@ -3969,9 +4138,8 @@ def perform_sanity_checks():
     return format_json_result()
 
 
-
 @app.route('/ZWaveAPI/Run/IsAlive()', methods=['GET'])
-def rest_is_alive():    
+def rest_is_alive():
     return format_json_result()
 
 
@@ -3995,10 +4163,12 @@ if __name__ == '__main__':
     pid = str(os.getpid())
     file(_pid_file, 'w').write("%s\n" % pid)
     try:
-        if _log_level == 'Debug' :
-            print('REST server starting in %s mode' %(_log_level,))
-            app.run(host='0.0.0.0', port=int(_port_server), debug=True, threaded=True, use_reloader=False, use_debugger=True)
+        if _log_level == 'Debug':
+            print('REST server starting in %s mode' % (_log_level,))
+            app.run(host='0.0.0.0', port=int(_port_server), debug=True, threaded=True, use_reloader=False,
+                    use_debugger=True)
         else:
-            app.run(host='0.0.0.0', port=int(_port_server), debug=False, threaded=True, use_reloader=False, use_debugger=False)
+            app.run(host='0.0.0.0', port=int(_port_server), debug=False, threaded=True, use_reloader=False,
+                    use_debugger=False)
     except Exception, ex:
         print "Fatal Error: %s" % str(ex)
