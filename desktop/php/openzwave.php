@@ -9,21 +9,21 @@ sendVarToJS('eqType', 'openzwave');
 sendVarToJS('marketAddr', config::byKey('market::address'));
 sendVarToJS('listServerZwave', openzwave::listServerZwave());
 echo '<div id="div_inclusionAlert"></div>';
-$controlerState = 0;
-$state = 10;
+$controllerMode = 0;
+$networkState = 10;
 foreach (openzwave::listServerZwave() as $id => $server) {
     if (isset($server['name'])) {
         try {
-            $controlerState = openzwave::callOpenzwave('/ZWaveAPI/Run/network.GetControllerStatus()', $id);
-            if (isset($controlerState['result']['data'])) {
-                $state = $controlerState['result']['data']['networkstate']['value'];
-                $controlerState = $controlerState['result']['data']['mode']['value'];
+            $result = openzwave::callOpenzwave('/ZWaveAPI/Run/network.GetControllerStatus()', $id);
+            if (isset($result['result']['data'])) {
+                $networkState = $result['result']['data']['networkstate']['value'];
+                $controllerMode = $result['result']['data']['mode']['value'];
             }
         } catch (Exception $e) {
-            $controlerState = null;
+            $controllerMode = null;
         }
 
-        switch ($state) {
+        switch ($networkState) {
             case 0: # STATE_STOPPED = 0
                 event::add('jeedom::alert', array(
                     'level' => 'danger',
@@ -61,16 +61,16 @@ foreach (openzwave::listServerZwave() as $id => $server) {
                 break;
         }
 
-        if ($controlerState === 0) {
+        if ($controllerMode === 0) {
             echo '<div id="div_inclusionAlert' . $id . '"></div>';
         }
-        if ($controlerState === 1) {
+        if ($controllerMode === 1) {
             echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert' . $id . '" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode inclusion sur ' . $server['name'] . '. Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode}}</div>';
         }
-        if ($controlerState === 5) {
+        if ($controllerMode === 5) {
             echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert' . $id . '" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode exclusion sur ' . $server['name'] . '. Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}</div>';
         }
-        if ($controlerState === null) {
+        if ($controllerMode === null) {
             event::add('jeedom::alert', array(
                 'level' => 'danger',
                 'page' => 'openzwave',
@@ -95,12 +95,12 @@ sendVarTojs('eqLogic_human_name', $tags);
         <div class="bs-sidebar">
             <ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
                 <?php
-                if ($controlerState == 1) {
+                if ($controllerMode == 1) {
                     echo ' <a class="btn btn-success tooltips changeIncludeState" title="{{Inclure périphérique Z-Wave}}" data-mode="1" data-state="0" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-in fa-rotate-90"></i> {{Arrêter inclusion}}</a>';
                 } else {
                     echo ' <a class="btn btn-default tooltips changeIncludeState" title="{{Inclure périphérique Z-Wave}}" data-mode="1" data-state="1" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-in fa-rotate-90"></i> {{Mode inclusion}}</a>';
                 }
-                if ($controlerState == 5) {
+                if ($controllerMode == 5) {
                     echo ' <a class="btn btn-danger tooltips changeIncludeState" title="{{Exclure périphérique Z-Wave}}" data-mode="0" data-state="0" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-out fa-rotate-90"></i> {{Arrêter exclusion}}</a>';
                 } else {
                     echo ' <a class="btn btn-default tooltips changeIncludeState" title="{{Exclure périphérique Z-Wave}}" data-mode="0" data-state="1" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-out fa-rotate-90"></i> {{Mode exclusion}}</a>';
@@ -125,7 +125,7 @@ sendVarTojs('eqLogic_human_name', $tags);
         <legend><i class="fa fa-cog"></i> {{Gestion}}</legend>
         <div class="eqLogicThumbnailContainer">
             <?php
-            if ($controlerState == 1) {
+            if ($controllerMode == 1) {
                 echo '<div class="cursor changeIncludeState card" data-mode="1" data-state="0" style="background-color : #8000FF; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
                 echo '<center>';
                 echo '<i class="fa fa-sign-in fa-rotate-90" style="font-size : 6em;color:#94ca02;"></i>';
@@ -140,7 +140,7 @@ sendVarTojs('eqLogic_human_name', $tags);
                 echo '<span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Mode inclusion}}</center></span>';
                 echo '</div>';
             }
-            if ($controlerState == 5) {
+            if ($controllerMode == 5) {
                 echo '<div class="cursor changeIncludeState card" data-mode="0" data-state="0" style="background-color : #8000FF; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
                 echo '<center>';
                 echo '<i class="fa fa-sign-out fa-rotate-90" style="font-size : 6em;color:#FA5858;"></i>';
