@@ -785,9 +785,11 @@ class openzwave extends eqLogic
 
     public function printPending()
     {
-        $pendingresult = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].GetPendingChanges()', $this->getConfiguration('serverID', 1));
-        if (isset($pendingresult['result']) && $pendingresult['result'] != true) {
-            return $pendingresult['data'];
+        if($this->getIsEnable()){
+            $pendingresult = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].GetPendingChanges()', $this->getConfiguration('serverID', 1));
+            if (isset($pendingresult['result']) && $pendingresult['result'] != true) {
+                return $pendingresult['data'];
+            }
         }
         return "ok";
     }
