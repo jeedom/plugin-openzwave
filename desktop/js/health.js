@@ -312,7 +312,7 @@ var app_health = {
                     }
                 }
                 else if (nodes[node_id].data.isListening.value == false && nodes[node_id].data.last_notification == undefined && nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.value != null && nodes[node_id].data.lastReceived != undefined && nodes[node_id].data.lastReceived.updateTime != null) {
-                    if (now > nodes[node_id].data.lastReceived.updateTime + nodes[node_id].data.wakeup_interval.value) {
+                    if (now > nodes[node_id].data.lastReceived.updateTime + nodes[node_id].data.wakeup_interval.value && nodes[node_id].data.wakeup_interval.value >0) {
                         tbody += '<span class="label label" style="font-size : 1.5em;" title="{{Le noeud ne s\'est pas encore réveillé une fois depuis le lancement du démon}}"><i class="fa fa-exclamation-circle text-danger"></i></span>';
                     }
                 }
