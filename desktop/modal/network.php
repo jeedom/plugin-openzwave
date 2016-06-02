@@ -292,7 +292,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
                     </tr>
                     <tr>
                         <td><button type="button" id="healNetwork" class="btn btn-success"><i class="fa fa-medkit"></i> {{Soigner le réseau}}</button></td>
-                        <td>{{Soigner le réseau Z-Wave noeud par noeud.}}<br>{{Essaye de soigner tous les noeuds (un par un) en mettant à jour la liste des voisins et les routes optionnelles.}}</td>
+                        <td>{{Soigner le réseau Z-Wave noeud par noeud.}}<br>{{Essaie de soigner tous les noeuds (un par un) en mettant à jour la liste des voisins et les routes optionnelles.}}</td>
                     </tr>
 
 
@@ -328,8 +328,8 @@ foreach (openzwave::listServerZwave() as $id => $server) {
                         <td>{{Ecrit le fichier de configuration OpenZwave.}}</td>
                     </tr>
                     <tr>
-                        <td><button type="button" id="regenerateNodesCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Regénérer la détection des noeuds inconnus}}</button></td>
-                        <td>{{Supprime les informations des noeuds inconnus dans le fichier de config afin qu'il soit regénéré. (Attention : Relance le réseau)}}</td>
+                        <td><button type="button" id="regenerateNodesCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Régénérer la détection des noeuds inconnus}}</button></td>
+                        <td>{{Supprime les informations des noeuds inconnus dans le fichier de config afin qu'il soit régénéré. (Attention : Relance le réseau)}}</td>
                     </tr>
                     <tr>
                         <td><button type="button" id="softReset" class="btn btn-warning"><i class="fa fa-times"></i> {{Redémarrage}}</button></td>
