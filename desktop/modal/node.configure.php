@@ -414,7 +414,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                                 <td>
                                     <button type="button" id="requestNodeNeighboursUpdate"
                                             class="btn btn-primary requestNodeNeighboursUpdate"><i
-                                            class="fa fa-sitemap"></i> {{Mise à jour des nœud voisins}}
+                                            class="fa fa-sitemap"></i> {{Mise à jour des nœuds voisins}}
                                     </button>
                                 </td>
                                 <td>{{Force la mise à jour de la liste des nœuds voisins.}}</td>
@@ -446,7 +446,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                             <tr>
                                 <td>
                                     <button type="button" id="requestNodeDynamic" class="btn btn-success"><i
-                                            class="fa fa-refresh"></i> {{Récupère les CC dynamique}}
+                                            class="fa fa-refresh"></i> {{Récupère les CC dynamiques}}
                                     </button>
                                 </td>
                                 <td>{{Récupère les données de commande classe dynamiques du nœud.}}</td>
@@ -457,7 +457,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                                         <i class="fa fa-retweet"></i> {{Rafraîchir infos du nœud}}
                                     </button>
                                 </td>
-                                <td>{{Déclencher l'obtention des information du nœud.}} <br>{{Les données du nœud sont
+                                <td>{{Déclencher l'obtention des informations du nœud.}} <br>{{Les données du nœud sont
                                     obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.}}
                                 </td>
                             </tr>
@@ -501,7 +501,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                             <tr>
                                 <td>
                                     <button type="button" id="regenerateNodeCfgFile" class="btn btn-warning"><i
-                                            class="fa fa-search" aria-hidden="true"></i> {{Regénérer la détection du
+                                            class="fa fa-search" aria-hidden="true"></i> {{Régénérer la détection du
                                         nœud}}
                                     </button>
                                 </td>
