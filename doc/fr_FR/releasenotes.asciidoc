@@ -17,7 +17,7 @@
 
 * Bug Fixes
 
-** N/A
+** Ne plus assumer la date du jour sur l'état des piles si pas reçu de rapport de l'équipement.
 
 .Version 2016-05-30
 
