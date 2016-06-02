@@ -2,7 +2,7 @@
 	"name": "Micro Double Smart Switch (DSC17103)",
 	"doc": "",
 	"type": "Micromodule",
-	"comlink": "",
+	"comlink": "285-aeon-labs-micromodule-commutateur-double-et-compteur-d-energie-1220000010949",
 	"remark": "Module pratiquement plus commercialisé",
 	"imglink": "aeotec.double-microswitch",
 	"configuration": {
