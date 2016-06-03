@@ -15,7 +15,8 @@ image:../images/openzwave30.png[]
 ** Si le statut est *NOK*, il faudra réinstaller les dépendances à l'aide du bouton
 image:../images/openzwave32.png[]
 [TIP]
-La mise à jour des dépendances peut prendre plus de 20 minutes selon votre matériel. La progression est affichée en temps réel et un log est accessible.
+La mise à jour des dépendances peut prendre plus de 20 minutes selon votre matériel.
+La progression est affichée en temps réel et un log est accessible.
 [IMPORTANT]
 La mise à jour des dépendances est normalement à effectuer seulement si le Statut est *NOK*, mais il est toutefois possible, pour régler certains problèmes, d'être appelé à refaire l'installation des dépendances.
 [TIP]
@@ -31,14 +32,22 @@ Le démon local et l'ensemble des démons déportés seront affichés avec leurs
 ** La *Configuration* indique si la configuration du démon est valide.
 ** Le bouton *(Re)Démarrer* permet de forcer le redémarrage du plugin, en mode normal ou de le lancer une première fois.
 ** Le bouton *Arrête*, visible seulement si la gestion automatique est désactivée, force l'arrêt du démon.
-** Le bouton *Debug* permet de relancer le démon avec les instructions et trace de Debug. Cette option peut être utile pour comprendre pourquoi le démon plante ou ne remonte pas une valeur.
-** Le bouton *Log* permet de voir directement le log du démon.
 ** La *Gestion automatique* permet à jeedom de lancer automatiquement le démon au démarrage de jeedom, ainsi que de le relancer en cas de problème.
 ** Le *Dernier lancement* est comme son nom l'indique la date du dernier lancement connue du demon.
-[IMPORTANT]
-En mode débug le démon est très verbeux, il est recommandé d'utiliser ce mode seulement si vous devez diagnostiquer un problème particulier.
-Il n’est pas recommandé de laisser tourner le démon en Debug en permanence, si on utilise une *SD-Card*. Une fois le debug terminé, il ne faut pas oublier de cliquer sur "Redémarrer" pour sortir du mode debug !!
 
+=== Log
+Cette partie permet de choisir le niveau de log ainsi que d'en consulter le contenue.
+
+image:../images/openzwave72.png[]
+
+Sélectionner le niveau puis sauvegarder, le démon sera alors relancer avec les instructions et trace sélectionnée.
+
+Le niveau *Debug* ou *Info* peuvent être utile pour comprendre pourquoi le démon plante ou ne remonte pas une valeur.
+
+[IMPORTANT]
+En mode *Debug* le démon est très verbeux, il est recommandé d'utiliser ce mode seulement si vous devez diagnostiquer un problème particulier.
+Il n’est pas recommandé de laisser tourner le démon en *Debug* en permanence, si on utilise une *SD-Card*.
+Une fois le debug terminé, il ne faut pas oublier de retourner sur un niveau moins élevé comme le niveau *Error* qui ne remonte que d'éventuelle erreurs.
 
 
 === Configuration
@@ -50,9 +59,19 @@ image:../images/openzwave53.png[]
 ** *Soigner le réseau automatiquement 2 fois par semaine* : option pour activer un soin automatique du réseau  Z-Wave (vivement conseillée en début d'installation si on déplace régulièrement les modules)
 ** *Mettre à jour la configuration des modules automatiquement, chaque jour à minuit* : option pour activer la mise à jour des configuration de module openzwave ainsi que les fichiers de commande Z-Wave.
 ** *Appliquer le jeu de configuration recommandé à l'inclusion* : option pour appliquer directement à l'inclusion le jeu de configuration recommandé par l'équipe Jeedom (conseillée)
+** *Activer les tests sanitaires* : au 15 minutes de l'heure le plugin va effectuer une série de tests sur l'ensmeble des équipements actifs de votre réseau.
+*** Tentative de remonter les noeuds présumés morts par le contrôleur.
+*** Validation que le réseau ne contient pas d'Ids invalide comme un nodeId 0.
+*** Tests des modules secteurs ayant retournés une notification 'Timeout'.
+*** Tests si des modules sur piles ne sont pas retourné en sommeil profond après leur cycle de réveil.
+
+[IMPORTANT]
+Les tests sanitaires, seront exécuté seulement si le réseau n'est pas solicité. Si des messages sont en attente de traitement, le serveur n'autorisera pas l'éxécution des tests sanitaires.
+
+
 
 * *Gestion avancée* :
-** *Console* : permet l'affichage de la console Z-Wave (voir plus bas)
+
 ** *Backups* : permet de gérer les backups du fichier de topologie réseaux (voir plus bas)
 ** *zwcfg* : permet de voir et modifier le fichier de topologie réseaux (voir plus bas)
 ** *Config modules* : permet de récupérer, manuellement, les fichiers de configurations OpenZwave avec les paramètres des modules ainsi que la définition des commandes de modules pour leurs utilisations.

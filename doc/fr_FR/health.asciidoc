@@ -20,8 +20,14 @@ Vous avez ici :
 * *Paquet total* : affiche le nombre total de paquets reçus ou envoyés avec succès au module.
 * *%OK* : affiche le pourcentage de paquets envoyés/reçus avec succès.
 * *Temporisation* : affiche le délai moyen d'envoi de paquet en ms.
-* *Dernière communication* : Date de dernière communication avec le module ainsi que l'heure de la prochaine communication prévue, pour les modules qui dorment.
+* *Dernière notification* : Date de dernière notification reçu du module ainsi que l'heure du prochain réveil prévue, pour les modules qui dorment.
+** Elle permet en plus d'informer si le noeud ne s'est pas encore réveillé une fois depuis le lancement du démon.
+** Et indique si un noeud ne s'est pas réveillé comme prévue.
 * *Ping* : Permet d'envoyer une série de messages au module pour tester son bon fonctionnement.
+
+
+Les équipments désactivé seront affiché mais aucunes informations de diagnostique ne sera présente.
+
 
 [TIP]
 La commande Ping peut être utilisée si le module est présumé mort "DEATH" afin de confirmer si c'est réellement le cas.
