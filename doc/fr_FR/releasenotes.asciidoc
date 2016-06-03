@@ -1,6 +1,6 @@
 ==  Release Notes
 
-.Version 2016-xx-xx (Beta)
+.Version 2016-06-03 (Beta)
 
 * New Features
 
@@ -14,6 +14,7 @@
 ** Adaptation pour la version jeedom core 2.3
 ** Ecran de santé, modification de nom de colomne et avertissement en cas de non communication avec un module.
 ** Optimisation du serveur REST.
+** Correction de l'orthographe des écran, merci @Juan-Pedro aka: kiko.
 
 * Bug Fixes
 
