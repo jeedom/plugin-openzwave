@@ -28,35 +28,35 @@ foreach (openzwave::listServerZwave() as $id => $server) {
                 event::add('jeedom::alert', array(
                     'level' => 'danger',
                     'page' => 'openzwave',
-                    'message' => __('Le réseaux Z-Wave est arreté sur le serveur ', __FILE__) . $server['name'],
+                    'message' => __('Le réseau Z-Wave est arreté sur le serveur ', __FILE__) . $server['name'],
                 ));
                 break;
             case 1: # STATE_FAILED = 1
                 event::add('jeedom::alert', array(
                     'level' => 'danger',
                     'page' => 'openzwave',
-                    'message' => __('Le réseaux Z-Wave est en erreur sur le serveur ', __FILE__) . $server['name'],
+                    'message' => __('Le réseau Z-Wave est en erreur sur le serveur ', __FILE__) . $server['name'],
                 ));
                 break;
             case 3: # STATE_RESET = 3
                 event::add('jeedom::alert', array(
                     'level' => 'danger',
                     'page' => 'openzwave',
-                    'message' => __('Le réseaux Z-Wave est remis à zéro sur le serveur ', __FILE__) . $server['name'],
+                    'message' => __('Le réseau Z-Wave est remis à zéro sur le serveur ', __FILE__) . $server['name'],
                 ));
                 break;
             case 5: # STATE_STARTED = 5
                 event::add('jeedom::alert', array(
                     'level' => 'warning',
                     'page' => 'openzwave',
-                    'message' => __('Le réseaux Z-Wave est en cours de démarrage sur le serveur ', __FILE__) . $server['name'],
+                    'message' => __('Le réseau Z-Wave est en cours de démarrage sur le serveur ', __FILE__) . $server['name'],
                 ));
                 break;
             case 5: # STATE_AWAKED = 7
                 event::add('jeedom::alert', array(
                     'level' => 'danger',
                     'page' => 'openzwave',
-                    'message' => __('Le réseaux Z-Wave est actif sur le serveur ', __FILE__) . $server['name'],
+                    'message' => __('Le réseau Z-Wave est actif sur le serveur ', __FILE__) . $server['name'],
                 ));
                 break;
         }
@@ -180,7 +180,7 @@ sendVarTojs('eqLogic_human_name', $tags);
                     <i class="fa fa-sitemap" style="font-size : 6em;color:#767676;"></i>
                 </center>
                 <span
-                    style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Reseaux Zwave}}</center></span>
+                    style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Réseau Zwave}}</center></span>
             </div>
 
             <div class="cursor expertModeVisible" id="bt_zwaveHealth"
@@ -341,7 +341,7 @@ sendVarTojs('eqLogic_human_name', $tags);
                                    title='{{Documentation du module}}' target="_blank" style="display:none;"><i
                                         class="fa fa-book"></i> {{Documentation}}</a>
                                 <a class="btn btn-warning" id="bt_deviceRecommended"
-                                   title="{{Appliquer appliquer le jeu de configuration recommandée par l'équipe Jeedom}}"
+                                   title="{{Appliquer le jeu de configuration recommandée par l'équipe Jeedom}}"
                                    style="display:none;"><i class="fa fa-thumbs-up"></i> {{Configuration recommandée}}</a>
                             </div>
                         </div>

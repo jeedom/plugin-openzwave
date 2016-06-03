@@ -106,7 +106,7 @@ var app_nodes = {
                     '<li class="active">{{Attendre que le réseau soit à nouveau opérationnel (2-5 minutes).}}</li>' +
                     '<li class="active">{{Nœud passe en échec}}</li>' +
                     '<li class="active">{{Supprimer le nœud en échec}}</li>' +
-                    '<li class="active">{{Validation du la suppression}}</li>' +
+                    '<li class="active">{{Validation de la suppression}}</li>' +
                     '</ul>' +
                     '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
                     '</form>',
@@ -157,7 +157,7 @@ var app_nodes = {
             var productName = nodes[app_nodes.selected_node].data.product_name.value;
             var manufacturerName = nodes[app_nodes.selected_node].data.vendorString.value;
             bootbox.dialog({
-                    title: "{{Regénérer la détection du nœud}}",
+                    title: "{{Régénérer la détection du nœud}}",
                     message: '<form class="form-horizontal"> ' +
                     '<label class="control-label" > {{Lancer la regénérer sur ?}} </label> ' +
                     '<div> <div class="radio"> <label > ' +
@@ -1020,11 +1020,11 @@ var app_nodes = {
         switch (basicDeviceClass) {
             case 1:
                 // Controller
-                basicDeviceClassDescription = "{{Controlleur}}";
+                basicDeviceClassDescription = "{{Contrôleur}}";
                 break;
             case 2:
                 // Static Controller
-                basicDeviceClassDescription = "{{Controlleur static}}";
+                basicDeviceClassDescription = "{{Contrôleur statique}}";
                 break;
             case 3:
                 // Slave
@@ -1048,7 +1048,7 @@ var app_nodes = {
                 genericDeviceClassDescription = "{{Télécommande}}";
                 break;
             case 2: // Static Controller   = 0x02,
-                genericDeviceClassDescription = "{{Controlleur statique}}";
+                genericDeviceClassDescription = "{{Contrôleur statique}}";
                 break;
             case 3: // Av Control Point    = 0x03,
                 genericDeviceClassDescription = "{{A/V controleur}}";
@@ -1273,12 +1273,12 @@ var app_nodes = {
             }
             if (hasGroup && !found && queryStageIndex > 12) {
                 isWarning = true;
-                warningMessage += "<li>{{Le controleur n'est inclus dans aucun groupe du module.}}</li>";
+                warningMessage += "<li>{{Le contrôleur n'est inclus dans aucun groupe du module.}}</li>";
             }
         }
         if (nodeIsFailed) {
             isWarning = true;
-            warningMessage += "<li>{{Le controleur pense que ce noeud est en echec, essayez }} " +
+            warningMessage += "<li>{{Le contrôleur pense que ce noeud est en echec, essayez }} " +
                 "<button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</button> " +
                 "{{ou}} " +
                 "<button type='button' id='testNode' class='btn btn-info testNode'><i class='fa fa-check-square-o'></i> {{Tester le nœud}}</button> " +
@@ -1368,7 +1368,7 @@ var app_nodes = {
             else {
                 node.find(".node-neighbours").html("...");
                 if (genericDeviceClass != 1 && (genericDeviceClass != 8 || nodes[z].data.isListening.value)) {
-                    warningMessage += "<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <button type='button' id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</button> {{ou}} <button type='button' id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</button> {{pour corriger.}}</li>";
+                    warningMessage += "<li{{Liste des voisins non disponibles}} <br/>{{Utilisez}} <button type='button' id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</button> {{ou}} <button type='button' id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</button> {{pour corriger.}}</li>";
                     isWarning = true;
                 }
             }

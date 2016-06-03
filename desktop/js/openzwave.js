@@ -185,7 +185,7 @@ function printEqLogic(_eqLogic) {
                                     className: "btn-success",
                                     callback: function () {
                                         $.ajax({// fonction permettant de faire de l'ajax
-                                            type: "POST", // methode de transmission des données au fichier php
+                                            type: "POST", // méthode de transmission des données au fichier php
                                             url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
                                             data: {
                                                 action: "applyRecommended",
@@ -328,7 +328,7 @@ $('body').on('zwave::controller.data.controllerState', function (_event, _option
 $('body').on('zwave::includeDevice', function (_event, _options) {
     if (modifyWithoutSave) {
         $('#div_inclusionAlert').showAlert({
-            message: '{{Un périphérique vient d\'être inclus/exclu. Veuillez réactualiser la page}}',
+            message: '{{Un périphérique vient d\'être inclu/exclu. Veuillez réactualiser la page}}',
             level: 'warning'
         });
     } else {
@@ -342,7 +342,7 @@ $('body').on('zwave::includeDevice', function (_event, _options) {
 
 $('#bt_autoDetectModule').on('click', function () {
 
-    bootbox.confirm('{{Etes-vous sûr de vouloir récréer toute les commandes ? Cela va supprimer les commandes existante}}', function (result) {
+    bootbox.confirm('{{Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes}}', function (result) {
         if (result) {
             $.ajax({// fonction permettant de faire de l'ajax
                 type: "POST", // méthode de transmission des données au fichier php
