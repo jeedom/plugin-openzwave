@@ -133,7 +133,7 @@
 		}
 	},
 	{
-		"name": "Consommation",
+		"name": "Consommation kWh",
 		"type": "info",
 		"subtype": "numeric",
 		"display": {
@@ -145,7 +145,24 @@
 		"configuration": {
 			"instanceId": 0,
 			"class": "0x32",
-			"value": "data[0].val"
+			"value": "data[0].val",
+            "minValue": 1
+		}
+	},
+	{
+		"name": "Consommation kVAh",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"isVisible": 0,
+		"isHistorized": 1,
+		"unite": "kVAh",
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x32",
+			"value": "data[4].val"
 		}
 	},
 	{
