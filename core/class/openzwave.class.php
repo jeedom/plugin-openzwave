@@ -116,7 +116,7 @@ class openzwave extends eqLogic
         if (curl_errno($ch)) {
             $curl_error = curl_error($ch);
             curl_close($ch);
-            throw new Exception(__('Echec de la requete http : ', __FILE__) . $url . ' Curl error : ' . $curl_error, 404);
+            throw new Exception(__('Echec de la requête http : ', __FILE__) . $url . ' Curl error : ' . $curl_error, 404);
         }
         curl_close($ch);
         if (is_json($result)) {
@@ -151,7 +151,7 @@ class openzwave extends eqLogic
             event::add('jeedom::alert', array(
                 'level' => 'warning',
                 'page' => 'openzwave',
-                'message' => __('Le controleur est occupé veuillez réessayer plus tard', __FILE__),
+                'message' => __('Le contrôleur est occupé veuillez réessayer plus tard', __FILE__),
             ));
             return;
         }
@@ -161,7 +161,7 @@ class openzwave extends eqLogic
                 event::add('jeedom::alert', array(
                     'level' => 'warning',
                     'page' => 'openzwave',
-                    'message' => __('Le module ', __FILE__) . $eqLogic->getHumanName() . __(' vient d\'etre exclu', __FILE__),
+                    'message' => __('Le module ', __FILE__) . $eqLogic->getHumanName() . __(' vient d\'être exclu', __FILE__),
                 ));
                 if (config::byKey('autoRemoveExcludeDevice', 'openzwave') == 1) {
                     $eqLogic->remove();
@@ -298,13 +298,13 @@ class openzwave extends eqLogic
             $state = 10;
         }
         if ($state < 7) {
-            throw new Exception(__('Le controleur est en cours d\'initialisation veuillez reesayer dans quelques minutes', __FILE__));
+            throw new Exception(__('Le contrôleur est en cours d\'initialisation veuillez réessayer dans quelques minutes', __FILE__));
         }
         if ($isBusy == 1) {
-            throw new Exception(__('Le controleur est occupé, si vous etes en inclusion ou exclusion veuillez d\'abord quitter ce mode', __FILE__));
+            throw new Exception(__('Le contrôleur est occupé, si vous êtes en inclusion ou exclusion veuillez d\'abord quitter ce mode', __FILE__));
         }
         if ($controlerState !== 0) {
-            throw new Exception(__('Le controleur est deja en inclusion ou exclusion', __FILE__));
+            throw new Exception(__('Le contrôleur est déjà en inclusion ou exclusion', __FILE__));
         }
         if ($_mode == 1) {
             self::callOpenzwave('/ZWaveAPI/Run/controller.AddNodeToNetwork(' . $_state . ',0)', $_serverId);
