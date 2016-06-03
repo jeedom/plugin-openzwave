@@ -32,12 +32,11 @@ try:
     import datetime
     import binascii
     import threading
-
     from threading import Event, Thread
     import socket
     from lxml import etree
     import signal
-    import requests
+
     from louie import dispatcher, All
 except Exception as e:
     print("The dependency of openzwave plugin are not installed. Please, \
