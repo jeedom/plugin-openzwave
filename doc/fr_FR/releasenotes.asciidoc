@@ -5,14 +5,14 @@
 * New Features
 
 ** Prise en compte des équipements désactivé au sein du moteur ZWave.
-*** Affichage grisé dans l'écran de santé sans anylyse sur le noeud.
-*** Masqueé dans la Table réseau et Graphique réseau.
+*** Affichage grisé dans l'écran de santé sans analyse sur le noeud.
+*** Masquée dans la Table réseau et Graphique réseau.
 *** Noeuds désactivés, excluent des tests sanitaires.
 
 * Improvements/Enhancements
 
 ** Adaptation pour la version jeedom core 2.3
-** Ecran de santé, modification de nom de colomne et avertissement en cas de non communication avec un module.
+** Ecran de santé, modification de nom de colonne et avertissement en cas de non communication avec un module.
 ** Optimisation du serveur REST.
 ** Correction de l'orthographe des écran, merci @Juan-Pedro aka: kiko.
 
