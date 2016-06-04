@@ -56,7 +56,7 @@ echo 20 > /tmp/compilation_ozw_in_progress
 sudo apt-get update
 echo 30 > /tmp/compilation_ozw_in_progress
 echo "Installation des dependances"
-apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml unzip libjpeg-dev
+apt_install mercurial git python-pip python-dev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml unzip libjpeg-dev python-serial python-requests
 echo 40 > /tmp/compilation_ozw_in_progress
 # Python
 echo "Installation des dependances Python"
