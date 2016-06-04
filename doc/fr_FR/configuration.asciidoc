@@ -36,18 +36,18 @@ Le démon local et l'ensemble des démons déportés seront affichés avec leurs
 ** Le *Dernier lancement* est comme son nom l'indique la date du dernier lancement connue du demon.
 
 === Log
-Cette partie permet de choisir le niveau de log ainsi que d'en consulter le contenue.
+Cette partie permet de choisir le niveau de log ainsi que d'en consulter le contenu.
 
 image:../images/openzwave72.png[]
 
-Sélectionner le niveau puis sauvegarder, le démon sera alors relancer avec les instructions et trace sélectionnée.
+Sélectionner le niveau puis sauvegarder, le démon sera alors relancé avec les instructions et traces sélectionnées.
 
-Le niveau *Debug* ou *Info* peuvent être utile pour comprendre pourquoi le démon plante ou ne remonte pas une valeur.
+Le niveau *Debug* ou *Info* peuvent être utiles pour comprendre pourquoi le démon plante ou ne remonte pas une valeur.
 
 [IMPORTANT]
 En mode *Debug* le démon est très verbeux, il est recommandé d'utiliser ce mode seulement si vous devez diagnostiquer un problème particulier.
 Il n’est pas recommandé de laisser tourner le démon en *Debug* en permanence, si on utilise une *SD-Card*.
-Une fois le debug terminé, il ne faut pas oublier de retourner sur un niveau moins élevé comme le niveau *Error* qui ne remonte que d'éventuelle erreurs.
+Une fois le debug terminé, il ne faut pas oublier de retourner sur un niveau moins élevé comme le niveau *Error* qui ne remonte que d'éventuelles erreurs.
 
 
 === Configuration
@@ -61,12 +61,12 @@ image:../images/openzwave53.png[]
 ** *Appliquer le jeu de configuration recommandé à l'inclusion* : option pour appliquer directement à l'inclusion le jeu de configuration recommandé par l'équipe Jeedom (conseillée)
 ** *Activer les tests sanitaires* : au 15 minutes de l'heure le plugin va effectuer une série de tests sur l'ensmeble des équipements actifs de votre réseau.
 *** Tentative de remonter les noeuds présumés morts par le contrôleur.
-*** Validation que le réseau ne contient pas d'Ids invalide comme un nodeId 0.
+*** Validation que le réseau ne contient pas d'Ids invalides comme un nodeId 0.
 *** Tests des modules secteurs ayant retournés une notification 'Timeout'.
-*** Tests si des modules sur piles ne sont pas retourné en sommeil profond après leur cycle de réveil.
+*** Tests si des modules sur piles ne sont pas retournés en sommeil profond après leur cycle de réveil.
 
 [IMPORTANT]
-Les tests sanitaires, seront exécuté seulement si le réseau n'est pas solicité. Si des messages sont en attente de traitement, le serveur n'autorisera pas l'éxécution des tests sanitaires.
+Les tests sanitaires, seront exécutés seulement si le réseau n'est pas sollicité. Si des messages sont en attente de traitement, le serveur n'autorisera pas l'éxécution des tests sanitaires.
 
 
 
