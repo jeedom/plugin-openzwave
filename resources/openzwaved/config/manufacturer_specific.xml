@@ -643,6 +643,7 @@
 		<Product type="0001" id="0000" name="ZW EDAN 300 Flush Mounted Dimmer" />
 		<Product type="1000" id="0002" name="Flush Mounted Switch"/>
 		<Product type="1001" id="0000" name="Plugin Dimmer" />
+		<Product type="1000" id="0009" name="Wall Dimmer Set for Busch-Jaeger DURO 2000" config="duwi/05458.xml"/>
 		<Product type="2001" id="0000" name="ZW ES 1000 Flush Mounted Switch" config="duwi/ZWES1000.xml" />
 		<Product type="3001" id="0000" name="ZW ZS 3500 Plugin Switch" />
 		<Product type="3002" id="0000" name="ZW ZSA 3500 Plugin Switch" />
@@ -679,7 +680,7 @@
 		<Product type="0005" id="0001" name="ZMNHIA2 Flush on/off thermostat" config="qubino/ZMNHIA2.xml"/>
 		<Product type="0005" id="0051" name="ZMNHIDx Flush on/off thermostat" config="qubino/ZMNHIDx.xml"/>
 		<Product type="0005" id="0003" name="ZMNHLA2 Flush PWM thermostat" config="qubino/ZMNHLAx.xml"/>
-		<Product type="0007" id="0052" name="ZMNHTAx Smart Meter" config="qubino/ZMNHTAx.xml"/>
+		<Product type="0007" id="0052" name="ZMNHTDx Smart meter" config="qubino/ZMNHTDx.xml"/>
 		<Product type="0004" id="0052" name="ZMNHUD1 DIN Pilot Wire" config="qubino/ZMNHUD1.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0130" name="Quby">
@@ -806,11 +807,11 @@
 		<Product type="0002" id="0001" name="SM103 Door/Window Sensor" config="wenzhou/sm103.xml"/>
 		<Product type="0002" id="0002" name="TSP01 3 in 1 PIR Motion Sensor" config="wenzhou/tsp01.xml" />
 		<Product type="0003" id="0002" name="TZ68 On/Off Switch Socket" config="wenzhou/tz68.xml"/>
+		<Product type="000b" id="0001" name="ST812 Flood Detector" config="everspring/st812.xml"/>
 		<Product type="0808" id="0808" name="TZ65D Dual Wall Dimmer" config="wenzhou/tz65d.xml"/>
 		<Product type="0101" id="0103" name="TZ68 On/Off Switch Socket" config="wenzhou/tz68.xml"/>
 		<Product type="0102" id="1020" name="TZ66D Dual Wall Switch" config="wenzhou/tz66d.xml"/>
 		<Product type="0202" id="0611" name="TZ67 Wall Plug Dimmer" config="wenzhou/tz67.xml"/>
-
 	</Manufacturer>
 	<Manufacturer id="0149" name="wiDom">
 		<Product type="0012" id="0104" name="UBS104 Universal Relay Switch" config="widom/UBS104.xml"/>
