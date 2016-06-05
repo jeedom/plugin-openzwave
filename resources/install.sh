@@ -75,6 +75,8 @@ echo 46 > /tmp/compilation_ozw_in_progress
 pip_install flask
 echo 47 > /tmp/compilation_ozw_in_progress
 pip_install flask-restful
+echo 48 > /tmp/compilation_ozw_in_progress
+pip_install six
 echo 50 > /tmp/compilation_ozw_in_progress
 
 sudo mkdir /opt
