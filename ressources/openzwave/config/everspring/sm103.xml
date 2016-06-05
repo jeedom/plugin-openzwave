@@ -12,6 +12,11 @@
 				On Time sets the number of seconds the sensor stays alerted before the off event is sent.
 			</Help>
 		</Value>
+		<Value type="byte" index="3" genre="config" label="Power Saving" units="" min="0" max="127" value="0">
+			<Help>
+			  	Enable/Disable power saving mode. 0 enables.
+			</Help>
+		</Value>
 	</CommandClass>
 
 	<!-- Basic set as report -->
