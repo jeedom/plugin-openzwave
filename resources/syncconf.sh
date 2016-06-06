@@ -15,6 +15,11 @@ if [ $? -ne 0 ]; then
     echo "Unable to fetch Jeedom git.Please check your internet connexion and github access"
     exit 1
 fi
+sudo git clone --depth=1 https://github.com/OpenZWave/open-zwave.git 
+if [ $? -ne 0 ]; then
+    echo "Unable to fetch Jeedom git.Please check your internet connexion and github access"
+    exit 1
+fi
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 if [ -d  ${BASEDIR}/../core/config/devices ]; then
 	echo "Suppression des configurations Jeedom existantes"
@@ -25,10 +30,11 @@ if [ -d  ${BASEDIR}/../core/config/devices ]; then
 	echo "Suppression des configurations Openzwave existantes"
 	sudo rm -rf ${BASEDIR}/../resources/openzwaved/config/*
 	echo "Recopie des nouvelles configurations Openzwave"
-	cd /tmp/plugin-openzwave/resources/openzwaved/config
+	cd /tmp/open-zwave/config
 	sudo mv * ${BASEDIR}/../resources/openzwaved/config/
 	echo "Nettoyage du répertoire temporaire"
 	sudo rm -R /tmp/plugin-openzwave
+	sudo rm -R /tmp/open-zwave
 	sudo chown -R www-data:www-data ${BASEDIR}/../resources/openzwaved/config/
 	sudo chown -R www-data:www-data ${BASEDIR}/../core/config/devices/
 	echo "Vos configurations sont maintenant à jour !"
