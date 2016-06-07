@@ -72,13 +72,11 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
     }
 </style>
 <div id='div_nodeConfigureOpenzwaveAlert' style="display: none;"></div>
-<div class="modal fade modal-dialog-center" id="paramsModal" tabindex="-1" role="dialog" aria-hidden="true"
-     data-backdrop="false">
+<div class="modal fade modal-dialog-center" id="paramsModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="exampleModalLabel">Nouveau message</h4>
             </div>
             <div class="modal-body">
@@ -91,13 +89,11 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
         </div>
     </div>
 </div>
-<div class="modal fade modal-dialog-center" id="valuesModal" tabindex="-1" role="dialog" aria-hidden="true"
-     data-backdrop="false">
+<div class="modal fade modal-dialog-center" id="valuesModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="valueModalLabel">Nouveau message</h4>
             </div>
             <div class="modal-body">
@@ -110,13 +106,11 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
         </div>
     </div>
 </div>
-<div class="modal fade modal-dialog-center" id="pollingModal" tabindex="-1" role="dialog" aria-hidden="true"
-     data-backdrop="false">
+<div class="modal fade modal-dialog-center" id="pollingModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="pollingModalLabel">Nouveau message</h4>
             </div>
             <div class="modal-body">
@@ -129,13 +123,11 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
         </div>
     </div>
 </div>
-<div class="modal fade modal-dialog-center" id="copyParamsModal" tabindex="-1" role="dialog" aria-hidden="true"
-     data-backdrop="false">
+<div class="modal fade modal-dialog-center" id="copyParamsModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="copyParamsModalLabel">Nouveau message</h4>
             </div>
             <div class="modal-body">
@@ -148,13 +140,11 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
         </div>
     </div>
 </div>
-<div class="modal fade modal-dialog-center" id="groupsModal" tabindex="-1" role="dialog" aria-hidden="true"
-     data-backdrop="false">
+<div class="modal fade modal-dialog-center" id="groupsModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="groupsModalLabel">Nouveau message</h4>
             </div>
             <div class="modal-body">
@@ -169,10 +159,9 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 </div>
 <div class='node' nid=''>
     <div id="template-node">
-
-        <center><h3><span class="node-productname fixed">{{inconnu}}</span> - <span
-                    class="node-name fixed">{{inconnu}}</span> - {{Node Id:}} <span class="node-id">{{inconnu}}</span>
-            </h3></center>
+        <h3>
+            <span class="node-productname fixed">{{inconnu}}</span> - <span class="node-name fixed">{{inconnu}}</span> - {{Node Id:}} <span class="node-id">{{inconnu}}</span>
+        </h3>
         <div class="container-fluid">
             <div id="content">
 
@@ -212,30 +201,32 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                                 <h4 class="panel-title"><i class="fa fa-info-circle"></i> {{Informations Noeud}}</h4>
                             </div>
                             <div class="panel-body">
-                                <p>{{Objet parent :}} <b><span class="node-location label label-default"
-                                                               style="font-size : 1em;">{{inconnu}}</span></b></p>
-                                <p>{{Nom de l'équipement :}} <b><span class="node-name label label-default"
-                                                                      style="font-size : 1em;">{{inconnu}}</span></b>
+                                <p>{{Objet parent :}} <b><span class="node-location label label-default" style="font-size : 1em;">{{inconnu}}</span></b></p>
+                                <p>{{Nom de l'équipement :}}
+                                    <b><span class="node-name label label-default" style="font-size : 1em;">{{inconnu}}</span></b>
                                 </p>
-                                <p>{{Modèle :}} <b><span class="node-productname label label-default"
-                                                         style="font-size : 1em;">{{inconnu}}</span></b></p>
-                                <p>{{Fabricant :}} <b><span class="node-vendor label label-default"
-                                                            style="font-size : 1em;">{{inconnu}}</span></b></p>
-                                <p><span class="node-zwave-id default">{{inconnu}}</span></p>
-                                <p>{{Etat des demandes :}} <b><span class="node-queryStage label label-default"
-                                                                    style="font-size : 1em;">{{inconnu}}</span></b> <i
-                                        class="fa fa-info-circle" id="node-queryStageDescrition"></i></p>
+                                <p>{{Modèle :}}
+                                    <b><span class="node-productname label label-default" style="font-size : 1em;">{{inconnu}}</span></b>
+                                </p>
+                                <p>{{Fabricant :}}
+                                    <b><span class="node-vendor label label-default"  style="font-size : 1em;">{{inconnu}}</span></b>
+                                </p>
+                                <p>
+                                    <span class="node-zwave-id default">{{inconnu}}</span></p>
+                                <p>{{Etat des demandes :}}
+                                    <b><span class="node-queryStage label label-default" style="font-size : 1em;">{{inconnu}}</span></b>
+                                    <i class="fa fa-info-circle" id="node-queryStageDescrition"></i>
+                                </p>
                                 <p>{{Etat :}} <b><span class="node-sleep label label-default" style="font-size : 1em;">{{inconnu}}</span></b>
-                                    <span class="node-battery-span">{{Batterie : }} <b><span
-                                                class="node-battery label label-default" style="font-size : 1em;">{{inconnu}}</span></b></span>
+                                    <span class="node-battery-span">{{Batterie : }} <b><span class="node-battery label label-default" style="font-size : 1em;">{{inconnu}}</span></b></span>
                                 </p>
-                                <p>{{Dernier message :}} <b><span class="node-lastSeen label label-default"
-                                                                  style="font-size : 1em;">{{inconnu}}</span></b> <span
-                                        class="node-next-wakeup-span">{{Prochain réveil : }} <b><span
-                                                class="node-next-wakeup label label-default" style="font-size : 1em;">{{inconnu}}</span></b></span>
+                                <p>{{Dernier message :}}
+                                    <b><span class="node-lastSeen label label-default" style="font-size : 1em;">{{inconnu}}</span></b>
+                                    <span class="node-next-wakeup-span">{{Prochain réveil : }}
+                                        <b><span class="node-next-wakeup label label-default" style="font-size : 1em;">{{inconnu}}</span></b>
+                                    </span>
                                 </p>
-                                <p>{{Voisins : }} <span class="node-neighbours label label-default"
-                                                        style="font-size : 1em;">{{inconnu}}</span></p>
+                                <p>{{Voisins : }} <span class="node-neighbours label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
                             </div>
                         </div>
                         <div class="panel panel-primary template">
@@ -247,8 +238,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                                 <br/>
                                 {{Générique :}} <b><span class="node-generic label label-default">{{inconnu}}</span></b>
                                 <br/>
-                                {{Spécifique :}} <b><span
-                                        class="node-specific label label-default">{{inconnu}}</span></b></p>
+                                {{Spécifique :}} <b><span class="node-specific label label-default">{{inconnu}}</span></b></p>
                             </div>
                         </div>
 
@@ -270,34 +260,6 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                                 <p><b><span class="node-security"></span></b></p>
                             </div>
                         </div>
-
-                        <!--
-                            <p>Id: <b><span class="node-id label label-default"></span></b></p>
-                            <p>Product Name: <b><span class="node-name label label-default">undefined</span></b></p>
-                            <p>Manufacturer: <b><span class="node-vendor label label-default">undefined</span></b></p>
-                            <p>Type: <b><span class="node-type label label-default">undefined</span></b></p>
-                            <p>Basic: <b><span class="node-basic label label-default">undefined</span></b> Generic: <b><span class="node-generic label label-default">undefined</span></b> Specific: <b><span class="node-specific label label-default">undefined</span></b></p>
-                            <p><b><span class="node-sleep label label-default">undefined</span></b></p>
-                            <p><b><span class="node-isFailed label label-default">undefined</span></b></p>
-                            <p>Query stage: <b><span class="node-queryStage label label-default">undefined</span></b>  <i class="fa fa-info-circle" id="node-queryStageDescrition"></i></p>
-                            <p>Is Locked : <b><span class="node-isLocked label label-default">undefined</span></b></p>
-                            <p>Neighbours: <span class="node-neighbours label label-default">undefined</span></p>
-                            <div class="panel panel-primary template">
-                              <div class="panel-heading">
-                                <h4 class="panel-title">Protocol Informations</h4>
-                              </div>
-                              <div class="panel-body">
-                                <p>Maximum baud rate at which this device can communicate: <b><span class="node-maxBaudRate"></span></b> bit/sec</p>
-                                <p><b><span class="node-routing"></span></b></p>
-                                <p><b><span class="node-isSecurity"></span></b></p>
-                                <p><b><span class="node-listening"></span></b></p>
-                                <p><b><span class="node-isFrequentListening"></span></b></p>
-                                <p><b><span class="node-isBeaming"></span></b></p>
-                                <p><b><span class="node-security"></span></b></p>
-                              </div>
-                            </div>
-                        -->
-
                     </div>
                     <div class="tab-pane" id="values">
                         <table class="table table-striped">
@@ -412,41 +374,40 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                         <table class="table table-striped">
                             <tr>
                                 <td>
-                                    <button type="button" id="requestNodeNeighboursUpdate"
-                                            class="btn btn-primary requestNodeNeighboursUpdate"><i
-                                            class="fa fa-sitemap"></i> {{Mise à jour des nœuds voisins}}
+                                    <button type="button" id="requestNodeNeighboursUpdate" class="btn btn-primary requestNodeNeighboursUpdate">
+                                        <i class="fa fa-sitemap"></i> {{Mise à jour des nœuds voisins}}
                                     </button>
                                 </td>
                                 <td>{{Force la mise à jour de la liste des nœuds voisins.}}</td>
                             </tr>
                             <tr>
                                 <td>
-                                    <button type="button" id="healNode" class="btn btn-success healNode"><i
-                                            class="fa fa-medkit"></i> {{Soigner le nœud}}
+                                    <button type="button" id="healNode" class="btn btn-success healNode">
+                                        <i class="fa fa-medkit"></i> {{Soigner le nœud}}
                                     </button>
                                 </td>
                                 <td>{{Soigner le nœud au sein du réseau.}}</td>
                             </tr>
                             <tr>
                                 <td>
-                                    <button type="button" id="testNode" class="btn btn-info testNode"><i
-                                            class="fa fa-check-square-o"></i> {{Tester le nœud}}
+                                    <button type="button" id="testNode" class="btn btn-info testNode">
+                                        <i class="fa fa-check-square-o"></i> {{Tester le nœud}}
                                     </button>
                                 </td>
                                 <td>{{Envoyer une série de message à un noeud pour le tester s'il répond.}}</td>
                             </tr>
                             <tr>
                                 <td>
-                                    <button type="button" id="refreshNodeValues" class="btn btn-success"><i
-                                            class="fa fa-refresh"></i> {{Rafraîchir les valeurs du nœud}}
+                                    <button type="button" id="refreshNodeValues" class="btn btn-success">
+                                        <i class="fa fa-refresh"></i> {{Rafraîchir les valeurs du nœud}}
                                     </button>
                                 </td>
                                 <td>{{Demande l'actualisation de l'ensemble des valeurs du nœud.}}</td>
                             </tr>
                             <tr>
                                 <td>
-                                    <button type="button" id="requestNodeDynamic" class="btn btn-success"><i
-                                            class="fa fa-refresh"></i> {{Récupère les CC dynamiques}}
+                                    <button type="button" id="requestNodeDynamic" class="btn btn-success">
+                                        <i class="fa fa-refresh"></i> {{Récupère les CC dynamiques}}
                                     </button>
                                 </td>
                                 <td>{{Récupère les données de commande classe dynamiques du nœud.}}</td>
@@ -457,37 +418,35 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                                         <i class="fa fa-retweet"></i> {{Rafraîchir infos du nœud}}
                                     </button>
                                 </td>
-                                <td>{{Déclencher l'obtention des informations du nœud.}} <br>{{Les données du nœud sont
-                                    obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.}}
+                                <td>{{Déclencher l'obtention des informations du nœud.}} <br>
+                                    {{Les données du nœud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.}}
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <button type="button" id="hasNodeFailed" class="btn btn-primary hasNodeFailed"><i
-                                            class="fa fa-heartbeat" aria-hidden="true"></i> {{Nœud en échec ?}}
+                                    <button type="button" id="hasNodeFailed" class="btn btn-primary hasNodeFailed">
+                                        <i class="fa fa-heartbeat" aria-hidden="true"></i> {{Nœud en échec ?}}
                                     </button>
                                 </td>
                                 <td>{{Vérifie si le nœud est dans la liste des nœuds en erreur.}}</td>
                             </tr>
                             <tr>
                                 <td>
-                                    <button type="button" id="removeFailedNode" class="btn btn-danger"><i
-                                            class="fa fa-times"></i> {{Supprimer le nœud en échec}}
+                                    <button type="button" id="removeFailedNode" class="btn btn-danger">
+                                        <i class="fa fa-times"></i> {{Supprimer le nœud en échec}}
                                     </button>
                                 </td>
-                                <td>{{Permet de supprimer un nœud marqué comme défaillant par le contrôleur.}}<br>{{Le
-                                    nœud doit être en échec.}}
+                                <td>{{Permet de supprimer un nœud marqué comme défaillant par le contrôleur.}}<br>
+                                    {{Le nœud doit être en échec.}}
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <button type="button" id="replaceFailedNode" class="btn btn-warning"><i
-                                            class="fa fa-chain-broken" aria-hidden="true"></i> {{Remplacer nœud en
-                                        échec}}
+                                            class="fa fa-chain-broken" aria-hidden="true"></i> {{Remplacer nœud en échec}}
                                     </button>
                                 </td>
-                                <td>{{Remplace un module en échec par un autre. Si le nœud n'est pas dans la liste des
-                                    nœuds en échec sur le contrôleur, ou que le nœud répond, la commande va échouer.}}
+                                <td>{{Remplace un module en échec par un autre. Si le nœud n'est pas dans la liste des nœuds en échec sur le contrôleur, ou que le nœud répond, la commande va échouer.}}
                                 </td>
                             </tr>
                             <tr>
@@ -501,28 +460,21 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                             <tr>
                                 <td>
                                     <button type="button" id="regenerateNodeCfgFile" class="btn btn-warning"><i
-                                            class="fa fa-search" aria-hidden="true"></i> {{Régénérer la détection du
-                                        nœud}}
+                                            class="fa fa-search" aria-hidden="true"></i> {{Régénérer la détection du nœud}}
                                     </button>
                                 </td>
-                                <td>{{Supprime les informations du noeud dans le fichier de config afin qu'il soit à
-                                    nouveau détecté.}}<br>
-                                    {{Le noeud sera automatiquement supprimé dans les 5 à 10 minutes suivant le
-                                    redémarrage du réseau}}
+                                <td>{{Supprime les informations du noeud dans le fichier de config afin qu'il soit à nouveau détecté.}}<br>
                                     {{(Attention : Relance le réseau)}}
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <button type="button" id="removeGhostNode" class="btn btn-warning"><i
-                                            class="fa fa-bug" aria-hidden="true"></i> {{Suppression automatique du nœud
-                                        fantôme}}
+                                            class="fa fa-bug" aria-hidden="true"></i> {{Suppression automatique du nœud fantôme}}
                                     </button>
                                 </td>
-                                <td>{{Permet de supprimer un nœud sur pile qui n'est plus accessible sur le
-                                    réseau.}}<br>
-                                    {{Le nœud sera automatiquement supprimé dans les 5 à 15 minutes suivant le
-                                    redémarrage du réseau}}
+                                <td>{{Permet de supprimer un nœud sur pile qui n'est plus accessible sur le réseau.}}<br>
+                                    {{Le nœud sera automatiquement supprimé dans les 5 à 15 minutes suivant le redémarrage du réseau}}<br>
                                     {{(Attention : Relance le réseau)}}
                                 </td>
                             </tr>

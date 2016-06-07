@@ -262,7 +262,16 @@
         "Nombre de tentatives d'envoi :": "Nombre de tentatives d'envoi :",
         "Nombre de messages envoyés par ce noeud :": "Nombre de messages envoyés par ce noeud :",
         "Nombre de messages envoyés en erreur :": "Nombre de messages envoyés en erreur :",
-        "Heure du dernier message envoyé :": "Heure du dernier message envoyé :"
+        "Heure du dernier message envoyé :": "Heure du dernier message envoyé :",
+        "Les données du nœud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.": "Les données du nœud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.",
+        "Le nœud doit être en échec.": "Le nœud doit être en échec.",
+        "Remplacer nœud en échec": "Remplacer nœud en échec",
+        "Remplace un module en échec par un autre. Si le nœud n'est pas dans la liste des nœuds en échec sur le contrôleur, ou que le nœud répond, la commande va échouer.": "Remplace un module en échec par un autre. Si le nœud n'est pas dans la liste des nœuds en échec sur le contrôleur, ou que le nœud répond, la commande va échouer.",
+        "Régénérer la détection du nœud": "Régénérer la détection du nœud",
+        "Supprime les informations du noeud dans le fichier de config afin qu'il soit à nouveau détecté.": "Supprime les informations du noeud dans le fichier de config afin qu'il soit à nouveau détecté.",
+        "Permet de supprimer un nœud sur pile qui n'est plus accessible sur le réseau.": "Permet de supprimer un nœud sur pile qui n'est plus accessible sur le réseau.",
+        "Le nœud sera automatiquement supprimé dans les 5 à 15 minutes suivant le redémarrage du réseau": "Le nœud sera automatiquement supprimé dans les 5 à 15 minutes suivant le redémarrage du réseau",
+        "Suppression automatique du nœud fantôme": "Suppression automatique du nœud fantôme"
     },
     "plugins\/openzwave\/desktop\/js\/nodes.js": {
         "Aucun paramètre prédefini trouvé pour ce noeud": "Aucun paramètre prédefini trouvé pour ce noeud",
