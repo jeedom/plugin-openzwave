@@ -56,7 +56,8 @@
     "plugins\/openzwave\/core\/class\/openzwave.class.php": {
         "Création des commandes à partir d'une configuration": "Création des commandes à partir d'une configuration",
         "Local": "Local",
-        "Echec de la requête http : ": "Echec de la requête http : "
+        "Echec de la requête http : ": "Echec de la requête http : ",
+        "Le contrôleur est occupé veuillez réessayer plus tard": "Le contrôleur est occupé veuillez réessayer plus tard"
     },
     "plugins\/openzwave\/desktop\/modal\/network.php": {
         "Confirmation": "Confirmation",
@@ -394,7 +395,9 @@
         "(nombre maximum d\\'association :": "(nombre maximum d\\'association :"
     },
     "plugins\/openzwave\/core\/php\/jeeZwave.php": {
-        "Le réseaux Z-Wave est en cours de démarrage sur le serveur ": "Le réseaux Z-Wave est en cours de démarrage sur le serveur "
+        "Le réseaux Z-Wave est en cours de démarrage sur le serveur ": "Le réseaux Z-Wave est en cours de démarrage sur le serveur ",
+        "Le noeud": "Le noeud",
+        "est présumé mort": "est présumé mort"
     },
     "plugins\/openzwave\/desktop\/modal\/health.php": {
         "Demande envoyée": "Demande envoyée",
@@ -425,5 +428,52 @@
         "Le noeud ne s\\'est pas réveillé comme prévue": "Le noeud ne s\\'est pas réveillé comme prévue",
         "Le noeud ne s\\'est pas encore réveillé une fois depuis le lancement du démon": "Le noeud ne s\\'est pas encore réveillé une fois depuis le lancement du démon",
         "Ping": "Ping"
+    },
+    "plugins\/openzwave\/desktop\/php\/openzwave.php": {
+        "Inclure périphérique Z-Wave": "Inclure périphérique Z-Wave",
+        "Mode inclusion": "Mode inclusion",
+        "Exclure périphérique Z-Wave": "Exclure périphérique Z-Wave",
+        "Mode exclusion": "Mode exclusion",
+        "Gestion": "Gestion",
+        "Configuration": "Configuration",
+        "Synchroniser": "Synchroniser",
+        "Réseau Zwave": "Réseau Zwave",
+        "Santé": "Santé",
+        "Mes équipements Z-Wave": "Mes équipements Z-Wave",
+        "Général": "Général",
+        "Nom de l'équipement": "Nom de l'équipement",
+        "Objet parent": "Objet parent",
+        "Aucun": "Aucun",
+        "Catégorie": "Catégorie",
+        "Activer": "Activer",
+        "Visible": "Visible",
+        "Node ID": "Node ID",
+        "Serveur": "Serveur",
+        "Délai maximum autorisé entre 2 messages\n                                (min)": "Délai maximum autorisé entre 2 messages\n                                (min)",
+        "Informations": "Informations",
+        "Detecter automatiquement le modele du module": "Detecter automatiquement le modele du module",
+        "Voir l'arbre Z-Wave": "Voir l'arbre Z-Wave",
+        "Type": "Type",
+        "Modèle": "Modèle",
+        "Version de la configuration": "Version de la configuration",
+        "Paramètres": "Paramètres",
+        "Configurer": "Configurer",
+        "Assistant de configuration spécifique": "Assistant de configuration spécifique",
+        "Assistant": "Assistant",
+        "Documentation du module": "Documentation du module",
+        "Documentation": "Documentation",
+        "Appliquer le jeu de configuration recommandée par l'équipe Jeedom": "Appliquer le jeu de configuration recommandée par l'équipe Jeedom",
+        "Configuration recommandée": "Configuration recommandée",
+        "Commentaire": "Commentaire",
+        "Supprimer": "Supprimer",
+        "Sauvegarder": "Sauvegarder",
+        "Commandes": "Commandes",
+        "Nom": "Nom",
+        "Instance ID": "Instance ID",
+        "Classe": "Classe",
+        "Commande": "Commande",
+        "Options": "Options",
+        "Impossible de contacter le serveur Z-wave ": "Impossible de contacter le serveur Z-wave ",
+        "Le réseau Z-Wave est en cours de démarrage sur le serveur ": "Le réseau Z-Wave est en cours de démarrage sur le serveur "
     }
 }
