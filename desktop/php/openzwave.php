@@ -288,8 +288,7 @@ sendVarTojs('eqLogic_human_name', $tags);
                             </div>
                         </div>
                         <div class="form-group expertModeVisible">
-                            <label class="col-sm-4 control-label">{{Délai maximum autorisé entre 2 messages
-                                (min)}}</label>
+                            <label class="col-sm-4 control-label">{{Délai maximum autorisé entre 2 messages (min)}}</label>
                             <div class="col-sm-4">
                                 <input class="eqLogicAttr form-control" data-l1key="timeout"/>
                             </div>

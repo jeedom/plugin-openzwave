@@ -305,8 +305,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                                         </div>
                                         <div class="btn-group pull-right">
                                             <a id="copyParams" class="btn btn-info btn-sm copyParams"><i
-                                                    class="fa fa-copy"></i> {{Appliquer les paramètres d'un module
-                                                existant}}</a>
+                                                    class="fa fa-copy"></i> {{Appliquer les paramètres d'un module existant}}</a>
                                         </div>
                                     </th>
                                 </tr>
