@@ -61,7 +61,7 @@ $('.changeIncludeState').on('click', function () {
                 '<input type="radio" name="secure" id="secure-0" value="0"> {{Mode non sécurisé}}</label> ' +
                 '</div> ' +
                 '</div><br>' +
-                '<label class="lbl lbl-warning" for="name">{{Attention, Une fois démarrer veuillez suivre la procédure d\'inclusion de votre module.}}</label> ';
+                '<label class="lbl lbl-warning" for="name">{{Attention, Une fois démarré veuillez suivre la procédure d\'inclusion de votre module.}}</label> ';
         }
         else {
             dialog_title = '{{Démarrer l\'exclusion}}';
