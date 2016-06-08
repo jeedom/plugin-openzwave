@@ -181,6 +181,7 @@ function changeIncludeState(_mode, _state,_serverID) {
             mode: _mode,
             state: _state,
             serverID: _serverID,
+            secure: 1,
         },
         dataType: 'json',
         error: function(request, status, error) {
