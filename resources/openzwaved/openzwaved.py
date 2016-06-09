@@ -185,6 +185,12 @@ COMMAND_CLASS_SENSOR_ALARM = 156  # 0x9C
 # COMMAND_CLASS_MARK                      = 239  # 0xEF
 # COMMAND_CLASS_NON_INTEROPERABLE         = 240  # 0xF0
 
+SPECIFIC_TYPE_MOTOR_MULTI_POSITION = 3
+SPECIFIC_TYPE_CLASS_A_MOTOR_CONTROL = 5
+SPECIFIC_TYPE_CLASS_B_MOTOR_CONTROL = 6
+SPECIFIC_TYPE_CLASS_C_MOTOR_CONTROL = 7
+
+
 for arg in sys.argv:
     if arg.startswith("--device="):
         temp, _device = arg.split("=")
@@ -1994,27 +2000,31 @@ def set_value(node_id, value_id, data):
 refresh_workers = {}
 
 
-def create_worker(node_id, value_id, target_value, starting_value, counter):
+def create_worker(node_id, value_id, target_value, starting_value, counter, motor):
     # create a new refresh worker
-    worker = threading.Timer(interval=_refresh_interval, function=refresh_background,
-                             args=(node_id, value_id, target_value, starting_value, counter))
+    refresh_interval = _refresh_interval
+    if motor :
+        # a full operation take time, wait longer on each refresh
+        refresh_interval = _refresh_interval * 5
+    worker = threading.Timer(interval=refresh_interval, function=refresh_background,
+                             args=(node_id, value_id, target_value, starting_value, counter, motor))
     # save worker
     refresh_workers[value_id] = worker
     # start refresh timer
     worker.start()
 
 
-def prepare_refresh(node_id, value_id, target_value=None):
+def prepare_refresh(node_id, value_id, target_value=None, motor=False):
     if _suppress_refresh:
         return
     # logging.debug("prepare_refresh for nodeId:%s valueId:%s data:%s" % (node_id, value_id, target_value,))
     stop_refresh(node_id, value_id)
     starting_value = _network.nodes[node_id].values[value_id].data
-    create_worker(node_id, value_id, target_value, starting_value, 0)
+    create_worker(node_id, value_id, target_value, starting_value, 0, motor)
     _network.nodes[node_id].values[value_id].start_refresh_time = int(time.time())
 
 
-def refresh_background(node_id, value_id, target_value, starting_value, counter):
+def refresh_background(node_id, value_id, target_value, starting_value, counter, motor):
     do_refresh = True
     actual_value = _network.nodes[node_id].values[value_id].data
     if target_value is not None:
@@ -2038,10 +2048,11 @@ def refresh_background(node_id, value_id, target_value, starting_value, counter)
         # check if won't changes
         if starting_value == actual_value:
             counter += 1
-            if counter > 3:
+            if counter > 2:
                 do_refresh = False
         else:
             counter = 0
+            starting_value = actual_value
     if do_refresh:
         # logging.debug("refresh")
         _network.nodes[node_id].values[value_id].refresh()
@@ -2049,7 +2060,7 @@ def refresh_background(node_id, value_id, target_value, starting_value, counter)
         timeout = int(time.time()) - _network.nodes[node_id].values[value_id].start_refresh_time
         if timeout < _refresh_timeout:
             # I will start again a refresh timer
-            create_worker(node_id, value_id, target_value, starting_value, counter)
+            create_worker(node_id, value_id, target_value, starting_value, counter, motor)
     else:
         # remove worker the flag is set
         del refresh_workers[value_id]
@@ -2066,6 +2077,10 @@ def stop_refresh(node_id, value_id):
         del refresh_workers[value_id]
     # reset start time if refresh is running to avoid start again
     _network.nodes[node_id].values[value_id].start_refresh_time = 0
+
+
+def is_motor(node_id):
+    return _network.nodes[node_id].specific in [SPECIFIC_TYPE_MOTOR_MULTI_POSITION, SPECIFIC_TYPE_CLASS_A_MOTOR_CONTROL, SPECIFIC_TYPE_CLASS_B_MOTOR_CONTROL, SPECIFIC_TYPE_CLASS_C_MOTOR_CONTROL]
 
 
 def get_sleeping_nodes_count():
@@ -2957,7 +2972,7 @@ def set_value7(node_id, instance_id, cc_id, index, value):
                     mark_pending_change(_network.nodes[node_id].values[val], value)
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     # dimmer don't report the final value until the value changes is completed
-                    prepare_refresh(node_id, val, value)
+                    prepare_refresh(node_id, val, value, is_motor(node_id))
                 if int(cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SET_POINT:
                     logging.debug("COMMAND_CLASS_THERMOSTAT_SET_POINT")
                     save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SET_POINT, index,
@@ -2985,7 +3000,7 @@ def set_value8(node_id, instance_id, cc_id, index, value):
                     mark_pending_change(_network.nodes[node_id].values[val], value)
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     # dimmer don't report the final value until the value changes is completed
-                    prepare_refresh(node_id, val, value)
+                    prepare_refresh(node_id, val, value, is_motor(node_id))
                 if int(cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SET_POINT:
                     logging.debug("COMMAND_CLASS_THERMOSTAT_SET_POINT")
                     save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SET_POINT, index,
@@ -3014,7 +3029,7 @@ def set_value9(node_id, instance_id, cc_id, index, value):
                     mark_pending_change(_network.nodes[node_id].values[val], value)
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     # dimmer don't report the final value until the value changes is completed
-                    prepare_refresh(node_id, val, value)
+                    prepare_refresh(node_id, val, value, is_motor(node_id))
                 if cc_id == hex(COMMAND_CLASS_COLOR):
                     if len(last_value) == 9 and len(value) > 9:
                         value = value[:9]
@@ -3143,15 +3158,17 @@ def press_button(node_id, instance_id, cc_id, index):
                 # special case for dimmer and store
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and _network.nodes[node_id].values[val].label in [
                     'Bright', 'Dim', 'Open', 'Close']:
-                    # assume Dim / Close as target value
+                    # assume Dim as target value
                     value = 1
                     if _network.nodes[node_id].values[val].label in ['Bright', 'Open']:
                         value = 99
+                    elif _network.nodes[node_id].values[val].label in ['Close']:
+                        value = 0
                     # dimmer don't report the final value until the value changes is completed
                     value_level = get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
                                                      _network.nodes[node_id].values[val].instance, 'Level')
                     if value_level:
-                        prepare_refresh(node_id, value_level.value_id, value)
+                        prepare_refresh(node_id, value_level.value_id, value, is_motor(node_id))
                 return format_json_result()
         return format_json_result(False, 'button not found', 'warning')
     else:
