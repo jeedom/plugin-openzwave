@@ -106,8 +106,7 @@ sendVarTojs('eqLogic_human_name', $tags);
                     echo ' <a class="btn btn-default tooltips changeIncludeState" title="{{Exclure périphérique Z-Wave}}" data-mode="0" data-state="1" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-out fa-rotate-90"></i> {{Mode exclusion}}</a>';
                 }
                 ?>
-                <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm"
-                                                                      placeholder="Rechercher" style="width: 100%"/>
+                <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="Rechercher" style="width: 100%"/>
                 </li>
                 <?php
                 foreach ($eqLogics as $eqLogic) {
@@ -288,8 +287,7 @@ sendVarTojs('eqLogic_human_name', $tags);
                             </div>
                         </div>
                         <div class="form-group expertModeVisible">
-                            <label class="col-sm-4 control-label">{{Délai maximum autorisé entre 2 messages
-                                (min)}}</label>
+                            <label class="col-sm-4 control-label">{{Délai maximum autorisé entre 2 messages (min)}}</label>
                             <div class="col-sm-4">
                                 <input class="eqLogicAttr form-control" data-l1key="timeout"/>
                             </div>

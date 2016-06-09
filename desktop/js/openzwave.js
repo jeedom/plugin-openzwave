@@ -18,50 +18,82 @@ $('#bt_syncEqLogic').on('click', function () {
     syncEqLogicWithOpenZwave();
 });
 $('.changeIncludeState').on('click', function () {
-    var nbZwayServer = 0;
+    var zwaveServerCount = 0;
     var serverId = 1;
     for (var i in listServerZwave) {
         if (listServerZwave[i].name != null) {
             serverId = i
-            nbZwayServer++
+            zwaveServerCount++
         }
     }
-    if (nbZwayServer < 2) {
-        changeIncludeState($(this).attr('data-mode'), $(this).attr('data-state'), serverId);
-    } else {
-        var options = '';
-        var mode = $(this).attr('data-mode');
-        var state = $(this).attr('data-state');
-        for (var i in listServerZwave) {
-            if (listServerZwave[i].name != null) {
-                options += '<option value="' + i + '">' + listServerZwave[i].name + '</option>';
+    var mode = $(this).attr('data-mode');
+    var state = $(this).attr('data-state');
+    // if only one server and not in inclusion, no selection dialog
+    if (zwaveServerCount == 1 && mode != 1 || zwaveServerCount == 1  && mode == 1  && state == 0) {
+        changeIncludeState(mode, state, serverId, 0);
+    }
+    else {
+        var dialog_title = '';
+        var dialog_message = '<form class="form-horizontal onsubmit="return false;"> ';
+        if (zwaveServerCount > 1) {
+            // get the servers list
+            var options = '';
+            for (var i in listServerZwave) {
+                if (listServerZwave[i].name != null) {
+                    options += '<option value="' + i + '">' + listServerZwave[i].name + '</option>';
+                }
+            }
+            // display servers selection
+            dialog_message += '<label class="control-label" > {{Sélectionner le serveur}} </label> ' +
+                '<select id="sel_serverZwave" class="form-control input-md"> ' +
+                options +
+                '</select> ' +
+                '</div> ' +
+                '</div> ';
+        }
+        if (mode == 1 && state != 0) {
+            // in inclusion add secure mode selection
+            dialog_title = '{{Démarrer l\'inclusion}}';
+            dialog_message += '<label class="control-label" > {{Sélectionner le mode d\'inclusion ?}} </label> ' +
+                '<div> <div class="radio"> <label > ' +
+                '<input type="radio" name="secure" id="secure-1" value="1" checked="checked"> {{Mode sécurisé}} </label> ' +
+                '</div><div class="radio"> <label > ' +
+                '<input type="radio" name="secure" id="secure-0" value="0"> {{Mode non sécurisé}}</label> ' +
+                '</div> ' +
+                '</div><br>' +
+                '<label class="lbl lbl-warning" for="name">{{Attention, Une fois démarré veuillez suivre la procédure d\'inclusion de votre module.}}</label> ';
+        }
+        else {
+            dialog_title = '{{Démarrer l\'exclusion}}';
+        }
+        if (state == 0) {
+            // revert state, cancel current mode
+            if (mode == 1) {
+                dialog_title = '{{Arrêter l\'inclusion}}';
+            }
+            else {
+                dialog_title = '{{Arrêter l\'exclusion}}';
             }
         }
+        dialog_message += '</form>';
         bootbox.dialog({
-            title: "Choix du server z-wave",
-            message: '<div class="row">  ' +
-            '<div class="col-md-12"> ' +
-            '<form class="form-horizontal" onsubmit="return false;"> ' +
-            '<div class="form-group"> ' +
-            '<label class="col-md-4 control-label">{{Serveur}}</label> ' +
-            '<div class="col-md-4"> ' +
-            '<select id="sel_serverZway" class="form-control input-md"> ' +
-            options +
-            '</select> ' +
-            '</div> ' +
-            '</div> ' +
-            '</form> </div>  </div>',
+            title: dialog_title,
+            message: dialog_message,
             buttons: {
-                "Annuler": {
-                    className: "btn-default",
+                "{{Annuler}}": {
+                    className: "btn-danger",
                     callback: function () {
                     }
                 },
                 success: {
-                    label: "D'accord",
-                    className: "btn-primary",
+                    label: "{{Démarrer}}",
+                    className: "btn-success",
                     callback: function () {
-                        changeIncludeState(mode, state, $('#sel_serverZway').value());
+                        if (zwaveServerCount > 1) {
+                            serverId = $('#sel_serverZwave').value();
+                        }
+                        var secureMode = $("input[name='secure']:checked").val();
+                        changeIncludeState(mode, state, serverId, secureMode);
                     }
                 },
             }
@@ -390,7 +422,7 @@ function syncEqLogicWithOpenZwave() {
     });
 }
 
-function changeIncludeState(_mode, _state, _serverID) {
+function changeIncludeState(_mode, _state, _serverID, _secure) {
     $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // méthode de transmission des données au fichier php
         url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
@@ -399,6 +431,7 @@ function changeIncludeState(_mode, _state, _serverID) {
             mode: _mode,
             state: _state,
             serverID: _serverID,
+            secure: _secure,
         },
         dataType: 'json',
         error: function (request, status, error) {

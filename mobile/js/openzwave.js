@@ -50,7 +50,7 @@ $('body').on('zwave::includeDevice', function (_event,_options) {
 });
 
 $('#div_listIncludeSever').delegate('.changeIncludeState','click', function() {
-    changeIncludeState($(this).attr('data-mode'), $(this).attr('data-state'), $(this).attr('data-serverID'));
+    changeIncludeState($(this).attr('data-mode'), $(this).attr('data-state'), $(this).attr('data-serverID'), 1);
 });
 
  $.ajax({// fonction permettant de faire de l'ajax
@@ -172,7 +172,7 @@ function getControllerState(_serverID) {
 }
 
 
-function changeIncludeState(_mode, _state,_serverID) {
+function changeIncludeState(_mode, _state,_serverID, _secure) {
     $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
         url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
@@ -181,6 +181,7 @@ function changeIncludeState(_mode, _state,_serverID) {
             mode: _mode,
             state: _state,
             serverID: _serverID,
+            secure: _secure,
         },
         dataType: 'json',
         error: function(request, status, error) {

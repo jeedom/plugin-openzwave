@@ -276,7 +276,7 @@ class openzwave extends eqLogic {
 		));
 	}
 
-	public static function changeIncludeState($_mode, $_state, $_serverId = 0) {
+	public static function changeIncludeState($_mode, $_state, $_serverId = 0, $_secure = 1) {
 		if ($_state == 0) {
 			self::callOpenzwave('/ZWaveAPI/Run/controller.CancelCommand()', $_serverId);
 			return;
@@ -300,7 +300,7 @@ class openzwave extends eqLogic {
 			throw new Exception(__('Le contrôleur est déjà en inclusion ou exclusion', __FILE__));
 		}
 		if ($_mode == 1) {
-			self::callOpenzwave('/ZWaveAPI/Run/controller.AddNodeToNetwork(' . $_state . ',0)', $_serverId);
+			self::callOpenzwave('/ZWaveAPI/Run/controller.AddNodeToNetwork(' . $_state . ',' . $_secure .')', $_serverId);
 		} else {
 			self::callOpenzwave('/ZWaveAPI/Run/controller.RemoveNodeFromNetwork(' . $_state . ')', $_serverId);
 		}

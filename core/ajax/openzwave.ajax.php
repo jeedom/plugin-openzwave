@@ -49,7 +49,7 @@ try {
     }
 
     if (init('action') == 'changeIncludeState') {
-        openzwave::changeIncludeState(init('mode'), init('state'), init('serverID'));
+        openzwave::changeIncludeState(init('mode'), init('state'), init('serverID'), init('secure'));
         ajax::success();
     }
 
