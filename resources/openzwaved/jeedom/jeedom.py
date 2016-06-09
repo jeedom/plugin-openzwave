@@ -173,6 +173,17 @@ class jeedom_utils():
 		return ''.join(str((x>>i)&1) for i in xrange(width-1,-1,-1))
 
 	@staticmethod
+	def dec2hex(dec):
+		if dec is None:
+			return 0
+		x = (dec % 16)
+		digits = "0123456789ABCDEF"
+		rest = dec / 16
+		if (rest == 0):
+		    return digits[x]
+		return toHex(rest) + digits[x]
+
+	@staticmethod
 	def testBit(int_type, offset):
 		mask = 1 << offset
 		return(int_type & mask)
@@ -187,7 +198,7 @@ class jeedom_utils():
 		return [seq[i:i+length] for i in range(0, len(seq), length)]
 
 	@staticmethod
-	def wrtie_pid(path):
+	def write_pid(path):
 		pid = str(os.getpid())
 		logging.debug("Writing PID " + pid + " to " + str(path))
 		file(path, 'w').write("%s\n" % pid)
