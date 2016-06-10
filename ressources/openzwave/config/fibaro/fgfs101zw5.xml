@@ -103,7 +103,7 @@ Value of 0 cancels an alarm frame retransmission.</Help>
       <Group index="1" max_associations="1" label="Lifeline" auto="true"/>
       <Group index="2" max_associations="5" label="Flood Control" />
       <Group index="3" max_associations="5" label="Flood Alarm" />
-      <Group index="3" max_associations="5" label="Tamper Alarm" />
+      <Group index="4" max_associations="5" label="Tamper Alarm" />
     </Associations>
   </CommandClass>
 
