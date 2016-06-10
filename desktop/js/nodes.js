@@ -386,12 +386,14 @@ var app_nodes = {
             var value = $(this).data('valuevalue');
             var type = $(this).data('valuetype');
             var dataitems = $(this).data('valuedataitems');
+            var genre = $(this).data('valuegenre');
             $('#valuesModal').data('valuename', name);
             $('#valuesModal').data('valuetype', type);
             $('#valuesModal').data('valueinstance', instance);
             $('#valuesModal').data('valuecc', cc);
             $('#valuesModal').data('valuevalue', value);
             $('#valuesModal').data('valuedataitems', dataitems);
+            $('#valuesModal').data('valuegenre', genre);
             $('#valuesModal').data('valueidx', idx).modal('show');
         });
         $('#valuesModal').off('show.bs.modal').on('show.bs.modal', function (e) {
@@ -402,6 +404,7 @@ var app_nodes = {
             var valueName = $(this).data('valuename');
             var valueValue = $(this).data('valuevalue');
             var valueDataitems = $(this).data('valuedataitems').split(";");
+            var valueGenre = $(this).data('valuegenre');
             var modal = $(this);
             modal.find('.modal-title').text('{{Changer la valeur de}} ' + valueName);
             modal.find('.modal-body').html(valueName);
@@ -419,12 +422,18 @@ var app_nodes = {
                 modal.find('.modal-body').empty().append(options);
 
             } else if (valueType == "Bool") {
+                var trueString = '&nbsp;{{ON}}&nbsp;';
+                var falseString = '&nbsp;{{OFF}}';
+                if (valueGenre =="System"){
+                    trueString = '&nbsp;{{Oui}}&nbsp;';
+                    falseString = '&nbsp;{{Non}}';
+                }
                 if (valueValue == true) {
-                    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255" checked> {{ON}} ');
-                    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0"> {{OFF}} ');
+                    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255" checked>' + trueString);
+                    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0">' + falseString);
                 } else {
-                    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255"> {{ON}} ');
-                    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0" checked> {{OFF}} ');
+                    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255">' + trueString);
+                    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0" checked>' + falseString);
                 }
             } else if (valueType == "Button") {
                 modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Press" checked> {{Presser le bouton}} ');
@@ -1462,21 +1471,24 @@ var app_nodes = {
                     row.find("td[key=variable-name]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].name);
                     row.find("td[key=variable-type]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + ' (' + nodes[z].instances[instance].commandClasses[commandclass].data[index].type + ')');
                     var value = '';
+                    var genre = nodes[z].instances[instance].commandClasses[commandclass].data[index].genre;
                     if (nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only == false) {
-                        value += '<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></button> ';
+                        value += '<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></button> ';
                     }
-                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].type == 'bool') {
+
+                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == true) {
+
+                    }else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].type == 'bool') {
                         if (nodes[z].instances[instance].commandClasses[commandclass].data[index].val == true) {
                             value +='{{ON}}';
                         } else {
                             value += '{{OFF}}';
                         }
-                    }
-                    else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false) {
+                    }else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false) {
                         value += nodes[z].instances[instance].commandClasses[commandclass].data[index].val + " " + nodes[z].instances[instance].commandClasses[commandclass].data[index].units;
                     }
 
-                    row.find("td[key=variable-value]").html(value);
+                        row.find("td[key=variable-value]").html(value);
                     var polling = '<span style="width : 22px;"></span>';
                     if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false & first_index_polling) {
                         first_index_polling = false;
@@ -1539,7 +1551,7 @@ var app_nodes = {
                     }
                     row_system.find("td[key=system-value]").html(system_data);
                     if (nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only == false) {
-                        row_system.find("td[key=system-edit]").html('<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></button>');
+                        row_system.find("td[key=system-edit]").html('<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></button>');
                     }
                     if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false) {
                         row_system.find("td[key=system-updatetime]").html(app_nodes.timestampConverter(nodes[z].instances[instance].commandClasses[commandclass].data[index].updateTime));
