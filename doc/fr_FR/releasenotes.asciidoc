@@ -1,5 +1,20 @@
 ==  Release Notes
 
+.Version 2016-06-10 (Beta)
+
+* New Features
+
+** Dialogue d'inclusion avec le choix du mode d'inclusion pour simplifier l'inclusion sécurisé.
+
+* Improvements/Enhancements
+
+** Optimisation du rafraichissement en arrière-plan des variateurs.
+** Optimisation du rafraichissement en arrière-plan pour les moteurs.
+
+* Bug Fixes
+
+** Affichage des valeurs False dans l'onglet Configuration.
+
 .Version 2016-06-03 (Beta)
 
 * New Features
