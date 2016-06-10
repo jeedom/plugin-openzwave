@@ -234,6 +234,7 @@ logging.debug('Initial disabled nodes list: ' + str(_disabled_nodes))
 jeedom_com = jeedom_com(apikey=_apikey, url=_callback, cycle=_cycle)
 
 if not jeedom_com.test():
+    logging.error('Network communication issues. Please fixe your Jeedom network configuration.')
     sys.exit(1)
 
 reload(sys)
