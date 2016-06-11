@@ -1,0 +1,50 @@
+{
+	"name": "PH-PSG01 Smoke Sensor",
+	"doc": "",
+	"type": "Fumée",
+	"comlink": "3149-zipato-capteur-de-fumee-z-wave--3858890733051",
+	"remark": "",
+	"imglink": "philio.phpsg01",
+	"battery_type": "1x3V CR123A",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Fumées",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x30",
+			"instanceId": 0,
+			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "SMOKE"
+		},
+		"template": {
+			"dashboard": "feu",
+			"mobile": "feu"
+		}
+	},
+	{
+		"name": "Battery",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"instanceId": 0,
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "tile",
+			"mobile": "tile"
+		}
+	}]
+}
