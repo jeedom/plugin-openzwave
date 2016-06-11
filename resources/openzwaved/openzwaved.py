@@ -4168,8 +4168,7 @@ def rest_change_log_level(level):
 
 
 if __name__ == '__main__':
-    pid = str(os.getpid())
-    file(_pid_file, 'w').write("%s\n" % pid)
+    jeedom_utils.write_pid()
     try:
         if _log_level == 'Debug':
             print('REST server starting in %s mode' % (_log_level,))
