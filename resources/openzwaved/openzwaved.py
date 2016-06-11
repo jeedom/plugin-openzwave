@@ -279,7 +279,7 @@ if _device == 'auto':
             logging.info('USB Z-Wave Stick found:%s' % (stick['name'],))
             break
     if _device is None:
-        logging.error('No USB Z-Wave Stick detected', 'error')
+        logging.error('No USB Z-Wave Stick detected')
         sys.exit(1)
 
 Idle = 0
@@ -4168,7 +4168,7 @@ def rest_change_log_level(level):
 
 
 if __name__ == '__main__':
-    jeedom_utils.write_pid()
+    jeedom_utils.write_pid(str(_pidfile))
     try:
         if _log_level == 'Debug':
             print('REST server starting in %s mode' % (_log_level,))

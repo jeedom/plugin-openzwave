@@ -92,6 +92,7 @@ if (config::byKey('jeeNetwork::mode') == 'master' && count(eqLogic::byType('zwav
 				<div class="col-sm-4">
 					<select class="configKey form-control" data-l1key="port">
 						<option value="none">{{Aucun}}</option>
+						<option value="auto">{{Auto}}</option>
 						<?php
 foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 	echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
@@ -120,6 +121,7 @@ if (config::byKey('jeeNetwork::mode') == 'master') {
 						<div class="col-lg-4">
 							<select class="slaveConfigKey form-control" data-l1key="port">
 								<option value="none">{{Aucun}}</option>
+								<option value="auto">{{Auto}}</option>
 								<?php
 foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => true)) as $name => $value) {
 			echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
