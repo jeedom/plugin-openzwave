@@ -135,6 +135,10 @@
         "class": "0x32",
         "instanceId": 0,
         "value": "data[0].val"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
       }
     },
     {

@@ -96,7 +96,8 @@
         "value": "data[0].val"
       },
       "template": {
-        "dashboard": "tile"
+        "dashboard": "tile",
+        "mobile": "tile"
       }
     },
     {
@@ -112,6 +113,10 @@
       "configuration": {
         "class": "0x32",
         "value": "data[16].val"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
       }
     },
     {
@@ -127,6 +132,10 @@
       "configuration": {
         "class": "0x32",
         "value": "data[20].val"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
       }
     },
     {

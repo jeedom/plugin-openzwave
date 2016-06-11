@@ -74,7 +74,9 @@
 		},
 		"configuration": {
 			"class": "0x32",
-			"value": "data[8].val"
+			"value": "data[8].val",
+			"minValue": 0,
+			"maxValue": 2200
 		}
 	},
 	{
@@ -89,6 +91,10 @@
 		"configuration": {
 			"class": "0x32",
 			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "tile",
+			"mobile": "tile"
 		}
 	}]
 }

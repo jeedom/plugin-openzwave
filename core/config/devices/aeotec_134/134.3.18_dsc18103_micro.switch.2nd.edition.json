@@ -74,7 +74,9 @@
 		"isVisible": 1,
 		"configuration": {
 			"class": "0x32",
-			"value": "data[8].val"
+			"value": "data[8].val",
+			"maxValue": 2200,
+			"minValue": 0
 		}
 	},
 	{
@@ -89,6 +91,10 @@
 		"configuration": {
 			"class": "0x32",
 			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "tile",
+			"mobile": "tile"
 		}
 	}]
 }

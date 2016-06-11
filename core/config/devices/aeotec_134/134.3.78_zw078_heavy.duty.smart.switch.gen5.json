@@ -95,7 +95,8 @@
 			"value": "data[0].val"
 		},
 		"template": {
-			"dashboard": "tile"
+			"dashboard": "tile",
+			"mobile": "tile"
 		}
 	},
 	{
@@ -130,7 +131,8 @@
 			"minValue": 260
 		},
 		"template": {
-			"dashboard": "tile"
+			"dashboard": "tile",
+			"mobile": "tile"
 		}
 	},
 	{
@@ -150,7 +152,8 @@
 			"minValue": 0
 		},
 		"template": {
-			"dashboard": "tile"
+			"dashboard": "tile",
+			"mobile": "tile"
 		}
 	}],
 	"recommended" : {
