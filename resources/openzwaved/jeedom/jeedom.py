@@ -152,7 +152,7 @@ class jeedom_utils():
 			if product is not None:
 				if 'ID_VENDOR' not in device or device['ID_VENDOR'].lower().find(product.lower()) == -1 :
 					continue
-			return device.device_node
+			return str(device.device_node)
 		return None
 
 	@staticmethod

@@ -280,7 +280,7 @@ if _device == 'auto':
     for stick in know_sticks:
         _device = jeedom_utils.find_tty_usb(stick['idVendor'], stick['idProduct'])
         if _device is not None:
-            logging.info('USB Z-Wave Stick found:%s' % (stick['name'],))
+            logging.info('USB Z-Wave Stick found : ' + stick['name'] + ' at ' + _device)
             break
     if _device is None:
         logging.error('No USB Z-Wave Stick detected')
