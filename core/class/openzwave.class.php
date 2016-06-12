@@ -103,7 +103,8 @@ class openzwave extends eqLogic {
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $_data);
 		}
-
+		// auth token for REST call using jeedom api key
+		curl_setopt($ch, CURLOPT_USERPWD, 'token:'. config::byKey('api'));
 		$result = curl_exec($ch);
 		if ($_noError) {
 			curl_close($ch);

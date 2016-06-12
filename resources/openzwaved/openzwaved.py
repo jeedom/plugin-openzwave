@@ -18,6 +18,7 @@ import math
 
 try:
     from flask import Flask, jsonify, abort, request, make_response, redirect, url_for
+    from flask.ext.httpauth import HTTPBasicAuth
 except Exception as e:
     print('The dependency of openzwave plugin are not installed. Please, \
     check the plugin openzwave configuration page for instructions', 'error')
@@ -54,6 +55,9 @@ if not os.path.exists('/tmp/python-openzwave-eggs'):
     os.makedirs('/tmp/python-openzwave-eggs')
 
 os.environ['PYTHON_EGG_CACHE'] = '/tmp/python-openzwave-eggs'
+
+# HTTP Basic Auth
+auth = HTTPBasicAuth()
 
 _device = "auto"
 # noinspection PyRedeclaration
@@ -1949,6 +1953,21 @@ def serialize_controller_to_json():
     return json_result
 
 
+def serialize_associations(node_id):
+    json_result = {}
+    for other_node_id in list(_network.nodes):
+        other_node = _network.nodes[other_node_id]
+        if other_node.groups:
+            for group in list(other_node.groups):
+                if node_id in other_node.groups[group].associations:
+                    value = {'index': other_node.groups[group].index, 'label': other_node.groups[group].label}
+                    try:
+                        json_result[other_node_id].append(value)
+                    except KeyError:
+                        json_result[other_node_id] = [value]
+    return json_result
+
+
 def changes_value_polling(intensity, value):
     if intensity == 0:  # disable the value polling for any value
         if value.poll_intensity > 0:
@@ -2181,9 +2200,14 @@ def close_network(error):
 
 @app.errorhandler(Exception)
 def unhandled_exception(exception):
-    logging.info('Unhandled Exception: %s', (exception,))
-    return make_response(jsonify({'error': 'Unhandled Exception'}), 500)
+    message = 'Unhandled Exception: %s' % (exception.message,)
+    logging.info(message)
+    return make_response(jsonify({'error': message}), 500)
 
+
+@auth.verify_password
+def verify_password(username, password):
+    return password == _apikey
 
 '''
 devices routes
@@ -2191,6 +2215,7 @@ devices routes
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[133].Get()', methods=['GET'])
+@auth.login_required
 def refresh_assoc(node_id):
     logging.debug("refresh_assoc for nodeId: %s" % (node_id,))
     if node_id in _network.nodes:
@@ -2202,28 +2227,15 @@ def refresh_assoc(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].findAssociations()', methods=['GET'])
+@auth.login_required
 def find_associations(node_id):
     logging.info("findAssociations for nodeId: %s" % (node_id,))
     json_result = serialize_associations(node_id)
     return jsonify(json_result)
 
 
-def serialize_associations(node_id):
-    json_result = {}
-    for other_node_id in list(_network.nodes):
-        other_node = _network.nodes[other_node_id]
-        if other_node.groups:
-            for group in list(other_node.groups):
-                if node_id in other_node.groups[group].associations:
-                    value = {'index': other_node.groups[group].index, 'label': other_node.groups[group].label}
-                    try:
-                        json_result[other_node_id].append(value)
-                    except KeyError:
-                        json_result[other_node_id] = [value]
-    return json_result
-
-
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[133].data', methods=['GET'])
+@auth.login_required
 def get_assoc(node_id):
     logging.debug("get_assoc for nodeId: %s" % (node_id,))
     timestamp = int(time.time())
@@ -2241,9 +2253,8 @@ def get_assoc(node_id):
     return jsonify(config)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x85].Remove(<int:group_index>,<int:target_node_id>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x85].Remove(<int:group_index>,<int:target_node_id>)', methods=['GET'])
+@auth.login_required
 def remove_assoc(node_id, group_index, target_node_id):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2263,9 +2274,8 @@ def remove_assoc(node_id, group_index, target_node_id):
         return format_node_not_fund(node_id)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x85].Add(<int:group_index>,<int:target_node_id>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x85].Add(<int:group_index>,<int:target_node_id>)', methods=['GET'])
+@auth.login_required
 def add_assoc(node_id, group_index, target_node_id):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2285,9 +2295,8 @@ def add_assoc(node_id, group_index, target_node_id):
         return format_node_not_fund(node_id)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].Associations[<int:group_index>].Remove(<int:target_node_id>,<int:target_node_instance>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].Associations[<int:group_index>].Remove(<int:target_node_id>,<int:target_node_instance>)', methods=['GET'])
+@auth.login_required
 def remove_association(node_id, group_index, target_node_id, target_node_instance):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2308,9 +2317,8 @@ def remove_association(node_id, group_index, target_node_id, target_node_instanc
         return format_node_not_fund(node_id)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].Associations[<int:group_index>].Add(<int:target_node_id>,<int:target_node_instance>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].Associations[<int:group_index>].Add(<int:target_node_id>,<int:target_node_instance>)', methods=['GET'])
+@auth.login_required
 def add_association(node_id, group_index, target_node_id, target_node_instance):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2332,6 +2340,7 @@ def add_association(node_id, group_index, target_node_id, target_node_instance):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetPolling()', methods=['GET'])
+@auth.login_required
 def get_polling(node_id):
     polling = 0
     if node_id in _network.nodes:
@@ -2344,6 +2353,7 @@ def get_polling(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].ResetPolling()', methods=['GET'])
+@auth.login_required
 def reset_polling(node_id):
     logging.info("reset_polling for nodeId: %s" % (node_id,))
     if node_id in _network.nodes:
@@ -2356,6 +2366,7 @@ def reset_polling(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetPolling(<int:value_id>,<frequency>)', methods=['GET'])
+@auth.login_required
 def set_polling2(node_id, value_id, frequency):
     logging.info("set_polling for nodeId: %s ValueId %s at: %s" % (node_id, value_id, frequency,))
     if node_id in _network.nodes:
@@ -2375,9 +2386,8 @@ def set_polling2(node_id, value_id, frequency):
         return format_node_not_fund(node_id)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].SetPolling(<int:frequency>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].SetPolling(<int:frequency>)', methods=['GET'])
+@auth.login_required
 def set_polling_value(node_id, instance_id, cc_id, index, frequency):
     logging.info("set_polling_value for nodeId: %s instance: %s cc:%s index:%s at: %s" % (
     node_id, instance_id, cc_id, index, frequency,))
@@ -2401,9 +2411,8 @@ def set_polling_value(node_id, instance_id, cc_id, index, frequency):
         return format_node_not_fund(node_id)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].SetPolling(<int:frequency>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].SetPolling(<int:frequency>)', methods=['GET'])
+@auth.login_required
 def set_polling_instance(node_id, instance_id, cc_id, frequency):
     logging.info(
         "set_polling_instance for nodeId: %s instance: %s cc:%s at: %s" % (node_id, instance_id, cc_id, frequency,))
@@ -2430,6 +2439,7 @@ def set_polling_instance(node_id, instance_id, cc_id, frequency):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[132].data.interval.value', methods=['GET'])
+@auth.login_required
 def get_wake_up(node_id):
     if node_id in _network.nodes:
         return str(get_wake_up_interval(node_id))
@@ -2439,6 +2449,7 @@ def get_wake_up(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetWakeup(<wake_up_time>)', methods=['GET'])
+@auth.login_required
 def set_wake_up(node_id, wake_up_time):
     logging.info("set wakeup interval for nodeId %s at: %s" % (node_id, wake_up_time,))
     if node_id in _network.nodes:
@@ -2452,9 +2463,8 @@ def set_wake_up(node_id, wake_up_time):
         return format_node_not_fund(node_id)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].SetChangeVerified(<int:index>,<int:verified>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].SetChangeVerified(<int:index>,<int:verified>)', methods=['GET'])
+@auth.login_required
 def set_change_verified(node_id, instance_id, cc_id, index, verified):
     # Sets a flag indicating whether value changes noted upon a refresh should be verified
     logging.info("set_change_verified nodeId:%s instance:%s commandClasses:%s index:%s verified:%s" % (
@@ -2471,6 +2481,7 @@ def set_change_verified(node_id, instance_id, cc_id, index, verified):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Refresh()', methods=['GET'])
+@auth.login_required
 def request_all_config_params(node_id):
     # Request the values of all known configurable parameters from a device
     logging.info("Request the values of all known configurable parameters from nodeId %s" % (node_id,))
@@ -2487,6 +2498,7 @@ def request_all_config_params(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Get(<int:index_id>)', methods=['GET'])
+@auth.login_required
 def refresh_config(node_id, index_id):
     logging.debug("refresh_config for nodeId:%s index_id:%s" % (node_id, index_id,))
     if node_id in _network.nodes:
@@ -2498,8 +2510,8 @@ def refresh_config(node_id, index_id):
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetDeviceName(<string:location>,<string:name>,<int:is_enable>)',
-           methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetDeviceName(<string:location>,<string:name>,<int:is_enable>)', methods=['GET'])
+@auth.login_required
 def set_device_name(node_id, location, name, is_enable):
     logging.info("set_device_name node_id:%s new name ; '%s'. Is enable: %s" % (node_id, name, is_enable,))
     if node_id in _network.nodes:
@@ -2521,6 +2533,7 @@ def set_device_name(node_id, location, name, is_enable):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].data', methods=['GET'])
+@auth.login_required
 def get_config(node_id):
     logging.debug("get_config for nodeId:%s" % (node_id,))
     timestamp = int(time.time())
@@ -2554,6 +2567,7 @@ def get_config(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:source_id>].CopyConfigurations(<int:target_id>)', methods=['GET'])
+@auth.login_required
 def copy_configuration(source_id, target_id):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2600,6 +2614,7 @@ def copy_configuration(source_id, target_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetConfigurationItem(<int:value_id>,<string:item>)', methods=['GET'])
+@auth.login_required
 def set_configuration_item(node_id, value_id, item):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2613,8 +2628,8 @@ def set_configuration_item(node_id, value_id, item):
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<int:value>,<int:size>)',
-           methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<int:value>,<int:size>)', methods=['GET'])
+@auth.login_required
 def set_config(node_id, index_id, value, size):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2635,8 +2650,8 @@ def set_config(node_id, index_id, value, size):
         return format_exception_result(exception)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<string:value>,<int:size>)',
-           methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<string:value>,<int:size>)', methods=['GET'])
+@auth.login_required
 def set_config2(node_id, index_id, value, size):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2671,8 +2686,8 @@ def set_config2(node_id, index_id, value, size):
         return format_exception_result(exception)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<float:value>,<int:size>)',
-           methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<float:value>,<int:size>)', methods=['GET'])
+@auth.login_required
 def set_config3(node_id, index_id, value, size):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2691,9 +2706,8 @@ def set_config3(node_id, index_id, value, size):
         return format_exception_result(exception)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<int:value>,<int:size>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<int:value>,<int:size>)', methods=['GET'])
+@auth.login_required
 def set_config4(node_id, instance_id, index_id2, index_id, value, size):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2715,9 +2729,8 @@ def set_config4(node_id, instance_id, index_id2, index_id, value, size):
         return format_exception_result(exception)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<string:value>,<int:size>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<string:value>,<int:size>)', methods=['GET'])
+@auth.login_required
 def set_config5(node_id, instance_id, index_id2, index_id, value, size):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2737,9 +2750,8 @@ def set_config5(node_id, instance_id, index_id2, index_id, value, size):
         return format_exception_result(exception)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<float:value>,<int:size>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<float:value>,<int:size>)', methods=['GET'])
+@auth.login_required
 def set_config6(node_id, instance_id, index_id2, index_id, value, size):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -2760,6 +2772,7 @@ def set_config6(node_id, instance_id, index_id2, index_id, value, size):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses', methods=['GET'])
+@auth.login_required
 def get_command_classes(node_id):
     my_result = {}
     logging.debug("get_command_classes for nodeId:%s" % (node_id,))
@@ -2772,6 +2785,7 @@ def get_command_classes(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].RequestNodeDynamic()', methods=['GET'])
+@auth.login_required
 def request_node_dynamic(node_id):
     if node_id in _network.nodes:
         # Fetch only the dynamic command class data for a node from the Z-Wave network
@@ -2784,8 +2798,8 @@ def request_node_dynamic(node_id):
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Get()',
-           methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Get()', methods=['GET'])
+@auth.login_required
 def get_value(node_id, instance_id, cc_id):
     if node_id in _network.nodes:
         try:
@@ -2811,9 +2825,8 @@ def get_value(node_id, instance_id, cc_id):
     return format_json_result()
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].val',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].val', methods=['GET'])
+@auth.login_required
 def get_value6(node_id, instance_id, index, cc_id):
     if node_id in _network.nodes:
         for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16)):
@@ -2828,16 +2841,14 @@ def get_value6(node_id, instance_id, index, cc_id):
     return jsonify({})
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ForceRefresh()',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ForceRefresh()', methods=['GET'])
+@auth.login_required
 def force_refresh_one_value(node_id, instance_id, index, cc_id):
     return refresh_one_value(node_id, instance_id, index, int(cc_id, 16))
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<int:cc_id>].data[<int:index>].Refresh()',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<int:cc_id>].data[<int:index>].Refresh()', methods=['GET'])
+@auth.login_required
 def refresh_one_value(node_id, instance_id, index, cc_id):
     # logging.debug("refresh_one_value nodeId:%s instance:%s commandClasses:%s index:%s" % (node_id, instance_id, cc_id, index))
     if node_id in _network.nodes:
@@ -2851,9 +2862,8 @@ def refresh_one_value(node_id, instance_id, index, cc_id):
         return format_node_not_fund(node_id)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x63].data[<int:index>].code',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x63].data[<int:index>].code', methods=['GET'])
+@auth.login_required
 def get_user_code(node_id, instance_id, index):
     logging.debug("getValueRaw nodeId:%s instance:%s commandClasses:%s index:%s" % (
     node_id, instance_id, hex(COMMAND_CLASS_USER_CODE), index))
@@ -2885,8 +2895,8 @@ def get_user_code(node_id, instance_id, index):
     return jsonify(my_result)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x63].data',
-           methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x63].data', methods=['GET'])
+@auth.login_required
 def get_user_codes(node_id, instance_id):
     logging.debug("getValueAllRaw nodeId:%s instance:%s commandClasses:%s" % (
     node_id, instance_id, hex(COMMAND_CLASS_USER_CODE),))
@@ -2912,6 +2922,7 @@ def get_user_codes(node_id, instance_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].UserCode.SetRaw(<int:slot_id>,[<string:value>],1)', methods=['GET'])
+@auth.login_required
 def set_user_code(node_id, slot_id, value):
     logging.info("set_user_code nodeId:%s slot:%s user code:%s" % (node_id, slot_id, value,))
     result_value = {}
@@ -2926,9 +2937,8 @@ def set_user_code(node_id, slot_id, value):
     return jsonify(result_value)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x63].SetRaw(<int:slot_id>,[<value1>,<value2>,<value3>,<value4>,<value5>,<value6>,<value7>,<value8>,<value9>,<value10>],1)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x63].SetRaw(<int:slot_id>,[<value1>,<value2>,<value3>,<value4>,<value5>,<value6>,<value7>,<value8>,<value9>,<value10>],1)', methods=['GET'])
+@auth.login_required
 def set_user_code2(node_id, slot_id, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10):
     logging.info("set_user_code2 nodeId:%s slot:%s user code:%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" % (
     node_id, slot_id, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10,))
@@ -2952,9 +2962,8 @@ def set_user_code2(node_id, slot_id, value1, value2, value3, value4, value5, val
     return jsonify(result_value)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<int:value>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<int:value>)', methods=['GET'])
+@auth.login_required
 def set_value7(node_id, instance_id, cc_id, index, value):
     logging.info("set_value7 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (
     node_id, instance_id, cc_id, index, value,))
@@ -2985,9 +2994,8 @@ def set_value7(node_id, instance_id, cc_id, index, value):
         return format_node_not_fund(node_id)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<float:value>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<float:value>)', methods=['GET'])
+@auth.login_required
 def set_value8(node_id, instance_id, cc_id, index, value):
     logging.info("set_value8 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (
     node_id, instance_id, cc_id, index, value,))
@@ -3013,9 +3021,8 @@ def set_value8(node_id, instance_id, cc_id, index, value):
         return format_node_not_fund(node_id)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<string:value>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<string:value>)', methods=['GET'])
+@auth.login_required
 def set_value9(node_id, instance_id, cc_id, index, value):
     logging.info("set_value9 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (
     node_id, instance_id, cc_id, index, value,))
@@ -3041,9 +3048,8 @@ def set_value9(node_id, instance_id, cc_id, index, value):
         return format_node_not_fund(node_id)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Set(<string:value>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Set(<string:value>)', methods=['GET'])
+@auth.login_required
 def set_value6(node_id, instance_id, cc_id, value):
     logging.info("set_value6 nodeId:%s instance:%s commandClasses:%s  data:%s" % (node_id, instance_id, cc_id, value,))
     if cc_id == str(COMMAND_CLASS_WAKE_UP):
@@ -3072,6 +3078,7 @@ def set_value6(node_id, instance_id, cc_id, value):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetColor()', methods=['GET'])
+@auth.login_required
 def get_color(node_id):
     logging.debug("get_color nodeId:%s" % (node_id,))
     my_result = {}
@@ -3087,7 +3094,6 @@ def get_color(node_id):
                 continue
             if my_value.instance < 2:
                 continue
-
             if my_value.instance == 3:
                 red_level = convert_level_to_color(my_value.data)
             elif my_value.instance == 4:
@@ -3102,9 +3108,8 @@ def get_color(node_id):
     return jsonify(my_result)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].SetColor(<int:red_level>,<int:green_level>,<int:blue_level>,<int:white_level>)',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetColor(<int:red_level>,<int:green_level>,<int:blue_level>,<int:white_level>)', methods=['GET'])
+@auth.login_required
 def set_color(node_id, red_level, green_level, blue_level, white_level):
     logging.info("set_color nodeId:%s red:%s green:%s blue:%s white:%s" % (
     node_id, red_level, green_level, blue_level, white_level,))
@@ -3144,9 +3149,8 @@ def set_color(node_id, red_level, green_level, blue_level, white_level):
     return format_json_result(my_result)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()', methods=['GET'])
+@auth.login_required
 def press_button(node_id, instance_id, cc_id, index):
     # Start an activity in a device
     logging.info("press_button nodeId:%s, instance:%s, cc:%s, index:%s" % (node_id, instance_id, cc_id, index,))
@@ -3176,9 +3180,8 @@ def press_button(node_id, instance_id, cc_id, index):
         return format_node_not_fund(node_id)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ReleaseButton()',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ReleaseButton()', methods=['GET'])
+@auth.login_required
 def release_button(node_id, instance_id, cc_id, index):
     # Stop an activity in a device
     if node_id in _network.nodes:
@@ -3200,9 +3203,8 @@ def release_button(node_id, instance_id, cc_id, index):
         return format_node_not_fund(node_id)
 
 
-@app.route(
-    '/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ToggleSwitch()',
-    methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ToggleSwitch()', methods=['GET'])
+@auth.login_required
 def toggle_switch(node_id, instance_id, cc_id, index):
     if node_id in _network.nodes:
         if cc_id in [hex(COMMAND_CLASS_SWITCH_BINARY), hex(COMMAND_CLASS_SWITCH_MULTILEVEL)]:
@@ -3231,8 +3233,8 @@ def toggle_switch(node_id, instance_id, cc_id, index):
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)',
-           methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)', methods=['GET'])
+@auth.login_required
 def switch_all(node_id, state):
     # Method for switching all devices on or off together.  The devices must support
     # the SwitchAll command class.  The command is first broadcast to all nodes, and
@@ -3274,6 +3276,7 @@ def switch_all(node_id, state):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].RequestNodeNeighbourUpdate()', methods=['GET'])
+@auth.login_required
 def request_node_neighbour_update(node_id):
     if not can_execute_network_command():
         return format_controller_busy()
@@ -3287,6 +3290,7 @@ def request_node_neighbour_update(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].RemoveFailedNode()', methods=['GET'])
+@auth.login_required
 def remove_failed_node(node_id):
     # Removing the failed node from the controller's list.
     # This command cannot be cancelled.
@@ -3300,6 +3304,7 @@ def remove_failed_node(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].HealNode()', methods=['GET'])
+@auth.login_required
 def heal_node(node_id, perform_return_routes_initialization=False):
     # Heal a single node in the network
     if not can_execute_network_command():
@@ -3318,6 +3323,7 @@ def heal_node(node_id, perform_return_routes_initialization=False):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].AssignReturnRoute()', methods=['GET'])
+@auth.login_required
 def assign_return_route(node_id):
     # Assign network routes to a device
     if not can_execute_network_command():
@@ -3339,6 +3345,7 @@ def get_serialized_device(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].ReplaceFailedNode()', methods=['GET'])
+@auth.login_required
 def replace_failed_node(node_id):
     # Replace a failed device with another. If the node is not in the controller failed nodes list, or the node responds, this command will fail.
     if not can_execute_network_command():
@@ -3353,6 +3360,7 @@ def replace_failed_node(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].SendNodeInformation()', methods=['GET'])
+@auth.login_required
 def send_node_information(node_id):
     # end a node information frame (NIF).
     if not can_execute_network_command():
@@ -3367,6 +3375,7 @@ def send_node_information(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].HasNodeFailed()', methods=['GET'])
+@auth.login_required
 def has_node_failed(node_id):
     # Check whether a node is in the controller failed nodes list.
     if not can_execute_network_command():
@@ -3381,6 +3390,7 @@ def has_node_failed(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].RefreshNodeInfo()', methods=['GET'])
+@auth.login_required
 def refresh_node_info(node_id):
     # Trigger the fetching of fixed data about a node.
     # Causes the node data to be obtained from the Z-Wave network in the same way as if it had just been added.
@@ -3396,6 +3406,7 @@ def refresh_node_info(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].RefreshAllValues()', methods=['GET'])
+@auth.login_required
 def refresh_all_values(node_id):
     #  manual refresh of all value of a node, we will receive a refreshed value form value refresh notification
     if node_id in _network.nodes:
@@ -3422,6 +3433,7 @@ def refresh_all_values(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].TestNode()', methods=['GET'])
+@auth.login_required
 def test_node(node_id=0, count=3):
     # Test network node.
     # Sends a series of messages to a network node for testing network reliability.
@@ -3441,6 +3453,7 @@ def test_node(node_id=0, count=3):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetNodeStatistics()', methods=['GET'])
+@auth.login_required
 def get_node_statistics(node_id):
     # Retrieve statistics per node
     try:
@@ -3460,6 +3473,7 @@ def get_node_statistics(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].RemoveDeviceZWConfig(<int:all>)', methods=['GET'])
+@auth.login_required
 def remove_device_openzwave_config(node_id, all):
     # Remove a device from the openzwave config file and restart network to rediscover again
     # ensure load latest file version
@@ -3503,6 +3517,7 @@ def remove_device_openzwave_config(node_id, all):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GhostKiller()', methods=['GET'])
+@auth.login_required
 def ghost_killer(node_id):
     global _ghost_node_id, _network_is_running
     # Remove cc 0x84 wake up for a ghost device in openzwave config file
@@ -3554,6 +3569,7 @@ def ghost_killer(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetPendingChanges()', methods=['GET'])
+@auth.login_required
 def get_pending_changes(node_id):
     try:
         if node_id in _network.nodes:
@@ -3568,6 +3584,7 @@ def get_pending_changes(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetHealth()', methods=['GET'])
+@auth.login_required
 def get_node_health(node_id):
     try:
         if node_id in _network.nodes:
@@ -3579,6 +3596,7 @@ def get_node_health(node_id):
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetLastNotification()', methods=['GET'])
+@auth.login_required
 def get_node_last_notification(node_id):
     try:
         if node_id in _network.nodes:
@@ -3595,6 +3613,7 @@ controllers routes
 
 
 @app.route('/ZWaveAPI/Run/controller.AddNodeToNetwork(<int:state>,<int:do_security>)', methods=['GET'])
+@auth.login_required
 def start_node_inclusion(state, do_security):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -3619,6 +3638,7 @@ def start_node_inclusion(state, do_security):
 
 
 @app.route('/ZWaveAPI/Run/controller.RemoveNodeFromNetwork(<int:state>)', methods=['GET'])
+@auth.login_required
 def start_node_exclusion(state):
     if _network_information.controller_is_busy:
         return format_controller_busy()
@@ -3637,6 +3657,7 @@ def start_node_exclusion(state):
 
 
 @app.route('/ZWaveAPI/Run/controller.CancelCommand()', methods=['GET'])
+@auth.login_required
 def cancel_command():
     # Cancels any in-progress command running on a controller.
     logging.info("Cancels any in-progress command running on a controller.")
@@ -3650,6 +3671,7 @@ def cancel_command():
 
 
 @app.route('/ZWaveAPI/Run/controller.RequestNetworkUpdate(<node_id>)', methods=['GET'])
+@auth.login_required
 def request_network_update(node_id):
     # Update the controller with network information from the SUC/SIS
     logging.info("Update the controller (%s) with network information from the SUC/SIS" % (node_id,))
@@ -3663,6 +3685,7 @@ def request_network_update(node_id):
 
 
 @app.route('/ZWaveAPI/Run/controller.ReplicationSend(<node_id>)', methods=['GET'])
+@auth.login_required
 def replication_send(node_id):
     # Send information from primary to secondary
     if not can_execute_network_command(0):
@@ -3678,6 +3701,7 @@ def replication_send(node_id):
 
 
 @app.route('/ZWaveAPI/Run/controller.HealNetwork()', methods=['GET'])
+@auth.login_required
 def heal_network(perform_return_routes_initialization=False):
     if not can_execute_network_command(0):
         return format_controller_busy()
@@ -3702,6 +3726,7 @@ def heal_network(perform_return_routes_initialization=False):
 
 
 @app.route('/ZWaveAPI/Run/controller.SerialAPISoftReset()', methods=['GET'])
+@auth.login_required
 def soft_reset():
     logging.info("Soft-reset the Z-Wave controller chip")
     try:
@@ -3711,6 +3736,7 @@ def soft_reset():
 
 
 @app.route('/ZWaveAPI/Run/controller.TestNetwork()', methods=['GET'])
+@auth.login_required
 def test_network(count=3):
     # Test network node.
     # Sends a series of messages to a network node for testing network reliability.
@@ -3731,6 +3757,7 @@ def test_network(count=3):
 
 
 @app.route('/ZWaveAPI/Run/controller.CreateNewPrimary()', methods=['GET'])
+@auth.login_required
 def create_new_primary():
     # Put the target controller into receive configuration mode.
     # The PC Z-Wave Controller must be within 2m of the controller that is being made the primary
@@ -3744,6 +3771,7 @@ def create_new_primary():
 
 
 @app.route('/ZWaveAPI/Run/controller.TransferPrimaryRole()', methods=['GET'])
+@auth.login_required
 def transfer_primary_role():
     # Add a new controller to the network and make it the primary.
     # The existing primary will become a secondary controller
@@ -3757,6 +3785,7 @@ def transfer_primary_role():
 
 
 @app.route('/ZWaveAPI/Run/controller.ReceiveConfiguration()', methods=['GET'])
+@auth.login_required
 def receive_configuration():
     # Receive Z-Wave network configuration information from another controller
     if not can_execute_network_command(0):
@@ -3769,6 +3798,7 @@ def receive_configuration():
 
 
 @app.route('/ZWaveAPI/Run/controller.HardReset()', methods=['GET'])
+@auth.login_required
 def hard_reset():
     # Hard Reset a PC Z-Wave Controller.
     # Resets a controller and erases its network configuration settings.
@@ -3792,6 +3822,7 @@ network routes
 
 
 @app.route('/ZWaveAPI/Run/network.Start()', methods=['GET'])
+@auth.login_required
 def network_start():
     logging.info('******** The ZWave network is being started ********')
     try:
@@ -3802,12 +3833,14 @@ def network_start():
 
 
 @app.route('/ZWaveAPI/Run/network.Stop()', methods=['GET'])
+@auth.login_required
 def stop_network():
     graceful_stop_network()
     return format_json_result()
 
 
 @app.route('/ZWaveAPI/Run/network.GetStatus()', methods=['GET'])
+@auth.login_required
 def get_network_status():
     global _network
     if _network is not None and _network.state >= 5 and _network_is_running:
@@ -3834,6 +3867,7 @@ def get_network_status():
 
 
 @app.route('/ZWaveAPI/Run/network.GetNeighbours()', methods=['GET'])
+@auth.login_required
 def get_network_neighbours():
     global _network
     neighbours = {'updateTime': int(time.time())}
@@ -3847,6 +3881,7 @@ def get_network_neighbours():
 
 
 @app.route('/ZWaveAPI/Run/network.GetHealth()', methods=['GET'])
+@auth.login_required
 def get_network_health():
     global _network
     network_health = {'updateTime': int(time.time())}
@@ -3859,6 +3894,7 @@ def get_network_health():
 
 
 @app.route('/ZWaveAPI/Run/network.GetNodesList()', methods=['GET'])
+@auth.login_required
 def get_nodes_list():
     nodes_list = {'updateTime': int(time.time())}
     nodes_data = {}
@@ -3909,6 +3945,7 @@ def get_nodes_list():
 
 
 @app.route('/ZWaveAPI/Run/network.GetControllerStatus()', methods=['GET'])
+@auth.login_required
 def get_controller_status():
     # Get the controller status
     global _network
@@ -3923,6 +3960,7 @@ def get_controller_status():
 
 
 @app.route('/ZWaveAPI/Run/network.GetOZLogs()', methods=['GET'])
+@auth.login_required
 def get_openzwave_logs():
     # Read the openzwave log file
     global _data_folder
@@ -3937,6 +3975,7 @@ def get_openzwave_logs():
 
 
 @app.route('/ZWaveAPI/Run/network.GetZWConfig()', methods=['GET'])
+@auth.login_required
 def get_openzwave_config():
     # ensure load latest file version
     global _data_folder
@@ -3955,6 +3994,7 @@ def get_openzwave_config():
 
 
 @app.route('/ZWaveAPI/Run/network.SaveZWConfig()', methods=['GET'])
+@auth.login_required
 def save_openzwave_config():
     # Save the openzwave config file
     logging.info('Replace zwcfg configuration file')
@@ -3982,6 +4022,7 @@ def save_openzwave_config():
 
 
 @app.route('/ZWaveAPI/Run/network.WriteZWConfig()', methods=['GET'])
+@auth.login_required
 def write_openzwave_config():
     # Write the openzwave config file
     try:
@@ -3992,6 +4033,7 @@ def write_openzwave_config():
 
 
 @app.route('/ZWaveAPI/Run/network.RemoveUnknownsDevicesZWConfig()', methods=['GET'])
+@auth.login_required
 def remove_unknowns_devices_openzwave_config():
     # Remove unknowns devices from the openzwave config file
     # ensure load latest file version
@@ -4024,6 +4066,7 @@ def remove_unknowns_devices_openzwave_config():
 
 
 @app.route('/ZWaveAPI/Run/network.SetPollInterval(<int:seconds>,<interval_between_polls>)', methods=['GET'])
+@auth.login_required
 def set_poll_interval(seconds, interval_between_polls):
     # Set the time period between polls of a node's state
     if not can_execute_network_command():
@@ -4042,6 +4085,7 @@ def set_poll_interval(seconds, interval_between_polls):
 
 
 @app.route('/ZWaveAPI/Run/network.RefreshAllBatteryLevel()', methods=['GET'])
+@auth.login_required
 def refresh_all_battery_level():
     logging.debug("refresh_all_battery_level")
     battery_levels = {}
@@ -4060,6 +4104,7 @@ def refresh_all_battery_level():
 
 
 @app.route('/ZWaveAPI/Run/network.GetOZBackups()', methods=['GET'])
+@auth.login_required
 def get_openzwave_backups():
     # Return the list of all available backups
     global _data_folder
@@ -4084,6 +4129,7 @@ def get_openzwave_backups():
 
 
 @app.route('/ZWaveAPI/Run/network.RestoreBackup(<backup_name>)', methods=['GET'])
+@auth.login_required
 def restore_openzwave_backups(backup_name):
     # Manually restore a backup
     global _data_folder
@@ -4119,6 +4165,7 @@ def restore_openzwave_backups(backup_name):
 
 
 @app.route('/ZWaveAPI/Run/network.ManualBackup()', methods=['GET'])
+@auth.login_required
 def manually_backup_config():
     # Manually create a backup
     logging.info('Manually creating a backup')
@@ -4126,6 +4173,7 @@ def manually_backup_config():
 
 
 @app.route('/ZWaveAPI/Run/network.DeleteBackup(<backup_name>)', methods=['GET'])
+@auth.login_required
 def manually_delete_backup(backup_name):
     # Manually delete a backup
     global _data_folder
@@ -4141,17 +4189,20 @@ def manually_delete_backup(backup_name):
 
 
 @app.route('/ZWaveAPI/Run/network.PerformSanityChecks()', methods=['GET'])
+@auth.login_required
 def perform_sanity_checks():
     sanity_checks()
     return format_json_result()
 
 
 @app.route('/ZWaveAPI/Run/IsAlive()', methods=['GET'])
+@auth.login_required
 def rest_is_alive():
     return format_json_result()
 
 
 @app.route('/ZWaveAPI/Run/ChangeLogLevel(<int:level>)', methods=['GET'])
+@auth.login_required
 def rest_change_log_level(level):
     # Changing REST Logging Level, not affect ozw
     global _log_level
