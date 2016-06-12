@@ -29,6 +29,7 @@ import SocketServer
 from SocketServer import (TCPServer, StreamRequestHandler)
 import signal
 import unicodedata
+import pyudev
 
 # ------------------------------------------------------------------------------
 
@@ -140,25 +141,19 @@ class jeedom_utils():
 
 	@staticmethod
 	def find_tty_usb(idVendor, idProduct, product = None):
-		for dnbase in os.listdir('/sys/bus/usb/devices'):
-			dn = join('/sys/bus/usb/devices', dnbase)
-			if not os.path.exists(join(dn, 'idVendor')):
+		context = pyudev.Context()
+		for device in context.list_devices(subsystem='tty'):
+			if 'ID_VENDOR' not in device:
 				continue
-			idv = open(join(dn, 'idVendor')).read().strip()
-			if idv != idVendor:
+			if device['ID_VENDOR_ID'] != idVendor:
 				continue
-			idp = open(join(dn, 'idProduct')).read().strip()
-			if idp != idProduct:
+			if device['ID_MODEL_ID'] != idProduct:
 				continue
 			if product is not None:
-				mfp = open(join(dn, 'product')).read().strip().lower()
-				if mfp.find(product.lower()) == -1:
+				if 'ID_VENDOR' not in device or device['ID_VENDOR'].lower().find(product.lower()) == -1 :
 					continue
-			for subdir in os.listdir(dn):
-				if subdir.startswith(dnbase+':'):
-					for subsubdir in os.listdir(join(dn, subdir)):
-						if subsubdir.startswith('ttyUSB'):
-							return join('/dev', subsubdir)
+			return device.device_node
+		return None
 
 	@staticmethod
 	def stripped(str):
