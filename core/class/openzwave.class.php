@@ -87,7 +87,7 @@ class openzwave extends eqLogic {
 		}
 		$url = 'http://' . self::$_listZwaveServer[$_serverId]['addr'] . ':' . self::$_listZwaveServer[$_serverId]['port'] . str_replace(' ', '%20', $_url);
 		if ($_async) {
-			shell_exec('curl -s -G "' . $url . '" >> /dev/null 2>&1 &');
+			shell_exec('curl -s -u "token:' . config::byKey('api') . '" -G "' . $url . '" >> /dev/null 2>&1 &');
 			return;
 		}
 		$ch = curl_init();
@@ -104,7 +104,7 @@ class openzwave extends eqLogic {
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $_data);
 		}
 		// auth token for REST call using jeedom api key
-		curl_setopt($ch, CURLOPT_USERPWD, 'token:'. config::byKey('api'));
+		curl_setopt($ch, CURLOPT_USERPWD, 'token:' . config::byKey('api'));
 		$result = curl_exec($ch);
 		if ($_noError) {
 			curl_close($ch);
@@ -301,7 +301,7 @@ class openzwave extends eqLogic {
 			throw new Exception(__('Le contrôleur est déjà en inclusion ou exclusion', __FILE__));
 		}
 		if ($_mode == 1) {
-			self::callOpenzwave('/ZWaveAPI/Run/controller.AddNodeToNetwork(' . $_state . ',' . $_secure .')', $_serverId);
+			self::callOpenzwave('/ZWaveAPI/Run/controller.AddNodeToNetwork(' . $_state . ',' . $_secure . ')', $_serverId);
 		} else {
 			self::callOpenzwave('/ZWaveAPI/Run/controller.RemoveNodeFromNetwork(' . $_state . ')', $_serverId);
 		}
