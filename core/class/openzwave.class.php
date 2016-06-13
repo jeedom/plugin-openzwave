@@ -381,10 +381,10 @@ class openzwave extends eqLogic {
 		$return['log'] = 'openzwave_update';
 		$return['progress_file'] = '/tmp/compilation_ozw_in_progress';
 		$return['state'] = (self::compilationOk()) ? 'ok' : 'nok';
-		if (exec('sudo dpkg --get-selections | grep -E "python\-serial|python\-request" | grep -v desinstall | wc -l') < 2) {
+		if (exec('sudo dpkg --get-selections | grep -E "python\-serial|python\-request|python\-pyudev" | grep -v desinstall | wc -l') < 3) {
 			$return['state'] = 'nok';
 		}
-		if (exec('sudo pip list | grep -E "enum\-compat|flask\-httpauth" | wc -l') < 2) {
+		if (exec('sudo pip list | grep -E "flask\-httpauth" | wc -l') < 1) {
 			$return['state'] = 'nok';
 		}
 		if ($return['state'] == 'ok' && self::getVersion('openzwave') != -1 && version_compare(config::byKey('openzwave_version', 'openzwave'), self::getVersion('openzwave'), '>')) {
