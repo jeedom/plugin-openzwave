@@ -18,7 +18,7 @@ import math
 
 try:
     from flask import Flask, jsonify, abort, request, make_response, redirect, url_for
-    from flask.ext.httpauth import HTTPBasicAuth
+    from flask_httpauth import HTTPBasicAuth
 except Exception as e:
     print('The dependency of openzwave plugin are not installed. Please, \
     check the plugin openzwave configuration page for instructions', 'error')
