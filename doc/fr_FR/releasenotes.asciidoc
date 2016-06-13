@@ -1,5 +1,20 @@
 ==  Release Notes
 
+.Version 2016-06-13 (Beta)
+
+* New Features
+
+** Sécurisation de l'ensemble des appels au serveur REST.
+** Détection automatique du dongle, dans la page de configuration du plugin.
+
+* Improvements/Enhancements
+
+** N/A
+
+* Bug Fixes
+
+** N/A
+
 .Version 2016-06-10 (Beta)
 
 * New Features
