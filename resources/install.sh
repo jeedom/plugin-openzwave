@@ -142,16 +142,6 @@ if [ -e /dev/ttyAMA0 ];  then
   sudo systemctl mask serial-getty@ttyAMA0.service
   sudo systemctl stop serial-getty@ttyAMA0.service
 fi
-
-if [ $(grep 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200"' /etc/udev/rules.d/98-usb-serial.rules | wc -l) -eq 0 ]; then
-  if [ -f /etc/udev/rules.d/98-usb-serial.rules ]; then
-    sudo cp /etc/udev/rules.d/98-usb-serial.rules /tmp/udev
-  else
-    touch /tmp/udev
-  fi
-  sudo echo 'SUBSYSTEM=="tty", ATTRS{idVendor}=="0658", ATTRS{idProduct}=="0200", SYMLINK+="ttyUSB21"' >> /tmp/udev
-  sudo mv /tmp/udev /etc/udev/rules.d/98-usb-serial.rules
-fi
 echo 100 > /tmp/compilation_ozw_in_progress
 echo "Everything is successfully installed!"
 rm /tmp/compilation_ozw_in_progress
