@@ -694,6 +694,7 @@
 	<Manufacturer id="5254" name="Remotec">
 		<Product type="0000" id="531f" name="Z-URC" config="remotec/zurc.xml"/>
 		<Product type="0001" id="8380" name="ZRC-100"/>
+		<Product type="0001" id="8510" name="ZRC-90" config="remotec/zrc-90.xml"/>
 		<Product type="0101" id="8371" name="ZXT-310EU"/>
 		<Product type="0101" id="8377" name="ZXT-120" config="remotec/zxt-120.xml"/>
 		<Product type="8201" id="8120" name="ZFM-X10EU Dual Mode Insert Module "/>
