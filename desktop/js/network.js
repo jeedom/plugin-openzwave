@@ -387,7 +387,13 @@ var app_network = {
                 nodes = data['devices'];
                 // auto select first node
                 var graph = Viva.Graph.graph();
-
+                var controllerId = 1;
+                for (z in nodes) {
+                    if (nodes[z].data.isPrimaryController.value == true){
+                        controllerId = z;
+                        break;
+                    }
+                }
                 for (z in nodes) {
                     //console.log('add node '+z);
                     if (nodes[z].data.name.value != '') {
@@ -416,7 +422,7 @@ var app_network = {
                     }
                     if (nodes[z].data.neighbours.value.length < 1 && nodes[z].data.neighbours.enabled != 1) {
                         if (typeof nodes[1] != 'undefined') {
-                            graph.addLink(z, 1, {isdash: 1, lengthfactor: 0.6});
+                            graph.addLink(z, controllerId, {isdash: 1, lengthfactor: 0.6});
                         }
                     } else {
                         for (neighbour in nodes[z].data.neighbours.value) {

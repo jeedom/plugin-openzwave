@@ -274,8 +274,7 @@ logging.info("--> pass")
 # device = 'auto'
 if _device == 'auto':
     know_sticks = [{'idVendor': '0658', 'idProduct': '0200', 'name': 'Sigma Designs, Inc'},
-                   {'idVendor': '10c4', 'idProduct': 'ea60',
-                    'name': 'Cygnal Integrated Products, Inc. CP210x UART Bridge'}]
+                   {'idVendor': '10c4', 'idProduct': 'ea60', 'name': 'Cygnal Integrated Products, Inc. CP210x UART Bridge'}]
 
     for stick in know_sticks:
         _device = jeedom_utils.find_tty_usb(stick['idVendor'], stick['idProduct'])
@@ -1565,6 +1564,8 @@ def serialize_neighbour_to_json(node_id):
         if is_none_or_empty(node_name):
             node_name = 'Unknown'
         json_result['data']['name'] = {'value': node_name}
+
+        json_result['data']['isPrimaryController'] = {'value': _network.controller.node_id == node_id}
 
         neighbour_is_enabled = my_node.generic != 1
         if my_node.generic == 8 and not my_node.is_listening_device:
