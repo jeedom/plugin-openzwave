@@ -1,5 +1,21 @@
 ==  Release Notes
 
+.Version 2016-06-xx (Beta)
+
+* New Features
+
+** N/A
+
+* Improvements/Enhancements
+
+** N/A
+
+* Bug Fixes
+
+** Graphique réseau, calcul des saut sur l'id du controlleur principal et non assumer l'ID 1
+
+==  Release Notes
+
 .Version 2016-06-13 (Beta)
 
 * New Features
