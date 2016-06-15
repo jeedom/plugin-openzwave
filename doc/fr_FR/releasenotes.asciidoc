@@ -35,8 +35,6 @@
 * New Features
 
 ** Dialogue d'inclusion avec le choix du mode d'inclusion pour simplifier l'inclusion sécurisé.
-** Sécurisation de l'ensemble des appels au serveur REST.
-** Détection automatique du dongle, dans la page de configuration du plugin.
 
 * Improvements/Enhancements
 
