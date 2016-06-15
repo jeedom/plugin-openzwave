@@ -12,7 +12,8 @@
 
 * Bug Fixes
 
-** Graphique réseau, calcul des saut sur l'id du controlleur principal et non assumer l'ID 1
+** Graphique réseau, calcul des saut sur l'id du controlleur principal et non assumer l'ID 1.
+** Gestion du bouton ajouter une association groupe.
 
 ==  Release Notes
 

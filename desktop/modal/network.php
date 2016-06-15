@@ -52,6 +52,9 @@ if (!isConnect('admin')) {
         left: 0%;
     }
 
+    .node-primary-controller-color{
+        color: #000000;
+    }
     .node-direct-link-color {
         color: #7BCC7B;
     }
@@ -305,6 +308,11 @@ if (!isConnect('admin')) {
                         </tr>
                         </thead>
                         <tbody>
+                        <tr>
+                            <td class="node-primary-controller-color" style="width: 35px"><i class="fa fa-square fa-2x"></i>
+                            </td>
+                            <td>{{Contrôleur Primaire}}</td>
+                        </tr>
                         <tr>
                             <td class="node-direct-link-color" style="width: 35px"><i class="fa fa-square fa-2x"></i>
                             </td>

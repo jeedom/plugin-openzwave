@@ -383,17 +383,18 @@ var app_network = {
                 handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
             },
             success: function (data) {
-                //console.log('chargement ok');
                 nodes = data['devices'];
                 // auto select first node
                 var graph = Viva.Graph.graph();
                 var controllerId = 1;
                 for (z in nodes) {
                     if (nodes[z].data.isPrimaryController.value == true){
-                        controllerId = z;
+                        controllerId = parseInt(z);
+                        //console.log('controllerId:' + controllerId);
                         break;
                     }
                 }
+                const queryStageNeighbors = 13;
                 for (z in nodes) {
                     //console.log('add node '+z);
                     if (nodes[z].data.name.value != '') {
@@ -421,7 +422,7 @@ var app_network = {
                         });
                     }
                     if (nodes[z].data.neighbours.value.length < 1 && nodes[z].data.neighbours.enabled != 1) {
-                        if (typeof nodes[1] != 'undefined') {
+                        if (typeof nodes[controllerId] != 'undefined') {
                             graph.addLink(z, controllerId, {isdash: 1, lengthfactor: 0.6});
                         }
                     } else {
@@ -454,25 +455,29 @@ var app_network = {
                     // This time it's a group of elements: http://www.w3.org/TR/SVG/struct.html#Groups
                     if (typeof node.data == 'undefined') {
                         graph.removeNode(node.id);
-                        //break;
                     }
                     nodecolor = '#7BCC7B'; //node-direct-link-color
-                    if (node.data.generic != 1) {
+                    var nodesize = 10;
+                    const nodeshape = 'rect';
+                    if (node.id == controllerId) {
+                        nodecolor = '#000000'; //node-primary-controller-color
+                        nodesize = 16;
+                    } else if (node.data.generic != 1) {
                         nodecolor = '#00a2e8'; //node-remote-control-color
-                    } else if (node.data.neighbours.length < 1 && node.id != 1 && node.data.interview >= 13) {
+                    } else if (node.data.neighbours.length < 1 && node.id != controllerId && node.data.interview >= queryStageNeighbors) {
                         nodecolor = '#d20606'; //node-no-neighbourhood-color
-                    } else if (node.data.neighbours.indexOf(1) == -1 && node.id != 1 && node.data.interview >= 13) {
+                    } else if (node.data.neighbours.indexOf(controllerId) == -1 && node.id != controllerId && node.data.interview >= queryStageNeighbors) {
                         nodecolor = '#E5E500'; //node-more-of-one-up-color
-                    } else if (node.data.interview < 13) {
+                    } else if (node.data.interview < queryStageNeighbors) {
                         nodecolor = '#979797'; //node-interview-not-completed-color
                     }
-                    var ui = Viva.Graph.svg('g'),
 
+                    var ui = Viva.Graph.svg('g'),
                     // Create SVG text element with user id as content
                         svgText = Viva.Graph.svg('text').attr('y', '0px').text(node.id),
-                        img = Viva.Graph.svg('rect')
-                            .attr("width", 10)
-                            .attr("height", 10)
+                        img = Viva.Graph.svg(nodeshape)
+                            .attr("width", nodesize)
+                            .attr("height", nodesize)
                             .attr("fill", nodecolor);
                     ui.append(svgText);
                     ui.append(img);
@@ -480,18 +485,18 @@ var app_network = {
                         var link = 'index.php?v=d&p=openzwave&m=openzwave&server_id=' + $("#sel_zwaveNetworkServerId").value() + '&logical_id=' + node.id;
                         numneighbours = node.data.neighbours.length;
                         interview = node.data.interview;
-                        if (numneighbours < 1 && interview >= 13) {
+                        if (numneighbours < 1 && interview >= queryStageNeighbors) {
                             if (node.data.generic != 1) {
                                 sentenceneighbours = '{{Télécommande}}'
                             } else {
                                 sentenceneighbours = '{{Pas de voisins}}';
                             }
-                        } else if (interview >= 13) {
+                        } else if (interview >= queryStageNeighbors) {
                             sentenceneighbours = numneighbours + ' {{voisins}} [' + node.data.neighbours + ']';
                         } else {
                             sentenceneighbours = '{{Interview incomplet}}';
                         }
-                        if (node.id != 1) {
+                        if (node.id != controllerId) {
                             linkname = '<a href="' + link + '">' + node.data.name + '</a>'
                         } else {
                             linkname = node.data.name
@@ -510,7 +515,7 @@ var app_network = {
                         (pos.x - nodeSize / 3) + ',' + (pos.y - nodeSize / 2.5) +
                         ')');
                 });
-                var middle = graph.getNode(1);
+                var middle = graph.getNode(controllerId);
                 if (typeof middle !== 'undefined') {
                     middle.isPinned = true;
                 }
