@@ -196,6 +196,9 @@ var app_nodes = {
         });
         $("body").off("click", ".addGroup").on("click", ".addGroup", function (e) {
             var group = $(this).data('groupindex');
+            if(group == -1){
+                return;
+            }
             $('#groupsModal').data('groupindex', group);
             $('#groupsModal').modal('show');
         });
@@ -1668,10 +1671,10 @@ var app_nodes = {
                     tr_groups += "</td></tr>";
                 }
                 var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right">';
-                if (count(values) < node_groups[z].maximumAssociations) {
+                if (count(node_groups[z].associations) < node_groups[z].maximumAssociations) {
                     newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="' + z + '">';
                 } else {
-                    newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="' + z + '">';
+                    newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="-1">';
                 }
                 newPanel += '<i class="fa fa-plus"></i> {{Ajouter un noeud}}</a></div>';
                 var pending_state = node_groups[z].pending;
