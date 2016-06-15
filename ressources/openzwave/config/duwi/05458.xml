@@ -2,9 +2,9 @@
 <!--http://manuals.zwaveeurope.com/make.php?lang=en&type=&sku=ZME_05458  -->
 <Product xmlns='http://code.google.com/p/open-zwave/'>
 	<!-- Configuration Parameters -->
-	<!--IMPORTANT: Controllers may only allow to configure signed values. 
+	<!--IMPORTANT: Controllers may only allow to configure signed values.
 	    In order to set values in the range  128?255 for parameters 4,  5 and 6 the
-	    value sent in the application shall be the desired value minus 256. 
+	    value sent in the application shall be the desired value minus 256.
 	    For example: to set parameter 4 in Window Blind to 200? sit may be  needed
 	    to set a value of 200?256=?56.
 	    Similar rule applies to parameter 2: to set values in range 32768?65535
@@ -24,8 +24,8 @@
 			1 - 65535, automatically switch off after a user defined time</Help>
 		</Value>
 		<Value type="list" index="3" genre="config" label="What to do on RF off command" value="0" size="1">
-			<Help>Defines how to interpret RF Off command. 
-			Can be used in conjunction with Auto Off function: Ignore - to switch on the light by motion detectors and switch it off after some amount of time: in case of multiple motion detectors each would try to switch the light off that would break logics; 
+			<Help>Defines how to interpret RF Off command.
+			Can be used in conjunction with Auto Off function: Ignore - to switch on the light by motion detectors and switch it off after some amount of time: in case of multiple motion detectors each would try to switch the light off that would break logics;
 			Switch on - to switch on the light on both On and Off paddle press on the remote and switch it off after some amount of time. Button off click will still work (if button operations are not disabled).</Help>
 			<Item label="Switch off" value="0" />
 			<Item label="Ignore" value="1" />
@@ -38,7 +38,7 @@
 			<Item label="Yes" value="1" />
 		</Value>
 		<Value type="byte" index="5" genre="config" label="Dimmer speed" units="x 10 milliseconds" min="0" max="255" value="30">
-			<Help>Time to dim on button presses and Set command (if it has no duration specified). 
+			<Help>Time to dim on button presses and Set command (if it has no duration specified).
 			If not 0, dimming will be done smoothly to preserv bulb life.
 			0 : Instantly.
 			1 - 255	: in 10ms units (Default 30).
@@ -48,17 +48,17 @@
 			<Help>Time to dim on button holds and StartLevel Change command (if it has no duration specified).</Help>
 		</Value>
 		<Value type="list" index="7" genre="config" label="Set Maximum Light on On click" value="0" size="1">
-			<Help>Defines if the dimmer shall set maximum light level on On command. 
-			By default on On command dimmer restores last level. 
+			<Help>Defines if the dimmer shall set maximum light level on On command.
+			By default on On command dimmer restores last level.
 			This parameter allows to configure to set maximum level on second On command (if already On) or to always switch on to maximum level.</Help>
 			<Item label="No" value="0" />
 			<Item label="If already On" value="1" />
 			<Item label="Always" value="2" />
 		</Value>
 		<Value type="byte" index="8" genre="config" label="Baby Dimming Time" units="minutes" min="0" max="255" value="0">
-			<Help>Time to dim on double click Off button for Baby-Dim function. 
-			This function works only if the load is operated by single press and hold button action. 
-			If enabled, the device will wait for a click timeout to see if the second click would be pressed. 
+			<Help>Time to dim on double click Off button for Baby-Dim function.
+			This function works only if the load is operated by single press and hold button action.
+			If enabled, the device will wait for a click timeout to see if the second click would be pressed.
 			This will introduce a small delay for single click commands.
 			0 : Disabled (Default).
 			1 - 99 : in minutes.
@@ -75,20 +75,20 @@
 		  <Item label="Yes" value="1" />
 		</Value>
 		<Value type="list" index="12" genre="config" label="Switch by buttons" value="1" size="1">
-			<Help>If disabled, the local operations by buttons will not switch the load, but only send commands to On/Off association group. 
-			In  this mode buttons are not linked with the switch anymore. 
+			<Help>If disabled, the local operations by buttons will not switch the load, but only send commands to On/Off association group.
+			In  this mode buttons are not linked with the switch anymore.
 			They can be used separately: buttons to control remote device, switch will operate by RF commands only.</Help>
 			<Item label="No" value="0" />
 			<Item label="By single press and hold" value="1" />
 			<Item label="By double press and hold" value="2" />
 		</Value>
 		<Value type="list" index="13" genre="config" label="Action on button single press or hold" value="4" size="1">
-			<Help>Defines which command should be sent on button single press or hold. 
-			Basic and Scene Activation commands are sent to Association group. 
-			Use Scene Controller Conf to set up Scene ID for Scene Activation. 
+			<Help>Defines which command should be sent on button single press or hold.
+			Basic and Scene Activation commands are sent to Association group.
+			Use Scene Controller Conf to set up Scene ID for Scene Activation.
 			Switch All commands are sent broadcast.
 			</Help>
-			<Item label="Disabled" value="0" />			
+			<Item label="Disabled" value="0" />
 			<Item label="Send Basic Set" value="1" />
 			<Item label="Send Switch All" value="2" />
 			<Item label="Send Scenes" value="3" />
@@ -97,14 +97,14 @@
 		</Value>
 		<Value type="list" index="14" genre="config" label="Action on button double press or hold" value="0" size="1">
 			<Help>
-			Defines which command should be sent on button double press or press-hold. 
-			Basic and Scene Activation commands are sent to Association group. 
-			Use Scene Controller Conf to set up Scene ID for Scene Activation. 
-			Switch All commands are sent broadcast. 
-			If not disabled, the device will wait for a click timeout to see if the second click would be pressed. 
+			Defines which command should be sent on button double press or press-hold.
+			Basic and Scene Activation commands are sent to Association group.
+			Use Scene Controller Conf to set up Scene ID for Scene Activation.
+			Switch All commands are sent broadcast.
+			If not disabled, the device will wait for a click timeout to see if the second click would be pressed.
 			This will introduce a small delay for single click commands.
 			</Help>
-			<Item label="Disabled" value="0" />			
+			<Item label="Disabled" value="0" />
 			<Item label="Send Basic Set" value="1" />
 			<Item label="Send Switch All" value="2" />
 			<Item label="Send Scenes" value="3" />
@@ -119,7 +119,7 @@
 		<Value type="list" index="16" genre="config" label="What to do on button Down press" value="1" size="1">
 			<Help>
 			Defines how to interpret button Down press. Depends on "Switch by buttons" parameter.
-			If not Disabled this parameter will affect the action selected by the latter parameter. 
+			If not Disabled this parameter will affect the action selected by the latter parameter.
 			Can be used in conjunction with Auto Off function.
 			</Help>
 			<Item label="Switch Off" value="0" />
