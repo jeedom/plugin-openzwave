@@ -75,7 +75,7 @@ Certaines actions sont vraiment risquées voire irréversibles, l'équipe Jeedom
 Certains modules requièrent une inclusion en mode sécurisé, par exemple pour les serrures de porte. L’inclusion sécurisée doit être lancée via l'action de cet écran.
 
 [TIP]
-Si une action ne peut être lancée, elle sera désactivée jusqu'au moment où elle pourra être à nouveau exécutée. 
+Si une action ne peut être lancée, elle sera désactivée jusqu'au moment où elle pourra être à nouveau exécutée.
 
 === Statistiques
 
@@ -91,42 +91,19 @@ Cet onglet vous donnera une représentation graphique des différents liens entr
 
 Explication la légende des couleurs :
 
+* *Noir* : Le contrôleur principal, en général représenté comme Jeedom.
 * *Vert* : Communication directe avec le contrôleur, idéal.
 * *Blue* : Pour les contrôleurs, comme les télécommandes, ils sont associés au contrôleur primaire, mais n'ont pas de voisin.
 * *Jaune* : Toute les routes ont plus d’un saut avant d'arriver au contrôleur.
 * *Gris* : L'interview n'est pas encore complété, les liens seront réellement connus une fois l'interview complété.
 * *Rouge* : présumé mort, ou sans voisin, ne participe pas/plus au maillage du réseau.
 
+[TIP]
+Seul les équipements actifs seront affichés dans le graphique réseau.
+
 Le réseau Z-Wave est constitué de trois différents types de nœuds avec trois fonctions principales.
+
 La principale différence entre les trois types de nœuds est leur connaissance de la table de routage du réseau et par la suite leur capacité à envoyer des messages au réseau:
-
-.Propriétés des appareils Z-Wave
-|===
-| |Voisins |Route |Fonctions possibles
-
-|Contrôleur
-|Connaît tous les voisins
-|A accès à la table de routage complète
-|Peut communiquer avec tous les appareils dans le réseau, si une voie existe
-
-|Esclave
-|Connaît tous les voisins
-|N'a pas d'information sur la table de routage
-|Ne peut répondre au nœud qu'il a reçu le message. Par conséquent, ne peut pas envoyer des messages non sollicités
-
-|Esclaves de routage
-|Connaît tous ses voisins
-|A la connaissance partielle de la table de routage
-|Peut répondre au nœud qu'il a reçu le message et peut envoyer des messages non sollicités à un certain nombre de nœuds |prédéfinis, il a une route
-|===
-
-En résumé:
-
-* Chaque appareil Z -Wave peut recevoir et accuser réception de messages
-* Les contrôleurs peuvent envoyer des messages à tous les nœuds du réseau, sollicités ou non « Le maître peut parler quand il veut et à qui il veut »
-* Les esclaves ne peuvent pas envoyer des messages non sollicités, mais seulement une réponse aux demandes «L'esclave ne parle que si on le lui demande »
-* Les esclaves de routage peuvent répondre à des demandes et ils sont autorisés à envoyer des messages non sollicités à certains nœuds que le contrôleur a prédéfini « L'esclave est toujours un esclave, mais sur autorisation, il peut parler »
-
 
 
 === Table de routage
@@ -148,6 +125,9 @@ Explication la légende des couleurs :
 * *Jaune* : Moins de 2 routes avec un saut.
 * *Gris* : L'interview n'est pas encore complété, sera réellement mis à jour une fois l'interview complété.
 * *Orange* : Toutes les routes ont plus d'un saut. Peut engendrer des latences.
+
+[TIP]
+Seul les équipements actifs seront affichés dans le graphique réseau.
 
 [IMPORTANT]
 Un module présumé mort, ne participe pas/plus au maillage du réseau. Il sera marqué ici d'un point d'exclamation rouge dans un triangle.

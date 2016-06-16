@@ -44,6 +44,8 @@ Vous trouverez la liste des modules compatibles link:https://jeedom.fr/doc/docum
 '''
 include::troubleshooting.asciidoc[]
 
+'''
+include::restapi.asciidoc[]
 
 '''
 include::releasenotes.asciidoc[]
