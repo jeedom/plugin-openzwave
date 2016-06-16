@@ -1659,8 +1659,8 @@ var app_nodes = {
                         } else {
                             var node_name = nodes[node_id].description.product_name;
                         }
-                        if (node_instance > 1) {
-                            var instanceDisplay = node_instance - 1;
+                        if (node_instance > 0) {
+                            var instanceDisplay = node_instance -1;
                             node_name += " (Instance: " + instanceDisplay + ")";
                         }
                     } else {
