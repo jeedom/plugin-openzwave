@@ -1901,10 +1901,8 @@ def serialize_node_health(node_id):
         have_group = False
         if my_node.groups and query_stage_index >= 12 and my_node.generic != 2:
             check_for_group = len(my_node.groups) > 0
-            for groupIndex in list(my_node.groups):
-                if len(my_node.groups[groupIndex].associations) > 0:
-                    have_group = True
-                    break
+            if check_for_group :
+                have_group = check_primary_controller(my_node)
         else:
             check_for_group = False
         json_result['data']['is_groups_ok'] = {'value': have_group, 'enabled': check_for_group}
@@ -1923,6 +1921,18 @@ def serialize_node_health(node_id):
     else:
         logging.warning('This network does not contain any node with the id %s' % (node_id,))
     return json_result
+
+
+def check_primary_controller(my_node):
+    for groupIndex in list(my_node.groups):
+        group = my_node.groups[groupIndex]
+        if len(group.associations_instances) > 0:
+            for associations_instance in group.associations_instances:
+                for node_instance in associations_instance:
+                    if _network._controller.node_id == node_instance:
+                        return True
+                    break
+    return False
 
 
 def get_network_mode():
