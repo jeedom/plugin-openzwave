@@ -206,6 +206,7 @@ var app_nodes = {
             var group = $(this).data('groupindex');
             var node = $(this).data('nodeid');
             var instance = $(this).data('nodeinstance');
+            console.log('deleteGroup group:' + group + ' node:' + node + ' instance:' + instance);
             app_nodes.delete_group(app_nodes.selected_node, group, node, instance);
         });
         $("body").off("click", ".findUsage").on("click", ".findUsage", function (e) {
@@ -311,18 +312,19 @@ var app_nodes = {
             $.each(nodes, function (key, val) {
                 if (key != app_nodes.selected_node) {
                     if (val.capabilities.isListening || val.capabilities.isFlirs) {
-                        if (val.multi_instance.instances <= 1) {
-                            node_keys.push(key + ';0');
-                        }
-                        else {
-                            if (support_multi_instance) {
+                        if (support_multi_instance) {
+                            if (val.description.is_static_controller) {
+                                node_keys.push(key + ';1');
+                                node_keys.push(key + ';0');
+                            }
+                            else {
                                 for (i = 1; i <= val.multi_instance.instances; i++) {
                                     node_keys.push(key + ';' + i);
                                 }
                             }
-                            else {
-                                node_keys.push(key + ';0');
-                            }
+                        }
+                        else{
+                            node_keys.push(key + ';0');
                         }
                     }
                 }
@@ -343,7 +345,7 @@ var app_nodes = {
                 } else {
                     options_node += '<option value="' + node_keys[i] + '">' + nodeId + ' : ' + node.description.product_name;
                 }
-                if (support_multi_instance & node.multi_instance.instances > 1) {
+                if (support_multi_instance & nodeInstance >= 1) {
                     var instanceDisplay = nodeInstance - 1;
                     options_node += ' (' + instanceDisplay + ')';
                 }
