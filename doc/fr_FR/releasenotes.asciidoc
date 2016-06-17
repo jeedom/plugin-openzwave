@@ -8,7 +8,7 @@
 
 * Improvements/Enhancements
 
-** N/A
+** Amélioration de la détection du controleur principal pour le test des groupes.
 
 * Bug Fixes
 
