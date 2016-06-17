@@ -4,7 +4,7 @@
 
 * New Features
 
-** N/A
+** Ajout de la possibilité de sélectionner l'instance 0 du contrôleur pour les associations multi-instances.
 
 * Improvements/Enhancements
 
