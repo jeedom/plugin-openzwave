@@ -314,8 +314,8 @@ var app_nodes = {
                     if (val.capabilities.isListening || val.capabilities.isFlirs) {
                         if (support_multi_instance) {
                             if (val.description.is_static_controller) {
-                                node_keys.push(key + ';1');
                                 node_keys.push(key + ';0');
+                                node_keys.push(key + ';1');
                             }
                             else {
                                 for (i = 1; i <= val.multi_instance.instances; i++) {
