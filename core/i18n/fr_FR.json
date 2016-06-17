@@ -3,7 +3,13 @@
         "Echec de la requête http : ": "Echec de la requête http : ",
         "Local": "Local",
         "Le port n'est pas configuré": "Le port n'est pas configuré",
-        "Création des commandes à partir d'une configuration": "Création des commandes à partir d'une configuration"
+        "Création des commandes à partir d'une configuration": "Création des commandes à partir d'une configuration",
+        "Le contrôleur est en cours d'initialisation veuillez réessayer dans quelques minutes": "Le contrôleur est en cours d'initialisation veuillez réessayer dans quelques minutes",
+        "Nouveau module en cours d'inclusion": "Nouveau module en cours d'inclusion",
+        "Création des commandes en mode automatique": "Création des commandes en mode automatique",
+        "Le contrôleur est occupé, si vous êtes en inclusion ou exclusion veuillez d'abord quitter ce mode": "Le contrôleur est occupé, si vous êtes en inclusion ou exclusion veuillez d'abord quitter ce mode",
+        "Le module ": "Le module ",
+        " vient d'être exclu": " vient d'être exclu"
     },
     "plugins\/openzwave\/desktop\/php\/openzwave.php": {
         "Impossible de contacter le serveur Z-wave ": "Impossible de contacter le serveur Z-wave ",
@@ -50,10 +56,17 @@
         "Classe": "Classe",
         "Commande": "Commande",
         "Options": "Options",
-        "Le réseau Z-Wave est en cours de démarrage sur le serveur ": "Le réseau Z-Wave est en cours de démarrage sur le serveur "
+        "Le réseau Z-Wave est en cours de démarrage sur le serveur ": "Le réseau Z-Wave est en cours de démarrage sur le serveur ",
+        "Vous êtes en mode exclusion sur Local. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion sur Local. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode"
     },
     "plugins\/openzwave\/core\/php\/jeeZwave.php": {
-        "Le réseaux Z-Wave est en cours de démarrage sur le serveur ": "Le réseaux Z-Wave est en cours de démarrage sur le serveur "
+        "Le réseaux Z-Wave est en cours de démarrage sur le serveur ": "Le réseaux Z-Wave est en cours de démarrage sur le serveur ",
+        "Le noeud": "Le noeud",
+        "est présumé mort": "est présumé mort",
+        "Nouveau module Z-Wave détecté. Début de l'intégration.Pause de ": "Nouveau module Z-Wave détecté. Début de l'intégration.Pause de ",
+        " pour synchronisation avec le module": " pour synchronisation avec le module",
+        "Inclusion en cours...": "Inclusion en cours...",
+        "Un périphérique Z-Wave est en cours d'exclusion. Logical ID : ": "Un périphérique Z-Wave est en cours d'exclusion. Logical ID : "
     },
     "plugins\/openzwave\/plugin_info\/configuration.php": {
         "Général": "Général",
@@ -77,7 +90,8 @@
         "Openzwave migration": "Openzwave migration",
         "Configuration": "Configuration",
         "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ?": "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ?",
-        "Téléchargement des configurations": "Téléchargement des configurations"
+        "Téléchargement des configurations": "Téléchargement des configurations",
+        "Démon sur l'esclave": "Démon sur l'esclave"
     },
     "plugins\/openzwave\/desktop\/modal\/health.php": {
         "Demande envoyée": "Demande envoyée",
@@ -210,7 +224,9 @@
         "Nombre de messages jetés ou non délivrés :": "Nombre de messages jetés ou non délivrés :",
         "Nombre de messages en échec à cause d'un mauvais routage :": "Nombre de messages en échec à cause d'un mauvais routage :",
         "Nombre de messages retransmis :": "Nombre de messages retransmis :",
-        "Nombre de messages reçus avec statut de routage occupé :": "Nombre de messages reçus avec statut de routage occupé :"
+        "Nombre de messages reçus avec statut de routage occupé :": "Nombre de messages reçus avec statut de routage occupé :",
+        "Contrôleur principal": "Contrôleur principal",
+        "Contrôleur Primaire": "Contrôleur Primaire"
     },
     "plugins\/openzwave\/desktop\/js\/network.js": {
         "Echec": "Echec",
@@ -448,5 +464,87 @@
         "Supprimer": "Supprimer",
         "Ajouter un noeud": "Ajouter un noeud",
         "(nombre maximum d\\'association :": "(nombre maximum d\\'association :"
+    },
+    "plugins\/openzwave\/desktop\/modal\/backup.php": {
+        "Demande envoyée": "Demande envoyée",
+        "Créer une sauvegarde": "Créer une sauvegarde",
+        "Lancer": "Lancer",
+        "Sauvegardes disponibles": "Sauvegardes disponibles",
+        "Restaurer\/Supprimer la sauvegarde": "Restaurer\/Supprimer la sauvegarde",
+        "Restaurer": "Restaurer",
+        "Supprimer": "Supprimer"
+    },
+    "plugins\/openzwave\/desktop\/js\/backup.js": {
+        "Etes-vous sûr de vouloir créer un backup ? Une fois lancée cette opération ne peut être annulée.": "Etes-vous sûr de vouloir créer un backup ? Une fois lancée cette opération ne peut être annulée.",
+        "Sauvegarde réussie": "Sauvegarde réussie",
+        "Echec": "Echec",
+        "Etes-vous sûr de vouloir supprimer le backup suivant ": "Etes-vous sûr de vouloir supprimer le backup suivant ",
+        "Une fois lancée cette opération ne peut être annulée.": "Une fois lancée cette opération ne peut être annulée.",
+        "Suppression réussie": "Suppression réussie",
+        "Etes-vous sûr de vouloir restaurer Openzwave avec ": "Etes-vous sûr de vouloir restaurer Openzwave avec ",
+        "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave.": "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave.",
+        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Restauration réussie. Redémarrage d\\'OpenZwave en cours."
+    },
+    "plugins\/openzwave\/desktop\/modal\/config.php": {
+        "Sauvegarder les changements": "Sauvegarder les changements"
+    },
+    "plugins\/openzwave\/desktop\/js\/config.js": {
+        "Sauvegarde de la configuration réussie. Le réseau va redémarrer": "Sauvegarde de la configuration réussie. Le réseau va redémarrer",
+        "Echec de la sauvegarde de la configuration : ": "Echec de la sauvegarde de la configuration : "
+    },
+    "plugins\/openzwave\/desktop\/modal\/syncconf.openzwave.php": {
+        "Pause": "Pause",
+        "Rechercher": "Rechercher"
+    },
+    "plugins\/openzwave\/desktop\/js\/openzwave.js": {
+        "Sélectionner le serveur": "Sélectionner le serveur",
+        "Démarrer l\\'inclusion": "Démarrer l\\'inclusion",
+        "Sélectionner le mode d\\'inclusion ?": "Sélectionner le mode d\\'inclusion ?",
+        "Mode sécurisé": "Mode sécurisé",
+        "Mode non sécurisé": "Mode non sécurisé",
+        "Attention, Une fois démarré veuillez suivre la procédure d\\'inclusion de votre module.": "Attention, Une fois démarré veuillez suivre la procédure d\\'inclusion de votre module.",
+        "Démarrer l\\'exclusion": "Démarrer l\\'exclusion",
+        "Arrêter l\\'inclusion": "Arrêter l\\'inclusion",
+        "Arrêter l\\'exclusion": "Arrêter l\\'exclusion",
+        "Annuler": "Annuler",
+        "Démarrer": "Démarrer",
+        "Configuration module Z-Wave": "Configuration module Z-Wave",
+        "Arbre Z-Wave de l'équipement": "Arbre Z-Wave de l'équipement",
+        "Réseaux zwave": "Réseaux zwave",
+        "Configuration du module": "Configuration du module",
+        "Santé zwave": "Santé zwave",
+        "Sauvegardes": "Sauvegardes",
+        "Assistant de configuration": "Assistant de configuration",
+        "Configuration recommandée": "Configuration recommandée",
+        "Voulez-vous appliquer le jeu de configuration recommandée par l\\'équipe Jeedom ?": "Voulez-vous appliquer le jeu de configuration recommandée par l\\'équipe Jeedom ?",
+        "Paramètres.": "Paramètres.",
+        "Associations.": "Associations.",
+        "Intervalle de réveil.": "Intervalle de réveil.",
+        "Rafraîchissement.": "Rafraîchissement.",
+        "Appliquer": "Appliquer",
+        "Configuration appliquée. Cependant ce module nécessite un réveil pour que celle-ci soit effective.": "Configuration appliquée. Cependant ce module nécessite un réveil pour que celle-ci soit effective.",
+        "Configuration appliquée et effective.": "Configuration appliquée et effective.",
+        "Voulez-vous appliquer la configuration recommandée par l\\'équipe Jeedom (paramètre, wakeup, refresh, associations ...) ": "Voulez-vous appliquer la configuration recommandée par l\\'équipe Jeedom (paramètre, wakeup, refresh, associations ...) ",
+        "Configuration appliquée. Cependant ce module nécessite un réveil s\\'il est sur batterie pour que celle-ci soit effective.": "Configuration appliquée. Cependant ce module nécessite un réveil s\\'il est sur batterie pour que celle-ci soit effective.",
+        "Vous êtes en mode inclusion": "Vous êtes en mode inclusion",
+        "Cliquez à nouveau sur le bouton d\\'inclusion pour sortir de ce mode. Pour inclure un module veuillez appuyer sur son bouton d\\'inclusion (une ou plusieurs fois comme décrit dans la documentation du module).": "Cliquez à nouveau sur le bouton d\\'inclusion pour sortir de ce mode. Pour inclure un module veuillez appuyer sur son bouton d\\'inclusion (une ou plusieurs fois comme décrit dans la documentation du module).",
+        "Vous êtes en mode exclusion sur": "Vous êtes en mode exclusion sur",
+        "Cliquez à nouveau sur le bouton d\\'exclusion pour sortir de ce mode. Pour exclure un module veuillez appuyer sur son bouton d\\'inclusion (une ou plusieurs fois comme décrit dans la documentation du module).": "Cliquez à nouveau sur le bouton d\\'exclusion pour sortir de ce mode. Pour exclure un module veuillez appuyer sur son bouton d\\'inclusion (une ou plusieurs fois comme décrit dans la documentation du module).",
+        "Mode exclusion": "Mode exclusion",
+        "Mode inclusion": "Mode inclusion",
+        "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page",
+        "Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes": "Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes",
+        "Opération réalisée avec succès": "Opération réalisée avec succès",
+        "Icône": "Icône",
+        "La valeur de la commande vaut par défaut la commande": "La valeur de la commande vaut par défaut la commande",
+        "Valeur retour d\\'état": "Valeur retour d\\'état",
+        "Durée avant retour d\\'état (min)": "Durée avant retour d\\'état (min)",
+        "Historiser": "Historiser",
+        "Afficher": "Afficher",
+        "Inverser": "Inverser",
+        "Unité": "Unité",
+        "Min": "Min",
+        "Max": "Max",
+        "Tester": "Tester"
     }
 }
