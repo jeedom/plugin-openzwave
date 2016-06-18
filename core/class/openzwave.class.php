@@ -384,9 +384,6 @@ class openzwave extends eqLogic {
 		if (exec('sudo dpkg --get-selections | grep -E "python\-serial|python\-request|python\-pyudev" | grep -v desinstall | wc -l') < 3) {
 			$return['state'] = 'nok';
 		}
-		if (exec('sudo pip list | grep -E "Flask\-HTTPAuth" | wc -l') < 1) {
-			$return['state'] = 'nok';
-		}
 		if ($return['state'] == 'ok' && self::getVersion('openzwave') != -1 && version_compare(config::byKey('openzwave_version', 'openzwave'), self::getVersion('openzwave'), '>')) {
 			$return['state'] = 'nok';
 		}
