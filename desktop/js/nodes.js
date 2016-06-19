@@ -1484,11 +1484,22 @@ var app_nodes = {
                     if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == true) {
 
                     }else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].type == 'bool') {
-                        if (nodes[z].instances[instance].commandClasses[commandclass].data[index].val == true) {
-                            value +='{{ON}}';
-                        } else {
-                            value += '{{OFF}}';
+                        var boolValue = nodes[z].instances[instance].commandClasses[commandclass].data[index].val;
+                        if (nodes[z].instances[instance].commandClasses[commandclass].data[index].name != 'Exporting'){
+                            if (boolValue) {
+                                value +='<span class="label label-success" style="font-size:1em;">{{ON}}</span>';
+                            } else {
+                                value += '<span class="label label-danger" style="font-size:1em;">{{OFF}}</span>';
+                            }
                         }
+                        else{
+                            if (boolValue) {
+                                value +='{{ON}}';
+                            } else {
+                                value += '{{OFF}}';
+                            }
+                        }
+
                     }else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false) {
                         value += nodes[z].instances[instance].commandClasses[commandclass].data[index].val + " " + nodes[z].instances[instance].commandClasses[commandclass].data[index].units;
                     }
