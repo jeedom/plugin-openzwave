@@ -2,24 +2,24 @@
 
 La configuration des équipements Z-Wave est accessible à partir du menu plugin :
 
-image:../images/openzwave2.png[]
+image:../images/appliance01.png[]
 
 Ci-dessous un exemple d'une page du plugin Z-Wave (présentée avec quelques équipements) :
 
-image:../images/openzwave3.png[]
+image:../images/appliance02.png[]
 
 [TIP]
 Comme à beaucoup d'endroits sur Jeedom, placer la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez, à partir de votre profil, le laisser toujours visible).
 
 [TIP]
 Les boutons sur la ligne tout en haut *Synchroniser*, *Réseau-Zwave* et *Santé*, sont visibles seulement si vous êtes en mode *Expert*.
-image:../images/openzwave51.png[]
+image:../images/appliance03.png[]
 
 === Général
 
 Vous retrouvez ici toute la configuration de votre équipement :
 
-image:../images/openzwave4.png[]
+image:../images/appliance04.png[]
 
 * *Nom de l'équipement* : nom de votre module Z-Wave.
 * *Objet parent* : indique l'objet parent auquel appartient l'équipement.
@@ -40,7 +40,7 @@ image:../images/openzwave4.png[]
 
 Ci-dessous vous retrouvez la liste des commandes :
 
-image:../images/openzwave29.png[]
+image:../images/appliance05.png[]
 
 [TIP]
 En fonction des types et sous-types, certaines options peuvent être absentes.
@@ -52,7 +52,7 @@ En fonction des types et sous-types, certaines options peuvent être absentes.
 * l'instance de cette commande Z-Wave (réservée aux experts).
 * la classe de la commande Z-Wave (réservée aux experts).
 * la commande en elle-même (réservée aux experts).
-* "Valeur de retour d'état" et "Durée avant retour d'état" : permet d'indiquer à Jeedom qu'après un changement sur l'information sa valeur doit revenir à Y, X min après le changement. Exemple : dans le cas d'un détecteur de présence qui n'émet que lors d'une détection de présence, il est utile de mettre par exemple 0 en valeur et 4 en durée, pour que 4 min après une détection de mouvement (et si ensuite, il n'y en a pas eu de nouvelles) Jeedom remette la valeur de l'information à 0 (plus de mouvement détecté). 
+* "Valeur de retour d'état" et "Durée avant retour d'état" : permet d'indiquer à Jeedom qu'après un changement sur l'information sa valeur doit revenir à Y, X min après le changement. Exemple : dans le cas d'un détecteur de présence qui n'émet que lors d'une détection de présence, il est utile de mettre par exemple 0 en valeur et 4 en durée, pour que 4 min après une détection de mouvement (et si ensuite, il n'y en a pas eu de nouvelles) Jeedom remette la valeur de l'information à 0 (plus de mouvement détecté).
 * Historiser : permet d'historiser la donnée.
 * Afficher : permet d'afficher la donnée sur le dashboard.
 * Inverser : permet d'inverser l'état pour les types binaires.
@@ -82,7 +82,7 @@ La *loupe* va supprimer les commandes existantes. Si les commandes étaient util
 
 Certains modules possèdent plusieurs jeux de commandes préconfigurées
 
-image:../images/openzwave45.png[]
+image:../images/appliance06.png[]
 
 Vous pouvez les sélectionner via les choix possibles, si le module le permet.
 
@@ -93,7 +93,7 @@ Vous devez effectuer la loupe pour appliquer le nouveau jeux de commandes.
 
 Pour un certain nombre de modules, une aide spécifique pour la mise en place ainsi que des recommandations de paramètres sont disponibles.
 
-image:../images/openzwave55.png[]
+image:../images/appliance07.png[]
 
 Le bouton *Documentation* permet d'accéder à la documentation spécifique du module pour Jeedom.
 
@@ -104,7 +104,7 @@ Le bouton *Assistant* permet d'accèder à l'écran assistant spécifique du mod
 
 === Configuration recommandée
 
-image:../images/openzwave62.png[]
+image:../images/appliance08.png[]
 
 Permet d'appliquer un jeu de configuration recommandée par l'équipe Jeedom.
 
@@ -121,13 +121,13 @@ Les éléments suivants, selon le cas, seront appliqués pour simplifier l'utili
 Pour appliquer le jeu de configuration recommandé, cliquer sur le bouton : *Configuration recommandée*,
 puis confirmer l'application des configurations recommandées.
 
-image:../images/openzwave63.png[]
+image:../images/appliance09.png[]
 
 L'assistant active les différents éléments de configurations.
 
 Une confirmation du bon déroulement sera affichée sous forme de bandeau
 
-image:../images/openzwave64.png[]
+image:../images/appliance10.png[]
 
 [IMPORTANT]
 Les modules sur piles doivent être réveillés pour appliquer le jeu de configuration.
@@ -135,7 +135,7 @@ Les modules sur piles doivent être réveillés pour appliquer le jeu de configu
 La page de l'équipement vous informe si des éléments n'ont pas encore été activés sur le module.
 Veuillez-vous référer à la documentation du module pour le réveiller manuellement ou attendre le prochain cycle de réveil.
 
-image:../images/openzwave65.png[]
+image:../images/appliance11.png[]
 
 
 [TIP]

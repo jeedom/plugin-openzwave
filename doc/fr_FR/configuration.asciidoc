@@ -1,22 +1,26 @@
 == Configuration du plugin
 
 Après le téléchargement du plugin, il vous suffit de l'activer et de le configurer.
-Une fois la sauvegarde effectuée, le démon devrait se lancer.
+
+image:../images/configuration01.png[]
+
+Une fois activé, le démon devrait se lancer.
 Le plugin est préconfiguré avec des valeurs par défaut ; vous n'avez normalement plus rien à faire.
 Cependant vous pouvez modifier la configuration.
-image:../images/openzwave1.png[]
 
 
 === Dépendances
 Cette partie permet de valider et d'installer les dépendances requises au bon fonctionnement du plugin Zwave  (aussi bien en local qu'en déporté, ici en local)
-image:../images/openzwave30.png[]
+image:../images/configuration02.png[]
 
 ** Un Statut *OK* confirme que les dépendances sont satisfaites.
 ** Si le statut est *NOK*, il faudra réinstaller les dépendances à l'aide du bouton
-image:../images/openzwave32.png[]
+image:../images/configuration03.png[]
+
 [TIP]
 La mise à jour des dépendances peut prendre plus de 20 minutes selon votre matériel.
-La progression est affichée en temps réel et un log est accessible.
+La progression est affichée en temps réel et un log *Openzwave_update* est accessible.
+
 [IMPORTANT]
 La mise à jour des dépendances est normalement à effectuer seulement si le Statut est *NOK*, mais il est toutefois possible, pour régler certains problèmes, d'être appelé à refaire l'installation des dépendances.
 [TIP]
@@ -25,7 +29,7 @@ Si vous êtes en mode déporté, les dépendances du démon local peuvent être 
 
 === Démon
 Cette partie permet de valider l'état actuel du ou des démons et de configurer la gestion automatique de ceux-ci.
-image:../images/openzwave31.png[]
+image:../images/configuration04.png[]
 Le démon local et l'ensemble des démons déportés seront affichés avec leurs différentes informations
 
 ** Le *Statut* indique que le démon est actuellement en fonction.
@@ -38,7 +42,7 @@ Le démon local et l'ensemble des démons déportés seront affichés avec leurs
 === Log
 Cette partie permet de choisir le niveau de log ainsi que d'en consulter le contenu.
 
-image:../images/openzwave72.png[]
+image:../images/configuration05.png[]
 
 Sélectionner le niveau puis sauvegarder, le démon sera alors relancé avec les instructions et traces sélectionnées.
 
@@ -52,7 +56,7 @@ Une fois le debug terminé, il ne faut pas oublier de retourner sur un niveau mo
 
 === Configuration
 Cette partie permet de configurer les paramètres généraux du plugin
-image:../images/openzwave53.png[]
+image:../images/configuration06.png[]
 
 * *Général* :
 ** *Supprimer automatiquement les périphériques exclus* : L'option Oui, permet de supprimer les périphériques exclus du réseau  Z-Wave. L’option Non, permet de conserver les équipements dans jeedom même s’ils ont été exclus du réseau. L’équipement devra être alors supprimé manuellement ou réutilisé en lui assignant un nouvel ID Z-Wave si on exécute une migration du contrôleur principal.
@@ -93,15 +97,26 @@ Dans le doute, exclure et ré-inclure le module est recommandé.
 
 === Démon local ou Démon XXX
 Paramètres de la configuration locale (ou déportée, en fonction de l'intitulé) du démon.
-image:../images/openzwave33.png[]
+image:../images/configuration07.png[]
 
-** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-Wave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 possibilités à la fin de la liste
+** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-Wave est connectée.
+Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 possibilités à la fin de la liste.
 ** *Port du Serveur* (modification dangereuse, doit avoir la même valeur sur tous les Jeedoms déportés Z-Wave) : permet de modifier le port de communication interne du démon.
 
 [TIP]
 N'oubliez pas de
-image:../images/openzwave34.png[]
+image:../images/configuration08.png[]
 si vous effectuez une modification.
 
 [IMPORTANT]
-Si vous utilisez Ubuntu : Pour que le démon fonctionne, il faut absolument avoir ubuntu 15.04 (les versions inférieures ont un bug et le démon n'arrive pas à se lancer). Attention si vous faites une mise à jour à partir de 14.04 il faut une fois en 15.04 relancer l'installation des dépendances.
+Si vous utilisez Ubuntu : Pour que le démon fonctionne, il faut absolument avoir ubuntu 15.04 (les versions inférieures ont un bug et le démon n'arrive pas à se lancer).
+Attention si vous faites une mise à jour à partir de 14.04 il faut une fois en 15.04 relancer l'installation des dépendances.
+
+[IMPORTANT]
+La sélection du Port clé Z-Wave en mode de détection automatique, *Auto*, ne fonctionne que pour les dongles USB.
+
+
+=== Paneau Mobile
+image:../images/configuration09.png[]
+
+Permet d'afficher ou non le panel mobile lors que vous utiliser l'application sur un téléphone.

@@ -2,7 +2,7 @@
 
 La console permet de voir en temps réel ce qui se passe sur le réseau Z-wave.
 
-image:../images/openzwave22.png[]
+image:../images/console01.png[]
 
 [IMPORTANT]
 Les informations ici sont à destination du support, il ne faut donc pas s'inquiéter de voir des "Error" ou  "Warning" ici. Cela ne veut pas forcément dire que votre système a un souci.

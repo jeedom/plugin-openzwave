@@ -29,9 +29,6 @@ include::health.asciidoc[]
 include::backup.asciidoc[]
 
 '''
-include::console.asciidoc[]
-
-'''
 include::zwcfg.asciidoc[]
 
 '''

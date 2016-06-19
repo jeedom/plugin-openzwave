@@ -6,4 +6,4 @@ La partie backup va vous permettre de gérer les backups de la topologie de votr
 * Restaurer un backup (en le sélectionnant dans la liste juste au-dessus)
 * Supprimer un backup
 
-image:../images/openzwave35.png[]
+image:../images/backup01.png[]

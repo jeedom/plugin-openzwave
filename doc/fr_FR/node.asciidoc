@@ -2,7 +2,7 @@
 
 C'est ici que vous retrouverez toutes les informations sur votre module
 
-image:../images/openzwave5.png[]
+image:../images/node01.png[]
 
 La fenêtre possède plusieurs onglets :
 
@@ -15,7 +15,7 @@ Sur cet onglet il est possible d'avoir des alertes en cas de détection possible
 
 === Valeurs
 
-image:../images/openzwave6.png[]
+image:../images/node02.png[]
 
 Vous retrouvez ici toutes les commandes et états possibles sur votre module. Ils sont ordonnés par instance et classe de commande puis index. Le « mapping » des commandes est entièrement basé sur ces informations.
 
@@ -29,25 +29,25 @@ Il est possible d'avoir plus de commandes ici que sur Jeedom, c'est tout à fait
 Certains modules n'envoient pas automatiquement leurs états, il faut dans ce cas activer le rafraichissement manuel à 5 minutes sur la ou les valeurs souhaitées.
 Il est recommandé de laisser en automatique le rafraichissement.
 Abuser du rafraichissement manuel peut impacter fortement les performances du réseau  Z-Wave, utilisez seulement pour les valeurs recommandées dans la documentation spécifique jeedom.
-image:../images/openzwave38.png[]
+image:../images/node16.png[]
 L'ensemble des valeurs (index) de l'instance d'une commande classe sera remonté, en activant le rafraichissement manuel sur le plus petit index de l'instance de la commande classe.
 Répéter pour chaque instance si nécessaire.
 
 === Paramètres
 
-image:../images/openzwave7.png[]
+image:../images/node03.png[]
 
 Vous retrouvez ici toutes les possibilités de configuration des paramètres de votre module ainsi que la possibilité de copier la configuration d'un autre nœud déjà en place.
 
 
 Lorsqu'un paramètre est modifié, la ligne correspondante passe en jaune,
-image:../images/openzwave40.png[]
+image:../images/node04.png[]
 le paramètre est en attente d'être appliqué.
 
 Si le module accepte le paramètre, la ligne redevient transparente.
 
 Si toutefois le module refuse la valeur, la ligne passera alors en rouge avec la valeur appliquée retournée par le module.
-image:../images/openzwave52.png[]
+image:../images/node05.png[]
 
 
 A l'inclusion, un nouveau module est détecté avec les paramètres par défaut du constructeur.
@@ -61,24 +61,32 @@ Il est toutefois possible de réveiller à la main un module, voir la documentat
 [TIP]
 La commande *Appliquer les paramètres d'un nœud existant* vous permet d'appliquer l'ensemble de la configuration existante d'un autre module identique, sur le module en cours.
 
-image:../images/openzwave69.png[]
+image:../images/node06.png[]
 
 [TIP]
 La commande *Actualiser les paramètres* force le module à actualiser les paramètres sauvegardés dans le module.
+
+Si aucun fichier de configuration est définie pour le module, un assistant manuel vous pemet d'appliquer des paramètres au module.
+image:../images/node17.png[]
+Veillez vous référer à la documentation du fabricant pour connaitre la définition de l'index, valeur et taile.
 
 === Associations
 
 C'est ici que se retrouve la gestion des groupes d'association de votre module.
 
-image:../images/openzwave8.png[]
+image:../images/node07.png[]
 
-Les modules Z-Wave peuvent contrôler d'autres modules Z-Wave.
+Les modules Z-Wave peuvent contrôler d'autres modules Z-Wave, sans passer par le contrôleur ni Jeedom.
 La relation entre un module de contrôle et un autre module est appelée association.
+
 Afin de contrôler un autre module, le module de commande a besoin de maintenir une liste des appareils qui recevront le contrôle des commandes.
 Ces listes sont appelées groupes d'association et elles sont toujours liées à certains événements (par exemple le bouton
 pressé, les déclencheurs de capteurs, ... ).
+
 Dans le cas où un événement se produit, tous les périphériques enregistrés dans le groupe d'association concerné recevront une commande Basic.
- Voir la documentation du module, pour comprendre les différents groupes d'associations possibles et leur comportement.
+
+[TIP]
+Voir la documentation du module, pour comprendre les différents groupes d'associations possibles et leur comportement.
 
 [TIP]
 La majorité des modules ont un groupe d'association qui est réservé pour le contrôleur principal, il est utilisé pour remonter les informations au contrôleur. Il se nomme en général : *Report* ou *LifeLine*.
@@ -92,7 +100,7 @@ Il est toutefois possible de réveiller à la main un module, voir la documentat
 
 Pour connaitre avec quels autres modules le module en cours est associé, il suffit de cliquer sur le menu *Associé à quels modules*
 
-image:../images/openzwave67.png[]
+image:../images/node08.png[]
 
 L'ensemble des modules utilisant le module en cours ainsi que le nom des groupes d'associations seront affichés.
 
@@ -101,17 +109,22 @@ L'ensemble des modules utilisant le module en cours ainsi que le nom des groupes
 certain module supporte une commande classe multi-instance associations.
 Lorsqu'un module supporte cette CC, il est possible de spécifier avec quelle instance on souhaite créer l'association
 
-image:../images/openzwave70.png[]
+image:../images/node09.png[]
+
+[IMPORTANT]
+Certains modules doivent être associés à l'instance 0 du contrôleur principale afin de bien fonctionner.
+Pour cette raison, le contrôleur est présent avec et sans l'instance 0.
+
 
 === Systèmes
 
 Onglet regroupant les paramètres systèmes du module.
 
-image:../images/openzwave9.png[]
+image:../images/node10.png[]
 
 [TIP]
 Les modules sur piles se réveillent à des cycles réguliers, appelés intervalles de réveil (Wakeup Interval). L'intervalle de réveil est un compromis entre le temps maximal de vie de la batterie et les réponses souhaitées du dispositif. Pour maximiser la durée de vie de vos modules, adapter la valeur Wakeup Interval par exemple à 14400 secondes (4h), voir encore plus élevé selon les modules et leur usage.
-image:../images/openzwave39.png[]
+image:../images/node11.png[]
 
 [TIP]
 Les modules *Interrupteur* et *Variateur* peuvent implémenter une Classe de commande spéciale appelée *SwitchAll* 0x27. Vous pouvez en modifier ici le comportement. Selon le module, plusieurs options sont à disposition. La commande *SwitchAll On/OFF* peut être lancée via votre module contrôleur principal.
@@ -120,7 +133,7 @@ Les modules *Interrupteur* et *Variateur* peuvent implémenter une Classe de com
 
 Permet d'effectuer certaines actions sur le module.
 
-image:../images/openzwave10.png[]
+image:../images/node12.png[]
 
 Certaines actions seront actives selon le type de module et ses possibilités ou encore selon l'état actuel du module comme par exemple s'il est présumé mort par le contrôleur.
 
@@ -135,13 +148,13 @@ La Régénération de la détection du noeud implique un redémarrage du réseau
 [TIP]
 Si vous avez plusieurs modules identiques dont il est requis d'exécuter la *Régénération de la détection du noeud*, il est possible de la lancer une fois pour tous les modules identiques.
 
-image:../images/openzwave68.png[]
+image:../images/node13.png[]
 
 [TIP]
 Si un module sur pile n'est plus joignable et que vous souhaitez l'exclure, que l'exclusion ne s'effectue pas, vous pouvez lancer *Supprimer le noeud fantôme*
 Un assistant effectuera différentes actions afin de supprimer le module dit fantôme. Cette action implique de redémarrer le réseau et peut prendre plusieurs minutes avant d'être complétée.
 
-image:../images/openzwave71.png[]
+image:../images/node14.png[]
 
 Une fois lancé, il est recommandé de fermer l'écran de configuration du module et de surveiller la suppression du module via l'écran de santé zwave.
 
@@ -152,6 +165,6 @@ Seul les modules sur pile peuvent être supprimés via cette assistant.
 
 Cet onglet donne quelques statistiques de communication avec le nœud.
 
-image:../images/openzwave11.png[]
+image:../images/node15.png[]
 
 Peut être intéressant en cas de modules qui sont présumés morts par le contrôleur "Dead".

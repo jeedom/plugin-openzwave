@@ -1,10 +1,10 @@
 == Réseaux  Z-Wave
 
-image:../images/openzwave19.png[]
+image:../images/network01.png[]
 
 Vous retrouvez ici des informations générales sur votre réseau Z-Wave.
 
-image:../images/openzwave24.png[]
+image:../images/network02.png[]
 
 === Résumé
 
@@ -19,7 +19,7 @@ Le premier onglet vous donne le résumé de base de votre réseau Z-Wave, vous r
 
 *Etat*
 
-image:../images/openzwave49.png[]
+image:../images/network03.png[]
 
 Un ensemble d'informations sur l'état actuel du réseau,  à savoir :
 
@@ -54,7 +54,7 @@ Affiche diverses informations système.
 Vous retrouvez ici les dernières notifications du contrôleur ainsi que le détail du message correspondant.
 Les notifications sont ordonnées par leur date d'arrivée, la plus récente en premier.
 
-image:../images/openzwave66.png[]
+image:../images/network04.png[]
 
 [TIP]
 Ce sont des informations techniques, mais qui nous permettent de comprendre les derniers échanges avec le contrôleur.
@@ -64,7 +64,7 @@ Une notification indiquant qu'une commande a échoué, ne signifie pas obligatoi
 
 === Actions
 
-image:../images/openzwave25.png[]
+image:../images/network05.png[]
 
 Vous retrouvez ici toutes les actions possibles sur l'ensemble de votre réseau Z-Wave. Chaque action est accompagnée d’une description sommaire.
 
@@ -79,13 +79,13 @@ Si une action ne peut être lancée, elle sera désactivée jusqu'au moment où 
 
 === Statistiques
 
-image:../images/openzwave26.png[]
+image:../images/network06.png[]
 
 Vous retrouvez ici les statistiques générales sur l'ensemble de votre réseau Z-Wave.
 
 === Graphique du réseau
 
-image:../images/openzwave27.png[]
+image:../images/network07.png[]
 
 Cet onglet vous donnera une représentation graphique des différents liens entre les nœuds.
 
@@ -113,7 +113,7 @@ Ces nœuds sont appelés voisins.
 Au cours de l'inclusion et/ou plus tard sur demande, le nœud est en mesure d'informer le contrôleur de la liste de voisins.
 Grâce à ces informations, le contrôleur est capable de construire une table qui a toutes les informations sur les routes possibles de communication dans un réseau.
 
-image:../images/openzwave28.png[]
+image:../images/network08.png[]
 
 Les lignes du tableau contiennent les nœuds de source et les colonnes contiennent les nœuds de destination.
 Se référer à la légende pour comprendre les couleurs de cellule qui indiquent les liens entre deux nœuds.

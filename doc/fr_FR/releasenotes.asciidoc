@@ -9,6 +9,7 @@
 * Improvements/Enhancements
 
 ** Amélioration de la détection du controleur principal pour le test des groupes.
+** Mise à jour de la librairie openzwave 1.4.296.
 
 * Bug Fixes
 

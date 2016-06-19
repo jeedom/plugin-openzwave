@@ -35,7 +35,7 @@ Les sources de radio suivantes doivent être prises en compte :
 
 Les emplacements des modules doivent être choisis de telle manière que la ligne de connexion directe ne fonctionne que sur une très courte distance au travers de la matière (un mur), afin d’éviter au maximum les atténuations.
 
-image:../images/openzwave60.png[]
+image:../images/introduction01.png[]
 
 Les parties métalliques du bâtiment ou des meubles peuvent bloquer les ondes électromagnétiques.
 
@@ -44,7 +44,7 @@ Les parties métalliques du bâtiment ou des meubles peuvent bloquer les ondes �
 Les nœuds Z-Wave sur secteur peuvent transmettre et répéter les messages qui ne sont pas à portée directe du contrôleur.
 Ce qui permet une plus grande flexibilité de communication, même si il n'y a pas de connexion sans fil directe ou si une connexion est temporairement indisponible, à cause d'un changement dans la pièce ou le bâtiment.
 
-image:../images/openzwave61.png[]
+image:../images/introduction02.png[]
 
 Le contrôleur *Id 1* peut communiquer directement avec les nœuds 2, 3 et 4. Le nœud 6 est en dehors de sa portée radio, cependant, il se trouve dans la zone de couverture radio du nœud 2. Par conséquent, le contrôleur peut communiquer avec le nœud 6 via le nœud 2. De cette façon, le chemin du contrôleur via le nœud 2 vers le nœud 6, est appelé route.
 Dans le cas où la communication directe entre le nœud 1 et le nœud 2 est bloquée, il y a encore une autre option pour communiquer avec le nœud 6, en utilisant le nœud 3 comme un autre répéteur du signal.

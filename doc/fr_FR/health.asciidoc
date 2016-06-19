@@ -1,10 +1,10 @@
 == Santé
 
-image:../images/openzwave12.png[]
+image:../images/health01.png[]
 
 Cette fenêtre résume l'état de votre réseau Z-Wave :
 
-image:../images/openzwave13.png[]
+image:../images/health02.png[]
 
 Vous avez ici :
 
@@ -50,7 +50,7 @@ Le serveur Z-Wave essaie automatiquement de remonter les modules présumés mort
 [TIP]
 Une alerte sera envoyée à Jeedom si le module est présumé mort. Vous pouvez activer une notification pour en être informé le plus rapidement possible. Voir la configuration des Messages dans l'écran de Configuration de Jeedom.
 
-image:../images/openzwave43.png[]
+image:../images/health03.png[]
 
 [TIP]
 Si sur votre table de routage et/ou sur l'écran de santé Z-Wave vous avez un ou des modules nommés avec leurs *nom générique*, la synchronisation permettra de remédier à cette situation.
