@@ -8,8 +8,8 @@
 
 * Improvements/Enhancements
 
-** Amélioration de la détection du controleur principal pour le test des groupes.
-** Mise à jour de la librairie openzwave 1.4.296.
+** Amélioration de la détection du contrôleur principal pour le test des groupes.
+** Mise à jour de la librairie OpenZWave 1.4.296.
 
 * Bug Fixes
 
@@ -50,14 +50,14 @@
 
 * New Features
 
-** Prise en compte des équipements désactivés au sein du moteur ZWave.
+** Prise en compte des équipements désactivés au sein du moteur Z-Wave.
 *** Affichage grisé dans l'écran de santé sans analyse sur le nœud.
 *** Masquée dans la Table réseau et Graphique réseau.
 *** Nœuds désactivés, excluent des tests sanitaires.
 
 * Improvements/Enhancements
 
-** Adaptation pour la version jeedom core 2.3
+** Adaptation pour la version Jeedom core 2.3
 ** Ecran de santé, modification de nom de colonne et avertissement en cas de non communication avec un module.
 ** Optimisation du serveur REST.
 ** Correction de l'orthographe des écrans, merci @Juan-Pedro aka: kiko.
@@ -70,17 +70,17 @@
 
 * New Features
 
-** Ajout d'une option pour activer/désactiver les controles sanitaires sur l'ensemble des modules.
+** Ajout d'une option pour activer/désactiver les contrôles sanitaires sur l'ensemble des modules.
 ** Ajout d'un onglet Notifications pour visualiser les dernières 25 notifications du contrôleur.
 ** Ajout d'une route pour récupérer la santé d'un noeud. ip_jeedom:8083/ZWaveAPI/Run/devices[node_id].GetHealth()
 ** Ajout d'une route pour récupérer la dernière notification d'un noeud. ip_jeedom:8083/ZWaveAPI/Run/devices[node_id].GetLastNotification()
 
 * Improvements/Enhancements
 
-** Permettre la sélection des modules FLiRS lors des associations directes.  
+** Permettre la sélection des modules FLiRS lors des associations directes.
 ** Permettre la sélection de toutes les instances des modules lors des associations directes.
-** Mise à jour du wrapper python openzwave en version 0.3.0.
-** Mise à jour de la librairie openzwave 1.4.248.
+** Mise à jour du wrapper python OpenZWave en version 0.3.0.
+** Mise à jour de la librairie OpenZWave 1.4.248.
 ** Ne pas afficher d'avertissement de wakeup expiré pour les modules sur piles alimentées par secteur.
 ** Validation qu'un module est identique au niveau ids pour permettre la copie des paramètres.
 ** Simplification de l'assistant de copie des paramètres.
@@ -111,13 +111,13 @@
 ** Ajout de la validation de la sélection du Dongle USB au démarrage du démon.
 ** Ajout de la validation et test du callback au démarrage du démon.
 ** Ajout d'une option pour désactiver la mise à jour automatique des config de module.
-** Ajout d'une route pour modifier à l'éxécution les traces de log du serveur REST. Note: aucun effect sur le niveau ozw. http://ip_jeedom:8083/ZWaveAPI/Run/ChangeLogLevel(level) level => 40:Error, 20: Debug 10 Info
+** Ajout d'une route pour modifier à l'exécution les traces de log du serveur REST. Note: aucun effect sur le niveau OpenZWave. http://ip_jeedom:8083/ZWaveAPI/Run/ChangeLogLevel(level) level => 40:Error, 20: Debug 10 Info
 
 * Improvements/Enhancements
 
-** Mise à jour du wrapper python openzwave en version 0.3.0b9.
+** Mise à jour du wrapper python OpenZWave en version 0.3.0b9.
 ** Mise en évidence des groupes d'associations qui sont en attente d'être appliqués.
-** Mise à jour de la librairie openzwave 1.4.167.
+** Mise à jour de la librairie OpenZWave 1.4.167.
 ** Modification du système d'association directe.
 ** Mise à jour de la documentation
 ** Possibilité de lancer la régénération de la détection du nœud pour l’ensemble des modules identiques (marque et modèle).
@@ -136,7 +136,7 @@
 
 ** Correction de la découverte des groupes d'associations.
 ** Correction de l'erreur "Exception KeyError: (91,) in 'libopenzwave.notif_callback' ignored".
-** Correction de la sélection de la documentation de module pour les modules avec plusieurs profils. 
+** Correction de la sélection de la documentation de module pour les modules avec plusieurs profils.
 ** Gestion des boutons action du module.
 ** Correction de description de nom générique de class.
 ** Correction de la sauvegarde du fichier zwcfg.
@@ -173,7 +173,7 @@
 
 * Bug Fixes
 
-** Correction fil pilote fibaro retour d'état.
+** Correction fil pilote Fibaro retour d'état.
 ** Correction d'un bug qui recréer les commandes lors de la mise à jour.
 
 .Version 2016.02.09
@@ -203,7 +203,7 @@ pouvant être utilisée dans les commandes.
 ** Refactoring complet du code du serveur REST, optimisation de vitesse de démarrage, lisibilité, respect de convention de nommage.
 ** Mise à l’équerre des logs.
 ** Simplification de la gestion du refresh manuel 5min avec possibilité d’appliquer sur les nœuds sur piles.
-** Mise à jour de la librairie open-zwave en 1.4
+** Mise à jour de la librairie OpenZWave en 1.4
 ** Modification du test sanitaire pour réanimer les nœuds présumés morts plus facilement sans actions utilisateurs.
 ** Utilisation de couleurs vives de la table de routage et du graphe réseau.
 ** Uniformisation des couleurs de la table de routage et du graphe réseau.

@@ -99,7 +99,7 @@ Le bouton *Documentation* permet d'accéder à la documentation spécifique du m
 
 Des modules particuliers disposent aussi d'un assistant spécifique afin de faciliter l'application de certains paramètres ou fonctionnements.
 
-Le bouton *Assistant* permet d'accèder à l'écran assistant spécifique du module.
+Le bouton *Assistant* permet d'accéder à l'écran assistant spécifique du module.
 
 
 === Configuration recommandée

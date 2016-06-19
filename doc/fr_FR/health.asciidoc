@@ -82,7 +82,7 @@ Etape de l'interview d'un module après le démarrage du démon.
 * *Neighbors* Récupérer la liste des noeuds voisins.
 * *Session* Récupérer des informations de session (change rarement).
 * *Dynamic* Récupérer des informations dynamiques (change fréquemment).
-* *Configuration* Récupérer des informations de paramètres configurables (seulement fait sur demande).
+* *Configuration* Récupérer des informations de paramètres de configurations (seulement fait sur demande).
 * *Complete* Le processus de l'interview est terminé pour ce noeud.
 
 === Notification

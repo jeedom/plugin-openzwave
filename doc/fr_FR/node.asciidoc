@@ -28,7 +28,7 @@ Il est possible d'avoir plus de commandes ici que sur Jeedom, c'est tout à fait
 [IMPORTANT]
 Certains modules n'envoient pas automatiquement leurs états, il faut dans ce cas activer le rafraichissement manuel à 5 minutes sur la ou les valeurs souhaitées.
 Il est recommandé de laisser en automatique le rafraichissement.
-Abuser du rafraichissement manuel peut impacter fortement les performances du réseau  Z-Wave, utilisez seulement pour les valeurs recommandées dans la documentation spécifique jeedom.
+Abuser du rafraichissement manuel peut impacter fortement les performances du réseau  Z-Wave, utilisez seulement pour les valeurs recommandées dans la documentation spécifique Jeedom.
 image:../images/node16.png[]
 L'ensemble des valeurs (index) de l'instance d'une commande classe sera remonté, en activant le rafraichissement manuel sur le plus petit index de l'instance de la commande classe.
 Répéter pour chaque instance si nécessaire.
@@ -66,9 +66,9 @@ image:../images/node06.png[]
 [TIP]
 La commande *Actualiser les paramètres* force le module à actualiser les paramètres sauvegardés dans le module.
 
-Si aucun fichier de configuration est définie pour le module, un assistant manuel vous pemet d'appliquer des paramètres au module.
+Si aucun fichier de configuration est définie pour le module, un assistant manuel vous permet d'appliquer des paramètres au module.
 image:../images/node17.png[]
-Veillez vous référer à la documentation du fabricant pour connaitre la définition de l'index, valeur et taile.
+Veillez vous référer à la documentation du fabricant pour connaitre la définition de l'index, valeur et taille.
 
 === Associations
 
@@ -156,7 +156,7 @@ Un assistant effectuera différentes actions afin de supprimer le module dit fan
 
 image:../images/node14.png[]
 
-Une fois lancé, il est recommandé de fermer l'écran de configuration du module et de surveiller la suppression du module via l'écran de santé zwave.
+Une fois lancé, il est recommandé de fermer l'écran de configuration du module et de surveiller la suppression du module via l'écran de santé Z-Wave.
 
 [IMPORTANT]
 Seul les modules sur pile peuvent être supprimés via cette assistant.

@@ -4,7 +4,7 @@ Le plugin Z-Wave met à disposition des développeurs et des utilisateurs une AP
 
 Il vous est possible d'exploiter, l'ensemble des méthodes exposé par le serveur REST du démon Z-Wave.
 
-La syntaxe pour appeller les routes est sous cette forme:
+La syntaxe pour appeler les routes est sous cette forme:
 
 URL = http://token:\#APIKEY#@\#IP_JEEDOM#:\#PORTDEMON#/\#ROUTE#
 
@@ -14,7 +14,7 @@ URL = http://token:\#APIKEY#@\#IP_JEEDOM#:\#PORTDEMON#/\#ROUTE#
 
 * \#PORTDEMON# correspond au numéro de port spécifié dans la page de configuration du plugin Z-Wave, par défaut: 8083.
 
-* \#ROUTE# correspond à la route sur le serveur REST a éxécuter.
+* \#ROUTE# correspond à la route sur le serveur REST a exécuter.
 
 Pour connaitre l'ensemble des route veillez vous référer
 link:https://github.com/jeedom/plugin-openzwave[github] du plugin Z-Wave.
