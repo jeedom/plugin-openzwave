@@ -651,6 +651,7 @@ class openzwave extends eqLogic {
 			}
 		}
 		$this->save();
+		sleep(1);
 		event::add('jeedom::alert', array(
 			'level' => 'warning',
 			'page' => 'openzwave',
