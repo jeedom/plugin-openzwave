@@ -26,5 +26,11 @@
 			"invertBinary": "1",
 			"generic_type": "OPENING"
 		}
-	}]
+	}],
+	"recommended" : {
+		"params" : [
+         	{"index": 1, "value" : "Binary Sensor report"}
+		],
+		"needswakeup" : true
+    }
 }
