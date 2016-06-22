@@ -317,6 +317,9 @@ var app_nodes = {
                                 node_keys.push(key + ';0');
                                 node_keys.push(key + ';1');
                             }
+                            else if(val.multi_instance.instances == 1){
+                                node_keys.push(key + ';0');
+                            }
                             else {
                                 for (i = 1; i <= val.multi_instance.instances; i++) {
                                     node_keys.push(key + ';' + i);
