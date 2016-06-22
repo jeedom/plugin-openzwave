@@ -1374,6 +1374,23 @@ var app_nodes = {
             node.find(".node-isBeaming").html("");
         }
 
+        if (nodes[z].data.isZwavePlus.value) {
+            node.find(".node-zwaveplus").html(" {{ZWAVE PLUS}}");
+        }
+        else {
+            node.find(".node-zwaveplus").html("");
+        }
+        if (nodes[z].data.isSecured.enabled) {
+            if (nodes[z].data.isSecured.value) {
+                node.find(".node-isSecured").html("<i class='fa fa-lock' aria-hidden='true'></i>");
+            }
+            else {
+                node.find(".node-isSecured").html("<i class='fa fa-unlock' aria-hidden='true'></i>");
+            }
+        }
+        else{
+            node.find(".node-isSecured").html("");
+        }
         var neighbours = nodes[z].data.neighbours.value.join();
         if (queryStageIndex > 13) {
             if (neighbours != "") {

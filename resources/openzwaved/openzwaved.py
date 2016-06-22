@@ -1666,7 +1666,9 @@ def serialize_node_to_json(node_id):
         json_result['data']['lastReceived'] = {'updateTime': timestamp}
         json_result['data']['maxBaudRate'] = {'value': my_node.max_baud_rate}
         json_result['data']['is_enable'] = {'value': int(node_id) not in _disabled_nodes}
-
+        json_result['data']['isZwavePlus'] = {'value': get_value_by_label(node_id, COMMAND_CLASS_ZWAVE_PLUS_INFO, 1, 'ZWave+ Version', False) is not None}
+        is_secured = get_value_by_label(node_id, COMMAND_CLASS_SECURITY, 1, 'Secured', False)
+        json_result['data']['isSecured'] = {'value': is_secured is not None and is_secured.data, 'enabled' :is_secured != None}
         pending_changes = 0
         json_result['instances'] = {"updateTime": timestamp}
         json_result['groups'] = {"updateTime": timestamp}

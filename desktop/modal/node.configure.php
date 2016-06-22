@@ -207,6 +207,8 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                                 </p>
                                 <p>{{Modèle :}}
                                     <b><span class="node-productname label label-default" style="font-size : 1em;">{{inconnu}}</span></b>
+                                    <b><span class="node-zwaveplus label label-info" style="font-size:1em;">{{inconnu}}</span></b>
+                                    <b><span class="node-isSecured label label-success" style="font-size:1em;">{{inconnu}}</span></b>
                                 </p>
                                 <p>{{Fabricant :}}
                                     <b><span class="node-vendor label label-default"  style="font-size : 1em;">{{inconnu}}</span></b>
