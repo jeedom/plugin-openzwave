@@ -1921,6 +1921,10 @@ def serialize_node_health(node_id):
                 my_node.product_id) and not is_none_or_empty(my_node.product_type),
             'enabled': query_stage_index >= 7}  # ManufacturerSpecific2
         json_result['data']['pending_changes'] = {'value': check_pending_changes(node_id)}
+        json_result['data']['isZwavePlus'] = {'value': get_value_by_label(node_id, COMMAND_CLASS_ZWAVE_PLUS_INFO, 1, 'ZWave+ Version', False) is not None}
+        is_secured = get_value_by_label(node_id, COMMAND_CLASS_SECURITY, 1, 'Secured', False)
+        json_result['data']['isSecured'] = {'value': is_secured is not None and is_secured.data, 'enabled' :is_secured != None}
+
     else:
         logging.warning('This network does not contain any node with the id %s' % (node_id,))
     return json_result

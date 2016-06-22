@@ -112,6 +112,21 @@ var app_health = {
             } else {
                 name += nodes[node_id].data.description.product_name;
             }
+
+            if (nodes[node_id].data.isZwavePlus.value) {
+                name += ' <i class="fa fa-plus-circle text-info" aria-hidden="true"></i>';
+            }
+            if (nodes[node_id].data.isSecured.enabled) {
+                //name += '  <span class="node-isSecured label label-success" >';
+                if (nodes[node_id].data.isSecured.value) {
+                    name += '  <i class="fa fa-lock text-success" aria-hidden="true"></i>';
+                }
+                else {
+                    name += '  <i class="fa fa-unlock  text-success" aria-hidden="true"></i>';
+                }
+                //name += '</span>';
+            }
+
             name += '</span>';
             if (nodes[node_id].data.isEnable.value) {
                 tbody += name;
