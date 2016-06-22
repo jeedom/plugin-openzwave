@@ -643,7 +643,8 @@ def check_config_files():
     logging.info('Validate zwcfg configuration file(s)')
     for configuration_file in actual_configurations:
         if configuration_file[-3:] in filters and pattern in configuration_file:
-            cleanup_configuration_file(os.path.join(root, configuration_file))
+            if configuration_file != 'zwcfg_new.xml':
+                cleanup_configuration_file(os.path.join(root, configuration_file))
 
 
 def backup_xml_config(mode, home_id):
