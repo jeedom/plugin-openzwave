@@ -4,7 +4,7 @@
 	"type": "Ouverture",
 	"comlink": "3608-fibaro-detecteur-d-ouverture-z-wave-avec-entree-contact-sec-blanc-5902020528364",
 	"remark": "",
-	"imglink": "fibaro.fgk101-DS18B20",
+	"imglink": "fibaro.fgk101zw5",
 	"battery_type": "1x3.6V ER14250",
 	"configuration": {
 		"conf_version": 1
