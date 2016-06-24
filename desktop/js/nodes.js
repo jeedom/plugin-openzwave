@@ -309,7 +309,6 @@ var app_nodes = {
                 }
             });
         });
-
         $('#copyToParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
             var modal = $(this);
             modal.find('.modal-body').html(' ');
@@ -422,7 +421,7 @@ var app_nodes = {
                 } else {
                     options_node += '<option value="' + node_keys[i] + '">' + nodeId + ' : ' + node.description.product_name;
                 }
-                if (support_multi_instance & nodeInstance >= 1) {
+                if (support_multi_instance && nodeInstance >= 1) {
                     var instanceDisplay = nodeInstance - 1;
                     options_node += ' (' + instanceDisplay + ')';
                 }
@@ -1484,7 +1483,7 @@ var app_nodes = {
         else {
             node.find(".node-neighbours").html("<i>{{La liste des noeuds voisin n'est pas encore disponible.}}</i>");
         }
-        if (queryStageIndex > 7 & productName == "") {
+        if (queryStageIndex > 7 && productName == "") {
 
             warningMessage += "<li>{{Les identifiants constructeur ne sont pas detectés.}}<br/>{{Utilisez}} <button type='button' id='refreshNodeInfo' class='btn btn-success refreshNodeInfo'><i class='fa fa-retweet'></i> {{Rafraîchir infos du noeud}}</button> {{pour corriger}}</li>";
             isWarning = true;
@@ -1600,7 +1599,7 @@ var app_nodes = {
 
                         row.find("td[key=variable-value]").html(value);
                     var polling = '<span style="width : 22px;"></span>';
-                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false & first_index_polling) {
+                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false && first_index_polling) {
                         first_index_polling = false;
 
                         var polling = '<a style="position:relative;top:-1px;" class="btn btn-primary btn-xs editPolling cursor" data-valueidx="' + index + '" data-valuepolling="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></a> ';
