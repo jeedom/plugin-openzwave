@@ -3,35 +3,8 @@ test.php
 core/config/common.config.php
 sftp-config.json
 
-.idea/.name
+.idea/*
 
-.idea/deployment.xml
-
-.idea/misc.xml
-
-.idea/modules.xml
-
-.idea/plugin-openzwave.iml
-
-.idea/vcs.xml
-
-.idea/workspace.xml
-
-.idea/encodings.xml
-
-.idea/dictionaries/jfauger.xml
-
-.idea/inspectionProfiles/profiles_settings.xml
-
-.idea/inspectionProfiles/Project_Default.xml
-
-.idea/webServers.xml
-
-.idea/compiler.xml
-
-.idea/copyright/profiles_settings.xml
-
-.idea/uiDesigner.xml
 plugin-openzwave.iml
 .project
 .pydevproject
