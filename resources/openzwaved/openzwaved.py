@@ -886,10 +886,13 @@ def sanity_checks(force=False):
                 # avoid stress network
                 time.sleep(5)
                 if _network.manager.hasNodeFailed(_network.home_id, node_id):
-                    # relive failed nodes
-                    _network.manager.sendNodeInformation(_network.home_id, node_id)
                     # avoid stress network
-                    time.sleep(5)
+                    time.sleep(4)
+                if my_node.is_failed:
+                    # relive failed nodes
+                    if _network.manager.sendNodeInformation(_network.home_id, node_id):
+                        # avoid stress network
+                        time.sleep(4)
             elif my_node.is_listening_device and my_node.is_ready:
                 # check if a ping is require
                 if hasattr(my_node, 'last_notification'):
