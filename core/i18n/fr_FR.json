@@ -331,7 +331,12 @@
         "Nombre de tentatives d'envoi :": "Nombre de tentatives d'envoi :",
         "Nombre de messages envoyés par ce noeud :": "Nombre de messages envoyés par ce noeud :",
         "Nombre de messages envoyés en erreur :": "Nombre de messages envoyés en erreur :",
-        "Heure du dernier message envoyé :": "Heure du dernier message envoyé :"
+        "Heure du dernier message envoyé :": "Heure du dernier message envoyé :",
+        "Annuller": "Annuller",
+        "Appliquer": "Appliquer",
+        "Appliquer les paramètres": "Appliquer les paramètres",
+        "Appliquer sur...": "Appliquer sur...",
+        "Reprendre de...": "Reprendre de..."
     },
     "plugins\/openzwave\/desktop\/js\/nodes.js": {
         "Aucun paramètre prédefini trouvé pour ce noeud": "Aucun paramètre prédefini trouvé pour ce noeud",
@@ -463,7 +468,11 @@
         "Associé à quels modules": "Associé à quels modules",
         "Supprimer": "Supprimer",
         "Ajouter un noeud": "Ajouter un noeud",
-        "(nombre maximum d\\'association :": "(nombre maximum d\\'association :"
+        "(nombre maximum d\\'association :": "(nombre maximum d\\'association :",
+        "Sélection des modules a appliquer ces paramètres": "Sélection des modules a appliquer ces paramètres",
+        "ZWAVE PLUS": "ZWAVE PLUS",
+        "Source": "Source",
+        "Destination": "Destination"
     },
     "plugins\/openzwave\/desktop\/modal\/backup.php": {
         "Demande envoyée": "Demande envoyée",

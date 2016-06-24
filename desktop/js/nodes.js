@@ -191,6 +191,9 @@ var app_nodes = {
         $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
             $('#copyParamsModal').modal('show');
         });
+        $("body").off("click", ".copyToParams").on("click", ".copyToParams", function (e) {
+            $('#copyToParamsModal').modal('show');
+        });
         $("body").off("click", ".refreshParams").on("click", ".refreshParams", function (e) {
             app_nodes.refresh_parameters(app_nodes.selected_node);
         });
@@ -247,34 +250,40 @@ var app_nodes = {
             var modal = $(this);
             modal.find('.modal-body').html(' ');
             modal.find('.modal-title').text('{{Sélection du module source}}');
-            var options_node = '<div><b>Source : </b>  <select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
+            var options_node = '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
+            options_node += '<div class="col-md-10"><select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
             var foundIdentical = 0;
             $.each(nodes, function (key, val) {
                 var manufacturerId = nodes[app_nodes.selected_node].data.manufacturerId.value;
                 var manufacturerProductId = nodes[app_nodes.selected_node].data.manufacturerProductId.value;
                 var manufacturerProductType = nodes[app_nodes.selected_node].data.manufacturerProductType.value;
-
                 if (key != app_nodes.selected_node && val.product.is_valid &&
                     val.product.manufacturer_id == manufacturerId &&
                     val.product.product_id == manufacturerProductId &&
                     val.product.product_type == manufacturerProductType) {
                     foundIdentical = 1;
+                    options_node += '<option value="' + key + '">' + key + ' ';
                     if (val.description.name != '') {
-                        options_node += '<option value="' + key + '">' + key + ' : ' + val.description.location + ' - ' + val.description.name + '</option>';
+                        options_node +=  val.description.location + ' - ' + val.description.name;
                     } else {
-                        options_node += '<option value="' + key + '">' + key + ' : ' + val.description.product_name + '</option>';
+                        options_node += val.description.product_name;
                     }
+                    options_node += '</option>';
                 }
             });
-            options_node += '</select></div>';
-
-            options_node += '<div><br><b>Destination : </b> ' + app_nodes.selected_node + ' ';
+            options_node += '</select></div></div>';
+            options_node += '<br>';
+            options_node += '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div>';
+            options_node += '<div class="col-md-10">';
+            options_node += app_nodes.selected_node + ' ';
             if (nodes[app_nodes.selected_node].data.name.value != '') {
                 options_node += nodes[app_nodes.selected_node].data.location.value + ' - ' + nodes[app_nodes.selected_node].data.name.value;
             }
             else {
                 options_node += nodes[app_nodes.selected_node].data.product_name.value;
             }
+            options_node += '</div>';
+            options_node += '</div>';
             if (foundIdentical == 0) {
                 modal.find('#saveCopyParams').hide();
                 options_node = '{{Aucun module identique trouvé}}';
@@ -299,6 +308,71 @@ var app_nodes = {
                     $('#copyParamsModal').modal('hide');
                 }
             });
+        });
+
+        $('#copyToParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
+            var modal = $(this);
+            modal.find('.modal-body').html(' ');
+            modal.find('.modal-title').text('{{Sélection des modules a appliquer ces paramètres}}');
+            var options_node = '<div class="container-fluid">';
+            options_node += '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
+            options_node += '<div class="col-md-10">  ' + app_nodes.selected_node + ' ';
+            if (nodes[app_nodes.selected_node].data.name.value != '') {
+                options_node += nodes[app_nodes.selected_node].data.location.value + ' ' + nodes[app_nodes.selected_node].data.name.value;
+            }
+            else {
+                options_node += nodes[app_nodes.selected_node].data.product_name.value;
+            }
+            options_node += '</div></div><br>';
+            options_node +=  '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div><div class="col-md-10">(' + nodes[app_nodes.selected_node].data.product_name.value +')</div></div>';
+            options_node += '<form name="targetForm" action="" class="form-horizontal">';
+            var foundIdentical = 0;
+            $.each(nodes, function (key, val) {
+                var manufacturerId = nodes[app_nodes.selected_node].data.manufacturerId.value;
+                var manufacturerProductId = nodes[app_nodes.selected_node].data.manufacturerProductId.value;
+                var manufacturerProductType = nodes[app_nodes.selected_node].data.manufacturerProductType.value;
+                if (key != app_nodes.selected_node && val.product.is_valid &&
+                    val.product.manufacturer_id == manufacturerId &&
+                    val.product.product_id == manufacturerProductId &&
+                    val.product.product_type == manufacturerProductType) {
+                    options_node += '<div class="row">';
+                    options_node += '<div class="col-md-2"></div>';
+                    options_node += '<div class="col-md-10">';
+                    options_node += '<div class="checkbox-inline"><label>';
+                    options_node += '<input type="checkbox" name="type" value="' + key + '"/>';
+                    foundIdentical = 1;
+                    if (val.description.name != '') {
+                        options_node += key + ' ' + val.description.location + ' ' + val.description.name ;
+                    } else {
+                        options_node += key + ' ' + val.description.product_name ;
+                    }
+                    options_node +=  '</label></div>';
+                    options_node +=  '</div></div>';
+                }
+            });
+            options_node += '</form>';
+            if (foundIdentical == 0) {
+                modal.find('#saveCopyToParams').hide();
+                options_node = '{{Aucun module identique trouvé}}';
+            }
+            modal.find('.modal-body').append(options_node);
+        });
+        $("#saveCopyToParams").off("click").on("click", function (e) {
+            var fromNode = app_nodes.selected_node;
+            $("input:checkbox[name=type]:checked").each(function(){
+                var toNode = $(this).val();
+                $.ajax({
+                    url: path + "ZWaveAPI/Run/devices[" + fromNode + "].CopyConfigurations(" + toNode + ")",
+                    dataType: 'json',
+                    async: true,
+                    error: function (request, status, error) {
+                        handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+                    },
+                    success: function (data) {
+                    }
+                });
+            });
+            $('#copyToParamsModal').modal('hide');
         });
         $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
             var modal = $(this);

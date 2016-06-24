@@ -1,5 +1,21 @@
 ==  Release Notes
 
+.Version 2016-06-xx (Beta)
+
+* New Features
+
+** Assistant pour appliquer les paramètres de configuration d'un module à plusieurs.
+** Identification du Zwave+ des modules supportant la COMMAND_CLASS_ZWAVE_PLUS_INFO.
+** Affichage de l'état de sécurité des modules supportant la COMMAND_CLASS_SECURITY.
+
+* Improvements/Enhancements
+
+** N/A
+
+* Bug Fixes
+
+** N/A
+
 .Version 2016-06-19 (Beta)
 
 * New Features
