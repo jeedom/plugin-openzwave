@@ -83,7 +83,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                 <div id="modalparamname"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{Annuller}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{Annuler}}</button>
                 <button type="button" class="btn btn-primary" id="saveParam">{{Appliquer}}</button>
             </div>
         </div>
@@ -100,7 +100,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                 <div id="modalvaluename"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{Annuller}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{Annuler}}</button>
                 <button type="button" class="btn btn-primary" id="applyValue">{{Appliquer}}</button>
             </div>
         </div>
@@ -117,7 +117,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                 <div id="modalpolling"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{Annuller}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{Annuler}}</button>
                 <button type="button" class="btn btn-primary" id="savePolling">{{Appliquer}}</button>
             </div>
         </div>
@@ -134,7 +134,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                 <div id="modalcopyParams"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{Annuller}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{Annuler}}</button>
                 <button type="button" class="btn btn-primary" id="saveCopyParams">{{Appliquer les paramètres}}</button>
             </div>
         </div>
@@ -151,7 +151,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                 <div id="modalcopyToParams"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{Annuller}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{Annuler}}</button>
                 <button type="button" class="btn btn-primary" id="saveCopyToParams">{{Appliquer les paramètres}}</button>
             </div>
         </div>
@@ -168,7 +168,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                 <div id="modalgroups"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{Annuller}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{Annuler}}</button>
                 <button type="button" class="btn btn-primary" id="saveGroups">{{Appliquer}}</button>
             </div>
         </div>
