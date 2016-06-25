@@ -31,6 +31,9 @@ if [ -d  ${BASEDIR}/../core/config/devices ]; then
 	sudo rm -rf ${BASEDIR}/../resources/openzwaved/config/*
 	echo "Copie des nouvelles configurations Openzwave"
 	cd /tmp/open-zwave/config
+	if [ ! -d  ${BASEDIR}/../resources/openzwaved/config ]; then
+		mkdir -p ${BASEDIR}/../resources/openzwaved/config
+	fi
 	sudo mv * ${BASEDIR}/../resources/openzwaved/config/
 	echo "Nettoyage du répertoire de travail"
 	sudo rm -R /tmp/plugin-openzwave
