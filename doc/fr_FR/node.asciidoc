@@ -59,9 +59,14 @@ Les modules sur pile vont appliquer les changements de paramètres seulement au 
 Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
 
 [TIP]
-La commande *Appliquer les paramètres d'un nœud existant* vous permet d'appliquer l'ensemble de la configuration existante d'un autre module identique, sur le module en cours.
+La commande *Reprendre de...* vous permet reprendre la configuration d'un autre module identique, sur le module en cours.
 
 image:../images/node06.png[]
+
+[TIP]
+La commande *Appliquer sur...* vous permet d'appliquer la configuration actuelle du module sur un ou plusieurs modules identiques.
+
+image:../images/node17.png[]
 
 [TIP]
 La commande *Actualiser les paramètres* force le module à actualiser les paramètres sauvegardés dans le module.

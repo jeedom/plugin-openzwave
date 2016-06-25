@@ -26,7 +26,21 @@ Vous avez ici :
 * *Ping* : Permet d'envoyer une série de messages au module pour tester son bon fonctionnement.
 
 
+[IMPORTANT]
 Les équipements désactivés seront affichés mais aucune information de diagnostic ne sera présente.
+
+
+Le nom du module peut-être suivit par une ou deux images:
+
+image:../images/health04.png[]
+Modules supportant la COMMAND_CLASS_ZWAVE_PLUS_INFO
+
+image:../images/health05.png[]
+Modules supportant la COMMAND_CLASS_SECURITY et securisé.
+
+image:../images/health06.png[]
+Modules supportant la COMMAND_CLASS_SECURITY et non sécurisé.
+
 
 
 [TIP]
