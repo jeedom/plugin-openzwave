@@ -628,49 +628,40 @@ var app_network = {
         const STATE_STARTED = 5;
         const STATE_AWAKED = 7;
         const STATE_READY = 10;
-
-
         var stateled = "";
         switch (infos.state) {
             case STATE_STOPPED:
             {
-                //STATE_STOPPED
                 stateled = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
                 break;
             }
             case STATE_FAILED:
             {
-                //STATE_FAILED
                 stateled = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
                 break;
             }
             case STATE_RESET:
             {
-                //STATE_RESETTED
                 stateled = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
                 break;
             }
             case STATE_STARTED:
             {
-                //STATE_STARTED
                 stateled = "<i class='fa fa-circle yellowiconcolor'></i>";
                 break;
             }
             case STATE_AWAKED:
             {
-                //STATE_AWAKED
                 stateled = "<i class='fa fa-bullseye greeniconcolor'></i>";
                 break;
             }
             case STATE_READY:
             {
-                //STATE_READY
                 stateled = "<i class='fa fa-circle greeniconcolor'></i>";
                 break;
             }
         }
         network.find(".network-state-led").html(stateled);
-
         var node_capabilities = ''; //beaming;listening;primaryController;staticUpdateController
         if (infos.controllerNodeCapabilities.indexOf('primaryController') != -1) {
             node_capabilities += '<li>{{Contrôleur Primaire}}</li>'
@@ -688,8 +679,6 @@ var app_network = {
             node_capabilities += '<li>{{Le noeud est capable d\'envoyer une trame réseaux}}</li>';
         }
         network.find(".network-controller-node-capabilities").html(node_capabilities);
-
-
         var outgoingSendQueue = parseInt(infos.outgoingSendQueue, 0);
         if (outgoingSendQueue == 0) {
             outgoingSendQueueDescription = "<i class='fa fa-circle fa-lg greeniconcolor'></i>";
@@ -703,7 +692,6 @@ var app_network = {
         else {
             outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg rediconcolor'></i>";
         }
-
         network.find(".network-outgoing-send-queue").html(outgoingSendQueue);
         network.find(".network-outgoing-send-queueWarning").html(outgoingSendQueueDescription);
         network.find(".network-controller-stats").html(infos.controllerStatistics);
@@ -711,7 +699,6 @@ var app_network = {
         network.find(".network-oz-library-version").html(infos.OpenZwaveLibraryVersion);
         network.find(".network-poz-library-version").html(infos.PythonOpenZwaveLibraryVersion);
         network.find(".network-node-neighbours").html(infos.neighbors);
-
         var table_notifications = '';
         for (i = 0; i < infos.notifications.length; i++) {
             table_notifications += '<tr>';
@@ -727,7 +714,6 @@ var app_network = {
             table_notifications += '</tr>';
         }
         network.find(".notification_variables").html(table_notifications);
-
         var disabledCommand = infos.state < STATE_STARTED || outgoingSendQueue > 0;
         // add remove commands
         $("#addDevice").prop("disabled", disabledCommand);
@@ -751,7 +737,6 @@ var app_network = {
         // dangerous commands
         $("#softReset").prop("disabled", infos.state < STATE_STARTED || infos.mode != 0);
         $("#hardReset").prop("disabled", infos.state < STATE_STARTED || infos.mode != 0);
-
     },
     update: function () {
         app_nodes.draw_nodes();
