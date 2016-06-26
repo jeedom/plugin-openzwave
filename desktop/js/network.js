@@ -460,7 +460,7 @@ var app_network = {
                     var nodesize = 10;
                     const nodeshape = 'rect';
                     if (node.id == controllerId) {
-                        nodecolor = '#000000'; //node-primary-controller-color
+                        nodecolor = '#a65ba6'; //node-primary-controller-color
                         nodesize = 16;
                     } else if (node.data.generic != 1) {
                         nodecolor = '#00a2e8'; //node-remote-control-color

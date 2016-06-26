@@ -53,7 +53,7 @@ if (!isConnect('admin')) {
     }
 
     .node-primary-controller-color{
-        color: #000000;
+        color: #a65ba6;
     }
     .node-direct-link-color {
         color: #7BCC7B;
