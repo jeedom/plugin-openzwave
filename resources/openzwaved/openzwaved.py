@@ -96,6 +96,7 @@ _force_refresh_nodes = []
 _changes_async = {'device': {}}
 _cycle = 0.3
 _ghost_node_id = None
+_sanity_checks_running = False
 _suppress_refresh = False
 _disabled_nodes = []
 
@@ -855,66 +856,78 @@ def recovering_failed_nodes_asynchronous():
         time.sleep(_recovering_failed_nodes_timer)
 
 
+
 def sanity_checks(force=False):
     global _ghost_node_id
+    global _sanity_checks_running
     # if controller is busy skip this run
-    if force or can_execute_network_command(0):
-        logging.info("Perform network sanity test/check")
-        for node_id in list(_network.nodes):
-            # first check if a ghost node wait to be removed
-            if _ghost_node_id is not None and node_id == _ghost_node_id and my_node.is_failed:
-                logging.info('* Try to remove a Ghost node (nodeId: %s)' % (node_id,))
-                _network.manager.removeFailedNode(_network.home_id, node_id)
-                time.sleep(10)
-                if _ghost_node_id not in _network.nodes:
-                    # reset ghost node flag
-                    _ghost_node_id = None
-                    logging.info('=> Ghost node removed (nodeId: %s)' % (node_id,))
-                continue
-            if node_id in _not_supported_nodes:
-                logging.info('=> Remove not valid nodeId: %s' % (node_id,))
-                _network.manager.removeFailedNode(_network.home_id, node_id)
-                time.sleep(10)
-                continue
-            if node_id in _disabled_nodes:
-                continue
-            my_node = _network.nodes[node_id]
-            if my_node.is_failed:
-                logging.info('=> Try recovering, presumed Dead, nodeId: %s' % (node_id,))
-                # a ping will try to revive the node
-                _network.manager.testNetworkNode(_network.home_id, node_id, 1)
-                # avoid stress network
-                time.sleep(5)
-                if _network.manager.hasNodeFailed(_network.home_id, node_id):
-                    # avoid stress network
-                    time.sleep(4)
+    if _sanity_checks_running:
+        return
+    try:
+        _sanity_checks_running = True
+        if force or can_execute_network_command(0):
+            logging.info("Perform network sanity test/check")
+            for node_id in list(_network.nodes):
+                my_node = _network.nodes[node_id]
+                # first check if a ghost node wait to be removed
+                if _ghost_node_id is not None and node_id == _ghost_node_id and my_node.is_failed:
+                    logging.info('* Try to remove a Ghost node (nodeId: %s)' % (node_id,))
+                    _network.manager.removeFailedNode(_network.home_id, node_id)
+                    time.sleep(10)
+                    if _ghost_node_id not in _network.nodes:
+                        # reset ghost node flag
+                        _ghost_node_id = None
+                        logging.info('=> Ghost node removed (nodeId: %s)' % (node_id,))
+                    continue
+                if node_id in _not_supported_nodes:
+                    logging.info('=> Remove not valid nodeId: %s' % (node_id,))
+                    _network.manager.removeFailedNode(_network.home_id, node_id)
+                    time.sleep(10)
+                    continue
+                if node_id in _disabled_nodes:
+                    continue
                 if my_node.is_failed:
-                    # relive failed nodes
-                    if _network.manager.sendNodeInformation(_network.home_id, node_id):
+                    if _ghost_node_id is not None and node_id == _ghost_node_id:
+                        continue
+                    logging.info('=> Try recovering, presumed Dead, nodeId: %s' % (node_id,))
+                    # a ping will try to revive the node
+                    _network.manager.testNetworkNode(_network.home_id, node_id, 1)
+                    # avoid stress network
+                    time.sleep(5)
+                    if _network.manager.hasNodeFailed(_network.home_id, node_id):
                         # avoid stress network
                         time.sleep(4)
-            elif my_node.is_listening_device and my_node.is_ready:
-                # check if a ping is require
-                if hasattr(my_node, 'last_notification'):
-                    # logging.debug('=> last_notification for nodeId: %s is: %s(%s)' % (node_id, my_node.last_notification.description, my_node.last_notification.code,))
-                    # is in timeout or dead
-                    if my_node.last_notification.code in [1, 5]:
-                        logging.info('=> Do a test on node %s' % (node_id,))
-                        # a ping will try to resolve this situation with a NoOperation CC.
-                        _network.manager.testNetworkNode(_network.home_id, node_id, 3)
-                        # avoid stress network
-                        time.sleep(10)
-            elif not my_node.is_listening_device and my_node.is_ready:
-                if hasattr(my_node, 'last_notification'):
-                    # check if controller think is awake
-                    if my_node.is_awake or my_node.last_notification.code == 3:
-                        logging.info('trying to lull the node %s' % (node_id,))
-                        # a ping will force the node to return sleep after the NoOperation CC. Will force node notification update
-                        _network.manager.testNetworkNode(_network.home_id, node_id, 1)
+                    if my_node.is_failed:
+                        # relive failed nodes
+                        if _network.manager.sendNodeInformation(_network.home_id, node_id):
+                            # avoid stress network
+                            time.sleep(4)
+                elif my_node.is_listening_device and my_node.is_ready:
+                    # check if a ping is require
+                    if hasattr(my_node, 'last_notification'):
+                        # logging.debug('=> last_notification for nodeId: %s is: %s(%s)' % (node_id, my_node.last_notification.description, my_node.last_notification.code,))
+                        # is in timeout or dead
+                        if my_node.last_notification.code in [1, 5]:
+                            logging.info('=> Do a test on node %s' % (node_id,))
+                            # a ping will try to resolve this situation with a NoOperation CC.
+                            _network.manager.testNetworkNode(_network.home_id, node_id, 3)
+                            # avoid stress network
+                            time.sleep(10)
+                elif not my_node.is_listening_device and my_node.is_ready:
+                    if hasattr(my_node, 'last_notification'):
+                        # check if controller think is awake
+                        if my_node.is_awake or my_node.last_notification.code == 3:
+                            logging.info('trying to lull the node %s' % (node_id,))
+                            # a ping will force the node to return sleep after the NoOperation CC. Will force node notification update
+                            _network.manager.testNetworkNode(_network.home_id, node_id, 1)
 
-        logging.info("Network sanity test/check completed!")
-    else:
-        logging.debug("Network is loaded, skip sanity check this time")
+            logging.info("Network sanity test/check completed!")
+        else:
+            logging.debug("Network is loaded, skip sanity check this time")
+    except Exception as error:
+        logging.error('Unknown error during sanity checks: %s' % (str(error),))
+    finally:
+        _sanity_checks_running = False
 
 
 def refresh_configuration_asynchronous():
@@ -3568,10 +3581,10 @@ def ghost_killer(node_id):
                     config_file.write('<?xml version="1.0" encoding="utf-8" ?>\n')
                     config_file.writelines(etree.tostring(tree, pretty_print=True))
                     config_file.close()
-                    # save _ghost_node_id for next sanitary check
-                    _ghost_node_id = node_id
                 else:
                     message = 'commandClass wake_up not found'
+            # save _ghost_node_id for next sanitary check
+            _ghost_node_id = node_id
         return format_json_result(found, message)
     except Exception, exception:
         return format_exception_result(exception)
