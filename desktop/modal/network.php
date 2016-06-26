@@ -159,7 +159,7 @@ if (!isConnect('admin')) {
             </div>
             <div class="modal-footer">
                 <button type="submit" id="confirm_reset" class="btn btn-success">{{Confirmer la remise à zéro}}</button>
-                <button class="btn" data-dismiss="modal" aria-hidden="true">{{Annuler}}</button>
+                <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">{{Annuler}}</button>
             </div>
         </div>
     </div>

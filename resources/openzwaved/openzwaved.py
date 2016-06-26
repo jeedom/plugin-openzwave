@@ -3744,9 +3744,10 @@ def heal_network(perform_return_routes_initialization=False):
 @app.route('/ZWaveAPI/Run/controller.SerialAPISoftReset()', methods=['GET'])
 @auth.login_required
 def soft_reset():
-    logging.info("Soft-reset the Z-Wave controller chip")
+    logging.info("Resets a controller without erasing its network configuration settings")
     try:
-        return format_json_result(_network.controller.soft_reset())
+        _network.controller.soft_reset()
+        return format_json_result()
     except Exception, exception:
         return format_exception_result(exception)
 
@@ -3820,8 +3821,6 @@ def hard_reset():
     # Resets a controller and erases its network configuration settings.
     # The controller becomes a primary controller ready to add devices to a new network.
     logging.info("Resets a controller and erases its network configuration settings")
-    if not can_execute_network_command(0):
-        return format_controller_busy()
     try:
         _network.controller.hard_reset()
         logging.info('The controller becomes a primary controller ready to add devices to a new network')

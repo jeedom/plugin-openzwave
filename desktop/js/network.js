@@ -622,39 +622,47 @@ var app_network = {
         network.find(".network-poll-interval").html(pollInterval);
         network.find(".network-isready").html(infos.isReady);
         network.find(".network-state-description").html(infos.stateDescription);
+        const STATE_STOPPED = 0;
+        const STATE_FAILED = 1;
+        const STATE_RESET = 3;
+        const STATE_STARTED = 5;
+        const STATE_AWAKED = 7;
+        const STATE_READY = 10;
+
+
         var stateled = "";
         switch (infos.state) {
-            case 0:
+            case STATE_STOPPED:
             {
                 //STATE_STOPPED
                 stateled = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
                 break;
             }
-            case 1:
+            case STATE_FAILED:
             {
                 //STATE_FAILED
                 stateled = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
                 break;
             }
-            case 3:
+            case STATE_RESET:
             {
                 //STATE_RESETTED
                 stateled = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
                 break;
             }
-            case 5:
+            case STATE_STARTED:
             {
                 //STATE_STARTED
                 stateled = "<i class='fa fa-circle yellowiconcolor'></i>";
                 break;
             }
-            case 7:
+            case STATE_AWAKED:
             {
                 //STATE_AWAKED
                 stateled = "<i class='fa fa-bullseye greeniconcolor'></i>";
                 break;
             }
-            case 10:
+            case STATE_READY:
             {
                 //STATE_READY
                 stateled = "<i class='fa fa-circle greeniconcolor'></i>";
@@ -710,7 +718,7 @@ var app_network = {
             table_notifications += '<td>' + app_network.timestampConverter(infos.notifications[i].timestamp) + '</td>';
             //table_notifications += '<td>' + infos.notifications[i].state + '</td>';
             table_notifications += '<td>' + infos.notifications[i].details + '</td>';
-            if (infos.notifications[i].error_description != null & infos.notifications[i].error_description != 'None.') {
+            if (infos.notifications[i].error_description != null && infos.notifications[i].error_description != 'None.') {
                 table_notifications += '<td>' + infos.notifications[i].error_description + '</td>';
             }
             else {
@@ -720,7 +728,7 @@ var app_network = {
         }
         network.find(".notification_variables").html(table_notifications);
 
-        var disabledCommand = infos.state < 5 || outgoingSendQueue > 0;
+        var disabledCommand = infos.state < STATE_STARTED || outgoingSendQueue > 0;
         // add remove commands
         $("#addDevice").prop("disabled", disabledCommand);
         $("#addDeviceSecure").prop("disabled", disabledCommand);
@@ -738,11 +746,11 @@ var app_network = {
         $("#transferPrimaryRole").prop("disabled", disabledCommand);
         $("#receiveConfiguration").prop("disabled", disabledCommand);
         // helper commands
-        $("#writeConfigFile").prop("disabled", infos.state < 5);
-        $("#regenerateNodesCfgFile").prop("disabled", infos.state < 5 || infos.mode != 0);
+        $("#writeConfigFile").prop("disabled", infos.state < STATE_STARTED);
+        $("#regenerateNodesCfgFile").prop("disabled", infos.state < STATE_STARTED || infos.mode != 0);
         // dangerous commands
-        $("#softReset").prop("disabled", infos.state < 5 || infos.mode != 0);
-        $("#hardReset").prop("disabled", infos.state < 5 || infos.mode != 0);
+        $("#softReset").prop("disabled", infos.state < STATE_STARTED || infos.mode != 0);
+        $("#hardReset").prop("disabled", infos.state < STATE_STARTED || infos.mode != 0);
 
     },
     update: function () {
@@ -805,6 +813,7 @@ var app_network = {
                 var skipPortableAndVirtual = true; // to minimize routing table by removing not interesting lines
                 var routingTable = '';
                 var routingTableHeader = '';
+                const queryStageNeighbors = 13;
                 $.each(devicesRouting, function (nodeId, node) {
                     if (nodeId == 255) {
                         return;
@@ -835,7 +844,6 @@ var app_network = {
                         routingTable += '  <i class="fa fa-exclamation-triangle fa-lg" style="color:red; text-align:right"  title="{{Présumé mort}}"></i>';
                     }
                     routingTable += '</td><td style="width: 35px">' + nodeId + '</td>';
-
                     $.each(devicesRouting, function (nnodeId, nnode) {
                         if (nnodeId == 255)
                             return;
@@ -850,7 +858,7 @@ var app_network = {
                         if (nodeId == nnodeId || node.data.type.basic.value == 1 || nnode.data.type.basic.value == 1) {
                             rtClass = 'node-na-color';
                             routeHops = '';
-                        } else if (nnode.data.state.value < 13 || node.data.state.value < 13) {
+                        } else if (nnode.data.state.value < queryStageNeighbors || node.data.state.value < queryStageNeighbors) {
                             rtClass = 'node-interview-not-completed-color';
                         } else if ($.inArray(parseInt(nnodeId, 10), node.data.neighbours.value) != -1)
                             rtClass = 'node-direct-link-color';
@@ -860,9 +868,7 @@ var app_network = {
                             rtClass = 'node-more-of-one-up-color';
                         else
                             rtClass = 'node-more-of-two-up-color';
-
                         routingTable += '<td class=' + rtClass + ' style="width: 35px"><i class="fa fa-square fa-2x" title="' + routeHops + '"></i></td>';
-
                     });
                     routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="' + nodeId + '" class="btn btn-xs btn-primary requestNodeNeighboursUpdate tooltips" title="{{Mise à jour des noeuds voisins}}"><i class="fa fa-refresh"></i></button></td></tr>';
                 });
@@ -870,6 +876,5 @@ var app_network = {
                 initTooltips();
             }
         });
-
     }
 }
