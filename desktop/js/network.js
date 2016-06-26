@@ -402,14 +402,14 @@ var app_network = {
                             graph.addNode(z, {
                                 'name': eqLogic_human_name[$('#sel_zwaveNetworkServerId').value() + ':' + z],
                                 'neighbours': nodes[z].data.neighbours.value,
-                                'generic': nodes[z].data.neighbours.enabled,
+                                'enabled': nodes[z].data.neighbours.enabled,
                                 'interview': parseInt(nodes[z].data.state.value)
                             });
                         } else {
                             graph.addNode(z, {
                                 'name': '<span class="label label-primary">' + nodes[z].data.location.value + '</span> ' + nodes[z].data.name.value,
                                 'neighbours': nodes[z].data.neighbours.value,
-                                'generic': nodes[z].data.neighbours.enabled,
+                                'enabled': nodes[z].data.neighbours.enabled,
                                 'interview': parseInt(nodes[z].data.state.value)
                             });
                         }
@@ -417,7 +417,7 @@ var app_network = {
                         graph.addNode(z, {
                             'name': nodes[z].data.product_name.value,
                             'neighbours': nodes[z].data.neighbours.value,
-                            'generic': nodes[z].data.neighbours.enabled,
+                            'enabled': nodes[z].data.neighbours.enabled,
                             'interview': parseInt(nodes[z].data.state.value)
                         });
                     }
@@ -462,7 +462,7 @@ var app_network = {
                     if (node.id == controllerId) {
                         nodecolor = '#a65ba6'; //node-primary-controller-color
                         nodesize = 16;
-                    } else if (node.data.generic != 1) {
+                    } else if (node.data.enabled == false) {
                         nodecolor = '#00a2e8'; //node-remote-control-color
                     } else if (node.data.neighbours.length < 1 && node.id != controllerId && node.data.interview >= queryStageNeighbors) {
                         nodecolor = '#d20606'; //node-no-neighbourhood-color
@@ -486,10 +486,10 @@ var app_network = {
                         numneighbours = node.data.neighbours.length;
                         interview = node.data.interview;
                         if (numneighbours < 1 && interview >= queryStageNeighbors) {
-                            if (node.data.generic != 1) {
-                                sentenceneighbours = '{{Télécommande}}'
-                            } else {
+                            if (node.data.enabled) {
                                 sentenceneighbours = '{{Pas de voisins}}';
+                            } else {
+                                sentenceneighbours = '{{Télécommande}}'
                             }
                         } else if (interview >= queryStageNeighbors) {
                             sentenceneighbours = numneighbours + ' {{voisins}} [' + node.data.neighbours + ']';
@@ -809,12 +809,12 @@ var app_network = {
                     if (nodeId == 255) {
                         return;
                     }
-                    if (skipPortableAndVirtual && node.data.basicType.value == 1) {
+                    if (skipPortableAndVirtual && node.data.type.basic.value == 1) {
                         return;
                     }
                     var routesCount = app_network.getRoutesCount(nodeId);
 
-                    if (node.data.basicType.value != 2) {
+                    if (node.data.type.basic.value != 2) {
                         var link = 'index.php?v=d&p=openzwave&m=openzwave&server_id=' + $("#sel_zwaveNetworkServerId").value() + '&logical_id=' + nodeId;
                     } else {
                         var link = '#';
@@ -839,7 +839,7 @@ var app_network = {
                     $.each(devicesRouting, function (nnodeId, nnode) {
                         if (nnodeId == 255)
                             return;
-                        if (skipPortableAndVirtual && nnode.data.basicType.value == 1)
+                        if (skipPortableAndVirtual && nnode.data.type.basic.value == 1)
                             return;
                         var rtClass;
                         if (!routesCount[nnodeId])
@@ -847,7 +847,7 @@ var app_network = {
                         var routeHops = (routesCount[nnodeId][0] || '0') + "/";
                         routeHops += (routesCount[nnodeId][1] || '0') + "/";
                         routeHops += (routesCount[nnodeId][2] || '0');
-                        if (nodeId == nnodeId || node.data.basicType.value == 1 || nnode.data.basicType.value == 1) {
+                        if (nodeId == nnodeId || node.data.type.basic.value == 1 || nnode.data.type.basic.value == 1) {
                             rtClass = 'node-na-color';
                             routeHops = '';
                         } else if (nnode.data.state.value < 13 || node.data.state.value < 13) {

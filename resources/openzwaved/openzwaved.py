@@ -1583,25 +1583,17 @@ def serialize_neighbour_to_json(node_id):
         if is_none_or_empty(node_name):
             node_name = 'Unknown'
         json_result['data']['name'] = {'value': node_name}
-
         json_result['data']['isPrimaryController'] = {'value': _network.controller.node_id == node_id}
-
-        neighbour_is_enabled = my_node.generic != 1
+        neighbour_is_enabled = my_node.generic != 1 # not a remote control
         if my_node.generic == 8 and not my_node.is_listening_device:
-            neighbour_is_enabled = False
+            # battery thermostat don't always have neighbours
+            neighbour_is_enabled = len(my_node.neighbors) > 0
         json_result['data']['neighbours'] = {'value': list(my_node.neighbors), 'enabled': neighbour_is_enabled}
         json_result['data']['isDead'] = {'value': my_node.is_failed}
-        if _network.controller.node_id == node_id and my_node.basic == 1:
-            json_result['data']['basicType'] = {'value': 2}
-        else:
-            json_result['data']['basicType'] = {'value': my_node.basic}
-        json_result['data']['genericType'] = {'value': my_node.generic}
-        json_result['data']['specificType'] = {'value': my_node.specific}
-        json_result['data']['type'] = {'value': my_node.type}
+        json_result['data']['type'] = {'basic': my_node.basic, 'generic': my_node.generic, 'specific': my_node.specific}
         json_result['data']['state'] = {'value': convert_query_stage_to_int(my_node.query_stage)}
         json_result['data']['isListening'] = {'value': my_node.is_listening_device}
         json_result['data']['isRouting'] = {'value': my_node.is_routing_device}
-
     else:
         logging.warning('This network does not contain any node with the id %s' % (node_id,))
     return json_result
