@@ -46,13 +46,13 @@
 				6 to 99: Beep Beep.
 				0: means stop the sound.
 			</Help>
-			<Item label="Stop" value="0" />
-			<Item label="Emergency" value="1" />
-			<Item label="Fire" value="2" />
-			<Item label="Ambulance" value="3" />
-			<Item label="Police" value="4" />
-			<Item label="Door chime" value="5" />
-			<Item label="Beep Beep" value="6" />
+            <Item label="Stop" value="0" />
+            <Item label="Emergency" value="1" />
+            <Item label="Fire" value="2" />
+            <Item label="Ambulance" value="3" />
+            <Item label="Police" value="4" />
+            <Item label="Door chime" value="5" />
+            <Item label="Beep Beep" value="6" />
 		</Value>
 	</CommandClass>
 	<!-- Association Groups -->

@@ -120,7 +120,7 @@
 			<Group index="9" max_associations="16" label="Multilevel sensor report" />
 		</Associations>
 	</CommandClass>
-	
+
 	<!-- Map endpoints to instances -->
 	<CommandClass id="96" mapping="endpoints" />
 
