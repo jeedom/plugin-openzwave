@@ -46,7 +46,7 @@
 	}],
 	"recommended" : {
 		"params" : [       
-          {"index": 121, "value" : 16}
+          {"index": 121, "value" : "Basic Set and Sensor Binary Report"}
         ],
 		"wakeup" : 14400,
 		"needswakeup" : true
