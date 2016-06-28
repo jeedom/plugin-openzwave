@@ -363,9 +363,9 @@ class openzwave extends eqLogic {
 			self::deamon_stop();
 			log::clear('openzwaved');
 			try {
-				$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
-				if (is_object($cron)) {
-					$cron->start();
+				$plugin = plugin::byId('openzwave');
+				if (is_object($plugin)) {
+					$plugin->deamon_start(false, true);
 				}
 			} catch (Exception $e) {
 
