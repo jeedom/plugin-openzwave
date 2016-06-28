@@ -1678,7 +1678,7 @@ def serialize_node_to_json(node_id):
         json_result['data']['lastReceived'] = {'updateTime': timestamp}
         json_result['data']['maxBaudRate'] = {'value': my_node.max_baud_rate}
         json_result['data']['is_enable'] = {'value': int(node_id) not in _disabled_nodes}
-        json_result['data']['isZwavePlus'] = {'value': get_value_by_label(node_id, COMMAND_CLASS_ZWAVE_PLUS_INFO, 1, 'ZWave+ Version', False) is not None}
+        json_result['data']['isZwavePlus'] = {'value': my_node.is_zwave_plus}
         is_secured = get_value_by_label(node_id, COMMAND_CLASS_SECURITY, 1, 'Secured', False)
         json_result['data']['isSecured'] = {'value': is_secured is not None and is_secured.data, 'enabled' :is_secured != None}
         pending_changes = 0
@@ -1932,7 +1932,7 @@ def serialize_node_health(node_id):
                 my_node.product_id) and not is_none_or_empty(my_node.product_type),
             'enabled': query_stage_index >= 7}  # ManufacturerSpecific2
         json_result['data']['pending_changes'] = {'value': check_pending_changes(node_id)}
-        json_result['data']['isZwavePlus'] = {'value': get_value_by_label(node_id, COMMAND_CLASS_ZWAVE_PLUS_INFO, 1, 'ZWave+ Version', False) is not None}
+        json_result['data']['isZwavePlus'] = {'value': my_node.is_zwave_plus}
         is_secured = get_value_by_label(node_id, COMMAND_CLASS_SECURITY, 1, 'Secured', False)
         json_result['data']['isSecured'] = {'value': is_secured is not None and is_secured.data, 'enabled' :is_secured != None}
 
