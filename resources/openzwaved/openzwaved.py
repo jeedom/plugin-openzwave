@@ -760,7 +760,8 @@ options.set_security_strategy('SUPPORTED')  # The security strategy: SUPPORTED |
 # options.set_custom_secured_cc('0x62,0x4c,0x63')  # What List of Custom CC should we always encrypt if SecurityStrategy is CUSTOM
 options.addOptionBool('EnforceSecureReception', False)  # if we receive a clear text message for a CC that is Secured, should we drop the message
 options.addOptionBool('RefreshAllUserCodes', False)  # Some Devices have a big UserCode Table, that can mean startup times when refreshing Session Variables is very long
-options.addOptionBool('ThreadTerminateTimeout', 5000)  #
+options.addOptionInt('ThreadTerminateTimeout', 5000)  #
+options.addOptionBool('EnableSIS', True)  # Automatically become a SUC if there is no SUC on the network
 options.lock()
 
 check_config_files()
