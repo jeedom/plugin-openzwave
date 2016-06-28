@@ -75,6 +75,9 @@ var app_nodes = {
         $("body").off("click", ".healNode").on("click", ".healNode", function (e) {
             app_nodes.healNode(app_nodes.selected_node);
         });
+        $("body").off("click", ".assignReturnRoute").on("click", ".assignReturnRoute", function (e) {
+            app_nodes.assign_return_route_node(app_nodes.selected_node);
+        });
         $("#refreshNodeValues").off("click").on("click", function () {
             app_nodes.refresh_node_values(app_nodes.selected_node);
         });
@@ -808,6 +811,20 @@ var app_nodes = {
                         level: 'danger'
                     });
                 }
+            }
+        });
+    },
+    assign_return_route_node: function (node_id) {
+        $.ajax({
+            url: path + "ZWaveAPI/Run/devices[" + node_id + "].AssignReturnRoute()",
+            dataType: 'json',
+            async: true,
+            error: function (request, status, error) {
+                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+            },
+            success: function (data) {
+                app_nodes.sendOk();
+                app_nodes.load_data(false);
             }
         });
     },

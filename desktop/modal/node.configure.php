@@ -437,6 +437,14 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                             </tr>
                             <tr>
                                 <td>
+                                    <button type="button" id="assignReturnRoute" class="btn btn-success assignReturnRoute">
+                                        <i class="fa fa-road" aria-hidden="true""></i> {{Mise à jour de la route de retour au contrôleur}}
+                                    </button>
+                                </td>
+                                <td>{{Demandez la mise à jour de la route de retour au contrôleur.}}</td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <button type="button" id="testNode" class="btn btn-info testNode">
                                         <i class="fa fa-check-square-o"></i> {{Tester le nœud}}
                                     </button>
