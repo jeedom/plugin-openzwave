@@ -1,5 +1,20 @@
 ==  Release Notes
 
+.Version 2016-xx-xx (Beta)
+
+* New Features
+
+** Ajout de la demande de mise à jour des routes de retour au contrôleur.
+
+* Improvements/Enhancements
+
+** Optimisation des contrôles sanitaires.
+** Optimisation du graphique réseau.
+
+* Bug Fixes
+
+** Correction de possible problèmes lors de la mise à jour des configurations de modules.
+
 .Version 2016-06-24 (Beta)
 
 * New Features
