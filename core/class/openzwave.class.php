@@ -359,7 +359,7 @@ class openzwave extends eqLogic {
 			}
 		}
 		$pathlog = log::getPathToLog('openzwaved');
-		if (shell_exec('grep "Not enough space in stream buffer" ' . log::getPathToLog('openzwaved') . ' | wc -l') > 0) {
+		if (file_exists(log::getPathToLog('openzwaved')) && shell_exec('grep "Not enough space in stream buffer" ' . log::getPathToLog('openzwaved') . ' | wc -l') > 0) {
 			self::deamon_stop();
 			log::clear('openzwaved');
 			try {
