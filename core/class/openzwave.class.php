@@ -103,7 +103,6 @@ class openzwave extends eqLogic {
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $_data);
 		}
-		// auth token for REST call using jeedom api key
 		curl_setopt($ch, CURLOPT_USERPWD, 'token:' . config::byKey('api'));
 		$result = curl_exec($ch);
 		if ($_noError) {
@@ -357,6 +356,19 @@ class openzwave extends eqLogic {
 				} catch (Exception $e) {
 
 				}
+			}
+		}
+		$pathlog = log::getPathToLog('openzwaved');
+		if (shell_exec('grep "Not enough space in stream buffer" ' . log::getPathToLog('openzwaved') . ' | wc -l') > 0) {
+			self::deamon_stop();
+			log::clear('openzwaved');
+			try {
+				$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
+				if (is_object($cron)) {
+					$cron->start();
+				}
+			} catch (Exception $e) {
+
 			}
 		}
 	}
