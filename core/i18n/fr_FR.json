@@ -66,7 +66,8 @@
         "Nouveau module Z-Wave détecté. Début de l'intégration.Pause de ": "Nouveau module Z-Wave détecté. Début de l'intégration.Pause de ",
         " pour synchronisation avec le module": " pour synchronisation avec le module",
         "Inclusion en cours...": "Inclusion en cours...",
-        "Un périphérique Z-Wave est en cours d'exclusion. Logical ID : ": "Un périphérique Z-Wave est en cours d'exclusion. Logical ID : "
+        "Un périphérique Z-Wave est en cours d'exclusion. Logical ID : ": "Un périphérique Z-Wave est en cours d'exclusion. Logical ID : ",
+        "Le réseaux Z-Wave est en erreur sur le serveur ": "Le réseaux Z-Wave est en erreur sur le serveur "
     },
     "plugins\/openzwave\/plugin_info\/configuration.php": {
         "Général": "Général",
@@ -336,7 +337,11 @@
         "Appliquer": "Appliquer",
         "Appliquer les paramètres": "Appliquer les paramètres",
         "Appliquer sur...": "Appliquer sur...",
-        "Reprendre de...": "Reprendre de..."
+        "Reprendre de...": "Reprendre de...",
+        "Mise à jour des route au le contrôleur": "Mise à jour des route au le contrôleur",
+        "Demandez la mise à jour de l'itinéraire de retour vers le contrôleur.": "Demandez la mise à jour de l'itinéraire de retour vers le contrôleur.",
+        "Mise à jour de la route de retour au contrôleur": "Mise à jour de la route de retour au contrôleur",
+        "Demandez la mise à jour de la route de retour au contrôleur.": "Demandez la mise à jour de la route de retour au contrôleur."
     },
     "plugins\/openzwave\/desktop\/js\/nodes.js": {
         "Aucun paramètre prédefini trouvé pour ce noeud": "Aucun paramètre prédefini trouvé pour ce noeud",
