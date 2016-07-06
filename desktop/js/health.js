@@ -114,18 +114,22 @@ var app_health = {
             }
 
             if (nodes[node_id].data.isZwavePlus.value) {
-                name += ' <i class="fa fa-plus-circle text-info" aria-hidden="true"></i>';
+                name += ' <span title="{{ZWAVE PLUS}}"><i class="fa fa-plus-circle text-info" aria-hidden="true"></i></span>';
             }
             if (nodes[node_id].data.isSecured.enabled) {
                 //name += '  <span class="node-isSecured label label-success" >';
                 if (nodes[node_id].data.isSecured.value) {
-                    name += '  <i class="fa fa-lock text-success" aria-hidden="true"></i>';
+                    name += '  <span title="{{Sécurisé}}"><i class="fa fa-lock text-success" aria-hidden="true"></i></span>';
                 }
                 else {
-                    name += '  <i class="fa fa-unlock  text-success" aria-hidden="true"></i>';
+                    name += '  <span title="{{Non sécurisé}}"><i class="fa fa-unlock  text-success" aria-hidden="true"></i></span>';
                 }
                 //name += '</span>';
             }
+            if (nodes[node_id].data.isFrequentListening.value) {
+                name += ' <span title="{{FLiRS}}"><i class="fa fa-assistive-listening-systems " aria-hidden="true"></i></span>';
+            }
+
 
             name += '</span>';
             if (nodes[node_id].data.isEnable.value) {
