@@ -1,86 +1,18 @@
 ==  Release Notes
 
-.Version 2016-07-01 (Beta)
+.Version 2016-07-11
 
 * New Features
 
+** Distinction des modules FLiRS dans l'écran de santé.
 ** Ajout de la demande de mise à jour des routes de retour au contrôleur.
-
-* Improvements/Enhancements
-
-** Optimisation des contrôles sanitaires.
-** Optimisation du graphique réseau.
-
-* Bug Fixes
-
-** Correction de possible problèmes lors de la mise à jour des configurations de modules.
-
-.Version 2016-06-24 (Beta)
-
-* New Features
-
-** Assistant pour appliquer les paramètres de configuration d'un module à plusieurs.
+** Assistant pour appliquer les paramètres de configuration d'un module à plusieurs autres modules.
 ** Identification du Zwave+ des modules supportant la COMMAND_CLASS_ZWAVE_PLUS_INFO.
 ** Affichage de l'état de sécurité des modules supportant la COMMAND_CLASS_SECURITY.
-
-* Improvements/Enhancements
-
-** N/A
-
-* Bug Fixes
-
-** N/A
-
-.Version 2016-06-19 (Beta)
-
-* New Features
-
 ** Ajout de la possibilité de sélectionner l'instance 0 du contrôleur pour les associations multi-instances.
-
-* Improvements/Enhancements
-
-** Amélioration de la détection du contrôleur principal pour le test des groupes.
-** Mise à jour de la librairie OpenZWave 1.4.296.
-
-* Bug Fixes
-
-** Graphique réseau, calcul des sauts sur l'id du contrôleur principal et non assumer l'ID 1.
-** Gestion du bouton ajouter une association groupe.
-
-.Version 2016-06-13 (Beta)
-
-* New Features
-
 ** Sécurisation de l'ensemble des appels au serveur REST.
 ** Détection automatique du dongle, dans la page de configuration du plugin.
-
-* Improvements/Enhancements
-
-** N/A
-
-* Bug Fixes
-
-** N/A
-
-.Version 2016-06-10 (Beta)
-
-* New Features
-
 ** Dialogue d'inclusion avec le choix du mode d'inclusion pour simplifier l'inclusion sécurisé.
-
-* Improvements/Enhancements
-
-** Optimisation du rafraichissement en arrière-plan des variateurs.
-** Optimisation du rafraichissement en arrière-plan pour les moteurs.
-
-* Bug Fixes
-
-** Affichage des valeurs False dans l'onglet Configuration.
-
-.Version 2016-06-03 (Beta)
-
-* New Features
-
 ** Prise en compte des équipements désactivés au sein du moteur Z-Wave.
 *** Affichage grisé dans l'écran de santé sans analyse sur le nœud.
 *** Masquée dans la Table réseau et Graphique réseau.
@@ -88,13 +20,24 @@
 
 * Improvements/Enhancements
 
+** Optimisation des contrôles sanitaires.
+** Optimisation du graphique réseau.
+** Amélioration de la détection du contrôleur principal pour le test des groupes.
+** Mise à jour de la librairie OpenZWave 1.4.296.
+** Optimisation du rafraichissement en arrière-plan des variateurs.
+** Optimisation du rafraichissement en arrière-plan pour les moteurs.
 ** Adaptation pour la version Jeedom core 2.3
 ** Ecran de santé, modification de nom de colonne et avertissement en cas de non communication avec un module.
 ** Optimisation du serveur REST.
 ** Correction de l'orthographe des écrans, merci @Juan-Pedro aka: kiko.
+** Mise à jour de la documentation du plugin.
 
 * Bug Fixes
 
+** Correction de possible problèmes lors de la mise à jour des configurations de modules.
+** Graphique réseau, calcul des sauts sur l'id du contrôleur principal et non assumer l'ID 1.
+** Gestion du bouton ajouter une association groupe.
+** Affichage des valeurs False dans l'onglet Configuration.
 ** Ne plus assumer la date du jour sur l'état des piles si pas reçu de rapport de l'équipement.
 
 .Version 2016-05-30
