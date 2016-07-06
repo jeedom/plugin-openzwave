@@ -915,9 +915,13 @@ def sanity_checks(force=False):
                             # avoid stress network
                             time.sleep(10)
                 elif not my_node.is_listening_device and my_node.is_ready:
-                    if hasattr(my_node, 'last_notification'):
+                    try:
+                        can_wake_up = my_node.can_wake_up()
+                    except RuntimeError:
+                        can_wake_up = False
+                    if can_wake_up and hasattr(my_node, 'last_notification'):
                         # check if controller think is awake
-                        if my_node.can_wake_up and (my_node.is_awake or my_node.last_notification.code == 3):
+                        if my_node.is_awake or my_node.last_notification.code == 3:
                             logging.info('trying to lull the node %s' % (node_id,))
                             # a ping will force the node to return sleep after the NoOperation CC. Will force node notification update
                             _network.manager.testNetworkNode(_network.home_id, node_id, 1)
@@ -1665,8 +1669,11 @@ def serialize_node_to_json(node_id):
         json_result['data']['isAwake'] = {'value': my_node.is_awake, "updateTime": timestamp}
         json_result['data']['isReady'] = {'value': my_node.is_ready, "updateTime": timestamp}
         json_result['data']['isInfoReceived'] = {'value': my_node.is_info_received}
-
-        json_result['data']['can_wake_up'] = {'value': my_node.can_wake_up()}
+        try:
+            can_wake_up = my_node.can_wake_up()
+        except RuntimeError:
+            can_wake_up = False
+        json_result['data']['can_wake_up'] = {'value': can_wake_up}
         json_result['data']['battery_level'] = {'value': my_node.get_battery_level()}
         json_result['data']['isFailed'] = {'value': my_node.is_failed}
         json_result['data']['isListening'] = {'value': my_node.is_listening_device}
