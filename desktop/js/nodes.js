@@ -1338,7 +1338,10 @@ var app_nodes = {
                 var battery_level = nodes[z].data.battery_level.value
                 node.find(".node-sleep").removeClass("label-success").addClass("label-default")
                 if (battery_level != null) {
-                    if (nodeCanSleep) {
+                    if (nodes[z].data.isFrequentListening.value) {
+                        node.find(".node-sleep").html("{{Endormi <i>(FLiRS)</i>}}");
+                    }
+                    else if (nodeCanSleep) {
                         if (nodes[z].data.isAwake.value) {
                             node.find(".node-sleep").removeClass("label-default").addClass("label-success")
                             node.find(".node-sleep").html("{{Réveillé}}");
@@ -1346,7 +1349,8 @@ var app_nodes = {
                         else {
                             node.find(".node-sleep").html("{{Endormi}}");
                         }
-                    } else {
+                    }
+                    else {
                         node.find(".node-sleep").html("{{Endormi}}");
                     }
                     node.find(".node-battery").html(battery_level + ' %');
