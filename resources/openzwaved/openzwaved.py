@@ -917,7 +917,7 @@ def sanity_checks(force=False):
                 elif not my_node.is_listening_device and my_node.is_ready:
                     if hasattr(my_node, 'last_notification'):
                         # check if controller think is awake
-                        if my_node.is_awake or my_node.last_notification.code == 3:
+                        if my_node.can_wake_up and (my_node.is_awake or my_node.last_notification.code == 3):
                             logging.info('trying to lull the node %s' % (node_id,))
                             # a ping will force the node to return sleep after the NoOperation CC. Will force node notification update
                             _network.manager.testNetworkNode(_network.home_id, node_id, 1)
