@@ -1455,7 +1455,7 @@ var app_nodes = {
             node.find(".node-listening").html("");
         }
         if (nodes[z].data.isFrequentListening.value) {
-            node.find(".node-isFrequentListening").html("<li>{{Le noeud peut être reveillé}}</li>");
+            node.find(".node-isFrequentListening").html("<li>{{<i>FLiRS</i>, routeurs esclaves à écoute fréquente}}</li>");
         }
         else {
             node.find(".node-isFrequentListening").html("");
