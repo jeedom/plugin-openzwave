@@ -2992,10 +2992,13 @@ def set_value7(node_id, instance_id, cc_id, index, value):
     logging.info("set_value7 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (
     node_id, instance_id, cc_id, index, value,))
     if node_id in _network.nodes:
-        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All',
-                                                      writeonly='All'):
-            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[
-                val].index == index:
+        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
+            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[val].index == index:
+                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and value > 99:
+                    # The Switch Multilevel command class is used to set the light to a preferred dim level.
+                    # Values 0 - 99 (%) are used to set the dim level, value 255 is used to switch light on to dim level that was last known.
+                    logging.debug("Switch light ON to dim level that was last known")
+                    value = 255
                 _network.nodes[node_id].values[val].data = value
                 if _network.nodes[node_id].values[val].genre == 'System':
                     if _network.nodes[node_id].values[val].type == 'Bool':
@@ -3004,7 +3007,7 @@ def set_value7(node_id, instance_id, cc_id, index, value):
                         else:
                             value = True
                     mark_pending_change(_network.nodes[node_id].values[val], value)
-                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
+                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and value <= 99:
                     # dimmer don't report the final value until the value changes is completed
                     prepare_refresh(node_id, val, value, is_motor(node_id))
                 if int(cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SET_POINT:

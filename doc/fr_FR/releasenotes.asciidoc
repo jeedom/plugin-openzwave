@@ -4,6 +4,7 @@
 
 * New Features
 
+** Prise en charge de la restauration du dernier niveau connue sur les dimmer.
 ** Distinction des modules FLiRS dans l'écran de santé.
 ** Ajout de la demande de mise à jour des routes de retour au contrôleur.
 ** Assistant pour appliquer les paramètres de configuration d'un module à plusieurs autres modules.
