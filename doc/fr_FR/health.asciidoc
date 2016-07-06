@@ -41,6 +41,8 @@ Modules supportant la COMMAND_CLASS_SECURITY et securisé.
 image:../images/health06.png[]
 Modules supportant la COMMAND_CLASS_SECURITY et non sécurisé.
 
+image:../images/health07.png[]
+Module FLiRS, routeurs esclaves (modules à piles) à écoute fréquente.
 
 
 [TIP]
