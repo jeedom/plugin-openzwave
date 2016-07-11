@@ -29,37 +29,37 @@ if (!isConnect()) {
 			<div class="form-group">
 				<label class="col-lg-4 control-label">{{Supprimer automatiquement les périphériques exclus}}</label>
 				<div class="col-lg-3">
-					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="autoRemoveExcludeDevice" />
+					<input type="checkbox" class="configKey" data-l1key="autoRemoveExcludeDevice" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-4 control-label">{{Soigner le réseau automatiquement 2 fois par semaine}}</label>
 				<div class="col-lg-3">
-					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_health" />
+					<input type="checkbox" class="configKey" data-l1key="auto_health" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-4 control-label">{{Mettre à jour la configuration des modules automatiquement}}</label>
 				<div class="col-sm-2">
-					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_updateConf" checked/>
+					<input type="checkbox" class="configKey" data-l1key="auto_updateConf" checked/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-4 control-label">{{Appliquer le jeu de configuration recommandée à l'inclusion}}</label>
 				<div class="col-sm-2">
-					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="auto_applyRecommended" checked/>
+					<input type="checkbox" class="configKey" data-l1key="auto_applyRecommended" checked/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-4 control-label">{{Désactiver l'actualisation en arrière-plan des variateurs}}</label>
 				<div class="col-sm-2">
-					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="suppress_refresh" checked/>
+					<input type="checkbox" class="configKey" data-l1key="suppress_refresh" checked/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-4 control-label">{{Activer les tests sanitaires}}</label>
 				<div class="col-sm-2">
-					<input type="checkbox" class="configKey bootstrapSwitch" data-l1key="enabled_sanity_tests" checked/>
+					<input type="checkbox" class="configKey" data-l1key="enabled_sanity_tests" checked/>
 				</div>
 			</div>
 
@@ -139,7 +139,7 @@ foreach ($jeeNetwork->sendRawRequest('jeedom::getUsbMapping', array('gpio' => tr
 					<div class="form-group">
 				<label class="col-sm-4 control-label">{{Mettre à jour la configuration des modules automatiquement}}</label>
 				<div class="col-sm-2">
-					<input type="checkbox" class="slaveConfigKey bootstrapSwitch" data-l1key="auto_updateConf" checked/>
+					<input type="checkbox" class="slaveConfigKey" data-l1key="auto_updateConf" checked/>
 				</div>
 			</div>
 				</fieldset>
