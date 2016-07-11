@@ -814,14 +814,14 @@ var app_network = {
                         var link = '#';
                     }
                     if (node.data.name.value != '') {
-                        routingTableHeader += '<th class="tooltips" title="' + node.data.location.value + ' ' + node.data.name.value + '" >' + nodeId + '</th>';
+                        routingTableHeader += '<th title="' + node.data.location.value + ' ' + node.data.name.value + '" >' + nodeId + '</th>';
                         if (isset(eqLogic_human_name[$('#sel_zwaveNetworkServerId').value() + ':' + nodeId])) {
                             var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '" data-server-id="' + $("#sel_zwaveNetworkServerId").value() + '">' + eqLogic_human_name[$('#sel_zwaveNetworkServerId').value() + ':' + nodeId] + '</span>';
                         } else {
                             var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '" data-server-id="' + $("#sel_zwaveNetworkServerId").value() + '"><span class="label label-primary">' + node.data.location.value + '</span> ' + node.data.name.value + '</span>';
                         }
                     } else {
-                        routingTableHeader += '<th class="tooltips" title="' + node.data.product_name.valuee + '" >' + nodeId + '</th>';
+                        routingTableHeader += '<th title="' + node.data.product_name.valuee + '" >' + nodeId + '</th>';
                         var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '" data-server-id="' + $("#sel_zwaveNetworkServerId").value() + '">' + node.data.product_name.value + '</span>';
                     }
                     routingTable += '<tr><td style="width: 500px">' + name;
@@ -855,10 +855,9 @@ var app_network = {
                             rtClass = 'node-more-of-two-up-color';
                         routingTable += '<td class=' + rtClass + ' style="width: 35px"><i class="fa fa-square fa-2x" title="' + routeHops + '"></i></td>';
                     });
-                    routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="' + nodeId + '" class="btn btn-xs btn-primary requestNodeNeighboursUpdate tooltips" title="{{Mise à jour des noeuds voisins}}"><i class="fa fa-refresh"></i></button></td></tr>';
+                    routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="' + nodeId + '" class="btn btn-xs btn-primary requestNodeNeighboursUpdate" title="{{Mise à jour des noeuds voisins}}"><i class="fa fa-refresh"></i></button></td></tr>';
                 });
-                $('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '<th><button type="button" id="healNetwork2" class="btn btn-xs btn-success healNetwork2 tooltips" title="{{Soigner le réseau}}"><i class="fa fa-medkit"></i></button></th></tr></thead><tbody>' + routingTable + '</tbody></table>');
-                initTooltips();
+                $('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '<th><button type="button" id="healNetwork2" class="btn btn-xs btn-success healNetwork2" title="{{Soigner le réseau}}"><i class="fa fa-medkit"></i></button></th></tr></thead><tbody>' + routingTable + '</tbody></table>');
             }
         });
     }

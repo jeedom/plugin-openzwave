@@ -96,14 +96,14 @@ sendVarTojs('eqLogic_human_name', $tags);
             <ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
                 <?php
 if ($controllerMode == 1) {
-	echo ' <a class="btn btn-success tooltips changeIncludeState" title="{{Inclure périphérique Z-Wave}}" data-mode="1" data-state="0" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-in fa-rotate-90"></i> {{Arrêter inclusion}}</a>';
+	echo ' <a class="btn btn-success changeIncludeState" title="{{Inclure périphérique Z-Wave}}" data-mode="1" data-state="0" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-in fa-rotate-90"></i> {{Arrêter inclusion}}</a>';
 } else {
-	echo ' <a class="btn btn-default tooltips changeIncludeState" title="{{Inclure périphérique Z-Wave}}" data-mode="1" data-state="1" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-in fa-rotate-90"></i> {{Mode inclusion}}</a>';
+	echo ' <a class="btn btn-default changeIncludeState" title="{{Inclure périphérique Z-Wave}}" data-mode="1" data-state="1" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-in fa-rotate-90"></i> {{Mode inclusion}}</a>';
 }
 if ($controllerMode == 5) {
-	echo ' <a class="btn btn-danger tooltips changeIncludeState" title="{{Exclure périphérique Z-Wave}}" data-mode="0" data-state="0" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-out fa-rotate-90"></i> {{Arrêter exclusion}}</a>';
+	echo ' <a class="btn btn-danger changeIncludeState" title="{{Exclure périphérique Z-Wave}}" data-mode="0" data-state="0" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-out fa-rotate-90"></i> {{Arrêter exclusion}}</a>';
 } else {
-	echo ' <a class="btn btn-default tooltips changeIncludeState" title="{{Exclure périphérique Z-Wave}}" data-mode="0" data-state="1" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-out fa-rotate-90"></i> {{Mode exclusion}}</a>';
+	echo ' <a class="btn btn-default changeIncludeState" title="{{Exclure périphérique Z-Wave}}" data-mode="0" data-state="1" style="width : 100%;margin-bottom : 5px;"><i class="fa fa-sign-out fa-rotate-90"></i> {{Mode exclusion}}</a>';
 }
 ?>
                 <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="Rechercher" style="width: 100%"/>
@@ -297,14 +297,14 @@ foreach (openzwave::listServerZwave() as $id => $server) {
     <form class="form-horizontal">
         <fieldset>
             <legend><i class="fa fa-info-circle"></i> {{Informations}}
-                <span class="label label-warning isPending tooltips"
+                <span class="label label-warning isPending"
                 style="font-size:0.6em;cursor:default;position:relative;top:-4px;left:20px;"
                 title="Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage"></span>
                 <i id="bt_autoDetectModule"
-                class="fa fa-search expertModeVisible pull-right tooltips cursor"
+                class="fa fa-search expertModeVisible pull-right cursor"
                 title="{{Detecter automatiquement le modele du module}}"></i>
                 <i id="bt_displayZwaveData" title="{{Voir l'arbre Z-Wave}}"
-                class="fa fa-tree expertModeVisible pull-right tooltips cursor"></i>
+                class="fa fa-tree expertModeVisible pull-right cursor"></i>
             </legend>
 
             <div class="form-group">
@@ -317,9 +317,9 @@ foreach (openzwave::listServerZwave() as $id => $server) {
             <div class="form-group">
                 <label class="col-sm-2 control-label">{{Modèle}}</label>
                 <div class="col-sm-10">
-                  <span class="tooltips label label-default" style='font-size : 1em;'>
+                  <span class="label label-default" style='font-size : 1em;'>
                     <span class="eqLogicAttr" data-l1key="configuration" data-l2key="product_name"></span>
-                    <span class="eqLogicAttr tooltips" data-l1key="configuration" data-l2key="conf_version"
+                    <span class="eqLogicAttr" data-l1key="configuration" data-l2key="conf_version"
                     title="{{Version de la configuration}}"></span>
                 </span>
             </div>
