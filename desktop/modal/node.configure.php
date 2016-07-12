@@ -27,46 +27,36 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
         width: 99%;
         overflow: hidden;
     }
-
     .node-item {
         border: 1px solid;
     }
-
     .greeniconcolor {
         color: green;
     }
-
     .yellowiconcolor {
         color: #FFD700;
     }
-
     .rediconcolor {
         color: red;
     }
-
     .pendingcolor {
         color: #FFD700
     }
-
     .rejectcolor {
         color: #e74c3c
     }
-
     .modal-dialog-center {
         margin: 0;
         position: absolute;
         top: 0%;
         left: 0%;
     }
-
     .table-striped > tbody > tr.yellowrow > td {
         background-color: #FFD700;
     }
-
     .table-striped > tbody > tr.redrow > td {
         background-color: #e74c3c;
     }
-
     .table-striped > tbody > tr.greenrow > td {
         /*background-color: #2ecc71;*/
     }
@@ -283,16 +273,13 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                                 {{Spécifique :}} <b><span class="node-specific label label-default">{{inconnu}}</span></b></p>
                             </div>
                         </div>
-
-
                         <div class="panel panel-primary template">
                             <div class="panel-heading">
                                 <h4 class="panel-title"><i class="fa fa-info-circle"></i> {{Informations Protocole}}
                                 </h4>
                             </div>
                             <div class="panel-body">
-                                <p>{{Vitesse maximale de communication du module :}}<b><span
-                                            class="node-maxBaudRate"></span></b> {{bit/sec}}</p>
+                                <p>{{Vitesse maximale de communication du module :}}<b><span class="node-maxBaudRate"></span></b> {{bit/sec}}</p>
                                 <b><span class="node-routing"></span></b>
                                 <b><span class="node-isSecurity"></span></b>
                                 <b><span class="node-listening"></span></b>
@@ -388,7 +375,6 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                             </tr>
                             <tbody class="groups"></tbody>
                         </table>
-
                     </div>
                     <div class="tab-pane" id="systems">
                         <table class="table table-striped">
@@ -416,7 +402,6 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 
                         </table>
                     </div>
-
                     <div class="tab-pane" id="actions">
                         <table class="table table-striped">
                             <tr>
@@ -497,8 +482,8 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                             </tr>
                             <tr>
                                 <td>
-                                    <button type="button" id="replaceFailedNode" class="btn btn-warning"><i
-                                            class="fa fa-chain-broken" aria-hidden="true"></i> {{Remplacer nœud en échec}}
+                                    <button type="button" id="replaceFailedNode" class="btn btn-warning">
+                                        <i class="fa fa-chain-broken" aria-hidden="true"></i> {{Remplacer nœud en échec}}
                                     </button>
                                 </td>
                                 <td>{{Remplace un module en échec par un autre. Si le nœud n'est pas dans la liste des nœuds en échec sur le contrôleur, ou que le nœud répond, la commande va échouer.}}
@@ -506,16 +491,16 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                             </tr>
                             <tr>
                                 <td>
-                                    <button type="button" id="sendNodeInformation" class="btn btn-info"><i
-                                            class="fa fa-info-circle"></i> {{Envoi infos du nœud}}
+                                    <button type="button" id="sendNodeInformation" class="btn btn-info">
+                                        <i class="fa fa-info-circle"></i> {{Envoi infos du nœud}}
                                     </button>
                                 </td>
                                 <td>{{Envoi une trame d'info au noeud (NIF).}}</td>
                             </tr>
                             <tr>
                                 <td>
-                                    <button type="button" id="regenerateNodeCfgFile" class="btn btn-warning"><i
-                                            class="fa fa-search" aria-hidden="true"></i> {{Régénérer la détection du nœud}}
+                                    <button type="button" id="regenerateNodeCfgFile" class="btn btn-warning">
+                                        <i class="fa fa-search" aria-hidden="true"></i> {{Régénérer la détection du nœud}}
                                     </button>
                                 </td>
                                 <td>{{Supprime les informations du noeud dans le fichier de config afin qu'il soit à nouveau détecté.}}<br>
@@ -524,8 +509,8 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                             </tr>
                             <tr>
                                 <td>
-                                    <button type="button" id="removeGhostNode" class="btn btn-warning"><i
-                                            class="fa fa-bug" aria-hidden="true"></i> {{Suppression automatique du nœud fantôme}}
+                                    <button type="button" id="removeGhostNode" class="btn btn-warning">
+                                        <i class="fa fa-bug" aria-hidden="true"></i> {{Suppression automatique du nœud fantôme}}
                                     </button>
                                 </td>
                                 <td>{{Permet de supprimer un nœud sur pile qui n'est plus accessible sur le réseau.}}<br>
@@ -612,9 +597,7 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
 <?php include_file('desktop', 'nodes', 'js', 'openzwave'); ?>
 <script>
