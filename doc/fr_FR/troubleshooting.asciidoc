@@ -68,8 +68,9 @@ Vous pouvez aussi utiliser par script en lançant une requête http au serveur R
 
 Remplacer ip_jeedom, node_id, instance_id, cc_id et index
 
-\http://ip_jeedom:8083/ZWaveAPI/Run/devices[node_id].instances[instance_id].commandClasses[cc_id].data[index].ForceRefresh()
+\http://token:#APIKEY#@ip_jeedom:8083/ZWaveAPI/Run/devices[node_id].instances[instance_id].commandClasses[cc_id].data[index].ForceRefresh()
 
+L'accès a l'api REST ayant changé voir les détails link:./restapi.asciidoc[içi].
 
 === Transférer les modules sur un nouveau contrôleur
 Pour différentes raisons vous pouvez être amené à devoir transférer l'ensemble de vos modules sur un nouveau contrôleur principal.
