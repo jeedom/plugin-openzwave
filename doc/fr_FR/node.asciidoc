@@ -66,7 +66,7 @@ image:../images/node06.png[]
 [TIP]
 La commande *Appliquer sur...* vous permet d'appliquer la configuration actuelle du module sur un ou plusieurs modules identiques.
 
-image:../images/node17.png[]
+image:../images/node18.png[]
 
 [TIP]
 La commande *Actualiser les paramètres* force le module à actualiser les paramètres sauvegardés dans le module.
