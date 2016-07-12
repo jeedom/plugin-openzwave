@@ -70,7 +70,7 @@ class jeedom_com():
 			resend_changes = threading.Timer(self.cycle, self.send_changes_async)
 			resend_changes.start() 
 		
-	def add_changes(self,key,value):
+	def add_changes(self, key, value):
 		if key.find('::') != -1:
 			tmp_changes = {}
 			changes = value
@@ -84,7 +84,7 @@ class jeedom_com():
 		else:
 			self.changes[key] = value
 
-	def send_change_immediate(self,change):
+	def send_change_immediate(self, change):
 		try:
 			logging.debug('Send to jeedom :  %s' % (str(change),))
 			r = requests.post(self.url + '?apikey=' + self.apikey, json=change, timeout=(0.5, 120), verify=False)
@@ -99,14 +99,14 @@ class jeedom_com():
 	def get_change(self):
 		return self.changes
 
-	def merge_dict(self,d1, d2):
-	    for k,v2 in d2.items():
-	        v1 = d1.get(k) # returns None if v1 has no value for this key
-	        if ( isinstance(v1, collections.Mapping) and 
-	             isinstance(v2, collections.Mapping) ):
-	            self.merge_dict(v1, v2)
-	        else:
-	            d1[k] = v2
+	def merge_dict(self, d1, d2):
+		for k, v2 in d2.items():
+			v1 = d1.get(k)  # returns None if v1 has no value for this key
+			if (isinstance(v1, collections.Mapping) and
+					isinstance(v2, collections.Mapping)):
+				self.merge_dict(v1, v2)
+			else:
+				d1[k] = v2
 
 	def test(self):
 		try:
