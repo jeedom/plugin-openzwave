@@ -26,75 +26,59 @@ if (!isConnect('admin')) {
         width: 90%;
         position: absolute;
     }
-
     #graph_network > svg {
         height: 100%;
         width: 100%
     }
-
     .noscrolling {
         width: 99%;
         overflow: hidden;
     }
-
     .table-striped {
         width: 90%;
     }
-
     .node-item {
         border: 1px solid;
     }
-
     .modal-dialog-center {
         margin: 0;
         position: absolute;
         top: 0%;
         left: 0%;
     }
-
     .node-primary-controller-color{
         color: #a65ba6;
     }
     .node-direct-link-color {
         color: #7BCC7B;
     }
-
     .node-remote-control-color {
         color: #00a2e8;
     }
-
     .node-more-of-one-up-color {
         color: #E5E500;
     }
-
     .node-more-of-two-up-color {
         color: #FFAA00;
     }
-
     .node-interview-not-completed-color {
         color: #979797;
     }
-
     .node-no-neighbourhood-color {
         color: #d20606;
     }
-
     .node-na-color {
         color: white;
     }
-
     .greeniconcolor {
         color: green;
     }
-
     .yellowiconcolor {
         color: #FFD700;
     }
-
     .rediconcolor {
         color: red;
     }
-
     #log {
         width: 100%;
         height: 700px;
@@ -107,18 +91,15 @@ if (!isConnect('admin')) {
         overflow-x: hidden;
         font-size: 16px;
     }
-
     .console-out {
         padding-left: 20px;
         padding-top: 20px;
     }
-
     .bound-config {
         width: 100%;
         margin: 0px;
         padding: 0px;
     }
-
     .bound-config textarea {
         width: 100%;
         margin: 0px;
@@ -128,7 +109,6 @@ if (!isConnect('admin')) {
 
     }
 </style>
-
 <span class='pull-right'>
 	<select class="form-control expertModeVisible" style="width : 200px;" id="sel_zwaveNetworkServerId">
         <?php
@@ -300,8 +280,7 @@ if (!isConnect('admin')) {
                     </table>
                 </div>
                 <div id="graph_network" class="tab-pane">
-                    <table class="table table-bordered table-condensed"
-                           style="width: 350px;position:fixed;margin-top : 25px;">
+                    <table class="table table-bordered table-condensed" style="width: 350px;position:fixed;margin-top : 25px;">
                         <thead>
                         <tr>
                             <th colspan="2">{{Légende}}</th>
@@ -338,7 +317,6 @@ if (!isConnect('admin')) {
                     </table>
                     <div id="graph-node-name"></div>
                 </div>
-
                 <div id="route_network" class="tab-pane">
                     <br/>
                     <div id="div_routingTable"></div>
@@ -376,7 +354,6 @@ if (!isConnect('admin')) {
                         </tbody>
                     </table>
                 </div>
-
                 <div class="tab-pane" id="actions_network">
                     <table class="table">
                         <tr>
@@ -524,7 +501,6 @@ if (!isConnect('admin')) {
                     </table>
                 </div>
                 <div class="tab-pane" id="statistics_network">
-
                     <table class="table table-condensed table-striped">
                         <tr>
                             <td><b>{{Nombre d'émissions lues :}}</b></td>
@@ -612,7 +588,6 @@ if (!isConnect('admin')) {
         </div>
     </div>
 </div>
-
 </div>
 <?php include_file('desktop', 'network', 'js', 'openzwave'); ?>
 <script>
