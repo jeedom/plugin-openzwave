@@ -199,6 +199,20 @@
 			"class": "0x26",
 			"value": "data[6].val"
 		}
+	},
+	{
+		"name": "Calibrer",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x70",
+			"value": "data[0].Set(29,1,1)"
+		}
 	}],
 	"configuration": {
 		"1": {
