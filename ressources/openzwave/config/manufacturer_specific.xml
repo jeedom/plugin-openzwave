@@ -407,8 +407,8 @@
 		<Product type="7333" id="0031" name="Nanogrid: FDN2nxx light switch - where n is 1, 2, 3 or 4 buttons" config="frostdale/fdn2nxx.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0152" name="G.R.">
-		<Product type="0202" id="0511" name="Auto Valve"/>
-		<Product type="0003" id="0512" name="Auto Valve"/>
+		<Product type="0202" id="0511" name="GR105 Auto Valve"/>
+		<Product type="0003" id="0512" name="GR105n Auto Valve" config="gr/gr105n.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0020" name="General Electric">
 		<Product type="8007" id="1390" name="Wireless Lighting Control"/>
@@ -682,6 +682,7 @@
 		<Product type="0001" id="0001" name="ZMNHDA2 Flush Dimmer" config="qubino/ZMNHDA2.xml"/>
 		<Product type="0001" id="0051" name="ZMNHDD1 Flush Dimmer" config="qubino/ZMNHDDx.xml"/>
 		<Product type="0001" id="0052" name="ZMNHSDx Din Dimmer" config="qubino/ZMNHSDx.xml"/>
+		<Product type="0001" id="0053" name="ZMNHVDx Flush Dimmer 0-10V" config="qubino/ZMNHVDx.xml"/>
 		<Product type="0002" id="0001" name="ZMNHBA2 Flush 2 Relays" config="qubino/ZMNHBA2.xml"/>
 		<Product type="0002" id="0051" name="ZMNHBDx Flush 2 Relays" config="qubino/ZMNHBDx.xml"/>
 		<Product type="0002" id="0002" name="ZMNHAA2 Flush 1 Relay" config="qubino/ZMNHAA2.xml"/>
