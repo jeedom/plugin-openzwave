@@ -1398,6 +1398,7 @@ var app_nodes = {
         // activate available actions
         $("#requestNodeNeighboursUpdate").prop("disabled", nodeIsFailed);
         $("#healNode").prop("disabled", nodeIsFailed);
+        $("#assignReturnRoute").prop("disabled", nodeIsFailed);
         $("#refreshNodeValues").prop("disabled", nodeIsFailed);
         $("#requestNodeDynamic").prop("disabled", nodeIsFailed);
         $("#refreshNodeInfo").prop("disabled", nodeIsFailed);
