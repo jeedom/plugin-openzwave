@@ -843,7 +843,7 @@ var app_network = {
                         if (nodeId == nnodeId || node.data.type.basic.value == 1 || nnode.data.type.basic.value == 1) {
                             rtClass = 'node-na-color';
                             routeHops = '';
-                        } else if (nnode.data.state.value < queryStageNeighbors || node.data.state.value < queryStageNeighbors) {
+                        } else if (nnode.data.state.value <= queryStageNeighbors || node.data.state.value <= queryStageNeighbors) {
                             rtClass = 'node-interview-not-completed-color';
                         } else if ($.inArray(parseInt(nnodeId, 10), node.data.neighbours.value) != -1)
                             rtClass = 'node-direct-link-color';
