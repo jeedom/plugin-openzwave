@@ -803,12 +803,12 @@ var app_network = {
                     if (nodeId == 255) {
                         return;
                     }
-                    if (skipPortableAndVirtual && node.data.type.basic.value == 1) {
+                    if (skipPortableAndVirtual && node.data.type.basic == 1) {
                         return;
                     }
                     var routesCount = app_network.getRoutesCount(nodeId);
 
-                    if (node.data.type.basic.value != 2) {
+                    if (node.data.type.basic != 2) {
                         var link = 'index.php?v=d&p=openzwave&m=openzwave&server_id=' + $("#sel_zwaveNetworkServerId").value() + '&logical_id=' + nodeId;
                     } else {
                         var link = '#';
@@ -832,7 +832,7 @@ var app_network = {
                     $.each(devicesRouting, function (nnodeId, nnode) {
                         if (nnodeId == 255)
                             return;
-                        if (skipPortableAndVirtual && nnode.data.type.basic.value == 1)
+                        if (skipPortableAndVirtual && nnode.data.type.basic == 1)
                             return;
                         var rtClass;
                         if (!routesCount[nnodeId])
@@ -840,7 +840,7 @@ var app_network = {
                         var routeHops = (routesCount[nnodeId][0] || '0') + "/";
                         routeHops += (routesCount[nnodeId][1] || '0') + "/";
                         routeHops += (routesCount[nnodeId][2] || '0');
-                        if (nodeId == nnodeId || node.data.type.basic.value == 1 || nnode.data.type.basic.value == 1) {
+                        if (nodeId == nnodeId || node.data.type.basic == 1 || nnode.data.type.basic == 1) {
                             rtClass = 'node-na-color';
                             routeHops = '';
                         } else if (nnode.data.state.value <= queryStageNeighbors || node.data.state.value <= queryStageNeighbors) {
