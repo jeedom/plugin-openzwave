@@ -68,7 +68,7 @@
 		"type": "action",
 		"subtype": "other",
 		"display": {
-			"generic_type": "FLAP_ON"
+			"generic_type": "FLAP_UP"
 		},
 		"isVisible": 1,
 		"configuration": {
