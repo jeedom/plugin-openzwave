@@ -91,7 +91,7 @@
             "subtype": "other",
             "isVisible": 1,
             "display": {
-                "generic_type": "FLAP_ON"
+                "generic_type": "FLAP_UP"
             },
             "configuration": {
                 "class": "0x26",
