@@ -195,6 +195,9 @@ foreach ($eqLogics as $eqLogic) {
 </div>
 <div class="col-lg-10 col-md-9 col-sm-8 eqLogic" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
 
+  <a class="btn btn-success eqLogicAction pull-right" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+  <a class="btn btn-danger eqLogicAction pull-right" data-action="remove"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab">{{Equipement}}</a></li>
     <li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab">{{Commandes}}</a></li>
@@ -276,7 +279,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
                 </div>
             </div>
             <div class="form-group">
-            <label class="col-sm-4 control-label">{{Commentaire}}</label>
+                <label class="col-sm-4 control-label">{{Commentaire}}</label>
                 <div class="col-sm-6">
                     <textarea class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire"></textarea>
                 </div>
@@ -355,17 +358,7 @@ foreach (openzwave::listServerZwave() as $id => $server) {
     </table>
 </div>
 </div>
-<form class="form-horizontal pull-right">
-    <fieldset>
-        <div class="form-actions">
-            <a class="btn btn-danger eqLogicAction" data-action="remove"><i class="fa fa-minus-circle"></i>
-                {{Supprimer}}</a>
-                <a class="btn btn-success eqLogicAction" data-action="save"><i class="fa fa-check-circle"></i>
-                    {{Sauvegarder}}</a>
-                </div>
-            </fieldset>
-        </form>
-    </div>
+</div>
 </div>
 <?php include_file('desktop', 'openzwave', 'js', 'openzwave');?>
 <?php include_file('core', 'plugin.template', 'js');?>
