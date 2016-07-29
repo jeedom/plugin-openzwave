@@ -466,7 +466,11 @@ function printPending() {
                 return;
             }
             if (data.result != "ok") {
-                $('.isPending').empty().append('  <i class="fa fa-spinner fa-pulse"></i> ' + data.result + ' modification(s) en attente d\'être appliquée(s)');
+				if (data.result.substr(0, 28) == 'The network does not contain'){
+					$('.isPending').empty().append('  <i class="fa fa-exclamation-triangle"></i> ' + data.result);
+				} else {
+					$('.isPending').empty().append('  <i class="fa fa-spinner fa-pulse"></i> ' + data.result + ' modification(s) en attente d\'être appliquée(s)');
+				}
             } else {
                 $('.isPending').empty();
             }
