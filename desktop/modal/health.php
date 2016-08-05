@@ -16,7 +16,7 @@
  */
 
 if (!isConnect('admin')) {
-    throw new Exception('401 Unauthorized');
+	throw new Exception('401 Unauthorized');
 }
 $eqLogics = openzwave::byType('openzwave');
 ?>
@@ -27,12 +27,12 @@ $eqLogics = openzwave::byType('openzwave');
 <a class="btn btn-primary pull-right" id="bt_pingAllDevice"><i class="fa fa-eye"></i> {{Ping de tous}}</a>
 	<select class="form-control expertModeVisible" style="width : 200px;" id="sel_zwaveHealthServerId">
 		<?php
-        foreach (openzwave::listServerZwave() as $id => $server) {
-            if (isset($server['name'])) {
-                echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
-            }
-        }
-        ?>
+foreach (openzwave::listServerZwave() as $id => $server) {
+	if (isset($server['name'])) {
+		echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
+	}
+}
+?>
 	</select>
 </span>
 
@@ -63,7 +63,7 @@ $eqLogics = openzwave::byType('openzwave');
 
     </tbody>
 </table>
-<?php include_file('desktop', 'health', 'js', 'openzwave'); ?>
+<?php include_file('desktop', 'health', 'js', 'openzwave');?>
 <script>
     var path = $('#sel_zwaveHealthServerId option:selected').attr('data-path') + '/';
     $("#sel_zwaveHealthServerId").on("change", function () {
@@ -76,6 +76,4 @@ $eqLogics = openzwave::byType('openzwave');
         window["app_health"].init();
         window["app_health"].show();
     }
-    $('.tab-pane').height($('#md_modal').height() - 50);
-    $('.tab-pane').css('overflow', 'scroll');
 </script>

@@ -16,7 +16,7 @@
  */
 
 if (!isConnect('admin')) {
-    throw new Exception('401 Unauthorized');
+	throw new Exception('401 Unauthorized');
 }
 ?>
 <span class="pull-left alert" id="span_state"
@@ -25,12 +25,12 @@ if (!isConnect('admin')) {
 <span class='pull-right'>
 	<select class="form-control expertModeVisible" style="width : 200px;" id="sel_zwaveBackupServerId">
 		<?php
-        foreach (openzwave::listServerZwave() as $id => $server) {
-            if (isset($server['name'])) {
-                echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
-            }
-        }
-        ?>
+foreach (openzwave::listServerZwave() as $id => $server) {
+	if (isset($server['name'])) {
+		echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
+	}
+}
+?>
 	</select>
 </span>
 
@@ -63,7 +63,7 @@ if (!isConnect('admin')) {
     </fieldset>
 </form>
 </div>
-<?php include_file('desktop', 'backup', 'js', 'openzwave'); ?>
+<?php include_file('desktop', 'backup', 'js', 'openzwave');?>
 <script>
     var path = $('#sel_zwaveBackupServerId option:selected').attr('data-path') + '/';
     $("#sel_zwaveBackupServerId").on("change", function () {

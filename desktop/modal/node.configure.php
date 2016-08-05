@@ -16,7 +16,7 @@
  */
 
 if (!isConnect('admin')) {
-    throw new Exception('401 Unauthorized');
+	throw new Exception('401 Unauthorized');
 }
 sendVarToJs('node_id', init('id'));
 $listServerZwave = openzwave::listServerZwave();
@@ -599,13 +599,13 @@ sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
         </div>
     </div>
 </div>
-<?php include_file('desktop', 'nodes', 'js', 'openzwave'); ?>
+<?php include_file('desktop', 'nodes', 'js', 'openzwave');?>
 <script>
     var nodes = {};
     if (window["app_nodes"] != undefined) {
         window["app_nodes"].init();
         window["app_nodes"].show();
     }
-    $('.tab-pane').height($('#md_modal').height() - 100);
-    $('.tab-pane').css('overflow', 'scroll');
+    $('#md_modal .tab-pane').height($('#md_modal').height() - 100);
+    $('#md_modal .tab-pane').css('overflow', 'scroll');
 </script>

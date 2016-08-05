@@ -16,7 +16,7 @@
  */
 
 if (!isConnect('admin')) {
-    throw new Exception('401 Unauthorized');
+	throw new Exception('401 Unauthorized');
 }
 ?>
 <script type="text/javascript" src="plugins/openzwave/3rdparty/vivagraph/vivagraph.min.js"></script>
@@ -112,12 +112,12 @@ if (!isConnect('admin')) {
 <span class='pull-right'>
 	<select class="form-control expertModeVisible" style="width : 200px;" id="sel_zwaveNetworkServerId">
         <?php
-        foreach (openzwave::listServerZwave() as $id => $server) {
-            if (isset($server['name'])) {
-                echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
-            }
-        }
-        ?>
+foreach (openzwave::listServerZwave() as $id => $server) {
+	if (isset($server['name'])) {
+		echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
+	}
+}
+?>
   </select>
 </span>
 <div id='div_networkOpenzwaveAlert' style="display: none;"></div>
@@ -589,7 +589,7 @@ if (!isConnect('admin')) {
     </div>
 </div>
 </div>
-<?php include_file('desktop', 'network', 'js', 'openzwave'); ?>
+<?php include_file('desktop', 'network', 'js', 'openzwave');?>
 <script>
     var path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path') + '/';
     $("#sel_zwaveNetworkServerId").on("change", function () {
@@ -604,6 +604,6 @@ if (!isConnect('admin')) {
         window["app_network"].init();
         window["app_network"].show();
     }
-    $('.tab-pane').height($('#md_modal').height() - 50);
-    $('.tab-pane').css('overflow', 'scroll');
+    $('#md_modal .tab-pane').height($('#md_modal').height() - 50);
+    $('#md_modal .tab-pane').css('overflow', 'scroll');
 </script>

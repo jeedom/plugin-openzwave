@@ -16,7 +16,7 @@
  */
 
 if (!isConnect('admin')) {
-    throw new Exception('401 Unauthorized');
+	throw new Exception('401 Unauthorized');
 }
 
 ?>
@@ -57,12 +57,12 @@ if (!isConnect('admin')) {
 <span class='pull-right'>
 	<select class="form-control expertModeVisible" style="width : 200px;" id="sel_zwaveNetworkServerId">
 		<?php
-        foreach (openzwave::listServerZwave() as $id => $server) {
-            if (isset($server['name'])) {
-                echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
-            }
-        }
-        ?>
+foreach (openzwave::listServerZwave() as $id => $server) {
+	if (isset($server['name'])) {
+		echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
+	}
+}
+?>
 	</select>
 </span>
 
@@ -90,7 +90,7 @@ if (!isConnect('admin')) {
     <textarea id="zwcfgfile" class="boxsizingborder"></textarea>
 </div>
 
-<?php include_file('desktop', 'config', 'js', 'openzwave'); ?>
+<?php include_file('desktop', 'config', 'js', 'openzwave');?>
 <script>
     var path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path') + '/';
     $("#sel_zwaveNetworkServerId").on("change", function () {
@@ -103,6 +103,4 @@ if (!isConnect('admin')) {
         window["app_config"].init();
         window["app_config"].show();
     }
-    $('.tab-pane').height($('#md_modal').height() - 100);
-    $('.tab-pane').css('overflow', 'scroll');
 </script>
