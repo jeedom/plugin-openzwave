@@ -1,0 +1,140 @@
+{
+	"name": "Led Strip (ZW121)",
+	"doc": "",
+	"type": "Ampoule",
+	"comlink": "",
+	"remark": "",
+	"imglink": "aeotec.led-strip",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Couleur",
+		"type": "action",
+		"subtype": "color",
+		"isVisible": 1,
+		"value": "Etat couleur",
+		"display": {
+			"generic_type": "LIGHT_SET_COLOR"
+		},
+		"configuration": {
+			"class": "0x33",
+			"value": "data[0].Set(#color#)"
+		}
+	},
+	{
+		"name": "Blanc Froid",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x33",
+			"value": "data[1].Set(Cool White)"
+		},
+		"display": {
+			"icon": "<i class=\"icon nature-snowflake\"><\/i>",
+			"generic_type": "DONT"
+		}
+	},
+	{
+		"name": "Blanc Chaud",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x33",
+			"value": "data[1].Set(Warm White)"
+		},
+		"display": {
+			"icon": "<i class=\"icon meteo-soleil\"><\/i>",
+			"generic_type": "DONT"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(99)"
+		},
+		"display": {
+			"icon": "<i class=\"icon jeedom-lumiere-on\"><\/i>",
+			"generic_type": "LIGHT_ON"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		},
+		"display": {
+			"icon": "<i class=\"icon jeedom-lumiere-off\"><\/i>",
+			"generic_type": "LIGHT_OFF"
+		}
+	},
+	{
+		"name": "Intensité",
+		"type": "action",
+		"subtype": "slider",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "LIGHT_SLIDER"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(#slider#)",
+			"minValue": 0,
+			"maxValue": 99
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].val",
+			"minValue": 0,
+			"maxValue": 99
+		}
+	},
+	{
+		"name": "Etat couleur",
+		"type": "info",
+		"subtype": "string",
+		"unite": "",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_COLOR"
+		},
+		"configuration": {
+			"class": "0x33",
+			"value": "data[0].val"
+		}
+	}],
+	"recommended": {
+		"params": [
+			{
+				"index": 32,
+				"value": "Hail CC"
+			},
+			{
+				"index": 80,
+				"value": "Hail CC"
+			}
+		],
+		"needswakeup": false
+	}
+}
