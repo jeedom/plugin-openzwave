@@ -123,6 +123,11 @@
 		<Product type="0002" id="0070" name="ZW112 Door Window Sensor 6" config="aeotec/zw112.xml" />
 		<Product type="0102" id="0070" name="ZW112 Door Window Sensor 6" config="aeotec/zw112.xml" />
 		<Product type="0202" id="0070" name="ZW112 Door Window Sensor 6" config="aeotec/zw112.xml" />
+		<Product type="0004" id="0075" name="ZW117 Range Extender 6" config="aeotec/zw117.xml"/>
+		<Product type="0104" id="0075" name="ZW117 Range Extender 6" config="aeotec/zw117.xml"/>
+		<Product type="0204" id="0075" name="ZW117 Range Extender 6" config="aeotec/zw117.xml"/>
+		<Product type="0304" id="0075" name="ZW117 Range Extender 6" config="aeotec/zw117.xml"/>
+		<Product type="0904" id="0075" name="ZW117 Range Extender 6" config="aeotec/zw117.xml"/>
 		<Product type="0002" id="0078" name="ZW120 Door Window Sensor Gen5" config="aeotec/zw120.xml" />
 		<Product type="0102" id="0078" name="ZW120 Door Window Sensor Gen5" config="aeotec/zw120.xml" />
 		<Product type="0202" id="0078" name="ZW120 Door Window Sensor Gen5" config="aeotec/zw120.xml" />
@@ -138,6 +143,7 @@
 		<Product type="0001" id="0000" name="Yale Real Living Cap-Touch Lever Lock"/>
 		<Product type="0002" id="0000" name="Yale Real Living Cap-Touch Deadbolt" config="assa_abloy/RealLivingCapTouch.xml" />
 		<Product type="0004" id="0800" name="Yale Real Living Key Free Push Button Deadbolt" config="assa_abloy/RealLivingCapTouch.xml"/>
+		<Product type="0006" id="0000" name="Yale Keyfree Connected Smart Lock" config="assa_abloy/KeyfreeConnected.xml"/>
 	</Manufacturer>
 	<Manufacturer id="005d" name="Aspalis">
 		<Product type="0202" id="0511" name="Plugin Lamp Module"/>
@@ -222,6 +228,7 @@
 		<Product type="0005" id="0003" name="Z Thermostat" config="danfoss/z.xml"/>
 		<Product type="0005" id="0004" name="Z Thermostat 014G0013" config="danfoss/z.xml"/>
 		<Product type="0064" id="0001" name="RA Plus-W Radiator Thermostat"/>
+		<Product type="0115" id="a010" name="Popp Radiator Thermostat" config="danfoss/z.xml"/>
 		<Product type="8004" id="2000" name="RXZ3 RF relay Switching Unit"/>
 		<Product type="8005" id="0001" name="Living Connect Radiator Thermostat" config="danfoss/living.xml"/>
 	</Manufacturer>
@@ -423,6 +430,7 @@
 		<Product type="5257" id="3533" name="45609 On/Off Relay Switch" config="ge/relay.xml"/>
 		<Product type="4457" id="3033" name="45613 3-Way Dimmer Switch" config="ge/dimmer.xml"/>
 		<Product type="4952" id="3032" name="12722 On/Off Relay Switch" config="ge/relay.xml"/>
+		<Product type="4952" id="3033" name="12727 In-Wall Smart Switch (Toggle)"/>
 	</Manufacturer>
 	<Manufacturer id="0099" name="GreenWave">
 		<Product type="0001" id="0002" name="One Gateway"/>
