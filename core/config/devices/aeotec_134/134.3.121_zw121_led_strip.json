@@ -1,7 +1,7 @@
 {
 	"name": "Led Strip (ZW121)",
 	"doc": "",
-	"type": "Ampoule",
+	"type": "RGBW",
 	"comlink": "",
 	"remark": "",
 	"imglink": "aeotec.led-strip",
