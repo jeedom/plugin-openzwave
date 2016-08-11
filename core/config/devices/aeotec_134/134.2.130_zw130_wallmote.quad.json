@@ -1,0 +1,39 @@
+{
+	"name": "WallMote Quad (ZW130)",
+	"doc": "",
+	"type": "Télécommande",
+	"comlink": "",
+	"remark": "",
+	"imglink": "aeotec.zw130",
+	"battery_type": "Batterie",
+	"ignore": 1,
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Scene",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x5b",
+			"maxValue": 14,
+			"minValue": 0,
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "badge",
+			"mobile": "badge"
+		}
+	}],
+	"recommended" : {
+		"params" : [
+          {"index": 1, "value" : "Disable"}
+        ],
+		"needswakeup" : true
+    }
+}
