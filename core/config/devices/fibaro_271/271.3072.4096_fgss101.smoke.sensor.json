@@ -95,5 +95,13 @@
 			"instanceId": 0,
 			"value": "data[0].val"
 		}
-	}]
+	}],
+	"recommended" : {
+	"params" : [       
+          {"index": 5, "value" : "ALARM SMOKE"},
+		  {"index": 89, "value" : "tamper alarm active, with cancellation option available"}
+        ],
+		"wakeup" : 21600,
+		"needswakeup" : true
+    }
 }
