@@ -1158,7 +1158,7 @@ var app_nodes = {
                 genericDeviceClassDescription = "{{Contrôleur statique}}";
                 break;
             case 3: // Av Control Point    = 0x03,
-                genericDeviceClassDescription = "{{A/V controleur}}";
+                genericDeviceClassDescription = "{{Contrôleur A/V}}";
                 break;
             case 4: // Display             = 0x04,
                 genericDeviceClassDescription = "{{Afficheur}}";
@@ -1179,25 +1179,25 @@ var app_nodes = {
                 genericDeviceClassDescription = "{{Couvre-fenêtres}}";
                 break;
             case 15: // Repeater Slave      = 0x0f,
-                genericDeviceClassDescription = "{{Repéteur esclave}}";
+                genericDeviceClassDescription = "{{Répéteur esclave}}";
                 break;
             case 16: // Switch Binary       = 0x10,
-                genericDeviceClassDescription = "{{Interrupteur}}";
+                genericDeviceClassDescription = "{{Interrupteur binaire}}";
                 break;
             case 17: // Switch Multilevel   = 0x11,
-                genericDeviceClassDescription = "{{Interrupteur multi niveau}}";
+                genericDeviceClassDescription = "{{Interrupteur multi-niveau}}";
                 break;
             case 18: // Switch Remote       = 0x12,
-                genericDeviceClassDescription = "{{Interrupteur}}";
+                genericDeviceClassDescription = "{{Interrupteur distant}}";
                 break;
             case 19: // Switch Toggle       = 0x13,
-                genericDeviceClassDescription = "{{Interrupteur}}";
+                genericDeviceClassDescription = "{{Interrupteur à levier}}";
                 break;
             case 20: // Z_IP_GATEWAY       = 0x14,
-                genericDeviceClassDescription = "{{Z/IP Gateway}}";
+                genericDeviceClassDescription = "{{Passerelle Z-Wave/IP}}";
                 break;
             case 21: // Zip Node       = 0x15,
-                genericDeviceClassDescription = "{{Z/IP Node}}";
+                genericDeviceClassDescription = "{{Noeuid Z-Wave/IP}}";
                 break;
             case 22: // Ventilation         = 0x16,
                 genericDeviceClassDescription = "{{Ventilation}}";
@@ -1206,13 +1206,13 @@ var app_nodes = {
                 genericDeviceClassDescription = "{{Panneau de sécurité}}";
                 break;
             case 24: // Wall Controller       = 0x18,
-                genericDeviceClassDescription = "{{Contrôleur murale}}";
+                genericDeviceClassDescription = "{{Contrôleur mural}}";
                 break;
             case 32: // Sensor Binary       = 0x20,
                 genericDeviceClassDescription = "{{Capteur binaire}}";
                 break;
             case 33: // Sensor Multilevel   = 0x21
-                genericDeviceClassDescription = "{{Capteur multi niveau}}";
+                genericDeviceClassDescription = "{{Capteur multi-niveau}}";
                 break;
             case 34: //WATER_CONTROL   = 0x22
                 genericDeviceClassDescription = "{{Niveau d'eau}}";
@@ -1223,16 +1223,16 @@ var app_nodes = {
                 genericDeviceClassDescription = "{{Mesure}}";
                 break;
             case 64: // Entry Control       = 0x40
-                genericDeviceClassDescription = "{{Controle d'entrée}}";
+                genericDeviceClassDescription = "{{Contrôle d'entrée}}";
                 break;
             case 80: // Semi Interoperable        = 0x50
-                genericDeviceClassDescription = "{{Semi-Interoperable}}";
+                genericDeviceClassDescription = "{{Semi-interopérable}}";
                 break;
             case 161: // Sensor Alarm        = 0xa1
-                genericDeviceClassDescription = "{{Alarme}}";
+                genericDeviceClassDescription = "{{Capteur d'alarme}}";
                 break;
             case 255: // Non Interoperable        = 0xff
-                genericDeviceClassDescription = "{{Non-Interoperable}}";
+                genericDeviceClassDescription = "{{Non interopérable}}";
                 break;
             default:
                 genericDeviceClassDescription = "{{Inconnue}}";
@@ -1266,7 +1266,7 @@ var app_nodes = {
                 queryStageIndex = 3;
                 break;
             case "ManufacturerSpecific1":
-                queryStageDescrition = "{{Récupérer le nom du fabricant et de produits ids}}";
+                queryStageDescrition = "{{Récupérer le nom du fabricant et les identifiants de produits}}";
                 queryStageIndex = 4;
                 break;
             case "NodeInfo":
@@ -1322,7 +1322,7 @@ var app_nodes = {
                 queryStageIndex = 16;
                 break;
             case "Complete":
-                queryStageDescrition = "{{Processus de l’interview est terminée}}";
+                queryStageDescrition = "{{Le processus de l’interview est terminé}}";
                 queryStageIndex = 17;
                 node.find(".node-queryStage").removeClass("label-default").addClass("label-success");
                 break;
@@ -1389,7 +1389,7 @@ var app_nodes = {
         }
         if (nodeIsFailed) {
             isWarning = true;
-            warningMessage += "<li>{{Le contrôleur pense que ce noeud est en echec, essayez }} " +
+            warningMessage += "<li>{{Le contrôleur pense que ce noeud est en échec, essayez }} " +
                 "<button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</button> " +
                 "{{ou}} " +
                 "<button type='button' id='testNode' class='btn btn-info testNode'><i class='fa fa-check-square-o'></i> {{Tester le nœud}}</button> " +
@@ -1436,7 +1436,7 @@ var app_nodes = {
             node.find(".node-routing").html("");
         }
         if (nodes[z].data.isSecurity.value) {
-            node.find(".node-isSecurity").html("<li>{{Le noeud supporte les caracteristiques de sécurité avancées}}</li>");
+            node.find(".node-isSecurity").html("<li>{{Le noeud supporte les caractéristiques de sécurité avancées}}</li>");
             /* TODO: display Security Flag
              Security = 0x01
              Controller = 0x02
@@ -1466,7 +1466,7 @@ var app_nodes = {
             node.find(".node-isFrequentListening").html("");
         }
         if (nodes[z].data.isBeaming.value) {
-            node.find(".node-isBeaming").html("<li>{{Le noeud est capable d'envoyer une trame réseaux}}</li>");
+            node.find(".node-isBeaming").html("<li>{{Le noeud est capable d'envoyer une trame réseau}}</li>");
         }
         else {
             node.find(".node-isBeaming").html("");
@@ -1497,7 +1497,7 @@ var app_nodes = {
             else {
                 node.find(".node-neighbours").html("...");
                 if (genericDeviceClass != 1 && (genericDeviceClass != 8 || nodes[z].data.isListening.value)) {
-                    warningMessage += "<li{{Liste des voisins non disponibles}} <br/>{{Utilisez}} <button type='button' id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</button> {{ou}} <button type='button' id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</button> {{pour corriger.}}</li>";
+                    warningMessage += "<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <button type='button' id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</button> {{ou}} <button type='button' id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</button> {{pour corriger.}}</li>";
                     isWarning = true;
                 }
             }
@@ -1513,7 +1513,7 @@ var app_nodes = {
 
         if (isWarning) {
             if (nodeCanSleep) {
-                warningMessage += "<br><p>{{Le noeud est dormant et nécessite un reveil avant qu'une commande puisse être exécutée.<br/>Vous pouvez le reveiller manuellement ou attendre son délai de réveil.}}<br/>{{Voir l'interval de réveil dans l'onglet Système}}</p>";
+                warningMessage += "<br><p>{{Le noeud est dormant et nécessite un réveil avant qu'une commande puisse être exécutée.<br/>Vous pouvez le réveiller manuellement ou attendre son délai de réveil.}}<br/>{{Voir l'interval de réveil dans l'onglet Système}}</p>";
             }
             node.find(".panel-danger").show();
             node.find(".node-warning").html(warningMessage);
@@ -1819,7 +1819,7 @@ var app_nodes = {
                     default:
                         newPanel += '<h3 class="panel-title" style="padding-top:10px;">';
                 }
-                newPanel += z + ' : ' + node_groups[z].label + ' {{(nombre maximum d\'association :}} ' + node_groups[z].maximumAssociations + ')';
+                newPanel += z + ' : ' + node_groups[z].label + ' {{(nombre maximum d\'associations :}} ' + node_groups[z].maximumAssociations + ')';
 
                 switch (pending_state) {
                     case 1:
