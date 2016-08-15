@@ -54,5 +54,16 @@
         "value": "data[3].PressButton()"
       }
     }
-  ]
+  ],
+  "recommended": {
+    "polling": [
+      {
+        "instanceId": "0",
+        "index": 0,
+        "class": "0x32"
+      }
+    ],
+    "wakeup": 900,
+    "needswakeup": true
+  }
 }
