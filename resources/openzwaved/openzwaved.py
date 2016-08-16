@@ -579,15 +579,6 @@ def shutdown_server():
     func()
 
 
-def check_network_started():
-    if _network.state < _network.STATE_STARTED:
-        logging.error("Communication with ZWave dongle. see openzwaved log file for more details.")
-        try:
-            graceful_stop_network()
-        finally:
-            shutdown_server()
-
-
 def start_network():
     global _network_information, _force_refresh_nodes, _network
     # reset flags
@@ -597,10 +588,7 @@ def start_network():
     else:
         _network_information.reset()
     logging.info('******** The ZWave network is being started ********')
-
-    # network_started_job = threading.Timer(120.0, check_network_started)
     _network.start()
-    # network_started_job.start()
 
 
 def cleanup_configuration_file(filename):
@@ -3888,9 +3876,8 @@ def stop_network():
 def get_network_status():
     global _network
 
-    if _network is not None :
-        if  _network.state >= _network.STATE_STARTED and _network_is_running:
-            json_result = {'nodesCount': _network.nodes_count, 'sleepingNodesCount': get_sleeping_nodes_count(),
+    if _network is not None and _network.state >= _network.STATE_STARTED and _network_is_running:
+        json_result = {'nodesCount': _network.nodes_count, 'sleepingNodesCount': get_sleeping_nodes_count(),
                        'scenesCount': _network.scenes_count, 'pollInterval': _network.manager.getPollInterval(),
                        'isReady': _network.is_ready, 'stateDescription': _network.state_str, 'state': _network.state,
                        'controllerCapabilities': concatenate_list(_network.controller.capabilities),
@@ -3907,24 +3894,6 @@ def get_network_status():
                        'isBridgeController': _network.controller.is_bridge_controller,
                        'awakedDelay': _network_information.controller_awake_delay, 'mode': get_network_mode()
                        }
-        else:
-            json_result = {'nodesCount': 0, 'sleepingNodesCount': 0,
-                           'scenesCount': 0, 'pollInterval': 0,
-                           'isReady': _network.is_ready, 'stateDescription': _network.state_str, 'state': _network.state,
-                           'controllerCapabilities': '',
-                           'controllerNodeCapabilities': '',
-                           'outgoingSendQueue': _network.controller.send_queue_count,
-                           'controllerStatistics': _network.controller.stats, 'devicePath': _network.controller.device,
-                           'OpenZwaveLibraryVersion': _network.manager.getOzwLibraryVersionNumber(),
-                           'PythonOpenZwaveLibraryVersion': _network.manager.getPythonLibraryVersionNumber(),
-                           'neighbors': '',
-                           'notifications': list(_network_information.last_controller_notifications),
-                           'isBusy': _network_information.controller_is_busy, 'startTime': _network_information.start_time,
-                           'isPrimaryController': _network.controller.is_primary_controller,
-                           'isStaticUpdateController': _network.controller.is_static_update_controller,
-                           'isBridgeController': _network.controller.is_bridge_controller,
-                           'awakedDelay': _network_information.controller_awake_delay, 'mode': get_network_mode()
-                           }
     else:
         json_result = {}
     return jsonify(json_result)
@@ -4255,6 +4224,18 @@ def manually_delete_backup(backup_name):
 @app.route('/ZWaveAPI/Run/network.PerformSanityChecks()', methods=['GET'])
 @auth.login_required
 def perform_sanity_checks():
+    if int(time.time()) > (_network_information.start_time + 120):
+        if _network.state < _network.STATE_STARTED:
+            logging.error("Timeouts occurred during communication with your ZWave dongle. Please check the openzwaved log file for more details.")
+            try:
+                graceful_stop_network()
+            finally:
+                os.remove(_pidfile)
+            try:
+                shutdown_server()
+            finally:
+                sys.exit()
+            return format_json_result(False,'Communication error with ZWave dongle')
     sanity_checks()
     return format_json_result()
 
