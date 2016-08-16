@@ -18,7 +18,7 @@
 require_once dirname(__FILE__) . "/../../../../core/php/core.inc.php";
 
 if (!jeedom::apiAccess(init('apikey'))) {
-	echo __('Clef API non valide, vous n\'etes pas autorisé à effectuer cette action (jeeZwave)', __FILE__);
+	echo __('Clef API non valide, vous n\'êtes pas autorisé à effectuer cette action (jeeZwave)', __FILE__);
 	die();
 }
 
@@ -103,7 +103,7 @@ if (isset($results['controller'])) {
 			event::add('jeedom::alert', array(
 				'level' => 'warning',
 				'page' => 'openzwave',
-				'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration.Pause de ', __FILE__) . (10 - $i) . __(' pour synchronisation avec le module', __FILE__),
+				'message' => __('Nouveau module Z-Wave détecté. Début de l\'intégration. Pause de ', __FILE__) . (10 - $i) . __(' pour synchronisation avec le module', __FILE__),
 			));
 			sleep(1);
 		}
@@ -123,28 +123,28 @@ if (isset($results['network'])) {
 				event::add('jeedom::alert', array(
 					'level' => 'danger',
 					'page' => 'openzwave',
-					'message' => __('Le réseaux Z-Wave est arreté sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
+					'message' => __('Le réseau Z-Wave est arrêté sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
 				));
 				break;
 			case 1: # STATE_FAILED = 1
 				event::add('jeedom::alert', array(
 					'level' => 'danger',
 					'page' => 'openzwave',
-					'message' => __('Le réseaux Z-Wave est en erreur sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
+					'message' => __('Le réseau Z-Wave est en erreur sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
 				));
 				break;
 			case 3: # STATE_RESET = 3
 				event::add('jeedom::alert', array(
 					'level' => 'danger',
 					'page' => 'openzwave',
-					'message' => __('Le réseaux Z-Wave est remis à zéro sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
+					'message' => __('Le réseau Z-Wave est remis à zéro sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
 				));
 				break;
 			case 5: # STATE_STARTED = 5
 				event::add('jeedom::alert', array(
 					'level' => 'warning',
 					'page' => 'openzwave',
-					'message' => __('Le réseaux Z-Wave est en cours de démarrage sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
+					'message' => __('Le réseau Z-Wave est en cours de démarrage sur le serveur ', __FILE__) . openzwave::getNetworkNameByServerId($results['serverId']),
 				));
 				break;
 			case 7: # STATE_AWAKED = 7
