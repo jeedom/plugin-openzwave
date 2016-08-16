@@ -1197,7 +1197,7 @@ var app_nodes = {
                 genericDeviceClassDescription = "{{Passerelle Z-Wave/IP}}";
                 break;
             case 21: // Zip Node       = 0x15,
-                genericDeviceClassDescription = "{{Noeuid Z-Wave/IP}}";
+                genericDeviceClassDescription = "{{Noeud Z-Wave/IP}}";
                 break;
             case 22: // Ventilation         = 0x16,
                 genericDeviceClassDescription = "{{Ventilation}}";
