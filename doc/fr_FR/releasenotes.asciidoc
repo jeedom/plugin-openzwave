@@ -1,5 +1,22 @@
 ==  Release Notes
 
+.Version 2016-08-xx (beta)
+
+* New Features
+
+** N/A
+
+* Improvements/Enhancements
+
+** Mise à jour de la librairie OpenZWave 1.4.2088.
+** Correction de l’orthographe.
+** Refonte de l'écran équipments avec onglets.
+
+* Bug Fixes
+
+** Problème d'affichage de certains modules sur la table de routage et Graph réseau.
+** Modules Vision Secure qui ne retournent pas en veille durant l'interview.
+
 .Version 2016-07-11
 
 * New Features
