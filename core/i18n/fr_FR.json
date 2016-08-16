@@ -57,7 +57,8 @@
         "Commande": "Commande",
         "Options": "Options",
         "Le réseau Z-Wave est en cours de démarrage sur le serveur ": "Le réseau Z-Wave est en cours de démarrage sur le serveur ",
-        "Vous êtes en mode exclusion sur Local. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion sur Local. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode"
+        "Vous êtes en mode exclusion sur Local. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion sur Local. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode",
+        "Appliquer le mapping de commandes": "Appliquer le mapping de commandes"
     },
     "plugins\/openzwave\/core\/php\/jeeZwave.php": {
         "Le réseaux Z-Wave est en cours de démarrage sur le serveur ": "Le réseaux Z-Wave est en cours de démarrage sur le serveur ",
@@ -481,11 +482,7 @@
         "Sélection des modules a appliquer ces paramètres": "Sélection des modules a appliquer ces paramètres",
         "ZWAVE PLUS": "ZWAVE PLUS",
         "Source": "Source",
-        "Destination": "Destination",
-        "<b>Flirs<\/b>, routeurs esclaves (modules à piles) à écoute fréquente": "<b>Flirs<\/b>, routeurs esclaves (modules à piles) à écoute fréquente",
-        "<i>Flirs<\/i>, routeurs esclaves (modules à piles) à écoute fréquente": "<i>Flirs<\/i>, routeurs esclaves (modules à piles) à écoute fréquente",
-        "Endormi (<i>FLiRS<\/i>)": "Endormi (<i>FLiRS<\/i>)",
-        "<i>FLiRS<\/i>, routeurs esclaves à écoute fréquente": "<i>FLiRS<\/i>, routeurs esclaves à écoute fréquente"
+        "Destination": "Destination"
     },
     "plugins\/openzwave\/desktop\/modal\/backup.php": {
         "Demande envoyée": "Demande envoyée",
