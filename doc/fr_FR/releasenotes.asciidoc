@@ -10,7 +10,7 @@
 
 ** Mise à jour de la librairie OpenZWave 1.4.2088.
 ** Correction de l’orthographe.
-** Refonte de l'écran équipments avec onglets.
+** Refonte de l'écran équipements avec onglets.
 
 * Bug Fixes
 
