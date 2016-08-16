@@ -572,11 +572,20 @@ class NodeNotification(object):
     def next_wake_up(self):
         return self._next_wake_up
 
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+
 
 def check_network_started():
-    if _network.state <= _network.STATE_STARTED:
+    if _network.state < _network.STATE_STARTED:
         logging.error("Communication with ZWave dongle. see openzwaved log file for more details.")
-        graceful_stop_network()
+        try:
+            graceful_stop_network()
+        finally:
+            shutdown_server()
 
 
 def start_network():
@@ -589,9 +598,9 @@ def start_network():
         _network_information.reset()
     logging.info('******** The ZWave network is being started ********')
 
-    network_started_job = threading.Timer(120.0, check_network_started)
+    # network_started_job = threading.Timer(120.0, check_network_started)
     _network.start()
-    network_started_job.start()
+    # network_started_job.start()
 
 
 def cleanup_configuration_file(filename):
