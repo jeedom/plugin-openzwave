@@ -573,6 +573,12 @@ class NodeNotification(object):
         return self._next_wake_up
 
 
+def check_network_started():
+    if _network.state <= _network.STATE_STARTED:
+        logging.error("Communication with ZWave dongle. see openzwaved log file for more details.")
+        graceful_stop_network()
+
+
 def start_network():
     global _network_information, _force_refresh_nodes, _network
     # reset flags
@@ -582,7 +588,10 @@ def start_network():
     else:
         _network_information.reset()
     logging.info('******** The ZWave network is being started ********')
+
+    network_started_job = threading.Timer(120.0, check_network_started)
     _network.start()
+    network_started_job.start()
 
 
 def cleanup_configuration_file(filename):
@@ -787,7 +796,7 @@ def save_node_event(node_id, value):
         # save controller state
         _controller_state = value
         # not controller notification before network is at least awaked
-        if _network.state >= 7:
+        if _network.state >= _network.STATE_AWAKED:
             jeedom_com.add_changes('serverId', _server_id)
             jeedom_com.add_changes('controller::state', {"value": value})
 
@@ -1040,7 +1049,7 @@ def node_added(network, node):
         node_cleaner.start()
         return
     node.last_update = time.time()
-    if network.state >= 7:  # STATE_AWAKE
+    if network.state >= _network.STATE_AWAKED:
         save_node_event(node.node_id, "added")
 
 
@@ -1048,7 +1057,7 @@ def node_removed(network, node):
     logging.info('A node has been removed from OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
     if node.node_id in _not_supported_nodes:
         return
-    if network.state >= 7:  # STATE_AWAKE
+    if network.state >= _network.STATE_AWAKED:
         save_node_event(node.node_id, "removed")
 
 
@@ -1349,7 +1358,7 @@ def node_notification(args):
         # mark as updated
         my_node.last_update = time.time()
         # try auto remove unsupported nodes
-        if node_id in _not_supported_nodes and _network.state >= 7:  # STATE_AWAKE
+        if node_id in _not_supported_nodes and _network.state >= _network.STATE_AWAKED:
             logging.info('remove fake nodeId: %s' % (node_id,))
             _network.manager.removeFailedNode(_network.home_id, node_id)
             return
@@ -1606,7 +1615,7 @@ def serialize_neighbour_to_json(node_id):
 
 def validate_association_groups(node_id):
     fake_found = False
-    if _network is not None and _network.state >= 7:
+    if _network is not None and _network.state >= _network.STATE_AWAKED:
         if node_id in _network.nodes:
             my_node = _network.nodes[node_id]
             query_stage_index = convert_query_stage_to_int(my_node.query_stage)
@@ -3869,8 +3878,10 @@ def stop_network():
 @auth.login_required
 def get_network_status():
     global _network
-    if _network is not None and _network.state >= 5 and _network_is_running:
-        json_result = {'nodesCount': _network.nodes_count, 'sleepingNodesCount': get_sleeping_nodes_count(),
+
+    if _network is not None :
+        if  _network.state >= _network.STATE_STARTED and _network_is_running:
+            json_result = {'nodesCount': _network.nodes_count, 'sleepingNodesCount': get_sleeping_nodes_count(),
                        'scenesCount': _network.scenes_count, 'pollInterval': _network.manager.getPollInterval(),
                        'isReady': _network.is_ready, 'stateDescription': _network.state_str, 'state': _network.state,
                        'controllerCapabilities': concatenate_list(_network.controller.capabilities),
@@ -3887,6 +3898,24 @@ def get_network_status():
                        'isBridgeController': _network.controller.is_bridge_controller,
                        'awakedDelay': _network_information.controller_awake_delay, 'mode': get_network_mode()
                        }
+        else:
+            json_result = {'nodesCount': 0, 'sleepingNodesCount': 0,
+                           'scenesCount': 0, 'pollInterval': 0,
+                           'isReady': _network.is_ready, 'stateDescription': _network.state_str, 'state': _network.state,
+                           'controllerCapabilities': '',
+                           'controllerNodeCapabilities': '',
+                           'outgoingSendQueue': _network.controller.send_queue_count,
+                           'controllerStatistics': _network.controller.stats, 'devicePath': _network.controller.device,
+                           'OpenZwaveLibraryVersion': _network.manager.getOzwLibraryVersionNumber(),
+                           'PythonOpenZwaveLibraryVersion': _network.manager.getPythonLibraryVersionNumber(),
+                           'neighbors': '',
+                           'notifications': list(_network_information.last_controller_notifications),
+                           'isBusy': _network_information.controller_is_busy, 'startTime': _network_information.start_time,
+                           'isPrimaryController': _network.controller.is_primary_controller,
+                           'isStaticUpdateController': _network.controller.is_static_update_controller,
+                           'isBridgeController': _network.controller.is_bridge_controller,
+                           'awakedDelay': _network_information.controller_awake_delay, 'mode': get_network_mode()
+                           }
     else:
         json_result = {}
     return jsonify(json_result)
@@ -3898,7 +3927,7 @@ def get_network_neighbours():
     global _network
     neighbours = {'updateTime': int(time.time())}
     nodes_data = {}
-    if _network is not None and _network.state >= 5 and _network_is_running:
+    if _network is not None and _network.state >= _network.STATE_STARTED and _network_is_running:
         for node_id in list(_network.nodes):
             if node_id not in _disabled_nodes:
                 nodes_data[node_id] = serialize_neighbour_to_json(node_id)
@@ -3912,7 +3941,7 @@ def get_network_health():
     global _network
     network_health = {'updateTime': int(time.time())}
     nodes_data = {}
-    if _network is not None and _network.state >= 5 and _network_is_running:
+    if _network is not None and _network.state >= _network.STATE_STARTED and _network_is_running:
         for node_id in list(_network.nodes):
             nodes_data[node_id] = serialize_node_health(node_id)
     network_health['devices'] = nodes_data
@@ -3977,7 +4006,7 @@ def get_controller_status():
     global _network
     try:
         controller_status = {}
-        if _network is not None and _network.state >= 5 and _network_is_running:
+        if _network is not None and _network.state >= _network.STATE_STARTED and _network_is_running:
             if _network.controller:
                 controller_status = serialize_controller_to_json()
         return jsonify({'result': controller_status})
@@ -4034,7 +4063,7 @@ def save_openzwave_config():
         filename = _data_folder + "/zwcfg_" + _network.home_id_str + ".xml"
         _network_is_running = False
         _network.stop()
-        while _network.state != 0:
+        while _network.state != _network.STATE_STOPPED:
             logging.info('%s (%s)' % (_network.state_str, _network.state,))
             time.sleep(1)
         logging.info('Replace zwcfg file: %s' % (filename,))
@@ -4115,7 +4144,7 @@ def set_poll_interval(seconds, interval_between_polls):
 def refresh_all_battery_level():
     logging.debug("refresh_all_battery_level")
     battery_levels = {}
-    if _network is not None and _network.state >= 7 and _network_is_running:
+    if _network is not None and _network.state >= _network.STATE_AWAKED and _network_is_running:
         for node_id in list(_network.nodes):
             if node_id in _disabled_nodes:
                 continue
