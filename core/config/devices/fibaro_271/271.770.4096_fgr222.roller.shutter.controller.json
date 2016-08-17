@@ -201,7 +201,7 @@
 		}
 	},
 	{
-		"name": "Calibrer",
+		"name": "Étalonner",
 		"type": "action",
 		"subtype": "other",
 		"isVisible": 0,
@@ -291,7 +291,7 @@
 			"help": "Doit être fixé à 1 pour lancer l'étalonnage automatique d'un équipement. Le positionnement doit être actif (paramètre 10 aux valeurs 1,2 ou 4). Le paramètre repasse à 0 automatiquement à la fin de l'étalonnage.",
 			"list": {
 				"Default": "Défaut",
-				"Start calibration process": "Démarrer la calibration"
+				"Start calibration process": "Démarrer l’étalonnage"
 			}
 		},
 		"30": {
