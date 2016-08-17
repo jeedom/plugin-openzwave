@@ -420,6 +420,8 @@ class openzwave extends eqLogic {
 			$result = explode('.', str_replace('..', '.', $result));
 			if (count($result) > 2) {
 				$version = $result[0] . '.' . $result[1] . '.' . $result[2];
+			} else {
+				return config::byKey('currentOzwVersion', 'openzwave');
 			}
 			if (config::byKey('currentOzwVersion', 'openzwave') != $version) {
 				config::save('currentOzwVersion', $version, 'openzwave');
