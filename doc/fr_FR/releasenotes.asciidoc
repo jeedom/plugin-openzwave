@@ -16,6 +16,7 @@
 
 ** Problème d'affichage de certains modules sur la table de routage et Graph réseau.
 ** Modules Vision Secure qui ne retournent pas en veille durant l'interview.
+** Installation des dépendances en boucle (problème coté github).
 
 .Version 2016-07-11
 
