@@ -423,7 +423,7 @@ class openzwave extends eqLogic {
 			} else {
 				return config::byKey('currentOzwVersion', 'openzwave');
 			}
-			if (config::byKey('currentOzwVersion', 'openzwave') != $version) {
+			if (version_compare($version, config::byKey('currentOzwVersion', 'openzwave'), '>')) {
 				config::save('currentOzwVersion', $version, 'openzwave');
 			}
 			return $version;
