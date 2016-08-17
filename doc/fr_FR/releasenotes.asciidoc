@@ -1,10 +1,10 @@
 ==  Release Notes
 
-.Version 2016-08-xx (beta)
+.Version 2016-08-17
 
 * New Features
 
-** N/A
+** Relance du demon si détection du contrôleur en timeout lors de l'initialisation du contrôleur.
 
 * Improvements/Enhancements
 
