@@ -376,7 +376,7 @@
 		<Product type="0400" id="100a" name="FGS211 Switch 3kW" config="fibaro/fgs211.xml" />
 		<Product type="0400" id="400a" name="FGS211 Switch 3kW" config="fibaro/fgs211.xml" />
 		<Product type="0402" id="1002" name="FGS212 Switch 3kW" config="fibaro/fgs212.xml" />
-		<Product type="0403" id="1000" name="FGS213 Switch" config="fibaro/fgs213.xml" />
+		<Product type="0403" id="1000" name="FGS213 Switch" config="fibaro/fgs213.xml"/>
 		<Product type="0200" id="0104" name="FGS221 Double Relay Switch 2x1.5kW" config="fibaro/fgs221.xml" />
 		<Product type="0200" id="0105" name="FGS221 Double Relay Switch 2x1.5kW" config="fibaro/fgs221.xml" />
 		<Product type="0200" id="0106" name="FGS221 Double Relay Switch 2x1.5kW" config="fibaro/fgs221.xml" />
@@ -386,7 +386,7 @@
 		<Product type="0200" id="300a" name="FGS221 Double Relay Switch 2x1.5kW" config="fibaro/fgs221.xml" />
 		<Product type="0200" id="400a" name="FGS221 Double Relay Switch 2x1.5kW" config="fibaro/fgs221.xml" />
 		<Product type="0202" id="1002" name="FGS222 Double Relay Switch 2x1.5kW" config="fibaro/fgs222.xml" />
-		<Product type="0203" id="1000" name="FGS223 Double Relay" config="fibaro/fgs223.xml" />
+		<Product type="0203" id="1000" name="FGS223 Double Relay" config="fibaro/fgs223.xml"/>
 		<Product type="0600" id="1000" name="FGWPE Wall Plug" config="fibaro/fgwpe.xml" />
 		<Product type="0800" id="1001" name="FGMS001 Motion Sensor" config="fibaro/fgms.xml" />
 		<Product type="0800" id="2001" name="FGMS001 Motion Sensor" config="fibaro/fgms.xml" />
@@ -403,6 +403,7 @@
 		<Product type="0c00" id="1000" name="FGSS101 Smoke Sensor" config="fibaro/fgss101.xml" />
 		<Product type="0c02" id="1002" name="FGSD002 Smoke Sensor" config="fibaro/fgsd002.xml" />
 		<Product type="0d01" id="1000" name="FGGC001 Swipe" config="fibaro/fggc001.xml" />
+		<Product type="0f01" id="1000" name="FGPB101 Button" config="fibaro/fgpb101.xml" />
   	</Manufacturer>
 	<Manufacturer id="0138" name="First Alert">
         <Product type="0001" id="0002" name="ZCombo Smoke and Carbon Monoxide Detector" />
@@ -617,6 +618,10 @@
 	<Manufacturer id="003f" name="Motorola">
 	</Manufacturer>
 	<Manufacturer id="0083" name="MTC Maintronic">
+	</Manufacturer>
+	<Manufacturer id="0258" name="Neo CoolCam">
+		<Product type="0003" id="1082" name="Door/Window Detector" config="shenzen_neo/nas-ds01z.xml"/> 
+		<Product type="0003" id="1087" name="Power plug 12A" config="shenzen_neo/nas-wr01z.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0178" name="Nexia">
 		<!-- full name in Z-wave database: Ingersoll Rand - Nexia Home Intelligence -->
@@ -912,6 +917,7 @@
 		<Product type="0100" id="0200" name="Smoke Detector"/>
 		<Product type="0100" id="0201" name="Smoke Detector"/>
 		<Product type="0100" id="0400" name="Z-Weather Wind and Weather Sensor" config="zwave.me/zweather.xml"/>
+		<Product type="0110" id="0001" name="Z-Uno" config="zwave.me/ZUno.xml"/>
 		<Product type="0200" id="0001" name="iTemp Temperature Sensor" config="zwave.me/iTemp.xml"/>
 		<Product type="0201" id="0001" name="iTemp Temperature Sensor" config="zwave.me/iTemp.xml"/>
 		<Product type="0201" id="0002" name="Thermostat"/>
@@ -921,6 +927,7 @@
 		<Product type="1000" id="0002" name="ZME_06433/05433 Wall Flush-Mountable Dimmer" config="zwave.me/ZME_06433.xml"/>
 		<Product type="1000" id="0003" name="ZME_06436 Motor Control" config="zwave.me/ZME_06436.xml" />
 		<Product type="1000" id="0004" name="ZME_064435 Wall Controller" config="zwave.me/ZME_064435.xml"/>
+		<Product type="1000" id="0200" name="ZME_064281 Wall Plug switch Schuko (IP44) Gen 5" config="zwave.me/ZME_064381.xml"/>
 		<Product type="1000" id="0300" name="ZME_RC2 Remote Control" config="zwave.me/ZME_RC2.xml"/>
 		<Product type="1100" id="0002" name="PLDE Plug-in Dimmer"/>
 	</Manufacturer>
