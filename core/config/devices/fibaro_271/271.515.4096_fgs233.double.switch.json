@@ -61,7 +61,7 @@
 		}
 	},
 	{
-		"name": "Puissance 2",
+		"name": "Puissance 1",
 		"type": "info",
 		"subType": "numeric",
 		"isHistorized": "1",
@@ -84,7 +84,7 @@
 		"isVisible": "1"
 	},
 	{
-		"name": "Consommation 2",
+		"name": "Consommation 1",
 		"type": "info",
 		"subType": "numeric",
 		"isHistorized": "0",
