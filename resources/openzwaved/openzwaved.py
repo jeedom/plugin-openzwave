@@ -1941,8 +1941,7 @@ def serialize_node_health(node_id):
         json_result['data']['is_neighbours_ok'] = {'value': len(my_node.neighbors) > 0,
                                                    'neighbors': len(my_node.neighbors), 'enabled': is_neighbours_ok}
         json_result['data']['is_manufacturer_specific_ok'] = {
-            'value': not is_none_or_empty(my_node.manufacturer_id) and not is_none_or_empty(
-                my_node.product_id) and not is_none_or_empty(my_node.product_type),
+            'value': my_node.manufacturer_id != 0 and my_node.product_id != 0 and my_node.product_type != 0,
             'enabled': query_stage_index >= 7}  # ManufacturerSpecific2
         json_result['data']['pending_changes'] = {'value': check_pending_changes(node_id)}
         json_result['data']['isZwavePlus'] = {'value': my_node.is_zwave_plus}
