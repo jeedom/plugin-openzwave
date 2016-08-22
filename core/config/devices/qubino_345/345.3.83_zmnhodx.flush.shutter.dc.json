@@ -90,15 +90,13 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 1,
-            "display": {
-                "generic_type": "FLAP_UP"
-            },
             "configuration": {
                 "class": "0x26",
                 "value": "data[1].PressButton()"
             },
             "display": {
-                "icon": "<i class=\"fa fa-arrow-up\"></i>"
+                "icon": "<i class=\"fa fa-arrow-up\"></i>",
+                "generic_type": "FLAP_UP"
             }
         },
         {
@@ -106,15 +104,13 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 1,
-            "display": {
-                "generic_type": "FLAP_DOWN"
-            },
             "configuration": {
                 "class": "0x26",
                 "value": "data[2].PressButton()"
             },
             "display": {
-                "icon": "<i class=\"fa fa-arrow-down\"></i>"
+                "icon": "<i class=\"fa fa-arrow-down\"></i>",
+                "generic_type": "FLAP_DOWN"
             }
         },
         {
@@ -136,9 +132,6 @@
             "name": "Stop",
             "type": "action",
             "subtype": "other",
-            "display": {
-                "generic_type": "FLAP_STOP"
-            },
             "isVisible": 1,
             "configuration": {
                 "instanceId": "0",
@@ -146,7 +139,8 @@
                 "value": "data[2].ReleaseButton()"
             },
             "display": {
-                "icon": "<i class=\"fa fa-stop\"><\/i>"
+                "icon": "<i class=\"fa fa-stop\"><\/i>",
+                "generic_type": "FLAP_STOP"
             }
         },
         {
@@ -154,16 +148,14 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 0,
-            "display": {
-                "generic_type": "FLAP_BSO_STOP"
-            },
             "configuration": {
                 "instanceId": "0",
                 "class": "0x26",
                 "value": "data[7].ReleaseButton()"
             },
             "display": {
-                "icon": "<i class=\"fa fa-stop\"><\/i>"
+                "icon": "<i class=\"fa fa-stop\"><\/i>",
+                "generic_type": "FLAP_BSO_STOP"
             }
         },
         {
@@ -171,16 +163,14 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 0,
-            "display": {
-                "generic_type": "FLAP_BSO_UP"
-            },
-            "configuration": {
+           "configuration": {
                 "instanceId": "0",
                 "class": "0x26",
                 "value": "data[7].PressButton()"
             },
             "display": {
-                "icon": "<i class=\"fa fa-plus\"><\/i>"
+                "icon": "<i class=\"fa fa-plus\"><\/i>",
+                "generic_type": "FLAP_BSO_UP"
             }
         },
         {
@@ -188,16 +178,14 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 0,
-            "display": {
-                "generic_type": "FLAP_BSO_DOWN"
-            },
             "configuration": {
                 "instanceId": "0",
                 "class": "0x26",
                 "value": "data[8].PressButton()"
             },
             "display": {
-                "icon": "<i class=\"fa fa-minus\"><\/i>"
+                "icon": "<i class=\"fa fa-minus\"><\/i>",
+                "generic_type": "FLAP_BSO_DOWN"
             }
         },
         {
@@ -218,16 +206,14 @@
             "name": "Rafraichir",
             "type": "action",
             "subtype": "other",
-            "display": {
-                "generic_type": "DONT"
-            },
             "isVisible": 0,
             "configuration": {
                 "class": "0x26",
                 "value": "Get()"
             },
             "display": {
-                "icon": "<i class=\"fa fa-refresh\"></i>"
+                "icon": "<i class=\"fa fa-refresh\"></i>",
+                "generic_type": "DONT"
             }
         }
     ]
