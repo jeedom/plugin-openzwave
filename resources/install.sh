@@ -124,8 +124,6 @@ cd /opt/python-openzwave
 sudo make install-api
 echo 80 > /tmp/compilation_ozw_in_progress
 sudo mkdir /opt/python-openzwave/python-eggs
-
-
 sudo chown -R www-data:www-data /opt/python-openzwave
 sudo chmod -R 777 /opt/python-openzwave
 echo 90 > /tmp/compilation_ozw_in_progress
@@ -141,6 +139,21 @@ fi
 if [ -e /dev/ttyAMA0 ];  then 
   sudo systemctl mask serial-getty@ttyAMA0.service
   sudo systemctl stop serial-getty@ttyAMA0.service
+fi
+# Disable bluetooth Raspberry Pi 3
+RPI_BOARD_REVISION=`grep Revision /proc/cpuinfo | cut -d: -f2 | tr -d " "`
+if [[ $RPI_BOARD_REVISION ==  "a02082" || $RPI_BOARD_REVISION == "a22082" ]]
+then
+   systemctl disable hciuart
+   # Add "dtoverlay=pi3-miniuart-bt" to /boot/config.txt if needed
+   if [[ ! `grep "dtoverlay=pi3-miniuart-bt" /boot/config.txt` ]]
+   then
+      echo "Raspberry Pi 3 Detected. Disabling Bluetooth"
+      echo "Adding 'dtoverlay=pi3-miniuart-bt' to /boot/config.txt"
+      echo "dtoverlay=pi3-miniuart-bt" >> /boot/config.txt
+      # stop BT modem trying to use UART
+      sudo systemctl disable hciuart
+   fi
 fi
 echo 100 > /tmp/compilation_ozw_in_progress
 echo "Everything is successfully installed!"
