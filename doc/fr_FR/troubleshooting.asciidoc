@@ -1,13 +1,13 @@
-==  Dépannage et diagnostic
+==  Depannage et diagnostic
 
-=== Mon module est pas détecté ou ne remonte pas ses identifiants produit et type
+=== Mon module est pas detecte ou ne remonte pas ses identifiants produit et type
 image:../images/troubleshooting01.png[]
 
 Lancer la Régénération de la détection du nœud depuis l'onglet Actions du module.
 
 Si vous avez plusieurs modules dans ce cas de figure, lancer *Régénérer la détection de nœuds inconnues* depuis l'écran *Réseau ZWave* onglet *Actions*.
 
-=== Mon module est présumé mort par le contrôleur "Dead"
+=== Mon module est presume mort par le controleur Dead
 image:../images/troubleshooting02.png[]
 
 Si le module est toujours branché et joignable, suivre les solutions proposées dans l'écran du module.
@@ -42,7 +42,7 @@ Le choix d'options dépend d'un constructeur à l'autre.
 Il faut donc bien prendre le temps de passer en revue l'ensemble de ses interrupteurs/variateurs avant de mettre en place un scénario si vous ne pilotez pas que des lumières.
 
 
-=== Mon module n'a pas de commande Scène ou Bouton
+=== Mon module n a pas de commande Scene ou Bouton
 image:../images/troubleshooting05.png[]
 
 Vous pouvez ajouter la commande dans l'écran de "mapping" des commandes.
@@ -52,7 +52,7 @@ Il s'agit d'une commande *Info* en CC *0x2b* Instance *0* commande *data[0].val*
 Le mode scène doit être activé dans les paramètres du module. Voir la documentation de votre module pour plus de détails.
 
 
-=== Forcer le rafraîchissement de valeurs
+=== Forcer le rafraichissement de valeurs
 
 Il est  possible de forcer à la demande le rafraîchissement des valeurs d'une instance pour une commande classe spécifique.
 
@@ -72,7 +72,7 @@ Remplacer ip_jeedom, node_id, instance_id, cc_id et index
 
 L'accès a l'api REST ayant changé voir les détails link:./restapi.asciidoc[içi].
 
-=== Transférer les modules sur un nouveau contrôleur
+=== Transferer les modules sur un nouveau controleur
 Pour différentes raisons vous pouvez être amené à devoir transférer l'ensemble de vos modules sur un nouveau contrôleur principal.
 
 Vous décidez de passer du *raZberry* à un *Z-Stick Gen5* ou parce que, vous devez effectuer un *Reset* complet du contrôleur principal.
@@ -96,7 +96,7 @@ Voici différentes étapes pour y arriver sans perdre vos scénarios, widget et 
 ** 13) Vérifier que tous les modules sont bien nommés dans l'écran de santé Z-Wave. Lancer la Synchronisation si ce n'est pas le cas.
 
 
-=== Remplacer un module défaillant
+=== Remplacer un module defaillant
 Comment refaire l'inclusion d'un module défaillant sans perdre vos scénarios, widgets et historiques de valeur
 
 Si le module est présumé "Dead" :
@@ -119,7 +119,7 @@ Si le module n'est pas présumé "Dead" mais est toujours accessible:
 ** Remettre vos paramètres spécifiques.
 
 
-=== Suppression de nœud fantôme
+=== Suppression de noeud fantome
 Si vous avez perdu toute communication avec un module sur pile et que vous souhaitez l'exclure du réseau, il est possible que l'exclusion n’aboutisse pas ou que le nœud reste présent dans votre réseau.
 
 Un assistant automatique de nœud fantôme est disponible.
@@ -167,7 +167,7 @@ image:../images/troubleshooting08.png[]
 L'option de soigner le réseau 2x par semaine permet de faire ce processus sans action de votre part, elle est utile lors de la mise en place de nouveaux modules et ou lorsqu'on les déplace.
 
 
-=== Pas de remontée état de la pile
+=== Pas de remontee etat de la pile
 
 Les modules Z-Wave n'envoie que très rarement l'état de leurs piles au contrôleur.
 Certains vont le faire à l'inclusion puis seulement lorsque celle-ci atteint 20% ou une autre valeur de seuil critique.
@@ -189,7 +189,7 @@ Certains modules doivent écouter régulièrement des messages du contrôleur co
 La décharge d'une pile n'est pas linéaire, certains modules vont montrer un grosse perte en pourcentage dans les premiers jours de mise en service, puis ne plus bouger durant des semaines pour se vider rapidement une fois passé les 20%.
 
 
-=== Contrôleur est en cours d'initialisation
+=== Controleur est en cours d initialisation
 
 Lorsque vous démarrez le démon Z-Wave, si vous essayez de lancer immédiatement une inclusion/exclusion vous risquez d'obtenir ce message:
 * "Le contrôleur est en cours d'initialisation veuillez réessayer dans quelques minutes"
@@ -223,7 +223,7 @@ Si le problème persiste toujours, il faut réinitialiser le contrôleur:
 * Retirer le dongle USB ou le Razberry selon le cas, environ 5 minutes.
 * Re brancher le tout et essayer à nouveau.
 
-=== Le contrôleur ne répond plus
+=== Le controleur ne repond plus
 
 Plus aucune commande n'est transmise aux modules mais les retours d'états sont remontés vers Jeedom.
 
@@ -238,3 +238,43 @@ Si le problème persiste, il faut réinitialiser le contrôleur:
 * Débrancher l'alimentation.
 * Retirer le dongle USB ou le Razberry selon le cas, environ 5 minutes.
 * Re brancher le tout et essayer à nouveau.
+
+
+=== Erreur lors des dependances
+
+Plusieurs erreurs erreur peuvent survenir lors de la mise à jour des dépendances.
+Il faut consulter le log de mise à jour des dépendances afin de déterminer quelle est exactement l'erreur.
+De façon générale l'erreur se trouve à la fin du log dans les quelque dernières lignes.
+
+Voici les possibles problèmes ainsi que leurs possibles résolutions:
+
+* could not install mercurial – abort
+
+Le package mercurial ne veut pas s'installer, pour corriger lancer en ssh:
+
+ sudo rm /var/lib/dpkg/info/$mercurial* -f
+ sudo apt-get install mercurial
+
+* Les dépendances semblent bloquées sur 75%
+
+A 75% c'est le début de la compilation de la librairie openzwave ainsi que du wrapper python openzwave.
+Cette étape est très longue, on peut toutefois consulter la progression via la vue du log de mise à jour.
+Il faut donc être simplement patient.
+
+
+
+
+=== Utilisation de la carte Razberry sur un Raspberry Pi 3
+
+Pour utiliser un contrôleur Razberry sur un Raspberry Pi 3, le contrôleur Bluetooth interne du Raspberry doit être désactivé.
+
+
+Ajouter cette ligne:
+
+ dtoverlay=pi3-miniuart-bt
+
+À la fin du fichier:
+
+ /boot/config.txt
+
+Puis redémarrer votre Raspberry.
