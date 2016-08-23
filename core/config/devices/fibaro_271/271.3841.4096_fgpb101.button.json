@@ -1,0 +1,44 @@
+{
+	"name": "FGPB101 Button",
+	"doc": "",
+	"type": "Contrôleur",
+	"comlink": "3701-fibaro-bouton-de-commande-the-button-z-wave-blanc--5902020528968",
+	"remark": "Partiellement compatible: Fonctionne en association directe seulement",
+	"imglink": "fibaro.fgpb101",
+	"battery_type": "1X ER14250 3,6V",
+	"ignore": 1,
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [
+      {
+        "name": "Basic",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "unite": "",
+        "display": {
+          "generic_type": "DONT"
+        },
+        "configuration": {
+          "class": "0x20",
+          "value": "data[0].val"
+        }
+      },
+      {
+        "name": "Batterie",
+        "type": "info",
+        "subtype": "numeric",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "unite": "%",
+        "display": {
+            "generic_type": "BATTERY"
+        },
+        "configuration": {
+            "class": "0x80",
+            "value": "data[0].val"
+        }
+    }]
+}
