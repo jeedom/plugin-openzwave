@@ -140,7 +140,7 @@ if [ -e /dev/ttyAMA0 ];  then
   sudo systemctl mask serial-getty@ttyAMA0.service
   sudo systemctl stop serial-getty@ttyAMA0.service
 fi
-# Disable bluetooth Raspberry Pi 3
+# Disable bluetooth Raspberry Pi 3 if use a Razberry board
 RPI_BOARD_REVISION=`grep Revision /proc/cpuinfo | cut -d: -f2 | tr -d " "`
 if [[ $RPI_BOARD_REVISION ==  "a02082" || $RPI_BOARD_REVISION == "a22082" ]]
 then
@@ -148,11 +148,12 @@ then
    # Add "dtoverlay=pi3-miniuart-bt" to /boot/config.txt if needed
    if [[ ! `grep "dtoverlay=pi3-miniuart-bt" /boot/config.txt` ]]
    then
-      echo "Raspberry Pi 3 Detected. Disabling Bluetooth"
-      echo "Adding 'dtoverlay=pi3-miniuart-bt' to /boot/config.txt"
-      echo "dtoverlay=pi3-miniuart-bt" >> /boot/config.txt
+      echo "Raspberry Pi 3 Detected. If you use a Razberry board you must Disabling Bluetooth"
+      echo "Please add 'dtoverlay=pi3-miniuart-bt' to the end of the file /boot/config.txt"
+      #echo "dtoverlay=pi3-miniuart-bt" >> /boot/config.txt
       # stop BT modem trying to use UART
-      sudo systemctl disable hciuart
+      #sudo systemctl disable hciuart
+      echo "And reboot your Raspberry Pi"
    fi
 fi
 echo 100 > /tmp/compilation_ozw_in_progress
