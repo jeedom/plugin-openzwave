@@ -131,7 +131,6 @@
 		  {"index": 101, "value" : 240},
 		  {"index": 111, "value" : 900}
         ],
-		"wakeup" : 14400,
 		"needswakeup" : true
     }
 }
