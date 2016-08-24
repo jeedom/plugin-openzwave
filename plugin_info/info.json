@@ -1,0 +1,14 @@
+{
+	"id" : "openzwave",
+	"name" : "Z-Wave",
+	"description" : "Plugin permettant la gestion du protocol Z-Wave",
+	"licence" : "AGPL",
+	"author" : "Thomas MARTINEZ (tmartinez) - Jean-François AUGER (Nechry)",
+	"require" : "2.3",
+	"category" : "automation protocol",
+	"mobile" : "openzwave",
+	"hasDependency" : true,
+	"hasOwnDeamon" : true,
+	"maxDependancyInstallTime" : 45,
+	"allowRemote" : true
+}
