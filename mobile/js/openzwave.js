@@ -50,7 +50,7 @@ $('body').on('zwave::includeDevice', function (_event,_options) {
 });
 
 $('#div_listIncludeSever').delegate('.changeIncludeState','click', function() {
-    changeIncludeState($(this).attr('data-mode'), $(this).attr('data-state'), $(this).attr('data-serverID'), 1);
+    changeIncludeState($(this).attr('data-mode'), $(this).attr('data-state'), $(this).attr('data-serverID'), 0);
 });
 
  $.ajax({// fonction permettant de faire de l'ajax

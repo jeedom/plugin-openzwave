@@ -276,7 +276,7 @@ class openzwave extends eqLogic {
 		));
 	}
 
-	public static function changeIncludeState($_mode, $_state, $_serverId = 0, $_secure = 1) {
+	public static function changeIncludeState($_mode, $_state, $_serverId = 0, $_secure = 0) {
 		if ($_state == 0) {
 			self::callOpenzwave('/ZWaveAPI/Run/controller.CancelCommand()', $_serverId);
 			return;

@@ -56,9 +56,9 @@ $('.changeIncludeState').on('click', function () {
             dialog_title = '{{Démarrer l\'inclusion}}';
             dialog_message += '<label class="control-label" > {{Sélectionner le mode d\'inclusion ?}} </label> ' +
                 '<div> <div class="radio"> <label > ' +
-                '<input type="radio" name="secure" id="secure-1" value="1" checked="checked"> {{Mode sécurisé}} </label> ' +
+                '<input type="radio" name="secure" id="secure-0" value="0" checked="checked"> {{Mode non sécurisé}} </label> ' +
                 '</div><div class="radio"> <label > ' +
-                '<input type="radio" name="secure" id="secure-0" value="0"> {{Mode non sécurisé}}</label> ' +
+                '<input type="radio" name="secure" id="secure-1" value="1"> {{Mode sécurisé}}</label> ' +
                 '</div> ' +
                 '</div><br>' +
                 '<label class="lbl lbl-warning" for="name">{{Attention, Une fois démarré veuillez suivre la procédure d\'inclusion de votre module.}}</label> ';
