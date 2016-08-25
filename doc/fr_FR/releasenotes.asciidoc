@@ -1,5 +1,21 @@
 ==  Release Notes
 
+.Version 2016-08-25
+
+* New Features
+
+** Aucune
+
+* Improvements/Enhancements
+
+** Détection du RPI3 dans la mise à jour des dépendances.
+** Activer le mode d'inclusion en non-sécurisé par défaut.
+
+* Bug Fixes
+
+** Teste des informations constructeur dans l'écran de santé ne remonte plus des NOK.
+** Perte des cases-à-cocher dans l'onglet Commandes de la page équipement.
+
 .Version 2016-08-17
 
 * New Features
