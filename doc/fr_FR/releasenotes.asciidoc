@@ -1,6 +1,6 @@
 ==  Release Notes
 
-.Version 2016-08-25
+.Version 2016-08-26
 
 * New Features
 
