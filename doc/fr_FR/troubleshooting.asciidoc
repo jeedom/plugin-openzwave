@@ -262,6 +262,39 @@ Cette étape est très longue, on peut toutefois consulter la progression via la
 Il faut donc être simplement patient.
 
 
+* Erreur lors de la compilation de la librairie openzwave
+
+ arm-linux-gnueabihf-gcc: internal compiler error: Killed (program cc1plus)
+ Please submit a full bug report,
+ with preprocessed source if appropriate.
+ See <file:///usr/share/doc/gcc-4.9/README.Bugs> for instructions.
+ error: command 'arm-linux-gnueabihf-gcc' failed with exit status 4
+ Makefile:266: recipe for target 'build' failed
+ make: *** [build] Error 1
+
+Cette erreur peut survenir suite à un manque de mémoire RAM durant la compilation.
+
+Depuis l'UI jeedom, lancer la compilation des dépendances.
+
+Une fois lancée, en ssh, arrêté ces processus (consommateurs en mémoire) :
+
+ sudo systemctl stop cron
+ sudo systemctl stop apache2
+ sudo systemctl stop mysql
+
+Pour suivre l'avancement de la compilation on fait un tail sur le fichier log openzwave_update.
+
+ tail -f /var/www/html/log/openzwave_update
+
+Lorsque la compilation est terminée et sans erreur, relancez  les services que vous avez arrêté
+
+sudo systemctl start cron
+sudo systemctl start apache2
+sudo systemctl start mysql
+
+[TIP]
+Si vous etes toujours sous nginx il faudra remplacer *apache2* par *nginx* dans les commandes *stop* / *start*.
+Le fichier log openzwave_update sera dans le dossier: /usr/share/nginx/www/jeedom/log .
 
 
 === Utilisation de la carte Razberry sur un Raspberry Pi 3
