@@ -3294,16 +3294,10 @@ def switch_all(node_id, state):
                     continue
                 if my_node.values[value_id].data == "On Enabled" and state == 0:
                     continue
-                instance = my_node.values[value_id].instance
                 for switch in my_node.get_switches():
-                    if my_node.values[switch].instance == instance:
-                        my_node.values[switch].refresh()
-                        # logging.debug("refresh switch")
+                    my_node.values[switch].refresh()
                 for dimmer in my_node.get_dimmers():
-                    if my_node.values[dimmer].instance == instance:
-                        my_node.values[dimmer].refresh()
-                        # logging.debug("refresh dimmer")
-
+                    my_node.values[dimmer].refresh()
     return format_json_result()
 
 
