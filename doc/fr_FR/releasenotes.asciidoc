@@ -1,5 +1,21 @@
 ==  Release Notes
 
+.Version 2016-xx-xx
+
+* New Features
+
+** Ajout d'un option pour désactiver le AssumeAwake, pour ceux qui n'ont pas de module Vision Secure
+
+* Improvements/Enhancements
+
+** Optimisation du code du serveur REST.
+
+* Bug Fixes
+
+** Rafraîchissement de l'ensemble des instances suite a un broadcast de la CC Switch ALL.
+** Retour json de la route /ZWaveAPI/Run/devices[<int:node_id>].GetPendingChanges() plus inclue dans result.
+** Retour json de la route /ZWaveAPI/Run/devices[<int:node_id>].GetLastNotification() plus inclue dans result.
+
 .Version 2016-08-26
 
 * New Features
