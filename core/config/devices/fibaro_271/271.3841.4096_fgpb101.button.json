@@ -12,21 +12,6 @@
 	},
 	"commands": [
       {
-        "name": "Basic",
-        "type": "info",
-        "subtype": "numeric",
-        "isVisible": 0,
-        "isHistorized": 0,
-        "unite": "",
-        "display": {
-          "generic_type": "DONT"
-        },
-        "configuration": {
-          "class": "0x20",
-          "value": "data[0].val"
-        }
-      },
-      {
         "name": "Batterie",
         "type": "info",
         "subtype": "numeric",
@@ -40,5 +25,9 @@
             "class": "0x80",
             "value": "data[0].val"
         }
-    }]
+    }],
+  "recommended" : {
+    "wakeup" : 7200,
+    "needswakeup" : true
+  }
 }
