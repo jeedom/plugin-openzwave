@@ -199,5 +199,17 @@
 			"generic_type": "CONSUMPTION"
 		},
 		"isVisible": "1"
-	}]
+	}],
+	"recommended" : {
+		"groups" : [
+			{"index": 1, "value": "add"}
+		],
+		"polling": [
+			{ "instanceId": "0", "index": 0, "class": "0x25" },
+			{ "instanceId": "1", "index": 0, "class": "0x25" },
+			{ "instanceId": "0", "index": 0, "class": "0x32" },
+			{ "instanceId": "1", "index": 0, "class": "0x32" }
+		],
+		"needswakeup" : false
+	}
 }
