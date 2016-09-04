@@ -3009,6 +3009,15 @@ def set_user_code2(node_id, slot_id, value1, value2, value3, value4, value5, val
     return jsonify(result_value)
 
 
+def refresh_switch_binary(node_id, value_id, target_value):
+    if node_id in _network.nodes:
+        my_value = _network.nodes[node_id].values[value_id]
+        if my_value is not None:
+            if my_value.data != target_value:
+                logging.debug("Force refresh switch binary")
+                my_value.refresh()
+
+
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<int:value>)', methods=['GET'])
 @auth.login_required
 def set_value7(node_id, instance_id, cc_id, index, value):
@@ -3038,6 +3047,13 @@ def set_value7(node_id, instance_id, cc_id, index, value):
                     save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SET_POINT, index,
                                           get_standard_value_type(_network.nodes[node_id].values[val].type), value,
                                           instance_id + 10)
+                if cc_id == hex(COMMAND_CLASS_SWITCH_BINARY):
+                    if value == 0:
+                        value = False
+                    else:
+                        value = True
+                    worker = threading.Timer(interval=0.5, function=refresh_switch_binary, args=(node_id, val, value))
+                    worker.start()
                 return format_json_result()
         return format_json_result(False, 'value not found', 'warning')
     else:
