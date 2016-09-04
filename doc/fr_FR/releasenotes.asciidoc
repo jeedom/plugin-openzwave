@@ -9,6 +9,7 @@
 * Improvements/Enhancements
 
 ** Optimisation du code du serveur REST.
+** Rafraîchissement de l'état après une COMMAND_CLASS_SWITCH_BINARY si aucune notification reçu.
 
 * Bug Fixes
 
