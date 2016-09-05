@@ -68,11 +68,7 @@ _data_folder = None
 _pidfile = '/tmp/openzwaved.pid'
 _apikey = ''
 _callback = ''
-<<<<<<< HEAD
-=======
-_server_id = 0
 _assumeAwake = True
->>>>>>> origin/master
 
 # default_poll_interval = 1800000  # 30 minutes
 _default_poll_interval = 300000  # 5 minutes
