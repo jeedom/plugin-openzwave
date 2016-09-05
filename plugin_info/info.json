@@ -9,6 +9,5 @@
 	"mobile" : "openzwave",
 	"hasDependency" : true,
 	"hasOwnDeamon" : true,
-	"maxDependancyInstallTime" : 45,
-	"allowRemote" : true
+	"maxDependancyInstallTime" : 45
 }

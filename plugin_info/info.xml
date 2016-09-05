@@ -5,7 +5,6 @@
     <licence>AGPL</licence>
     <author>Thomas MARTINEZ (tmartinez) - Jean-François AUGER (Nechry)</author>
     <require>2.3</require>
-    <allowRemote>1</allowRemote>
     <mobile>openzwave</mobile>
     <category>automation protocol</category>
     <hasDependency>1</hasDependency>
