@@ -3,7 +3,7 @@
 	"doc": "",
 	"type": "Micromodule",
 	"comlink": "3728-fibaro-micromodule-commutateur-double-z-wave-fgs-223-5902020528661",
-	"remark": "",
+	"remark": "Le rafraîchissement manuel est requis sur l'instance 1 (Switch S2) pour la remonté de puissance et l'état du S2. Les notification de scènes ne sont pas remontées, elles requièrent le support de la CC Central Scene.",
 	"imglink": "fibaro.fgs223",
 	"configuration": {
 		"conf_version": 1
@@ -199,5 +199,15 @@
 			"generic_type": "CONSUMPTION"
 		},
 		"isVisible": "1"
-	}]
+	}],
+	"recommended" : {
+		"groups" : [
+			{"index": 1, "value": "add"}
+		],
+		"polling": [
+			{ "instanceId": "1", "index": 0, "class": "0x25" },
+			{ "instanceId": "1", "index": 0, "class": "0x32" }
+		],
+		"needswakeup" : false
+	}
 }

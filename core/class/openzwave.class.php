@@ -423,6 +423,11 @@ class openzwave extends eqLogic {
 		}
 		$disabledNodes = trim($disabledNodes, ',');
 
+        $assumeAwake = 1;
+        if (config::byKey('assume_awake', 'openzwave') == 0) {
+            $assumeAwake = 0;
+        }
+
 		$cmd = '/usr/bin/python ' . $openzwave_path . '/openzwaved/openzwaved.py ';
 		$cmd .= ' --pidfile=/tmp/openzwaved.pid';
 		$cmd .= ' --device=' . $port;
@@ -433,6 +438,7 @@ class openzwave extends eqLogic {
 		$cmd .= ' --callback=' . $callback;
 		$cmd .= ' --apikey=' . $apikey;
 		$cmd .= ' --suppressRefresh=' . $suppressRefresh;
+        $cmd .= ' --assumeAwake=' . $assumeAwake;
 		if ($disabledNodes != '') {
 			$cmd .= ' --disabledNodes=' . $disabledNodes;
 		}

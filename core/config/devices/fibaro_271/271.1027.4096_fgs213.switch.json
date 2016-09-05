@@ -3,7 +3,7 @@
 	"doc": "",
 	"type": "Micromodule",
 	"comlink": "3727-fibaro-micromodule-commutateur-z-wave-fgs-213-5902020528722",
-	"remark": "",
+	"remark": "Les notification de scènes ne sont pas remontées, elles requièrent le support de la CC Central Scene",
 	"imglink": "fibaro.fgs213",
 	"configuration": {
 		"conf_version": 1
@@ -103,5 +103,11 @@
 			"generic_type": "CONSUMPTION"
 		},
 		"isVisible": "1"
-	}]
+	}],
+	"recommended" : {
+		"groups" : [
+			{"index": 1, "value": "add"}
+		],
+		"needswakeup" : false
+	}
 }

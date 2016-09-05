@@ -1,8 +1,8 @@
 {
-	"name": "Vanne 1/4 de tour (GR-105)",
+	"name": "Vanne 1/4 de tour (GR-105N)",
 	"doc": "",
 	"type": "Vanne",
-	"comlink": "2958-gr-smarthome-motorisation-z-wave-pour-vanne-14-de-tour",
+	"comlink": "",
 	"remark": "",
 	"imglink": "gr.autovalve",
 	"configuration": {

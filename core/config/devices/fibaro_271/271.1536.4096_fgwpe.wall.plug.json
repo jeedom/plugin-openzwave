@@ -246,5 +246,11 @@
 			"name": "Fonction de l`interrupteur de surcharge",
 			"help": "Cette fonction permet de désactiver la charge en cas de dépassement de la puissance définie. La charge se désactivera même si la fonction Always on est activée (paramètre 1). On peut activer de nouveau la charge en appuyant sur le bouton B ou en envoyant une trame de contrôle. Valeurs disponibles pour ce paramètre 10 - 65535 (1W-6553,5W)"
 		}
+	},
+	"recommended" : {
+		"groups" : [
+			{"index": 3, "value": "add"}
+		],
+		"needswakeup" : false
 	}
 }
