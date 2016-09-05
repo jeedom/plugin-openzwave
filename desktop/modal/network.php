@@ -109,17 +109,6 @@ if (!isConnect('admin')) {
 
     }
 </style>
-<span class='pull-right'>
-	<select class="form-control expertModeVisible" style="width : 200px;" id="sel_zwaveNetworkServerId">
-        <?php
-foreach (openzwave::listServerZwave() as $id => $server) {
-	if (isset($server['name'])) {
-		echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
-	}
-}
-?>
-  </select>
-</span>
 <div id='div_networkOpenzwaveAlert' style="display: none;"></div>
 <div id="confirmModal" class="modal fade modal-dialog-center" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true" data-backdrop="false">
@@ -591,14 +580,6 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 </div>
 <?php include_file('desktop', 'network', 'js', 'openzwave');?>
 <script>
-    var path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path') + '/';
-    $("#sel_zwaveNetworkServerId").on("change", function () {
-        path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path') + '/';
-        window["app_network"].init();
-        window["app_network"].show();
-        window["app_network"].displayRoutingTable();
-        window["app_network"].load_data();
-    });
     var nodes = {};
     if (window["app_network"] != undefined) {
         window["app_network"].init();

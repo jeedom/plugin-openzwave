@@ -19,8 +19,6 @@ if (!isConnect('admin')) {
 	throw new Exception('401 Unauthorized');
 }
 sendVarToJs('node_id', init('id'));
-$listServerZwave = openzwave::listServerZwave();
-sendVarToJs('path', $listServerZwave[init('serverId')]['path'] . '/');
 ?>
 <style media="screen" type="text/css">
     .noscrolling {

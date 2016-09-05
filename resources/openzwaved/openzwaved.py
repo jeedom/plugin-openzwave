@@ -68,7 +68,6 @@ _data_folder = None
 _pidfile = '/tmp/openzwaved.pid'
 _apikey = ''
 _callback = ''
-_server_id = 0
 
 # default_poll_interval = 1800000  # 30 minutes
 _default_poll_interval = 300000  # 5 minutes
@@ -213,8 +212,6 @@ for arg in sys.argv:
         temp, _callback = arg.split("=")
     elif arg.startswith("--apikey="):
         temp, _apikey = arg.split("=")
-    elif arg.startswith("--serverId="):
-        temp, _server_id = arg.split("=")
     elif arg.startswith("--suppressRefresh="):
         temp, suppress_refresh = arg.split("=")
         _suppress_refresh = suppress_refresh == 1
@@ -774,7 +771,6 @@ check_config_files()
 
 
 def save_node_value_event(node_id, timestamp, command_class, value_index, standard_type, value, instance):
-    jeedom_com.add_changes('serverId', _server_id)
     jeedom_com.add_changes(
         'devices::' + str(node_id) + '::' + str(hex(command_class)) + str(instance) + str(value_index),
         {'node_id': node_id, 'instance': instance, 'CommandClass': hex(command_class), 'index': value_index,
@@ -784,17 +780,14 @@ def save_node_value_event(node_id, timestamp, command_class, value_index, standa
 def save_node_event(node_id, value):
     global _controller_state
     if value == "removed":
-        jeedom_com.add_changes('serverId', _server_id)
         jeedom_com.add_changes('controller::excluded', {"value": node_id})
     elif value == "added":
-        jeedom_com.add_changes('serverId', _server_id)
         jeedom_com.add_changes('controller::included', {"value": node_id})
     elif value in [0, 1, 5] and _controller_state != value:
         # save controller state
         _controller_state = value
         # not controller notification before network is at least awaked
         if _network.state >= _network.STATE_AWAKED:
-            jeedom_com.add_changes('serverId', _server_id)
             jeedom_com.add_changes('controller::state', {"value": value})
 
 
@@ -805,7 +798,6 @@ def save_network_state(network_state):
     # STATE_STARTED = 5
     # STATE_AWAKED = 7
     # STATE_READY = 10
-    jeedom_com.add_changes('serverId', _server_id)
     jeedom_com.add_changes('network::state', {"value": network_state})
 
 
@@ -818,7 +810,7 @@ def push_node_notification(node_id, notification_code):
         else:
             # Report when a node is revived
             alert_type = 'node_alive'
-        changes = {'alert': {'type': alert_type, 'id': node_id, 'serverId': _server_id}}
+        changes = {'alert': {'type': alert_type, 'id': node_id}}
         jeedom_com.send_change_immediate(changes)
 
 

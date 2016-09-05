@@ -3,7 +3,7 @@ $('#bt_createBackup').off().on('click', function (event) {
         function (result) {
             if (result) {
                 $.ajax({
-                    url: path + "/ZWaveAPI/Run/network.ManualBackup()",
+                    url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=/ZWaveAPI/Run/network.ManualBackup()",
                     dataType: 'json',
                     async: true,
                     error: function (request, status, error) {
@@ -27,7 +27,7 @@ $('#bt_removeBackup').off().on('click', function (event) {
         function (result) {
             if (result) {
                 $.ajax({
-                    url: path + "/ZWaveAPI/Run/network.DeleteBackup(" + $('#sel_restoreBackup option:selected').text() + ")",
+                    url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=/ZWaveAPI/Run/network.DeleteBackup(" + $('#sel_restoreBackup option:selected').text() + ")",
                     dataType: 'json',
                     async: true,
                     error: function (request, status, error) {
@@ -51,7 +51,7 @@ $('#bt_restoreBackup').off().on('click', function (event) {
         function (result) {
             if (result) {
                 $.ajax({
-                    url: path + "/ZWaveAPI/Run/network.RestoreBackup(" + $('#sel_restoreBackup option:selected').text() + ")",
+                    url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=/ZWaveAPI/Run/network.RestoreBackup(" + $('#sel_restoreBackup option:selected').text() + ")",
                     dataType: 'json',
                     async: true,
                     error: function (request, status, error) {
@@ -74,7 +74,7 @@ $('#bt_restoreBackup').off().on('click', function (event) {
 
 function updateListBackup() {
     $.ajax({
-        url: path + "/ZWaveAPI/Run/network.GetOZBackups()",
+        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=/ZWaveAPI/Run/network.GetOZBackups()",
         dataType: 'json',
         async: true,
         error: function (request, status, error) {

@@ -7,81 +7,77 @@ include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
 include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
 sendVarToJS('eqType', 'openzwave');
 sendVarToJS('marketAddr', config::byKey('market::address'));
-sendVarToJS('listServerZwave', openzwave::listServerZwave());
 echo '<div id="div_inclusionAlert"></div>';
 $controllerMode = 0;
 $networkState = 10;
-foreach (openzwave::listServerZwave() as $id => $server) {
-	if (isset($server['name'])) {
-		try {
-			$result = openzwave::callOpenzwave('/ZWaveAPI/Run/network.GetControllerStatus()', $id);
-			if (isset($result['result']['data'])) {
-				$networkState = $result['result']['data']['networkstate']['value'];
-				$controllerMode = $result['result']['data']['mode']['value'];
-			}
-		} catch (Exception $e) {
-			$controllerMode = null;
-		}
-		switch ($networkState) {
-			case 0: # STATE_STOPPED = 0
-				event::add('jeedom::alert', array(
-					'level' => 'danger',
-					'page' => 'openzwave',
-					'message' => __('Le réseau Z-Wave est arreté sur le serveur ', __FILE__) . $server['name'],
-				));
-				break;
-			case 1: # STATE_FAILED = 1
-				event::add('jeedom::alert', array(
-					'level' => 'danger',
-					'page' => 'openzwave',
-					'message' => __('Le réseau Z-Wave est en erreur sur le serveur ', __FILE__) . $server['name'],
-				));
-				break;
-			case 3: # STATE_RESET = 3
-				event::add('jeedom::alert', array(
-					'level' => 'danger',
-					'page' => 'openzwave',
-					'message' => __('Le réseau Z-Wave est remis à zéro sur le serveur ', __FILE__) . $server['name'],
-				));
-				break;
-			case 5: # STATE_STARTED = 5
-				event::add('jeedom::alert', array(
-					'level' => 'warning',
-					'page' => 'openzwave',
-					'message' => __('Le réseau Z-Wave est en cours de démarrage sur le serveur ', __FILE__) . $server['name'],
-				));
-				break;
-			case 5: # STATE_AWAKED = 7
-				event::add('jeedom::alert', array(
-					'level' => 'danger',
-					'page' => 'openzwave',
-					'message' => __('Le réseau Z-Wave est actif sur le serveur ', __FILE__) . $server['name'],
-				));
-				break;
-		}
-		if ($controllerMode === 0) {
-			echo '<div id="div_inclusionAlert' . $id . '"></div>';
-		}
-		if ($controllerMode === 1) {
-			echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert' . $id . '" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode inclusion sur ' . $server['name'] . '. Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode}}</div>';
-		}
-		if ($controllerMode === 5) {
-			echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert' . $id . '" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode exclusion sur ' . $server['name'] . '. Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}</div>';
-		}
-		if ($controllerMode === null) {
-			event::add('jeedom::alert', array(
-				'level' => 'danger',
-				'page' => 'openzwave',
-				'message' => __('Impossible de contacter le serveur Z-wave ', __FILE__) . $server['name'],
-			));
-		}
+try {
+	$result = openzwave::callOpenzwave('/ZWaveAPI/Run/network.GetControllerStatus()');
+	if (isset($result['result']['data'])) {
+		$networkState = $result['result']['data']['networkstate']['value'];
+		$controllerMode = $result['result']['data']['mode']['value'];
 	}
+} catch (Exception $e) {
+	$controllerMode = null;
 }
+switch ($networkState) {
+	case 0: # STATE_STOPPED = 0
+		event::add('jeedom::alert', array(
+			'level' => 'danger',
+			'page' => 'openzwave',
+			'message' => __('Le réseau Z-Wave est arreté sur le serveur', __FILE__),
+		));
+		break;
+	case 1: # STATE_FAILED = 1
+		event::add('jeedom::alert', array(
+			'level' => 'danger',
+			'page' => 'openzwave',
+			'message' => __('Le réseau Z-Wave est en erreur sur le serveur', __FILE__),
+		));
+		break;
+	case 3: # STATE_RESET = 3
+		event::add('jeedom::alert', array(
+			'level' => 'danger',
+			'page' => 'openzwave',
+			'message' => __('Le réseau Z-Wave est remis à zéro sur le serveur', __FILE__),
+		));
+		break;
+	case 5: # STATE_STARTED = 5
+		event::add('jeedom::alert', array(
+			'level' => 'warning',
+			'page' => 'openzwave',
+			'message' => __('Le réseau Z-Wave est en cours de démarrage sur le serveur', __FILE__),
+		));
+		break;
+	case 5: # STATE_AWAKED = 7
+		event::add('jeedom::alert', array(
+			'level' => 'danger',
+			'page' => 'openzwave',
+			'message' => __('Le réseau Z-Wave est actif sur le serveur', __FILE__),
+		));
+		break;
+}
+if ($controllerMode === 0) {
+	echo '<div id="div_inclusionAlert"></div>';
+}
+if ($controllerMode === 1) {
+	echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode inclusion sur. Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode}}</div>';
+}
+if ($controllerMode === 5) {
+	echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode exclusion sur. Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}</div>';
+}
+if ($controllerMode === null) {
+	event::add('jeedom::alert', array(
+		'level' => 'danger',
+		'page' => 'openzwave',
+		'message' => __('Impossible de contacter le serveur Z-wave', __FILE__),
+	));
+}
+
 $eqLogics = eqLogic::byType('openzwave');
 $tags = array();
 if (is_array($eqLogics)) {
 	foreach ($eqLogics as $eqLogic) {
-		$tags[$eqLogic->getConfiguration('serverID', 0) . ':' . $eqLogic->getLogicalId()] = $eqLogic->getHumanName(true);
+		$tags[$eqLogic->getLogicalId()] = $eqLogic->getHumanName(true);
 	}
 }
 sendVarTojs('eqLogic_human_name', $tags);
@@ -179,7 +175,7 @@ if ($controllerMode == 5) {
     <?php
 foreach ($eqLogics as $eqLogic) {
 	$opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-	echo '<div class="eqLogicDisplayCard cursor" data-logical-id="' . $eqLogic->getLogicalId() . '" data-server-id="' . $eqLogic->getConfiguration('serverID', 0) . '" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+	echo '<div class="eqLogicDisplayCard cursor" data-logical-id="' . $eqLogic->getLogicalId() . '" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 	echo "<center>";
 	if ($eqLogic->getImgFilePath() !== false) {
 		echo '<img class="lazy" src="plugins/openzwave/core/config/devices/' . $eqLogic->getImgFilePath() . '" height="105" width="95" />';
@@ -258,20 +254,6 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
                         <input type="text" class="eqLogicAttr form-control" data-l1key="logicalId"/>
                     </div>
                 </div>
-                <div class="form-group expertModeVisible">
-                    <label class="col-sm-4 control-label">{{Serveur}}</label>
-                    <div class="col-sm-4">
-                        <select class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="serverID">
-                            <?php
-foreach (openzwave::listServerZwave() as $id => $server) {
-	if (isset($server['name'])) {
-		echo '<option value="' . $id . '">' . $server['name'] . '</option>';
-	}
-}
-?>
-                      </select>
-                  </div>
-              </div>
               <div class="form-group expertModeVisible">
                 <label class="col-sm-4 control-label">{{Délai maximum autorisé entre 2 messages (min)}}</label>
                 <div class="col-sm-4">

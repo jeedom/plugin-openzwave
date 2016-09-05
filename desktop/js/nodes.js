@@ -51,7 +51,7 @@ var app_nodes = {
                     var paramValue = $('#newvalueperso').val();
                     var paramLength = $('#sizeperso').val();
                     $.ajax({
-                        url: path + "ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].commandClasses[0x70].Set(" + paramId + "," + paramValue + "," + paramLength + ")",
+                        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].commandClasses[0x70].Set(" + paramId + "," + paramValue + "," + paramLength + ")",
                         dataType: 'json',
                         async: true, error: function (request, status, error) {
                             handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
@@ -297,7 +297,7 @@ var app_nodes = {
             var toNode = app_nodes.selected_node;
             var fromNode = $('#newvaluenode').val();
             $.ajax({
-                url: path + "ZWaveAPI/Run/devices[" + fromNode + "].CopyConfigurations(" + toNode + ")",
+                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + fromNode + "].CopyConfigurations(" + toNode + ")",
                 dataType: 'json',
                 async: true,
                 error: function (request, status, error) {
@@ -364,7 +364,7 @@ var app_nodes = {
             $("input:checkbox[name=type]:checked").each(function(){
                 var toNode = $(this).val();
                 $.ajax({
-                    url: path + "ZWaveAPI/Run/devices[" + fromNode + "].CopyConfigurations(" + toNode + ")",
+                    url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + fromNode + "].CopyConfigurations(" + toNode + ")",
                     dataType: 'json',
                     async: true,
                     error: function (request, status, error) {
@@ -440,10 +440,10 @@ var app_nodes = {
             var nodeInstance = values[1];
             var url = '';
             if (nodeInstance > 0) {
-                url = path + "ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].Associations[" + groupIndex + "].Add(" + nodeId + "," + nodeInstance + ")";
+                url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].Associations[" + groupIndex + "].Add(" + nodeId + "," + nodeInstance + ")";
             }
             else {
-                url = path + "ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[0].commandClasses[0x85].Add(" + groupIndex + "," + nodeId + ")";
+                url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[0].commandClasses[0x85].Add(" + groupIndex + "," + nodeId + ")";
             }
 
             $.ajax({
@@ -531,7 +531,7 @@ var app_nodes = {
             var cc = $(this).attr('data-valuecc');
             var instance = $(this).attr('data-valueinstance');
             $.ajax({
-                url: path + "/ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[" + instance + "].commandClasses[" + cc + "].data[" + index + "].Refresh()",
+                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=/ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[" + instance + "].commandClasses[" + cc + "].data[" + index + "].Refresh()",
                 dataType: 'json',
                 async: true,
                 error: function (request, status, error) {
@@ -592,7 +592,7 @@ var app_nodes = {
             modal.find('.modal-body').append('<b> : </b>');
             if (paramType == "List") {
                 $.ajax({
-                    url: path + "ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].commandClasses[0x70].data",
+                    url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].commandClasses[0x70].data",
                     dataType: 'json',
                     async: true,
                     error: function (request, status, error) {
@@ -651,7 +651,7 @@ var app_nodes = {
             var paramValue2 = paramValue.replace(/\//g, '@');
             var paramLength = paramValue.length;
             $.ajax({
-                url: path + "ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].commandClasses[0x70].Set(" + paramId + "," + encodeURIComponent(paramValue2) + "," + paramLength + ")",
+                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].commandClasses[0x70].Set(" + paramId + "," + encodeURIComponent(paramValue2) + "," + paramLength + ")",
                 dataType: 'json',
                 async: true,
                 error: function (request, status, error) {
@@ -678,7 +678,7 @@ var app_nodes = {
             }
             if (valueType == "Button") {
                 $.ajax({
-                    url: path + "ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "]." + valueValue + "Button()",
+                    url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "]." + valueValue + "Button()",
                     dataType: 'json',
                     async: true,
                     error: function (request, status, error) {
@@ -692,7 +692,7 @@ var app_nodes = {
                 });
             } else if (valueType == "Raw") {
                 $.ajax({
-                    url: path + "ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].UserCode.SetRaw(" + valueIdx + ",[" + valueValue + "],1)",
+                    url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].UserCode.SetRaw(" + valueIdx + ",[" + valueValue + "],1)",
                     dataType: 'json',
                     async: true,
                     error: function (request, status, error) {
@@ -707,7 +707,7 @@ var app_nodes = {
             }
             else {
                 $.ajax({
-                    url: path + "ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "].Set(" + encodeURIComponent(valueValue) + ")",
+                    url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "].Set(" + encodeURIComponent(valueValue) + ")",
                     dataType: 'json',
                     async: true,
                     error: function (request, status, error) {
@@ -727,7 +727,7 @@ var app_nodes = {
             var valueCc = $('#pollingModal').data('valuecc');
             var valueValue = $('#newvaluevalue').val();
             $.ajax({
-                url: path + "ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "].SetPolling(" + encodeURIComponent(valueValue) + ")",
+                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "].SetPolling(" + encodeURIComponent(valueValue) + ")",
                 dataType: 'json',
                 async: true,
                 error: function (request, status, error) {
@@ -753,9 +753,9 @@ var app_nodes = {
     delete_group: function (node_id, group, node, instance) {
         var url = "";
         if (instance > 0) {
-            url = path + "ZWaveAPI/Run/devices[" + node_id + "].Associations[" + group + "].Remove(" + node + "," + instance + ")";
+            url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].Associations[" + group + "].Remove(" + node + "," + instance + ")";
         } else {
-            url = path + "ZWaveAPI/Run/devices[" + node_id + "].instances[0].commandClasses[0x85].Remove(" + group + "," + node + ")"
+            url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[0].commandClasses[0x85].Remove(" + group + "," + node + ")"
         }
         $.ajax({
             url: url,
@@ -774,7 +774,7 @@ var app_nodes = {
     },
     request_node_neighbours_update: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].RequestNodeNeighbourUpdate()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RequestNodeNeighbourUpdate()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -795,7 +795,7 @@ var app_nodes = {
     },
     healNode: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].HealNode()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].HealNode()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -816,7 +816,7 @@ var app_nodes = {
     },
     assign_return_route_node: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].AssignReturnRoute()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].AssignReturnRoute()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -830,7 +830,7 @@ var app_nodes = {
     },
     test_node: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].TestNode()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].TestNode()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -844,7 +844,7 @@ var app_nodes = {
     },
     refresh_node_values: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].RefreshAllValues()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RefreshAllValues()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -858,7 +858,7 @@ var app_nodes = {
     },
     request_node_dynamic: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].RequestNodeDynamic()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RequestNodeDynamic()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -872,7 +872,7 @@ var app_nodes = {
     },
     refresh_node_info: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].RefreshNodeInfo()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RefreshNodeInfo()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -893,7 +893,7 @@ var app_nodes = {
     },
     has_node_failed: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].HasNodeFailed()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].HasNodeFailed()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -907,7 +907,7 @@ var app_nodes = {
     },
     remove_failed_node: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].RemoveFailedNode()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RemoveFailedNode()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -928,7 +928,7 @@ var app_nodes = {
     },
     remove_ghost_node: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].GhostKiller()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].GhostKiller()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -949,7 +949,7 @@ var app_nodes = {
     },
     replace_failed_node: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].ReplaceFailedNode()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].ReplaceFailedNode()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -970,7 +970,7 @@ var app_nodes = {
     },
     send_node_information: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].SendNodeInformation()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].SendNodeInformation()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -984,7 +984,7 @@ var app_nodes = {
     },
     send_regenerate_node_cfg_file: function (node_id, all) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].RemoveDeviceZWConfig(" + all + ")",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RemoveDeviceZWConfig(" + all + ")",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -998,7 +998,7 @@ var app_nodes = {
     },
     refresh_parameters: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].commandClasses[0x70].Refresh()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].commandClasses[0x70].Refresh()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -1012,7 +1012,7 @@ var app_nodes = {
     },
     load_all: function () {
         $.ajax({
-            url: path + "ZWaveAPI/Run/network.GetNodesList()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.GetNodesList()",
             dataType: 'json',
             global: false,
             async: true,
@@ -1036,7 +1036,7 @@ var app_nodes = {
     },
     load_data: function (_global) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "]",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "]",
             dataType: 'json',
             async: true,
             global: _global,
@@ -1055,7 +1055,7 @@ var app_nodes = {
     },
     load_stats: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].GetNodeStatistics()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].GetNodeStatistics()",
             dataType: 'json',
             async: true,
             global: (typeof node_id !== 'undefined' && !isNaN(node_id)) ? false : true,

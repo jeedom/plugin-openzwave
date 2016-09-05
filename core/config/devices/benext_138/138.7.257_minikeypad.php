@@ -36,7 +36,7 @@ if (!isConnect()) {
 	<tbody>
 		<tr>
 			<?php
-$data = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . init('logical_id') . ']', init('serverId'));
+$data = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . init('logical_id') . ']');
 $data = $data['instances'][0]['commandClasses'][99]['data'];
 for ($i = 1; $i < 11; $i++) {
 	echo '<td>';
@@ -56,7 +56,7 @@ for ($i = 1; $i < 11; $i++) {
 
 <script>
     $('#bt_refreshZipatoAssist').on('click',function(){
-        $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=device.assistant&id=<?php echo init('id');?>&serverId=<?php echo init('serverId');?>&logical_id=<?php echo init('logical_id');?>');
+        $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=device.assistant&id=<?php echo init('id');?>&logical_id=<?php echo init('logical_id');?>');
     });
 
     $('.bt_ziptatoKeypadRemoveCode').on('click',function(){
@@ -69,7 +69,6 @@ for ($i = 1; $i < 11; $i++) {
                     url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
                     data: {
                         action: "callRazberry",
-                        serverId : <?php echo init('serverId');?>,
                         call: call,
                     },
                     dataType: 'json',
@@ -82,7 +81,7 @@ for ($i = 1; $i < 11; $i++) {
                         return;
                     }
                     $('#div_configureDeviceAlert').showAlert({message: 'Code enregistré, merci de réveiller votre clavier pour qu\'il soit pris en compte (touche HOME puis 1 puis Enter) ', level: 'success'});
-                    $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=device.assistant&id=<?php echo init('id');?>&serverId=<?php echo init('serverId');?>&logical_id=<?php echo init('logical_id');?>');
+                    $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=device.assistant&id=<?php echo init('id');?>&logical_id=<?php echo init('logical_id');?>');
                 }
             });
 }
@@ -98,7 +97,6 @@ $('.bt_ziptatoKeypadSaveNewCode').on('click',function(){
                     url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
                     data: {
                     	action: "callRazberry",
-                        serverId : <?php echo init('serverId');?>,
                         call: '/ZWaveAPI/Run/devices[<?php echo init('logical_id');?>]',
                     },
                     dataType: 'json',
@@ -117,7 +115,6 @@ $('.bt_ziptatoKeypadSaveNewCode').on('click',function(){
                     url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
                     data: {
                     	action: "callRazberry",
-                        serverId : <?php echo init('serverId');?>,
                         call: call,
                     },
                     dataType: 'json',
@@ -130,7 +127,7 @@ $('.bt_ziptatoKeypadSaveNewCode').on('click',function(){
                     	return;
                     }
                     $('#div_configureDeviceAlert').showAlert({message: 'Code enregistré, merci de réveiller votre clavier pour qu\'il soit pris en compte (touche HOME puis 1 puis Enter) ', level: 'success'});
-                    $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=device.assistant&id=<?php echo init('id');?>&serverId=<?php echo init('serverId');?>&logical_id=<?php echo init('logical_id');?>');
+                    $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=device.assistant&id=<?php echo init('id');?&logical_id=<?php echo init('logical_id');?>');
                 }
             });
 }

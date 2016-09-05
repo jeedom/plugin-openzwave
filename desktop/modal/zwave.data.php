@@ -16,19 +16,19 @@
  */
 
 if (!isConnect('admin')) {
-    throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 if (init('id') == '') {
-    throw new Exception('{{EqLogic ID ne peut être vide}}');
+	throw new Exception('{{EqLogic ID ne peut être vide}}');
 }
 $eqLogic = eqLogic::byId(init('id'));
 if (!is_object($eqLogic)) {
-    throw new Exception('{{EqLogic non trouvé}}');
+	throw new Exception('{{EqLogic non trouvé}}');
 }
 include_file('3rdparty', 'jsonTree/jsonTree', 'css', 'openzwave');
 include_file('3rdparty', 'jsonTree/jsonTree', 'js', 'openzwave');
 
-$json = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . ']', $eqLogic->getConfiguration('serverID', 1));
+$json = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . ']');
 sendVarToJs('zwaveDataTree', $json);
 ?>
 <div id="div_zwaveDataTree"></div>

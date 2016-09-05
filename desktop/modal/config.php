@@ -54,18 +54,6 @@ if (!isConnect('admin')) {
     }
 </style>
 
-<span class='pull-right'>
-	<select class="form-control expertModeVisible" style="width : 200px;" id="sel_zwaveNetworkServerId">
-		<?php
-foreach (openzwave::listServerZwave() as $id => $server) {
-	if (isset($server['name'])) {
-		echo '<option value="' . $id . '" data-path="' . $server['path'] . '">' . $server['name'] . '</option>';
-	}
-}
-?>
-	</select>
-</span>
-
 <style>
     .bound-config {
         width: 100%;
@@ -92,12 +80,6 @@ foreach (openzwave::listServerZwave() as $id => $server) {
 
 <?php include_file('desktop', 'config', 'js', 'openzwave');?>
 <script>
-    var path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path') + '/';
-    $("#sel_zwaveNetworkServerId").on("change", function () {
-        path = $('#sel_zwaveNetworkServerId option:selected').attr('data-path') + '/';
-        window["app_config"].init();
-        window["app_config"].show();
-    });
     var nodes = {};
     if (window["app_config"] != undefined) {
         window["app_config"].init();

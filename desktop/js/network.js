@@ -60,7 +60,7 @@ var app_network = {
         });
         $("#tab_config").off("click").on("click", function () {
             $.ajax({
-                url: path + "ZWaveAPI/Run/network.GetZWConfig()",
+                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.GetZWConfig()",
                 dataType: 'json',
                 error: function (request, status, error) {
                     handleAjaxError(request, status, error, $('#div_configOpenzwaveAlert'));
@@ -140,7 +140,7 @@ var app_network = {
             var secure = 1;
         }
         $.ajax({
-            url: path + "ZWaveAPI/Run/controller.AddNodeToNetwork(1," + secure + ")",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.AddNodeToNetwork(1," + secure + ")",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -157,7 +157,7 @@ var app_network = {
     },
     removeDevice: function () {
         $.ajax({
-            url: path + "ZWaveAPI/Run/controller.RemoveNodeFromNetwork(1)",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.RemoveNodeFromNetwork(1)",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -174,7 +174,7 @@ var app_network = {
     },
     cancelCommand: function () {
         $.ajax({
-            url: path + "ZWaveAPI/Run/controller.CancelCommand()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.CancelCommand()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -191,7 +191,7 @@ var app_network = {
     },
     testNetwork: function () {
         $.ajax({
-            url: path + "ZWaveAPI/Run/controller.TestNetwork()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.TestNetwork()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -208,7 +208,7 @@ var app_network = {
     },
     healNetwork: function () {
         $.ajax({
-            url: path + "ZWaveAPI/Run/controller.HealNetwork()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.HealNetwork()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -225,7 +225,7 @@ var app_network = {
     },
     createNewPrimary: function () {
         $.ajax({
-            url: path + "ZWaveAPI/Run/controller.CreateNewPrimary()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.CreateNewPrimary()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -238,7 +238,7 @@ var app_network = {
     },
     receiveConfiguration: function () {
         $.ajax({
-            url: path + "ZWaveAPI/Run/controller.ReceiveConfiguration()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.ReceiveConfiguration()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -252,7 +252,7 @@ var app_network = {
     replicationSend: function () {
         //TODO: add bridController selection and pass as argument
         $.ajax({
-            url: path + "ZWaveAPI/Run/controller.ReplicationSend(bridge_controller_id)",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.ReplicationSend(bridge_controller_id)",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -266,7 +266,7 @@ var app_network = {
     requestNetworkUpdate: function () {
         //TODO: add bridController selection and pass as argument
         $.ajax({
-            url: path + "ZWaveAPI/Run/controller.RequestNetworkUpdate(bridge_controller_id)",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.RequestNetworkUpdate(bridge_controller_id)",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -283,7 +283,7 @@ var app_network = {
     },
     transferPrimaryRole: function () {
         $.ajax({
-            url: path + "ZWaveAPI/Run/controller.TransferPrimaryRole()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.TransferPrimaryRole()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -296,7 +296,7 @@ var app_network = {
     },
     writeConfigFile: function () {
         $.ajax({
-            url: path + "ZWaveAPI/Run/network.WriteZWConfig()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.WriteZWConfig()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -309,7 +309,7 @@ var app_network = {
     },
     regenerate_nodes_cfg_file: function () {
         $.ajax({
-            url: path + "ZWaveAPI/Run/network.RemoveUnknownsDevicesZWConfig()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.RemoveUnknownsDevicesZWConfig()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -322,7 +322,7 @@ var app_network = {
     },
     softReset: function () {
         $.ajax({
-            url: path + "/ZWaveAPI/Run/controller.SerialAPISoftReset()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=/ZWaveAPI/Run/controller.SerialAPISoftReset()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -339,7 +339,7 @@ var app_network = {
     },
     hardReset: function () {
         $.ajax({
-            url: path + "ZWaveAPI/Run/controller.HardReset()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.HardReset()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -356,7 +356,7 @@ var app_network = {
     },
     request_node_neighbours_update: function (node_id) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/devices[" + node_id + "].RequestNodeNeighbourUpdate()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RequestNodeNeighbourUpdate()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -376,7 +376,7 @@ var app_network = {
     load_data: function () {
         $('#graph_network svg').remove();
         $.ajax({
-            url: path + "ZWaveAPI/Run/network.GetNeighbours()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.GetNeighbours()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -398,9 +398,9 @@ var app_network = {
                 for (z in nodes) {
                     //console.log('add node '+z);
                     if (nodes[z].data.name.value != '') {
-                        if (isset(eqLogic_human_name[$('#sel_zwaveNetworkServerId').value() + ':' + z])) {
+                        if (isset(eqLogic_human_name[z])) {
                             graph.addNode(z, {
-                                'name': eqLogic_human_name[$('#sel_zwaveNetworkServerId').value() + ':' + z],
+                                'name': eqLogic_human_name[z],
                                 'neighbours': nodes[z].data.neighbours.value,
                                 'enabled': nodes[z].data.neighbours.enabled,
                                 'interview': parseInt(nodes[z].data.state.value)
@@ -482,7 +482,7 @@ var app_network = {
                     ui.append(svgText);
                     ui.append(img);
                     $(ui).hover(function () { // mouse over
-                        var link = 'index.php?v=d&p=openzwave&m=openzwave&server_id=' + $("#sel_zwaveNetworkServerId").value() + '&logical_id=' + node.id;
+                        var link = 'index.php?v=d&p=openzwave&m=openzwave&logical_id=' + node.id;
                         numneighbours = node.data.neighbours.length;
                         interview = node.data.interview;
                         if (numneighbours < 1 && interview >= queryStageNeighbors) {
@@ -586,7 +586,7 @@ var app_network = {
     },
     load_infos: function () {
         $.ajax({
-            url: path + "ZWaveAPI/Run/network.GetStatus()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.GetStatus()",
             dataType: 'json',
             async: true,
             global: false,
@@ -703,7 +703,6 @@ var app_network = {
         for (i = 0; i < infos.notifications.length; i++) {
             table_notifications += '<tr>';
             table_notifications += '<td>' + app_network.timestampConverter(infos.notifications[i].timestamp) + '</td>';
-            //table_notifications += '<td>' + infos.notifications[i].state + '</td>';
             table_notifications += '<td>' + infos.notifications[i].details + '</td>';
             if (infos.notifications[i].error_description != null && infos.notifications[i].error_description != 'None.') {
                 table_notifications += '<td>' + infos.notifications[i].error_description + '</td>';
@@ -787,7 +786,7 @@ var app_network = {
     },
     displayRoutingTable: function () {
         $.ajax({// fonction permettant de faire de l'ajax
-            url: path + "ZWaveAPI/Run/network.GetNeighbours()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.GetNeighbours()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -809,20 +808,20 @@ var app_network = {
                     var routesCount = app_network.getRoutesCount(nodeId);
 
                     if (node.data.type.basic != 2) {
-                        var link = 'index.php?v=d&p=openzwave&m=openzwave&server_id=' + $("#sel_zwaveNetworkServerId").value() + '&logical_id=' + nodeId;
+                        var link = 'index.php?v=d&p=openzwave&m=openzwave&logical_id=' + nodeId;
                     } else {
                         var link = '#';
                     }
                     if (node.data.name.value != '') {
                         routingTableHeader += '<th title="' + node.data.location.value + ' ' + node.data.name.value + '" >' + nodeId + '</th>';
-                        if (isset(eqLogic_human_name[$('#sel_zwaveNetworkServerId').value() + ':' + nodeId])) {
-                            var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '" data-server-id="' + $("#sel_zwaveNetworkServerId").value() + '">' + eqLogic_human_name[$('#sel_zwaveNetworkServerId').value() + ':' + nodeId] + '</span>';
+                        if (isset(eqLogic_human_name[nodeId])) {
+                            var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '">' + nodeId + '</span>';
                         } else {
-                            var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '" data-server-id="' + $("#sel_zwaveNetworkServerId").value() + '"><span class="label label-primary">' + node.data.location.value + '</span> ' + node.data.name.value + '</span>';
+                            var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '"><span class="label label-primary">' + node.data.location.value + '</span> ' + node.data.name.value + '</span>';
                         }
                     } else {
                         routingTableHeader += '<th title="' + node.data.product_name.valuee + '" >' + nodeId + '</th>';
-                        var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '" data-server-id="' + $("#sel_zwaveNetworkServerId").value() + '">' + node.data.product_name.value + '</span>';
+                        var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '">' + node.data.product_name.value + '</span>';
                     }
                     routingTable += '<tr><td style="width: 500px">' + name;
                     if (node.data.isDead.value) {

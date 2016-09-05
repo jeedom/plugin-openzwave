@@ -3,7 +3,7 @@ var app_config = {
         $("#saveconf").click(function () {
             $.ajax({
                 type: 'POST',
-                url: path + "ZWaveAPI/Run/network.SaveZWConfig()",
+                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.SaveZWConfig()",
                 dataType: 'json',
                 data: {
                     data: $("#zwcfgfile").val()
@@ -29,7 +29,7 @@ var app_config = {
     },
     show: function () {
         $.ajax({
-            url: path + "ZWaveAPI/Run/network.GetZWConfig()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.GetZWConfig()",
             dataType: 'json',
             error: function (request, status, error) {
                 handleAjaxError(request, status, error, $('#div_configOpenzwaveAlert'));

@@ -43,7 +43,7 @@ var app_health = {
         }, 2000);
         $('#bt_pingAllDevice').off().on('click', function () {
             $.ajax({
-                url: path + "ZWaveAPI/Run/controller.TestNetwork()",
+                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.TestNetwork()",
                 dataType: 'json',
                 async: true,
                 error: function (request, status, error) {
@@ -58,7 +58,7 @@ var app_health = {
 
         $('#table_healthNetwork').off().delegate('.bt_pingDevice', 'click', function () {
             $.ajax({
-                url: path + "ZWaveAPI/Run/devices[" + $(this).attr('data-id') + "].TestNode()",
+                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + $(this).attr('data-id') + "].TestNode()",
                 dataType: 'json',
                 async: true,
                 error: function (request, status, error) {
@@ -76,7 +76,7 @@ var app_health = {
     },
     load_data: function (_global) {
         $.ajax({
-            url: path + "ZWaveAPI/Run/network.GetHealth()",
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.GetHealth()",
             dataType: 'json',
             async: true,
             global: _global,
@@ -104,10 +104,8 @@ var app_health = {
             }
             // device name
             tbody += '<td>';
-            var name = '<span class="nodeConfiguration cursor" data-node-id="' + node_id + '" data-server-id="' + $("#sel_zwaveHealthServerId").value() + '">';
-            if (typeof eqLogic_human_name !== 'undefined' && isset(eqLogic_human_name[$('#sel_zwaveHealthServerId').value() + ':' + node_id])) {
-                name += eqLogic_human_name[$('#sel_zwaveHealthServerId').value() + ':' + node_id];
-            } else if (nodes[node_id].data.description.name != '') {
+            var name = '<span class="nodeConfiguration cursor" data-node-id="' + node_id + '">';
+            if (nodes[node_id].data.description.name != '') {
                 name += '<span  class="label label-primary" style="font-size : 1em;">' + nodes[node_id].data.description.location + '</span> ' + nodes[node_id].data.description.name;
             } else {
                 name += nodes[node_id].data.description.product_name;
