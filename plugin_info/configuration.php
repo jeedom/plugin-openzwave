@@ -61,17 +61,13 @@ if (!isConnect()) {
 			<div class="col-sm-2">
 				<input type="checkbox" class="configKey" data-l1key="enabled_sanity_tests" checked/>
 			</div>
-<<<<<<< HEAD
 		</div>
-=======
 			<div class="form-group">
 				<label class="col-sm-4 control-label">{{Assume Awake, recommandée pour modules Vision Secure}}</label>
 				<div class="col-sm-2">
 					<input type="checkbox" class="configKey" data-l1key="assume_awake" checked/>
 				</div>
 			</div>
->>>>>>> origin/master
-
 		<legend><i class="fa fa-cog"></i>  {{Gestion avancée}}</legend>
 		<div class="form-group">
 			<label class="col-lg-4 control-label">{{Options avancées}}</label>
