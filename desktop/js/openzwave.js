@@ -20,7 +20,60 @@
  $('.changeIncludeState').on('click', function () {
     var mode = $(this).attr('data-mode');
     var state = $(this).attr('data-state');
-    changeIncludeState(mode, state, 0);
+     // if not in inclusion, no selection dialog
+     if (mode != 1 || mode == 1  && state == 0) {
+         changeIncludeState(mode, state, mode);
+     }
+     else {
+         var dialog_title = '';
+         var dialog_message = '<form class="form-horizontal onsubmit="return false;"> ';
+         if (mode == 1 && state != 0) {
+             // in inclusion add secure mode selection
+             dialog_title = '{{Démarrer l\'inclusion}}';
+             dialog_message += '<label class="control-label" > {{Sélectionner le mode d\'inclusion ?}} </label> ' +
+                 '<div> <div class="radio"> <label > ' +
+                 '<input type="radio" name="secure" id="secure-0" value="0" checked="checked"> {{Mode non sécurisé}} </label> ' +
+                 '</div><div class="radio"> <label > ' +
+                 '<input type="radio" name="secure" id="secure-1" value="1"> {{Mode sécurisé}}</label> ' +
+                 '</div> ' +
+                 '</div><br>' +
+                 '<label class="lbl lbl-warning" for="name">{{Attention, Une fois démarré veuillez suivre la procédure d\'inclusion de votre module.}}</label> ';
+         }
+         else {
+             dialog_title = '{{Démarrer l\'exclusion}}';
+         }
+         if (state == 0) {
+             // revert state, cancel current mode
+             if (mode == 1) {
+                 dialog_title = '{{Arrêter l\'inclusion}}';
+             }
+             else {
+                 dialog_title = '{{Arrêter l\'exclusion}}';
+             }
+         }
+         dialog_message += '</form>';
+         bootbox.dialog({
+             title: dialog_title,
+             message: dialog_message,
+             buttons: {
+                 "{{Annuler}}": {
+                     className: "btn-danger",
+                     callback: function () {
+                     }
+                 },
+                 success: {
+                     label: "{{Démarrer}}",
+                     className: "btn-success",
+                     callback: function () {
+                         var secureMode = $("input[name='secure']:checked").val();
+                         changeIncludeState(mode, state, secureMode);
+                     }
+                 },
+             }
+         });
+     }
+
+
 });
 
  $('body').delegate('.nodeConfiguration', 'click', function () {
@@ -223,7 +276,7 @@ $('body').on('zwave::controller.data.controllerState', function (_event, _option
         $('.changeIncludeState[data-mode=1]').attr('data-state', 0);
         $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Arrêter l\'inclusion}}');
         $('#div_inclusionAlert').showAlert({
-            message: '{{Vous êtes en mode inclusion}} ' + _options.name + '. {{Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode. Pour inclure un module veuillez appuyer sur son bouton d\'inclusion (une ou plusieurs fois comme décrit dans la documentation du module).}}',
+            message: '{{Vous êtes en mode inclusion}} ' + '. {{Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode. Pour inclure un module veuillez appuyer sur son bouton d\'inclusion (une ou plusieurs fois comme décrit dans la documentation du module).}}',
             level: 'warning'
         });
     } else if (_options.state == 5) {
@@ -233,7 +286,7 @@ $('body').on('zwave::controller.data.controllerState', function (_event, _option
         $('.changeIncludeState[data-mode=0]').attr('data-state', 0);
         $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fa fa-sign-out fa-rotate-90"></i> {{Arrêter l\'exclusion}}');
         $('#div_inclusionAlert').showAlert({
-            message: '{{Vous êtes en mode exclusion sur}} ' + _options.name + '. {{Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode. Pour exclure un module veuillez appuyer sur son bouton d\'inclusion (une ou plusieurs fois comme décrit dans la documentation du module).}}',
+            message: '{{Vous êtes en mode exclusion}} ' + '. {{Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode. Pour exclure un module veuillez appuyer sur son bouton d\'inclusion (une ou plusieurs fois comme décrit dans la documentation du module).}}',
             level: 'warning'
         });
     } else {

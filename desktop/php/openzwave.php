@@ -60,10 +60,10 @@ if ($controllerMode === 0) {
 	echo '<div id="div_inclusionAlert"></div>';
 }
 if ($controllerMode === 1) {
-	echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode inclusion sur. Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode}}</div>';
+	echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode}}</div>';
 }
 if ($controllerMode === 5) {
-	echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode exclusion sur. Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}</div>';
+	echo '<div class="alert jqAlert alert-warning" id="div_inclusionAlert" style="margin : 0px 5px 15px 15px; padding : 7px 35px 7px 15px;">{{Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}</div>';
 }
 if ($controllerMode === null) {
 	event::add('jeedom::alert', array(
