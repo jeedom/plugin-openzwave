@@ -5,6 +5,7 @@
 * New Features
 
 ** Ajout d'un option pour désactiver le AssumeAwake, pour ceux qui n'ont pas de module Vision Secure
+** Suppression du mode maître / esclave. Remplacé par le plugin jeedom link.
 
 * Improvements/Enhancements
 
