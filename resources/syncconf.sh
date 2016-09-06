@@ -25,34 +25,35 @@ if [ $? -ne 0 ]; then
     echo "[$NOW][ERROR] : Unable to fetch OpenZWave git. Please check your internet connexion and github access"
     exit 1
 fi
+
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-if [ -d  ${BASEDIR}/../core/config/devices ]; then
-	NOW=$(date +"%Y-%m-%d %T")
-    echo "[$NOW][INFO] : Suppression des configurations Jeedom existantes"
-	sudo rm -rf ${BASEDIR}/../core/config/devices/*
-	NOW=$(date +"%Y-%m-%d %T")
-    echo "[$NOW][INFO] : Copie des nouvelles configurations Jeedom"
-	cd /tmp/plugin-openzwave/core/config/devices
-	sudo mv * ${BASEDIR}/../core/config/devices/
-	NOW=$(date +"%Y-%m-%d %T")
-    echo "[$NOW][INFO] : Suppression des configurations Openzwave existantes"
-	sudo rm -rf ${BASEDIR}/../resources/openzwaved/config/*
-	NOW=$(date +"%Y-%m-%d %T")
-    echo "[$NOW][INFO] : Copie des nouvelles configurations Openzwave"
-	cd /tmp/open-zwave/config
-	if [ ! -d  ${BASEDIR}/../resources/openzwaved/config ]; then
-		mkdir -p ${BASEDIR}/../resources/openzwaved/config
-	fi
-	sudo mv * ${BASEDIR}/../resources/openzwaved/config/
-	NOW=$(date +"%Y-%m-%d %T")
-    echo "[$NOW][INFO] : Nettoyage du répertoire de travail"
-	sudo rm -R /tmp/plugin-openzwave
-	sudo rm -R /tmp/open-zwave
-	sudo chown -R www-data:www-data ${BASEDIR}/../resources/openzwaved/config/
-	sudo chown -R www-data:www-data ${BASEDIR}/../core/config/devices/
-	NOW=$(date +"%Y-%m-%d %T")
-    echo "[$NOW][INFO] : Vos configurations sont maintenant à jour !"
-else
-	NOW=$(date +"%Y-%m-%d %T")
-    echo "[$NOW][ERROR] : Veuillez installer les dépendances"
+NOW=$(date +"%Y-%m-%d %T")
+echo "[$NOW][INFO] : Suppression des configurations Jeedom existantes"
+sudo rm -rf ${BASEDIR}/../core/config/devices/*
+
+NOW=$(date +"%Y-%m-%d %T")
+echo "[$NOW][INFO] : Copie des nouvelles configurations Jeedom"
+cd /tmp/plugin-openzwave/core/config/devices
+sudo mv * ${BASEDIR}/../core/config/devices/
+
+NOW=$(date +"%Y-%m-%d %T")
+echo "[$NOW][INFO] : Suppression des configurations Openzwave existantes"
+sudo rm -rf ${BASEDIR}/../resources/openzwaved/config/*
+
+NOW=$(date +"%Y-%m-%d %T")
+echo "[$NOW][INFO] : Copie des nouvelles configurations Openzwave"
+cd /tmp/open-zwave/config
+if [ ! -d  ${BASEDIR}/../resources/openzwaved/config ]; then
+    mkdir -p ${BASEDIR}/../resources/openzwaved/config
 fi
+sudo mv * ${BASEDIR}/../resources/openzwaved/config/
+
+NOW=$(date +"%Y-%m-%d %T")
+echo "[$NOW][INFO] : Nettoyage du répertoire de travail"
+sudo rm -R /tmp/plugin-openzwave
+sudo rm -R /tmp/open-zwave
+sudo chown -R www-data:www-data ${BASEDIR}/../resources/openzwaved/config/
+sudo chown -R www-data:www-data ${BASEDIR}/../core/config/devices/
+
+NOW=$(date +"%Y-%m-%d %T")
+echo "[$NOW][INFO] : Vos configurations sont maintenant à jour !"
