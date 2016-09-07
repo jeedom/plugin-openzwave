@@ -345,15 +345,6 @@ class openzwave extends eqLogic {
 	}
 
 	public static function syncconfOpenzwave($_background = true) {
-		if (config::byKey('jeeNetwork::mode') == 'master') {
-			foreach (jeeNetwork::byPlugin('openzwave') as $jeeNetwork) {
-				try {
-					$jeeNetwork->sendRawRequest('syncconfOpenzwave', array('plugin' => 'openzwave'));
-				} catch (Exception $e) {
-
-				}
-			}
-		}
 		log::remove('openzwave_syncconf');
 		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../resources/syncconf.sh';
 		if ($_background) {
@@ -423,10 +414,10 @@ class openzwave extends eqLogic {
 		}
 		$disabledNodes = trim($disabledNodes, ',');
 
-        $assumeAwake = 1;
-        if (config::byKey('assume_awake', 'openzwave') == 0) {
-            $assumeAwake = 0;
-        }
+		$assumeAwake = 1;
+		if (config::byKey('assume_awake', 'openzwave') == 0) {
+			$assumeAwake = 0;
+		}
 
 		$cmd = '/usr/bin/python ' . $openzwave_path . '/openzwaved/openzwaved.py ';
 		$cmd .= ' --pidfile=/tmp/openzwaved.pid';
@@ -438,7 +429,7 @@ class openzwave extends eqLogic {
 		$cmd .= ' --callback=' . $callback;
 		$cmd .= ' --apikey=' . $apikey;
 		$cmd .= ' --suppressRefresh=' . $suppressRefresh;
-        $cmd .= ' --assumeAwake=' . $assumeAwake;
+		$cmd .= ' --assumeAwake=' . $assumeAwake;
 		if ($disabledNodes != '') {
 			$cmd .= ' --disabledNodes=' . $disabledNodes;
 		}
