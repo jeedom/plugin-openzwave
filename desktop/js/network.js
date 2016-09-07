@@ -815,7 +815,7 @@ var app_network = {
                     if (node.data.name.value != '') {
                         routingTableHeader += '<th title="' + node.data.location.value + ' ' + node.data.name.value + '" >' + nodeId + '</th>';
                         if (isset(eqLogic_human_name[nodeId])) {
-                            var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '">' + nodeId + '</span>';
+                            var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '">' + nodeId + ' ' + eqLogic_human_name[nodeId] + '</span>';
                         } else {
                             var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '"><span class="label label-primary">' + node.data.location.value + '</span> ' + node.data.name.value + '</span>';
                         }
