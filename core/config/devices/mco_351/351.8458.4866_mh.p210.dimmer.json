@@ -110,8 +110,8 @@
 			{"index": 2, "value": "add"}
 		],
 		"params" : [
-			{"index": 1, "value" : 15},
-			{"index": 2, "value" : 120}
+			{"index": 2, "value" : 15},
+			{"index": 3, "value" : 120}
 		],
 		"needswakeup" : false
 	}
