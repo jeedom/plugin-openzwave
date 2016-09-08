@@ -908,7 +908,7 @@ def sanity_checks(force=False):
                 elif my_node.is_listening_device and my_node.is_ready:
                     # check if a ping is require
                     if hasattr(my_node, 'last_notification'):
-                        # logging.debug('=> last_notification for nodeId: %s is: %s(%s)' % (node_id, my_node.last_notification.description, my_node.last_notification.code,))
+                        logging.debug('=> last_notification for nodeId: %s is: %s(%s)' % (node_id, my_node.last_notification.description, my_node.last_notification.code,))
                         # is in timeout or dead
                         if my_node.last_notification.code in [1, 5]:
                             logging.info('=> Do a test on node %s' % (node_id,))
