@@ -114,7 +114,7 @@
 		}
 	},
 	{
-		"name": "Tension totale",
+		"name": "Tension moyenne",
 		"type": "info",
 		"subtype": "numeric",
 		"isVisible": 1,
