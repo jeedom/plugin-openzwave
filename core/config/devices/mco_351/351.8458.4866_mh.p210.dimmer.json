@@ -107,7 +107,7 @@
 	}],
 	"recommended" : {
 		"groups" : [
-			{"index": 2, "value": "add"}
+			{"index": 1, "value": "add"}
 		],
 		"params" : [
 			{"index": 2, "value" : 15},
