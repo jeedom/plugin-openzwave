@@ -1,0 +1,224 @@
+{
+	"name": "Micromodule Energy Meter (PH-PAB01)",
+	"doc": "",
+	"type": "Consommation",
+	"comlink": "3576-zipato-micromodule-compteur-d-energie-z-wave-3858890732689",
+	"remark": "Vendu sous la marique Zipato",
+	"imglink": "philio.phpab01",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Consommation totale",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "KWh",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[0].val",
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Consommation phase 1",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "KWh",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 1,
+			"value": "data[0].val",
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Consommation phase 2",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "KWh",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 2,
+			"value": "data[0].val",
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Puissance totale",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "W",
+		"display": {
+			"generic_type": "POWER"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[8].val",
+			"maxValue": 12000,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Puissance phase 1",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "W",
+		"display": {
+			"generic_type": "POWER"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 1,
+			"value": "data[8].val",
+			"maxValue": 12000,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Puissance phase 2",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "W",
+		"display": {
+			"generic_type": "POWER"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 2,
+			"value": "data[8].val",
+			"maxValue": 12000,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Tension totale",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "V",
+		"display": {
+			"generic_type": "VOLTAGE"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[16].val",
+			"maxValue": 240,
+			"minValue": 220
+		}
+	},
+	{
+		"name": "Tension phase 1",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "V",
+		"display": {
+			"generic_type": "VOLTAGE"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 1,
+			"value": "data[16].val",
+			"maxValue": 240,
+			"minValue": 220
+		}
+	},
+	{
+		"name": "Tension phase 2",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "V",
+		"display": {
+			"generic_type": "VOLTAGE"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 2,
+			"value": "data[16].val",
+			"maxValue": 240,
+			"minValue": 220
+		}
+	},
+	{
+		"name": "Intensité totale",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "A",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[20].val",
+			"maxValue": 200,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Intensité phase 1",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "A",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 1,
+			"value": "data[20].val",
+			"maxValue": 60,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Intensité phase 2",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "A",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 2,
+			"value": "data[20].val",
+			"maxValue": 60,
+			"minValue": 0
+		}
+	}]
+}
