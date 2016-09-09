@@ -68,7 +68,7 @@ _data_folder = None
 _pidfile = '/tmp/openzwaved.pid'
 _apikey = ''
 _callback = ''
-_assumeAwake = True
+_assumeAwake = False
 
 # default_poll_interval = 1800000  # 30 minutes
 _default_poll_interval = 300000  # 5 minutes
@@ -216,9 +216,9 @@ for arg in sys.argv:
     elif arg.startswith("--suppressRefresh="):
         temp, suppress_refresh = arg.split("=")
         _suppress_refresh = suppress_refresh == 1
-    elif arg.startswith("--assumeAwake="):
-        temp, assumeAwake = arg.split("=")
-        _assumeAwake = assumeAwake == 1
+    # elif arg.startswith("--assumeAwake="):
+    #     temp, assumeAwake = arg.split("=")
+    #     _assumeAwake = assumeAwake == 1
     elif arg.startswith("--disabledNodes="):
         temp, disabled_nodes = arg.split("=")
         if disabled_nodes != '':
@@ -892,9 +892,9 @@ def sanity_checks(force=False):
                 if my_node.is_failed:
                     if _ghost_node_id is not None and node_id == _ghost_node_id:
                         continue
-                    logging.info('=> Try recovering, presumed Dead, nodeId: %s' % (node_id,))
+                    logging.info('=> Try recovering, presumed Dead, nodeId: %s with a Ping' % (node_id,))
                     # a ping will try to revive the node
-                    _network.manager.testNetworkNode(_network.home_id, node_id, 1)
+                    _network.manager.testNetworkNode(_network.home_id, node_id, 3)
                     # avoid stress network
                     time.sleep(5)
                     if _network.manager.hasNodeFailed(_network.home_id, node_id):
@@ -902,6 +902,7 @@ def sanity_checks(force=False):
                         time.sleep(4)
                     if my_node.is_failed:
                         # relive failed nodes
+                        logging.info('=> Try recovering, presumed Dead, nodeId: %s with a NIF' % (node_id,))
                         if _network.manager.sendNodeInformation(_network.home_id, node_id):
                             # avoid stress network
                             time.sleep(4)

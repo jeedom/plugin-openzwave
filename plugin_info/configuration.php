@@ -62,12 +62,12 @@ if (!isConnect()) {
 				<input type="checkbox" class="configKey" data-l1key="enabled_sanity_tests" checked/>
 			</div>
 		</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">{{Assume Awake, recommandée pour modules Vision Secure}}</label>
-				<div class="col-sm-2">
-					<input type="checkbox" class="configKey" data-l1key="assume_awake" checked/>
-				</div>
+		<!--<div class="form-group">
+			<label class="col-sm-4 control-label">{{Assume Awake, recommandée pour modules Vision Secure}}</label>
+			<div class="col-sm-2">
+				<input type="checkbox" class="configKey" data-l1key="assume_awake" checked/>
 			</div>
+		</div>-->
 		<legend><i class="fa fa-cog"></i>  {{Gestion avancée}}</legend>
 		<div class="form-group">
 			<label class="col-lg-4 control-label">{{Options avancées}}</label>
@@ -89,10 +89,10 @@ if (!isConnect()) {
 					<option value="none">{{Aucun}}</option>
 					<option value="auto">{{Auto}}</option>
 					<?php
-foreach (jeedom::getUsbMapping('', true) as $name => $value) {
-	echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
-}
-?>
+					foreach (jeedom::getUsbMapping('', true) as $name => $value) {
+						echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
+					}
+					?>
 				</select>
 			</div>
 		</div>
