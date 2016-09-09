@@ -8,27 +8,9 @@
 	"configuration": {
 		"conf_version": 1
 	},
-	"commands": [{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].val"
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "OPENING"
-		},
-		"template": {
-			"dashboard": "door",
-			"mobile": "door"
-		}
-	},
+	"commands": [
 	{
-		"name": "Etat basic",
+		"name": "Etat",
 		"type": "info",
 		"subtype": "binary",
 		"isVisible": 1,
