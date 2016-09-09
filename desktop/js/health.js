@@ -276,11 +276,11 @@ var app_health = {
             // statistics total
             tbody += '<td>';
             if (nodes[node_id].data.isEnable.value) {
-                if (nodes[node_id].data.statistics != undefined && nodes[node_id].data.statistics.total > 0) {
+                // if (nodes[node_id].data.statistics != undefined && nodes[node_id].data.statistics.total > 0) {
                     tbody += '<span class="label label-primary" style="font-size : 1em;">' + nodes[node_id].data.statistics.total + '</span>';
-                } else if (nodes[node_id].data.statistics != undefined && nodes[node_id].data.statistics.total != null) {
-                    tbody += '<span class="label label-warning" style="font-size : 1em;">' + nodes[node_id].data.statistics.total + '</span>';
-                }
+                // } else if (nodes[node_id].data.statistics != undefined && nodes[node_id].data.statistics.total != null) {
+                //     tbody += '<span class="label label-warning" style="font-size : 1em;">' + nodes[node_id].data.statistics.total + '</span>';
+                // }
             }
             tbody += '</td>';
             // statistics % ok
