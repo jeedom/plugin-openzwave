@@ -35,6 +35,13 @@ image:../images/appliance04.png[]
 * *Configuration* : fenêtre de configuration des paramètres du module
 * *Assistant* : disponible uniquement sur certains modules, il vous aide à configurer le module (cas sur le zipato keyboard par exemple)
 * *Documentation* : ce bouton vous permet d'ouvrir directement la documentation Jeedom concernant ce module.
+* *Supprimer* : Permet de supprimer un équipement ainsi que tous ces commandes rattaché sans l'exclure du réseau Z-Wave.
+
+[IMPORTANT]
+La suppression d'un équipement n'engendre pas une exclusion du module sur le contrôleur.
+image:../images/appliance11.png[]
+Un équipement supprimé qui est toujours rattaché à son contrôleur sera automatiquement recréé suite à la synchronisation.
+
 
 === Commandes
 
