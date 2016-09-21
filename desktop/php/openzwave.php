@@ -2,11 +2,9 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
-include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
-include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
-sendVarToJS('eqType', 'openzwave');
-sendVarToJS('marketAddr', config::byKey('market::address'));
+$plugin = plugin::byId('openzwave');
+sendVarToJS('eqType', $plugin->getId());
+$eqLogics = eqLogic::byType($plugin->getId());
 echo '<div id="div_inclusionAlert"></div>';
 $controllerMode = 0;
 $networkState = 10;
@@ -72,8 +70,6 @@ if ($controllerMode === null) {
 		'message' => __('Impossible de contacter le serveur Z-wave', __FILE__),
 	));
 }
-
-$eqLogics = eqLogic::byType('openzwave');
 $tags = array();
 if (is_array($eqLogics)) {
 	foreach ($eqLogics as $eqLogic) {
@@ -180,7 +176,7 @@ foreach ($eqLogics as $eqLogic) {
 	if ($eqLogic->getImgFilePath() !== false) {
 		echo '<img class="lazy" src="plugins/openzwave/core/config/devices/' . $eqLogic->getImgFilePath() . '" height="105" width="95" />';
 	} else {
-		echo '<img class="lazy" src="plugins/openzwave/doc/images/openzwave_icon.png" height="105" width="95" />';
+		echo '<img src="' . $plugin->getPathImgIcon() . '" height="105" width="95" />';
 	}
 	echo "</center>";
 	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $eqLogic->getHumanName(true, true) . '</center></span>';
