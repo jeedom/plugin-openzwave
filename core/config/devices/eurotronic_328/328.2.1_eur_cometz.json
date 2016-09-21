@@ -85,6 +85,116 @@
 		}
 	},
 	{
+		"name": "Commande Comfort",
+		"type": "action",
+		"subtype": "slider",
+		"value" : "Consigne Comfort",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_SETPOINT"
+		},
+		"configuration": {
+			"class": "0x43",
+			"instanceId": 0,
+			"value": "data[1].Set(#slider#)",
+			"maxValue": 28,
+			"minValue": 4
+		}
+	},
+	{
+		"name": "Consigne Comfort",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "THERMOSTAT_SETPOINT"
+		},
+		"configuration": {
+			"class": "0x43",
+			"instanceId": 0,
+			"value": "data[1].val",
+			"maxValue": 28,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Consigne Comfort pending",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x43",
+			"instanceId": 10,
+			"value": "data[1].val",
+			"maxValue": 28,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Commande Energy saving",
+		"type": "action",
+		"subtype": "slider",
+		"value" : "Consigne Energy saving",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_SETPOINT"
+		},
+		"configuration": {
+			"class": "0x43",
+			"instanceId": 0,
+			"value": "data[11].Set(#slider#)",
+			"maxValue": 28,
+			"minValue": 4
+		}
+	},
+	{
+		"name": "Consigne Energy saving",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "THERMOSTAT_SETPOINT"
+		},
+		"configuration": {
+			"class": "0x43",
+			"instanceId": 0,
+			"value": "data[11].val",
+			"maxValue": 28,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Consigne Energy saving pending",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x43",
+			"instanceId": 10,
+			"value": "data[11].val",
+			"maxValue": 28,
+			"minValue": 0
+		}
+	},
+	{
 		"name": "Batterie",
 		"type": "info",
 		"display": {
