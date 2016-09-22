@@ -70,7 +70,7 @@
 		},
 		"configuration": {
 			"class": "0x32",
-			"value": "data[0].val",
+			"value": "data[8].val",
 			"maxValue": 2500,
 			"minValue": 0
 		}
@@ -87,7 +87,7 @@
 		},
 		"configuration": {
 			"class": "0x32",
-			"value": "data[8].val"
+			"value": "data[0].val"
 		},
 		"template": {
 			"dashboard": "tile"
