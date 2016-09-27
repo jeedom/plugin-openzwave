@@ -699,8 +699,8 @@ def graceful_stop_network():
     logging.info('Graceful stopping the ZWave network.')
     global _network
     global _network_is_running
-    home_id = _network.home_id_str
     if _network is not None:
+        home_id = _network.home_id_str
         _network_is_running = False
         _network.stop()
         # We disconnect to the louie dispatcher
@@ -738,8 +738,10 @@ def graceful_stop_network():
         _network.destroy()
         # avoid a second pass
         _network = None
-    logging.info('The Openzwave REST-server was stopped in a normal way')
-    backup_xml_config('stop', home_id)
+        logging.info('The Openzwave REST-server was stopped in a normal way')
+        backup_xml_config('stop', home_id)
+    else:
+        logging.info('The Openzwave REST-server is already stopped')
 
 
 # Define some manager options
