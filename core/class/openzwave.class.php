@@ -285,7 +285,7 @@ class openzwave extends eqLogic {
 			try {
 				$plugin = plugin::byId('openzwave');
 				if (is_object($plugin)) {
-					$plugin->deamon_start(false, true);
+					$plugin->deamon_start();
 				}
 			} catch (Exception $e) {
 
