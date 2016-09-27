@@ -59,6 +59,24 @@
 			"instanceId": 0,
 			"value": "data[0].val"
 		}
+	},
+	{
+		"name": "Scene",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x2b",
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "tile",
+			"mobile": "tile"
+		}
 	}],
 	"configuration": {
 		"1": {
