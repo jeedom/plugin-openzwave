@@ -47,6 +47,7 @@ except Exception as e:
 
 try:
     from jeedom.jeedom import *
+
 except ImportError:
     print "Error: importing module jeedom.jeedom"
     sys.exit(1)
@@ -88,6 +89,8 @@ _recovering_failed_nodes_timer = 900.0  # 15 minutes
 _recovering_failed_nodes_jobs_timer = 900.0  # 15 minutes
 _maximum_number_notifications = 25
 _sanity_checks_delay = 15.0
+_not_supported_nodes = [0, 255]
+_user_values_to_refresh = ["Level", "Sensor", "Switch", "Power", "Temperature", "Alarm Type", "Alarm Type", "Power Management"]
 
 _network = None
 _network_information = None
@@ -195,7 +198,6 @@ SPECIFIC_TYPE_CLASS_A_MOTOR_CONTROL = 5
 SPECIFIC_TYPE_CLASS_B_MOTOR_CONTROL = 6
 SPECIFIC_TYPE_CLASS_C_MOTOR_CONTROL = 7
 
-
 for arg in sys.argv:
     if arg.startswith("--device="):
         temp, _device = arg.split("=")
@@ -225,6 +227,7 @@ for arg in sys.argv:
             _disabled_nodes = [int(disabled_node_id) for disabled_node_id in disabled_nodes.split(',')]
 
 _cycle = float(_cycle)
+
 jeedom_utils.set_log_level(_log_level)
 
 logging.info('Start openzwaved')
@@ -254,6 +257,18 @@ logging.info("Check Openzwave")
 from openzwave.controller import ZWaveController
 from openzwave.network import ZWaveNetwork
 from openzwave.option import ZWaveOption
+
+
+from ControllerMode import ControllerMode
+from NetworkInformation import NetworkInformation
+from PendingConfiguration import PendingConfiguration
+from PendingAssociation import PendingAssociation
+from NodeNotification import NodeNotification
+
+_pending_configurations = {}
+_pending_associations = {}
+_node_notifications = {}
+
 
 # from openzwave.group import ZWaveGroup
 logging.info("--> pass")
@@ -287,291 +302,6 @@ if _device == 'auto':
         logging.error('No USB Z-Wave Stick detected')
         sys.exit(1)
 
-Idle = 0
-AddDevice = 1
-RemoveDevice = 5
-
-_not_supported_nodes = [0, 255]
-
-_user_values_to_refresh = ["Level", "Sensor", "Switch", "Power", "Temperature", "Alarm Type", "Alarm Type",
-                           "Power Management"]
-
-
-class ControllerMode:
-    def __init__(self):
-        pass
-
-    class Idle:
-        def __init__(self):
-            pass
-
-    class AddDevice:
-        def __init__(self):
-            pass
-
-    class RemoveDevice:
-        def __init__(self):
-            pass
-
-
-class NetworkInformation(object):
-    def __init__(self):
-        self._actualMode = ControllerMode.Idle
-        self._start_time = int(time.time())
-        self._awake_time = None
-        self._config_file_save_in_progress = False
-        self._controller_is_busy = False
-        self._controller_state = ZWaveController.STATE_STARTING
-        self._last_controller_notifications = [
-            {"state": self._controller_state, "details": '', "error": None, "error_description": None,
-             "timestamp": int(time.time())}]
-        self._error = None
-        self._error_description = None
-
-    @property
-    def actual_mode(self):
-        return self._actualMode
-
-    @actual_mode.setter
-    def actual_mode(self, value):
-        self._actualMode = value
-
-    @property
-    def start_time(self):
-        return self._start_time
-
-    @start_time.setter
-    def start_time(self, value):
-        self._start_time = value
-
-    @property
-    def config_file_save_in_progress(self):
-        return self._config_file_save_in_progress
-
-    @config_file_save_in_progress.setter
-    def config_file_save_in_progress(self, value):
-        self._config_file_save_in_progress = value
-
-    @property
-    def controller_is_busy(self):
-        return self._controller_is_busy
-
-    @controller_is_busy.setter
-    def controller_is_busy(self, value):
-        self._controller_is_busy = value
-
-    @property
-    def controller_state(self):
-        return self._controller_state
-
-    @property
-    def last_controller_notifications(self):
-        return self._last_controller_notifications
-
-    @property
-    def error(self):
-        return self._error
-
-    @property
-    def error_description(self):
-        return self._error_description
-
-    def set_as_awake(self):
-        self._awake_time = int(time.time())
-        self.assign_controller_notification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is awake")
-
-    @property
-    def controller_awake_delay(self):
-        if self._awake_time is not None:
-            return self._awake_time - self._start_time
-        return None
-
-    def assign_controller_notification(self, state, details, error=None, error_description=None):
-        self._controller_state = state
-
-        if len(self._last_controller_notifications) == _maximum_number_notifications:
-            self._last_controller_notifications.pop()
-
-        self._last_controller_notifications.insert(0, {"state": state, "details": details, "error": error,
-                                                       "error_description": error_description,
-                                                       "timestamp": int(time.time())})
-
-        if state == ZWaveController.STATE_WAITING:
-            self.controller_is_busy = True
-        elif state == ZWaveController.STATE_INPROGRESS:
-            self.controller_is_busy = True
-        elif state == ZWaveController.STATE_STARTING:
-            self.controller_is_busy = True
-        else:
-            self.controller_is_busy = False
-            # reset flag
-            self.actual_mode = ControllerMode.Idle
-
-    def generate_jeedom_message(self):
-        if self.actual_mode == ControllerMode.AddDevice:
-            return AddDevice
-        elif self.actual_mode == ControllerMode.RemoveDevice:
-            return RemoveDevice
-        else:
-            return Idle
-
-    def reset(self):
-        self._actualMode = ControllerMode.Idle
-        self._start_time = int(time.time())
-        self._awake_time = None
-        self._config_file_save_in_progress = False
-        self._controller_is_busy = False
-        self._controller_state = ZWaveController.STATE_STARTING
-        self._error = None
-        self._error_description = None
-        self._last_controller_notifications = [{"state": self._controller_state, "details": '', "error": self._error,
-                                                "error_description": self._error_description,
-                                                "timestamp": int(time.time())}]
-
-
-class PendingConfiguration(object):
-    def __init__(self, expected_data, timeout):
-        self._startTime = int(time.time())
-        self._expected_data = expected_data
-        self._timeOut = timeout
-        self._data = None
-
-    @property
-    def expected_data(self):
-        return self._expected_data
-
-    @property
-    def data(self):
-        return self._data
-
-    @data.setter
-    def data(self, value):
-        self._data = value
-
-    @property
-    def state(self):
-        if self._data is None:
-            # is pending
-            return 3
-        if self._data != self._expected_data:
-            # the node reject changes and set a default
-            return 2
-        # the parameter have be set successfully
-        return 1
-
-
-class PendingAssociation(object):
-    def __init__(self, pending_added, pending_removed, timeout):
-        self._startTime = int(time.time())
-        self._pending_added = pending_added
-        self._pending_removed = pending_removed
-        self._timeOut = timeout
-        self._associations = None
-
-    @property
-    def pending_added(self):
-        return self._pending_added
-
-    @pending_added.setter
-    def pending_added(self, value):
-        self._pending_added = value
-        self._pending_removed = None
-
-    @property
-    def pending_removed(self):
-        return self._pending_removed
-
-    @pending_removed.setter
-    def pending_removed(self, value):
-        self._pending_removed = value
-        self._pending_added = None
-
-    @property
-    def associations(self):
-        return self._associations
-
-    @associations.setter
-    def associations(self, value):
-        self._associations = value
-
-    @property
-    def state(self):
-        if self._associations is None:
-            # is pending
-            return 3
-        if self._pending_added is not None and self._pending_added in self._associations:
-            # the association have be added successfully
-            return 1
-        if self._pending_removed is not None and not (self._pending_removed in self._associations):
-            # the association have be removed successfully
-            return 1
-        # the association reject
-        return 1  # TODO: fix test with multi instances associations
-
-
-class NodeNotification(object):
-    def __init__(self, code, wake_up_time=None):
-        self._code = code
-        self._description = code
-        self._help = code
-        self._wake_up_time = wake_up_time
-        self._next_wake_up = None
-        self.refresh(code, wake_up_time)
-        self._receive_time = None
-
-    def refresh(self, code, wake_up_time):
-        # save notification
-        self._code = code
-        # reset time stamp
-        self._receive_time = int(time.time())
-        if self.code == 0:
-            self._description = "Completed"
-            self._help = "Completed messages"
-        elif self.code == 1:
-            self._description = "Timeout"
-            self._help = "Messages that timeout will send a Notification with this code"
-        elif self.code == 2:
-            self._description = "NoOperation"
-            self._help = "Report on NoOperation message sent completion"
-        elif self.code == 3:
-            self._description = "Awake"
-            self._help = "Report when a sleeping node wakes"
-            self._next_wake_up = None  # clear and wait sleep to compute next expected wake up
-        elif self.code == 4:
-            self._description = "Sleep"
-            self._help = "Report when a node goes to sleep"
-            # if they go to sleep, compute the next expected wake up time
-            if wake_up_time is not None and wake_up_time > 0:
-                self._next_wake_up = self._receive_time + wake_up_time
-        elif self.code == 5:
-            self._description = "Dead"
-            self._help = "Report when a node is presumed dead"
-        elif self.code == 6:
-            self._description = "Alive"
-            self._help = "Report when a node is revived"
-        else:
-            self._description = "Unknown state"
-            self._help = ""
-
-    @property
-    def code(self):
-        return self._code
-
-    @property
-    def receive_time(self):
-        return self._receive_time
-
-    @property
-    def description(self):
-        return self._description
-
-    @property
-    def help(self):
-        return self._help
-
-    @property
-    def next_wake_up(self):
-        return self._next_wake_up
 
 def shutdown_server():
     func = request.environ.get('werkzeug.server.shutdown')
@@ -581,11 +311,14 @@ def shutdown_server():
 
 
 def start_network():
-    global _network_information, _force_refresh_nodes, _network
+    global _network_information, _force_refresh_nodes, _network, _pending_configurations, _pending_associations, _node_notifications
     # reset flags
     _force_refresh_nodes = []
+    _pending_configurations.clear()
+    _pending_associations.clear()
+    _node_notifications.clear()
     if _network_information is None:
-        _network_information = NetworkInformation()
+        _network_information = NetworkInformation(_maximum_number_notifications)
     else:
         _network_information.reset()
     logging.info('******** The ZWave network is being started ********')
@@ -910,10 +643,11 @@ def sanity_checks(force=False):
                             time.sleep(4)
                 elif my_node.is_listening_device and my_node.is_ready:
                     # check if a ping is require
-                    if hasattr(my_node, 'last_notification'):
-                        logging.debug('=> last_notification for nodeId: %s is: %s(%s)' % (node_id, my_node.last_notification.description, my_node.last_notification.code,))
+                    if node_id in _node_notifications:
+                        last_notification = _node_notifications[node_id]
+                        logging.debug('=> last_notification for nodeId: %s is: %s(%s)' % (node_id, last_notification.description, last_notification.code,))
                         # is in timeout or dead
-                        if my_node.last_notification.code in [1, 5]:
+                        if last_notification.code in [1, 5]:
                             logging.info('=> Do a test on node %s' % (node_id,))
                             # a ping will try to resolve this situation with a NoOperation CC.
                             _network.manager.testNetworkNode(_network.home_id, node_id, 3)
@@ -924,9 +658,10 @@ def sanity_checks(force=False):
                         can_wake_up = my_node.can_wake_up()
                     except RuntimeError:
                         can_wake_up = False
-                    if can_wake_up and hasattr(my_node, 'last_notification'):
+                    if can_wake_up and node_id in _node_notifications:
+                        last_notification = _node_notifications[node_id]
                         # check if controller think is awake
-                        if my_node.is_awake or my_node.last_notification.code == 3:
+                        if my_node.is_awake or last_notification.code == 3:
                             logging.info('trying to lull the node %s' % (node_id,))
                             # a ping will force the node to return sleep after the NoOperation CC. Will force node notification update
                             _network.manager.testNetworkNode(_network.home_id, node_id, 1)
@@ -1231,13 +966,14 @@ def value_polling_enabled(network, node, value):
 
 
 def prepare_value_notification(node, value):
-    if hasattr(value, 'pendingConfiguration'):
-        if value.pendingConfiguration is not None:
+    if value.id_on_network in _pending_configurations:
+        pending = _pending_configurations[value.id_on_network]
+        if pending is not None:
             # mark result
             data = value.data
             if value.type == 'Short':
                 data = normalize_short_value(value.data)
-            value.pendingConfiguration.data = data
+            pending.data = data
 
     if not node.is_ready:
         # check if have the attribute
@@ -1327,9 +1063,10 @@ def node_group_changed(network, node, groupidx):
     logging.info('Group changed for nodeId %s index %s' % (node.node_id, groupidx,))
     validate_association_groups(node.node_id)
     # check pending for this group index
-    if hasattr(node, 'pendingAssociations'):
-        if groupidx in node.pendingAssociations:
-            pending_association = node.pendingAssociations[groupidx]
+    if node.node_id in _pending_associations:
+        pending = _pending_associations[node.node_id]
+        if groupidx in pending:
+            pending_association = pending[groupidx]
             if pending_association is not None:
                 pending_association.associations = node.groups[groupidx].associations
 
@@ -1346,7 +1083,10 @@ def force_sleeping(node_id, count=1):
         my_node = _network.nodes[node_id]
         logging.debug('check if node %s still awake' % (node_id,))
         # check if still awake
-        if my_node.is_awake or (hasattr(my_node, 'last_notification') and my_node.last_notification.code == 3):
+        last_notification = None
+        if node_id in _node_notifications:
+            last_notification = _node_notifications[node_id]
+        if my_node.is_awake or (last_notification is not None and last_notification.code == 3):
             logging.debug('trying to lull the node %s' % (node_id,))
             # a ping will force the node to return sleep after the NoOperation CC. Will force notification update too
             _network.manager.testNetworkNode(_network.home_id, node_id, count)
@@ -1370,11 +1110,11 @@ def node_notification(args):
             return
 
         wake_up_time = get_wake_up_interval(node_id)
-        if not hasattr(my_node, 'last_notification'):
-            my_node.last_notification = NodeNotification(code, wake_up_time)
+        if node_id not in _node_notifications:
+            _node_notifications[node_id] = NodeNotification(code, wake_up_time)
         else:
             # I refresh notification, the wake up time can be modified from last time, we need to calculate the next expected wake up time
-            my_node.last_notification.refresh(code, wake_up_time)
+            _node_notifications[node_id].refresh(code, wake_up_time)
         if code == 3:
             # get the device Wake-up Interval Step
             my_value = get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval Step', False)
@@ -1386,7 +1126,9 @@ def node_notification(args):
                 wake_up_interval_step = 60.0
             # perform a ping to avoid device still awake after the Wake-up Interval Step
             threading.Timer(interval=wake_up_interval_step, function=force_sleeping, args=(node_id, 1)).start()
-        logging.info('NodeId %s send a notification: %s' % (node_id, my_node.last_notification.description,))
+        if node_id in _node_notifications:
+            last_notification = _node_notifications[node_id]
+            logging.info('NodeId %s send a notification: %s' % (node_id, last_notification.description,))
         push_node_notification(node_id, code)
 
 
@@ -1495,7 +1237,7 @@ def get_value_by_id(node_id, value_id):
 
 def mark_pending_change(my_value, data, wake_up_time=0):
     if my_value is not None and not my_value.is_write_only:
-        my_value.pendingConfiguration = PendingConfiguration(data, wake_up_time)
+        _pending_configurations[my_value.id_on_network] = PendingConfiguration(data, wake_up_time)
 
 
 def concatenate_list(list_values, separator=';'):
@@ -1566,16 +1308,20 @@ def check_pending_changes(node_id):
         if my_value.is_read_only:
             continue
         pending_state = None
-        if hasattr(my_value, 'pendingConfiguration'):
-            if my_value.pendingConfiguration is not None:
-                pending_state = my_value.pendingConfiguration.state
+
+        if my_value.id_on_network in _pending_configurations:
+            pending_configuration = _pending_configurations[my_value.id_on_network]
+            if pending_configuration is not None:
+                pending_state = pending_configuration.state
+
         if pending_state is None or pending_state == 1:
             continue
         pending_changes += 1
         # logging.debug("pending Configuration for cc: %s index %s" % (my_value.command_class, my_value.index,))
-    if hasattr(my_node, 'pendingAssociations'):
-        for index_group in list(my_node.pendingAssociations):
-            pending_association = my_node.pendingAssociations[index_group]
+    if my_node.node_id in _pending_associations:
+        pending_associations = _pending_associations[my_node.node_id]
+        for index_group in list(pending_associations):
+            pending_association = pending_associations[index_group]
             pending_state = None
             if pending_association is not None:
                 pending_state = pending_association.state
@@ -1709,19 +1455,21 @@ def serialize_node_to_json(node_id):
         for groupIndex in list(my_node.groups):
             group = my_node.groups[groupIndex]
             pending_state = 1
-            if hasattr(my_node, 'pendingAssociations'):
-                if groupIndex in my_node.pendingAssociations:
-                    pending_association = my_node.pendingAssociations[groupIndex]
+            if my_node.node_id in _pending_associations:
+                pending_associations = _pending_associations[my_node.node_id]
+                if groupIndex in pending_associations:
+                    pending_association = pending_associations[groupIndex]
                     if pending_association.state is not None:
                         pending_state = pending_association.state
                         if pending_state is not None and pending_state > 1:
                             pending_changes += 1
-            json_result['groups'][groupIndex] = {"label": group.label, "maximumAssociations": group.max_associations,
+            json_result['groups'][groupIndex] = {"label": group.label,
+                                                 "maximumAssociations": group.max_associations,
                                                  "associations": list(group.associations_instances),
                                                  "pending": pending_state}
         json_result['associations'] = serialize_associations(node_id)
-        if hasattr(my_node, 'last_notification'):
-            notification = my_node.last_notification
+        if node_id in _node_notifications:
+            notification = _node_notifications[node_id]
             json_result['last_notification'] = {"receiveTime": notification.receive_time,
                                                 "code": notification.code,
                                                 "description": notification.description,
@@ -1781,10 +1529,11 @@ def serialize_node_to_json(node_id):
             pending_state = None
             expected_data = None
             data_items = concatenate_list(my_value.data_items)
-            if hasattr(my_value, 'pendingConfiguration'):
-                if my_value.pendingConfiguration is not None:
-                    pending_state = my_value.pendingConfiguration.state
-                    expected_data = my_value.pendingConfiguration.expected_data
+            if my_value.id_on_network in _pending_configurations:
+                pending = _pending_configurations[my_value.id_on_network]
+                if pending is not None:
+                    pending_state = pending.state
+                    expected_data = pending.expected_data
                     if pending_state is not None and pending_state > 1:
                         pending_changes += 1
             try:
@@ -1849,8 +1598,8 @@ def serialize_node_notification(node_id):
     if node_id in _not_supported_nodes:
         return json_result
     my_node = _network.nodes[node_id]
-    if hasattr(my_node, 'last_notification'):
-        notification = my_node.last_notification
+    if node_id in _node_notifications:
+        notification = _node_notifications[node_id]
         return {"receiveTime": notification.receive_time,
                 "description": notification.description,
                 "isFailed": my_node.is_failed
@@ -1904,8 +1653,8 @@ def serialize_node_health(node_id):
             pass
         json_result['data']['battery_level'] = {'value': battery_level_data, 'updateTime': battery_level_last_update}
         next_wake_up = None
-        if hasattr(my_node, 'last_notification'):
-            notification = my_node.last_notification
+        if node_id in _node_notifications:
+            notification = _node_notifications[node_id]
             next_wake_up = notification.next_wake_up
             json_result['last_notification'] = {"receiveTime": notification.receive_time,
                                                 "description": notification.description,
@@ -1981,10 +1730,10 @@ def get_network_mode():
     """
     if _network_information.controller_is_busy:
         if _network_information.actual_mode == ControllerMode.AddDevice:
-            return AddDevice
+            return NetworkInformation.AddDevice
         elif _network_information.actual_mode == ControllerMode.RemoveDevice:
-            return RemoveDevice
-    return Idle
+            return NetworkInformation.RemoveDevice
+    return NetworkInformation.Idle
 
 
 def serialize_controller_to_json():
@@ -2312,9 +2061,9 @@ def remove_assoc(node_id, group_index, target_node_id):
     logging.info("remove_assoc to nodeId: %s in group %s with nodeId: %s" % (node_id, group_index, target_node_id,))
     if node_id in _network.nodes:
         my_node = _network.nodes[node_id]
-        if not hasattr(my_node, 'pendingAssociations'):
-            my_node.pendingAssociations = dict()
-        my_node.pendingAssociations[group_index] = PendingAssociation(pending_added=None, pending_removed=target_node_id, timeout=0)
+        if my_node.node_id not in _pending_associations:
+            _pending_associations[my_node.node_id] = dict()
+        _pending_associations[my_node.node_id][group_index] = PendingAssociation(pending_added=None, pending_removed=target_node_id, timeout=0)
         _network.manager.removeAssociation(_network.home_id, node_id, group_index, target_node_id)
         return format_json_result()
     else:
@@ -2330,10 +2079,9 @@ def add_assoc(node_id, group_index, target_node_id):
     if node_id in _network.nodes:
         my_node = _network.nodes[node_id]
         if not (target_node_id in my_node.groups[group_index].associations):
-            if not hasattr(my_node, 'pendingAssociations'):
-                my_node.pendingAssociations = dict()
-            my_node.pendingAssociations[group_index] = PendingAssociation(pending_added=target_node_id,
-                                                                          pending_removed=None, timeout=0)
+            if my_node.node_id not in _pending_associations:
+                _pending_associations[my_node.node_id] = dict()
+        _pending_associations[my_node.node_id][group_index] = PendingAssociation(pending_added=target_node_id, pending_removed=None, timeout=0)
         _network.manager.addAssociation(_network.home_id, node_id, group_index, target_node_id)
         return format_json_result()
     else:
@@ -2349,9 +2097,9 @@ def remove_association(node_id, group_index, target_node_id, target_node_instanc
     node_id, group_index, target_node_id, target_node_instance,))
     if node_id in _network.nodes:
         my_node = _network.nodes[node_id]
-        if not hasattr(my_node, 'pendingAssociations'):
-            my_node.pendingAssociations = dict()
-        my_node.pendingAssociations[group_index] = PendingAssociation(pending_added=None, pending_removed=target_node_id, timeout=0)
+        if my_node.node_id not in _pending_associations:
+            _pending_associations[my_node.node_id] = dict()
+        _pending_associations[my_node.node_id][group_index] = PendingAssociation(pending_added=None, pending_removed=target_node_id, timeout=0)
         _network.manager.removeAssociation(_network.home_id, node_id, group_index, target_node_id, target_node_instance)
         return format_json_result()
     else:
@@ -2368,10 +2116,9 @@ def add_association(node_id, group_index, target_node_id, target_node_instance):
     if node_id in _network.nodes:
         my_node = _network.nodes[node_id]
         if not (target_node_id in my_node.groups[group_index].associations):
-            if not hasattr(my_node, 'pendingAssociations'):
-                my_node.pendingAssociations = dict()
-            my_node.pendingAssociations[group_index] = PendingAssociation(pending_added=target_node_id,
-                                                                          pending_removed=None, timeout=0)
+            if my_node.node_id not in _pending_associations:
+                _pending_associations[my_node.node_id] = dict()
+        _pending_associations[my_node.node_id][group_index] = PendingAssociation(pending_added=target_node_id, pending_removed=None, timeout=0)
         _network.manager.addAssociation(_network.home_id, node_id, group_index, target_node_id, target_node_instance)
         return format_json_result()
     else:
@@ -2527,9 +2274,8 @@ def request_all_config_params(node_id):
     if node_id in _network.nodes:
         for val in _network.nodes[node_id].get_values(class_id=COMMAND_CLASS_CONFIGURATION):
             configuration_item = _network.nodes[node_id].values[val]
-            if hasattr(configuration_item, 'pendingConfiguration'):
-                if configuration_item.pendingConfiguration is not None:
-                    configuration_item.pendingConfiguration = None
+            if configuration_item.id_on_network in _pending_configurations:
+                del _pending_configurations[configuration_item.id_on_network]
         _network.manager.requestAllConfigParams(_network.home_id, node_id)
         return format_json_result()
     else:
