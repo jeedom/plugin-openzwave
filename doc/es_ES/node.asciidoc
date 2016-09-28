@@ -1,0 +1,175 @@
+== Configuration des modules
+
+C'est ici que vous retrouverez toutes les informations sur votre module
+
+image:../images/node01.png[]
+
+La fenêtre possède plusieurs onglets :
+
+=== Résumé
+
+Fournit un résumé complet de votre nœud avec différentes informations sur celui-ci, comme par exemple l'état des demandes qui permet de savoir si le nœud est en attente d'information ou la liste des nœuds voisins.
+
+[TIP]
+Sur cet onglet il est possible d'avoir des alertes en cas de détection possible d'un souci de configuration, Jeedom vous indiquera la marche à suivre pour corriger. Il ne faut pas confondre une alerte avec une erreur, l'alerte est dans une majorité des cas, une simple recommandation.
+
+=== Valeurs
+
+image:../images/node02.png[]
+
+Vous retrouvez ici toutes les commandes et états possibles sur votre module. Ils sont ordonnés par instance et classe de commande puis index. Le « mapping » des commandes est entièrement basé sur ces informations.
+
+[TIP]
+Forcer la mise à jour d'une valeur. Les modules sur pile vont rafraichir une valeur seulement au prochain cycle de réveil. Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
+
+[TIP]
+Il est possible d'avoir plus de commandes ici que sur Jeedom, c'est tout à fait normal. Dans Jeedom les commandes ont été présélectionnées pour vous.
+
+[IMPORTANT]
+Certains modules n'envoient pas automatiquement leurs états, il faut dans ce cas activer le rafraichissement manuel à 5 minutes sur la ou les valeurs souhaitées.
+Il est recommandé de laisser en automatique le rafraichissement.
+Abuser du rafraichissement manuel peut impacter fortement les performances du réseau  Z-Wave, utilisez seulement pour les valeurs recommandées dans la documentation spécifique Jeedom.
+image:../images/node16.png[]
+L'ensemble des valeurs (index) de l'instance d'une commande classe sera remonté, en activant le rafraichissement manuel sur le plus petit index de l'instance de la commande classe.
+Répéter pour chaque instance si nécessaire.
+
+=== Paramètres
+
+image:../images/node03.png[]
+
+Vous retrouvez ici toutes les possibilités de configuration des paramètres de votre module ainsi que la possibilité de copier la configuration d'un autre nœud déjà en place.
+
+
+Lorsqu'un paramètre est modifié, la ligne correspondante passe en jaune,
+image:../images/node04.png[]
+le paramètre est en attente d'être appliqué.
+
+Si le module accepte le paramètre, la ligne redevient transparente.
+
+Si toutefois le module refuse la valeur, la ligne passera alors en rouge avec la valeur appliquée retournée par le module.
+image:../images/node05.png[]
+
+
+A l'inclusion, un nouveau module est détecté avec les paramètres par défaut du constructeur.
+Sur certains modules, des fonctionnalités ne seront pas actives sans modifier un ou plusieurs paramètres.
+Référez-vous à la documentation du constructeur et à nos recommandations afin de bien paramétrer vos nouveaux modules.
+
+[TIP]
+Les modules sur pile vont appliquer les changements de paramètres seulement au prochain cycle de réveil.
+Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
+
+[TIP]
+La commande *Reprendre de...* vous permet reprendre la configuration d'un autre module identique, sur le module en cours.
+
+image:../images/node06.png[]
+
+[TIP]
+La commande *Appliquer sur...* vous permet d'appliquer la configuration actuelle du module sur un ou plusieurs modules identiques.
+
+image:../images/node18.png[]
+
+[TIP]
+La commande *Actualiser les paramètres* force le module à actualiser les paramètres sauvegardés dans le module.
+
+Si aucun fichier de configuration est définie pour le module, un assistant manuel vous permet d'appliquer des paramètres au module.
+image:../images/node17.png[]
+Veillez vous référer à la documentation du fabricant pour connaitre la définition de l'index, valeur et taille.
+
+=== Associations
+
+C'est ici que se retrouve la gestion des groupes d'association de votre module.
+
+image:../images/node07.png[]
+
+Les modules Z-Wave peuvent contrôler d'autres modules Z-Wave, sans passer par le contrôleur ni Jeedom.
+La relation entre un module de contrôle et un autre module est appelée association.
+
+Afin de contrôler un autre module, le module de commande a besoin de maintenir une liste des appareils qui recevront le contrôle des commandes.
+Ces listes sont appelées groupes d'association et elles sont toujours liées à certains événements (par exemple le bouton
+pressé, les déclencheurs de capteurs, ... ).
+
+Dans le cas où un événement se produit, tous les périphériques enregistrés dans le groupe d'association concerné recevront une commande Basic.
+
+[TIP]
+Voir la documentation du module, pour comprendre les différents groupes d'associations possibles et leur comportement.
+
+[TIP]
+La majorité des modules ont un groupe d'association qui est réservé pour le contrôleur principal, il est utilisé pour remonter les informations au contrôleur. Il se nomme en général : *Report* ou *LifeLine*.
+
+[TIP]
+Il est possible que votre module ne possède aucun groupe.
+
+[TIP]
+La modification des groupes d'associations d'un module sur pile sera appliquée au prochain cycle de réveil.
+Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
+
+Pour connaitre avec quels autres modules le module en cours est associé, il suffit de cliquer sur le menu *Associé à quels modules*
+
+image:../images/node08.png[]
+
+L'ensemble des modules utilisant le module en cours ainsi que le nom des groupes d'associations seront affichés.
+
+*Associations multi-instances*
+
+certain module supporte une commande classe multi-instance associations.
+Lorsqu'un module supporte cette CC, il est possible de spécifier avec quelle instance on souhaite créer l'association
+
+image:../images/node09.png[]
+
+[IMPORTANT]
+Certains modules doivent être associés à l'instance 0 du contrôleur principale afin de bien fonctionner.
+Pour cette raison, le contrôleur est présent avec et sans l'instance 0.
+
+
+=== Systèmes
+
+Onglet regroupant les paramètres systèmes du module.
+
+image:../images/node10.png[]
+
+[TIP]
+Les modules sur piles se réveillent à des cycles réguliers, appelés intervalles de réveil (Wakeup Interval). L'intervalle de réveil est un compromis entre le temps maximal de vie de la batterie et les réponses souhaitées du dispositif. Pour maximiser la durée de vie de vos modules, adapter la valeur Wakeup Interval par exemple à 14400 secondes (4h), voir encore plus élevé selon les modules et leur usage.
+image:../images/node11.png[]
+
+[TIP]
+Les modules *Interrupteur* et *Variateur* peuvent implémenter une Classe de commande spéciale appelée *SwitchAll* 0x27. Vous pouvez en modifier ici le comportement. Selon le module, plusieurs options sont à disposition. La commande *SwitchAll On/OFF* peut être lancée via votre module contrôleur principal.
+
+=== Actions
+
+Permet d'effectuer certaines actions sur le module.
+
+image:../images/node12.png[]
+
+Certaines actions seront actives selon le type de module et ses possibilités ou encore selon l'état actuel du module comme par exemple s'il est présumé mort par le contrôleur.
+
+[IMPORTANT]
+Il ne faut pas utiliser les actions sur un module si on ne sait pas ce que l'on fait. Certaines actions sont irréversibles. Les actions peuvent aider à la résolution de problèmes avec un ou des modules Z-Wave.
+
+[TIP]
+La *Régénération de la détection du noeud* permet de détecter le module pour reprendre les derniers jeux de paramètres.
+Cette action est requise lorsqu'on vous informe qu'une mise a jour de paramètres et ou de comportement du module est requit pour le bon fonctionnement.
+La Régénération de la détection du noeud implique un redémarrage du réseau, l'assistant l'effectue automatiquement.
+
+[TIP]
+Si vous avez plusieurs modules identiques dont il est requis d'exécuter la *Régénération de la détection du noeud*, il est possible de la lancer une fois pour tous les modules identiques.
+
+image:../images/node13.png[]
+
+[TIP]
+Si un module sur pile n'est plus joignable et que vous souhaitez l'exclure, que l'exclusion ne s'effectue pas, vous pouvez lancer *Supprimer le noeud fantôme*
+Un assistant effectuera différentes actions afin de supprimer le module dit fantôme. Cette action implique de redémarrer le réseau et peut prendre plusieurs minutes avant d'être complétée.
+
+image:../images/node14.png[]
+
+Une fois lancé, il est recommandé de fermer l'écran de configuration du module et de surveiller la suppression du module via l'écran de santé Z-Wave.
+
+[IMPORTANT]
+Seul les modules sur pile peuvent être supprimés via cette assistant.
+
+=== Statistiques
+
+Cet onglet donne quelques statistiques de communication avec le nœud.
+
+image:../images/node15.png[]
+
+Peut être intéressant en cas de modules qui sont présumés morts par le contrôleur "Dead".

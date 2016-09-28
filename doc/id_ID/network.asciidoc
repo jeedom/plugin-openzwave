@@ -1,0 +1,136 @@
+== Réseaux  Z-Wave
+
+image:../images/network01.png[]
+
+Vous retrouvez ici des informations générales sur votre réseau Z-Wave.
+
+image:../images/network02.png[]
+
+=== Résumé
+
+Le premier onglet vous donne le résumé de base de votre réseau Z-Wave, vous retrouvez notamment l'état du réseau Z-Wave ainsi que le nombre d'éléments dans la file d'attente.
+
+*Informations*
+
+* Donne des informations générales sur le réseau, la date de démarrage, le temps requis pour l'obtention du réseau dans un état dit fonctionnel.
+* Le nombre de nœuds total du réseau ainsi que le nombre qui dorment dans le moment.
+* L'intervalle des demandes est associé au rafraichissement manuel. Il est prédéfini dans le moteur Z-Wave à 5 minutes.
+* Les voisins du contrôleur.
+
+*Etat*
+
+image:../images/network03.png[]
+
+Un ensemble d'informations sur l'état actuel du réseau,  à savoir :
+
+* Etat actuel, peut-être *Driver Initialised*, *Topology loaded* ou *Ready*.
+* Queue sortante, indique le nombre de messages en queue dans le contrôleur en attente d’être envoyé.
+Cette valeur est généralement élevée durant le démarrage du réseau lorsque l'état est encore en *Driver Initialised*.
+
+Une fois que le réseau a au minimum atteint *Topology loaded*, des mécanismes internes au serveur Z-Wave vont forcer des mises à jour de valeurs, il est alors tout-à-fait normal de voir monter le nombre de messages. Celui-ci va rapidement retourner à 0.
+
+[TIP]
+Le réseau est dit fonctionnel au moment où il atteint le statut *Topology Loaded*, c'est-à-dire que l'ensemble des nœuds secteurs ont complété leurs interviews. Selon le nombre de modules, la répartition pile/secteur, le choix du dongle USB et le PC sur lequel tourne le plugin  Z-Wave, le réseau va atteindre cette état entre une et cinq minutes.
+
+Un réseau *Ready*, signifie que tous les nœuds secteur et sur pile ont complété leur interview.
+
+[TIP]
+Selon les modules dont vous disposez, il est possible que le réseau n'atteigne jamais de lui-même le statut *Ready*. Les télécommandes, par exemple, ne se réveillent pas d'elles-mêmes et ne compléteront jamais leur interview. Dans ce genre de cas, le réseau est tout-à-fait opérationnel et même si les télécommandes n'ont pas complété leur interview, elles assurent leurs fonctionnalités au sein du réseau.
+
+*Capacités*
+
+Permet de savoir si le contrôleur est un contrôleur principal ou secondaire.
+
+*Système*
+
+Affiche diverses informations système.
+
+* Information sur le port USB utilisé.
+* Version de la librairie OpenZwave
+* Version de la librairie Python-OpenZwave
+
+=== Notifications
+
+Vous retrouvez ici les dernières notifications du contrôleur ainsi que le détail du message correspondant.
+Les notifications sont ordonnées par leur date d'arrivée, la plus récente en premier.
+
+image:../images/network04.png[]
+
+[TIP]
+Ce sont des informations techniques, mais qui nous permettent de comprendre les derniers échanges avec le contrôleur.
+
+[IMPORTANT]
+Une notification indiquant qu'une commande a échoué, ne signifie pas obligatoirement un problème sur votre réseau.
+
+=== Actions
+
+image:../images/network05.png[]
+
+Vous retrouvez ici toutes les actions possibles sur l'ensemble de votre réseau Z-Wave. Chaque action est accompagnée d’une description sommaire.
+
+[IMPORTANT]
+Certaines actions sont vraiment risquées voire irréversibles, l'équipe Jeedom ne pourra être tenue responsable en cas de mauvaise manipulation.
+
+[IMPORTANT]
+Certains modules requièrent une inclusion en mode sécurisé, par exemple pour les serrures de porte. L’inclusion sécurisée doit être lancée via l'action de cet écran.
+
+[TIP]
+Si une action ne peut être lancée, elle sera désactivée jusqu'au moment où elle pourra être à nouveau exécutée.
+
+=== Statistiques
+
+image:../images/network06.png[]
+
+Vous retrouvez ici les statistiques générales sur l'ensemble de votre réseau Z-Wave.
+
+=== Graphique du réseau
+
+image:../images/network07.png[]
+
+Cet onglet vous donnera une représentation graphique des différents liens entre les nœuds.
+
+Explication la légende des couleurs :
+
+* *Noir* : Le contrôleur principal, en général représenté comme Jeedom.
+* *Vert* : Communication directe avec le contrôleur, idéal.
+* *Blue* : Pour les contrôleurs, comme les télécommandes, ils sont associés au contrôleur primaire, mais n'ont pas de voisin.
+* *Jaune* : Toute les routes ont plus d’un saut avant d'arriver au contrôleur.
+* *Gris* : L'interview n'est pas encore complété, les liens seront réellement connus une fois l'interview complété.
+* *Rouge* : présumé mort, ou sans voisin, ne participe pas/plus au maillage du réseau.
+
+[TIP]
+Seul les équipements actifs seront affichés dans le graphique réseau.
+
+Le réseau Z-Wave est constitué de trois différents types de nœuds avec trois fonctions principales.
+
+La principale différence entre les trois types de nœuds est leur connaissance de la table de routage du réseau et par la suite leur capacité à envoyer des messages au réseau:
+
+
+=== Table de routage
+
+Chaque nœud est en mesure de déterminer quels autres nœuds sont en communication directe.
+Ces nœuds sont appelés voisins.
+Au cours de l'inclusion et/ou plus tard sur demande, le nœud est en mesure d'informer le contrôleur de la liste de voisins.
+Grâce à ces informations, le contrôleur est capable de construire une table qui a toutes les informations sur les routes possibles de communication dans un réseau.
+
+image:../images/network08.png[]
+
+Les lignes du tableau contiennent les nœuds de source et les colonnes contiennent les nœuds de destination.
+Se référer à la légende pour comprendre les couleurs de cellule qui indiquent les liens entre deux nœuds.
+
+Explication la légende des couleurs :
+
+* *Vert* : Communication directe avec le contrôleur, idéal.
+* *Blue* : Au moins 2 routes avec un saut.
+* *Jaune* : Moins de 2 routes avec un saut.
+* *Gris* : L'interview n'est pas encore complété, sera réellement mis à jour une fois l'interview complété.
+* *Orange* : Toutes les routes ont plus d'un saut. Peut engendrer des latences.
+
+[TIP]
+Seul les équipements actifs seront affichés dans le graphique réseau.
+
+[IMPORTANT]
+Un module présumé mort, ne participe pas/plus au maillage du réseau. Il sera marqué ici d'un point d'exclamation rouge dans un triangle.
+
+[TIP]
+Vous pouvez lancer manuellement la mise à jour des voisins, par module ou pour l'ensemble du réseau à l'aide des boutons disponibles dans la table de routage.

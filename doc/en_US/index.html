@@ -1,0 +1,4142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3.dev">
+<title>OpenZwave</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Remove the comments around the @import statement below when using this as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{margin:0}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+#map_canvas img,#map_canvas embed,#map_canvas object,.map_canvas img,.map_canvas embed,.map_canvas object{max-width:none!important}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+.antialiased,body{-webkit-font-smoothing:antialiased}
+img{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol,ul.no-bullet,ol.no-bullet{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.no-bullet{list-style:none}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7;font-weight:bold}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
+.clearfix:after,.float-group:after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{display:inline-block;color:rgba(0,0,0,.8);font-size:.75em;line-height:1.4;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:-.15em .15em 0 .15em;padding:.2em .6em .2em .5em;vertical-align:middle;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menu{color:rgba(0,0,0,.8)}
+b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
+b.button:before{content:"[";padding:0 3px 0 2px}
+b.button:after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
+#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
+#content{margin-top:1.25em}
+#content:before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
+#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span:before{content:"\00a0\2013\00a0"}
+#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark:before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber:after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+.sect1{padding-bottom:.625em}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}.sect1+.sect1{border-top:1px solid #efefed}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
+.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
+.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]:before{display:block}
+.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
+.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
+.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
+.quoteblock .quoteblock blockquote:before{display:none}
+.verseblock{margin:0 1em 1.25em 1em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.05em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
+.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
+.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
+table.tableblock{max-width:100%;border-collapse:separate}
+table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.spread{width:100%}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all th.tableblock,table.grid-all td.tableblock{border-width:0 1px 1px 0}
+table.grid-all tfoot>tr>th.tableblock,table.grid-all tfoot>tr>td.tableblock{border-width:1px 1px 0 0}
+table.grid-cols th.tableblock,table.grid-cols td.tableblock{border-width:0 1px 0 0}
+table.grid-all *>tr>.tableblock:last-child,table.grid-cols *>tr>.tableblock:last-child{border-right-width:0}
+table.grid-rows th.tableblock,table.grid-rows td.tableblock{border-width:0 0 1px 0}
+table.grid-all tbody>tr:last-child>th.tableblock,table.grid-all tbody>tr:last-child>td.tableblock,table.grid-all thead:last-child>tr>th.tableblock,table.grid-rows tbody>tr:last-child>th.tableblock,table.grid-rows tbody>tr:last-child>td.tableblock,table.grid-rows thead:last-child>tr>th.tableblock{border-bottom-width:0}
+table.grid-rows tfoot>tr>th.tableblock,table.grid-rows tfoot>tr>td.tableblock{border-width:1px 0 0 0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot{border-width:1px 0}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.unstyled,ol.unnumbered,ul.checklist,ul.none{list-style-type:none}
+ul.unstyled,ol.unnumbered,ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1em;font-size:.85em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{width:1em;position:relative;top:1px}
+ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
+ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
+ul.inline>li>*{display:block}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1{padding-right:.75em;font-weight:bold}
+td.hdlist1,td.hdlist2{vertical-align:top}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist>table tr>td:first-of-type{padding:0 .75em;line-height:1}
+.colist>table tr>td:last-of-type{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
+.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none}
+span.footnote,span.footnoteref{vertical-align:super;font-size:.875em}
+span.footnote a,span.footnoteref a{text-decoration:none}
+span.footnote a:active,span.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
+#footnotes .footnote{padding:0 .375em;line-height:1.3;font-size:.875em;margin-left:1.2em;text-indent:-1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]:after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+h1,h2{letter-spacing:-.01em}
+dt,th.tableblock,td.content{text-rendering:optimizeLegibility}
+p,td.content{letter-spacing:-.01em}
+p strong,td.content strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@media print{@page{margin:1.25cm .75cm}
+*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]:after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img{page-break-inside:avoid}
+thead{display:table-header-group}
+img{max-width:100%!important}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+.sect1{padding-bottom:0!important}
+.sect1+.sect1{border:0!important}
+#header>h1:first-child{margin-top:1.25rem}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span:before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]:before{display:block}
+#footer{background:none!important;padding:0 .9375em}
+#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>OpenZwave</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table des matières</div>
+<ul class="sectlevel1">
+<li><a href="#_description">1. Description</a></li>
+<li><a href="#_introduction">2. Introduction</a>
+<ul class="sectlevel2">
+<li><a href="#_distances_à_respecter_avec_les_autres_sources_de_signaux_sans_fil">2.1. Distances à respecter avec les autres sources de signaux sans fil</a></li>
+<li><a href="#_epaisseur_efficace_des_murs">2.2. Epaisseur efficace des murs</a></li>
+<li><a href="#_maillage_et_routage">2.3. Maillage et Routage</a></li>
+<li><a href="#_propriétés_des_appareils_z_wave">2.4. Propriétés des appareils Z-Wave</a></li>
+</ul>
+</li>
+<li><a href="#_plugin_configuration">3. Plugin configuration</a>
+<ul class="sectlevel2">
+<li><a href="#_dépendances">3.1. Dépendances</a></li>
+<li><a href="#_démon">3.2. Démon</a></li>
+<li><a href="#_log">3.3. Log</a></li>
+<li><a href="#_configuration">3.4. Configuration</a></li>
+<li><a href="#_démon_local_ou_démon_xxx">3.5. Démon local ou Démon XXX</a></li>
+<li><a href="#_paneau_mobile">3.6. Paneau Mobile</a></li>
+</ul>
+</li>
+<li><a href="#_configuration_of_devices">4. Configuration of devices</a>
+<ul class="sectlevel2">
+<li><a href="#_général">4.1. Général</a></li>
+<li><a href="#_commandes">4.2. Commandes</a></li>
+<li><a href="#_jeux_de_commandes">4.3. Jeux de Commandes</a></li>
+<li><a href="#_documentation_et_assistant">4.4. Documentation et Assistant</a></li>
+<li><a href="#_configuration_recommandée">4.5. Configuration recommandée</a></li>
+</ul>
+</li>
+<li><a href="#_configuration_des_modules">5. Configuration des modules</a>
+<ul class="sectlevel2">
+<li><a href="#_résumé">5.1. Résumé</a></li>
+<li><a href="#_valeurs">5.2. Valeurs</a></li>
+<li><a href="#_paramètres">5.3. Paramètres</a></li>
+<li><a href="#_associations">5.4. Associations</a></li>
+<li><a href="#_systèmes">5.5. Systèmes</a></li>
+<li><a href="#_actions">5.6. Actions</a></li>
+<li><a href="#_statistiques">5.7. Statistiques</a></li>
+</ul>
+</li>
+<li><a href="#_inclusion_exclusion">6. inclusion / exclusion</a>
+<ul class="sectlevel2">
+<li><a href="#_mode_inclusion">6.1. Mode inclusion</a></li>
+<li><a href="#_mode_exclusion">6.2. Mode exclusion</a></li>
+<li><a href="#_synchroniser">6.3. Synchroniser</a></li>
+</ul>
+</li>
+<li><a href="#_réseaux_z_wave">7. Réseaux  Z-Wave</a>
+<ul class="sectlevel2">
+<li><a href="#_résumé_2">7.1. Résumé</a></li>
+<li><a href="#_notifications">7.2. Notifications</a></li>
+<li><a href="#_actions_2">7.3. Actions</a></li>
+<li><a href="#_statistiques_2">7.4. Statistiques</a></li>
+<li><a href="#_graphique_du_réseau">7.5. Graphique du réseau</a></li>
+<li><a href="#_table_de_routage">7.6. Table de routage</a></li>
+</ul>
+</li>
+<li><a href="#_santé">8. Santé</a>
+<ul class="sectlevel2">
+<li><a href="#_statut_de_l_interview">8.1. Statut de l&#8217;interview</a></li>
+<li><a href="#_notification">8.2. Notification</a></li>
+</ul>
+</li>
+<li><a href="#_backups">9. Backups</a></li>
+<li><a href="#_zwcfg">10. zwcfg</a></li>
+<li><a href="#_mettre_à_jour_openzwave">11. Mettre à jour OpenZWave</a></li>
+<li><a href="#_liste_des_modules_compatible">12. Liste des modules compatible</a></li>
+<li><a href="#_depannage_et_diagnostic">13. Depannage et diagnostic</a>
+<ul class="sectlevel2">
+<li><a href="#_mon_module_est_pas_detecte_ou_ne_remonte_pas_ses_identifiants_produit_et_type">13.1. Mon module est pas detecte ou ne remonte pas ses identifiants produit et type</a></li>
+<li><a href="#_mon_module_est_presume_mort_par_le_controleur_dead">13.2. Mon module est presume mort par le controleur Dead</a></li>
+<li><a href="#_comment_utiliser_la_commande_switchall">13.3. Comment utiliser la commande SwitchAll</a></li>
+<li><a href="#_mon_module_n_a_pas_de_commande_scene_ou_bouton">13.4. Mon module n a pas de commande Scene ou Bouton</a></li>
+<li><a href="#_forcer_le_rafraichissement_de_valeurs">13.5. Forcer le rafraichissement de valeurs</a></li>
+<li><a href="#_transferer_les_modules_sur_un_nouveau_controleur">13.6. Transferer les modules sur un nouveau controleur</a></li>
+<li><a href="#_remplacer_un_module_defaillant">13.7. Remplacer un module defaillant</a></li>
+<li><a href="#_suppression_de_noeud_fantome">13.8. Suppression de noeud fantome</a></li>
+<li><a href="#_actions_post_inclusion">13.9. Actions post inclusion</a></li>
+<li><a href="#_pas_de_remontee_etat_de_la_pile">13.10. Pas de remontee etat de la pile</a></li>
+<li><a href="#_controleur_est_en_cours_d_initialisation">13.11. Controleur est en cours d initialisation</a></li>
+<li><a href="#_le_controleur_ne_repond_plus">13.12. Le controleur ne repond plus</a></li>
+<li><a href="#_erreur_lors_des_dependances">13.13. Erreur lors des dependances</a></li>
+<li><a href="#_utilisation_de_la_carte_razberry_sur_un_raspberry_pi_3">13.14. Utilisation de la carte Razberry sur un Raspberry Pi 3</a></li>
+</ul>
+</li>
+<li><a href="#_api_http">14. API HTTP</a></li>
+<li><a href="#_release_notes">15. Release Notes</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_description">1. Description</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ce plugin permet l&#8217;exploitation de modules Z-Wave par l&#8217;intermédiaire de la librairie OpenZwave.</p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction">2. Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Z-Wave communique en utilisant une technologie radio de faible puissance dans la bande de fréquence de 868,42 MHz. Il est spécifiquement conçu pour les applications de domotique.
+Le protocole radio Z-Wave est optimisé pour des échanges à faible bande passante (entre 9 et 40 kbit/s) entre des appareils sur pile ou alimentés sur secteur.</p>
+</div>
+<div class="paragraph">
+<p>Z-Wave fonctionne dans la gamme de fréquences sous-gigahertz, selon les régions (868 MHz en Europe, 908 MHz aux US, et d&#8217;autres fréquences suivant les bandes ISM des régions). La portée théorique est d&#8217;environ 30 mètres en intérieur et 100 mètres en extérieur. Le réseau Z-Wave utilise la technologie du maillage (mesh) pour augmenter la portée et la fiabilité.
+Z-Wave est conçu pour être facilement intégré dans les produits électroniques de basse consommation, y compris les appareils à piles tels que les télécommandes, les détecteurs de fumée et capteurs de sécurité.</p>
+</div>
+<div class="paragraph">
+<p>Le Z-Wave+, apporte certaines améliorations dont une meilleure portée et améliore la durée de vie des batteries entre autres. La rétrocompatibilité est totale avec le Z-Wave.</p>
+</div>
+<div class="sect2">
+<h3 id="_distances_à_respecter_avec_les_autres_sources_de_signaux_sans_fil">2.1. Distances à respecter avec les autres sources de signaux sans fil</h3>
+<div class="paragraph">
+<p>Les récepteurs radio doivent être positionnés à une distance minimum de 50 cm des autres sources radioélectriques.</p>
+</div>
+<div class="paragraph">
+<p>Exemples de sources radioélectriques:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ordinateurs</p>
+</li>
+<li>
+<p>Les appareils à micro-ondes</p>
+</li>
+<li>
+<p>Les transformateurs électroniques</p>
+</li>
+<li>
+<p>équipements audio et de matériel vidéo</p>
+</li>
+<li>
+<p>Les dispositifs de pré-accouplement pour lampes fluorescentes</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Si vous disposez un contrôleur USB (Z-Stick), il est recommandé de l&#8217;éloigner de la box à l&#8217;aide d&#8217;une simple rallonge USB de 1M par exemple.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La distance entre d&#8217;autres émetteurs sans fil tels que les téléphones sans fil ou transmissions radio audio doit être d&#8217;au moins 3 mètres.
+Les sources de radio suivantes doivent être prises en compte :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Perturbations par commutateur de moteurs électriques</p>
+</li>
+<li>
+<p>Interférences par des appareils électriques défectueux</p>
+</li>
+<li>
+<p>Les perturbations par les appareils HF de soudage</p>
+</li>
+<li>
+<p>dispositifs de traitement médical</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_epaisseur_efficace_des_murs">2.2. Epaisseur efficace des murs</h3>
+<div class="paragraph">
+<p>Les emplacements des modules doivent être choisis de telle manière que la ligne de connexion directe ne fonctionne que sur une très courte distance au travers de la matière (un mur), afin d’éviter au maximum les atténuations.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/introduction01.png" alt="introduction01"></span></p>
+</div>
+<div class="paragraph">
+<p>Les parties métalliques du bâtiment ou des meubles peuvent bloquer les ondes électromagnétiques.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_maillage_et_routage">2.3. Maillage et Routage</h3>
+<div class="paragraph">
+<p>Les nœuds Z-Wave sur secteur peuvent transmettre et répéter les messages qui ne sont pas à portée directe du contrôleur.
+Ce qui permet une plus grande flexibilité de communication, même si il n&#8217;y a pas de connexion sans fil directe ou si une connexion est temporairement indisponible, à cause d&#8217;un changement dans la pièce ou le bâtiment.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/introduction02.png" alt="introduction02"></span></p>
+</div>
+<div class="paragraph">
+<p>Le contrôleur <strong>Id 1</strong> peut communiquer directement avec les nœuds 2, 3 et 4. Le nœud 6 est en dehors de sa portée radio, cependant, il se trouve dans la zone de couverture radio du nœud 2. Par conséquent, le contrôleur peut communiquer avec le nœud 6 via le nœud 2. De cette façon, le chemin du contrôleur via le nœud 2 vers le nœud 6, est appelé route.
+Dans le cas où la communication directe entre le nœud 1 et le nœud 2 est bloquée, il y a encore une autre option pour communiquer avec le nœud 6, en utilisant le nœud 3 comme un autre répéteur du signal.</p>
+</div>
+<div class="paragraph">
+<p>Il devient évident que plus l’on possède de nœuds secteur, plus les options de routage augmentent , et plus la stabilité du réseau augmente.
+Le protocole Z-Wave est capable de router les messages par l&#8217;intermédiaire d&#8217;un maximum de quatre nœuds de répétition. C’est un compromis entre la taille du réseau, la stabilité et la durée maximale d&#8217;un message.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Il est fortement recommandé en début d&#8217;installation d&#8217;avoir un ratio entre nœuds secteur et nœud sur piles de 2/3, afin d&#8217;avoir un bon maillage réseau.
+Privilégier des micromodules aux smart-plugs. Les micros modules seront à un emplacement définitif et ne seront pas débranchés, ils ont aussi en général une meilleure portée.
+Un bon départ est l&#8217;éclairage des zones communes. Il permettra de bien répartir les modules secteurs à des endroits stratégiques dans votre domicile.
+Par la suite vous pourrez ajouter autant de modules sur pile que souhaité, si vos routes de base sont bonnes.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Le <strong>Graphique du réseau</strong> ainsi que la <strong>table de routage</strong> permettent de visualiser la qualité de votre réseau.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Il existe des modules répéteur pour combler des zones où aucun module secteur n&#8217;a d&#8217;utilité.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_propriétés_des_appareils_z_wave">2.4. Propriétés des appareils Z-Wave</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Voisins</th>
+<th class="tableblock halign-left valign-top">Route</th>
+<th class="tableblock halign-left valign-top">Fonctions possibles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contrôleur</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Connaît tous les voisins</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A accès à la table de routage complète</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Peut communiquer avec tous les appareils dans le réseau, si une voie existe</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Esclave</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Connaît tous les voisins</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N&#8217;a pas d&#8217;information sur la table de routage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ne peut répondre au nœud qu&#8217;il a reçu le message. Par conséquent, ne peut pas envoyer des messages non sollicités</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Esclaves de routage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Connaît tous ses voisins</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A la connaissance partielle de la table de routage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Peut répondre au nœud qu&#8217;il a reçu le message et peut envoyer des messages non sollicités à un certain nombre de nœuds</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>En résumé:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Chaque appareil Z -Wave peut recevoir et accuser réception de messages</p>
+</li>
+<li>
+<p>Les contrôleurs peuvent envoyer des messages à tous les nœuds du réseau, sollicités ou non « Le maître peut parler quand il veut et à qui il veut »</p>
+</li>
+<li>
+<p>Les esclaves ne peuvent pas envoyer des messages non sollicités, mais seulement une réponse aux demandes «L&#8217;esclave ne parle que si on le lui demande »</p>
+</li>
+<li>
+<p>Les esclaves de routage peuvent répondre à des demandes et ils sont autorisés à envoyer des messages non sollicités à certains nœuds que le contrôleur a prédéfini « L&#8217;esclave est toujours un esclave, mais sur autorisation, il peut parler »</p>
+</li>
+</ul>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_plugin_configuration">3. Plugin configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Après le téléchargement du plugin, il vous suffit de l&#8217;activer et de le configurer.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/configuration01.png" alt="configuration01"></span></p>
+</div>
+<div class="paragraph">
+<p>Une fois activé, le démon devrait se lancer.
+Le plugin est préconfiguré avec des valeurs par défaut ; vous n&#8217;avez normalement plus rien à faire.
+Cependant vous pouvez modifier la configuration.</p>
+</div>
+<div class="sect2">
+<h3 id="_dépendances">3.1. Dépendances</h3>
+<div class="paragraph">
+<p>Cette partie permet de valider et d&#8217;installer les dépendances requises au bon fonctionnement du plugin Zwave  (aussi bien en local qu&#8217;en déporté, ici en local)
+<span class="image"><img src="../images/configuration02.png" alt="configuration02"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Un Statut <strong>OK</strong> confirme que les dépendances sont satisfaites.</p>
+</li>
+<li>
+<p>Si le statut est <strong>NOK</strong>, il faudra réinstaller les dépendances à l&#8217;aide du bouton
+<span class="image"><img src="../images/configuration03.png" alt="configuration03"></span></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+La mise à jour des dépendances peut prendre plus de 20 minutes selon votre matériel.
+La progression est affichée en temps réel et un log <strong>Openzwave_update</strong> est accessible.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+La mise à jour des dépendances est normalement à effectuer seulement si le Statut est <strong>NOK</strong>, mais il est toutefois possible, pour régler certains problèmes, d&#8217;être appelé à refaire l&#8217;installation des dépendances.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Si vous êtes en mode déporté, les dépendances du démon local peuvent être NOK, c&#8217;est tout à fait normal.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_démon">3.2. Démon</h3>
+<div class="paragraph">
+<p>Cette partie permet de valider l&#8217;état actuel du ou des démons et de configurer la gestion automatique de ceux-ci.
+<span class="image"><img src="../images/configuration04.png" alt="configuration04"></span>
+Le démon local et l&#8217;ensemble des démons déportés seront affichés avec leurs différentes informations</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Le <strong>Statut</strong> indique que le démon est actuellement en fonction.</p>
+</li>
+<li>
+<p>La <strong>Configuration</strong> indique si la configuration du démon est valide.</p>
+</li>
+<li>
+<p>Le bouton <strong>(Re)Démarrer</strong> permet de forcer le redémarrage du plugin, en mode normal ou de le lancer une première fois.</p>
+</li>
+<li>
+<p>Le bouton <strong>Arrête</strong>, visible seulement si la gestion automatique est désactivée, force l&#8217;arrêt du démon.</p>
+</li>
+<li>
+<p>La <strong>Gestion automatique</strong> permet à Jeedom de lancer automatiquement le démon au démarrage de Jeedom, ainsi que de le relancer en cas de problème.</p>
+</li>
+<li>
+<p>Le <strong>Dernier lancement</strong> est comme son nom l&#8217;indique la date du dernier lancement connue du demon.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_log">3.3. Log</h3>
+<div class="paragraph">
+<p>Cette partie permet de choisir le niveau de log ainsi que d&#8217;en consulter le contenu.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/configuration05.png" alt="configuration05"></span></p>
+</div>
+<div class="paragraph">
+<p>Sélectionner le niveau puis sauvegarder, le démon sera alors relancé avec les instructions et traces sélectionnées.</p>
+</div>
+<div class="paragraph">
+<p>Le niveau <strong>Debug</strong> ou <strong>Info</strong> peuvent être utiles pour comprendre pourquoi le démon plante ou ne remonte pas une valeur.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+En mode <strong>Debug</strong> le démon est très verbeux, il est recommandé d&#8217;utiliser ce mode seulement si vous devez diagnostiquer un problème particulier.
+Il n’est pas recommandé de laisser tourner le démon en <strong>Debug</strong> en permanence, si on utilise une <strong>SD-Card</strong>.
+Une fois le debug terminé, il ne faut pas oublier de retourner sur un niveau moins élevé comme le niveau <strong>Error</strong> qui ne remonte que d&#8217;éventuelles erreurs.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration">3.4. Configuration</h3>
+<div class="paragraph">
+<p>Cette partie permet de configurer les paramètres généraux du plugin
+<span class="image"><img src="../images/configuration06.png" alt="configuration06"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Général</strong> :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Supprimer automatiquement les périphériques exclus</strong> : L&#8217;option Oui, permet de supprimer les périphériques exclus du réseau  Z-Wave. L’option Non, permet de conserver les équipements dans Jeedom même s’ils ont été exclus du réseau. L’équipement devra être alors supprimé manuellement ou réutilisé en lui assignant un nouvel ID Z-Wave si on exécute une migration du contrôleur principal.</p>
+</li>
+<li>
+<p><strong>Soigner le réseau automatiquement 2 fois par semaine</strong> : option pour activer un soin automatique du réseau  Z-Wave (vivement conseillée en début d&#8217;installation si on déplace régulièrement les modules)</p>
+</li>
+<li>
+<p><strong>Mettre à jour la configuration des modules automatiquement, chaque jour à minuit</strong> : option pour activer la mise à jour des configuration de module OpenZWave ainsi que les fichiers de commande Z-Wave.</p>
+</li>
+<li>
+<p><strong>Appliquer le jeu de configuration recommandé à l&#8217;inclusion</strong> : option pour appliquer directement à l&#8217;inclusion le jeu de configuration recommandé par l&#8217;équipe Jeedom (conseillée)</p>
+</li>
+<li>
+<p><strong>Activer les tests sanitaires</strong> : au 15 minutes de l&#8217;heure le plugin va effectuer une série de tests sur l&#8217;ensemble des équipements actifs de votre réseau.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Tentative de remonter les noeuds présumés morts par le contrôleur.</p>
+</li>
+<li>
+<p>Validation que le réseau ne contient pas d&#8217;Ids invalides comme un nodeId 0.</p>
+</li>
+<li>
+<p>Tests des modules secteurs ayant retournés une notification 'Timeout'.</p>
+</li>
+<li>
+<p>Tests si des modules sur piles ne sont pas retournés en sommeil profond après leur cycle de réveil.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Les tests sanitaires, seront exécutés seulement si le réseau n&#8217;est pas sollicité. Si des messages sont en attente de traitement, le serveur n&#8217;autorisera pas l&#8217;exécution des tests sanitaires.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Gestion avancée</strong> :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Backups</strong> : permet de gérer les backups du fichier de topologie réseaux (voir plus bas)</p>
+</li>
+<li>
+<p><strong>zwcfg</strong> : permet de voir et modifier le fichier de topologie réseaux (voir plus bas)</p>
+</li>
+<li>
+<p><strong>Config modules</strong> : permet de récupérer, manuellement, les fichiers de configurations OpenZWave avec les paramètres des modules ainsi que la définition des commandes de modules pour leurs utilisations.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+La récupération des configurations de module s&#8217;effectue automatiquement chaque nuit.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Le redémarrage du démon suite à la mise à jour des configurations de module est inutile.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Si vous avez un module non reconnu et qu&#8217;une mise à jour de configuration vient d&#8217;être appliquée, vous pouvez manuellement lancer la récupération des configurations de modules.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Une fois les configurations récupérées, il faudra selon les changements apportés:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pour un nouveau module sans configuration ni commande : exclure et ré-inclure le module.</p>
+</li>
+<li>
+<p>Pour un module pour lequel seuls les paramètres ont été mis à jour : lancer la régénération de la détection du nœud, via l&#8217;onglet Actions du module (le plugin doit redémarrer).</p>
+</li>
+<li>
+<p>Pour un module dont le « mapping » de commandes a été corrigé : la loupe sur les commandes, voir plus bas.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Dans le doute, exclure et ré-inclure le module est recommandé.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_démon_local_ou_démon_xxx">3.5. Démon local ou Démon XXX</h3>
+<div class="paragraph">
+<p>Paramètres de la configuration locale (ou déportée, en fonction de l&#8217;intitulé) du démon.
+<span class="image"><img src="../images/configuration07.png" alt="configuration07"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Port clé Z-Wave</strong> : le port USB sur lequel votre interface Z-Wave est connectée.
+Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 possibilités à la fin de la liste.</p>
+</li>
+<li>
+<p><strong>Port du Serveur</strong> (modification dangereuse, doit avoir la même valeur sur tous les Jeedoms déportés Z-Wave) : permet de modifier le port de communication interne du démon.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+N&#8217;oubliez pas de
+<span class="image"><img src="../images/configuration08.png" alt="configuration08"></span>
+si vous effectuez une modification.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Si vous utilisez Ubuntu : Pour que le démon fonctionne, il faut absolument avoir ubuntu 15.04 (les versions inférieures ont un bug et le démon n&#8217;arrive pas à se lancer).
+Attention si vous faites une mise à jour à partir de 14.04 il faut une fois en 15.04 relancer l&#8217;installation des dépendances.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+La sélection du Port clé Z-Wave en mode de détection automatique, <strong>Auto</strong>, ne fonctionne que pour les dongles USB.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_paneau_mobile">3.6. Paneau Mobile</h3>
+<div class="paragraph">
+<p><span class="image"><img src="../images/configuration09.png" alt="configuration09"></span></p>
+</div>
+<div class="paragraph">
+<p>Permet d&#8217;afficher ou non le panel mobile lors que vous utiliser l&#8217;application sur un téléphone.</p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration_of_devices">4. Configuration of devices</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La configuration des équipements Z-Wave est accessible à partir du menu plugin :</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/appliance01.png" alt="appliance01"></span></p>
+</div>
+<div class="paragraph">
+<p>Ci-dessous un exemple d&#8217;une page du plugin Z-Wave (présentée avec quelques équipements) :</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/appliance02.png" alt="appliance02"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Comme à beaucoup d&#8217;endroits sur Jeedom, placer la souris tout à gauche permet de faire apparaître un menu d&#8217;accès rapide (vous pouvez, à partir de votre profil, le laisser toujours visible).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Les boutons sur la ligne tout en haut <strong>Synchroniser</strong>, <strong>Réseau-Zwave</strong> et <strong>Santé</strong>, sont visibles seulement si vous êtes en mode <strong>Expert</strong>.
+<span class="image"><img src="../images/appliance03.png" alt="appliance03"></span>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_général">4.1. Général</h3>
+<div class="paragraph">
+<p>Vous retrouvez ici toute la configuration de votre équipement :</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/appliance04.png" alt="appliance04"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Nom de l&#8217;équipement</strong> : nom de votre module Z-Wave.</p>
+</li>
+<li>
+<p><strong>Objet parent</strong> : indique l&#8217;objet parent auquel appartient l&#8217;équipement.</p>
+</li>
+<li>
+<p><strong>Catégorie</strong> : les catégories de l&#8217;équipement (il peut appartenir à plusieurs catégories).</p>
+</li>
+<li>
+<p><strong>Activer</strong> : permet de rendre votre équipement actif.</p>
+</li>
+<li>
+<p><strong>Visible</strong> : le rend visible sur le dashboard.</p>
+</li>
+<li>
+<p><strong>Node ID</strong> : ID du module sur le réseau Z-Wave. Ceci peut être utile si, par exemple, vous voulez remplacer un module défaillant. Il suffit d&#8217;inclure le nouveau module, de récupérer son ID, et le mettre à la place de l&#8217;ID de l&#8217;ancien module et enfin de supprimer le nouveau module.</p>
+</li>
+<li>
+<p><strong>Serveur</strong> : serveur Z-Wave auquel est rattaché votre module. Il est déconseillé d&#8217;en changer, à moins de savoir ce que vous faites.</p>
+</li>
+<li>
+<p><strong>Délai maximum autorisé entre 2 messages (min)</strong> : le délai maximum autorisé entre 2 messages avant que Jeedom ne déclare l&#8217;équipement en "timeout".</p>
+</li>
+<li>
+<p><strong>Commentaire</strong> : vous permet de mettre des commentaires sur l&#8217;équipement (ex : pile changée le XX/XX/XXXX)</p>
+</li>
+<li>
+<p><strong>Module</strong> : ce champ n&#8217;apparaît que s&#8217;il existe différents types de configuration pour votre module (cas pour les modules pouvant faire fils pilotes par exemple). Il vous permet de choisir la configuration à utiliser ou de la modifier par la suite</p>
+</li>
+<li>
+<p><strong>Marque</strong> : fabricant de votre module Z-Wave.</p>
+</li>
+<li>
+<p><strong>Configuration</strong> : fenêtre de configuration des paramètres du module</p>
+</li>
+<li>
+<p><strong>Assistant</strong> : disponible uniquement sur certains modules, il vous aide à configurer le module (cas sur le zipato keyboard par exemple)</p>
+</li>
+<li>
+<p><strong>Documentation</strong> : ce bouton vous permet d&#8217;ouvrir directement la documentation Jeedom concernant ce module.</p>
+</li>
+<li>
+<p><strong>Supprimer</strong> : Permet de supprimer un équipement ainsi que tous ces commandes rattaché sans l&#8217;exclure du réseau Z-Wave.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+La suppression d&#8217;un équipement n&#8217;engendre pas une exclusion du module sur le contrôleur.
+<span class="image"><img src="../images/appliance11.png" alt="appliance11"></span>
+Un équipement supprimé qui est toujours rattaché à son contrôleur sera automatiquement recréé suite à la synchronisation.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_commandes">4.2. Commandes</h3>
+<div class="paragraph">
+<p>Ci-dessous vous retrouvez la liste des commandes :</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/appliance05.png" alt="appliance05"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+En fonction des types et sous-types, certaines options peuvent être absentes.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>le nom affiché sur le dashboard</p>
+</li>
+<li>
+<p>icône : dans le cas d&#8217;une action permet de choisir une icône à afficher sur le dashboard au lieu du texte</p>
+</li>
+<li>
+<p>valeur de la commande : dans le cas d&#8217;une commande type action, sa valeur peut être liée à une commande de type info, c&#8217;est ici que cela se configure. Exemple pour une lampe l&#8217;intensité est liée à son état, cela permet au widget d&#8217;avoir l&#8217;état réel de la lampe.</p>
+</li>
+<li>
+<p>le type et le sous-type.</p>
+</li>
+<li>
+<p>l&#8217;instance de cette commande Z-Wave (réservée aux experts).</p>
+</li>
+<li>
+<p>la classe de la commande Z-Wave (réservée aux experts).</p>
+</li>
+<li>
+<p>la commande en elle-même (réservée aux experts).</p>
+</li>
+<li>
+<p>"Valeur de retour d&#8217;état" et "Durée avant retour d&#8217;état" : permet d&#8217;indiquer à Jeedom qu&#8217;après un changement sur l&#8217;information sa valeur doit revenir à Y, X min après le changement. Exemple : dans le cas d&#8217;un détecteur de présence qui n&#8217;émet que lors d&#8217;une détection de présence, il est utile de mettre par exemple 0 en valeur et 4 en durée, pour que 4 min après une détection de mouvement (et si ensuite, il n&#8217;y en a pas eu de nouvelles) Jeedom remette la valeur de l&#8217;information à 0 (plus de mouvement détecté).</p>
+</li>
+<li>
+<p>Historiser : permet d&#8217;historiser la donnée.</p>
+</li>
+<li>
+<p>Afficher : permet d&#8217;afficher la donnée sur le dashboard.</p>
+</li>
+<li>
+<p>Inverser : permet d&#8217;inverser l&#8217;état pour les types binaires.</p>
+</li>
+<li>
+<p>Unité : unité de la donnée (peut être vide).</p>
+</li>
+<li>
+<p>Min/Max : bornes de la donnée (peuvent être vides).</p>
+</li>
+<li>
+<p>Configuration avancée (petites roues crantées) : permet d&#8217;afficher la configuration avancée de la commande (méthode d&#8217;historisation, widget&#8230;&#8203;).</p>
+</li>
+<li>
+<p>Tester : permet de tester la commande.</p>
+</li>
+<li>
+<p>Supprimer (signe -) : permet de supprimer la commande.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Le bouton <strong>Tester</strong> dans le cas d&#8217;une commande de type Info, ne va pas interroger le module directement mais la valeur disponible dans le cache de Jeedom.
+Le test retournera la bonne valeur seulement si le module en question a transmis une nouvelle valeur correspondant à la définition de la commande.
+Il est alors tout à fait normal de ne pas obtenir de résultat suite à la création d&#8217;une nouvelle commande Info, spécialement sur un module sur pile qui notifie rarement Jeedom.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+La <strong>loupe</strong> permet de recréer l&#8217;ensemble des commandes pour le module en cours.
+Si aucune commande n’est présente ou si les commandes sont erronées la loupe devrait remédier à la situation.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+La <strong>loupe</strong> va supprimer les commandes existantes. Si les commandes étaient utilisées dans des scénarios, vous devrez alors corriger vos scénarios aux autres endroits où les commandes étaient exploitées.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jeux_de_commandes">4.3. Jeux de Commandes</h3>
+<div class="paragraph">
+<p>Certains modules possèdent plusieurs jeux de commandes préconfigurées</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/appliance06.png" alt="appliance06"></span></p>
+</div>
+<div class="paragraph">
+<p>Vous pouvez les sélectionner via les choix possibles, si le module le permet.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Vous devez effectuer la loupe pour appliquer le nouveau jeux de commandes.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_documentation_et_assistant">4.4. Documentation et Assistant</h3>
+<div class="paragraph">
+<p>Pour un certain nombre de modules, une aide spécifique pour la mise en place ainsi que des recommandations de paramètres sont disponibles.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/appliance07.png" alt="appliance07"></span></p>
+</div>
+<div class="paragraph">
+<p>Le bouton <strong>Documentation</strong> permet d&#8217;accéder à la documentation spécifique du module pour Jeedom.</p>
+</div>
+<div class="paragraph">
+<p>Des modules particuliers disposent aussi d&#8217;un assistant spécifique afin de faciliter l&#8217;application de certains paramètres ou fonctionnements.</p>
+</div>
+<div class="paragraph">
+<p>Le bouton <strong>Assistant</strong> permet d&#8217;accéder à l&#8217;écran assistant spécifique du module.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_recommandée">4.5. Configuration recommandée</h3>
+<div class="paragraph">
+<p><span class="image"><img src="../images/appliance08.png" alt="appliance08"></span></p>
+</div>
+<div class="paragraph">
+<p>Permet d&#8217;appliquer un jeu de configuration recommandée par l&#8217;équipe Jeedom.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Lors de leur inclusion, les modules ont les paramètres par défaut du constructeur et certaines fonctions ne sont pas activées par défaut.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Les éléments suivants, selon le cas, seront appliqués pour simplifier l&#8217;utilisation du module.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Paramètres</strong> permettant la mise en service rapide de l&#8217;ensemble des fonctionnalités du module.</p>
+</li>
+<li>
+<p><strong>Groupes d&#8217;association</strong> requis au bon fonctionnement.</p>
+</li>
+<li>
+<p><strong>Intervalle de réveil</strong>, pour les modules sur pile.</p>
+</li>
+<li>
+<p>Activation du <strong>rafraîchissement manuel</strong> pour les modules ne remontant pas d&#8217;eux-mêmes leurs changements d&#8217;états.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Pour appliquer le jeu de configuration recommandé, cliquer sur le bouton : <strong>Configuration recommandée</strong>,
+puis confirmer l&#8217;application des configurations recommandées.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/appliance09.png" alt="appliance09"></span></p>
+</div>
+<div class="paragraph">
+<p>L&#8217;assistant active les différents éléments de configurations.</p>
+</div>
+<div class="paragraph">
+<p>Une confirmation du bon déroulement sera affichée sous forme de bandeau</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/appliance10.png" alt="appliance10"></span></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Les modules sur piles doivent être réveillés pour appliquer le jeu de configuration.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La page de l&#8217;équipement vous informe si des éléments n&#8217;ont pas encore été activés sur le module.
+Veuillez-vous référer à la documentation du module pour le réveiller manuellement ou attendre le prochain cycle de réveil.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/appliance11.png" alt="appliance11"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Il est possible d&#8217;activer automatiquement l&#8217;application du jeu de configuration recommandé lors de l&#8217;inclusion de nouveau module, voir la section Configuration du plugin pour plus de détails.
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration_des_modules">5. Configuration des modules</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>C&#8217;est ici que vous retrouverez toutes les informations sur votre module</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/node01.png" alt="node01"></span></p>
+</div>
+<div class="paragraph">
+<p>La fenêtre possède plusieurs onglets :</p>
+</div>
+<div class="sect2">
+<h3 id="_résumé">5.1. Résumé</h3>
+<div class="paragraph">
+<p>Fournit un résumé complet de votre nœud avec différentes informations sur celui-ci, comme par exemple l&#8217;état des demandes qui permet de savoir si le nœud est en attente d&#8217;information ou la liste des nœuds voisins.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Sur cet onglet il est possible d&#8217;avoir des alertes en cas de détection possible d&#8217;un souci de configuration, Jeedom vous indiquera la marche à suivre pour corriger. Il ne faut pas confondre une alerte avec une erreur, l&#8217;alerte est dans une majorité des cas, une simple recommandation.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_valeurs">5.2. Valeurs</h3>
+<div class="paragraph">
+<p><span class="image"><img src="../images/node02.png" alt="node02"></span></p>
+</div>
+<div class="paragraph">
+<p>Vous retrouvez ici toutes les commandes et états possibles sur votre module. Ils sont ordonnés par instance et classe de commande puis index. Le « mapping » des commandes est entièrement basé sur ces informations.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Forcer la mise à jour d&#8217;une valeur. Les modules sur pile vont rafraichir une valeur seulement au prochain cycle de réveil. Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Il est possible d&#8217;avoir plus de commandes ici que sur Jeedom, c&#8217;est tout à fait normal. Dans Jeedom les commandes ont été présélectionnées pour vous.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Certains modules n&#8217;envoient pas automatiquement leurs états, il faut dans ce cas activer le rafraichissement manuel à 5 minutes sur la ou les valeurs souhaitées.
+Il est recommandé de laisser en automatique le rafraichissement.
+Abuser du rafraichissement manuel peut impacter fortement les performances du réseau  Z-Wave, utilisez seulement pour les valeurs recommandées dans la documentation spécifique Jeedom.
+<span class="image"><img src="../images/node16.png" alt="node16"></span>
+L&#8217;ensemble des valeurs (index) de l&#8217;instance d&#8217;une commande classe sera remonté, en activant le rafraichissement manuel sur le plus petit index de l&#8217;instance de la commande classe.
+Répéter pour chaque instance si nécessaire.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_paramètres">5.3. Paramètres</h3>
+<div class="paragraph">
+<p><span class="image"><img src="../images/node03.png" alt="node03"></span></p>
+</div>
+<div class="paragraph">
+<p>Vous retrouvez ici toutes les possibilités de configuration des paramètres de votre module ainsi que la possibilité de copier la configuration d&#8217;un autre nœud déjà en place.</p>
+</div>
+<div class="paragraph">
+<p>Lorsqu&#8217;un paramètre est modifié, la ligne correspondante passe en jaune,
+<span class="image"><img src="../images/node04.png" alt="node04"></span>
+le paramètre est en attente d&#8217;être appliqué.</p>
+</div>
+<div class="paragraph">
+<p>Si le module accepte le paramètre, la ligne redevient transparente.</p>
+</div>
+<div class="paragraph">
+<p>Si toutefois le module refuse la valeur, la ligne passera alors en rouge avec la valeur appliquée retournée par le module.
+<span class="image"><img src="../images/node05.png" alt="node05"></span></p>
+</div>
+<div class="paragraph">
+<p>A l&#8217;inclusion, un nouveau module est détecté avec les paramètres par défaut du constructeur.
+Sur certains modules, des fonctionnalités ne seront pas actives sans modifier un ou plusieurs paramètres.
+Référez-vous à la documentation du constructeur et à nos recommandations afin de bien paramétrer vos nouveaux modules.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Les modules sur pile vont appliquer les changements de paramètres seulement au prochain cycle de réveil.
+Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+La commande <strong>Reprendre de&#8230;&#8203;</strong> vous permet reprendre la configuration d&#8217;un autre module identique, sur le module en cours.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/node06.png" alt="node06"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+La commande <strong>Appliquer sur&#8230;&#8203;</strong> vous permet d&#8217;appliquer la configuration actuelle du module sur un ou plusieurs modules identiques.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/node18.png" alt="node18"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+La commande <strong>Actualiser les paramètres</strong> force le module à actualiser les paramètres sauvegardés dans le module.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Si aucun fichier de configuration est définie pour le module, un assistant manuel vous permet d&#8217;appliquer des paramètres au module.
+<span class="image"><img src="../images/node17.png" alt="node17"></span>
+Veillez vous référer à la documentation du fabricant pour connaitre la définition de l&#8217;index, valeur et taille.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_associations">5.4. Associations</h3>
+<div class="paragraph">
+<p>C&#8217;est ici que se retrouve la gestion des groupes d&#8217;association de votre module.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/node07.png" alt="node07"></span></p>
+</div>
+<div class="paragraph">
+<p>Les modules Z-Wave peuvent contrôler d&#8217;autres modules Z-Wave, sans passer par le contrôleur ni Jeedom.
+La relation entre un module de contrôle et un autre module est appelée association.</p>
+</div>
+<div class="paragraph">
+<p>Afin de contrôler un autre module, le module de commande a besoin de maintenir une liste des appareils qui recevront le contrôle des commandes.
+Ces listes sont appelées groupes d&#8217;association et elles sont toujours liées à certains événements (par exemple le bouton
+pressé, les déclencheurs de capteurs, &#8230;&#8203; ).</p>
+</div>
+<div class="paragraph">
+<p>Dans le cas où un événement se produit, tous les périphériques enregistrés dans le groupe d&#8217;association concerné recevront une commande Basic.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Voir la documentation du module, pour comprendre les différents groupes d&#8217;associations possibles et leur comportement.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+La majorité des modules ont un groupe d&#8217;association qui est réservé pour le contrôleur principal, il est utilisé pour remonter les informations au contrôleur. Il se nomme en général : <strong>Report</strong> ou <strong>LifeLine</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Il est possible que votre module ne possède aucun groupe.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+La modification des groupes d&#8217;associations d&#8217;un module sur pile sera appliquée au prochain cycle de réveil.
+Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Pour connaitre avec quels autres modules le module en cours est associé, il suffit de cliquer sur le menu <strong>Associé à quels modules</strong></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/node08.png" alt="node08"></span></p>
+</div>
+<div class="paragraph">
+<p>L&#8217;ensemble des modules utilisant le module en cours ainsi que le nom des groupes d&#8217;associations seront affichés.</p>
+</div>
+<div class="paragraph">
+<p><strong>Associations multi-instances</strong></p>
+</div>
+<div class="paragraph">
+<p>certain module supporte une commande classe multi-instance associations.
+Lorsqu&#8217;un module supporte cette CC, il est possible de spécifier avec quelle instance on souhaite créer l&#8217;association</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/node09.png" alt="node09"></span></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Certains modules doivent être associés à l&#8217;instance 0 du contrôleur principale afin de bien fonctionner.
+Pour cette raison, le contrôleur est présent avec et sans l&#8217;instance 0.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_systèmes">5.5. Systèmes</h3>
+<div class="paragraph">
+<p>Onglet regroupant les paramètres systèmes du module.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/node10.png" alt="node10"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Les modules sur piles se réveillent à des cycles réguliers, appelés intervalles de réveil (Wakeup Interval). L&#8217;intervalle de réveil est un compromis entre le temps maximal de vie de la batterie et les réponses souhaitées du dispositif. Pour maximiser la durée de vie de vos modules, adapter la valeur Wakeup Interval par exemple à 14400 secondes (4h), voir encore plus élevé selon les modules et leur usage.
+<span class="image"><img src="../images/node11.png" alt="node11"></span>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Les modules <strong>Interrupteur</strong> et <strong>Variateur</strong> peuvent implémenter une Classe de commande spéciale appelée <strong>SwitchAll</strong> 0x27. Vous pouvez en modifier ici le comportement. Selon le module, plusieurs options sont à disposition. La commande <strong>SwitchAll On/OFF</strong> peut être lancée via votre module contrôleur principal.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_actions">5.6. Actions</h3>
+<div class="paragraph">
+<p>Permet d&#8217;effectuer certaines actions sur le module.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/node12.png" alt="node12"></span></p>
+</div>
+<div class="paragraph">
+<p>Certaines actions seront actives selon le type de module et ses possibilités ou encore selon l&#8217;état actuel du module comme par exemple s&#8217;il est présumé mort par le contrôleur.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Il ne faut pas utiliser les actions sur un module si on ne sait pas ce que l&#8217;on fait. Certaines actions sont irréversibles. Les actions peuvent aider à la résolution de problèmes avec un ou des modules Z-Wave.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+La <strong>Régénération de la détection du noeud</strong> permet de détecter le module pour reprendre les derniers jeux de paramètres.
+Cette action est requise lorsqu&#8217;on vous informe qu&#8217;une mise a jour de paramètres et ou de comportement du module est requit pour le bon fonctionnement.
+La Régénération de la détection du noeud implique un redémarrage du réseau, l&#8217;assistant l&#8217;effectue automatiquement.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Si vous avez plusieurs modules identiques dont il est requis d&#8217;exécuter la <strong>Régénération de la détection du noeud</strong>, il est possible de la lancer une fois pour tous les modules identiques.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/node13.png" alt="node13"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Si un module sur pile n&#8217;est plus joignable et que vous souhaitez l&#8217;exclure, que l&#8217;exclusion ne s&#8217;effectue pas, vous pouvez lancer <strong>Supprimer le noeud fantôme</strong>
+Un assistant effectuera différentes actions afin de supprimer le module dit fantôme. Cette action implique de redémarrer le réseau et peut prendre plusieurs minutes avant d&#8217;être complétée.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/node14.png" alt="node14"></span></p>
+</div>
+<div class="paragraph">
+<p>Une fois lancé, il est recommandé de fermer l&#8217;écran de configuration du module et de surveiller la suppression du module via l&#8217;écran de santé Z-Wave.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Seul les modules sur pile peuvent être supprimés via cette assistant.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_statistiques">5.7. Statistiques</h3>
+<div class="paragraph">
+<p>Cet onglet donne quelques statistiques de communication avec le nœud.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/node15.png" alt="node15"></span></p>
+</div>
+<div class="paragraph">
+<p>Peut être intéressant en cas de modules qui sont présumés morts par le contrôleur "Dead".</p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_inclusion_exclusion">6. inclusion / exclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A sa sortie d&#8217;usine, un module ne fait partie d&#8217;aucun réseau Z-Wave.</p>
+</div>
+<div class="sect2">
+<h3 id="_mode_inclusion">6.1. Mode inclusion</h3>
+<div class="paragraph">
+<p>Le module doit se joindre à un réseau Z-Wave existant pour communiquer avec les autres modules de ce réseau.
+Ce processus est appelé <strong>Inclusion</strong>.
+Les périphériques peuvent également sortir d&#8217;un réseau. Ce processus est appelé <strong>Exclusion</strong>.
+Les deux processus sont initiés par le contrôleur principal du réseau Z-Wave.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/addremove01.png" alt="addremove01"></span></p>
+</div>
+<div class="paragraph">
+<p>Ce bouton vous permet de passer en mode inclusion pour ajouter un module à votre réseau Z-Wave.</p>
+</div>
+<div class="paragraph">
+<p>Vous povez choisir le mode d&#8217;inclusion après avoir cliqué le bouton <strong>Inclusion</strong>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/addremove02.png" alt="addremove02"></span></p>
+</div>
+<div class="paragraph">
+<p>Depuis l&#8217;apparition du Z-Wave+ il est possible de sécuriser les échanges entre le contrôleur et les noeuds.
+Il est donc recommandé de faire les inclusions en mode <strong>Sécurisé</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Si toute fois un module ne peut être inclue en mode sécurisé, veillez l&#8217;inclure en mode <strong>Non sécurisé</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Une fois en mode inclusion : Jeedom vous le signale.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/addremove03.png" alt="addremove03"></span></p>
+</div>
+<div class="paragraph">
+<p>Une fois l&#8217;assistant lancé, il faut en faire de même sur votre module (se référer à la documentation de celui-ci pour le passer en mode inclusion).</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Tant que vous n&#8217;avez pas le bandeau, vous n&#8217;êtes pas en mode inclusion.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Si vous re cliquez sur le bouton vous sortez du mode inclusion.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Il est recommandé avant l&#8217;inclusion d&#8217;un nouveau module qui serait "nouveau" sur le marché, de lancer la commande <strong>Config modules</strong> via l&#8217;écran de configuration du plugin.
+Cette action va récupérer l&#8217;ensemble des dernières versions des fichiers de configurations openzwave ainsi que le mapping de commandes Jeedom.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Lors d&#8217;une inclusion, il est conseillé que le module soit à proximité du contrôleur principal, soit à moins d&#8217;un mètre de votre jeedom.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Certains modules requièrent obligatoirement une inclusion en mode <strong>sécurisé</strong>, par exemple pour les serrures de porte.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A noter que l&#8217;interface mobile vous donne aussi accès à l&#8217;inclusion, le panel mobile doit avoir été activé.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Si le module appartient déjà à un réseau, suivez le processus d&#8217;exclusion avant de l&#8217;inclure dans votre réseau. Sinon l&#8217;inclusion de ce module va échouer.
+Il est d&#8217;ailleurs recommandé d&#8217;exécuter une exclusion avant l&#8217;inclusion, même si le produit est neuf, sorti du carton.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Une fois le module à son emplacement définitif, il faut lancer l&#8217;action soigner le réseau, afin de demander à tous les modules de rafraichir l&#8217;ensemble des voisins.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mode_exclusion">6.2. Mode exclusion</h3>
+<div class="paragraph">
+<p><span class="image"><img src="../images/addremove04.png" alt="addremove04"></span></p>
+</div>
+<div class="paragraph">
+<p>Ce bouton vous permet de passer en mode exclusion, cela pour retirer un module de votre réseau Z-Wave, il faut en faire de même avec votre module (se référer à la documentation de celui-ci pour le passer en mode exclusion).</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/addremove05.png" alt="addremove05"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Tant que vous n&#8217;avez pas le bandeau, vous n&#8217;êtes pas en mode exclusion.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Si vous re cliquez sur le bouton vous sortez du mode exclusion.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A noter que l&#8217;interface mobile vous donne aussi accès à l&#8217;exclusion.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Un module n&#8217;a pas besoin d&#8217;être exclu par le même contrôleur sur lequel il a été préalablement inclu. D&#8217;où le fait qu&#8217;on recommande d&#8217;exécuter une exclusion avant chaque inclusion.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_synchroniser">6.3. Synchroniser</h3>
+<div class="paragraph">
+<p><span class="image"><img src="../images/addremove06.png" alt="addremove06"></span></p>
+</div>
+<div class="paragraph">
+<p>Bouton permettant de synchroniser les modules du réseau Z-Wave avec les équipements Jeedom. Les modules sont associés au contrôleur principal, les équipements dans Jeedom sont créés automatiquement lors de leur inclusion. Ils sont aussi supprimés automatiquement lors de l&#8217;exclusion, si l&#8217;option <strong>Supprimer automatiquement les périphériques exclus</strong> est activé.</p>
+</div>
+<div class="paragraph">
+<p>Si vous avez inclue des modules sans Jeedom (requiert un dongle avec pile comme le Aeon-labs Z-Stick GEN5), une synchronisation sera nécessaire suite au branchement de la clé, une fois le démon démarré et fonctionnel.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Si vous n&#8217;avez pas l&#8217;image ou que Jeedom n&#8217;a pas reconnu votre module, ce bouton peut permettre de corriger (sous réserve que l&#8217;interview du module soit complète).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Si sur votre table de routage et/ou sur l&#8217;écran de santé Z-Wave vous avez un ou des modules nommés avec leur <strong>nom générique</strong>, la synchronisation permettra de remédier à cette situation.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Le bouton Synchroniser n&#8217;est visible qu&#8217;en mode expert :
+<span class="image"><img src="../images/addremove07.png" alt="addremove07"></span></p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_réseaux_z_wave">7. Réseaux  Z-Wave</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image"><img src="../images/network01.png" alt="network01"></span></p>
+</div>
+<div class="paragraph">
+<p>Vous retrouvez ici des informations générales sur votre réseau Z-Wave.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/network02.png" alt="network02"></span></p>
+</div>
+<div class="sect2">
+<h3 id="_résumé_2">7.1. Résumé</h3>
+<div class="paragraph">
+<p>Le premier onglet vous donne le résumé de base de votre réseau Z-Wave, vous retrouvez notamment l&#8217;état du réseau Z-Wave ainsi que le nombre d&#8217;éléments dans la file d&#8217;attente.</p>
+</div>
+<div class="paragraph">
+<p><strong>Informations</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Donne des informations générales sur le réseau, la date de démarrage, le temps requis pour l&#8217;obtention du réseau dans un état dit fonctionnel.</p>
+</li>
+<li>
+<p>Le nombre de nœuds total du réseau ainsi que le nombre qui dorment dans le moment.</p>
+</li>
+<li>
+<p>L&#8217;intervalle des demandes est associé au rafraichissement manuel. Il est prédéfini dans le moteur Z-Wave à 5 minutes.</p>
+</li>
+<li>
+<p>Les voisins du contrôleur.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Etat</strong></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/network03.png" alt="network03"></span></p>
+</div>
+<div class="paragraph">
+<p>Un ensemble d&#8217;informations sur l&#8217;état actuel du réseau,  à savoir :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Etat actuel, peut-être <strong>Driver Initialised</strong>, <strong>Topology loaded</strong> ou <strong>Ready</strong>.</p>
+</li>
+<li>
+<p>Queue sortante, indique le nombre de messages en queue dans le contrôleur en attente d’être envoyé.
+Cette valeur est généralement élevée durant le démarrage du réseau lorsque l&#8217;état est encore en <strong>Driver Initialised</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Une fois que le réseau a au minimum atteint <strong>Topology loaded</strong>, des mécanismes internes au serveur Z-Wave vont forcer des mises à jour de valeurs, il est alors tout-à-fait normal de voir monter le nombre de messages. Celui-ci va rapidement retourner à 0.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Le réseau est dit fonctionnel au moment où il atteint le statut <strong>Topology Loaded</strong>, c&#8217;est-à-dire que l&#8217;ensemble des nœuds secteurs ont complété leurs interviews. Selon le nombre de modules, la répartition pile/secteur, le choix du dongle USB et le PC sur lequel tourne le plugin  Z-Wave, le réseau va atteindre cette état entre une et cinq minutes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Un réseau <strong>Ready</strong>, signifie que tous les nœuds secteur et sur pile ont complété leur interview.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Selon les modules dont vous disposez, il est possible que le réseau n&#8217;atteigne jamais de lui-même le statut <strong>Ready</strong>. Les télécommandes, par exemple, ne se réveillent pas d&#8217;elles-mêmes et ne compléteront jamais leur interview. Dans ce genre de cas, le réseau est tout-à-fait opérationnel et même si les télécommandes n&#8217;ont pas complété leur interview, elles assurent leurs fonctionnalités au sein du réseau.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Capacités</strong></p>
+</div>
+<div class="paragraph">
+<p>Permet de savoir si le contrôleur est un contrôleur principal ou secondaire.</p>
+</div>
+<div class="paragraph">
+<p><strong>Système</strong></p>
+</div>
+<div class="paragraph">
+<p>Affiche diverses informations système.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Information sur le port USB utilisé.</p>
+</li>
+<li>
+<p>Version de la librairie OpenZwave</p>
+</li>
+<li>
+<p>Version de la librairie Python-OpenZwave</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_notifications">7.2. Notifications</h3>
+<div class="paragraph">
+<p>Vous retrouvez ici les dernières notifications du contrôleur ainsi que le détail du message correspondant.
+Les notifications sont ordonnées par leur date d&#8217;arrivée, la plus récente en premier.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/network04.png" alt="network04"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Ce sont des informations techniques, mais qui nous permettent de comprendre les derniers échanges avec le contrôleur.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Une notification indiquant qu&#8217;une commande a échoué, ne signifie pas obligatoirement un problème sur votre réseau.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_actions_2">7.3. Actions</h3>
+<div class="paragraph">
+<p><span class="image"><img src="../images/network05.png" alt="network05"></span></p>
+</div>
+<div class="paragraph">
+<p>Vous retrouvez ici toutes les actions possibles sur l&#8217;ensemble de votre réseau Z-Wave. Chaque action est accompagnée d’une description sommaire.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Certaines actions sont vraiment risquées voire irréversibles, l&#8217;équipe Jeedom ne pourra être tenue responsable en cas de mauvaise manipulation.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Certains modules requièrent une inclusion en mode sécurisé, par exemple pour les serrures de porte. L’inclusion sécurisée doit être lancée via l&#8217;action de cet écran.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Si une action ne peut être lancée, elle sera désactivée jusqu&#8217;au moment où elle pourra être à nouveau exécutée.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_statistiques_2">7.4. Statistiques</h3>
+<div class="paragraph">
+<p><span class="image"><img src="../images/network06.png" alt="network06"></span></p>
+</div>
+<div class="paragraph">
+<p>Vous retrouvez ici les statistiques générales sur l&#8217;ensemble de votre réseau Z-Wave.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_graphique_du_réseau">7.5. Graphique du réseau</h3>
+<div class="paragraph">
+<p><span class="image"><img src="../images/network07.png" alt="network07"></span></p>
+</div>
+<div class="paragraph">
+<p>Cet onglet vous donnera une représentation graphique des différents liens entre les nœuds.</p>
+</div>
+<div class="paragraph">
+<p>Explication la légende des couleurs :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Noir</strong> : Le contrôleur principal, en général représenté comme Jeedom.</p>
+</li>
+<li>
+<p><strong>Vert</strong> : Communication directe avec le contrôleur, idéal.</p>
+</li>
+<li>
+<p><strong>Blue</strong> : Pour les contrôleurs, comme les télécommandes, ils sont associés au contrôleur primaire, mais n&#8217;ont pas de voisin.</p>
+</li>
+<li>
+<p><strong>Jaune</strong> : Toute les routes ont plus d’un saut avant d&#8217;arriver au contrôleur.</p>
+</li>
+<li>
+<p><strong>Gris</strong> : L&#8217;interview n&#8217;est pas encore complété, les liens seront réellement connus une fois l&#8217;interview complété.</p>
+</li>
+<li>
+<p><strong>Rouge</strong> : présumé mort, ou sans voisin, ne participe pas/plus au maillage du réseau.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Seul les équipements actifs seront affichés dans le graphique réseau.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Le réseau Z-Wave est constitué de trois différents types de nœuds avec trois fonctions principales.</p>
+</div>
+<div class="paragraph">
+<p>La principale différence entre les trois types de nœuds est leur connaissance de la table de routage du réseau et par la suite leur capacité à envoyer des messages au réseau:</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_table_de_routage">7.6. Table de routage</h3>
+<div class="paragraph">
+<p>Chaque nœud est en mesure de déterminer quels autres nœuds sont en communication directe.
+Ces nœuds sont appelés voisins.
+Au cours de l&#8217;inclusion et/ou plus tard sur demande, le nœud est en mesure d&#8217;informer le contrôleur de la liste de voisins.
+Grâce à ces informations, le contrôleur est capable de construire une table qui a toutes les informations sur les routes possibles de communication dans un réseau.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/network08.png" alt="network08"></span></p>
+</div>
+<div class="paragraph">
+<p>Les lignes du tableau contiennent les nœuds de source et les colonnes contiennent les nœuds de destination.
+Se référer à la légende pour comprendre les couleurs de cellule qui indiquent les liens entre deux nœuds.</p>
+</div>
+<div class="paragraph">
+<p>Explication la légende des couleurs :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Vert</strong> : Communication directe avec le contrôleur, idéal.</p>
+</li>
+<li>
+<p><strong>Blue</strong> : Au moins 2 routes avec un saut.</p>
+</li>
+<li>
+<p><strong>Jaune</strong> : Moins de 2 routes avec un saut.</p>
+</li>
+<li>
+<p><strong>Gris</strong> : L&#8217;interview n&#8217;est pas encore complété, sera réellement mis à jour une fois l&#8217;interview complété.</p>
+</li>
+<li>
+<p><strong>Orange</strong> : Toutes les routes ont plus d&#8217;un saut. Peut engendrer des latences.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Seul les équipements actifs seront affichés dans le graphique réseau.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Un module présumé mort, ne participe pas/plus au maillage du réseau. Il sera marqué ici d&#8217;un point d&#8217;exclamation rouge dans un triangle.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Vous pouvez lancer manuellement la mise à jour des voisins, par module ou pour l&#8217;ensemble du réseau à l&#8217;aide des boutons disponibles dans la table de routage.
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_santé">8. Santé</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image"><img src="../images/health01.png" alt="health01"></span></p>
+</div>
+<div class="paragraph">
+<p>Cette fenêtre résume l&#8217;état de votre réseau Z-Wave :</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/health02.png" alt="health02"></span></p>
+</div>
+<div class="paragraph">
+<p>Vous avez ici :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Module</strong> : le nom de votre module, un clic dessus vous permet d&#8217;y accéder directement.</p>
+</li>
+<li>
+<p><strong>ID</strong> : ID de votre module sur le réseau Z-Wave.</p>
+</li>
+<li>
+<p><strong>Notification</strong> : dernier type d&#8217;échange entre le module et le contrôleur</p>
+</li>
+<li>
+<p><strong>Groupe</strong> : indique si la configuration des groupes est ok (contrôleur au moins dans un groupe). Si vous n&#8217;avez rien c&#8217;est que le module ne supporte pas la notion de groupe, c&#8217;est normal</p>
+</li>
+<li>
+<p><strong>Constructeur</strong> : indique si la récupération des informations d&#8217;identification du module est ok</p>
+</li>
+<li>
+<p><strong>Voisin</strong> : indique si la liste des voisins a bien été récupérée</p>
+</li>
+<li>
+<p><strong>Statut</strong> : Indique le statut de l&#8217;interview (query stage) du module</p>
+</li>
+<li>
+<p><strong>Batterie</strong> : niveau de batterie du module (un fiche secteur indique que le module est alimenté au secteur).</p>
+</li>
+<li>
+<p><strong>Wakeup time</strong> : pour les modules sur batterie, il donne la fréquence en secondes des instants où le module se réveille automatiquement.</p>
+</li>
+<li>
+<p><strong>Paquet total</strong> : affiche le nombre total de paquets reçus ou envoyés avec succès au module.</p>
+</li>
+<li>
+<p><strong>%OK</strong> : affiche le pourcentage de paquets envoyés/reçus avec succès.</p>
+</li>
+<li>
+<p><strong>Temporisation</strong> : affiche le délai moyen d&#8217;envoi de paquet en ms.</p>
+</li>
+<li>
+<p><strong>Dernière notification</strong> : Date de dernière notification reçue du module ainsi que l&#8217;heure du prochain réveil prévue, pour les modules qui dorment.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Elle permet en plus d&#8217;informer si le noeud ne s&#8217;est pas encore réveillé une fois depuis le lancement du démon.</p>
+</li>
+<li>
+<p>Et indique si un noeud ne s&#8217;est pas réveillé comme prévu.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Ping</strong> : Permet d&#8217;envoyer une série de messages au module pour tester son bon fonctionnement.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Les équipements désactivés seront affichés mais aucune information de diagnostic ne sera présente.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Le nom du module peut-être suivit par une ou deux images:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/health04.png" alt="health04"></span>
+Modules supportant la COMMAND_CLASS_ZWAVE_PLUS_INFO</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/health05.png" alt="health05"></span>
+Modules supportant la COMMAND_CLASS_SECURITY et securisé.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/health06.png" alt="health06"></span>
+Modules supportant la COMMAND_CLASS_SECURITY et non sécurisé.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/health07.png" alt="health07"></span>
+Module FLiRS, routeurs esclaves (modules à piles) à écoute fréquente.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+La commande Ping peut être utilisée si le module est présumé mort "DEATH" afin de confirmer si c&#8217;est réellement le cas.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Les modules qui dorment répondront seulement au Ping lors de leur prochain réveil.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+La notification Timeout ne signifie pas nécessairement un problème avec le module. Lancer un Ping et dans la majorité des cas le module répondra par une Notification <strong>NoOperation</strong> qui confirme un retour fructueux du Ping.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+La Temporisation et le %OK sur des nœuds sur piles avant la complétion de leur interview n&#8217;est pas significative. En effet le nœud ne va pas répondre aux interrogations du contrôleur du fait qu&#8217;il est en sommeil profond.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Le serveur Z-Wave s&#8217;occupe automatiquement de lancer des tests sur les modules en Timeout au bout de 15 minutes
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Le serveur Z-Wave essaie automatiquement de remonter les modules présumés morts.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Une alerte sera envoyée à Jeedom si le module est présumé mort. Vous pouvez activer une notification pour en être informé le plus rapidement possible. Voir la configuration des Messages dans l&#8217;écran de Configuration de Jeedom.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/health03.png" alt="health03"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Si sur votre table de routage et/ou sur l&#8217;écran de santé Z-Wave vous avez un ou des modules nommés avec leurs <strong>nom générique</strong>, la synchronisation permettra de remédier à cette situation.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Si sur votre table de routage et/ou sur l&#8217;écran de santé Z-Wave vous avez un ou des modules nommés <strong>Unknown</strong>, cela signifie que l&#8217;interview du module n&#8217;a pas été complétée avec succès.
+Vous avez probablement un <strong>NOK</strong> dans la colonne constructeur.
+Ouvrir le détail du/des modules, pour essayer les suggestions de solution proposées. (voir section Dépannage et diagnostique, plus bas)
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_statut_de_l_interview">8.1. Statut de l&#8217;interview</h3>
+<div class="paragraph">
+<p>Etape de l&#8217;interview d&#8217;un module après le démarrage du démon.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>None</strong> Initialisation du processus de recherche de noeud.</p>
+</li>
+<li>
+<p><strong>ProtocolInfo</strong> Récupérer des informations de protocole, si ce noeud est en écoute (listener), sa vitesse maximale et ses classes de périphériques.</p>
+</li>
+<li>
+<p><strong>Probe</strong> Ping le module pour voir s&#8217;il est réveillé.</p>
+</li>
+<li>
+<p><strong>WakeUp</strong> Démarrer le processus de réveil, s&#8217;il s&#8217;agit d&#8217;un noeud endormi.</p>
+</li>
+<li>
+<p><strong>ManufacturerSpecific1</strong> Récupérer le nom du fabricant et de produits ids si ProtocolInfo le permet.</p>
+</li>
+<li>
+<p><strong>NodeInfo</strong> Récupérer les infos sur la prise en charge des classes de commandes supportées.</p>
+</li>
+<li>
+<p><strong>NodePlusInfo</strong> Récupérer les infos ZWave+ sur la prise en charge des classes de commandes supportées.</p>
+</li>
+<li>
+<p><strong>SecurityReport</strong> Récupérer la liste des classes de commande qui nécessitent de la sécurité.</p>
+</li>
+<li>
+<p><strong>ManufacturerSpecific2</strong> Récupérer le nom du fabricant et les identifiants de produits.</p>
+</li>
+<li>
+<p><strong>Versions</strong> Récupérer des informations de version.</p>
+</li>
+<li>
+<p><strong>Instances</strong> Récupérer des informations multi-instances de classe de commande.</p>
+</li>
+<li>
+<p><strong>Static</strong> Récupérer des informations statiques (ne change pas).</p>
+</li>
+<li>
+<p><strong>CacheLoad</strong> Ping le module lors du redémarrage avec config cache de l&#8217;appareil.</p>
+</li>
+<li>
+<p><strong>Associations</strong> Récupérer des informations sur les associations.</p>
+</li>
+<li>
+<p><strong>Neighbors</strong> Récupérer la liste des noeuds voisins.</p>
+</li>
+<li>
+<p><strong>Session</strong> Récupérer des informations de session (change rarement).</p>
+</li>
+<li>
+<p><strong>Dynamic</strong> Récupérer des informations dynamiques (change fréquemment).</p>
+</li>
+<li>
+<p><strong>Configuration</strong> Récupérer des informations de paramètres de configurations (seulement fait sur demande).</p>
+</li>
+<li>
+<p><strong>Complete</strong> Le processus de l&#8217;interview est terminé pour ce noeud.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_notification">8.2. Notification</h3>
+<div class="paragraph">
+<p>Détails des notifications envoyées par les modules</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Completed</strong> Action terminée avec succès.</p>
+</li>
+<li>
+<p><strong>Timeout</strong> Rapport de délai rapporté lors de l&#8217;envoi d&#8217;un message.</p>
+</li>
+<li>
+<p><strong>NoOperation</strong> Rapport sur un test du noeud (Ping), que le message a été envoyé avec succès.</p>
+</li>
+<li>
+<p><strong>Awake</strong> Signaler quand un noeud vient de se réveiller</p>
+</li>
+<li>
+<p><strong>Sleep</strong> Signaler quand un noeud s&#8217;est endormi.</p>
+</li>
+<li>
+<p><strong>Dead</strong> Signaler quand un nœud est présumé mort.</p>
+</li>
+<li>
+<p><strong>Alive</strong> Signaler quand un nœud est relancé.</p>
+</li>
+</ul>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_backups">9. Backups</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La partie backup va vous permettre de gérer les backups de la topologie de votre réseau. C&#8217;est votre fichier zwcfgxxx.xml, il constitue le dernier état connu de votre réseau, c&#8217;est une forme de cache de votre réseau. A partir de cet écran vous pourrez :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Lancer un backup (un backup est fait à chaque arrêt relance du réseau et pendant les opérations critiques). Les 12 derniers backups sont conservés</p>
+</li>
+<li>
+<p>Restaurer un backup (en le sélectionnant dans la liste juste au-dessus)</p>
+</li>
+<li>
+<p>Supprimer un backup</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/backup01.png" alt="backup01"></span></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_zwcfg">10. zwcfg</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Permet d&#8217;éditer manuellement votre fichier de configuration zwcfgxxx.xml. La sauvegarde entraîne un redémarrage automatique du moteur OpenZWave.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/zwcfg01.png" alt="zwcfg01"></span></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Cette partie est réservée aux experts, toute modification ici (autre que sur demande du support) peut entraîner de graves problèmes sur le réseau Z-Wave et peut ne pas être prise en charge par le support.
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mettre_à_jour_openzwave">11. Mettre à jour OpenZWave</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Suite à une mise à jour du plugin Z-Wave il est possible que Jeedom vous demande de mettre à jour les dépendances Z-Wave.
+Un NOK au niveau des dépendances sera affiché:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/update01.png" alt="update01"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Une mise à jour des dépendances n&#8217;est pas a faire à chaque mise à jour du plugin.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Jeedom devrait lancer de lui même la mise à jour des dépendances si le plugin considère qu&#8217;elle ne sont <strong>NOK</strong>.
+Cette validation est effectuée au 5 minutes.</p>
+</div>
+<div class="paragraph">
+<p>La durée de cette opération peut varier en fonction de votre système (jusqu&#8217;à plus de 1h sur raspberry pi)</p>
+</div>
+<div class="paragraph">
+<p>Une fois les la mise à jour des dépendances complété, le démon se relancera automatiquement à la validation de Jeedom.
+Cette validation est effectuée au 5 minutes.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Dans l&#8217;éventualité où la mise à jour des dépendances ne ce compléterait pas, veiller consulter le log <strong>Openzwave_update</strong> qui devrait vous informer sur le problème.
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_liste_des_modules_compatible">12. Liste des modules compatible</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vous trouverez la liste des modules compatibles <a href="https://jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-equipement.compatible.html">ici</a></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_depannage_et_diagnostic">13. Depannage et diagnostic</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_mon_module_est_pas_detecte_ou_ne_remonte_pas_ses_identifiants_produit_et_type">13.1. Mon module est pas detecte ou ne remonte pas ses identifiants produit et type</h3>
+<div class="paragraph">
+<p><span class="image"><img src="../images/troubleshooting01.png" alt="troubleshooting01"></span></p>
+</div>
+<div class="paragraph">
+<p>Lancer la Régénération de la détection du nœud depuis l&#8217;onglet Actions du module.</p>
+</div>
+<div class="paragraph">
+<p>Si vous avez plusieurs modules dans ce cas de figure, lancer <strong>Régénérer la détection de nœuds inconnues</strong> depuis l&#8217;écran <strong>Réseau ZWave</strong> onglet <strong>Actions</strong>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mon_module_est_presume_mort_par_le_controleur_dead">13.2. Mon module est presume mort par le controleur Dead</h3>
+<div class="paragraph">
+<p><span class="image"><img src="../images/troubleshooting02.png" alt="troubleshooting02"></span></p>
+</div>
+<div class="paragraph">
+<p>Si le module est toujours branché et joignable, suivre les solutions proposées dans l&#8217;écran du module.</p>
+</div>
+<div class="paragraph">
+<p>Si le module a été décommissioné ou est réellement défectueux, vous pouvez l&#8217;exclure du réseau en utilisant <strong>supprimer le nœud en erreur</strong> via onglet <strong>Actions</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Si le module est parti en réparation et un nouveau module de remplacement a été livré, vous pouvez lancer <strong>Remplacer nœud en échec</strong> via onglet <strong>Actions</strong>, le contrôleur déclenche l&#8217;inclusion puis vous devez procéder à l&#8217;inclusion sur le module.
+L&#8217;id de l&#8217;ancien module sera conservé ainsi que ces commandes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_comment_utiliser_la_commande_switchall">13.3. Comment utiliser la commande SwitchAll</h3>
+<div class="paragraph">
+<p><span class="image"><img src="../images/troubleshooting03.png" alt="troubleshooting03"></span></p>
+</div>
+<div class="paragraph">
+<p>Elle est disponible via votre nœud contrôleur.
+Votre contrôleur devrait avoir les commandes Switch All On et Switch All Off.</p>
+</div>
+<div class="paragraph">
+<p>Si votre contrôleur n&#8217;apparaît pas dans votre liste de module, lancez la synchronisation.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/troubleshooting04.png" alt="troubleshooting04"></span></p>
+</div>
+<div class="paragraph">
+<p>La Commande Classe Switch All est en général supportée sur les interrupteurs et les variateurs. Son comportement est configurable sur chaque module qui la supporte.</p>
+</div>
+<div class="paragraph">
+<p>On peut donc soit:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Désactiver la Commande Classe Switch All.</p>
+</li>
+<li>
+<p>Activé pour le On et le Off.</p>
+</li>
+<li>
+<p>Activer le On seulement.</p>
+</li>
+<li>
+<p>Activer le Off seulement.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Le choix d&#8217;options dépend d&#8217;un constructeur à l&#8217;autre.</p>
+</div>
+<div class="paragraph">
+<p>Il faut donc bien prendre le temps de passer en revue l&#8217;ensemble de ses interrupteurs/variateurs avant de mettre en place un scénario si vous ne pilotez pas que des lumières.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mon_module_n_a_pas_de_commande_scene_ou_bouton">13.4. Mon module n a pas de commande Scene ou Bouton</h3>
+<div class="paragraph">
+<p><span class="image"><img src="../images/troubleshooting05.png" alt="troubleshooting05"></span></p>
+</div>
+<div class="paragraph">
+<p>Vous pouvez ajouter la commande dans l&#8217;écran de "mapping" des commandes.</p>
+</div>
+<div class="paragraph">
+<p>Il s&#8217;agit d&#8217;une commande <strong>Info</strong> en CC <strong>0x2b</strong> Instance <strong>0</strong> commande <strong>data[0].val</strong></p>
+</div>
+<div class="paragraph">
+<p>Le mode scène doit être activé dans les paramètres du module. Voir la documentation de votre module pour plus de détails.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_forcer_le_rafraichissement_de_valeurs">13.5. Forcer le rafraichissement de valeurs</h3>
+<div class="paragraph">
+<p>Il est  possible de forcer à la demande le rafraîchissement des valeurs d&#8217;une instance pour une commande classe spécifique.</p>
+</div>
+<div class="paragraph">
+<p>Il est possible de faire via une requête http ou de créer une commande dans l&#8217;écran de mapping d&#8217;un équipement.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/troubleshooting06.png" alt="troubleshooting06"></span></p>
+</div>
+<div class="paragraph">
+<p>Il s&#8217;agit d&#8217;une commande <strong>Action</strong> choisir la <strong>CC</strong> souhaitée pour une <strong>Instance</strong> donnée avec la commande <strong>data[0].ForceRefresh()</strong></p>
+</div>
+<div class="paragraph">
+<p>L&#8217;ensemble des index de l&#8217;instance pour cette commande Classe sera mise à jour. Les nœuds sur piles, attendront leur prochain réveil avant d&#8217;effectuer la mise à jour de leur valeurs.</p>
+</div>
+<div class="paragraph">
+<p>Vous pouvez aussi utiliser par script en lançant une requête http au serveur REST Z-Wave.</p>
+</div>
+<div class="paragraph">
+<p>Remplacer ip_jeedom, node_id, instance_id, cc_id et index</p>
+</div>
+<div class="paragraph">
+<p>http://token:#APIKEY#@ip_jeedom:8083/ZWaveAPI/Run/devicesnode_id.instances[instance_id].commandClasses[cc_id].data[index].ForceRefresh()</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;accès a l&#8217;api REST ayant changé voir les détails <a href="./restapi.asciidoc">içi</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_transferer_les_modules_sur_un_nouveau_controleur">13.6. Transferer les modules sur un nouveau controleur</h3>
+<div class="paragraph">
+<p>Pour différentes raisons vous pouvez être amené à devoir transférer l&#8217;ensemble de vos modules sur un nouveau contrôleur principal.</p>
+</div>
+<div class="paragraph">
+<p>Vous décidez de passer du <strong>raZberry</strong> à un <strong>Z-Stick Gen5</strong> ou parce que, vous devez effectuer un <strong>Reset</strong> complet du contrôleur principal.</p>
+</div>
+<div class="paragraph">
+<p>Voici différentes étapes pour y arriver sans perdre vos scénarios, widget et historique de valeur:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1) Faire un backup Jeedom.</p>
+</li>
+<li>
+<p>2) Pensez à noter (copie écran) vos valeurs de paramètres pour chaque module, ils seront perdus suite à l&#8217;exclusion.</p>
+</li>
+<li>
+<p>3) Dans la configuration Z-Wave décocher l&#8217;option "Supprimer automatiquement les périphériques exclus" et sauvegarder. Le réseau redémarre.</p>
+</li>
+<li>
+<p>4a) Dans le cas d&#8217;un <strong>Reset</strong> Faire le Reset du contrôleur principal et redémarrer le plugin.</p>
+</li>
+<li>
+<p>4b) Pour un nouveau contrôleur, stopper Jeedom, débrancher l&#8217;ancien contrôleur et brancher le nouveau. Démarrer Jeedom.</p>
+</li>
+<li>
+<p>5) Pour chaque équipements Z-Wave, modifier l&#8217;ID ZWave à <strong>0</strong>.</p>
+</li>
+<li>
+<p>6) Ouvrir 2 pages du plugin Z-Wave dans des onglets différents.</p>
+</li>
+<li>
+<p>7) (Via le premier onglet) Aller sur la page de configuration d&#8217;un module que vous désirez inclure au nouveau contrôleur.</p>
+</li>
+<li>
+<p>8) (Via deuxième onglet) Faire une exclusion puis une inclusion du module. Un nouvel équipement sera créé.</p>
+</li>
+<li>
+<p>9) Copier l&#8217;ID Z-Wave du nouvel équipement, puis supprimer cet équipement.</p>
+</li>
+<li>
+<p>10) Retourner sur l&#8217;onglet de l&#8217;ancien module (1er onglet) puis coller le nouvel ID à la place de l&#8217;ancien ID.</p>
+</li>
+<li>
+<p>11) Les paramètres ZWave ont été perdus lors de l&#8217;exclusion/inclusion, pensez à remettre vos paramètres spécifiques si vous n&#8217;utilisez les valeurs par défaut.</p>
+</li>
+<li>
+<p>11) Répéter les étapes 7 à 11 pour chaque module à transférer.</p>
+</li>
+<li>
+<p>12) A la fin vous ne devriez plus avoir d&#8217;équipement en ID 0.</p>
+</li>
+<li>
+<p>13) Vérifier que tous les modules sont bien nommés dans l&#8217;écran de santé Z-Wave. Lancer la Synchronisation si ce n&#8217;est pas le cas.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_remplacer_un_module_defaillant">13.7. Remplacer un module defaillant</h3>
+<div class="paragraph">
+<p>Comment refaire l&#8217;inclusion d&#8217;un module défaillant sans perdre vos scénarios, widgets et historiques de valeur</p>
+</div>
+<div class="paragraph">
+<p>Si le module est présumé "Dead" :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Noter (copie écran) vos valeurs de paramètres, elles seront perdues suite à l&#8217;inclusion.</p>
+</li>
+<li>
+<p>Allez sur l&#8217;onglet actions du module et lancer la commande "Remplacer noeud en échec".</p>
+</li>
+<li>
+<p>Le contrôleur est en mode inclusion, procéder à l&#8217;inclusion selon la documentation du module.</p>
+</li>
+<li>
+<p>Remettre vos paramètres spécifiques.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Si le module n&#8217;est pas présumé "Dead" mais est toujours accessible:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Dans la configuration ZWave décocher l&#8217;option "Supprimer automatiquement les périphériques exclus".</p>
+</li>
+<li>
+<p>Noter (copie écran) vos valeurs de paramètres, elles seront perdues suite à l&#8217;inclusion.</p>
+</li>
+<li>
+<p>Exclure le module défaillant.</p>
+</li>
+<li>
+<p>Aller sur la page de configuration du module défaillant.</p>
+</li>
+<li>
+<p>Ouvrir la page du plugin ZWave dans un nouvel onglet.</p>
+</li>
+<li>
+<p>Faire l&#8217;inclusion du module.</p>
+</li>
+<li>
+<p>Copier l&#8217;ID du nouveau module, puis supprimer cet équipement.</p>
+</li>
+<li>
+<p>Retourner sur l&#8217;onglet de l&#8217;ancien module puis coller le nouvel ID à la place de l&#8217;ancien ID.</p>
+</li>
+<li>
+<p>Remettre vos paramètres spécifiques.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_suppression_de_noeud_fantome">13.8. Suppression de noeud fantome</h3>
+<div class="paragraph">
+<p>Si vous avez perdu toute communication avec un module sur pile et que vous souhaitez l&#8217;exclure du réseau, il est possible que l&#8217;exclusion n’aboutisse pas ou que le nœud reste présent dans votre réseau.</p>
+</div>
+<div class="paragraph">
+<p>Un assistant automatique de nœud fantôme est disponible.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Allez sur l&#8217;onglet actions du module à supprimer.</p>
+</li>
+<li>
+<p>Il aura probablement un statu <strong>CacheLoad</strong>.</p>
+</li>
+<li>
+<p>Lancer la commande <strong>Supprimer nœud fantôme</strong>.</p>
+</li>
+<li>
+<p>Le réseau Z-Wave s&#8217;arrête. L&#8217;assistant automatique modifie le fichier <strong>zwcfg</strong> pour supprimer la CC WakeUp du module. Le réseau redémarre.</p>
+</li>
+<li>
+<p>Fermer l&#8217;écran du module.</p>
+</li>
+<li>
+<p>Ouvrir l&#8217;écran de Santé Z-Wave.</p>
+</li>
+<li>
+<p>Attendre que le cycle de démarrage soit complété (topology loaded).</p>
+</li>
+<li>
+<p>Le module sera normalement marqué comme étant présumé mort (Dead).</p>
+</li>
+<li>
+<p>La minute suivante vous devriez voir le nœud disparaître de l&#8217;écran de santé.</p>
+</li>
+<li>
+<p>Si dans la configuration Z-Wave vous avez décoché l&#8217;option "Supprimer automatiquement les périphériques exclus", il vous faudra supprimer manuellement l&#8217;équipement correspondant.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cette assistant est disponible seulement pour les modules sur piles.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_actions_post_inclusion">13.9. Actions post inclusion</h3>
+<div class="paragraph">
+<p>On recommande d&#8217;effectuer l&#8217;inclusion à moins 1M du contrôleur principal, or ce ne sera pas la position finale de votre nouveau module.
+Voici quelques bonnes pratiques à faire suite à l’inclusion d&#8217;un nouveau module dans votre réseau.</p>
+</div>
+<div class="paragraph">
+<p>Une fois l&#8217;inclusion terminée, il faut appliquer un certain nombre de paramètres à notre nouveau module afin d&#8217;en tirer le maximum. Rappel, les modules suite à l&#8217;inclusion ont les paramètres par défaut du constructeur.
+Profiter d&#8217;être à côté du contrôleur et de l&#8217;interface Jeedom pour bien paramétrer votre nouveau module. Il sera aussi plus simple de réveiller le module pour voir l&#8217;effet immédiat du changement.
+Certains modules ont une documentation spécifique Jeedom afin de vous aider avec les différents paramètres ainsi que des valeurs recommandées.</p>
+</div>
+<div class="paragraph">
+<p>Tester votre module, valider les remontées d&#8217;informations, retour d&#8217;état et actions possibles dans le cas d&#8217;un actuateur.</p>
+</div>
+<div class="paragraph">
+<p>Lors de l&#8217;interview votre nouveau module a recherché ses voisins. Toutefois les modules de votre réseau ne connaissent pas encore votre nouveau module.</p>
+</div>
+<div class="paragraph">
+<p>Déplacer votre module à son emplacement définitif. Lancer la mise à jour de ces voisins et réveiller-le encore une fois.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/troubleshooting07.png" alt="troubleshooting07"></span></p>
+</div>
+<div class="paragraph">
+<p>On constate qu&#8217;il voit un certain nombre de voisins mais que les voisin, eux, ne le voient pas.</p>
+</div>
+<div class="paragraph">
+<p>Pour remédier à cette situation il faut lancer l&#8217;action soigner le réseau, afin de demander à tous les modules de retrouver leurs voisins.</p>
+</div>
+<div class="paragraph">
+<p>Cette action peut prendre 24 heures avant d&#8217;être terminée, vos modules sur pile effectueront l&#8217;action seulement à leur prochain réveil.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../images/troubleshooting08.png" alt="troubleshooting08"></span></p>
+</div>
+<div class="paragraph">
+<p>L&#8217;option de soigner le réseau 2x par semaine permet de faire ce processus sans action de votre part, elle est utile lors de la mise en place de nouveaux modules et ou lorsqu&#8217;on les déplace.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pas_de_remontee_etat_de_la_pile">13.10. Pas de remontee etat de la pile</h3>
+<div class="paragraph">
+<p>Les modules Z-Wave n&#8217;envoie que très rarement l&#8217;état de leurs piles au contrôleur.
+Certains vont le faire à l&#8217;inclusion puis seulement lorsque celle-ci atteint 20% ou une autre valeur de seuil critique.</p>
+</div>
+<div class="paragraph">
+<p>Pour vous aider à mieux suivre l&#8217;état de vos piles l&#8217;écran Batteries sous le menu Analyse vous donne une vue d&#8217;ensemble de l&#8217;état de vos piles.
+Un mécanisme de notification de piles faibles est aussi disponible.</p>
+</div>
+<div class="paragraph">
+<p>La valeur remontée de l&#8217;écran Piles est la dernière connue dans le cache.</p>
+</div>
+<div class="paragraph">
+<p>Toutes les nuits, le plugin Z-Wave demande à chaque module de rafraichir la valeur Battery. Au prochain réveil, le module envoie la valeur à Jeedom pour être ajouté au cache.
+Donc il faut en général attendre au moins 24h avant l&#8217;obtention d&#8217;une valeur dans l&#8217;écran Batteries.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Il est bien entendu possible de rafraichir manuellement la valeur Battery via l&#8217;onglet Valeurs du module puis, soit attendre le prochain réveil ou encore de réveiller manuellement le module pour obtenir une remontée immédiate.
+Le cycle de réveil (Wake-up Interval) du module est défini dans l&#8217;onglet Système du module. Pour optimiser la vie de vos piles il est recommandé d&#8217;espacer au maximum ce délai. Pour 4h il faudrait appliquer 14400, 12h 43200.
+Certains modules doivent écouter régulièrement des messages du contrôleur comme les Thermostats dans ce cas il faut penser à 15min  soit 900. Chaque module est différent il n&#8217;y a donc pas de règle exact c&#8217;est au cas par cas et selon l’expérience.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+La décharge d&#8217;une pile n&#8217;est pas linéaire, certains modules vont montrer un grosse perte en pourcentage dans les premiers jours de mise en service, puis ne plus bouger durant des semaines pour se vider rapidement une fois passé les 20%.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_controleur_est_en_cours_d_initialisation">13.11. Controleur est en cours d initialisation</h3>
+<div class="paragraph">
+<p>Lorsque vous démarrez le démon Z-Wave, si vous essayez de lancer immédiatement une inclusion/exclusion vous risquez d&#8217;obtenir ce message:
+* "Le contrôleur est en cours d&#8217;initialisation veuillez réessayer dans quelques minutes"</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Suite au démarrage du démon, le contrôleur passe sur l&#8217;ensemble des modules afin de refaire leur interview. Ce comportement est tout-à-fait normal en OpenZWave.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Si toutefois après plusieurs minutes (plus de 10 minutes) vous avez toujours ce message ce n&#8217;est plus normal.</p>
+</div>
+<div class="paragraph">
+<p>Il faut essayer les différentes étapes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>S&#8217;assurer que les voyants de l&#8217;écran santé Jeedom soient au vert.</p>
+</li>
+<li>
+<p>S&#8217;assurer que la configuration du plugin est en ordre.</p>
+</li>
+<li>
+<p>S&#8217;assurer que vous avez bien sélectionné le bon port de la clé ZWave.</p>
+</li>
+<li>
+<p>S&#8217;assurer que votre configuration Réseau Jeedom est juste. (Attention si vous avez fait un Restore d’une installation DIY vers image officielle, le suffixe /jeedom ne doit pas y figurer)</p>
+</li>
+<li>
+<p>Regarder le log du plugin afin de voir si une erreur n&#8217;est pas remontée.</p>
+</li>
+<li>
+<p>Regarder la <strong>Console</strong> du plugin ZWave, afin de voir si une erreur n&#8217;est pas remontée.</p>
+</li>
+<li>
+<p>Lancer le Demon en <strong>Debug</strong> regarder à nouveau la <strong>Console</strong> et les logs du plugin.</p>
+</li>
+<li>
+<p>Redémarrer complètement Jeedom.</p>
+</li>
+<li>
+<p>Il faut s&#8217;assurer que vous avez bien un contrôleur Z-Wave, les Razberry sont souvent confondus avec les EnOcean (erreur lors de la commande).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Il faut maintenant débuter les tests hardwares:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Le Razberry est bien branché au port GPIO.</p>
+</li>
+<li>
+<p>L&#8217;alimentation USB est suffisante.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Si le problème persiste toujours, il faut réinitialiser le contrôleur:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Arrêter complément votre Jeedom via le menu d&#8217;arrêt dans le profil utilisateur.</p>
+</li>
+<li>
+<p>Débrancher l&#8217;alimentation.</p>
+</li>
+<li>
+<p>Retirer le dongle USB ou le Razberry selon le cas, environ 5 minutes.</p>
+</li>
+<li>
+<p>Re brancher le tout et essayer à nouveau.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_le_controleur_ne_repond_plus">13.12. Le controleur ne repond plus</h3>
+<div class="paragraph">
+<p>Plus aucune commande n&#8217;est transmise aux modules mais les retours d&#8217;états sont remontés vers Jeedom.</p>
+</div>
+<div class="paragraph">
+<p>Il est possible que la queue de messages du contrôleur soit remplie.
+Voir l&#8217;écran Réseau Z-Wave si le nombre de messages en attente ne fait qu&#8217;augmenter.</p>
+</div>
+<div class="paragraph">
+<p>Il faut dans ce cas relancer le Demon Z-Wave.</p>
+</div>
+<div class="paragraph">
+<p>Si le problème persiste, il faut réinitialiser le contrôleur:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Arrêter complément votre Jeedom via le menu d&#8217;arrêt dans le profil utilisateur.</p>
+</li>
+<li>
+<p>Débrancher l&#8217;alimentation.</p>
+</li>
+<li>
+<p>Retirer le dongle USB ou le Razberry selon le cas, environ 5 minutes.</p>
+</li>
+<li>
+<p>Re brancher le tout et essayer à nouveau.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_erreur_lors_des_dependances">13.13. Erreur lors des dependances</h3>
+<div class="paragraph">
+<p>Plusieurs erreurs erreur peuvent survenir lors de la mise à jour des dépendances.
+Il faut consulter le log de mise à jour des dépendances afin de déterminer quelle est exactement l&#8217;erreur.
+De façon générale l&#8217;erreur se trouve à la fin du log dans les quelque dernières lignes.</p>
+</div>
+<div class="paragraph">
+<p>Voici les possibles problèmes ainsi que leurs possibles résolutions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>could not install mercurial – abort</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Le package mercurial ne veut pas s&#8217;installer, pour corriger lancer en ssh:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sudo rm /var/lib/dpkg/info/$mercurial* -f
+sudo apt-get install mercurial</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Les dépendances semblent bloquées sur 75%</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A 75% c&#8217;est le début de la compilation de la librairie openzwave ainsi que du wrapper python openzwave.
+Cette étape est très longue, on peut toutefois consulter la progression via la vue du log de mise à jour.
+Il faut donc être simplement patient.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Erreur lors de la compilation de la librairie openzwave</p>
+<div class="literalblock">
+<div class="content">
+<pre>arm-linux-gnueabihf-gcc: internal compiler error: Killed (program cc1plus)
+Please submit a full bug report,
+with preprocessed source if appropriate.
+See &lt;file:///usr/share/doc/gcc-4.9/README.Bugs&gt; for instructions.
+error: command 'arm-linux-gnueabihf-gcc' failed with exit status 4
+Makefile:266: recipe for target 'build' failed
+make: *** [build] Error 1</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cette erreur peut survenir suite à un manque de mémoire RAM durant la compilation.</p>
+</div>
+<div class="paragraph">
+<p>Depuis l&#8217;UI jeedom, lancer la compilation des dépendances.</p>
+</div>
+<div class="paragraph">
+<p>Une fois lancée, en ssh, arrêté ces processus (consommateurs en mémoire) :</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sudo systemctl stop cron
+sudo systemctl stop apache2
+sudo systemctl stop mysql</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pour suivre l&#8217;avancement de la compilation on fait un tail sur le fichier log openzwave_update.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>tail -f /var/www/html/log/openzwave_update</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Lorsque la compilation est terminée et sans erreur, relancez  les services que vous avez arrêté</p>
+</div>
+<div class="paragraph">
+<p>sudo systemctl start cron
+sudo systemctl start apache2
+sudo systemctl start mysql</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Si vous etes toujours sous nginx il faudra remplacer <strong>apache2</strong> par <strong>nginx</strong> dans les commandes <strong>stop</strong> / <strong>start</strong>.
+Le fichier log openzwave_update sera dans le dossier: /usr/share/nginx/www/jeedom/log .
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_utilisation_de_la_carte_razberry_sur_un_raspberry_pi_3">13.14. Utilisation de la carte Razberry sur un Raspberry Pi 3</h3>
+<div class="paragraph">
+<p>Pour utiliser un contrôleur Razberry sur un Raspberry Pi 3, le contrôleur Bluetooth interne du Raspberry doit être désactivé.</p>
+</div>
+<div class="paragraph">
+<p>Ajouter cette ligne:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>dtoverlay=pi3-miniuart-bt</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>À la fin du fichier:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>/boot/config.txt</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Puis redémarrer votre Raspberry.</p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_api_http">14. API HTTP</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Le plugin Z-Wave met à disposition des développeurs et des utilisateurs une API complète afin de pouvoir opérer le réseau Z-Wave via requête HTTP.</p>
+</div>
+<div class="paragraph">
+<p>Il vous est possible d&#8217;exploiter, l&#8217;ensemble des méthodes exposé par le serveur REST du démon Z-Wave.</p>
+</div>
+<div class="paragraph">
+<p>La syntaxe pour appeler les routes est sous cette forme:</p>
+</div>
+<div class="paragraph">
+<p>URL = <a href="http://token:#APIKEY#@#IP_JEEDOM#:#PORTDEMON#/#ROUTE#" class="bare">http://token:#APIKEY#@#IP_JEEDOM#:#PORTDEMON#/#ROUTE#</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>#API_KEY# correspond à votre clé API, propre à votre installation. Pour la trouver il faut aller dans le menu « Général », puis « Administration » et « Configuration », en activant le mode Expert vous verrez alors une ligne Clef API.</p>
+</li>
+<li>
+<p>#IP_JEEDOM# correspond à votre url d’accès à Jeedom.</p>
+</li>
+<li>
+<p>#PORTDEMON# correspond au numéro de port spécifié dans la page de configuration du plugin Z-Wave, par défaut: 8083.</p>
+</li>
+<li>
+<p>#ROUTE# correspond à la route sur le serveur REST a exécuter.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Pour connaitre l&#8217;ensemble des route veillez vous référer
+<a href="https://github.com/jeedom/plugin-openzwave">github</a> du plugin Z-Wave.</p>
+</div>
+<div class="paragraph">
+<p>Example:
+Pour lancer un ping sur le noeud id 2</p>
+</div>
+<div class="paragraph">
+<p>URL = http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices[2].TestNode()</p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_release_notes">15. Release Notes</h2>
+<div class="sectionbody">
+<div class="ulist">
+<div class="title">Version 2016-09-07 (beta)</div>
+<ul>
+<li>
+<p>New Features</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Suppression du mode maître / esclave. Remplacé par le plugin jeedom link.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improvements/Enhancements</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Optimisation du code du serveur REST.</p>
+</li>
+<li>
+<p>Rafraîchissement de l&#8217;état après une COMMAND_CLASS_SWITCH_BINARY si aucune notification reçu.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bug Fixes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Rafraîchissement de l&#8217;ensemble des instances suite a un broadcast de la CC Switch ALL.</p>
+</li>
+<li>
+<p>Retour json de la route /ZWaveAPI/Run/devices[&lt;int:node_id&gt;].GetPendingChanges() plus inclue dans result.</p>
+</li>
+<li>
+<p>Retour json de la route /ZWaveAPI/Run/devices[&lt;int:node_id&gt;].GetLastNotification() plus inclue dans result.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Version 2016-08-26</div>
+<ul>
+<li>
+<p>New Features</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Aucune</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improvements/Enhancements</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Détection du RPI3 dans la mise à jour des dépendances.</p>
+</li>
+<li>
+<p>Activer le mode d&#8217;inclusion en non-sécurisé par défaut.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bug Fixes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Teste des informations constructeur dans l&#8217;écran de santé ne remonte plus des NOK.</p>
+</li>
+<li>
+<p>Perte des cases-à-cocher dans l&#8217;onglet Commandes de la page équipement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Version 2016-08-17</div>
+<ul>
+<li>
+<p>New Features</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Relance du demon si détection du contrôleur en timeout lors de l&#8217;initialisation du contrôleur.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improvements/Enhancements</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Mise à jour de la librairie OpenZWave 1.4.2088.</p>
+</li>
+<li>
+<p>Correction de l’orthographe.</p>
+</li>
+<li>
+<p>Refonte de l&#8217;écran équipements avec onglets.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bug Fixes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Problème d&#8217;affichage de certains modules sur la table de routage et Graph réseau.</p>
+</li>
+<li>
+<p>Modules Vision Secure qui ne retournent pas en veille durant l&#8217;interview.</p>
+</li>
+<li>
+<p>Installation des dépendances en boucle (problème coté github).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Version 2016-07-11</div>
+<ul>
+<li>
+<p>New Features</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Prise en charge de la restauration du dernier niveau connue sur les dimmer.</p>
+</li>
+<li>
+<p>Distinction des modules FLiRS dans l&#8217;écran de santé.</p>
+</li>
+<li>
+<p>Ajout de la demande de mise à jour des routes de retour au contrôleur.</p>
+</li>
+<li>
+<p>Assistant pour appliquer les paramètres de configuration d&#8217;un module à plusieurs autres modules.</p>
+</li>
+<li>
+<p>Identification du Zwave+ des modules supportant la COMMAND_CLASS_ZWAVE_PLUS_INFO.</p>
+</li>
+<li>
+<p>Affichage de l&#8217;état de sécurité des modules supportant la COMMAND_CLASS_SECURITY.</p>
+</li>
+<li>
+<p>Ajout de la possibilité de sélectionner l&#8217;instance 0 du contrôleur pour les associations multi-instances.</p>
+</li>
+<li>
+<p>Sécurisation de l&#8217;ensemble des appels au serveur REST.</p>
+</li>
+<li>
+<p>Détection automatique du dongle, dans la page de configuration du plugin.</p>
+</li>
+<li>
+<p>Dialogue d&#8217;inclusion avec le choix du mode d&#8217;inclusion pour simplifier l&#8217;inclusion sécurisé.</p>
+</li>
+<li>
+<p>Prise en compte des équipements désactivés au sein du moteur Z-Wave.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Affichage grisé dans l&#8217;écran de santé sans analyse sur le nœud.</p>
+</li>
+<li>
+<p>Masquée dans la Table réseau et Graphique réseau.</p>
+</li>
+<li>
+<p>Nœuds désactivés, excluent des tests sanitaires.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improvements/Enhancements</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Optimisation des contrôles sanitaires.</p>
+</li>
+<li>
+<p>Optimisation du graphique réseau.</p>
+</li>
+<li>
+<p>Amélioration de la détection du contrôleur principal pour le test des groupes.</p>
+</li>
+<li>
+<p>Mise à jour de la librairie OpenZWave 1.4.296.</p>
+</li>
+<li>
+<p>Optimisation du rafraichissement en arrière-plan des variateurs.</p>
+</li>
+<li>
+<p>Optimisation du rafraichissement en arrière-plan pour les moteurs.</p>
+</li>
+<li>
+<p>Adaptation pour la version Jeedom core 2.3</p>
+</li>
+<li>
+<p>Ecran de santé, modification de nom de colonne et avertissement en cas de non communication avec un module.</p>
+</li>
+<li>
+<p>Optimisation du serveur REST.</p>
+</li>
+<li>
+<p>Correction de l&#8217;orthographe des écrans, merci @Juan-Pedro aka: kiko.</p>
+</li>
+<li>
+<p>Mise à jour de la documentation du plugin.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bug Fixes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Correction de possible problèmes lors de la mise à jour des configurations de modules.</p>
+</li>
+<li>
+<p>Graphique réseau, calcul des sauts sur l&#8217;id du contrôleur principal et non assumer l&#8217;ID 1.</p>
+</li>
+<li>
+<p>Gestion du bouton ajouter une association groupe.</p>
+</li>
+<li>
+<p>Affichage des valeurs False dans l&#8217;onglet Configuration.</p>
+</li>
+<li>
+<p>Ne plus assumer la date du jour sur l&#8217;état des piles si pas reçu de rapport de l&#8217;équipement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Version 2016-05-30</div>
+<ul>
+<li>
+<p>New Features</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ajout d&#8217;une option pour activer/désactiver les contrôles sanitaires sur l&#8217;ensemble des modules.</p>
+</li>
+<li>
+<p>Ajout d&#8217;un onglet Notifications pour visualiser les dernières 25 notifications du contrôleur.</p>
+</li>
+<li>
+<p>Ajout d&#8217;une route pour récupérer la santé d&#8217;un noeud. ip_jeedom:8083/ZWaveAPI/Run/devices[node_id].GetHealth()</p>
+</li>
+<li>
+<p>Ajout d&#8217;une route pour récupérer la dernière notification d&#8217;un noeud. ip_jeedom:8083/ZWaveAPI/Run/devices[node_id].GetLastNotification()</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improvements/Enhancements</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Permettre la sélection des modules FLiRS lors des associations directes.</p>
+</li>
+<li>
+<p>Permettre la sélection de toutes les instances des modules lors des associations directes.</p>
+</li>
+<li>
+<p>Mise à jour du wrapper python OpenZWave en version 0.3.0.</p>
+</li>
+<li>
+<p>Mise à jour de la librairie OpenZWave 1.4.248.</p>
+</li>
+<li>
+<p>Ne pas afficher d&#8217;avertissement de wakeup expiré pour les modules sur piles alimentées par secteur.</p>
+</li>
+<li>
+<p>Validation qu&#8217;un module est identique au niveau ids pour permettre la copie des paramètres.</p>
+</li>
+<li>
+<p>Simplification de l&#8217;assistant de copie des paramètres.</p>
+</li>
+<li>
+<p>Masquer des valeurs de l&#8217;onglet système qui n&#8217;ont pas lieu d&#8217;être affichées.</p>
+</li>
+<li>
+<p>Affichage de la description des capacités du contrôleur.</p>
+</li>
+<li>
+<p>Mise à jour de la documentation.</p>
+</li>
+<li>
+<p>Correction de l&#8217;orthographe de la documentation, merci @Juan-Pedro aka: kiko.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bug Fixes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Correction orthographe.</p>
+</li>
+<li>
+<p>Correction de l&#8217;inclusion en mode sécurisé.</p>
+</li>
+<li>
+<p>Correction de l&#8217;appel asynchrone. (error: [Errno 32] Broken pipe)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Version 2016-05-04</div>
+<ul>
+<li>
+<p>New Features</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ajout d&#8217;option pour désactiver l&#8217;actualisation en arrière-plan des variateurs.</p>
+</li>
+<li>
+<p>Affichage des associations avec qui un module est en association (find usage).</p>
+</li>
+<li>
+<p>Ajout du support de la CC MULTI_INSTANCE_ASSOCIATION.</p>
+</li>
+<li>
+<p>Ajout d&#8217;une notification info lors de l&#8217;application de Set_Point afin de pourvoir exploiter la consigne demandée sous forme de cmd info.</p>
+</li>
+<li>
+<p>Ajout d&#8217;un assistant de configuration recommandée.</p>
+</li>
+<li>
+<p>Ajout d&#8217;option pour activer/désactiver l&#8217;assistant de configuration recommandée lors de l&#8217;inclusion de nouveaux modules.</p>
+</li>
+<li>
+<p>Ajout d&#8217;option pour activer/désactiver la mise à jour des configurations des modules chaque nuit.</p>
+</li>
+<li>
+<p>Ajout d&#8217;une route pour gérer les multi instances associations.</p>
+</li>
+<li>
+<p>Ajout des Query Stage manquants.</p>
+</li>
+<li>
+<p>Ajout de la validation de la sélection du Dongle USB au démarrage du démon.</p>
+</li>
+<li>
+<p>Ajout de la validation et test du callback au démarrage du démon.</p>
+</li>
+<li>
+<p>Ajout d&#8217;une option pour désactiver la mise à jour automatique des config de module.</p>
+</li>
+<li>
+<p>Ajout d&#8217;une route pour modifier à l&#8217;exécution les traces de log du serveur REST. Note: aucun effect sur le niveau OpenZWave. <a href="http://ip_jeedom:8083/ZWaveAPI/Run/ChangeLogLevel(level" class="bare">http://ip_jeedom:8083/ZWaveAPI/Run/ChangeLogLevel(level</a>) level &#8658; 40:Error, 20: Debug 10 Info</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improvements/Enhancements</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Mise à jour du wrapper python OpenZWave en version 0.3.0b9.</p>
+</li>
+<li>
+<p>Mise en évidence des groupes d&#8217;associations qui sont en attente d&#8217;être appliqués.</p>
+</li>
+<li>
+<p>Mise à jour de la librairie OpenZWave 1.4.167.</p>
+</li>
+<li>
+<p>Modification du système d&#8217;association directe.</p>
+</li>
+<li>
+<p>Mise à jour de la documentation</p>
+</li>
+<li>
+<p>Possibilité de lancer la régénération de la détection du nœud pour l’ensemble des modules identiques (marque et modèle).</p>
+</li>
+<li>
+<p>Affichage dans l&#8217;écran de santé si des éléments de configuration ne sont pas appliqués.</p>
+</li>
+<li>
+<p>Affichage dans l&#8217;écran d&#8217;équipement si des éléments de configuration ne sont pas appliqués.</p>
+</li>
+<li>
+<p>Affichage dans l&#8217;écran de santé si un module sur piles ne s&#8217;est jamais réveillé.</p>
+</li>
+<li>
+<p>Affichage dans l&#8217;écran de santé si un module sur piles a dépassé le temps du réveil prévu.</p>
+</li>
+<li>
+<p>Ajout de traces lors d&#8217;erreur de notifications.</p>
+</li>
+<li>
+<p>Meilleure remontée de l&#8217;état des piles.</p>
+</li>
+<li>
+<p>Conformité du résumé / santé pour les thermostats sur piles.</p>
+</li>
+<li>
+<p>Meilleur détection de modules sur piles.</p>
+</li>
+<li>
+<p>Optimisation du mode Debug pour le serveur REST.</p>
+</li>
+<li>
+<p>Forcer une actualisation de l&#8217;état des interrupteurs et dimer suite à l&#8217;envoi d&#8217;une commande switch all.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bug Fixes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Correction de la découverte des groupes d&#8217;associations.</p>
+</li>
+<li>
+<p>Correction de l&#8217;erreur "Exception KeyError: (91,) in 'libopenzwave.notif_callback' ignored".</p>
+</li>
+<li>
+<p>Correction de la sélection de la documentation de module pour les modules avec plusieurs profils.</p>
+</li>
+<li>
+<p>Gestion des boutons action du module.</p>
+</li>
+<li>
+<p>Correction de description de nom générique de class.</p>
+</li>
+<li>
+<p>Correction de la sauvegarde du fichier zwcfg.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Version 2016-03-01</div>
+<ul>
+<li>
+<p>New Features</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ajout du bouton Configuration via l&#8217;écran de gestion des équipements.</p>
+</li>
+<li>
+<p>Ajout des nouveaux états de l&#8217;interview de module.</p>
+</li>
+<li>
+<p>Modification de libellés dans les UI.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improvements/Enhancements</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Meilleur gestion des boutons Actions de modules.</p>
+</li>
+<li>
+<p>Documentation Ajout de sections.</p>
+</li>
+<li>
+<p>Optimisation du mécanisme de détection d&#8217;état du démon.</p>
+</li>
+<li>
+<p>Mécanisme de protestation lors de la récupération de la description des paramètres s’il contient des caractères non valides.</p>
+</li>
+<li>
+<p>Ne plus remonter les informations de l&#8217;état de la pile sur un module branché sur secteur.</p>
+</li>
+<li>
+<p>Mise à jour de la documentation.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bug Fixes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Documentation Corrections orthographiques et grammaticales.</p>
+</li>
+<li>
+<p>Validation du contenu du fichier zwcfg avant de l&#8217;appliquer.</p>
+</li>
+<li>
+<p>Correction de l&#8217;installation.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">2016-02-12</div>
+<ul>
+<li>
+<p>Improvements/Enhancements</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pas d&#8217;alerte de nœud mort si celui-ci est désactivé.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bug Fixes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Correction fil pilote Fibaro retour d&#8217;état.</p>
+</li>
+<li>
+<p>Correction d&#8217;un bug qui recréer les commandes lors de la mise à jour.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Version 2016.02.09</div>
+<ul>
+<li>
+<p>New Features</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ajout du push notification en case de node_event, permet la mise en place d’une cmd info en CC 0x20 pour récupérer des événement sur les nodes.</p>
+</li>
+<li>
+<p>Ajout de la route ForceRefresh http://ip_jeedom:8083/ZWaveAPI/Run/devices&lt;int:node_id&gt;.instances[&lt;int:instance_id&gt;].commandClasses[&lt;cc_id&gt;].data[&lt;int:index&gt;].ForceRefresh()
+pouvant être utilisée dans les commandes.</p>
+</li>
+<li>
+<p>Ajout du route SwitchAll http://ip_jeedom:8083/ZWaveAPI/Run/devices&lt;int:node_id&gt;.instances[0].commandClasses[0xF0].SwitchAll(&lt;int:state&gt;)
+disponible via le contrôleur principal.</p>
+</li>
+<li>
+<p>Ajout de la route ToggleSwitch http://ip_jeedom:8083/ZWaveAPI/Run/devices&lt;int:node_id&gt;.instances[&lt;int:instance_id&gt;].commandClasses[&lt;cc_id&gt;].data[&lt;int:index&gt;].ToggleSwitch()
+pouvant être utilisée dans les commandes.</p>
+</li>
+<li>
+<p>Ajout d’une push notification en cas de noeud présumé mort.</p>
+</li>
+<li>
+<p>Ajout de la commande “refresh all parameters” dans l’onglet Paramètres.</p>
+</li>
+<li>
+<p>Ajout de l’information du paramètre en attente d’être appliqué.</p>
+</li>
+<li>
+<p>Ajout de notification réseau.</p>
+</li>
+<li>
+<p>Ajout d’une légende dans le graphe réseau.</p>
+</li>
+<li>
+<p>Ajout de la fonction soigner réseau via la table de routage.</p>
+</li>
+<li>
+<p>Suppression automatique de nœud fantôme en un seul click.</p>
+</li>
+<li>
+<p>Gestion des actions sur nœud selon l’état du noeud et le type.</p>
+</li>
+<li>
+<p>Gestion des actions réseau selon l’état du réseau.</p>
+</li>
+<li>
+<p>Mise à jour de la configuration de module automatique toutes les nuits.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improvements/Enhancements</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Refactoring complet du code du serveur REST, optimisation de vitesse de démarrage, lisibilité, respect de convention de nommage.</p>
+</li>
+<li>
+<p>Mise à l’équerre des logs.</p>
+</li>
+<li>
+<p>Simplification de la gestion du refresh manuel 5min avec possibilité d’appliquer sur les nœuds sur piles.</p>
+</li>
+<li>
+<p>Mise à jour de la librairie OpenZWave en 1.4</p>
+</li>
+<li>
+<p>Modification du test sanitaire pour réanimer les nœuds présumés morts plus facilement sans actions utilisateurs.</p>
+</li>
+<li>
+<p>Utilisation de couleurs vives de la table de routage et du graphe réseau.</p>
+</li>
+<li>
+<p>Uniformisation des couleurs de la table de routage et du graphe réseau.</p>
+</li>
+<li>
+<p>Optimisation des informations de la page de santé Z-Wave selon l’état de l’interview.</p>
+</li>
+<li>
+<p>Meilleur gestion des paramètres en lecture seule ou en écriture seule dans l’onglet Paramètres.</p>
+</li>
+<li>
+<p>Amélioration des warning sur les thermostats sur piles.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bug Fixes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Température convertie en Celsius retourne l’unité C à la place de F.</p>
+</li>
+<li>
+<p>Correction du rafraîchissement des valeurs au démarrage.</p>
+</li>
+<li>
+<p>Correction du Refresh par valeur dans l’onglet Valeurs.</p>
+</li>
+<li>
+<p>Correction des noms génériques des modules.</p>
+</li>
+<li>
+<p>Correction du ping sur les nœuds en Timeout lors du test sanitaire.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+</div>
+</div>
+</body>
+</html>

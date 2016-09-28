@@ -1,0 +1,9 @@
+== Sicherungen
+
+Im Sicherungs Teil können Sie Sicherungen von Ihrer Netzwerk-Topologie verwalten. Dies ist die zwcfgxxx.xml-Datei, sie stellt den letzten bekannten Stand Ihres Netzes dar, es ist eine Form des Cache von Ihrem Netzwerk. Auf diesem Bildschirm können Sie :
+
+* Sicherung starten (eine Sicherung wird  bei jeden anhalten/neustarten vom Netz und während einer kritischen Operationen gemacht). Die letzten 12 Sicherungen werden gespeichert
+*  Sicherung Wiederherstellen (durch Auswahl in der Liste oberhalb)
+* Sicherung löschen
+
+image:../images/backup01.png[]

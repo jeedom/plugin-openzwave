@@ -1,0 +1,149 @@
+== Configuration des équipements
+
+La configuration des équipements Z-Wave est accessible à partir du menu plugin :
+
+image:../images/appliance01.png[]
+
+Ci-dessous un exemple d'une page du plugin Z-Wave (présentée avec quelques équipements) :
+
+image:../images/appliance02.png[]
+
+[TIP]
+Comme à beaucoup d'endroits sur Jeedom, placer la souris tout à gauche permet de faire apparaître un menu d'accès rapide (vous pouvez, à partir de votre profil, le laisser toujours visible).
+
+[TIP]
+Les boutons sur la ligne tout en haut *Synchroniser*, *Réseau-Zwave* et *Santé*, sont visibles seulement si vous êtes en mode *Expert*.
+image:../images/appliance03.png[]
+
+=== Général
+
+Vous retrouvez ici toute la configuration de votre équipement :
+
+image:../images/appliance04.png[]
+
+* *Nom de l'équipement* : nom de votre module Z-Wave.
+* *Objet parent* : indique l'objet parent auquel appartient l'équipement.
+* *Catégorie* : les catégories de l'équipement (il peut appartenir à plusieurs catégories).
+* *Activer* : permet de rendre votre équipement actif.
+* *Visible* : le rend visible sur le dashboard.
+* *Node ID* : ID du module sur le réseau Z-Wave. Ceci peut être utile si, par exemple, vous voulez remplacer un module défaillant. Il suffit d'inclure le nouveau module, de récupérer son ID, et le mettre à la place de l'ID de l'ancien module et enfin de supprimer le nouveau module.
+* *Serveur* : serveur Z-Wave auquel est rattaché votre module. Il est déconseillé d'en changer, à moins de savoir ce que vous faites.
+* *Délai maximum autorisé entre 2 messages (min)* : le délai maximum autorisé entre 2 messages avant que Jeedom ne déclare l'équipement en "timeout".
+* *Commentaire* : vous permet de mettre des commentaires sur l'équipement (ex : pile changée le XX/XX/XXXX)
+* *Module* : ce champ n'apparaît que s'il existe différents types de configuration pour votre module (cas pour les modules pouvant faire fils pilotes par exemple). Il vous permet de choisir la configuration à utiliser ou de la modifier par la suite
+* *Marque* : fabricant de votre module Z-Wave.
+* *Configuration* : fenêtre de configuration des paramètres du module
+* *Assistant* : disponible uniquement sur certains modules, il vous aide à configurer le module (cas sur le zipato keyboard par exemple)
+* *Documentation* : ce bouton vous permet d'ouvrir directement la documentation Jeedom concernant ce module.
+* *Supprimer* : Permet de supprimer un équipement ainsi que tous ces commandes rattaché sans l'exclure du réseau Z-Wave.
+
+[IMPORTANT]
+La suppression d'un équipement n'engendre pas une exclusion du module sur le contrôleur.
+image:../images/appliance11.png[]
+Un équipement supprimé qui est toujours rattaché à son contrôleur sera automatiquement recréé suite à la synchronisation.
+
+
+=== Commandes
+
+Ci-dessous vous retrouvez la liste des commandes :
+
+image:../images/appliance05.png[]
+
+[TIP]
+En fonction des types et sous-types, certaines options peuvent être absentes.
+
+* le nom affiché sur le dashboard
+* icône : dans le cas d'une action permet de choisir une icône à afficher sur le dashboard au lieu du texte
+* valeur de la commande : dans le cas d'une commande type action, sa valeur peut être liée à une commande de type info, c'est ici que cela se configure. Exemple pour une lampe l'intensité est liée à son état, cela permet au widget d'avoir l'état réel de la lampe.
+* le type et le sous-type.
+* l'instance de cette commande Z-Wave (réservée aux experts).
+* la classe de la commande Z-Wave (réservée aux experts).
+* la commande en elle-même (réservée aux experts).
+* "Valeur de retour d'état" et "Durée avant retour d'état" : permet d'indiquer à Jeedom qu'après un changement sur l'information sa valeur doit revenir à Y, X min après le changement. Exemple : dans le cas d'un détecteur de présence qui n'émet que lors d'une détection de présence, il est utile de mettre par exemple 0 en valeur et 4 en durée, pour que 4 min après une détection de mouvement (et si ensuite, il n'y en a pas eu de nouvelles) Jeedom remette la valeur de l'information à 0 (plus de mouvement détecté).
+* Historiser : permet d'historiser la donnée.
+* Afficher : permet d'afficher la donnée sur le dashboard.
+* Inverser : permet d'inverser l'état pour les types binaires.
+* Unité : unité de la donnée (peut être vide).
+* Min/Max : bornes de la donnée (peuvent être vides).
+* Configuration avancée (petites roues crantées) : permet d'afficher la configuration avancée de la commande (méthode d'historisation, widget...).
+* Tester : permet de tester la commande.
+* Supprimer (signe -) : permet de supprimer la commande.
+
+
+[IMPORTANT]
+Le bouton *Tester* dans le cas d'une commande de type Info, ne va pas interroger le module directement mais la valeur disponible dans le cache de Jeedom.
+Le test retournera la bonne valeur seulement si le module en question a transmis une nouvelle valeur correspondant à la définition de la commande.
+Il est alors tout à fait normal de ne pas obtenir de résultat suite à la création d'une nouvelle commande Info, spécialement sur un module sur pile qui notifie rarement Jeedom.
+
+
+[TIP]
+La *loupe* permet de recréer l'ensemble des commandes pour le module en cours.
+Si aucune commande n’est présente ou si les commandes sont erronées la loupe devrait remédier à la situation.
+
+
+[IMPORTANT]
+La *loupe* va supprimer les commandes existantes. Si les commandes étaient utilisées dans des scénarios, vous devrez alors corriger vos scénarios aux autres endroits où les commandes étaient exploitées.
+
+
+=== Jeux de Commandes
+
+Certains modules possèdent plusieurs jeux de commandes préconfigurées
+
+image:../images/appliance06.png[]
+
+Vous pouvez les sélectionner via les choix possibles, si le module le permet.
+
+[IMPORTANT]
+Vous devez effectuer la loupe pour appliquer le nouveau jeux de commandes.
+
+=== Documentation et Assistant
+
+Pour un certain nombre de modules, une aide spécifique pour la mise en place ainsi que des recommandations de paramètres sont disponibles.
+
+image:../images/appliance07.png[]
+
+Le bouton *Documentation* permet d'accéder à la documentation spécifique du module pour Jeedom.
+
+Des modules particuliers disposent aussi d'un assistant spécifique afin de faciliter l'application de certains paramètres ou fonctionnements.
+
+Le bouton *Assistant* permet d'accéder à l'écran assistant spécifique du module.
+
+
+=== Configuration recommandée
+
+image:../images/appliance08.png[]
+
+Permet d'appliquer un jeu de configuration recommandée par l'équipe Jeedom.
+
+[TIP]
+Lors de leur inclusion, les modules ont les paramètres par défaut du constructeur et certaines fonctions ne sont pas activées par défaut.
+
+Les éléments suivants, selon le cas, seront appliqués pour simplifier l'utilisation du module.
+
+* *Paramètres* permettant la mise en service rapide de l'ensemble des fonctionnalités du module.
+* *Groupes d'association* requis au bon fonctionnement.
+* *Intervalle de réveil*, pour les modules sur pile.
+* Activation du *rafraîchissement manuel* pour les modules ne remontant pas d'eux-mêmes leurs changements d'états.
+
+Pour appliquer le jeu de configuration recommandé, cliquer sur le bouton : *Configuration recommandée*,
+puis confirmer l'application des configurations recommandées.
+
+image:../images/appliance09.png[]
+
+L'assistant active les différents éléments de configurations.
+
+Une confirmation du bon déroulement sera affichée sous forme de bandeau
+
+image:../images/appliance10.png[]
+
+[IMPORTANT]
+Les modules sur piles doivent être réveillés pour appliquer le jeu de configuration.
+
+La page de l'équipement vous informe si des éléments n'ont pas encore été activés sur le module.
+Veuillez-vous référer à la documentation du module pour le réveiller manuellement ou attendre le prochain cycle de réveil.
+
+image:../images/appliance11.png[]
+
+
+[TIP]
+Il est possible d'activer automatiquement l'application du jeu de configuration recommandé lors de l'inclusion de nouveau module, voir la section Configuration du plugin pour plus de détails.
