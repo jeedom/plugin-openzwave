@@ -1,7 +1,22 @@
 import time
 
 from openzwave.controller import ZWaveController
-from ControllerMode import ControllerMode
+
+class ControllerMode:
+    def __init__(self):
+        pass
+
+    class Idle:
+        def __init__(self):
+            pass
+
+    class AddDevice:
+        def __init__(self):
+            pass
+
+    class RemoveDevice:
+        def __init__(self):
+            pass
 
 
 class NetworkInformation(object):
@@ -21,7 +36,10 @@ class NetworkInformation(object):
         self._controller_is_busy = False
         self._controller_state = ZWaveController.STATE_STARTING
         self._last_controller_notifications = [
-            {"state": self._controller_state, "details": '', "error": None, "error_description": None,
+            {"state": self._controller_state,
+             "details": '',
+             "error": None,
+             "error_description": None,
              "timestamp": int(time.time())}]
         self._error = None
         self._error_description = None
@@ -90,7 +108,9 @@ class NetworkInformation(object):
         if len(self._last_controller_notifications) == self._maximum_number_notifications:
             self._last_controller_notifications.pop()
 
-        self._last_controller_notifications.insert(0, {"state": state, "details": details, "error": error,
+        self._last_controller_notifications.insert(0, {"state": state,
+                                                       "details": details,
+                                                       "error": error,
                                                        "error_description": error_description,
                                                        "timestamp": int(time.time())})
 
@@ -122,6 +142,8 @@ class NetworkInformation(object):
         self._controller_state = ZWaveController.STATE_STARTING
         self._error = None
         self._error_description = None
-        self._last_controller_notifications = [{"state": self._controller_state, "details": '', "error": self._error,
+        self._last_controller_notifications = [{"state": self._controller_state,
+                                                "details": '',
+                                                "error": self._error,
                                                 "error_description": self._error_description,
                                                 "timestamp": int(time.time())}]

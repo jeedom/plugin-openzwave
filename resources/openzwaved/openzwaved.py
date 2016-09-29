@@ -259,11 +259,9 @@ from openzwave.network import ZWaveNetwork
 from openzwave.option import ZWaveOption
 
 
-from ControllerMode import ControllerMode
-from NetworkInformation import NetworkInformation
-from PendingConfiguration import PendingConfiguration
-from PendingAssociation import PendingAssociation
-from NodeNotification import NodeNotification
+from utilities.NetworkExtend import *
+from utilities.PendingItem import *
+from utilities.NodeExtend import *
 
 _pending_configurations = {}
 _pending_associations = {}
