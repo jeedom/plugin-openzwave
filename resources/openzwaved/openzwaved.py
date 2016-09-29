@@ -70,12 +70,10 @@ _pidfile = '/tmp/openzwaved.pid'
 _apikey = ''
 _callback = ''
 _assumeAwake = False
-
 # default_poll_interval = 1800000  # 30 minutes
 _default_poll_interval = 300000  # 5 minutes
 _maximum_poll_intensity = 1
 _controller_state = -1
-
 # maximum time (in seconds) allowed for a background refresh
 _refresh_timeout = 120
 # background refresh interval step in seconds
@@ -91,10 +89,8 @@ _maximum_number_notifications = 25
 _sanity_checks_delay = 15.0
 _not_supported_nodes = [0, 255]
 _user_values_to_refresh = ["Level", "Sensor", "Switch", "Power", "Temperature", "Alarm Type", "Alarm Type", "Power Management"]
-
 _network = None
 _network_information = None
-
 _force_refresh_nodes = []
 _changes_async = {'device': {}}
 _cycle = 0.3
@@ -102,101 +98,10 @@ _ghost_node_id = None
 _sanity_checks_running = False
 _suppress_refresh = False
 _disabled_nodes = []
+_pending_configurations = {}
+_pending_associations = {}
+_node_notifications = {}
 
-COMMAND_CLASS_NO_OPERATION = 0  # 0x00
-COMMAND_CLASS_BASIC = 32  # 0x20
-COMMAND_CLASS_CONTROLLER_REPLICATION = 33  # 0x21
-COMMAND_CLASS_APPLICATION_STATUS = 34  # 0x22
-# COMMAND_CLASS_ZIP_SERVICES              = 35  # 0x23
-# COMMAND_CLASS_ZIP_SERVER                = 36  # 0x24
-COMMAND_CLASS_SWITCH_BINARY = 37  # 0x25
-COMMAND_CLASS_SWITCH_MULTILEVEL = 38  # 0x26
-COMMAND_CLASS_SWITCH_ALL = 39  # 0x27
-COMMAND_CLASS_SWITCH_TOGGLE_BINARY = 40  # 0x28
-COMMAND_CLASS_SWITCH_TOGGLE_MULTILEVEL = 41  # 0x29
-# COMMAND_CLASS_CHIMNEY_FAN               = 42  # 0x2A
-COMMAND_CLASS_SCENE_ACTIVATION = 43  # 0x2B
-# COMMAND_CLASS_SCENE_ACTUATOR_CONF       = 44  # 0x2C
-# COMMAND_CLASS_SCENE_CONTROLLER_CONF     = 45  # 0x2D
-# COMMAND_CLASS_ZIP_CLIENT                = 46  # 0x2E
-# COMMAND_CLASS_ZIP_ADV_SERVICES          = 47  # 0x2F
-COMMAND_CLASS_SENSOR_BINARY = 48  # 0x30
-COMMAND_CLASS_SENSOR_MULTILEVEL = 49  # 0x31
-COMMAND_CLASS_METER = 50  # 0x32
-COMMAND_CLASS_COLOR = 51  # 0x33
-# COMMAND_CLASS_ZIP_ADV_CLIENT            = 52  # 0x34
-COMMAND_CLASS_METER_PULSE = 53  # 0x35
-# COMMAND_CLASS_THERMOSTAT_HEATING        = 56  # 0x38
-# COMMAND_CLASS_METER_TBL_CONFIG          = 60  # 0x3C
-# COMMAND_CLASS_METER_TBL_MONITOR         = 61  # 0x3D
-# COMMAND_CLASS_METER_TBL_PUSH            = 62  # 0x3E
-COMMAND_CLASS_THERMOSTAT_MODE = 64  # 0x40
-COMMAND_CLASS_THERMOSTAT_OPERATING_STATE = 66  # 0x42
-COMMAND_CLASS_THERMOSTAT_SET_POINT = 67  # 0x43
-COMMAND_CLASS_THERMOSTAT_FAN_MODE = 68  # 0x44
-COMMAND_CLASS_THERMOSTAT_FAN_STATE = 69  # 0x45
-COMMAND_CLASS_CLIMATE_CONTROL_SCHEDULE = 70  # 0x46
-# COMMAND_CLASS_THERMOSTAT_SETBACK        = 71  # 0x47
-COMMAND_CLASS_DOOR_LOCK_LOGGING = 76  # 0x4C
-# COMMAND_CLASS_SCHEDULE_ENTRY_LOCK       = 78  # 0x4E
-COMMAND_CLASS_BASIC_WINDOW_COVERING = 80  # 0x50
-# COMMAND_CLASS_MTP_WINDOW_COVERING       = 81  # 0x51
-COMMAND_CLASS_CRC_16_ENCAP = 86  # 0x56
-COMMAND_CLASS_DEVICE_RESET_LOCALLY = 90  # 0x5A
-COMMAND_CLASS_CENTRAL_SCENE = 91  # 0x5B
-COMMAND_CLASS_ZWAVE_PLUS_INFO = 94  # 0x5E
-COMMAND_CLASS_MULTI_INSTANCE = 96  # 0x60
-COMMAND_CLASS_DOOR_LOCK = 98  # 0x62
-COMMAND_CLASS_USER_CODE = 99  # 0x63
-COMMAND_CLASS_BARRIER_OPERATOR = 102  # 0x66
-COMMAND_CLASS_CONFIGURATION = 112  # 0x70
-COMMAND_CLASS_ALARM = 113  # 0x71
-COMMAND_CLASS_MANUFACTURER_SPECIFIC = 114  # 0x72
-COMMAND_CLASS_POWER_LEVEL = 115  # 0x73
-COMMAND_CLASS_PROTECTION = 117  # 0x75
-COMMAND_CLASS_LOCK = 118  # 0x76
-COMMAND_CLASS_NODE_NAMING = 119  # 0x77
-# COMMAND_CLASS_FIRMWARE_UPDATE_MD        = 122  # 0x7A
-# COMMAND_CLASS_GROUPING_NAME             = 123  # 0x7B
-# COMMAND_CLASS_REMOTE_ASSOCIATION_ACTIVATE =124  # 0x7C
-# COMMAND_CLASS_REMOTE_ASSOCIATION        = 125  # 0x7D
-COMMAND_CLASS_BATTERY = 128  # 0x80
-COMMAND_CLASS_CLOCK = 129  # 0x81
-COMMAND_CLASS_HAIL = 130  # 0x82
-COMMAND_CLASS_WAKE_UP = 132  # 0x84
-COMMAND_CLASS_ASSOCIATION = 133  # 0x85
-COMMAND_CLASS_VERSION = 134  # 0x86
-COMMAND_CLASS_INDICATOR = 135  # 0x87
-COMMAND_CLASS_PROPRIETARY = 136  # 0x88
-COMMAND_CLASS_LANGUAGE = 137  # 0x89
-# COMMAND_CLASS_TIME                      = 138  # 0x8A
-COMMAND_CLASS_TIME_PARAMETERS = 139  # 0x8B
-# COMMAND_CLASS_GEOGRAPHIC_LOCATION       = 150  # 0x8C
-# COMMAND_CLASS_COMPOSITE                 = 141  # 0x8D
-COMMAND_CLASS_MULTI_INSTANCE_ASSOCIATION = 142  # 0x8E
-COMMAND_CLASS_MULTI_CMD = 143  # 0x8F
-COMMAND_CLASS_ENERGY_PRODUCTION = 144  # 0x90
-# COMMAND_CLASS_MANUFACTURER_PROPRIETARY  = 145  # 0x91
-# COMMAND_CLASS_SCREEN_MD                 = 146  # 0x92
-# COMMAND_CLASS_SCREEN_ATTRIBUTES         = 147  # 0x93
-# COMMAND_CLASS_SIMPLE_AV_CONTROL         = 148  # 0x94
-# COMMAND_CLASS_AV_CONTENT_DIRECTORY_MD   = 149  # 0x95
-# COMMAND_CLASS_AV_RENDERER_STATUS        = 150  # 0x96
-# COMMAND_CLASS_AV_CONTENT_SEARCH_MD      = 151  # 0x97
-COMMAND_CLASS_SECURITY = 152  # 0x98
-# COMMAND_CLASS_AV_TAGGING_MD             = 153  # 0x99
-# COMMAND_CLASS_IP_CONFIGURATION          = 154  # 0x9A
-COMMAND_CLASS_ASSOCIATION_COMMAND_CONFIGURATION = 155  # 0x9B
-COMMAND_CLASS_SENSOR_ALARM = 156  # 0x9C
-# COMMAND_CLASS_SILENCE_ALARM             = 157  # 0x9D
-# COMMAND_CLASS_SENSOR_CONFIGURATION      = 158  # 0x9E
-# COMMAND_CLASS_MARK                      = 239  # 0xEF
-# COMMAND_CLASS_NON_INTEROPERABLE         = 240  # 0xF0
-
-SPECIFIC_TYPE_MOTOR_MULTI_POSITION = 3
-SPECIFIC_TYPE_CLASS_A_MOTOR_CONTROL = 5
-SPECIFIC_TYPE_CLASS_B_MOTOR_CONTROL = 6
-SPECIFIC_TYPE_CLASS_C_MOTOR_CONTROL = 7
 
 for arg in sys.argv:
     if arg.startswith("--device="):
@@ -254,19 +159,14 @@ logging.info("Check Openzwave")
 # from openzwave.node import ZWaveNode
 # from openzwave.value import ZWaveValue
 # from openzwave.scene import ZWaveScene
-from openzwave.controller import ZWaveController
+# from openzwave.controller import ZWaveController
 from openzwave.network import ZWaveNetwork
 from openzwave.option import ZWaveOption
 
-
 from utilities.NetworkExtend import *
-from utilities.PendingItem import *
 from utilities.NodeExtend import *
-
-_pending_configurations = {}
-_pending_associations = {}
-_node_notifications = {}
-
+from utilities.Constants import *
+from utilities.FilesManager import FilesManager
 
 # from openzwave.group import ZWaveGroup
 logging.info("--> pass")
@@ -323,109 +223,6 @@ def start_network():
     _network.start()
 
 
-def cleanup_configuration_file(filename):
-    global _data_folder
-    logging.info('... check: %s' % (filename,))
-    if os.path.isfile(filename):
-        try:
-            tree = etree.parse(filename)
-            nodes = tree.findall(".//{http://code.google.com/p/open-zwave/}Product")
-            for node in nodes:
-                if node.get("id")[:7] in _not_supported_nodes:
-                    tree.getroot().remove(node.getparent().getparent())
-                elif node.get("name")[:7] == "Unknown":
-                    tree.getroot().remove(node.getparent().getparent())
-            working_file = open(filename, "w")
-            working_file.write('<?xml version="1.0" encoding="utf-8" ?>\n')
-            working_file.writelines(etree.tostring(tree, pretty_print=True))
-            working_file.close()
-        except Exception as exception:
-            logging.error(str(exception))
-            logging.info('Trying to find the most recent valid xml in backups')
-            backup_folder = _data_folder + "/xml_backups"
-            # noinspection PyBroadException
-            try:
-                os.stat(backup_folder)
-            except:
-                os.mkdir(backup_folder)
-            pattern = "_zwcfg_"
-            filters = ['xml']
-            path = os.path.join(backup_folder, "")
-            actual_backups = os.listdir(backup_folder)
-            actual_backups.sort(reverse=True)
-            found_valid_backup = 0
-            for candidateBackup in actual_backups:
-                if candidateBackup[-3:] in filters and pattern in candidateBackup:
-                    try:
-                        tree = etree.parse(os.path.join(backup_folder, candidateBackup))
-                        final_filename = candidateBackup[candidateBackup.find('zwcfg'):]
-                        shutil.copy2(os.path.join(backup_folder, candidateBackup),
-                                     os.path.join(_data_folder, final_filename))
-                        os.chmod(final_filename, 0777)
-                        logging.info('Found one valid backup. Using it')
-                        found_valid_backup = 1
-                        break
-                    except Exception as exception:
-                        logging.error(str(exception))
-                        continue
-            if found_valid_backup == 0:
-                logging.info('No valid backup found. Regenerating')
-
-
-def check_config_files():
-    global _data_folder
-    root = _data_folder
-    pattern = "zwcfg_"
-    filters = ['xml']
-    path = os.path.join(root, "")
-    actual_configurations = os.listdir(root)
-    logging.info('Validate zwcfg configuration file(s)')
-    for configuration_file in actual_configurations:
-        if configuration_file[-3:] in filters and pattern in configuration_file:
-            if configuration_file != 'zwcfg_new.xml':
-                cleanup_configuration_file(os.path.join(root, configuration_file))
-
-
-def backup_xml_config(mode, home_id):
-    global _data_folder
-    # backup xml config file
-    logging.info('Backup xml config file with mode: %s' % (mode,))
-    # prepare all variables
-    timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')
-    xmm_to_backup = _data_folder + "/zwcfg_" + home_id + ".xml"
-    if not os.path.isfile(xmm_to_backup):
-        logging.error('No config file found to backup')
-        return format_json_result(False, 'No config file found to backup')
-    backup_folder = _data_folder + "/xml_backups"
-    backup_name = timestamp + "_" + mode + "_zwcfg_" + home_id + ".xml"
-    # check if folder exist (more efficient way)
-    # noinspection PyBroadException
-    try:
-        os.stat(backup_folder)
-    except:
-        os.mkdir(backup_folder)
-    # check if we need to clean the folder
-    actual_backups = os.listdir(backup_folder)
-    actual_backups.sort()
-    for backup in actual_backups:
-        if 'manual' in backup:
-            actual_backups.remove(backup)
-    if len(actual_backups) > 12:
-        logging.info('More than 12 auto backups found. Cleaning the folder')
-        for fileToDelete in actual_backups[:-11]:
-            os.unlink(os.path.join(backup_folder, fileToDelete))
-    # make the backup
-    try:
-        final_path = os.path.join(backup_folder, backup_name)
-        tree = etree.parse(xmm_to_backup)
-        shutil.copy2(xmm_to_backup, final_path)
-    except Exception as error:
-        logging.error('Backup xml failed %s' % (str(error),))
-        return format_json_result(False, 'Backup xml failed')
-    logging.info('Xml config file successfully backup')
-    return format_json_result(True, 'Xml config file successfully backup')
-
-
 def graceful_stop_network():
     logging.info('Graceful stopping the ZWave network.')
     global _network
@@ -470,7 +267,7 @@ def graceful_stop_network():
         # avoid a second pass
         _network = None
         logging.info('The Openzwave REST-server was stopped in a normal way')
-        backup_xml_config('stop', home_id)
+        _files_manager.backup_xml_config('stop', home_id)
     else:
         logging.info('The Openzwave REST-server is already stopped')
 
@@ -504,7 +301,8 @@ options.addOptionInt('ThreadTerminateTimeout', 5000)  #
 options.addOptionBool('EnableSIS', True)  # Automatically become a SUC if there is no SUC on the network
 options.lock()
 
-check_config_files()
+_files_manager = FilesManager(_data_folder, _not_supported_nodes, logging)
+_files_manager.check_config_files()
 
 
 def save_node_value_event(node_id, timestamp, command_class, value_index, standard_type, value, instance):
@@ -3722,10 +3520,12 @@ def get_nodes_list():
             node_name = my_node.product_name
             node_location = 'Jeedom'
 
-        json_node['description'] = {'name': node_name, 'location': node_location, 'product_name': my_node.product_name,
+        json_node['description'] = {'name': node_name, 'location': node_location,
+                                    'product_name': my_node.product_name,
                                     'is_static_controller': my_node.basic == 2,
                                     'is_enable': int(node_id) not in _disabled_nodes}
-        json_node['product'] = {'manufacturer_id': manufacturer_id, 'product_type': product_type,
+        json_node['product'] = {'manufacturer_id': manufacturer_id,
+                                'product_type': product_type,
                                 'product_id': product_id,
                                 'is_valid': manufacturer_id is not None and product_id is not None and product_type is not None}
         instances = []
@@ -3735,7 +3535,8 @@ def get_nodes_list():
             instances.append(my_node.values[val].instance)
         json_node['multi_instance'] = {'support': COMMAND_CLASS_MULTI_INSTANCE_ASSOCIATION in my_node.command_classes,
                                        'instances': len(instances)}
-        json_node['capabilities'] = {'isListening': my_node.is_listening_device, 'isRouting': my_node.is_routing_device,
+        json_node['capabilities'] = {'isListening': my_node.is_listening_device,
+                                     'isRouting': my_node.is_routing_device,
                                      'isBeaming': my_node.is_beaming_device,
                                      'isFlirs': my_node.is_frequent_listening_device}
 
@@ -3812,8 +3613,7 @@ def save_openzwave_config():
             logging.info('%s (%s)' % (_network.state_str, _network.state,))
             time.sleep(1)
         logging.info('Replace zwcfg file: %s' % (filename,))
-        shutil.copy2(new_filename, filename)
-        os.chmod(filename, 0777)
+        FilesManager.copy_file(new_filename, filename)
         logging.info('Restart network')
         start_network()
         return format_json_result()
@@ -3847,18 +3647,8 @@ def remove_unknowns_devices_openzwave_config():
         time.sleep(5)
     except Exception, exception:
         return format_exception_result(exception)
-
-    filename = _data_folder + "/zwcfg_" + _network.home_id_str + ".xml"
     try:
-        tree = etree.parse(filename)
-        nodes = tree.findall(".//{http://code.google.com/p/open-zwave/}Product")
-        for node in nodes:
-            if node.get("name")[:7] == "Unknown":
-                tree.getroot().remove(node.getparent().getparent())
-        working_file = open(filename, "w")
-        working_file.write('<?xml version="1.0" encoding="utf-8" ?>\n')
-        working_file.writelines(etree.tostring(tree, pretty_print=True))
-        working_file.close()
+        _files_manager.remove_unknowns_devices_openzwave_config(_network.home_id_str)
         start_network()
         return format_json_result()
     except Exception, exception:
@@ -3907,25 +3697,7 @@ def refresh_all_battery_level():
 @auth.login_required
 def get_openzwave_backups():
     # Return the list of all available backups
-    global _data_folder
-    logging.debug("List all backups")
-    my_result = {}
-    backup_list = []
-    backup_folder = _data_folder + "/xml_backups"
-    # noinspection PyBroadException
-    try:
-        os.stat(backup_folder)
-    except:
-        os.mkdir(backup_folder)
-    pattern = "_zwcfg_"
-    filters = ['xml']
-    actual_backups = os.listdir(backup_folder)
-    actual_backups.sort(reverse=True)
-    for candidateBackup in actual_backups:
-        if candidateBackup[-3:] in filters and pattern in candidateBackup:
-            backup_list.append(candidateBackup)
-    my_result['Backups'] = backup_list
-    return jsonify(my_result)
+    return jsonify(_files_manager.get_openzwave_backups())
 
 
 @app.route('/ZWaveAPI/Run/network.RestoreBackup(<backup_name>)', methods=['GET'])
@@ -3969,7 +3741,11 @@ def restore_openzwave_backups(backup_name):
 def manually_backup_config():
     # Manually create a backup
     logging.info('Manually creating a backup')
-    return backup_xml_config('manual', _network.home_id_str)
+    if _files_manager.backup_xml_config('manual', _network.home_id_str):
+        return format_json_result(True, 'Xml config file successfully backup')
+    else:
+        return format_json_result(False, 'See openzwave log file for details')
+
 
 
 @app.route('/ZWaveAPI/Run/network.DeleteBackup(<backup_name>)', methods=['GET'])
