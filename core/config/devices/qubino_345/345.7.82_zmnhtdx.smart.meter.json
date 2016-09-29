@@ -4,7 +4,7 @@
 	"type": "Rail-din",
 	"comlink": "3251-qubino-module-rail-din-compteur-d-energie-z-wave-3830062070362",
 	"imglink": "qubino.zmnhtdx",
-	"remark": "",
+	"remark": "Le module doit être inclus en mode sécurisé pour pouvoir contrôler les relais",
 	"configuration": {
 		"conf_version": 1
 	},
