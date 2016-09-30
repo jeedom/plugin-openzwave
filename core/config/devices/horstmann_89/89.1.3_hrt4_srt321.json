@@ -25,6 +25,20 @@
 		}
 	},
 	{
+		"name": "Mode Actuel",
+		"type": "info",
+		"display": {
+			"generic_type": "THERMOSTAT_MODE"
+		},
+		"subType": "string",
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x40",
+			"value": "data[0].val"
+		}
+	},
+	{
 		"name": "Off",
 		"type": "action",
 		"subtype": "other",
@@ -92,7 +106,25 @@
 		}
 	},
 	{
-		"name": "On",
+		"name": "Consigne pending",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x43",
+			"instanceId": 10,
+			"value": "data[1].val",
+			"maxValue": 30,
+			"minValue": 4
+		}
+	},
+	{
+		"name": "On1",
 		"type": "action",
 		"subtype": "other",
 		"isVisible": 0,
@@ -107,7 +139,7 @@
 		}
 	},
 	{
-		"name": "Off",
+		"name": "Off1",
 		"type": "action",
 		"subtype": "other",
 		"isVisible": 0,
@@ -129,7 +161,7 @@
 		"isVisible": 0,
 		"isHistorized": 0,
 		"display": {
-			"generic_type": "THERMOSTAT_STATE"
+			"generic_type": "DONT"
 		},
 		"configuration": {
 			"class": "0x25",
