@@ -1302,7 +1302,7 @@ def serialize_node_to_json(node_id):
             if my_value.command_class is None:
                 continue
 
-            if my_value.instance > 1 and my_value.command_class in [COMMAND_CLASS_ZWAVE_PLUS_INFO,
+            if my_value.instance > 1 and my_value.command_class in [COMMAND_CLASS_ZWAVEPLUS_INFO,
                                                                     COMMAND_CLASS_VERSION]:
                 continue
 
@@ -1374,7 +1374,7 @@ def serialize_node_to_json(node_id):
                 serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,
                                              pending_state, standard_type, timestamp, value2, value_help, value_units)
         json_result['data']['pending_changes'] = {'count': pending_changes}
-        json_result['multi_instance'] = {'support': COMMAND_CLASS_MULTI_INSTANCE_ASSOCIATION in my_node.command_classes,
+        json_result['multi_instance'] = {'support': COMMAND_CLASS_MULTI_CHANNEL in my_node.command_classes,
                                          'instances': len(instances)}
     else:
         logging.warning('This network does not contain any node with the id %s' % (node_id,))
@@ -2596,9 +2596,9 @@ def set_value7(node_id, instance_id, cc_id, index, value):
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and value <= 99:
                     # dimmer don't report the final value until the value changes is completed
                     prepare_refresh(node_id, val, value, is_motor(node_id))
-                if int(cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SET_POINT:
-                    logging.debug("COMMAND_CLASS_THERMOSTAT_SET_POINT")
-                    save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SET_POINT, index,
+                if int(cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SETPOINT:
+                    logging.debug("COMMAND_CLASS_THERMOSTAT_SETPOINT")
+                    save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SETPOINT, index,
                                           get_standard_value_type(_network.nodes[node_id].values[val].type), value,
                                           instance_id + 10)
                 if cc_id == hex(COMMAND_CLASS_SWITCH_BINARY):
@@ -2630,9 +2630,9 @@ def set_value8(node_id, instance_id, cc_id, index, value):
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     # dimmer don't report the final value until the value changes is completed
                     prepare_refresh(node_id, val, value, is_motor(node_id))
-                if int(cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SET_POINT:
-                    logging.debug("COMMAND_CLASS_THERMOSTAT_SET_POINT")
-                    save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SET_POINT, index,
+                if int(cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SETPOINT:
+                    logging.debug("COMMAND_CLASS_THERMOSTAT_SETPOINT")
+                    save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SETPOINT, index,
                                           get_standard_value_type(_network.nodes[node_id].values[val].type), value,
                                           instance_id + 10)
                 return format_json_result()
@@ -2658,7 +2658,7 @@ def set_value9(node_id, instance_id, cc_id, index, value):
                 if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
                     # dimmer don't report the final value until the value changes is completed
                     prepare_refresh(node_id, val, value, is_motor(node_id))
-                if cc_id == hex(COMMAND_CLASS_COLOR):
+                if cc_id == hex(COMMAND_CLASS_SWITCH_COLOR):
                     if len(last_value) == 9 and len(value) > 9:
                         value = value[:9]
                     prepare_refresh(node_id, val, value.upper())
@@ -3550,7 +3550,7 @@ def get_nodes_list():
             if my_node.values[val].instance in instances:
                 continue
             instances.append(my_node.values[val].instance)
-        json_node['multi_instance'] = {'support': COMMAND_CLASS_MULTI_INSTANCE_ASSOCIATION in my_node.command_classes,
+        json_node['multi_instance'] = {'support': COMMAND_CLASS_MULTI_CHANNEL in my_node.command_classes,
                                        'instances': len(instances)}
         json_node['capabilities'] = {'isListening': my_node.is_listening_device,
                                      'isRouting': my_node.is_routing_device,
