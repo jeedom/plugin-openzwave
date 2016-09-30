@@ -245,6 +245,7 @@ def graceful_stop_network():
             dispatcher.disconnect(node_removed, ZWaveNetwork.SIGNAL_NODE_REMOVED)
             dispatcher.disconnect(value_added, ZWaveNetwork.SIGNAL_VALUE_ADDED)
             dispatcher.disconnect(value_update, ZWaveNetwork.SIGNAL_VALUE_CHANGED)
+            dispatcher.disconnect(value_removed, ZWaveNetwork.SIGNAL_VALUE_REMOVED)
             dispatcher.disconnect(value_refreshed, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
             # dispatcher.disconnect(value_polling_enabled, ZWaveNetwork.SIGNAL_POLLING_ENABLED)
             dispatcher.disconnect(node_event, ZWaveNetwork.SIGNAL_NODE_EVENT)
@@ -591,6 +592,11 @@ def node_removed(network, node):
         return
     if network.state >= _network.STATE_AWAKED:
         save_node_event(node.node_id, "removed")
+    # clean dict
+    if node.node_id in _node_notifications:
+        del _node_notifications[node.node_id]
+    if node.node_id in _pending_associations:
+        del _pending_associations[node.node_id]
 
 
 def get_standard_value_type(value_type):
@@ -732,6 +738,15 @@ def value_added(network, node, value):
     # logging.debug('value_added. %s %s' % (node.node_id, value.label,))
     # mark initial data for skip notification during interview
     value.lastData = value.data
+
+
+# noinspection PyUnusedLocal
+def value_removed(network, node, value):
+    if node.node_id in _not_supported_nodes:
+        return
+    # clean pending dict
+    if value.value_id in _pending_configurations:
+        del _pending_configurations[value.value_id]
 
 
 # noinspection PyUnusedLocal
@@ -961,6 +976,8 @@ dispatcher.connect(value_added, ZWaveNetwork.SIGNAL_VALUE_ADDED)
 dispatcher.connect(value_update, ZWaveNetwork.SIGNAL_VALUE_CHANGED)
 # A node value has been updated from the Z-Wave network.
 dispatcher.connect(value_refreshed, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
+# A node value has been removed from the Z-Wave network.
+dispatcher.connect(value_removed, ZWaveNetwork.SIGNAL_VALUE_REMOVED)
 # Polling of a node value has been successfully turned on.
 # dispatcher.connect(value_polling_enabled, ZWaveNetwork.SIGNAL_POLLING_ENABLED)
 # when a node sends a Basic_Set command to the controller.
