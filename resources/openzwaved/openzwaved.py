@@ -2853,6 +2853,35 @@ def toggle_switch(node_id, instance_id, cc_id, index):
         return format_node_not_fund(node_id)
 
 
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x25].data[<int:index>].Blink(<int:speed>,<int:step>)', methods=['GET'])
+@auth.login_required
+def blink(node_id, instance_id, index, speed, step):
+    if speed < 0.5:
+        speed = 0.5
+    elif speed > 5:
+        speed = 5
+    if step > 25:
+        step = 25
+    elif step < 2:
+        step = 2
+    logging.info("Blink NodeId: %s. %s time at %s sec" % (node_id, step, speed,))
+    if node_id in _network.nodes:
+        my_value = get_value_by_index(node_id, 37, instance_id+1, index)
+        if my_value is None :
+            return format_json_result(False,'value not found')
+        level = False
+        for x in range(0, step):
+            my_value.data = level
+            if not level:
+                level = True
+            else:
+                level = False
+            time.sleep(speed)
+        return format_json_result()
+    else:
+        return format_node_not_fund(node_id)
+
+
 # noinspection PyUnusedLocal
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)', methods=['GET'])
 @auth.login_required
