@@ -122,51 +122,14 @@
 			"maxValue": 30,
 			"minValue": 4
 		}
-	},
-	{
-		"name": "On1",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].Set(255)"
-		}
-	},
-	{
-		"name": "Off1",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].Set(0)"
-		}
-	},
-	{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "binary",
-		"unite": "",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	}]
+	}],
+	"recommended" : {
+		"params" : [
+			{"index": 1, "value" : "Enable"},
+			{"index": 2, "value" : "Celsius"},
+			{"index": 3, "value" : 5}
+		],
+		"wakeup" : 900,
+		"needswakeup" : true
+	}
 }

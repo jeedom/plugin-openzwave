@@ -50,5 +50,12 @@
 			"instanceId": 0,
 			"value": "data[0].val"
 		}
-	}]
+	}],
+	"recommended" : {
+		"polling": [
+			{ "instanceId": "0", "index": 0, "class": "0x32" },
+			{ "instanceId": "0", "index": 0, "class": "0x40" }
+		],
+		"needswakeup" : false
+	}
 }
