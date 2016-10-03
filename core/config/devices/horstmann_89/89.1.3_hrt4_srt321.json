@@ -25,52 +25,6 @@
 		}
 	},
 	{
-		"name": "Mode Actuel",
-		"type": "info",
-		"display": {
-			"generic_type": "THERMOSTAT_MODE"
-		},
-		"subType": "string",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x40",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "°C",
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x40",
-			"instanceId": 0,
-			"value": "data[0].Set(Off)"
-		}
-	},
-	{
-		"name": "Heat",
-		"type": "action",
-		"subType": "other",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "°C",
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x40",
-			"instanceId": 0,
-			"value": "data[0].Set(Heat)"
-		}
-	},
-	{
 		"name": "ConsigneEtat",
 		"type": "info",
 		"subType": "numeric",
