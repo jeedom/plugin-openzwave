@@ -107,10 +107,10 @@
 		}
 	},
 	{
-		"name": "On",
+		"name": "Set holiday mode",
 		"type": "action",
 		"subtype": "other",
-		"isVisible": 0,
+		"isVisible": 1,
 		"isHistorized": 0,
 		"display": {
 			"generic_type": "DONT"
@@ -122,10 +122,10 @@
 		}
 	},
 	{
-		"name": "Off",
+		"name": "Cancel holiday mode",
 		"type": "action",
 		"subtype": "other",
-		"isVisible": 0,
+		"isVisible": 1,
 		"isHistorized": 0,
 		"display": {
 			"generic_type": "DONT"
@@ -137,11 +137,11 @@
 		}
 	},
 	{
-		"name": "Etat",
+		"name": "Holiday mode",
 		"type": "info",
 		"subtype": "binary",
 		"unite": "",
-		"isVisible": 0,
+		"isVisible": 1,
 		"isHistorized": 0,
 		"display": {
 			"generic_type": "THERMOSTAT_STATE"
