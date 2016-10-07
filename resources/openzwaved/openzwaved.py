@@ -918,6 +918,7 @@ def connect_dispatcher():
     global _dispatcher_is_connect
     if _dispatcher_is_connect:
         return
+    logging.debug('connect to the louie dispatcher')
     # We connect to the louie dispatcher
     dispatcher.connect(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
     dispatcher.connect(network_failed, ZWaveNetwork.SIGNAL_NETWORK_FAILED)
@@ -975,6 +976,7 @@ def connect_dispatcher():
 
 def disconnect_dispatcher():
     global _dispatcher_is_connect
+    logging.debug('disconnect the louie dispatcher')
     # noinspection PyBroadException
     try:
         dispatcher.disconnect(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
