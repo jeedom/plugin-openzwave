@@ -387,7 +387,7 @@ var app_nodes = {
             var node_keys = [];
             $.each(nodes, function (key, val) {
                 if (key != app_nodes.selected_node) {
-                    if (val.capabilities.isListening || val.capabilities.isFlirs) {
+                    if (val.description.is_static_controller || val.capabilities.isListening || val.capabilities.isFlirs) {
                         if (support_multi_instance) {
                             if (val.description.is_static_controller) {
                                 node_keys.push(key + ';0');
