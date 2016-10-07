@@ -233,37 +233,7 @@ def graceful_stop_network():
         _network.stop()
         # We disconnect to the louie dispatcher
         # noinspection PyBroadException
-        try:
-            dispatcher.disconnect(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
-            dispatcher.disconnect(network_failed, ZWaveNetwork.SIGNAL_NETWORK_FAILED)
-            dispatcher.disconnect(network_failed, ZWaveNetwork.SIGNAL_DRIVER_FAILED)
-            dispatcher.disconnect(network_awaked, ZWaveNetwork.SIGNAL_NETWORK_AWAKED)
-            dispatcher.disconnect(network_ready, ZWaveNetwork.SIGNAL_NETWORK_READY)
-            dispatcher.disconnect(network_stopped, ZWaveNetwork.SIGNAL_NETWORK_STOPPED)
-            dispatcher.disconnect(node_new, ZWaveNetwork.SIGNAL_NODE_NEW)
-            dispatcher.disconnect(node_added, ZWaveNetwork.SIGNAL_NODE_ADDED)
-            dispatcher.disconnect(node_removed, ZWaveNetwork.SIGNAL_NODE_REMOVED)
-            dispatcher.disconnect(value_added, ZWaveNetwork.SIGNAL_VALUE_ADDED)
-            dispatcher.disconnect(value_update, ZWaveNetwork.SIGNAL_VALUE_CHANGED)
-            dispatcher.disconnect(value_removed, ZWaveNetwork.SIGNAL_VALUE_REMOVED)
-            dispatcher.disconnect(value_refreshed, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
-            # dispatcher.disconnect(value_polling_enabled, ZWaveNetwork.SIGNAL_POLLING_ENABLED)
-            dispatcher.disconnect(node_event, ZWaveNetwork.SIGNAL_NODE_EVENT)
-            dispatcher.disconnect(scene_event, ZWaveNetwork.SIGNAL_SCENE_EVENT)
-            dispatcher.disconnect(essential_node_queries_complete, ZWaveNetwork.SIGNAL_ESSENTIAL_NODE_QUERIES_COMPLETE)
-            dispatcher.disconnect(node_queries_complete, ZWaveNetwork.SIGNAL_NODE_QUERIES_COMPLETE)
-            dispatcher.disconnect(nodes_queried, ZWaveNetwork.SIGNAL_AWAKE_NODES_QUERIED)
-            dispatcher.disconnect(nodes_queried, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED)
-            dispatcher.disconnect(nodes_queried_some_dead, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
-            dispatcher.disconnect(button_on, ZWaveNetwork.SIGNAL_BUTTON_ON)
-            dispatcher.disconnect(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
-            dispatcher.disconnect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION)
-            dispatcher.disconnect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
-            dispatcher.disconnect(controller_waiting, ZWaveNetwork.SIGNAL_CONTROLLER_WAITING)
-            dispatcher.disconnect(controller_command, ZWaveNetwork.SIGNAL_CONTROLLER_COMMAND)
-            dispatcher.disconnect(controller_message_complete, ZWaveNetwork.SIGNAL_MSG_COMPLETE)
-        except Exception:
-            pass
+        disconnect_dispatcher()
         _network.destroy()
         # avoid a second pass
         _network = None
@@ -809,15 +779,16 @@ def prepare_value_notification(node, value):
 def value_update(network, node, value):
     if node.node_id in _not_supported_nodes:
         return
-    # logging.debug('value_update. %s %s' % (node.node_id, value.label,))
+    logging.debug('value_update. %s %s' % (node.node_id, value.label,))
     prepare_value_notification(node, value)
 
 
+# noinspection PyUnusedLocal
 def value_refreshed(network, node, value):
     if node.node_id in _not_supported_nodes:
         return
-    # logging.debug('value_refreshed. %s %s' % (node.node_id, value.label,))
-    value_update(network, node, value)
+    logging.debug('value_refreshed. %s %s' % (node.node_id, value.label,))
+    prepare_value_notification(node, value)
 
 
 # noinspection PyUnusedLocal
@@ -937,10 +908,99 @@ def node_notification(args):
                 wake_up_interval_step = 60.0
             # perform a ping to avoid device still awake after the Wake-up Interval Step
             threading.Timer(interval=wake_up_interval_step, function=force_sleeping, args=(node_id, 1)).start()
-        if node_id in _node_notifications:
-            last_notification = _node_notifications[node_id]
-            logging.info('NodeId %s send a notification: %s' % (node_id, last_notification.description,))
+        logging.info('NodeId %s send a notification: %s' % (node_id, _node_notifications[node_id].description,))
         push_node_notification(node_id, code)
+
+
+
+def connect_dispatcher():
+    # We connect to the louie dispatcher
+    dispatcher.connect(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
+    dispatcher.connect(network_failed, ZWaveNetwork.SIGNAL_NETWORK_FAILED)
+    dispatcher.connect(network_failed, ZWaveNetwork.SIGNAL_DRIVER_FAILED)
+    dispatcher.connect(network_awaked, ZWaveNetwork.SIGNAL_NETWORK_AWAKED)
+    dispatcher.connect(network_ready, ZWaveNetwork.SIGNAL_NETWORK_READY)
+    dispatcher.connect(network_stopped, ZWaveNetwork.SIGNAL_NETWORK_STOPPED)
+
+    # a new node has been found (not already stored in zwcfg*.xml file).
+    dispatcher.connect(node_new, ZWaveNetwork.SIGNAL_NODE_NEW)
+    # add node to the network, during node discovering and after a inclusion
+    dispatcher.connect(node_added, ZWaveNetwork.SIGNAL_NODE_ADDED)
+    # a node is fully removed from network.
+    dispatcher.connect(node_removed, ZWaveNetwork.SIGNAL_NODE_REMOVED)
+    # A new node value has been added to OpenZWave's list.
+    # These notifications occur after a node has been discovered, and details of its command classes have been received.
+    # Each command class may generate one or more values depending on the complexity of the item being represented.
+    dispatcher.connect(value_added, ZWaveNetwork.SIGNAL_VALUE_ADDED)
+    # A node value has been updated from the Z-Wave network and it is different from the previous value.
+    dispatcher.connect(value_update, ZWaveNetwork.SIGNAL_VALUE_CHANGED)
+    # A node value has been updated from the Z-Wave network.
+    dispatcher.connect(value_refreshed, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
+    # A node value has been removed from the Z-Wave network.
+    dispatcher.connect(value_removed, ZWaveNetwork.SIGNAL_VALUE_REMOVED)
+    # Polling of a node value has been successfully turned on.
+    # dispatcher.connect(value_polling_enabled, ZWaveNetwork.SIGNAL_POLLING_ENABLED)
+    # when a node sends a Basic_Set command to the controller.
+    dispatcher.connect(node_event, ZWaveNetwork.SIGNAL_NODE_EVENT)
+    # scene event
+    dispatcher.connect(scene_event, ZWaveNetwork.SIGNAL_SCENE_EVENT)
+    # the essential node query are completed
+    dispatcher.connect(essential_node_queries_complete, ZWaveNetwork.SIGNAL_ESSENTIAL_NODE_QUERIES_COMPLETE)
+    # all node query are completed, the node is fully operational, is ready!
+    dispatcher.connect(node_queries_complete, ZWaveNetwork.SIGNAL_NODE_QUERIES_COMPLETE)
+    # is network notification same as SIGNAL_NETWORK_AWAKE, we don't need
+    dispatcher.connect(nodes_queried, ZWaveNetwork.SIGNAL_AWAKE_NODES_QUERIED)
+    # is network notification same as SIGNAL_NETWORK_READY, we don't need
+    dispatcher.connect(nodes_queried, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED)
+    dispatcher.connect(nodes_queried_some_dead, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
+    # a button is pressed
+    dispatcher.connect(button_on, ZWaveNetwork.SIGNAL_BUTTON_ON)
+    dispatcher.connect(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
+    # Called when an error happened, or node changed (awake, sleep, death, no operation, timeout).
+    dispatcher.connect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION)
+    if _network.state >= _network.STATE_AWAKED:
+        dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
+    # Controller is waiting for a user action
+    dispatcher.connect(controller_waiting, ZWaveNetwork.SIGNAL_CONTROLLER_WAITING)
+    # keep a track of actual network command in progress
+    dispatcher.connect(controller_command, ZWaveNetwork.SIGNAL_CONTROLLER_COMMAND)
+    # The command has completed successfully
+    dispatcher.connect(controller_message_complete, ZWaveNetwork.SIGNAL_MSG_COMPLETE)
+
+
+def disconnect_dispatcher():
+    try:
+        dispatcher.disconnect(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
+        dispatcher.disconnect(network_failed, ZWaveNetwork.SIGNAL_NETWORK_FAILED)
+        dispatcher.disconnect(network_failed, ZWaveNetwork.SIGNAL_DRIVER_FAILED)
+        dispatcher.disconnect(network_awaked, ZWaveNetwork.SIGNAL_NETWORK_AWAKED)
+        dispatcher.disconnect(network_ready, ZWaveNetwork.SIGNAL_NETWORK_READY)
+        dispatcher.disconnect(network_stopped, ZWaveNetwork.SIGNAL_NETWORK_STOPPED)
+        dispatcher.disconnect(node_new, ZWaveNetwork.SIGNAL_NODE_NEW)
+        dispatcher.disconnect(node_added, ZWaveNetwork.SIGNAL_NODE_ADDED)
+        dispatcher.disconnect(node_removed, ZWaveNetwork.SIGNAL_NODE_REMOVED)
+        dispatcher.disconnect(value_added, ZWaveNetwork.SIGNAL_VALUE_ADDED)
+        dispatcher.disconnect(value_update, ZWaveNetwork.SIGNAL_VALUE_CHANGED)
+        dispatcher.disconnect(value_refreshed, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
+        dispatcher.disconnect(value_removed, ZWaveNetwork.SIGNAL_VALUE_REMOVED)
+        # dispatcher.disconnect(value_polling_enabled, ZWaveNetwork.SIGNAL_POLLING_ENABLED)
+        dispatcher.disconnect(node_event, ZWaveNetwork.SIGNAL_NODE_EVENT)
+        dispatcher.disconnect(scene_event, ZWaveNetwork.SIGNAL_SCENE_EVENT)
+        dispatcher.disconnect(essential_node_queries_complete, ZWaveNetwork.SIGNAL_ESSENTIAL_NODE_QUERIES_COMPLETE)
+        dispatcher.disconnect(node_queries_complete, ZWaveNetwork.SIGNAL_NODE_QUERIES_COMPLETE)
+        dispatcher.disconnect(nodes_queried, ZWaveNetwork.SIGNAL_AWAKE_NODES_QUERIED)
+        dispatcher.disconnect(nodes_queried, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED)
+        dispatcher.disconnect(nodes_queried_some_dead, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
+        dispatcher.disconnect(button_on, ZWaveNetwork.SIGNAL_BUTTON_ON)
+        dispatcher.disconnect(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
+        dispatcher.disconnect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION)
+        if _network.state >= _network.STATE_AWAKED:
+            dispatcher.disconnect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
+        dispatcher.disconnect(controller_waiting, ZWaveNetwork.SIGNAL_CONTROLLER_WAITING)
+        dispatcher.disconnect(controller_command, ZWaveNetwork.SIGNAL_CONTROLLER_COMMAND)
+        dispatcher.disconnect(controller_message_complete, ZWaveNetwork.SIGNAL_MSG_COMPLETE)
+    except Exception:
+        pass
 
 
 app = Flask(__name__, static_url_path='/static')
@@ -950,63 +1010,10 @@ _network_is_running = False
 # noinspection PyRedeclaration
 _network = ZWaveNetwork(options, autostart=False)
 
-# We connect to the louie dispatcher
-dispatcher.connect(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
-dispatcher.connect(network_failed, ZWaveNetwork.SIGNAL_NETWORK_FAILED)
-dispatcher.connect(network_failed, ZWaveNetwork.SIGNAL_DRIVER_FAILED)
-dispatcher.connect(network_awaked, ZWaveNetwork.SIGNAL_NETWORK_AWAKED)
-dispatcher.connect(network_ready, ZWaveNetwork.SIGNAL_NETWORK_READY)
-dispatcher.connect(network_stopped, ZWaveNetwork.SIGNAL_NETWORK_STOPPED)
 
+connect_dispatcher()
 start_network()
 
-# a new node has been found (not already stored in zwcfg*.xml file).
-dispatcher.connect(node_new, ZWaveNetwork.SIGNAL_NODE_NEW)
-# add node to the network, during node discovering and after a inclusion
-dispatcher.connect(node_added, ZWaveNetwork.SIGNAL_NODE_ADDED)
-# a node is fully removed from network.
-dispatcher.connect(node_removed, ZWaveNetwork.SIGNAL_NODE_REMOVED)
-# value is add, changed or is refreshed.
-
-# A new node value has been added to OpenZWave's list. 
-# These notifications occur after a node has been discovered, and details of its command classes have been received. 
-# Each command class may generate one or more values depending on the complexity of the item being represented.
-dispatcher.connect(value_added, ZWaveNetwork.SIGNAL_VALUE_ADDED)
-# A node value has been updated from the Z-Wave network and it is different from the previous value.
-dispatcher.connect(value_update, ZWaveNetwork.SIGNAL_VALUE_CHANGED)
-# A node value has been updated from the Z-Wave network.
-dispatcher.connect(value_refreshed, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
-# A node value has been removed from the Z-Wave network.
-dispatcher.connect(value_removed, ZWaveNetwork.SIGNAL_VALUE_REMOVED)
-# Polling of a node value has been successfully turned on.
-# dispatcher.connect(value_polling_enabled, ZWaveNetwork.SIGNAL_POLLING_ENABLED)
-# when a node sends a Basic_Set command to the controller.
-dispatcher.connect(node_event, ZWaveNetwork.SIGNAL_NODE_EVENT)
-# scene event
-dispatcher.connect(scene_event, ZWaveNetwork.SIGNAL_SCENE_EVENT)
-# the essential node query are completed
-dispatcher.connect(essential_node_queries_complete, ZWaveNetwork.SIGNAL_ESSENTIAL_NODE_QUERIES_COMPLETE)
-# all node query are completed, the node is fully operational, is ready!
-dispatcher.connect(node_queries_complete, ZWaveNetwork.SIGNAL_NODE_QUERIES_COMPLETE)
-# is network notification same as SIGNAL_NETWORK_AWAKE, we don't need
-dispatcher.connect(nodes_queried, ZWaveNetwork.SIGNAL_AWAKE_NODES_QUERIED)
-# is network notification same as SIGNAL_NETWORK_READY, we don't need
-dispatcher.connect(nodes_queried, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED)
-
-dispatcher.connect(nodes_queried_some_dead, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
-# a button is pressed
-dispatcher.connect(button_on, ZWaveNetwork.SIGNAL_BUTTON_ON)
-dispatcher.connect(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
-
-# Called when an error happened, or node changed (awake, sleep, death, no operation, timeout).
-dispatcher.connect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION)
-
-# Controller is waiting for a user action
-dispatcher.connect(controller_waiting, ZWaveNetwork.SIGNAL_CONTROLLER_WAITING)
-# keep a track of actual network command in progress
-dispatcher.connect(controller_command, ZWaveNetwork.SIGNAL_CONTROLLER_COMMAND)
-# The command has completed successfully
-dispatcher.connect(controller_message_complete, ZWaveNetwork.SIGNAL_MSG_COMPLETE)
 
 logging.info('OpenZwave Library Version %s' % (_network.manager.getOzwLibraryVersionNumber(),))
 logging.info('Python-OpenZwave Wrapper Version %s' % (_network.manager.getPythonLibraryVersionNumber(),))
@@ -2575,8 +2582,10 @@ def refresh_switch_binary(node_id, value_id, target_value):
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<int:value>)', methods=['GET'])
 @auth.login_required
 def set_value7(node_id, instance_id, cc_id, index, value):
-    logging.info("set_value7 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (
-    node_id, instance_id, cc_id, index, value,))
+    logging.info("set_value7 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (node_id, instance_id, cc_id, index, value,))
+    # special case to do a ping on node
+    if cc_id == hex(COMMAND_CLASS_NO_OPERATION):
+        return test_node(node_id, 1)
     if node_id in _network.nodes:
         for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
             if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[val].index == index:
@@ -3849,6 +3858,22 @@ def rest_change_log_level(level):
         _log_level = 'none'
     jeedom_utils.set_log_level(_log_level)
     return format_json_result(success=True, detail=('Log level is set: %s' % (_log_level,)), log_level='info', code=0)
+
+
+@app.route('/ZWaveAPI/Run/ReconnectDispatcher()', methods=['GET'])
+@auth.login_required
+def reconnect_dispatcher():
+    logging.info('reconnect the louie dispatcher')
+    disconnect_dispatcher()
+    connect_dispatcher()
+    return format_json_result()
+
+
+@app.route('/ZWaveAPI/Run/GetTime()', methods=['GET'])
+@auth.login_required
+def get_system_time():
+    logging.info('get_system_time')
+    return format_json_result(True, time.time())
 
 
 if __name__ == '__main__':
