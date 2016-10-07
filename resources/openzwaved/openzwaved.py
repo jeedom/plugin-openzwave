@@ -101,6 +101,8 @@ _disabled_nodes = []
 _pending_configurations = {}
 _pending_associations = {}
 _node_notifications = {}
+_dispatcher_is_connect = False
+_network_is_running = False
 
 
 for arg in sys.argv:
@@ -912,8 +914,10 @@ def node_notification(args):
         push_node_notification(node_id, code)
 
 
-
 def connect_dispatcher():
+    global _dispatcher_is_connect
+    if _dispatcher_is_connect:
+        return
     # We connect to the louie dispatcher
     dispatcher.connect(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
     dispatcher.connect(network_failed, ZWaveNetwork.SIGNAL_NETWORK_FAILED)
@@ -966,9 +970,12 @@ def connect_dispatcher():
     dispatcher.connect(controller_command, ZWaveNetwork.SIGNAL_CONTROLLER_COMMAND)
     # The command has completed successfully
     dispatcher.connect(controller_message_complete, ZWaveNetwork.SIGNAL_MSG_COMPLETE)
+    _dispatcher_is_connect = True
 
 
 def disconnect_dispatcher():
+    global _dispatcher_is_connect
+    # noinspection PyBroadException
     try:
         dispatcher.disconnect(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
         dispatcher.disconnect(network_failed, ZWaveNetwork.SIGNAL_NETWORK_FAILED)
@@ -1001,11 +1008,12 @@ def disconnect_dispatcher():
         dispatcher.disconnect(controller_message_complete, ZWaveNetwork.SIGNAL_MSG_COMPLETE)
     except Exception:
         pass
+    _dispatcher_is_connect = False
 
 
 app = Flask(__name__, static_url_path='/static')
 
-_network_is_running = False
+
 # Create a network object
 # noinspection PyRedeclaration
 _network = ZWaveNetwork(options, autostart=False)
