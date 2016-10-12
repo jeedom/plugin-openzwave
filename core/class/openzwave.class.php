@@ -28,7 +28,7 @@ class openzwave extends eqLogic {
 	public static function callOpenzwave($_url, $_timeout = null, $_noError = false, $_data = null, $_async = false) {
 		$url = 'http://127.0.0.1:' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim(str_replace(' ', '%20', $_url), '/');
 		if ($_async) {
-			shell_exec('curl -s -u "token:' . config::byKey('api') . '" -G "' . $url . '" >> /dev/null 2>&1 &');
+			shell_exec('curl -s -u "token:' . jeedom::getApiKey('openzwave') . '" -G "' . $url . '" >> /dev/null 2>&1 &');
 			return;
 		}
 		$ch = curl_init();
@@ -44,7 +44,7 @@ class openzwave extends eqLogic {
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $_data);
 		}
-		curl_setopt($ch, CURLOPT_USERPWD, 'token:' . config::byKey('api'));
+		curl_setopt($ch, CURLOPT_USERPWD, 'token:' . jeedom::getApiKey('openzwave'));
 		$result = curl_exec($ch);
 		if ($_noError) {
 			curl_close($ch);
@@ -279,7 +279,7 @@ class openzwave extends eqLogic {
 		}
 		$pathlog = log::getPathToLog('openzwaved');
 		if (file_exists(log::getPathToLog('openzwaved')) && shell_exec('grep "Not enough space in stream buffer" ' . log::getPathToLog('openzwaved') . ' | wc -l') > 0) {
-            log::add('openzwave', 'error', 'Not enough space in stream buffer detected');
+			log::add('openzwave', 'error', 'Not enough space in stream buffer detected');
 			self::deamon_stop();
 			log::clear('openzwaved');
 			try {
@@ -394,7 +394,6 @@ class openzwave extends eqLogic {
 			$port = jeedom::getUsbMapping($port);
 		}
 		$callback = network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/openzwave/core/php/jeeZwave.php';
-		$apikey = config::byKey('api');
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
 		$openzwave_path = dirname(__FILE__) . '/../../resources';
 		$config_path = dirname(__FILE__) . '/../../resources/openzwaved/config';
@@ -428,7 +427,7 @@ class openzwave extends eqLogic {
 		$cmd .= ' --config_folder=' . $config_path;
 		$cmd .= ' --data_folder=' . $data_path;
 		$cmd .= ' --callback=' . $callback;
-		$cmd .= ' --apikey=' . $apikey;
+		$cmd .= ' --apikey=' . jeedom::getApiKey('openzwave');
 		$cmd .= ' --suppressRefresh=' . $suppressRefresh;
 		//$cmd .= ' --assumeAwake=' . $assumeAwake;
 		if ($disabledNodes != '') {
