@@ -177,7 +177,6 @@ if _device is None or len(_device) == 0:
     logging.error('Dongle Key is not specified. Please check your Z-Wave (openzwave) configuration plugin page')
     sys.exit(1)
 
-logging.info("--> pass")
 
 logging.info("Check if the port REST server available")
 _sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -187,6 +186,14 @@ if port_available == 0:
     _port_server,), 'error')
     sys.exit(1)
 logging.info("--> pass")
+
+logging.info("Check OpenZWave Devices Database")
+if not os.path.isfile(_config_folder + "/manufacturer_specific.xml"):
+    logging.debug(_config_folder + "/manufacturer_specific.xml")
+    logging.error('OpenZWave Devices Database is not found. Please execute Devices Configuration update, from Plugin Configuration page')
+    sys.exit(1)
+logging.info("--> pass")
+
 
 # device = 'auto'
 if _device == 'auto':
