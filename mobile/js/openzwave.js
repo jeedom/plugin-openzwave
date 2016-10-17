@@ -37,8 +37,8 @@
 });
 
     $('body').on('zwave::notification', function (_event,_options) {
-     $('#div_inclusionAlert').html(_options);
- });
+       $('#div_inclusionAlert').html(_options);
+   });
 
     $('body').on('zwave::includeDevice', function (_event,_options) {
       $('.eqLogicAttr[data-l1key=id]').value('');
@@ -48,7 +48,7 @@
     }
 });
 
-    $('#div_listIncludeSever').delegate('.changeIncludeState','click', function() {
+    $('.changeIncludeState').on('click', function() {
         changeIncludeState($(this).attr('data-mode'), $(this).attr('data-state'), 0);
     });
 
@@ -82,9 +82,9 @@ getControllerState();
 
 function getControllerState() {
     var result = '';
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
         data: {
             action: "getControllerState"
         },
@@ -92,37 +92,37 @@ function getControllerState() {
         error: function(request, status, error) {
             handleAjaxError(request, status, error, $('#div_inclusionAlert'));
         },
-        success: function(data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_inclusionAlert').html(data.result);
-            return;
+        success: function(data) { 
+            if (data.state != 'ok') {
+                $('#div_inclusionAlert').html(data.result);
+                return;
+            }
+            var controllerState = data.result;
+            var networkState = controllerState.result.data.mode.value;
+            if (networkState == "0") {
+                $('#div_inclusionAlert').html('{{Aucun mode actif}}');
+            }
+            if (networkState == "1") {
+                $('#div_inclusionAlert').html('{{Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode}}');
+                $('.changeIncludeState[data-mode=1]').removeClass('ui-btn-a').addClass('ui-btn-b');
+                $('.changeIncludeState[data-mode=1]').attr('data-state', 0);
+                $('.changeIncludeState[data-mode=1]').html('<i class="fa fa-sign-in fa-rotate-90" style="font-size: 6em;"></i><br/>{{Stop inclusion}}');
+            }
+            if (networkState == "5") {
+                $('#div_inclusionAlert').html('{{Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}');
+                $('.changeIncludeState[data-mode=0]').removeClass('ui-btn-a').addClass('ui-btn-b');
+                $('.changeIncludeState[data-mode=0]').attr('data-state', 0);
+                $('.changeIncludeState[data-mode=0]').html('<i class="fa fa-sign-out fa-rotate-90" style="font-size: 6em;"></i><br/>{{Stop exclusion}}');
+            }
         }
-        var controllerState = data.result;
-        var networkState = controllerState.result.data.mode.value;
-        if (networkState == "0") {
-            $('#div_inclusionAlert'+i).html('{{Aucun mode actif}}');
-        }
-        if (networkState == "1") {
-            $('#div_inclusionAlert').html('{{Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode}}');
-            $('.changeIncludeState[data-mode=1]').removeClass('ui-btn-a').addClass('ui-btn-b');
-            $('.changeIncludeState[data-mode=1]').attr('data-state', 0);
-            $('.changeIncludeState[data-mode=1]').html('<i class="fa fa-sign-in fa-rotate-90" style="font-size: 6em;"></i><br/>{{Stop inclusion}}');
-        }
-        if (networkState == "5") {
-            $('#div_inclusionAlert').html('{{Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}');
-            $('.changeIncludeState[data-mode=0]').removeClass('ui-btn-a').addClass('ui-btn-b');
-            $('.changeIncludeState[data-mode=0]').attr('data-state', 0);
-            $('.changeIncludeState[data-mode=0]').html('<i class="fa fa-sign-out fa-rotate-90" style="font-size: 6em;"></i><br/>{{Stop exclusion}}');
-        }
-    }
-});
+    });
 }
 
 
 function changeIncludeState(_mode, _state, _secure) {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST",
+        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
         data: {
             action: "changeIncludeState",
             mode: _mode,
@@ -133,11 +133,11 @@ function changeIncludeState(_mode, _state, _secure) {
         error: function(request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function(data) { // si l'appel a bien fonctionné
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
+        success: function(data) { 
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
         }
-    }
-});
+    });
 }
