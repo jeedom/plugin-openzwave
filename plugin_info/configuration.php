@@ -17,9 +17,8 @@
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 include_file('core', 'authentification', 'php');
-if (!isConnect()) {
-	include_file('desktop', '404', 'php');
-	die();
+if (!isConnect('admin')) {
+	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
 <form class="form-horizontal">
@@ -89,10 +88,10 @@ if (!isConnect()) {
 					<option value="none">{{Aucun}}</option>
 					<option value="auto">{{Auto}}</option>
 					<?php
-					foreach (jeedom::getUsbMapping('', true) as $name => $value) {
-						echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
-					}
-					?>
+foreach (jeedom::getUsbMapping('', true) as $name => $value) {
+	echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
+}
+?>
 				</select>
 			</div>
 		</div>
