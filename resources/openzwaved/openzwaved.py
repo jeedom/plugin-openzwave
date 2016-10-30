@@ -697,7 +697,7 @@ def node_queries_complete(network, node):
 
 
 def save_value(node, value, last_update):
-    # logging.debug('A node value has been updated. nodeId:%s value:%s' % (node.node_id, value.label))
+    logging.debug('A node value has been updated. nodeId:%s value:%s' % (node.node_id, value.label))
     if node.node_id in _network.nodes:
         my_node = _network.nodes[node.node_id]
         # check if am the really last update
