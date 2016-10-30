@@ -71,6 +71,9 @@ if (isset($results['devices'])) {
 					if ($cmd->getConfiguration('value') == 'data[' . $result['index'] . '].val') {
 						$cmd->handleUpdateValue($result);
 					}
+					if ($result['CommandClass'] == '0x80'){
+						$eqLogic->batteryStatus($result['value']);
+					}
 				}
 			}
 		}
