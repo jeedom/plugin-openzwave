@@ -17,6 +17,16 @@ import sys
 import math
 
 try:
+    from tornado.wsgi import WSGIContainer
+    from tornado.httpserver import HTTPServer
+    from tornado.ioloop import IOLoop
+except Exception as e:
+    print('The dependency of openzwave plugin are not installed. Please, \
+    check the plugin openzwave configuration page for instructions', 'error')
+    print("Error: %s" % str(e), 'error')
+    sys.exit(1)
+
+try:
     from flask import Flask, jsonify, abort, request, make_response, redirect, url_for
     from flask_httpauth import HTTPBasicAuth
 except Exception as e:
@@ -3897,6 +3907,9 @@ def get_system_time():
 if __name__ == '__main__':
     jeedom_utils.write_pid(str(_pidfile))
     try:
+        http_server = HTTPServer(WSGIContainer(app))
+        http_server.listen(_port_server)
+        IOLoop.instance().start()
         if _log_level == 'Debug':
             print('REST server starting in %s mode' % (_log_level,))
             app.run(host='0.0.0.0', port=int(_port_server), debug=True, threaded=True, use_reloader=False, use_debugger=True)
