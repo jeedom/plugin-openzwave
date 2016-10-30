@@ -45,4 +45,4 @@ include::troubleshooting.asciidoc[]
 include::restapi.asciidoc[]
 
 "
-include::releasenotes.asciidoc[]
+include::changelog.asciidoc[]
