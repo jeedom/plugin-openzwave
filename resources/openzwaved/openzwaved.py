@@ -702,6 +702,7 @@ def save_value(node, value, last_update):
         my_node = _network.nodes[node.node_id]
         # check if am the really last update
         if my_node.last_update > last_update:
+            logging.warning('Timing Error. nodeLastUpdate:%s Last_update:%s' % (str(my_node.last_update), str(last_update)))
             return
         # mark as seen flag
         my_node.last_update = last_update
