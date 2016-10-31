@@ -397,15 +397,15 @@ class openzwave extends eqLogic {
 		//}
 
 		$cmd = '/usr/bin/python ' . $openzwave_path . '/openzwaved/openzwaved.py ';
-		$cmd .= ' --pidfile=/tmp/openzwaved.pid';
-		$cmd .= ' --device=' . $port;
-		$cmd .= ' --loglevel=' . log::convertLogLevel(log::getLogLevel('openzwave'));
-		$cmd .= ' --port=' . $port_server;
-		$cmd .= ' --config_folder=' . $config_path;
-		$cmd .= ' --data_folder=' . $data_path;
-		$cmd .= ' --callback=' . $callback;
-		$cmd .= ' --apikey=' . jeedom::getApiKey('openzwave');
-		$cmd .= ' --suppressRefresh=' . $suppressRefresh;
+		$cmd .= ' --pidfile /tmp/openzwaved.pid';
+		$cmd .= ' --device ' . $port;
+		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('openzwave'));
+		$cmd .= ' --port ' . $port_server;
+		$cmd .= ' --config_folder ' . $config_path;
+		$cmd .= ' --data_folder ' . $data_path;
+		$cmd .= ' --callback ' . $callback;
+		$cmd .= ' --apikey ' . jeedom::getApiKey('openzwave');
+		$cmd .= ' --suppressRefresh ' . $suppressRefresh;
 		//$cmd .= ' --assumeAwake=' . $assumeAwake;
 		if ($disabledNodes != '') {
 			$cmd .= ' --disabledNodes=' . $disabledNodes;
