@@ -2606,132 +2606,93 @@ def refresh_switch_binary(node_id, value_id, target_value):
                 logging.debug("Force refresh switch binary")
                 my_value.refresh()
 
+########################################################################################################################################################################
+########################################################################################################################################################################
+########################################################################################################################################################################
+########################################################################################################################################################################
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<int:value>)', methods=['GET'])
-@auth.login_required
-def set_value7(node_id, instance_id, cc_id, index, value):
-    logging.info("set_value7 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (node_id, instance_id, cc_id, index, value,))
-    # special case to do a ping on node
-    if cc_id == hex(COMMAND_CLASS_NO_OPERATION):
-        return test_node(node_id, 1)
-    if node_id in _network.nodes:
-        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
-            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[val].index == index:
-                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and value > 99:
-                    # The Switch Multilevel command class is used to set the light to a preferred dim level.
-                    # Values 0 - 99 (%) are used to set the dim level, value 255 is used to switch light on to dim level that was last known.
-                    logging.debug("Switch light ON to dim level that was last known")
-                    value = 255
-                _network.nodes[node_id].values[val].data = value
-                if _network.nodes[node_id].values[val].genre == 'System':
-                    if _network.nodes[node_id].values[val].type == 'Bool':
-                        if value == 0:
-                            value = False
-                        else:
-                            value = True
-                    mark_pending_change(_network.nodes[node_id].values[val], value)
-                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and value <= 99:
-                    # dimmer don't report the final value until the value changes is completed
-                    prepare_refresh(node_id, val, value, is_motor(node_id))
-                if int(cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SETPOINT:
-                    logging.debug("COMMAND_CLASS_THERMOSTAT_SETPOINT")
-                    save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SETPOINT, index,
-                                          get_standard_value_type(_network.nodes[node_id].values[val].type), value,
-                                          instance_id + 10)
-                if cc_id == hex(COMMAND_CLASS_SWITCH_BINARY):
-                    if value == 0:
-                        value = False
+def sendCommandZwave(_node_id, _cc_id,_instance_id, _index, _value):
+    logging.info("Send command to "+str(_node_id)+" on "+str(_cc_id)+" instance "+str(_instance_id)+" index "+str(_index)+" value "+str(_value))
+    if _node_id not in _network.nodes:
+        raise Exception('Unknow node id '+str(_node_id))
+    if _cc_id == hex(COMMAND_CLASS_NO_OPERATION):
+        return test_node(_node_id, 1)
+    if _cc_id == str(COMMAND_CLASS_WAKE_UP):
+        arr = _value.split(",")
+        wake_up_time = int(arr[0])
+        return set_wake_up(_node_id, wake_up_time)
+    if _cc_id == '0x85':
+        arr = _value.split(",")
+        group = int(arr[0])
+        target_node = int(arr[1])
+        try:
+            return format_json_result(add_assoc(_node_id, group, target_node))
+        except ValueError:
+            raise Exception('Node is not Ready for associations')
+    for val in _network.nodes[_node_id].get_values(class_id=int(_cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
+        if _network.nodes[_node_id].values[val].instance - 1 == _instance_id and (_index == None or _network.nodes[_node_id].values[val].index == _index):
+            if _cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and _value > 99:
+                logging.debug("Switch light ON to dim level that was last known")
+                _value = 255
+            _network.nodes[_node_id].values[val].data = _value
+            if _network.nodes[_node_id].values[val].genre == 'System':
+                if _network.nodes[_node_id].values[val].type == 'Bool':
+                    if _value == 0:
+                        _value = False
                     else:
-                        value = True
-                    worker = threading.Timer(interval=0.5, function=refresh_switch_binary, args=(node_id, val, value))
-                    worker.start()
-                return format_json_result()
-        return format_json_result(False, 'value not found', 'warning')
-    else:
-        return format_node_not_fund(node_id)
-
+                        _value = True
+                mark_pending_change(_network.nodes[_node_id].values[val], _value)
+            if _cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and _value <= 99:
+                prepare_refresh(_node_id, val, _value, is_motor(_node_id))
+            if int(_cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SETPOINT:
+                logging.debug("COMMAND_CLASS_THERMOSTAT_SETPOINT")
+                save_node_value_event(_node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SETPOINT, _index,get_standard_value_type(_network.nodes[_node_id].values[val].type), _value,_instance_id + 10)
+            if _cc_id == hex(COMMAND_CLASS_SWITCH_BINARY):
+                if _value == 0:
+                    _value = False
+                else:
+                    _value = True
+                worker = threading.Timer(interval=0.5, function=refresh_switch_binary, args=(_node_id, val, _value))
+                worker.start()
+            return True
+    raise Exception('Value not found')
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<float:value>)', methods=['GET'])
 @auth.login_required
 def set_value8(node_id, instance_id, cc_id, index, value):
-    logging.info("set_value8 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (
-    node_id, instance_id, cc_id, index, value,))
-    if node_id in _network.nodes:
-        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All',
-                                                      writeonly='All'):
-            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[
-                val].index == index:
-                _network.nodes[node_id].values[val].data = value
-                if _network.nodes[node_id].values[val].genre == 'System':
-                    mark_pending_change(_network.nodes[node_id].values[val], value)
-                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
-                    # dimmer don't report the final value until the value changes is completed
-                    prepare_refresh(node_id, val, value, is_motor(node_id))
-                if int(cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SETPOINT:
-                    logging.debug("COMMAND_CLASS_THERMOSTAT_SETPOINT")
-                    save_node_value_event(node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SETPOINT, index,
-                                          get_standard_value_type(_network.nodes[node_id].values[val].type), value,
-                                          instance_id + 10)
-                return format_json_result()
-        return format_json_result(False, 'value not found', 'warning')
-    else:
-        return format_node_not_fund(node_id)
-
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<string:value>)', methods=['GET'])
-@auth.login_required
-def set_value9(node_id, instance_id, cc_id, index, value):
-    logging.info("set_value9 nodeId:%s instance:%s commandClasses:%s index:%s data:%s" % (
-    node_id, instance_id, cc_id, index, value,))
-    if node_id in _network.nodes:
-        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All',
-                                                      writeonly='All'):
-            if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[
-                val].index == index:
-                last_value = _network.nodes[node_id].values[val].data
-                _network.nodes[node_id].values[val].data = value
-                if _network.nodes[node_id].values[val].genre == 'System':
-                    mark_pending_change(_network.nodes[node_id].values[val], value)
-                if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
-                    # dimmer don't report the final value until the value changes is completed
-                    prepare_refresh(node_id, val, value, is_motor(node_id))
-                if cc_id == hex(COMMAND_CLASS_SWITCH_COLOR):
-                    if len(last_value) == 9 and len(value) > 9:
-                        value = value[:9]
-                    prepare_refresh(node_id, val, value.upper())
-                return format_json_result()
-        return format_json_result(False, 'value not found', 'warning')
-    else:
-        return format_node_not_fund(node_id)
-
+    try:
+        return sendCommandZwave(node_id,cc_id,instance_id,index,value)
+    except Exception as e:
+        return format_json_result(False,str(e),'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Set(<string:value>)', methods=['GET'])
 @auth.login_required
 def set_value6(node_id, instance_id, cc_id, value):
-    logging.info("set_value6 nodeId:%s instance:%s commandClasses:%s  data:%s" % (node_id, instance_id, cc_id, value,))
-    if cc_id == str(COMMAND_CLASS_WAKE_UP):
-        # is a wake up interval update
-        arr = value.split(",")
-        wake_up_time = int(arr[0])
-        return set_wake_up(node_id, wake_up_time)
-    if node_id in _network.nodes:
-        if cc_id == '0x85':
-            # is a add association
-            arr = value.split(",")
-            group = int(arr[0])
-            target_node = int(arr[1])
-            try:
-                return format_json_result(add_assoc(node_id, group, target_node))
-            except ValueError:
-                return format_json_result(False, 'Node is not Ready for associations', 'warning')
-        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All',
-                                                      writeonly='All'):
-            if _network.nodes[node_id].values[val].instance - 1 == instance_id:
-                _network.nodes[node_id].values[val].data = value
-                return format_json_result()
-    else:
-        return format_node_not_fund(node_id)
-    return format_json_result(False, 'value not found', 'warning')
+    try:
+        sendCommandZwave(node_id,cc_id,instance_id,None,value)
+    except Exception as e:
+        return format_json_result(False,str(e),'warning')
+
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<int:value>)', methods=['GET'])
+@auth.login_required
+def set_value7(node_id, instance_id, cc_id, index, value):
+    try:
+        sendCommandZwave(node_id,cc_id,instance_id,index,value)
+    except Exception as e:
+        return format_json_result(False,str(e),'warning')
+
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<string:value>)', methods=['GET'])
+@auth.login_required
+def set_value9(node_id, instance_id, cc_id, index, value):
+    try:
+        sendCommandZwave(node_id,cc_id,instance_id,index,value)
+    except Exception as e:
+        return format_json_result(False,str(e),'warning')
+
+########################################################################################################################################################################
+########################################################################################################################################################################
+########################################################################################################################################################################
+########################################################################################################################################################################
 
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetColor()', methods=['GET'])
