@@ -1,5 +1,3 @@
-import os
-
 #Various message
 MSG_CHECK_DEPENDENCY = 'The dependency of openzwave plugin are not installed. Please check the plugin openzwave configuration page for instructions'
 
