@@ -3558,25 +3558,6 @@ def remove_unknowns_devices_openzwave_config():
     except Exception, exception:
         return format_exception_result(exception)
 
-@app.route('/ZWaveAPI/Run/network.RefreshAllBatteryLevel()', methods=['GET'])
-@auth.login_required
-def refresh_all_battery_level():
-    logging.debug("refresh_all_battery_level")
-    battery_levels = {}
-    if _network is not None and _network.state >= _network.STATE_AWAKED and _network_is_running:
-        for node_id in list(_network.nodes):
-            if node_id in _disabled_nodes:
-                continue
-            node = _network.nodes[node_id]
-            if not node.is_listening_device:
-                logging.debug('Refresh battery level for nodeId: %s' % (node_id,))
-                battery_level = get_value_by_index(node_id, COMMAND_CLASS_BATTERY, 1, 0)
-                if battery_level is not None:
-                    battery_level.refresh()
-                    battery_levels[node_id] = {'value': battery_level.data, 'updateTime': battery_level.last_update}
-    return jsonify(battery_levels)
-
-
 @app.route('/ZWaveAPI/Run/network.GetOZBackups()', methods=['GET'])
 @auth.login_required
 def get_openzwave_backups():
