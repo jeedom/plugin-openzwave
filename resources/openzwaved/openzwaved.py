@@ -1874,14 +1874,6 @@ def refresh_assoc(node_id):
         return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].findAssociations()', methods=['GET'])
-@auth.login_required
-def find_associations(node_id):
-    logging.info("findAssociations for nodeId: %s" % (node_id,))
-    json_result = serialize_associations(node_id)
-    return jsonify(json_result)
-
-
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[133].data', methods=['GET'])
 @auth.login_required
 def get_assoc(node_id):
@@ -1971,33 +1963,6 @@ def add_association(node_id, group_index, target_node_id, target_node_instance):
         return format_json_result()
     else:
         return format_node_not_fund(node_id)
-
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetPolling()', methods=['GET'])
-@auth.login_required
-def get_polling(node_id):
-    polling = 0
-    if node_id in _network.nodes:
-        for val in _network.nodes[node_id].get_values():
-            if _network.nodes[node_id].values[val].poll_intensity > polling:
-                polling = _network.nodes[node_id].values[val].poll_intensity
-    else:
-        logging.warning('This network does not contain any node with the id %s' % (node_id,))
-    return str(polling)
-
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].ResetPolling()', methods=['GET'])
-@auth.login_required
-def reset_polling(node_id):
-    logging.info("reset_polling for nodeId: %s" % (node_id,))
-    if node_id in _network.nodes:
-        for val in _network.nodes[node_id].get_values():
-            my_value = _network.nodes[node_id].values[val]
-            changes_value_polling(0, my_value)
-        return format_json_result()
-    else:
-        return format_node_not_fund(node_id)
-
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetPolling(<int:value_id>,<frequency>)', methods=['GET'])
 @auth.login_required
@@ -2095,24 +2060,6 @@ def set_wake_up(node_id, wake_up_time):
         return format_json_result(False, 'Wake-up Interval not found', 'warning')
     else:
         return format_node_not_fund(node_id)
-
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].SetChangeVerified(<int:index>,<int:verified>)', methods=['GET'])
-@auth.login_required
-def set_change_verified(node_id, instance_id, cc_id, index, verified):
-    # Sets a flag indicating whether value changes noted upon a refresh should be verified
-    logging.info("set_change_verified nodeId:%s instance:%s commandClasses:%s index:%s verified:%s" % (
-    node_id, instance_id, cc_id, index, verified,))
-    if node_id in _network.nodes:
-        for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16)):
-            my_value = _network.nodes[node_id].values[val]
-            if my_value.instance - 1 == instance_id and my_value.index == index:
-                _network.manager.setChangeVerified(my_value.value_id, bool(verified))
-                return format_json_result()
-        return format_json_result(False, 'value not found', 'warning')
-    else:
-        return format_node_not_fund(node_id)
-
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Refresh()', methods=['GET'])
 @auth.login_required
@@ -2243,22 +2190,6 @@ def copy_configuration(source_id, target_id):
     else:
         return format_node_not_fund(source_id)
     return jsonify({'result': my_result, 'copied_configuration_items': items})
-
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetConfigurationItem(<int:value_id>,<string:item>)', methods=['GET'])
-@auth.login_required
-def set_configuration_item(node_id, value_id, item):
-    if _network_information.controller_is_busy:
-        return format_controller_busy()
-    logging.info("set_configuration_item for node_id:%s change valueId:%s to '%s'" % (node_id, value_id, item,))
-    if node_id in _network.nodes:
-        my_result = _network.manager.setValue(node_id, value_id, item)
-        if my_result:
-            mark_pending_change(get_value_by_id(node_id, value_id), item)
-        return format_json_result(my_result)
-    else:
-        return format_node_not_fund(node_id)
-
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<int:value>,<int:size>)', methods=['GET'])
 @auth.login_required
@@ -2606,11 +2537,6 @@ def refresh_switch_binary(node_id, value_id, target_value):
                 logging.debug("Force refresh switch binary")
                 my_value.refresh()
 
-########################################################################################################################################################################
-########################################################################################################################################################################
-########################################################################################################################################################################
-########################################################################################################################################################################
-
 def sendCommandZwave(_node_id, _cc_id,_instance_id, _index, _value):
     logging.info("Send command to "+str(_node_id)+" on "+str(_cc_id)+" instance "+str(_instance_id)+" index "+str(_index)+" value "+str(_value))
     if _node_id not in _network.nodes:
@@ -2688,12 +2614,6 @@ def set_value9(node_id, instance_id, cc_id, index, value):
         sendCommandZwave(node_id,cc_id,instance_id,index,value)
     except Exception as e:
         return format_json_result(False,str(e),'warning')
-
-########################################################################################################################################################################
-########################################################################################################################################################################
-########################################################################################################################################################################
-########################################################################################################################################################################
-
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetColor()', methods=['GET'])
 @auth.login_required
@@ -2819,66 +2739,6 @@ def release_button(node_id, instance_id, cc_id, index):
         return format_json_result(False, 'button not found', 'warning')
     else:
         return format_node_not_fund(node_id)
-
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ToggleSwitch()', methods=['GET'])
-@auth.login_required
-def toggle_switch(node_id, instance_id, cc_id, index):
-    if node_id in _network.nodes:
-        if cc_id in [hex(COMMAND_CLASS_SWITCH_BINARY), hex(COMMAND_CLASS_SWITCH_MULTILEVEL)]:
-            for val in _network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All',
-                                                          readonly='All', writeonly='All'):
-                if _network.nodes[node_id].values[val].instance - 1 == instance_id and _network.nodes[node_id].values[
-                    val].index == index:
-                    switch_state = 0
-                    if cc_id == hex(COMMAND_CLASS_SWITCH_BINARY):
-                        switch_state = _network.nodes[node_id].get_switch_state(val)
-                        _network.nodes[node_id].set_switch(val, not switch_state)
-                    if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
-                        switch_state = _network.nodes[node_id].values[val].data > 0
-                        if switch_state:
-                            target_level = 0
-                        else:
-                            target_level = 255
-                        _network.nodes[node_id].values[val].data = target_level
-                        # dimmer don't report the final value until the value changes is completed
-                        prepare_refresh(node_id, val, target_level)
-                    return format_json_result(True, 'Switch as toggle, state is now %s' % (not switch_state,))
-            return format_json_result(False, 'instance or index not found', 'warning')
-        else:
-            return format_json_result(False, 'commandClass %s cant toggle' % (cc_id,), 'warning')
-    else:
-        return format_node_not_fund(node_id)
-
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x25].data[<int:index>].Blink(<int:speed>,<int:step>)', methods=['GET'])
-@auth.login_required
-def blink(node_id, instance_id, index, speed, step):
-    if speed < 0.5:
-        speed = 0.5
-    elif speed > 5:
-        speed = 5
-    if step > 25:
-        step = 25
-    elif step < 2:
-        step = 2
-    logging.info("Blink NodeId: %s. %s time at %s sec" % (node_id, step, speed,))
-    if node_id in _network.nodes:
-        my_value = get_value_by_index(node_id, 37, instance_id+1, index)
-        if my_value is None :
-            return format_json_result(False,'value not found')
-        level = False
-        for x in range(0, step):
-            my_value.data = level
-            if not level:
-                level = True
-            else:
-                level = False
-            time.sleep(speed)
-        return format_json_result()
-    else:
-        return format_node_not_fund(node_id)
-
 
 # noinspection PyUnusedLocal
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)', methods=['GET'])
@@ -3698,26 +3558,6 @@ def remove_unknowns_devices_openzwave_config():
     except Exception, exception:
         return format_exception_result(exception)
 
-
-@app.route('/ZWaveAPI/Run/network.SetPollInterval(<int:seconds>,<interval_between_polls>)', methods=['GET'])
-@auth.login_required
-def set_poll_interval(seconds, interval_between_polls):
-    # Set the time period between polls of a node's state
-    if not can_execute_network_command():
-        return format_controller_busy()
-    try:
-        logging.info(
-            'set_poll_interval seconds:%s, interval Between Polls: %s' % (seconds, bool(interval_between_polls)), )
-        if _network.state < _network.STATE_AWAKED:
-            return jsonify({'result': False, 'reason': 'network state must a minimum set to awake'})
-        if seconds < 30:
-            return jsonify({'result': False, 'reason': 'interval is too small'})
-        _network.set_poll_interval(1000 * seconds, bool(interval_between_polls))
-        return format_json_result()
-    except Exception, exception:
-        return format_exception_result(exception)
-
-
 @app.route('/ZWaveAPI/Run/network.RefreshAllBatteryLevel()', methods=['GET'])
 @auth.login_required
 def refresh_all_battery_level():
@@ -3847,15 +3687,6 @@ def rest_change_log_level(level):
         _log_level = 'none'
     jeedom_utils.set_log_level(_log_level)
     return format_json_result(success=True, detail=('Log level is set: %s' % (_log_level,)), log_level='info', code=0)
-
-
-@app.route('/ZWaveAPI/Run/ReconnectDispatcher()', methods=['GET'])
-@auth.login_required
-def reconnect_dispatcher():
-    logging.info('reconnect the louie dispatcher')
-    disconnect_dispatcher()
-    connect_dispatcher()
-    return format_json_result()
 
 
 @app.route('/ZWaveAPI/Run/GetTime()', methods=['GET'])
