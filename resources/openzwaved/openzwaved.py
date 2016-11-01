@@ -1498,7 +1498,7 @@ def check_node_exist(_node_id,enable=False):
 		raise Exception('Disable node id '+str(_node_id))
 	return
 
-def sendCommandZwave(_node_id, _cc_id,_instance_id, _index, _value):
+def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 	logging.info("Send command to "+str(_node_id)+" on "+str(_cc_id)+" instance "+str(_instance_id)+" index "+str(_index)+" value "+str(_value))
 	check_node_exist(_node_id)
 	if _cc_id == hex(COMMAND_CLASS_NO_OPERATION):
@@ -2063,22 +2063,22 @@ def set_user_code2(node_id, slot_id, value1, value2, value3, value4, value5, val
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<float:value>)', methods=['GET'])
 @auth.login_required
 def set_value8(node_id, instance_id, cc_id, index, value):
-	return format_json_result(True,sendCommandZwave(node_id,cc_id,instance_id,index,value))
+	return format_json_result(True, send_command_zwave(node_id, cc_id, instance_id, index, value))
 	
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Set(<string:value>)', methods=['GET'])
 @auth.login_required
 def set_value6(node_id, instance_id, cc_id, value):
-	return format_json_result(True,sendCommandZwave(node_id,cc_id,instance_id,None,value))
+	return format_json_result(True, send_command_zwave(node_id, cc_id, instance_id, None, value))
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<int:value>)', methods=['GET'])
 @auth.login_required
 def set_value7(node_id, instance_id, cc_id, index, value):
-	return format_json_result(True,sendCommandZwave(node_id,cc_id,instance_id,index,value))
+	return format_json_result(True, send_command_zwave(node_id, cc_id, instance_id, index, value))
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<string:value>)', methods=['GET'])
 @auth.login_required
 def set_value9(node_id, instance_id, cc_id, index, value):
-	return format_json_result(True,sendCommandZwave(node_id,cc_id,instance_id,index,value))
+	return format_json_result(True, send_command_zwave(node_id, cc_id, instance_id, index, value))
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetColor()', methods=['GET'])
 @auth.login_required
