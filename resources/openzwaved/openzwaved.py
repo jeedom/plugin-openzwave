@@ -1363,14 +1363,10 @@ def get_network_mode():
 
 def serialize_controller_to_json():
 	json_result = {'data': {}}
-	json_result['data']['roles'] = {'isPrimaryController': globals._network.controller.is_primary_controller,
-									'isStaticUpdateController': globals._network.controller.is_static_update_controller,
-									'isBridgeController': globals._network.controller.is_bridge_controller
-									}
+	json_result['data']['roles'] = {'isPrimaryController': globals._network.controller.is_primary_controller,'isStaticUpdateController': globals._network.controller.is_static_update_controller,'isBridgeController': globals._network.controller.is_bridge_controller}
 	json_result['data']['nodeId'] = {'value': globals._network.controller.node_id}
 	json_result['data']['mode'] = {'value': get_network_mode()}
-	json_result['data']['softwareVersion'] = {'ozw_library': globals._network.controller.ozw_library_version,
-											  'python_library': globals._network.controller.python_library_version}
+	json_result['data']['softwareVersion'] = {'ozw_library': globals._network.controller.ozw_library_version,'python_library': globals._network.controller.python_library_version}
 	json_result['data']['notification'] = globals._network_information.last_controller_notifications[0]
 	json_result['data']['isBusy'] = {"value": globals._network_information.controller_is_busy}
 	json_result['data']['networkstate'] = {"value": globals._network.state}
