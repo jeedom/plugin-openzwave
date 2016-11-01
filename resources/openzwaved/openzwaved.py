@@ -126,14 +126,8 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 logging.info("Check Openzwave")
-# import openzwave
-# from openzwave.node import ZWaveNode
-# from openzwave.value import ZWaveValue
-# from openzwave.scene import ZWaveScene
-# from openzwave.controller import ZWaveController
 from openzwave.network import ZWaveNetwork
 from openzwave.option import ZWaveOption
-
 from utilities.NetworkExtend import *
 from utilities.NodeExtend import *
 from utilities.Constants import *
@@ -264,20 +258,12 @@ def save_node_event(node_id, value):
 	elif value == "added":
 		jeedom_com.add_changes('controller::included', {"value": node_id})
 	elif value in [0, 1, 5] and globals._controller_state != value:
-		# save controller state
 		globals._controller_state = value
-		# not controller notification before network is at least awaked
 		if globals._network.state >= globals._network.STATE_AWAKED:
 			jeedom_com.add_changes('controller::state', {"value": value})
 
 
 def save_network_state(network_state):
-	# STATE_STOPPED = 0
-	# STATE_FAILED = 1
-	# STATE_RESET = 3
-	# STATE_STARTED = 5
-	# STATE_AWAKED = 7
-	# STATE_READY = 10
 	jeedom_com.add_changes('network::state', {"value": network_state})
 
 
@@ -1985,16 +1971,6 @@ def set_polling_instance(node_id, instance_id, cc_id, frequency):
 		return format_node_not_fund(node_id)
 
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[132].data.interval.value', methods=['GET'])
-@auth.login_required
-def get_wake_up(node_id):
-	if node_id in globals._network.nodes:
-		return str(get_wake_up_interval(node_id))
-	else:
-		logging.warning('This network does not contain any node with the id %s' % (node_id,))
-	return str('')
-
-
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetWakeup(<wake_up_time>)', methods=['GET'])
 @auth.login_required
 def set_wake_up(node_id, wake_up_time):
@@ -2138,151 +2114,74 @@ def copy_configuration(source_id, target_id):
 		return format_node_not_fund(source_id)
 	return jsonify({'result': my_result, 'copied_configuration_items': items})
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<int:value>,<int:size>)', methods=['GET'])
-@auth.login_required
-def set_config(node_id, index_id, value, size):
+def set_config(_node_id, _index_id, _value, _size):
 	if globals._network_information.controller_is_busy:
-		return format_controller_busy()
-	logging.info("set_config for nodeId:%s index:%s, value:%s, size:%s" % (node_id, index_id, value, size,))
-	if size == 0:
-		size = 2
-	if size > 4:
-		size = 4
-	try:
-		if node_id in globals._network.nodes:
-			result = globals._network.nodes[node_id].set_config_param(index_id, value, size)
-			my_value = get_value_by_index(node_id, COMMAND_CLASS_CONFIGURATION, 1, index_id, False)
-			mark_pending_change(my_value, value)
-			return format_json_result(result)
-		else:
-			return format_node_not_fund(node_id)
-	except Exception, exception:
-		return format_exception_result(exception)
+		 raise Exception('Controller is bussy')
+	if _node_id not in _network.nodes:
+		raise Exception('Unknow node id '+str(_node_id))
+	logging.info('Set_config for nodeId : '+str(_node_id)+' index : '+str(_index_id)+', value : '+str(_value)+', size : '+str(_size))	
+	if type(_value) == str:
+		for value_id in globals._network.nodes[_node_id].get_values(class_id=COMMAND_CLASS_CONFIGURATION, genre='All',type='All', readonly='All', writeonly='All'):
+			if globals._network.nodes[_node_id].values[value_id].index == _index_id:
+				_value = _value.replace("@", "/")
+				my_value = globals._network.nodes[_node_id].values[value_id]
+				if my_value.type == 'Button':
+					if _value.lower() == 'true':
+						globals._network.manager.pressButton(my_value.value_id)
+					else:
+						globals._network.manager.releaseButton(my_value.value_id)
+				elif my_value.type == 'List':
+					globals._network.manager.setValue(value_id, _value)
+					mark_pending_change(my_value, _value)
+				elif my_value.type == 'Bool':
+					if _value.lower() == 'true':
+						_value = True
+					else:
+						_value = False
+					globals._network.manager.setValue(value_id, _value)
+					mark_pending_change(my_value, _value)
+				return
+			raise Exception('Configuration index : '+str(_index_id)+' not found')
+	if _size == 0:
+		_size = 2
+	if _size > 4:
+		_size = 4
+	_value = int(_value)
+	my_value = get_value_by_index(_node_id, COMMAND_CLASS_CONFIGURATION, 1, _index_id)
+	result = globals._network.nodes[_node_id].set_config_param(_index_id, _value, _size)
+	if my_value is not None and my_value.type != 'List':
+		mark_pending_change(my_value, _value)
+	return result
 
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<string:value>,<int:size>)', methods=['GET'])
+@auth.login_required
+def set_config5(node_id, instance_id, index_id2, index_id, value, size):
+	return format_json_result(set_config(node_id, index_id, value, size))
+
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<float:value>,<int:size>)', methods=['GET'])
+@auth.login_required
+def set_config6(node_id, instance_id, index_id2, index_id, value, size):
+	return format_json_result(set_config(node_id, index_id, value, size))
+
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<int:value>,<int:size>)', methods=['GET'])
+@auth.login_required
+def set_config4(node_id, instance_id, index_id2, index_id, value, size):
+	return format_json_result(set_config(node_id, index_id, value, size))
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<string:value>,<int:size>)', methods=['GET'])
 @auth.login_required
 def set_config2(node_id, index_id, value, size):
-	if globals._network_information.controller_is_busy:
-		return format_controller_busy()
-	logging.info("set_config2 for node_id:%s change index:%s to '%s' size:(%s)" % (node_id, index_id, value, size,))
-	try:
-		if node_id in globals._network.nodes:
-			for value_id in globals._network.nodes[node_id].get_values(class_id=COMMAND_CLASS_CONFIGURATION, genre='All',
-															   type='All', readonly='All', writeonly='All'):
-				if globals._network.nodes[node_id].values[value_id].index == index_id:
-					value = value.replace("@", "/")
-					my_value = globals._network.nodes[node_id].values[value_id]
-					if my_value.type == 'Button':
-						if value.lower() == 'true':
-							globals._network.manager.pressButton(my_value.value_id)
-						else:
-							globals._network.manager.releaseButton(my_value.value_id)
-					elif my_value.type == 'List':
-						globals._network.manager.setValue(value_id, value)
-						mark_pending_change(my_value, value)
-					elif my_value.type == 'Bool':
-						if value.lower() == 'true':
-							value = True
-						else:
-							value = False
-						globals._network.manager.setValue(value_id, value)
-						mark_pending_change(my_value, value)
-					return format_json_result()
-			return format_json_result(False, 'Configuration index:%s not found' % (index_id,), 'warning')
-		else:
-			return format_node_not_fund(node_id)
-	except Exception, exception:
-		return format_exception_result(exception)
-
+	return format_json_result(set_config(node_id, index_id, value, size))
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<float:value>,<int:size>)', methods=['GET'])
 @auth.login_required
 def set_config3(node_id, index_id, value, size):
-	if globals._network_information.controller_is_busy:
-		return format_controller_busy()
-	logging.info("set_config3 for nodeId:%s index:%s, value:%s, size:%s" % (node_id, index_id, value, size,))
-	if size == 0:
-		size = 2
-	value = int(value)
-	try:
-		if node_id in globals._network.nodes:
-			result = globals._network.nodes[node_id].set_config_param(index_id, value, size)
-			mark_pending_change(get_value_by_index(node_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value)
-			return format_json_result(result)
-		else:
-			return format_node_not_fund(node_id)
-	except Exception, exception:
-		return format_exception_result(exception)
+	return format_json_result(set_config(node_id, index_id, value, size))
 
-
-# noinspection PyUnusedLocal
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<int:value>,<int:size>)', methods=['GET'])
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Set(<int:index_id>,<int:value>,<int:size>)', methods=['GET'])
 @auth.login_required
-def set_config4(node_id, instance_id, index_id2, index_id, value, size):
-	if globals._network_information.controller_is_busy:
-		return format_controller_busy()
-	logging.info("set_config4 for nodeId:%s instance_id:%s, index:%s, value:%s, size:%s" % (
-	node_id, instance_id, index_id, value, size,))
-	if size == 0:
-		size = 2
-	value = int(value)
-	try:
-		if node_id in globals._network.nodes:
-			my_value = get_value_by_index(node_id, COMMAND_CLASS_CONFIGURATION, 1, index_id)
-			globals._network.nodes[node_id].set_config_param(index_id, value, size)
-			if my_value is not None and my_value.type != 'List':
-				mark_pending_change(my_value, value)
-			return format_json_result()
-		else:
-			return format_node_not_fund(node_id)
-	except Exception, exception:
-		return format_exception_result(exception)
-
-
-# noinspection PyUnusedLocal
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<string:value>,<int:size>)', methods=['GET'])
-@auth.login_required
-def set_config5(node_id, instance_id, index_id2, index_id, value, size):
-	if globals._network_information.controller_is_busy:
-		return format_controller_busy()
-	logging.info("set_config5 for nodeId:%s instance_id:%s, index:%s, value:%s, size:%s" % (
-	node_id, instance_id, index_id, value, size,))
-	if size == 0:
-		size = 2
-	value = int(value)
-	try:
-		if node_id in globals._network.nodes:
-			globals._network.nodes[node_id].set_config_param(index_id, value, size)
-			mark_pending_change(get_value_by_index(node_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value)
-			return format_json_result()
-		else:
-			return format_node_not_fund(node_id)
-	except Exception, exception:
-		return format_exception_result(exception)
-
-
-# noinspection PyUnusedLocal
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<float:value>,<int:size>)', methods=['GET'])
-@auth.login_required
-def set_config6(node_id, instance_id, index_id2, index_id, value, size):
-	if globals._network_information.controller_is_busy:
-		return format_controller_busy()
-	logging.info("set_config6 for nodeId:%s instance_id:%s, index:%s, value:%s, size:%s" % (
-	node_id, instance_id, index_id, value, size,))
-	if size == 0:
-		size = 2
-	value = int(value)
-	try:
-		if node_id in globals._network.nodes:
-			globals._network.nodes[node_id].set_config_param(index_id, value, size)
-			mark_pending_change(get_value_by_index(node_id, COMMAND_CLASS_CONFIGURATION, 1, index_id), value)
-			return format_json_result()
-		else:
-			return format_node_not_fund(node_id)
-	except Exception, exception:
-		return format_exception_result(exception)
-
+def set_config1(node_id, index_id, value, size):
+	return format_json_result(set_config(node_id, index_id, value, size))
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses', methods=['GET'])
 @auth.login_required
