@@ -839,6 +839,8 @@ def connect_dispatcher():
 	dispatcher.connect(controller_message_complete, ZWaveNetwork.SIGNAL_MSG_COMPLETE)
 	globals.dispatcher_is_connect = True
 
+
+# noinspection PyBroadException
 def disconnect_dispatcher():
 	logging.debug('disconnect the louie dispatcher')
 	try:
@@ -2741,6 +2743,8 @@ def remove_unknowns_devices_openzwave_config():
 def get_openzwave_backups():
 	return jsonify(globals.files_manager.get_openzwave_backups())
 
+
+# noinspection PyBroadException
 @app.route('/ZWaveAPI/Run/network.RestoreBackup(<backup_name>)', methods=['GET'])
 @auth.login_required
 def restore_openzwave_backups(backup_name):
