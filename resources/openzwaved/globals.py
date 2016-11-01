@@ -46,3 +46,4 @@ _pending_associations = {}
 _node_notifications = {}
 _dispatcher_is_connect = False
 _network_is_running = False
+_files_manager = None

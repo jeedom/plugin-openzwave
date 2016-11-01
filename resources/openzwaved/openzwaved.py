@@ -233,8 +233,8 @@ options.addOptionInt('ThreadTerminateTimeout', 5000)  #
 options.addOptionBool('EnableSIS', True)  # Automatically become a SUC if there is no SUC on the network
 options.lock()
 
-_files_manager = FilesManager(globals._data_folder, globals._not_supported_nodes, logging)
-_files_manager.check_config_files()
+globals._files_manager = FilesManager(globals._data_folder, globals._not_supported_nodes, logging)
+globals._files_manager.check_config_files()
 
 def save_node_value_event(node_id, timestamp, command_class, value_index, standard_type, value, instance):
 	jeedom_com.add_changes('devices::' + str(node_id) + '::' + str(hex(command_class)) + str(instance) + str(value_index),{'node_id': node_id, 'instance': instance, 'CommandClass': hex(command_class), 'index': value_index,'value': value, 'type': standard_type, 'updateTime': timestamp})
@@ -1545,7 +1545,7 @@ def sendCommandZwave(_node_id, _cc_id,_instance_id, _index, _value):
 
 def set_config(_node_id, _index_id, _value, _size):
 	if globals._network_information.controller_is_busy:
-		 raise Exception('Controller is bussy')
+		raise Exception('Controller is bussy')
 	check_node_exist(_node_id)
 	logging.info('Set_config for nodeId : '+str(_node_id)+' index : '+str(_index_id)+', value : '+str(_value)+', size : '+str(_size))	
 	if type(_value) == str:
@@ -1587,7 +1587,7 @@ default routes
 
 @app.errorhandler(Exception)
 def all_exception_handler(error):
-   return format_json_result(False, str(e))
+	return format_json_result(False, str(error))
 
 @app.before_first_request
 def _run_on_start():
