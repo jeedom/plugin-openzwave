@@ -2724,7 +2724,6 @@ def get_nodes_list():
 			product_type = int(my_node.product_type, 16)
 		except ValueError:
 			product_type = None
-
 		node_name = my_node.name
 		node_location = my_node.location
 		if is_none_or_empty(node_name):
@@ -2732,27 +2731,15 @@ def get_nodes_list():
 		if globals._network.controller.node_id == node_id:
 			node_name = my_node.product_name
 			node_location = 'Jeedom'
-
-		json_node['description'] = {'name': node_name, 'location': node_location,
-									'product_name': my_node.product_name,
-									'is_static_controller': my_node.basic == 2,
-									'is_enable': int(node_id) not in globals._disabled_nodes}
-		json_node['product'] = {'manufacturer_id': manufacturer_id,
-								'product_type': product_type,
-								'product_id': product_id,
-								'is_valid': manufacturer_id is not None and product_id is not None and product_type is not None}
+		json_node['description'] = {'name': node_name, 'location': node_location,'product_name': my_node.product_name,'is_static_controller': my_node.basic == 2,'is_enable': int(node_id) not in globals._disabled_nodes}
+		json_node['product'] = {'manufacturer_id': manufacturer_id,'product_type': product_type,'product_id': product_id,'is_valid': manufacturer_id is not None and product_id is not None and product_type is not None}
 		instances = []
 		for val in my_node.get_values(genre='User'):
 			if my_node.values[val].instance in instances:
 				continue
 			instances.append(my_node.values[val].instance)
-		json_node['multi_instance'] = {'support': COMMAND_CLASS_MULTI_CHANNEL in my_node.command_classes,
-									   'instances': len(instances)}
-		json_node['capabilities'] = {'isListening': my_node.is_listening_device,
-									 'isRouting': my_node.is_routing_device,
-									 'isBeaming': my_node.is_beaming_device,
-									 'isFlirs': my_node.is_frequent_listening_device}
-
+		json_node['multi_instance'] = {'support': COMMAND_CLASS_MULTI_CHANNEL in my_node.command_classes,'instances': len(instances)}
+		json_node['capabilities'] = {'isListening': my_node.is_listening_device,'isRouting': my_node.is_routing_device,'isBeaming': my_node.is_beaming_device,'isFlirs': my_node.is_frequent_listening_device}
 		nodes_data[node_id] = json_node
 	nodes_list['devices'] = nodes_data
 	return jsonify(nodes_list)
