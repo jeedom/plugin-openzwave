@@ -444,19 +444,24 @@ def network_ready(network):
 	globals.network_information.assign_controller_notification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is ready")
 	save_network_state(network.state)
 
+# noinspection PyUnusedLocal
 def button_on(network, node):
 	logging.info('Controller button on pressed event')
 
+# noinspection PyUnusedLocal
 def button_off(network, node):
 	logging.info('Controller button off pressed event')
 
+# noinspection PyUnusedLocal
 def nodes_queried(network):
 	write_config()
 
+# noinspection PyUnusedLocal
 def nodes_queried_some_dead(network):
 	write_config()
 	logging.info("All nodes have been queried, but some node ar mark dead")
 
+# noinspection PyUnusedLocal
 def node_new(network, node_id):
 	if node_id in globals.not_supported_nodes:
 		return
@@ -586,6 +591,7 @@ def essential_node_queries_complete(network, node):
 	my_node.last_update = time.time()
 	# at this time is not good to save value, I skip this step
 
+# noinspection PyUnusedLocal
 def node_queries_complete(network, node):
 	logging.info('All the initialisation queries on a node have been completed. id:[%s] model:[%s].' % (
 	node.node_id, node.product_name,))
@@ -607,6 +613,7 @@ def save_value(node, value, last_update):
 		value.last_update = last_update
 		save_node_value_event(node.node_id, int(time.time()), value.command_class, value.index, get_standard_value_type(value.type), extract_data(value, False), change_instance(value))
 
+# noinspection PyUnusedLocal
 def value_added(network, node, value):
 	if node.node_id in globals.not_supported_nodes:
 		return
@@ -614,6 +621,7 @@ def value_added(network, node, value):
 	# mark initial data for skip notification during interview
 	value.lastData = value.data
 
+# noinspection PyUnusedLocal
 def value_removed(network, node, value):
 	if node.node_id in globals.not_supported_nodes:
 		return
@@ -621,6 +629,7 @@ def value_removed(network, node, value):
 	if value.value_id in globals.pending_configurations:
 		del globals.pending_configurations[value.value_id]
 
+# noinspection PyUnusedLocal
 def value_polling_enabled(network, node, value):
 	# not yet handle correctly ozw lib and wrapper must updated to use this check
 	# check if old polling is outside authorized range
@@ -673,27 +682,32 @@ def prepare_value_notification(node, value):
 	except Exception as error:
 		logging.error('An unknown error occurred while sending notification: %s. (Node %s: %s=%s)' % (str(error), node.node_id, value.label, data,))
 
+# noinspection PyUnusedLocal
 def value_update(network, node, value):
 	if node.node_id in globals.not_supported_nodes:
 		return
 	logging.debug('value_update. %s %s' % (node.node_id, value.label,))
 	prepare_value_notification(node, value)
 
+# noinspection PyUnusedLocal
 def value_refreshed(network, node, value):
 	if node.node_id in globals.not_supported_nodes:
 		return
 	logging.debug('value_refreshed. %s %s' % (node.node_id, value.label,))
 	prepare_value_notification(node, value)
 
+# noinspection PyUnusedLocal
 def scene_event(network, node, scene_id):
 	logging.info('Scene Activation: %s' % (scene_id,))
 	standard_type = 'int'
 	save_node_value_event(node.node_id, int(time.time()), COMMAND_CLASS_CENTRAL_SCENE, 0, standard_type, scene_id, 0)
 	save_node_value_event(node.node_id, int(time.time()), COMMAND_CLASS_SCENE_ACTIVATION, 0, standard_type, scene_id, 0)
 
+# noinspection PyUnusedLocal
 def controller_message_complete(network):
 	logging.debug('The last message that was sent is now complete')
 
+# noinspection PyUnusedLocal
 def controller_waiting(network, controller, state_int, state, state_full):
 	logging.debug(state_full)
 	# save actual state
@@ -701,6 +715,7 @@ def controller_waiting(network, controller, state_int, state, state_full):
 	# notify jeedom
 	save_node_event(network.controller.node_id, globals.network_information.generate_jeedom_message())
 
+# noinspection PyUnusedLocal
 def controller_command(network, controller, node, node_id, state_int, state, state_full, error_int, error, error_full):
 	logging.info('%s (%s)' % (state_full, state))
 	if error_int > 0:
@@ -725,6 +740,7 @@ def node_event(network, node, value):
 	standard_type = 'int'
 	save_node_value_event(node.node_id, int(time.time()), COMMAND_CLASS_BASIC, 0, standard_type, value, 0)
 
+# noinspection PyUnusedLocal
 def node_group_changed(network, node, groupidx):
 	logging.info('Group changed for nodeId %s index %s' % (node.node_id, groupidx,))
 	validate_association_groups(node.node_id)
@@ -1623,6 +1639,7 @@ def unhandled_exception(exception):
 	logging.info(message)
 	return make_response(jsonify({'error': message}), 500)
 
+# noinspection PyUnusedLocal
 @auth.verify_password
 def verify_password(username, password):
 	return password == globals.apikey
@@ -1884,16 +1901,19 @@ def copy_configuration(source_id, target_id):
 		return format_json_result(False,'The two nodes must be with same: manufacturer_id, product_type and product_id','warning')
 	return jsonify({'result': my_result, 'copied_configuration_items': items})
 
+# noinspection PyUnusedLocal
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<string:value>,<int:size>)', methods=['GET'])
 @auth.login_required
 def set_config5(node_id, instance_id, index_id2, index_id, value, size):
 	return format_json_result(set_config(node_id, index_id, value, size))
 
+# noinspection PyUnusedLocal
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<float:value>,<int:size>)', methods=['GET'])
 @auth.login_required
 def set_config6(node_id, instance_id, index_id2, index_id, value, size):
 	return format_json_result(set_config(node_id, index_id, value, size))
 
+# noinspection PyUnusedLocal
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<int:value>,<int:size>)', methods=['GET'])
 @auth.login_required
 def set_config4(node_id, instance_id, index_id2, index_id, value, size):
@@ -1933,6 +1953,7 @@ def request_node_dynamic(node_id):
 	logging.info("Fetch the dynamic command class data for the node %s" % (node_id,))
 	return format_json_result()
 
+# noinspection PyUnusedLocal
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Get()', methods=['GET'])
 @auth.login_required
 def get_value(node_id, instance_id, cc_id):
@@ -2183,6 +2204,7 @@ def release_button(node_id, instance_id, cc_id, index):
 			return format_json_result()
 	return format_json_result(False, 'button not found', 'warning')
 
+# noinspection PyUnusedLocal
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)', methods=['GET'])
 @auth.login_required
 def switch_all(node_id, state):
