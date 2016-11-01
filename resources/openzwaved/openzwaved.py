@@ -2183,7 +2183,7 @@ def release_button(node_id, instance_id, cc_id, index):
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)', methods=['GET'])
 @auth.login_required
-def switch_all(node_id, state):
+def switch_all(state):
 	if state == 0:
 		logging.info("SwitchAll Off")
 		globals.network.switch_all(False)
