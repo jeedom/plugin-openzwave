@@ -2911,11 +2911,6 @@ def perform_sanity_checks():
 	sanity_checks()
 	return format_json_result()
 
-@app.route('/ZWaveAPI/Run/IsAlive()', methods=['GET'])
-@auth.login_required
-def rest_is_alive():
-	return format_json_result()
-
 @app.route('/ZWaveAPI/Run/ChangeLogLevel(<int:level>)', methods=['GET'])
 @auth.login_required
 def rest_change_log_level(level):
