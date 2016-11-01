@@ -1108,13 +1108,12 @@ def serialize_node_to_json(node_id):
 		can_wake_up = False
 	json_result['data']['can_wake_up'] = {'value': can_wake_up}
 	json_result['data']['battery_level'] = {'value': my_node.get_battery_level()}
+	json_result['last_notification'] = {}
 	next_wake_up = None
 	if node_id in globals._node_notifications:
 		notification = globals._node_notifications[node_id]
 		next_wake_up = notification.next_wake_up
 		json_result['last_notification'] = {"receiveTime": notification.receive_time,"description": notification.description,"help": notification.help}
-	else:
-		json_result['last_notification'] = {}
 	json_result['data']['wakeup_interval'] = {'value': get_wake_up_interval(node_id), 'next_wakeup': next_wake_up}
 	json_result['data']['isFailed'] = {'value': my_node.is_failed}
 	json_result['data']['isListening'] = {'value': my_node.is_listening_device}
@@ -1128,13 +1127,10 @@ def serialize_node_to_json(node_id):
 	json_result['data']['is_enable'] = {'value': int(node_id) not in globals._disabled_nodes}
 	json_result['data']['isZwavePlus'] = {'value': my_node.is_zwave_plus}
 	statistics = globals._network.manager.getNodeStatistics(globals._network.home_id, node_id)
-	sent_ok = statistics['sentCnt']
-	sent_failed = statistics['sentFailed']
-	send_total = sent_ok + sent_failed
+	send_total = statistics['sentCnt'] + statistics['sentFailed']
+	percent_delivered = 0
 	if send_total > 0:
-		percent_delivered = (sent_ok * 100) / send_total
-	else:
-		percent_delivered = 0
+		percent_delivered = (statistics['sentCnt'] * 100) / send_total
 	average_request_rtt = statistics['averageRequestRTT']
 	json_result['data']['statistics'] = {'total': send_total, 'delivered': percent_delivered,'deliveryTime': average_request_rtt}
 	have_group = False
@@ -1182,9 +1178,7 @@ def serialize_node_to_json(node_id):
 	instances = []
 	for val in my_node.get_values():
 		my_value = my_node.values[val]
-		if my_value.command_class is None:
-			continue
-		if my_value.instance > 1 and my_value.command_class in [COMMAND_CLASS_ZWAVEPLUS_INFO,COMMAND_CLASS_VERSION]:
+		if my_value.command_class is None or (my_value.instance > 1 and my_value.command_class in [COMMAND_CLASS_ZWAVEPLUS_INFO,COMMAND_CLASS_VERSION]):
 			continue
 		try:
 			label = my_value.label
