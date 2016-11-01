@@ -753,9 +753,9 @@ def force_sleeping(node_id, count=1):
 			logging.debug('trying to lull the node %s' % (node_id,))
 			globals.network.manager.testNetworkNode(globals.network.home_id, node_id, count)
 
-def node_notification(args):
-	code = int(args['notificationCode'])
-	node_id = int(args['nodeId'])
+def node_notification(arguments):
+	code = int(arguments['notificationCode'])
+	node_id = int(arguments['nodeId'])
 	if node_id in globals.not_supported_nodes:
 		return
 	if node_id in globals.disabled_nodes:
