@@ -1748,6 +1748,10 @@ def format_node_disabled():
 default routes
 '''
 
+@app.errorhandler(Exception)
+def all_exception_handler(error):
+   return format_json_result(False, str(e))
+
 
 @app.before_first_request
 def _run_on_start():
@@ -2398,7 +2402,7 @@ def sendCommandZwave(_node_id, _cc_id,_instance_id, _index, _value):
 		group = int(arr[0])
 		target_node = int(arr[1])
 		try:
-			return format_json_result(add_assoc(_node_id, group, target_node))
+			return add_assoc(_node_id, group, target_node)
 		except ValueError:
 			raise Exception('Node is not Ready for associations')
 	for val in globals._network.nodes[_node_id].get_values(class_id=int(_cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
@@ -2432,34 +2436,22 @@ def sendCommandZwave(_node_id, _cc_id,_instance_id, _index, _value):
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<float:value>)', methods=['GET'])
 @auth.login_required
 def set_value8(node_id, instance_id, cc_id, index, value):
-	try:
-		return sendCommandZwave(node_id,cc_id,instance_id,index,value)
-	except Exception as e:
-		return format_json_result(False,str(e),'warning')
-
+	return format_json_result(True,sendCommandZwave(node_id,cc_id,instance_id,index,value))
+	
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Set(<string:value>)', methods=['GET'])
 @auth.login_required
 def set_value6(node_id, instance_id, cc_id, value):
-	try:
-		sendCommandZwave(node_id,cc_id,instance_id,None,value)
-	except Exception as e:
-		return format_json_result(False,str(e),'warning')
+	return format_json_result(True,sendCommandZwave(node_id,cc_id,instance_id,None,value))
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<int:value>)', methods=['GET'])
 @auth.login_required
 def set_value7(node_id, instance_id, cc_id, index, value):
-	try:
-		sendCommandZwave(node_id,cc_id,instance_id,index,value)
-	except Exception as e:
-		return format_json_result(False,str(e),'warning')
+	return format_json_result(True,sendCommandZwave(node_id,cc_id,instance_id,index,value))
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].Set(<string:value>)', methods=['GET'])
 @auth.login_required
 def set_value9(node_id, instance_id, cc_id, index, value):
-	try:
-		sendCommandZwave(node_id,cc_id,instance_id,index,value)
-	except Exception as e:
-		return format_json_result(False,str(e),'warning')
+	return format_json_result(True,sendCommandZwave(node_id,cc_id,instance_id,index,value))
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetColor()', methods=['GET'])
 @auth.login_required
@@ -2471,8 +2463,7 @@ def get_color(node_id):
 		green_level = 0
 		blue_level = 0
 		white_level = 0
-		for val in globals._network.nodes[node_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User',
-													  type='Byte', readonly='All', writeonly=False):
+		for val in globals._network.nodes[node_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User',type='Byte', readonly='All', writeonly=False):
 			my_value = globals._network.nodes[node_id].values[val]
 			if my_value.label != 'Level':
 				continue
@@ -2504,8 +2495,7 @@ def set_color(node_id, red_level, green_level, blue_level, white_level):
 		green_value = None
 		blue_value = None
 		# white_value = None
-		for val in globals._network.nodes[node_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User',
-													  type='Byte', readonly='All', writeonly=False):
+		for val in globals._network.nodes[node_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User',type='Byte', readonly='All', writeonly=False):
 			my_value = globals._network.nodes[node_id].values[val]
 			if my_value.label != 'Level':
 				continue
@@ -2539,8 +2529,7 @@ def press_button(node_id, instance_id, cc_id, index):
 	# Start an activity in a device
 	logging.info("press_button nodeId:%s, instance:%s, cc:%s, index:%s" % (node_id, instance_id, cc_id, index,))
 	if node_id in globals._network.nodes:
-		for val in globals._network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All',
-													  writeonly='All'):
+		for val in globals._network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All',writeonly='All'):
 			if globals._network.nodes[node_id].values[val].instance - 1 == instance_id and globals._network.nodes[node_id].values[
 				val].index == index:
 				globals._network.manager.pressButton(globals._network.nodes[node_id].values[val].value_id)
@@ -2569,8 +2558,7 @@ def press_button(node_id, instance_id, cc_id, index):
 def release_button(node_id, instance_id, cc_id, index):
 	# Stop an activity in a device
 	if node_id in globals._network.nodes:
-		for val in globals._network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All',
-													  writeonly='All'):
+		for val in globals._network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All',writeonly='All'):
 			if globals._network.nodes[node_id].values[val].instance - 1 == instance_id and globals._network.nodes[node_id].values[
 				val].index == index:
 				globals._network.manager.releaseButton(globals._network.nodes[node_id].values[val].value_id)
@@ -2810,10 +2798,7 @@ def get_node_statistics(node_id):
 				return format_node_disabled()
 			query_stage_description = globals._network.manager.getNodeQueryStage(globals._network.home_id, node_id)
 			query_stage_code = globals._network.manager.getNodeQueryStageCode(query_stage_description)
-			return jsonify({'statistics': globals._network.manager.getNodeStatistics(globals._network.home_id, node_id),
-							'queryStageCode': query_stage_code,
-							'queryStageDescription': query_stage_description
-							})
+			return jsonify({'statistics': globals._network.manager.getNodeStatistics(globals._network.home_id, node_id),'queryStageCode': query_stage_code,'queryStageDescription': query_stage_description})
 		else:
 			return format_node_not_fund(node_id)
 	except Exception, exception:
@@ -2951,12 +2936,9 @@ def get_node_last_notification(node_id):
 	except Exception, exception:
 		return format_exception_result(exception)
 
-
 """
 controllers routes
 """
-
-
 @app.route('/ZWaveAPI/Run/controller.AddNodeToNetwork(<int:state>,<int:do_security>)', methods=['GET'])
 @auth.login_required
 def start_node_inclusion(state, do_security):
