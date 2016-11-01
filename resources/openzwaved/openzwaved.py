@@ -1936,8 +1936,7 @@ def copy_configuration(source_id, target_id):
 							globals._network.manager.setValue(target_value.value_id, configuration_value.data)
 							accepted = True
 						else:
-							accepted = target.set_config_param(configuration_value.index,
-															   configuration_value.data)
+							accepted = target.set_config_param(configuration_value.index,configuration_value.data)
 						if accepted:
 							items += 1
 							mark_pending_change(target_value, configuration_value.data)
@@ -2069,11 +2068,7 @@ def get_user_code(node_id, instance_id, index):
 					user_code = [int(raw_data[i:i + chunk_size], 16) for i in range(0, chunks, chunk_size)]
 				except TypeError:
 					timestamp = int(1)
-			my_result = {'invalidateTime': int(time.time() - datetime.timedelta(seconds=30).total_seconds()),
-						 'type': get_standard_value_type(my_value.type),
-						 'value': user_code,
-						 'updateTime': timestamp
-						 }
+			my_result = {'invalidateTime': int(time.time() - datetime.timedelta(seconds=30).total_seconds()), 'type': get_standard_value_type(my_value.type),'value': user_code,'updateTime': timestamp}
 			break
 	return jsonify(my_result)
 
