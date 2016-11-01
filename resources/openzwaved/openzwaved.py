@@ -1919,7 +1919,7 @@ def get_command_classes(node_id):
 	logging.debug("get_command_classes for nodeId:%s" % (node_id,))
 	check_node_exist(node_id)
 	for val in globals._network.nodes[node_id].get_values():
-		my_result[_network.nodes[node_id].values[val].command_class] = {}
+		my_result[globals._network.nodes[node_id].values[val].command_class] = {}
 	return jsonify(my_result)
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].RequestNodeDynamic()', methods=['GET'])
