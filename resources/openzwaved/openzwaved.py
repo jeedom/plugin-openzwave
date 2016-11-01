@@ -746,13 +746,11 @@ def force_sleeping(node_id, count=1):
 	if node_id in globals._network.nodes:
 		my_node = globals._network.nodes[node_id]
 		logging.debug('check if node %s still awake' % (node_id,))
-		# check if still awake
 		last_notification = None
 		if node_id in globals._node_notifications:
 			last_notification = globals._node_notifications[node_id]
 		if my_node.is_awake or (last_notification is not None and last_notification.code == 3):
 			logging.debug('trying to lull the node %s' % (node_id,))
-			# a ping will force the node to return sleep after the NoOperation CC. Will force notification update too
 			globals._network.manager.testNetworkNode(globals._network.home_id, node_id, count)
 
 def node_notification(args):
@@ -764,9 +762,7 @@ def node_notification(args):
 		return
 	if node_id in globals._network.nodes:
 		my_node = globals._network.nodes[node_id]
-		# mark as updated
 		my_node.last_update = time.time()
-		# try auto remove unsupported nodes
 		if node_id in globals._not_supported_nodes and globals._network.state >= globals._network.STATE_AWAKED:
 			logging.info('remove fake nodeId: %s' % (node_id,))
 			globals._network.manager.removeFailedNode(globals._network.home_id, node_id)
@@ -775,18 +771,13 @@ def node_notification(args):
 		if node_id not in globals._node_notifications:
 			globals._node_notifications[node_id] = NodeNotification(code, wake_up_time)
 		else:
-			# I refresh notification, the wake up time can be modified from last time, we need to calculate the next expected wake up time
 			globals._node_notifications[node_id].refresh(code, wake_up_time)
 		if code == 3:
-			# get the device Wake-up Interval Step
 			my_value = get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval Step', False)
 			if my_value is not None:
-				# add 2 seconds at device Wake-up Interval Step
 				wake_up_interval_step = my_value.data + 2.0
-			else:
-				# assume a default Wake-up Interval Step	 
+			else: 
 				wake_up_interval_step = 60.0
-			# perform a ping to avoid device still awake after the Wake-up Interval Step
 			threading.Timer(interval=wake_up_interval_step, function=force_sleeping, args=(node_id, 1)).start()
 		logging.info('NodeId %s send a notification: %s' % (node_id, globals._node_notifications[node_id].description,))
 		push_node_notification(node_id, code)
@@ -802,7 +793,6 @@ def connect_dispatcher():
 	dispatcher.connect(network_awaked, ZWaveNetwork.SIGNAL_NETWORK_AWAKED)
 	dispatcher.connect(network_ready, ZWaveNetwork.SIGNAL_NETWORK_READY)
 	dispatcher.connect(network_stopped, ZWaveNetwork.SIGNAL_NETWORK_STOPPED)
-
 	# a new node has been found (not already stored in zwcfg*.xml file).
 	dispatcher.connect(node_new, ZWaveNetwork.SIGNAL_NODE_NEW)
 	# add node to the network, during node discovering and after a inclusion
@@ -1032,7 +1022,6 @@ def serialize_neighbour_to_json(node_id):
 		json_result['data']['isPrimaryController'] = {'value': globals._network.controller.node_id == node_id}
 		neighbour_is_enabled = my_node.generic != 1 # not a remote control
 		if my_node.generic == 8 and not my_node.is_listening_device:
-			# battery thermostat don't always have neighbours
 			neighbour_is_enabled = len(my_node.neighbors) > 0
 		json_result['data']['neighbours'] = {'value': list(my_node.neighbors), 'enabled': neighbour_is_enabled}
 		json_result['data']['isDead'] = {'value': my_node.is_failed}
@@ -1065,9 +1054,7 @@ def validate_association_groups(node_id):
 
 def serialize_node_to_json(node_id):
 	json_result = {}
-	if node_id in globals._not_supported_nodes:
-		return json_result
-	if node_id in globals._network.nodes:
+	if node_id not in globals._network.nodes or node_id in globals._not_supported_nodes:
 		return json_result
 	my_node = globals._network.nodes[node_id]
 	try:
@@ -1087,6 +1074,12 @@ def serialize_node_to_json(node_id):
 	except ValueError:
 		product_type = None
 	json_result['data'] = {}
+	node_name = my_node.name
+	if globals._network.controller.node_id == node_id:
+		node_name = my_node.product_name
+	if is_none_or_empty(node_name):
+		node_name = 'Unknown'
+	json_result['data']['description'] = {'name': node_name, 'location': my_node.location,'product_name': my_node.product_name}
 	json_result['data']['manufacturerId'] = {'value': manufacturer_id, 'hex': my_node.manufacturer_id}
 	json_result['data']['vendorString'] = {'value': my_node.manufacturer_name}
 	json_result['data']['manufacturerProductId'] = {'value': product_id, 'hex': my_node.product_id}
@@ -1107,6 +1100,7 @@ def serialize_node_to_json(node_id):
 	json_result['data']['state'] = {'value': str(my_node.query_stage)}
 	json_result['data']['isAwake'] = {'value': my_node.is_awake, "updateTime": timestamp}
 	json_result['data']['isReady'] = {'value': my_node.is_ready, "updateTime": timestamp}
+	json_result['data']['isEnable'] = {'value': int(node_id) not in globals._disabled_nodes}
 	json_result['data']['isInfoReceived'] = {'value': my_node.is_info_received}
 	try:
 		can_wake_up = my_node.can_wake_up()
@@ -1114,6 +1108,14 @@ def serialize_node_to_json(node_id):
 		can_wake_up = False
 	json_result['data']['can_wake_up'] = {'value': can_wake_up}
 	json_result['data']['battery_level'] = {'value': my_node.get_battery_level()}
+	next_wake_up = None
+	if node_id in globals._node_notifications:
+		notification = globals._node_notifications[node_id]
+		next_wake_up = notification.next_wake_up
+		json_result['last_notification'] = {"receiveTime": notification.receive_time,"description": notification.description,"help": notification.help}
+	else:
+		json_result['last_notification'] = {}
+	json_result['data']['wakeup_interval'] = {'value': get_wake_up_interval(node_id), 'next_wakeup': next_wake_up}
 	json_result['data']['isFailed'] = {'value': my_node.is_failed}
 	json_result['data']['isListening'] = {'value': my_node.is_listening_device}
 	json_result['data']['isRouting'] = {'value': my_node.is_routing_device}
@@ -1125,6 +1127,32 @@ def serialize_node_to_json(node_id):
 	json_result['data']['maxBaudRate'] = {'value': my_node.max_baud_rate}
 	json_result['data']['is_enable'] = {'value': int(node_id) not in globals._disabled_nodes}
 	json_result['data']['isZwavePlus'] = {'value': my_node.is_zwave_plus}
+	statistics = globals._network.manager.getNodeStatistics(globals._network.home_id, node_id)
+	sent_ok = statistics['sentCnt']
+	sent_failed = statistics['sentFailed']
+	send_total = sent_ok + sent_failed
+	if send_total > 0:
+		percent_delivered = (sent_ok * 100) / send_total
+	else:
+		percent_delivered = 0
+	average_request_rtt = statistics['averageRequestRTT']
+	json_result['data']['statistics'] = {'total': send_total, 'delivered': percent_delivered,'deliveryTime': average_request_rtt}
+	have_group = False
+	query_stage_index = convert_query_stage_to_int(my_node.query_stage)
+	if my_node.groups and query_stage_index >= 12 and my_node.generic != 2:
+		check_for_group = len(my_node.groups) > 0
+		if check_for_group :
+			have_group = check_primary_controller(my_node)
+	else:
+		check_for_group = False
+	json_result['data']['is_groups_ok'] = {'value': have_group, 'enabled': check_for_group}
+	is_neighbours_ok = query_stage_index > 13
+	if my_node.generic == 1:
+		is_neighbours_ok = False
+	if my_node.generic == 8 and not my_node.is_listening_device:
+		is_neighbours_ok = False
+	json_result['data']['is_neighbours_ok'] = {'value': len(my_node.neighbors) > 0,'neighbors': len(my_node.neighbors), 'enabled': is_neighbours_ok}
+	json_result['data']['is_manufacturer_specific_ok'] = {'value': my_node.manufacturer_id != 0 and my_node.product_id != 0 and my_node.product_type != 0,'enabled': query_stage_index >= 7} 
 	is_secured = get_value_by_label(node_id, COMMAND_CLASS_SECURITY, 1, 'Secured', False)
 	json_result['data']['isSecured'] = {'value': is_secured is not None and is_secured.data, 'enabled' : is_secured is not None}
 	pending_changes = 0
@@ -1220,8 +1248,7 @@ def serialize_node_to_json(node_id):
 	json_result['multi_instance'] = {'support': COMMAND_CLASS_MULTI_CHANNEL in my_node.command_classes,'instances': len(instances)}
 	return json_result
 
-def serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,
-								 pending_state, standard_type, timestamp, value2, value_help, value_units):
+def serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,pending_state, standard_type, timestamp, value2, value_help, value_units):
 	json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'][index2] = {"val": value2,
 																									 "name": label,
 																									 "help": value_help,
@@ -1254,93 +1281,6 @@ def serialize_node_notification(node_id):
 		return {"receiveTime": notification.receive_time,"description": notification.description,"isFailed": my_node.is_failed}
 	else:
 		return {"receiveTime": None,"description": None,"isFailed": my_node.is_failed}
-
-def serialize_node_health(node_id):
-	json_result = {}
-	if node_id in globals._not_supported_nodes:
-		return json_result
-	if node_id in globals._network.nodes:
-		return json_result
-	my_node = globals._network.nodes[node_id]
-	if my_node.basic == 2:  # STATIC_CONTROLLER   = 0x02
-		return json_result
-	try:
-		timestamp = int(my_node.last_update)
-	except TypeError:
-		timestamp = int(1)
-	query_stage_index = convert_query_stage_to_int(my_node.query_stage)
-	json_result['data'] = {}
-	node_name = my_node.name
-	if globals._network.controller.node_id == node_id:
-		node_name = my_node.product_name
-	if is_none_or_empty(node_name):
-		node_name = 'Unknown'
-	json_result['data']['description'] = {'name': node_name, 'location': my_node.location,'product_name': my_node.product_name}
-	json_result['data']['type'] = {'basic': my_node.basic, 'generic': my_node.generic}
-	json_result['data']['state'] = {'value': my_node.query_stage, 'index': query_stage_index}
-	json_result['data']['isEnable'] = {'value': int(node_id) not in globals._disabled_nodes}
-	json_result['data']['isAwake'] = {'value': my_node.is_awake}
-	json_result['data']['isReady'] = {'value': my_node.is_ready}
-	try:
-		can_wake_up = my_node.can_wake_up()
-	except RuntimeError:
-		can_wake_up = False
-	json_result['data']['can_wake_up'] = {'value': can_wake_up}
-	battery_level_data = None
-	battery_level_last_update = None
-	try:
-		battery_level = get_value_by_index(node_id, COMMAND_CLASS_BATTERY, 1, 0, False)
-		if battery_level is not None:
-			battery_level_data = battery_level.data
-			battery_level_last_update = battery_level.last_update
-	except RuntimeError:
-		pass
-	json_result['data']['battery_level'] = {'value': battery_level_data, 'updateTime': battery_level_last_update}
-	next_wake_up = None
-	if node_id in globals._node_notifications:
-		notification = globals._node_notifications[node_id]
-		next_wake_up = notification.next_wake_up
-		json_result['last_notification'] = {"receiveTime": notification.receive_time,"description": notification.description,"help": notification.help}
-	else:
-		json_result['last_notification'] = {}
-	json_result['data']['wakeup_interval'] = {'value': get_wake_up_interval(node_id), 'next_wakeup': next_wake_up}
-	json_result['data']['isFailed'] = {'value': my_node.is_failed}
-	json_result['data']['isListening'] = {'value': my_node.is_listening_device}
-	json_result['data']['isRouting'] = {'value': my_node.is_routing_device}
-	json_result['data']['isBeaming'] = {'value': my_node.is_beaming_device}
-	json_result['data']['isFrequentListening'] = {'value': my_node.is_frequent_listening_device}
-	json_result['data']['lastReceived'] = {'updateTime': timestamp}
-	json_result['data']['maxBaudRate'] = {'value': my_node.max_baud_rate}
-	statistics = globals._network.manager.getNodeStatistics(globals._network.home_id, node_id)
-	sent_ok = statistics['sentCnt']
-	sent_failed = statistics['sentFailed']
-	send_total = sent_ok + sent_failed
-	if send_total > 0:
-		percent_delivered = (sent_ok * 100) / send_total
-	else:
-		percent_delivered = 0
-	average_request_rtt = statistics['averageRequestRTT']
-	json_result['data']['statistics'] = {'total': send_total, 'delivered': percent_delivered,'deliveryTime': average_request_rtt}
-	have_group = False
-	if my_node.groups and query_stage_index >= 12 and my_node.generic != 2:
-		check_for_group = len(my_node.groups) > 0
-		if check_for_group :
-			have_group = check_primary_controller(my_node)
-	else:
-		check_for_group = False
-	json_result['data']['is_groups_ok'] = {'value': have_group, 'enabled': check_for_group}
-	is_neighbours_ok = query_stage_index > 13
-	if my_node.generic == 1:
-		is_neighbours_ok = False
-	if my_node.generic == 8 and not my_node.is_listening_device:
-		is_neighbours_ok = False
-	json_result['data']['is_neighbours_ok'] = {'value': len(my_node.neighbors) > 0,'neighbors': len(my_node.neighbors), 'enabled': is_neighbours_ok}
-	json_result['data']['is_manufacturer_specific_ok'] = {'value': my_node.manufacturer_id != 0 and my_node.product_id != 0 and my_node.product_type != 0,'enabled': query_stage_index >= 7} 
-	json_result['data']['pending_changes'] = {'value': check_pending_changes(node_id)}
-	json_result['data']['isZwavePlus'] = {'value': my_node.is_zwave_plus}
-	is_secured = get_value_by_label(node_id, COMMAND_CLASS_SECURITY, 1, 'Secured', False)
-	json_result['data']['isSecured'] = {'value': is_secured is not None and is_secured.data, 'enabled' : is_secured is not None}
-	return json_result
 
 def check_primary_controller(my_node):
 	for groupIndex in list(my_node.groups):
@@ -2472,7 +2412,7 @@ def get_pending_changes(node_id):
 @auth.login_required
 def get_node_health(node_id):
 	check_node_exist(node_id)
-	return jsonify(serialize_node_health(node_id))
+	return jsonify(serialize_node_to_json(node_id))
 	
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetLastNotification()', methods=['GET'])
 @auth.login_required
@@ -2695,7 +2635,7 @@ def get_network_health():
 	nodes_data = {}
 	if globals._network is not None and globals._network.state >= globals._network.STATE_STARTED and globals._network_is_running:
 		for node_id in list(globals._network.nodes):
-			nodes_data[node_id] = serialize_node_health(node_id)
+			nodes_data[node_id] = serialize_node_to_json(node_id)
 	network_health['devices'] = nodes_data
 	return jsonify(network_health)
 
