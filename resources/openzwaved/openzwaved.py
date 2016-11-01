@@ -1516,7 +1516,7 @@ def sendCommandZwave(_node_id, _cc_id,_instance_id, _index, _value):
 		except ValueError:
 			raise Exception('Node is not Ready for associations')
 	for val in globals._network.nodes[_node_id].get_values(class_id=int(_cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
-		if globals._network.nodes[_node_id].values[val].instance - 1 == _instance_id and (_index == None or globals._network.nodes[_node_id].values[val].index == _index):
+		if globals._network.nodes[_node_id].values[val].instance - 1 == _instance_id and (_index is None or globals._network.nodes[_node_id].values[val].index == _index):
 			if _cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and _value > 99:
 				logging.debug("Switch light ON to dim level that was last known")
 				_value = 255
