@@ -8,3 +8,4 @@ sftp-config.json
 plugin-openzwave.iml
 .project
 .pydevproject
+*.pyc
