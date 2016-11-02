@@ -14,11 +14,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 import sys
-import math
 import argparse
 
-
-from ozwave import globals,utils
+from ozwave import globals,utils,network_utils,node_utils,dispatcher_utils,server_utils,manager_utils,value_utils
 
 try:
 	from tornado.wsgi import WSGIContainer
@@ -46,20 +44,12 @@ try:
 	import binascii
 	import threading
 	from threading import Event, Thread
-	import socket
 	from lxml import etree
 	import signal
 
-	from louie import dispatcher, All
 except Exception as e:
 	print(globals.MSG_CHECK_DEPENDENCY, 'error')
 	print("Error: %s" % str(e), 'error')
-	sys.exit(1)
-
-try:
-	from jeedom.jeedom import *
-except ImportError:
-	print "Error: importing module jeedom.jeedom"
 	sys.exit(1)
 
 if not os.path.exists('/tmp/python-openzwave-eggs'):
@@ -105,7 +95,7 @@ if args.disabledNodes:
 
 cycle = float(globals.cycle)
 
-jeedom_utils.set_log_level(globals.log_level)
+server_utils.set_log_level()
 
 logging.info('Start openzwaved')
 logging.info('Log level : ' + str(globals.log_level))
@@ -117,9 +107,9 @@ logging.info('Cycle : ' + str(globals.cycle))
 
 logging.debug('Initial disabled nodes list: ' + str(globals.disabled_nodes))
 
-jeedom_com = jeedom_com(apikey=globals.apikey, url=globals.callback, cycle=globals.cycle)
+server_utils.init_jeedom_com()
 
-if not jeedom_com.test():
+if not globals.jeedom_com.test():
 	logging.error('Network communication issues. Please fixe your Jeedom network configuration.')
 	sys.exit(1)
 
@@ -127,8 +117,6 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 logging.info("Check Openzwave")
-from openzwave.network import ZWaveNetwork
-from openzwave.option import ZWaveOption
 from ozwave.utilities.NetworkExtend import *
 from ozwave.utilities.NodeExtend import *
 from ozwave.utilities.Constants import *
@@ -136,759 +124,22 @@ from ozwave.utilities.FilesManager import FilesManager
 
 logging.info("--> pass")
 
-if globals.device is None or len(globals.device) == 0:
-	logging.error('Dongle Key is not specified. Please check your Z-Wave (openzwave) configuration plugin page')
-	sys.exit(1)
-
-logging.info("Check if the port REST server available")
-_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-port_available = _sock.connect_ex(('127.0.0.1', int(globals.port_server)))
-if port_available == 0:
-	logging.error('The port %s is already in use. Please check your Z-Wave (openzwave) configuration plugin page' % (
-	globals.port_server,), 'error')
-	sys.exit(1)
-logging.info("--> pass")
-
-logging.info("Check OpenZWave Devices Database")
-if not os.path.isfile(globals.config_folder + "/manufacturer_specific.xml"):
-	logging.debug(globals.config_folder + "/manufacturer_specific.xml")
-	logging.error('OpenZWave Devices Database is not found. Please execute Devices Configuration update, from Plugin Configuration page')
-	sys.exit(1)
-logging.info("--> pass")
-
-if globals.device == 'auto':
-	know_sticks = [{'idVendor': '0658', 'idProduct': '0200', 'name': 'Sigma Designs, Inc'},{'idVendor': '10c4', 'idProduct': 'ea60', 'name': 'Cygnal Integrated Products, Inc. CP210x UART Bridge'}]
-
-	for stick in know_sticks:
-		globals.device = jeedom_utils.find_tty_usb(stick['idVendor'], stick['idProduct'])
-		if globals.device is not None:
-			logging.info('USB Z-Wave Stick found : ' + stick['name'] + ' at ' + globals.device)
-			break
-	if globals.device is None:
-		logging.error('No USB Z-Wave Stick detected')
-		sys.exit(1)
-
-def shutdown_server():
-	func = request.environ.get('werkzeug.server.shutdown')
-	if func is None:
-		raise RuntimeError('Not running with the Werkzeug Server')
-	func()
-
-def start_network():
-	# reset flags
-	globals.force_refresh_nodes = []
-	globals.pending_configurations.clear()
-	globals.pending_associations.clear()
-	globals.node_notifications.clear()
-	if globals.network_information is None:
-		globals.network_information = NetworkInformation(globals.maximum_number_notifications)
-	else:
-		globals.network_information.reset()
-	logging.info('******** The ZWave network is being started ********')
-	globals.network.start()
-
-def graceful_stop_network():
-	logging.info('Graceful stopping the ZWave network.')
-	if globals.network is not None:
-		home_id = globals.network.home_id_str
-		globals.network_is_running = False
-		globals.network.stop()
-		# We disconnect to the louie dispatcher
-		disconnect_dispatcher()
-		globals.network.destroy()
-		# avoid a second pass
-		globals.network = None
-		logging.info('The Openzwave REST-server was stopped in a normal way')
-		globals.files_manager.backup_xml_config('stop', home_id)
-	else:
-		logging.info('The Openzwave REST-server is already stopped')
-
-# Define some manager options
-options = ZWaveOption(globals.device, config_path=globals.config_folder, user_path=globals.data_folder, cmd_line="")
-options.set_log_file("../../../log/openzwaved")
-options.set_append_log_file(False)
-options.set_console_output(False)
-if globals.log_level == 'notice':
-	options.set_save_log_level('Warning')
-else:
-	options.set_save_log_level(globals.log_level[0].upper() + globals.log_level[1:])
-
-options.set_logging(True)
-options.set_associate(True)
-options.set_save_configuration(True)
-options.set_poll_interval(globals.default_poll_interval)
-options.set_interval_between_polls(False)
-options.set_notify_transactions(True)  # Notifications when transaction complete is reported.
-options.set_suppress_value_refresh(False)  # if true, notifications for refreshed (but unchanged) values will not be sent.
-options.set_driver_max_attempts(5)
-options.addOptionBool("AssumeAwake", globals.assumeAwake)
-# options.addOptionInt("RetryTimeout", 6000)  # Timeout before retrying to send a message. Defaults to 40 Seconds
-options.addOptionString("NetworkKey", "0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10", True)
-options.set_security_strategy('SUPPORTED')  # The security strategy: SUPPORTED | ESSENTIAL | CUSTOM
-# options.set_custom_secured_cc('0x62,0x4c,0x63')  # What List of Custom CC should we always encrypt if SecurityStrategy is CUSTOM
-options.addOptionBool('EnforceSecureReception', False)  # if we receive a clear text message for a CC that is Secured, should we drop the message
-options.addOptionBool('RefreshAllUserCodes', False)  # Some Devices have a big UserCode Table, that can mean startup times when refreshing Session Variables is very long
-options.addOptionInt('ThreadTerminateTimeout', 5000)  #
-options.addOptionBool('EnableSIS', True)  # Automatically become a SUC if there is no SUC on the network
-options.lock()
-
-globals.files_manager = FilesManager(globals.data_folder, globals.not_supported_nodes, logging)
-globals.files_manager.check_config_files()
-
-def save_node_value_event(node_id, timestamp, command_class, value_index, standard_type, value, instance):
-	jeedom_com.add_changes('devices::' + str(node_id) + '::' + str(hex(command_class)) + str(instance) + str(value_index),{'node_id': node_id, 'instance': instance, 'CommandClass': hex(command_class), 'index': value_index,'value': value, 'type': standard_type, 'updateTime': timestamp})
-
-def save_node_event(node_id, value):
-	if value == "removed":
-		jeedom_com.add_changes('controller::excluded', {"value": node_id})
-	elif value == "added":
-		jeedom_com.add_changes('controller::included', {"value": node_id})
-	elif value in [0, 1, 5] and globals.controller_state != value:
-		globals.controller_state = value
-		if globals.network.state >= globals.network.STATE_AWAKED:
-			jeedom_com.add_changes('controller::state', {"value": value})
-
-def save_network_state(network_state):
-	jeedom_com.add_changes('network::state', {"value": network_state})
-
-def push_node_notification(node_id, notification_code):
-	# check for notification Dead or Alive
-	if notification_code in [5, 6]:
-		if notification_code == 5:
-			# Report when a node is presumed dead
-			alert_type = 'node_dead'
-		else:
-			# Report when a node is revived
-			alert_type = 'node_alive'
-		changes = {'alert': {'type': alert_type, 'id': node_id}}
-		jeedom_com.send_change_immediate(changes)
-
-def network_started(network):
-	logging.info("Openzwave network are started with homeId %0.8x." % (network.home_id,))
-	globals.network_is_running = True
-	globals.network_information.assign_controller_notification(ZWaveController.SIGNAL_CTRL_STARTING, "Network is started")
-	save_network_state(network.state)
-	if network.manager.getPollInterval() != globals.default_poll_interval:
-		network.set_poll_interval(globals.default_poll_interval, False)
-
-def network_stopped(network):
-	logging.info("Openzwave network are %s" % (network.state_str,))
-	globals.network_is_running = False
-
-def network_failed(network):
-	logging.error("Openzwave network can't load")
-	globals.network_information.assign_controller_notification(ZWaveController.SIGNAL_CTRL_ERROR, "Network have failed")
-	save_network_state(network.state)
-
-def validate_association_groups_asynchronous():
-	if not globals.network_is_running:
-		return
-	logging.debug("Check association")
-	for node_id in list(globals.network.nodes):
-		if validate_association_groups(node_id):
-			# avoid stress network
-			time.sleep(3)
-
-def recovering_failed_nodes_asynchronous():
-	# wait 15 seconds on first launch
-	time.sleep(globals.sanity_checks_delay)
-	while True:
-		sanity_checks()
-		# wait for next run
-		time.sleep(globals.recovering_failed_nodes_timer)
-
-def sanity_checks(force=False):
-	# if controller is busy skip this run
-	if globals.sanity_checks_running:
-		return
-	try:
-		globals.sanity_checks_running = True
-		if force or can_execute_network_command(0):
-			logging.info("Perform network sanity test/check")
-			for node_id in list(globals.network.nodes):
-				my_node = globals.network.nodes[node_id]
-				# first check if a ghost node wait to be removed
-				if globals.ghost_node_id is not None and node_id == globals.ghost_node_id and my_node.is_failed:
-					logging.info('* Try to remove a Ghost node (nodeId: %s)' % (node_id,))
-					globals.network.manager.removeFailedNode(globals.network.home_id, node_id)
-					time.sleep(10)
-					if globals.ghost_node_id not in globals.network.nodes:
-						# reset ghost node flag
-						globals.ghost_node_id = None
-						logging.info('=> Ghost node removed (nodeId: %s)' % (node_id,))
-					continue
-				if node_id in globals.not_supported_nodes:
-					logging.info('=> Remove not valid nodeId: %s' % (node_id,))
-					globals.network.manager.removeFailedNode(globals.network.home_id, node_id)
-					time.sleep(10)
-					continue
-				if node_id in globals.disabled_nodes:
-					continue
-				if my_node.is_failed:
-					if globals.ghost_node_id is not None and node_id == globals.ghost_node_id:
-						continue
-					logging.info('=> Try recovering, presumed Dead, nodeId: %s with a Ping' % (node_id,))
-					# a ping will try to revive the node
-					globals.network.manager.testNetworkNode(globals.network.home_id, node_id, 3)
-					# avoid stress network
-					time.sleep(5)
-					if globals.network.manager.hasNodeFailed(globals.network.home_id, node_id):
-						# avoid stress network
-						time.sleep(4)
-					if my_node.is_failed:
-						# relive failed nodes
-						logging.info('=> Try recovering, presumed Dead, nodeId: %s with a NIF' % (node_id,))
-						if globals.network.manager.sendNodeInformation(globals.network.home_id, node_id):
-							# avoid stress network
-							time.sleep(4)
-				elif my_node.is_listening_device and my_node.is_ready:
-					# check if a ping is require
-					if node_id in globals.node_notifications:
-						last_notification = globals.node_notifications[node_id]
-						logging.debug('=> last_notification for nodeId: %s is: %s(%s)' % (node_id, last_notification.description, last_notification.code,))
-						# is in timeout or dead
-						if last_notification.code in [1, 5]:
-							logging.info('=> Do a test on node %s' % (node_id,))
-							# a ping will try to resolve this situation with a NoOperation CC.
-							globals.network.manager.testNetworkNode(globals.network.home_id, node_id, 3)
-							# avoid stress network
-							time.sleep(10)
-				elif not my_node.is_listening_device and my_node.is_ready:
-					try:
-						can_wake_up = my_node.can_wake_up()
-					except RuntimeError:
-						can_wake_up = False
-					if can_wake_up and node_id in globals.node_notifications:
-						last_notification = globals.node_notifications[node_id]
-						# check if controller think is awake
-						if my_node.is_awake or last_notification.code == 3:
-							logging.info('trying to lull the node %s' % (node_id,))
-							# a ping will force the node to return sleep after the NoOperation CC. Will force node notification update
-							globals.network.manager.testNetworkNode(globals.network.home_id, node_id, 1)
-
-			logging.info("Network sanity test/check completed!")
-		else:
-			logging.debug("Network is loaded, skip sanity check this time")
-	except Exception as error:
-		logging.error('Unknown error during sanity checks: %s' % (str(error),))
-	finally:
-		globals.sanity_checks_running = False
-
-def refresh_configuration_asynchronous():
-	if can_execute_network_command(0):
-		for node_id in list(globals.force_refresh_nodes):
-			if node_id in globals.network.nodes and not globals.network.nodes[node_id].is_failed:
-				logging.info('Request All Configuration Parameters for nodeId: %s' % (node_id,))
-				globals.network.manager.requestAllConfigParams(globals.network.home_id, node_id)
-				time.sleep(3)
-	else:
-		# I will try again in 2 minutes
-		retry_job = threading.Timer(240.0, refresh_configuration_asynchronous)
-		retry_job.start()
-
-def refresh_user_values_asynchronous():
-	logging.info("Refresh User Values of powered devices")
-	if can_execute_network_command(0):
-		for node_id in list(globals.network.nodes):
-			my_node = globals.network.nodes[node_id]
-			if my_node.is_ready and my_node.is_listening_device and not my_node.is_failed:
-				logging.info('Refresh User Values for nodeId: %s' % (node_id,))
-				for val in my_node.get_values():
-					current_value = my_node.values[val]
-					if current_value.genre == 'User':
-						if current_value.type == 'Button':
-							continue
-						if current_value.is_write_only:
-							continue
-						if current_value.label in globals.user_values_to_refresh:
-							current_value.refresh()
-				while not can_execute_network_command(0):
-					logging.debug("BackgroundWorker is waiting others tasks has be completed before proceeding")
-					time.sleep(30)
-	else:
-		logging.debug("Network is loaded, do not execute this time")
-		# I will try again in 2 minutes
-		retry_job = threading.Timer(240.0, refresh_user_values_asynchronous)
-		retry_job.start()
-
-def network_awaked(network):
-	logging.info(
-		"Openzwave network is awake: %d nodes were found (%d are sleeping). All listening nodes are queried, but some sleeping nodes may be missing." % (
-		network.nodes_count, utils.get_sleeping_nodes_count(),))
-	logging.debug("Controller is: %s" % (network.controller,))
-	globals.network_information.set_as_awake()
-	configuration = threading.Timer(globals.refresh_configuration_timer, refresh_configuration_asynchronous)
-	configuration.start()
-	logging.info("Refresh configuration parameters will starting in %d sec" % (globals.refresh_configuration_timer,))
-	user_values = threading.Timer(globals.refresh_user_values_timer, refresh_user_values_asynchronous)
-	user_values.start()
-	logging.info("Refresh user values will starting in %d sec" % (globals.refresh_user_values_timer,))
-	association = threading.Timer(globals.validate_association_groups_timer, validate_association_groups_asynchronous)
-	association.start()
-	logging.info("Validate association groups will starting in %d sec" % (globals.validate_association_groups_timer,))
-	# threading.Thread(target=recovering_failed_nodes_asynchronous).start()
-	# start listening for group changes
-	dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
-	save_network_state(network.state)
-	if globals.ghost_node_id is not None:
-		logging.info("Last step for Removing Ghost node will start in %d sec" % (globals.sanity_checks_delay,))
-		sanity_checks_job = threading.Timer(globals.sanity_checks_delay, sanity_checks, [True])
-		sanity_checks_job.start()
-
-def network_ready(network):
-	logging.info(
-		"Openzwave network is ready with %d nodes (%d are sleeping). All nodes are queried, the network is fully functional." % (
-		network.nodes_count, utils.get_sleeping_nodes_count(),))
-	write_config()
-	globals.network_information.assign_controller_notification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is ready")
-	save_network_state(network.state)
-
-def button_on(network, node):
-	logging.info('Controller button on pressed event')
-
-def button_off(network, node):
-	logging.info('Controller button off pressed event')
-
-def nodes_queried(network):
-	write_config()
-
-def nodes_queried_some_dead(network):
-	write_config()
-	logging.info("All nodes have been queried, but some node ar mark dead")
-
-def node_new(network, node_id):
-	if node_id in globals.not_supported_nodes:
-		return
-	logging.info('A new node (%s), not already stored in zwcfg*.xml file, was found.' % (node_id,))
-	globals.force_refresh_nodes.append(node_id)
-
-def node_added(network, node):
-	logging.info('A node has been added to OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
-	if node.node_id in globals.not_supported_nodes:
-		logging.debug('remove fake nodeId: %s' % (node.node_id,))
-		node_cleaner = threading.Timer(60.0, network.manager.removeFailedNode, [network.home_id, node.node_id])
-		node_cleaner.start()
-		return
-	node.last_update = time.time()
-	if network.state >= globals.network.STATE_AWAKED:
-		save_node_event(node.node_id, "added")
-
-def node_removed(network, node):
-	logging.info('A node has been removed from OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
-	if node.node_id in globals.not_supported_nodes:
-		return
-	if network.state >= globals.network.STATE_AWAKED:
-		save_node_event(node.node_id, "removed")
-	# clean dict
-	if node.node_id in globals.node_notifications:
-		del globals.node_notifications[node.node_id]
-	if node.node_id in globals.pending_associations:
-		del globals.pending_associations[node.node_id]
-
-def extract_data(value, display_raw=False, convert_fahrenheit=True):
-	if value.type == "Bool":
-		return value.data
-	elif value.label == 'Temperature' and value.units == 'F' and convert_fahrenheit:
-		return utils.convert_fahrenheit_celsius(value)
-	elif value.type == "Raw":
-		my_result = binascii.b2a_hex(value.data)
-		if display_raw:
-			logging.info('Raw Signal: %s' % my_result)
-		return my_result
-	if value.type == "Decimal":
-		if value.precision is None or value.precision == 0:
-			power = 1
-		else:
-			power = math.pow(10, value.precision)
-		return int(value.data * int(power)) / power
-	return value.data
-
-def can_execute_network_command(allowed_queue_count=5):
-	if globals.network is None:
-		return False
-	if not globals.network_is_running:
-		return False
-	if not globals.network.controller.is_primary_controller:
-		return True
-	if globals.network.controller.send_queue_count > allowed_queue_count:
-		return False
-	if globals.network_information.controller_is_busy:
-		return False
-	if globals.network_information.actual_mode != ControllerMode.Idle:
-		return False
-	if globals.network.state < globals.network.STATE_STARTED:
-		return False
-	return True
-
-def write_config():
-	watchdog = 0
-	while globals.network_information.config_file_save_in_progress and watchdog < 10:
-		logging.debug('.')
-		time.sleep(1)
-		watchdog += 1
-	if globals.network_information.config_file_save_in_progress:
-		return
-	globals.network_information.config_file_save_in_progress = True
-	try:
-		globals.network.write_config()
-		logging.info('write configuration file')
-		time.sleep(1)
-	except Exception as error:
-		logging.error('write_config %s' % (str(error),))
-	finally:
-		globals.network_information.config_file_save_in_progress = False
-
-def essential_node_queries_complete(network, node):
-	logging.info(
-		'The essential queries on a node have been completed. id:[%s] model:[%s].' % (node.node_id, node.product_name,))
-	my_node = network.nodes[node.node_id]
-	my_node.last_update = time.time()
-	# at this time is not good to save value, I skip this step
-
-def node_queries_complete(network, node):
-	logging.info('All the initialisation queries on a node have been completed. id:[%s] model:[%s].' % (
-	node.node_id, node.product_name,))
-	node.last_update = time.time()
-	# save config
-	write_config()
-
-def save_value(node, value, last_update):
-	logging.debug('A node value has been updated. nodeId:%s value:%s' % (node.node_id, value.label))
-	if node.node_id in globals.network.nodes:
-		my_node = globals.network.nodes[node.node_id]
-		# check if am the really last update
-		if my_node.last_update > last_update:
-			logging.warning('Timing Error. nodeLastUpdate:%s Last_update:%s' % (str(my_node.last_update), str(last_update)))
-			return
-		# mark as seen flag
-		my_node.last_update = last_update
-		# if value.genre != 'Basic':
-		value.last_update = last_update
-		save_node_value_event(node.node_id, int(time.time()), value.command_class, value.index, utils.get_standard_value_type(value.type), extract_data(value, False), utils.change_instance(value))
-
-def value_added(network, node, value):
-	if node.node_id in globals.not_supported_nodes:
-		return
-	# logging.debug('value_added. %s %s' % (node.node_id, value.label,))
-	# mark initial data for skip notification during interview
-	value.lastData = value.data
-
-def value_removed(network, node, value):
-	if node.node_id in globals.not_supported_nodes:
-		return
-	# clean pending dict
-	if value.value_id in globals.pending_configurations:
-		del globals.pending_configurations[value.value_id]
-
-def value_polling_enabled(network, node, value):
-	# not yet handle correctly ozw lib and wrapper must updated to use this check
-	# check if old polling is outside authorized range
-	if value.poll_intensity > globals.maximum_poll_intensity:
-		changes_value_polling(globals.maximum_poll_intensity, value)
-	# check if old polling is at lower index for CC and instance
-	if value.poll_intensity > 0:
-		logging.debug('Poll intensity on nodeId:%s value %s command_class %s instance %s index %s' % (node.node_id, value.label, value.command_class, value.instance, value.index))
-		# get all CC of node
-		for val in node.get_values(class_id=value.command_class):
-			# filter on same instance
-			if node.values[val].instance == value.instance:
-				my_value = node.values[val]
-				# check is is the lower index is have polling attribute
-				if my_value.index < value.index & my_value.poll_intensity == 0:
-					poll_intensity = value.poll_intensity
-					# reset last polling
-					value.disable_poll()
-					# set polling of lower index
-					changes_value_polling(poll_intensity, my_value)
-					logging.info('Changes poll intensity on nodeId:%s form %s to %s' % (node.node_id, value.label, my_value.label,))
-					break
-
-
-def prepare_value_notification(node, value):
-	if value.id_on_network in globals.pending_configurations:
-		pending = globals.pending_configurations[value.id_on_network]
-		if pending is not None:
-			# mark result
-			data = value.data
-			if value.type == 'Short':
-				data = utils.normalize_short_value(value.data)
-			pending.data = data
-
-	if not node.is_ready:
-		# check if have the attribute
-		if hasattr(value, 'lastData') and value.lastData == value.data:
-			# we skip notification to avoid value refresh during the interview process
-			return
-	# update for next run
-	value.lastData = value.data
-	if value.genre == 'System':
-		value.last_update = time.time()
-		return
-	command_class = globals.network.manager.COMMAND_CLASS_DESC[value.command_class].replace("COMMAND_CLASS_", "").replace("_", " ").lower().capitalize()
-	data = extract_data(value, False, False)
-	logging.info("Received %s report from node %s: %s=%s%s" % (command_class, node.node_id, value.label, data, value.units))
-	try:
-		save_value(node, value, time.time())
-	except Exception as error:
-		logging.error('An unknown error occurred while sending notification: %s. (Node %s: %s=%s)' % (str(error), node.node_id, value.label, data,))
-
-def value_update(network, node, value):
-	if node.node_id in globals.not_supported_nodes:
-		return
-	logging.debug('value_update. %s %s' % (node.node_id, value.label,))
-	prepare_value_notification(node, value)
-
-def value_refreshed(network, node, value):
-	if node.node_id in globals.not_supported_nodes:
-		return
-	logging.debug('value_refreshed. %s %s' % (node.node_id, value.label,))
-	prepare_value_notification(node, value)
-
-def scene_event(network, node, scene_id):
-	logging.info('Scene Activation: %s' % (scene_id,))
-	standard_type = 'int'
-	save_node_value_event(node.node_id, int(time.time()), COMMAND_CLASS_CENTRAL_SCENE, 0, standard_type, scene_id, 0)
-	save_node_value_event(node.node_id, int(time.time()), COMMAND_CLASS_SCENE_ACTIVATION, 0, standard_type, scene_id, 0)
-
-def controller_message_complete(network):
-	logging.debug('The last message that was sent is now complete')
-
-def controller_waiting(network, controller, state_int, state, state_full):
-	logging.debug(state_full)
-	# save actual state
-	globals.network_information.assign_controller_notification(state, state_full)
-	# notify jeedom
-	save_node_event(network.controller.node_id, globals.network_information.generate_jeedom_message())
-
-def controller_command(network, controller, node, node_id, state_int, state, state_full, error_int, error, error_full):
-	logging.info('%s (%s)' % (state_full, state))
-	if error_int > 0:
-		logging.error('%s (%s)' % (error_full, error,))
-
-	# save actual state
-	globals.network_information.assign_controller_notification(state, state_full, error, error_full)
-	# notify jeedom
-	save_node_event(network.controller.node_id, globals.network_information.generate_jeedom_message())
-	logging.debug('The controller is busy ? %s' % (globals.network_information.controller_is_busy,))
-
-def node_event(network, node, value):
-	logging.info('NodeId %s sends a Basic_Set command to the controller with value %s' % (node.node_id, value,))
-	for val in network.nodes[node.node_id].get_values():
-		my_value = network.nodes[node.node_id].values[val]
-		if my_value.genre == "User" and not my_value.is_write_only:
-			value_update(network, node, my_value)
-	'''
-	the value is actually the event data, not a zwave value object.
-	This is commonly caused when a node sends a Basic_Set command to the controller.
-	'''
-	standard_type = 'int'
-	save_node_value_event(node.node_id, int(time.time()), COMMAND_CLASS_BASIC, 0, standard_type, value, 0)
-
-def node_group_changed(network, node, groupidx):
-	logging.info('Group changed for nodeId %s index %s' % (node.node_id, groupidx,))
-	validate_association_groups(node.node_id)
-	# check pending for this group index
-	if node.node_id in globals.pending_associations:
-		pending = globals.pending_associations[node.node_id]
-		if groupidx in pending:
-			pending_association = pending[groupidx]
-			if pending_association is not None:
-				pending_association.associations = node.groups[groupidx].associations
-
-def get_wake_up_interval(node_id):
-	interval = get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval', False)
-	if interval is not None:
-		return interval.data
-	return None
-
-def force_sleeping(node_id, count=1):
-	if node_id in globals.network.nodes:
-		my_node = globals.network.nodes[node_id]
-		logging.debug('check if node %s still awake' % (node_id,))
-		last_notification = None
-		if node_id in globals.node_notifications:
-			last_notification = globals.node_notifications[node_id]
-		if my_node.is_awake or (last_notification is not None and last_notification.code == 3):
-			logging.debug('trying to lull the node %s' % (node_id,))
-			globals.network.manager.testNetworkNode(globals.network.home_id, node_id, count)
-
-def node_notification(arguments):
-	code = int(arguments['notificationCode'])
-	node_id = int(arguments['nodeId'])
-	if node_id in globals.not_supported_nodes:
-		return
-	if node_id in globals.disabled_nodes:
-		return
-	if node_id in globals.network.nodes:
-		my_node = globals.network.nodes[node_id]
-		my_node.last_update = time.time()
-		if node_id in globals.not_supported_nodes and globals.network.state >= globals.network.STATE_AWAKED:
-			logging.info('remove fake nodeId: %s' % (node_id,))
-			globals.network.manager.removeFailedNode(globals.network.home_id, node_id)
-			return
-		wake_up_time = get_wake_up_interval(node_id)
-		if node_id not in globals.node_notifications:
-			globals.node_notifications[node_id] = NodeNotification(code, wake_up_time)
-		else:
-			globals.node_notifications[node_id].refresh(code, wake_up_time)
-		if code == 3:
-			my_value = get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval Step', False)
-			if my_value is not None:
-				wake_up_interval_step = my_value.data + 2.0
-			else: 
-				wake_up_interval_step = 60.0
-			threading.Timer(interval=wake_up_interval_step, function=force_sleeping, args=(node_id, 1)).start()
-		logging.info('NodeId %s send a notification: %s' % (node_id, globals.node_notifications[node_id].description,))
-		push_node_notification(node_id, code)
-
-def connect_dispatcher():
-	if globals.dispatcher_is_connect:
-		return
-	logging.debug('connect to the louie dispatcher')
-	# We connect to the louie dispatcher
-	dispatcher.connect(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
-	dispatcher.connect(network_failed, ZWaveNetwork.SIGNAL_NETWORK_FAILED)
-	dispatcher.connect(network_failed, ZWaveNetwork.SIGNAL_DRIVER_FAILED)
-	dispatcher.connect(network_awaked, ZWaveNetwork.SIGNAL_NETWORK_AWAKED)
-	dispatcher.connect(network_ready, ZWaveNetwork.SIGNAL_NETWORK_READY)
-	dispatcher.connect(network_stopped, ZWaveNetwork.SIGNAL_NETWORK_STOPPED)
-	# a new node has been found (not already stored in zwcfg*.xml file).
-	dispatcher.connect(node_new, ZWaveNetwork.SIGNAL_NODE_NEW)
-	# add node to the network, during node discovering and after a inclusion
-	dispatcher.connect(node_added, ZWaveNetwork.SIGNAL_NODE_ADDED)
-	# a node is fully removed from network.
-	dispatcher.connect(node_removed, ZWaveNetwork.SIGNAL_NODE_REMOVED)
-	# A new node value has been added to OpenZWave's list.
-	# These notifications occur after a node has been discovered, and details of its command classes have been received.
-	# Each command class may generate one or more values depending on the complexity of the item being represented.
-	dispatcher.connect(value_added, ZWaveNetwork.SIGNAL_VALUE_ADDED)
-	# A node value has been updated from the Z-Wave network and it is different from the previous value.
-	dispatcher.connect(value_update, ZWaveNetwork.SIGNAL_VALUE_CHANGED)
-	# A node value has been updated from the Z-Wave network.
-	dispatcher.connect(value_refreshed, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
-	# A node value has been removed from the Z-Wave network.
-	dispatcher.connect(value_removed, ZWaveNetwork.SIGNAL_VALUE_REMOVED)
-	# Polling of a node value has been successfully turned on.
-	# dispatcher.connect(value_polling_enabled, ZWaveNetwork.SIGNAL_POLLING_ENABLED)
-	# when a node sends a Basic_Set command to the controller.
-	dispatcher.connect(node_event, ZWaveNetwork.SIGNAL_NODE_EVENT)
-	# scene event
-	dispatcher.connect(scene_event, ZWaveNetwork.SIGNAL_SCENE_EVENT)
-	# the essential node query are completed
-	dispatcher.connect(essential_node_queries_complete, ZWaveNetwork.SIGNAL_ESSENTIAL_NODE_QUERIES_COMPLETE)
-	# all node query are completed, the node is fully operational, is ready!
-	dispatcher.connect(node_queries_complete, ZWaveNetwork.SIGNAL_NODE_QUERIES_COMPLETE)
-	# is network notification same as SIGNAL_NETWORK_AWAKE, we don't need
-	dispatcher.connect(nodes_queried, ZWaveNetwork.SIGNAL_AWAKE_NODES_QUERIED)
-	# is network notification same as SIGNAL_NETWORK_READY, we don't need
-	dispatcher.connect(nodes_queried, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED)
-	dispatcher.connect(nodes_queried_some_dead, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
-	# a button is pressed
-	dispatcher.connect(button_on, ZWaveNetwork.SIGNAL_BUTTON_ON)
-	dispatcher.connect(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
-	# Called when an error happened, or node changed (awake, sleep, death, no operation, timeout).
-	dispatcher.connect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION)
-	if globals.network.state >= globals.network.STATE_AWAKED:
-		dispatcher.connect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
-	# Controller is waiting for a user action
-	dispatcher.connect(controller_waiting, ZWaveNetwork.SIGNAL_CONTROLLER_WAITING)
-	# keep a track of actual network command in progress
-	dispatcher.connect(controller_command, ZWaveNetwork.SIGNAL_CONTROLLER_COMMAND)
-	# The command has completed successfully
-	dispatcher.connect(controller_message_complete, ZWaveNetwork.SIGNAL_MSG_COMPLETE)
-	globals.dispatcher_is_connect = True
-
-def disconnect_dispatcher():
-	logging.debug('disconnect the louie dispatcher')
-	try:
-		dispatcher.disconnect(network_started, ZWaveNetwork.SIGNAL_NETWORK_STARTED)
-		dispatcher.disconnect(network_failed, ZWaveNetwork.SIGNAL_NETWORK_FAILED)
-		dispatcher.disconnect(network_failed, ZWaveNetwork.SIGNAL_DRIVER_FAILED)
-		dispatcher.disconnect(network_awaked, ZWaveNetwork.SIGNAL_NETWORK_AWAKED)
-		dispatcher.disconnect(network_ready, ZWaveNetwork.SIGNAL_NETWORK_READY)
-		dispatcher.disconnect(network_stopped, ZWaveNetwork.SIGNAL_NETWORK_STOPPED)
-		dispatcher.disconnect(node_new, ZWaveNetwork.SIGNAL_NODE_NEW)
-		dispatcher.disconnect(node_added, ZWaveNetwork.SIGNAL_NODE_ADDED)
-		dispatcher.disconnect(node_removed, ZWaveNetwork.SIGNAL_NODE_REMOVED)
-		dispatcher.disconnect(value_added, ZWaveNetwork.SIGNAL_VALUE_ADDED)
-		dispatcher.disconnect(value_update, ZWaveNetwork.SIGNAL_VALUE_CHANGED)
-		dispatcher.disconnect(value_refreshed, ZWaveNetwork.SIGNAL_VALUE_REFRESHED)
-		dispatcher.disconnect(value_removed, ZWaveNetwork.SIGNAL_VALUE_REMOVED)
-		# dispatcher.disconnect(value_polling_enabled, ZWaveNetwork.SIGNAL_POLLING_ENABLED)
-		dispatcher.disconnect(node_event, ZWaveNetwork.SIGNAL_NODE_EVENT)
-		dispatcher.disconnect(scene_event, ZWaveNetwork.SIGNAL_SCENE_EVENT)
-		dispatcher.disconnect(essential_node_queries_complete, ZWaveNetwork.SIGNAL_ESSENTIAL_NODE_QUERIES_COMPLETE)
-		dispatcher.disconnect(node_queries_complete, ZWaveNetwork.SIGNAL_NODE_QUERIES_COMPLETE)
-		dispatcher.disconnect(nodes_queried, ZWaveNetwork.SIGNAL_AWAKE_NODES_QUERIED)
-		dispatcher.disconnect(nodes_queried, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED)
-		dispatcher.disconnect(nodes_queried_some_dead, ZWaveNetwork.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
-		dispatcher.disconnect(button_on, ZWaveNetwork.SIGNAL_BUTTON_ON)
-		dispatcher.disconnect(button_off, ZWaveNetwork.SIGNAL_BUTTON_OFF)
-		dispatcher.disconnect(node_notification, ZWaveNetwork.SIGNAL_NOTIFICATION)
-		if globals.network.state >= globals.network.STATE_AWAKED:
-			dispatcher.disconnect(node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
-		dispatcher.disconnect(controller_waiting, ZWaveNetwork.SIGNAL_CONTROLLER_WAITING)
-		dispatcher.disconnect(controller_command, ZWaveNetwork.SIGNAL_CONTROLLER_COMMAND)
-		dispatcher.disconnect(controller_message_complete, ZWaveNetwork.SIGNAL_MSG_COMPLETE)
-	except Exception:
-		pass
-	globals.dispatcher_is_connect = False
+server_utils.check_start_server()
+manager_utils.init_manager()
 
 app = Flask(__name__, static_url_path='/static')
 # Create a network object
-globals.network = ZWaveNetwork(options, autostart=False)
-connect_dispatcher()
-start_network()
+network_utils.create_network()
+dispatcher_utils.connect_dispatcher()
+network_utils.start_network()
 logging.info('OpenZwave Library Version %s' % (globals.network.manager.getOzwLibraryVersionNumber(),))
 logging.info('Python-OpenZwave Wrapper Version %s' % (globals.network.manager.getPythonLibraryVersionNumber(),))
 # We wait for the network.
 logging.info('Waiting for network to become ready')
 
-def get_value_by_label(node_id, command_class, instance, label, trace=True):
-	if node_id in globals.network.nodes:
-		my_node = globals.network.nodes[node_id]
-		for value_id in my_node.get_values(class_id=command_class):
-			if my_node.values[value_id].instance == instance and my_node.values[value_id].label == label:
-				return my_node.values[value_id]
-	if trace:
-		logging.debug("get_value_by_label Value not found for node_id:%s, cc:%s, instance:%s, label:%s" % (
-		node_id, command_class, instance, label,))
-	return None
-
-def get_value_by_index(node_id, command_class, instance, index_id, trace=True):
-	if node_id in globals.network.nodes:
-		my_node = globals.network.nodes[node_id]
-		for value_id in my_node.get_values(class_id=command_class):
-			if my_node.values[value_id].instance == instance and my_node.values[value_id].index == index_id:
-				return my_node.values[value_id]
-	if trace:
-		logging.debug("get_value_by_index Value not found for node_id:%s, cc:%s, instance:%s, index:%s" % (
-		node_id, command_class, instance, index_id,))
-	return None
-
-def get_value_by_id(node_id, value_id):
-	if node_id in globals.network.nodes:
-		my_node = globals.network.nodes[node_id]
-		if value_id in my_node.values:
-			return my_node.values[value_id]
-	logging.debug("get_value_by_id Value not found for node_id:%s, value_id:%s" % (node_id, value_id,))
-	return None
-
 def mark_pending_change(my_value, data, wake_up_time=0):
 	if my_value is not None and not my_value.is_write_only:
 		globals.pending_configurations[my_value.id_on_network] = PendingConfiguration(data, wake_up_time)
-
-def concatenate_list(list_values, separator=';'):
-	try:
-		if list_values is None:
-			return ""
-		else:
-			if isinstance(list_values, set):
-				return separator.join(str(s) for s in sorted(list_values))
-			return list_values
-	except Exception as error:
-		logging.error(str(error))
-	return ""
 
 def check_pending_changes(node_id):
 	my_node = globals.network.nodes[node_id]
@@ -950,25 +201,6 @@ def serialize_neighbour_to_json(node_id):
 	else:
 		logging.warning('This network does not contain any node with the id %s' % (node_id,))
 	return json_result
-
-def validate_association_groups(node_id):
-	fake_found = False
-	if globals.network is not None and globals.network.state >= globals.network.STATE_AWAKED:
-		if node_id in globals.network.nodes:
-			my_node = globals.network.nodes[node_id]
-			query_stage_index = utils.convert_query_stage_to_int(my_node.query_stage)
-			if query_stage_index >= 12:
-				logging.debug("validate_association_groups for nodeId: %s" % (node_id,))
-				for group_index in list(my_node.groups):
-					group = my_node.groups[group_index]
-					for target_node_id in list(group.associations):
-						if target_node_id in globals.network.nodes and target_node_id not in globals.not_supported_nodes:
-							continue
-						logging.debug("Remove association for nodeId: %s index %s with not exist target: %s" % (
-						node_id, group_index, target_node_id,))
-						globals.network.manager.removeAssociation(globals.network.home_id, node_id, group_index, target_node_id)
-						fake_found = True
-	return fake_found
 
 def serialize_node_to_json(node_id):
 	json_result = {}
@@ -1032,7 +264,7 @@ def serialize_node_to_json(node_id):
 		notification = globals.node_notifications[node_id]
 		next_wake_up = notification.next_wake_up
 		json_result['last_notification'] = {"receiveTime": notification.receive_time,"description": notification.description,"help": notification.help}
-	json_result['data']['wakeup_interval'] = {'value': get_wake_up_interval(node_id), 'next_wakeup': next_wake_up}
+	json_result['data']['wakeup_interval'] = {'value': node_utils.get_wake_up_interval(node_id), 'next_wakeup': next_wake_up}
 	json_result['data']['isFailed'] = {'value': my_node.is_failed}
 	json_result['data']['isListening'] = {'value': my_node.is_listening_device}
 	json_result['data']['isRouting'] = {'value': my_node.is_routing_device}
@@ -1067,7 +299,7 @@ def serialize_node_to_json(node_id):
 		is_neighbours_ok = False
 	json_result['data']['is_neighbours_ok'] = {'value': len(my_node.neighbors) > 0,'neighbors': len(my_node.neighbors), 'enabled': is_neighbours_ok}
 	json_result['data']['is_manufacturer_specific_ok'] = {'value': my_node.manufacturer_id != 0 and my_node.product_id != 0 and my_node.product_type != 0,'enabled': query_stage_index >= 7} 
-	is_secured = get_value_by_label(node_id, COMMAND_CLASS_SECURITY, 1, 'Secured', False)
+	is_secured = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SECURITY, 1, 'Secured', False)
 	json_result['data']['isSecured'] = {'value': is_secured is not None and is_secured.data, 'enabled' : is_secured is not None}
 	pending_changes = 0
 	json_result['instances'] = {"updateTime": timestamp}
@@ -1122,7 +354,7 @@ def serialize_node_to_json(node_id):
 			if my_value.type == 'Short':
 				value2 = utils.normalize_short_value(my_value.data)
 			else:
-				value2 = extract_data(my_value)
+				value2 = value_utils.extract_data(my_value)
 		instance2 = utils.change_instance(my_value)
 		if my_value.index:
 			index2 = my_value.index
@@ -1130,7 +362,7 @@ def serialize_node_to_json(node_id):
 			index2 = 0
 		pending_state = None
 		expected_data = None
-		data_items = concatenate_list(my_value.data_items)
+		data_items = utils.concatenate_list(my_value.data_items)
 		if my_value.id_on_network in globals.pending_configurations:
 			pending = globals.pending_configurations[my_value.id_on_network]
 			if pending is not None:
@@ -1182,18 +414,6 @@ def serialize_command_class_info(instance2, json_result, my_node, my_value, time
 	json_result['instances'][instance2]['commandClasses'][my_value.command_class] = {"name": my_node.get_command_class_as_string(my_value.command_class)}
 	json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'] = {"updateTime": timestamp}
 
-
-def serialize_node_notification(node_id):
-	json_result = {}
-	if node_id in globals.not_supported_nodes:
-		return json_result
-	my_node = globals.network.nodes[node_id]
-	if node_id in globals.node_notifications:
-		notification = globals.node_notifications[node_id]
-		return {"receiveTime": notification.receive_time,"description": notification.description,"isFailed": my_node.is_failed}
-	else:
-		return {"receiveTime": None,"description": None,"isFailed": my_node.is_failed}
-
 def check_primary_controller(my_node):
 	for groupIndex in list(my_node.groups):
 		group = my_node.groups[groupIndex]
@@ -1205,19 +425,11 @@ def check_primary_controller(my_node):
 					break
 	return False
 
-def get_network_mode():
-	if globals.network_information.controller_is_busy:
-		if globals.network_information.actual_mode == ControllerMode.AddDevice:
-			return NetworkInformation.AddDevice
-		elif globals.network_information.actual_mode == ControllerMode.RemoveDevice:
-			return NetworkInformation.RemoveDevice
-	return NetworkInformation.Idle
-
 def serialize_controller_to_json():
 	json_result = {'data': {}}
 	json_result['data']['roles'] = {'isPrimaryController': globals.network.controller.is_primary_controller, 'isStaticUpdateController': globals.network.controller.is_static_update_controller, 'isBridgeController': globals.network.controller.is_bridge_controller}
 	json_result['data']['nodeId'] = {'value': globals.network.controller.node_id}
-	json_result['data']['mode'] = {'value': get_network_mode()}
+	json_result['data']['mode'] = {'value': network_utils.get_network_mode()}
 	json_result['data']['softwareVersion'] = {'ozw_library': globals.network.controller.ozw_library_version, 'python_library': globals.network.controller.python_library_version}
 	json_result['data']['notification'] = globals.network_information.last_controller_notifications[0]
 	json_result['data']['isBusy'] = {"value": globals.network_information.controller_is_busy}
@@ -1393,7 +605,7 @@ def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 				prepare_refresh(_node_id, val, _value, utils.is_motor(_node_id))
 			if int(_cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SETPOINT:
 				logging.debug("COMMAND_CLASS_THERMOSTAT_SETPOINT")
-				save_node_value_event(_node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SETPOINT, _index, utils.get_standard_value_type(globals.network.nodes[_node_id].values[val].type), _value, _instance_id + 10)
+				node_utils.save_node_value_event(_node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SETPOINT, _index, utils.get_standard_value_type(globals.network.nodes[_node_id].values[val].type), _value, _instance_id + 10)
 			if _cc_id == hex(COMMAND_CLASS_SWITCH_BINARY):
 				if _value == 0:
 					_value = False
@@ -1436,7 +648,7 @@ def set_config(_node_id, _index_id, _value, _size):
 	if _size > 4:
 		_size = 4
 	_value = int(_value)
-	my_value = get_value_by_index(_node_id, COMMAND_CLASS_CONFIGURATION, 1, _index_id)
+	my_value = value_utils.get_value_by_index(_node_id, COMMAND_CLASS_CONFIGURATION, 1, _index_id)
 	result = globals.network.nodes[_node_id].set_config_param(_index_id, _value, _size)
 	if my_value is not None and my_value.type != 'List':
 		mark_pending_change(my_value, _value)
@@ -1725,7 +937,7 @@ def copy_configuration(source_id, target_id):
 				if configuration_value.is_write_only:
 					continue
 				try:
-					target_value = get_value_by_index(target_id, COMMAND_CLASS_CONFIGURATION, 1,configuration_value.index)
+					target_value = value_utils.get_value_by_index(target_id, COMMAND_CLASS_CONFIGURATION, 1,configuration_value.index)
 					if target_value is not None:
 						if configuration_value.type == 'List':
 							globals.network.manager.setValue(target_value.value_id, configuration_value.data)
@@ -1836,8 +1048,7 @@ def force_refresh_one_value(node_id, instance_id, index, cc_id):
 def refresh_one_value(node_id, instance_id, index, cc_id):
 	utils.check_node_exist(node_id)
 	for val in globals.network.nodes[node_id].get_values(class_id=cc_id):
-		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[
-			val].index == index:
+		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[val].index == index:
 			globals.network.nodes[node_id].values[val].refresh()
 			return utils.format_json_result()
 	return utils.format_json_result(False, 'This device does not contain the specified value', 'warning')
@@ -1855,7 +1066,7 @@ def get_user_code(node_id, instance_id, index):
 		if my_value.instance - 1 == instance_id and my_value.index == index:
 			user_code = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 			timestamp = int(1)
-			raw_data = extract_data(my_value)
+			raw_data = value_utils.extract_data(my_value)
 			if raw_data != '00000000000000000000':
 				try:
 					timestamp = int(my_value.last_update)
@@ -1881,7 +1092,7 @@ def get_user_codes(node_id, instance_id):
 				continue
 			if my_value.index > 10:
 				continue
-			raw_data = extract_data(my_value)
+			raw_data = value_utils.extract_data(my_value)
 			if raw_data == '00000000000000000000':
 				result_value[my_value.index] = None
 			else:
@@ -2017,7 +1228,7 @@ def press_button(node_id, instance_id, cc_id, index):
 					value = 99
 				elif globals.network.nodes[node_id].values[val].label in ['Close']:
 					value = 0
-				value_level = get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
+				value_level = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
                                                  globals.network.nodes[node_id].values[val].instance, 'Level')
 				if value_level:
 					prepare_refresh(node_id, value_level.value_id, value, utils.is_motor(node_id))
@@ -2034,7 +1245,7 @@ def release_button(node_id, instance_id, cc_id, index):
 			globals.network.manager.releaseButton(globals.network.nodes[node_id].values[val].value_id)
 			# stop refresh if running in background
 			if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
-				value_level = get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
+				value_level = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
                                                  globals.network.nodes[node_id].values[val].instance, 'Level')
 				if value_level:
 					stop_refresh(node_id, value_level.value_id)
@@ -2075,7 +1286,7 @@ def switch_all(node_id, state):
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].RequestNodeNeighbourUpdate()', methods=['GET'])
 @auth.login_required
 def request_node_neighbour_update(node_id):
-	if not can_execute_network_command():
+	if not network_utils.can_execute_network_command():
 		raise Exception('Controller is bussy')
 	utils.check_node_exist(node_id,True)
 	logging.info("request_node_neighbour_update for node %s" % (node_id,))
@@ -2085,7 +1296,7 @@ def request_node_neighbour_update(node_id):
 @auth.login_required
 def remove_failed_node(node_id):
 	utils.check_node_exist(node_id)
-	if not can_execute_network_command(0):
+	if not network_utils.can_execute_network_command(0):
 		raise Exception('Controller is bussy')
 	logging.info("Remove a failed node %s" % (node_id,))
 	return utils.format_json_result(globals.network.manager.removeFailedNode(globals.network.home_id, node_id))
@@ -2093,7 +1304,7 @@ def remove_failed_node(node_id):
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].HealNode()', methods=['GET'])
 @auth.login_required
 def heal_node(node_id, perform_return_routes_initialization=False):
-	if not can_execute_network_command():
+	if not network_utils.can_execute_network_command():
 		raise Exception('Controller is bussy')
 	utils.check_node_exist(node_id,True)
 	logging.info("Heal network node (%s) by requesting the node rediscover their neighbors" % (node_id,))
@@ -2103,7 +1314,7 @@ def heal_node(node_id, perform_return_routes_initialization=False):
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].AssignReturnRoute()', methods=['GET'])
 @auth.login_required
 def assign_return_route(node_id):
-	if not can_execute_network_command():
+	if not network_utils.can_execute_network_command():
 		raise Exception('Controller is bussy')
 	utils.check_node_exist(node_id)
 	logging.info("Ask Node (%s) to update its Return Route to the Controller" % (node_id,))
@@ -2117,7 +1328,7 @@ def get_serialized_device(node_id):
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].ReplaceFailedNode()', methods=['GET'])
 @auth.login_required
 def replace_failed_node(node_id):
-	if not can_execute_network_command():
+	if not network_utils.can_execute_network_command():
 		raise Exception('Controller is bussy')
 	utils.check_node_exist(node_id,True)
 	logging.info("replace_failed_node node %s" % (node_id,))
@@ -2126,7 +1337,7 @@ def replace_failed_node(node_id):
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].SendNodeInformation()', methods=['GET'])
 @auth.login_required
 def send_node_information(node_id):
-	if not can_execute_network_command():
+	if not network_utils.can_execute_network_command():
 		raise Exception('Controller is bussy')
 	utils.check_node_exist(node_id,True)
 	logging.info("send_node_information node %s" % (node_id,))
@@ -2135,7 +1346,7 @@ def send_node_information(node_id):
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].HasNodeFailed()', methods=['GET'])
 @auth.login_required
 def has_node_failed(node_id):
-	if not can_execute_network_command():
+	if not network_utils.can_execute_network_command():
 		raise Exception('Controller is bussy')
 	utils.check_node_exist(node_id,True)
 	logging.info("has_node_failed node %s" % (node_id,))
@@ -2144,7 +1355,7 @@ def has_node_failed(node_id):
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].RefreshNodeInfo()', methods=['GET'])
 @auth.login_required
 def refresh_node_info(node_id):
-	if not can_execute_network_command():
+	if not network_utils.can_execute_network_command():
 		raise Exception('Controller is bussy')
 	utils.check_node_exist(node_id,True)
 	logging.info("refresh_node_info node %s" % (node_id,))
@@ -2171,7 +1382,7 @@ def refresh_all_values(node_id):
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].TestNode()', methods=['GET'])
 @auth.login_required
 def test_node(node_id=0, count=3):
-	if not can_execute_network_command():
+	if not network_utils.can_execute_network_command():
 		raise Exception('Controller is bussy')
 	utils.check_node_exist(node_id,True)
 	globals.network.manager.testNetworkNode(globals.network.home_id, node_id, count)
@@ -2213,13 +1424,13 @@ def remove_device_openzwave_config(node_id, identical):
 	working_file.write('<?xml version="1.0" encoding="utf-8" ?>\n')
 	working_file.writelines(etree.tostring(tree, pretty_print=True))
 	working_file.close()
-	start_network()
+	network_utils.start_network()
 	return utils.format_json_result()
 	
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].GhostKiller()', methods=['GET'])
 @auth.login_required
 def ghost_killer(node_id):
-	if not can_execute_network_command(0):
+	if not network_utils.can_execute_network_command(0):
 		raise Exception('Controller is bussy')
 	logging.info('Remove cc 0x84 (wake_up) for a ghost device: %s' % (node_id,))
 	filename = globals.data_folder + "/zwcfg_" + globals.network.home_id_str + ".xml"
@@ -2273,7 +1484,7 @@ def get_node_health(node_id):
 @auth.login_required
 def get_node_last_notification(node_id):
 	utils.check_node_exist(node_id)
-	return jsonify(serialize_node_notification(node_id))
+	return jsonify(node_utils.serialize_node_notification(node_id))
 	
 """
 controllers routes
@@ -2284,7 +1495,7 @@ def start_node_inclusion(state, do_security):
 	if globals.network_information.controller_is_busy:
 		raise Exception('Controller is bussy')
 	if state == 1:
-		if not can_execute_network_command(0):
+		if not network_utils.can_execute_network_command(0):
 			raise Exception('Controller is bussy')
 		if do_security == 1:
 			do_security = True
@@ -2308,7 +1519,7 @@ def start_node_exclusion(state):
 	if globals.network_information.controller_is_busy:
 		raise Exception('Controller is bussy')
 	if state == 1:
-		if not can_execute_network_command(0):
+		if not network_utils.can_execute_network_command(0):
 			raise Exception('Controller is bussy')
 		logging.info("Remove a Device from the Z-Wave Network (Started)")
 		execution_result = globals.network.manager.removeNode(globals.network.home_id)
@@ -2332,7 +1543,7 @@ def cancel_command():
 @app.route('/ZWaveAPI/Run/controller.RequestNetworkUpdate(<node_id>)', methods=['GET'])
 @auth.login_required
 def request_network_update(node_id):
-	if not can_execute_network_command(0):
+	if not network_utils.can_execute_network_command(0):
 		raise Exception('Controller is bussy')
 	utils.check_node_exist(node_id)
 	logging.info("Update the controller (%s) with network information from the SUC/SIS" % (node_id,))
@@ -2342,7 +1553,7 @@ def request_network_update(node_id):
 @app.route('/ZWaveAPI/Run/controller.ReplicationSend(<node_id>)', methods=['GET'])
 @auth.login_required
 def replication_send(node_id):
-	if not can_execute_network_command(0):
+	if not network_utils.can_execute_network_command(0):
 		raise Exception('Controller is bussy')
 	utils.check_node_exist(node_id)
 	logging.info('Send information from primary to secondary %s' % (node_id,))
@@ -2351,7 +1562,7 @@ def replication_send(node_id):
 @app.route('/ZWaveAPI/Run/controller.HealNetwork()', methods=['GET'])
 @auth.login_required
 def heal_network(perform_return_routes_initialization=False):
-	if not can_execute_network_command(0):
+	if not network_utils.can_execute_network_command(0):
 		raise Exception('Controller is bussy')
 	logging.info("Heal network by requesting node's rediscover their neighbors")
 	for node_id in list(globals.network.nodes):
@@ -2382,7 +1593,7 @@ def soft_reset():
 @app.route('/ZWaveAPI/Run/controller.TestNetwork()', methods=['GET'])
 @auth.login_required
 def test_network(count=3):
-	if not can_execute_network_command():
+	if not network_utils.can_execute_network_command():
 		raise Exception('Controller is bussy')
 	logging.info("Sends a series of messages to a network node for testing network reliability")
 	for node_id in list(globals.network.nodes):
@@ -2397,7 +1608,7 @@ def test_network(count=3):
 @app.route('/ZWaveAPI/Run/controller.CreateNewPrimary()', methods=['GET'])
 @auth.login_required
 def create_new_primary():
-	if not can_execute_network_command(0):
+	if not network_utils.can_execute_network_command(0):
 		raise Exception('Controller is bussy')
 	logging.info("Add a new controller to the Z-Wave network")
 	return utils.format_json_result(globals.network.manager.createNewPrimary(globals.network.home_id))
@@ -2405,7 +1616,7 @@ def create_new_primary():
 @app.route('/ZWaveAPI/Run/controller.TransferPrimaryRole()', methods=['GET'])
 @auth.login_required
 def transfer_primary_role():
-	if not can_execute_network_command(0):
+	if not network_utils.can_execute_network_command(0):
 		raise Exception('Controller is bussy')
 	logging.info("Transfer Primary Role")
 	return utils.format_json_result(globals.network.manager.transferPrimaryRole(globals.network.home_id))
@@ -2413,7 +1624,7 @@ def transfer_primary_role():
 @app.route('/ZWaveAPI/Run/controller.ReceiveConfiguration()', methods=['GET'])
 @auth.login_required
 def receive_configuration():
-	if not can_execute_network_command(0):
+	if not network_utils.can_execute_network_command(0):
 		raise Exception('Controller is bussy')
 	logging.info("Receive Configuration")
 	return utils.format_json_result(globals.network.manager.receiveConfiguration(globals.network.home_id))
@@ -2425,7 +1636,7 @@ def hard_reset():
 	globals.network.controller.hard_reset()
 	logging.info('The controller becomes a primary controller ready to add devices to a new network')
 	time.sleep(3)
-	start_network()
+	network_utils.start_network()
 	return utils.format_json_result()
 
 """
@@ -2435,14 +1646,14 @@ network routes
 @auth.login_required
 def network_start():
 	logging.info('******** The ZWave network is being started ********')
-	start_network()
+	network_utils.start_network()
 	return utils.format_json_result()
 	
 
 @app.route('/ZWaveAPI/Run/network.Stop()', methods=['GET'])
 @auth.login_required
 def stop_network():
-	graceful_stop_network()
+	network_utils.graceful_stop_network()
 	return utils.format_json_result()
 
 @app.route('/ZWaveAPI/Run/network.GetStatus()', methods=['GET'])
@@ -2452,19 +1663,19 @@ def get_network_status():
 		json_result = {'nodesCount': globals.network.nodes_count, 'sleepingNodesCount': utils.get_sleeping_nodes_count(),
                        'scenesCount': globals.network.scenes_count, 'pollInterval': globals.network.manager.getPollInterval(),
                        'isReady': globals.network.is_ready, 'stateDescription': globals.network.state_str, 'state': globals.network.state,
-                       'controllerCapabilities': concatenate_list(globals.network.controller.capabilities),
-                       'controllerNodeCapabilities': concatenate_list(globals.network.controller.node.capabilities),
+                       'controllerCapabilities': utils.concatenate_list(globals.network.controller.capabilities),
+                       'controllerNodeCapabilities': utils.concatenate_list(globals.network.controller.node.capabilities),
 					   'outgoingSendQueue': globals.network.controller.send_queue_count,
 					   'controllerStatistics': globals.network.controller.stats, 'devicePath': globals.network.controller.device,
 					   'OpenZwaveLibraryVersion': globals.network.manager.getOzwLibraryVersionNumber(),
 					   'PythonOpenZwaveLibraryVersion': globals.network.manager.getPythonLibraryVersionNumber(),
-					   'neighbors': concatenate_list(globals.network.controller.node.neighbors),
+					   'neighbors': utils.concatenate_list(globals.network.controller.node.neighbors),
 					   'notifications': list(globals.network_information.last_controller_notifications),
 					   'isBusy': globals.network_information.controller_is_busy, 'startTime': globals.network_information.start_time,
 					   'isPrimaryController': globals.network.controller.is_primary_controller,
 					   'isStaticUpdateController': globals.network.controller.is_static_update_controller,
 					   'isBridgeController': globals.network.controller.is_bridge_controller,
-					   'awakedDelay': globals.network_information.controller_awake_delay, 'mode': get_network_mode()
+					   'awakedDelay': globals.network_information.controller_awake_delay, 'mode': network_utils.get_network_mode()
                        }
 	else:
 		json_result = {}
@@ -2577,7 +1788,7 @@ def save_openzwave_config():
 	logging.info('Replace zwcfg file: %s' % (filename,))
 	FilesManager.copy_file(new_filename, filename)
 	logging.info('Restart network')
-	start_network()
+	network_utils.start_network()
 	return utils.format_json_result()
 
 @app.route('/ZWaveAPI/Run/network.WriteZWConfig()', methods=['GET'])
@@ -2594,7 +1805,7 @@ def remove_unknowns_devices_openzwave_config():
 	logging.info('ZWave network is now stopped')
 	time.sleep(5)
 	globals.files_manager.remove_unknowns_devices_openzwave_config(globals.network.home_id_str)
-	start_network()
+	network_utils.start_network()
 	return utils.format_json_result()
 
 @app.route('/ZWaveAPI/Run/network.GetOZBackups()', methods=['GET'])
@@ -2624,7 +1835,7 @@ def restore_openzwave_backups(backup_name):
 		time.sleep(3)
 		shutil.copy2(backup_file, target_file)
 		os.chmod(target_file, 0777)
-		start_network()
+		network_utils.start_network()
 	return utils.format_json_result(True, backup_name + ' successfully restored')
 
 @app.route('/ZWaveAPI/Run/network.ManualBackup()', methods=['GET'])
@@ -2656,25 +1867,25 @@ def perform_sanity_checks():
 		if globals.network.state < globals.network.STATE_STARTED:
 			logging.error("Timeouts occurred during communication with your ZWave dongle. Please check the openzwaved log file for more details.")
 			try:
-				graceful_stop_network()
+				network_utils.graceful_stop_network()
 			finally:
 				os.remove(globals.pidfile)
 			try:
-				shutdown_server()
+				server_utils.shutdown_server()
 			finally:
 				sys.exit()
-	sanity_checks()
+	network_utils.sanity_checks()
 	return utils.format_json_result()
 
 @app.route('/ZWaveAPI/Run/ChangeLogLevel(<int:level>)', methods=['GET'])
 @auth.login_required
 def rest_change_log_level(level):
 	utils.set_log_level(level)
-	jeedom_utils.set_log_level(globals.log_level)
+	server_utils.set_log_level()
 	return utils.format_json_result(success=True, detail=('Log level is set: %s' % (globals.log_level,)), log_level='info', code=0)
 
 if __name__ == '__main__':
-	jeedom_utils.write_pid(str(globals.pidfile))
+	server_utils.write_pid()
 	try:
 		http_server = HTTPServer(WSGIContainer(app))
 		http_server.listen(globals.port_server)
