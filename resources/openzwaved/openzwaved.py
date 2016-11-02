@@ -15,8 +15,11 @@
 # along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 import sys
 import math
-import globals
 import argparse
+
+
+import globals
+import utils
 
 try:
 	from tornado.wsgi import WSGIContainer
@@ -491,51 +494,11 @@ def node_removed(network, node):
 	if node.node_id in globals.pending_associations:
 		del globals.pending_associations[node.node_id]
 
-def get_standard_value_type(value_type):
-	if value_type == "Int":
-		return 'int'
-	elif value_type == "Decimal":
-		return 'float'
-	elif value_type == "Bool":
-		return 'bool'
-	elif value_type == "Byte":
-		return 'int'
-	elif value_type == "Short":
-		return 'int'
-	elif value_type == "Button":
-		return 'bool'
-	elif value_type == "Raw":
-		return 'binary'
-	else:
-		return value_type
-
-def change_instance(my_value):
-	if my_value.instance > 1:
-		return my_value.instance - 1
-	return 0
-
-def normalize_short_value(value):
-	my_result = value
-	# noinspection PyBroadException
-	try:
-		if int(value) < 0:
-			my_result = 65536 + int(value)
-	except:
-		pass
-	return my_result
-
-def convert_fahrenheit_celsius(value):
-	if value.precision is None or value.precision == 0:
-		power = 1
-	else:
-		power = math.pow(10, value.precision)
-	return int(((float(value.data_as_string) - 32) * 5.0 / 9.0) * int(power)) / power
-
 def extract_data(value, display_raw=False, convert_fahrenheit=True):
 	if value.type == "Bool":
 		return value.data
 	elif value.label == 'Temperature' and value.units == 'F' and convert_fahrenheit:
-		return convert_fahrenheit_celsius(value)
+		return utils.convert_fahrenheit_celsius(value)
 	elif value.type == "Raw":
 		my_result = binascii.b2a_hex(value.data)
 		if display_raw:
@@ -611,7 +574,7 @@ def save_value(node, value, last_update):
 		my_node.last_update = last_update
 		# if value.genre != 'Basic':
 		value.last_update = last_update
-		save_node_value_event(node.node_id, int(time.time()), value.command_class, value.index, get_standard_value_type(value.type), extract_data(value, False), change_instance(value))
+		save_node_value_event(node.node_id, int(time.time()), value.command_class, value.index, utils.get_standard_value_type(value.type), extract_data(value, False), utils.change_instance(value))
 
 # noinspection PyUnusedLocal
 def value_added(network, node, value):
@@ -661,7 +624,7 @@ def prepare_value_notification(node, value):
 			# mark result
 			data = value.data
 			if value.type == 'Short':
-				data = normalize_short_value(value.data)
+				data = utils.normalize_short_value(value.data)
 			pending.data = data
 
 	if not node.is_ready:
@@ -1213,17 +1176,17 @@ def serialize_node_to_json(node_id):
 		else:
 			value_units = my_value.units
 		if my_value.genre != 'Basic':
-			standard_type = get_standard_value_type(my_value.type)
+			standard_type = utils.get_standard_value_type(my_value.type)
 		else:
 			standard_type = 'int'
 		if my_value.is_write_only:
 			value2 = None
 		else:
 			if my_value.type == 'Short':
-				value2 = normalize_short_value(my_value.data)
+				value2 = utils.normalize_short_value(my_value.data)
 			else:
 				value2 = extract_data(my_value)
-		instance2 = change_instance(my_value)
+		instance2 = utils.change_instance(my_value)
 		if my_value.index:
 			index2 = my_value.index
 		else:
@@ -1550,7 +1513,7 @@ def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 				prepare_refresh(_node_id, val, _value, is_motor(_node_id))
 			if int(_cc_id, 16) == COMMAND_CLASS_THERMOSTAT_SETPOINT:
 				logging.debug("COMMAND_CLASS_THERMOSTAT_SETPOINT")
-				save_node_value_event(_node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SETPOINT, _index, get_standard_value_type(globals.network.nodes[_node_id].values[val].type), _value, _instance_id + 10)
+				save_node_value_event(_node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SETPOINT, _index, utils.get_standard_value_type(globals.network.nodes[_node_id].values[val].type), _value, _instance_id + 10)
 			if _cc_id == hex(COMMAND_CLASS_SWITCH_BINARY):
 				if _value == 0:
 					_value = False
@@ -1983,7 +1946,7 @@ def get_value6(node_id, instance_id, index, cc_id):
 		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[
 			val].index == index:
 			if globals.network.nodes[node_id].values[val].units == 'F':
-				return str(convert_fahrenheit_celsius(globals.network.nodes[node_id].values[val]))
+				return str(utils.convert_fahrenheit_celsius(globals.network.nodes[node_id].values[val]))
 			else:
 				return str(globals.network.nodes[node_id].values[val].data)
 	return jsonify({})
@@ -2025,7 +1988,7 @@ def get_user_code(node_id, instance_id, index):
 					user_code = [int(raw_data[i:i + chunk_size], 16) for i in range(0, chunks, chunk_size)]
 				except TypeError:
 					timestamp = int(1)
-			my_result = {'invalidateTime': int(time.time() - datetime.timedelta(seconds=30).total_seconds()), 'type': get_standard_value_type(my_value.type),'value': user_code,'updateTime': timestamp}
+			my_result = {'invalidateTime': int(time.time() - datetime.timedelta(seconds=30).total_seconds()), 'type': utils.get_standard_value_type(my_value.type),'value': user_code,'updateTime': timestamp}
 			break
 	return jsonify(my_result)
 
