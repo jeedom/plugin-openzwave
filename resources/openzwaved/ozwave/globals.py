@@ -1,3 +1,35 @@
+#Various mappings
+CONVERSION = {'Int': 'int',\
+	'Decimal': 'float',\
+	'Bool':'bool',\
+	'Byte':'int',\
+	'Short':'int',\
+	'Button':'bool',\
+	'Raw':'binary',\
+	40 : 'error',\
+	20 : 'debug',\
+	10 : 'info',\
+	'None': 0,\
+	'ProtocolInfo': 1,\
+	'Probe': 2,\
+	'WakeUp': 3,\
+	'ManufacturerSpecific1': 4,\
+	'NodeInfo': 5,\
+	'NodePlusInfo': 5,\
+	'SecurityReport': 6,\
+	'ManufacturerSpecific2': 7,\
+	'Versions': 8,\
+	'Instances': 9,\
+	'Static': 10,\
+	'CacheLoad': 11,\
+	'Associations': 12,\
+	'Neighbors': 13,\
+	'Session': 14,\
+	'Dynamic': 15,\
+	'Configuration': 16,\
+	'Complete': 17,\
+	}
+
 #Various message
 MSG_CHECK_DEPENDENCY = 'The dependency of openzwave plugin are not installed. Please check the plugin openzwave configuration page for instructions'
 
