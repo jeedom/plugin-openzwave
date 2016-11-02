@@ -18,8 +18,7 @@ import math
 import argparse
 
 
-import globals
-import utils
+from ozwave import globals,utils
 
 try:
 	from tornado.wsgi import WSGIContainer
@@ -131,10 +130,10 @@ sys.setdefaultencoding('utf8')
 logging.info("Check Openzwave")
 from openzwave.network import ZWaveNetwork
 from openzwave.option import ZWaveOption
-from utilities.NetworkExtend import *
-from utilities.NodeExtend import *
-from utilities.Constants import *
-from utilities.FilesManager import FilesManager
+from ozwave.utilities.NetworkExtend import *
+from ozwave.utilities.NodeExtend import *
+from ozwave.utilities.Constants import *
+from ozwave.utilities.FilesManager import FilesManager
 
 # from openzwave.group import ZWaveGroup
 logging.info("--> pass")
