@@ -72,17 +72,11 @@ def get_sleeping_nodes_count():
 			sleeping_nodes_count += 1
 	return sleeping_nodes_count
 
-def format_json_result(success=True, detail=None, log_level=None, code=0):
-	if log_level is not None and not is_none_or_empty(detail):
-		if log_level == 'debug':
-			logging.debug(detail)
-		elif log_level == 'warning':
-			logging.warning(detail)
-		elif log_level == 'error':
-			logging.error(detail)
-	if detail is not None:
-		return jsonify({'result': success, 'data': detail, 'code': code})
-	return jsonify({'result': success})
+def format_json_result(success='ok', data='', log_level=None, code=0):
+	if success == True or success == 'ok' :
+		return jsonify({'state': 'ok', 'result': data, 'code': code})
+	else:
+		return jsonify({'state': 'error', 'result': data, 'code': code})
 
 def check_node_exist(_node_id,enable=False):
 	if _node_id not in globals.network.nodes:

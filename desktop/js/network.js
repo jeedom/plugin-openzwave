@@ -14,866 +14,555 @@
  * along with Plugin openzwave for jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-var app_network = {
-    // note variable nodes is global!
-    updater: false,
-    console_updater: false,
-    durationConvert: function (d) {
-        d = Number(d);
-        var h = Math.floor(d / 3600);
-        var m = Math.floor(d % 3600 / 60);
-        var s = Math.floor(d % 3600 % 60);
-        return ((h > 0 ? h + " heure(s) " + (m < 10 ? "0" : "") : "") + m + " minute(s) " + (s < 10 ? "0" : "") + s) + ' seconde(s)';
-    },
-    timestampConverter: function (time) {
-        if (time == 1)
-            return "N/A";
-        var ret;
-        var date = new Date(time * 1000);
-        var hours = date.getHours();
-        if (hours < 10) {
-            hours = "0" + hours;
-        }
-        var minutes = date.getMinutes();
-        if (minutes < 10) {
-            minutes = "0" + minutes;
-        }
-        var seconds = date.getSeconds();
-        if (seconds < 10) {
-            seconds = "0" + seconds;
-        }
-        var num = date.getDate();
-        if (num < 10) {
-            num = "0" + num;
-        }
-        var month = date.getMonth() + 1;
-        if (month < 10) {
-            month = "0" + month;
-        }
-        var year = date.getFullYear();
-        var formattedTime = hours + ':' + minutes + ':' + seconds;
-        var formattedDate = num + "/" + month + "/" + year;
-        return formattedDate + ' ' + formattedTime;
-    },
-    init: function () {
-        app_network.load_infos();
-        app_network.updater = setInterval(function () {
-            if ($('#div_templateNetwork').is(':visible')) {
-                app_network.load_infos();
-            } else {
-                app_network.hide();
-            }
-        }, 2000);
+ $('.controller_action').on('click',function(){
+    jeedom.openzwave.controller.action({
+        action : $(this).data('action'),
+        error: function (error) {
+            $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+           $('#li_state').show();
+           setTimeout(function () {
+            $('#li_state').hide();
+        }, 3000);
+       }
+   });
+});
 
-        $("#confirm_reset").off("click").on("click", function () {
-            var text = $("#confirm_text").val();
-            if (text == "YES") {
-                app_network.hardReset();
-                $('#confirmModal').modal('hide');
-            } else {
-                alert('You haven\'t confirmed with YES');
-            }
-        });
-        $("#tab_config").off("click").on("click", function () {
-            $.ajax({
-                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.GetZWConfig()",
-                dataType: 'json',
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, error, $('#div_configOpenzwaveAlert'));
-                },
-                success: function (data) {
-                    $("#zwcfgfile").val(data['result']);
-                }
-            });
-        });
-        $("#tab_graph").off("click").on("click", function () {
-            app_network.load_data();
-        });
-        $("#tab_route").off("click").on("click", function () {
-            app_network.displayRoutingTable()
-        });
-        $("#addDevice").off("click").on("click", function () {
-            app_network.addDevice(false);
-        });
-        $("#addDeviceSecure").off("click").on("click", function () {
-            app_network.addDevice(true);
-        });
-        $("#removeDevice").off("click").on("click", function () {
-            app_network.removeDevice();
-        });
-        $("#cancelCommand").off("click").on("click", function () {
-            app_network.cancelCommand();
-        });
-        $("#testNetwork").off("click").on("click", function () {
-            app_network.testNetwork();
-        });
-        $("#healNetwork").off("click").on("click", function () {
-            app_network.healNetwork();
-        });
-        $("#createNewPrimary").off("click").on("click", function () {
-            app_network.createNewPrimary();
-        });
-        $("#receiveConfiguration").off("click").on("click", function () {
-            app_network.receiveConfiguration();
-        });
-        $("#replicationSend").off("click").on("click", function () {
-            app_network.replicationSend();
-        });
-        $("#requestNetworkUpdate").off("click").on("click", function () {
-            app_network.requestNetworkUpdate();
-        });
-        $("#transferPrimaryRole").off("click").on("click", function () {
-            app_network.transferPrimaryRole();
-        });
-        $("#writeconfigfile").off("click").on("click", function () {
-            app_network.writeConfigFile();
-        });
-        $("#regenerateNodesCfgFile").off("click").on("click", function () {
-            bootbox.confirm("Etes-vous sûr ? Cela va redémarrer votre réseau", function (result) {
-                if (result) {
-                    app_network.regenerate_nodes_cfg_file();
-                }
-            });
-        });
-        $("#softReset").off("click").on("click", function () {
-            app_network.softReset();
-        });
-        $("#hardReset").off("click").on("click", function () {
-            $('#confirmModal').modal('show');
-        });
-        $("body").off("click", ".requestNodeNeighboursUpdate").on("click", ".requestNodeNeighboursUpdate", function (e) {
-            var nodeid = $(this).attr('data-nodeid');
-            app_network.request_node_neighbours_update(nodeid);
-        });
-        $("body").off("click", ".healNetwork2").on("click", ".healNetwork2", function () {
-            app_network.healNetwork();
-        });
+ $("#tab_graph").off("click").on("click", function () {
+    network_load_data();
+});
 
-    },
-    addDevice: function (_secure) {
-        var secure = 0;
-        if (_secure) {
-            var secure = 1;
-        }
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.AddNodeToNetwork(1," + secure + ")",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data['result'] == true) {
-                    app_network.sendOk();
-                } else {
-                    $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
+ $("#tab_route").off("click").on("click", function () {
+     jeedom.openzwave.network.info({
+        info : 'getNeighbours',
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
+        },
+        success: function (data) { 
+            devicesRouting = data.devices;
+            var skipPortableAndVirtual = true; 
+            var routingTable = '';
+            var routingTableHeader = '';
+            const queryStageNeighbors = 13;
+            $.each(devicesRouting, function (nodeId, node) {
+                if (nodeId == 255) {
+                    return;
                 }
-            }
-        });
-    },
-    removeDevice: function () {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.RemoveNodeFromNetwork(1)",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data['result'] == true) {
-                    app_network.sendOk();
-                } else {
-                    $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
+                if (skipPortableAndVirtual && node.data.type.basic == 1) {
+                    return;
                 }
-            }
-        });
-    },
-    cancelCommand: function () {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.CancelCommand()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data['result'] == true) {
-                    app_network.sendOk();
+                var routesCount = getRoutesCount(nodeId);
+
+                if (node.data.type.basic != 2) {
+                    var link = 'index.php?v=d&p=openzwave&m=openzwave&logical_id=' + nodeId;
                 } else {
-                    $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
+                    var link = '#';
                 }
-            }
-        });
-    },
-    testNetwork: function () {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.TestNetwork()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data['result'] == true) {
-                    app_network.sendOk();
-                } else {
-                    $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
-                }
-            }
-        });
-    },
-    healNetwork: function () {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.HealNetwork()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data['result'] == true) {
-                    app_network.sendOk();
-                } else {
-                    $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
-                }
-            }
-        });
-    },
-    createNewPrimary: function () {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.CreateNewPrimary()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                app_network.sendOk();
-            }
-        });
-    },
-    receiveConfiguration: function () {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.ReceiveConfiguration()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                app_network.sendOk();
-            }
-        });
-    },
-    replicationSend: function () {
-        //TODO: add bridController selection and pass as argument
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.ReplicationSend(bridge_controller_id)",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                app_network.sendOk();
-            }
-        });
-    },
-    requestNetworkUpdate: function () {
-        //TODO: add bridController selection and pass as argument
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.RequestNetworkUpdate(bridge_controller_id)",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data['result'] == true) {
-                    app_network.sendOk();
-                } else {
-                    $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
-                }
-            }
-        });
-    },
-    transferPrimaryRole: function () {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.TransferPrimaryRole()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                app_network.sendOk();
-            }
-        });
-    },
-    writeConfigFile: function () {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.WriteZWConfig()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                app_network.sendOk();
-            }
-        });
-    },
-    regenerate_nodes_cfg_file: function () {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.RemoveUnknownsDevicesZWConfig()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                app_network.sendOk();
-            }
-        });
-    },
-    softReset: function () {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=/ZWaveAPI/Run/controller.SerialAPISoftReset()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data['result'] == true) {
-                    app_network.sendOk();
-                } else {
-                    $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
-                }
-            }
-        });
-    },
-    hardReset: function () {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.HardReset()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data['result'] == true) {
-                    app_network.sendOk();
-                } else {
-                    $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
-                }
-            }
-        });
-    },
-    request_node_neighbours_update: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RequestNodeNeighbourUpdate()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data['result'] == true) {
-                    app_network.sendOk();
-                    app_network.load_data();
-                    app_network.displayRoutingTable();
-                } else {
-                    $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
-                }
-            }
-        });
-    },
-    load_data: function () {
-        $('#graph_network svg').remove();
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.GetNeighbours()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                nodes = data['devices'];
-                // auto select first node
-                var graph = Viva.Graph.graph();
-                var controllerId = 1;
-                for (z in nodes) {
-                    if (nodes[z].data.isPrimaryController.value == true){
-                        controllerId = parseInt(z);
-                        //console.log('controllerId:' + controllerId);
-                        break;
+                if (node.data.name.value != '') {
+                    routingTableHeader += '<th title="' + node.data.location.value + ' ' + node.data.name.value + '" >' + nodeId + '</th>';
+                    if (isset(eqLogic_human_name[nodeId])) {
+                        var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '">' + nodeId + ' ' + eqLogic_human_name[nodeId] + '</span>';
+                    } else {
+                        var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '"><span class="label label-primary">' + node.data.location.value + '</span> ' + node.data.name.value + '</span>';
                     }
+                } else {
+                    routingTableHeader += '<th title="' + node.data.product_name.valuee + '" >' + nodeId + '</th>';
+                    var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '">' + node.data.product_name.value + '</span>';
                 }
-                const queryStageNeighbors = 13;
-                for (z in nodes) {
-                    //console.log('add node '+z);
-                    if (nodes[z].data.name.value != '') {
-                        if (isset(eqLogic_human_name[z])) {
-                            graph.addNode(z, {
-                                'name': eqLogic_human_name[z],
-                                'neighbours': nodes[z].data.neighbours.value,
-                                'enabled': nodes[z].data.neighbours.enabled,
-                                'interview': parseInt(nodes[z].data.state.value)
-                            });
-                        } else {
-                            graph.addNode(z, {
-                                'name': '<span class="label label-primary">' + nodes[z].data.location.value + '</span> ' + nodes[z].data.name.value,
-                                'neighbours': nodes[z].data.neighbours.value,
-                                'enabled': nodes[z].data.neighbours.enabled,
-                                'interview': parseInt(nodes[z].data.state.value)
-                            });
-                        }
+                routingTable += '<tr><td style="width: 500px">' + name;
+                if (node.data.isDead.value) {
+                    routingTable += '  <i class="fa fa-exclamation-triangle fa-lg" style="color:red; text-align:right"  title="{{Présumé mort}}"></i>';
+                }
+                routingTable += '</td><td style="width: 35px">' + nodeId + '</td>';
+                $.each(devicesRouting, function (nnodeId, nnode) {
+                    if (nnodeId == 255)
+                        return;
+                    if (skipPortableAndVirtual && nnode.data.type.basic == 1)
+                        return;
+                    var rtClass;
+                    if (!routesCount[nnodeId])
+                        routesCount[nnodeId] = new Array(); 
+                    var routeHops = (routesCount[nnodeId][0] || '0') + "/";
+                    routeHops += (routesCount[nnodeId][1] || '0') + "/";
+                    routeHops += (routesCount[nnodeId][2] || '0');
+                    if (nodeId == nnodeId || node.data.type.basic == 1 || nnode.data.type.basic == 1) {
+                        rtClass = 'node-na-color';
+                        routeHops = '';
+                    } else if (nnode.data.state.value <= queryStageNeighbors || node.data.state.value <= queryStageNeighbors) {
+                        rtClass = 'node-interview-not-completed-color';
+                    } else if ($.inArray(parseInt(nnodeId, 10), node.data.neighbours.value) != -1)
+                    rtClass = 'node-direct-link-color';
+                    else if (routesCount[nnodeId] && routesCount[nnodeId][1] > 1)
+                        rtClass = 'node-remote-control-color';
+                    else if (routesCount[nnodeId] && routesCount[nnodeId][1] == 1)
+                        rtClass = 'node-more-of-one-up-color';
+                    else
+                        rtClass = 'node-more-of-two-up-color';
+                    routingTable += '<td class=' + rtClass + ' style="width: 35px"><i class="fa fa-square fa-2x" title="' + routeHops + '"></i></td>';
+                });
+                routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="' + nodeId + '" class="btn btn-xs btn-primary requestNodeNeighboursUpdate" title="{{Mise à jour des noeuds voisins}}"><i class="fa fa-refresh"></i></button></td></tr>';
+            });
+            $('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '<th><button type="button" id="healNetwork2" class="btn btn-xs btn-success healNetwork2" title="{{Soigner le réseau}}"><i class="fa fa-medkit"></i></button></th></tr></thead><tbody>' + routingTable + '</tbody></table>');
+        }
+    });
+});
+
+$("#addDevice").off("click").on("click", function () {
+ jeedom.openzwave.controller.addNodeToNetwork({
+    secure : 0,
+    dataType: 'json',
+    error: function (request, status, error) {
+        handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
+    },
+    success: function (data) {
+        if (data['result'] == true) {
+            $('#li_state').show();
+            setTimeout(function () {
+                $('#li_state').hide();
+            }, 3000);
+        } else {
+            $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
+        }
+    }
+});
+});
+
+$("#addDeviceSecure").off("click").on("click", function () {
+  jeedom.openzwave.controller.addNodeToNetwork({
+    secure : 1,
+    error: function (request, status, error) {
+        handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
+    },
+    success: function (data) {
+        if (data['result'] == true) {
+         $('#li_state').show();
+         setTimeout(function () {
+            $('#li_state').hide();
+        }, 3000);
+     } else {
+        $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
+    }
+}
+});
+});
+
+$("#removeDevice").off("click").on("click", function () {
+   jeedom.openzwave.controller.removeNodeFromNetwork({
+    error: function (request, status, error) {
+        handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
+    },
+    success: function (data) {
+        if (data['result'] == true) {
+            $('#li_state').show();
+            setTimeout(function () {
+                $('#li_state').hide();
+            }, 3000);
+        } else {
+            $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
+        }
+    }
+});
+});
+
+$("#replicationSend").off("click").on("click", function () {
+    return;
+    jeedom.openzwave.controller.replicationSend({
+        bridge_controller_id : bridge_controller_id,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
+        },
+        success: function (data) {
+            $('#li_state').show();
+            setTimeout(function () {
+                $('#li_state').hide();
+            }, 3000);
+        }
+    });
+});
+
+$("#regenerateNodesCfgFile").off("click").on("click", function () {
+    bootbox.confirm("Etes-vous sûr ? Cela va redémarrer votre réseau", function (result) {
+      if (result) {
+          jeedom.openzwave.network.action({
+            action:'removeUnknownsDevicesZWConfig',
+            error: function (request, status, error) {
+                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
+            },
+            success: function (data) {
+             $('#li_state').show();
+             setTimeout(function () {
+                $('#li_state').hide();
+            }, 3000);
+         }
+     });
+      }
+  });
+});
+$("body").off("click", ".requestNodeNeighboursUpdate").on("click", ".requestNodeNeighboursUpdate", function (e) {
+ $.ajax({
+    url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + $(this).attr('data-nodeid') + "].RequestNodeNeighbourUpdate()",
+    dataType: 'json',
+    error: function (request, status, error) {
+        handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
+    },
+    success: function (data) {
+        if (data['result'] == true) {
+         $('#li_state').show();
+         setTimeout(function () {
+            $('#li_state').hide();
+        }, 3000);
+         network_load_data();
+         app_network.displayRoutingTable();
+     } else {
+        $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
+    }
+}
+});
+});
+
+function network_load_data(){
+    $('#graph_network svg').remove();
+    jeedom.openzwave.network.info({
+        info:'getNeighbours',
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
+        },
+        success: function (data) {
+            nodes = data['devices'];
+            var graph = Viva.Graph.graph();
+            var controllerId = 1;
+            for (z in nodes) {
+                if (nodes[z].data.isPrimaryController.value == true){
+                    controllerId = parseInt(z);
+                    break;
+                }
+            }
+            const queryStageNeighbors = 13;
+            for (z in nodes) {
+                if (nodes[z].data.name.value != '') {
+                    if (isset(eqLogic_human_name[z])) {
+                        graph.addNode(z, {
+                            'name': eqLogic_human_name[z],
+                            'neighbours': nodes[z].data.neighbours.value,
+                            'enabled': nodes[z].data.neighbours.enabled,
+                            'interview': parseInt(nodes[z].data.state.value)
+                        });
                     } else {
                         graph.addNode(z, {
-                            'name': nodes[z].data.product_name.value,
+                            'name': '<span class="label label-primary">' + nodes[z].data.location.value + '</span> ' + nodes[z].data.name.value,
                             'neighbours': nodes[z].data.neighbours.value,
                             'enabled': nodes[z].data.neighbours.enabled,
                             'interview': parseInt(nodes[z].data.state.value)
                         });
                     }
-                    if (nodes[z].data.neighbours.value.length < 1 && nodes[z].data.neighbours.enabled != 1) {
-                        if (typeof nodes[controllerId] != 'undefined') {
-                            graph.addLink(z, controllerId, {isdash: 1, lengthfactor: 0.6});
-                        }
-                    } else {
-                        for (neighbour in nodes[z].data.neighbours.value) {
-                            neighbourid = nodes[z].data.neighbours.value[neighbour];
-                            if (typeof nodes[neighbourid] != 'undefined') {
-                                graph.addLink(z, neighbourid, {isdash: 0, lengthfactor: 0});
-                            }
-                        }
-                    }
-                }
-                var graphics = Viva.Graph.View.svgGraphics(),
-                    nodeSize = 24,
-                // we use this method to highlight all realted links
-                // when user hovers mouse over a node:
-                    highlightRelatedNodes = function (nodeId, isOn) {
-                        // just enumerate all realted nodes and update link color:
-                        graph.forEachLinkedNode(nodeId, function (node, link) {
-                            var linkUI = graphics.getLinkUI(link.id);
-                            if (linkUI) {
-                                // linkUI is a UI object created by graphics below
-                                linkUI.attr('stroke', isOn ? '#FF0000' : '#B7B7B7');
-                            }
-                        });
-                    };
-                // Since we are using SVG we can easily subscribe to any supported
-                // events (http://www.w3.org/TR/SVG/interact.html#SVGEvents ),
-                // including mouse events:
-                graphics.node(function (node) {
-                    // This time it's a group of elements: http://www.w3.org/TR/SVG/struct.html#Groups
-                    if (typeof node.data == 'undefined') {
-                        graph.removeNode(node.id);
-                    }
-                    nodecolor = '#7BCC7B'; //node-direct-link-color
-                    var nodesize = 10;
-                    const nodeshape = 'rect';
-                    if (node.id == controllerId) {
-                        nodecolor = '#a65ba6'; //node-primary-controller-color
-                        nodesize = 16;
-                    } else if (node.data.enabled == false) {
-                        nodecolor = '#00a2e8'; //node-remote-control-color
-                    } else if (node.data.neighbours.length < 1 && node.id != controllerId && node.data.interview >= queryStageNeighbors) {
-                        nodecolor = '#d20606'; //node-no-neighbourhood-color
-                    } else if (node.data.neighbours.indexOf(controllerId) == -1 && node.id != controllerId && node.data.interview >= queryStageNeighbors) {
-                        nodecolor = '#E5E500'; //node-more-of-one-up-color
-                    } else if (node.data.interview < queryStageNeighbors) {
-                        nodecolor = '#979797'; //node-interview-not-completed-color
-                    }
-
-                    var ui = Viva.Graph.svg('g'),
-                    // Create SVG text element with user id as content
-                        svgText = Viva.Graph.svg('text').attr('y', '0px').text(node.id),
-                        img = Viva.Graph.svg(nodeshape)
-                            .attr("width", nodesize)
-                            .attr("height", nodesize)
-                            .attr("fill", nodecolor);
-                    ui.append(svgText);
-                    ui.append(img);
-                    $(ui).hover(function () { // mouse over
-                        var link = 'index.php?v=d&p=openzwave&m=openzwave&logical_id=' + node.id;
-                        numneighbours = node.data.neighbours.length;
-                        interview = node.data.interview;
-                        if (numneighbours < 1 && interview >= queryStageNeighbors) {
-                            if (node.data.enabled) {
-                                sentenceneighbours = '{{Pas de voisins}}';
-                            } else {
-                                sentenceneighbours = '{{Télécommande}}'
-                            }
-                        } else if (interview >= queryStageNeighbors) {
-                            sentenceneighbours = numneighbours + ' {{voisins}} [' + node.data.neighbours + ']';
-                        } else {
-                            sentenceneighbours = '{{Interview incomplet}}';
-                        }
-                        if (node.id != controllerId) {
-                            linkname = '<a href="' + link + '">' + node.data.name + '</a>'
-                        } else {
-                            linkname = node.data.name
-                        }
-                        $('#graph-node-name').html(linkname + ' : ' + sentenceneighbours);
-                        highlightRelatedNodes(node.id, true);
-                    }, function () { // mouse out
-                        highlightRelatedNodes(node.id, false);
+                } else {
+                    graph.addNode(z, {
+                        'name': nodes[z].data.product_name.value,
+                        'neighbours': nodes[z].data.neighbours.value,
+                        'enabled': nodes[z].data.neighbours.enabled,
+                        'interview': parseInt(nodes[z].data.state.value)
                     });
-                    return ui;
-                }).placeNode(function (nodeUI, pos) {
-                    // 'g' element doesn't have convenient (x,y) attributes, instead
-                    // we have to deal with transforms: http://www.w3.org/TR/SVG/coords.html#SVGGlobalTransformAttribute
-                    nodeUI.attr('transform',
-                        'translate(' +
-                        (pos.x - nodeSize / 3) + ',' + (pos.y - nodeSize / 2.5) +
-                        ')');
-                });
-                var middle = graph.getNode(controllerId);
-                if (typeof middle !== 'undefined') {
-                    middle.isPinned = true;
                 }
-                var idealLength = 200;
-                var layout = Viva.Graph.Layout.forceDirected(graph, {
-                    springLength: idealLength,
-                    stableThreshold: 0.9,
-                    dragCoeff: 0.01,
-                    springCoeff: 0.0004,
-                    gravity: -20,
-                    springTransform: function (link, spring) {
-                        spring.length = idealLength * (1 - link.data.lengthfactor);
+                if (nodes[z].data.neighbours.value.length < 1 && nodes[z].data.neighbours.enabled != 1) {
+                    if (typeof nodes[controllerId] != 'undefined') {
+                        graph.addLink(z, controllerId, {isdash: 1, lengthfactor: 0.6});
+                    }
+                } else {
+                    for (neighbour in nodes[z].data.neighbours.value) {
+                        neighbourid = nodes[z].data.neighbours.value[neighbour];
+                        if (typeof nodes[neighbourid] != 'undefined') {
+                            graph.addLink(z, neighbourid, {isdash: 0, lengthfactor: 0});
+                        }
+                    }
+                }
+            }
+            var graphics = Viva.Graph.View.svgGraphics(),
+            nodeSize = 24,
+            highlightRelatedNodes = function (nodeId, isOn) {
+                graph.forEachLinkedNode(nodeId, function (node, link) {
+                    var linkUI = graphics.getLinkUI(link.id);
+                    if (linkUI) {
+                        linkUI.attr('stroke', isOn ? '#FF0000' : '#B7B7B7');
                     }
                 });
-                graphics.link(function (link) {
-                    dashvalue = '5, 0';
-                    if (link.data.isdash == 1) {
-                        dashvalue = '5, 2';
+            };
+            graphics.node(function (node) {
+                if (typeof node.data == 'undefined') {
+                    graph.removeNode(node.id);
+                }
+                nodecolor = '#7BCC7B';
+                var nodesize = 10;
+                const nodeshape = 'rect';
+                if (node.id == controllerId) {
+                    nodecolor = '#a65ba6'; 
+                    nodesize = 16;
+                } else if (node.data.enabled == false) {
+                    nodecolor = '#00a2e8'; 
+                } else if (node.data.neighbours.length < 1 && node.id != controllerId && node.data.interview >= queryStageNeighbors) {
+                    nodecolor = '#d20606'; 
+                } else if (node.data.neighbours.indexOf(controllerId) == -1 && node.id != controllerId && node.data.interview >= queryStageNeighbors) {
+                    nodecolor = '#E5E500'; 
+                } else if (node.data.interview < queryStageNeighbors) {
+                    nodecolor = '#979797'; 
+                }
+                var ui = Viva.Graph.svg('g'),
+                svgText = Viva.Graph.svg('text').attr('y', '0px').text(node.id),
+                img = Viva.Graph.svg(nodeshape)
+                .attr("width", nodesize)
+                .attr("height", nodesize)
+                .attr("fill", nodecolor);
+                ui.append(svgText);
+                ui.append(img);
+                $(ui).hover(function () {
+                    var link = 'index.php?v=d&p=openzwave&m=openzwave&logical_id=' + node.id;
+                    numneighbours = node.data.neighbours.length;
+                    interview = node.data.interview;
+                    if (numneighbours < 1 && interview >= queryStageNeighbors) {
+                        if (node.data.enabled) {
+                            sentenceneighbours = '{{Pas de voisins}}';
+                        } else {
+                            sentenceneighbours = '{{Télécommande}}'
+                        }
+                    } else if (interview >= queryStageNeighbors) {
+                        sentenceneighbours = numneighbours + ' {{voisins}} [' + node.data.neighbours + ']';
+                    } else {
+                        sentenceneighbours = '{{Interview incomplet}}';
                     }
-                    return Viva.Graph.svg('line')
-                        .attr('stroke', '#B7B7B7')
-                        .attr('stroke-dasharray', dashvalue)
-                        .attr('stroke-width', '0.4px');
+                    if (node.id != controllerId) {
+                        linkname = '<a href="' + link + '">' + node.data.name + '</a>'
+                    } else {
+                        linkname = node.data.name
+                    }
+                    $('#graph-node-name').html(linkname + ' : ' + sentenceneighbours);
+                    highlightRelatedNodes(node.id, true);
+                }, function () {
+                    highlightRelatedNodes(node.id, false);
                 });
-                var renderer = Viva.Graph.View.renderer(graph, {
-                    layout: layout,
-                    graphics: graphics,
-                    prerender: 10,
-                    renderLinks: true,
-                    container: document.getElementById('graph_network')
-                });
-                renderer.run();
-                setTimeout(function () {
-                    renderer.pause();
-                    renderer.reset();
-                }, 200);
+                return ui;
+            }).placeNode(function (nodeUI, pos) {
+                nodeUI.attr('transform',
+                    'translate(' +
+                    (pos.x - nodeSize / 3) + ',' + (pos.y - nodeSize / 2.5) +
+                    ')');
+            });
+            var middle = graph.getNode(controllerId);
+            if (typeof middle !== 'undefined') {
+                middle.isPinned = true;
             }
-        });
-        //$('#graph_network').html('<div id="graph-node-legende"></div>');
-    },
-    show_stats: function () {
-        var network = $(".network");
-        network.find(".stats_ACKCnt").html(infos.controllerStatistics.ACKCnt);
-        network.find(".stats_ACKWaiting").html(infos.controllerStatistics.ACKWaiting);
-        network.find(".stats_CANCnt").html(infos.controllerStatistics.CANCnt);
-        network.find(".stats_NAKCnt").html(infos.controllerStatistics.NAKCnt);
-        network.find(".stats_OOFCnt").html(infos.controllerStatistics.OOFCnt);
-        network.find(".stats_SOFCnt").html(infos.controllerStatistics.SOFCnt);
-        network.find(".stats_badChecksum").html(infos.controllerStatistics.badChecksum);
-        network.find(".stats_badroutes").html(infos.controllerStatistics.badroutes);
-        network.find(".stats_broadcastReadCnt").html(infos.controllerStatistics.broadcastReadCnt);
-        network.find(".stats_broadcastWriteCnt").html(infos.controllerStatistics.broadcastWriteCnt);
-        network.find(".stats_callbacks").html(infos.controllerStatistics.callbacks);
-        network.find(".stats_dropped").html(infos.controllerStatistics.dropped);
-        network.find(".stats_netbusy").html(infos.controllerStatistics.netbusy);
-        network.find(".stats_noack").html(infos.controllerStatistics.noack);
-        network.find(".stats_nondelivery").html(infos.controllerStatistics.nondelivery);
-        network.find(".stats_readAborts").html(infos.controllerStatistics.readAborts);
-        network.find(".stats_readCnt").html(infos.controllerStatistics.readCnt);
-        network.find(".stats_retries").html(infos.controllerStatistics.retries);
-        network.find(".stats_routedbusy").html(infos.controllerStatistics.routedbusy);
-        network.find(".stats_writeCnt").html(infos.controllerStatistics.writeCnt);
-    },
-
-    hide: function () {
-        clearInterval(app_network.updater);
-        clearInterval(app_network.console_updater);
-    },
-    load_infos: function () {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.GetStatus()",
-            dataType: 'json',
-            async: true,
-            global: false,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) {
-                infos = data;
-                app_network.show_infos();
-                app_network.show_stats();
-            }
-        });
-    },
-    show_infos: function () {
-        var network = $(".network");
-        network.find(".network-startTime").html(app_network.timestampConverter(infos.startTime));
-
-        var awakedDelay = infos.awakedDelay;
-        if (awakedDelay != null) {
-            //TODO: display minutes and secondes, but secondes is nice too?
-            network.find(".network-awakedTime").html('opérationnel en ' + awakedDelay + ' secondes');
+            var idealLength = 200;
+            var layout = Viva.Graph.Layout.forceDirected(graph, {
+                springLength: idealLength,
+                stableThreshold: 0.9,
+                dragCoeff: 0.01,
+                springCoeff: 0.0004,
+                gravity: -20,
+                springTransform: function (link, spring) {
+                    spring.length = idealLength * (1 - link.data.lengthfactor);
+                }
+            });
+            graphics.link(function (link) {
+                dashvalue = '5, 0';
+                if (link.data.isdash == 1) {
+                    dashvalue = '5, 2';
+                }
+                return Viva.Graph.svg('line').attr('stroke', '#B7B7B7').attr('stroke-dasharray', dashvalue).attr('stroke-width', '0.4px');
+            });
+            var renderer = Viva.Graph.View.renderer(graph, {
+                layout: layout,
+                graphics: graphics,
+                prerender: 10,
+                renderLinks: true,
+                container: document.getElementById('graph_network')
+            });
+            renderer.run();
+            setTimeout(function () {
+                renderer.pause();
+                renderer.reset();
+            }, 200);
         }
-        else {
-            network.find(".network-awakedTime").html('');
-        }
+    });
+}
 
-        network.find(".network-nodes-count").html(infos.nodesCount);              // set the nodeid
-        network.find(".network-sleeping-nodes-count").html(infos.sleepingNodesCount);
-        network.find(".network-scenes-count").html(infos.scenesCount);
 
-        var pollInterval = app_network.durationConvert(parseInt(infos.pollInterval, 0) / 1000);
+function network_load_info(){
+    jeedom.openzwave.network.info({
+        info : 'getStatus',
+        global:false,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
+        },
+        success: function (data) {
+            $(".network .stats_ACKCnt").html(data.controllerStatistics.ACKCnt);
+            $(".network .stats_ACKWaiting").html(data.controllerStatistics.ACKWaiting);
+            $(".network .stats_CANCnt").html(data.controllerStatistics.CANCnt);
+            $(".network .stats_NAKCnt").html(data.controllerStatistics.NAKCnt);
+            $(".network .stats_OOFCnt").html(data.controllerStatistics.OOFCnt);
+            $(".network .stats_SOFCnt").html(data.controllerStatistics.SOFCnt);
+            $(".network .stats_badChecksum").html(data.controllerStatistics.badChecksum);
+            $(".network .stats_badroutes").html(data.controllerStatistics.badroutes);
+            $(".network .stats_broadcastReadCnt").html(data.controllerStatistics.broadcastReadCnt);
+            $(".network .stats_broadcastWriteCnt").html(data.controllerStatistics.broadcastWriteCnt);
+            $(".network .stats_callbacks").html(data.controllerStatistics.callbacks);
+            $(".network .stats_dropped").html(data.controllerStatistics.dropped);
+            $(".network .stats_netbusy").html(data.controllerStatistics.netbusy);
+            $(".network .stats_noack").html(data.controllerStatistics.noack);
+            $(".network .stats_nondelivery").html(data.controllerStatistics.nondelivery);
+            $(".network .stats_readAborts").html(data.controllerStatistics.readAborts);
+            $(".network .stats_readCnt").html(data.controllerStatistics.readCnt);
+            $(".network .stats_retries").html(data.controllerStatistics.retries);
+            $(".network .stats_routedbusy").html(data.controllerStatistics.routedbusy);
+            $(".network .stats_writeCnt").html(data.controllerStatistics.writeCnt);
 
-        network.find(".network-poll-interval").html(pollInterval);
-        network.find(".network-isready").html(infos.isReady);
-        network.find(".network-state-description").html(infos.stateDescription);
-        const STATE_STOPPED = 0;
-        const STATE_FAILED = 1;
-        const STATE_RESET = 3;
-        const STATE_STARTED = 5;
-        const STATE_AWAKED = 7;
-        const STATE_READY = 10;
-        var stateled = "";
-        switch (infos.state) {
-            case STATE_STOPPED:
-            {
+            $(".network .network-startTime").html(jeedom.openzwave.timestampConverter(data.startTime));
+            var awakedDelay = data.awakedDelay;
+            if (awakedDelay != null) {
+                $(".network .network-awakedTime").html('opérationnel en ' + awakedDelay + ' secondes');
+            }else {
+                $(".network .network-awakedTime").html('');
+            }
+            $(".network .network-nodes-count").html(data.nodesCount);        
+            $(".network .network-sleeping-nodes-count").html(data.sleepingNodesCount);
+            $(".network .network-scenes-count").html(data.scenesCount);
+            var pollInterval = jeedom.openzwave.durationConvert(parseInt(data.pollInterval, 0) / 1000);
+            $(".network .network-poll-interval").html(pollInterval);
+            $(".network .network-isready").html(data.isReady);
+            $(".network .network-state-description").html(data.stateDescription);
+            var stateled = "";
+            switch (data.state) {
+                case 0:
                 stateled = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
                 break;
-            }
-            case STATE_FAILED:
-            {
+                case 1:
                 stateled = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
                 break;
-            }
-            case STATE_RESET:
-            {
+                case 3:
                 stateled = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
                 break;
-            }
-            case STATE_STARTED:
-            {
+                case 5:
                 stateled = "<i class='fa fa-circle yellowiconcolor'></i>";
                 break;
-            }
-            case STATE_AWAKED:
-            {
+                case 7:
                 stateled = "<i class='fa fa-bullseye greeniconcolor'></i>";
                 break;
-            }
-            case STATE_READY:
-            {
+                case 10:
                 stateled = "<i class='fa fa-circle greeniconcolor'></i>";
                 break;
             }
-        }
-        network.find(".network-state-led").html(stateled);
-        var node_capabilities = ''; //beaming;listening;primaryController;staticUpdateController
-        if (infos.controllerNodeCapabilities.indexOf('primaryController') != -1) {
-            node_capabilities += '<li>{{Contrôleur Primaire}}</li>'
-        }
-        if (infos.controllerNodeCapabilities.indexOf('staticUpdateController') != -1) {
-            node_capabilities += '<li>{{Contrôleur statique de mise à jour (SUC)}}</li>'
-        }
-        if (infos.controllerNodeCapabilities.indexOf('bridgeController') != -1) {
-            node_capabilities += '<li>{{Contrôleur secondaire}}</li>'
-        }
-        if (infos.controllerNodeCapabilities.indexOf('listening') != -1) {
-            node_capabilities += '<li>{{Le noeud est alimenté et écoute en permanence}}</li>'
-        }
-        if (infos.controllerNodeCapabilities.indexOf('beaming') != -1) {
-            node_capabilities += '<li>{{Le noeud est capable d\'envoyer une trame réseaux}}</li>';
-        }
-        network.find(".network-controller-node-capabilities").html(node_capabilities);
-        var outgoingSendQueue = parseInt(infos.outgoingSendQueue, 0);
-        if (outgoingSendQueue == 0) {
-            outgoingSendQueueDescription = "<i class='fa fa-circle fa-lg greeniconcolor'></i>";
-        }
-        else if (outgoingSendQueue <= 5) {
-            outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg greeniconcolor'></i>";
-        }
-        else if (outgoingSendQueue <= 15) {
-            outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg yellowiconcolor'></i>";
-        }
-        else {
-            outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg rediconcolor'></i>";
-        }
-        network.find(".network-outgoing-send-queue").html(outgoingSendQueue);
-        network.find(".network-outgoing-send-queueWarning").html(outgoingSendQueueDescription);
-        network.find(".network-controller-stats").html(infos.controllerStatistics);
-        network.find(".network-device-path").html(infos.devicePath);
-        network.find(".network-oz-library-version").html(infos.OpenZwaveLibraryVersion);
-        network.find(".network-poz-library-version").html(infos.PythonOpenZwaveLibraryVersion);
-        network.find(".network-node-neighbours").html(infos.neighbors);
-        var table_notifications = '';
-        for (i = 0; i < infos.notifications.length; i++) {
-            table_notifications += '<tr>';
-            table_notifications += '<td>' + app_network.timestampConverter(infos.notifications[i].timestamp) + '</td>';
-            table_notifications += '<td>' + infos.notifications[i].details + '</td>';
-            if (infos.notifications[i].error_description != null && infos.notifications[i].error_description != 'None.') {
-                table_notifications += '<td>' + infos.notifications[i].error_description + '</td>';
+            $(".network .network-state-led").html(stateled);
+            var node_capabilities = '';
+            if (data.controllerNodeCapabilities.indexOf('primaryController') != -1) {
+                node_capabilities += '<li>{{Contrôleur Primaire}}</li>'
             }
-            else {
-                table_notifications += '<td></td>';
+            if (data.controllerNodeCapabilities.indexOf('staticUpdateController') != -1) {
+                node_capabilities += '<li>{{Contrôleur statique de mise à jour (SUC)}}</li>'
             }
-            table_notifications += '</tr>';
+            if (data.controllerNodeCapabilities.indexOf('bridgeController') != -1) {
+                node_capabilities += '<li>{{Contrôleur secondaire}}</li>'
+            }
+            if (data.controllerNodeCapabilities.indexOf('listening') != -1) {
+                node_capabilities += '<li>{{Le noeud est alimenté et écoute en permanence}}</li>'
+            }
+            if (data.controllerNodeCapabilities.indexOf('beaming') != -1) {
+                node_capabilities += '<li>{{Le noeud est capable d\'envoyer une trame réseaux}}</li>';
+            }
+            $(".network .network-controller-node-capabilities").html(node_capabilities);
+            var outgoingSendQueue = parseInt(data.outgoingSendQueue, 0);
+            if (outgoingSendQueue == 0) {
+                outgoingSendQueueDescription = "<i class='fa fa-circle fa-lg greeniconcolor'></i>";
+            }else if (outgoingSendQueue <= 5) {
+                outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg greeniconcolor'></i>";
+            }else if (outgoingSendQueue <= 15) {
+                outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg yellowiconcolor'></i>";
+            }else {
+                outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg rediconcolor'></i>";
+            }
+            $(".network .network-outgoing-send-queue").html(outgoingSendQueue);
+            $(".network .network-outgoing-send-queueWarning").html(outgoingSendQueueDescription);
+            $(".network .network-controller-stats").html(data.controllerStatistics);
+            $(".network .network-device-path").html(data.devicePath);
+            $(".network .network-oz-library-version").html(data.OpenZwaveLibraryVersion);
+            $(".network .network-poz-library-version").html(data.PythonOpenZwaveLibraryVersion);
+            $(".network .network-node-neighbours").html(data.neighbors);
+            var table_notifications = '';
+            for (i = 0; i < data.notifications.length; i++) {
+                table_notifications += '<tr>';
+                table_notifications += '<td>' + jeedom.openzwave.timestampConverter(data.notifications[i].timestamp) + '</td>';
+                table_notifications += '<td>' + data.notifications[i].details + '</td>';
+                if (data.notifications[i].error_description != null && data.notifications[i].error_description != 'None.') {
+                    table_notifications += '<td>' + data.notifications[i].error_description + '</td>';
+                }else {
+                    table_notifications += '<td></td>';
+                }
+                table_notifications += '</tr>';
+            }
+            $(".network .notification_variables").html(table_notifications);
+            var disabledCommand = data.state < 5 || outgoingSendQueue > 0;
+            $("#addDevice").prop("disabled", disabledCommand);
+            $("#addDeviceSecure").prop("disabled", disabledCommand);
+            $("#removeDevice").prop("disabled", disabledCommand);
+            $("#cancelCommand").prop("disabled", data.mode == 0);
+            $("#testNetwork").prop("disabled", disabledCommand);
+            $("#healNetwork").prop("disabled", disabledCommand);
+            $("#healNetwork2").prop("disabled", disabledCommand);
+            $("#requestNodeNeighboursUpdate").prop("disabled", disabledCommand);
+            $("#createNewPrimary").prop("disabled", disabledCommand);
+            $("#replicationSend").prop("disabled", disabledCommand);
+            $("#requestNetworkUpdate").prop("disabled", disabledCommand);
+            $("#transferPrimaryRole").prop("disabled", disabledCommand);
+            $("#receiveConfiguration").prop("disabled", disabledCommand);
+            $("#writeConfigFile").prop("disabled", data.state < 5);
+            $("#regenerateNodesCfgFile").prop("disabled", data.state < 5 || data.mode != 0);
+            $("#softReset").prop("disabled", data.state < 5 || data.mode != 0);
+            $("#hardReset").prop("disabled", data.state < 5 || data.mode != 0);
+
+            if($('#div_templateNetwork').html() != undefined && $('#div_templateNetwork').is(':visible')){
+                setTimeout(function(){ network_load_info(); }, 2000);
+            }
         }
-        network.find(".notification_variables").html(table_notifications);
-        var disabledCommand = infos.state < STATE_STARTED || outgoingSendQueue > 0;
-        // add remove commands
-        $("#addDevice").prop("disabled", disabledCommand);
-        $("#addDeviceSecure").prop("disabled", disabledCommand);
-        $("#removeDevice").prop("disabled", disabledCommand);
-        $("#cancelCommand").prop("disabled", infos.mode == 0);
-        // regular network commands
-        $("#testNetwork").prop("disabled", disabledCommand);
-        $("#healNetwork").prop("disabled", disabledCommand);
-        $("#healNetwork2").prop("disabled", disabledCommand);
-        $("#requestNodeNeighboursUpdate").prop("disabled", disabledCommand);
-        // advanced network commands
-        $("#createNewPrimary").prop("disabled", disabledCommand);
-        $("#replicationSend").prop("disabled", disabledCommand);
-        $("#requestNetworkUpdate").prop("disabled", disabledCommand);
-        $("#transferPrimaryRole").prop("disabled", disabledCommand);
-        $("#receiveConfiguration").prop("disabled", disabledCommand);
-        // helper commands
-        $("#writeConfigFile").prop("disabled", infos.state < STATE_STARTED);
-        $("#regenerateNodesCfgFile").prop("disabled", infos.state < STATE_STARTED || infos.mode != 0);
-        // dangerous commands
-        $("#softReset").prop("disabled", infos.state < STATE_STARTED || infos.mode != 0);
-        $("#hardReset").prop("disabled", infos.state < STATE_STARTED || infos.mode != 0);
-    },
-    update: function () {
-        app_nodes.draw_nodes();
-    },
-    sendOk: function () {
-        $('#li_state').show();
-        setTimeout(function () {
-            $('#li_state').hide();
-        }, 3000);
-    },
-    show: function () {
-        app_network.load_infos();
-    },
-    getRoutesCount: function (nodeId) {
-        var routesCount = {};
-        $.each(app_network.getFarNeighbours(nodeId), function (index, nnode) {
-            if (nnode.nodeId in routesCount) {
-                if (nnode.hops in routesCount[nnode.nodeId])
-                    routesCount[nnode.nodeId][nnode.hops]++;
-                else
-                    routesCount[nnode.nodeId][nnode.hops] = 1;
-            } else {
-                routesCount[nnode.nodeId] = new Array();
+    });
+}
+
+function getRoutesCount(nodeId) {
+    var routesCount = {};
+    $.each(getFarNeighbours(nodeId), function (index, nnode) {
+        if (nnode.nodeId in routesCount) {
+            if (nnode.hops in routesCount[nnode.nodeId]){
+                routesCount[nnode.nodeId][nnode.hops]++;
+            } else{
                 routesCount[nnode.nodeId][nnode.hops] = 1;
             }
-        });
-        return routesCount;
-    },
-    getFarNeighbours: function (nodeId, exludeNodeIds, hops) {
-        if (hops === undefined) {
-            //console.log('je passe');
-            var hops = 0;
-            var exludeNodeIds = [nodeId];
+        } else {
+            routesCount[nnode.nodeId] = new Array();
+            routesCount[nnode.nodeId][nnode.hops] = 1;
         }
-        if (hops > 2) // Z-Wave allows only 4 routers, but we are interested in only 2, since network becomes unstable if more that 2 routers are used in communications
-            return [];
-        var nodesList = [];
-        $.each(devicesRouting[nodeId].data.neighbours.value, function (index, nnodeId) {
-            if (!(nnodeId in devicesRouting))
-                return; // skip deviced reported in routing table but absent in reality. This may happen after restore of routing table.
-            if (!in_array(nnodeId, exludeNodeIds)) {
-                nodesList.push({nodeId: nnodeId, hops: hops});
-                if (devicesRouting[nnodeId].data.isListening.value && devicesRouting[nnodeId].data.isRouting.value)
-                    $.merge(nodesList, app_network.getFarNeighbours(nnodeId, $.merge([nnodeId], exludeNodeIds) /* this will not alter exludeNodeIds */, hops + 1));
-            }
-        });
-        return nodesList;
-    },
-    displayRoutingTable: function () {
-        $.ajax({// fonction permettant de faire de l'ajax
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.GetNeighbours()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
-            },
-            success: function (data) { // si l'appel a bien fonctionné
-                devicesRouting = data.devices;
-                var skipPortableAndVirtual = true; // to minimize routing table by removing not interesting lines
-                var routingTable = '';
-                var routingTableHeader = '';
-                const queryStageNeighbors = 13;
-                $.each(devicesRouting, function (nodeId, node) {
-                    if (nodeId == 255) {
-                        return;
-                    }
-                    if (skipPortableAndVirtual && node.data.type.basic == 1) {
-                        return;
-                    }
-                    var routesCount = app_network.getRoutesCount(nodeId);
-
-                    if (node.data.type.basic != 2) {
-                        var link = 'index.php?v=d&p=openzwave&m=openzwave&logical_id=' + nodeId;
-                    } else {
-                        var link = '#';
-                    }
-                    if (node.data.name.value != '') {
-                        routingTableHeader += '<th title="' + node.data.location.value + ' ' + node.data.name.value + '" >' + nodeId + '</th>';
-                        if (isset(eqLogic_human_name[nodeId])) {
-                            var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '">' + nodeId + ' ' + eqLogic_human_name[nodeId] + '</span>';
-                        } else {
-                            var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '"><span class="label label-primary">' + node.data.location.value + '</span> ' + node.data.name.value + '</span>';
-                        }
-                    } else {
-                        routingTableHeader += '<th title="' + node.data.product_name.valuee + '" >' + nodeId + '</th>';
-                        var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '">' + node.data.product_name.value + '</span>';
-                    }
-                    routingTable += '<tr><td style="width: 500px">' + name;
-                    if (node.data.isDead.value) {
-                        routingTable += '  <i class="fa fa-exclamation-triangle fa-lg" style="color:red; text-align:right"  title="{{Présumé mort}}"></i>';
-                    }
-                    routingTable += '</td><td style="width: 35px">' + nodeId + '</td>';
-                    $.each(devicesRouting, function (nnodeId, nnode) {
-                        if (nnodeId == 255)
-                            return;
-                        if (skipPortableAndVirtual && nnode.data.type.basic == 1)
-                            return;
-                        var rtClass;
-                        if (!routesCount[nnodeId])
-                            routesCount[nnodeId] = new Array(); // create empty array to let next line work
-                        var routeHops = (routesCount[nnodeId][0] || '0') + "/";
-                        routeHops += (routesCount[nnodeId][1] || '0') + "/";
-                        routeHops += (routesCount[nnodeId][2] || '0');
-                        if (nodeId == nnodeId || node.data.type.basic == 1 || nnode.data.type.basic == 1) {
-                            rtClass = 'node-na-color';
-                            routeHops = '';
-                        } else if (nnode.data.state.value <= queryStageNeighbors || node.data.state.value <= queryStageNeighbors) {
-                            rtClass = 'node-interview-not-completed-color';
-                        } else if ($.inArray(parseInt(nnodeId, 10), node.data.neighbours.value) != -1)
-                            rtClass = 'node-direct-link-color';
-                        else if (routesCount[nnodeId] && routesCount[nnodeId][1] > 1)
-                            rtClass = 'node-remote-control-color';
-                        else if (routesCount[nnodeId] && routesCount[nnodeId][1] == 1)
-                            rtClass = 'node-more-of-one-up-color';
-                        else
-                            rtClass = 'node-more-of-two-up-color';
-                        routingTable += '<td class=' + rtClass + ' style="width: 35px"><i class="fa fa-square fa-2x" title="' + routeHops + '"></i></td>';
-                    });
-                    routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="' + nodeId + '" class="btn btn-xs btn-primary requestNodeNeighboursUpdate" title="{{Mise à jour des noeuds voisins}}"><i class="fa fa-refresh"></i></button></td></tr>';
-                });
-                $('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '<th><button type="button" id="healNetwork2" class="btn btn-xs btn-success healNetwork2" title="{{Soigner le réseau}}"><i class="fa fa-medkit"></i></button></th></tr></thead><tbody>' + routingTable + '</tbody></table>');
-            }
-        });
-    }
+    });
+    return routesCount;
 }
+
+function getFarNeighbours(nodeId, exludeNodeIds, hops) {
+    if (hops === undefined) {
+        var hops = 0;
+        var exludeNodeIds = [nodeId];
+    }
+    if (hops > 2) 
+        return [];
+    var nodesList = [];
+    $.each(devicesRouting[nodeId].data.neighbours.value, function (index, nnodeId) {
+        if (!(nnodeId in devicesRouting)){
+            return; 
+        }
+        if (!in_array(nnodeId, exludeNodeIds)) {
+            nodesList.push({nodeId: nnodeId, hops: hops});
+            if (devicesRouting[nnodeId].data.isListening.value && devicesRouting[nnodeId].data.isRouting.value){
+                $.merge(nodesList, getFarNeighbours(nnodeId, $.merge([nnodeId], exludeNodeIds), hops + 1));
+            }
+        }
+    });
+    return nodesList;
+}
+
+
+
+network_load_data();
+network_load_info();
