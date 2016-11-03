@@ -792,6 +792,36 @@ def start_node_exclusion(state):
 		globals.network.manager.cancelControllerCommand(globals.network.home_id)
 		return utils.format_json_result()	
 
+@app.route('/network/action(<action>)', methods=['GET'])
+@auth.login_required
+def network_action(action):
+	if action == 'start':
+		network_utils.start_network()
+	elif action == 'stop':
+		network_utils.graceful_stop_network()
+	elif action == 'writeZWConfig':
+		write_config()
+	elif action == 'manualBackup':
+		logging.info('Manually creating a backup')
+		if globals.files_manager.backup_xml_config('manual', globals.network.home_id_str):
+			return utils.format_json_result(data='Xml config file successfully backup')
+		else:
+			return utils.format_json_result(sucess='error',data='See openzwave log file for details')
+	elif action == 'performSanityChecks':
+		if int(time.time()) > (globals.network_information.start_time + 120):
+			if globals.network.state < globals.network.STATE_STARTED:
+				logging.error("Timeouts occurred during communication with your ZWave dongle. Please check the openzwaved log file for more details.")
+				try:
+					network_utils.graceful_stop_network()
+				finally:
+					os.remove(globals.pidfile)
+				try:
+					server_utils.shutdown_server()
+				finally:
+					sys.exit()
+			network_utils.sanity_checks()
+	return utils.format_json_result()
+
 @app.route('/network/info(<info>)', methods=['GET'])
 @auth.login_required
 def network_info(info):

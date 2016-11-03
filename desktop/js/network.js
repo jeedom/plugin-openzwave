@@ -391,6 +391,9 @@ function network_load_info(){
         global:false,
         error: function (request, status, error) {
             handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
+            if($('#div_templateNetwork').html() != undefined && $('#div_templateNetwork').is(':visible')){
+                setTimeout(function(){ network_load_info(); }, 2000);
+            }
         },
         success: function (data) {
             $(".network .stats_ACKCnt").html(data.controllerStatistics.ACKCnt);
