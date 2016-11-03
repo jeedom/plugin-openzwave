@@ -1,13 +1,40 @@
 import logging
 import socket
 import os
-import globals
-
+import sys
+import globals,manager_utils,network_utils,dispatcher_utils
+from ozwave.utilities.NetworkExtend import *
+from ozwave.utilities.Constants import *
+from ozwave.utilities.FilesManager import FilesManager
 try:
 	from jeedom.jeedom import *
 except ImportError:
 	print "Error: importing module jeedom.jeedom"
 	sys.exit(1)
+
+def start_server():
+	set_log_level()
+	logging.info('Start openzwaved')
+	logging.info('Log level : ' + str(globals.log_level))
+	logging.debug('PID file : ' + str(globals.pidfile))
+	logging.info('Device : ' + str(globals.device))
+	logging.debug('Apikey : ' + str(globals.apikey))
+	logging.info('Callback : ' + str(globals.callback))
+	logging.info('Cycle : ' + str(globals.cycle))
+	logging.debug('Initial disabled nodes list: ' + str(globals.disabled_nodes))
+	init_jeedom_com()
+	if not globals.jeedom_com.test():
+		logging.error('Network communication issues. Please fixe your Jeedom network configuration.')
+		sys.exit(1)
+	check_start_server()
+	manager_utils.init_manager()
+	network_utils.create_network()
+	dispatcher_utils.connect_dispatcher()
+	network_utils.start_network()
+	logging.info('OpenZwave Library Version %s' % (globals.network.manager.getOzwLibraryVersionNumber(),))
+	logging.info('Python-OpenZwave Wrapper Version %s' % (globals.network.manager.getPythonLibraryVersionNumber(),))
+	logging.info("--> pass")
+	logging.info('Waiting for network to become ready')
 
 def shutdown_server():
 	func = request.environ.get('werkzeug.server.shutdown')

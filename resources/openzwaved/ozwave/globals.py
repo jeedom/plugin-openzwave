@@ -84,3 +84,5 @@ files_manager = None
 know_sticks = [{'idVendor': '0658', 'idProduct': '0200', 'name': 'Sigma Designs, Inc'},{'idVendor': '10c4', 'idProduct': 'ea60', 'name': 'Cygnal Integrated Products, Inc. CP210x UART Bridge'}]
 jeedom_com = ''
 options = ''
+app = ''
+refresh_workers = {}

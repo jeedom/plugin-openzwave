@@ -1,13 +1,12 @@
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 import logging
 import globals,utils,dispatcher_utils,node_utils
 import threading
-from threading import Event, Thread
 
 from openzwave.network import ZWaveNetwork
 from utilities.NetworkExtend import *
-from utilities.NodeExtend import *
-from utilities.Constants import *
-from utilities.FilesManager import FilesManager
 
 def start_network():
 	# reset flags
@@ -84,8 +83,6 @@ def network_awaked(network):
 	association = threading.Timer(globals.validate_association_groups_timer, validate_association_groups_asynchronous)
 	association.start()
 	logging.info("Validate association groups will starting in %d sec" % (globals.validate_association_groups_timer,))
-	# threading.Thread(target=recovering_failed_nodes_asynchronous).start()
-	# start listening for group changes
 	dispatcher_utils.add_dispatcher_listen(node_utils.node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
 	save_network_state(network.state)
 	if globals.ghost_node_id is not None:

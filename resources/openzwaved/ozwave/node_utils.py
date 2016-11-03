@@ -1,7 +1,6 @@
 import logging
 import time
 import threading
-from threading import Event, Thread
 import globals,utils,value_utils
 from utilities.NodeExtend import *
 from utilities.Constants import *
@@ -142,17 +141,6 @@ def node_event(network, node, value):
 	standard_type = 'int'
 	save_node_value_event(node.node_id, int(time.time()), COMMAND_CLASS_BASIC, 0, standard_type, value, 0)
 
-def serialize_node_notification(node_id):
-	json_result = {}
-	if node_id in globals.not_supported_nodes:
-		return json_result
-	my_node = globals.network.nodes[node_id]
-	if node_id in globals.node_notifications:
-		notification = globals.node_notifications[node_id]
-		return {"receiveTime": notification.receive_time,"description": notification.description,"isFailed": my_node.is_failed}
-	else:
-		return {"receiveTime": None,"description": None,"isFailed": my_node.is_failed}
-
 def get_wake_up_interval(node_id):
 	interval = value_utils.get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval', False)
 	if interval is not None:
@@ -188,3 +176,46 @@ def validate_association_groups(node_id):
 						globals.network.manager.removeAssociation(globals.network.home_id, node_id, group_index, target_node_id)
 						fake_found = True
 	return fake_found
+
+def check_pending_changes(node_id):
+	my_node = globals.network.nodes[node_id]
+	pending_changes = 0
+	for val in my_node.get_values():
+		my_value = my_node.values[val]
+		if my_value.command_class is None:
+			continue
+		if my_value.is_write_only:
+			continue
+		if my_value.is_read_only:
+			continue
+		pending_state = None
+		if my_value.id_on_network in globals.pending_configurations:
+			pending_configuration = globals.pending_configurations[my_value.id_on_network]
+			if pending_configuration is not None:
+				pending_state = pending_configuration.state
+
+		if pending_state is None or pending_state == 1:
+			continue
+		pending_changes += 1
+	if my_node.node_id in globals.pending_associations:
+		pending_associations = globals.pending_associations[my_node.node_id]
+		for index_group in list(pending_associations):
+			pending_association = pending_associations[index_group]
+			pending_state = None
+			if pending_association is not None:
+				pending_state = pending_association.state
+			if pending_state is None or pending_state == 1:
+				continue
+			pending_changes += 1
+	return pending_changes
+
+def check_primary_controller(my_node):
+	for groupIndex in list(my_node.groups):
+		group = my_node.groups[groupIndex]
+		if len(group.associations_instances) > 0:
+			for associations_instance in group.associations_instances:
+				for node_instance in associations_instance:
+					if globals.network.controller.node_id == node_instance:
+						return True
+					break
+	return False

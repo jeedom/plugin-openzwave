@@ -2,6 +2,7 @@ import logging
 import time
 import math
 import globals
+import threading
 from utilities.Constants import *
 from flask import Flask, jsonify
 
@@ -126,3 +127,16 @@ def write_config():
 		logging.error('write_config %s' % (str(error),))
 	finally:
 		globals.network_information.config_file_save_in_progress = False
+
+def create_worker(node_id, value_id, target_value, starting_value, counter, motor):
+	# create a new refresh worker
+	refresh_interval = globals.refresh_interval
+	if motor :
+		# a full operation take time, wait longer on each refresh
+		refresh_interval = globals.refresh_interval * 5
+	worker = threading.Timer(interval=refresh_interval, function=refresh_background,
+							 args=(node_id, value_id, target_value, starting_value, counter, motor))
+	# save worker
+	globals.refresh_workers[value_id] = worker
+	# start refresh timer
+	worker.start()
