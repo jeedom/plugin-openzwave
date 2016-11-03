@@ -618,7 +618,7 @@ def release_button(node_id, instance_id, cc_id, index):
 				value_level = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
                                                  globals.network.nodes[node_id].values[val].instance, 'Level')
 				if value_level:
-					stop_refresh(node_id, value_level.value_id)
+					value_utils.stop_refresh(node_id, value_level.value_id)
 
 			return utils.format_json_result()
 	return utils.format_json_result(False, 'button not found', 'warning')
