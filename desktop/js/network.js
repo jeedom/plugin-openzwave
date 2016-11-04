@@ -443,7 +443,7 @@ function network_load_info(){
                 }
                 table_notifications += '</tr>';
             }
-            $(".network .notification_variables").html(table_notifications);
+            $("#div_templateNetwork .notification_variables").html(table_notifications);
             $('#div_templateNetwork').setValues(data, '.zwaveNetworkAttr');
             if($('#div_templateNetwork').html() != undefined && $('#div_templateNetwork').is(':visible')){
                 setTimeout(function(){ network_load_info(); }, 2000);

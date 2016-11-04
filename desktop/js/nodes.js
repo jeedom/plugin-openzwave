@@ -13,6 +13,18 @@
  * You should have received a copy of the GNU General Public License
  * along with Plugin openzwave for jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+ BASIC_CLASS_DESC={1:'{{Contrôleur}}',2:'{{Contrôleur statique}}',3:'{{Esclave}}',4:'{{Esclave pouvant être routé}}'}
+ GENERIC_CLASS_DESC={1:'{{Télécommande}}',2:'{{Contrôleur statique}}',3:'{{Contrôleur A/V}}',4:'{{Afficheur}}',5: '{{Répéteur de signal}}',6: '{{Appareil}}',7: '{{Capteur de notification}}',8: '{{Thermostat}}',9: '{{Couvre-fenêtres}}',15: '{{Répéteue}}',16:'{{Interrupteur binaire}}',17: '{{Interrupteur multi-niveau}}',18: '{{Interrupteur distant}}',19: '{{Interrupteur à levier}}',20: '{{Passerelle Z-Wave/IP}}',21: '{{Noeud Z-Wave/IP}}',22: '{{Ventilation}}',23:'{{Panneau de sécurité}}',24: '{{Contrôleur mural}}',32: '{{Capteur binaire}}',33: '{{Capteur multi-niveau}}',34:'{{Niveau d\'eau}}',48:'{{Mesure d\'impulsion}}',49:'{{Mesure}}',64:'{{Contrôle d\'entrée}}',80: '{{Semi-interopérable}}',161:'{{Capteur d\'alarme}}',255:'{{Non interopérable}}'}
+ QUERY_STAGE_DESC={'None':'{{Initialisation du processus de recherche de noeud}}','ProtocolInfo':'{{Récupérer des informations de protocole}}','Probe':'{{Ping le module pour voir s’il est réveillé}}','WakeUp':'{{Démarrer le processus de réveil}}','ManufacturerSpecific1':'{{Récupérer le nom du fabricant et les identifiants de produits}}','NodeInfo':'{{Récupérer les infos sur la prise en charge des classes de commandes supportées}}','NodePlusInfo':'{{Récupérer les infos ZWave+ sur la prise en charge des classes de commandes supportées}}','SecurityReport':'{{Récupérer la liste des classes de commande qui nécessitent de la sécurité}}','ManufacturerSpecific2':'{{Récupérer le nom du fabricant et les identifiants de produits}}','Versions':'{{Récupérer des informations de version}}','Instances':'{{Récupérer des informations multi-instances de classe de commande}}','Static':'{{Récupérer des informations statiques}}','CacheLoad':'{{Ping le module lors du redémarrage avec config cache de l’appareil}}','Associations':'{{Récupérer des informations sur les associations}}','Neighbors':'{{Récupérer la liste des noeuds voisins}}','Session':'{{Récupérer des informations de session}}','Dynamic':'{{Récupérer des informations dynamiques}}','Configuration':'{{Récupérer des informations de paramètre configurable}}','Complete':'{{Le processus de l’interview est terminé}}'}
+ nodes = {};
+ controller_id = -1;
+ var template_node = $("#template-node").html();
+ var template_variable = $("#template-variable").html();
+ var template_parameter = $("#template-parameter").html();
+ var template_system = $("#template-system").html();
+ var isWarning = false;
+ var warningMessage = "";
+
 
  $('.node_action').on('click',function(){
     jeedom.openzwave.node.action({
@@ -27,7 +39,25 @@
  });
 });
 
- function display_node_stats(){
+ function load_all_node(){
+    jeedom.openzwave.network.info({
+        info : 'getNodesList',
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            nodes = data['devices'];
+            for (var i in data['devices']) {
+                if (isset(data['devices'][i]['description']) && isset(data['devices'][i]['description']['is_static_controller']) && data['devices'][i]['description']['is_static_controller']) {
+                    controller_id = i;
+                }
+            }
+            display_node_info();
+        }
+    });
+}
+
+function display_node_stats(){
    jeedom.openzwave.node.info({
     node_id : node_id,
     info:'getNodeStatistics',
@@ -35,8 +65,350 @@
         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-        console.log(data);
-        $('#div_nodeConfigure').setValues(data, '.zwaveNodeAttr');
+        $('#div_nodeConfigure').setValues(data, '.zwaveStatsAttr');
+    }
+});
+}
+
+function display_node_info(){
+   jeedom.openzwave.node.info({
+    node_id : node_id,
+    info:'all',
+    error: function (error) {
+        $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+        var nodeIsFailed = (data.data.isFailed) ? data.data.isFailed.value : false;
+        data.data.lastReceived.updateTime = jeedom.openzwave.timestampConverter(data.data.lastReceived.updateTime)
+        data.data.basicDeviceClassDescription = (isset(BASIC_CLASS_DESC[data.data.basicType.value])) ? BASIC_CLASS_DESC[parseInt(data.data.basicType.value, 0)] : basicDeviceClass;
+        data.data.genericDeviceClassDescription = (isset(GENERIC_CLASS_DESC[data.data.genericType.value])) ? GENERIC_CLASS_DESC[data.data.genericType.value] : '';
+        var queryStageDescrition = (isset(QUERY_STAGE_DESC[data.data.state.value])) ? QUERY_STAGE_DESC[data.data.state.value] : '{{Inconnue}}';
+        var queryStageIndex = 0;
+        for(i in QUERY_STAGE_DESC){
+            if(i == data.data.state.value){
+                break;
+            }
+            queryStageIndex++;
+        }
+        if (data.last_notification.next_wakeup != null) {
+            $("#div_nodeConfigure .node-next-wakeup-span").show();
+        } else {
+            $("#div_nodeConfigure .node-next-wakeup-span").hide();
+        }
+        data.data.zwave_id = "{{Identifiant du fabricant :}} <span class='label label-default' style='font-size : 1em;'>" + data.data.manufacturerId.value + " [" + data.data.manufacturerId.hex + "]</span> {{Type de produit :}} <span class='label label-default' style='font-size : 1em;'>" + data.data.manufacturerProductType.value + ' [' + data.data.manufacturerProductType.hex + "]</span> {{Identifiant du produit :}} <span class='label label-default' style='font-size : 1em;'>" + data.data.manufacturerProductId.value + ' [' + data.data.manufacturerProductId.hex + "]</span>";
+        data.data.queryStage = (nodeIsFailed) ? 'Dead' : data.data.state.value;
+        if (queryStageIndex > 2) {
+            if (data.data.isListening.value) {
+                $("#div_nodeConfigure .node-sleep").removeClass("label-default");
+                $("#div_nodeConfigure .node-sleep").html('<i class="fa fa-plug text-success fa-lg"></i>');
+                $("#div_nodeConfigure .node-battery-span").hide();
+            }else {
+                $("#div_nodeConfigure .node-sleep").removeClass("label-success").addClass("label-default")
+                if (data.data.battery_level.value != null) {
+                    if (data.data.isFrequentListening.value) {
+                        $("#div_nodeConfigure .node-sleep").html("{{Endormi <i>(FLiRS)</i>}}");
+                    } else if (data.data.can_wake_up.value) {
+                        if (data.data.isAwake.value) {
+                            $("#div_nodeConfigure .node-sleep").removeClass("label-default").addClass("label-success")
+                            $("#div_nodeConfigure .node-sleep").html("{{Réveillé}}");
+                        }else {
+                            $("#div_nodeConfigure .node-sleep").html("{{Endormi}}");
+                        }
+                    }
+                    else {
+                        $("#div_nodeConfigure .node-sleep").html("{{Endormi}}");
+                    }
+                    $("#div_nodeConfigure .node-battery-span").show();
+                }else if (data.data.can_wake_up.value) {
+                    $("#div_nodeConfigure .node-sleep").html("---");
+                    $("#div_nodeConfigure .node-battery-span").hide();
+                }
+            }
+        }else {
+            $("#div_nodeConfigure .node-sleep").html("---");
+            $("#div_nodeConfigure .node-battery-span").hide();
+        }
+         $('#div_nodeConfigure').setValues(data.data, '.zwaveNodeAttr');
+        if (controller_id != -1) {
+            var node_groups = data.groups;
+            var found = false;
+            var hasGroup = false;
+            for (zz in node_groups) {
+                if (!isNaN(zz)) {
+                    hasGroup = true;
+                    for (var i in node_groups[zz].associations) {
+                        var node_id = node_groups[zz].associations[i][0];
+                        if (node_id == controller_id) {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (hasGroup && !found && queryStageIndex > 12) {
+                isWarning = true;
+                warningMessage += "<li>{{Le contrôleur n'est inclus dans aucun groupe du module.}}</li>";
+            }
+        }
+        if (nodeIsFailed) {
+            isWarning = true;
+            warningMessage += "<li>{{Le contrôleur pense que ce noeud est en échec, essayez }} " +
+            "<button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</button> " +
+            "{{ou}} " +
+            "<button type='button' id='testNode' class='btn btn-info testNode'><i class='fa fa-check-square-o'></i> {{Tester le nœud}}</button> " +
+            "{{pour essayer de corriger.}}</li>";
+        }
+        if (data.data.genericType.value == 1) {
+            data.data.can_wake_up.value = true;
+        }
+        $("#removeGhostNode").prop("disabled", nodeIsFailed || !data.data.can_wake_up.value);
+
+        if (data.data.isRouting.value) {
+            $("#div_nodeConfigure .node-routing").html("<li>{{Le noeud a des capacités de routage (capable de faire passer des commandes à d'autres noeuds)}}</li>");
+        }else {
+            $("#div_nodeConfigure .node-routing").html("");
+        }
+        if (data.data.isSecurity.value) {
+            $("#div_nodeConfigure .node-isSecurity").html("<li>{{Le noeud supporte les caractéristiques de sécurité avancées}}</li>");
+            $("#div_nodeConfigure .node-security").html("{{Classe de sécurité:}} " + data.data.security.value);
+        }else {
+            $("#div_nodeConfigure .node-isSecurity").html("");
+            $("#div_nodeConfigure .node-security").html("");
+        }
+        if (data.data.isListening.value) {
+            $("#div_nodeConfigure .node-listening").html("<li>{{Le noeud est alimenté et écoute en permanence}}</li>");
+        }else {
+            $("#div_nodeConfigure .node-listening").html("");
+        } if (data.data.isFrequentListening.value) {
+            $("#div_nodeConfigure .node-isFrequentListening").html("<li>{{<i>FLiRS</i>, routeurs esclaves à écoute fréquente}}</li>");
+        }else {
+            $("#div_nodeConfigure .node-isFrequentListening").html("");
+        }
+        if (data.data.isBeaming.value) {
+            $("#div_nodeConfigure .node-isBeaming").html("<li>{{Le noeud est capable d'envoyer une trame réseau}}</li>");
+        }else {
+            $("#div_nodeConfigure .node-isBeaming").html("");
+        }
+        if (data.data.isZwavePlus.value) {
+            $("#div_nodeConfigure .node-zwaveplus").html(" {{ZWAVE PLUS}}");
+        }else {
+            $("#div_nodeConfigure .node-zwaveplus").html("");
+        }
+        if (data.data.isSecured.enabled) {
+            if (data.data.isSecured.value) {
+                $("#div_nodeConfigure .node-isSecured").html("<i class='fa fa-lock' aria-hidden='true'></i>");
+            }else {
+                $("#div_nodeConfigure .node-isSecured").html("<i class='fa fa-unlock' aria-hidden='true'></i>");
+            }
+        }else{
+            $("#div_nodeConfigure .node-isSecured").html("");
+        }
+        var neighbours = data.data.neighbours.value.join();
+        if (queryStageIndex > 13) {
+            if (neighbours != "") {
+                $("#div_nodeConfigure .node-neighbours").html(neighbours);
+            }else {
+                $("#div_nodeConfigure .node-neighbours").html("...");
+                if (genericDeviceClass != 1 && (genericDeviceClass != 8 || data.data.isListening.value)) {
+                    warningMessage += "<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <button type='button' id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</button> {{ou}} <button type='button' id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</button> {{pour corriger.}}</li>";
+                    isWarning = true;
+                }
+            }
+        }else {
+            $("#div_nodeConfigure .node-neighbours").html("<i>{{La liste des noeuds voisin n'est pas encore disponible.}}</i>");
+        }
+        if (queryStageIndex > 7 && data.data.product_name.value == "") {
+            warningMessage += "<li>{{Les identifiants constructeur ne sont pas detectés.}}<br/>{{Utilisez}} <button type='button' id='refreshNodeInfo' class='btn btn-success refreshNodeInfo'><i class='fa fa-retweet'></i> {{Rafraîchir infos du noeud}}</button> {{pour corriger}}</li>";
+            isWarning = true;
+        }
+        if (isWarning) {
+            if (data.data.can_wake_up.value) {
+                warningMessage += "<br><p>{{Le noeud est dormant et nécessite un réveil avant qu'une commande puisse être exécutée.<br/>Vous pouvez le réveiller manuellement ou attendre son délai de réveil.}}<br/>{{Voir l'interval de réveil dans l'onglet Système}}</p>";
+            }
+            $("#div_nodeConfigure .panel-danger").show();
+            $("#div_nodeConfigure .node-warning").html(warningMessage);
+        }else {
+            $("#div_nodeConfigure .panel-danger").hide();
+            $("#div_nodeConfigure .node-warning").html("");
+        }
+        var variables = "";
+        var parameters = "";
+        var system_variables = "";
+        for (instance in data.instances) {
+            for (commandclass in data.instances[instance].commandClasses) {
+                for (index in data.instances[instance].commandClasses[commandclass].data) {
+                    if (!isNaN(index)) {
+                        var id = instance + ":" + commandclass + ":" + index;
+                        var genre = data.instances[instance].commandClasses[commandclass].data[index].genre;
+                        var pending_state = data.instances[instance].commandClasses[commandclass].data[index].pendingState;
+                        if (genre == "Config") {
+                            switch (pending_state) {
+                                case 1:
+                                parameters += "<tr class='greenrow' pid='" + id + "'>" + template_parameter + "</tr>";
+                                break;
+                                case 2:
+                                parameters += "<tr class='redrow' pid='" + id + "'>" + template_parameter + "</tr>";
+                                break;
+                                case 3:
+                                parameters += "<tr class='yellowrow' pid='" + id + "'>" + template_parameter + "</tr>";
+                                break;
+                                default:
+                                parameters += "<tr pid='" + id + "'>" + template_parameter + "</tr>";
+                            }
+                        } else if (genre == "System") {
+                            switch (pending_state) {
+                                case 1:
+                                system_variables += "<tr class='greenrow' sid='" + id + "'>" + template_system + "</tr>";
+                                break;
+                                case 2:
+                                system_variables += "<tr class='redrow' sid='" + id + "'>" + template_system + "</tr>";
+                                break;
+                                case 3:
+                                system_variables += "<tr class='yellowrow' sid='" + id + "'>" + template_system + "</tr>";
+                                break;
+                                default:
+                                system_variables += "<tr sid='" + id + "'>" + template_system + "</tr>";
+                            }
+                        } else {
+                            variables += "<tr vid='" + id + "'>" + template_variable + "</tr>";
+                        }
+                    }
+                }
+            }
+        }
+        $("#div_nodeConfigure .variables").html(variables);
+        $("#div_nodeConfigure .parameters").html(parameters);
+        $("#div_nodeConfigure .system_variables").html(system_variables);
+        openzwave_node_translation = {configuration: {}};
+        for (instance in data.instances) {
+            for (commandclass in data.instances[instance].commandClasses) {
+                var first_index_polling = true;
+                for (index in data.instances[instance].commandClasses[commandclass].data) {
+                    var id = instance + ":" + commandclass + ":" + index;
+                    var row = $("#div_nodeConfigure tr[vid='" + id + "']");
+                    var row_parameter = $("#div_nodeConfigure tr[pid='" + id + "']");
+                    var row_system = $("#div_nodeConfigure tr[sid='" + id + "']");
+                    row.find("td[key=variable-instance]").html(instance);
+                    row.find("td[key=variable-cc]").html(commandclass + ' (0x' + Number(commandclass).toString(16) + ')');
+                    row.find("td[key=variable-index]").html(index);
+                    row.find("td[key=variable-name]").html(data.instances[instance].commandClasses[commandclass].data[index].name);
+                    row.find("td[key=variable-type]").html(data.instances[instance].commandClasses[commandclass].data[index].typeZW + ' (' + data.instances[instance].commandClasses[commandclass].data[index].type + ')');
+                    var value = '';
+                    var genre = data.instances[instance].commandClasses[commandclass].data[index].genre;
+                    if (data.instances[instance].commandClasses[commandclass].data[index].read_only == false) {
+                        value += '<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></button> ';
+                    }
+                   if (data.instances[instance].commandClasses[commandclass].data[index].type == 'bool') {
+                        var boolValue = data.instances[instance].commandClasses[commandclass].data[index].val;
+                        if (data.instances[instance].commandClasses[commandclass].data[index].name != 'Exporting'){
+                            if (boolValue) {
+                                value +='<span class="label label-success" style="font-size:1em;">{{ON}}</span>';
+                            } else {
+                                value += '<span class="label label-danger" style="font-size:1em;">{{OFF}}</span>';
+                            }
+                        }else{
+                            if (boolValue) {
+                                value +='{{ON}}';
+                            } else {
+                                value += '{{OFF}}';
+                            }
+                        }
+                    }else if (data.instances[instance].commandClasses[commandclass].data[index].write_only == false) {
+                        value += data.instances[instance].commandClasses[commandclass].data[index].val + " " + data.instances[instance].commandClasses[commandclass].data[index].units;
+                    }
+                    row.find("td[key=variable-value]").html(value);
+                    var polling = '<span style="width : 22px;"></span>';
+                    if (data.instances[instance].commandClasses[commandclass].data[index].write_only == false && first_index_polling) {
+                        first_index_polling = false;
+                        var polling = '<a style="position:relative;top:-1px;" class="btn btn-primary btn-xs editPolling cursor" data-valueidx="' + index + '" data-valuepolling="' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></a> ';
+                        row.find("td[key=variable-refresh]").html('<button type="button" class="btn btn-xs btn-primary forceRefresh" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-refresh"></i></button>');
+                        if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 0) {
+                            polling += '<span class="label label-success" style="font-size:1em;">{{Auto}}</span>';
+                        } else if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 1) {
+                            polling += '<span class="label label-warning" style="font-size:1em;">{{5 min}}</span>';
+                        } else if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 2) {
+                            polling += '<span class="label label-default" style="font-size:1em;">' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
+                        } else if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 3) {
+                            polling += '<span class="label label-default" style="font-size:1em;">' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
+                        } else if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 6) {
+                            polling += '<span class="label label-default" style="font-size:1em;">' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
+                        } else if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 30) {
+                            polling += '<span class="label label-default" style="font-size:1em;">' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
+                        } else {
+                            polling += '<span class="label label-default" style="font-size:1em;">' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
+                        }
+                    }
+                    row.find("td[key=variable-polling]").html(polling);
+                    if (data.instances[instance].commandClasses[commandclass].data[index].write_only == false) {
+                        row.find("td[key=variable-updatetime]").html(jeedom.openzwave.timestampConverter(data.instances[instance].commandClasses[commandclass].data[index].updateTime));
+                    }
+                    var expected_data = null;
+                    var pending_state = data.instances[instance].commandClasses[commandclass].data[index].pendingState;
+                    if (pending_state >= 2) {
+                        expected_data = data.instances[instance].commandClasses[commandclass].data[index].expected_data;
+                    }
+                    var data_item = data.instances[instance].commandClasses[commandclass].data[index].val;
+                    if (data.instances[instance].commandClasses[commandclass].data[index].type == 'bool') {
+                        if (data_item == true) {
+                            data_item = '{{Oui}}';
+                        } else {
+                            data_item = '{{Non}}';
+                        }
+                    }
+                    if (data.instances[instance].commandClasses[commandclass].data[index].write_only) {
+                        data_item = '';
+                    }
+                    var data_units = data.instances[instance].commandClasses[commandclass].data[index].units;
+                    row_system.find("td[key=system-instance]").html(instance);
+                    row_system.find("td[key=system-cc]").html(commandclass + ' (0x' + Number(commandclass).toString(16) + ')');
+                    row_system.find("td[key=system-index]").html(index);
+                    row_system.find("td[key=system-name]").html(data.instances[instance].commandClasses[commandclass].data[index].name);
+                    row_system.find("td[key=system-type]").html(data.instances[instance].commandClasses[commandclass].data[index].typeZW + ' (' + data.instances[instance].commandClasses[commandclass].data[index].type + ')');
+                    var system_data = data_item + " " + data_units;
+                    if (expected_data != null) {
+                        system_data += '<br>(<i>' + expected_data + " " + data_units + '</i>)';
+                    }
+                    row_system.find("td[key=system-value]").html(system_data);
+                    if (data.instances[instance].commandClasses[commandclass].data[index].read_only == false) {
+                        row_system.find("td[key=system-edit]").html('<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></button>');
+                    }
+                    if (data.instances[instance].commandClasses[commandclass].data[index].write_only == false) {
+                        row_system.find("td[key=system-updatetime]").html(jeedom.openzwave.timestampConverter(data.instances[instance].commandClasses[commandclass].data[index].updateTime));
+                    }
+                    if (typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('name')) {
+                        row_parameter.find("td[key=parameter-name]").html(openzwave_node_translation['configuration'][index].name);
+                    } else {
+                        row_parameter.find("td[key=parameter-name]").html(data.instances[instance].commandClasses[commandclass].data[index].name);
+                    }
+                    row_parameter.find("td[key=parameter-index]").html(index);
+                    row_parameter.find("td[key=parameter-type]").html(data.instances[instance].commandClasses[commandclass].data[index].typeZW);
+                    if (typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('list') && typeof openzwave_node_translation['configuration'][index].list[data.instances[instance].commandClasses[commandclass].data[index].val] !== 'undefined') {
+                        var translation_item = openzwave_node_translation['configuration'][index].list[data_item];
+                        if (expected_data != null) {
+                            translation_item += '<br>(<i>' + openzwave_node_translation['configuration'][index].list[expected_data] + '</i>)';
+                        }
+                        row_parameter.find("td[key=parameter-value]").html(translation_item);
+                    } else {
+                        if (expected_data != null) {
+                            data_item += '<br>(<i>' + expected_data + '</i>)';
+                        }
+                        row_parameter.find("td[key=parameter-value]").html(data_item);
+                    }
+                    if (data.instances[instance].commandClasses[commandclass].data[index].read_only == false) {
+                        data_item = data.instances[instance].commandClasses[commandclass].data[index].val;
+                        if (data.instances[instance].commandClasses[commandclass].data[index].write_only) {
+                            data_item = '';
+                        }
+                        row_parameter.find("td[key=parameter-edit]").html('<button type="button" class="btn btn-xs btn-primary editParam" data-paramid="' + index + '" data-paramtype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-paramname="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-paramvalue="' + data_item + '"><i class="fa fa-wrench"></i></button>');
+                    }
+                    if (typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('help')) {
+                        row_parameter.find("td[key=parameter-help]").html(openzwave_node_translation['configuration'][index].help);
+                    } else {
+                        row_parameter.find("td[key=parameter-help]").html(data.instances[instance].commandClasses[commandclass].data[index].help);
+                    }
+                }
+            }
+        }
     }
 });
 }
@@ -515,7 +887,6 @@ var app_nodes = {
                 });
                 options += '</select>';
                 modal.find('.modal-body').empty().append(options);
-
             } else if (valueType == "Bool") {
                 var trueString = '&nbsp;{{ON}}&nbsp;';
                 var falseString = '&nbsp;{{OFF}}';
@@ -864,631 +1235,7 @@ var app_nodes = {
     },
 
     draw_nodes: function () {
-        $("#node-nav").html("");
-        var template_node = $("#template-node").html();
-        var template_variable = $("#template-variable").html();
-        var template_parameter = $("#template-parameter").html();
-        var template_system = $("#template-system").html();
-        var z = app_nodes.selected_node;
-        if (!isset(nodes[z])) {
-            return;
-        }
-        if (nodes[z].data.isFailed) {
-            var nodeIsFailed = nodes[z].data.isFailed.value
-        } else {
-            var nodeIsFailed = false;
-        }
-        var queryStage = nodes[z].data.state.value;
-        $("#node").attr("nid", z);
-        var node = $(".node");
-        var isWarning = false;
-        var warningMessage = "";
-        node.find(".node-id").html(z);
-        if (nodes[z].data.name.value == '') {
-            var name = '';
-        } else {
-            var name = nodes[z].data.name.value;
-        }
-        var location = nodes[z].data.location.value;
-        var productName = nodes[z].data.product_name.value;
-        var manufacturerName = nodes[z].data.vendorString.value;
-        node.find(".node-productname").html(productName);
-        node.find(".node-location").html(location);
-        node.find(".node-name").html(name);
-        node.find(".node-vendor").html(manufacturerName);
-        node.find(".node-zwave-id").html("{{Identifiant du fabricant :}} <span class='label label-default' style='font-size : 1em;'>" + nodes[z].data.manufacturerId.value + " [" + nodes[z].data.manufacturerId.hex + "]</span> {{Type de produit :}} <span class='label label-default' style='font-size : 1em;'>" + nodes[z].data.manufacturerProductType.value + ' [' + nodes[z].data.manufacturerProductType.hex + "]</span> {{Identifiant du produit :}} <span class='label label-default' style='font-size : 1em;'>" + nodes[z].data.manufacturerProductId.value + ' [' + nodes[z].data.manufacturerProductId.hex + "]</span>");
-        node.find(".node-lastSeen").html(app_nodes.timestampConverter(nodes[z].data.lastReceived.updateTime));
-        if (nodes[z].last_notification.next_wakeup != null) {
-            node.find(".node-next-wakeup").html(app_nodes.timestampConverter(nodes[z].last_notification.next_wakeup));
-            node.find(".node-next-wakeup-span").show();
-        } else {
-            node.find(".node-next-wakeup-span").hide();
-        }
-        var basicDeviceClass = parseInt(nodes[z].data.basicType.value, 0);
-        var basicDeviceClassDescription = "";
-        switch (basicDeviceClass) {
-            case 1:
-                // Controller
-                basicDeviceClassDescription = "{{Contrôleur}}";
-                break;
-                case 2:
-                // Static Controller
-                basicDeviceClassDescription = "{{Contrôleur statique}}";
-                break;
-                case 3:
-                // Slave
-                basicDeviceClassDescription = "{{Esclave}}";
-                break;
-                case 4:
-                // Routing Slave
-                basicDeviceClassDescription = "{{Esclave pouvant être routé}}";
-                break;
-                default:
-                basicDeviceClassDescription = basicDeviceClass;
-                break;
-            }
 
-            var genericDeviceClass = parseInt(nodes[z].data.genericType.value, 0);
-            var genericDeviceClassDescription = "";
-
-        //The ‘Generic’ device class defines the basic functionality that the devices will support as a controller or slave.
-        switch (genericDeviceClass) {
-            case 1: // Generic Controller   = 0x01
-            genericDeviceClassDescription = "{{Télécommande}}";
-            break;
-            case 2: // Static Controller   = 0x02,
-            genericDeviceClassDescription = "{{Contrôleur statique}}";
-            break;
-            case 3: // Av Control Point    = 0x03,
-            genericDeviceClassDescription = "{{Contrôleur A/V}}";
-            break;
-            case 4: // Display             = 0x04,
-            genericDeviceClassDescription = "{{Afficheur}}";
-            break;
-            case 5: // Network Extender             = 0x05,
-            genericDeviceClassDescription = "{{Répéteur de signal}}";
-            break;
-            case 6: // Appliance             = 0x06,
-            genericDeviceClassDescription = "{{Appareil}}";
-            break;
-            case 7: // Sensor Notification             = 0x07,
-            genericDeviceClassDescription = "{{Capteur de notification}}";
-            break;
-            case 8: // Thermostat          = 0x08,
-            genericDeviceClassDescription = "{{Thermostat}}";
-            break;
-            case 9: // Window Covering     = 0x09,
-            genericDeviceClassDescription = "{{Couvre-fenêtres}}";
-            break;
-            case 15: // Repeater Slave      = 0x0f,
-            genericDeviceClassDescription = "{{Répéteur esclave}}";
-            break;
-            case 16: // Switch Binary       = 0x10,
-            genericDeviceClassDescription = "{{Interrupteur binaire}}";
-            break;
-            case 17: // Switch Multilevel   = 0x11,
-            genericDeviceClassDescription = "{{Interrupteur multi-niveau}}";
-            break;
-            case 18: // Switch Remote       = 0x12,
-            genericDeviceClassDescription = "{{Interrupteur distant}}";
-            break;
-            case 19: // Switch Toggle       = 0x13,
-            genericDeviceClassDescription = "{{Interrupteur à levier}}";
-            break;
-            case 20: // Z_IP_GATEWAY       = 0x14,
-            genericDeviceClassDescription = "{{Passerelle Z-Wave/IP}}";
-            break;
-            case 21: // Zip Node       = 0x15,
-            genericDeviceClassDescription = "{{Noeud Z-Wave/IP}}";
-            break;
-            case 22: // Ventilation         = 0x16,
-            genericDeviceClassDescription = "{{Ventilation}}";
-            break;
-            case 23: // Security Panel         = 0x17,
-            genericDeviceClassDescription = "{{Panneau de sécurité}}";
-            break;
-            case 24: // Wall Controller       = 0x18,
-            genericDeviceClassDescription = "{{Contrôleur mural}}";
-            break;
-            case 32: // Sensor Binary       = 0x20,
-            genericDeviceClassDescription = "{{Capteur binaire}}";
-            break;
-            case 33: // Sensor Multilevel   = 0x21
-            genericDeviceClassDescription = "{{Capteur multi-niveau}}";
-            break;
-            case 34: //WATER_CONTROL   = 0x22
-            genericDeviceClassDescription = "{{Niveau d'eau}}";
-            break;
-            case 48: // Meter Pulse       = 0x30
-            genericDeviceClassDescription = "{{Mesure d'impulsion}}";
-            case 49: // Meter         = 0x31
-            genericDeviceClassDescription = "{{Mesure}}";
-            break;
-            case 64: // Entry Control       = 0x40
-            genericDeviceClassDescription = "{{Contrôle d'entrée}}";
-            break;
-            case 80: // Semi Interoperable        = 0x50
-            genericDeviceClassDescription = "{{Semi-interopérable}}";
-            break;
-            case 161: // Sensor Alarm        = 0xa1
-            genericDeviceClassDescription = "{{Capteur d'alarme}}";
-            break;
-            case 255: // Non Interoperable        = 0xff
-            genericDeviceClassDescription = "{{Non interopérable}}";
-            break;
-            default:
-            genericDeviceClassDescription = "{{Inconnue}}";
-            break;
-        }
-
-        var specificDeviceClass = parseInt(nodes[z].data.specificType.value, 0);
-        var specificDeviceClassDescription = nodes[z].data.type.value;
-
-        node.find(".node-basic").html(basicDeviceClassDescription);
-        node.find(".node-generic").html(genericDeviceClassDescription);
-        node.find(".node-specific").html(specificDeviceClassDescription);
-
-        var queryStageIndex = 0;
-        var queryStageDescrition = "";
-        switch (queryStage) {
-            case "None":
-            queryStageDescrition = "{{Initialisation du processus de recherche de noeud}}";
-            queryStageIndex = 0;
-            break;
-            case "ProtocolInfo":
-            queryStageDescrition = "{{Récupérer des informations de protocole}}";
-            queryStageIndex = 1;
-            break;
-            case "Probe":
-            queryStageDescrition = "{{Ping le module pour voir s’il est réveillé}}";
-            queryStageIndex = 2;
-            break;
-            case "WakeUp":
-            queryStageDescrition = "{{Démarrer le processus de réveil}}";
-            queryStageIndex = 3;
-            break;
-            case "ManufacturerSpecific1":
-            queryStageDescrition = "{{Récupérer le nom du fabricant et les identifiants de produits}}";
-            queryStageIndex = 4;
-            break;
-            case "NodeInfo":
-            queryStageDescrition = "{{Récupérer les infos sur la prise en charge des classes de commandes supportées}}";
-            queryStageIndex = 5;
-            break;
-            case "NodePlusInfo":
-            queryStageDescrition = "{{Récupérer les infos ZWave+ sur la prise en charge des classes de commandes supportées}}";
-            queryStageIndex = 5;
-            break;
-            case "SecurityReport":
-            queryStageDescrition = "{{Récupérer la liste des classes de commande qui nécessitent de la sécurité}}";
-            queryStageIndex = 6;
-            break;
-            case "ManufacturerSpecific2":
-            queryStageDescrition = "{{Récupérer le nom du fabricant et les identifiants de produits}}";
-            queryStageIndex = 7;
-            break;
-            case "Versions":
-            queryStageDescrition = "{{Récupérer des informations de version}}";
-            queryStageIndex = 8;
-            break;
-            case "Instances":
-            queryStageDescrition = "{{Récupérer des informations multi-instances de classe de commande}}";
-            queryStageIndex = 9;
-            break;
-            case "Static":
-            queryStageDescrition = "{{Récupérer des informations statiques}}";
-            queryStageIndex = 10;
-            break;
-            case "CacheLoad":
-            queryStageDescrition = "{{Ping le module lors du redémarrage avec config cache de l’appareil}}";
-            queryStageIndex = 11;
-            break;
-            case "Associations":
-            queryStageDescrition = "{{Récupérer des informations sur les associations}}";
-            queryStageIndex = 12;
-            break;
-            case "Neighbors":
-            queryStageDescrition = "{{Récupérer la liste des noeuds voisins}}";
-            queryStageIndex = 13;
-            break;
-            case "Session":
-            queryStageDescrition = "{{Récupérer des informations de session}}";
-            queryStageIndex = 14;
-            break;
-            case "Dynamic":
-            queryStageDescrition = "{{Récupérer des informations dynamiques}}";
-            queryStageIndex = 15;
-            break;
-            case "Configuration":
-            queryStageDescrition = "{{Récupérer des informations de paramètre configurable}}";
-            queryStageIndex = 16;
-            break;
-            case "Complete":
-            queryStageDescrition = "{{Le processus de l’interview est terminé}}";
-            queryStageIndex = 17;
-            node.find(".node-queryStage").removeClass("label-default").addClass("label-success");
-            break;
-        }
-        var nodeCanSleep = nodes[z].data.can_wake_up.value;
-        if (queryStageIndex > 2) {
-            if (nodes[z].data.isListening.value) {
-                node.find(".node-sleep").removeClass("label-default");
-                node.find(".node-sleep").html('<i class="fa fa-plug text-success fa-lg"></i>');
-                node.find(".node-battery-span").hide();
-            }
-            else {
-                var battery_level = nodes[z].data.battery_level.value
-                node.find(".node-sleep").removeClass("label-success").addClass("label-default")
-                if (battery_level != null) {
-                    if (nodes[z].data.isFrequentListening.value) {
-                        node.find(".node-sleep").html("{{Endormi <i>(FLiRS)</i>}}");
-                    }
-                    else if (nodeCanSleep) {
-                        if (nodes[z].data.isAwake.value) {
-                            node.find(".node-sleep").removeClass("label-default").addClass("label-success")
-                            node.find(".node-sleep").html("{{Réveillé}}");
-                        }
-                        else {
-                            node.find(".node-sleep").html("{{Endormi}}");
-                        }
-                    }
-                    else {
-                        node.find(".node-sleep").html("{{Endormi}}");
-                    }
-                    node.find(".node-battery").html(battery_level + ' %');
-                    node.find(".node-battery-span").show();
-                }
-                else if (nodeCanSleep) {
-                    node.find(".node-sleep").html("---");
-                    node.find(".node-battery-span").hide();
-                }
-            }
-        }
-        else {
-            node.find(".node-sleep").html("---");
-            node.find(".node-battery-span").hide();
-        }
-        if (controller_id != -1) {
-            var node_groups = nodes[z].groups;
-            var found = false;
-            var hasGroup = false;
-            for (zz in node_groups) {
-                if (!isNaN(zz)) {
-                    hasGroup = true;
-                    for (var i in node_groups[zz].associations) {
-                        var node_id = node_groups[zz].associations[i][0];
-                        if (node_id == controller_id) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
-            }
-            if (hasGroup && !found && queryStageIndex > 12) {
-                isWarning = true;
-                warningMessage += "<li>{{Le contrôleur n'est inclus dans aucun groupe du module.}}</li>";
-            }
-        }
-        if (nodeIsFailed) {
-            isWarning = true;
-            warningMessage += "<li>{{Le contrôleur pense que ce noeud est en échec, essayez }} " +
-            "<button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</button> " +
-            "{{ou}} " +
-            "<button type='button' id='testNode' class='btn btn-info testNode'><i class='fa fa-check-square-o'></i> {{Tester le nœud}}</button> " +
-            "{{pour essayer de corriger.}}</li>";
-        }
-        $("#requestNodeNeighboursUpdate").prop("disabled", nodeIsFailed);
-        $("#healNode").prop("disabled", nodeIsFailed);
-        $("#assignReturnRoute").prop("disabled", nodeIsFailed);
-        $("#refreshNodeValues").prop("disabled", nodeIsFailed);
-        $("#requestNodeDynamic").prop("disabled", nodeIsFailed);
-        $("#refreshNodeInfo").prop("disabled", nodeIsFailed);
-        $("#removeFailedNode").prop("disabled", !nodeIsFailed);
-        $("#replaceFailedNode").prop("disabled", !nodeIsFailed);
-        $("#sendNodeInformation").prop("disabled", nodeIsFailed);
-        $("#regenerateNodeCfgFile").prop("disabled", false);
-        if (genericDeviceClass == 1) {
-            nodeCanSleep = true;
-        }
-        $("#removeGhostNode").prop("disabled", nodeIsFailed || !nodeCanSleep);
-
-        if (nodeIsFailed) {
-            node.find(".node-queryStage").html("Dead");
-            node.find(".node-queryStage").removeClass("label-default").addClass("label-danger");
-        } else {
-            node.find(".node-queryStage").html(queryStage);
-            node.find(".node-queryStage").removeClass("label-danger").addClass("label-default");
-        }
-
-        var myPopover = $('#node-queryStageDescrition').data('bs.popover');
-        if (queryStageIndex < 17) {
-            myPopover.options.content = queryStageDescrition + " (" + queryStageIndex + "/17)";
-        }
-        else {
-            myPopover.options.content = queryStageDescrition;
-        }
-        node.find(".node-maxBaudRate").html(nodes[z].data.maxBaudRate.value);
-        if (nodes[z].data.isRouting.value) {
-            node.find(".node-routing").html("<li>{{Le noeud a des capacités de routage (capable de faire passer des commandes à d'autres noeuds)}}</li>");
-        }
-        else {
-            node.find(".node-routing").html("");
-        }
-        if (nodes[z].data.isSecurity.value) {
-            node.find(".node-isSecurity").html("<li>{{Le noeud supporte les caractéristiques de sécurité avancées}}</li>");
-            node.find(".node-security").html("{{Classe de sécurité:}} " + nodes[z].data.security.value);
-        }
-        else {
-            node.find(".node-isSecurity").html("");
-            node.find(".node-security").html("");
-        }
-        if (nodes[z].data.isListening.value) {
-            node.find(".node-listening").html("<li>{{Le noeud est alimenté et écoute en permanence}}</li>");
-        }
-        else {
-            node.find(".node-listening").html("");
-        }
-        if (nodes[z].data.isFrequentListening.value) {
-            node.find(".node-isFrequentListening").html("<li>{{<i>FLiRS</i>, routeurs esclaves à écoute fréquente}}</li>");
-        }
-        else {
-            node.find(".node-isFrequentListening").html("");
-        }
-        if (nodes[z].data.isBeaming.value) {
-            node.find(".node-isBeaming").html("<li>{{Le noeud est capable d'envoyer une trame réseau}}</li>");
-        }
-        else {
-            node.find(".node-isBeaming").html("");
-        }
-
-        if (nodes[z].data.isZwavePlus.value) {
-            node.find(".node-zwaveplus").html(" {{ZWAVE PLUS}}");
-        }
-        else {
-            node.find(".node-zwaveplus").html("");
-        }
-        if (nodes[z].data.isSecured.enabled) {
-            if (nodes[z].data.isSecured.value) {
-                node.find(".node-isSecured").html("<i class='fa fa-lock' aria-hidden='true'></i>");
-            }
-            else {
-                node.find(".node-isSecured").html("<i class='fa fa-unlock' aria-hidden='true'></i>");
-            }
-        }
-        else{
-            node.find(".node-isSecured").html("");
-        }
-        var neighbours = nodes[z].data.neighbours.value.join();
-        if (queryStageIndex > 13) {
-            if (neighbours != "") {
-                node.find(".node-neighbours").html(neighbours);
-            }
-            else {
-                node.find(".node-neighbours").html("...");
-                if (genericDeviceClass != 1 && (genericDeviceClass != 8 || nodes[z].data.isListening.value)) {
-                    warningMessage += "<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <button type='button' id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</button> {{ou}} <button type='button' id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</button> {{pour corriger.}}</li>";
-                    isWarning = true;
-                }
-            }
-        }
-        else {
-            node.find(".node-neighbours").html("<i>{{La liste des noeuds voisin n'est pas encore disponible.}}</i>");
-        }
-        if (queryStageIndex > 7 && productName == "") {
-
-            warningMessage += "<li>{{Les identifiants constructeur ne sont pas detectés.}}<br/>{{Utilisez}} <button type='button' id='refreshNodeInfo' class='btn btn-success refreshNodeInfo'><i class='fa fa-retweet'></i> {{Rafraîchir infos du noeud}}</button> {{pour corriger}}</li>";
-            isWarning = true;
-        }
-
-        if (isWarning) {
-            if (nodeCanSleep) {
-                warningMessage += "<br><p>{{Le noeud est dormant et nécessite un réveil avant qu'une commande puisse être exécutée.<br/>Vous pouvez le réveiller manuellement ou attendre son délai de réveil.}}<br/>{{Voir l'interval de réveil dans l'onglet Système}}</p>";
-            }
-            node.find(".panel-danger").show();
-            node.find(".node-warning").html(warningMessage);
-        }
-        else {
-            node.find(".panel-danger").hide();
-            node.find(".node-warning").html("");
-        }
-        var variables = "";
-        var parameters = "";
-        var system_variables = "";
-        for (instance in nodes[z].instances) {
-            for (commandclass in nodes[z].instances[instance].commandClasses) {
-                for (index in nodes[z].instances[instance].commandClasses[commandclass].data) {
-                    if (!isNaN(index)) {
-                        var id = instance + ":" + commandclass + ":" + index;
-                        var genre = nodes[z].instances[instance].commandClasses[commandclass].data[index].genre;
-                        var pending_state = nodes[z].instances[instance].commandClasses[commandclass].data[index].pendingState;
-                        if (genre == "Config") {
-                            switch (pending_state) {
-                                case 1:
-                                parameters += "<tr class='greenrow' pid='" + id + "'>" + template_parameter + "</tr>";
-                                break;
-                                case 2:
-                                parameters += "<tr class='redrow' pid='" + id + "'>" + template_parameter + "</tr>";
-                                break;
-                                case 3:
-                                parameters += "<tr class='yellowrow' pid='" + id + "'>" + template_parameter + "</tr>";
-                                break;
-                                default:
-                                parameters += "<tr pid='" + id + "'>" + template_parameter + "</tr>";
-                            }
-                        } else if (genre == "System") {
-                            switch (pending_state) {
-                                case 1:
-                                system_variables += "<tr class='greenrow' sid='" + id + "'>" + template_system + "</tr>";
-                                break;
-                                case 2:
-                                system_variables += "<tr class='redrow' sid='" + id + "'>" + template_system + "</tr>";
-                                break;
-                                case 3:
-                                system_variables += "<tr class='yellowrow' sid='" + id + "'>" + template_system + "</tr>";
-                                break;
-                                default:
-                                system_variables += "<tr sid='" + id + "'>" + template_system + "</tr>";
-                            }
-                        } else {
-                            variables += "<tr vid='" + id + "'>" + template_variable + "</tr>";
-                        }
-                    }
-                }
-            }
-        }
-        node.find(".variables").html(variables);
-        node.find(".parameters").html(parameters);
-        node.find(".system_variables").html(system_variables);
-        if (typeof openzwave_node_translation === 'undefined' || openzwave_node_translation == null) {
-            openzwave_node_translation = app_nodes.get_translation();
-        }
-        if (typeof openzwave_node_translation.configuration === 'undefined') {
-            openzwave_node_translation = {configuration: {}};
-        }
-        for (instance in nodes[z].instances) {
-            for (commandclass in nodes[z].instances[instance].commandClasses) {
-                var first_index_polling = true;
-                for (index in nodes[z].instances[instance].commandClasses[commandclass].data) {
-                    var id = instance + ":" + commandclass + ":" + index;
-                    var row = node.find("tr[vid='" + id + "']");
-                    var row_parameter = node.find("tr[pid='" + id + "']");
-                    var row_system = node.find("tr[sid='" + id + "']");
-                    // values
-                    row.find("td[key=variable-instance]").html(instance);
-                    row.find("td[key=variable-cc]").html(commandclass + ' (0x' + Number(commandclass).toString(16) + ')');
-                    row.find("td[key=variable-index]").html(index);
-                    row.find("td[key=variable-name]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].name);
-                    row.find("td[key=variable-type]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + ' (' + nodes[z].instances[instance].commandClasses[commandclass].data[index].type + ')');
-                    var value = '';
-                    var genre = nodes[z].instances[instance].commandClasses[commandclass].data[index].genre;
-                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only == false) {
-                        value += '<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></button> ';
-                    }
-
-                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == true) {
-
-                    }else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].type == 'bool') {
-                        var boolValue = nodes[z].instances[instance].commandClasses[commandclass].data[index].val;
-                        if (nodes[z].instances[instance].commandClasses[commandclass].data[index].name != 'Exporting'){
-                            if (boolValue) {
-                                value +='<span class="label label-success" style="font-size:1em;">{{ON}}</span>';
-                            } else {
-                                value += '<span class="label label-danger" style="font-size:1em;">{{OFF}}</span>';
-                            }
-                        }
-                        else{
-                            if (boolValue) {
-                                value +='{{ON}}';
-                            } else {
-                                value += '{{OFF}}';
-                            }
-                        }
-
-                    }else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false) {
-                        value += nodes[z].instances[instance].commandClasses[commandclass].data[index].val + " " + nodes[z].instances[instance].commandClasses[commandclass].data[index].units;
-                    }
-
-                    row.find("td[key=variable-value]").html(value);
-                    var polling = '<span style="width : 22px;"></span>';
-                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false && first_index_polling) {
-                        first_index_polling = false;
-
-                        var polling = '<a style="position:relative;top:-1px;" class="btn btn-primary btn-xs editPolling cursor" data-valueidx="' + index + '" data-valuepolling="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></a> ';
-                        row.find("td[key=variable-refresh]").html('<button type="button" class="btn btn-xs btn-primary forceRefresh" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-refresh"></i></button>');
-
-
-                        if (nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 0) {
-                            polling += '<span class="label label-success" style="font-size:1em;">{{Auto}}</span>';
-                        } else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 1) {
-                            polling += '<span class="label label-warning" style="font-size:1em;">{{5 min}}</span>';
-                        } else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 2) {
-                            polling += '<span class="label label-default" style="font-size:1em;">' + nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
-                        } else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 3) {
-                            polling += '<span class="label label-default" style="font-size:1em;">' + nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
-                        } else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 6) {
-                            polling += '<span class="label label-default" style="font-size:1em;">' + nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
-                        } else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 30) {
-                            polling += '<span class="label label-default" style="font-size:1em;">' + nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
-                        } else {
-                            polling += '<span class="label label-default" style="font-size:1em;">' + nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
-                        }
-                    }
-                    row.find("td[key=variable-polling]").html(polling);
-                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false) {
-                        row.find("td[key=variable-updatetime]").html(app_nodes.timestampConverter(nodes[z].instances[instance].commandClasses[commandclass].data[index].updateTime));
-                    }
-
-                    var expected_data = null;
-                    var pending_state = nodes[z].instances[instance].commandClasses[commandclass].data[index].pendingState;
-                    if (pending_state >= 2) {
-                        expected_data = nodes[z].instances[instance].commandClasses[commandclass].data[index].expected_data;
-                    }
-                    var data_item = nodes[z].instances[instance].commandClasses[commandclass].data[index].val;
-                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].type == 'bool') {
-                        if (data_item == true) {
-                            data_item = '{{Oui}}';
-                        } else {
-                            data_item = '{{Non}}';
-                        }
-                    }
-                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only) {
-                        data_item = '';
-                    }
-                    //systems
-                    var data_units = nodes[z].instances[instance].commandClasses[commandclass].data[index].units;
-                    row_system.find("td[key=system-instance]").html(instance);
-                    row_system.find("td[key=system-cc]").html(commandclass + ' (0x' + Number(commandclass).toString(16) + ')');
-                    row_system.find("td[key=system-index]").html(index);
-                    row_system.find("td[key=system-name]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].name);
-                    row_system.find("td[key=system-type]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + ' (' + nodes[z].instances[instance].commandClasses[commandclass].data[index].type + ')');
-                    var system_data = data_item + " " + data_units;
-                    if (expected_data != null) {
-                        system_data += '<br>(<i>' + expected_data + " " + data_units + '</i>)';
-                    }
-                    row_system.find("td[key=system-value]").html(system_data);
-                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only == false) {
-                        row_system.find("td[key=system-edit]").html('<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></button>');
-                    }
-                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false) {
-                        row_system.find("td[key=system-updatetime]").html(app_nodes.timestampConverter(nodes[z].instances[instance].commandClasses[commandclass].data[index].updateTime));
-                    }
-                    //parameters
-                    if (typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('name')) {
-                        row_parameter.find("td[key=parameter-name]").html(
-                            openzwave_node_translation['configuration'][index].name);
-                    } else {
-                        row_parameter.find("td[key=parameter-name]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].name);
-                    }
-                    row_parameter.find("td[key=parameter-index]").html(index);
-                    row_parameter.find("td[key=parameter-type]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW);
-
-                    if (typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('list') && typeof openzwave_node_translation['configuration'][index].list[nodes[z].instances[instance].commandClasses[commandclass].data[index].val] !== 'undefined') {
-                        var translation_item = openzwave_node_translation['configuration'][index].list[data_item];
-                        if (expected_data != null) {
-                            translation_item += '<br>(<i>' + openzwave_node_translation['configuration'][index].list[expected_data] + '</i>)';
-                        }
-                        row_parameter.find("td[key=parameter-value]").html(translation_item);
-                    } else {
-                        if (expected_data != null) {
-                            data_item += '<br>(<i>' + expected_data + '</i>)';
-                        }
-                        row_parameter.find("td[key=parameter-value]").html(data_item);
-                    }
-                    if (nodes[z].instances[instance].commandClasses[commandclass].data[index].read_only == false) {
-                        data_item = nodes[z].instances[instance].commandClasses[commandclass].data[index].val;
-                        if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only) {
-                            data_item = '';
-                        }
-                        row_parameter.find("td[key=parameter-edit]").html('<button type="button" class="btn btn-xs btn-primary editParam" data-paramid="' + index + '" data-paramtype="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-paramname="' + nodes[z].instances[instance].commandClasses[commandclass].data[index].name + '" data-paramvalue="' + data_item + '"><i class="fa fa-wrench"></i></button>');
-                    }
-                    if (typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('help')) {
-                        row_parameter.find("td[key=parameter-help]").html(openzwave_node_translation['configuration'][index].help);
-                    } else {
-                        row_parameter.find("td[key=parameter-help]").html(nodes[z].instances[instance].commandClasses[commandclass].data[index].help);
-                    }
-                }
-            }
-        }
     },
     get_translation: function () {
         if (typeof node_id === 'undefined' || isNaN(node_id)) {
@@ -1515,19 +1262,19 @@ var app_nodes = {
     },
     show_stats: function () {
         var node = $(".node");
-        node.find(".stats_av_req_rtt").html(stats.averageRequestRTT);
-        node.find(".stats_av_res_rtt").html(stats.averageResponseRTT);
-        node.find(".stats_la_req_rtt").html(stats.lastRequestRTT);
-        node.find(".stats_la_res_rtt").html(stats.lastResponseRTT);
-        node.find(".stats_quality").html(stats.quality);
-        node.find(".stats_rec_cnt").html(stats.receivedCnt);
-        node.find(".stats_rec_dups").html(stats.receivedDups);
-        node.find(".stats_rec_ts").html(stats.receivedTS);
-        node.find(".stats_rec_uns").html(stats.receivedUnsolicited);
-        node.find(".stats_retries").html(stats.retries);
-        node.find(".stats_sen_cnt").html(stats.sentCnt);
-        node.find(".stats_sen_failed").html(stats.sentFailed);
-        node.find(".stats_sen_ts").html(stats.sentTS);
+        $("#div_nodeConfigure .stats_av_req_rtt").html(stats.averageRequestRTT);
+        $("#div_nodeConfigure .stats_av_res_rtt").html(stats.averageResponseRTT);
+        $("#div_nodeConfigure .stats_la_req_rtt").html(stats.lastRequestRTT);
+        $("#div_nodeConfigure .stats_la_res_rtt").html(stats.lastResponseRTT);
+        $("#div_nodeConfigure .stats_quality").html(stats.quality);
+        $("#div_nodeConfigure .stats_rec_cnt").html(stats.receivedCnt);
+        $("#div_nodeConfigure .stats_rec_dups").html(stats.receivedDups);
+        $("#div_nodeConfigure .stats_rec_ts").html(stats.receivedTS);
+        $("#div_nodeConfigure .stats_rec_uns").html(stats.receivedUnsolicited);
+        $("#div_nodeConfigure .stats_retries").html(stats.retries);
+        $("#div_nodeConfigure .stats_sen_cnt").html(stats.sentCnt);
+        $("#div_nodeConfigure .stats_sen_failed").html(stats.sentFailed);
+        $("#div_nodeConfigure .stats_sen_ts").html(stats.sentTS);
     },
     show_groups: function () {
         var node = $(".node");
@@ -1585,16 +1332,9 @@ var app_nodes = {
                     newPanel += '<h3 class="panel-title" style="padding-top:10px;">';
                 }
                 newPanel += z + ' : ' + node_groups[z].label + ' {{(nombre maximum d\'associations :}} ' + node_groups[z].maximumAssociations + ')';
-
                 switch (pending_state) {
-                    case 1:
-                    break;
-                    case 2:
-                    break;
                     case 3:
                     newPanel += '  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>';
-                    break;
-                    default:
                     break;
                 }
                 newPanel += '</h3></div><div class="panel-body"><table class="table">' + tr_groups + '</table></div></div>';
@@ -1606,3 +1346,4 @@ var app_nodes = {
 
 
 display_node_stats();
+load_all_node();

@@ -155,9 +155,6 @@ sendVarToJs('node_id', init('id'));
 </div>
 <div class='node' nid='' id="div_nodeConfigure">
     <div id="template-node">
-        <h3>
-            <span class="node-productname fixed">{{inconnu}}</span> - <span class="node-name fixed">{{inconnu}}</span> - {{Node Id:}} <span class="node-id">{{inconnu}}</span>
-        </h3>
         <div class="container-fluid">
             <div id="content">
                 <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
@@ -194,7 +191,7 @@ sendVarToJs('node_id', init('id'));
                                 <h4 class="panel-title"><i class="fa fa-exclamation-circle"></i> {{Attention}}</h4>
                             </div>
                             <div class="panel-body">
-                                <p><span class="node-warning">{{inconnu}}</span></p>
+                                <p><span class="zwaveNodeAttr" data-l1key="warning"></span></p>
                             </div>
                         </div>
                         <div class="panel panel-primary template">
@@ -202,34 +199,33 @@ sendVarToJs('node_id', init('id'));
                                 <h4 class="panel-title"><i class="fa fa-info-circle"></i> {{Informations Noeud}}</h4>
                             </div>
                             <div class="panel-body">
-                                <p>{{Objet parent :}} <b><span class="node-location label label-default" style="font-size : 1em;">{{inconnu}}</span></b></p>
+                                <p>{{Objet parent :}} <b><span class="zwaveNodeAttr label label-default" data-l1key="location" data-l2key="value" style="font-size : 1em;"></span></b></p>
                                 <p>{{Nom de l'équipement :}}
-                                    <b><span class="node-name label label-default" style="font-size : 1em;">{{inconnu}}</span></b>
+                                <b><span class="zwaveNodeAttr label label-default" data-l1key="name" data-l2key="value" style="font-size : 1em;"></span></b>
                                 </p>
                                 <p>{{Modèle :}}
-                                    <b><span class="node-productname label label-default" style="font-size : 1em;">{{inconnu}}</span></b>
-                                    <b><span class="node-zwaveplus label label-info" style="font-size:1em;">{{inconnu}}</span></b>
-                                    <b><span class="node-isSecured label label-success" style="font-size:1em;">{{inconnu}}</span></b>
+                                    <b><span class="zwaveNodeAttr label label-default" data-l1key="product_name" data-l2key="value" style="font-size : 1em;"></span></b>
+                                    <b><span class="node-zwaveplus label label-info" data-l1key="location" data-l2key="value" style="font-size:1em;"></span></b>
+                                    <b><span class="node-isSecured label label-success" data-l1key="location" data-l2key="value" style="font-size:1em;"></span></b>
                                 </p>
                                 <p>{{Fabricant :}}
-                                    <b><span class="node-vendor label label-default"  style="font-size : 1em;">{{inconnu}}</span></b>
+                                    <b><span class="zwaveNodeAttr label label-default" data-l1key="vendorString" data-l2key="value" style="font-size : 1em;"></span></b>
                                 </p>
                                 <p>
-                                    <span class="node-zwave-id default">{{inconnu}}</span></p>
+                                    <span class="zwaveNodeAttr" data-l1key="zwave_id"></span></p>
                                     <p>{{Etat des demandes :}}
-                                        <b><span class="node-queryStage label label-default" style="font-size : 1em;">{{inconnu}}</span></b>
-                                        <i class="fa fa-info-circle" id="node-queryStageDescrition"></i>
+                                        <b><span class="zwaveNodeAttr label label-default" data-l1key="queryStage" style="font-size : 1em;"></span></b>
                                     </p>
-                                    <p>{{Etat :}} <b><span class="node-sleep label label-default" style="font-size : 1em;">{{inconnu}}</span></b>
-                                        <span class="node-battery-span">{{Batterie : }} <b><span class="node-battery label label-default" style="font-size : 1em;">{{inconnu}}</span></b></span>
+                                    <p>{{Etat :}} <b><span class="node-sleep label label-default" data-l1key="location" data-l2key="value" style="font-size : 1em;"></span></b>
+                                        <span class="node-battery-span">{{Batterie : }} <b><span class="zwaveNodeAttr label label-default" data-l1key="battery_level" data-l2key="value" style="font-size : 1em;"></span>%</b></span>
                                     </p>
                                     <p>{{Dernier message :}}
-                                        <b><span class="node-lastSeen label label-default" style="font-size : 1em;">{{inconnu}}</span></b>
+                                        <b><span class="zwaveNodeAttr label label-default" data-l1key="lastReceived" data-l2key="updateTime" style="font-size : 1em;"></span></b>
                                         <span class="node-next-wakeup-span">{{Prochain réveil : }}
-                                            <b><span class="node-next-wakeup label label-default" style="font-size : 1em;">{{inconnu}}</span></b>
+                                            <b><span class="zwaveNodeAttr label label-default" data-l1key="last_notification" data-l2key="next_wakeup" style="font-size : 1em;"></span></b>
                                         </span>
                                     </p>
-                                    <p>{{Voisins : }} <span class="node-neighbours label label-default" style="font-size : 1em;">{{inconnu}}</span></p>
+                                    <p>{{Voisins : }} <span class="node-neighbours label label-default" data-l1key="location" data-l2key="value" style="font-size : 1em;"></span></p>
                                 </div>
                             </div>
                             <div class="panel panel-primary template">
@@ -237,9 +233,9 @@ sendVarToJs('node_id', init('id'));
                                     <h4 class="panel-title"><i class="fa fa-info-circle"></i> {{Classe du module}}</h4>
                                 </div>
                                 <div class="panel-body">
-                                    {{Basique :}} <b><span class="node-basic label label-default">{{inconnu}}</span></b><br/>
-                                    {{Générique :}} <b><span class="node-generic label label-default">{{inconnu}}</span></b><br/>
-                                    {{Spécifique :}} <b><span class="node-specific label label-default">{{inconnu}}</span></b></p>
+                                    {{Basique :}} <b><span class="zwaveNodeAttr label label-default" data-l1key="basicDeviceClassDescription"></span></b><br/>
+                                    {{Générique :}} <b><span class="zwaveNodeAttr label label-default" data-l1key="genericDeviceClassDescription"></span></b><br/>
+                                    {{Spécifique :}} <b><span class="zwaveNodeAttr label label-default" data-l1key="type" data-l2key="value"></span></b></p>
                                 </div>
                             </div>
                             <div class="panel panel-primary template">
@@ -248,12 +244,12 @@ sendVarToJs('node_id', init('id'));
                                     </h4>
                                 </div>
                                 <div class="panel-body">
-                                    <p>{{Vitesse maximale de communication du module :}}<b><span class="node-maxBaudRate"></span></b> {{bit/sec}}</p>
-                                    <b><span class="node-routing"></span></b>
-                                    <b><span class="node-isSecurity"></span></b>
-                                    <b><span class="node-listening"></span></b>
-                                    <b><span class="node-isFrequentListening"></span></b>
-                                    <b><span class="node-isBeaming"></span></b>
+                                    <p>{{Vitesse maximale de communication du module :}}<b><span class="zwaveNodeAttr" data-l1key="maxBaudRate" data-l2key="value"></span></b> {{bit/sec}}</p>
+                                    <b><span class="node-routing" data-l1key="location" data-l2key="value"></span></b>
+                                    <b><span class="node-isSecurity" data-l1key="location" data-l2key="value"></span></b>
+                                    <b><span class="node-listening" data-l1key="location" data-l2key="value"></span></b>
+                                    <b><span class="node-isFrequentListening" data-l1key="location" data-l2key="value"></span></b>
+                                    <b><span class="node-isBeaming" data-l1key="location" data-l2key="value"></span></b>
                                     <br/>
                                     <p><b><span class="node-security"></span></b></p>
                                 </div>
@@ -373,7 +369,7 @@ sendVarToJs('node_id', init('id'));
                         <div class="tab-pane" id="actions">
                             <table class="table table-striped">
                                 <tr>
-                                <td><a data-action="requestNodeNeighboursUpdate" class="btn btn-primary node_action"><i class="fa fa-sitemap"></i> {{Mise à jour des nœuds voisins}}</a></td>
+                                    <td><a data-action="requestNodeNeighboursUpdate" class="btn btn-primary node_action"><i class="fa fa-sitemap"></i> {{Mise à jour des nœuds voisins}}</a></td>
                                     <td>{{Force la mise à jour de la liste des nœuds voisins.}}</td>
                                 </tr>
                                 <tr>
@@ -430,55 +426,55 @@ sendVarToJs('node_id', init('id'));
                             <table class="table table-striped table-condensed">
                                 <tr>
                                     <td><b>{{Temps de demande moyen (ms) :}}</b></td>
-                                    <td><span class="zwaveNodeAttr" data-l1key="statistics" data-l2key="averageRequestRTT"></span></td>
+                                    <td><span class="zwaveStatsAttr" data-l1key="statistics" data-l2key="averageRequestRTT"></span></td>
                                 </tr>
                                 <tr>
                                     <td><b>{{Temps de réponse moyen (ms) :}}</b></td>
-                                    <td><span class="zwaveNodeAttr" data-l1key="statistics" data-l2key="averageResponseRTT"></span></td>
+                                    <td><span class="zwaveStatsAttr" data-l1key="statistics" data-l2key="averageResponseRTT"></span></td>
                                 </tr>
                                 <tr>
                                     <td><b>{{Dernier message de réponse RTT:}}</b></td>
-                                    <td><span class="zwaveNodeAttr" data-l1key="statistics" data-l2key="lastRequestRTT"></span></td>
+                                    <td><span class="zwaveStatsAttr" data-l1key="statistics" data-l2key="lastRequestRTT"></span></td>
                                 </tr>
                                 <tr>
                                     <td><b>{{Dernière réponse RTT :}}</b></td>
-                                    <td><span class="zwaveNodeAttr" data-l1key="statistics" data-l2key="lastResponseRTT"></span></td>
+                                    <td><span class="zwaveStatsAttr" data-l1key="statistics" data-l2key="lastResponseRTT"></span></td>
                                 </tr>
                                 <tr>
                                     <td><b>{{Qualité de la communication avec ce noeud :}}</b></td>
-                                    <td><span class="zwaveNodeAttr" data-l1key="statistics" data-l2key="quality"></span></td>
+                                    <td><span class="zwaveStatsAttr" data-l1key="statistics" data-l2key="quality"></span></td>
                                 </tr>
                                 <tr>
                                     <td><b>{{Nombre de messages reçus par ce noeud :}}</b></td>
-                                    <td><span class="zwaveNodeAttr" data-l1key="statistics" data-l2key="receivedCnt"></span></td>
+                                    <td><span class="zwaveStatsAttr" data-l1key="statistics" data-l2key="receivedCnt"></span></td>
                                 </tr>
                                 <tr>
                                     <td><b>{{Nombre de messages reçus en double :}}</b></td>
-                                    <td><span class="zwaveNodeAttr" data-l1key="statistics" data-l2key="receivedDups"></span></td>
+                                    <td><span class="zwaveStatsAttr" data-l1key="statistics" data-l2key="receivedDups"></span></td>
                                 </tr>
                                 <tr>
                                     <td><b>{{Heure du dernier message reçu :}}</b></td>
-                                    <td><span class="zwaveNodeAttr" data-l1key="statistics" data-l2key="receivedTS"></span></td>
+                                    <td><span class="zwaveStatsAttr" data-l1key="statistics" data-l2key="receivedTS"></span></td>
                                 </tr>
                                 <tr>
                                     <td><b>{{Nombre de messages reçus spontanément :}}</b></td>
-                                    <td><span class="zwaveNodeAttr" data-l1key="statistics" data-l2key="receivedUnsolicited"></span></td>
+                                    <td><span class="zwaveStatsAttr" data-l1key="statistics" data-l2key="receivedUnsolicited"></span></td>
                                 </tr>
                                 <tr>
                                     <td><b>{{Nombre de tentatives d'envoi :}}</b></td>
-                                    <td><span class="zwaveNodeAttr" data-l1key="statistics" data-l2key="retries"></span></td>
+                                    <td><span class="zwaveStatsAttr" data-l1key="statistics" data-l2key="retries"></span></td>
                                 </tr>
                                 <tr>
                                     <td><b>{{Nombre de messages envoyés par ce noeud :}}</b></td>
-                                    <td><span class="zwaveNodeAttr" data-l1key="statistics" data-l2key="sentCnt"></span></td>
+                                    <td><span class="zwaveStatsAttr" data-l1key="statistics" data-l2key="sentCnt"></span></td>
                                 </tr>
                                 <tr>
                                     <td><b>{{Nombre de messages envoyés en erreur :}}</b></td>
-                                    <td><span class="zwaveNodeAttr" data-l1key="statistics" data-l2key="sentFailed"></span></td>
+                                    <td><span class="zwaveStatsAttr" data-l1key="statistics" data-l2key="sentFailed"></span></td>
                                 </tr>
                                 <tr>
                                     <td><b>{{Heure du dernier message envoyé :}}</b></td>
-                                    <td><span class="zwaveNodeAttr" data-l1key="statistics" data-l2key="sentTS"></span></td>
+                                    <td><span class="zwaveStatsAttr" data-l1key="statistics" data-l2key="sentTS"></span></td>
                                 </tr>
                             </table>
                         </div>
