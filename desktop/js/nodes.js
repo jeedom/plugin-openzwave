@@ -13,6 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Plugin openzwave for jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+
  BASIC_CLASS_DESC={1:'{{Contrôleur}}',2:'{{Contrôleur statique}}',3:'{{Esclave}}',4:'{{Esclave pouvant être routé}}'}
  GENERIC_CLASS_DESC={1:'{{Télécommande}}',2:'{{Contrôleur statique}}',3:'{{Contrôleur A/V}}',4:'{{Afficheur}}',5: '{{Répéteur de signal}}',6: '{{Appareil}}',7: '{{Capteur de notification}}',8: '{{Thermostat}}',9: '{{Couvre-fenêtres}}',15: '{{Répéteue}}',16:'{{Interrupteur binaire}}',17: '{{Interrupteur multi-niveau}}',18: '{{Interrupteur distant}}',19: '{{Interrupteur à levier}}',20: '{{Passerelle Z-Wave/IP}}',21: '{{Noeud Z-Wave/IP}}',22: '{{Ventilation}}',23:'{{Panneau de sécurité}}',24: '{{Contrôleur mural}}',32: '{{Capteur binaire}}',33: '{{Capteur multi-niveau}}',34:'{{Niveau d\'eau}}',48:'{{Mesure d\'impulsion}}',49:'{{Mesure}}',64:'{{Contrôle d\'entrée}}',80: '{{Semi-interopérable}}',161:'{{Capteur d\'alarme}}',255:'{{Non interopérable}}'}
  QUERY_STAGE_DESC={'None':'{{Initialisation du processus de recherche de noeud}}','ProtocolInfo':'{{Récupérer des informations de protocole}}','Probe':'{{Ping le module pour voir s’il est réveillé}}','WakeUp':'{{Démarrer le processus de réveil}}','ManufacturerSpecific1':'{{Récupérer le nom du fabricant et les identifiants de produits}}','NodeInfo':'{{Récupérer les infos sur la prise en charge des classes de commandes supportées}}','NodePlusInfo':'{{Récupérer les infos ZWave+ sur la prise en charge des classes de commandes supportées}}','SecurityReport':'{{Récupérer la liste des classes de commande qui nécessitent de la sécurité}}','ManufacturerSpecific2':'{{Récupérer le nom du fabricant et les identifiants de produits}}','Versions':'{{Récupérer des informations de version}}','Instances':'{{Récupérer des informations multi-instances de classe de commande}}','Static':'{{Récupérer des informations statiques}}','CacheLoad':'{{Ping le module lors du redémarrage avec config cache de l’appareil}}','Associations':'{{Récupérer des informations sur les associations}}','Neighbors':'{{Récupérer la liste des noeuds voisins}}','Session':'{{Récupérer des informations de session}}','Dynamic':'{{Récupérer des informations dynamiques}}','Configuration':'{{Récupérer des informations de paramètre configurable}}','Complete':'{{Le processus de l’interview est terminé}}'}
@@ -34,9 +35,9 @@
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-     }
- });
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+       }
+   });
 });
 
  $("#removeGhostNode").off("click").on("click", function () {
@@ -132,9 +133,9 @@
                             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
                         },
                         success: function () {
-                         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-                     }
-                 });
+                           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+                       }
+                   });
                 }
             }
         }
@@ -222,19 +223,17 @@
 });
  $("#saveCopyParams").off("click").on("click", function (e) {
     var toNode = node_id;
-    var fromNode = $('#newvaluenode').val();
-    $.ajax({
-        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + fromNode + "].CopyConfigurations(" + toNode + ")",
-        dataType: 'json',
-        async: true,
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+    var fromNode = ;
+    jeedom.openzwave.node.copyConfigurations({
+        node_id : $('#newvaluenode').val(),
+        target_id : node_id,
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
-        success: function (data) {
-            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-            $('#copyParamsModal').modal('hide');
-        }
-    });
+        success: function () {
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+       }
+   });
 });
  $('#copyToParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
     var modal = $(this);
@@ -284,20 +283,18 @@
     modal.find('.modal-body').append(options_node);
 });
  $("#saveCopyToParams").off("click").on("click", function (e) {
-    var fromNode = node_id;
     $("input:checkbox[name=type]:checked").each(function(){
-        var toNode = $(this).val();
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + fromNode + "].CopyConfigurations(" + toNode + ")",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-            }
-        });
-    });
+     jeedom.openzwave.node.copyConfigurations({
+        node_id : node_id,
+        target_id : $(this).val(),
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+       }
+   });
+ });
     $('#copyToParamsModal').modal('hide');
 });
  $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
@@ -372,10 +369,10 @@
             handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
         },
         success: function (data) {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-         $('#groupsModal').modal('hide');
-     }
- });
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+           $('#groupsModal').modal('hide');
+       }
+   });
 });
  $("body").off("click", ".editValue").on("click", ".editValue", function (e) {
     $('#valuesModal').data('valuename', $(this).data('valuename'));
@@ -432,18 +429,19 @@
 
 
  $("body").off("click", ".forceRefresh").on("click", ".forceRefresh", function (e) {
-    $.ajax({
-        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=/ZWaveAPI/Run/devices[" + node_id + "].instances[" + $(this).attr('data-valueinstance') + "].commandClasses[" + $(this).attr('data-valuecc') + "].data[" + $(this).attr('data-valueidx') + "].Refresh()",
-        dataType: 'json',
-        async: true,
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+     jeedom.openzwave.node.refreshData({
+        node_id : node_id,
+        instance : $(this).attr('data-valueinstance'),
+        class :  $(this).attr('data-valuecc'),
+        index : $(this).attr('data-valueidx'),
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
-        success: function (data) {
-            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-        }
-    });
-});
+        success: function () {
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+     }
+ });
+ });
  $("body").off("click", ".editPolling").on("click", ".editPolling", function (e) {
     var idx = $(this).data('valueidx');
     var instance = $(this).data('valueinstance');
@@ -555,10 +553,10 @@
                 handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
             },
             success: function (data) {
-             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-             $('#valuesModal').modal('hide');
-         }
-     });
+               $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+               $('#valuesModal').modal('hide');
+           }
+       });
     } else if (valueType == "Raw") {
         $.ajax({
             url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].UserCode.SetRaw(" + valueIdx + ",[" + valueValue + "],1)",
@@ -638,9 +636,9 @@
         url: url,
         dataType: 'json',
         success: function (data) {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-     },
-     error: function (request, status, error) {
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+       },
+       error: function (request, status, error) {
         handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
     }
 });
@@ -675,10 +673,10 @@
             handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
         },
         success: function (data) {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-         $('#paramsModal').modal('hide');
-     }
- });
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+           $('#paramsModal').modal('hide');
+       }
+   });
 });
 
  $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
@@ -707,7 +705,7 @@
 }
 
 function display_node_stats(){
-   jeedom.openzwave.node.info({
+ jeedom.openzwave.node.info({
     node_id : node_id,
     info:'getNodeStatistics',
     error: function (error) {
@@ -720,7 +718,7 @@ function display_node_stats(){
 }
 
 function display_node_info(){
-   jeedom.openzwave.node.info({
+ jeedom.openzwave.node.info({
     node_id : node_id,
     info:'all',
     global:false,
@@ -1142,9 +1140,9 @@ $("body").off("click", ".refreshParams").on("click", ".refreshParams", function 
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-     }
- })
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+       }
+   })
 });
 
 function getTranslation(){

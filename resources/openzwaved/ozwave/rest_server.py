@@ -271,46 +271,6 @@ def get_config(node_id):
 			config[my_value.index]['val'] = {'value2': my_value.data, 'value': result_data,'value3': my_value.label, 'value4': sorted(list_values),'updateTime': int(time.time()), 'invalidateTime': 0}
 	return jsonify(config)
 
-@app.route('/ZWaveAPI/Run/devices[<int:source_id>].CopyConfigurations(<int:target_id>)', methods=['GET'])
-@auth.login_required
-def copy_configuration(source_id, target_id):
-	if globals.network_information.controller_is_busy:
-		raise Exception('Controller is bussy')
-	logging.info("copy_configuration from source_id:%s to target_id:%s" % (source_id, target_id,))
-	items = 0
-	utils.check_node_exist(source_id)
-	utils.check_node_exist(target_id)
-	source = globals.network.nodes[source_id]
-	target = globals.network.nodes[target_id]
-	if source.manufacturer_id == target.manufacturer_id and source.product_type == target.product_type and source.product_id == target.product_id:
-		for val in source.get_values():
-			configuration_value = source.values[val]
-			if configuration_value.genre == 'Config':
-				if configuration_value.type == 'Button':
-					continue
-				if configuration_value.is_write_only:
-					continue
-				try:
-					target_value = value_utils.get_value_by_index(target_id, COMMAND_CLASS_CONFIGURATION, 1,configuration_value.index)
-					if target_value is not None:
-						if configuration_value.type == 'List':
-							globals.network.manager.setValue(target_value.value_id, configuration_value.data)
-							accepted = True
-						else:
-							accepted = target.set_config_param(configuration_value.index,configuration_value.data)
-						if accepted:
-							items += 1
-							value_utils.mark_pending_change(target_value, configuration_value.data)
-				except Exception as error:
-					logging.error('Copy configuration %s (index:%s): %s' % (
-					configuration_value.label, configuration_value.index, str(error),))
-		my_result = items != 0
-	else:
-		return utils.format_json_result(False,'The two nodes must be with same: manufacturer_id, product_type and product_id','warning')
-	return jsonify({'result': my_result, 'copied_configuration_items': items})
-
-
-
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses', methods=['GET'])
 @auth.login_required
 def get_command_classes(node_id):
@@ -361,16 +321,6 @@ def get_value6(node_id, instance_id, index, cc_id):
 @auth.login_required
 def force_refresh_one_value(node_id, instance_id, index, cc_id):
 	return refresh_one_value(node_id, instance_id, index, int(cc_id, 16))
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<int:cc_id>].data[<int:index>].Refresh()', methods=['GET'])
-@auth.login_required
-def refresh_one_value(node_id, instance_id, index, cc_id):
-	utils.check_node_exist(node_id)
-	for val in globals.network.nodes[node_id].get_values(class_id=cc_id):
-		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[val].index == index:
-			globals.network.nodes[node_id].values[val].refresh()
-			return utils.format_json_result()
-	return utils.format_json_result(False, 'This device does not contain the specified value', 'warning')
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x63].data[<int:index>].code', methods=['GET'])
 @auth.login_required
@@ -880,3 +830,51 @@ def remove_device_openzwave_config(node_id, identical):
 	working_file.close()
 	network_utils.start_network()
 	return utils.format_json_result()
+
+@app.route('/node/copyConfigurations(<int:node_id>,<int:target_id>)', methods=['GET'])
+@auth.login_required
+def copy_configuration(source_id, target_id):
+	if globals.network_information.controller_is_busy:
+		raise Exception('Controller is bussy')
+	logging.info("copy_configuration from source_id:%s to target_id:%s" % (source_id, target_id,))
+	items = 0
+	utils.check_node_exist(source_id)
+	utils.check_node_exist(target_id)
+	source = globals.network.nodes[source_id]
+	target = globals.network.nodes[target_id]
+	if source.manufacturer_id == target.manufacturer_id and source.product_type == target.product_type and source.product_id == target.product_id:
+		for val in source.get_values():
+			configuration_value = source.values[val]
+			if configuration_value.genre == 'Config':
+				if configuration_value.type == 'Button':
+					continue
+				if configuration_value.is_write_only:
+					continue
+				try:
+					target_value = value_utils.get_value_by_index(target_id, COMMAND_CLASS_CONFIGURATION, 1,configuration_value.index)
+					if target_value is not None:
+						if configuration_value.type == 'List':
+							globals.network.manager.setValue(target_value.value_id, configuration_value.data)
+							accepted = True
+						else:
+							accepted = target.set_config_param(configuration_value.index,configuration_value.data)
+						if accepted:
+							items += 1
+							value_utils.mark_pending_change(target_value, configuration_value.data)
+				except Exception as error:
+					logging.error('Copy configuration %s (index:%s): %s' % (
+					configuration_value.label, configuration_value.index, str(error),))
+		my_result = items != 0
+	else:
+		return utils.format_json_result(False,'The two nodes must be with same: manufacturer_id, product_type and product_id','warning')
+	return jsonify({'result': my_result, 'copied_configuration_items': items})
+
+@app.route('/node/refreshData([<int:node_id>],[<int:instance_id>],[<int:cc_id>],[<int:index>])', methods=['GET'])
+@auth.login_required
+def refresh_one_value(node_id, instance_id, index, cc_id):
+	utils.check_node_exist(node_id)
+	for val in globals.network.nodes[node_id].get_values(class_id=cc_id):
+		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[val].index == index:
+			globals.network.nodes[node_id].values[val].refresh()
+			return utils.format_json_result()
+	return utils.format_json_result(False, 'This device does not contain the specified value', 'warning')

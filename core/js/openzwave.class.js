@@ -215,6 +215,42 @@
  	$.ajax(paramsAJAX);
  }
 
+  jeedom.openzwave.node.refreshData = function (_params) {
+ 	var paramsRequired = ['node_id','instance','class','index'];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	paramsAJAX.data = {
+ 		request: 'node/refreshData('+_params.node_id+','+_params.instance+','+_params.class+','+_params.index+')',
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
+
+ jeedom.openzwave.node.copyConfigurations = function (_params) {
+ 	var paramsRequired = ['node_id','target_id'];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	paramsAJAX.data = {
+ 		request: 'node/copyConfigurations('+_params.node_id+','+_params.target_id+')',
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
+
 
  /*************************Backup************************************************/
 
