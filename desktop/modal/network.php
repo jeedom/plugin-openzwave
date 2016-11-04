@@ -30,21 +30,8 @@ if (!isConnect('admin')) {
         height: 100%;
         width: 100%
     }
-    .noscrolling {
-        width: 99%;
-        overflow: hidden;
-    }
-    .table-striped {
-        width: 90%;
-    }
     .node-item {
         border: 1px solid;
-    }
-    .modal-dialog-center {
-        margin: 0;
-        position: absolute;
-        top: 0%;
-        left: 0%;
     }
     .node-primary-controller-color{
         color: #a65ba6;
@@ -79,60 +66,8 @@ if (!isConnect('admin')) {
     .rediconcolor {
         color: red;
     }
-    #log {
-        width: 100%;
-        height: 700px;
-        margin: 0px;
-        padding: 0px;
-        font-size: 16px;
-        color: #fff;
-        background-color: #300a24;
-        overflow: scroll;
-        overflow-x: hidden;
-        font-size: 16px;
-    }
-    .console-out {
-        padding-left: 20px;
-        padding-top: 20px;
-    }
-    .bound-config {
-        width: 100%;
-        margin: 0px;
-        padding: 0px;
-    }
-    .bound-config textarea {
-        width: 100%;
-        margin: 0px;
-        padding: 20px;
-        height: 700px;
-        font-size: 14px;
-
-    }
 </style>
 <div id='div_networkOpenzwaveAlert' style="display: none;"></div>
-<div id="confirmModal" class="modal fade modal-dialog-center" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-aria-hidden="true" data-backdrop="false">
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <a class="close" data-dismiss="modal" aria-hidden="true">×</a>
-            <h3 id="myModalLabel">{{Confirmation}}</h3>
-        </div>
-        <div class="modal-body">
-            <b>{{Remettre à zéro le contrôleur et effacer ses paramètres de configuration réseau.}}</b>
-            <br>{{Le contrôleur devient un contrôleur primaire, prêt pour ajouter des modules sur un nouveau réseau.}}
-            <div class="form-group">
-                <label>{{Veuillez confirmer la remise à zéro en tapant YES}}</label>
-                <input class="form-control required" id="confirm_text" data-placement="top" data-trigger="manual" type="text">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <a type="submit" id="confirm_reset" class="btn btn-success">{{Confirmer la remise à zéro}}</a>
-            <a class="btn btn-danger" data-dismiss="modal" aria-hidden="true">{{Annuler}}</a>
-        </div>
-    </div>
-</div>
-</div>
 <div class='network' nid='' id="div_templateNetwork">
     <div class="container-fluid">
         <div id="content">
@@ -151,29 +86,29 @@ aria-hidden="true" data-backdrop="false">
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4 class="panel-title">{{Informations}}</h4></div>
                         <div class="panel-body">
-                            <p>{{Réseau démarré le}} <span class="network-startTime label label-default" style="font-size : 1em;"></span> <span class="network-awakedTime label label-default" style="font-size : 1em;"></span></p>
-                            <p>{{Le réseau contient}} <b><span class="network-nodes-count"></span></b> {{noeuds, actuellement}} <b><span class="network-sleeping-nodes-count"></span> </b>{{dorment}}</p>
-                            <p>{{Intervalle des demandes :}}<span class="network-poll-interval label label-default" style="font-size : 1em;"></span></p>
-                            <p>{{Voisins :}}<span class="network-node-neighbours label label-default" style="font-size : 1em;"></span></p>
+                            <p>{{Réseau démarré le}} <span class="zwaveNetworkAttr label label-default" style="font-size : 1em;" data-l1key="startTime"></span> <span class="network-awakedTime label label-default" style="font-size : 1em;"></span></p>
+                            <p>{{Le réseau contient}} <b><span class="zwaveNetworkAttr" data-l1key="nodesCount"></span></b> {{noeuds, actuellement}} <b><span class="zwaveNetworkAttr" data-l1key="sleepingNodesCount"></span> </b>{{dorment}}</p>
+                            <p>{{Intervalle des demandes :}}<span class="zwaveNetworkAttr label label-default" style="font-size : 1em;"  data-l1key="pollInterval"></span></p>
+                            <p>{{Voisins :}}<span class="zwaveNetworkAttr label label-default" data-l1key="neighbors" style="font-size : 1em;"></span></p>
                         </div>
                     </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4 class="panel-title">{{Etat}}</h4></div>
                         <div class="panel-body">
-                            <p><span class="network-state-led"></span> {{Etat actuel :}} <span class="network-state-description label label-default" style="font-size : 1em;"></span></p>
-                            <p><span class="network-outgoing-send-queueWarning"></span> {{Queue sortante :}} <span class="network-outgoing-send-queue label label-default" style="font-size : 1em;"></span></p>
+                            <p><span class="zwaveNetworkAttr" data-l1key="state"></span> {{Etat actuel :}} <span class="zwaveNetworkAttr label label-default" data-l1key="stateDescription" style="font-size : 1em;"></span></p>
+                            <p><span class="zwaveNetworkAttr" data-l1key="outgoingSendQueueDescription"></span> {{Queue sortante :}} <span class="zwaveNetworkAttr label label-default" data-l1key="outgoingSendQueue" style="font-size : 1em;"></span></p>
                         </div>
                     </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4 class="panel-title">{{Capacités}}</h4></div>
-                        <div class="panel-body"><lu class="network-controller-node-capabilities" style="font-size : 1em;"></lu></div>
+                        <div class="panel-body"><lu class="zwaveNetworkAttr" data-l1key="node_capabilities" style="font-size : 1em;"></lu></div>
                     </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4 class="panel-title">{{Système}}</h4></div>
                         <div class="panel-body">
-                            <p>{{Chemin du contrôleur Z-Wave :}} <span class="network-device-path label label-default" style="font-size : 1em;"></span></p>
-                            <p>{{Version de la librairie OpenZwave :}}<span class="network-oz-library-version label label-default" style="font-size : 1em;"></span></p>
-                            <p>{{Version de la librairie Python-OpenZwave :}} <span class="network-poz-library-version label label-default" style="font-size : 1em;"></span></p>
+                            <p>{{Chemin du contrôleur Z-Wave :}} <span class="zwaveNetworkAttr label label-default" data-l1key="devicePath" style="font-size : 1em;"></span></p>
+                            <p>{{Version de la librairie OpenZwave :}}<span class="zwaveNetworkAttr label label-default" data-l1key="OpenZwaveLibraryVersion" style="font-size : 1em;"></span></p>
+                            <p>{{Version de la librairie Python-OpenZwave :}} <span class="zwaveNetworkAttr label label-default" data-l1key="PythonOpenZwaveLibraryVersion" style="font-size : 1em;"></span></p>
                         </div>
                     </div>
                 </div>
@@ -312,83 +247,83 @@ aria-hidden="true" data-backdrop="false">
                     <table class="table table-condensed table-striped">
                         <tr>
                             <td><b>{{Nombre d'émissions lues :}}</b></td>
-                            <td><span class="stats_broadcastReadCnt"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="broadcastReadCnt"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre d'émissions envoyées :}}</b></td>
-                            <td><span class="stats_broadcastWriteCnt"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="broadcastWriteCnt"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de bits ACK reçus :}}</b></td>
-                            <td><span class="stats_ACKCnt"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="ACKCnt"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de messages non-sollicités alors qu'en attente d'ACK :}}</b></td>
-                            <td><span class="stats_ACKWaiting"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="ACKWaiting"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de bits CAN reçus :}}</b></td>
-                            <td><span class="stats_CANCnt"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="CANCnt"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de bits NAK reçus :}}</b></td>
-                            <td><span class="stats_NAKCnt"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="NAKCnt"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de bits jamais arrivés :}}</b></td>
-                            <td><span class="stats_OOFCnt"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="OOFCnt"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de bits SOF reçus :}}</b></td>
-                            <td><span class="stats_SOFCnt"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="SOFCnt"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de mauvais checksums :}}</b></td>
-                            <td><span class="stats_badChecksum"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="badChecksum"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de retours inattendus :}}</b></td>
-                            <td><span class="stats_callbacks"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="callbacks"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de ACK retournés en erreur :}}</b></td>
-                            <td><span class="stats_noack"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="noack"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de lectures en échec dues au timeout :}}</b></td>
-                            <td><span class="stats_readAborts"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="readAborts"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de messages d'échec dus au réseau occupé :}}</b></td>
-                            <td><span class="stats_netbusy"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="netbusy"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de messages correctement reçus :}}</b></td>
-                            <td><span class="stats_readCnt"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="readCnt"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de messages correctement envoyés :}}</b></td>
-                            <td><span class="stats_writeCnt"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="writeCnt"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de messages non remis au réseau :}}</b></td>
-                            <td><span class="stats_nondelivery"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="nondelivery"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de messages jetés ou non délivrés :}}</b></td>
-                            <td><span class="stats_dropped"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="dropped"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de messages en échec à cause d'un mauvais routage :}}</b></td>
-                            <td><span class="stats_badroutes"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="badroutes"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de messages retransmis :}}</b></td>
-                            <td><span class="stats_retries"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="retries"></span></td>
                         </tr>
                         <tr>
                             <td><b>{{Nombre de messages reçus avec statut de routage occupé :}}</b></td>
-                            <td><span class="stats_routedbusy"></span></td>
+                            <td><span class="zwaveNetworkAttr" data-l1key="controllerStatistics" data-l2key="routedbusy"></span></td>
                         </tr>
                     </table>
                 </div>

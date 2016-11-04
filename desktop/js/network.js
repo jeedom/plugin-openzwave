@@ -207,17 +207,13 @@ $("body").off("click", ".requestNodeNeighboursUpdate").on("click", ".requestNode
         handleAjaxError(request, status, error, $('#div_networkOpenzwaveAlert'));
     },
     success: function (data) {
-        if (data['result'] == true) {
-         $('#li_state').show();
-         setTimeout(function () {
-            $('#li_state').hide();
-        }, 3000);
-         network_load_data();
-         app_network.displayRoutingTable();
-     } else {
-        $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
-    }
-}
+     $('#li_state').show();
+     setTimeout(function () {
+        $('#li_state').hide();
+    }, 3000);
+     network_load_data();
+     app_network.displayRoutingTable();
+ }
 });
 });
 
@@ -396,97 +392,55 @@ function network_load_info(){
             }
         },
         success: function (data) {
-            $(".network .stats_ACKCnt").html(data.controllerStatistics.ACKCnt);
-            $(".network .stats_ACKWaiting").html(data.controllerStatistics.ACKWaiting);
-            $(".network .stats_CANCnt").html(data.controllerStatistics.CANCnt);
-            $(".network .stats_NAKCnt").html(data.controllerStatistics.NAKCnt);
-            $(".network .stats_OOFCnt").html(data.controllerStatistics.OOFCnt);
-            $(".network .stats_SOFCnt").html(data.controllerStatistics.SOFCnt);
-            $(".network .stats_badChecksum").html(data.controllerStatistics.badChecksum);
-            $(".network .stats_badroutes").html(data.controllerStatistics.badroutes);
-            $(".network .stats_broadcastReadCnt").html(data.controllerStatistics.broadcastReadCnt);
-            $(".network .stats_broadcastWriteCnt").html(data.controllerStatistics.broadcastWriteCnt);
-            $(".network .stats_callbacks").html(data.controllerStatistics.callbacks);
-            $(".network .stats_dropped").html(data.controllerStatistics.dropped);
-            $(".network .stats_netbusy").html(data.controllerStatistics.netbusy);
-            $(".network .stats_noack").html(data.controllerStatistics.noack);
-            $(".network .stats_nondelivery").html(data.controllerStatistics.nondelivery);
-            $(".network .stats_readAborts").html(data.controllerStatistics.readAborts);
-            $(".network .stats_readCnt").html(data.controllerStatistics.readCnt);
-            $(".network .stats_retries").html(data.controllerStatistics.retries);
-            $(".network .stats_routedbusy").html(data.controllerStatistics.routedbusy);
-            $(".network .stats_writeCnt").html(data.controllerStatistics.writeCnt);
-
-            $(".network .network-startTime").html(jeedom.openzwave.timestampConverter(data.startTime));
-            var awakedDelay = data.awakedDelay;
-            if (awakedDelay != null) {
-                $(".network .network-awakedTime").html('opérationnel en ' + awakedDelay + ' secondes');
-            }else {
-                $(".network .network-awakedTime").html('');
-            }
-            $(".network .network-nodes-count").html(data.nodesCount);        
-            $(".network .network-sleeping-nodes-count").html(data.sleepingNodesCount);
-            $(".network .network-scenes-count").html(data.scenesCount);
-            var pollInterval = jeedom.openzwave.durationConvert(parseInt(data.pollInterval, 0) / 1000);
-            $(".network .network-poll-interval").html(pollInterval);
-            $(".network .network-isready").html(data.isReady);
-            $(".network .network-state-description").html(data.stateDescription);
-            var stateled = "";
+            data.startTime = jeedom.openzwave.timestampConverter(data.startTime);
+            data.pollInterval = jeedom.openzwave.durationConvert(parseInt(data.pollInterval, 0) / 1000);
+            data.awakedDelay = (data.awakedDelay != null) ?  'opérationnel en ' + data.awakedDelay + ' secondes':'';
             switch (data.state) {
                 case 0:
-                stateled = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
+                data.state = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
                 break;
                 case 1:
-                stateled = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
+                data.state = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
                 break;
                 case 3:
-                stateled = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
+                data.state = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
                 break;
                 case 5:
-                stateled = "<i class='fa fa-circle yellowiconcolor'></i>";
+                data.state = "<i class='fa fa-circle yellowiconcolor'></i>";
                 break;
                 case 7:
-                stateled = "<i class='fa fa-bullseye greeniconcolor'></i>";
+                data.state = "<i class='fa fa-bullseye greeniconcolor'></i>";
                 break;
                 case 10:
-                stateled = "<i class='fa fa-circle greeniconcolor'></i>";
+                data.state = "<i class='fa fa-circle greeniconcolor'></i>";
                 break;
             }
-            $(".network .network-state-led").html(stateled);
-            var node_capabilities = '';
+            data.node_capabilities = '';
             if (data.controllerNodeCapabilities.indexOf('primaryController') != -1) {
-                node_capabilities += '<li>{{Contrôleur Primaire}}</li>'
+                data.node_capabilities += '<li>{{Contrôleur Primaire}}</li>'
             }
             if (data.controllerNodeCapabilities.indexOf('staticUpdateController') != -1) {
-                node_capabilities += '<li>{{Contrôleur statique de mise à jour (SUC)}}</li>'
+                data.node_capabilities += '<li>{{Contrôleur statique de mise à jour (SUC)}}</li>'
             }
             if (data.controllerNodeCapabilities.indexOf('bridgeController') != -1) {
-                node_capabilities += '<li>{{Contrôleur secondaire}}</li>'
+                data.node_capabilities += '<li>{{Contrôleur secondaire}}</li>'
             }
             if (data.controllerNodeCapabilities.indexOf('listening') != -1) {
-                node_capabilities += '<li>{{Le noeud est alimenté et écoute en permanence}}</li>'
+                data.node_capabilities += '<li>{{Le noeud est alimenté et écoute en permanence}}</li>'
             }
             if (data.controllerNodeCapabilities.indexOf('beaming') != -1) {
-                node_capabilities += '<li>{{Le noeud est capable d\'envoyer une trame réseaux}}</li>';
+                data.node_capabilities += '<li>{{Le noeud est capable d\'envoyer une trame réseaux}}</li>';
             }
-            $(".network .network-controller-node-capabilities").html(node_capabilities);
-            var outgoingSendQueue = parseInt(data.outgoingSendQueue, 0);
-            if (outgoingSendQueue == 0) {
-                outgoingSendQueueDescription = "<i class='fa fa-circle fa-lg greeniconcolor'></i>";
-            }else if (outgoingSendQueue <= 5) {
-                outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg greeniconcolor'></i>";
-            }else if (outgoingSendQueue <= 15) {
-                outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg yellowiconcolor'></i>";
+            data.outgoingSendQueue = parseInt(data.outgoingSendQueue, 0);
+            if (data.outgoingSendQueue == 0) {
+                data.outgoingSendQueueDescription = "<i class='fa fa-circle fa-lg greeniconcolor'></i>";
+            }else if (data.outgoingSendQueue <= 5) {
+                data.outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg greeniconcolor'></i>";
+            }else if (data.outgoingSendQueue <= 15) {
+                data.outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg yellowiconcolor'></i>";
             }else {
-                outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg rediconcolor'></i>";
+                data.outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg rediconcolor'></i>";
             }
-            $(".network .network-outgoing-send-queue").html(outgoingSendQueue);
-            $(".network .network-outgoing-send-queueWarning").html(outgoingSendQueueDescription);
-            $(".network .network-controller-stats").html(data.controllerStatistics);
-            $(".network .network-device-path").html(data.devicePath);
-            $(".network .network-oz-library-version").html(data.OpenZwaveLibraryVersion);
-            $(".network .network-poz-library-version").html(data.PythonOpenZwaveLibraryVersion);
-            $(".network .network-node-neighbours").html(data.neighbors);
             var table_notifications = '';
             for (i = 0; i < data.notifications.length; i++) {
                 table_notifications += '<tr>';
@@ -500,25 +454,7 @@ function network_load_info(){
                 table_notifications += '</tr>';
             }
             $(".network .notification_variables").html(table_notifications);
-            var disabledCommand = data.state < 5 || outgoingSendQueue > 0;
-            $("#addDevice").prop("disabled", disabledCommand);
-            $("#addDeviceSecure").prop("disabled", disabledCommand);
-            $("#removeDevice").prop("disabled", disabledCommand);
-            $("#cancelCommand").prop("disabled", data.mode == 0);
-            $("#testNetwork").prop("disabled", disabledCommand);
-            $("#healNetwork").prop("disabled", disabledCommand);
-            $("#healNetwork2").prop("disabled", disabledCommand);
-            $("#requestNodeNeighboursUpdate").prop("disabled", disabledCommand);
-            $("#createNewPrimary").prop("disabled", disabledCommand);
-            $("#replicationSend").prop("disabled", disabledCommand);
-            $("#requestNetworkUpdate").prop("disabled", disabledCommand);
-            $("#transferPrimaryRole").prop("disabled", disabledCommand);
-            $("#receiveConfiguration").prop("disabled", disabledCommand);
-            $("#writeConfigFile").prop("disabled", data.state < 5);
-            $("#regenerateNodesCfgFile").prop("disabled", data.state < 5 || data.mode != 0);
-            $("#softReset").prop("disabled", data.state < 5 || data.mode != 0);
-            $("#hardReset").prop("disabled", data.state < 5 || data.mode != 0);
-
+            $('#div_templateNetwork').setValues(data, '.zwaveNetworkAttr');
             if($('#div_templateNetwork').html() != undefined && $('#div_templateNetwork').is(':visible')){
                 setTimeout(function(){ network_load_info(); }, 2000);
             }
@@ -564,8 +500,6 @@ function getFarNeighbours(nodeId, exludeNodeIds, hops) {
     });
     return nodesList;
 }
-
-
 
 network_load_data();
 network_load_info();
