@@ -9,6 +9,7 @@ import time
 
 from openzwave.network import ZWaveNetwork
 from utilities.NetworkExtend import *
+from utilities.Constants import *
 
 def start_network():
 	# reset flags
