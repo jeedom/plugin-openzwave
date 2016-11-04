@@ -859,3 +859,42 @@ def press_button(node_id, instance_id, cc_id, index):
 				globals.network.manager.releaseButton(globals.network.nodes[node_id].values[val].value_id)
 			return utils.format_json_result()
 	return utils.format_json_result(success='error', data='Button not found')
+#OLD ROUTES FOR NOW
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()', methods=['GET'])
+@auth.login_required
+def press_button(node_id, instance_id, cc_id, index):
+	utils.check_node_exist(node_id)
+	logging.info("press_button nodeId:%s, instance:%s, cc:%s, index:%s" % (node_id, instance_id, cc_id, index,))
+	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
+		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[
+			val].index == index:
+			globals.network.manager.pressButton(globals.network.nodes[node_id].values[val].value_id)
+			if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and globals.network.nodes[node_id].values[val].label in ['Bright', 'Dim', 'Open', 'Close']:
+				value = 1
+				if globals.network.nodes[node_id].values[val].label in ['Bright', 'Open']:
+					value = 99
+				elif globals.network.nodes[node_id].values[val].label in ['Close']:
+					value = 0
+				value_level = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
+												 globals.network.nodes[node_id].values[val].instance, 'Level')
+				if value_level:
+					value_utils.prepare_refresh(node_id, value_level.value_id, value, utils.is_motor(node_id))
+			return utils.format_json_result()
+	return utils.format_json_result(False, 'button not found', 'warning')
+
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ReleaseButton()', methods=['GET'])
+@auth.login_required
+def release_button(node_id, instance_id, cc_id, index):
+	utils.check_node_exist(node_id)
+	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
+		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[
+			val].index == index:
+			globals.network.manager.releaseButton(globals.network.nodes[node_id].values[val].value_id)
+			if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
+				value_level = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
+												 globals.network.nodes[node_id].values[val].instance, 'Level')
+				if value_level:
+					value_utils.stop_refresh(node_id, value_level.value_id)
+
+			return utils.format_json_result()
+	return utils.format_json_result(False, 'button not found', 'warning')
