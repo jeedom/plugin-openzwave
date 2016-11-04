@@ -17,6 +17,7 @@
  GENERIC_CLASS_DESC={1:'{{Télécommande}}',2:'{{Contrôleur statique}}',3:'{{Contrôleur A/V}}',4:'{{Afficheur}}',5: '{{Répéteur de signal}}',6: '{{Appareil}}',7: '{{Capteur de notification}}',8: '{{Thermostat}}',9: '{{Couvre-fenêtres}}',15: '{{Répéteue}}',16:'{{Interrupteur binaire}}',17: '{{Interrupteur multi-niveau}}',18: '{{Interrupteur distant}}',19: '{{Interrupteur à levier}}',20: '{{Passerelle Z-Wave/IP}}',21: '{{Noeud Z-Wave/IP}}',22: '{{Ventilation}}',23:'{{Panneau de sécurité}}',24: '{{Contrôleur mural}}',32: '{{Capteur binaire}}',33: '{{Capteur multi-niveau}}',34:'{{Niveau d\'eau}}',48:'{{Mesure d\'impulsion}}',49:'{{Mesure}}',64:'{{Contrôle d\'entrée}}',80: '{{Semi-interopérable}}',161:'{{Capteur d\'alarme}}',255:'{{Non interopérable}}'}
  QUERY_STAGE_DESC={'None':'{{Initialisation du processus de recherche de noeud}}','ProtocolInfo':'{{Récupérer des informations de protocole}}','Probe':'{{Ping le module pour voir s’il est réveillé}}','WakeUp':'{{Démarrer le processus de réveil}}','ManufacturerSpecific1':'{{Récupérer le nom du fabricant et les identifiants de produits}}','NodeInfo':'{{Récupérer les infos sur la prise en charge des classes de commandes supportées}}','NodePlusInfo':'{{Récupérer les infos ZWave+ sur la prise en charge des classes de commandes supportées}}','SecurityReport':'{{Récupérer la liste des classes de commande qui nécessitent de la sécurité}}','ManufacturerSpecific2':'{{Récupérer le nom du fabricant et les identifiants de produits}}','Versions':'{{Récupérer des informations de version}}','Instances':'{{Récupérer des informations multi-instances de classe de commande}}','Static':'{{Récupérer des informations statiques}}','CacheLoad':'{{Ping le module lors du redémarrage avec config cache de l’appareil}}','Associations':'{{Récupérer des informations sur les associations}}','Neighbors':'{{Récupérer la liste des noeuds voisins}}','Session':'{{Récupérer des informations de session}}','Dynamic':'{{Récupérer des informations dynamiques}}','Configuration':'{{Récupérer des informations de paramètre configurable}}','Complete':'{{Le processus de l’interview est terminé}}'}
  nodes = {};
+ node_selected = {};
  controller_id = -1;
  var template_node = $("#template-node").html();
  var template_variable = $("#template-variable").html();
@@ -24,7 +25,6 @@
  var template_system = $("#template-system").html();
  var isWarning = false;
  var warningMessage = "";
-
 
  $('.node_action').on('click',function(){
     jeedom.openzwave.node.action({
@@ -37,6 +37,595 @@
          $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
      }
  });
+});
+
+ $("#removeGhostNode").off("click").on("click", function () {
+    bootbox.dialog({
+        title: "{{Suppression automatique du nœud fantôme}}",
+        message: '<form class="form-horizontal"> ' +
+        '<label class="control-label" > {{Les étapes suivantes seront éxécutées:}} </label> ' +
+        '<br>' +
+        '<ul>' +
+        '<li class="active">{{Arrêt du réseau Z-Wave.}}</li>' +
+        '<li class="active">{{Retirer classe de commande de Wake Up du fichier ZWCFG.}}</li>' +
+        '<li class="active">{{Redémarrage du réseau Z-Wave.}}</li>' +
+        '<li class="active">{{Attendre que le réseau soit à nouveau opérationnel (2-5 minutes).}}</li>' +
+        '<li class="active">{{Nœud passe en échec}}</li>' +
+        '<li class="active">{{Supprimer le nœud en échec}}</li>' +
+        '<li class="active">{{Validation de la suppression}}</li>' +
+        '</ul>' +
+        '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
+        '</form>',
+        buttons: {
+            main: {
+                label: "{{Annuler}}",
+                className: "btn-danger"
+            },
+            success: {
+                label: "{{Lancer}}",
+                className: "btn-success",
+                callback: function () {
+                    app_nodes.remove_ghost_node(node_id);
+                }
+            }
+        }
+    }
+    );
+});
+
+ $("#replaceFailedNode").off("click").on("click", function () {
+    bootbox.dialog({
+        title: "{{Remplacer nœud en échec}}",
+        message: '<form class="form-horizontal"> ' +
+        '<label class="control-label" > {{Cette action permet de remplacer un nœud en échec.}} </label> ' +
+        '<br>' +
+        '<label class="lbl lbl-warning" for="name">{{Attention, le controleur sera automatiquement en mode inclusion. Veuillez lancer la procédure sur votre module après la confirmation de cette action.}}</label> ' +
+        '</form>',
+        buttons: {
+            main: {
+                label: "{{Annuler}}",
+                className: "btn-danger"
+            },
+            success: {
+                label: "{{Remplacer}}",
+                className: "btn-success",
+                callback: function () {
+                    app_nodes.replace_failed_node(node_id);
+                }
+            }
+        }
+    }
+    );
+});
+
+ $("#regenerateNodeCfgFile").off("click").on("click", function () {
+    var productName = nodes[node_id].data.product_name.value;
+    var manufacturerName = nodes[node_id].data.vendorString.value;
+    bootbox.dialog({
+        title: "{{Régénérer la détection du nœud}}",
+        message: '<form class="form-horizontal"> ' +
+        '<label class="control-label" > {{Lancer la regénérer sur ?}} </label> ' +
+        '<div> <div class="radio"> <label > ' +
+        '<input type="radio" name="awesomeness" id="awesomeness-1" value="0" checked="checked"> {{Ce module seulement}} </label> ' +
+        '</div><div class="radio"> <label > ' +
+        '<input type="radio" name="awesomeness" id="awesomeness-0" value="1"> ' +
+        ' {{Tous les modules}} <b>' + manufacturerName + ' ' + productName + '</b></label> ' +
+        '</div> ' +
+        '</div><br>' +
+        '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
+        '</form>',
+        buttons: {
+            main: {
+                label: "{{Annuler}}",
+                className: "btn-danger",
+                callback: function () {
+                }
+            },
+            success: {
+                label: "{{Lancer}}",
+                className: "btn-success",
+                callback: function () {
+                    var all = $("input[name='awesomeness']:checked").val()
+                    app_nodes.send_regenerate_node_cfg_file(node_id, all);
+                }
+            }
+        }
+    }
+    );
+});
+
+ $("body").off("click", ".findUsage").on("click", ".findUsage", function (e) {
+    var associations = nodes[node_id].associations;
+    var description = nodes[node_id].data.name.value;
+    var message = '<form class="form-horizontal"><div class="panel-body"> ' +
+    '<p  style="font-size : 1em;"> {{Liste des groupes d\'associations où le module }} <b><span class="node-name label label-default" style="font-size : 1em;">' + description + '</span></b> {{est utilisé:}} </p> ' +
+    '<br>' +
+    '<ul>';
+    $.each(associations, function (key, val) {
+        message += '<li class="active"><p>';
+        if (nodes[key].description.name != '') {
+            message += nodes[key].description.location + ' - <b>' + nodes[key].description.name + '</b>';
+        } else {
+            message += '<b>' + nodes[key].description.product_name + '</b>';
+        }
+        message += '<br><ul class="fa-ul">'
+        $.each(val, function (key2, val2) {
+            message += '<li><i class="fa fa-arrow-right btn-success" aria-hidden="true"></i>  ' + val2.label + ' (' + val2.index + ')</li>';
+        });
+        message += '</ul></p></li>';
+    })
+    message += '</ul>' +
+    '</div></form>';
+    bootbox.dialog({
+        title: "{{Associé via quels modules}}",
+        message: message,
+        buttons: {
+            main: {
+                label: "{{OK}}",
+                className: "btn-success"
+            }
+        }
+    }
+    );
+});
+ $('#copyParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
+    var modal = $(this);
+    modal.find('.modal-body').html(' ');
+    modal.find('.modal-title').text('{{Sélection du module source}}');
+    var options_node = '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
+    options_node += '<div class="col-md-10"><select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
+    var foundIdentical = 0;
+    $.each(nodes, function (key, val) {
+        var manufacturerId = nodes[node_id].data.manufacturerId.value;
+        var manufacturerProductId = nodes[node_id].data.manufacturerProductId.value;
+        var manufacturerProductType = nodes[node_id].data.manufacturerProductType.value;
+        if (key != node_id && val.product.is_valid &&
+            val.product.manufacturer_id == manufacturerId &&
+            val.product.product_id == manufacturerProductId &&
+            val.product.product_type == manufacturerProductType) {
+            foundIdentical = 1;
+        options_node += '<option value="' + key + '">' + key + ' ';
+        if (val.description.name != '') {
+            options_node +=  val.description.location + ' - ' + val.description.name;
+        } else {
+            options_node += val.description.product_name;
+        }
+        options_node += '</option>';
+    }
+});
+    options_node += '</select></div></div>';
+    options_node += '<br>';
+    options_node += '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div>';
+    options_node += '<div class="col-md-10">';
+    options_node += node_id + ' ';
+    if (nodes[node_id].data.name.value != '') {
+        options_node += nodes[node_id].data.location.value + ' - ' + nodes[node_id].data.name.value;
+    }
+    else {
+        options_node += nodes[node_id].data.product_name.value;
+    }
+    options_node += '</div>';
+    options_node += '</div>';
+    if (foundIdentical == 0) {
+        modal.find('#saveCopyParams').hide();
+        options_node = '{{Aucun module identique trouvé}}';
+    }
+    modal.find('.modal-body').append(options_node);
+});
+ $("#saveCopyParams").off("click").on("click", function (e) {
+    var toNode = node_id;
+    var fromNode = $('#newvaluenode').val();
+    $.ajax({
+        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + fromNode + "].CopyConfigurations(" + toNode + ")",
+        dataType: 'json',
+        async: true,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+        },
+        success: function (data) {
+            app_nodes.draw_nodes();
+            app_nodes.load_data(true);
+            app_nodes.show_groups();
+            app_nodes.sendOk();
+            $('#copyParamsModal').modal('hide');
+        }
+    });
+});
+ $('#copyToParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
+    var modal = $(this);
+    modal.find('.modal-body').html(' ');
+    modal.find('.modal-title').text('{{Sélection des modules a appliquer ces paramètres}}');
+    var options_node = '<div class="container-fluid">';
+    options_node += '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
+    options_node += '<div class="col-md-10">  ' + node_id + ' ';
+    if (nodes[node_id].data.name.value != '') {
+        options_node += nodes[node_id].data.location.value + ' ' + nodes[node_id].data.name.value;
+    }
+    else {
+        options_node += nodes[node_id].data.product_name.value;
+    }
+    options_node += '</div></div><br>';
+    options_node +=  '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div><div class="col-md-10">(' + nodes[node_id].data.product_name.value +')</div></div>';
+    options_node += '<form name="targetForm" action="" class="form-horizontal">';
+    var foundIdentical = 0;
+    $.each(nodes, function (key, val) {
+        var manufacturerId = nodes[node_id].data.manufacturerId.value;
+        var manufacturerProductId = nodes[node_id].data.manufacturerProductId.value;
+        var manufacturerProductType = nodes[node_id].data.manufacturerProductType.value;
+        if (key != node_id && val.product.is_valid &&
+            val.product.manufacturer_id == manufacturerId &&
+            val.product.product_id == manufacturerProductId &&
+            val.product.product_type == manufacturerProductType) {
+            options_node += '<div class="row">';
+        options_node += '<div class="col-md-2"></div>';
+        options_node += '<div class="col-md-10">';
+        options_node += '<div class="checkbox-inline"><label>';
+        options_node += '<input type="checkbox" name="type" value="' + key + '"/>';
+        foundIdentical = 1;
+        if (val.description.name != '') {
+            options_node += key + ' ' + val.description.location + ' ' + val.description.name ;
+        } else {
+            options_node += key + ' ' + val.description.product_name ;
+        }
+        options_node +=  '</label></div>';
+        options_node +=  '</div></div>';
+    }
+});
+    options_node += '</form>';
+    if (foundIdentical == 0) {
+        modal.find('#saveCopyToParams').hide();
+        options_node = '{{Aucun module identique trouvé}}';
+    }
+    modal.find('.modal-body').append(options_node);
+});
+ $("#saveCopyToParams").off("click").on("click", function (e) {
+    var fromNode = node_id;
+    $("input:checkbox[name=type]:checked").each(function(){
+        var toNode = $(this).val();
+        $.ajax({
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + fromNode + "].CopyConfigurations(" + toNode + ")",
+            dataType: 'json',
+            async: true,
+            error: function (request, status, error) {
+                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+            },
+            success: function (data) {
+            }
+        });
+    });
+    $('#copyToParamsModal').modal('hide');
+});
+ $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
+    var modal = $(this);
+    var group = $(this).data('groupindex');
+    var associations = [];
+    for (var i in nodes[node_id].groups[group].associations) {
+        associations.push(nodes[node_id].groups[group].associations[i][0] + ";" + nodes[node_id].groups[group].associations[i][1]);
+    }
+    var support_multi_instance = nodes[node_id].multi_instance.support == 1;
+    var node_keys = [];
+    $.each(nodes, function (key, val) {
+        if (key != node_id) {
+            if (val.description.is_static_controller || val.capabilities.isListening || val.capabilities.isFlirs) {
+                if (support_multi_instance) {
+                    if (val.description.is_static_controller) {
+                        node_keys.push(key + ';0');
+                        node_keys.push(key + ';1');
+                    }
+                    else if(val.multi_instance.instances == 1){
+                        node_keys.push(key + ';0');
+                    }
+                    else {
+                        for (i = 1; i <= val.multi_instance.instances; i++) {
+                            node_keys.push(key + ';' + i);
+                        }
+                    }
+                }
+                else{
+                    node_keys.push(key + ';0');
+                }
+            }
+        }
+    });
+    modal.find('.modal-body').html(' ');
+    modal.find('.modal-title').text('{{Groupe }}' + group + ' : {{Ajouter une association pour le noeud}} ' + node_id);
+    var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
+    for (var i in node_keys) {
+        if (associations.indexOf(node_keys[i]) >= 0) {
+            continue;
+        }
+        var values = node_keys[i].split(";");
+        var nodeId = parseInt(values[0]);
+        var node = nodes[nodeId];
+        var nodeInstance = values[1];
+        if (node.description.name != '') {
+            options_node += '<option value="' + node_keys[i] + '">' + nodeId + ' : ' + node.description.location + ' - ' + node.description.name;
+        } else {
+            options_node += '<option value="' + node_keys[i] + '">' + nodeId + ' : ' + node.description.product_name;
+        }
+        if (support_multi_instance && nodeInstance >= 1) {
+            var instanceDisplay = nodeInstance - 1;
+            options_node += ' (' + instanceDisplay + ')';
+        }
+        options_node += '</option>'
+    }
+    options_node += '</select></div>';
+    modal.find('.modal-body').append(options_node);
+});
+ $("#saveGroups").off("click").on("click", function (e) {
+    var groupIndex = $('#groupsModal').data('groupindex');
+    var values = $('#newvaluenode').val().split(";");
+    var nodeId = values[0];
+    var nodeInstance = values[1];
+    var url = '';
+    if (nodeInstance > 0) {
+        url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].Associations[" + groupIndex + "].Add(" + nodeId + "," + nodeInstance + ")";
+    }
+    else {
+        url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[0].commandClasses[0x85].Add(" + groupIndex + "," + nodeId + ")";
+    }
+
+    $.ajax({
+        url: url,
+        dataType: 'json',
+        async: true,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+        },
+        success: function (data) {
+            app_nodes.draw_nodes();
+            app_nodes.load_data(false);
+            app_nodes.show_groups();
+            app_nodes.sendOk();
+            $('#groupsModal').modal('hide');
+        }
+    });
+});
+ $("body").off("click", ".editValue").on("click", ".editValue", function (e) {
+    var idx = $(this).data('valueidx');
+    var instance = $(this).data('valueinstance');
+    var cc = $(this).data('valuecc');
+    var name = $(this).data('valuename');
+    var value = $(this).data('valuevalue');
+    var type = $(this).data('valuetype');
+    var dataitems = $(this).data('valuedataitems');
+    var genre = $(this).data('valuegenre');
+    $('#valuesModal').data('valuename', name);
+    $('#valuesModal').data('valuetype', type);
+    $('#valuesModal').data('valueinstance', instance);
+    $('#valuesModal').data('valuecc', cc);
+    $('#valuesModal').data('valuevalue', value);
+    $('#valuesModal').data('valuedataitems', dataitems);
+    $('#valuesModal').data('valuegenre', genre);
+    $('#valuesModal').data('valueidx', idx).modal('show');
+});
+ $('#valuesModal').off('show.bs.modal').on('show.bs.modal', function (e) {
+    var valueIdx = $(this).data('valueidx');
+    var valueType = $(this).data('valuetype');
+    var valueInstance = $(this).data('valueinstance');
+    var valueCc = $(this).data('valuecc');
+    var valueName = $(this).data('valuename');
+    var valueValue = $(this).data('valuevalue');
+    var valueDataitems = $(this).data('valuedataitems').split(";");
+    var valueGenre = $(this).data('valuegenre');
+    var modal = $(this);
+    modal.find('.modal-title').text('{{Changer la valeur de}} ' + valueName);
+    modal.find('.modal-body').html(valueName);
+    modal.find('.modal-body').append('<b> : </b>');
+    if (valueType == "List") {
+        var options = '<select class="form-control" id="newvaluevalue" style="display:inline-block;width:400px;">';
+        $.each(valueDataitems, function (key, val) {
+            if (val == valueValue) {
+                options += '<option value="' + val + '" selected="selected">' + val + '</option>';
+            } else {
+                options += '<option value="' + val + '">' + val + '</option>';
+            }
+        });
+        options += '</select>';
+        modal.find('.modal-body').empty().append(options);
+    } else if (valueType == "Bool") {
+        var trueString = '&nbsp;{{ON}}&nbsp;';
+        var falseString = '&nbsp;{{OFF}}';
+        if (valueGenre =="System"){
+            trueString = '&nbsp;{{Oui}}&nbsp;';
+            falseString = '&nbsp;{{Non}}';
+        }
+        if (valueValue == true) {
+            modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255" checked>' + trueString);
+            modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0">' + falseString);
+        } else {
+            modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255">' + trueString);
+            modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0" checked>' + falseString);
+        }
+    } else if (valueType == "Button") {
+        modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Press" checked> {{Presser le bouton}} ');
+        modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Release"> {{Relacher le bouton}} ');
+    } else {
+        modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" style="display:inline-block;width:400px;" value="' + valueValue + '">');
+    }
+});
+ $("body").off("click", ".forceRefresh").on("click", ".forceRefresh", function (e) {
+    var index = $(this).attr('data-valueidx');
+    var cc = $(this).attr('data-valuecc');
+    var instance = $(this).attr('data-valueinstance');
+    $.ajax({
+        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=/ZWaveAPI/Run/devices[" + node_id + "].instances[" + instance + "].commandClasses[" + cc + "].data[" + index + "].Refresh()",
+        dataType: 'json',
+        async: true,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+        },
+        success: function (data) {
+            app_nodes.sendOk();
+        }
+    });
+});
+ $("body").off("click", ".editPolling").on("click", ".editPolling", function (e) {
+    var idx = $(this).data('valueidx');
+    var instance = $(this).data('valueinstance');
+    var cc = $(this).data('valuecc');
+    var polling = $(this).data('valuepolling');
+    $('#pollingModal').data('valueinstance', instance);
+    $('#pollingModal').data('valuecc', cc);
+    $('#pollingModal').data('valuepolling', polling);
+    $('#pollingModal').data('valueidx', idx).modal('show');
+});
+ $('#pollingModal').off('show.bs.modal').on('show.bs.modal', function (e) {
+    var valueIdx = $(this).data('valueidx');
+    var valueInstance = $(this).data('valueinstance');
+    var valueCc = $(this).data('valuecc');
+    var valuePolling = $(this).data('valuepolling');
+    var modal = $(this);
+    modal.find('.modal-title').text('{{Changer le rafraichissement}}');
+    modal.find('.modal-body').html("<b>{{Fréquence : }}</b>");
+    var select = '<select class="form-control" style="display:inline-block;width : 200px;" id="newvaluevalue">';
+    select += '<option value="0">{{Auto}}</option>';
+    select += '<option value="1">{{5 min}}</option>';
+    select += '</option>';
+    modal.find('.modal-body').append(select);
+    modal.find('.modal-body').find('#newvaluevalue').val(valuePolling);
+});
+ $("body").off("click", ".editParam").on("click", ".editParam", function (e) {
+    var id = $(this).data('paramid');
+    var name = $(this).data('paramname');
+    var value = $(this).data('paramvalue');
+    var type = $(this).data('paramtype');
+    $('#paramsModal').data('paramname', name);
+    $('#paramsModal').data('paramtype', type);
+    $('#paramsModal').data('paramvalue', value);
+    $('#paramsModal').data('paramid', id).modal('show');
+});
+ $('#paramsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
+    var paramId = $(this).data('paramid');
+    var paramType = $(this).data('paramtype');
+    var paramName = $(this).data('paramname');
+    var paramValue = $(this).data('paramvalue');
+    var modal = $(this);
+    modal.find('.modal-title').text('{{Changer la valeur pour le paramètre}} ' + paramId);
+    modal.find('.modal-body').html(paramName);
+    modal.find('.modal-body').append('<b> : </b>');
+    if (paramType == "List") {
+        $.ajax({
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].commandClasses[0x70].data",
+            dataType: 'json',
+            async: true,
+            error: function (request, status, error) {
+                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+            },
+            success: function (data) {
+                var options = '<select class="form-control" id="newvalue">';
+                $.each(data[paramId].val.value4, function (key, val) {
+                    if (val == paramValue) {
+                        if (typeof openzwave_node_translation.configuration[paramId] !== 'undefined' && openzwave_node_translation['configuration'][paramId].hasOwnProperty('list') && typeof openzwave_node_translation['configuration'][paramId].list[val] !== 'undefined') {
+                            options += '<option value="' + val + '" selected="selected">' + openzwave_node_translation['configuration'][paramId].list[val] + '</option>';
+                        } else {
+                            options += '<option value="' + val + '" selected="selected">' + val + '</option>';
+                        }
+                    } else {
+                        if (typeof openzwave_node_translation.configuration[paramId] !== 'undefined' && openzwave_node_translation['configuration'][paramId].hasOwnProperty('list') && typeof openzwave_node_translation['configuration'][paramId].list[val] !== 'undefined') {
+                            options += '<option value="' + val + '">' + openzwave_node_translation['configuration'][paramId].list[val] + '</option>';
+                        } else {
+                            options += '<option value="' + val + '">' + val + '</option>';
+                        }
+                    }
+                });
+                options += '</select>';
+                modal.find('.modal-body').empty().append(options);
+
+            }
+        });
+    } else if (paramType == "Bool") {
+        if (paramValue == true) {
+            modal.find('.modal-body').append('<input type="radio" name="newvalue" id="on" value="1" checked> {{Oui}} ');
+            modal.find('.modal-body').append('<input type="radio" name="newvalue" id="off" value="0"> {{Non}} ');
+        } else {
+            modal.find('.modal-body').append('<input type="radio" name="newvalue" id="on" value="1"> {{Oui}} ');
+            modal.find('.modal-body').append('<input type="radio" name="newvalue" id="off" value="0" checked> {{Non}} ');
+        }
+    } else if (paramType == "Button") {
+        modal.find('.modal-body').append('<input type="radio" name="newvalue" id="push" value="Press" checked> {{Presser le bouton}} ');
+        modal.find('.modal-body').append('<input type="radio" name="newvalue" id="push" value="Release"> {{Relacher le bouton}} ');
+    } else {
+        modal.find('.modal-body').append('<input type="text" class="form-control" id="newvalue" style="display:inline-block;width:400px;" value="' + paramValue + '">');
+    }
+});
+
+ $("#applyValue").off("click").on("click", function (e) {
+    var valueType = $('#valuesModal').data('valuetype');
+    var valueIdx = $('#valuesModal').data('valueidx');
+    var valueInstance = $('#valuesModal').data('valueinstance');
+    var valueCc = $('#valuesModal').data('valuecc');
+    if (valueType == "Bool") {
+        var valueValue = $('input[name=newvaluevalue]:checked', '#valuesModal').val();
+    } else if (valueType == "Button") {
+        var valueValue = $('input[name=newvaluevalue]:checked', '#valuesModal').val();
+    } else {
+        var valueValue = $('#newvaluevalue').val();
+    }
+    if (valueType == "Button") {
+        $.ajax({
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "]." + valueValue + "Button()",
+            dataType: 'json',
+            async: true,
+            error: function (request, status, error) {
+                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+            },
+            success: function (data) {
+                app_nodes.sendOk();
+                $('#valuesModal').modal('hide');
+                app_nodes.load_data(false);
+            }
+        });
+    } else if (valueType == "Raw") {
+        $.ajax({
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].UserCode.SetRaw(" + valueIdx + ",[" + valueValue + "],1)",
+            dataType: 'json',
+            async: true,
+            error: function (request, status, error) {
+                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+            },
+            success: function (data) {
+                app_nodes.sendOk();
+                $('#valuesModal').modal('hide');
+                app_nodes.load_data(false);
+            }
+        });
+    }else {
+        $.ajax({
+            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "].Set(" + encodeURIComponent(valueValue) + ")",
+            dataType: 'json',
+            async: true,
+            error: function (request, status, error) {
+                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+            },
+            success: function (data) {
+                app_nodes.sendOk();
+                $('#valuesModal').modal('hide');
+                app_nodes.load_data(false);
+            }
+        });
+    }
+});
+ $("#savePolling").off("click").on("click", function (e) {
+    var valueIdx = $('#pollingModal').data('valueidx');
+    var valueInstance = $('#pollingModal').data('valueinstance');
+    var valueCc = $('#pollingModal').data('valuecc');
+    var valueValue = $('#newvaluevalue').val();
+    $.ajax({
+        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "].SetPolling(" + encodeURIComponent(valueValue) + ")",
+        dataType: 'json',
+        async: true,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+        },
+        success: function (data) {
+            app_nodes.draw_nodes();
+            app_nodes.load_data(false);
+            app_nodes.sendOk();
+            $('#pollingModal').modal('hide');
+            app_nodes.draw_nodes();
+        }
+    });
 });
 
  function load_all_node(){
@@ -78,6 +667,7 @@ function display_node_info(){
         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
+        node_selected = data;
         var nodeIsFailed = (data.data.isFailed) ? data.data.isFailed.value : false;
         data.data.lastReceived.updateTime = jeedom.openzwave.timestampConverter(data.data.lastReceived.updateTime)
         data.data.basicDeviceClassDescription = (isset(BASIC_CLASS_DESC[data.data.basicType.value])) ? BASIC_CLASS_DESC[parseInt(data.data.basicType.value, 0)] : basicDeviceClass;
@@ -128,16 +718,15 @@ function display_node_info(){
             $("#div_nodeConfigure .node-sleep").html("---");
             $("#div_nodeConfigure .node-battery-span").hide();
         }
-         $('#div_nodeConfigure').setValues(data.data, '.zwaveNodeAttr');
+        $('#div_nodeConfigure').setValues(data.data, '.zwaveNodeAttr');
         if (controller_id != -1) {
-            var node_groups = data.groups;
             var found = false;
             var hasGroup = false;
-            for (zz in node_groups) {
+            for (zz in data.groups) {
                 if (!isNaN(zz)) {
                     hasGroup = true;
-                    for (var i in node_groups[zz].associations) {
-                        var node_id = node_groups[zz].associations[i][0];
+                    for (var i in data.groups[zz].associations) {
+                        var node_id = data.groups[zz].associations[i][0];
                         if (node_id == controller_id) {
                             found = true;
                             break;
@@ -298,7 +887,7 @@ function display_node_info(){
                     if (data.instances[instance].commandClasses[commandclass].data[index].read_only == false) {
                         value += '<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></button> ';
                     }
-                   if (data.instances[instance].commandClasses[commandclass].data[index].type == 'bool') {
+                    if (data.instances[instance].commandClasses[commandclass].data[index].type == 'bool') {
                         var boolValue = data.instances[instance].commandClasses[commandclass].data[index].val;
                         if (data.instances[instance].commandClasses[commandclass].data[index].name != 'Exporting'){
                             if (boolValue) {
@@ -409,8 +998,76 @@ function display_node_info(){
                 }
             }
         }
+        show_groups();
     }
 });
+}
+
+
+function show_groups(){
+    var node = $(".node");
+    var template_group = $("#template-group").html();
+    var $template = $(".template");
+    var tr_groups = "";
+    $("#groups").empty();
+    $("#groups").append('<br/>');
+    $("#groups").append('<a class="btn btn-info btn-sm findUsage pull-right"><i class="fa fa-sitemap"></i> {{Associé à quels modules}}</a>');
+    $("#groups").append('<br/><br/>');
+    for (z in node_selected.groups) {
+        if (!isNaN(z)) {
+            tr_groups = "";
+            for (var i in node_selected.groups[z].associations) {
+                var node_id = node_selected.groups[z].associations[i][0];
+                var node_instance = node_selected.groups[z].associations[i][1];
+                var id = z + '-' + node_id + '-' + node_instance;
+                if (nodes[node_id]) {
+                    if (nodes[node_id].description.name != '') {
+                        var node_name = nodes[node_id].description.location + ' ' + nodes[node_id].description.name;
+                    } else {
+                        var node_name = nodes[node_id].description.product_name;
+                    }
+                    if (node_instance > 0) {
+                        var instanceDisplay = node_instance -1;
+                        node_name += " (Instance: " + instanceDisplay + ")";
+                    }
+                } else {
+                    var node_name = "UNDEFINED";
+                }
+                tr_groups += "<tr gid='" + id + "'><td>" + node_id + " : " + node_name + "</td><td align='right'>";
+                tr_groups += "<button type='button' class='btn btn-danger btn-sm deleteGroup' data-groupindex='" + z + "' data-nodeid='" + node_id + "' data-nodeinstance='" + node_instance + "'><i class='fa fa-trash-o'></i> {{Supprimer}}</button>"
+                tr_groups += "</td></tr>";
+            }
+            var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right">';
+            if (count(node_selected.groups[z].associations) < node_selected.groups[z].maximumAssociations) {
+                newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="' + z + '">';
+            } else {
+                newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="-1">';
+            }
+            newPanel += '<i class="fa fa-plus"></i> {{Ajouter un noeud}}</a></div>';
+            var pending_state = node_selected.groups[z].pending;
+            switch (pending_state) {
+                case 1:
+                newPanel += '<h3 class="panel-title" style="padding-top:10px;">';
+                break;
+                case 2:
+                newPanel += '<h3 class="panel-title rejectcolor" style="padding-top:10px;">';
+                break;
+                case 3:
+                newPanel += '<h3 class="panel-title pendingcolor" style="padding-top:10px;">';
+                break;
+                default:
+                newPanel += '<h3 class="panel-title" style="padding-top:10px;">';
+            }
+            newPanel += z + ' : ' + node_selected.groups[z].label + ' {{(nombre maximum d\'associations :}} ' + node_selected.groups[z].maximumAssociations + ')';
+            switch (pending_state) {
+                case 3:
+                newPanel += '  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>';
+                break;
+            }
+            newPanel += '</h3></div><div class="panel-body"><table class="table">' + tr_groups + '</table></div></div>';
+            $("#groups").append(newPanel);
+        }
+    }
 }
 
 var app_nodes = {
@@ -426,7 +1083,7 @@ var app_nodes = {
         }, 2000);
         $('#node-queryStageDescrition').popover({title: '', placement: 'right', trigger: 'hover'});
         $("#tab-parameters").off("click").on("click", function () {
-            if (!nodes[app_nodes.selected_node].instances[0].commandClasses[112]) {
+            if (!nodes[node_id].instances[0].commandClasses[112]) {
                 $("#parameters").html('<br><div><b>{{Aucun paramètre prédefini trouvé pour ce noeud}}</b></div><br>');
                 $("#parameters").append('<div class="row"><label class="col-lg-2">{{Paramètre :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">{{Valeur :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">{{Taile :}}</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><button id="sendparamperso" class="btn btn-primary">{{Envoyer le paramètre}}</a></div></div>');
                 $("#sendparamperso").off("click").on("click", function () {
@@ -434,7 +1091,7 @@ var app_nodes = {
                     var paramValue = $('#newvalueperso').val();
                     var paramLength = $('#sizeperso').val();
                     $.ajax({
-                        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].commandClasses[0x70].Set(" + paramId + "," + paramValue + "," + paramLength + ")",
+                        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].commandClasses[0x70].Set(" + paramId + "," + paramValue + "," + paramLength + ")",
                         dataType: 'json',
                         async: true, error: function (request, status, error) {
                             handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
@@ -446,134 +1103,41 @@ var app_nodes = {
                 });
             }
         });
-        $("#tab-groups").off("click").on("click", function () {
-            app_nodes.show_groups();
-        });
-        $("#tab-stats").off("click").on("click", function () {
-            app_nodes.load_stats(app_nodes.selected_node);
-        });
+        
+
         $("body").off("click", ".requestNodeNeighboursUpdate").on("click", ".requestNodeNeighboursUpdate", function (e) {
-            app_nodes.request_node_neighbours_update(app_nodes.selected_node);
+            app_nodes.request_node_neighbours_update(node_id);
         });
         $("body").off("click", ".healNode").on("click", ".healNode", function (e) {
-            app_nodes.healNode(app_nodes.selected_node);
+            app_nodes.healNode(node_id);
         });
         $("body").off("click", ".assignReturnRoute").on("click", ".assignReturnRoute", function (e) {
-            app_nodes.assign_return_route_node(app_nodes.selected_node);
+            app_nodes.assign_return_route_node(node_id);
         });
         $("#refreshNodeValues").off("click").on("click", function () {
-            app_nodes.refresh_node_values(app_nodes.selected_node);
+            app_nodes.refresh_node_values(node_id);
         });
         $("#requestNodeDynamic").off("click").on("click", function () {
-            app_nodes.request_node_dynamic(app_nodes.selected_node);
+            app_nodes.request_node_dynamic(node_id);
         });
         $("body").off("click", ".refreshNodeInfo").on("click", ".refreshNodeInfo", function (e) {
-            app_nodes.refresh_node_info(app_nodes.selected_node);
+            app_nodes.refresh_node_info(node_id);
         });
         $("body").off("click", ".hasNodeFailed").on("click", ".hasNodeFailed", function (e) {
-            app_nodes.has_node_failed(app_nodes.selected_node);
+            app_nodes.has_node_failed(node_id);
         });
         $("body").off("click", ".testNode").on("click", ".testNode", function (e) {
-            app_nodes.test_node(app_nodes.selected_node);
+            app_nodes.test_node(node_id);
         });
         $("#removeFailedNode").off("click").on("click", function () {
-            app_nodes.remove_failed_node(app_nodes.selected_node);
+            app_nodes.remove_failed_node(node_id);
         });
-        $("#removeGhostNode").off("click").on("click", function () {
-            bootbox.dialog({
-                title: "{{Suppression automatique du nœud fantôme}}",
-                message: '<form class="form-horizontal"> ' +
-                '<label class="control-label" > {{Les étapes suivantes seront éxécutées:}} </label> ' +
-                '<br>' +
-                '<ul>' +
-                '<li class="active">{{Arrêt du réseau Z-Wave.}}</li>' +
-                '<li class="active">{{Retirer classe de commande de Wake Up du fichier ZWCFG.}}</li>' +
-                '<li class="active">{{Redémarrage du réseau Z-Wave.}}</li>' +
-                '<li class="active">{{Attendre que le réseau soit à nouveau opérationnel (2-5 minutes).}}</li>' +
-                '<li class="active">{{Nœud passe en échec}}</li>' +
-                '<li class="active">{{Supprimer le nœud en échec}}</li>' +
-                '<li class="active">{{Validation de la suppression}}</li>' +
-                '</ul>' +
-                '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
-                '</form>',
-                buttons: {
-                    main: {
-                        label: "{{Annuler}}",
-                        className: "btn-danger"
-                    },
-                    success: {
-                        label: "{{Lancer}}",
-                        className: "btn-success",
-                        callback: function () {
-                            app_nodes.remove_ghost_node(app_nodes.selected_node);
-                        }
-                    }
-                }
-            }
-            );
-        });
-        $("#replaceFailedNode").off("click").on("click", function () {
-            bootbox.dialog({
-                title: "{{Remplacer nœud en échec}}",
-                message: '<form class="form-horizontal"> ' +
-                '<label class="control-label" > {{Cette action permet de remplacer un nœud en échec.}} </label> ' +
-                '<br>' +
-                '<label class="lbl lbl-warning" for="name">{{Attention, le controleur sera automatiquement en mode inclusion. Veuillez lancer la procédure sur votre module après la confirmation de cette action.}}</label> ' +
-                '</form>',
-                buttons: {
-                    main: {
-                        label: "{{Annuler}}",
-                        className: "btn-danger"
-                    },
-                    success: {
-                        label: "{{Remplacer}}",
-                        className: "btn-success",
-                        callback: function () {
-                            app_nodes.replace_failed_node(app_nodes.selected_node);
-                        }
-                    }
-                }
-            }
-            );
-        });
+
+
         $("#sendNodeInformation").off("click").on("click", function () {
-            app_nodes.send_node_information(app_nodes.selected_node);
+            app_nodes.send_node_information(node_id);
         });
-        $("#regenerateNodeCfgFile").off("click").on("click", function () {
-            var productName = nodes[app_nodes.selected_node].data.product_name.value;
-            var manufacturerName = nodes[app_nodes.selected_node].data.vendorString.value;
-            bootbox.dialog({
-                title: "{{Régénérer la détection du nœud}}",
-                message: '<form class="form-horizontal"> ' +
-                '<label class="control-label" > {{Lancer la regénérer sur ?}} </label> ' +
-                '<div> <div class="radio"> <label > ' +
-                '<input type="radio" name="awesomeness" id="awesomeness-1" value="0" checked="checked"> {{Ce module seulement}} </label> ' +
-                '</div><div class="radio"> <label > ' +
-                '<input type="radio" name="awesomeness" id="awesomeness-0" value="1"> ' +
-                ' {{Tous les modules}} <b>' + manufacturerName + ' ' + productName + '</b></label> ' +
-                '</div> ' +
-                '</div><br>' +
-                '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
-                '</form>',
-                buttons: {
-                    main: {
-                        label: "{{Annuler}}",
-                        className: "btn-danger",
-                        callback: function () {
-                        }
-                    },
-                    success: {
-                        label: "{{Lancer}}",
-                        className: "btn-success",
-                        callback: function () {
-                            var all = $("input[name='awesomeness']:checked").val()
-                            app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node, all);
-                        }
-                    }
-                }
-            }
-            );
-        });
+
         $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
             $('#copyParamsModal').modal('show');
         });
@@ -581,7 +1145,7 @@ var app_nodes = {
             $('#copyToParamsModal').modal('show');
         });
         $("body").off("click", ".refreshParams").on("click", ".refreshParams", function (e) {
-            app_nodes.refresh_parameters(app_nodes.selected_node);
+            app_nodes.refresh_parameters(node_id);
         });
         $("body").off("click", ".addGroup").on("click", ".addGroup", function (e) {
             var group = $(this).data('groupindex');
@@ -596,425 +1160,11 @@ var app_nodes = {
             var node = $(this).data('nodeid');
             var instance = $(this).data('nodeinstance');
             console.log('deleteGroup group:' + group + ' node:' + node + ' instance:' + instance);
-            app_nodes.delete_group(app_nodes.selected_node, group, node, instance);
+            app_nodes.delete_group(node_id, group, node, instance);
         });
-        $("body").off("click", ".findUsage").on("click", ".findUsage", function (e) {
-            var associations = nodes[app_nodes.selected_node].associations;
-            var description = nodes[app_nodes.selected_node].data.name.value;
-            var message = '<form class="form-horizontal"><div class="panel-body"> ' +
-            '<p  style="font-size : 1em;"> {{Liste des groupes d\'associations où le module }} <b><span class="node-name label label-default" style="font-size : 1em;">' + description + '</span></b> {{est utilisé:}} </p> ' +
-            '<br>' +
-            '<ul>';
-            $.each(associations, function (key, val) {
-                message += '<li class="active"><p>';
-                if (nodes[key].description.name != '') {
-                    message += nodes[key].description.location + ' - <b>' + nodes[key].description.name + '</b>';
-                } else {
-                    message += '<b>' + nodes[key].description.product_name + '</b>';
-                }
-                message += '<br><ul class="fa-ul">'
-                $.each(val, function (key2, val2) {
-                    message += '<li><i class="fa fa-arrow-right btn-success" aria-hidden="true"></i>  ' + val2.label + ' (' + val2.index + ')</li>';
-                });
-                message += '</ul></p></li>';
-            })
-            message += '</ul>' +
-            '</div></form>';
-            bootbox.dialog({
-                title: "{{Associé via quels modules}}",
-                message: message,
-                buttons: {
-                    main: {
-                        label: "{{OK}}",
-                        className: "btn-success"
-                    }
-                }
-            }
-            );
-        });
-        $('#copyParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
-            var modal = $(this);
-            modal.find('.modal-body').html(' ');
-            modal.find('.modal-title').text('{{Sélection du module source}}');
-            var options_node = '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
-            options_node += '<div class="col-md-10"><select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
-            var foundIdentical = 0;
-            $.each(nodes, function (key, val) {
-                var manufacturerId = nodes[app_nodes.selected_node].data.manufacturerId.value;
-                var manufacturerProductId = nodes[app_nodes.selected_node].data.manufacturerProductId.value;
-                var manufacturerProductType = nodes[app_nodes.selected_node].data.manufacturerProductType.value;
-                if (key != app_nodes.selected_node && val.product.is_valid &&
-                    val.product.manufacturer_id == manufacturerId &&
-                    val.product.product_id == manufacturerProductId &&
-                    val.product.product_type == manufacturerProductType) {
-                    foundIdentical = 1;
-                options_node += '<option value="' + key + '">' + key + ' ';
-                if (val.description.name != '') {
-                    options_node +=  val.description.location + ' - ' + val.description.name;
-                } else {
-                    options_node += val.description.product_name;
-                }
-                options_node += '</option>';
-            }
-        });
-            options_node += '</select></div></div>';
-            options_node += '<br>';
-            options_node += '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div>';
-            options_node += '<div class="col-md-10">';
-            options_node += app_nodes.selected_node + ' ';
-            if (nodes[app_nodes.selected_node].data.name.value != '') {
-                options_node += nodes[app_nodes.selected_node].data.location.value + ' - ' + nodes[app_nodes.selected_node].data.name.value;
-            }
-            else {
-                options_node += nodes[app_nodes.selected_node].data.product_name.value;
-            }
-            options_node += '</div>';
-            options_node += '</div>';
-            if (foundIdentical == 0) {
-                modal.find('#saveCopyParams').hide();
-                options_node = '{{Aucun module identique trouvé}}';
-            }
-            modal.find('.modal-body').append(options_node);
-        });
-        $("#saveCopyParams").off("click").on("click", function (e) {
-            var toNode = app_nodes.selected_node;
-            var fromNode = $('#newvaluenode').val();
-            $.ajax({
-                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + fromNode + "].CopyConfigurations(" + toNode + ")",
-                dataType: 'json',
-                async: true,
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-                },
-                success: function (data) {
-                    app_nodes.draw_nodes();
-                    app_nodes.load_data(true);
-                    app_nodes.show_groups();
-                    app_nodes.sendOk();
-                    $('#copyParamsModal').modal('hide');
-                }
-            });
-        });
-        $('#copyToParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
-            var modal = $(this);
-            modal.find('.modal-body').html(' ');
-            modal.find('.modal-title').text('{{Sélection des modules a appliquer ces paramètres}}');
-            var options_node = '<div class="container-fluid">';
-            options_node += '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
-            options_node += '<div class="col-md-10">  ' + app_nodes.selected_node + ' ';
-            if (nodes[app_nodes.selected_node].data.name.value != '') {
-                options_node += nodes[app_nodes.selected_node].data.location.value + ' ' + nodes[app_nodes.selected_node].data.name.value;
-            }
-            else {
-                options_node += nodes[app_nodes.selected_node].data.product_name.value;
-            }
-            options_node += '</div></div><br>';
-            options_node +=  '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div><div class="col-md-10">(' + nodes[app_nodes.selected_node].data.product_name.value +')</div></div>';
-            options_node += '<form name="targetForm" action="" class="form-horizontal">';
-            var foundIdentical = 0;
-            $.each(nodes, function (key, val) {
-                var manufacturerId = nodes[app_nodes.selected_node].data.manufacturerId.value;
-                var manufacturerProductId = nodes[app_nodes.selected_node].data.manufacturerProductId.value;
-                var manufacturerProductType = nodes[app_nodes.selected_node].data.manufacturerProductType.value;
-                if (key != app_nodes.selected_node && val.product.is_valid &&
-                    val.product.manufacturer_id == manufacturerId &&
-                    val.product.product_id == manufacturerProductId &&
-                    val.product.product_type == manufacturerProductType) {
-                    options_node += '<div class="row">';
-                options_node += '<div class="col-md-2"></div>';
-                options_node += '<div class="col-md-10">';
-                options_node += '<div class="checkbox-inline"><label>';
-                options_node += '<input type="checkbox" name="type" value="' + key + '"/>';
-                foundIdentical = 1;
-                if (val.description.name != '') {
-                    options_node += key + ' ' + val.description.location + ' ' + val.description.name ;
-                } else {
-                    options_node += key + ' ' + val.description.product_name ;
-                }
-                options_node +=  '</label></div>';
-                options_node +=  '</div></div>';
-            }
-        });
-            options_node += '</form>';
-            if (foundIdentical == 0) {
-                modal.find('#saveCopyToParams').hide();
-                options_node = '{{Aucun module identique trouvé}}';
-            }
-            modal.find('.modal-body').append(options_node);
-        });
-        $("#saveCopyToParams").off("click").on("click", function (e) {
-            var fromNode = app_nodes.selected_node;
-            $("input:checkbox[name=type]:checked").each(function(){
-                var toNode = $(this).val();
-                $.ajax({
-                    url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + fromNode + "].CopyConfigurations(" + toNode + ")",
-                    dataType: 'json',
-                    async: true,
-                    error: function (request, status, error) {
-                        handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-                    },
-                    success: function (data) {
-                    }
-                });
-            });
-            $('#copyToParamsModal').modal('hide');
-        });
-        $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
-            var modal = $(this);
-            var group = $(this).data('groupindex');
-            var associations = [];
-            for (var i in nodes[app_nodes.selected_node].groups[group].associations) {
-                associations.push(nodes[app_nodes.selected_node].groups[group].associations[i][0] + ";" + nodes[app_nodes.selected_node].groups[group].associations[i][1]);
-            }
-            var support_multi_instance = nodes[app_nodes.selected_node].multi_instance.support == 1;
-            var node_keys = [];
-            $.each(nodes, function (key, val) {
-                if (key != app_nodes.selected_node) {
-                    if (val.description.is_static_controller || val.capabilities.isListening || val.capabilities.isFlirs) {
-                        if (support_multi_instance) {
-                            if (val.description.is_static_controller) {
-                                node_keys.push(key + ';0');
-                                node_keys.push(key + ';1');
-                            }
-                            else if(val.multi_instance.instances == 1){
-                                node_keys.push(key + ';0');
-                            }
-                            else {
-                                for (i = 1; i <= val.multi_instance.instances; i++) {
-                                    node_keys.push(key + ';' + i);
-                                }
-                            }
-                        }
-                        else{
-                            node_keys.push(key + ';0');
-                        }
-                    }
-                }
-            });
-            modal.find('.modal-body').html(' ');
-            modal.find('.modal-title').text('{{Groupe }}' + group + ' : {{Ajouter une association pour le noeud}} ' + app_nodes.selected_node);
-            var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
-            for (var i in node_keys) {
-                if (associations.indexOf(node_keys[i]) >= 0) {
-                    continue;
-                }
-                var values = node_keys[i].split(";");
-                var nodeId = parseInt(values[0]);
-                var node = nodes[nodeId];
-                var nodeInstance = values[1];
-                if (node.description.name != '') {
-                    options_node += '<option value="' + node_keys[i] + '">' + nodeId + ' : ' + node.description.location + ' - ' + node.description.name;
-                } else {
-                    options_node += '<option value="' + node_keys[i] + '">' + nodeId + ' : ' + node.description.product_name;
-                }
-                if (support_multi_instance && nodeInstance >= 1) {
-                    var instanceDisplay = nodeInstance - 1;
-                    options_node += ' (' + instanceDisplay + ')';
-                }
-                options_node += '</option>'
-            }
-            options_node += '</select></div>';
-            modal.find('.modal-body').append(options_node);
-        });
-        $("#saveGroups").off("click").on("click", function (e) {
-            var groupIndex = $('#groupsModal').data('groupindex');
-            var values = $('#newvaluenode').val().split(";");
-            var nodeId = values[0];
-            var nodeInstance = values[1];
-            var url = '';
-            if (nodeInstance > 0) {
-                url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].Associations[" + groupIndex + "].Add(" + nodeId + "," + nodeInstance + ")";
-            }
-            else {
-                url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[0].commandClasses[0x85].Add(" + groupIndex + "," + nodeId + ")";
-            }
 
-            $.ajax({
-                url: url,
-                dataType: 'json',
-                async: true,
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-                },
-                success: function (data) {
-                    app_nodes.draw_nodes();
-                    app_nodes.load_data(false);
-                    app_nodes.show_groups();
-                    app_nodes.sendOk();
-                    $('#groupsModal').modal('hide');
-                }
-            });
-        });
-        $("body").off("click", ".editValue").on("click", ".editValue", function (e) {
-            var idx = $(this).data('valueidx');
-            var instance = $(this).data('valueinstance');
-            var cc = $(this).data('valuecc');
-            var name = $(this).data('valuename');
-            var value = $(this).data('valuevalue');
-            var type = $(this).data('valuetype');
-            var dataitems = $(this).data('valuedataitems');
-            var genre = $(this).data('valuegenre');
-            $('#valuesModal').data('valuename', name);
-            $('#valuesModal').data('valuetype', type);
-            $('#valuesModal').data('valueinstance', instance);
-            $('#valuesModal').data('valuecc', cc);
-            $('#valuesModal').data('valuevalue', value);
-            $('#valuesModal').data('valuedataitems', dataitems);
-            $('#valuesModal').data('valuegenre', genre);
-            $('#valuesModal').data('valueidx', idx).modal('show');
-        });
-        $('#valuesModal').off('show.bs.modal').on('show.bs.modal', function (e) {
-            var valueIdx = $(this).data('valueidx');
-            var valueType = $(this).data('valuetype');
-            var valueInstance = $(this).data('valueinstance');
-            var valueCc = $(this).data('valuecc');
-            var valueName = $(this).data('valuename');
-            var valueValue = $(this).data('valuevalue');
-            var valueDataitems = $(this).data('valuedataitems').split(";");
-            var valueGenre = $(this).data('valuegenre');
-            var modal = $(this);
-            modal.find('.modal-title').text('{{Changer la valeur de}} ' + valueName);
-            modal.find('.modal-body').html(valueName);
-            modal.find('.modal-body').append('<b> : </b>');
-            if (valueType == "List") {
-                var options = '<select class="form-control" id="newvaluevalue" style="display:inline-block;width:400px;">';
-                $.each(valueDataitems, function (key, val) {
-                    if (val == valueValue) {
-                        options += '<option value="' + val + '" selected="selected">' + val + '</option>';
-                    } else {
-                        options += '<option value="' + val + '">' + val + '</option>';
-                    }
-                });
-                options += '</select>';
-                modal.find('.modal-body').empty().append(options);
-            } else if (valueType == "Bool") {
-                var trueString = '&nbsp;{{ON}}&nbsp;';
-                var falseString = '&nbsp;{{OFF}}';
-                if (valueGenre =="System"){
-                    trueString = '&nbsp;{{Oui}}&nbsp;';
-                    falseString = '&nbsp;{{Non}}';
-                }
-                if (valueValue == true) {
-                    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255" checked>' + trueString);
-                    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0">' + falseString);
-                } else {
-                    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="on" value="255">' + trueString);
-                    modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="off" value="0" checked>' + falseString);
-                }
-            } else if (valueType == "Button") {
-                modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Press" checked> {{Presser le bouton}} ');
-                modal.find('.modal-body').append('<input type="radio" name="newvaluevalue" id="push" value="Release"> {{Relacher le bouton}} ');
-            } else {
-                modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" style="display:inline-block;width:400px;" value="' + valueValue + '">');
-            }
-        });
-        $("body").off("click", ".forceRefresh").on("click", ".forceRefresh", function (e) {
-            var index = $(this).attr('data-valueidx');
-            var cc = $(this).attr('data-valuecc');
-            var instance = $(this).attr('data-valueinstance');
-            $.ajax({
-                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=/ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[" + instance + "].commandClasses[" + cc + "].data[" + index + "].Refresh()",
-                dataType: 'json',
-                async: true,
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-                },
-                success: function (data) {
-                    app_nodes.sendOk();
-                }
-            });
-        });
-        $("body").off("click", ".editPolling").on("click", ".editPolling", function (e) {
-            var idx = $(this).data('valueidx');
-            var instance = $(this).data('valueinstance');
-            var cc = $(this).data('valuecc');
-            var polling = $(this).data('valuepolling');
-            $('#pollingModal').data('valueinstance', instance);
-            $('#pollingModal').data('valuecc', cc);
-            $('#pollingModal').data('valuepolling', polling);
-            $('#pollingModal').data('valueidx', idx).modal('show');
-        });
-        $('#pollingModal').off('show.bs.modal').on('show.bs.modal', function (e) {
-            var valueIdx = $(this).data('valueidx');
-            var valueInstance = $(this).data('valueinstance');
-            var valueCc = $(this).data('valuecc');
-            var valuePolling = $(this).data('valuepolling');
-            var modal = $(this);
-            modal.find('.modal-title').text('{{Changer le rafraichissement}}');
-            modal.find('.modal-body').html("<b>{{Fréquence : }}</b>");
-            var select = '<select class="form-control" style="display:inline-block;width : 200px;" id="newvaluevalue">';
-            select += '<option value="0">{{Auto}}</option>';
-            select += '<option value="1">{{5 min}}</option>';
-            select += '</option>';
-            modal.find('.modal-body').append(select);
-            modal.find('.modal-body').find('#newvaluevalue').val(valuePolling);
-        });
-        $("body").off("click", ".editParam").on("click", ".editParam", function (e) {
-            var id = $(this).data('paramid');
-            var name = $(this).data('paramname');
-            var value = $(this).data('paramvalue');
-            var type = $(this).data('paramtype');
-            $('#paramsModal').data('paramname', name);
-            $('#paramsModal').data('paramtype', type);
-            $('#paramsModal').data('paramvalue', value);
-            $('#paramsModal').data('paramid', id).modal('show');
-        });
-        $('#paramsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
-            var paramId = $(this).data('paramid');
-            var paramType = $(this).data('paramtype');
-            var paramName = $(this).data('paramname');
-            var paramValue = $(this).data('paramvalue');
-            var modal = $(this);
-            modal.find('.modal-title').text('{{Changer la valeur pour le paramètre}} ' + paramId);
-            modal.find('.modal-body').html(paramName);
-            modal.find('.modal-body').append('<b> : </b>');
-            if (paramType == "List") {
-                $.ajax({
-                    url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].commandClasses[0x70].data",
-                    dataType: 'json',
-                    async: true,
-                    error: function (request, status, error) {
-                        handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-                    },
-                    success: function (data) {
-                        var options = '<select class="form-control" id="newvalue">';
-                        $.each(data[paramId].val.value4, function (key, val) {
-                            if (val == paramValue) {
-                                if (typeof openzwave_node_translation.configuration[paramId] !== 'undefined' && openzwave_node_translation['configuration'][paramId].hasOwnProperty('list') && typeof openzwave_node_translation['configuration'][paramId].list[val] !== 'undefined') {
-                                    options += '<option value="' + val + '" selected="selected">' + openzwave_node_translation['configuration'][paramId].list[val] + '</option>';
-                                } else {
-                                    options += '<option value="' + val + '" selected="selected">' + val + '</option>';
-                                }
-                            } else {
-                                if (typeof openzwave_node_translation.configuration[paramId] !== 'undefined' && openzwave_node_translation['configuration'][paramId].hasOwnProperty('list') && typeof openzwave_node_translation['configuration'][paramId].list[val] !== 'undefined') {
-                                    options += '<option value="' + val + '">' + openzwave_node_translation['configuration'][paramId].list[val] + '</option>';
-                                } else {
-                                    options += '<option value="' + val + '">' + val + '</option>';
-                                }
-                            }
-                        });
-                        options += '</select>';
-                        modal.find('.modal-body').empty().append(options);
-
-                    }
-                });
-            } else if (paramType == "Bool") {
-                if (paramValue == true) {
-                    modal.find('.modal-body').append('<input type="radio" name="newvalue" id="on" value="1" checked> {{Oui}} ');
-                    modal.find('.modal-body').append('<input type="radio" name="newvalue" id="off" value="0"> {{Non}} ');
-                } else {
-                    modal.find('.modal-body').append('<input type="radio" name="newvalue" id="on" value="1"> {{Oui}} ');
-                    modal.find('.modal-body').append('<input type="radio" name="newvalue" id="off" value="0" checked> {{Non}} ');
-                }
-            } else if (paramType == "Button") {
-                modal.find('.modal-body').append('<input type="radio" name="newvalue" id="push" value="Press" checked> {{Presser le bouton}} ');
-                modal.find('.modal-body').append('<input type="radio" name="newvalue" id="push" value="Release"> {{Relacher le bouton}} ');
-            } else {
-                modal.find('.modal-body').append('<input type="text" class="form-control" id="newvalue" style="display:inline-block;width:400px;" value="' + paramValue + '">');
-            }
-        });
         $("#sendNodeInformation").off("click").on("click", function () {
-            app_nodes.send_node_information(app_nodes.selected_node);
+            app_nodes.send_node_information(node_id);
         });
         $("#saveParam").off("click").on("click", function (e) {
             var paramId = $('#paramsModal').data('paramid');
@@ -1029,7 +1179,7 @@ var app_nodes = {
             var paramValue2 = paramValue.replace(/\//g, '@');
             var paramLength = paramValue.length;
             $.ajax({
-                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].commandClasses[0x70].Set(" + paramId + "," + encodeURIComponent(paramValue2) + "," + paramLength + ")",
+                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].commandClasses[0x70].Set(" + paramId + "," + encodeURIComponent(paramValue2) + "," + paramLength + ")",
                 dataType: 'json',
                 async: true,
                 error: function (request, status, error) {
@@ -1042,84 +1192,7 @@ var app_nodes = {
                 }
             });
         });
-        $("#applyValue").off("click").on("click", function (e) {
-            var valueType = $('#valuesModal').data('valuetype');
-            var valueIdx = $('#valuesModal').data('valueidx');
-            var valueInstance = $('#valuesModal').data('valueinstance');
-            var valueCc = $('#valuesModal').data('valuecc');
-            if (valueType == "Bool") {
-                var valueValue = $('input[name=newvaluevalue]:checked', '#valuesModal').val();
-            } else if (valueType == "Button") {
-                var valueValue = $('input[name=newvaluevalue]:checked', '#valuesModal').val();
-            } else {
-                var valueValue = $('#newvaluevalue').val();
-            }
-            if (valueType == "Button") {
-                $.ajax({
-                    url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "]." + valueValue + "Button()",
-                    dataType: 'json',
-                    async: true,
-                    error: function (request, status, error) {
-                        handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-                    },
-                    success: function (data) {
-                        app_nodes.sendOk();
-                        $('#valuesModal').modal('hide');
-                        app_nodes.load_data(false);
-                    }
-                });
-            } else if (valueType == "Raw") {
-                $.ajax({
-                    url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].UserCode.SetRaw(" + valueIdx + ",[" + valueValue + "],1)",
-                    dataType: 'json',
-                    async: true,
-                    error: function (request, status, error) {
-                        handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-                    },
-                    success: function (data) {
-                        app_nodes.sendOk();
-                        $('#valuesModal').modal('hide');
-                        app_nodes.load_data(false);
-                    }
-                });
-            }
-            else {
-                $.ajax({
-                    url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "].Set(" + encodeURIComponent(valueValue) + ")",
-                    dataType: 'json',
-                    async: true,
-                    error: function (request, status, error) {
-                        handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-                    },
-                    success: function (data) {
-                        app_nodes.sendOk();
-                        $('#valuesModal').modal('hide');
-                        app_nodes.load_data(false);
-                    }
-                });
-            }
-        });
-        $("#savePolling").off("click").on("click", function (e) {
-            var valueIdx = $('#pollingModal').data('valueidx');
-            var valueInstance = $('#pollingModal').data('valueinstance');
-            var valueCc = $('#pollingModal').data('valuecc');
-            var valueValue = $('#newvaluevalue').val();
-            $.ajax({
-                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + app_nodes.selected_node + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "].SetPolling(" + encodeURIComponent(valueValue) + ")",
-                dataType: 'json',
-                async: true,
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-                },
-                success: function (data) {
-                    app_nodes.draw_nodes();
-                    app_nodes.load_data(false);
-                    app_nodes.sendOk();
-                    $('#pollingModal').modal('hide');
-                    app_nodes.draw_nodes();
-                }
-            });
-        });
+
 
     },
     sendOk: function () {
@@ -1224,9 +1297,9 @@ var app_nodes = {
     },
     show: function () {
         if (typeof node_id !== 'undefined' && !isNaN(node_id)) {
-            app_nodes.selected_node = node_id;
+            node_id = node_id;
         } else {
-            app_nodes.selected_node = 1;
+            node_id = 1;
         }
     },
     hide: function () {
@@ -1277,70 +1350,7 @@ var app_nodes = {
         $("#div_nodeConfigure .stats_sen_ts").html(stats.sentTS);
     },
     show_groups: function () {
-        var node = $(".node");
-        var template_group = $("#template-group").html();
-        var $template = $(".template");
-        var tr_groups = "";
-        var node_groups = nodes[app_nodes.selected_node].groups;
-        $("#groups").empty();
-        $("#groups").append('<br/>');
-        $("#groups").append('<a class="btn btn-info btn-sm findUsage pull-right"><i class="fa fa-sitemap"></i> {{Associé à quels modules}}</a>');
-        $("#groups").append('<br/><br/>');
-        for (z in node_groups) {
-            if (!isNaN(z)) {
-                tr_groups = "";
-                for (var i in node_groups[z].associations) {
-                    var node_id = node_groups[z].associations[i][0];
-                    var node_instance = node_groups[z].associations[i][1];
-                    var id = z + '-' + node_id + '-' + node_instance;
-                    if (nodes[node_id]) {
-                        if (nodes[node_id].description.name != '') {
-                            var node_name = nodes[node_id].description.location + ' ' + nodes[node_id].description.name;
-                        } else {
-                            var node_name = nodes[node_id].description.product_name;
-                        }
-                        if (node_instance > 0) {
-                            var instanceDisplay = node_instance -1;
-                            node_name += " (Instance: " + instanceDisplay + ")";
-                        }
-                    } else {
-                        var node_name = "UNDEFINED";
-                    }
-                    tr_groups += "<tr gid='" + id + "'><td>" + node_id + " : " + node_name + "</td><td align='right'>";
-                    tr_groups += "<button type='button' class='btn btn-danger btn-sm deleteGroup' data-groupindex='" + z + "' data-nodeid='" + node_id + "' data-nodeinstance='" + node_instance + "'><i class='fa fa-trash-o'></i> {{Supprimer}}</button>"
-                    tr_groups += "</td></tr>";
-                }
-                var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right">';
-                if (count(node_groups[z].associations) < node_groups[z].maximumAssociations) {
-                    newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="' + z + '">';
-                } else {
-                    newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="-1">';
-                }
-                newPanel += '<i class="fa fa-plus"></i> {{Ajouter un noeud}}</a></div>';
-                var pending_state = node_groups[z].pending;
-                switch (pending_state) {
-                    case 1:
-                    newPanel += '<h3 class="panel-title" style="padding-top:10px;">';
-                    break;
-                    case 2:
-                    newPanel += '<h3 class="panel-title rejectcolor" style="padding-top:10px;">';
-                    break;
-                    case 3:
-                    newPanel += '<h3 class="panel-title pendingcolor" style="padding-top:10px;">';
-                    break;
-                    default:
-                    newPanel += '<h3 class="panel-title" style="padding-top:10px;">';
-                }
-                newPanel += z + ' : ' + node_groups[z].label + ' {{(nombre maximum d\'associations :}} ' + node_groups[z].maximumAssociations + ')';
-                switch (pending_state) {
-                    case 3:
-                    newPanel += '  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>';
-                    break;
-                }
-                newPanel += '</h3></div><div class="panel-body"><table class="table">' + tr_groups + '</table></div></div>';
-                $("#groups").append(newPanel);
-            }
-        }
+
     },
 }
 
