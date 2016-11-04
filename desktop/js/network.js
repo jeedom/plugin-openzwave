@@ -24,7 +24,7 @@
                 $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
-                $('#div_networkOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+                $('#div_networkOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
             }
         });
        }
@@ -36,7 +36,7 @@
             $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         $('#div_networkOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+         $('#div_networkOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
      }
  });
 }
@@ -129,14 +129,7 @@ $("#addDevice").off("click").on("click", function () {
         $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-        if (data['result'] == true) {
-            $('#li_state').show();
-            setTimeout(function () {
-                $('#li_state').hide();
-            }, 3000);
-        } else {
-            $('#div_networkOpenzwaveAlert').showAlert({message: '{{Echec}} :' + data.data, level: 'danger'});
-        }
+        $('#div_networkOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
     }
 });
 });
@@ -148,7 +141,7 @@ $("#addDeviceSecure").off("click").on("click", function () {
         $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-        $('#div_networkOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+        $('#div_networkOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
     }
 });
 });
@@ -159,7 +152,7 @@ $("#removeDevice").off("click").on("click", function () {
         $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-     $('#div_networkOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+     $('#div_networkOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
  }
 });
 });
@@ -172,7 +165,7 @@ $("#replicationSend").off("click").on("click", function () {
             $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-            $('#div_networkOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+            $('#div_networkOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
         }
     });
 });
@@ -186,7 +179,7 @@ $("#regenerateNodesCfgFile").off("click").on("click", function () {
                 $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
-                $('#div_networkOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+                $('#div_networkOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
             }
         });
       }
@@ -200,7 +193,7 @@ $("body").off("click", ".requestNodeNeighboursUpdate").on("click", ".requestNode
             $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-            $('#div_networkOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+            $('#div_networkOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
             network_load_info();
             network_load_data();
         }
@@ -211,7 +204,7 @@ function network_load_data(){
     $('#graph_network svg').remove();
     jeedom.openzwave.network.info({
         info:'getNeighbours',
-        error: function (request, status, error) {
+        error: function (error) {
             $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {

@@ -35,9 +35,9 @@
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-       }
-   });
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     }
+ });
 });
 
  $("#removeGhostNode").off("click").on("click", function () {
@@ -133,9 +133,9 @@
                             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
                         },
                         success: function () {
-                           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-                       }
-                   });
+                         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+                     }
+                 });
                 }
             }
         }
@@ -222,8 +222,6 @@
     modal.find('.modal-body').append(options_node);
 });
  $("#saveCopyParams").off("click").on("click", function (e) {
-    var toNode = node_id;
-    var fromNode = ;
     jeedom.openzwave.node.copyConfigurations({
         node_id : $('#newvaluenode').val(),
         target_id : node_id,
@@ -231,9 +229,9 @@
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-       }
-   });
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     }
+ });
 });
  $('#copyToParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
     var modal = $(this);
@@ -284,17 +282,17 @@
 });
  $("#saveCopyToParams").off("click").on("click", function (e) {
     $("input:checkbox[name=type]:checked").each(function(){
-     jeedom.openzwave.node.copyConfigurations({
+       jeedom.openzwave.node.copyConfigurations({
         node_id : node_id,
         target_id : $(this).val(),
         error: function (error) {
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-       }
-   });
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     }
  });
+   });
     $('#copyToParamsModal').modal('hide');
 });
  $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
@@ -369,10 +367,10 @@
             handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
         },
         success: function (data) {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-           $('#groupsModal').modal('hide');
-       }
-   });
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+         $('#groupsModal').modal('hide');
+     }
+ });
 });
  $("body").off("click", ".editValue").on("click", ".editValue", function (e) {
     $('#valuesModal').data('valuename', $(this).data('valuename'));
@@ -429,19 +427,19 @@
 
 
  $("body").off("click", ".forceRefresh").on("click", ".forceRefresh", function (e) {
-     jeedom.openzwave.node.refreshData({
-        node_id : node_id,
-        instance : $(this).attr('data-valueinstance'),
-        class :  $(this).attr('data-valuecc'),
-        index : $(this).attr('data-valueidx'),
-        error: function (error) {
-            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-     }
- });
- });
+   jeedom.openzwave.node.refreshData({
+    node_id : node_id,
+    instance : $(this).attr('data-valueinstance'),
+    class :  $(this).attr('data-valuecc'),
+    index : $(this).attr('data-valueidx'),
+    error: function (error) {
+        $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+       $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+   }
+});
+});
  $("body").off("click", ".editPolling").on("click", ".editPolling", function (e) {
     var idx = $(this).data('valueidx');
     var instance = $(this).data('valueinstance');
@@ -545,15 +543,17 @@
     }
     $('#valuesModal').modal('hide');
     if (valueType == "Button") {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "]." + valueValue + "Button()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+        jeedom.openzwave.node.button({
+            node_id : node_id,
+            instance : $('#valuesModal').data('valueinstance'),
+            class :  $('#pollingModal').data('valuecc'),
+            index : $('#valuesModal').data('valueidx'),
+            action : $('input[name=newvaluevalue]:checked', '#valuesModal').val(),
+            error: function (error) {
+                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
             },
-            success: function (data) {
-               $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+            success: function () {
+               $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
            }
        });
     } else if (valueType == "Raw") {
@@ -565,7 +565,7 @@
                 handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
             },
             success: function (data) {
-                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
             }
         });
     }else {
@@ -577,27 +577,27 @@
                 handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
             },
             success: function (data) {
-                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
             }
         });
     }
     $('#valuesModal').modal('hide');
 });
  $("#savePolling").off("click").on("click", function (e) {
-     jeedom.openzwave.node.setPolling({
-        node_id : node_id,
-        instance : $('#pollingModal').data('valueinstance'),
-        class :  $('#pollingModal').data('valuecc'),
-        index : $('#pollingModal').data('valueidx'),
-        polling : $('#newvaluevalue').val(),
-        error: function (error) {
-            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-     }
- });
- });
+   jeedom.openzwave.node.setPolling({
+    node_id : node_id,
+    instance : $('#pollingModal').data('valueinstance'),
+    class :  $('#pollingModal').data('valuecc'),
+    index : $('#pollingModal').data('valueidx'),
+    polling : $('#newvaluevalue').val(),
+    error: function (error) {
+        $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+       $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+   }
+});
+});
 
  $("#tab-parameters").off("click").on("click", function () {
     if (!nodes[node_id].instances[0].commandClasses[112]) {
@@ -614,7 +614,7 @@
                     handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
                 },
                 success: function (data) {
-                    $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+                    $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
                 }
             });
         });
@@ -631,9 +631,9 @@
         url: url,
         dataType: 'json',
         success: function (data) {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-       },
-       error: function (request, status, error) {
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     },
+     error: function (request, status, error) {
         handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
     }
 });
@@ -668,10 +668,10 @@
             handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
         },
         success: function (data) {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-           $('#paramsModal').modal('hide');
-       }
-   });
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+         $('#paramsModal').modal('hide');
+     }
+ });
 });
 
  $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
@@ -700,7 +700,7 @@
 }
 
 function display_node_stats(){
- jeedom.openzwave.node.info({
+   jeedom.openzwave.node.info({
     node_id : node_id,
     info:'getNodeStatistics',
     error: function (error) {
@@ -713,7 +713,7 @@ function display_node_stats(){
 }
 
 function display_node_info(){
- jeedom.openzwave.node.info({
+   jeedom.openzwave.node.info({
     node_id : node_id,
     info:'all',
     global:false,
@@ -1135,9 +1135,9 @@ $("body").off("click", ".refreshParams").on("click", ".refreshParams", function 
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-       }
-   })
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     }
+ })
 });
 
 function getTranslation(){

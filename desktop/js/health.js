@@ -20,7 +20,7 @@
             $('#div_networkHealthAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-            $('#div_networkHealthAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+            $('#div_networkHealthAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
             display_health_info();
         }
     });
@@ -34,7 +34,7 @@
          $('#div_networkHealthAlert').showAlert({message: error.message, level: 'danger'});
      },
      success: function (data) {
-       $('#div_networkHealthAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+       $('#div_networkHealthAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
        display_health_info();
    }
 });

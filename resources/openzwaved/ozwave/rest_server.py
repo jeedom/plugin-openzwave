@@ -422,45 +422,6 @@ def set_color(node_id, red_level, green_level, blue_level, white_level):
 		my_result = True
 	return utils.format_json_result(my_result)
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()', methods=['GET'])
-@auth.login_required
-def press_button(node_id, instance_id, cc_id, index):
-	utils.check_node_exist(node_id)
-	logging.info("press_button nodeId:%s, instance:%s, cc:%s, index:%s" % (node_id, instance_id, cc_id, index,))
-	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
-		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[
-			val].index == index:
-			globals.network.manager.pressButton(globals.network.nodes[node_id].values[val].value_id)
-			if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and globals.network.nodes[node_id].values[val].label in ['Bright', 'Dim', 'Open', 'Close']:
-				value = 1
-				if globals.network.nodes[node_id].values[val].label in ['Bright', 'Open']:
-					value = 99
-				elif globals.network.nodes[node_id].values[val].label in ['Close']:
-					value = 0
-				value_level = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
-												 globals.network.nodes[node_id].values[val].instance, 'Level')
-				if value_level:
-					value_utils.prepare_refresh(node_id, value_level.value_id, value, utils.is_motor(node_id))
-			return utils.format_json_result()
-	return utils.format_json_result(False, 'button not found', 'warning')
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ReleaseButton()', methods=['GET'])
-@auth.login_required
-def release_button(node_id, instance_id, cc_id, index):
-	utils.check_node_exist(node_id)
-	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
-		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[
-			val].index == index:
-			globals.network.manager.releaseButton(globals.network.nodes[node_id].values[val].value_id)
-			if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
-				value_level = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
-												 globals.network.nodes[node_id].values[val].instance, 'Level')
-				if value_level:
-					value_utils.stop_refresh(node_id, value_level.value_id)
-
-			return utils.format_json_result()
-	return utils.format_json_result(False, 'button not found', 'warning')
-
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)', methods=['GET'])
 @auth.login_required
 def switch_all(node_id, state):
@@ -870,7 +831,7 @@ def get_config(node_id):
 @auth.login_required
 def set_polling_value(node_id, instance_id, cc_id, index, frequency):
 	utils.check_node_exist(node_id)
-	logging.info("set_polling_value for nodeId: %s instance: %s cc:%s index:%s at: %s" % (node_id, instance_id, cc_id, index, frequency,))
+	logging.info('set_polling_value for nodeId: '+str(node_id)+' instance: '+str(instance_id)+' cc : '+str(cc_id)+' index : '+str(index)+' at: '+str(frequency))
 	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16)):
 		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id:
 			my_value = globals.network.nodes[node_id].values[val]
@@ -884,3 +845,17 @@ def set_polling_value(node_id, instance_id, cc_id, index, frequency):
 						my_value.disable_poll()
 	utils.write_config()
 	return utils.format_json_result()
+
+@app.route('/node/<int:node_id>/instance/<int:instance_id>/cc/<int:cc_id>/index/<int:index>/button(<action>)', methods=['GET'])
+@auth.login_required
+def press_button(node_id, instance_id, cc_id, index):
+	utils.check_node_exist(node_id)
+	logging.info('Button nodeId : '+str(node_id)+' instance: '+str(instance_id)+' cc : '+str(cc_id)+' index : '+str(index)+' at: '+str(frequency)+' action '+str(action))
+	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
+		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[val].index == index:
+			if action == 'Press':
+				globals.network.manager.pressButton(globals.network.nodes[node_id].values[val].value_id)
+			if action == 'Press':
+				globals.network.manager.releaseButton(globals.network.nodes[node_id].values[val].value_id)
+			return utils.format_json_result()
+	return utils.format_json_result(success='error', data='Button not found')
