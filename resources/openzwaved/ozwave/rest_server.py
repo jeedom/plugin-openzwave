@@ -552,7 +552,6 @@ def release_button(node_id, instance_id, cc_id, index):
 		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[
 			val].index == index:
 			globals.network.manager.releaseButton(globals.network.nodes[node_id].values[val].value_id)
-			# stop refresh if running in background
 			if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
 				value_level = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
 												 globals.network.nodes[node_id].values[val].instance, 'Level')
@@ -978,7 +977,9 @@ def set_value9(node_id, instance_id, cc_id, index, value):
 def node_info(node_id,info):
 	utils.check_node_exist(node_id)
 	logging.info("node info "+str(info))
-	if info == 'getNodeStatistics':
+	if info == 'all':
+		return utils.format_json_result(data=serialization.serialize_node_to_json(node_id))
+	elif info == 'getNodeStatistics':
 		utils.check_node_exist(node_id,True)
 		query_stage_description = globals.network.manager.getNodeQueryStage(globals.network.home_id, node_id)
 		query_stage_code = globals.network.manager.getNodeQueryStageCode(query_stage_description)

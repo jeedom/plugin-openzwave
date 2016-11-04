@@ -61,18 +61,11 @@ if (!isConnect('admin')) {
 				<input type="checkbox" class="configKey" data-l1key="enabled_sanity_tests" checked/>
 			</div>
 		</div>
-		<!--<div class="form-group">
-			<label class="col-sm-4 control-label">{{Assume Awake, recommandée pour modules Vision Secure}}</label>
-			<div class="col-sm-2">
-				<input type="checkbox" class="configKey" data-l1key="assume_awake" checked/>
-			</div>
-		</div>-->
 		<legend><i class="fa fa-cog"></i>  {{Gestion avancée}}</legend>
 		<div class="form-group">
 			<label class="col-lg-4 control-label">{{Options avancées}}</label>
 			<div class="col-lg-5">
 				<a class="btn btn-warning" id="bt_backupsZwave"><i class="fa fa-floppy-o"></i> {{Backups}}</a>
-				<a class="btn btn-danger" id="bt_fileconfigZwave"><i class="fa fa-file-o"></i> {{Zwcfg}}</a>
 				<a class="btn btn-success" id="bt_syncconfigZwave"><i class="fa fa-refresh"></i> {{Configs modules}}</a>
 			</div>
 		</div>
@@ -108,11 +101,6 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 	$('#bt_backupsZwave').on('click', function () {
 		$('#md_modal2').dialog({title: "{{Backups}}"});
 		$('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=backup').dialog('open');
-	});
-
-	$('#bt_fileconfigZwave').on('click', function () {
-		$('#md_modal2').dialog({title: "{{Configuration}}"});
-		$('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=config').dialog('open');
 	});
 
 	$('#bt_syncconfigZwave').on('click',function(){

@@ -124,7 +124,7 @@ $("#table_cmd").sortable({
 });
 
 function printEqLogic(_eqLogic) {
-    printPending();
+    //printPending();
     if ($('.li_eqLogic.active').attr('data-eqlogic_id') != '') {
         $('#img_device').attr("src", $('.eqLogicDisplayCard[data-eqLogic_id=' + $('.li_eqLogic.active').attr('data-eqlogic_id') + '] img').attr('src'));
     } else {
@@ -422,10 +422,10 @@ function printPending() {
     }
 });
 }
-
+/*
 window.setInterval(function () {
     printPending();
-}, 5000);
+}, 5000);*/
 
 function addCmdToTable(_cmd) {
     if (!isset(_cmd)) {

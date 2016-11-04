@@ -14,39 +14,34 @@
  * along with Plugin openzwave for jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-var app_nodes = {
-    selected_node: 0,
-    updater: false,
-    timestampConverter: function (time) {
-        if (time == 1)
-            return "N/A";
-        var ret;
-        var date = new Date(time * 1000);
-        var hours = date.getHours();
-        if (hours < 10) {
-            hours = "0" + hours;
-        }
-        var minutes = date.getMinutes();
-        if (minutes < 10) {
-            minutes = "0" + minutes;
-        }
-        var seconds = date.getSeconds();
-        if (seconds < 10) {
-            seconds = "0" + seconds;
-        }
-        var num = date.getDate();
-        if (num < 10) {
-            num = "0" + num;
-        }
-        var month = date.getMonth() + 1;
-        if (month < 10) {
-            month = "0" + month;
-        }
-        var year = date.getFullYear();
-        var formattedTime = hours + ':' + minutes + ':' + seconds;
-        var formattedDate = num + "/" + month + "/" + year;
-        return formattedDate + ' ' + formattedTime;
+ $('.node_action').on('click',function(){
+    jeedom.openzwave.node.action({
+        action : $(this).data('action'),
+        node_id : node_id,
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+     }
+ });
+});
+
+ function display_node_stats(){
+   jeedom.openzwave.node.info({
+    node_id : node_id,
+    info:'getNodeStatistics',
+    error: function (error) {
+        $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
     },
+    success: function (data) {
+        console.log(data);
+        $('#div_nodeConfigure').setValues(data, '.zwaveNodeAttr');
+    }
+});
+}
+
+var app_nodes = {
     init: function () {
         controller_id = -1
         app_nodes.load_data(true);
@@ -114,59 +109,59 @@ var app_nodes = {
         });
         $("#removeGhostNode").off("click").on("click", function () {
             bootbox.dialog({
-                    title: "{{Suppression automatique du nœud fantôme}}",
-                    message: '<form class="form-horizontal"> ' +
-                    '<label class="control-label" > {{Les étapes suivantes seront éxécutées:}} </label> ' +
-                    '<br>' +
-                    '<ul>' +
-                    '<li class="active">{{Arrêt du réseau Z-Wave.}}</li>' +
-                    '<li class="active">{{Retirer classe de commande de Wake Up du fichier ZWCFG.}}</li>' +
-                    '<li class="active">{{Redémarrage du réseau Z-Wave.}}</li>' +
-                    '<li class="active">{{Attendre que le réseau soit à nouveau opérationnel (2-5 minutes).}}</li>' +
-                    '<li class="active">{{Nœud passe en échec}}</li>' +
-                    '<li class="active">{{Supprimer le nœud en échec}}</li>' +
-                    '<li class="active">{{Validation de la suppression}}</li>' +
-                    '</ul>' +
-                    '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
-                    '</form>',
-                    buttons: {
-                        main: {
-                            label: "{{Annuler}}",
-                            className: "btn-danger"
-                        },
-                        success: {
-                            label: "{{Lancer}}",
-                            className: "btn-success",
-                            callback: function () {
-                                app_nodes.remove_ghost_node(app_nodes.selected_node);
-                            }
+                title: "{{Suppression automatique du nœud fantôme}}",
+                message: '<form class="form-horizontal"> ' +
+                '<label class="control-label" > {{Les étapes suivantes seront éxécutées:}} </label> ' +
+                '<br>' +
+                '<ul>' +
+                '<li class="active">{{Arrêt du réseau Z-Wave.}}</li>' +
+                '<li class="active">{{Retirer classe de commande de Wake Up du fichier ZWCFG.}}</li>' +
+                '<li class="active">{{Redémarrage du réseau Z-Wave.}}</li>' +
+                '<li class="active">{{Attendre que le réseau soit à nouveau opérationnel (2-5 minutes).}}</li>' +
+                '<li class="active">{{Nœud passe en échec}}</li>' +
+                '<li class="active">{{Supprimer le nœud en échec}}</li>' +
+                '<li class="active">{{Validation de la suppression}}</li>' +
+                '</ul>' +
+                '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
+                '</form>',
+                buttons: {
+                    main: {
+                        label: "{{Annuler}}",
+                        className: "btn-danger"
+                    },
+                    success: {
+                        label: "{{Lancer}}",
+                        className: "btn-success",
+                        callback: function () {
+                            app_nodes.remove_ghost_node(app_nodes.selected_node);
                         }
                     }
                 }
+            }
             );
         });
         $("#replaceFailedNode").off("click").on("click", function () {
             bootbox.dialog({
-                    title: "{{Remplacer nœud en échec}}",
-                    message: '<form class="form-horizontal"> ' +
-                    '<label class="control-label" > {{Cette action permet de remplacer un nœud en échec.}} </label> ' +
-                    '<br>' +
-                    '<label class="lbl lbl-warning" for="name">{{Attention, le controleur sera automatiquement en mode inclusion. Veuillez lancer la procédure sur votre module après la confirmation de cette action.}}</label> ' +
-                    '</form>',
-                    buttons: {
-                        main: {
-                            label: "{{Annuler}}",
-                            className: "btn-danger"
-                        },
-                        success: {
-                            label: "{{Remplacer}}",
-                            className: "btn-success",
-                            callback: function () {
-                                app_nodes.replace_failed_node(app_nodes.selected_node);
-                            }
+                title: "{{Remplacer nœud en échec}}",
+                message: '<form class="form-horizontal"> ' +
+                '<label class="control-label" > {{Cette action permet de remplacer un nœud en échec.}} </label> ' +
+                '<br>' +
+                '<label class="lbl lbl-warning" for="name">{{Attention, le controleur sera automatiquement en mode inclusion. Veuillez lancer la procédure sur votre module après la confirmation de cette action.}}</label> ' +
+                '</form>',
+                buttons: {
+                    main: {
+                        label: "{{Annuler}}",
+                        className: "btn-danger"
+                    },
+                    success: {
+                        label: "{{Remplacer}}",
+                        className: "btn-success",
+                        callback: function () {
+                            app_nodes.replace_failed_node(app_nodes.selected_node);
                         }
                     }
                 }
+            }
             );
         });
         $("#sendNodeInformation").off("click").on("click", function () {
@@ -176,35 +171,35 @@ var app_nodes = {
             var productName = nodes[app_nodes.selected_node].data.product_name.value;
             var manufacturerName = nodes[app_nodes.selected_node].data.vendorString.value;
             bootbox.dialog({
-                    title: "{{Régénérer la détection du nœud}}",
-                    message: '<form class="form-horizontal"> ' +
-                    '<label class="control-label" > {{Lancer la regénérer sur ?}} </label> ' +
-                    '<div> <div class="radio"> <label > ' +
-                    '<input type="radio" name="awesomeness" id="awesomeness-1" value="0" checked="checked"> {{Ce module seulement}} </label> ' +
-                    '</div><div class="radio"> <label > ' +
-                    '<input type="radio" name="awesomeness" id="awesomeness-0" value="1"> ' +
-                    ' {{Tous les modules}} <b>' + manufacturerName + ' ' + productName + '</b></label> ' +
-                    '</div> ' +
-                    '</div><br>' +
-                    '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
-                    '</form>',
-                    buttons: {
-                        main: {
-                            label: "{{Annuler}}",
-                            className: "btn-danger",
-                            callback: function () {
-                            }
-                        },
-                        success: {
-                            label: "{{Lancer}}",
-                            className: "btn-success",
-                            callback: function () {
-                                var all = $("input[name='awesomeness']:checked").val()
-                                app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node, all);
-                            }
+                title: "{{Régénérer la détection du nœud}}",
+                message: '<form class="form-horizontal"> ' +
+                '<label class="control-label" > {{Lancer la regénérer sur ?}} </label> ' +
+                '<div> <div class="radio"> <label > ' +
+                '<input type="radio" name="awesomeness" id="awesomeness-1" value="0" checked="checked"> {{Ce module seulement}} </label> ' +
+                '</div><div class="radio"> <label > ' +
+                '<input type="radio" name="awesomeness" id="awesomeness-0" value="1"> ' +
+                ' {{Tous les modules}} <b>' + manufacturerName + ' ' + productName + '</b></label> ' +
+                '</div> ' +
+                '</div><br>' +
+                '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
+                '</form>',
+                buttons: {
+                    main: {
+                        label: "{{Annuler}}",
+                        className: "btn-danger",
+                        callback: function () {
+                        }
+                    },
+                    success: {
+                        label: "{{Lancer}}",
+                        className: "btn-success",
+                        callback: function () {
+                            var all = $("input[name='awesomeness']:checked").val()
+                            app_nodes.send_regenerate_node_cfg_file(app_nodes.selected_node, all);
                         }
                     }
                 }
+            }
             );
         });
         $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
@@ -235,9 +230,9 @@ var app_nodes = {
             var associations = nodes[app_nodes.selected_node].associations;
             var description = nodes[app_nodes.selected_node].data.name.value;
             var message = '<form class="form-horizontal"><div class="panel-body"> ' +
-                '<p  style="font-size : 1em;"> {{Liste des groupes d\'associations où le module }} <b><span class="node-name label label-default" style="font-size : 1em;">' + description + '</span></b> {{est utilisé:}} </p> ' +
-                '<br>' +
-                '<ul>';
+            '<p  style="font-size : 1em;"> {{Liste des groupes d\'associations où le module }} <b><span class="node-name label label-default" style="font-size : 1em;">' + description + '</span></b> {{est utilisé:}} </p> ' +
+            '<br>' +
+            '<ul>';
             $.each(associations, function (key, val) {
                 message += '<li class="active"><p>';
                 if (nodes[key].description.name != '') {
@@ -252,17 +247,17 @@ var app_nodes = {
                 message += '</ul></p></li>';
             })
             message += '</ul>' +
-                '</div></form>';
+            '</div></form>';
             bootbox.dialog({
-                    title: "{{Associé via quels modules}}",
-                    message: message,
-                    buttons: {
-                        main: {
-                            label: "{{OK}}",
-                            className: "btn-success"
-                        }
+                title: "{{Associé via quels modules}}",
+                message: message,
+                buttons: {
+                    main: {
+                        label: "{{OK}}",
+                        className: "btn-success"
                     }
                 }
+            }
             );
         });
         $('#copyParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
@@ -281,15 +276,15 @@ var app_nodes = {
                     val.product.product_id == manufacturerProductId &&
                     val.product.product_type == manufacturerProductType) {
                     foundIdentical = 1;
-                    options_node += '<option value="' + key + '">' + key + ' ';
-                    if (val.description.name != '') {
-                        options_node +=  val.description.location + ' - ' + val.description.name;
-                    } else {
-                        options_node += val.description.product_name;
-                    }
-                    options_node += '</option>';
+                options_node += '<option value="' + key + '">' + key + ' ';
+                if (val.description.name != '') {
+                    options_node +=  val.description.location + ' - ' + val.description.name;
+                } else {
+                    options_node += val.description.product_name;
                 }
-            });
+                options_node += '</option>';
+            }
+        });
             options_node += '</select></div></div>';
             options_node += '<br>';
             options_node += '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div>';
@@ -354,20 +349,20 @@ var app_nodes = {
                     val.product.product_id == manufacturerProductId &&
                     val.product.product_type == manufacturerProductType) {
                     options_node += '<div class="row">';
-                    options_node += '<div class="col-md-2"></div>';
-                    options_node += '<div class="col-md-10">';
-                    options_node += '<div class="checkbox-inline"><label>';
-                    options_node += '<input type="checkbox" name="type" value="' + key + '"/>';
-                    foundIdentical = 1;
-                    if (val.description.name != '') {
-                        options_node += key + ' ' + val.description.location + ' ' + val.description.name ;
-                    } else {
-                        options_node += key + ' ' + val.description.product_name ;
-                    }
-                    options_node +=  '</label></div>';
-                    options_node +=  '</div></div>';
+                options_node += '<div class="col-md-2"></div>';
+                options_node += '<div class="col-md-10">';
+                options_node += '<div class="checkbox-inline"><label>';
+                options_node += '<input type="checkbox" name="type" value="' + key + '"/>';
+                foundIdentical = 1;
+                if (val.description.name != '') {
+                    options_node += key + ' ' + val.description.location + ' ' + val.description.name ;
+                } else {
+                    options_node += key + ' ' + val.description.product_name ;
                 }
-            });
+                options_node +=  '</label></div>';
+                options_node +=  '</div></div>';
+            }
+        });
             options_node += '</form>';
             if (foundIdentical == 0) {
                 modal.find('#saveCopyToParams').hide();
@@ -579,10 +574,6 @@ var app_nodes = {
             var select = '<select class="form-control" style="display:inline-block;width : 200px;" id="newvaluevalue">';
             select += '<option value="0">{{Auto}}</option>';
             select += '<option value="1">{{5 min}}</option>';
-            //select += '<option value="2">{{15 min}}</option>';
-            //select += '<option value="3">{{10 min}}</option>';
-            //select += '<option value="6">{{5 min}}</option>';
-            //select += '<option value="30">{{1 min}}</option>';
             select += '</option>';
             modal.find('.modal-body').append(select);
             modal.find('.modal-body').find('#newvaluevalue').val(valuePolling);
@@ -788,233 +779,9 @@ var app_nodes = {
             }
         });
     },
-    request_node_neighbours_update: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RequestNodeNeighbourUpdate()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data['result'] == true) {
-                    app_nodes.sendOk();
-                    app_nodes.load_data(false);
-                } else {
-                    $('#div_nodeConfigureOpenzwaveAlert').showAlert({
-                        message: '{{Echec}} :' + data.data,
-                        level: 'danger'
-                    });
-                }
-            }
-        });
-    },
-    healNode: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].HealNode()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data.result == true) {
-                    app_nodes.sendOk();
-                    app_nodes.load_data(false);
-                } else {
-                    $('#div_nodeConfigureOpenzwaveAlert').showAlert({
-                        message: '{{Echec}} :' + data.data,
-                        level: 'danger'
-                    });
-                }
-            }
-        });
-    },
-    assign_return_route_node: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].AssignReturnRoute()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                app_nodes.sendOk();
-                app_nodes.load_data(false);
-            }
-        });
-    },
-    test_node: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].TestNode()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                app_nodes.sendOk();
-                app_nodes.load_data(false);
-            }
-        });
-    },
-    refresh_node_values: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RefreshAllValues()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                app_nodes.sendOk();
-                app_nodes.load_data(false);
-            }
-        });
-    },
-    request_node_dynamic: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RequestNodeDynamic()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                app_nodes.sendOk();
-                app_nodes.load_data(false);
-            }
-        });
-    },
-    refresh_node_info: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RefreshNodeInfo()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data['result'] == true) {
-                    app_nodes.sendOk();
-                    app_nodes.load_data(false);
-                } else {
-                    $('#div_nodeConfigureOpenzwaveAlert').showAlert({
-                        message: '{{Echec}} :' + data.data,
-                        level: 'danger'
-                    });
-                }
-            }
-        });
-    },
-    has_node_failed: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].HasNodeFailed()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                app_nodes.sendOk();
-                app_nodes.load_data(false);
-            }
-        });
-    },
-    remove_failed_node: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RemoveFailedNode()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data['result'] == true) {
-                    app_nodes.sendOk();
-                    app_nodes.load_data(false);
-                } else {
-                    $('#div_nodeConfigureOpenzwaveAlert').showAlert({
-                        message: '{{Echec}} :' + data.data,
-                        level: 'danger'
-                    });
-                }
-            }
-        });
-    },
-    remove_ghost_node: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].GhostKiller()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data['result'] == true) {
-                    app_nodes.sendOk();
-                    app_nodes.load_data(false);
-                } else {
-                    $('#div_nodeConfigureOpenzwaveAlert').showAlert({
-                        message: '{{Echec}} :' + data.data,
-                        level: 'danger'
-                    });
-                }
-            }
-        });
-    },
-    replace_failed_node: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].ReplaceFailedNode()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (data['result'] == true) {
-                    app_nodes.sendOk();
-                    app_nodes.load_data(false);
-                } else {
-                    $('#div_nodeConfigureOpenzwaveAlert').showAlert({
-                        message: '{{Echec}} :' + data.data,
-                        level: 'danger'
-                    });
-                }
-            }
-        });
-    },
-    send_node_information: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].SendNodeInformation()",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                app_nodes.sendOk();
-                app_nodes.load_data(false);
-            }
-        });
-    },
     send_regenerate_node_cfg_file: function (node_id, all) {
         $.ajax({
             url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RemoveDeviceZWConfig(" + all + ")",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                app_nodes.sendOk();
-                app_nodes.load_data(false);
-            }
-        });
-    },
-    refresh_parameters: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].commandClasses[0x70].Refresh()",
             dataType: 'json',
             async: true,
             error: function (request, status, error) {
@@ -1113,11 +880,10 @@ var app_nodes = {
         }
         var queryStage = nodes[z].data.state.value;
         $("#node").attr("nid", z);
-        // select the copied block
         var node = $(".node");
         var isWarning = false;
         var warningMessage = "";
-        node.find(".node-id").html(z);              // set the nodeid
+        node.find(".node-id").html(z);
         if (nodes[z].data.name.value == '') {
             var name = '';
         } else {
@@ -1145,114 +911,114 @@ var app_nodes = {
                 // Controller
                 basicDeviceClassDescription = "{{Contrôleur}}";
                 break;
-            case 2:
+                case 2:
                 // Static Controller
                 basicDeviceClassDescription = "{{Contrôleur statique}}";
                 break;
-            case 3:
+                case 3:
                 // Slave
                 basicDeviceClassDescription = "{{Esclave}}";
                 break;
-            case 4:
+                case 4:
                 // Routing Slave
                 basicDeviceClassDescription = "{{Esclave pouvant être routé}}";
                 break;
-            default:
+                default:
                 basicDeviceClassDescription = basicDeviceClass;
                 break;
-        }
+            }
 
-        var genericDeviceClass = parseInt(nodes[z].data.genericType.value, 0);
-        var genericDeviceClassDescription = "";
+            var genericDeviceClass = parseInt(nodes[z].data.genericType.value, 0);
+            var genericDeviceClassDescription = "";
 
         //The ‘Generic’ device class defines the basic functionality that the devices will support as a controller or slave.
         switch (genericDeviceClass) {
             case 1: // Generic Controller   = 0x01
-                genericDeviceClassDescription = "{{Télécommande}}";
-                break;
+            genericDeviceClassDescription = "{{Télécommande}}";
+            break;
             case 2: // Static Controller   = 0x02,
-                genericDeviceClassDescription = "{{Contrôleur statique}}";
-                break;
+            genericDeviceClassDescription = "{{Contrôleur statique}}";
+            break;
             case 3: // Av Control Point    = 0x03,
-                genericDeviceClassDescription = "{{Contrôleur A/V}}";
-                break;
+            genericDeviceClassDescription = "{{Contrôleur A/V}}";
+            break;
             case 4: // Display             = 0x04,
-                genericDeviceClassDescription = "{{Afficheur}}";
-                break;
+            genericDeviceClassDescription = "{{Afficheur}}";
+            break;
             case 5: // Network Extender             = 0x05,
-                genericDeviceClassDescription = "{{Répéteur de signal}}";
-                break;
+            genericDeviceClassDescription = "{{Répéteur de signal}}";
+            break;
             case 6: // Appliance             = 0x06,
-                genericDeviceClassDescription = "{{Appareil}}";
-                break;
+            genericDeviceClassDescription = "{{Appareil}}";
+            break;
             case 7: // Sensor Notification             = 0x07,
-                genericDeviceClassDescription = "{{Capteur de notification}}";
-                break;
+            genericDeviceClassDescription = "{{Capteur de notification}}";
+            break;
             case 8: // Thermostat          = 0x08,
-                genericDeviceClassDescription = "{{Thermostat}}";
-                break;
+            genericDeviceClassDescription = "{{Thermostat}}";
+            break;
             case 9: // Window Covering     = 0x09,
-                genericDeviceClassDescription = "{{Couvre-fenêtres}}";
-                break;
+            genericDeviceClassDescription = "{{Couvre-fenêtres}}";
+            break;
             case 15: // Repeater Slave      = 0x0f,
-                genericDeviceClassDescription = "{{Répéteur esclave}}";
-                break;
+            genericDeviceClassDescription = "{{Répéteur esclave}}";
+            break;
             case 16: // Switch Binary       = 0x10,
-                genericDeviceClassDescription = "{{Interrupteur binaire}}";
-                break;
+            genericDeviceClassDescription = "{{Interrupteur binaire}}";
+            break;
             case 17: // Switch Multilevel   = 0x11,
-                genericDeviceClassDescription = "{{Interrupteur multi-niveau}}";
-                break;
+            genericDeviceClassDescription = "{{Interrupteur multi-niveau}}";
+            break;
             case 18: // Switch Remote       = 0x12,
-                genericDeviceClassDescription = "{{Interrupteur distant}}";
-                break;
+            genericDeviceClassDescription = "{{Interrupteur distant}}";
+            break;
             case 19: // Switch Toggle       = 0x13,
-                genericDeviceClassDescription = "{{Interrupteur à levier}}";
-                break;
+            genericDeviceClassDescription = "{{Interrupteur à levier}}";
+            break;
             case 20: // Z_IP_GATEWAY       = 0x14,
-                genericDeviceClassDescription = "{{Passerelle Z-Wave/IP}}";
-                break;
+            genericDeviceClassDescription = "{{Passerelle Z-Wave/IP}}";
+            break;
             case 21: // Zip Node       = 0x15,
-                genericDeviceClassDescription = "{{Noeud Z-Wave/IP}}";
-                break;
+            genericDeviceClassDescription = "{{Noeud Z-Wave/IP}}";
+            break;
             case 22: // Ventilation         = 0x16,
-                genericDeviceClassDescription = "{{Ventilation}}";
-                break;
+            genericDeviceClassDescription = "{{Ventilation}}";
+            break;
             case 23: // Security Panel         = 0x17,
-                genericDeviceClassDescription = "{{Panneau de sécurité}}";
-                break;
+            genericDeviceClassDescription = "{{Panneau de sécurité}}";
+            break;
             case 24: // Wall Controller       = 0x18,
-                genericDeviceClassDescription = "{{Contrôleur mural}}";
-                break;
+            genericDeviceClassDescription = "{{Contrôleur mural}}";
+            break;
             case 32: // Sensor Binary       = 0x20,
-                genericDeviceClassDescription = "{{Capteur binaire}}";
-                break;
+            genericDeviceClassDescription = "{{Capteur binaire}}";
+            break;
             case 33: // Sensor Multilevel   = 0x21
-                genericDeviceClassDescription = "{{Capteur multi-niveau}}";
-                break;
+            genericDeviceClassDescription = "{{Capteur multi-niveau}}";
+            break;
             case 34: //WATER_CONTROL   = 0x22
-                genericDeviceClassDescription = "{{Niveau d'eau}}";
-                break;
+            genericDeviceClassDescription = "{{Niveau d'eau}}";
+            break;
             case 48: // Meter Pulse       = 0x30
-                genericDeviceClassDescription = "{{Mesure d'impulsion}}";
+            genericDeviceClassDescription = "{{Mesure d'impulsion}}";
             case 49: // Meter         = 0x31
-                genericDeviceClassDescription = "{{Mesure}}";
-                break;
+            genericDeviceClassDescription = "{{Mesure}}";
+            break;
             case 64: // Entry Control       = 0x40
-                genericDeviceClassDescription = "{{Contrôle d'entrée}}";
-                break;
+            genericDeviceClassDescription = "{{Contrôle d'entrée}}";
+            break;
             case 80: // Semi Interoperable        = 0x50
-                genericDeviceClassDescription = "{{Semi-interopérable}}";
-                break;
+            genericDeviceClassDescription = "{{Semi-interopérable}}";
+            break;
             case 161: // Sensor Alarm        = 0xa1
-                genericDeviceClassDescription = "{{Capteur d'alarme}}";
-                break;
+            genericDeviceClassDescription = "{{Capteur d'alarme}}";
+            break;
             case 255: // Non Interoperable        = 0xff
-                genericDeviceClassDescription = "{{Non interopérable}}";
-                break;
+            genericDeviceClassDescription = "{{Non interopérable}}";
+            break;
             default:
-                genericDeviceClassDescription = "{{Inconnue}}";
-                break;
+            genericDeviceClassDescription = "{{Inconnue}}";
+            break;
         }
 
         var specificDeviceClass = parseInt(nodes[z].data.specificType.value, 0);
@@ -1266,82 +1032,82 @@ var app_nodes = {
         var queryStageDescrition = "";
         switch (queryStage) {
             case "None":
-                queryStageDescrition = "{{Initialisation du processus de recherche de noeud}}";
-                queryStageIndex = 0;
-                break;
+            queryStageDescrition = "{{Initialisation du processus de recherche de noeud}}";
+            queryStageIndex = 0;
+            break;
             case "ProtocolInfo":
-                queryStageDescrition = "{{Récupérer des informations de protocole}}";
-                queryStageIndex = 1;
-                break;
+            queryStageDescrition = "{{Récupérer des informations de protocole}}";
+            queryStageIndex = 1;
+            break;
             case "Probe":
-                queryStageDescrition = "{{Ping le module pour voir s’il est réveillé}}";
-                queryStageIndex = 2;
-                break;
+            queryStageDescrition = "{{Ping le module pour voir s’il est réveillé}}";
+            queryStageIndex = 2;
+            break;
             case "WakeUp":
-                queryStageDescrition = "{{Démarrer le processus de réveil}}";
-                queryStageIndex = 3;
-                break;
+            queryStageDescrition = "{{Démarrer le processus de réveil}}";
+            queryStageIndex = 3;
+            break;
             case "ManufacturerSpecific1":
-                queryStageDescrition = "{{Récupérer le nom du fabricant et les identifiants de produits}}";
-                queryStageIndex = 4;
-                break;
+            queryStageDescrition = "{{Récupérer le nom du fabricant et les identifiants de produits}}";
+            queryStageIndex = 4;
+            break;
             case "NodeInfo":
-                queryStageDescrition = "{{Récupérer les infos sur la prise en charge des classes de commandes supportées}}";
-                queryStageIndex = 5;
-                break;
+            queryStageDescrition = "{{Récupérer les infos sur la prise en charge des classes de commandes supportées}}";
+            queryStageIndex = 5;
+            break;
             case "NodePlusInfo":
-                queryStageDescrition = "{{Récupérer les infos ZWave+ sur la prise en charge des classes de commandes supportées}}";
-                queryStageIndex = 5;
-                break;
+            queryStageDescrition = "{{Récupérer les infos ZWave+ sur la prise en charge des classes de commandes supportées}}";
+            queryStageIndex = 5;
+            break;
             case "SecurityReport":
-                queryStageDescrition = "{{Récupérer la liste des classes de commande qui nécessitent de la sécurité}}";
-                queryStageIndex = 6;
-                break;
+            queryStageDescrition = "{{Récupérer la liste des classes de commande qui nécessitent de la sécurité}}";
+            queryStageIndex = 6;
+            break;
             case "ManufacturerSpecific2":
-                queryStageDescrition = "{{Récupérer le nom du fabricant et les identifiants de produits}}";
-                queryStageIndex = 7;
-                break;
+            queryStageDescrition = "{{Récupérer le nom du fabricant et les identifiants de produits}}";
+            queryStageIndex = 7;
+            break;
             case "Versions":
-                queryStageDescrition = "{{Récupérer des informations de version}}";
-                queryStageIndex = 8;
-                break;
+            queryStageDescrition = "{{Récupérer des informations de version}}";
+            queryStageIndex = 8;
+            break;
             case "Instances":
-                queryStageDescrition = "{{Récupérer des informations multi-instances de classe de commande}}";
-                queryStageIndex = 9;
-                break;
+            queryStageDescrition = "{{Récupérer des informations multi-instances de classe de commande}}";
+            queryStageIndex = 9;
+            break;
             case "Static":
-                queryStageDescrition = "{{Récupérer des informations statiques}}";
-                queryStageIndex = 10;
-                break;
+            queryStageDescrition = "{{Récupérer des informations statiques}}";
+            queryStageIndex = 10;
+            break;
             case "CacheLoad":
-                queryStageDescrition = "{{Ping le module lors du redémarrage avec config cache de l’appareil}}";
-                queryStageIndex = 11;
-                break;
+            queryStageDescrition = "{{Ping le module lors du redémarrage avec config cache de l’appareil}}";
+            queryStageIndex = 11;
+            break;
             case "Associations":
-                queryStageDescrition = "{{Récupérer des informations sur les associations}}";
-                queryStageIndex = 12;
-                break;
+            queryStageDescrition = "{{Récupérer des informations sur les associations}}";
+            queryStageIndex = 12;
+            break;
             case "Neighbors":
-                queryStageDescrition = "{{Récupérer la liste des noeuds voisins}}";
-                queryStageIndex = 13;
-                break;
+            queryStageDescrition = "{{Récupérer la liste des noeuds voisins}}";
+            queryStageIndex = 13;
+            break;
             case "Session":
-                queryStageDescrition = "{{Récupérer des informations de session}}";
-                queryStageIndex = 14;
-                break;
+            queryStageDescrition = "{{Récupérer des informations de session}}";
+            queryStageIndex = 14;
+            break;
             case "Dynamic":
-                queryStageDescrition = "{{Récupérer des informations dynamiques}}";
-                queryStageIndex = 15;
-                break;
+            queryStageDescrition = "{{Récupérer des informations dynamiques}}";
+            queryStageIndex = 15;
+            break;
             case "Configuration":
-                queryStageDescrition = "{{Récupérer des informations de paramètre configurable}}";
-                queryStageIndex = 16;
-                break;
+            queryStageDescrition = "{{Récupérer des informations de paramètre configurable}}";
+            queryStageIndex = 16;
+            break;
             case "Complete":
-                queryStageDescrition = "{{Le processus de l’interview est terminé}}";
-                queryStageIndex = 17;
-                node.find(".node-queryStage").removeClass("label-default").addClass("label-success");
-                break;
+            queryStageDescrition = "{{Le processus de l’interview est terminé}}";
+            queryStageIndex = 17;
+            node.find(".node-queryStage").removeClass("label-default").addClass("label-success");
+            break;
         }
         var nodeCanSleep = nodes[z].data.can_wake_up.value;
         if (queryStageIndex > 2) {
@@ -1406,12 +1172,11 @@ var app_nodes = {
         if (nodeIsFailed) {
             isWarning = true;
             warningMessage += "<li>{{Le contrôleur pense que ce noeud est en échec, essayez }} " +
-                "<button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</button> " +
-                "{{ou}} " +
-                "<button type='button' id='testNode' class='btn btn-info testNode'><i class='fa fa-check-square-o'></i> {{Tester le nœud}}</button> " +
-                "{{pour essayer de corriger.}}</li>";
+            "<button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</button> " +
+            "{{ou}} " +
+            "<button type='button' id='testNode' class='btn btn-info testNode'><i class='fa fa-check-square-o'></i> {{Tester le nœud}}</button> " +
+            "{{pour essayer de corriger.}}</li>";
         }
-        // activate available actions
         $("#requestNodeNeighboursUpdate").prop("disabled", nodeIsFailed);
         $("#healNode").prop("disabled", nodeIsFailed);
         $("#assignReturnRoute").prop("disabled", nodeIsFailed);
@@ -1421,9 +1186,7 @@ var app_nodes = {
         $("#removeFailedNode").prop("disabled", !nodeIsFailed);
         $("#replaceFailedNode").prop("disabled", !nodeIsFailed);
         $("#sendNodeInformation").prop("disabled", nodeIsFailed);
-        // always allow the special action
         $("#regenerateNodeCfgFile").prop("disabled", false);
-        // remote control don't wakeup, we will trick the flag
         if (genericDeviceClass == 1) {
             nodeCanSleep = true;
         }
@@ -1453,16 +1216,6 @@ var app_nodes = {
         }
         if (nodes[z].data.isSecurity.value) {
             node.find(".node-isSecurity").html("<li>{{Le noeud supporte les caractéristiques de sécurité avancées}}</li>");
-            /* TODO: display Security Flag
-             Security = 0x01
-             Controller = 0x02
-             SpecificDevice = 0x04
-             RoutingSlave = 0x08
-             BeamCapability = 0x10
-             Sensor250ms	= 0x20
-             Sensor1000ms = 0x40
-             OptionalFunctionality = 0x80
-             */
             node.find(".node-security").html("{{Classe de sécurité:}} " + nodes[z].data.security.value);
         }
         else {
@@ -1551,30 +1304,30 @@ var app_nodes = {
                         if (genre == "Config") {
                             switch (pending_state) {
                                 case 1:
-                                    parameters += "<tr class='greenrow' pid='" + id + "'>" + template_parameter + "</tr>";
-                                    break;
+                                parameters += "<tr class='greenrow' pid='" + id + "'>" + template_parameter + "</tr>";
+                                break;
                                 case 2:
-                                    parameters += "<tr class='redrow' pid='" + id + "'>" + template_parameter + "</tr>";
-                                    break;
+                                parameters += "<tr class='redrow' pid='" + id + "'>" + template_parameter + "</tr>";
+                                break;
                                 case 3:
-                                    parameters += "<tr class='yellowrow' pid='" + id + "'>" + template_parameter + "</tr>";
-                                    break;
+                                parameters += "<tr class='yellowrow' pid='" + id + "'>" + template_parameter + "</tr>";
+                                break;
                                 default:
-                                    parameters += "<tr pid='" + id + "'>" + template_parameter + "</tr>";
+                                parameters += "<tr pid='" + id + "'>" + template_parameter + "</tr>";
                             }
                         } else if (genre == "System") {
                             switch (pending_state) {
                                 case 1:
-                                    system_variables += "<tr class='greenrow' sid='" + id + "'>" + template_system + "</tr>";
-                                    break;
+                                system_variables += "<tr class='greenrow' sid='" + id + "'>" + template_system + "</tr>";
+                                break;
                                 case 2:
-                                    system_variables += "<tr class='redrow' sid='" + id + "'>" + template_system + "</tr>";
-                                    break;
+                                system_variables += "<tr class='redrow' sid='" + id + "'>" + template_system + "</tr>";
+                                break;
                                 case 3:
-                                    system_variables += "<tr class='yellowrow' sid='" + id + "'>" + template_system + "</tr>";
-                                    break;
+                                system_variables += "<tr class='yellowrow' sid='" + id + "'>" + template_system + "</tr>";
+                                break;
                                 default:
-                                    system_variables += "<tr sid='" + id + "'>" + template_system + "</tr>";
+                                system_variables += "<tr sid='" + id + "'>" + template_system + "</tr>";
                             }
                         } else {
                             variables += "<tr vid='" + id + "'>" + template_variable + "</tr>";
@@ -1635,7 +1388,7 @@ var app_nodes = {
                         value += nodes[z].instances[instance].commandClasses[commandclass].data[index].val + " " + nodes[z].instances[instance].commandClasses[commandclass].data[index].units;
                     }
 
-                        row.find("td[key=variable-value]").html(value);
+                    row.find("td[key=variable-value]").html(value);
                     var polling = '<span style="width : 22px;"></span>';
                     if (nodes[z].instances[instance].commandClasses[commandclass].data[index].write_only == false && first_index_polling) {
                         first_index_polling = false;
@@ -1649,16 +1402,12 @@ var app_nodes = {
                         } else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 1) {
                             polling += '<span class="label label-warning" style="font-size:1em;">{{5 min}}</span>';
                         } else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 2) {
-                            //polling += '<span class="label label-success" style="font-size:1em;">{{15 min}}</span>';
                             polling += '<span class="label label-default" style="font-size:1em;">' + nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
                         } else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 3) {
-                            //polling += '<span class="label label-warning" style="font-size:1em;">{{10 min}}</span>';
                             polling += '<span class="label label-default" style="font-size:1em;">' + nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
                         } else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 6) {
-                            //polling += '<span class="label label-warning" style="font-size:1em;">{{5 min}}</span>';
                             polling += '<span class="label label-default" style="font-size:1em;">' + nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
                         } else if (nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity == 30) {
-                            //polling += '<span class="label label-danger" style="font-size:1em;">{{1 min}}</span>';
                             polling += '<span class="label label-default" style="font-size:1em;">' + nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
                         } else {
                             polling += '<span class="label label-default" style="font-size:1em;">' + nodes[z].instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
@@ -1824,35 +1573,36 @@ var app_nodes = {
                 var pending_state = node_groups[z].pending;
                 switch (pending_state) {
                     case 1:
-                        newPanel += '<h3 class="panel-title" style="padding-top:10px;">';
-                        break;
+                    newPanel += '<h3 class="panel-title" style="padding-top:10px;">';
+                    break;
                     case 2:
-                        newPanel += '<h3 class="panel-title rejectcolor" style="padding-top:10px;">';
-                        break;
+                    newPanel += '<h3 class="panel-title rejectcolor" style="padding-top:10px;">';
+                    break;
                     case 3:
-                        newPanel += '<h3 class="panel-title pendingcolor" style="padding-top:10px;">';
-                        break;
+                    newPanel += '<h3 class="panel-title pendingcolor" style="padding-top:10px;">';
+                    break;
                     default:
-                        newPanel += '<h3 class="panel-title" style="padding-top:10px;">';
+                    newPanel += '<h3 class="panel-title" style="padding-top:10px;">';
                 }
                 newPanel += z + ' : ' + node_groups[z].label + ' {{(nombre maximum d\'associations :}} ' + node_groups[z].maximumAssociations + ')';
 
                 switch (pending_state) {
                     case 1:
-                        break;
+                    break;
                     case 2:
-                        break;
+                    break;
                     case 3:
-                        newPanel += '  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>';
-                        break;
+                    newPanel += '  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>';
+                    break;
                     default:
-                        break;
+                    break;
                 }
                 newPanel += '</h3></div><div class="panel-body"><table class="table">' + tr_groups + '</table></div></div>';
                 $("#groups").append(newPanel);
             }
         }
-
-
     },
 }
+
+
+display_node_stats();

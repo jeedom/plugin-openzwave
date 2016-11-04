@@ -16,9 +16,9 @@
 
  $('.controller_action').on('click',function(){
     if($(this).data('action') == 'hardReset' || $(this).data('action') == 'softReset'){
-     bootbox.confirm("Etes-vous sûr ? Cette opération est risquée", function (result) {
-      if (result) {
-         jeedom.openzwave.controller.action({
+       bootbox.confirm("Etes-vous sûr ? Cette opération est risquée", function (result) {
+          if (result) {
+           jeedom.openzwave.controller.action({
             action : $(this).data('action'),
             error: function (error) {
                 $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
@@ -27,18 +27,18 @@
                 $('#div_networkOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
             }
         });
-     }
- });
- }else{
+       }
+   });
+   }else{
     jeedom.openzwave.controller.action({
         action : $(this).data('action'),
         error: function (error) {
             $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-           $('#div_networkOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-       }
-   });
+         $('#div_networkOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+     }
+ });
 }
 });
 
@@ -47,82 +47,82 @@
 });
 
  $("#tab_route").off("click").on("click", function () {
-   jeedom.openzwave.network.info({
-    info : 'getNeighbours',
-    error: function (error) {
-     $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
- },
- success: function (data) { 
-    devicesRouting = data.devices;
-    var skipPortableAndVirtual = true; 
-    var routingTable = '';
-    var routingTableHeader = '';
-    const queryStageNeighbors = 13;
-    $.each(devicesRouting, function (nodeId, node) {
-        if (nodeId == 255) {
-            return;
-        }
-        if (skipPortableAndVirtual && node.data.type.basic == 1) {
-            return;
-        }
-        var routesCount = getRoutesCount(nodeId);
-
-        if (node.data.type.basic != 2) {
-            var link = 'index.php?v=d&p=openzwave&m=openzwave&logical_id=' + nodeId;
-        } else {
-            var link = '#';
-        }
-        if (node.data.name.value != '') {
-            routingTableHeader += '<th title="' + node.data.location.value + ' ' + node.data.name.value + '" >' + nodeId + '</th>';
-            if (isset(eqLogic_human_name[nodeId])) {
-                var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '">' + nodeId + ' ' + eqLogic_human_name[nodeId] + '</span>';
-            } else {
-                var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '"><span class="label label-primary">' + node.data.location.value + '</span> ' + node.data.name.value + '</span>';
+     jeedom.openzwave.network.info({
+        info : 'getNeighbours',
+        error: function (error) {
+           $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+       },
+       success: function (data) { 
+        devicesRouting = data.devices;
+        var skipPortableAndVirtual = true; 
+        var routingTable = '';
+        var routingTableHeader = '';
+        const queryStageNeighbors = 13;
+        $.each(devicesRouting, function (nodeId, node) {
+            if (nodeId == 255) {
+                return;
             }
-        } else {
-            routingTableHeader += '<th title="' + node.data.product_name.valuee + '" >' + nodeId + '</th>';
-            var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '">' + node.data.product_name.value + '</span>';
-        }
-        routingTable += '<tr><td style="width: 500px">' + name;
-        if (node.data.isDead.value) {
-            routingTable += '  <i class="fa fa-exclamation-triangle fa-lg" style="color:red; text-align:right"  title="{{Présumé mort}}"></i>';
-        }
-        routingTable += '</td><td style="width: 35px">' + nodeId + '</td>';
-        $.each(devicesRouting, function (nnodeId, nnode) {
-            if (nnodeId == 255)
+            if (skipPortableAndVirtual && node.data.type.basic == 1) {
                 return;
-            if (skipPortableAndVirtual && nnode.data.type.basic == 1)
-                return;
-            var rtClass;
-            if (!routesCount[nnodeId])
-                routesCount[nnodeId] = new Array(); 
-            var routeHops = (routesCount[nnodeId][0] || '0') + "/";
-            routeHops += (routesCount[nnodeId][1] || '0') + "/";
-            routeHops += (routesCount[nnodeId][2] || '0');
-            if (nodeId == nnodeId || node.data.type.basic == 1 || nnode.data.type.basic == 1) {
-                rtClass = 'node-na-color';
-                routeHops = '';
-            } else if (nnode.data.state.value <= queryStageNeighbors || node.data.state.value <= queryStageNeighbors) {
-                rtClass = 'node-interview-not-completed-color';
-            } else if ($.inArray(parseInt(nnodeId, 10), node.data.neighbours.value) != -1)
-            rtClass = 'node-direct-link-color';
-            else if (routesCount[nnodeId] && routesCount[nnodeId][1] > 1)
-                rtClass = 'node-remote-control-color';
-            else if (routesCount[nnodeId] && routesCount[nnodeId][1] == 1)
-                rtClass = 'node-more-of-one-up-color';
-            else
-                rtClass = 'node-more-of-two-up-color';
-            routingTable += '<td class=' + rtClass + ' style="width: 35px"><i class="fa fa-square fa-2x" title="' + routeHops + '"></i></td>';
+            }
+            var routesCount = getRoutesCount(nodeId);
+
+            if (node.data.type.basic != 2) {
+                var link = 'index.php?v=d&p=openzwave&m=openzwave&logical_id=' + nodeId;
+            } else {
+                var link = '#';
+            }
+            if (node.data.name.value != '') {
+                routingTableHeader += '<th title="' + node.data.location.value + ' ' + node.data.name.value + '" >' + nodeId + '</th>';
+                if (isset(eqLogic_human_name[nodeId])) {
+                    var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '">' + nodeId + ' ' + eqLogic_human_name[nodeId] + '</span>';
+                } else {
+                    var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '"><span class="label label-primary">' + node.data.location.value + '</span> ' + node.data.name.value + '</span>';
+                }
+            } else {
+                routingTableHeader += '<th title="' + node.data.product_name.valuee + '" >' + nodeId + '</th>';
+                var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '">' + node.data.product_name.value + '</span>';
+            }
+            routingTable += '<tr><td style="width: 500px">' + name;
+            if (node.data.isDead.value) {
+                routingTable += '  <i class="fa fa-exclamation-triangle fa-lg" style="color:red; text-align:right"  title="{{Présumé mort}}"></i>';
+            }
+            routingTable += '</td><td style="width: 35px">' + nodeId + '</td>';
+            $.each(devicesRouting, function (nnodeId, nnode) {
+                if (nnodeId == 255)
+                    return;
+                if (skipPortableAndVirtual && nnode.data.type.basic == 1)
+                    return;
+                var rtClass;
+                if (!routesCount[nnodeId])
+                    routesCount[nnodeId] = new Array(); 
+                var routeHops = (routesCount[nnodeId][0] || '0') + "/";
+                routeHops += (routesCount[nnodeId][1] || '0') + "/";
+                routeHops += (routesCount[nnodeId][2] || '0');
+                if (nodeId == nnodeId || node.data.type.basic == 1 || nnode.data.type.basic == 1) {
+                    rtClass = 'node-na-color';
+                    routeHops = '';
+                } else if (nnode.data.state.value <= queryStageNeighbors || node.data.state.value <= queryStageNeighbors) {
+                    rtClass = 'node-interview-not-completed-color';
+                } else if ($.inArray(parseInt(nnodeId, 10), node.data.neighbours.value) != -1)
+                rtClass = 'node-direct-link-color';
+                else if (routesCount[nnodeId] && routesCount[nnodeId][1] > 1)
+                    rtClass = 'node-remote-control-color';
+                else if (routesCount[nnodeId] && routesCount[nnodeId][1] == 1)
+                    rtClass = 'node-more-of-one-up-color';
+                else
+                    rtClass = 'node-more-of-two-up-color';
+                routingTable += '<td class=' + rtClass + ' style="width: 35px"><i class="fa fa-square fa-2x" title="' + routeHops + '"></i></td>';
+            });
+            routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="' + nodeId + '" class="btn btn-xs btn-primary requestNodeNeighboursUpdate" title="{{Mise à jour des noeuds voisins}}"><i class="fa fa-refresh"></i></button></td></tr>';
         });
-        routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="' + nodeId + '" class="btn btn-xs btn-primary requestNodeNeighboursUpdate" title="{{Mise à jour des noeuds voisins}}"><i class="fa fa-refresh"></i></button></td></tr>';
-    });
-    $('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '<th><button type="button" id="healNetwork2" class="btn btn-xs btn-success healNetwork2" title="{{Soigner le réseau}}"><i class="fa fa-medkit"></i></button></th></tr></thead><tbody>' + routingTable + '</tbody></table>');
-}
+        $('#div_routingTable').html('<table class="table table-bordered table-condensed"><thead><tr><th>{{Nom}}</th><th>ID</th>' + routingTableHeader + '<th><button type="button" id="healNetwork2" class="btn btn-xs btn-success healNetwork2" title="{{Soigner le réseau}}"><i class="fa fa-medkit"></i></button></th></tr></thead><tbody>' + routingTable + '</tbody></table>');
+    }
 });
 });
 
 $("#addDevice").off("click").on("click", function () {
-   jeedom.openzwave.controller.addNodeToNetwork({
+ jeedom.openzwave.controller.addNodeToNetwork({
     secure : 0,
     dataType: 'json',
     error: function (error) {
@@ -154,13 +154,13 @@ $("#addDeviceSecure").off("click").on("click", function () {
 });
 
 $("#removeDevice").off("click").on("click", function () {
- jeedom.openzwave.controller.removeNodeFromNetwork({
-   error: function (error) {
-    $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-},
-success: function (data) {
-   $('#div_networkOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-}
+   jeedom.openzwave.controller.removeNodeFromNetwork({
+     error: function (error) {
+        $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+     $('#div_networkOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+ }
 });
 });
 

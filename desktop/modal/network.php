@@ -100,7 +100,7 @@ if (!isConnect('admin')) {
                     </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4 class="panel-title">{{Capacités}}</h4></div>
-                        <div class="panel-body"><lu class="zwaveNetworkAttr" data-l1key="node_capabilities" style="font-size : 1em;"></lu></div>
+                        <div class="panel-body"><lu style="font-size : 1em;"><span class="zwaveNetworkAttr" data-l1key="node_capabilities" style="font-size : 1em;"></span></lu></div>
                     </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4 class="panel-title">{{Système}}</h4></div>
