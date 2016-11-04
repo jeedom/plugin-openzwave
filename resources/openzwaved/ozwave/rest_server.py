@@ -973,7 +973,7 @@ def set_value9(node_id, instance_id, cc_id, index, value):
 	return utils.format_json_result(data=commands.send_command_zwave(node_id, cc_id, instance_id, index, value))
 
 
-@app.route('/node/info(<node_id>,<info>)', methods=['GET'])
+@app.route('/node/info(<int:node_id>,<info>)', methods=['GET'])
 @auth.login_required
 def node_info(node_id,info):
 	utils.check_node_exist(node_id)
@@ -994,7 +994,7 @@ def node_info(node_id,info):
 		return utils.format_json_result(data=serialization.serialize_node_to_json(node_id))	
 	return utils.format_json_result()
 
-@app.route('/node/action(<node_id>,<action>)', methods=['GET'])
+@app.route('/node/action(<int:node_id>,<action>)', methods=['GET'])
 @auth.login_required
 def node_action(node_id,action):
 	utils.check_node_exist(node_id)
@@ -1038,7 +1038,7 @@ def node_action(node_id,action):
 		if not network_utils.can_execute_network_command():
 			raise Exception('Controller is bussy')
 		utils.check_node_exist(node_id,True)
-		globals.network.manager.testNetworkNode(globals.network.home_id, node_id, count)
+		globals.network.manager.testNetworkNode(globals.network.home_id, node_id, 3)
 		return utils.format_json_result()
 	elif action == 'refreshAllValues':
 		utils.check_node_exist(node_id,True)

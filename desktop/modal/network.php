@@ -20,7 +20,7 @@ if (!isConnect('admin')) {
 }
 ?>
 <script type="text/javascript" src="plugins/openzwave/3rdparty/vivagraph/vivagraph.min.js"></script>
-<style media="screen" type="text/css">
+<style>
     #graph_network {
         height: 80%;
         width: 90%;
@@ -78,7 +78,6 @@ if (!isConnect('admin')) {
                 <li><a href="#statistics_network" data-toggle="tab"><i class="fa fa-bar-chart"></i> {{Statistiques}}</a></li>
                 <li id="tab_graph"><a href="#graph_network" data-toggle="tab"><i class="fa fa-picture-o"></i> {{Graphique du réseau}}</a></li>
                 <li id="tab_route"><a href="#route_network" data-toggle="tab"><i class="fa fa-table"></i> {{Table de routage}}</a></li>
-                <li id="li_state" class="pull-right alert" style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;"><span style="position:relative; top : -7px;">{{Demande envoyée}}</span></li>
             </ul>
             <div id="network-tab-content" class="tab-content">
                 <div class="tab-pane active" id="summary_network">
@@ -218,7 +217,7 @@ if (!isConnect('admin')) {
                             <td>{{Mettez le contrôleur cible en mode de réception de configuration.}}<br>{{Le contrôleur cible doit être moins de 2m du contrôleur primaire. Nécessite SUC.}}</td>
                         </tr>
                         <tr>
-                        <td><a data-action="receiveConfiguration" class="btn btn-danger controller_action"><i class="fa fa-file"></i> {{Receive Configuration}}</a></td>
+                            <td><a data-action="receiveConfiguration" class="btn btn-danger controller_action"><i class="fa fa-file"></i> {{Receive Configuration}}</a></td>
                             <td>{{Transfert de la configuration réseau à partir d'un autre contrôleur.}}<br><i>{{Approcher l'autre contrôleur à moins de 2m du contrôleur primaire .}}</i></td>
                         </tr>
                         <tr>

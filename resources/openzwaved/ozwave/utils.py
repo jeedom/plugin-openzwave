@@ -81,7 +81,7 @@ def format_json_result(success='ok', data='', log_level=None, code=0):
 def check_node_exist(_node_id,enable=False):
 	if _node_id not in globals.network.nodes:
 		raise Exception('Unknow node id '+str(_node_id))
-	if enable and _node_id not in globals.disabled_nodes:
+	if enable and _node_id in globals.disabled_nodes:
 		raise Exception('Disabled node id '+str(_node_id))
 	return
 
