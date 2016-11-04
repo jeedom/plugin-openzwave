@@ -88,6 +88,27 @@ def get_assoc(node_id):
 			config[globals.network.nodes[node_id].groups[group].index]['nodes'] = {'value': list(globals.network.nodes[node_id].groups[group].associations), 'updateTime': int(time.time()), 'invalidateTime': 0}
 	return jsonify(config)
 
+@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x63].data', methods=['GET'])
+@auth.login_required
+def get_user_codes(node_id, instance_id):
+	utils.check_node_exist(node_id)
+	logging.debug("getValueAllRaw nodeId:%s instance:%s commandClasses:%s" % (node_id, instance_id, hex(COMMAND_CLASS_USER_CODE),))
+	result_value = {}
+	my_node = globals.network.nodes[node_id]
+	for val in my_node.get_values(class_id=COMMAND_CLASS_USER_CODE):
+		my_value = my_node.values[val]
+		if my_value.instance - 1 == instance_id:
+			if my_value.index == 0:
+				continue
+			if my_value.index > 10:
+				continue
+			raw_data = value_utils.extract_data(my_value)
+			if raw_data == '00000000000000000000':
+				result_value[my_value.index] = None
+			else:
+				result_value[my_value.index] = {}
+	return jsonify(result_value)
+
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0x85].Remove(<int:group_index>,<int:target_node_id>)', methods=['GET'])
 @auth.login_required
 def remove_assoc(node_id, group_index, target_node_id):
@@ -116,6 +137,9 @@ def add_assoc(node_id, group_index, target_node_id):
 	globals.pending_associations[my_node.node_id][group_index] = PendingAssociation(pending_added=target_node_id, pending_removed=None, timeout=0)
 	globals.network.manager.addAssociation(globals.network.home_id, node_id, group_index, target_node_id)
 	return utils.format_json_result()
+
+
+
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].Associations[<int:group_index>].Remove(<int:target_node_id>,<int:target_node_instance>)', methods=['GET'])
 @auth.login_required
@@ -164,25 +188,6 @@ def set_polling2(node_id, value_id, frequency):
 			return utils.format_json_result()
 	return utils.format_json_result(False, 'valueId: %s not found' % (value_id,), 'warning')
 	
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].SetPolling(<int:frequency>)', methods=['GET'])
-@auth.login_required
-def set_polling_value(node_id, instance_id, cc_id, index, frequency):
-	utils.check_node_exist(node_id)
-	logging.info("set_polling_value for nodeId: %s instance: %s cc:%s index:%s at: %s" % (node_id, instance_id, cc_id, index, frequency,))
-	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16)):
-		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id:
-			my_value = globals.network.nodes[node_id].values[val]
-			if frequency == 0 & my_value.poll_intensity > 0:
-				my_value.disable_poll()
-			else:
-				if globals.network.nodes[node_id].values[val].index == index:
-					changes_value_polling(frequency, my_value)
-				else:
-					if my_value.poll_intensity > 0:
-						my_value.disable_poll()
-	utils.write_config()
-	return utils.format_json_result()
-
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].SetPolling(<int:frequency>)', methods=['GET'])
 @auth.login_required
 def set_polling_instance(node_id, instance_id, cc_id, frequency):
@@ -244,32 +249,6 @@ def set_device_name(node_id, location, name, is_enable):
 	globals.network.nodes[node_id].set_field('location', location)
 	return utils.format_json_result()
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].data', methods=['GET'])
-@auth.login_required
-def get_config(node_id):
-	utils.check_node_exist(node_id)
-	logging.debug("get_config for nodeId:%s" % (node_id,))
-	config = {}
-	for val in globals.network.nodes[node_id].values:
-		list_values = []
-		my_value = globals.network.nodes[node_id].values[val]
-		if my_value.command_class == COMMAND_CLASS_CONFIGURATION:
-			config[globals.network.nodes[node_id].values[val].index] = {}
-			if my_value.type == "List" and not my_value.is_read_only:
-				result_data = globals.network.manager.getValueListSelectionNum(my_value.value_id)
-				values = my_value.data_items
-				for index_item, value_item in enumerate(values):
-					list_values.append(value_item)
-					if value_item == my_value.data_as_string:
-						result_data = index_item
-			elif my_value.type == "Bool" and not my_value.data:
-				result_data = 0
-			elif my_value.type == "Bool" and my_value.data:
-				result_data = 1
-			else:
-				result_data = my_value.data
-			config[my_value.index]['val'] = {'value2': my_value.data, 'value': result_data,'value3': my_value.label, 'value4': sorted(list_values),'updateTime': int(time.time()), 'invalidateTime': 0}
-	return jsonify(config)
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses', methods=['GET'])
 @auth.login_required
@@ -347,26 +326,7 @@ def get_user_code(node_id, instance_id, index):
 			break
 	return jsonify(my_result)
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x63].data', methods=['GET'])
-@auth.login_required
-def get_user_codes(node_id, instance_id):
-	utils.check_node_exist(node_id)
-	logging.debug("getValueAllRaw nodeId:%s instance:%s commandClasses:%s" % (node_id, instance_id, hex(COMMAND_CLASS_USER_CODE),))
-	result_value = {}
-	my_node = globals.network.nodes[node_id]
-	for val in my_node.get_values(class_id=COMMAND_CLASS_USER_CODE):
-		my_value = my_node.values[val]
-		if my_value.instance - 1 == instance_id:
-			if my_value.index == 0:
-				continue
-			if my_value.index > 10:
-				continue
-			raw_data = value_utils.extract_data(my_value)
-			if raw_data == '00000000000000000000':
-				result_value[my_value.index] = None
-			else:
-				result_value[my_value.index] = {}
-	return jsonify(result_value)
+
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].UserCode.SetRaw(<int:slot_id>,[<string:value>],1)', methods=['GET'])
 @auth.login_required
@@ -788,7 +748,7 @@ def node_action(node_id,action):
 	else:
 		return utils.format_json_result()
 
-@app.route('/node/[<int:node_id>]/refreshClass(<cc_id>)', methods=['GET'])
+@app.route('/node/[<int:node_id>]/cc/<int:cc_id>/refreshClass()', methods=['GET'])
 @auth.login_required
 def request_all_config_params(node_id):
 	utils.check_node_exist(node_id)
@@ -878,3 +838,49 @@ def refresh_one_value(node_id, instance_id, index, cc_id):
 			globals.network.nodes[node_id].values[val].refresh()
 			return utils.format_json_result()
 	return utils.format_json_result(False, 'This device does not contain the specified value', 'warning')
+
+@app.route('/node/<int:node_id>/cc/<int:cc_id>/data', methods=['GET'])
+@auth.login_required
+def get_config(node_id):
+	utils.check_node_exist(node_id)
+	logging.debug("get_config for nodeId:%s" % (node_id,))
+	config = {}
+	for val in globals.network.nodes[node_id].values:
+		list_values = []
+		my_value = globals.network.nodes[node_id].values[val]
+		if my_value.command_class == cc_id:
+			config[globals.network.nodes[node_id].values[val].index] = {}
+			if my_value.type == "List" and not my_value.is_read_only:
+				result_data = globals.network.manager.getValueListSelectionNum(my_value.value_id)
+				values = my_value.data_items
+				for index_item, value_item in enumerate(values):
+					list_values.append(value_item)
+					if value_item == my_value.data_as_string:
+						result_data = index_item
+			elif my_value.type == "Bool" and not my_value.data:
+				result_data = 0
+			elif my_value.type == "Bool" and my_value.data:
+				result_data = 1
+			else:
+				result_data = my_value.data
+			config[my_value.index]['val'] = {'value2': my_value.data, 'value': result_data,'value3': my_value.label, 'value4': sorted(list_values),'updateTime': int(time.time()), 'invalidateTime': 0}
+	return jsonify(config)
+
+@app.route('/node/<int:node_id>/instance/<int:instance_id>/cc/<int:cc_id>/index/<int:index>/setPolling(<int:frequency>)', methods=['GET'])
+@auth.login_required
+def set_polling_value(node_id, instance_id, cc_id, index, frequency):
+	utils.check_node_exist(node_id)
+	logging.info("set_polling_value for nodeId: %s instance: %s cc:%s index:%s at: %s" % (node_id, instance_id, cc_id, index, frequency,))
+	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16)):
+		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id:
+			my_value = globals.network.nodes[node_id].values[val]
+			if frequency == 0 & my_value.poll_intensity > 0:
+				my_value.disable_poll()
+			else:
+				if globals.network.nodes[node_id].values[val].index == index:
+					changes_value_polling(frequency, my_value)
+				else:
+					if my_value.poll_intensity > 0:
+						my_value.disable_poll()
+	utils.write_config()
+	return utils.format_json_result()

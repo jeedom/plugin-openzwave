@@ -210,10 +210,29 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/'+_params.node_id+'/refreshClass('+_params.class+')',
+ 		request: 'node/'+_params.node_id+'/cc/'+_params.class+'/refreshClass()',
  	};
  	$.ajax(paramsAJAX);
  }
+
+ jeedom.openzwave.node.dataClass = function (_params) {
+ 	var paramsRequired = ['node_id','class'];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	paramsAJAX.data = {
+ 		request: 'node/'+_params.node_id+'/cc/'+_params.class+'/data',
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
+
 
   jeedom.openzwave.node.refreshData = function (_params) {
  	var paramsRequired = ['node_id','instance','class','index'];
@@ -229,6 +248,24 @@
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
  		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/cc/'+_params.class+'/index/'+_params.index+'/refreshData()',
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
+
+   jeedom.openzwave.node.setPolling = function (_params) {
+ 	var paramsRequired = ['node_id','instance','class','index','polling'];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	paramsAJAX.data = {
+ 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/cc/'+_params.class+'/index/'+_params.index+'/setPolling('+_params.polling+')',
  	};
  	$.ajax(paramsAJAX);
  }

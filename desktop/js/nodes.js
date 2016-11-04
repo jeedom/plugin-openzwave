@@ -487,12 +487,11 @@
     modal.find('.modal-body').html(paramName);
     modal.find('.modal-body').append('<b> : </b>');
     if (paramType == "List") {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].commandClasses[0x70].data",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+        jeedom.openzwave.node.dataClass({
+            node_id : node_id,
+            class : 112,
+            error: function (error) {
+                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
                 var options = '<select class="form-control" id="newvalue">';
@@ -544,6 +543,7 @@
     } else {
         var valueValue = $('#newvaluevalue').val();
     }
+    $('#valuesModal').modal('hide');
     if (valueType == "Button") {
         $.ajax({
             url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "]." + valueValue + "Button()",
@@ -554,7 +554,6 @@
             },
             success: function (data) {
                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-               $('#valuesModal').modal('hide');
            }
        });
     } else if (valueType == "Raw") {
@@ -567,7 +566,6 @@
             },
             success: function (data) {
                 $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-                $('#valuesModal').modal('hide');
             }
         });
     }else {
@@ -580,29 +578,26 @@
             },
             success: function (data) {
                 $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-                $('#valuesModal').modal('hide');
             }
         });
     }
+    $('#valuesModal').modal('hide');
 });
  $("#savePolling").off("click").on("click", function (e) {
-    var valueIdx = $('#pollingModal').data('valueidx');
-    var valueInstance = $('#pollingModal').data('valueinstance');
-    var valueCc = $('#pollingModal').data('valuecc');
-    var valueValue = $('#newvaluevalue').val();
-    $.ajax({
-        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "].SetPolling(" + encodeURIComponent(valueValue) + ")",
-        dataType: 'json',
-        async: true,
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+     jeedom.openzwave.node.setPolling({
+        node_id : node_id,
+        instance : $('#pollingModal').data('valueinstance'),
+        class :  $('#pollingModal').data('valuecc'),
+        index : $('#pollingModal').data('valueidx'),
+        polling : $('#newvaluevalue').val(),
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
-        success: function (data) {
-          $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-          $('#pollingModal').modal('hide');
-      }
-  });
-});
+        success: function () {
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+     }
+ });
+ });
 
  $("#tab-parameters").off("click").on("click", function () {
     if (!nodes[node_id].instances[0].commandClasses[112]) {
