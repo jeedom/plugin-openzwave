@@ -1,4 +1,5 @@
 import logging
+import binascii
 import math
 import time
 import globals,utils,node_utils
