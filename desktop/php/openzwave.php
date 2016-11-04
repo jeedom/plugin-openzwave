@@ -26,7 +26,7 @@ echo '<div id="div_inclusionAlert"></div>';
 $controllerMode = 0;
 $networkState = 10;
 try {
-	$result = openzwave::callOpenzwave('/ZWaveAPI/Run/network.GetControllerStatus()');
+	$result = openzwave::callOpenzwave('/network/info(getStatus)');
 	if (isset($result['result']['data'])) {
 		$networkState = $result['result']['data']['networkstate']['value'];
 		$controllerMode = $result['result']['data']['mode']['value'];

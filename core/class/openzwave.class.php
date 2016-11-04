@@ -65,7 +65,7 @@ class openzwave extends eqLogic {
 
 	public static function syncEqLogicWithOpenZwave($_logical_id = null) {
 		try {
-			$controlerState = self::callOpenzwave('/ZWaveAPI/Run/network.GetControllerStatus()');
+			$controlerState = self::callOpenzwave('/network/info(getStatus)');
 			$state = $controlerState['result']['data']['networkstate']['value'];
 		} catch (Exception $e) {
 			$state = 10;
@@ -209,7 +209,7 @@ class openzwave extends eqLogic {
 			return;
 		}
 		try {
-			$controlerState = self::callOpenzwave('/ZWaveAPI/Run/network.GetControllerStatus()');
+			$controlerState = self::callOpenzwave('/network/info(getStatus)');
 			$isBusy = $controlerState['result']['data']['isBusy']['value'];
 			$state = $controlerState['result']['data']['networkstate']['value'];
 			$controlerState = $controlerState['result']['data']['mode']['value'];

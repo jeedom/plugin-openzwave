@@ -58,7 +58,7 @@ try {
 	}
 
 	if (init('action') == 'getControllerState') {
-		ajax::success(openzwave::callOpenzwave('/ZWaveAPI/Run/network.GetControllerStatus()'));
+		ajax::success(openzwave::callOpenzwave('/network/info(getStatus)'));
 	}
 
 	if (init('action') == 'callRazberry') {
