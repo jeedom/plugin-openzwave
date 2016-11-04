@@ -1121,28 +1121,6 @@ function show_groups(){
         });
 
 var app_nodes = {
-    init: function () {
-      
-      
-      
-        $("#refreshNodeValues").off("click").on("click", function () {
-            app_nodes.refresh_node_values(node_id);
-        });
-        $("#requestNodeDynamic").off("click").on("click", function () {
-            app_nodes.request_node_dynamic(node_id);
-        });
-       
-      
-        $("body").off("click", ".testNode").on("click", ".testNode", function (e) {
-            app_nodes.test_node(node_id);
-        });
-        $("#removeFailedNode").off("click").on("click", function () {
-            app_nodes.remove_failed_node(node_id);
-        });
-        $("#sendNodeInformation").off("click").on("click", function () {
-            app_nodes.send_node_information(node_id);
-        });
-    },
     delete_group: function (node_id, group, node, instance) {
         if (instance > 0) {
             url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].Associations[" + group + "].Remove(" + node + "," + instance + ")";
