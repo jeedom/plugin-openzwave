@@ -688,7 +688,7 @@ def set_value9(node_id, instance_id, cc_id, index, value):
 	return utils.format_json_result(data=commands.send_command_zwave(node_id, cc_id, instance_id, index, value))
 
 
-@app.route('/node/[<int:node_id>]/info(<info>)', methods=['GET'])
+@app.route('/node/<int:node_id>/info(<info>)', methods=['GET'])
 @auth.login_required
 def node_info(node_id,info):
 	utils.check_node_exist(node_id)
@@ -698,7 +698,7 @@ def node_info(node_id,info):
 	else:
 		return utils.format_json_result()
 
-@app.route('/node/[<int:node_id>]/action(<action>)', methods=['GET'])
+@app.route('/node/int:node_id>/action(<action>)', methods=['GET'])
 @auth.login_required
 def node_action(node_id,action):
 	utils.check_node_exist(node_id)
@@ -709,7 +709,7 @@ def node_action(node_id,action):
 	else:
 		return utils.format_json_result()
 
-@app.route('/node/[<int:node_id>]/cc/<int:cc_id>/refreshClass()', methods=['GET'])
+@app.route('/node/<int:node_id>/cc/<int:cc_id>/refreshClass()', methods=['GET'])
 @auth.login_required
 def request_all_config_params(node_id):
 	utils.check_node_exist(node_id)
@@ -721,7 +721,7 @@ def request_all_config_params(node_id):
 	globals.network.manager.requestAllConfigParams(globals.network.home_id, node_id)
 	return utils.format_json_result()
 
-@app.route('/node/[<int:node_id>]/removeDeviceZWConfig(<int:identical>)', methods=['GET'])
+@app.route('/node/<int:node_id>/removeDeviceZWConfig(<int:identical>)', methods=['GET'])
 @auth.login_required
 def remove_device_openzwave_config(node_id, identical):
 	utils.check_node_exist(node_id)
@@ -752,7 +752,7 @@ def remove_device_openzwave_config(node_id, identical):
 	network_utils.start_network()
 	return utils.format_json_result()
 
-@app.route('/node/[<int:node_id>]/copyConfigurations(<int:target_id>)', methods=['GET'])
+@app.route('/node/<int:node_id>/copyConfigurations(<int:target_id>)', methods=['GET'])
 @auth.login_required
 def copy_configuration(source_id, target_id):
 	if globals.network_information.controller_is_busy:
