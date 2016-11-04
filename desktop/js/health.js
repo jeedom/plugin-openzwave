@@ -13,365 +13,267 @@
  * You should have received a copy of the GNU General Public License
  * along with Plugin openzwave for jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+ $('#bt_pingAllDevice').off().on('click', function () {
+    jeedom.openzwave.controller.action({
+        action : 'testNetwork',
+        error: function (error) {
+            $('#div_networkHealthAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            $('#div_networkHealthAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+            display_health_info();
+        }
+    });
+});
 
-var app_health = {
-    // note variable nodes is global!
+ $('#table_healthNetwork').off().delegate('.bt_pingDevice', 'click', function () {
+    jeedom.openzwave.node.action({
+        action : 'testNode',
+        node_id: $(this).attr('data-id'),
+        error: function (error) {
+         $('#div_networkHealthAlert').showAlert({message: error.message, level: 'danger'});
+     },
+     success: function (data) {
+       $('#div_networkHealthAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+       display_health_info();
+   }
+});
+});
 
-    updater: false,
+ $('#bt_refreshHealth').on('click',function(){
+    display_health_info();
+})
 
-    timestampConverter: function (time, _hourOnly) {
-        if (time == 1)
-            return "N/A";
-        var ret;
-        var date = new Date(time * 1000);
-        var hours = date.getHours();
-        if (hours < 10) {
-            hours = "0" + hours;
-        }
-        var minutes = date.getMinutes();
-        if (minutes < 10) {
-            minutes = "0" + minutes;
-        }
-        var num = date.getDate();
-        if (num < 10) {
-            num = "0" + num;
-        }
-        var month = date.getMonth() + 1;
-        if (month < 10) {
-            month = "0" + month;
-        }
-        var year = date.getFullYear();
-        var formattedTime = hours + ':' + minutes;
-        var formattedDate = num + "/" + month + "/" + year;
-        if (_hourOnly) {
-            return formattedTime;
-        }
-        return formattedDate + ' ' + formattedTime;
-    },
-    init: function () {
-        app_health.load_data(true);
-        app_health.updater = setInterval(function () {
-            if ($('#table_healthNetwork').is(':visible')) {
-                app_health.load_data(false);
-            } else {
-                app_health.hide();
-            }
-        }, 2000);
-        $('#bt_pingAllDevice').off().on('click', function () {
-            $.ajax({
-                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/controller.TestNetwork()",
-                dataType: 'json',
-                async: true,
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, error, $('#div_networkHealthAlert'));
-                },
-                success: function (data) {
-                    app_health.sendOk();
-                    app_health.load_data(false);
+ function display_health_info(){
+     jeedom.openzwave.network.info({
+        info : 'getHealth',
+        error: function (error) {
+            $('#div_networkHealthAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            var nodes = data.devices;
+            var tbody = '';
+            var now = Math.floor(new Date().getTime() / 1000);
+            for (var node_id in nodes) {
+                if (nodes[node_id].data == undefined) {
+                    continue;
                 }
-            });
-        });
-
-        $('#table_healthNetwork').off().delegate('.bt_pingDevice', 'click', function () {
-            $.ajax({
-                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + $(this).attr('data-id') + "].TestNode()",
-                dataType: 'json',
-                async: true,
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, error, $('#div_networkHealthAlert'));
-                },
-                success: function (data) {
-                    app_health.sendOk();
-                    app_health.load_data(false);
+                if (nodes[node_id].data.isEnable.value) {
+                    tbody += '<tr >';
+                }else {
+                    tbody += '<tr class="active">';
                 }
-            });
-        });
-    },
-    hide: function () {
-        clearInterval(app_health.updater);
-    },
-    load_data: function (_global) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.GetHealth()",
-            dataType: 'json',
-            async: true,
-            global: _global,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_networkHealthAlert'));
-            },
-            success: function (data) {
-                infos = data;
-                app_health.show_infos(data.devices);
-            }
-        });
-    },
-    show_infos: function (nodes) {
-        var tbody = '';
-        var now = Math.floor(new Date().getTime() / 1000);
-        for (var node_id in nodes) {
-            if (nodes[node_id].data == undefined) {
-                continue;
-            }
-            if (nodes[node_id].data.isEnable.value) {
-                tbody += '<tr >';
-            }
-            else {
-                tbody += '<tr class="active">';
-            }
-            // device name
-            tbody += '<td>';
-            var name = '<span class="nodeConfiguration cursor" data-node-id="' + node_id + '">';
-            if (nodes[node_id].data.description.name != '') {
-                name += '<span  class="label label-primary" style="font-size : 1em;">' + nodes[node_id].data.description.location + '</span> ' + nodes[node_id].data.description.name;
-            } else {
-                name += nodes[node_id].data.description.product_name;
-            }
-
-            if (nodes[node_id].data.isZwavePlus.value) {
-                name += ' <span title="{{ZWAVE PLUS}}"><i class="fa fa-plus-circle text-info" aria-hidden="true"></i></span>';
-            }
-            if (nodes[node_id].data.isSecured.enabled) {
-                //name += '  <span class="node-isSecured label label-success" >';
-                if (nodes[node_id].data.isSecured.value) {
-                    name += '  <span title="{{Sécurisé}}"><i class="fa fa-lock text-success" aria-hidden="true"></i></span>';
-                }
-                else {
-                    name += '  <span title="{{Non sécurisé}}"><i class="fa fa-unlock  text-success" aria-hidden="true"></i></span>';
-                }
-                //name += '</span>';
-            }
-            if (nodes[node_id].data.isFrequentListening.value) {
-                name += ' <span title="{{FLiRS}}"><i class="fa fa-assistive-listening-systems " aria-hidden="true"></i></span>';
-            }
-
-
-            name += '</span>';
-            if (nodes[node_id].data.isEnable.value) {
-                tbody += name;
-            }
-            else {
-                tbody += '<div style="opacity:0.5"><i>' + name + '</i></div>';
-            }
-            tbody += '</td>';
-            // device id
-            tbody += '<td>';
-            if (nodes[node_id].data.isEnable.value) {
-                tbody += node_id;
-            }
-            else {
-                tbody += '<div style="opacity:0.5"><i>' + node_id + '</i></div>';
-            }
-            tbody += '</td>';
-            // Notification
-            tbody += '<td>';
-            var notification = '';
-            if (nodes[node_id].last_notification != undefined) {
-                if (nodes[node_id].last_notification.description == 'Timeout') {
-                    notification += '<span class="label label-warning" style="font-size : 1em;" title="' + nodes[node_id].last_notification.help + '">' + nodes[node_id].last_notification.description + '</span>';
-                } else if (nodes[node_id].last_notification.description == 'Dead') {
-                    notification += '<span class="label label-danger" style="font-size : 1em;" title="' + nodes[node_id].last_notification.help + '">' + nodes[node_id].last_notification.description + '</span>';
-                } else if (nodes[node_id].last_notification.description != undefined) {
-                    notification += '<span class="label label-primary" style="font-size : 1em;" title="' + nodes[node_id].last_notification.help + '">' + nodes[node_id].last_notification.description + '</span>';
+                tbody += '<td>';
+                var name = '<span class="nodeConfiguration cursor" data-node-id="' + node_id + '">';
+                if (nodes[node_id].data.description.name != '') {
+                    name += '<span  class="label label-primary" style="font-size : 1em;">' + nodes[node_id].data.description.location + '</span> ' + nodes[node_id].data.description.name;
                 } else {
-                    notification += '<span class="label label-primary" style="font-size : 1em;" title="{{Non disponible}}">...</span>';
+                    name += nodes[node_id].data.description.product_name;
                 }
-            }
-            if (nodes[node_id].data.isEnable.value) {
-                tbody += notification;
-            }
-            else {
-                tbody += '<div style="opacity:0.5"><i>' + notification + '</i></div>';
-            }
-            tbody += '</td>';
-            // have valid groups
-            tbody += '<td>';
-            if (nodes[node_id].data.isEnable.value) {
-                if (nodes[node_id].data.is_groups_ok != undefined && nodes[node_id].data.is_groups_ok.value) {
-                    tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-                } else {
-                    if (nodes[node_id].data.is_groups_ok.enabled) {
-                        tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
+                if (nodes[node_id].data.isZwavePlus.value) {
+                    name += ' <span title="{{ZWAVE PLUS}}"><i class="fa fa-plus-circle text-info" aria-hidden="true"></i></span>';
+                }
+                if (nodes[node_id].data.isSecured.enabled) {
+                    if (nodes[node_id].data.isSecured.value) {
+                        name += '  <span title="{{Sécurisé}}"><i class="fa fa-lock text-success" aria-hidden="true"></i></span>';
+                    }else {
+                        name += '  <span title="{{Non sécurisé}}"><i class="fa fa-unlock  text-success" aria-hidden="true"></i></span>';
                     }
                 }
-            }
-            tbody += '</td>';
-            // have valid zwave ids
-            tbody += '<td>';
-            if (nodes[node_id].data.isEnable.value) {
-                if (nodes[node_id].data.is_manufacturer_specific_ok != undefined && nodes[node_id].data.is_manufacturer_specific_ok.value) {
-                    tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-                } else {
-                    tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
+                if (nodes[node_id].data.isFrequentListening.value) {
+                    name += ' <span title="{{FLiRS}}"><i class="fa fa-assistive-listening-systems " aria-hidden="true"></i></span>';
                 }
-            }
-            tbody += '</td>';
-            // neighbours test
-            tbody += '<td>';
-            if (nodes[node_id].data.isEnable.value) {
-                if (nodes[node_id].data.is_neighbours_ok != undefined && nodes[node_id].data.is_neighbours_ok.value) {
-                    tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-                } else {
-                    if (nodes[node_id].data.is_neighbours_ok.enabled) {
-                        tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
-                    }
+                name += '</span>';
+                if (nodes[node_id].data.isEnable.value) {
+                    tbody += name;
+                }else {
+                    tbody += '<div style="opacity:0.5"><i>' + name + '</i></div>';
                 }
-            }
-            tbody += '</td>';
-            // pending changes
-            tbody += '<td>';
-            if (nodes[node_id].data.isEnable.value) {
-                if (nodes[node_id].data.pending_changes != undefined && nodes[node_id].data.pending_changes.value > 0) {
-                    tbody += '<span class="label label-warning" style="font-size : 1em;" title="' + nodes[node_id].data.pending_changes.value + ' {{configuration(s) en attente d\'être appliquée(s)}}" >' + nodes[node_id].data.pending_changes.value + '</span>';
-                } else if (nodes[node_id].data.pending_changes != undefined && nodes[node_id].data.pending_changes.value == 0) {
-                    tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
+                tbody += '</td>';
+                tbody += '<td>';
+                if (nodes[node_id].data.isEnable.value) {
+                    tbody += node_id;
+                }else {
+                    tbody += '<div style="opacity:0.5"><i>' + node_id + '</i></div>';
                 }
-            }
-            tbody += '</td>';
-            // status
-            tbody += '<td>';
-            var status = '';
-            if (nodes[node_id].data.isFailed != undefined && !nodes[node_id].data.isFailed.value) {
-                if (nodes[node_id].data.state != undefined) {
-                    if (nodes[node_id].data.state.value == 'Complete') {
-                        status += '<span class="label label-success" style="font-size : 1em;">' + nodes[node_id].data.state.value + '</span>';
+                tbody += '</td>';
+                tbody += '<td>';
+                var notification = '';
+                if (nodes[node_id].last_notification != undefined) {
+                    if (nodes[node_id].last_notification.description == 'Timeout') {
+                        notification += '<span class="label label-warning" style="font-size : 1em;" title="' + nodes[node_id].last_notification.help + '">' + nodes[node_id].last_notification.description + '</span>';
+                    } else if (nodes[node_id].last_notification.description == 'Dead') {
+                        notification += '<span class="label label-danger" style="font-size : 1em;" title="' + nodes[node_id].last_notification.help + '">' + nodes[node_id].last_notification.description + '</span>';
+                    } else if (nodes[node_id].last_notification.description != undefined) {
+                        notification += '<span class="label label-primary" style="font-size : 1em;" title="' + nodes[node_id].last_notification.help + '">' + nodes[node_id].last_notification.description + '</span>';
                     } else {
-                        status += '<span class="label label-warning" style="font-size : 1em;">' + nodes[node_id].data.state.value + '</span>';
+                        notification += '<span class="label label-primary" style="font-size : 1em;" title="{{Non disponible}}">...</span>';
                     }
-                } else {
-                    status += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
                 }
-            } else {
-                status += '<span class="label label-danger" style="font-size : 1em;">{{DEATH}}</span>';
-            }
-            if (nodes[node_id].data.isEnable.value) {
-                tbody += status;
-            }
-            else {
-                tbody += '<div style="opacity:0.5"><i>' + status + '</i></div>';
-            }
-            tbody += '</td>';
-            // powered vs battery
-            tbody += '<td>';
-            if (nodes[node_id].data.isEnable.value) {
-                if (nodes[node_id].data.isListening.value) {
-                    tbody += '<span class="label label-primary" style="font-size : 1em;" title="{{Secteur}}"><i class="fa fa-plug"></i></span>';
+                if (nodes[node_id].data.isEnable.value) {
+                    tbody += notification;
+                }else {
+                    tbody += '<div style="opacity:0.5"><i>' + notification + '</i></div>';
                 }
-                else {
-                    if (nodes[node_id].data.battery_level != undefined && nodes[node_id].data.battery_level.value != null) {
-                        var updateTime = '';
-                        if (nodes[node_id].data.battery_level.updateTime != undefined) {
-                            updateTime = app_health.timestampConverter(nodes[node_id].data.battery_level.updateTime, false);
+                tbody += '</td>';
+                tbody += '<td>';
+                if (nodes[node_id].data.isEnable.value) {
+                    if (nodes[node_id].data.is_groups_ok != undefined && nodes[node_id].data.is_groups_ok.value) {
+                        tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
+                    } else {
+                        if (nodes[node_id].data.is_groups_ok.enabled) {
+                            tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
                         }
-                        if (nodes[node_id].data.battery_level.value > 75) {
-                            tbody += '<span class="label label-success" style="font-size : 1em;" title="' + updateTime + '">' + nodes[node_id].data.battery_level.value + '%</span>';
-                        } else if (nodes[node_id].data.battery_level.value > 50) {
-                            tbody += '<span class="label label-warning" style="font-size : 1em;" title="' + updateTime + '">' + nodes[node_id].data.battery_level.value + '%</span>';
+                    }
+                }
+                tbody += '</td>';
+                tbody += '<td>';
+                if (nodes[node_id].data.isEnable.value) {
+                    if (nodes[node_id].data.is_manufacturer_specific_ok != undefined && nodes[node_id].data.is_manufacturer_specific_ok.value) {
+                        tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
+                    } else {
+                        tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
+                    }
+                }
+                tbody += '</td>';
+                tbody += '<td>';
+                if (nodes[node_id].data.isEnable.value) {
+                    if (nodes[node_id].data.is_neighbours_ok != undefined && nodes[node_id].data.is_neighbours_ok.value) {
+                        tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
+                    } else {
+                        if (nodes[node_id].data.is_neighbours_ok.enabled) {
+                            tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
+                        }
+                    }
+                }
+                tbody += '</td>';
+                tbody += '<td>';
+                if (nodes[node_id].data.isEnable.value) {
+                    if (nodes[node_id].data.pending_changes != undefined && nodes[node_id].data.pending_changes.value > 0) {
+                        tbody += '<span class="label label-warning" style="font-size : 1em;" title="' + nodes[node_id].data.pending_changes.value + ' {{configuration(s) en attente d\'être appliquée(s)}}" >' + nodes[node_id].data.pending_changes.value + '</span>';
+                    } else if (nodes[node_id].data.pending_changes != undefined && nodes[node_id].data.pending_changes.value == 0) {
+                        tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
+                    }
+                }
+                tbody += '</td>';
+                tbody += '<td>';
+                var status = '';
+                if (nodes[node_id].data.isFailed != undefined && !nodes[node_id].data.isFailed.value) {
+                    if (nodes[node_id].data.state != undefined) {
+                        if (nodes[node_id].data.state.value == 'Complete') {
+                            status += '<span class="label label-success" style="font-size : 1em;">' + nodes[node_id].data.state.value + '</span>';
                         } else {
-                            tbody += '<span class="label label-danger" style="font-size : 1em;" title="' + updateTime + '">' + nodes[node_id].data.battery_level.value + '%</span>';
+                            status += '<span class="label label-warning" style="font-size : 1em;">' + nodes[node_id].data.state.value + '</span>';
                         }
-                    } else if (nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.value != null) {
-                        tbody += '<span class="label label-warning" style="font-size : 1em;">--</span>';
+                    } else {
+                        status += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
+                    }
+                } else {
+                    status += '<span class="label label-danger" style="font-size : 1em;">{{DEATH}}</span>';
+                }
+                if (nodes[node_id].data.isEnable.value) {
+                    tbody += status;
+                }else {
+                    tbody += '<div style="opacity:0.5"><i>' + status + '</i></div>';
+                }
+                tbody += '</td>';
+                tbody += '<td>';
+                if (nodes[node_id].data.isEnable.value) {
+                    if (nodes[node_id].data.isListening.value) {
+                        tbody += '<span class="label label-primary" style="font-size : 1em;" title="{{Secteur}}"><i class="fa fa-plug"></i></span>';
+                    } else {
+                        if (nodes[node_id].data.battery_level != undefined && nodes[node_id].data.battery_level.value != null) {
+                            var updateTime = '';
+                            if (nodes[node_id].data.battery_level.updateTime != undefined) {
+                                updateTime = jeedom.openzwave.timestampConverter(nodes[node_id].data.battery_level.updateTime, false);
+                            }
+                            if (nodes[node_id].data.battery_level.value > 75) {
+                                tbody += '<span class="label label-success" style="font-size : 1em;" title="' + updateTime + '">' + nodes[node_id].data.battery_level.value + '%</span>';
+                            } else if (nodes[node_id].data.battery_level.value > 50) {
+                                tbody += '<span class="label label-warning" style="font-size : 1em;" title="' + updateTime + '">' + nodes[node_id].data.battery_level.value + '%</span>';
+                            } else {
+                                tbody += '<span class="label label-danger" style="font-size : 1em;" title="' + updateTime + '">' + nodes[node_id].data.battery_level.value + '%</span>';
+                            }
+                        } else if (nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.value != null) {
+                            tbody += '<span class="label label-warning" style="font-size : 1em;">--</span>';
+                        }
                     }
                 }
-            }
-            tbody += '</td>';
-            // wakeup interval
-            tbody += '<td>';
-            if (nodes[node_id].data.isEnable.value) {
-                if (!nodes[node_id].data.isListening.value && nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.value != null) {
-                    if (nodes[node_id].data.wakeup_interval.value == 0 || nodes[node_id].data.wakeup_interval.value > 86400) {
-                        tbody += '<span class="label label-warning" style="font-size : 1em;">'
+                tbody += '</td>';
+                tbody += '<td>';
+                if (nodes[node_id].data.isEnable.value) {
+                    if (!nodes[node_id].data.isListening.value && nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.value != null) {
+                        if (nodes[node_id].data.wakeup_interval.value == 0 || nodes[node_id].data.wakeup_interval.value > 86400) {
+                            tbody += '<span class="label label-warning" style="font-size : 1em;">'
+                        }else {
+                            tbody += '<span class="label label-info" style="font-size : 1em;">'
+                        }
+                        tbody += nodes[node_id].data.wakeup_interval.value + '</span>';
                     }
-                    else {
-                        tbody += '<span class="label label-info" style="font-size : 1em;">'
-                    }
-                    tbody += nodes[node_id].data.wakeup_interval.value + '</span>';
                 }
-            }
-            tbody += '</td>';
-            // statistics total
-            tbody += '<td>';
-            if (nodes[node_id].data.isEnable.value) {
-                // if (nodes[node_id].data.statistics != undefined && nodes[node_id].data.statistics.total > 0) {
+                tbody += '</td>';
+                tbody += '<td>';
+                if (nodes[node_id].data.isEnable.value) {
                     tbody += '<span class="label label-primary" style="font-size : 1em;">' + nodes[node_id].data.statistics.total + '</span>';
-                // } else if (nodes[node_id].data.statistics != undefined && nodes[node_id].data.statistics.total != null) {
-                //     tbody += '<span class="label label-warning" style="font-size : 1em;">' + nodes[node_id].data.statistics.total + '</span>';
-                // }
-            }
-            tbody += '</td>';
-            // statistics % ok
-            tbody += '<td>';
-            if (nodes[node_id].data.isEnable.value) {
-                if (nodes[node_id].data.statistics != undefined && nodes[node_id].data.statistics.total > 0 && nodes[node_id].data.statistics.delivered != null) {
-                    if (nodes[node_id].data.statistics.delivered > 90) {
-                        tbody += '<span class="label label-success" style="font-size : 1em;">' + nodes[node_id].data.statistics.delivered + '%</span>';
-                    } else if (nodes[node_id].data.statistics.delivered > 75) {
-                        tbody += '<span class="label label-warning" style="font-size : 1em;">' + nodes[node_id].data.statistics.delivered + '%</span>';
-                    } else {
-                        tbody += '<span class="label label-danger" style="font-size : 1em;">' + nodes[node_id].data.statistics.delivered + '%</span>';
-                    }
                 }
-            }
-            tbody += '</td>';
-            // statistics delivery time
-            tbody += '<td>';
-            if (nodes[node_id].data.isEnable.value) {
-                if (nodes[node_id].data.statistics != undefined && nodes[node_id].data.statistics.total > 0 && nodes[node_id].data.statistics.deliveryTime != null) {
-                    if (nodes[node_id].data.statistics.deliveryTime > 500) {
-                        tbody += '<span class="label label-danger" style="font-size : 1em;">' + nodes[node_id].data.statistics.deliveryTime + 'ms</span>';
-                    } else if (nodes[node_id].data.statistics.deliveryTime > 250) {
-                        tbody += '<span class="label label-warning" style="font-size : 1em;">' + nodes[node_id].data.statistics.deliveryTime + 'ms</span>';
-                    } else {
-                        tbody += '<span class="label label-success" style="font-size : 1em;">' + nodes[node_id].data.statistics.deliveryTime + 'ms</span>';
-                    }
-                }
-            }
-            tbody += '</td>';
-            // communication time
-            tbody += '<td>';
-            if (nodes[node_id].data.isEnable.value) {
-                if (nodes[node_id].data.isListening.value) {
-                    tbody += app_health.timestampConverter(nodes[node_id].data.lastReceived.updateTime, false);
-                }
-                else if (nodes[node_id].last_notification.description != undefined && nodes[node_id].data.lastReceived != undefined && nodes[node_id].data.lastReceived.updateTime != null) {
-                    tbody += app_health.timestampConverter(nodes[node_id].data.lastReceived.updateTime, false);
-                    if (nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.next_wakeup != null) {
-                        if (now > nodes[node_id].data.wakeup_interval.next_wakeup) {
-                            tbody += ' <i class="fa fa-arrow-right text-danger"></i> <span class="label label-warning" style="font-size : 1em;" title="{{Le noeud ne s\'est pas réveillé comme prévue}}"> ' + app_health.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup, true) + ' </span>';
-                        }
-                        else {
-                            tbody += ' <i class="fa fa-arrow-right"></i> ' + app_health.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup, true) + ' <i class="fa fa-clock-o"></i>';
+                tbody += '</td>';
+                tbody += '<td>';
+                if (nodes[node_id].data.isEnable.value) {
+                    if (nodes[node_id].data.statistics != undefined && nodes[node_id].data.statistics.total > 0 && nodes[node_id].data.statistics.delivered != null) {
+                        if (nodes[node_id].data.statistics.delivered > 90) {
+                            tbody += '<span class="label label-success" style="font-size : 1em;">' + nodes[node_id].data.statistics.delivered + '%</span>';
+                        } else if (nodes[node_id].data.statistics.delivered > 75) {
+                            tbody += '<span class="label label-warning" style="font-size : 1em;">' + nodes[node_id].data.statistics.delivered + '%</span>';
+                        } else {
+                            tbody += '<span class="label label-danger" style="font-size : 1em;">' + nodes[node_id].data.statistics.delivered + '%</span>';
                         }
                     }
                 }
-                else if (nodes[node_id].data.isListening.value == false && nodes[node_id].data.last_notification == undefined && nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.value != null && nodes[node_id].data.lastReceived != undefined && nodes[node_id].data.lastReceived.updateTime != null) {
-                    if (now > nodes[node_id].data.lastReceived.updateTime + nodes[node_id].data.wakeup_interval.value && nodes[node_id].data.wakeup_interval.value >0) {
-                        tbody += '<span class="label label" style="font-size : 1.5em;" title="{{Le noeud ne s\'est pas encore réveillé une fois depuis le lancement du démon}}"><i class="fa fa-exclamation-circle text-danger"></i></span>';
+                tbody += '</td>';
+                tbody += '<td>';
+                if (nodes[node_id].data.isEnable.value) {
+                    if (nodes[node_id].data.statistics != undefined && nodes[node_id].data.statistics.total > 0 && nodes[node_id].data.statistics.deliveryTime != null) {
+                        if (nodes[node_id].data.statistics.deliveryTime > 500) {
+                            tbody += '<span class="label label-danger" style="font-size : 1em;">' + nodes[node_id].data.statistics.deliveryTime + 'ms</span>';
+                        } else if (nodes[node_id].data.statistics.deliveryTime > 250) {
+                            tbody += '<span class="label label-warning" style="font-size : 1em;">' + nodes[node_id].data.statistics.deliveryTime + 'ms</span>';
+                        } else {
+                            tbody += '<span class="label label-success" style="font-size : 1em;">' + nodes[node_id].data.statistics.deliveryTime + 'ms</span>';
+                        }
                     }
                 }
+                tbody += '</td>';
+                tbody += '<td>';
+                if (nodes[node_id].data.isEnable.value) {
+                    if (nodes[node_id].data.isListening.value) {
+                        tbody += jeedom.openzwave.timestampConverter(nodes[node_id].data.lastReceived.updateTime, false);
+                    }
+                    else if (nodes[node_id].last_notification.description != undefined && nodes[node_id].data.lastReceived != undefined && nodes[node_id].data.lastReceived.updateTime != null) {
+                        tbody += jeedom.openzwave.timestampConverter(nodes[node_id].data.lastReceived.updateTime, false);
+                        if (nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.next_wakeup != null) {
+                            if (now > nodes[node_id].data.wakeup_interval.next_wakeup) {
+                                tbody += ' <i class="fa fa-arrow-right text-danger"></i> <span class="label label-warning" style="font-size : 1em;" title="{{Le noeud ne s\'est pas réveillé comme prévue}}"> ' + app_health.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup, true) + ' </span>';
+                            }else {
+                                tbody += ' <i class="fa fa-arrow-right"></i> ' + jeedom.openzwave.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup, true) + ' <i class="fa fa-clock-o"></i>';
+                            }
+                        }
+                    } else if (nodes[node_id].data.isListening.value == false && nodes[node_id].data.last_notification == undefined && nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.value != null && nodes[node_id].data.lastReceived != undefined && nodes[node_id].data.lastReceived.updateTime != null) {
+                        if (now > nodes[node_id].data.lastReceived.updateTime + nodes[node_id].data.wakeup_interval.value && nodes[node_id].data.wakeup_interval.value >0) {
+                            tbody += '<span class="label label" style="font-size : 1.5em;" title="{{Le noeud ne s\'est pas encore réveillé une fois depuis le lancement du démon}}"><i class="fa fa-exclamation-circle text-danger"></i></span>';
+                        }
+                    }
+                }
+                tbody += '</td>';
+                tbody += '<td>';
+                if (nodes[node_id].data.isEnable.value) {
+                    tbody += '<a class="btn btn-info btn-xs bt_pingDevice" data-id="' + node_id + '"><i class="fa fa-eye"></i> {{Ping}}</a>';
+                }
+                tbody += '</td>';
+                tbody += '</tr>';
             }
-            tbody += '</td>';
-            // ping cmd
-            tbody += '<td>';
-            if (nodes[node_id].data.isEnable.value) {
-                tbody += '<a class="btn btn-info btn-xs bt_pingDevice" data-id="' + node_id + '"><i class="fa fa-eye"></i> {{Ping}}</a>';
-            }
-            tbody += '</td>';
-            tbody += '</tr>';
+            $('#table_healthNetwork tbody').empty().append(tbody)
         }
-        $('#table_healthNetwork tbody').empty().append(tbody);
-    },
-    update: function () {
-
-    },
-    sendOk: function () {
-        $('#span_state').show();
-        setTimeout(function () {
-            $('#span_state').hide();
-        }, 3000);
-    },
-    show: function () {
-
-    },
-
+    });
 }
+
+display_health_info();
