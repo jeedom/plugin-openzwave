@@ -552,7 +552,6 @@ def release_button(node_id, instance_id, cc_id, index):
 		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[
 			val].index == index:
 			globals.network.manager.releaseButton(globals.network.nodes[node_id].values[val].value_id)
-			# stop refresh if running in background
 			if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
 				value_level = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
 												 globals.network.nodes[node_id].values[val].instance, 'Level')
@@ -631,7 +630,6 @@ def get_serialized_device(node_id):
 """
 controllers routes
 """
-
 
 @app.route('/ZWaveAPI/Run/controller.RequestNetworkUpdate(<node_id>)', methods=['GET'])
 @auth.login_required
