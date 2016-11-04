@@ -862,7 +862,7 @@ def press_button(node_id, instance_id, cc_id, index):
 #OLD ROUTES FOR NOW
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()', methods=['GET'])
 @auth.login_required
-def press_button(node_id, instance_id, cc_id, index):
+def press_button_old(node_id, instance_id, cc_id, index):
 	utils.check_node_exist(node_id)
 	logging.info("press_button nodeId:%s, instance:%s, cc:%s, index:%s" % (node_id, instance_id, cc_id, index,))
 	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
@@ -884,7 +884,7 @@ def press_button(node_id, instance_id, cc_id, index):
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ReleaseButton()', methods=['GET'])
 @auth.login_required
-def release_button(node_id, instance_id, cc_id, index):
+def release_button_old(node_id, instance_id, cc_id, index):
 	utils.check_node_exist(node_id)
 	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
 		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[
