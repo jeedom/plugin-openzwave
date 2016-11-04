@@ -1115,29 +1115,24 @@ function show_groups(){
     }
 }
 
+
+ $("body").off("click", ".refreshParams").on("click", ".refreshParams", function (e) {
+            app_nodes.refresh_parameters(node_id);
+        });
+
 var app_nodes = {
     init: function () {
-        $("body").off("click", ".requestNodeNeighboursUpdate").on("click", ".requestNodeNeighboursUpdate", function (e) {
-            app_nodes.request_node_neighbours_update(node_id);
-        });
-        $("body").off("click", ".healNode").on("click", ".healNode", function (e) {
-            app_nodes.healNode(node_id);
-        });
-        $("body").off("click", ".assignReturnRoute").on("click", ".assignReturnRoute", function (e) {
-            app_nodes.assign_return_route_node(node_id);
-        });
+      
+      
+      
         $("#refreshNodeValues").off("click").on("click", function () {
             app_nodes.refresh_node_values(node_id);
         });
         $("#requestNodeDynamic").off("click").on("click", function () {
             app_nodes.request_node_dynamic(node_id);
         });
-        $("body").off("click", ".refreshNodeInfo").on("click", ".refreshNodeInfo", function (e) {
-            app_nodes.refresh_node_info(node_id);
-        });
-        $("body").off("click", ".hasNodeFailed").on("click", ".hasNodeFailed", function (e) {
-            app_nodes.has_node_failed(node_id);
-        });
+       
+      
         $("body").off("click", ".testNode").on("click", ".testNode", function (e) {
             app_nodes.test_node(node_id);
         });
@@ -1147,15 +1142,8 @@ var app_nodes = {
         $("#sendNodeInformation").off("click").on("click", function () {
             app_nodes.send_node_information(node_id);
         });
-        $("body").off("click", ".refreshParams").on("click", ".refreshParams", function (e) {
-            app_nodes.refresh_parameters(node_id);
-        });
-        $("#sendNodeInformation").off("click").on("click", function () {
-            app_nodes.send_node_information(node_id);
-        });
     },
     delete_group: function (node_id, group, node, instance) {
-        var url = "";
         if (instance > 0) {
             url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].Associations[" + group + "].Remove(" + node + "," + instance + ")";
         } else {
