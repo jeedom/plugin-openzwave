@@ -223,10 +223,7 @@
             handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
         },
         success: function (data) {
-            app_nodes.draw_nodes();
-            app_nodes.load_data(true);
-            app_nodes.show_groups();
-            app_nodes.sendOk();
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
             $('#copyParamsModal').modal('hide');
         }
     });
@@ -353,18 +350,12 @@
     modal.find('.modal-body').append(options_node);
 });
  $("#saveGroups").off("click").on("click", function (e) {
-    var groupIndex = $('#groupsModal').data('groupindex');
     var values = $('#newvaluenode').val().split(";");
-    var nodeId = values[0];
-    var nodeInstance = values[1];
-    var url = '';
-    if (nodeInstance > 0) {
-        url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].Associations[" + groupIndex + "].Add(" + nodeId + "," + nodeInstance + ")";
+    if ( values[1] > 0) {
+        url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].Associations[" + $('#groupsModal').data('groupindex') + "].Add(" + values[0] + "," +  values[1] + ")";
+    }else {
+        url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[0].commandClasses[0x85].Add(" + $('#groupsModal').data('groupindex') + "," + values[0] + ")";
     }
-    else {
-        url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[0].commandClasses[0x85].Add(" + groupIndex + "," + nodeId + ")";
-    }
-
     $.ajax({
         url: url,
         dataType: 'json',
@@ -373,37 +364,23 @@
             handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
         },
         success: function (data) {
-            app_nodes.draw_nodes();
-            app_nodes.load_data(false);
-            app_nodes.show_groups();
-            app_nodes.sendOk();
-            $('#groupsModal').modal('hide');
-        }
-    });
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+         $('#groupsModal').modal('hide');
+     }
+ });
 });
  $("body").off("click", ".editValue").on("click", ".editValue", function (e) {
-    var idx = $(this).data('valueidx');
-    var instance = $(this).data('valueinstance');
-    var cc = $(this).data('valuecc');
-    var name = $(this).data('valuename');
-    var value = $(this).data('valuevalue');
-    var type = $(this).data('valuetype');
-    var dataitems = $(this).data('valuedataitems');
-    var genre = $(this).data('valuegenre');
-    $('#valuesModal').data('valuename', name);
-    $('#valuesModal').data('valuetype', type);
-    $('#valuesModal').data('valueinstance', instance);
-    $('#valuesModal').data('valuecc', cc);
-    $('#valuesModal').data('valuevalue', value);
-    $('#valuesModal').data('valuedataitems', dataitems);
-    $('#valuesModal').data('valuegenre', genre);
-    $('#valuesModal').data('valueidx', idx).modal('show');
+    $('#valuesModal').data('valuename', $(this).data('valuename'));
+    $('#valuesModal').data('valuetype', $(this).data('valuetype'));
+    $('#valuesModal').data('valueinstance', $(this).data('valueinstance'));
+    $('#valuesModal').data('valuecc', $(this).data('valuecc'));
+    $('#valuesModal').data('valuevalue', $(this).data('valuevalue'));
+    $('#valuesModal').data('valuedataitems', $(this).data('valuedataitems'));
+    $('#valuesModal').data('valuegenre', $(this).data('valuegenre'));
+    $('#valuesModal').data('valueidx',  $(this).data('valueidx')).modal('show');
 });
  $('#valuesModal').off('show.bs.modal').on('show.bs.modal', function (e) {
-    var valueIdx = $(this).data('valueidx');
     var valueType = $(this).data('valuetype');
-    var valueInstance = $(this).data('valueinstance');
-    var valueCc = $(this).data('valuecc');
     var valueName = $(this).data('valuename');
     var valueValue = $(this).data('valuevalue');
     var valueDataitems = $(this).data('valuedataitems').split(";");
@@ -444,19 +421,18 @@
         modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" style="display:inline-block;width:400px;" value="' + valueValue + '">');
     }
 });
+
+
  $("body").off("click", ".forceRefresh").on("click", ".forceRefresh", function (e) {
-    var index = $(this).attr('data-valueidx');
-    var cc = $(this).attr('data-valuecc');
-    var instance = $(this).attr('data-valueinstance');
     $.ajax({
-        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=/ZWaveAPI/Run/devices[" + node_id + "].instances[" + instance + "].commandClasses[" + cc + "].data[" + index + "].Refresh()",
+        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=/ZWaveAPI/Run/devices[" + node_id + "].instances[" + $(this).attr('data-valueinstance') + "].commandClasses[" + $(this).attr('data-valuecc') + "].data[" + $(this).attr('data-valueidx') + "].Refresh()",
         dataType: 'json',
         async: true,
         error: function (request, status, error) {
             handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
         },
         success: function (data) {
-            app_nodes.sendOk();
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
         }
     });
 });
@@ -571,11 +547,10 @@
                 handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
             },
             success: function (data) {
-                app_nodes.sendOk();
-                $('#valuesModal').modal('hide');
-                app_nodes.load_data(false);
-            }
-        });
+             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+             $('#valuesModal').modal('hide');
+         }
+     });
     } else if (valueType == "Raw") {
         $.ajax({
             url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].UserCode.SetRaw(" + valueIdx + ",[" + valueValue + "],1)",
@@ -585,9 +560,8 @@
                 handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
             },
             success: function (data) {
-                app_nodes.sendOk();
+                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
                 $('#valuesModal').modal('hide');
-                app_nodes.load_data(false);
             }
         });
     }else {
@@ -599,9 +573,8 @@
                 handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
             },
             success: function (data) {
-                app_nodes.sendOk();
+                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
                 $('#valuesModal').modal('hide');
-                app_nodes.load_data(false);
             }
         });
     }
@@ -619,13 +592,82 @@
             handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
         },
         success: function (data) {
-            app_nodes.draw_nodes();
-            app_nodes.load_data(false);
-            app_nodes.sendOk();
-            $('#pollingModal').modal('hide');
-            app_nodes.draw_nodes();
-        }
-    });
+          $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+          $('#pollingModal').modal('hide');
+      }
+  });
+});
+
+ $("#tab-parameters").off("click").on("click", function () {
+    if (!nodes[node_id].instances[0].commandClasses[112]) {
+        $("#parameters").html('<br><div><b>{{Aucun paramètre prédefini trouvé pour ce noeud}}</b></div><br>');
+        $("#parameters").append('<div class="row"><label class="col-lg-2">{{Paramètre :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">{{Valeur :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">{{Taile :}}</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><button id="sendparamperso" class="btn btn-primary">{{Envoyer le paramètre}}</a></div></div>');
+        $("#sendparamperso").off("click").on("click", function () {
+            var paramId = $("#paramidperso").val();
+            var paramValue = $('#newvalueperso').val();
+            var paramLength = $('#sizeperso').val();
+            $.ajax({
+                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].commandClasses[0x70].Set(" + paramId + "," + paramValue + "," + paramLength + ")",
+                dataType: 'json',
+                async: true, error: function (request, status, error) {
+                    handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+                },
+                success: function (data) {
+                    $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+                }
+            });
+        });
+    }
+});
+
+ $("body").off("click", ".deleteGroup").on("click", ".deleteGroup", function (e) {
+    var group = $(this).data('groupindex');
+    var node = $(this).data('nodeid');
+    var instance = $(this).data('nodeinstance');
+    console.log('deleteGroup group:' + group + ' node:' + node + ' instance:' + instance);
+    app_nodes.delete_group(node_id, group, node, instance);
+});
+
+ $("body").off("click", ".addGroup").on("click", ".addGroup", function (e) {
+    var group = $(this).data('groupindex');
+    if(group == -1){
+        return;
+    }
+    $('#groupsModal').data('groupindex', group);
+    $('#groupsModal').modal('show');
+});
+
+ $("#saveParam").off("click").on("click", function (e) {
+    var paramId = $('#paramsModal').data('paramid');
+    var paramType = $('#paramsModal').data('paramtype');
+    if (paramType == "Bool") {
+        var paramValue = $('input[name=newvalue]:checked', '#paramsModal').val();
+    } else if (paramType == "Button") {
+        var paramValue = $('input[name=newvalue]:checked', '#paramsModal').val();
+    } else {
+        var paramValue = $('#newvalue').val();
+    }
+    var paramValue2 = paramValue.replace(/\//g, '@');
+    var paramLength = paramValue.length;
+    $.ajax({
+        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].commandClasses[0x70].Set(" + paramId + "," + encodeURIComponent(paramValue2) + "," + paramLength + ")",
+        dataType: 'json',
+        async: true,
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+        },
+        success: function (data) {
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+         $('#paramsModal').modal('hide');
+     }
+ });
+});
+
+ $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
+    $('#copyParamsModal').modal('show');
+});
+ $("body").off("click", ".copyToParams").on("click", ".copyToParams", function (e) {
+    $('#copyToParamsModal').modal('show');
 });
 
  function load_all_node(){
@@ -663,6 +705,7 @@ function display_node_info(){
    jeedom.openzwave.node.info({
     node_id : node_id,
     info:'all',
+    global:false,
     error: function (error) {
         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
     },
@@ -999,10 +1042,12 @@ function display_node_info(){
             }
         }
         show_groups();
+        if($('#div_nodeConfigure').html() != undefined && $('#div_nodeConfigure').is(':visible')){
+                setTimeout(function(){ display_node_info(); }, 2000);
+            }
     }
 });
 }
-
 
 function show_groups(){
     var node = $(".node");
@@ -1072,39 +1117,6 @@ function show_groups(){
 
 var app_nodes = {
     init: function () {
-        controller_id = -1
-        app_nodes.load_data(true);
-        app_nodes.updater = setInterval(function () {
-            if ($('#template-node').is(':visible')) {
-                app_nodes.load_data(false);
-            } else {
-                app_nodes.hide();
-            }
-        }, 2000);
-        $('#node-queryStageDescrition').popover({title: '', placement: 'right', trigger: 'hover'});
-        $("#tab-parameters").off("click").on("click", function () {
-            if (!nodes[node_id].instances[0].commandClasses[112]) {
-                $("#parameters").html('<br><div><b>{{Aucun paramètre prédefini trouvé pour ce noeud}}</b></div><br>');
-                $("#parameters").append('<div class="row"><label class="col-lg-2">{{Paramètre :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">{{Valeur :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">{{Taile :}}</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><button id="sendparamperso" class="btn btn-primary">{{Envoyer le paramètre}}</a></div></div>');
-                $("#sendparamperso").off("click").on("click", function () {
-                    var paramId = $("#paramidperso").val();
-                    var paramValue = $('#newvalueperso').val();
-                    var paramLength = $('#sizeperso').val();
-                    $.ajax({
-                        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].commandClasses[0x70].Set(" + paramId + "," + paramValue + "," + paramLength + ")",
-                        dataType: 'json',
-                        async: true, error: function (request, status, error) {
-                            handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-                        },
-                        success: function (data) {
-                            app_nodes.sendOk();
-                        }
-                    });
-                });
-            }
-        });
-        
-
         $("body").off("click", ".requestNodeNeighboursUpdate").on("click", ".requestNodeNeighboursUpdate", function (e) {
             app_nodes.request_node_neighbours_update(node_id);
         });
@@ -1132,74 +1144,15 @@ var app_nodes = {
         $("#removeFailedNode").off("click").on("click", function () {
             app_nodes.remove_failed_node(node_id);
         });
-
-
         $("#sendNodeInformation").off("click").on("click", function () {
             app_nodes.send_node_information(node_id);
-        });
-
-        $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
-            $('#copyParamsModal').modal('show');
-        });
-        $("body").off("click", ".copyToParams").on("click", ".copyToParams", function (e) {
-            $('#copyToParamsModal').modal('show');
         });
         $("body").off("click", ".refreshParams").on("click", ".refreshParams", function (e) {
             app_nodes.refresh_parameters(node_id);
         });
-        $("body").off("click", ".addGroup").on("click", ".addGroup", function (e) {
-            var group = $(this).data('groupindex');
-            if(group == -1){
-                return;
-            }
-            $('#groupsModal').data('groupindex', group);
-            $('#groupsModal').modal('show');
-        });
-        $("body").off("click", ".deleteGroup").on("click", ".deleteGroup", function (e) {
-            var group = $(this).data('groupindex');
-            var node = $(this).data('nodeid');
-            var instance = $(this).data('nodeinstance');
-            console.log('deleteGroup group:' + group + ' node:' + node + ' instance:' + instance);
-            app_nodes.delete_group(node_id, group, node, instance);
-        });
-
         $("#sendNodeInformation").off("click").on("click", function () {
             app_nodes.send_node_information(node_id);
         });
-        $("#saveParam").off("click").on("click", function (e) {
-            var paramId = $('#paramsModal').data('paramid');
-            var paramType = $('#paramsModal').data('paramtype');
-            if (paramType == "Bool") {
-                var paramValue = $('input[name=newvalue]:checked', '#paramsModal').val();
-            } else if (paramType == "Button") {
-                var paramValue = $('input[name=newvalue]:checked', '#paramsModal').val();
-            } else {
-                var paramValue = $('#newvalue').val();
-            }
-            var paramValue2 = paramValue.replace(/\//g, '@');
-            var paramLength = paramValue.length;
-            $.ajax({
-                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].commandClasses[0x70].Set(" + paramId + "," + encodeURIComponent(paramValue2) + "," + paramLength + ")",
-                dataType: 'json',
-                async: true,
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-                },
-                success: function (data) {
-                    app_nodes.sendOk();
-                    app_nodes.load_data(false);
-                    $('#paramsModal').modal('hide');
-                }
-            });
-        });
-
-
-    },
-    sendOk: function () {
-        $('#li_state').show();
-        setTimeout(function () {
-            $('#li_state').hide();
-        }, 3000);
     },
     delete_group: function (node_id, group, node, instance) {
         var url = "";
@@ -1213,15 +1166,12 @@ var app_nodes = {
             dataType: 'json',
             async: true,
             success: function (data) {
-                app_nodes.draw_nodes();
-                app_nodes.load_data(false);
-                app_nodes.show_groups();
-                app_nodes.sendOk();
-            },
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            }
-        });
+             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+         },
+         error: function (request, status, error) {
+            handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+        }
+    });
     },
     send_regenerate_node_cfg_file: function (node_id, all) {
         $.ajax({
@@ -1232,84 +1182,11 @@ var app_nodes = {
                 handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
             },
             success: function (data) {
-                app_nodes.sendOk();
-                app_nodes.load_data(false);
+                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
             }
         });
-    },
-    load_all: function () {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/network.GetNodesList()",
-            dataType: 'json',
-            global: false,
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                var node = nodes[node_id];
-                nodes = data['devices'];
-                nodes[node_id] = node;
-                controller_id = -1;
-                for (var i in data['devices']) {
-                    if (isset(data['devices'][i]['description']) && isset(data['devices'][i]['description']['is_static_controller']) && data['devices'][i]['description']['is_static_controller']) {
-                        controller_id = i;
-                    }
-                }
-                app_nodes.draw_nodes();
-                app_nodes.show_groups();
-            }
-        });
-    },
-    load_data: function (_global) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "]",
-            dataType: 'json',
-            async: true,
-            global: _global,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                if (Object.keys(nodes).length == 0) {
-                    app_nodes.load_all();
-                }
-                nodes[node_id] = data;
-                app_nodes.draw_nodes();
-                app_nodes.show_groups();
-            }
-        });
-    },
-    load_stats: function (node_id) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].GetNodeStatistics()",
-            dataType: 'json',
-            async: true,
-            global: (typeof node_id !== 'undefined' && !isNaN(node_id)) ? false : true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                stats = data['statistics'];
-                app_nodes.show_stats();
-            }
-        });
-    },
-    show: function () {
-        if (typeof node_id !== 'undefined' && !isNaN(node_id)) {
-            node_id = node_id;
-        } else {
-            node_id = 1;
-        }
-    },
-    hide: function () {
-        clearInterval(app_nodes.updater);
-        openzwave_node_translation = null;
     },
 
-    draw_nodes: function () {
-
-    },
     get_translation: function () {
         if (typeof node_id === 'undefined' || isNaN(node_id)) {
             return {configuration: {}};
@@ -1333,25 +1210,7 @@ var app_nodes = {
         });
         return result;
     },
-    show_stats: function () {
-        var node = $(".node");
-        $("#div_nodeConfigure .stats_av_req_rtt").html(stats.averageRequestRTT);
-        $("#div_nodeConfigure .stats_av_res_rtt").html(stats.averageResponseRTT);
-        $("#div_nodeConfigure .stats_la_req_rtt").html(stats.lastRequestRTT);
-        $("#div_nodeConfigure .stats_la_res_rtt").html(stats.lastResponseRTT);
-        $("#div_nodeConfigure .stats_quality").html(stats.quality);
-        $("#div_nodeConfigure .stats_rec_cnt").html(stats.receivedCnt);
-        $("#div_nodeConfigure .stats_rec_dups").html(stats.receivedDups);
-        $("#div_nodeConfigure .stats_rec_ts").html(stats.receivedTS);
-        $("#div_nodeConfigure .stats_rec_uns").html(stats.receivedUnsolicited);
-        $("#div_nodeConfigure .stats_retries").html(stats.retries);
-        $("#div_nodeConfigure .stats_sen_cnt").html(stats.sentCnt);
-        $("#div_nodeConfigure .stats_sen_failed").html(stats.sentFailed);
-        $("#div_nodeConfigure .stats_sen_ts").html(stats.sentTS);
-    },
-    show_groups: function () {
 
-    },
 }
 
 
