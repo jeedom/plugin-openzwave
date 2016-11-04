@@ -155,7 +155,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/action('+_params.node_id+','+_params.action+')',
+ 		request: 'node/'+_params.node_id+'/action('+_params.action+')',
  	};
  	$.ajax(paramsAJAX);
  }
@@ -174,7 +174,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/info('+_params.node_id+','+_params.info+')',
+ 		request: 'node/'+_params.node_id+'/info('+_params.info+')',
  	};
  	$.ajax(paramsAJAX);
  }
@@ -192,7 +192,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/removeDeviceZWConfig('+_params.node_id+','+_params.all+')',
+ 		request: 'node/'+_params.node_id+'/removeDeviceZWConfig('+_params.all+')',
  	};
  	$.ajax(paramsAJAX);
  }
@@ -210,7 +210,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/refreshClass('+_params.node_id+','+_params.class+')',
+ 		request: 'node/'+_params.node_id+'/refreshClass('+_params.class+')',
  	};
  	$.ajax(paramsAJAX);
  }
@@ -228,7 +228,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/refreshData('+_params.node_id+','+_params.instance+','+_params.class+','+_params.index+')',
+ 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/cc/'+_params.class+'/index/'+_params.index+'/refreshData()',
  	};
  	$.ajax(paramsAJAX);
  }
@@ -246,7 +246,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/copyConfigurations('+_params.node_id+','+_params.target_id+')',
+ 		request: 'node/'+_params.node_id+'/copyConfigurations('+_params.target_id+')',
  	};
  	$.ajax(paramsAJAX);
  }
