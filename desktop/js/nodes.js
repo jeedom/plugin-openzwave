@@ -125,8 +125,16 @@
                 label: "{{Lancer}}",
                 className: "btn-success",
                 callback: function () {
-                    var all = $("input[name='awesomeness']:checked").val()
-                    app_nodes.send_regenerate_node_cfg_file(node_id, all);
+                    jeedom.openzwave.node.removeDeviceZWConfig({
+                        node_id : node_id,
+                        all : $("input[name='awesomeness']:checked").val(),
+                        error: function (error) {
+                            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+                        },
+                        success: function () {
+                         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+                     }
+                 });
                 }
             }
         }
@@ -621,11 +629,21 @@
 });
 
  $("body").off("click", ".deleteGroup").on("click", ".deleteGroup", function (e) {
-    var group = $(this).data('groupindex');
-    var node = $(this).data('nodeid');
-    var instance = $(this).data('nodeinstance');
-    console.log('deleteGroup group:' + group + ' node:' + node + ' instance:' + instance);
-    app_nodes.delete_group(node_id, group, node, instance);
+    if ($(this).data('nodeinstance') > 0) {
+        url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].Associations[" + $(this).data('groupindex') + "].Remove(" + $(this).data('nodeid') + "," + $(this).data('nodeinstance') + ")";
+    } else {
+        url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[0].commandClasses[0x85].Remove(" + $(this).data('groupindex') + "," + $(this).data('nodeid') + ")"
+    }
+    $.ajax({
+        url: url,
+        dataType: 'json',
+        success: function (data) {
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+     },
+     error: function (request, status, error) {
+        handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+    }
+});
 });
 
  $("body").off("click", ".addGroup").on("click", ".addGroup", function (e) {
@@ -1043,8 +1061,8 @@ function display_node_info(){
         }
         show_groups();
         if($('#div_nodeConfigure').html() != undefined && $('#div_nodeConfigure').is(':visible')){
-                setTimeout(function(){ display_node_info(); }, 2000);
-            }
+            setTimeout(function(){ display_node_info(); }, 2000);
+        }
     }
 });
 }
@@ -1116,69 +1134,42 @@ function show_groups(){
 }
 
 
- $("body").off("click", ".refreshParams").on("click", ".refreshParams", function (e) {
-            app_nodes.refresh_parameters(node_id);
-        });
+$("body").off("click", ".refreshParams").on("click", ".refreshParams", function (e) {
+    jeedom.openzwave.node.refreshClass({
+        node_id : node_id,
+        class : "0x70",
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
+     }
+ })
+});
 
-var app_nodes = {
-    delete_group: function (node_id, group, node, instance) {
-        if (instance > 0) {
-            url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].Associations[" + group + "].Remove(" + node + "," + instance + ")";
-        } else {
-            url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[0].commandClasses[0x85].Remove(" + group + "," + node + ")"
-        }
-        $.ajax({
-            url: url,
-            dataType: 'json',
-            async: true,
-            success: function (data) {
-             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-         },
-         error: function (request, status, error) {
-            handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+function getTranslation(){
+    if (typeof node_id === 'undefined' || isNaN(node_id)) {
+        return {configuration: {}};
+    }
+    var result = {configuration: {}};
+    $.ajax({
+        url: "plugins/openzwave/core/ajax/openzwave.ajax.php",
+        dataType: 'json',
+        async: false,
+        global: false,
+        data: {
+            action: "getConfiguration",
+            translation: 1,
+            manufacturer_id: node_selected.data.manufacturerId.value,
+            product_type: node_selected.data.manufacturerProductType.value,
+            product_id: node_selected.data.manufacturerProductId.value,
+        },
+        success: function (data) {
+            result = data.result;
         }
     });
-    },
-    send_regenerate_node_cfg_file: function (node_id, all) {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].RemoveDeviceZWConfig(" + all + ")",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: 'Action réalisée avec succès', level: 'success'});
-            }
-        });
-    },
-
-    get_translation: function () {
-        if (typeof node_id === 'undefined' || isNaN(node_id)) {
-            return {configuration: {}};
-        }
-        var result = {configuration: {}};
-        $.ajax({
-            url: "plugins/openzwave/core/ajax/openzwave.ajax.php",
-            dataType: 'json',
-            async: false,
-            global: false,
-            data: {
-                action: "getConfiguration",
-                translation: 1,
-                manufacturer_id: nodes[node_id].data.manufacturerId.value,
-                product_type: nodes[node_id].data.manufacturerProductType.value,
-                product_id: nodes[node_id].data.manufacturerProductId.value,
-            },
-            success: function (data) {
-                result = data.result;
-            }
-        });
-        return result;
-    },
-
+    return result;
 }
-
 
 display_node_stats();
 load_all_node();

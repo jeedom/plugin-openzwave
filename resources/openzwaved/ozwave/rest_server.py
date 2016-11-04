@@ -215,17 +215,7 @@ def set_wake_up(node_id, wake_up_time):
 			return utils.format_json_result(set_value(node_id, my_value.value_id, int(wake_up_time)))
 	return utils.format_json_result(False, 'Wake-up Interval not found', 'warning')
 	
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Refresh()', methods=['GET'])
-@auth.login_required
-def request_all_config_params(node_id):
-	utils.check_node_exist(node_id)
-	logging.info("Request the values of all known configurable parameters from nodeId %s" % (node_id,))
-	for val in globals.network.nodes[node_id].get_values(class_id=COMMAND_CLASS_CONFIGURATION):
-		configuration_item = globals.network.nodes[node_id].values[val]
-		if configuration_item.id_on_network in globals.pending_configurations:
-			del globals.pending_configurations[configuration_item.id_on_network]
-	globals.network.manager.requestAllConfigParams(globals.network.home_id, node_id)
-	return utils.format_json_result()
+
 	
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Get(<int:index_id>)', methods=['GET'])
 @auth.login_required
@@ -591,37 +581,6 @@ def switch_all(node_id, state):
 					my_node.values[dimmer].refresh()
 	return utils.format_json_result()
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].RemoveDeviceZWConfig(<int:identical>)', methods=['GET'])
-@auth.login_required
-def remove_device_openzwave_config(node_id, identical):
-	utils.check_node_exist(node_id)
-	my_node = globals.network.nodes[node_id]
-	manufacturer_id = my_node.manufacturer_id
-	product_id = my_node.product_id
-	product_type = my_node.product_type
-	list_to_remove = [node_id]
-	if identical != 0:
-		for child_id in list(globals.network.nodes):
-			node = globals.network.nodes[child_id]
-			if child_id != node_id and node.manufacturer_id == manufacturer_id and node.product_id == product_id and node.product_type == product_type:
-				list_to_remove.append(child_id)
-	globals.network_is_running = False
-	globals.network.stop()
-	logging.info('ZWave network is now stopped')
-	time.sleep(5)
-	filename = globals.data_folder + "/zwcfg_" + globals.network.home_id_str + ".xml"
-	tree = etree.parse(filename)
-	for child_id in list_to_remove:
-		logging.info("Remove xml element for node %s" % (child_id,))
-		node = tree.find("{http://code.google.com/p/open-zwave/}Node[@id='" + str(child_id) + "']")
-		tree.getroot().remove(node)
-	working_file = open(filename, "w")
-	working_file.write('<?xml version="1.0" encoding="utf-8" ?>\n')
-	working_file.writelines(etree.tostring(tree, pretty_print=True))
-	working_file.close()
-	network_utils.start_network()
-	return utils.format_json_result()
-
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>]', methods=['GET'])
 def get_serialized_device(node_id):
 	utils.check_node_exist(node_id)
@@ -878,3 +837,46 @@ def node_action(node_id,action):
 		return globals.NODE_REST_MAPPING[action](node_id)
 	else:
 		return utils.format_json_result()
+
+@app.route('/node/refreshClass(<int:node_id>,<cc_id>)', methods=['GET'])
+@auth.login_required
+def request_all_config_params(node_id):
+	utils.check_node_exist(node_id)
+	logging.info('Request values refresh for '+str(node_id)+' on class '+str(cc_id))
+	for val in globals.network.nodes[node_id].get_values(class_id=cc_id):
+		configuration_item = globals.network.nodes[node_id].values[val]
+		if configuration_item.id_on_network in globals.pending_configurations:
+			del globals.pending_configurations[configuration_item.id_on_network]
+	globals.network.manager.requestAllConfigParams(globals.network.home_id, node_id)
+	return utils.format_json_result()
+
+@app.route('/node/removeDeviceZWConfig(<int:node_id>,<int:identical>)', methods=['GET'])
+@auth.login_required
+def remove_device_openzwave_config(node_id, identical):
+	utils.check_node_exist(node_id)
+	my_node = globals.network.nodes[node_id]
+	manufacturer_id = my_node.manufacturer_id
+	product_id = my_node.product_id
+	product_type = my_node.product_type
+	list_to_remove = [node_id]
+	if identical != 0:
+		for child_id in list(globals.network.nodes):
+			node = globals.network.nodes[child_id]
+			if child_id != node_id and node.manufacturer_id == manufacturer_id and node.product_id == product_id and node.product_type == product_type:
+				list_to_remove.append(child_id)
+	globals.network_is_running = False
+	globals.network.stop()
+	logging.info('ZWave network is now stopped')
+	time.sleep(5)
+	filename = globals.data_folder + "/zwcfg_" + globals.network.home_id_str + ".xml"
+	tree = etree.parse(filename)
+	for child_id in list_to_remove:
+		logging.info("Remove xml element for node %s" % (child_id,))
+		node = tree.find("{http://code.google.com/p/open-zwave/}Node[@id='" + str(child_id) + "']")
+		tree.getroot().remove(node)
+	working_file = open(filename, "w")
+	working_file.write('<?xml version="1.0" encoding="utf-8" ?>\n')
+	working_file.writelines(etree.tostring(tree, pretty_print=True))
+	working_file.close()
+	network_utils.start_network()
+	return utils.format_json_result()
