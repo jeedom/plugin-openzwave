@@ -438,7 +438,7 @@ def set_user_code(node_id, slot_id, value):
 		if globals.network.nodes[node_id].values[val].index == slot_id:
 			result_value['data'] = {}
 			original_value = value
-			value = binascii.a2b_hex(value)
+			value = value_utils.binascii.a2b_hex(value)
 			globals.network.nodes[node_id].values[val].data = value
 			result_value['data'][val] = {'device': node_id, 'slot': slot_id, 'val': original_value}
 			return jsonify(result_value)
@@ -455,7 +455,7 @@ def set_user_code2(node_id, slot_id, value1, value2, value3, value4, value5, val
 			result_value['data'] = {}
 			value = utils.convert_user_code_to_hex(value1) + utils.convert_user_code_to_hex(value2) + utils.convert_user_code_to_hex(value3) + utils.convert_user_code_to_hex(value4) + utils.convert_user_code_to_hex(value5) + utils.convert_user_code_to_hex(value6) + utils.convert_user_code_to_hex(value7) + utils.convert_user_code_to_hex(value8) + utils.convert_user_code_to_hex(value9) + utils.convert_user_code_to_hex(value10)
 			original_value = value
-			value = binascii.a2b_hex(value)
+			value = value_utils.binascii.a2b_hex(value)
 			globals.network.nodes[node_id].values[val].data = value
 			result_value['data'][val] = {'device': node_id, 'slot': slot_id, 'val': original_value}
 			return jsonify(result_value)
