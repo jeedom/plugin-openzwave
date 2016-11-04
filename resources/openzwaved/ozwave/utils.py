@@ -3,8 +3,8 @@ import time
 import math
 import globals
 import threading
+import json
 from utilities.Constants import *
-from flask import Flask, jsonify
 
 def get_standard_value_type(value_type):
 	if value_type in globals.CONVERSION:
@@ -74,15 +74,20 @@ def get_sleeping_nodes_count():
 
 def format_json_result(success='ok', data='', log_level=None, code=0):
 	if success == True or success == 'ok' :
-		return jsonify({'state': 'ok', 'result': data, 'code': code})
+		return json.dumps({'state': 'ok', 'result': data, 'code': code})
 	else:
-		return jsonify({'state': 'error', 'result': data, 'code': code})
+		return json.dumps({'state': 'error', 'result': data, 'code': code})
 
 def check_node_exist(_node_id,enable=False):
 	if _node_id not in globals.network.nodes:
 		raise Exception('Unknow node id '+str(_node_id))
 	if enable and _node_id in globals.disabled_nodes:
 		raise Exception('Disabled node id '+str(_node_id))
+	return
+
+def check_network_can_execute():
+	if not network_utils.can_execute_network_command():
+		raise Exception('Controller is busy')
 	return
 
 def convert_user_code_to_hex(value, length=2):
@@ -121,6 +126,7 @@ def write_config():
 		logging.error('write_config %s' % (str(error),))
 	finally:
 		globals.network_information.config_file_save_in_progress = False
+	return format_json_result()
 
 def create_worker(node_id, value_id, target_value, starting_value, counter, motor):
 	# create a new refresh worker

@@ -1,5 +1,5 @@
 import logging
-import globals,node_utils
+import globals,node_utils,serialization
 
 def controller_message_complete(network):
 	logging.debug('The last message that was sent is now complete')
@@ -21,3 +21,10 @@ def controller_command(network, controller, node, node_id, state_int, state, sta
 	# notify jeedom
 	node_utils.save_node_event(network.controller.node_id, globals.network_information.generate_jeedom_message())
 	logging.debug('The controller is busy ? %s' % (globals.network_information.controller_is_busy,))
+
+def get_controller_status():
+	controller_status = {}
+	if globals.network is not None and globals.network.state >= globals.network.STATE_STARTED and globals.network_is_running:
+		if globals.network.controller:
+			controller_status = serialization.serialize_controller_to_json()
+	return utils.format_json_result(data=controller_status)

@@ -1,3 +1,4 @@
+import utils,network_utils,controller_utils,node_utils
 #Various mappings
 CONVERSION = {'Int': 'int',\
 	'Decimal': 'float',\
@@ -28,6 +29,40 @@ CONVERSION = {'Int': 'int',\
 	'Dynamic': 15,\
 	'Configuration': 16,\
 	'Complete': 17,\
+	}
+
+NETWORK_REST_MAPPING = {'start' : network_utils.start_network,\
+	'stop' : network_utils.graceful_stop_network, \
+	'writeZWConfig' : utils.write_config,\
+	'manualBackup' : network_utils.manual_backup,\
+	'performSanityChecks' : network_utils.perform_sanity_checks,\
+	'getStatus': network_utils.get_status,\
+	'getHealth' : network_utils.get_health,\
+	'getNodesList' : network_utils.get_nodes_list,\
+	'getControllerStatus' : controller_utils.get_controller_status,\
+	'getOZLogs' : network_utils.get_oz_logs,\
+	'getZWConfig' : network_utils.get_oz_config,\
+	'getOZBackups' : network_utils.get_oz_backups,\
+	'getNeighbours' : network_utils.get_neighbours,\
+	}
+
+NODE_REST_MAPPING = {'all' : node_utils.get_all_info,\
+	'getNodeStatistics' : node_utils.get_statistics, \
+	'getPendingChanges' : node_utils.get_pending_changes,\
+	'getLastNotification' : node_utils.get_last_notification,\
+	'getHealth' : node_utils.get_health,\
+	'requestNodeNeighbourUpdate': node_utils.request_neighbour_update,\
+	'removeFailedNode': node_utils.remove_failed,\
+	'healNode': node_utils.heal,\
+	'replaceFailedNode': node_utils.replace_failed,\
+	'sendNodeInformation': node_utils.send_information,\
+	'hasNodeFailed': node_utils.has_failed,\
+	'testNode': node_utils.test,\
+	'refreshAllValues': node_utils.refresh_all_values,\
+	'ghostKiller': node_utils.ghost_killer,\
+	'requestNodeDynamic': node_utils.refresh_dynamic,\
+	'refreshNodeInfo': node_utils.refresh_info,\
+	'assignReturnRoute': node_utils.assign_return_route,\
 	}
 
 #Various message

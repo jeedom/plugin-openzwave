@@ -1,7 +1,8 @@
 import logging
 import time
 import threading
-import globals,utils,value_utils
+import globals,utils,value_utils,serialization
+from lxml import etree
 from utilities.NodeExtend import *
 from utilities.Constants import *
 
@@ -219,3 +220,124 @@ def check_primary_controller(my_node):
 						return True
 					break
 	return False
+	
+def get_all_info(node_id):
+	return utils.format_json_result(data=serialization.serialize_node_to_json(node_id))
+
+def get_statistics(node_id):
+	utils.check_node_exist(node_id,True)
+	query_stage_description = globals.network.manager.getNodeQueryStage(globals.network.home_id, node_id)
+	query_stage_code = globals.network.manager.getNodeQueryStageCode(query_stage_description)
+	return utils.format_json_result(data={'statistics': globals.network.manager.getNodeStatistics(globals.network.home_id, node_id), 'queryStageCode': query_stage_code, 'queryStageDescription': query_stage_description})
+	
+def get_pending_changes(node_id):
+	utils.check_node_exist(node_id,True)
+	query_stage_description = globals.network.manager.getNodeQueryStage(globals.network.home_id, node_id)
+	query_stage_code = globals.network.manager.getNodeQueryStageCode(query_stage_description)
+	return utils.format_json_result(data={'statistics': globals.network.manager.getNodeStatistics(globals.network.home_id, node_id), 'queryStageCode': query_stage_code, 'queryStageDescription': query_stage_description})
+
+def get_last_notification(node_id):
+	return utils.format_json_result(data=serialization.serialize_node_notification(node_id))
+
+def get_health(node_id):
+	return utils.format_json_result(data=serialization.serialize_node_to_json(node_id))
+
+def request_neighbour_update(node_id):
+	utils.check_node_exist(node_id,True)
+	logging.info("request_node_neighbour_update for node %s" % (node_id,))
+	return utils.format_json_result(data=globals.network.manager.requestNodeNeighborUpdate(globals.network.home_id, node_id))
+	
+def remove_failed(node_id):
+	logging.info("Remove a failed node %s" % (node_id,))
+	return utils.format_json_result(data=globals.network.manager.removeFailedNode(globals.network.home_id, node_id))
+
+def heal(node_id):
+	utils.check_node_exist(node_id,True)
+	logging.info("Heal network node (%s) by requesting the node rediscover their neighbors" % (node_id,))
+	globals.network.manager.healNetworkNode(globals.network.home_id, node_id, perform_return_routes_initialization)
+	return utils.format_json_result()
+	
+def replace_failed(node_id):
+	utils.check_node_exist(node_id,True)
+	logging.info("replace_failed_node node %s" % (node_id,))
+	return utils.format_json_result(data=globals.network.manager.replaceFailedNode(globals.network.home_id, node_id))
+	
+def send_information(node_id):
+	utils.check_node_exist(node_id,True)
+	logging.info("send_node_information node %s" % (node_id,))
+	return utils.format_json_result(data=globals.network.manager.sendNodeInformation(globals.network.home_id, node_id))
+
+def has_failed(node_id):
+	utils.check_node_exist(node_id,True)
+	logging.info("has_node_failed node %s" % (node_id,))
+	return utils.format_json_result(data=globals.network.manager.hasNodeFailed(globals.network.home_id, node_id))
+	
+def test(node_id):
+	utils.check_node_exist(node_id,True)
+	globals.network.manager.testNetworkNode(globals.network.home_id, node_id, 3)
+	return utils.format_json_result()
+
+def refresh_all_values(node_id):
+	utils.check_node_exist(node_id,True)
+	current_node = globals.network.nodes[node_id]
+	counter = 0
+	logging.info("refresh_all_values node %s" % (node_id,))
+	for val in current_node.get_values():
+		current_value = current_node.values[val]
+		if current_value.type == 'Button':
+			continue
+		if current_value.is_write_only:
+			continue
+		current_value.refresh()
+		counter += 1
+	message = 'Refreshed values count: %s' % (counter,)
+	return utils.format_json_result(data=message)
+	
+def ghost_killer(node_id):
+	logging.info('Remove cc 0x84 (wake_up) for a ghost device: %s' % (node_id,))
+	filename = globals.data_folder + "/zwcfg_" + globals.network.home_id_str + ".xml"
+	globals.network_is_running = False
+	globals.network.stop()
+	logging.info('ZWave network is now stopped')
+	time.sleep(5)
+	found = False
+	message = None
+	tree = etree.parse(filename)
+	namespace = tree.getroot().tag[1:].split("}")[0]
+	node = tree.find("{%s}Node[@id='%s']" % (namespace, node_id,))
+	if node is None:
+		message = 'node not found'
+	else:
+		command_classes = node.find(".//{%s}CommandClasses" % namespace)
+		if command_classes is None:
+			message = 'commandClasses not found'
+		else:
+			for command_Class in command_classes.findall(".//{%s}CommandClass" % namespace):
+				if int(command_Class.get("id")[:7]) == COMMAND_CLASS_WAKE_UP:
+					command_classes.remove(command_Class)
+					found = True
+					break
+			if found:
+				config_file = open(filename, "w")
+				config_file.write('<?xml version="1.0" encoding="utf-8" ?>\n')
+				config_file.writelines(etree.tostring(tree, pretty_print=True))
+				config_file.close()
+			else:
+				message = 'commandClass wake_up not found'
+		globals.ghost_node_id = node_id
+	return utils.format_json_result(found, message)
+
+def refresh_dynamic(node_id):
+	globals.network.manager.requestNodeDynamic(globals.network.home_id, node_id)
+	globals.network.nodes[node_id].last_update = time.time()
+	logging.info("Fetch the dynamic command class data for the node %s" % (node_id,))
+	return utils.format_json_result()
+
+def refresh_info(node_id):
+	utils.check_node_exist(node_id,True)
+	logging.info("refresh_node_info node %s" % (node_id,))
+	return utils.format_json_result(data=globals.network.manager.refreshNodeInfo(globals.network.home_id, node_id))
+
+def assign_return_route(node_id):
+	logging.info("Ask Node (%s) to update its Return Route to the Controller" % (node_id,))
+	return utils.format_json_result(data=globals.network.manager.assignReturnRoute(globals.network.home_id, node_id))

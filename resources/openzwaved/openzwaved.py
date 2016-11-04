@@ -66,7 +66,6 @@ if args.disabledNodes:
 		globals.disabled_nodes = [int(disabled_node_id) for disabled_node_id in args.disabledNodes.split(',')]
 
 server_utils.start_server()
-
 if __name__ == '__main__':
 	server_utils.write_pid()
 	try:

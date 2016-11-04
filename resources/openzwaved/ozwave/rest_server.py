@@ -794,132 +794,18 @@ def start_node_exclusion(state):
 @app.route('/network/action(<action>)', methods=['GET'])
 @auth.login_required
 def network_action(action):
-	if action == 'start':
-		network_utils.start_network()
-	elif action == 'stop':
-		network_utils.graceful_stop_network()
-	elif action == 'writeZWConfig':
-		write_config()
-	elif action == 'manualBackup':
-		logging.info('Manually creating a backup')
-		if globals.files_manager.backup_xml_config('manual', globals.network.home_id_str):
-			return utils.format_json_result(data='Xml config file successfully backup')
-		else:
-			return utils.format_json_result(sucess='error',data='See openzwave log file for details')
-	elif action == 'performSanityChecks':
-		if int(time.time()) > (globals.network_information.start_time + 120):
-			if globals.network.state < globals.network.STATE_STARTED:
-				logging.error("Timeouts occurred during communication with your ZWave dongle. Please check the openzwaved log file for more details.")
-				try:
-					network_utils.graceful_stop_network()
-				finally:
-					os.remove(globals.pidfile)
-				try:
-					server_utils.shutdown_server()
-				finally:
-					sys.exit()
-			network_utils.sanity_checks()
-	return utils.format_json_result()
+	if action in globals.NETWORK_REST_MAPPING:
+		return globals.NETWORK_REST_MAPPING[action]()
+	else:
+		return utils.format_json_result()
 
 @app.route('/network/info(<info>)', methods=['GET'])
 @auth.login_required
 def network_info(info):
-	if info == 'getStatus':
-		json_result = {}
-		if globals.network is not None and globals.network.state >= globals.network.STATE_STARTED and globals.network_is_running:
-			json_result = {'nodesCount': globals.network.nodes_count, 'sleepingNodesCount': utils.get_sleeping_nodes_count(),
-						   'scenesCount': globals.network.scenes_count, 'pollInterval': globals.network.manager.getPollInterval(),
-						   'isReady': globals.network.is_ready, 'stateDescription': globals.network.state_str, 'state': globals.network.state,
-						   'controllerCapabilities': utils.concatenate_list(globals.network.controller.capabilities),
-						   'controllerNodeCapabilities': utils.concatenate_list(globals.network.controller.node.capabilities),
-						   'outgoingSendQueue': globals.network.controller.send_queue_count,
-						   'controllerStatistics': globals.network.controller.stats, 'devicePath': globals.network.controller.device,
-						   'OpenZwaveLibraryVersion': globals.network.manager.getOzwLibraryVersionNumber(),
-						   'PythonOpenZwaveLibraryVersion': globals.network.manager.getPythonLibraryVersionNumber(),
-						   'neighbors': utils.concatenate_list(globals.network.controller.node.neighbors),
-						   'notifications': list(globals.network_information.last_controller_notifications),
-						   'isBusy': globals.network_information.controller_is_busy, 'startTime': globals.network_information.start_time,
-						   'isPrimaryController': globals.network.controller.is_primary_controller,
-						   'isStaticUpdateController': globals.network.controller.is_static_update_controller,
-						   'isBridgeController': globals.network.controller.is_bridge_controller,
-						   'awakedDelay': globals.network_information.controller_awake_delay, 'mode': network_utils.get_network_mode()
-						   }
-		return utils.format_json_result(data=json_result)
-	elif info == 'getHealth':
-		network_health = {'updateTime': int(time.time())}
-		nodes_data = {}
-		if globals.network is not None and globals.network.state >= globals.network.STATE_STARTED and globals.network_is_running:
-			for node_id in list(globals.network.nodes):
-				nodes_data[node_id] = serialization.serialize_node_to_json(node_id)
-		network_health['devices'] = nodes_data
-		return utils.format_json_result(data=network_health)
-	elif info == 'getNodesList':
-		nodes_list = {'updateTime': int(time.time())}
-		nodes_data = {}
-		for node_id in list(globals.network.nodes):
-			my_node = globals.network.nodes[node_id]
-			json_node = {}
-			try:
-				manufacturer_id = int(my_node.manufacturer_id, 16)
-			except ValueError:
-				manufacturer_id = None
-			try:
-				product_id = int(my_node.product_id, 16)
-			except ValueError:
-				product_id = None
-			try:
-				product_type = int(my_node.product_type, 16)
-			except ValueError:
-				product_type = None
-			node_name = my_node.name
-			node_location = my_node.location
-			if utils.is_none_or_empty(node_name):
-				node_name = 'Unknown'
-			if globals.network.controller.node_id == node_id:
-				node_name = my_node.product_name
-				node_location = 'Jeedom'
-			json_node['description'] = {'name': node_name, 'location': node_location,'product_name': my_node.product_name,'is_static_controller': my_node.basic == 2,'is_enable': int(node_id) not in globals.disabled_nodes}
-			json_node['product'] = {'manufacturer_id': manufacturer_id,'product_type': product_type,'product_id': product_id,'is_valid': manufacturer_id is not None and product_id is not None and product_type is not None}
-			instances = []
-			for val in my_node.get_values(genre='User'):
-				if my_node.values[val].instance in instances:
-					continue
-				instances.append(my_node.values[val].instance)
-			json_node['multi_instance'] = {'support': COMMAND_CLASS_MULTI_CHANNEL in my_node.command_classes,'instances': len(instances)}
-			json_node['capabilities'] = {'isListening': my_node.is_listening_device,'isRouting': my_node.is_routing_device,'isBeaming': my_node.is_beaming_device,'isFlirs': my_node.is_frequent_listening_device}
-			nodes_data[node_id] = json_node
-		nodes_list['devices'] = nodes_data
-		return utils.format_json_result(data=nodes_list)
-	elif info == 'getControllerStatus':
-		controller_status = {}
-		if globals.network is not None and globals.network.state >= globals.network.STATE_STARTED and globals.network_is_running:
-			if globals.network.controller:
-				controller_status = serialization.serialize_controller_to_json()
-		return utils.format_json_result(data=controller_status)
-	elif info == 'getOZLogs':
-		std_in, std_out = os.popen2("tail -n 1000 " + globals.data_folder + "/openzwave.log")
-		std_in.close()
-		lines = std_out.readlines()
-		std_out.close()
-		return utils.format_json_result(data=lines)
-	elif info == 'getZWConfig':
-		write_config()
-		filename = globals.data_folder + "/zwcfg_" + globals.network.home_id_str + ".xml"
-		with open(filename, "r") as ins:
-			content = ins.read()
-		return utils.format_json_result(data=content)
-	elif info == 'getOZBackups':
-		return utils.format_json_result(data=globals.files_manager.get_openzwave_backups())
-	elif info == 'getNeighbours':
-		neighbours = {'updateTime': int(time.time())}
-		nodes_data = {}
-		if globals.network is not None and globals.network.state >= globals.network.STATE_STARTED and globals.network_is_running:
-			for node_id in list(globals.network.nodes):
-				if node_id not in globals.disabled_nodes:
-					nodes_data[node_id] = serialization.serialize_neighbour_to_json(node_id)
-		neighbours['devices'] = nodes_data
-		return utils.format_json_result(data=neighbours)
-	return utils.format_json_result()
+	if info in globals.NETWORK_REST_MAPPING:
+		return globals.NETWORK_REST_MAPPING[info]()
+	else:
+		return utils.format_json_result()
 
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x70].data[<int:index_id2>].Set(<int:index_id>,<string:value>,<int:size>)', methods=['GET'])
 @auth.login_required
@@ -977,134 +863,18 @@ def set_value9(node_id, instance_id, cc_id, index, value):
 def node_info(node_id,info):
 	utils.check_node_exist(node_id)
 	logging.info("node info "+str(info))
-	if info == 'all':
-		return utils.format_json_result(data=serialization.serialize_node_to_json(node_id))
-	elif info == 'getNodeStatistics':
-		utils.check_node_exist(node_id,True)
-		query_stage_description = globals.network.manager.getNodeQueryStage(globals.network.home_id, node_id)
-		query_stage_code = globals.network.manager.getNodeQueryStageCode(query_stage_description)
-		return utils.format_json_result(data={'statistics': globals.network.manager.getNodeStatistics(globals.network.home_id, node_id), 'queryStageCode': query_stage_code, 'queryStageDescription': query_stage_description})
-	elif info == 'getPendingChanges':
-		pending_changes = node_utils.check_pending_changes(node_id)
-		if pending_changes == 0:
-			return utils.format_json_result()
-		return utils.format_json_result(state=False, data=str(pending_changes))
-	elif info == 'getLastNotification':
-		return utils.format_json_result(data=serialization.serialize_node_notification(node_id))
-	elif info == 'getHealth':
-		return utils.format_json_result(data=serialization.serialize_node_to_json(node_id))	
-	return utils.format_json_result()
+	if info in globals.NODE_REST_MAPPING:
+		return globals.NODE_REST_MAPPING[info](node_id)
+	else:
+		return utils.format_json_result()
 
 @app.route('/node/action(<int:node_id>,<action>)', methods=['GET'])
 @auth.login_required
 def node_action(node_id,action):
 	utils.check_node_exist(node_id)
+	utils.check_network_can_execute()
 	logging.info("node action "+str(action))
-	if action == 'requestNodeNeighbourUpdate':
-		if not network_utils.can_execute_network_command():
-			raise Exception('Controller is bussy')
-		utils.check_node_exist(node_id,True)
-		logging.info("request_node_neighbour_update for node %s" % (node_id,))
-		return utils.format_json_result(data=globals.network.manager.requestNodeNeighborUpdate(globals.network.home_id, node_id))
-	elif action == 'removeFailedNode':
-		if not network_utils.can_execute_network_command(0):
-			raise Exception('Controller is bussy')
-		logging.info("Remove a failed node %s" % (node_id,))
-		return utils.format_json_result(data=globals.network.manager.removeFailedNode(globals.network.home_id, node_id))
-	elif action == 'healNode':
-		if not network_utils.can_execute_network_command():
-			raise Exception('Controller is bussy')
-		utils.check_node_exist(node_id,True)
-		logging.info("Heal network node (%s) by requesting the node rediscover their neighbors" % (node_id,))
-		globals.network.manager.healNetworkNode(globals.network.home_id, node_id, perform_return_routes_initialization)
-	elif action == 'replaceFailedNode':
-		if not network_utils.can_execute_network_command():
-			raise Exception('Controller is bussy')
-		utils.check_node_exist(node_id,True)
-		logging.info("replace_failed_node node %s" % (node_id,))
-		return utils.format_json_result(data=globals.network.manager.replaceFailedNode(globals.network.home_id, node_id))
-	elif action == 'sendNodeInformation':
-		if not network_utils.can_execute_network_command():
-			raise Exception('Controller is bussy')
-		utils.check_node_exist(node_id,True)
-		logging.info("send_node_information node %s" % (node_id,))
-		return utils.format_json_result(data=globals.network.manager.sendNodeInformation(globals.network.home_id, node_id))
-	elif action == 'hasNodeFailed':
-		if not network_utils.can_execute_network_command():
-			raise Exception('Controller is bussy')
-		utils.check_node_exist(node_id,True)
-		logging.info("has_node_failed node %s" % (node_id,))
-		return utils.format_json_result(data=globals.network.manager.hasNodeFailed(globals.network.home_id, node_id))
-	elif action == 'testNode':
-		if not network_utils.can_execute_network_command():
-			raise Exception('Controller is bussy')
-		utils.check_node_exist(node_id,True)
-		globals.network.manager.testNetworkNode(globals.network.home_id, node_id, 3)
+	if action in globals.NODE_REST_MAPPING:
+		return globals.NODE_REST_MAPPING[action](node_id)
+	else:
 		return utils.format_json_result()
-	elif action == 'refreshAllValues':
-		utils.check_node_exist(node_id,True)
-		current_node = globals.network.nodes[node_id]
-		counter = 0
-		logging.info("refresh_all_values node %s" % (node_id,))
-		for val in current_node.get_values():
-			current_value = current_node.values[val]
-			if current_value.type == 'Button':
-				continue
-			if current_value.is_write_only:
-				continue
-			current_value.refresh()
-			counter += 1
-		message = 'Refreshed values count: %s' % (counter,)
-		return utils.format_json_result(data=message)
-	elif action == 'ghostKiller':
-		if not network_utils.can_execute_network_command(0):
-			raise Exception('Controller is bussy')
-		logging.info('Remove cc 0x84 (wake_up) for a ghost device: %s' % (node_id,))
-		filename = globals.data_folder + "/zwcfg_" + globals.network.home_id_str + ".xml"
-		globals.network_is_running = False
-		globals.network.stop()
-		logging.info('ZWave network is now stopped')
-		time.sleep(5)
-		found = False
-		message = None
-		tree = etree.parse(filename)
-		namespace = tree.getroot().tag[1:].split("}")[0]
-		node = tree.find("{%s}Node[@id='%s']" % (namespace, node_id,))
-		if node is None:
-			message = 'node not found'
-		else:
-			command_classes = node.find(".//{%s}CommandClasses" % namespace)
-			if command_classes is None:
-				message = 'commandClasses not found'
-			else:
-				for command_Class in command_classes.findall(".//{%s}CommandClass" % namespace):
-					if int(command_Class.get("id")[:7]) == COMMAND_CLASS_WAKE_UP:
-						command_classes.remove(command_Class)
-						found = True
-						break
-				if found:
-					config_file = open(filename, "w")
-					config_file.write('<?xml version="1.0" encoding="utf-8" ?>\n')
-					config_file.writelines(etree.tostring(tree, pretty_print=True))
-					config_file.close()
-				else:
-					message = 'commandClass wake_up not found'
-			globals.ghost_node_id = node_id
-		return utils.format_json_result(found, message)
-	
-	elif action == 'requestNodeDynamic':
-		globals.network.manager.requestNodeDynamic(globals.network.home_id, node_id)
-		globals.network.nodes[node_id].last_update = time.time()
-		logging.info("Fetch the dynamic command class data for the node %s" % (node_id,))
-	elif action == 'refreshNodeInfo':
-		if not network_utils.can_execute_network_command():
-			raise Exception('Controller is bussy')
-		utils.check_node_exist(node_id,True)
-		logging.info("refresh_node_info node %s" % (node_id,))
-		return utils.format_json_result(data=globals.network.manager.refreshNodeInfo(globals.network.home_id, node_id))
-	elif action == 'asssignReturnRoute':
-		if not network_utils.can_execute_network_command():
-			raise Exception('Controller is bussy')
-		logging.info("Ask Node (%s) to update its Return Route to the Controller" % (node_id,))
-		return utils.format_json_result(data=globals.network.manager.assignReturnRoute(globals.network.home_id, node_id))
-	return utils.format_json_result()
