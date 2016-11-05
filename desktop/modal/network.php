@@ -85,7 +85,7 @@ if (!isConnect('admin')) {
                     <div class="panel panel-primary">
                         <div class="panel-heading"><h4 class="panel-title">{{Informations}}</h4></div>
                         <div class="panel-body">
-                            <p>{{Réseau démarré le}} <span class="zwaveNetworkAttr label label-default" style="font-size : 1em;" data-l1key="startTime"></span> <span class="network-awakedTime label label-default" style="font-size : 1em;"></span></p>
+                            <p>{{Réseau démarré le}} <span class="zwaveNetworkAttr label label-default" style="font-size : 1em;" data-l1key="startTime"></span> <span class="zwaveNetworkAttr label label-default" data-l1key="awakedDelay"  style="font-size : 1em;"></span></p>
                             <p>{{Le réseau contient}} <b><span class="zwaveNetworkAttr" data-l1key="nodesCount"></span></b> {{noeuds, actuellement}} <b><span class="zwaveNetworkAttr" data-l1key="sleepingNodesCount"></span> </b>{{dorment}}</p>
                             <p>{{Intervalle des demandes :}}<span class="zwaveNetworkAttr label label-default" style="font-size : 1em;"  data-l1key="pollInterval"></span></p>
                             <p>{{Voisins :}}<span class="zwaveNetworkAttr label label-default" data-l1key="neighbors" style="font-size : 1em;"></span></p>
