@@ -67,7 +67,6 @@ if (isset($results['devices'])) {
 						}
 					}
 				}
-				log::add('openzwave_cmd', 'debug', $result['instance'] . '.' . $result['CommandClass'] . '.' . $result['index']);
 				foreach ($eqLogic->getCmd('info', $result['instance'] . '.' . $result['CommandClass'] . '.' . $result['index'], null, true) as $cmd) {
 					$cmd->handleUpdateValue($result);
 				}
@@ -82,9 +81,7 @@ if (isset($results['devices'])) {
 if (isset($results['controller'])) {
 	if (isset($results['controller']['state'])) {
 		event::add('zwave::controller.data.controllerState',
-			array(
-				'state' => $results['controller']['state']['value'],
-			)
+			array('state' => $results['controller']['state']['value'])
 		);
 	}
 	if (isset($results['controller']['excluded'])) {
