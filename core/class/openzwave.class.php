@@ -40,10 +40,6 @@ class openzwave extends eqLogic {
 		if ($_timeout !== null) {
 			curl_setopt($ch, CURLOPT_TIMEOUT_MS, $_timeout);
 		}
-		if ($_data !== null) {
-			curl_setopt($ch, CURLOPT_POST, true);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $_data);
-		}
 		curl_setopt($ch, CURLOPT_USERPWD, 'token:' . jeedom::getApiKey('openzwave'));
 		$result = curl_exec($ch);
 		if ($_noError) {
@@ -98,7 +94,7 @@ class openzwave extends eqLogic {
 				));
 				return;
 			}
-			$result = self::callOpenzwave('/ZWaveAPI/Run/devices[' . $_logical_id . ']');
+			$result = self::callOpenzwave('/node/' . $_logical_id . '/info(all)');
 			if (count($result) == 0) {
 				event::add('jeedom::alert', array(
 					'level' => 'warning',
@@ -140,7 +136,7 @@ class openzwave extends eqLogic {
 			return;
 		}
 
-		$results = self::callOpenzwave('/ZWaveAPI/Run/network.GetNodesList()');
+		$results = self::callOpenzwave('/network/info(getNodesList)');
 		$findDevice = array();
 		$include_device = '';
 		if (count($results['devices']) < 1) {
@@ -205,14 +201,15 @@ class openzwave extends eqLogic {
 
 	public static function changeIncludeState($_mode, $_state, $_secure = 0) {
 		if ($_state == 0) {
-			self::callOpenzwave('/ZWaveAPI/Run/controller.CancelCommand()');
+			self::callOpenzwave('/controller/action(cancelCommand)');
 			return;
 		}
 		try {
 			$controlerState = self::callOpenzwave('/network/info(getStatus)');
-			$isBusy = $controlerState['result']['data']['isBusy']['value'];
-			$state = $controlerState['result']['data']['networkstate']['value'];
-			$controlerState = $controlerState['result']['data']['mode']['value'];
+			log::add('openzwave_core', 'debug', print_r($controlerState, true));
+			$isBusy = $controlerState['result']['isBusy'];
+			$state = $controlerState['result']['state'];
+			$controlerState = $controlerState['result']['mode'];
 		} catch (Exception $e) {
 			$controlerState = 0;
 			$state = 10;
@@ -227,20 +224,13 @@ class openzwave extends eqLogic {
 			throw new Exception(__('Le contrôleur est déjà en inclusion ou exclusion', __FILE__));
 		}
 		if ($_mode == 1) {
-			self::callOpenzwave('/ZWaveAPI/Run/controller.AddNodeToNetwork(' . $_state . ',' . $_secure . ')');
+			self::callOpenzwave('controller/addNodeToNetwork(' . $_state . ',' . $_secure . ')');
 		} else {
-			self::callOpenzwave('/ZWaveAPI/Run/controller.RemoveNodeFromNetwork(' . $_state . ')');
+			self::callOpenzwave('controller/removeNodeFromNetwork(' . $_state . ')');
 		}
 	}
 
 	public static function cronDaily() {
-		if (config::byKey('auto_health', 'openzwave') == 1 && (date('w') == 1 || date('w') == 4)) {
-			sleep(3600);
-			try {
-				self::callOpenzwave('/ZWaveAPI/Run/controller.HealNetwork()');
-			} catch (Exception $e) {
-			}
-		}
 		if (config::byKey('auto_updateConf', 'openzwave') == 1) {
 			try {
 				openzwave::syncconfOpenzwave();
@@ -391,11 +381,6 @@ class openzwave extends eqLogic {
 		}
 		$disabledNodes = trim($disabledNodes, ',');
 
-		//$assumeAwake = 0;
-		//if (config::byKey('assume_awake', 'openzwave') == 0) {
-		//	$assumeAwake = 0;
-		//}
-
 		$cmd = '/usr/bin/python ' . $openzwave_path . '/openzwaved/openzwaved.py ';
 		$cmd .= ' --pidfile /tmp/openzwaved.pid';
 		$cmd .= ' --device ' . $port;
@@ -406,7 +391,6 @@ class openzwave extends eqLogic {
 		$cmd .= ' --callback ' . $callback;
 		$cmd .= ' --apikey ' . jeedom::getApiKey('openzwave');
 		$cmd .= ' --suppressRefresh ' . $suppressRefresh;
-		//$cmd .= ' --assumeAwake=' . $assumeAwake;
 		if ($disabledNodes != '') {
 			$cmd .= ' --disabledNodes=' . $disabledNodes;
 		}
@@ -558,14 +542,10 @@ class openzwave extends eqLogic {
 			$name = str_replace(array_keys($replace), $replace, $this->getName());
 			$humanLocation = urlencode(trim($location));
 			$humanName = urlencode(trim($name));
-			self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].SetDeviceName(' . $humanLocation . ',' . $humanName . ',' . $this->getIsEnable() . ')');
+			self::callOpenzwave('/node/' . $this->getLogicalId() . '/setDeviceName(' . $humanLocation . ',' . $humanName . ',' . $this->getIsEnable() . ')');
 		} catch (Exception $e) {
 
 		}
-	}
-
-	public function sendNoOperation() {
-		return self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].TestNode()');
 	}
 
 	public function getConfFilePath($_all = false) {
@@ -611,24 +591,21 @@ class openzwave extends eqLogic {
 			return true;
 		}
 		if (isset($device['recommended']['params'])) {
-			$params = $device['recommended']['params'];
-			foreach ($params as $value) {
-				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].commandClasses[0x70].Set(' . $value['index'] . ',' . $value['value'] . ',1)');
+			foreach ($device['recommended']['params'] as $value) {
+				openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/instance/0/cc/112/index/0/set(' . $value['index'] . ',' . $value['value'] . ',1)');
 			}
 		}
 		if (isset($device['recommended']['groups'])) {
-			$groups = $device['recommended']['groups'];
-			foreach ($groups as $value) {
+			foreach ($device['recommended']['groups'] as $value) {
 				if ($value['value'] == 'add') {
-					openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x85].Add(' . $value['index'] . ',1)');
+					openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/addGroup(' . $value['index'] . ',1,0)');
 				} else if ($value['value'] == 'remove') {
-					openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x85].Remove(' . $value['index'] . ',1)');
+					openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/removeGroup(' . $value['index'] . ',1,0)');
 				}
 			}
 		}
 		if (isset($device['recommended']['wakeup'])) {
-			$wakeup = $device['recommended']['wakeup'];
-			openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[0].commandClasses[0x84].data[0].Set(' . $wakeup . ')');
+			openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/instance/0/cc/132/index/0/set(' . $device['recommended']['wakeup'] . ')');
 		}
 		if (isset($device['recommended']['polling'])) {
 			$pollinglist = $device['recommended']['polling'];
@@ -638,24 +615,13 @@ class openzwave extends eqLogic {
 				if (isset($value['index'])) {
 					$indexpolling = $value['index'];
 				}
-				$ccpolling = $value['class'];
-				openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].instances[' . $instancepolling . '].commandClasses[' . $ccpolling . '].data[' . $indexpolling . '].SetPolling(1)');
+				openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/instance/' . $instancepolling . '/cc/' . $value['class'] . '/index/' . $indexpolling . ']/setPolling(1)');
 			}
 		}
 		if (isset($device['recommended']['needswakeup']) && $device['recommended']['needswakeup'] == true) {
 			return "wakeup";
 		}
 		return;
-	}
-
-	public function printPending() {
-		if ($this->getIsEnable()) {
-			$pendingresult = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . '].GetPendingChanges()');
-			if (isset($pendingresult['result']) && $pendingresult['result'] != true) {
-				return $pendingresult['data'];
-			}
-		}
-		return "ok";
 	}
 
 	public function getImgFilePath() {
@@ -701,7 +667,7 @@ class openzwave extends eqLogic {
 			'message' => __('Création des commandes en mode automatique', __FILE__),
 		));
 		if ($_data == null) {
-			$results = self::callOpenzwave('/ZWaveAPI/Run/devices[' . $this->getLogicalId() . ']');
+			$results = self::callOpenzwave('/node/' . $this->getLogicalId() . '/info(all)');
 		} else {
 			$results = $_data;
 		}
@@ -932,35 +898,6 @@ class openzwaveCmd extends cmd {
 		$this->event($value, 0);
 	}
 
-	public function setRGBColor($_color) {
-		if ($_color == '') {
-			throw new Exception('Couleur non définie');
-		}
-		$eqLogic = $this->getEqLogic();
-		$hex = str_replace("#", "", $_color);
-		if (strlen($hex) == 3) {
-			$r = hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
-			$g = hexdec(substr($hex, 1, 1) . substr($hex, 1, 1));
-			$b = hexdec(substr($hex, 2, 1) . substr($hex, 2, 1));
-		} else {
-			$r = hexdec(substr($hex, 0, 2));
-			$g = hexdec(substr($hex, 2, 2));
-			$b = hexdec(substr($hex, 4, 2));
-		}
-		openzwave::callOpenzwave('/node/' . $eqLogic->getLogicalId() . ']/setColor(' . $r . ',' . $g . ',' . $b . ',0)');
-		return true;
-	}
-
-	public function getPilotWire() {
-		$eqLogic = $this->getEqLogic();
-		$request = '/ZWaveAPI/Run/devices[' . $this->getEqLogic()->getLogicalId() . ']';
-		$info1 = openzwave::callOpenzwave($request . '.instances[0].commandClasses[0x25].data[0].val');
-		$info1 = ($info1 == 'True') ? 1 : 0;
-		$info2 = openzwave::callOpenzwave($request . '.instances[1].commandClasses[0x25].data[0].val');
-		$info2 = ($info2 == 'True') ? 1 : 0;
-		return intval($info1) * 2 + intval($info2);
-	}
-
 	public function preSave() {
 		if ($this->getConfiguration('instance') === '') {
 			$this->setConfiguration('instance', '0');
@@ -1002,9 +939,6 @@ class openzwaveCmd extends cmd {
 	}
 
 	public function execute($_options = array()) {
-		if ($this->getLogicalId() == 'pilotWire' || $this->getConfiguration('value') == 'pilotWire') {
-			return $this->getPilotWire();
-		}
 		if ($this->getType() != 'action') {
 			return;
 		}

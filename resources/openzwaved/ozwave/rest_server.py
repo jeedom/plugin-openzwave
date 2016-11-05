@@ -24,20 +24,9 @@ except Exception as e:
 auth = HTTPBasicAuth()
 globals.app = app = Flask(__name__, static_url_path='/static')
 
-'''
-default routes
-'''
-
 @app.before_first_request
 def _run_on_start():
 	pass
-
-@app.route('/', methods=['GET'])
-def default_index():
-	with open(os.path.abspath(os.path.join(os.path.dirname(__file__), 'index.html')), 'rb') as f:
-		content = f.read()
-	return content
-
 
 @app.errorhandler(400)
 def not_found400(error):
@@ -62,205 +51,7 @@ def unhandled_exception(exception):
 def verify_password(username, password):
 	return password == globals.apikey
 
-'''
-devices routes
-'''
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[133].Get()', methods=['GET'])
-@auth.login_required
-def refresh_assoc(node_id):
-	utils.check_node_exist(node_id)
-	logging.debug("refresh_assoc for nodeId: %s" % (node_id,))
-	for val in globals.network.nodes[node_id].get_values(class_id=COMMAND_CLASS_ASSOCIATION):
-		globals.network.nodes[node_id].values[val].refresh()
-	return utils.format_json_result()
-	
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[133].data', methods=['GET'])
-@auth.login_required
-def get_assoc(node_id):
-	utils.check_node_exist(node_id)
-	logging.debug("get_assoc for nodeId: %s" % (node_id,))
-	config = {}
-	if globals.network.nodes[node_id].groups:
-		config['supported'] = {'value': True}
-		for group in list(globals.network.nodes[node_id].groups):
-			config[globals.network.nodes[node_id].groups[group].index] = {}
-			config[globals.network.nodes[node_id].groups[group].index]['nodes'] = {'value': list(globals.network.nodes[node_id].groups[group].associations), 'updateTime': int(time.time()), 'invalidateTime': 0}
-	return jsonify(config)
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x63].data', methods=['GET'])
-@auth.login_required
-def get_user_codes(node_id, instance_id):
-	utils.check_node_exist(node_id)
-	logging.debug("getValueAllRaw nodeId:%s instance:%s commandClasses:%s" % (node_id, instance_id, hex(COMMAND_CLASS_USER_CODE),))
-	result_value = {}
-	my_node = globals.network.nodes[node_id]
-	for val in my_node.get_values(class_id=COMMAND_CLASS_USER_CODE):
-		my_value = my_node.values[val]
-		if my_value.instance - 1 == instance_id:
-			if my_value.index == 0:
-				continue
-			if my_value.index > 10:
-				continue
-			raw_data = value_utils.extract_data(my_value)
-			if raw_data == '00000000000000000000':
-				result_value[my_value.index] = None
-			else:
-				result_value[my_value.index] = {}
-	return jsonify(result_value)
-	
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses[0x70].Get(<int:index_id>)', methods=['GET'])
-@auth.login_required
-def refresh_config(node_id, index_id):
-	utils.check_node_exist(node_id)
-	logging.debug("refresh_config for nodeId:%s index_id:%s" % (node_id, index_id,))
-	for val in globals.network.nodes[node_id].get_values(class_id=COMMAND_CLASS_CONFIGURATION):
-		if globals.network.nodes[node_id].values[val].index == index_id:
-			globals.network.nodes[node_id].values[val].refresh()
-	return utils.format_json_result()
-	
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetDeviceName(<string:location>,<string:name>,<int:is_enable>)', methods=['GET'])
-@auth.login_required
-def set_device_name(node_id, location, name, is_enable):
-	utils.check_node_exist(node_id)
-	logging.info("set_device_name node_id:%s new name ; '%s'. Is enable: %s" % (node_id, name, is_enable,))
-	if node_id in globals.disabled_nodes and is_enable:
-		globals.disabled_nodes.remove(node_id)
-	elif node_id not in globals.disabled_nodes and not is_enable:
-		globals.disabled_nodes.append(node_id)
-	name = name.encode('utf8')
-	name = name.replace('+', ' ')
-	globals.network.nodes[node_id].set_field('name', name)
-	location = location.encode('utf8')
-	location = location.replace('+', ' ')
-	globals.network.nodes[node_id].set_field('location', location)
-	return utils.format_json_result()
-
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].commandClasses', methods=['GET'])
-@auth.login_required
-def get_command_classes(node_id):
-	my_result = {}
-	logging.debug("get_command_classes for nodeId:%s" % (node_id,))
-	utils.check_node_exist(node_id)
-	for val in globals.network.nodes[node_id].get_values():
-		my_result[globals.network.nodes[node_id].values[val].command_class] = {}
-	return jsonify(my_result)
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].Get()', methods=['GET'])
-@auth.login_required
-def get_value(node_id, instance_id, cc_id):
-	utils.check_node_exist(node_id)
-	try:
-		globals.network.nodes[node_id].last_update
-	except NameError:
-		globals.network.nodes[node_id].last_update = time.time()
-	now = datetime.datetime.now()
-	if isinstance(globals.network.nodes[node_id].last_update, float):
-		last_update = datetime.datetime.fromtimestamp(globals.network.nodes[node_id].last_update)
-	else:
-		last_update = datetime.datetime.now()
-		globals.network.nodes[node_id].last_update = time.time()
-	last_delta = last_update + datetime.timedelta(seconds=30)
-	if now > last_delta and globals.network.nodes[node_id].is_listening_device and globals.network.nodes[node_id].is_ready:
-		globals.network.manager.requestNodeDynamic(globals.network.home_id, globals.network.nodes[node_id].node_id)
-		globals.network.nodes[node_id].last_update = time.time()
-		logging.debug("Fetch the dynamic command class data for the node %s" % (node_id,))
-	return utils.format_json_result()
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].val', methods=['GET'])
-@auth.login_required
-def get_value6(node_id, instance_id, index, cc_id):
-	utils.check_node_exist(node_id)
-	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16)):
-		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[
-			val].index == index:
-			if globals.network.nodes[node_id].values[val].units == 'F':
-				return str(utils.convert_fahrenheit_celsius(globals.network.nodes[node_id].values[val]))
-			else:
-				return str(globals.network.nodes[node_id].values[val].data)
-	return jsonify({})
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ForceRefresh()', methods=['GET'])
-@auth.login_required
-def force_refresh_one_value(node_id, instance_id, index, cc_id):
-	return refresh_one_value(node_id, instance_id, index, int(cc_id, 16))
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[0x63].data[<int:index>].code', methods=['GET'])
-@auth.login_required
-def get_user_code(node_id, instance_id, index):
-	utils.check_node_exist(node_id)
-	logging.debug("getValueRaw nodeId:%s instance:%s commandClasses:%s index:%s" % (
-	node_id, instance_id, hex(COMMAND_CLASS_USER_CODE), index))
-	my_result = {}
-	my_node = globals.network.nodes[node_id]
-	for val in my_node.get_values(class_id=COMMAND_CLASS_USER_CODE):
-		my_value = my_node.values[val]
-		if my_value.instance - 1 == instance_id and my_value.index == index:
-			user_code = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-			timestamp = int(1)
-			raw_data = value_utils.extract_data(my_value)
-			if raw_data != '00000000000000000000':
-				try:
-					timestamp = int(my_value.last_update)
-					chunks, chunk_size = len(raw_data), len(raw_data) / 10
-					user_code = [int(raw_data[i:i + chunk_size], 16) for i in range(0, chunks, chunk_size)]
-				except TypeError:
-					timestamp = int(1)
-			my_result = {'invalidateTime': int(time.time() - datetime.timedelta(seconds=30).total_seconds()), 'type': utils.get_standard_value_type(my_value.type),'value': user_code,'updateTime': timestamp}
-			break
-	return jsonify(my_result)
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)', methods=['GET'])
-@auth.login_required
-def switch_all(node_id, state):
-	if state == 0:
-		logging.info("SwitchAll Off")
-		globals.network.switch_all(False)
-	else:
-		logging.info("SwitchAll On")
-		globals.network.switch_all(True)
-	for node_id in globals.network.nodes:
-		my_node = globals.network.nodes[node_id]
-		if my_node.is_failed:
-			continue
-		value_ids = my_node.get_switches_all()
-		if value_ids is not None and len(value_ids) > 0:
-			for value_id in value_ids:
-				if my_node.values[value_id].data == "Disabled":
-					continue
-				elif my_node.values[value_id].data == "On and Off Enabled":
-					pass
-				if my_node.values[value_id].data == "Off Enabled" and state != 0:
-					continue
-				if my_node.values[value_id].data == "On Enabled" and state == 0:
-					continue
-				for switch in my_node.get_switches():
-					my_node.values[switch].refresh()
-				for dimmer in my_node.get_dimmers():
-					my_node.values[dimmer].refresh()
-	return utils.format_json_result()
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>]', methods=['GET'])
-def get_serialized_device(node_id):
-	utils.check_node_exist(node_id)
-	return jsonify(serialization.serialize_node_to_json(node_id))
-	
-"""
-controllers routes
-"""
-
-@app.route('/ZWaveAPI/Run/controller.RequestNetworkUpdate(<node_id>)', methods=['GET'])
-@auth.login_required
-def request_network_update(node_id):
-	if not network_utils.can_execute_network_command(0):
-		raise Exception('Controller is bussy')
-	utils.check_node_exist(node_id)
-	logging.info("Update the controller (%s) with network information from the SUC/SIS" % (node_id,))
-	execution_result = globals.network.manager.requestNetworkUpdate(globals.network.home_id, node_id)
-	return utils.format_json_result(execution_result)
-
-@app.route('/ZWaveAPI/Run/controller.ReplicationSend(<node_id>)', methods=['GET'])
+@app.route('/controller/replicationSend(<node_id>)', methods=['GET'])
 @auth.login_required
 def replication_send(node_id):
 	if not network_utils.can_execute_network_command(0):
@@ -268,10 +59,6 @@ def replication_send(node_id):
 	utils.check_node_exist(node_id)
 	logging.info('Send information from primary to secondary %s' % (node_id,))
 	return utils.format_json_result(globals.network.manager.replicationSend(globals.network.home_id, node_id))
-
-'''
-new routes
-'''
 
 @app.route('/controller/info(<info>)', methods=['GET'])
 @auth.login_required
@@ -594,6 +381,36 @@ def set_value(node_id, instance_id, cc_id, index, value):
 def set_config(node_id, index_id, value, size):
 	return utils.format_json_result(data=value_utils.set_config(node_id, index_id, value, size))
 
+@app.route('/node/<int:node_id>/instance/0/cc/240/index/0/switchAll(<int:state>)', methods=['GET'])
+@auth.login_required
+def switch_all(node_id, state):
+	if state == 0:
+		logging.info("SwitchAll Off")
+		globals.network.switch_all(False)
+	else:
+		logging.info("SwitchAll On")
+		globals.network.switch_all(True)
+	for node_id in globals.network.nodes:
+		my_node = globals.network.nodes[node_id]
+		if my_node.is_failed:
+			continue
+		value_ids = my_node.get_switches_all()
+		if value_ids is not None and len(value_ids) > 0:
+			for value_id in value_ids:
+				if my_node.values[value_id].data == "Disabled":
+					continue
+				elif my_node.values[value_id].data == "On and Off Enabled":
+					pass
+				if my_node.values[value_id].data == "Off Enabled" and state != 0:
+					continue
+				if my_node.values[value_id].data == "On Enabled" and state == 0:
+					continue
+				for switch in my_node.get_switches():
+					my_node.values[switch].refresh()
+				for dimmer in my_node.get_dimmers():
+					my_node.values[dimmer].refresh()
+	return utils.format_json_result()	
+
 @app.route('/node/<int:node_id>/removeGroup(<int:group>,<int:target_id>,<int:instance>)', methods=['GET'])
 @auth.login_required
 def remove_assoc(node_id, group, target_id,instance):
@@ -629,36 +446,19 @@ def add_assoc(node_id, group, target_id,instance):
 		globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id, instance)
 	return utils.format_json_result()
 
-@app.route('/node/<int:node_id>/setColor(<int:red_level>,<int:green_level>,<int:blue_level>,<int:white_level>)', methods=['GET'])
+@app.route('/node/<int:node_id>/sSetDeviceName(<string:location>,<string:name>,<int:is_enable>)', methods=['GET'])
 @auth.login_required
-def set_color(node_id, red_level, green_level, blue_level, white_level):
+def set_device_name(node_id, location, name, is_enable):
 	utils.check_node_exist(node_id)
-	logging.info("set_color nodeId:%s red:%s green:%s blue:%s white:%s" % (node_id, red_level, green_level, blue_level, white_level,))
-	my_result = False
-	intensity_value = None
-	red_value = None
-	green_value = None
-	blue_value = None
-	for val in globals.network.nodes[node_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User', type='Byte', readonly='All', writeonly=False):
-		my_value = globals.network.nodes[node_id].values[val]
-		if my_value.label != 'Level':
-			continue
-		if my_value.instance == 2:
-			continue
-		if my_value.instance == 1:
-			intensity_value = val
-		elif my_value.instance == 3:
-			red_value = val
-			my_value.data = utils.convert_color_to_level(red_level)
-		elif my_value.instance == 4:
-			green_value = val
-			my_value.data = utils.convert_color_to_level(green_level)
-		elif my_value.instance == 5:
-			blue_value = val
-			my_value.data = utils.convert_color_to_level(blue_level)
-		elif my_value.instance == 6:
-			my_value.data = utils.convert_color_to_level(white_level)
-	if red_value is not None and green_value is not None and blue_value is not None:
-		value_utils.prepare_refresh(node_id, intensity_value, None)
-		my_result = True
-	return utils.format_json_result(my_result)
+	logging.info("set_device_name node_id:%s new name ; '%s'. Is enable: %s" % (node_id, name, is_enable,))
+	if node_id in globals.disabled_nodes and is_enable:
+		globals.disabled_nodes.remove(node_id)
+	elif node_id not in globals.disabled_nodes and not is_enable:
+		globals.disabled_nodes.append(node_id)
+	name = name.encode('utf8')
+	name = name.replace('+', ' ')
+	globals.network.nodes[node_id].set_field('name', name)
+	location = location.encode('utf8')
+	location = location.replace('+', ' ')
+	globals.network.nodes[node_id].set_field('location', location)
+	return utils.format_json_result()

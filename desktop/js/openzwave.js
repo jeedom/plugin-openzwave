@@ -121,7 +121,6 @@ $("#table_cmd").sortable({
 });
 
 function printEqLogic(_eqLogic) {
-    //printPending();
     if ($('.li_eqLogic.active').attr('data-eqlogic_id') != '') {
         $('#img_device').attr("src", $('.eqLogicDisplayCard[data-eqLogic_id=' + $('.li_eqLogic.active').attr('data-eqlogic_id') + '] img').attr('src'));
     } else {
@@ -386,42 +385,6 @@ function changeIncludeState(_mode, _state, _secure) {
     }
 });
 }
-
-function printPending() {
-    $.ajax({
-        type: "POST", 
-        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
-        data: {
-            action: "printPending",
-            id: $('.eqLogicAttr[data-l1key=id]').value(),
-        },
-        dataType: 'json',
-        async: true,
-        global: false,
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) {
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
-            }
-            if (data.result != "ok") {
-                if (data.result.substr(0, 28) == 'The network does not contain'){
-                   $('.isPending').empty().append('  <i class="fa fa-exclamation-triangle"></i> ' + data.result);
-               } else {
-                   $('.isPending').empty().append('  <i class="fa fa-spinner fa-pulse"></i> ' + data.result + ' modification(s) en attente d\'être appliquée(s)');
-               }
-           } else {
-            $('.isPending').empty();
-        }
-    }
-});
-}
-/*
-window.setInterval(function () {
-    printPending();
-}, 5000);*/
 
 function addCmdToTable(_cmd) {
     if (!isset(_cmd)) {
