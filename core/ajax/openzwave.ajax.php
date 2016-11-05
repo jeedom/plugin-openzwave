@@ -44,10 +44,6 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'getControllerState') {
-		ajax::success(openzwave::callOpenzwave('/network/info(getStatus)'));
-	}
-
 	if (init('action') == 'callRazberry') {
 		ajax::success(openzwave::callOpenzwave(init('call')));
 	}
