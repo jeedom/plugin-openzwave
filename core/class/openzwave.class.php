@@ -286,17 +286,10 @@ class openzwave extends eqLogic {
 
 	public static function getVersion($_module = 'openzwave') {
 		if ($_module == 'openzwave') {
-			if (!file_exists('/opt/python-openzwave/openzwave/cpp/src/vers.cpp')) {
+			if (!file_exists('/opt/python-openzwave/openzwave/version')) {
 				return config::byKey('currentOzwVersion', 'openzwave');
 			}
-			$result = trim(str_replace(array('"', 'char', 'ozw_version_string', '[]', '=', ';'), '', shell_exec('cat /opt/python-openzwave/openzwave/cpp/src/vers.cpp | grep ozw_version_string')));
-			$result = str_replace('-', '.', $result);
-			$result = explode('.', str_replace('..', '.', $result));
-			if (count($result) > 2) {
-				$version = $result[0] . '.' . $result[1] . '.' . $result[2];
-			} else {
-				return config::byKey('currentOzwVersion', 'openzwave');
-			}
+			$version = file_get_contents('/opt/python-openzwave/openzwave/version');
 			if (version_compare($version, config::byKey('currentOzwVersion', 'openzwave'), '>')) {
 				config::save('currentOzwVersion', $version, 'openzwave');
 			}
