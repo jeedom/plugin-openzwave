@@ -61,7 +61,7 @@ if args.callback:
 if args.apikey:
 	globals.apikey = args.apikey
 if args.cycle:
-	globals.cycle = args.cycle
+	globals.cycle = float(args.cycle)
 if args.suppressRefresh:
 	globals.suppress_refresh = args.suppressRefresh
 if args.disabledNodes:
