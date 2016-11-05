@@ -371,15 +371,15 @@ def set_user_code(node_id, slot_id, value1, value2, value3, value4, value5, valu
 			return jsonify(result_value)
 	return utils.format_json_result()
 
-@app.route('/node/<int:node_id>/instance/<int:instance_id>/cc/<int:cc_id>/index/<int:index>/set(<value>)', methods=['GET'])
-@auth.login_required
-def set_value(node_id, instance_id, cc_id, index, value):
-	return utils.format_json_result(data=commands.send_command_zwave(node_id, cc_id, instance_id, index, value))
-
 @app.route('/node/<int:node_id>/instance/0/cc/112/index/0/set(<int:index_id>,<value>,<int:size>)', methods=['GET'])
 @auth.login_required
 def set_config(node_id, index_id, value, size):
 	return utils.format_json_result(data=value_utils.set_config(node_id, index_id, value, size))
+
+@app.route('/node/<int:node_id>/instance/<int:instance_id>/cc/<int:cc_id>/index/<int:index>/set(<value>)', methods=['GET'])
+@auth.login_required
+def set_value(node_id, instance_id, cc_id, index, value):
+	return utils.format_json_result(data=commands.send_command_zwave(node_id, cc_id, instance_id, index, value))
 
 @app.route('/node/<int:node_id>/instance/0/cc/240/index/0/switchAll(<int:state>)', methods=['GET'])
 @auth.login_required

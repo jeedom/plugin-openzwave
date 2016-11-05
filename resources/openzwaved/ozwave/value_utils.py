@@ -255,44 +255,6 @@ def set_config(_node_id, _index_id, _value, _size):
 	if globals.network_information.controller_is_busy:
 		raise Exception('Controller is bussy')
 	utils.check_node_exist(_node_id)
-	logging.info('Set_config for nodeId : '+str(_node_id)+' index : '+str(_index_id)+', value : '+str(_value)+', size : '+str(_size))	
-	if type(_value) == str:
-		for value_id in globals.network.nodes[_node_id].get_values(class_id=COMMAND_CLASS_CONFIGURATION, genre='All', type='All', readonly='All', writeonly='All'):
-			if globals.network.nodes[_node_id].values[value_id].index == _index_id:
-				_value = _value.replace("@", "/")
-				my_value = globals.network.nodes[_node_id].values[value_id]
-				if my_value.type == 'Button':
-					if _value.lower() == 'true':
-						globals.network.manager.pressButton(my_value.value_id)
-					else:
-						globals.network.manager.releaseButton(my_value.value_id)
-				elif my_value.type == 'List':
-					globals.network.manager.setValue(value_id, _value)
-					mark_pending_change(my_value, _value)
-				elif my_value.type == 'Bool':
-					if _value.lower() == 'true':
-						_value = True
-					else:
-						_value = False
-					globals.network.manager.setValue(value_id, _value)
-					mark_pending_change(my_value, _value)
-				return
-			raise Exception('Configuration index : '+str(_index_id)+' not found')
-	if _size == 0:
-		_size = 2
-	if _size > 4:
-		_size = 4
-	_value = int(_value)
-	my_value = value_utils.get_value_by_index(_node_id, COMMAND_CLASS_CONFIGURATION, 1, _index_id)
-	result = globals.network.nodes[_node_id].set_config_param(_index_id, _value, _size)
-	if my_value is not None and my_value.type != 'List':
-		mark_pending_change(my_value, _value)
-	return result
-
-def set_config2(_node_id, _index_id, _value, _size):
-	if globals.network_information.controller_is_busy:
-		raise Exception('Controller is bussy')
-	utils.check_node_exist(_node_id)
 	if _size == 0:
 		_size = 2
 	if _size > 4:

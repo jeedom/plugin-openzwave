@@ -206,7 +206,6 @@ class openzwave extends eqLogic {
 		}
 		try {
 			$controlerState = self::callOpenzwave('/network/info(getStatus)');
-			log::add('openzwave_core', 'debug', print_r($controlerState, true));
 			$isBusy = $controlerState['result']['isBusy'];
 			$state = $controlerState['result']['state'];
 			$controlerState = $controlerState['result']['mode'];
@@ -961,7 +960,7 @@ class openzwaveCmd extends cmd {
 		$request .= 'instance/' . $this->getConfiguration('instance', 0);
 		$request .= '/cc/' . $this->getConfiguration('class');
 		$request .= '/index/' . $this->getConfiguration('index');
-		$request .= '/' . str_replace(' ', '%20', str_replace(',', '%2C', $value));
+		$request .= '/' . str_replace(' ', '%20', $value);
 		openzwave::callOpenzwave($request);
 	}
 
