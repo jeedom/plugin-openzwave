@@ -104,14 +104,15 @@
                     routeHops = '';
                 } else if (nnode.data.state.value <= queryStageNeighbors || node.data.state.value <= queryStageNeighbors) {
                     rtClass = 'node-interview-not-completed-color';
-                } else if ($.inArray(parseInt(nnodeId, 10), node.data.neighbours.value) != -1)
-                rtClass = 'node-direct-link-color';
-                else if (routesCount[nnodeId] && routesCount[nnodeId][1] > 1)
+                } else if ($.inArray(parseInt(nnodeId, 10), node.data.neighbours.value) != -1){
+                    rtClass = 'node-direct-link-color';
+                }else if (routesCount[nnodeId] && routesCount[nnodeId][1] > 1){
                     rtClass = 'node-remote-control-color';
-                else if (routesCount[nnodeId] && routesCount[nnodeId][1] == 1)
+                }else if (routesCount[nnodeId] && routesCount[nnodeId][1] == 1){
                     rtClass = 'node-more-of-one-up-color';
-                else
+                }else{
                     rtClass = 'node-more-of-two-up-color';
+                }
                 routingTable += '<td class=' + rtClass + ' style="width: 35px"><i class="fa fa-square fa-2x" title="' + routeHops + '"></i></td>';
             });
             routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="' + nodeId + '" class="btn btn-xs btn-primary requestNodeNeighboursUpdate" title="{{Mise à jour des noeuds voisins}}"><i class="fa fa-refresh"></i></button></td></tr>';

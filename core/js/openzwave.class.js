@@ -366,6 +366,45 @@
  	$.ajax(paramsAJAX);
  }
 
+ jeedom.openzwave.node.addGroup = function (_params) {
+ 	var paramsRequired = ['node_id','group','target_id','instance'];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	_params.instance = _params.instance || 0
+ 	paramsAJAX.data = {
+ 		request: '/node/'+_params.node_id+'/addGroup('+_params.group+','+_params.target_id+','+_params.instance+')',
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
+
+ jeedom.openzwave.node.removeGroup = function (_params) {
+ 	var paramsRequired = ['node_id','group','target_id','instance'];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	_params.instance = _params.instance || 0
+ 	paramsAJAX.data = {
+ 		request: '/node/'+_params.node_id+'/removeGroup('+_params.group+','+_params.target_id+','+_params.instance+')',
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
+
+
  /*************************Backup************************************************/
 
  jeedom.openzwave.backup = function() {

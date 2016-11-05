@@ -100,8 +100,8 @@
 });
 
  $("#regenerateNodeCfgFile").off("click").on("click", function () {
-    var productName = nodes[node_id].data.product_name.value;
-    var manufacturerName = nodes[node_id].data.vendorString.value;
+    var productName = node_selected.data.product_name.value;
+    var manufacturerName = node_selected.data.vendorString.value;
     bootbox.dialog({
         title: "{{Régénérer la détection du nœud}}",
         message: '<form class="form-horizontal"> ' +
@@ -144,8 +144,8 @@
 });
 
  $("body").off("click", ".findUsage").on("click", ".findUsage", function (e) {
-    var associations = nodes[node_id].associations;
-    var description = nodes[node_id].data.name.value;
+    var associations = node_selected.associations;
+    var description = node_selected.data.name.value;
     var message = '<form class="form-horizontal"><div class="panel-body"> ' +
     '<p  style="font-size : 1em;"> {{Liste des groupes d\'associations où le module}} <b><span class="node-name label label-default" style="font-size : 1em;">' + description + '</span></b> {{est utilisé:}} </p> ' +
     '<br>' +
@@ -185,9 +185,9 @@
     options_node += '<div class="col-md-10"><select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
     var foundIdentical = 0;
     $.each(nodes, function (key, val) {
-        var manufacturerId = nodes[node_id].data.manufacturerId.value;
-        var manufacturerProductId = nodes[node_id].data.manufacturerProductId.value;
-        var manufacturerProductType = nodes[node_id].data.manufacturerProductType.value;
+        var manufacturerId = node_selected.data.manufacturerId.value;
+        var manufacturerProductId = node_selected.data.manufacturerProductId.value;
+        var manufacturerProductType = node_selected.data.manufacturerProductType.value;
         if (key != node_id && val.product.is_valid &&
             val.product.manufacturer_id == manufacturerId &&
             val.product.product_id == manufacturerProductId &&
@@ -207,11 +207,11 @@
     options_node += '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div>';
     options_node += '<div class="col-md-10">';
     options_node += node_id + ' ';
-    if (nodes[node_id].data.name.value != '') {
-        options_node += nodes[node_id].data.location.value + ' - ' + nodes[node_id].data.name.value;
+    if (node_selected.data.name.value != '') {
+        options_node += node_selected.data.location.value + ' - ' + node_selected.data.name.value;
     }
     else {
-        options_node += nodes[node_id].data.product_name.value;
+        options_node += node_selected.data.product_name.value;
     }
     options_node += '</div>';
     options_node += '</div>';
@@ -240,20 +240,20 @@
     var options_node = '<div class="container-fluid">';
     options_node += '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
     options_node += '<div class="col-md-10">  ' + node_id + ' ';
-    if (nodes[node_id].data.name.value != '') {
-        options_node += nodes[node_id].data.location.value + ' ' + nodes[node_id].data.name.value;
+    if (node_selected.data.name.value != '') {
+        options_node += node_selected.data.location.value + ' ' + node_selected.data.name.value;
     }
     else {
-        options_node += nodes[node_id].data.product_name.value;
+        options_node += node_selected.data.product_name.value;
     }
     options_node += '</div></div><br>';
-    options_node +=  '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div><div class="col-md-10">(' + nodes[node_id].data.product_name.value +')</div></div>';
+    options_node +=  '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div><div class="col-md-10">(' + node_selected.data.product_name.value +')</div></div>';
     options_node += '<form name="targetForm" action="" class="form-horizontal">';
     var foundIdentical = 0;
     $.each(nodes, function (key, val) {
-        var manufacturerId = nodes[node_id].data.manufacturerId.value;
-        var manufacturerProductId = nodes[node_id].data.manufacturerProductId.value;
-        var manufacturerProductType = nodes[node_id].data.manufacturerProductType.value;
+        var manufacturerId = node_selected.data.manufacturerId.value;
+        var manufacturerProductId = node_selected.data.manufacturerProductId.value;
+        var manufacturerProductType = node_selected.data.manufacturerProductType.value;
         if (key != node_id && val.product.is_valid &&
             val.product.manufacturer_id == manufacturerId &&
             val.product.product_id == manufacturerProductId &&
@@ -299,10 +299,10 @@
     var modal = $(this);
     var group = $(this).data('groupindex');
     var associations = [];
-    for (var i in nodes[node_id].groups[group].associations) {
-        associations.push(nodes[node_id].groups[group].associations[i][0] + ";" + nodes[node_id].groups[group].associations[i][1]);
+    for (var i in node_selected.groups[group].associations) {
+        associations.push(node_selected.groups[group].associations[i][0] + ";" + node_selected.groups[group].associations[i][1]);
     }
-    var support_multi_instance = nodes[node_id].multi_instance.support == 1;
+    var support_multi_instance = node_selected.multi_instance.support == 1;
     var node_keys = [];
     $.each(nodes, function (key, val) {
         if (key != node_id) {
@@ -354,23 +354,19 @@
 });
  $("#saveGroups").off("click").on("click", function (e) {
     var values = $('#newvaluenode').val().split(";");
-    if ( values[1] > 0) {
-        url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].Associations[" + $('#groupsModal').data('groupindex') + "].Add(" + values[0] + "," +  values[1] + ")";
-    }else {
-        url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[0].commandClasses[0x85].Add(" + $('#groupsModal').data('groupindex') + "," + values[0] + ")";
-    }
-    $.ajax({
-        url: url,
-        dataType: 'json',
-        async: true,
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+    jeedom.openzwave.node.addGroup({
+        node_id : node_id,
+        instance : values[1],
+        group : $('#groupsModal').data('groupindex'),
+        target_id : values[0],
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
-        success: function (data) {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-         $('#groupsModal').modal('hide');
-     }
- });
+        success: function () {
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+       }
+   });
+    $('#groupsModal').modal('hide');
 });
  $("body").off("click", ".editValue").on("click", ".editValue", function (e) {
     $('#valuesModal').data('valuename', $(this).data('valuename'));
@@ -590,7 +586,7 @@ $('#valuesModal').modal('hide');
 });
 
  $("#tab-parameters").off("click").on("click", function () {
-    if (!nodes[node_id].instances[0].commandClasses[112]) {
+    if (!node_selected.instances[0].commandClasses[112]) {
         $("#parameters").html('<br><div><b>{{Aucun paramètre prédefini trouvé pour ce noeud}}</b></div><br>');
         $("#parameters").append('<div class="row"><label class="col-lg-2">{{Paramètre :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">{{Valeur :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">{{Taile :}}</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><button id="sendparamperso" class="btn btn-primary">{{Envoyer le paramètre}}</a></div></div>');
         $("#sendparamperso").off("click").on("click", function () {
@@ -611,20 +607,17 @@ $('#valuesModal').modal('hide');
 });
 
  $("body").off("click", ".deleteGroup").on("click", ".deleteGroup", function (e) {
-    if ($(this).data('nodeinstance') > 0) {
-        url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].Associations[" + $(this).data('groupindex') + "].Remove(" + $(this).data('nodeid') + "," + $(this).data('nodeinstance') + ")";
-    } else {
-        url = "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[0].commandClasses[0x85].Remove(" + $(this).data('groupindex') + "," + $(this).data('nodeid') + ")"
-    }
-    $.ajax({
-        url: url,
-        dataType: 'json',
-        success: function (data) {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-     },
-     error: function (request, status, error) {
-        handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-    }
+   jeedom.openzwave.node.removeGroup({
+    node_id : node_id,
+    instance : $(this).data('nodeinstance'),
+    group :  $(this).data('groupindex'),
+    target_id : $(this).data('nodeid'),
+    error: function (error) {
+        $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+       $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+   }
 });
 });
 
@@ -727,6 +720,8 @@ function display_node_info(){
         }
         data.data.zwave_id = "{{Identifiant du fabricant :}} <span class='label label-default' style='font-size : 1em;'>" + data.data.manufacturerId.value + " [" + data.data.manufacturerId.hex + "]</span> {{Type de produit :}} <span class='label label-default' style='font-size : 1em;'>" + data.data.manufacturerProductType.value + ' [' + data.data.manufacturerProductType.hex + "]</span> {{Identifiant du produit :}} <span class='label label-default' style='font-size : 1em;'>" + data.data.manufacturerProductId.value + ' [' + data.data.manufacturerProductId.hex + "]</span>";
         data.data.queryStage = (nodeIsFailed) ? 'Dead' : data.data.state.value;
+        $("#div_nodeConfigure .node-sleep").html("---");
+        $("#div_nodeConfigure .node-battery-span").hide();
         if (queryStageIndex > 2) {
             if (data.data.isListening.value) {
                 $("#div_nodeConfigure .node-sleep").removeClass("label-default");
@@ -744,19 +739,12 @@ function display_node_info(){
                         }else {
                             $("#div_nodeConfigure .node-sleep").html("{{Endormi}}");
                         }
-                    }
-                    else {
+                    }else {
                         $("#div_nodeConfigure .node-sleep").html("{{Endormi}}");
                     }
                     $("#div_nodeConfigure .node-battery-span").show();
-                }else if (data.data.can_wake_up.value) {
-                    $("#div_nodeConfigure .node-sleep").html("---");
-                    $("#div_nodeConfigure .node-battery-span").hide();
                 }
             }
-        }else {
-            $("#div_nodeConfigure .node-sleep").html("---");
-            $("#div_nodeConfigure .node-battery-span").hide();
         }
         $('#div_nodeConfigure').setValues(data.data, '.zwaveNodeAttr');
         if (controller_id != -1) {
@@ -782,64 +770,47 @@ function display_node_info(){
         if (nodeIsFailed) {
             isWarning = true;
             warningMessage += "<li>{{Le contrôleur pense que ce noeud est en échec, essayez }} " +
-            "<button type='button' id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</button> " +
+            "<a id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</a> " +
             "{{ou}} " +
-            "<button type='button' id='testNode' class='btn btn-info testNode'><i class='fa fa-check-square-o'></i> {{Tester le nœud}}</button> " +
+            "<a id='testNode' class='btn btn-info testNode'><i class='fa fa-check-square-o'></i> {{Tester le nœud}}</a> " +
             "{{pour essayer de corriger.}}</li>";
         }
         if (data.data.genericType.value == 1) {
             data.data.can_wake_up.value = true;
         }
         $("#removeGhostNode").prop("disabled", nodeIsFailed || !data.data.can_wake_up.value);
-
+        $('#div_nodeConfigure').find('.node-isSecured,.node-zwaveplus,.node-isBeaming,.node-isFrequentListening,.node-listening,.node-security,.node-isSecurity,.node-routing').html('');
         if (data.data.isRouting.value) {
             $("#div_nodeConfigure .node-routing").html("<li>{{Le noeud a des capacités de routage (capable de faire passer des commandes à d'autres noeuds)}}</li>");
-        }else {
-            $("#div_nodeConfigure .node-routing").html("");
         }
         if (data.data.isSecurity.value) {
             $("#div_nodeConfigure .node-isSecurity").html("<li>{{Le noeud supporte les caractéristiques de sécurité avancées}}</li>");
             $("#div_nodeConfigure .node-security").html("{{Classe de sécurité:}} " + data.data.security.value);
-        }else {
-            $("#div_nodeConfigure .node-isSecurity").html("");
-            $("#div_nodeConfigure .node-security").html("");
         }
         if (data.data.isListening.value) {
             $("#div_nodeConfigure .node-listening").html("<li>{{Le noeud est alimenté et écoute en permanence}}</li>");
-        }else {
-            $("#div_nodeConfigure .node-listening").html("");
-        } if (data.data.isFrequentListening.value) {
+        }
+        if (data.data.isFrequentListening.value) {
             $("#div_nodeConfigure .node-isFrequentListening").html("<li>{{<i>FLiRS</i>, routeurs esclaves à écoute fréquente}}</li>");
-        }else {
-            $("#div_nodeConfigure .node-isFrequentListening").html("");
         }
         if (data.data.isBeaming.value) {
             $("#div_nodeConfigure .node-isBeaming").html("<li>{{Le noeud est capable d'envoyer une trame réseau}}</li>");
-        }else {
-            $("#div_nodeConfigure .node-isBeaming").html("");
         }
         if (data.data.isZwavePlus.value) {
             $("#div_nodeConfigure .node-zwaveplus").html(" {{ZWAVE PLUS}}");
+        }
+        if (data.data.isSecured.enabled && data.data.isSecured.value) {
+            $("#div_nodeConfigure .node-isSecured").html("<i class='fa fa-lock' aria-hidden='true'></i>");
         }else {
-            $("#div_nodeConfigure .node-zwaveplus").html("");
+            $("#div_nodeConfigure .node-isSecured").html("<i class='fa fa-unlock' aria-hidden='true'></i>");
         }
-        if (data.data.isSecured.enabled) {
-            if (data.data.isSecured.value) {
-                $("#div_nodeConfigure .node-isSecured").html("<i class='fa fa-lock' aria-hidden='true'></i>");
-            }else {
-                $("#div_nodeConfigure .node-isSecured").html("<i class='fa fa-unlock' aria-hidden='true'></i>");
-            }
-        }else{
-            $("#div_nodeConfigure .node-isSecured").html("");
-        }
-        var neighbours = data.data.neighbours.value.join();
         if (queryStageIndex > 13) {
-            if (neighbours != "") {
-                $("#div_nodeConfigure .node-neighbours").html(neighbours);
+            if (data.data.neighbours.value.length > 0) {
+                $("#div_nodeConfigure .node-neighbours").html( data.data.neighbours.value.join());
             }else {
                 $("#div_nodeConfigure .node-neighbours").html("...");
                 if (genericDeviceClass != 1 && (genericDeviceClass != 8 || data.data.isListening.value)) {
-                    warningMessage += "<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <button type='button' id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</button> {{ou}} <button type='button' id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</button> {{pour corriger.}}</li>";
+                    warningMessage += "<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <a id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</a> {{ou}} <a id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</a> {{pour corriger.}}</li>";
                     isWarning = true;
                 }
             }
@@ -847,18 +818,17 @@ function display_node_info(){
             $("#div_nodeConfigure .node-neighbours").html("<i>{{La liste des noeuds voisin n'est pas encore disponible.}}</i>");
         }
         if (queryStageIndex > 7 && data.data.product_name.value == "") {
-            warningMessage += "<li>{{Les identifiants constructeur ne sont pas detectés.}}<br/>{{Utilisez}} <button type='button' id='refreshNodeInfo' class='btn btn-success refreshNodeInfo'><i class='fa fa-retweet'></i> {{Rafraîchir infos du noeud}}</button> {{pour corriger}}</li>";
+            warningMessage += "<li>{{Les identifiants constructeur ne sont pas detectés.}}<br/>{{Utilisez}} <a id='refreshNodeInfo' class='btn btn-success refreshNodeInfo'><i class='fa fa-retweet'></i> {{Rafraîchir infos du noeud}}</a> {{pour corriger}}</li>";
             isWarning = true;
         }
+        $("#div_nodeConfigure .panel-danger").hide();
+        $("#div_nodeConfigure .node-warning").html("");
         if (isWarning) {
             if (data.data.can_wake_up.value) {
                 warningMessage += "<br><p>{{Le noeud est dormant et nécessite un réveil avant qu'une commande puisse être exécutée.<br/>Vous pouvez le réveiller manuellement ou attendre son délai de réveil.}}<br/>{{Voir l'interval de réveil dans l'onglet Système}}</p>";
             }
             $("#div_nodeConfigure .panel-danger").show();
             $("#div_nodeConfigure .node-warning").html(warningMessage);
-        }else {
-            $("#div_nodeConfigure .panel-danger").hide();
-            $("#div_nodeConfigure .node-warning").html("");
         }
         var variables = "";
         var parameters = "";
@@ -925,7 +895,7 @@ function display_node_info(){
                     var value = '';
                     var genre = data.instances[instance].commandClasses[commandclass].data[index].genre;
                     if (data.instances[instance].commandClasses[commandclass].data[index].read_only == false) {
-                        value += '<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></button> ';
+                        value += '<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></a> ';
                     }
                     if (data.instances[instance].commandClasses[commandclass].data[index].type == 'bool') {
                         var boolValue = data.instances[instance].commandClasses[commandclass].data[index].val;
@@ -950,21 +920,11 @@ function display_node_info(){
                     if (data.instances[instance].commandClasses[commandclass].data[index].write_only == false && first_index_polling) {
                         first_index_polling = false;
                         var polling = '<a style="position:relative;top:-1px;" class="btn btn-primary btn-xs editPolling cursor" data-valueidx="' + index + '" data-valuepolling="' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></a> ';
-                        row.find("td[key=variable-refresh]").html('<button type="button" class="btn btn-xs btn-primary forceRefresh" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-refresh"></i></button>');
+                        row.find("td[key=variable-refresh]").html('<button type="button" class="btn btn-xs btn-primary forceRefresh" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-refresh"></i></a>');
                         if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 0) {
                             polling += '<span class="label label-success" style="font-size:1em;">{{Auto}}</span>';
                         } else if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 1) {
                             polling += '<span class="label label-warning" style="font-size:1em;">{{5 min}}</span>';
-                        } else if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 2) {
-                            polling += '<span class="label label-default" style="font-size:1em;">' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
-                        } else if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 3) {
-                            polling += '<span class="label label-default" style="font-size:1em;">' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
-                        } else if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 6) {
-                            polling += '<span class="label label-default" style="font-size:1em;">' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
-                        } else if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 30) {
-                            polling += '<span class="label label-default" style="font-size:1em;">' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
-                        } else {
-                            polling += '<span class="label label-default" style="font-size:1em;">' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '</span>';
                         }
                     }
                     row.find("td[key=variable-polling]").html(polling);
@@ -999,7 +959,7 @@ function display_node_info(){
                     }
                     row_system.find("td[key=system-value]").html(system_data);
                     if (data.instances[instance].commandClasses[commandclass].data[index].read_only == false) {
-                        row_system.find("td[key=system-edit]").html('<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></button>');
+                        row_system.find("td[key=system-edit]").html('<button type="button" class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></a>');
                     }
                     if (data.instances[instance].commandClasses[commandclass].data[index].write_only == false) {
                         row_system.find("td[key=system-updatetime]").html(jeedom.openzwave.timestampConverter(data.instances[instance].commandClasses[commandclass].data[index].updateTime));
@@ -1028,7 +988,7 @@ function display_node_info(){
                         if (data.instances[instance].commandClasses[commandclass].data[index].write_only) {
                             data_item = '';
                         }
-                        row_parameter.find("td[key=parameter-edit]").html('<button type="button" class="btn btn-xs btn-primary editParam" data-paramid="' + index + '" data-paramtype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-paramname="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-paramvalue="' + data_item + '"><i class="fa fa-wrench"></i></button>');
+                        row_parameter.find("td[key=parameter-edit]").html('<button type="button" class="btn btn-xs btn-primary editParam" data-paramid="' + index + '" data-paramtype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-paramname="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-paramvalue="' + data_item + '"><i class="fa fa-wrench"></i></a>');
                     }
                     if (typeof openzwave_node_translation.configuration[index] !== 'undefined' && openzwave_node_translation['configuration'][index].hasOwnProperty('help')) {
                         row_parameter.find("td[key=parameter-help]").html(openzwave_node_translation['configuration'][index].help);
@@ -1059,14 +1019,14 @@ function show_groups(){
         if (!isNaN(z)) {
             tr_groups = "";
             for (var i in node_selected.groups[z].associations) {
-                var node_id = node_selected.groups[z].associations[i][0];
+                var target_id = node_selected.groups[z].associations[i][0];
                 var node_instance = node_selected.groups[z].associations[i][1];
                 var id = z + '-' + node_id + '-' + node_instance;
-                if (nodes[node_id]) {
-                    if (nodes[node_id].description.name != '') {
-                        var node_name = nodes[node_id].description.location + ' ' + nodes[node_id].description.name;
+                if (nodes[target_id]) {
+                    if (nodes[target_id].description.name != '') {
+                        var node_name = nodes[target_id].description.location + ' ' + nodes[target_id].description.name;
                     } else {
-                        var node_name = nodes[node_id].description.product_name;
+                        var node_name = nodes[target_id].description.product_name;
                     }
                     if (node_instance > 0) {
                         var instanceDisplay = node_instance -1;
@@ -1075,8 +1035,8 @@ function show_groups(){
                 } else {
                     var node_name = "UNDEFINED";
                 }
-                tr_groups += "<tr gid='" + id + "'><td>" + node_id + " : " + node_name + "</td><td align='right'>";
-                tr_groups += "<button type='button' class='btn btn-danger btn-sm deleteGroup' data-groupindex='" + z + "' data-nodeid='" + node_id + "' data-nodeinstance='" + node_instance + "'><i class='fa fa-trash-o'></i> {{Supprimer}}</button>"
+                tr_groups += "<tr gid='" + id + "'><td>" + target_id + " : " + node_name + "</td><td align='right'>";
+                tr_groups += "<a class='btn btn-danger btn-sm deleteGroup' data-groupindex='" + z + "' data-nodeid='" + target_id + "' data-nodeinstance='" + node_instance + "'><i class='fa fa-trash-o'></i> {{Supprimer}}</a>"
                 tr_groups += "</td></tr>";
             }
             var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right">';

@@ -884,6 +884,40 @@ def set_value99(node_id, instance_id, cc_id, index, value):
 def set_config99(node_id, index_id, value, size):
 	return utils.format_json_result(data=value_utils.set_config2(node_id, index_id, value, size))
 
+@app.route('/node/<int:node_id>/removeGroup(<int:group>,<int:target_id>,<int:instance>)', methods=['GET'])
+@auth.login_required
+def remove_assoc2(node_id, group, target_id,instance):
+	if globals.network_information.controller_is_busy:
+		raise Exception('Controller is bussy')
+	utils.check_node_exist(node_id)
+	utils.check_node_exist(target_id)
+	logging.info('remove_assoc to nodeId: '+str(node_id)+' in group '+str(group)+' with nodeId: '+str(node_id)+' on instance '+ str(instance))
+	if node_id not in globals.pending_associations:
+		globals.pending_associations[node_id] = dict()
+	globals.pending_associations[node_id][group] = PendingAssociation(pending_added=None, pending_removed=target_id, timeout=0)
+	if instance < 1 :
+		globals.network.manager.removeAssociation(globals.network.home_id, node_id, group, target_id)
+	else:
+		globals.network.manager.removeAssociation(globals.network.home_id, node_id, group, target_id, instance)
+	return utils.format_json_result()
+	
+@app.route('/node/<int:node_id>/addGroup(<int:group>,<int:target_id>,<int:instance>)', methods=['GET'])
+@auth.login_required
+def add_assoc2(node_id, group, target_id,instance):
+	if globals.network_information.controller_is_busy:
+		raise Exception('Controller is bussy')
+	utils.check_node_exist(node_id)
+	utils.check_node_exist(target_id)
+	logging.info('add_assoc to nodeId: '+str(node_id)+' in group '+str(group)+' with nodeId: '+str(node_id)+' on instance '+ str(instance))
+	if not (target_id in globals.network.nodes[node_id].groups[group].associations):
+		if node_id not in globals.pending_associations:
+			globals.pending_associations[node_id] = dict()
+	globals.pending_associations[node_id][group] = PendingAssociation(pending_added=target_id, pending_removed=None, timeout=0)
+	if instance < 1 :
+		globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id)
+	else :
+		globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id, instance)
+	return utils.format_json_result()
 
 #OLD ROUTES FOR NOW
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()', methods=['GET'])
