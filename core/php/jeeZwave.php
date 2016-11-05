@@ -51,7 +51,6 @@ if (isset($results['devices'])) {
 		$eqLogic = openzwave::byLogicalId($node_id, 'openzwave');
 		if (is_object($eqLogic)) {
 			foreach ($datas as $result) {
-
 				foreach ($eqLogic->getCmd('info', $result['instance'] . '.' . $result['CommandClass'] . '.' . $result['index'], null, true) as $cmd) {
 					$cmd->handleUpdateValue($result);
 				}
