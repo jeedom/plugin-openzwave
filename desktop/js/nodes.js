@@ -578,6 +578,7 @@ $('#valuesModal').modal('hide');
          $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
      }
  });
+     $('#pollingModal').modal('hide');
  });
  $("#tab-parameters").off("click").on("click", function () {
     if (!node_selected.instances[0].commandClasses[112]) {
