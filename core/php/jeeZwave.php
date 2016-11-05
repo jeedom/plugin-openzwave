@@ -50,23 +50,8 @@ if (isset($results['devices'])) {
 	foreach ($results['devices'] as $node_id => $datas) {
 		$eqLogic = openzwave::byLogicalId($node_id, 'openzwave');
 		if (is_object($eqLogic)) {
-			if (strpos($eqLogic->getConfiguration('fileconf'), 'fgs221.fil.pilote') !== false) {
-				foreach ($eqLogic->getCmd('info', '0&&1.0x0', null, true) as $cmd) {
-					if ($cmd->getConfiguration('value') == 'pilotWire') {
-						$cmd->event($cmd->getPilotWire());
-					}
-				}
-				continue;
-			}
 			foreach ($datas as $result) {
-				if ($eqLogic->getConfiguration('manufacturer_id') == '271' && $eqLogic->getConfiguration('product_type') == '2304' && ($eqLogic->getConfiguration('product_id') == '4096' || $eqLogic->getConfiguration('product_id') == '16384') && $result['CommandClass'] == '0x26') {
-					foreach ($eqLogic->getCmd('info', '0.0x26', null, true) as $cmd) {
-						if ($cmd->getConfiguration('value') == '#color#') {
-							$cmd->event($cmd->getRGBColor());
-							break;
-						}
-					}
-				}
+
 				foreach ($eqLogic->getCmd('info', $result['instance'] . '.' . $result['CommandClass'] . '.' . $result['index'], null, true) as $cmd) {
 					$cmd->handleUpdateValue($result);
 				}

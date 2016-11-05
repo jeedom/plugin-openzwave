@@ -358,67 +358,6 @@ def set_user_code2(node_id, slot_id, value1, value2, value3, value4, value5, val
 			return jsonify(result_value)
 	return jsonify(result_value)
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].GetColor()', methods=['GET'])
-@auth.login_required
-def get_color(node_id):
-	utils.check_node_exist(node_id)
-	logging.debug("get_color nodeId:%s" % (node_id,))
-	my_result = {}
-	red_level = 0
-	green_level = 0
-	blue_level = 0
-	white_level = 0
-	for val in globals.network.nodes[node_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User', type='Byte', readonly='All', writeonly=False):
-		my_value = globals.network.nodes[node_id].values[val]
-		if my_value.label != 'Level':
-			continue
-		if my_value.instance < 2:
-			continue
-		if my_value.instance == 3:
-			red_level = utils.convert_level_to_color(my_value.data)
-		elif my_value.instance == 4:
-			green_level = utils.convert_level_to_color(my_value.data)
-		elif my_value.instance == 5:
-			blue_level = utils.convert_level_to_color(my_value.data)
-		elif my_value.instance == 6:
-			white_level = utils.convert_level_to_color(my_value.data)
-	my_result['data'] = {'red': red_level, 'green': green_level, 'blue': blue_level, 'white': white_level}
-	return jsonify(my_result)
-
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].SetColor(<int:red_level>,<int:green_level>,<int:blue_level>,<int:white_level>)', methods=['GET'])
-@auth.login_required
-def set_color(node_id, red_level, green_level, blue_level, white_level):
-	utils.check_node_exist(node_id)
-	logging.info("set_color nodeId:%s red:%s green:%s blue:%s white:%s" % (node_id, red_level, green_level, blue_level, white_level,))
-	my_result = False
-	intensity_value = None
-	red_value = None
-	green_value = None
-	blue_value = None
-	for val in globals.network.nodes[node_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User', type='Byte', readonly='All', writeonly=False):
-		my_value = globals.network.nodes[node_id].values[val]
-		if my_value.label != 'Level':
-			continue
-		if my_value.instance == 2:
-			continue
-		if my_value.instance == 1:
-			intensity_value = val
-		elif my_value.instance == 3:
-			red_value = val
-			my_value.data = utils.convert_color_to_level(red_level)
-		elif my_value.instance == 4:
-			green_value = val
-			my_value.data = utils.convert_color_to_level(green_level)
-		elif my_value.instance == 5:
-			blue_value = val
-			my_value.data = utils.convert_color_to_level(blue_level)
-		elif my_value.instance == 6:
-			my_value.data = utils.convert_color_to_level(white_level)
-	if red_value is not None and green_value is not None and blue_value is not None:
-		value_utils.prepare_refresh(node_id, intensity_value, None)
-		my_result = True
-	return utils.format_json_result(my_result)
-
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)', methods=['GET'])
 @auth.login_required
 def switch_all(node_id, state):
@@ -919,42 +858,63 @@ def add_assoc2(node_id, group, target_id,instance):
 		globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id, instance)
 	return utils.format_json_result()
 
-#OLD ROUTES FOR NOW
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()', methods=['GET'])
+@app.route('/node/<int:node_id>/getColor()', methods=['GET'])
 @auth.login_required
-def press_button_old(node_id, instance_id, cc_id, index):
+def get_color(node_id):
 	utils.check_node_exist(node_id)
-	logging.info("press_button nodeId:%s, instance:%s, cc:%s, index:%s" % (node_id, instance_id, cc_id, index,))
-	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
-		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[
-			val].index == index:
-			globals.network.manager.pressButton(globals.network.nodes[node_id].values[val].value_id)
-			if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL) and globals.network.nodes[node_id].values[val].label in ['Bright', 'Dim', 'Open', 'Close']:
-				value = 1
-				if globals.network.nodes[node_id].values[val].label in ['Bright', 'Open']:
-					value = 99
-				elif globals.network.nodes[node_id].values[val].label in ['Close']:
-					value = 0
-				value_level = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
-												 globals.network.nodes[node_id].values[val].instance, 'Level')
-				if value_level:
-					value_utils.prepare_refresh(node_id, value_level.value_id, value, utils.is_motor(node_id))
-			return utils.format_json_result()
-	return utils.format_json_result(False, 'button not found', 'warning')
+	logging.debug("get_color nodeId:%s" % (node_id,))
+	my_result = {}
+	red_level = 0
+	green_level = 0
+	blue_level = 0
+	white_level = 0
+	for val in globals.network.nodes[node_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User', type='Byte', readonly='All', writeonly=False):
+		my_value = globals.network.nodes[node_id].values[val]
+		if my_value.label != 'Level':
+			continue
+		if my_value.instance < 2:
+			continue
+		if my_value.instance == 3:
+			red_level = utils.convert_level_to_color(my_value.data)
+		elif my_value.instance == 4:
+			green_level = utils.convert_level_to_color(my_value.data)
+		elif my_value.instance == 5:
+			blue_level = utils.convert_level_to_color(my_value.data)
+		elif my_value.instance == 6:
+			white_level = utils.convert_level_to_color(my_value.data)
+	my_result['data'] = {'red': red_level, 'green': green_level, 'blue': blue_level, 'white': white_level}
+	return jsonify(my_result)
 
-@app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ReleaseButton()', methods=['GET'])
+@app.route('/node/<int:node_id>/setColor(<int:red_level>,<int:green_level>,<int:blue_level>,<int:white_level>)', methods=['GET'])
 @auth.login_required
-def release_button_old(node_id, instance_id, cc_id, index):
+def set_color(node_id, red_level, green_level, blue_level, white_level):
 	utils.check_node_exist(node_id)
-	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
-		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[
-			val].index == index:
-			globals.network.manager.releaseButton(globals.network.nodes[node_id].values[val].value_id)
-			if cc_id == hex(COMMAND_CLASS_SWITCH_MULTILEVEL):
-				value_level = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SWITCH_MULTILEVEL,
-												 globals.network.nodes[node_id].values[val].instance, 'Level')
-				if value_level:
-					value_utils.stop_refresh(node_id, value_level.value_id)
-
-			return utils.format_json_result()
-	return utils.format_json_result(False, 'button not found', 'warning')
+	logging.info("set_color nodeId:%s red:%s green:%s blue:%s white:%s" % (node_id, red_level, green_level, blue_level, white_level,))
+	my_result = False
+	intensity_value = None
+	red_value = None
+	green_value = None
+	blue_value = None
+	for val in globals.network.nodes[node_id].get_values(class_id=COMMAND_CLASS_SWITCH_MULTILEVEL, genre='User', type='Byte', readonly='All', writeonly=False):
+		my_value = globals.network.nodes[node_id].values[val]
+		if my_value.label != 'Level':
+			continue
+		if my_value.instance == 2:
+			continue
+		if my_value.instance == 1:
+			intensity_value = val
+		elif my_value.instance == 3:
+			red_value = val
+			my_value.data = utils.convert_color_to_level(red_level)
+		elif my_value.instance == 4:
+			green_value = val
+			my_value.data = utils.convert_color_to_level(green_level)
+		elif my_value.instance == 5:
+			blue_value = val
+			my_value.data = utils.convert_color_to_level(blue_level)
+		elif my_value.instance == 6:
+			my_value.data = utils.convert_color_to_level(white_level)
+	if red_value is not None and green_value is not None and blue_value is not None:
+		value_utils.prepare_refresh(node_id, intensity_value, None)
+		my_result = True
+	return utils.format_json_result(my_result)

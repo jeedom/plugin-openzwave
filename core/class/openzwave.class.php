@@ -932,18 +932,6 @@ class openzwaveCmd extends cmd {
 		$this->event($value, 0);
 	}
 
-	public function getRGBColor() {
-		$eqLogic = $this->getEqLogic();
-		$result = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . '].GetColor()');
-		$r = dechex($result['data']['red']);
-		$g = dechex($result['data']['green']);
-		$b = dechex($result['data']['blue']);
-		$r = (strlen($r) == 1) ? '0' . $r : $r;
-		$g = (strlen($g) == 1) ? '0' . $g : $g;
-		$b = (strlen($b) == 1) ? '0' . $b : $b;
-		return '#' . $r . $g . $b;
-	}
-
 	public function setRGBColor($_color) {
 		if ($_color == '') {
 			throw new Exception('Couleur non définie');
@@ -959,7 +947,7 @@ class openzwaveCmd extends cmd {
 			$g = hexdec(substr($hex, 2, 2));
 			$b = hexdec(substr($hex, 4, 2));
 		}
-		openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . $eqLogic->getLogicalId() . '].SetColor(' . $r . ',' . $g . ',' . $b . ',0)');
+		openzwave::callOpenzwave('/node/' . $eqLogic->getLogicalId() . ']/setColor(' . $r . ',' . $g . ',' . $b . ',0)');
 		return true;
 	}
 
