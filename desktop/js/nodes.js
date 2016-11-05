@@ -530,19 +530,7 @@
 });
 
  $("#applyValue").off("click").on("click", function (e) {
-    var valueType = $('#valuesModal').data('valuetype');
-    var valueIdx = $('#valuesModal').data('valueidx');
-    var valueInstance = $('#valuesModal').data('valueinstance');
-    var valueCc = $('#valuesModal').data('valuecc');
-    if (valueType == "Bool") {
-        var valueValue = $('input[name=newvaluevalue]:checked', '#valuesModal').val();
-    } else if (valueType == "Button") {
-        var valueValue = $('input[name=newvaluevalue]:checked', '#valuesModal').val();
-    } else {
-        var valueValue = $('#newvaluevalue').val();
-    }
-    $('#valuesModal').modal('hide');
-    if (valueType == "Button") {
+    if ($('#valuesModal').data('valuetype') == "Button") {
         jeedom.openzwave.node.button({
             node_id : node_id,
             instance : $('#valuesModal').data('valueinstance'),
@@ -556,7 +544,7 @@
                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
            }
        });
-    } else if (valueType == "Raw") {
+    } else if ($('#valuesModal').data('valuetype') == "Raw") {
      jeedom.openzwave.node.setRaw({
         node_id : node_id,
         slot_id : $('#valuesModal').data('valueidx'),
@@ -606,19 +594,18 @@ $('#valuesModal').modal('hide');
         $("#parameters").html('<br><div><b>{{Aucun paramètre prédefini trouvé pour ce noeud}}</b></div><br>');
         $("#parameters").append('<div class="row"><label class="col-lg-2">{{Paramètre :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">{{Valeur :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">{{Taile :}}</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><button id="sendparamperso" class="btn btn-primary">{{Envoyer le paramètre}}</a></div></div>');
         $("#sendparamperso").off("click").on("click", function () {
-            var paramId = $("#paramidperso").val();
-            var paramValue = $('#newvalueperso').val();
-            var paramLength = $('#sizeperso').val();
-            $.ajax({
-                url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].commandClasses[0x70].Set(" + paramId + "," + paramValue + "," + paramLength + ")",
-                dataType: 'json',
-                async: true, error: function (request, status, error) {
-                    handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+            jeedom.openzwave.node.setParam({
+                node_id : node_id,
+                id :  $("#paramidperso").val(),
+                length :  $('#sizeperso').val(),
+                value : $('#newvalueperso').val(),
+                error: function (error) {
+                    $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
                 },
-                success: function (data) {
-                    $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-                }
-            });
+                success: function () {
+                   $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+               }
+           });  
         });
     }
 });
@@ -651,29 +638,26 @@ $('#valuesModal').modal('hide');
 });
 
  $("#saveParam").off("click").on("click", function (e) {
-    var paramId = $('#paramsModal').data('paramid');
-    var paramType = $('#paramsModal').data('paramtype');
-    if (paramType == "Bool") {
+    if ( $('#paramsModal').data('paramtype') == "Bool") {
         var paramValue = $('input[name=newvalue]:checked', '#paramsModal').val();
-    } else if (paramType == "Button") {
+    } else if ( $('#paramsModal').data('paramtype') == "Button") {
         var paramValue = $('input[name=newvalue]:checked', '#paramsModal').val();
     } else {
         var paramValue = $('#newvalue').val();
     }
-    var paramValue2 = paramValue.replace(/\//g, '@');
-    var paramLength = paramValue.length;
-    $.ajax({
-        url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].commandClasses[0x70].Set(" + paramId + "," + encodeURIComponent(paramValue2) + "," + paramLength + ")",
-        dataType: 'json',
-        async: true,
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
+    jeedom.openzwave.node.setParam({
+        node_id : node_id,
+        id :  $('#paramsModal').data('paramid'),
+        length :  paramValue.length,
+        value : paramValue.replace(/\//g, '@'),
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
-        success: function (data) {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-         $('#paramsModal').modal('hide');
-     }
- });
+        success: function () {
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+       }
+   }); 
+    $('#paramsModal').modal('hide'); 
 });
 
  $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {

@@ -348,6 +348,24 @@
  	$.ajax(paramsAJAX);
  }
 
+ jeedom.openzwave.node.setParam = function (_params) {
+ 	var paramsRequired = ['node_id','id','value','length'];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	paramsAJAX.data = {
+ 		request: '/node/'+_params.node_id+'/setParam('+_params.id+','+encodeURIComponent(_params.value)+','+_params.length+')',
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
+
  /*************************Backup************************************************/
 
  jeedom.openzwave.backup = function() {

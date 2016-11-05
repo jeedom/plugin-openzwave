@@ -105,7 +105,7 @@ def convert_to_value_type(_type,_value):
 	if _type == 'String':
 		return _value
 	if _type == 'Button':
-		return (_value != 0)
+		return not (_value == 0 or _value == '0')
 	if _type == 'Raw':
 		return _value
 	return _value

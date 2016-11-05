@@ -138,9 +138,6 @@ def add_assoc(node_id, group_index, target_node_id):
 	globals.network.manager.addAssociation(globals.network.home_id, node_id, group_index, target_node_id)
 	return utils.format_json_result()
 
-
-
-
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].Associations[<int:group_index>].Remove(<int:target_node_id>,<int:target_node_instance>)', methods=['GET'])
 @auth.login_required
 def remove_association(node_id, group_index, target_node_id, target_node_instance):
@@ -881,6 +878,11 @@ def set_user_code99(node_id, slot_id, value1, value2, value3, value4, value5, va
 @auth.login_required
 def set_value99(node_id, instance_id, cc_id, index, value):
 	return utils.format_json_result(data=commands.send_command_zwave2(node_id, cc_id, instance_id, index, value))
+
+@app.route('/node/<int:node_id>/setParam(<int:index_id>,<value>,<int:size>)', methods=['GET'])
+@auth.login_required
+def set_config99(node_id, index_id, value, size):
+	return utils.format_json_result(data=value_utils.set_config2(node_id, index_id, value, size))
 
 
 #OLD ROUTES FOR NOW

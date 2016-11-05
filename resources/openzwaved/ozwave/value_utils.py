@@ -4,6 +4,8 @@ import math
 import time
 import globals,utils,node_utils
 from utilities.NodeExtend import *
+from ozwave.utilities.Constants import *
+import node_utils,commands
 
 def value_added(network, node, value):
 	if node.node_id in globals.not_supported_nodes:
@@ -120,9 +122,6 @@ def get_value_by_label(node_id, command_class, instance, label, trace=True):
 		for value_id in my_node.get_values(class_id=command_class):
 			if my_node.values[value_id].instance == instance and my_node.values[value_id].label == label:
 				return my_node.values[value_id]
-	if trace:
-		logging.debug("get_value_by_label Value not found for node_id:%s, cc:%s, instance:%s, label:%s" % (
-		node_id, command_class, instance, label,))
 	return None
 
 def get_value_by_index(node_id, command_class, instance, index_id, trace=True):
@@ -131,9 +130,6 @@ def get_value_by_index(node_id, command_class, instance, index_id, trace=True):
 		for value_id in my_node.get_values(class_id=command_class):
 			if my_node.values[value_id].instance == instance and my_node.values[value_id].index == index_id:
 				return my_node.values[value_id]
-	if trace:
-		logging.debug("get_value_by_index Value not found for node_id:%s, cc:%s, instance:%s, index:%s" % (
-		node_id, command_class, instance, index_id,))
 	return None
 
 def get_value_by_id(node_id, value_id):
@@ -195,6 +191,7 @@ def set_value(node_id, value_id, data):
 				return utils.format_json_result()
 			return utils.format_json_result(False, result_message, 'warning')
 	return utils.format_json_result(False, 'valueId not exist', 'warning')
+
 
 def changes_value_polling(intensity, value):
 	if intensity == 0:  # disable the value polling for any value
@@ -291,3 +288,36 @@ def set_config(_node_id, _index_id, _value, _size):
 	if my_value is not None and my_value.type != 'List':
 		mark_pending_change(my_value, _value)
 	return result
+
+def set_config2(_node_id, _index_id, _value, _size):
+	if globals.network_information.controller_is_busy:
+		raise Exception('Controller is bussy')
+	utils.check_node_exist(_node_id)
+	if _size == 0:
+		_size = 2
+	if _size > 4:
+		_size = 4
+	logging.info('Set_config 2 for nodeId : '+str(_node_id)+' index : '+str(_index_id)+', value : '+str(_value)+', size : '+str(_size))	
+	for value_id in globals.network.nodes[_node_id].get_values(class_id=COMMAND_CLASS_CONFIGURATION, genre='All', type='All', readonly=False, writeonly='All'):
+		if globals.network.nodes[_node_id].values[value_id].index == _index_id:
+			value = _value.replace("@", "/")
+			my_value = globals.network.nodes[_node_id].values[value_id]
+			if my_value.type == 'Button':
+				if value.lower() == 'true':
+					globals.network.manager.pressButton(my_value.value_id)
+				else:
+					globals.network.manager.releaseButton(my_value.value_id)
+			elif my_value.type == 'List':
+				globals.network.manager.setValue(value_id, value)
+				mark_pending_change(my_value, value)
+			elif my_value.type == 'Bool':
+				value = commands.convert_to_value_type(my_value.type,value)
+				globals.network.manager.setValue(value_id, value)
+				mark_pending_change(my_value, value)
+			else:
+				value = commands.convert_to_value_type(my_value.type,value)
+				globals.network.nodes[_node_id].set_config_param(_index_id, value, _size)
+				if my_value is not None:
+					mark_pending_change(my_value, value)
+			return
+	raise Exception('Configuration index : '+str(_index_id)+' not found')
