@@ -147,7 +147,7 @@
     var associations = nodes[node_id].associations;
     var description = nodes[node_id].data.name.value;
     var message = '<form class="form-horizontal"><div class="panel-body"> ' +
-    '<p  style="font-size : 1em;"> {{Liste des groupes d\'associations où le module }} <b><span class="node-name label label-default" style="font-size : 1em;">' + description + '</span></b> {{est utilisé:}} </p> ' +
+    '<p  style="font-size : 1em;"> {{Liste des groupes d\'associations où le module}} <b><span class="node-name label label-default" style="font-size : 1em;">' + description + '</span></b> {{est utilisé:}} </p> ' +
     '<br>' +
     '<ul>';
     $.each(associations, function (key, val) {
@@ -546,7 +546,7 @@
         jeedom.openzwave.node.button({
             node_id : node_id,
             instance : $('#valuesModal').data('valueinstance'),
-            class :  $('#pollingModal').data('valuecc'),
+            class :  $('#valuesModal').data('valuecc'),
             index : $('#valuesModal').data('valueidx'),
             action : $('input[name=newvaluevalue]:checked', '#valuesModal').val(),
             error: function (error) {
@@ -557,31 +557,33 @@
            }
        });
     } else if (valueType == "Raw") {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].UserCode.SetRaw(" + valueIdx + ",[" + valueValue + "],1)",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-            }
-        });
-    }else {
-        $.ajax({
-            url: "plugins/openzwave/core/php/jeeZwaveProxy.php?request=ZWaveAPI/Run/devices[" + node_id + "].instances[" + valueInstance + "].commandClasses[0x" + Number(valueCc).toString(16) + "].data[" + valueIdx + "].Set(" + encodeURIComponent(valueValue) + ")",
-            dataType: 'json',
-            async: true,
-            error: function (request, status, error) {
-                handleAjaxError(request, status, error, $('#div_nodeConfigureOpenzwaveAlert'));
-            },
-            success: function (data) {
-                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-            }
-        });
-    }
-    $('#valuesModal').modal('hide');
+     jeedom.openzwave.node.setRaw({
+        node_id : node_id,
+        slot_id : $('#valuesModal').data('valueidx'),
+        value :  $('#newvaluevalue').val(),
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+       }
+   });
+ }else {
+    jeedom.openzwave.node.set({
+        node_id : node_id,
+        instance : $('#valuesModal').data('valueinstance'),
+        class :  $('#valuesModal').data('valuecc'),
+        index : $('#valuesModal').data('valueidx'),
+        value : ($('#valuesModal').data('valuetype') == 'Bool') ? $('input[name=newvaluevalue]:checked', '#valuesModal').val() : $('#newvaluevalue').val(),
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+       }
+   });
+}
+$('#valuesModal').modal('hide');
 });
  $("#savePolling").off("click").on("click", function (e) {
    jeedom.openzwave.node.setPolling({

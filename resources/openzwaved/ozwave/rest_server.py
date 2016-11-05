@@ -859,6 +859,30 @@ def press_button(node_id, instance_id, cc_id, index):
 				globals.network.manager.releaseButton(globals.network.nodes[node_id].values[val].value_id)
 			return utils.format_json_result()
 	return utils.format_json_result(success='error', data='Button not found')
+
+@app.route('/node/<int:node_id>/setRaw(<int:slot_id>,[<value1>,<value2>,<value3>,<value4>,<value5>,<value6>,<value7>,<value8>,<value9>,<value10>])', methods=['GET'])
+@auth.login_required
+def set_user_code99(node_id, slot_id, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10):
+	utils.check_node_exist(node_id)
+	logging.info("set_user_code2 nodeId:%s slot:%s user code:%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" % (node_id, slot_id, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10,))
+	result_value = {}
+	for val in globals.network.nodes[node_id].get_values(class_id=COMMAND_CLASS_USER_CODE):
+		if globals.network.nodes[node_id].values[val].index == slot_id:
+			result_value['data'] = {}
+			value = utils.convert_user_code_to_hex(value1) + utils.convert_user_code_to_hex(value2) + utils.convert_user_code_to_hex(value3) + utils.convert_user_code_to_hex(value4) + utils.convert_user_code_to_hex(value5) + utils.convert_user_code_to_hex(value6) + utils.convert_user_code_to_hex(value7) + utils.convert_user_code_to_hex(value8) + utils.convert_user_code_to_hex(value9) + utils.convert_user_code_to_hex(value10)
+			original_value = value
+			value = binascii.a2b_hex(value)
+			globals.network.nodes[node_id].values[val].data = value
+			result_value['data'][val] = {'device': node_id, 'slot': slot_id, 'val': original_value}
+			return jsonify(result_value)
+	return jsonify(result_value)
+
+@app.route('/node/<int:node_id>/instance/<int:instance_id>/cc/<int:cc_id>/index/<int:index>/set(<value>)', methods=['GET'])
+@auth.login_required
+def set_value99(node_id, instance_id, cc_id, index, value):
+	return utils.format_json_result(data=commands.send_command_zwave2(node_id, cc_id, instance_id, index, value))
+
+
 #OLD ROUTES FOR NOW
 @app.route('/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].PressButton()', methods=['GET'])
 @auth.login_required

@@ -59,6 +59,13 @@
  	return formattedDate + ' ' + formattedTime;
  };
 
+ jeedom.openzwave.normalizeClass = function (cc) {
+ 	if(typeof cc === 'string' && cc.indexOf('0x') >= 0){
+ 		return parseInt(cc,16)
+ 	}
+ 	return cc
+ };
+
  /*************************Controller************************************************/
 
  jeedom.openzwave.controller = function() {
@@ -160,7 +167,6 @@
  	$.ajax(paramsAJAX);
  }
 
-
  jeedom.openzwave.node.info = function (_params) {
  	var paramsRequired = ['info','node_id'];
  	var paramsSpecifics = {};
@@ -228,7 +234,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/'+_params.node_id+'/cc/'+_params.class+'/data',
+ 		request: 'node/'+_params.node_id+'/cc/'+jeedom.openzwave.normalizeClass(_params.class)+'/data',
  	};
  	$.ajax(paramsAJAX);
  }
@@ -246,7 +252,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/cc/'+_params.class+'/index/'+_params.index+'/refreshData()',
+ 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/cc/'+jeedom.openzwave.normalizeClass(_params.class)+'/index/'+_params.index+'/refreshData()',
  	};
  	$.ajax(paramsAJAX);
  }
@@ -264,12 +270,12 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/cc/'+_params.class+'/index/'+_params.index+'/setPolling('+_params.polling+')',
+ 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/cc/'+jeedom.openzwave.normalizeClass(_params.class)+'/index/'+_params.index+'/setPolling('+_params.polling+')',
  	};
  	$.ajax(paramsAJAX);
  }
 
-  jeedom.openzwave.node.button = function (_params) {
+ jeedom.openzwave.node.button = function (_params) {
  	var paramsRequired = ['node_id','instance','class','index','action'];
  	var paramsSpecifics = {};
  	try {
@@ -282,7 +288,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/cc/'+_params.class+'/index/'+_params.index+'/button('+_params.action+')',
+ 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/cc/'+jeedom.openzwave.normalizeClass(_params.class)+'/index/'+_params.index+'/button('+_params.action+')',
  	};
  	$.ajax(paramsAJAX);
  }
@@ -305,6 +311,42 @@
  	$.ajax(paramsAJAX);
  }
 
+
+ jeedom.openzwave.node.setRaw = function (_params) {
+ 	var paramsRequired = ['node_id','slot_id','value'];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	paramsAJAX.data = {
+ 		request: 'node/'+_params.node_id+'/setRaw('+_params.slot_id+',['+_params.value+'])',
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
+
+ jeedom.openzwave.node.set = function (_params) {
+ 	var paramsRequired = ['node_id','instance','class','index','value'];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	paramsAJAX.data = {
+ 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/cc/'+jeedom.openzwave.normalizeClass(_params.class)+'/index/'+_params.index+'/set('+encodeURIComponent(_params.value)+')',
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
 
  /*************************Backup************************************************/
 

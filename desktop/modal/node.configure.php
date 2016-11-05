@@ -165,19 +165,19 @@ sendVarToJs('node_id', init('id'));
                         <a href="#values" data-toggle="tab"><i class="fa fa-tag"></i> {{Valeurs}}</a>
                     </li>
                     <li id="tab-parameters">
-                        <a href="#parameters" data-toggle="tab"><i class="fa fa-wrench"></i>{{Paramètres}}</a>
+                        <a href="#parameters" data-toggle="tab"><i class="fa fa-wrench"></i> {{Paramètres}}</a>
                     </li>
                     <li id="tab-groups">
                         <a href="#groups" data-toggle="tab"><i class="fa fa-users"></i> {{Associations}}</a>
                     </li>
                     <li id="tab-systems">
-                        <a href="#systems" data-toggle="tab"><i class="fa fa-cogs"></i>{{Systèmes}}</a>
+                        <a href="#systems" data-toggle="tab"><i class="fa fa-cogs"></i> {{Systèmes}}</a>
                     </li>
                     <li id="tab-actions">
                         <a href="#actions" data-toggle="tab"><i class="fa fa-sliders"></i> {{Actions}}</a>
                     </li>
                     <li id="tab-stats">
-                        <a href="#statistics" data-toggle="tab"><i class="fa fa-bar-chart"></i>{{Statistiques}}</a>
+                        <a href="#statistics" data-toggle="tab"><i class="fa fa-bar-chart"></i> {{Statistiques}}</a>
                     </li>
                     <li id="li_state" class="pull-right alert" style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;">
                         <span style="position:relative; top : -7px;">{{Envoi OK}}</span>
