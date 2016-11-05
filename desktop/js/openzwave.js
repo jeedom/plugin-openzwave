@@ -20,7 +20,6 @@
  $('.changeIncludeState').on('click', function () {
     var mode = $(this).attr('data-mode');
     var state = $(this).attr('data-state');
-     // if not in inclusion, no selection dialog
      if (mode != 1 || mode == 1  && state == 0) {
          changeIncludeState(mode, state, mode);
      }
@@ -28,7 +27,6 @@
          var dialog_title = '';
          var dialog_message = '<form class="form-horizontal onsubmit="return false;"> ';
          if (mode == 1 && state != 0) {
-             // in inclusion add secure mode selection
              dialog_title = '{{Démarrer l\'inclusion}}';
              dialog_message += '<label class="control-label" > {{Sélectionner le mode d\'inclusion ?}} </label> ' +
                  '<div> <div class="radio"> <label > ' +
@@ -43,7 +41,6 @@
              dialog_title = '{{Démarrer l\'exclusion}}';
          }
          if (state == 0) {
-             // revert state, cancel current mode
              if (mode == 1) {
                  dialog_title = '{{Arrêter l\'inclusion}}';
              }
@@ -139,9 +136,9 @@ function printEqLogic(_eqLogic) {
     } else {
         $('#bt_deviceAssistant').hide();
     }
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // méthode de transmission des données au fichier php
-        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
         data: {
             action: "getConfiguration",
             manufacturer_id: _eqLogic.configuration.manufacturer_id,
@@ -154,7 +151,7 @@ function printEqLogic(_eqLogic) {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
+        success: function (data) { 
         $('#bt_deviceRecommended').off('click');
         if (isset(data.result.name)) {
             $('.eqLogicAttr[data-l1key=configuration][data-l2key=product_name]').value(data.result.name);
@@ -191,9 +188,9 @@ function printEqLogic(_eqLogic) {
                             label: "{{Appliquer}}",
                             className: "btn-success",
                             callback: function () {
-                                        $.ajax({// fonction permettant de faire de l'ajax
-                                            type: "POST", // méthode de transmission des données au fichier php
-                                            url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+                                        $.ajax({
+                                            type: "POST", 
+                                            url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
                                             data: {
                                                 action: "applyRecommended",
                                                 id: _eqLogic.id,
@@ -202,7 +199,7 @@ function printEqLogic(_eqLogic) {
                                             error: function (request, status, error) {
                                                 handleAjaxError(request, status, error);
                                             },
-                                            success: function (data) { // si l'appel a bien fonctionné
+                                            success: function (data) {
                                             if (data.state != 'ok') {
                                                 $('#div_alert').showAlert({message: data.result, level: 'danger'});
                                                 return;
@@ -233,9 +230,9 @@ function printEqLogic(_eqLogic) {
     }
 });
 
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // méthode de transmission des données au fichier php
-        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
         data: {
             action: "getAllPossibleConf",
             id: _eqLogic.id,
@@ -245,7 +242,7 @@ function printEqLogic(_eqLogic) {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
+        success: function (data) { 
         $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').empty();
         if (data.result.length > 1) {
             option = '';
@@ -319,12 +316,11 @@ $('body').on('zwave::includeDevice', function (_event, _options) {
 });
 
 $('#bt_autoDetectModule').on('click', function () {
-
     bootbox.confirm('{{Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes}}', function (result) {
         if (result) {
-            $.ajax({// fonction permettant de faire de l'ajax
-                type: "POST", // méthode de transmission des données au fichier php
-                url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+            $.ajax({
+                type: "POST", 
+                url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
                 data: {
                     action: "autoDetectModule",
                     id: $('.eqLogicAttr[data-l1key=id]').value(),
@@ -334,7 +330,7 @@ $('#bt_autoDetectModule').on('click', function () {
                 error: function (request, status, error) {
                     handleAjaxError(request, status, error);
                 },
-                success: function (data) { // si l'appel a bien fonctionné
+                success: function (data) { 
                 if (data.state != 'ok') {
                     $('#div_alert').showAlert({message: data.result, level: 'danger'});
                     return;
@@ -348,9 +344,9 @@ $('#bt_autoDetectModule').on('click', function () {
 });
 
 function syncEqLogicWithOpenZwave() {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // méthode de transmission des données au fichier php
-        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
         data: {
             action: "syncEqLogicWithOpenZwave",
         },
@@ -358,7 +354,7 @@ function syncEqLogicWithOpenZwave() {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
+        success: function (data) { 
         if (data.state != 'ok') {
             $('#div_alert').showAlert({message: data.result, level: 'danger'});
             return;
@@ -369,9 +365,9 @@ function syncEqLogicWithOpenZwave() {
 }
 
 function changeIncludeState(_mode, _state, _secure) {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // méthode de transmission des données au fichier php
-        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
         data: {
             action: "changeIncludeState",
             mode: _mode,
@@ -382,7 +378,7 @@ function changeIncludeState(_mode, _state, _secure) {
         error: function (request, status, error) {
             handleAjaxError(request, status, error);
         },
-        success: function (data) { // si l'appel a bien fonctionné
+        success: function (data) { 
         if (data.state != 'ok') {
             $('#div_alert').showAlert({message: data.result, level: 'danger'});
             return;
@@ -392,9 +388,9 @@ function changeIncludeState(_mode, _state, _secure) {
 }
 
 function printPending() {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", // url du fichier php
+    $.ajax({
+        type: "POST", 
+        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
         data: {
             action: "printPending",
             id: $('.eqLogicAttr[data-l1key=id]').value(),
@@ -453,6 +449,7 @@ function addCmdToTable(_cmd) {
     tr += '</td>';
     tr += '<td class="expertModeVisible"><input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="instanceId" value="0"></td>';
     tr += '<td class="expertModeVisible"><input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="class" ></td>';
+    tr += '<td class="expertModeVisible"><input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="index" ></td>';
     tr += '<td class="expertModeVisible">';
     tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="value" >';
     tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="returnStateValue" placeholder="{{Valeur retour d\'état}}" style="margin-top : 5px;">';

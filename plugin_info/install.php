@@ -33,6 +33,27 @@ function openzwave_update() {
 	if (count(eqLogic::byType('zwave')) > 0) {
 		log::add('openzwave', 'error', 'Attention vous etes sur la nouvelle version d\'openzwave, des actions de votre part sont necessaire merci d\'aller voir https://jeedom.fr/blog/?p=1576');
 	}
+	foreach (eqLogic::byType('openzwave') as $eqLogic) {
+		foreach ($eqLogic->getCmd() as $cmd) {
+			if (strpos('0x', $cmd->getConfiguration('class')) !== false) {
+				$cmd->setConfiguration('class', hexdec($cmd->getConfiguration('class')));
+			}
+			$cmd->setConfiguration('instance', $cmd->getConfiguration('instanceId'));
+			$matches = array();
+			preg_match_all('/data\[(.*)\]\.(.*)/', $cmd->getConfiguration('value'), $matches);
+			if (count($matches[1]) == 1 && count($matches[2]) == 1) {
+				$cmd->setConfiguration('index', $matches[1][0]);
+				if ($matches[2][0] == 'val') {
+					$matches[2][0] = '';
+				}
+				$matches[2][0] = str_replace('Set', 'set', $matches[2][0]);
+				$matches[2][0] = str_replace('PressButton()', 'button(press)', $matches[2][0]);
+				$matches[2][0] = str_replace('ReleaseButton()', 'button(release)', $matches[2][0]);
+				$cmd->setConfiguration('value', $matches[2][0]);
+			}
+			$cmd->save();
+		}
+	}
 	openzwave::syncconfOpenzwave();
 }
 

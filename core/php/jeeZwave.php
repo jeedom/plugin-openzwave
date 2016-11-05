@@ -67,13 +67,12 @@ if (isset($results['devices'])) {
 						}
 					}
 				}
-				foreach ($eqLogic->getCmd('info', $result['instance'] . '.' . $result['CommandClass'], null, true) as $cmd) {
-					if ($cmd->getConfiguration('value') == 'data[' . $result['index'] . '].val') {
-						$cmd->handleUpdateValue($result);
-					}
-					if ($result['CommandClass'] == '0x80'){
-						$eqLogic->batteryStatus($result['value']);
-					}
+				log::add('openzwave_cmd', 'debug', $result['instance'] . '.' . $result['CommandClass'] . '.' . $result['index']);
+				foreach ($eqLogic->getCmd('info', $result['instance'] . '.' . $result['CommandClass'] . '.' . $result['index'], null, true) as $cmd) {
+					$cmd->handleUpdateValue($result);
+				}
+				if ($result['CommandClass'] == '0x80') {
+					$eqLogic->batteryStatus($result['value']);
 				}
 			}
 		}

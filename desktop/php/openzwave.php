@@ -332,6 +332,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
                 <th style="width: 130px;" class="expertModeVisible">{{Type}}</th>
                 <th class="expertModeVisible">{{Instance ID}}</th>
                 <th class="expertModeVisible">{{Classe}}</th>
+                <th class="expertModeVisible">{{Index}}</th>
                 <th class="expertModeVisible">{{Commande}}</th>
                 <th style="width: 200px;">{{Paramètres}}</th>
                 <th style="width: 100px;">{{Options}}</th>

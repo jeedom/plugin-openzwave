@@ -974,13 +974,16 @@ class openzwaveCmd extends cmd {
 	}
 
 	public function preSave() {
-		if ($this->getConfiguration('instanceId') === '') {
-			$this->setConfiguration('instanceId', '0');
+		if ($this->getConfiguration('instance') === '') {
+			$this->setConfiguration('instance', '0');
 		}
-		if (strpos($this->getConfiguration('class'), '0x') === false) {
-			$this->setConfiguration('class', '0x' . dechex($this->getConfiguration('class')));
+		if ($this->getConfiguration('index') === '') {
+			$this->setConfiguration('index', '0');
 		}
-		$this->setLogicalId($this->getConfiguration('instanceId') . '.' . $this->getConfiguration('class'));
+		if (strpos($this->getConfiguration('class'), '0x') !== false) {
+			$this->setConfiguration('class', hexdec($this->getConfiguration('class')));
+		}
+		$this->setLogicalId($this->getConfiguration('instance') . '.' . $this->getConfiguration('class') . '.' . $this->getConfiguration('index'));
 	}
 
 	public function sendZwaveResquest($_url, $_options = array()) {
@@ -1010,85 +1013,34 @@ class openzwaveCmd extends cmd {
 		return $value;
 	}
 
-	public function postInsert() {
-		if ($this->getType() == 'info') {
-			$this->event($this->execute());
-		}
-	}
-
 	public function execute($_options = array()) {
 		if ($this->getLogicalId() == 'pilotWire' || $this->getConfiguration('value') == 'pilotWire') {
 			return $this->getPilotWire();
 		}
+		if ($this->getType() != 'action') {
+			return;
+		}
 		$value = $this->getConfiguration('value');
-		$request = '/ZWaveAPI/Run/devices[' . $this->getEqLogic()->getLogicalId() . ']';
-		switch ($this->getType()) {
-			case 'action':
-				switch ($this->getSubType()) {
-					case 'slider':
-						$value = str_replace('#slider#', $_options['slider'], $value);
-						break;
-					case 'color':
-					case 'color':
-						if ($value == '#color#') {
-							$value = str_replace('#color#', str_replace('#', '', $_options['color']), $value);
-							return $this->setRGBColor($value);
-						}
-						if (strlen($_options['color']) == 7) {
-							$_options['color'] .= '0000';
-						}
-						$_options['color'] = str_replace('#', '%23', $_options['color']);
-
-						$value = str_replace('#color#', $_options['color'], $value);
-				}
+		$request = '/node/' . $this->getEqLogic()->getLogicalId() . '/';
+		switch ($this->getSubType()) {
+			case 'slider':
+				$value = str_replace('#slider#', $_options['slider'], $value);
 				break;
-		}
-		if (strpos($this->getConfiguration('instanceId'), '&&') !== false || strpos($value, '&&') !== false) {
-			$lastInstanceId = $this->getConfiguration('instanceId');
-			$instancesId = explode('&&', $this->getConfiguration('instanceId'));
-			$lastValue = $value;
-			$values = explode('&&', $value);
-			$totalRequest = max(count($values), count($instancesId));
-			$result = '';
-			for ($i = 0; $i < $totalRequest; $i++) {
-				if (strpos($values[$i], 'sleep(') !== false) {
-					$duration = str_replace(array('sleep(', ')'), '', $values[$i]);
-					if ($duration != '' && is_numeric($duration)) {
-						sleep($duration);
-					}
-				} else {
-					$request_http = $request;
-					$value = $lastValue;
-					if (isset($values[$i]) && $values[$i] != '') {
-						$value = $values[$i];
-						$lastValue = $value;
-					}
-
-					$instanceId = $lastInstanceId;
-					if (isset($instancesId[$i])) {
-						$instanceId = $instancesId[$i];
-						$lastInstanceId = $instanceId;
-					}
-					if ($instanceId != '') {
-						$request_http .= '.instances[' . $instanceId . ']';
-					} else {
-						$request_http .= '.instances[0]';
-					}
-					$request_http .= '.commandClasses[' . $this->getConfiguration('class') . ']';
-					$request_http .= '.' . $value;
-					$result .= $this->sendZwaveResquest($request_http, $_options);
+			case 'color':
+				if ($value == '#color#') {
+					$value = str_replace('#color#', str_replace('#', '', $_options['color']), $value);
+					return $this->setRGBColor($value);
 				}
-			}
-			return $result;
+				if (strlen($_options['color']) == 7) {
+					$_options['color'] .= '0000';
+				}
+				$value = str_replace('#color#', str_replace('#', '%23', $_options['color']), $value);
 		}
-		if ($this->getConfiguration('instanceId') != '' && ($this->getConfiguration('class') != '0x70')) {
-			$request .= '.instances[' . $this->getConfiguration('instanceId') . ']';
-		} else {
-			$request .= '.instances[0]';
-		}
-		$request .= '.commandClasses[' . $this->getConfiguration('class') . ']';
-		$request .= '.' . str_replace(' ', '%20', str_replace(',', '%2C', $value));
-		return $this->sendZwaveResquest($request, $_options);
+		$request .= 'instance/' . $this->getConfiguration('instance', 0);
+		$request .= '/cc/' . $this->getConfiguration('class');
+		$request .= '/index/' . $this->getConfiguration('index');
+		$request .= '/' . str_replace(' ', '%20', str_replace(',', '%2C', $value));
+		openzwave::callOpenzwave($request);
 	}
 
 }

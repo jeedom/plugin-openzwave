@@ -35,9 +35,9 @@
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-     }
- });
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+       }
+   });
 });
 
  $("#removeGhostNode").off("click").on("click", function () {
@@ -133,9 +133,9 @@
                             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
                         },
                         success: function () {
-                         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-                     }
-                 });
+                           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+                       }
+                   });
                 }
             }
         }
@@ -147,9 +147,7 @@
     var associations = node_selected.associations;
     var description = node_selected.data.name.value;
     var message = '<form class="form-horizontal"><div class="panel-body"> ' +
-    '<p  style="font-size : 1em;"> {{Liste des groupes d\'associations où le module}} <b><span class="node-name label label-default" style="font-size : 1em;">' + description + '</span></b> {{est utilisé:}} </p> ' +
-    '<br>' +
-    '<ul>';
+    '<p  style="font-size : 1em;"> {{Liste des groupes d\'associations où le module}} <b><span class="node-name label label-default" style="font-size : 1em;">' + description + '</span></b> {{est utilisé:}}</p><br><ul>';
     $.each(associations, function (key, val) {
         message += '<li class="active"><p>';
         if (nodes[key].description.name != '') {
@@ -229,9 +227,9 @@
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-     }
- });
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+       }
+   });
 });
  $('#copyToParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
     var modal = $(this);
@@ -282,17 +280,17 @@
 });
  $("#saveCopyToParams").off("click").on("click", function (e) {
     $("input:checkbox[name=type]:checked").each(function(){
-       jeedom.openzwave.node.copyConfigurations({
+     jeedom.openzwave.node.copyConfigurations({
         node_id : node_id,
         target_id : $(this).val(),
         error: function (error) {
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-     }
- });
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+       }
    });
+ });
     $('#copyToParamsModal').modal('hide');
 });
  $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
@@ -363,9 +361,9 @@
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-       }
-   });
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     }
+ });
     $('#groupsModal').modal('hide');
 });
  $("body").off("click", ".editValue").on("click", ".editValue", function (e) {
@@ -420,22 +418,20 @@
         modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" style="display:inline-block;width:400px;" value="' + valueValue + '">');
     }
 });
-
-
  $("body").off("click", ".forceRefresh").on("click", ".forceRefresh", function (e) {
-   jeedom.openzwave.node.refreshData({
-    node_id : node_id,
-    instance : $(this).attr('data-valueinstance'),
-    class :  $(this).attr('data-valuecc'),
-    index : $(this).attr('data-valueidx'),
-    error: function (error) {
-        $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-       $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-   }
-});
-});
+     jeedom.openzwave.node.refreshData({
+        node_id : node_id,
+        instance : $(this).attr('data-valueinstance'),
+        class :  $(this).attr('data-valuecc'),
+        index : $(this).attr('data-valueidx'),
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     }
+ });
+ });
  $("body").off("click", ".editPolling").on("click", ".editPolling", function (e) {
     var idx = $(this).data('valueidx');
     var instance = $(this).data('valueinstance');
@@ -524,7 +520,6 @@
         modal.find('.modal-body').append('<input type="text" class="form-control" id="newvalue" style="display:inline-block;width:400px;" value="' + paramValue + '">');
     }
 });
-
  $("#applyValue").off("click").on("click", function (e) {
     if ($('#valuesModal').data('valuetype') == "Button") {
         jeedom.openzwave.node.button({
@@ -537,11 +532,11 @@
                 $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
-               $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-           }
-       });
+             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+         }
+     });
     } else if ($('#valuesModal').data('valuetype') == "Raw") {
-     jeedom.openzwave.node.setRaw({
+       jeedom.openzwave.node.setRaw({
         node_id : node_id,
         slot_id : $('#valuesModal').data('valueidx'),
         value :  $('#newvaluevalue').val(),
@@ -549,10 +544,10 @@
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-       }
-   });
- }else {
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     }
+ });
+   }else {
     jeedom.openzwave.node.set({
         node_id : node_id,
         instance : $('#valuesModal').data('valueinstance'),
@@ -563,28 +558,27 @@
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-       }
-   });
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     }
+ });
 }
 $('#valuesModal').modal('hide');
 });
  $("#savePolling").off("click").on("click", function (e) {
-   jeedom.openzwave.node.setPolling({
-    node_id : node_id,
-    instance : $('#pollingModal').data('valueinstance'),
-    class :  $('#pollingModal').data('valuecc'),
-    index : $('#pollingModal').data('valueidx'),
-    polling : $('#newvaluevalue').val(),
-    error: function (error) {
-        $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-       $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-   }
-});
-});
-
+     jeedom.openzwave.node.setPolling({
+        node_id : node_id,
+        instance : $('#pollingModal').data('valueinstance'),
+        class :  $('#pollingModal').data('valuecc'),
+        index : $('#pollingModal').data('valueidx'),
+        polling : $('#newvaluevalue').val(),
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     }
+ });
+ });
  $("#tab-parameters").off("click").on("click", function () {
     if (!node_selected.instances[0].commandClasses[112]) {
         $("#parameters").html('<br><div><b>{{Aucun paramètre prédefini trouvé pour ce noeud}}</b></div><br>');
@@ -599,28 +593,27 @@ $('#valuesModal').modal('hide');
                     $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                   $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-               }
-           });  
+                 $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+             }
+         });  
         });
     }
 });
 
  $("body").off("click", ".deleteGroup").on("click", ".deleteGroup", function (e) {
-   jeedom.openzwave.node.removeGroup({
-    node_id : node_id,
-    instance : $(this).data('nodeinstance'),
-    group :  $(this).data('groupindex'),
-    target_id : $(this).data('nodeid'),
-    error: function (error) {
-        $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-       $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-   }
-});
-});
-
+     jeedom.openzwave.node.removeGroup({
+        node_id : node_id,
+        instance : $(this).data('nodeinstance'),
+        group :  $(this).data('groupindex'),
+        target_id : $(this).data('nodeid'),
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     }
+ });
+ });
  $("body").off("click", ".addGroup").on("click", ".addGroup", function (e) {
     var group = $(this).data('groupindex');
     if(group == -1){
@@ -629,7 +622,6 @@ $('#valuesModal').modal('hide');
     $('#groupsModal').data('groupindex', group);
     $('#groupsModal').modal('show');
 });
-
  $("#saveParam").off("click").on("click", function (e) {
     if ( $('#paramsModal').data('paramtype') == "Bool") {
         var paramValue = $('input[name=newvalue]:checked', '#paramsModal').val();
@@ -647,19 +639,17 @@ $('#valuesModal').modal('hide');
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-       }
-   }); 
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     }
+ }); 
     $('#paramsModal').modal('hide'); 
 });
-
  $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
     $('#copyParamsModal').modal('show');
 });
  $("body").off("click", ".copyToParams").on("click", ".copyToParams", function (e) {
     $('#copyToParamsModal').modal('show');
 });
-
  function load_all_node(){
     jeedom.openzwave.network.info({
         info : 'getNodesList',
@@ -679,7 +669,7 @@ $('#valuesModal').modal('hide');
 }
 
 function display_node_stats(){
-   jeedom.openzwave.node.info({
+ jeedom.openzwave.node.info({
     node_id : node_id,
     info:'getNodeStatistics',
     error: function (error) {
@@ -692,7 +682,7 @@ function display_node_stats(){
 }
 
 function display_node_info(){
-   jeedom.openzwave.node.info({
+ jeedom.openzwave.node.info({
     node_id : node_id,
     info:'all',
     global:false,
@@ -1072,7 +1062,6 @@ function show_groups(){
     }
 }
 
-
 $("body").off("click", ".refreshParams").on("click", ".refreshParams", function (e) {
     jeedom.openzwave.node.refreshClass({
         node_id : node_id,
@@ -1081,9 +1070,9 @@ $("body").off("click", ".refreshParams").on("click", ".refreshParams", function 
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-     }
- })
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+       }
+   })
 });
 
 function getTranslation(){

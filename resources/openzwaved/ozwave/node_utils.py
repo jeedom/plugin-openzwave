@@ -7,7 +7,7 @@ from utilities.NodeExtend import *
 from utilities.Constants import *
 
 def save_node_value_event(node_id, timestamp, command_class, value_index, standard_type, value, instance):
-	globals.jeedom_com.add_changes('devices::' + str(node_id) + '::' + str(hex(command_class)) + str(instance) + str(value_index),{'node_id': node_id, 'instance': instance, 'CommandClass': hex(command_class), 'index': value_index,'value': value, 'type': standard_type, 'updateTime': timestamp})
+	globals.jeedom_com.add_changes('devices::' + str(node_id)+'::'+  str(command_class) + str(instance) + str(value_index),{'node_id': node_id, 'instance': instance, 'CommandClass': command_class, 'index': value_index,'value': value, 'type': standard_type, 'updateTime': timestamp})
 
 def save_node_event(node_id, value):
 	if value == "removed":
