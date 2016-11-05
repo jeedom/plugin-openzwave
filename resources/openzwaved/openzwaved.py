@@ -41,6 +41,7 @@ parser.add_argument("--callback", help="Value to write", type=str)
 parser.add_argument("--apikey", help="Value to write", type=str)
 parser.add_argument("--suppressRefresh", help="Value to write", type=str)
 parser.add_argument("--disabledNodes", help="Value to write", type=str)
+parser.add_argument("--cycle", help="Cycle to send event", type=str)
 args = parser.parse_args()
 
 if args.device:
@@ -59,6 +60,8 @@ if args.callback:
 	globals.callback = args.callback
 if args.apikey:
 	globals.apikey = args.apikey
+if args.cycle:
+	globals.cycle = args.cycle
 if args.suppressRefresh:
 	globals.suppress_refresh = args.suppressRefresh
 if args.disabledNodes:

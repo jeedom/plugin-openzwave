@@ -10,14 +10,11 @@ import node_utils,commands
 def value_added(network, node, value):
 	if node.node_id in globals.not_supported_nodes:
 		return
-	# logging.debug('value_added. %s %s' % (node.node_id, value.label,))
-	# mark initial data for skip notification during interview
 	value.lastData = value.data
 
 def value_removed(network, node, value):
 	if node.node_id in globals.not_supported_nodes:
 		return
-	# clean pending dict
 	if value.value_id in globals.pending_configurations:
 		del globals.pending_configurations[value.value_id]
 
@@ -34,24 +31,16 @@ def value_refreshed(network, node, value):
 	prepare_value_notification(node, value)
 
 def value_polling_enabled(network, node, value):
-	# not yet handle correctly ozw lib and wrapper must updated to use this check
-	# check if old polling is outside authorized range
 	if value.poll_intensity > globals.maximum_poll_intensity:
 		changes_value_polling(globals.maximum_poll_intensity, value)
-	# check if old polling is at lower index for CC and instance
 	if value.poll_intensity > 0:
 		logging.debug('Poll intensity on nodeId:%s value %s command_class %s instance %s index %s' % (node.node_id, value.label, value.command_class, value.instance, value.index))
-		# get all CC of node
 		for val in node.get_values(class_id=value.command_class):
-			# filter on same instance
 			if node.values[val].instance == value.instance:
 				my_value = node.values[val]
-				# check is is the lower index is have polling attribute
 				if my_value.index < value.index & my_value.poll_intensity == 0:
 					poll_intensity = value.poll_intensity
-					# reset last polling
 					value.disable_poll()
-					# set polling of lower index
 					changes_value_polling(poll_intensity, my_value)
 					logging.info('Changes poll intensity on nodeId:%s form %s to %s' % (node.node_id, value.label, my_value.label,))
 					break
@@ -60,13 +49,10 @@ def save_value(node, value, last_update):
 	logging.debug('A node value has been updated. nodeId:%s value:%s' % (node.node_id, value.label))
 	if node.node_id in globals.network.nodes:
 		my_node = globals.network.nodes[node.node_id]
-		# check if am the really last update
 		if my_node.last_update > last_update:
 			logging.warning('Timing Error. nodeLastUpdate:%s Last_update:%s' % (str(my_node.last_update), str(last_update)))
 			return
-		# mark as seen flag
 		my_node.last_update = last_update
-		# if value.genre != 'Basic':
 		value.last_update = last_update
 		node_utils.save_node_value_event(node.node_id, int(time.time()), value.command_class, value.index, utils.get_standard_value_type(value.type), extract_data(value, False), utils.change_instance(value))
 
@@ -74,18 +60,13 @@ def prepare_value_notification(node, value):
 	if value.id_on_network in globals.pending_configurations:
 		pending = globals.pending_configurations[value.id_on_network]
 		if pending is not None:
-			# mark result
 			data = value.data
 			if value.type == 'Short':
 				data = utils.normalize_short_value(value.data)
 			pending.data = data
-
 	if not node.is_ready:
-		# check if have the attribute
 		if hasattr(value, 'lastData') and value.lastData == value.data:
-			# we skip notification to avoid value refresh during the interview process
 			return
-	# update for next run
 	value.lastData = value.data
 	if value.genre == 'System':
 		value.last_update = time.time()
@@ -143,22 +124,16 @@ def get_value_by_id(node_id, value_id):
 def prepare_refresh(node_id, value_id, target_value=None, motor=False):
 	if globals.suppress_refresh:
 		return
-	# logging.debug("prepare_refresh for nodeId:%s valueId:%s data:%s" % (node_id, value_id, target_value,))
 	stop_refresh(node_id, value_id)
 	starting_value = globals.network.nodes[node_id].values[value_id].data
 	utils.create_worker(node_id, value_id, target_value, starting_value, 0, motor)
 	globals.network.nodes[node_id].values[value_id].start_refresh_time = int(time.time())
 	
 def stop_refresh(node_id, value_id):
-	# check if for a existing worker
 	worker = globals.refresh_workers.get(value_id)
 	if worker is not None:
-		# logging.debug("Stop the timer")
-		# Stop the timer, and cancel the execution of the timer action. This will only work if the timer is still in its waiting stage.
 		worker.cancel()
-		# remove worker
 		del globals.refresh_workers[value_id]
-	# reset start time if refresh is running to avoid start again
 	globals.network.nodes[node_id].values[value_id].start_refresh_time = 0
 	
 def mark_pending_change(my_value, data, wake_up_time=0):
@@ -174,7 +149,6 @@ def set_value(node_id, value_id, data):
 	for value in my_node.get_values():
 		if value == value_id:
 			zwave_value = my_node.values[value]
-			# cast data in desired type
 			data = zwave_value.check_data(data=data)
 			if data is None:
 				return jsonify({'result': False, 'reason': 'cant convert in desired dataType'})
@@ -194,10 +168,10 @@ def set_value(node_id, value_id, data):
 
 
 def changes_value_polling(intensity, value):
-	if intensity == 0:  # disable the value polling for any value
+	if intensity == 0: 
 		if value.poll_intensity > 0:
 			value.disable_poll()
-	elif value.genre == "User" and not value.is_write_only:  # we activate the value polling only on user genre value and is not a writeOnly
+	elif value.genre == "User" and not value.is_write_only: 
 		if intensity > globals.maximum_poll_intensity:
 			intensity = globals.maximum_poll_intensity
 		value.enable_poll(intensity)
@@ -207,23 +181,14 @@ def refresh_background(node_id, value_id, target_value, starting_value, counter,
 	actual_value = globals.network.nodes[node_id].values[value_id].data
 	if target_value is not None:
 		if isinstance(target_value, basestring):
-			# color CC test
 			actual_value = actual_value.lower()
 			target_value = target_value.lower()
 			do_refresh = actual_value != target_value
-			# if do_refresh:
-			# logging.debug("delta %s: %s" % (actual_value, target_value,))
 		else:
-			# check if target is reported
 			delta = abs(actual_value - target_value)
-			# logging.debug("delta for nodeId:%s valueId:%s is: %s" % (node_id, value_id, delta,))
 			if delta < 2:
-				# if delta is too small don't refresh
 				do_refresh = False
-				# logging.debug("delta is too small don't refresh")
 	if do_refresh:
-		# logging.debug("check for changes, actual: %s , starting: %s (retry %s)" % (actual_value, starting_value, counter,))
-		# check if won't changes
 		if starting_value == actual_value:
 			counter += 1
 			if counter > 2:
@@ -232,15 +197,11 @@ def refresh_background(node_id, value_id, target_value, starting_value, counter,
 			counter = 0
 			starting_value = actual_value
 	if do_refresh:
-		# logging.debug("refresh")
 		globals.network.nodes[node_id].values[value_id].refresh()
-		# check if someone stop this refresh or we reach the timeout
 		timeout = int(time.time()) - globals.network.nodes[node_id].values[value_id].start_refresh_time
 		if timeout < globals.refresh_timeout:
-			# I will start again a refresh timer
 			create_worker(node_id, value_id, target_value, starting_value, counter, motor)
 	else:
-		# remove worker the flag is set
 		del refresh_workers[value_id]
 
 def refresh_switch_binary(node_id, value_id, target_value):

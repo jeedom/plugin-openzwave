@@ -32,12 +32,6 @@ if (!isConnect('admin')) {
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-lg-4 control-label">{{Soigner le réseau automatiquement 2 fois par semaine}}</label>
-			<div class="col-lg-3">
-				<input type="checkbox" class="configKey" data-l1key="auto_health" />
-			</div>
-		</div>
-		<div class="form-group">
 			<label class="col-sm-4 control-label">{{Mettre à jour la configuration des modules automatiquement}}</label>
 			<div class="col-sm-2">
 				<input type="checkbox" class="configKey" data-l1key="auto_updateConf" checked/>
@@ -61,22 +55,15 @@ if (!isConnect('admin')) {
 				<input type="checkbox" class="configKey" data-l1key="enabled_sanity_tests" checked/>
 			</div>
 		</div>
-		<legend><i class="fa fa-cog"></i>  {{Gestion avancée}}</legend>
-		<div class="form-group">
-			<label class="col-lg-4 control-label">{{Options avancées}}</label>
-			<div class="col-lg-5">
-				<a class="btn btn-warning" id="bt_backupsZwave"><i class="fa fa-floppy-o"></i> {{Backups}}</a>
-				<a class="btn btn-success" id="bt_syncconfigZwave"><i class="fa fa-refresh"></i> {{Configs modules}}</a>
+		<div class="form-group expertModeVisible">
+			<label class="col-sm-4 control-label">{{Cycle (s)}}</label>
+			<div class="col-sm-2">
+				<input class="configKey form-control" data-l1key="cycle" />
 			</div>
 		</div>
-	</fieldset>
-</form>
-<form class="form-horizontal">
-	<fieldset>
-		<legend><i class="icon loisir-darth"></i>  {{Démon local}}</legend>
 		<div class="form-group">
 			<label class="col-sm-4 control-label">{{Port clé Z-Wave}}</label>
-			<div class="col-sm-4">
+			<div class="col-sm-2">
 				<select class="configKey form-control" data-l1key="port">
 					<option value="none">{{Aucun}}</option>
 					<option value="auto">{{Auto}}</option>
@@ -92,6 +79,13 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 			<label class="col-sm-4 control-label">{{Port du Serveur (laisser vide par défault)}}</label>
 			<div class="col-sm-2">
 				<input class="configKey form-control" data-l1key="port_server" placeholder="8083" />
+			</div>
+		</div>
+			<div class="form-group">
+			<label class="col-lg-4 control-label">{{Options avancées}}</label>
+			<div class="col-lg-5">
+				<a class="btn btn-warning" id="bt_backupsZwave"><i class="fa fa-floppy-o"></i> {{Backups}}</a>
+				<a class="btn btn-success" id="bt_syncconfigZwave"><i class="fa fa-refresh"></i> {{Configs modules}}</a>
 			</div>
 		</div>
 	</fieldset>
