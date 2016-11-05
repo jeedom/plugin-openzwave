@@ -230,6 +230,7 @@
            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
        }
    });
+    $('#copyToParamsModal').modal('hide');
 });
  $('#copyToParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
     var modal = $(this);
