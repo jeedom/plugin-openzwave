@@ -18,57 +18,68 @@
     syncEqLogicWithOpenZwave();
 });
  $('.changeIncludeState').on('click', function () {
-    var mode = $(this).attr('data-mode');
-    var state = $(this).attr('data-state');
-     if (mode != 1 || mode == 1  && state == 0) {
-         changeIncludeState(mode, state, mode);
+    if($(this).attr('data-state') == 0){
+        jeedom.openzwave.controller.action({
+            action : 'cancelCommand',
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function () {
+               $('#div_alert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+           }
+       });
+        return;
+    }
+    if ($(this).attr('data-mode') == 0) {
+       jeedom.openzwave.controller.removeNodeFromNetwork({
+         error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+         $('#div_alert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
      }
-     else {
-         var dialog_title = '';
-         var dialog_message = '<form class="form-horizontal onsubmit="return false;"> ';
-         if (mode == 1 && state != 0) {
-             dialog_title = '{{Démarrer l\'inclusion}}';
-             dialog_message += '<label class="control-label" > {{Sélectionner le mode d\'inclusion ?}} </label> ' +
-                 '<div> <div class="radio"> <label > ' +
-                 '<input type="radio" name="secure" id="secure-0" value="0" checked="checked"> {{Mode non sécurisé}} </label> ' +
-                 '</div><div class="radio"> <label > ' +
-                 '<input type="radio" name="secure" id="secure-1" value="1"> {{Mode sécurisé}}</label> ' +
-                 '</div> ' +
-                 '</div><br>' +
-                 '<label class="lbl lbl-warning" for="name">{{Attention, Une fois démarré veuillez suivre la procédure d\'inclusion de votre module.}}</label> ';
-         }
-         else {
-             dialog_title = '{{Démarrer l\'exclusion}}';
-         }
-         if (state == 0) {
-             if (mode == 1) {
-                 dialog_title = '{{Arrêter l\'inclusion}}';
-             }
-             else {
-                 dialog_title = '{{Arrêter l\'exclusion}}';
-             }
-         }
-         dialog_message += '</form>';
-         bootbox.dialog({
-             title: dialog_title,
-             message: dialog_message,
-             buttons: {
-                 "{{Annuler}}": {
-                     className: "btn-danger",
-                     callback: function () {
-                     }
-                 },
-                 success: {
-                     label: "{{Démarrer}}",
-                     className: "btn-success",
-                     callback: function () {
-                         var secureMode = $("input[name='secure']:checked").val();
-                         changeIncludeState(mode, state, secureMode);
-                     }
-                 },
-             }
-         });
-     }
+ });
+       return;
+   }
+   var dialog_title = '{{Inclusion}}';
+   var dialog_message = '<form class="form-horizontal onsubmit="return false;"> ';
+   dialog_title = '{{Démarrer l\'inclusion}}';
+   dialog_message += '<label class="control-label" > {{Sélectionner le mode d\'inclusion ?}} </label> ' +
+   '<div> <div class="radio"> <label > ' +
+   '<input type="radio" name="secure" id="secure-0" value="0" checked="checked"> {{Mode non sécurisé}} </label> ' +
+   '</div><div class="radio"> <label > ' +
+   '<input type="radio" name="secure" id="secure-1" value="1"> {{Mode sécurisé}}</label> ' +
+   '</div> ' +
+   '</div><br>' +
+   '<label class="lbl lbl-warning" for="name">{{Attention, Une fois démarré veuillez suivre la procédure d\'inclusion de votre module.}}</label> ';
+   dialog_message += '</form>';
+   bootbox.dialog({
+       title: dialog_title,
+       message: dialog_message,
+       buttons: {
+           "{{Annuler}}": {
+               className: "btn-danger",
+               callback: function () {
+               }
+           },
+           success: {
+               label: "{{Démarrer}}",
+               className: "btn-success",
+               callback: function () {
+                jeedom.openzwave.controller.addNodeToNetwork({
+                    secure : $("input[name='secure']:checked").val(),
+                    error: function (error) {
+                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                    },
+                    success: function (data) {
+                        $('#div_alert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+                    }
+                });
+            }
+        },
+    }
+});
+
 
 
 });
@@ -151,54 +162,54 @@ function printEqLogic(_eqLogic) {
             handleAjaxError(request, status, error);
         },
         success: function (data) { 
-        $('#bt_deviceRecommended').off('click');
-        if (isset(data.result.name)) {
-            $('.eqLogicAttr[data-l1key=configuration][data-l2key=product_name]').value(data.result.name);
-        }
-        if (isset(data.result.doc) && data.result.doc != '') {
-            $('#bt_deviceDocumentation').attr('href', 'https://www.jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-' + data.result.doc + '.html');
-            $('#bt_deviceDocumentation').show();
-        } else {
-            $('#bt_deviceDocumentation').hide();
-        }
-        if (isset(data.result.recommended) && data.result.recommended != '') {
-            $('#bt_deviceRecommended').show();
-            $('#bt_deviceRecommended').on('click', function () {
-                bootbox.dialog({
-                    title: "{{Configuration recommandée}}",
-                    message: '<form class="form-horizontal"> ' +
-                    '<label class="control-label" > {{Voulez-vous appliquer le jeu de configuration recommandée par l\'équipe Jeedom ?}} </label> ' +
-                    '<br><br>' +
-                    '<ul>' +
-                    '<li class="active">{{Paramètres.}}</li>' +
-                    '<li class="active">{{Associations.}}</li>' +
-                    '<li class="active">{{Intervalle de réveil.}}</li>' +
-                    '<li class="active">{{Rafraîchissement.}}</li>' +
-                    '</ul>' +
-                    '</form>',
-                    buttons: {
-                        main: {
-                            label: "{{Annuler}}",
-                            className: "btn-danger",
-                            callback: function () {
-                            }
-                        },
-                        success: {
-                            label: "{{Appliquer}}",
-                            className: "btn-success",
-                            callback: function () {
-                                        $.ajax({
-                                            type: "POST", 
-                                            url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
-                                            data: {
-                                                action: "applyRecommended",
-                                                id: _eqLogic.id,
-                                            },
-                                            dataType: 'json',
-                                            error: function (request, status, error) {
-                                                handleAjaxError(request, status, error);
-                                            },
-                                            success: function (data) {
+            $('#bt_deviceRecommended').off('click');
+            if (isset(data.result.name)) {
+                $('.eqLogicAttr[data-l1key=configuration][data-l2key=product_name]').value(data.result.name);
+            }
+            if (isset(data.result.doc) && data.result.doc != '') {
+                $('#bt_deviceDocumentation').attr('href', 'https://www.jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-' + data.result.doc + '.html');
+                $('#bt_deviceDocumentation').show();
+            } else {
+                $('#bt_deviceDocumentation').hide();
+            }
+            if (isset(data.result.recommended) && data.result.recommended != '') {
+                $('#bt_deviceRecommended').show();
+                $('#bt_deviceRecommended').on('click', function () {
+                    bootbox.dialog({
+                        title: "{{Configuration recommandée}}",
+                        message: '<form class="form-horizontal"> ' +
+                        '<label class="control-label" > {{Voulez-vous appliquer le jeu de configuration recommandée par l\'équipe Jeedom ?}} </label> ' +
+                        '<br><br>' +
+                        '<ul>' +
+                        '<li class="active">{{Paramètres.}}</li>' +
+                        '<li class="active">{{Associations.}}</li>' +
+                        '<li class="active">{{Intervalle de réveil.}}</li>' +
+                        '<li class="active">{{Rafraîchissement.}}</li>' +
+                        '</ul>' +
+                        '</form>',
+                        buttons: {
+                            main: {
+                                label: "{{Annuler}}",
+                                className: "btn-danger",
+                                callback: function () {
+                                }
+                            },
+                            success: {
+                                label: "{{Appliquer}}",
+                                className: "btn-success",
+                                callback: function () {
+                                    $.ajax({
+                                        type: "POST", 
+                                        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
+                                        data: {
+                                            action: "applyRecommended",
+                                            id: _eqLogic.id,
+                                        },
+                                        dataType: 'json',
+                                        error: function (request, status, error) {
+                                            handleAjaxError(request, status, error);
+                                        },
+                                        success: function (data) {
                                             if (data.state != 'ok') {
                                                 $('#div_alert').showAlert({message: data.result, level: 'danger'});
                                                 return;
@@ -216,32 +227,32 @@ function printEqLogic(_eqLogic) {
                                             }
                                         }
                                     });
-                                    }
                                 }
                             }
                         }
-                        );
-            });
-        } else {
-            $('#bt_deviceRecommended').hide();
+                    }
+                    );
+                });
+            } else {
+                $('#bt_deviceRecommended').hide();
+            }
+            modifyWithoutSave = false;
         }
-        modifyWithoutSave = false;
-    }
-});
+    });
 
-    $.ajax({
-        type: "POST", 
-        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
-        data: {
-            action: "getAllPossibleConf",
-            id: _eqLogic.id,
-        },
-        dataType: 'json',
-        global: false,
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { 
+$.ajax({
+    type: "POST", 
+    url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
+    data: {
+        action: "getAllPossibleConf",
+        id: _eqLogic.id,
+    },
+    dataType: 'json',
+    global: false,
+    error: function (request, status, error) {
+        handleAjaxError(request, status, error);
+    },
+    success: function (data) { 
         $('.eqLogicAttr[data-l1key=configuration][data-l2key=fileconf]').empty();
         if (data.result.length > 1) {
             option = '';
@@ -330,14 +341,14 @@ $('#bt_autoDetectModule').on('click', function () {
                     handleAjaxError(request, status, error);
                 },
                 success: function (data) { 
-                if (data.state != 'ok') {
-                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                    return;
+                    if (data.state != 'ok') {
+                        $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                        return;
+                    }
+                    $('#div_alert').showAlert({message: '{{Opération réalisée avec succès}}', level: 'success'});
+                    $('.li_eqLogic[data-eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value() + ']').click();
                 }
-                $('#div_alert').showAlert({message: '{{Opération réalisée avec succès}}', level: 'success'});
-                $('.li_eqLogic[data-eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value() + ']').click();
-            }
-        });
+            });
         }
     });
 });
@@ -354,36 +365,13 @@ function syncEqLogicWithOpenZwave() {
             handleAjaxError(request, status, error);
         },
         success: function (data) { 
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
+            if (data.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                return;
+            }
+            window.location.reload();
         }
-        window.location.reload();
-    }
-});
-}
-
-function changeIncludeState(_mode, _state, _secure) {
-    $.ajax({
-        type: "POST", 
-        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
-        data: {
-            action: "changeIncludeState",
-            mode: _mode,
-            state: _state,
-            secure: _secure,
-        },
-        dataType: 'json',
-        error: function (request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function (data) { 
-        if (data.state != 'ok') {
-            $('#div_alert').showAlert({message: data.result, level: 'danger'});
-            return;
-        }
-    }
-});
+    });
 }
 
 function addCmdToTable(_cmd) {

@@ -199,36 +199,6 @@ class openzwave extends eqLogic {
 		));
 	}
 
-	public static function changeIncludeState($_mode, $_state, $_secure = 0) {
-		if ($_state == 0) {
-			self::callOpenzwave('/controller/action(cancelCommand)');
-			return;
-		}
-		try {
-			$controlerState = self::callOpenzwave('/network/info(getStatus)');
-			$isBusy = $controlerState['result']['isBusy'];
-			$state = $controlerState['result']['state'];
-			$controlerState = $controlerState['result']['mode'];
-		} catch (Exception $e) {
-			$controlerState = 0;
-			$state = 10;
-		}
-		if ($state < 7) {
-			throw new Exception(__('Le contrôleur est en cours d\'initialisation veuillez réessayer dans quelques minutes', __FILE__));
-		}
-		if ($isBusy == 1) {
-			throw new Exception(__('Le contrôleur est occupé, si vous êtes en inclusion ou exclusion veuillez d\'abord quitter ce mode', __FILE__));
-		}
-		if ($controlerState !== 0) {
-			throw new Exception(__('Le contrôleur est déjà en inclusion ou exclusion', __FILE__));
-		}
-		if ($_mode == 1) {
-			self::callOpenzwave('controller/addNodeToNetwork(' . $_state . ',' . $_secure . ')');
-		} else {
-			self::callOpenzwave('controller/removeNodeFromNetwork(' . $_state . ')');
-		}
-	}
-
 	public static function cronDaily() {
 		if (config::byKey('auto_updateConf', 'openzwave') == 1) {
 			try {

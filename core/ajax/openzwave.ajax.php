@@ -36,11 +36,6 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'changeIncludeState') {
-		openzwave::changeIncludeState(init('mode'), init('state'), init('secure'));
-		ajax::success();
-	}
-
 	if (init('action') == 'restartDeamon') {
 		$cron = cron::byClassAndFunction('zwave', 'pull');
 		if (is_object($cron)) {

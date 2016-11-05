@@ -49,8 +49,39 @@
 });
 
     $('.changeIncludeState').on('click', function() {
-        changeIncludeState($(this).attr('data-mode'), $(this).attr('data-state'), 0);
-    });
+     if($(this).attr('data-state') == 0){
+        jeedom.openzwave.controller.action({
+            action : 'cancelCommand',
+            error: function (error) {
+                $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function () {
+               $('#div_alert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+           }
+       });
+        return;
+    }
+    if ($(this).attr('data-mode') == 0) {
+     jeedom.openzwave.controller.removeNodeFromNetwork({
+       error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+       $('#div_alert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+   }
+});
+     return;
+ }
+ jeedom.openzwave.controller.addNodeToNetwork({
+    secure : 0,
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+        $('#div_alert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+    }
+});
+});
 
     $('#bt_validateConfigDevice').on('click', function() {
         jeedom.eqLogic.save({
@@ -98,7 +129,7 @@ function getControllerState() {
                 return;
             }
             var controllerState = data.result;
-            var networkState = controllerState.result.data.mode.value;
+            var networkState = controllerState.result.mode;
             if (networkState == "0") {
                 $('#div_inclusionAlert').html('{{Aucun mode actif}}');
             }
@@ -113,30 +144,6 @@ function getControllerState() {
                 $('.changeIncludeState[data-mode=0]').removeClass('ui-btn-a').addClass('ui-btn-b');
                 $('.changeIncludeState[data-mode=0]').attr('data-state', 0);
                 $('.changeIncludeState[data-mode=0]').html('<i class="fa fa-sign-out fa-rotate-90" style="font-size: 6em;"></i><br/>{{Stop exclusion}}');
-            }
-        }
-    });
-}
-
-
-function changeIncludeState(_mode, _state, _secure) {
-    $.ajax({
-        type: "POST",
-        url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
-        data: {
-            action: "changeIncludeState",
-            mode: _mode,
-            state: _state,
-            secure: _secure,
-        },
-        dataType: 'json',
-        error: function(request, status, error) {
-            handleAjaxError(request, status, error);
-        },
-        success: function(data) { 
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                return;
             }
         }
     });
