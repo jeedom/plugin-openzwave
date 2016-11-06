@@ -149,8 +149,8 @@
                 tbody += '</td>';
                 tbody += '<td>';
                 if (nodes[node_id].data.isEnable.value) {
-                    if (nodes[node_id].data.pending_changes != undefined && nodes[node_id].data.pending_changes.value > 0) {
-                        tbody += '<span class="label label-warning" style="font-size : 1em;" title="' + nodes[node_id].data.pending_changes.value + ' {{configuration(s) en attente d\'être appliquée(s)}}" >' + nodes[node_id].data.pending_changes.value + '</span>';
+                    if (nodes[node_id].data.pending_changes != undefined && nodes[node_id].data.pending_changes.count > 0) {
+                        tbody += '<span class="label label-warning" style="font-size : 1em;" title="' + nodes[node_id].data.pending_changes.count + ' {{configuration(s) en attente d\'être appliquée(s)}}" >' + nodes[node_id].data.pending_changes.count + '</span>';
                     } else if (nodes[node_id].data.pending_changes != undefined && nodes[node_id].data.pending_changes.value == 0) {
                         tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
                     }
