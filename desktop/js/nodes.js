@@ -106,10 +106,8 @@
 });
 
  $("body").off("click", ".findUsage").on("click", ".findUsage", function (e) {
-    var associations = node_selected.associations;
-    var description = node_selected.data.name.value;
-    var message = '{{Liste des groupes d\'associations où le module}} <b><span class="node-name label label-default" style="font-size : 1em;">' + description + '</span></b> {{est utilisé:}}</p><br><ul>';
-    $.each(associations, function (key, val) {
+    var message = '{{Liste des groupes d\'associations où le module}} <b><span class="node-name label label-default" style="font-size : 1em;">' + node_selected.data.name.value + '</span></b> {{est utilisé:}}</p><br><ul>';
+    $.each(node_selected.associations, function (key, val) {
         message += '<li class="active"><p>';
         if (nodes[key].description.name != '') {
             message += nodes[key].description.location + ' - <b>' + nodes[key].description.name + '</b>';
@@ -143,7 +141,7 @@
 if ($(this).data('valuetype') == "List") {
     var options = [];
     $.each($(this).data('valuedataitems').split(";"), function (key, val) {
-        options.push({key : val,value:val})
+        options.push({value : val,text:val})
     });
     bootbox.prompt({
         title: title,
