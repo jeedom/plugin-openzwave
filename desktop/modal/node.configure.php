@@ -102,40 +102,6 @@ sendVarToJs('node_id', init('id'));
         </div>
     </div>
 </div>
-<div class="modal fade modal-dialog-center" id="copyParamsModal" tabindex="-1" role="dialog" data-backdrop="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></a>
-                <h4 class="modal-title" id="copyParamsModalLabel">Nouveau message</h4>
-            </div>
-            <div class="modal-body">
-                <div id="modalcopyParams"></div>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-                <a class="btn btn-primary" id="saveCopyParams">{{Appliquer les paramètres}}</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade modal-dialog-center" id="copyToParamsModal" tabindex="-1" role="dialog" data-backdrop="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></a>
-                <h4 class="modal-title" id="copyToParamsModalLabel">Nouveau message</h4>
-            </div>
-            <div class="modal-body">
-                <div id="modalcopyToParams"></div>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-                <a class="btn btn-primary" id="saveCopyToParams">{{Appliquer les paramètres}}</a>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="modal fade modal-dialog-center" id="groupsModal" tabindex="-1" role="dialog" data-backdrop="false">
     <div class="modal-dialog">
         <div class="modal-content">
