@@ -2,10 +2,9 @@ import logging
 import binascii
 import math
 import time
-import globals,utils,node_utils
+import globals,utils,node_utils,commands
 from utilities.NodeExtend import *
 from ozwave.utilities.Constants import *
-import network_utils,node_utils,scene_utils,controller_utils,button_utils,commands
 
 def value_added(network, node, value):
 	if node.node_id in globals.not_supported_nodes:
@@ -151,7 +150,7 @@ def set_value(node_id, value_id, data):
 			zwave_value = my_node.values[value]
 			data = zwave_value.check_data(data=data)
 			if data is None:
-				return jsonify({'result': False, 'reason': 'cant convert in desired dataType'})
+				return utils.format_json_result({'result': False, 'reason': 'cant convert in desired dataType'})
 			my_result = globals.network.manager.setValue(zwave_value.value_id, data)
 			if my_result == 0:
 				result_message = 'fails'
@@ -200,9 +199,9 @@ def refresh_background(node_id, value_id, target_value, starting_value, counter,
 		globals.network.nodes[node_id].values[value_id].refresh()
 		timeout = int(time.time()) - globals.network.nodes[node_id].values[value_id].start_refresh_time
 		if timeout < globals.refresh_timeout:
-			create_worker(node_id, value_id, target_value, starting_value, counter, motor)
+			utils.create_worker(node_id, value_id, target_value, starting_value, counter, motor)
 	else:
-		del refresh_workers[value_id]
+		del globals.refresh_workers[value_id]
 
 def refresh_switch_binary(node_id, value_id, target_value):
 	if node_id in globals.network.nodes:

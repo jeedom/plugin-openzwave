@@ -5,7 +5,7 @@ import globals
 import threading
 import json
 from utilities.Constants import *
-import network_utils,scene_utils,controller_utils,button_utils,commands,node_utils
+import network_utils,value_utils
 
 def get_standard_value_type(value_type):
 	if value_type in globals.CONVERSION:
@@ -135,7 +135,7 @@ def create_worker(node_id, value_id, target_value, starting_value, counter, moto
 	if motor :
 		# a full operation take time, wait longer on each refresh
 		refresh_interval = globals.refresh_interval * 5
-	worker = threading.Timer(interval=refresh_interval, function=refresh_background,
+	worker = threading.Timer(interval=refresh_interval, function=value_utils.refresh_background,
 							 args=(node_id, value_id, target_value, starting_value, counter, motor))
 	# save worker
 	globals.refresh_workers[value_id] = worker

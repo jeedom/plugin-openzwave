@@ -1,11 +1,9 @@
 import logging
-import time
 import threading
-import globals,utils,value_utils,serialization
+import globals,utils,value_utils,serialization,network_utils
 from lxml import etree
 from utilities.NodeExtend import *
 from utilities.Constants import *
-import network_utils,scene_utils,controller_utils,button_utils,commands
 
 def save_node_value_event(node_id, timestamp, command_class, value_index, standard_type, value, instance):
 	globals.jeedom_com.add_changes('devices::' + str(node_id)+'::'+  str(command_class) + str(instance) + str(value_index),{'node_id': node_id, 'instance': instance, 'CommandClass': command_class, 'index': value_index,'value': value, 'type': standard_type, 'updateTime': timestamp})
@@ -36,7 +34,7 @@ def recovering_failed_nodes_asynchronous():
 	# wait 15 seconds on first launch
 	time.sleep(globals.sanity_checks_delay)
 	while True:
-		sanity_checks()
+		network_utils.sanity_checks()
 		# wait for next run
 		time.sleep(globals.recovering_failed_nodes_timer)
 
@@ -121,7 +119,7 @@ def node_notification(arguments):
 		else:
 			globals.node_notifications[node_id].refresh(code, wake_up_time)
 		if code == 3:
-			my_value = values_utils.get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval Step', False)
+			my_value = value_utils.get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval Step', False)
 			if my_value is not None:
 				wake_up_interval_step = my_value.data + 2.0
 			else: 
@@ -135,7 +133,7 @@ def node_event(network, node, value):
 	for val in network.nodes[node.node_id].get_values():
 		my_value = network.nodes[node.node_id].values[val]
 		if my_value.genre == "User" and not my_value.is_write_only:
-			value_update(network, node, my_value)
+			value_utils.value_update(network, node, my_value)
 	'''
 	the value is actually the event data, not a zwave value object.
 	This is commonly caused when a node sends a Basic_Set command to the controller.
@@ -252,7 +250,7 @@ def remove_failed(node_id):
 	logging.info("Remove a failed node %s" % (node_id,))
 	return utils.format_json_result(data=globals.network.manager.removeFailedNode(globals.network.home_id, node_id))
 
-def heal(node_id):
+def heal(node_id,perform_return_routes_initialization=False):
 	utils.check_node_exist(node_id,True)
 	logging.info("Heal network node (%s) by requesting the node rediscover their neighbors" % (node_id,))
 	globals.network.manager.healNetworkNode(globals.network.home_id, node_id, perform_return_routes_initialization)
@@ -342,3 +340,28 @@ def refresh_info(node_id):
 def assign_return_route(node_id):
 	logging.info("Ask Node (%s) to update its Return Route to the Controller" % (node_id,))
 	return utils.format_json_result(data=globals.network.manager.assignReturnRoute(globals.network.home_id, node_id))
+
+def add_assoc(node_id, group, target_id,instance,action):
+	if globals.network_information.controller_is_busy:
+		raise Exception('Controller is busy')
+	utils.check_node_exist(node_id)
+	utils.check_node_exist(target_id)
+	logging.info(action + ' assoc to nodeId: ' + str(node_id) + ' in group ' + str(group) + ' with nodeId: ' + str(
+		node_id) + ' on instance ' + str(instance))
+	if node_id not in globals.pending_associations:
+		globals.pending_associations[node_id] = dict()
+	if action == 'remove':
+		globals.pending_associations[node_id][group] = PendingAssociation(pending_added=None, pending_removed=target_id,
+																		  timeout=0)
+		if instance < 1:
+			globals.network.manager.removeAssociation(globals.network.home_id, node_id, group, target_id)
+		else:
+			globals.network.manager.removeAssociation(globals.network.home_id, node_id, group, target_id, instance)
+	if action == 'add':
+		globals.pending_associations[node_id][group] = PendingAssociation(pending_added=target_id, pending_removed=None,
+																		  timeout=0)
+		if instance < 1:
+			globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id)
+		else:
+			globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id, instance)
+	return utils.format_json_result()

@@ -3,9 +3,12 @@ import socket
 import os
 import sys
 import globals,manager_utils,network_utils,dispatcher_utils
-from ozwave.utilities.NetworkExtend import *
-from ozwave.utilities.Constants import *
-from ozwave.utilities.FilesManager import FilesManager
+try:
+	from flask import request
+except Exception as e:
+	print(globals.MSG_CHECK_DEPENDENCY, 'error')
+	print("Error: %s" % str(e), 'error')
+	sys.exit(1)
 try:
 	from jeedom.jeedom import *
 except ImportError:

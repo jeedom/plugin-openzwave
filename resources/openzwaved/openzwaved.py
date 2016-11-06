@@ -15,7 +15,6 @@
 import sys
 import argparse
 import os
-import logging
 from ozwave import globals,server_utils,rest_server
 try:
 	from tornado.wsgi import WSGIContainer

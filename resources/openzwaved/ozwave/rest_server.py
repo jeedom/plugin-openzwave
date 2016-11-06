@@ -1,17 +1,11 @@
 #!flask/bin/python
-import os
 import sys
-import datetime
-import shutil
 import binascii
-import threading
 import logging
-import time
 from lxml import etree
-import globals,utils,network_utils,node_utils,dispatcher_utils
-import server_utils,manager_utils,value_utils,commands,serialization
+import globals,utils,network_utils,node_utils
+import value_utils,commands
 from utilities.Constants import *
-from utilities.NodeExtend import *
 from utilities.NetworkExtend import *
 try:
 	from flask import Flask, jsonify, abort, request, make_response, redirect, url_for
@@ -359,26 +353,7 @@ def switch_all(node_id, state):
 @app.route('/node/<int:node_id>/<action>(<int:group>,<int:target_id>,<int:instance>)', methods=['GET'])
 @auth.login_required
 def assoc_action(node_id, group, target_id,instance,action):
-	if globals.network_information.controller_is_busy:
-		raise Exception('Controller is busy')
-	utils.check_node_exist(node_id)
-	utils.check_node_exist(target_id)
-	logging.info(action + ' assoc to nodeId: '+str(node_id)+' in group '+str(group)+' with nodeId: '+str(node_id)+' on instance '+ str(instance))
-	if node_id not in globals.pending_associations:
-		globals.pending_associations[node_id] = dict()
-	if action == 'remove':
-		globals.pending_associations[node_id][group] = PendingAssociation(pending_added=None, pending_removed=target_id, timeout=0)
-		if instance < 1 :
-			globals.network.manager.removeAssociation(globals.network.home_id, node_id, group, target_id)
-		else:
-			globals.network.manager.removeAssociation(globals.network.home_id, node_id, group, target_id, instance)
-	if action == 'add':
-		globals.pending_associations[node_id][group] = PendingAssociation(pending_added=target_id, pending_removed=None, timeout=0)
-		if instance < 1 :
-			globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id)
-		else :
-			globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id, instance)
-	return utils.format_json_result()
+	return node_utils.add_assoc(node_id, group, target_id,instance,action)
 
 @app.route('/node/<int:node_id>/setDeviceName(<string:location>,<string:name>,<int:is_enable>)', methods=['GET'])
 @auth.login_required

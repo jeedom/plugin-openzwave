@@ -1,8 +1,7 @@
 import logging
 import time
-import globals,node_utils
 from utilities.Constants import *
-import network_utils,node_utils,value_utils,controller_utils,button_utils,commands
+import node_utils
 
 def scene_event(network, node, scene_id):
 	logging.info('Scene Activation: %s' % (scene_id,))

@@ -1,14 +1,15 @@
 import logging
+import time
 import globals,utils
 import threading
 from ozwave.utilities.Constants import *
-import network_utils,node_utils,value_utils,scene_utils,controller_utils,button_utils
+import node_utils,value_utils
 
 def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 	logging.info("Send command to node "+str(_node_id)+" on class "+str(_cc_id)+" instance "+str(_instance_id)+" index "+str(_index)+" value "+str(_value))
 	utils.check_node_exist(_node_id)
 	if _cc_id == COMMAND_CLASS_NO_OPERATION:
-		return test_node(_node_id, 1)
+		return node_utils.test_node(_node_id, 1)
 	if _cc_id == COMMAND_CLASS_WAKE_UP:
 		arr = _value.split(",")
 		wake_up_time = int(arr[0])
@@ -21,7 +22,7 @@ def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 		group = int(arr[0])
 		target_node = int(arr[1])
 		try:
-			return add_assoc(_node_id, group, target_node)
+			return node_utils.assoc_action(_node_id, group, target_node,0,'add')
 		except ValueError:
 			raise Exception('Node is not Ready for associations')
 	for val in globals.network.nodes[_node_id].get_values(class_id=_cc_id, genre='All', type='All', readonly=False, writeonly='All'):
