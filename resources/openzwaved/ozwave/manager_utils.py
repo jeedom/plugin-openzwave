@@ -7,6 +7,7 @@ from utilities.NetworkExtend import *
 from utilities.NodeExtend import *
 from utilities.Constants import *
 from utilities.FilesManager import FilesManager
+import network_utils,node_utils,value_utils,scene_utils,controller_utils,button_utils,commands
 
 def init_manager():
 	#Define some manager options

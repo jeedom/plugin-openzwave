@@ -6,7 +6,6 @@ import logging
 import globals,utils,dispatcher_utils,node_utils,serialization
 import threading
 import time
-
 from openzwave.network import ZWaveNetwork
 from utilities.NetworkExtend import *
 from utilities.Constants import *
