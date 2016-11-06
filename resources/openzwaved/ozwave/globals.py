@@ -65,6 +65,16 @@ NODE_REST_MAPPING = {'all' : node_utils.get_all_info,\
 	'assignReturnRoute': node_utils.assign_return_route,\
 	}
 
+CONTROLLER_REST_MAPPING = {'hardReset' : controller_utils.hard_reset,\
+	'receiveConfiguration' : controller_utils.receive_configuration, \
+	'transferPrimaryRole' : controller_utils.transfer_primary_role,\
+	'createNewPrimary' : controller_utils.create_new_primary,\
+	'testNetwork' : controller_utils.test_network,\
+	'serialAPISoftReset': controller_utils.serial_api_soft_reset,\
+	'healNetwork': controller_utils.heal_network,\
+	'cancelCommand': controller_utils.cancel_command,\
+	}
+
 #Various message
 MSG_CHECK_DEPENDENCY = 'The dependency of openzwave plugin are not installed. Please check the plugin openzwave configuration page for instructions'
 

@@ -70,64 +70,10 @@ def controller_info(info):
 @auth.login_required
 def controller_action(action):
 	logging.info("Controller action "+str(action))
-	if action == 'hardReset':
-		globals.network.controller.hard_reset()
-		logging.info('The controller becomes a primary controller ready to add devices to a new network')
-		time.sleep(3)
-		network_utils.start_network()
-	elif action == 'receiveConfiguration':
-		if not network_utils.can_execute_network_command(0):
-			raise Exception('Controller is bussy')
-		logging.info("Receive Configuration")
-		return utils.format_json_result(data=globals.network.manager.receiveConfiguration(globals.network.home_id))
-	elif action == 'transferPrimaryRole':
-		if not network_utils.can_execute_network_command(0):
-			raise Exception('Controller is bussy')
-		logging.info("Transfer Primary Role")
-		return utils.format_json_result(data=globals.network.manager.transferPrimaryRole(globals.network.home_id))
-	elif action == 'createNewPrimary':
-		if not network_utils.can_execute_network_command(0):
-			raise Exception('Controller is bussy')
-		logging.info("Add a new controller to the Z-Wave network")
-		return utils.format_json_result(data=globals.network.manager.createNewPrimary(globals.network.home_id))
-	elif action == 'testNetwork':
-		if not network_utils.can_execute_network_command():
-			raise Exception('Controller is bussy')
-		logging.info("Sends a series of messages to a network node for testing network reliability")
-		for node_id in list(globals.network.nodes):
-			if node_id in globals.not_supported_nodes:
-				logging.debug("skip not supported (nodeId: %s)" % (node_id,))
-				continue
-			if node_id in globals.disabled_nodes:
-				continue
-			globals.network.manager.testNetworkNode(globals.network.home_id, node_id, 3)
-	elif action == 'serialAPISoftReset':
-		globals.network.controller.soft_reset()
-	elif action == 'healNetwork':
-		if not network_utils.can_execute_network_command(0):
-			raise Exception('Controller is bussy')
-		logging.info("Heal network by requesting node's rediscover their neighbors")
-		for node_id in list(globals.network.nodes):
-			if node_id in globals.not_supported_nodes:
-				logging.debug("skip not supported (nodeId: "+str(node_id)+")")
-				continue
-			if globals.network.nodes[node_id].is_failed:
-				logging.debug("skip presume dead (nodeId: "+str(node_id)+")")
-				continue
-			if globals.network.nodes[node_id].query_stage != "Complete":
-				logging.debug("skip query stage not complete (nodeId:"+str(node_id)+")")
-				continue
-			if globals.network.nodes[node_id].generic == 1:
-				logging.debug("skip Remote controller (nodeId: "+str(node_id)+") (they don't have neighbors)")
-				continue
-			if node_id in globals.disabled_nodes:
-				continue
-			globals.network.manager.healNetworkNode(globals.network.home_id, node_id, False)
-	elif action == 'cancelCommand':
-		if globals.network.manager.cancelControllerCommand(globals.network.home_id):
-			globals.network_information.controller_is_busy = False
+	if action in globals.CONTROLLER_REST_MAPPING:
+		return globals.CONTROLLER_REST_MAPPING[action]()
+	else:
 		return utils.format_json_result()
-	return utils.format_json_result()
 
 @app.route('/controller/addNodeToNetwork(<int:state>,<int:do_security>)', methods=['GET'])
 @auth.login_required
@@ -445,7 +391,7 @@ def add_assoc(node_id, group, target_id,instance):
 		globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id, instance)
 	return utils.format_json_result()
 
-@app.route('/node/<int:node_id>/sSetDeviceName(<string:location>,<string:name>,<int:is_enable>)', methods=['GET'])
+@app.route('/node/<int:node_id>/setDeviceName(<string:location>,<string:name>,<int:is_enable>)', methods=['GET'])
 @auth.login_required
 def set_device_name(node_id, location, name, is_enable):
 	utils.check_node_exist(node_id)
