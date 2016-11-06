@@ -100,37 +100,35 @@ if [ -d /opt/python-openzwave ]; then
   echo "Désinstallation de la version précédente";
   sudo make uninstall > /dev/null 2>&1
   echo 55 > /tmp/compilation_ozw_in_progress
-  sudo rm -fr /usr/local/lib/python2.7/dist-packages/libopenzwave*
-  sudo rm -fr /usr/local/lib/python2.7/dist-packages/openzwave* 
+  sudo rm -rf /usr/local/lib/python2.7/dist-packages/libopenzwave*
+  sudo rm -rf /usr/local/lib/python2.7/dist-packages/openzwave* 
   cd /opt
-  sudo rm -fr /opt/python-openzwave
+  sudo rm -rf /opt/python-openzwave
 fi
 
 echo "Installation de Python-OpenZwave"
 cd /opt
-sudo git clone https://github.com/OpenZWave/python-openzwave.git
+cp -R ${BASEDIR}/python-openzwave python-openzwave
 if [ $? -ne 0 ]; then
-  echo "Unable to fetch OpenZWave git.Please check your internet connexion and github access"
+  echo "Unable to copy python-openzwave source"
   rm /tmp/compilation_ozw_in_progress
   exit 1
 fi
 echo 60 > /tmp/compilation_ozw_in_progress
 cd python-openzwave
-sudo git reset --hard ${PYTHON_OPENZWAVE_VERSION}
 sudo pip uninstall -y Cython
 cd /opt/python-openzwave
 sudo make cython-deps
 echo 65 > /tmp/compilation_ozw_in_progress
 sudo make repo-deps
 echo 70 > /tmp/compilation_ozw_in_progress
-cp -R ${BASEDIR}/ozw openzwave
+cp -R ${BASEDIR}/python-openzwave/openzwave openzwave
 if [ $? -ne 0 ]; then
   echo "Unable to copy openzwave"
   rm /tmp/compilation_ozw_in_progress
   exit 1
 fi
 echo 75 > /tmp/compilation_ozw_in_progress
-cd openzwave
 cd /opt/python-openzwave
 sudo make install-api
 echo 80 > /tmp/compilation_ozw_in_progress
