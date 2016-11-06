@@ -231,6 +231,7 @@
         instance : values[1],
         group : $('#groupsModal').data('groupindex'),
         target_id : values[0],
+        action : 'add',
         error: function (error) {
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
@@ -475,11 +476,12 @@ $('#valuesModal').modal('hide');
 });
 
  $("body").off("click", ".deleteGroup").on("click", ".deleteGroup", function (e) {
-     jeedom.openzwave.node.removeGroup({
+     jeedom.openzwave.node.group({
         node_id : node_id,
         instance : $(this).data('nodeinstance'),
         group :  $(this).data('groupindex'),
         target_id : $(this).data('nodeid'),
+        action: 'remove',
         error: function (error) {
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
