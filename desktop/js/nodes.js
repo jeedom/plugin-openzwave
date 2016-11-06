@@ -228,69 +228,112 @@
 
 
  $("body").off("click", ".editParam").on("click", ".editParam", function (e) {
-    var id = $(this).data('paramid');
-    var name = $(this).data('paramname');
-    var value = $(this).data('paramvalue');
-    var type = $(this).data('paramtype');
-    $('#paramsModal').data('paramname', name);
-    $('#paramsModal').data('paramtype', type);
-    $('#paramsModal').data('paramvalue', value);
-    $('#paramsModal').data('paramid', id).modal('show');
-});
-
- $('#paramsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
-    var paramId = $(this).data('paramid');
-    var paramType = $(this).data('paramtype');
-    var paramName = $(this).data('paramname');
-    var paramValue = $(this).data('paramvalue');
-    var modal = $(this);
-    modal.find('.modal-title').text('{{Changer la valeur pour le paramètre}} ' + paramId);
-    modal.find('.modal-body').html(paramName);
-    modal.find('.modal-body').append('<b> : </b>');
-    if (paramType == "List") {
-        jeedom.openzwave.node.dataClass({
-            node_id : node_id,
-            class : 112,
-            error: function (error) {
-                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (data) {
-                var options = '<select class="form-control" id="newvalue">';
-                $.each(data[paramId].val.value4, function (key, val) {
-                    if (val == paramValue) {
-                        if (typeof openzwave_node_translation.configuration[paramId] !== 'undefined' && openzwave_node_translation['configuration'][paramId].hasOwnProperty('list') && typeof openzwave_node_translation['configuration'][paramId].list[val] !== 'undefined') {
-                            options += '<option value="' + val + '" selected="selected">' + openzwave_node_translation['configuration'][paramId].list[val] + '</option>';
-                        } else {
-                            options += '<option value="' + val + '" selected="selected">' + val + '</option>';
-                        }
-                    } else {
-                        if (typeof openzwave_node_translation.configuration[paramId] !== 'undefined' && openzwave_node_translation['configuration'][paramId].hasOwnProperty('list') && typeof openzwave_node_translation['configuration'][paramId].list[val] !== 'undefined') {
-                            options += '<option value="' + val + '">' + openzwave_node_translation['configuration'][paramId].list[val] + '</option>';
-                        } else {
-                            options += '<option value="' + val + '">' + val + '</option>';
-                        }
-                    }
-                });
-                options += '</select>';
-                modal.find('.modal-body').empty().append(options);
-
+    var title = '{{Changer la valeur pour le paramètre} : }'+$(this).data('paramname')+' ('+ $(this).data('paramvalue')+')'
+    var setParamOptions = {
+        node_id : node_id,
+        id :  $(this).data('paramid'),
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+       }
+   }
+   if ($(this).data('paramtype') == "List") {
+     jeedom.openzwave.node.dataClass({
+        node_id : node_id,
+        class : 112,
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            var options = [];
+            $.each(data[setParamOptions.id].val.value4, function (key, val) {
+                if (typeof openzwave_node_translation.configuration[setParamOptions.id] !== 'undefined' && openzwave_node_translation['configuration'][setParamOptions.id].hasOwnProperty('list') && typeof openzwave_node_translation['configuration'][setParamOptions.id].list[val] !== 'undefined') {
+                 options.push({value : val,text:openzwave_node_translation['configuration'][setParamOptions.id].list[val]})
+             } else {
+                options.push({value : val,text:val})
             }
         });
-    } else if (paramType == "Bool") {
-        if (paramValue == true) {
-            modal.find('.modal-body').append('<input type="radio" name="newvalue" id="on" value="1" checked> {{Oui}} ');
-            modal.find('.modal-body').append('<input type="radio" name="newvalue" id="off" value="0"> {{Non}} ');
-        } else {
-            modal.find('.modal-body').append('<input type="radio" name="newvalue" id="on" value="1"> {{Oui}} ');
-            modal.find('.modal-body').append('<input type="radio" name="newvalue" id="off" value="0" checked> {{Non}} ');
+            console.log(options);
+            bootbox.prompt({
+                title: title,
+                inputType: 'select',
+                inputOptions: options,
+                callback: function (result) {
+                   if(result === null){
+                    return;
+                }
+                setParamOptions.value = result.replace(/\//g, '@');
+                setParamOptions.length = result.length;
+                jeedom.openzwave.node.setParam(setParamOptions);
+            }
+        });
         }
-    } else if (paramType == "Button") {
-        modal.find('.modal-body').append('<input type="radio" name="newvalue" id="push" value="Press" checked> {{Presser le bouton}} ');
-        modal.find('.modal-body').append('<input type="radio" name="newvalue" id="push" value="Release"> {{Relacher le bouton}} ');
-    } else {
-        modal.find('.modal-body').append('<input type="text" class="form-control" id="newvalue" style="display:inline-block;width:400px;" value="' + paramValue + '">');
+    });
+
+ } else if ($(this).data('paramtype') == "Bool") {
+    bootbox.prompt({
+        title: title,
+        inputType: 'select',
+        inputOptions: [
+        {
+            text: '{{Oui}}',
+            value: '1',
+        },
+        {
+            text: '{{Non}}',
+            value: '0',
+        }
+        ],
+        callback: function (result) {
+           if(result === null){
+            return;
+        }
+        setParamOptions.value = result.replace(/\//g, '@');
+        setParamOptions.length = result.length;
+        jeedom.openzwave.node.setParam(setParamOptions);
     }
 });
+} else if ($(this).data('paramtype') == "Button") {
+    bootbox.prompt({
+        title: title,
+        inputType: 'select',
+        inputOptions: [
+        {
+            text: '{{Presser}}',
+            value: 'press',
+        },
+        {
+            text: '{{Relacher}}',
+            value: 'release',
+        }
+        ],
+        callback: function (result) {
+           if(result === null){
+            return;
+        }
+        setParamOptions.value = result.replace(/\//g, '@');
+        setParamOptions.length = result.length;
+        jeedom.openzwave.node.setParam(setParamOptions);
+    }
+});
+}else {
+    bootbox.prompt({
+        title: title,
+        inputType: 'number',
+        callback: function (result) {
+            if(result === null){
+                return;
+            }
+            setParamOptions.value = result.replace(/\//g, '@');
+            setParamOptions.length = result.length;
+            jeedom.openzwave.node.setParam(setParamOptions);
+        }
+    });
+}
+});
+
 
  $("#applyValue").off("click").on("click", function (e) {
     if ($('#valuesModal').data('valuetype') == "Button") {
@@ -443,28 +486,6 @@ $('#valuesModal').modal('hide');
     });
 });
 
- $("#saveParam").off("click").on("click", function (e) {
-    if ( $('#paramsModal').data('paramtype') == "Bool") {
-        var paramValue = $('input[name=newvalue]:checked', '#paramsModal').val();
-    } else if ( $('#paramsModal').data('paramtype') == "Button") {
-        var paramValue = $('input[name=newvalue]:checked', '#paramsModal').val();
-    } else {
-        var paramValue = $('#newvalue').val();
-    }
-    jeedom.openzwave.node.setParam({
-        node_id : node_id,
-        id :  $('#paramsModal').data('paramid'),
-        length :  paramValue.length,
-        value : paramValue.replace(/\//g, '@'),
-        error: function (error) {
-            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-       }
-   }); 
-    $('#paramsModal').modal('hide'); 
-});
 
  $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
      var options_node = '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
