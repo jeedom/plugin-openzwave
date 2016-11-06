@@ -130,6 +130,7 @@ if [ $? -ne 0 ]; then
 fi
 echo 75 > /tmp/compilation_ozw_in_progress
 cd /opt/python-openzwave
+mkdir /opt/python-openzwave/.git
 sudo make install-api
 echo 80 > /tmp/compilation_ozw_in_progress
 sudo mkdir /opt/python-openzwave/python-eggs
