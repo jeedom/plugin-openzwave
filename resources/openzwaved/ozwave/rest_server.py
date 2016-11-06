@@ -296,7 +296,7 @@ def refresh_one_value(node_id, instance_id, index, cc_id):
 
 @app.route('/node/<int:node_id>/cc/<int:cc_id>/data', methods=['GET'])
 @auth.login_required
-def get_config(node_id):
+def get_config(node_id,cc_id):
 	utils.check_node_exist(node_id)
 	logging.debug("get_config for nodeId:%s" % (node_id,))
 	config = {}
@@ -319,7 +319,7 @@ def get_config(node_id):
 			else:
 				result_data = my_value.data
 			config[my_value.index]['val'] = {'value2': my_value.data, 'value': result_data,'value3': my_value.label, 'value4': sorted(list_values),'updateTime': int(time.time()), 'invalidateTime': 0}
-	return utils.format_json_result(onfig)
+	return utils.format_json_result(config)
 
 @app.route('/node/<int:node_id>/instance/<int:instance_id>/cc/<int:cc_id>/index/<int:index>/setPolling(<int:frequency>)', methods=['GET'])
 @auth.login_required
