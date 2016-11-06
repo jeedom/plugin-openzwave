@@ -287,9 +287,9 @@ def set_polling_value(node_id, instance_id, cc_id, index, frequency):
 
 @app.route('/node/<int:node_id>/instance/<int:instance_id>/cc/<int:cc_id>/index/<int:index>/button(<action>)', methods=['GET'])
 @auth.login_required
-def press_button(node_id, instance_id, cc_id, index):
+def press_button(node_id, instance_id, cc_id, index, action):
 	utils.check_node_exist(node_id)
-	logging.info('Button nodeId : '+str(node_id)+' instance: '+str(instance_id)+' cc : '+str(cc_id)+' index : '+str(index)+' at: '+str(frequency)+' action '+str(action))
+	logging.info('Button nodeId : '+str(node_id)+' instance: '+str(instance_id)+' cc : '+str(cc_id)+' index : '+str(index)+' : ' +str(action))
 	for val in globals.network.nodes[node_id].get_values(class_id=cc_id, genre='All', type='All', readonly='All', writeonly='All'):
 		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[val].index == index:
 			if action == 'press':
