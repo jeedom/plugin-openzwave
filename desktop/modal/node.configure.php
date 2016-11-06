@@ -85,69 +85,18 @@ sendVarToJs('node_id', init('id'));
         </div>
     </div>
 </div>
-<div class="modal fade modal-dialog-center" id="pollingModal" tabindex="-1" role="dialog" data-backdrop="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></a>
-                <h4 class="modal-title" id="pollingModalLabel">Nouveau message</h4>
-            </div>
-            <div class="modal-body">
-                <div id="modalpolling"></div>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-                <a class="btn btn-primary" id="savePolling">{{Appliquer}}</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade modal-dialog-center" id="groupsModal" tabindex="-1" role="dialog" data-backdrop="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></a>
-                <h4 class="modal-title" id="groupsModalLabel">Nouveau message</h4>
-            </div>
-            <div class="modal-body">
-                <div id="modalgroups"></div>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-                <a class="btn btn-primary" id="saveGroups">{{Appliquer}}</a>
-            </div>
-        </div>
-    </div>
-</div>
 <div class='node' nid='' id="div_nodeConfigure">
     <div id="template-node">
         <div class="container-fluid">
             <div id="content">
                 <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-                    <li id="tab-summary" class="active">
-                        <a href="#summary" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Résumé}}</a>
-                    </li>
-                    <li id="tab-values">
-                        <a href="#values" data-toggle="tab"><i class="fa fa-tag"></i> {{Valeurs}}</a>
-                    </li>
-                    <li id="tab-parameters">
-                        <a href="#parameters" data-toggle="tab"><i class="fa fa-wrench"></i> {{Paramètres}}</a>
-                    </li>
-                    <li id="tab-groups">
-                        <a href="#groups" data-toggle="tab"><i class="fa fa-users"></i> {{Associations}}</a>
-                    </li>
-                    <li id="tab-systems">
-                        <a href="#systems" data-toggle="tab"><i class="fa fa-cogs"></i> {{Systèmes}}</a>
-                    </li>
-                    <li id="tab-actions">
-                        <a href="#actions" data-toggle="tab"><i class="fa fa-sliders"></i> {{Actions}}</a>
-                    </li>
-                    <li id="tab-stats">
-                        <a href="#statistics" data-toggle="tab"><i class="fa fa-bar-chart"></i> {{Statistiques}}</a>
-                    </li>
-                    <li id="li_state" class="pull-right alert" style="background-color : #dff0d8;color : #3c763d;height:35px;border-color:#d6e9c6;display:none;">
-                        <span style="position:relative; top : -7px;">{{Envoi OK}}</span>
-                    </li>
+                    <li id="tab-summary" class="active"><a href="#summary" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Résumé}}</a></li>
+                    <li id="tab-values"><a href="#values" data-toggle="tab"><i class="fa fa-tag"></i> {{Valeurs}}</a></li>
+                    <li id="tab-parameters"><a href="#parameters" data-toggle="tab"><i class="fa fa-wrench"></i> {{Paramètres}}</a></li>
+                    <li id="tab-groups"><a href="#groups" data-toggle="tab"><i class="fa fa-users"></i> {{Associations}}</a></li>
+                    <li id="tab-systems"><a href="#systems" data-toggle="tab"><i class="fa fa-cogs"></i> {{Systèmes}}</a></li>
+                    <li id="tab-actions"><a href="#actions" data-toggle="tab"><i class="fa fa-sliders"></i> {{Actions}}</a></li>
+                    <li id="tab-stats"><a href="#statistics" data-toggle="tab"><i class="fa fa-bar-chart"></i> {{Statistiques}}</a></li>
                 </ul>
                 <div id="my-tab-content" class="tab-content">
                     <div class="tab-pane active" id="summary">

@@ -35,111 +35,74 @@
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-       }
-   });
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     }
+ });
 });
 
  $("#removeGhostNode").off("click").on("click", function () {
-    bootbox.dialog({
-        title: "{{Suppression automatique du nœud fantôme}}",
-        message: '<form class="form-horizontal"> ' +
-        '<label class="control-label" > {{Les étapes suivantes seront éxécutées:}} </label> ' +
-        '<br>' +
-        '<ul>' +
-        '<li class="active">{{Arrêt du réseau Z-Wave.}}</li>' +
-        '<li class="active">{{Retirer classe de commande de Wake Up du fichier ZWCFG.}}</li>' +
-        '<li class="active">{{Redémarrage du réseau Z-Wave.}}</li>' +
-        '<li class="active">{{Attendre que le réseau soit à nouveau opérationnel (2-5 minutes).}}</li>' +
-        '<li class="active">{{Nœud passe en échec}}</li>' +
-        '<li class="active">{{Supprimer le nœud en échec}}</li>' +
-        '<li class="active">{{Validation de la suppression}}</li>' +
-        '</ul>' +
-        '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
-        '</form>',
-        buttons: {
-            main: {
-                label: "{{Annuler}}",
-                className: "btn-danger"
-            },
-            success: {
-                label: "{{Lancer}}",
-                className: "btn-success",
-                callback: function () {
-                    app_nodes.remove_ghost_node(node_id);
-                }
-            }
-        }
+    bootbox.confirm('{{Les étapes suivantes seront éxécutées:Arrêt du réseau Z-Wave,Retirer classe de commande de Wake Up du fichier ZWCFG,Redémarrage du réseau Z-WaveAttendre que le réseau soit à nouveau opérationnel (2-5 minutes),Nœud passe en échec,Supprimer le nœud en échec,Validation de la suppression.}}', function (result) {
+     if (result) {
+        jeedom.openzwave.node.action({
+          node_id: node_id,
+          action : 'removeGhostNode',
+          error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+       }
+   });
     }
-    );
+});
 });
 
  $("#replaceFailedNode").off("click").on("click", function () {
-    bootbox.dialog({
-        title: "{{Remplacer nœud en échec}}",
-        message: '<form class="form-horizontal"> ' +
-        '<label class="control-label" > {{Cette action permet de remplacer un nœud en échec.}} </label> ' +
-        '<br>' +
-        '<label class="lbl lbl-warning" for="name">{{Attention, le controleur sera automatiquement en mode inclusion. Veuillez lancer la procédure sur votre module après la confirmation de cette action.}}</label> ' +
-        '</form>',
-        buttons: {
-            main: {
-                label: "{{Annuler}}",
-                className: "btn-danger"
-            },
-            success: {
-                label: "{{Remplacer}}",
-                className: "btn-success",
-                callback: function () {
-                    app_nodes.replace_failed_node(node_id);
-                }
-            }
-        }
+   bootbox.confirm('{{Cette action permet de remplacer un nœud en échec.Attention, le controleur sera automatiquement en mode inclusion. Veuillez lancer la procédure sur votre module après la confirmation de cette action.}}', function (result) {
+     if (result) {
+        jeedom.openzwave.node.action({
+          node_id: node_id,
+          action : 'replaceFailedNode',
+          error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+       }
+   });
     }
-    );
+});
 });
 
  $("#regenerateNodeCfgFile").off("click").on("click", function () {
-    var productName = node_selected.data.product_name.value;
-    var manufacturerName = node_selected.data.vendorString.value;
-    bootbox.dialog({
-        title: "{{Régénérer la détection du nœud}}",
-        message: '<form class="form-horizontal"> ' +
-        '<label class="control-label" > {{Lancer la regénérer sur ?}} </label> ' +
-        '<div> <div class="radio"> <label > ' +
-        '<input type="radio" name="awesomeness" id="awesomeness-1" value="0" checked="checked"> {{Ce module seulement}} </label> ' +
-        '</div><div class="radio"> <label > ' +
-        '<input type="radio" name="awesomeness" id="awesomeness-0" value="1"> ' +
-        ' {{Tous les modules}} <b>' + manufacturerName + ' ' + productName + '</b></label> ' +
-        '</div> ' +
-        '</div><br>' +
-        '<label class="lbl lbl-warning" for="name">{{Attention, cette action entraîne un redémarrage de votre réseau.}}</label> ' +
-        '</form>',
-        buttons: {
-            main: {
-                label: "{{Annuler}}",
-                className: "btn-danger",
-                callback: function () {
-                }
-            },
-            success: {
-                label: "{{Lancer}}",
-                className: "btn-success",
-                callback: function () {
-                    jeedom.openzwave.node.removeDeviceZWConfig({
-                        node_id : node_id,
-                        all : $("input[name='awesomeness']:checked").val(),
-                        error: function (error) {
-                            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-                        },
-                        success: function () {
-                           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-                       }
-                   });
-                }
-            }
+    bootbox.prompt({
+        title: "{{Lancer la regénérer sur ?}}",
+        inputType: 'select',
+        inputOptions: [
+        {
+            text: '{{Ce module seulement}}',
+            value: '0',
+        },
+        {
+            text: '{{Tous les modules}} : '+node_selected.data.product_name.value+'  '+node_selected.data.vendorString.value,
+            value: '1',
         }
-    });
+        ],
+        callback: function (result) {
+            if(result !== null){
+             jeedom.openzwave.node.removeDeviceZWConfig({
+                node_id : node_id,
+                all : result,
+                error: function (error) {
+                    $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                 $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+             }
+         });
+         }
+     }
+ });
 });
 
  $("body").off("click", ".findUsage").on("click", ".findUsage", function (e) {
@@ -161,85 +124,6 @@
     })
     message += '</ul>'
     bootbox.alert(message);
-});
-
- $("#saveCopyToParams").off("click").on("click", function (e) {
-
-    $('#copyToParamsModal').modal('hide');
-});
- $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
-    var modal = $(this);
-    var group = $(this).data('groupindex');
-    var associations = [];
-    for (var i in node_selected.groups[group].associations) {
-        associations.push(node_selected.groups[group].associations[i][0] + ";" + node_selected.groups[group].associations[i][1]);
-    }
-    var support_multi_instance = node_selected.multi_instance.support == 1;
-    var node_keys = [];
-    $.each(nodes, function (key, val) {
-        if (key != node_id) {
-            if (val.description.is_static_controller || val.capabilities.isListening || val.capabilities.isFlirs) {
-                if (support_multi_instance) {
-                    if (val.description.is_static_controller) {
-                        node_keys.push(key + ';0');
-                        node_keys.push(key + ';1');
-                    }
-                    else if(val.multi_instance.instances == 1){
-                        node_keys.push(key + ';0');
-                    }
-                    else {
-                        for (i = 1; i <= val.multi_instance.instances; i++) {
-                            node_keys.push(key + ';' + i);
-                        }
-                    }
-                }
-                else{
-                    node_keys.push(key + ';0');
-                }
-            }
-        }
-    });
-    modal.find('.modal-body').html(' ');
-    modal.find('.modal-title').text('{{Groupe }}' + group + ' : {{Ajouter une association pour le noeud}} ' + node_id);
-    var options_node = '<div><b>Node : </b>  <select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
-    for (var i in node_keys) {
-        if (associations.indexOf(node_keys[i]) >= 0) {
-            continue;
-        }
-        var values = node_keys[i].split(";");
-        var nodeId = parseInt(values[0]);
-        var node = nodes[nodeId];
-        var nodeInstance = values[1];
-        if (node.description.name != '') {
-            options_node += '<option value="' + node_keys[i] + '">' + nodeId + ' : ' + node.description.location + ' - ' + node.description.name;
-        } else {
-            options_node += '<option value="' + node_keys[i] + '">' + nodeId + ' : ' + node.description.product_name;
-        }
-        if (support_multi_instance && nodeInstance >= 1) {
-            var instanceDisplay = nodeInstance - 1;
-            options_node += ' (' + instanceDisplay + ')';
-        }
-        options_node += '</option>'
-    }
-    options_node += '</select></div>';
-    modal.find('.modal-body').append(options_node);
-});
- $("#saveGroups").off("click").on("click", function (e) {
-    var values = $('#newvaluenode').val().split(";");
-    jeedom.openzwave.node.group({
-        node_id : node_id,
-        instance : values[1],
-        group : $('#groupsModal').data('groupindex'),
-        target_id : values[0],
-        action : 'add',
-        error: function (error) {
-            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-     }
- });
-    $('#groupsModal').modal('hide');
 });
 
  $("body").off("click", ".editValue").on("click", ".editValue", function (e) {
@@ -297,19 +181,19 @@
 });
 
  $("body").off("click", ".forceRefresh").on("click", ".forceRefresh", function (e) {
-     jeedom.openzwave.node.refreshData({
-        node_id : node_id,
-        instance : $(this).attr('data-valueinstance'),
-        class :  $(this).attr('data-valuecc'),
-        index : $(this).attr('data-valueidx'),
-        error: function (error) {
-            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-     }
- });
- });
+   jeedom.openzwave.node.refreshData({
+    node_id : node_id,
+    instance : $(this).attr('data-valueinstance'),
+    class :  $(this).attr('data-valuecc'),
+    index : $(this).attr('data-valueidx'),
+    error: function (error) {
+        $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+       $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+   }
+});
+});
 
  $("body").off("click", ".editPolling").on("click", ".editPolling", function (e) {
     var idx = $(this).data('valueidx');
@@ -319,11 +203,11 @@
         title: "{{Changer le rafraichissement}}",
         inputType: 'select',
         inputOptions: [
-        {text: '{{Auto}}',value: '0',},
-        {text: '{{5 min}}',value: '1',}
+        {text: '{{Auto}}',value: '0'},
+        {text: '{{5 min}}',value: '1'}
         ],
         callback: function (result) {
-           if(result != null){
+         if(result != null){
             jeedom.openzwave.node.setPolling({
                 node_id : node_id,
                 instance : instance,
@@ -334,9 +218,9 @@
                     $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                 $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-             }
-         });
+                   $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+               }
+           });
         }
     }
 });
@@ -420,11 +304,11 @@
                 $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
             },
             success: function () {
-             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-         }
-     });
+               $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+           }
+       });
     } else if ($('#valuesModal').data('valuetype') == "Raw") {
-       jeedom.openzwave.node.setRaw({
+     jeedom.openzwave.node.setRaw({
         node_id : node_id,
         slot_id : $('#valuesModal').data('valueidx'),
         value :  $('#newvaluevalue').val(),
@@ -432,10 +316,10 @@
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-     }
- });
-   }else {
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+       }
+   });
+ }else {
     jeedom.openzwave.node.set({
         node_id : node_id,
         instance : $('#valuesModal').data('valueinstance'),
@@ -446,9 +330,9 @@
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-     }
- });
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+       }
+   });
 }
 $('#valuesModal').modal('hide');
 });
@@ -468,36 +352,95 @@ $('#valuesModal').modal('hide');
                     $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function () {
-                 $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-             }
-         });  
+                   $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+               }
+           });  
         });
     }
 });
 
  $("body").off("click", ".deleteGroup").on("click", ".deleteGroup", function (e) {
-     jeedom.openzwave.node.group({
-        node_id : node_id,
-        instance : $(this).data('nodeinstance'),
-        group :  $(this).data('groupindex'),
-        target_id : $(this).data('nodeid'),
-        action: 'remove',
-        error: function (error) {
-            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-     }
- });
- });
+   jeedom.openzwave.node.group({
+    node_id : node_id,
+    instance : $(this).data('nodeinstance'),
+    group :  $(this).data('groupindex'),
+    target_id : $(this).data('nodeid'),
+    action: 'remove',
+    error: function (error) {
+        $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+       $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+   }
+});
+});
 
  $("body").off("click", ".addGroup").on("click", ".addGroup", function (e) {
     var group = $(this).data('groupindex');
     if(group == -1){
         return;
     }
-    $('#groupsModal').data('groupindex', group);
-    $('#groupsModal').modal('show');
+    var associations = [];
+    for (var i in node_selected.groups[group].associations) {
+        associations.push(node_selected.groups[group].associations[i][0] + ";" + node_selected.groups[group].associations[i][1]);
+    }
+    var options = [];
+    $.each(nodes, function (key, val) {
+        if (key != node_id) {
+            var text = (nodes[key].description.name != '') ? key + ' : '+nodes[key].description.location + ' - ' + nodes[key].description.name : key + ' : ' + nodes[key].description.product_name;
+            if (val.description.is_static_controller || val.capabilities.isListening || val.capabilities.isFlirs) {
+                if (node_selected.multi_instance.support) {
+                    if (val.description.is_static_controller) {
+                     if (associations.indexOf(key + ';0') < 0) {
+                      options.push({value : key + ';0', text :  text + ' (0)'});
+                  }
+                  if (associations.indexOf(key + ';1') < 0) {
+                     options.push({value : key + ';1', text :  text + ' (1)'});
+                 }
+             }else if(val.multi_instance.instances == 1){
+               if (associations.indexOf(key + ';0') < 0) {
+                  options.push({value : key + ';0', text :  text + ' (0)'});
+              }
+          }else {
+            for (i = 1; i <= val.multi_instance.instances; i++) {
+                if (associations.indexOf(key + ';'+i) >= 0) {
+                    continue;
+                }
+                options.push({value : key + ';'+i, text :  text + ' ('+i+')'});
+            }
+        }
+    }else{
+       if (associations.indexOf(key + ';0') < 0) {
+         options.push({value : key + ';0', text :  text + ' (0)'});
+     }
+ }
+}
+}
+});
+    bootbox.prompt({
+        title: "{{Selectionner le noeud : }}",
+        inputType: 'select',
+        inputOptions: options,
+        callback: function (result) {
+            if(result===null){
+                return;
+            }
+            var values = result.split(";");
+            jeedom.openzwave.node.group({
+                node_id : node_id,
+                instance : values[1],
+                group : group,
+                target_id : values[0],
+                action : 'add',
+                error: function (error) {
+                    $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                   $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+               }
+           });
+        }
+    });
 });
 
  $("#saveParam").off("click").on("click", function (e) {
@@ -517,67 +460,67 @@ $('#valuesModal').modal('hide');
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-     }
- }); 
+           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+       }
+   }); 
     $('#paramsModal').modal('hide'); 
 });
 
  $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
-   var options_node = '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
-   options_node += '<div class="col-md-10"><select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
-   var foundIdentical = 0;
-   $.each(nodes, function (key, val) {
-    var manufacturerId = node_selected.data.manufacturerId.value;
-    var manufacturerProductId = node_selected.data.manufacturerProductId.value;
-    var manufacturerProductType = node_selected.data.manufacturerProductType.value;
-    if (key != node_id && val.product.is_valid && val.product.manufacturer_id == manufacturerId && val.product.product_id == manufacturerProductId && val.product.product_type == manufacturerProductType) {
-        foundIdentical = 1;
-        options_node += '<option value="' + key + '">' + key + ' ';
-        options_node +=  (val.description.name != '') ? val.description.location + ' - ' + val.description.name : val.description.product_name;
-        options_node += '</option>';
+     var options_node = '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
+     options_node += '<div class="col-md-10"><select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
+     var foundIdentical = 0;
+     $.each(nodes, function (key, val) {
+        var manufacturerId = node_selected.data.manufacturerId.value;
+        var manufacturerProductId = node_selected.data.manufacturerProductId.value;
+        var manufacturerProductType = node_selected.data.manufacturerProductType.value;
+        if (key != node_id && val.product.is_valid && val.product.manufacturer_id == manufacturerId && val.product.product_id == manufacturerProductId && val.product.product_type == manufacturerProductType) {
+            foundIdentical = 1;
+            options_node += '<option value="' + key + '">' + key + ' ';
+            options_node +=  (val.description.name != '') ? val.description.location + ' - ' + val.description.name : val.description.product_name;
+            options_node += '</option>';
+        }
+    });
+     options_node += '</select></div></div>';
+     options_node += '<br>';
+     options_node += '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div>';
+     options_node += '<div class="col-md-10">';
+     options_node += node_id + ' ';
+     options_node += (node_selected.data.name.value != '') ? node_selected.data.location.value + ' - ' + node_selected.data.name.value : node_selected.data.product_name.value;
+     options_node += '</div>';
+     options_node += '</div>';
+     if (foundIdentical == 0) {
+        modal.find('#saveCopyParams').hide();
+        options_node = '{{Aucun module identique trouvé}}';
     }
-});
-   options_node += '</select></div></div>';
-   options_node += '<br>';
-   options_node += '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div>';
-   options_node += '<div class="col-md-10">';
-   options_node += node_id + ' ';
-   options_node += (node_selected.data.name.value != '') ? node_selected.data.location.value + ' - ' + node_selected.data.name.value : node_selected.data.product_name.value;
-   options_node += '</div>';
-   options_node += '</div>';
-   if (foundIdentical == 0) {
-    modal.find('#saveCopyParams').hide();
-    options_node = '{{Aucun module identique trouvé}}';
-}
-bootbox.dialog({
-    title: "{{Sélection du module source}}",
-    message: options_node,
-    buttons: {
-        main: {
-            label: "{{Annuler}}",
-            className: "btn-danger",
-            callback: function () {
-            }
-        },
-        success: {
-            label: "{{Lancer}}",
-            className: "btn-success",
-            callback: function () {
-                jeedom.openzwave.node.copyConfigurations({
-                    node_id : $('#newvaluenode').val(),
-                    target_id : node_id,
-                    error: function (error) {
-                        $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-                    },
-                    success: function () {
-                       $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-                   }
-               });
+    bootbox.dialog({
+        title: "{{Sélection du module source}}",
+        message: options_node,
+        buttons: {
+            main: {
+                label: "{{Annuler}}",
+                className: "btn-danger",
+                callback: function () {
+                }
+            },
+            success: {
+                label: "{{Lancer}}",
+                className: "btn-success",
+                callback: function () {
+                    jeedom.openzwave.node.copyConfigurations({
+                        node_id : $('#newvaluenode').val(),
+                        target_id : node_id,
+                        error: function (error) {
+                            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+                        },
+                        success: function () {
+                         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+                     }
+                 });
+                }
             }
         }
-    }
-});
+    });
 });
  $("body").off("click", ".copyToParams").on("click", ".copyToParams", function (e) {
     var options_node = '<div class="container-fluid">';
@@ -623,17 +566,17 @@ bootbox.dialog({
                 className: "btn-success",
                 callback: function () {
                   $("input:checkbox[name=type]:checked").each(function(){
-                   jeedom.openzwave.node.copyConfigurations({
-                    node_id : node_id,
-                    target_id : $(this).val(),
-                    error: function (error) {
-                        $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-                    },
-                    success: function () {
-                     $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-                 }
-             });
-               });
+                     jeedom.openzwave.node.copyConfigurations({
+                        node_id : node_id,
+                        target_id : $(this).val(),
+                        error: function (error) {
+                            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+                        },
+                        success: function () {
+                           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+                       }
+                   });
+                 });
               }
           }
       }
@@ -659,7 +602,7 @@ bootbox.dialog({
 }
 
 function display_node_stats(){
- jeedom.openzwave.node.info({
+   jeedom.openzwave.node.info({
     node_id : node_id,
     info:'getNodeStatistics',
     error: function (error) {
@@ -672,7 +615,7 @@ function display_node_stats(){
 }
 
 function display_node_info(){
- jeedom.openzwave.node.info({
+   jeedom.openzwave.node.info({
     node_id : node_id,
     info:'all',
     global:false,
@@ -1065,9 +1008,9 @@ $("body").off("click", ".refreshParams").on("click", ".refreshParams", function 
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-       }
-   })
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     }
+ })
 });
 
 function getTranslation(){
