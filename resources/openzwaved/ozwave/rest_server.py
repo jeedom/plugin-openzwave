@@ -348,7 +348,7 @@ def press_button(node_id, instance_id, cc_id, index):
 		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[val].index == index:
 			if action == 'Press':
 				globals.network.manager.pressButton(globals.network.nodes[node_id].values[val].value_id)
-			if action == 'Press':
+			if action == 'Release':
 				globals.network.manager.releaseButton(globals.network.nodes[node_id].values[val].value_id)
 			return utils.format_json_result()
 	return utils.format_json_result(success='error', data='Button not found')
