@@ -127,7 +127,6 @@
 });
 
  $("body").off("click", ".editValue").on("click", ".editValue", function (e) {
-   var index = $(this).data('valueidx');
    var title = '{{Changer la valeur de}} '+ $(this).data('valuename');
    var valueApplyOption={
     node_id : node_id,
@@ -142,9 +141,8 @@
  }
 }
 if ($(this).data('valuetype') == "List") {
-    var valueDataitems = $(this).data('valuedataitems').split(";");
     var options = [];
-    $.each(valueDataitems, function (key, val) {
+    $.each($(this).data('valuedataitems').split(";"), function (key, val) {
         options.push({key : val,value:val})
     });
     bootbox.prompt({
