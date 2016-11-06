@@ -58,7 +58,7 @@ def replication_send(node_id):
 		raise Exception('Controller is bussy')
 	utils.check_node_exist(node_id)
 	logging.info('Send information from primary to secondary %s' % (node_id,))
-	return utils.format_json_result(globals.network.manager.replicationSend(globals.network.home_id, node_id))
+	return utils.format_json_result(data=globals.network.manager.replicationSend(globals.network.home_id, node_id))
 
 @app.route('/controller/info(<info>)', methods=['GET'])
 @auth.login_required
@@ -210,7 +210,7 @@ def node_action(node_id,action):
 
 @app.route('/node/<int:node_id>/cc/<int:cc_id>/refreshClass()', methods=['GET'])
 @auth.login_required
-def request_all_config_params(node_id):
+def request_all_config_params(node_id,cc_id):
 	utils.check_node_exist(node_id)
 	logging.info('Request values refresh for '+str(node_id)+' on class '+str(cc_id))
 	for val in globals.network.nodes[node_id].get_values(class_id=cc_id):
@@ -319,7 +319,7 @@ def get_config(node_id,cc_id):
 			else:
 				result_data = my_value.data
 			config[my_value.index]['val'] = {'value2': my_value.data, 'value': result_data,'value3': my_value.label, 'value4': sorted(list_values),'updateTime': int(time.time()), 'invalidateTime': 0}
-	return utils.format_json_result(config)
+	return utils.format_json_result(data=config)
 
 @app.route('/node/<int:node_id>/instance/<int:instance_id>/cc/<int:cc_id>/index/<int:index>/setPolling(<int:frequency>)', methods=['GET'])
 @auth.login_required

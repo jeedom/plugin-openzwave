@@ -216,7 +216,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/'+_params.node_id+'/cc/'+_params.class+'/refreshClass()',
+ 		request: 'node/'+_params.node_id+'/cc/'+jeedom.openzwave.normalizeClass(_params.class)+'/refreshClass()',
  	};
  	$.ajax(paramsAJAX);
  }
