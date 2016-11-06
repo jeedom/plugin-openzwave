@@ -870,7 +870,12 @@ function display_node_info(){
         $("#div_nodeConfigure .variables").html(variables);
         $("#div_nodeConfigure .parameters").html(parameters);
         $("#div_nodeConfigure .system_variables").html(system_variables);
-        openzwave_node_translation = {configuration: {}};
+        if (typeof openzwave_node_translation === 'undefined' || openzwave_node_translation == null) {
+            openzwave_node_translation = getTranslation();
+        }
+        if (typeof openzwave_node_translation.configuration === 'undefined') {
+            openzwave_node_translation = {configuration: {}};
+        }
         for (instance in data.instances) {
             for (commandclass in data.instances[instance].commandClasses) {
                 var first_index_polling = true;
