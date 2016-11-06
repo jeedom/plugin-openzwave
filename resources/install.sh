@@ -21,9 +21,6 @@ echo 0 > /tmp/compilation_ozw_in_progress
 echo "Lancement de l'installation/mise à jour des dépendances openzwave"
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-ARCH=`uname -m`
-PYTHON_OPENZWAVE_VERSION=c0c8b19f2d6d1224cbdca0a30d5cdbbc80f59ba3 # 0.3.1
-OPENZWAVE_VERSION=83919e36719967c83a4d2b5b9520a8a9b463f820 # 1.4.2222
 
 function apt_install {
   sudo apt-get -y install "$@"
