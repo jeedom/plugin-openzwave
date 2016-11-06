@@ -139,15 +139,13 @@
                 }
             }
         }
-    }
-    );
+    });
 });
 
  $("body").off("click", ".findUsage").on("click", ".findUsage", function (e) {
     var associations = node_selected.associations;
     var description = node_selected.data.name.value;
-    var message = '<form class="form-horizontal"><div class="panel-body"> ' +
-    '<p  style="font-size : 1em;"> {{Liste des groupes d\'associations où le module}} <b><span class="node-name label label-default" style="font-size : 1em;">' + description + '</span></b> {{est utilisé:}}</p><br><ul>';
+    var message = '{{Liste des groupes d\'associations où le module}} <b><span class="node-name label label-default" style="font-size : 1em;">' + description + '</span></b> {{est utilisé:}}</p><br><ul>';
     $.each(associations, function (key, val) {
         message += '<li class="active"><p>';
         if (nodes[key].description.name != '') {
@@ -161,137 +159,12 @@
         });
         message += '</ul></p></li>';
     })
-    message += '</ul>' +
-    '</div></form>';
-    bootbox.dialog({
-        title: "{{Associé via quels modules}}",
-        message: message,
-        buttons: {
-            main: {
-                label: "{{OK}}",
-                className: "btn-success"
-            }
-        }
-    }
-    );
+    message += '</ul>'
+    bootbox.alert(message);
 });
- $('#copyParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
-    var modal = $(this);
-    modal.find('.modal-body').html(' ');
-    modal.find('.modal-title').text('{{Sélection du module source}}');
-    var options_node = '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
-    options_node += '<div class="col-md-10"><select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
-    var foundIdentical = 0;
-    $.each(nodes, function (key, val) {
-        var manufacturerId = node_selected.data.manufacturerId.value;
-        var manufacturerProductId = node_selected.data.manufacturerProductId.value;
-        var manufacturerProductType = node_selected.data.manufacturerProductType.value;
-        if (key != node_id && val.product.is_valid &&
-            val.product.manufacturer_id == manufacturerId &&
-            val.product.product_id == manufacturerProductId &&
-            val.product.product_type == manufacturerProductType) {
-            foundIdentical = 1;
-        options_node += '<option value="' + key + '">' + key + ' ';
-        if (val.description.name != '') {
-            options_node +=  val.description.location + ' - ' + val.description.name;
-        } else {
-            options_node += val.description.product_name;
-        }
-        options_node += '</option>';
-    }
-});
-    options_node += '</select></div></div>';
-    options_node += '<br>';
-    options_node += '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div>';
-    options_node += '<div class="col-md-10">';
-    options_node += node_id + ' ';
-    if (node_selected.data.name.value != '') {
-        options_node += node_selected.data.location.value + ' - ' + node_selected.data.name.value;
-    }
-    else {
-        options_node += node_selected.data.product_name.value;
-    }
-    options_node += '</div>';
-    options_node += '</div>';
-    if (foundIdentical == 0) {
-        modal.find('#saveCopyParams').hide();
-        options_node = '{{Aucun module identique trouvé}}';
-    }
-    modal.find('.modal-body').append(options_node);
-});
- $("#saveCopyParams").off("click").on("click", function (e) {
-    jeedom.openzwave.node.copyConfigurations({
-        node_id : $('#newvaluenode').val(),
-        target_id : node_id,
-        error: function (error) {
-            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-       }
-   });
-    $('#copyToParamsModal').modal('hide');
-});
- $('#copyToParamsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
-    var modal = $(this);
-    modal.find('.modal-body').html(' ');
-    modal.find('.modal-title').text('{{Sélection des modules a appliquer ces paramètres}}');
-    var options_node = '<div class="container-fluid">';
-    options_node += '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
-    options_node += '<div class="col-md-10">  ' + node_id + ' ';
-    if (node_selected.data.name.value != '') {
-        options_node += node_selected.data.location.value + ' ' + node_selected.data.name.value;
-    }
-    else {
-        options_node += node_selected.data.product_name.value;
-    }
-    options_node += '</div></div><br>';
-    options_node +=  '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div><div class="col-md-10">(' + node_selected.data.product_name.value +')</div></div>';
-    options_node += '<form name="targetForm" action="" class="form-horizontal">';
-    var foundIdentical = 0;
-    $.each(nodes, function (key, val) {
-        var manufacturerId = node_selected.data.manufacturerId.value;
-        var manufacturerProductId = node_selected.data.manufacturerProductId.value;
-        var manufacturerProductType = node_selected.data.manufacturerProductType.value;
-        if (key != node_id && val.product.is_valid &&
-            val.product.manufacturer_id == manufacturerId &&
-            val.product.product_id == manufacturerProductId &&
-            val.product.product_type == manufacturerProductType) {
-            options_node += '<div class="row">';
-        options_node += '<div class="col-md-2"></div>';
-        options_node += '<div class="col-md-10">';
-        options_node += '<div class="checkbox-inline"><label>';
-        options_node += '<input type="checkbox" name="type" value="' + key + '"/>';
-        foundIdentical = 1;
-        if (val.description.name != '') {
-            options_node += key + ' ' + val.description.location + ' ' + val.description.name ;
-        } else {
-            options_node += key + ' ' + val.description.product_name ;
-        }
-        options_node +=  '</label></div>';
-        options_node +=  '</div></div>';
-    }
-});
-    options_node += '</form>';
-    if (foundIdentical == 0) {
-        modal.find('#saveCopyToParams').hide();
-        options_node = '{{Aucun module identique trouvé}}';
-    }
-    modal.find('.modal-body').append(options_node);
-});
+
  $("#saveCopyToParams").off("click").on("click", function (e) {
-    $("input:checkbox[name=type]:checked").each(function(){
-     jeedom.openzwave.node.copyConfigurations({
-        node_id : node_id,
-        target_id : $(this).val(),
-        error: function (error) {
-            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-       }
-   });
- });
+  
     $('#copyToParamsModal').modal('hide');
 });
  $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
@@ -367,6 +240,7 @@
  });
     $('#groupsModal').modal('hide');
 });
+
  $("body").off("click", ".editValue").on("click", ".editValue", function (e) {
     $('#valuesModal').data('valuename', $(this).data('valuename'));
     $('#valuesModal').data('valuetype', $(this).data('valuetype'));
@@ -377,6 +251,7 @@
     $('#valuesModal').data('valuegenre', $(this).data('valuegenre'));
     $('#valuesModal').data('valueidx',  $(this).data('valueidx')).modal('show');
 });
+
  $('#valuesModal').off('show.bs.modal').on('show.bs.modal', function (e) {
     var valueType = $(this).data('valuetype');
     var valueName = $(this).data('valuename');
@@ -419,6 +294,7 @@
         modal.find('.modal-body').append('<input type="text" class="form-control" id="newvaluevalue" style="display:inline-block;width:400px;" value="' + valueValue + '">');
     }
 });
+
  $("body").off("click", ".forceRefresh").on("click", ".forceRefresh", function (e) {
      jeedom.openzwave.node.refreshData({
         node_id : node_id,
@@ -433,6 +309,7 @@
      }
  });
  });
+
  $("body").off("click", ".editPolling").on("click", ".editPolling", function (e) {
     var idx = $(this).data('valueidx');
     var instance = $(this).data('valueinstance');
@@ -443,6 +320,7 @@
     $('#pollingModal').data('valuepolling', polling);
     $('#pollingModal').data('valueidx', idx).modal('show');
 });
+
  $('#pollingModal').off('show.bs.modal').on('show.bs.modal', function (e) {
     var valueIdx = $(this).data('valueidx');
     var valueInstance = $(this).data('valueinstance');
@@ -458,6 +336,7 @@
     modal.find('.modal-body').append(select);
     modal.find('.modal-body').find('#newvaluevalue').val(valuePolling);
 });
+
  $("body").off("click", ".editParam").on("click", ".editParam", function (e) {
     var id = $(this).data('paramid');
     var name = $(this).data('paramname');
@@ -468,6 +347,7 @@
     $('#paramsModal').data('paramvalue', value);
     $('#paramsModal').data('paramid', id).modal('show');
 });
+
  $('#paramsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
     var paramId = $(this).data('paramid');
     var paramType = $(this).data('paramtype');
@@ -521,6 +401,7 @@
         modal.find('.modal-body').append('<input type="text" class="form-control" id="newvalue" style="display:inline-block;width:400px;" value="' + paramValue + '">');
     }
 });
+
  $("#applyValue").off("click").on("click", function (e) {
     if ($('#valuesModal').data('valuetype') == "Button") {
         jeedom.openzwave.node.button({
@@ -565,6 +446,7 @@
 }
 $('#valuesModal').modal('hide');
 });
+
  $("#savePolling").off("click").on("click", function (e) {
      jeedom.openzwave.node.setPolling({
         node_id : node_id,
@@ -581,6 +463,7 @@ $('#valuesModal').modal('hide');
  });
      $('#pollingModal').modal('hide');
  });
+
  $("#tab-parameters").off("click").on("click", function () {
     if (!node_selected.instances[0].commandClasses[112]) {
         $("#parameters").html('<br><div><b>{{Aucun paramètre prédefini trouvé pour ce noeud}}</b></div><br>');
@@ -616,6 +499,7 @@ $('#valuesModal').modal('hide');
      }
  });
  });
+
  $("body").off("click", ".addGroup").on("click", ".addGroup", function (e) {
     var group = $(this).data('groupindex');
     if(group == -1){
@@ -624,6 +508,7 @@ $('#valuesModal').modal('hide');
     $('#groupsModal').data('groupindex', group);
     $('#groupsModal').modal('show');
 });
+
  $("#saveParam").off("click").on("click", function (e) {
     if ( $('#paramsModal').data('paramtype') == "Bool") {
         var paramValue = $('input[name=newvalue]:checked', '#paramsModal').val();
@@ -646,11 +531,138 @@ $('#valuesModal').modal('hide');
  }); 
     $('#paramsModal').modal('hide'); 
 });
+
  $("body").off("click", ".copyParams").on("click", ".copyParams", function (e) {
-    $('#copyParamsModal').modal('show');
+   var options_node = '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
+   options_node += '<div class="col-md-10"><select class="form-control" id="newvaluenode" style="display:inline-block;width:400px;">';
+   var foundIdentical = 0;
+   $.each(nodes, function (key, val) {
+    var manufacturerId = node_selected.data.manufacturerId.value;
+    var manufacturerProductId = node_selected.data.manufacturerProductId.value;
+    var manufacturerProductType = node_selected.data.manufacturerProductType.value;
+    if (key != node_id && val.product.is_valid && val.product.manufacturer_id == manufacturerId && val.product.product_id == manufacturerProductId && val.product.product_type == manufacturerProductType) {
+        foundIdentical = 1;
+        options_node += '<option value="' + key + '">' + key + ' ';
+        if (val.description.name != '') {
+            options_node +=  val.description.location + ' - ' + val.description.name;
+        } else {
+            options_node += val.description.product_name;
+        }
+        options_node += '</option>';
+    }
+});
+   options_node += '</select></div></div>';
+   options_node += '<br>';
+   options_node += '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div>';
+   options_node += '<div class="col-md-10">';
+   options_node += node_id + ' ';
+   if (node_selected.data.name.value != '') {
+    options_node += node_selected.data.location.value + ' - ' + node_selected.data.name.value;
+}else {
+    options_node += node_selected.data.product_name.value;
+}
+options_node += '</div>';
+options_node += '</div>';
+if (foundIdentical == 0) {
+    modal.find('#saveCopyParams').hide();
+    options_node = '{{Aucun module identique trouvé}}';
+}
+bootbox.dialog({
+    title: "{{Sélection du module source}}",
+    message: options_node,
+    buttons: {
+        main: {
+            label: "{{Annuler}}",
+            className: "btn-danger",
+            callback: function () {
+            }
+        },
+        success: {
+            label: "{{Lancer}}",
+            className: "btn-success",
+            callback: function () {
+                jeedom.openzwave.node.copyConfigurations({
+                    node_id : $('#newvaluenode').val(),
+                    target_id : node_id,
+                    error: function (error) {
+                        $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+                    },
+                    success: function () {
+                       $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+                   }
+               });
+            }
+        }
+    }
+});
 });
  $("body").off("click", ".copyToParams").on("click", ".copyToParams", function (e) {
-    $('#copyToParamsModal').modal('show');
+    var options_node = '<div class="container-fluid">';
+    options_node += '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
+    options_node += '<div class="col-md-10">  ' + node_id + ' ';
+    if (node_selected.data.name.value != '') {
+        options_node += node_selected.data.location.value + ' ' + node_selected.data.name.value;
+    }else {
+        options_node += node_selected.data.product_name.value;
+    }
+    options_node += '</div></div><br>';
+    options_node +=  '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div><div class="col-md-10">(' + node_selected.data.product_name.value +')</div></div>';
+    options_node += '<form name="targetForm" action="" class="form-horizontal">';
+    var foundIdentical = 0;
+    $.each(nodes, function (key, val) {
+        var manufacturerId = node_selected.data.manufacturerId.value;
+        var manufacturerProductId = node_selected.data.manufacturerProductId.value;
+        var manufacturerProductType = node_selected.data.manufacturerProductType.value;
+        if (key != node_id && val.product.is_valid && val.product.manufacturer_id == manufacturerId && val.product.product_id == manufacturerProductId && val.product.product_type == manufacturerProductType) {
+            options_node += '<div class="row">';
+            options_node += '<div class="col-md-2"></div>';
+            options_node += '<div class="col-md-10">';
+            options_node += '<div class="checkbox-inline"><label>';
+            options_node += '<input type="checkbox" class="cb_targetCopyParameters" name="type" value="' + key + '"/>';
+            foundIdentical = 1;
+            if (val.description.name != '') {
+                options_node += key + ' ' + val.description.location + ' ' + val.description.name ;
+            } else {
+                options_node += key + ' ' + val.description.product_name ;
+            }
+            options_node +=  '</label></div>';
+            options_node +=  '</div></div>';
+        }
+        options_node += '</form>';
+        if (foundIdentical == 0) {
+            options_node = '{{Aucun module identique trouvé}}';
+        }
+    });
+    bootbox.dialog({
+        title: "{{Sélection des modules cible}}",
+        message: options_node,
+        buttons: {
+            main: {
+                label: "{{Annuler}}",
+                className: "btn-danger",
+                callback: function () {
+                }
+            },
+            success: {
+                label: "{{Lancer}}",
+                className: "btn-success",
+                callback: function () {
+                  $("input:checkbox[name=type]:checked").each(function(){
+                   jeedom.openzwave.node.copyConfigurations({
+                    node_id : node_id,
+                    target_id : $(this).val(),
+                    error: function (error) {
+                        $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+                    },
+                    success: function () {
+                     $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+                 }
+             });
+               });
+              }
+          }
+      }
+  });
 });
  function load_all_node(){
     jeedom.openzwave.network.info({
