@@ -164,7 +164,7 @@
 });
 
  $("#saveCopyToParams").off("click").on("click", function (e) {
-  
+
     $('#copyToParamsModal').modal('hide');
 });
  $('#groupsModal').off('show.bs.modal').on('show.bs.modal', function (e) {
@@ -314,28 +314,33 @@
     var idx = $(this).data('valueidx');
     var instance = $(this).data('valueinstance');
     var cc = $(this).data('valuecc');
-    var polling = $(this).data('valuepolling');
-    $('#pollingModal').data('valueinstance', instance);
-    $('#pollingModal').data('valuecc', cc);
-    $('#pollingModal').data('valuepolling', polling);
-    $('#pollingModal').data('valueidx', idx).modal('show');
+    bootbox.prompt({
+        title: "{{Changer le rafraichissement}}",
+        inputType: 'select',
+        inputOptions: [
+        {text: '{{Auto}}',value: '0',},
+        {text: '{{5 min}}',value: '1',}
+        ],
+        callback: function (result) {
+           if(result != null){
+            jeedom.openzwave.node.setPolling({
+                node_id : node_id,
+                instance : instance,
+                class :  cc,
+                index : idx,
+                polling : result,
+                error: function (error) {
+                    $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                 $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+             }
+         });
+        }
+    }
+});
 });
 
- $('#pollingModal').off('show.bs.modal').on('show.bs.modal', function (e) {
-    var valueIdx = $(this).data('valueidx');
-    var valueInstance = $(this).data('valueinstance');
-    var valueCc = $(this).data('valuecc');
-    var valuePolling = $(this).data('valuepolling');
-    var modal = $(this);
-    modal.find('.modal-title').text('{{Changer le rafraichissement}}');
-    modal.find('.modal-body').html("<b>{{Fréquence : }}</b>");
-    var select = '<select class="form-control" style="display:inline-block;width : 200px;" id="newvaluevalue">';
-    select += '<option value="0">{{Auto}}</option>';
-    select += '<option value="1">{{5 min}}</option>';
-    select += '</option>';
-    modal.find('.modal-body').append(select);
-    modal.find('.modal-body').find('#newvaluevalue').val(valuePolling);
-});
 
  $("body").off("click", ".editParam").on("click", ".editParam", function (e) {
     var id = $(this).data('paramid');
@@ -447,22 +452,6 @@
 $('#valuesModal').modal('hide');
 });
 
- $("#savePolling").off("click").on("click", function (e) {
-     jeedom.openzwave.node.setPolling({
-        node_id : node_id,
-        instance : $('#pollingModal').data('valueinstance'),
-        class :  $('#pollingModal').data('valuecc'),
-        index : $('#pollingModal').data('valueidx'),
-        polling : $('#newvaluevalue').val(),
-        error: function (error) {
-            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function () {
-         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-     }
- });
-     $('#pollingModal').modal('hide');
- });
 
  $("#tab-parameters").off("click").on("click", function () {
     if (!node_selected.instances[0].commandClasses[112]) {
@@ -543,11 +532,7 @@ $('#valuesModal').modal('hide');
     if (key != node_id && val.product.is_valid && val.product.manufacturer_id == manufacturerId && val.product.product_id == manufacturerProductId && val.product.product_type == manufacturerProductType) {
         foundIdentical = 1;
         options_node += '<option value="' + key + '">' + key + ' ';
-        if (val.description.name != '') {
-            options_node +=  val.description.location + ' - ' + val.description.name;
-        } else {
-            options_node += val.description.product_name;
-        }
+        options_node +=  (val.description.name != '') ? val.description.location + ' - ' + val.description.name : val.description.product_name;
         options_node += '</option>';
     }
 });
@@ -556,14 +541,10 @@ $('#valuesModal').modal('hide');
    options_node += '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div>';
    options_node += '<div class="col-md-10">';
    options_node += node_id + ' ';
-   if (node_selected.data.name.value != '') {
-    options_node += node_selected.data.location.value + ' - ' + node_selected.data.name.value;
-}else {
-    options_node += node_selected.data.product_name.value;
-}
-options_node += '</div>';
-options_node += '</div>';
-if (foundIdentical == 0) {
+   options_node += (node_selected.data.name.value != '') ? node_selected.data.location.value + ' - ' + node_selected.data.name.value : node_selected.data.product_name.value;
+   options_node += '</div>';
+   options_node += '</div>';
+   if (foundIdentical == 0) {
     modal.find('#saveCopyParams').hide();
     options_node = '{{Aucun module identique trouvé}}';
 }
@@ -600,11 +581,7 @@ bootbox.dialog({
     var options_node = '<div class="container-fluid">';
     options_node += '<div class="row"><div class="col-md-2"><b>{{Source}}</b></div>';
     options_node += '<div class="col-md-10">  ' + node_id + ' ';
-    if (node_selected.data.name.value != '') {
-        options_node += node_selected.data.location.value + ' ' + node_selected.data.name.value;
-    }else {
-        options_node += node_selected.data.product_name.value;
-    }
+    node_selected +=  (node_selected.data.name.value != '') ? node_selected.data.location.value + ' ' + node_selected.data.name.value : node_selected.data.product_name.value;
     options_node += '</div></div><br>';
     options_node +=  '<div class="row"><div class="col-md-2"><b>{{Destination}}</b></div><div class="col-md-10">(' + node_selected.data.product_name.value +')</div></div>';
     options_node += '<form name="targetForm" action="" class="form-horizontal">';
@@ -620,11 +597,7 @@ bootbox.dialog({
             options_node += '<div class="checkbox-inline"><label>';
             options_node += '<input type="checkbox" class="cb_targetCopyParameters" name="type" value="' + key + '"/>';
             foundIdentical = 1;
-            if (val.description.name != '') {
-                options_node += key + ' ' + val.description.location + ' ' + val.description.name ;
-            } else {
-                options_node += key + ' ' + val.description.product_name ;
-            }
+            options_node += (val.description.name != '') ? key + ' ' + val.description.location + ' ' + val.description.name : key + ' ' + val.description.product_name ;
             options_node +=  '</label></div>';
             options_node +=  '</div></div>';
         }
@@ -664,6 +637,7 @@ bootbox.dialog({
       }
   });
 });
+
  function load_all_node(){
     jeedom.openzwave.network.info({
         info : 'getNodesList',

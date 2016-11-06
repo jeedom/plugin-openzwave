@@ -326,16 +326,15 @@ def get_config(node_id,cc_id):
 def set_polling_value(node_id, instance_id, cc_id, index, frequency):
 	utils.check_node_exist(node_id)
 	logging.info('set_polling_value for nodeId: '+str(node_id)+' instance: '+str(instance_id)+' cc : '+str(cc_id)+' index : '+str(index)+' at: '+str(frequency))
-	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16)):
+	for val in globals.network.nodes[node_id].get_values(class_id=cc_id):
 		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id:
 			my_value = globals.network.nodes[node_id].values[val]
 			if frequency == 0 & my_value.poll_intensity > 0:
 				my_value.disable_poll()
 			else:
 				if globals.network.nodes[node_id].values[val].index == index:
-					changes_value_polling(frequency, my_value)
-				else:
-					if my_value.poll_intensity > 0:
+					value_utils.changes_value_polling(frequency, my_value)
+				elif my_value.poll_intensity > 0:
 						my_value.disable_poll()
 	utils.write_config()
 	return utils.format_json_result()
@@ -345,7 +344,7 @@ def set_polling_value(node_id, instance_id, cc_id, index, frequency):
 def press_button(node_id, instance_id, cc_id, index):
 	utils.check_node_exist(node_id)
 	logging.info('Button nodeId : '+str(node_id)+' instance: '+str(instance_id)+' cc : '+str(cc_id)+' index : '+str(index)+' at: '+str(frequency)+' action '+str(action))
-	for val in globals.network.nodes[node_id].get_values(class_id=int(cc_id, 16), genre='All', type='All', readonly='All', writeonly='All'):
+	for val in globals.network.nodes[node_id].get_values(class_id=cc_id, genre='All', type='All', readonly='All', writeonly='All'):
 		if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[val].index == index:
 			if action == 'Press':
 				globals.network.manager.pressButton(globals.network.nodes[node_id].values[val].value_id)
