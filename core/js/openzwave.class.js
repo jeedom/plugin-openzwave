@@ -380,7 +380,7 @@
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	_params.instance = _params.instance || 0
  	paramsAJAX.data = {
- 		request: '/node/'+_params.node_id+'/addGroup('+_params.group+','+_params.target_id+','+_params.instance+')',
+ 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/group/'+_params.group+'/add('+_params.target_id+')',
  	};
  	$.ajax(paramsAJAX);
  }
@@ -399,7 +399,7 @@
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	_params.instance = _params.instance || 0
  	paramsAJAX.data = {
- 		request: '/node/'+_params.node_id+'/removeGroup('+_params.group+','+_params.target_id+','+_params.instance+')',
+ 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/group/'+_params.group+'/remove('+_params.target_id+')',
  	};
  	$.ajax(paramsAJAX);
  }

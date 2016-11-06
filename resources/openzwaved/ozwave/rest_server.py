@@ -356,39 +356,28 @@ def switch_all(node_id, state):
 					my_node.values[dimmer].refresh()
 	return utils.format_json_result()	
 
-@app.route('/node/<int:node_id>/removeGroup(<int:group>,<int:target_id>,<int:instance>)', methods=['GET'])
+@app.route('/node/<int:node_id>/instance/<int:instance>/group/<int:group>/<action>(<int:target_id>)', methods=['GET'])
 @auth.login_required
-def remove_assoc(node_id, group, target_id,instance):
+def assoc_action(node_id, group, target_id,instance,action):
 	if globals.network_information.controller_is_busy:
-		raise Exception('Controller is bussy')
+		raise Exception('Controller is busy')
 	utils.check_node_exist(node_id)
 	utils.check_node_exist(target_id)
-	logging.info('remove_assoc to nodeId: '+str(node_id)+' in group '+str(group)+' with nodeId: '+str(node_id)+' on instance '+ str(instance))
+	logging.info(action + ' assoc to nodeId: '+str(node_id)+' in group '+str(group)+' with nodeId: '+str(node_id)+' on instance '+ str(instance))
 	if node_id not in globals.pending_associations:
 		globals.pending_associations[node_id] = dict()
-	globals.pending_associations[node_id][group] = PendingAssociation(pending_added=None, pending_removed=target_id, timeout=0)
-	if instance < 1 :
-		globals.network.manager.removeAssociation(globals.network.home_id, node_id, group, target_id)
-	else:
-		globals.network.manager.removeAssociation(globals.network.home_id, node_id, group, target_id, instance)
-	return utils.format_json_result()
-	
-@app.route('/node/<int:node_id>/addGroup(<int:group>,<int:target_id>,<int:instance>)', methods=['GET'])
-@auth.login_required
-def add_assoc(node_id, group, target_id,instance):
-	if globals.network_information.controller_is_busy:
-		raise Exception('Controller is bussy')
-	utils.check_node_exist(node_id)
-	utils.check_node_exist(target_id)
-	logging.info('add_assoc to nodeId: '+str(node_id)+' in group '+str(group)+' with nodeId: '+str(node_id)+' on instance '+ str(instance))
-	if not (target_id in globals.network.nodes[node_id].groups[group].associations):
-		if node_id not in globals.pending_associations:
-			globals.pending_associations[node_id] = dict()
-	globals.pending_associations[node_id][group] = PendingAssociation(pending_added=target_id, pending_removed=None, timeout=0)
-	if instance < 1 :
-		globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id)
-	else :
-		globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id, instance)
+	if action == 'remove':
+		globals.pending_associations[node_id][group] = PendingAssociation(pending_added=None, pending_removed=target_id, timeout=0)
+		if instance < 1 :
+			globals.network.manager.removeAssociation(globals.network.home_id, node_id, group, target_id)
+		else:
+			globals.network.manager.removeAssociation(globals.network.home_id, node_id, group, target_id, instance)
+	if action == 'add':
+		globals.pending_associations[node_id][group] = PendingAssociation(pending_added=target_id, pending_removed=None, timeout=0)
+		if instance < 1 :
+			globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id)
+		else :
+			globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id, instance)
 	return utils.format_json_result()
 
 @app.route('/node/<int:node_id>/setDeviceName(<string:location>,<string:name>,<int:is_enable>)', methods=['GET'])

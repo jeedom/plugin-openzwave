@@ -561,9 +561,9 @@ class openzwave extends eqLogic {
 		if (isset($device['recommended']['groups'])) {
 			foreach ($device['recommended']['groups'] as $value) {
 				if ($value['value'] == 'add') {
-					openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/addGroup(' . $value['index'] . ',1,0)');
+					openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/instance/0/group/'. $value['index'] . '/add(1)');
 				} else if ($value['value'] == 'remove') {
-					openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/removeGroup(' . $value['index'] . ',1,0)');
+					openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/instance/0/group/'. $value['index'] . '/remove(1)');
 				}
 			}
 		}
