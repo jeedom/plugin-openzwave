@@ -51,40 +51,6 @@ sendVarToJs('node_id', init('id'));
     }
 </style>
 <div id='div_nodeConfigureOpenzwaveAlert' style="display: none;"></div>
-<div class="modal fade modal-dialog-center" id="paramsModal" tabindex="-1" role="dialog" data-backdrop="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></a>
-                <h4 class="modal-title" id="exampleModalLabel">Nouveau message</h4>
-            </div>
-            <div class="modal-body">
-                <div id="modalparamname"></div>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-                <a class="btn btn-primary" id="saveParam">{{Appliquer}}</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade modal-dialog-center" id="valuesModal" tabindex="-1" role="dialog" data-backdrop="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></a>
-                <h4 class="modal-title" id="valueModalLabel">Nouveau message</h4>
-            </div>
-            <div class="modal-body">
-                <div id="modalvaluename"></div>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-                <a class="btn btn-primary" id="applyValue">{{Appliquer}}</a>
-            </div>
-        </div>
-    </div>
-</div>
 <div class='node' nid='' id="div_nodeConfigure">
     <div id="template-node">
         <div class="container-fluid">
@@ -116,7 +82,7 @@ sendVarToJs('node_id', init('id'));
                             <div class="panel-body">
                                 <p>{{Objet parent :}} <b><span class="zwaveNodeAttr label label-default" data-l1key="location" data-l2key="value" style="font-size : 1em;"></span></b></p>
                                 <p>{{Nom de l'équipement :}}
-                                <b><span class="zwaveNodeAttr label label-default" data-l1key="name" data-l2key="value" style="font-size : 1em;"></span></b>
+                                    <b><span class="zwaveNodeAttr label label-default" data-l1key="name" data-l2key="value" style="font-size : 1em;"></span></b>
                                 </p>
                                 <p>{{Modèle :}}
                                     <b><span class="zwaveNodeAttr label label-default" data-l1key="product_name" data-l2key="value" style="font-size : 1em;"></span></b>
