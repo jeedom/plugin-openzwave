@@ -402,7 +402,9 @@ function addCmdToTable(_cmd) {
     tr += '<td class="expertModeVisible"><input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="class" ></td>';
     tr += '<td class="expertModeVisible"><input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="index" ></td>';
     tr += '<td class="expertModeVisible">';
-    tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="value" >';
+    if (init(_cmd.type) == 'action'){
+        tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="value" >';
+    }
     tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="returnStateValue" placeholder="{{Valeur retour d\'état}}" style="margin-top : 5px;">';
     tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="returnStateTime" placeholder="{{Durée avant retour d\'état (min)}}" style="margin-top : 5px;">';
     tr += '</td>';
