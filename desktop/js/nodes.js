@@ -226,7 +226,7 @@
 });
  $("#saveGroups").off("click").on("click", function (e) {
     var values = $('#newvaluenode').val().split(";");
-    jeedom.openzwave.node.addGroup({
+    jeedom.openzwave.node.group({
         node_id : node_id,
         instance : values[1],
         group : $('#groupsModal').data('groupindex'),
