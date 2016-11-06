@@ -216,7 +216,7 @@ def copy_configuration(source_id, target_id):
 			if configuration_value.type == 'Button':
 				continue
 			if configuration_value.is_write_only:
-				continue				
+				continue
 			target_value = value_utils.get_value_by_index(target_id, COMMAND_CLASS_CONFIGURATION, 1,configuration_value.index)
 			if target_value is not None:
 				if configuration_value.type == 'List':
@@ -356,7 +356,7 @@ def switch_all(node_id, state):
 					my_node.values[dimmer].refresh()
 	return utils.format_json_result()	
 
-@app.route('/node/<int:node_id>/instance/<int:instance>/group/<int:group>/<action>(<int:target_id>)', methods=['GET'])
+@app.route('/node/<int:node_id>/<action>(<int:group>,<int:target_id>,<int:instance>)', methods=['GET'])
 @auth.login_required
 def assoc_action(node_id, group, target_id,instance,action):
 	if globals.network_information.controller_is_busy:

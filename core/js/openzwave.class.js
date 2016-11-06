@@ -380,7 +380,7 @@
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	_params.instance = _params.instance || 0
  	paramsAJAX.data = {
- 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/group/'+_params.group+'/'+_params.action+'('+_params.target_id+')',
+ 		request: '/node/'+_params.node_id+'/'+_params.action+'('+_params.group+','+_params.target_id+','+_params.instance+')',
  	};
  	$.ajax(paramsAJAX);
  }
