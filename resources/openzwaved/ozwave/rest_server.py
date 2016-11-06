@@ -197,7 +197,7 @@ def node_info(node_id,info):
 	else:
 		return utils.format_json_result()
 
-@app.route('/node/int:node_id>/action(<action>)', methods=['GET'])
+@app.route('/node/<int:node_id>/action(<action>)', methods=['GET'])
 @auth.login_required
 def node_action(node_id,action):
 	utils.check_node_exist(node_id)
