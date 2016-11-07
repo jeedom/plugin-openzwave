@@ -24,12 +24,6 @@ def get_controller_status():
 		if globals.network.controller:
 			controller_status = serialization.serialize_controller_to_json()
 	return utils.format_json_result(data=controller_status)
-
-def hard_reset():
-	globals.network.controller.hard_reset()
-	logging.info('The controller becomes a primary controller ready to add devices to a new network')
-	time.sleep(3)
-	network_utils.start_network()
 	
 def hard_reset():
 	globals.network.controller.hard_reset()
