@@ -149,15 +149,15 @@ sendVarToJs('node_id', init('id'));
                                 <th>{{Date de mise à jour}}</th>
                             </tr>
                             <tr id="template-variable" style="display:none">
-                                <td key="variable-name"></td>
-                                <td key="variable-value"></td>
-                                <td key="variable-cc"></td>
-                                <td key="variable-instance"></td>
-                                <td key="variable-index"></td>
-                                <td key="variable-type"></td>
-                                <td key="variable-polling"></td>
-                                <td key="variable-refresh"></td>
-                                <td key="variable-updatetime"></td>
+                                <td data-key="name"></td>
+                                <td data-key="value"></td>
+                                <td data-key="cc"></td>
+                                <td data-key="instance"></td>
+                                <td data-key="index"></td>
+                                <td data-key="type"></td>
+                                <td data-key="polling"></td>
+                                <td data-key="refresh"></td>
+                                <td data-key="updatetime"></td>
                             </tr>
                             <tbody class="variables"></tbody>
                         </table>
@@ -190,12 +190,12 @@ sendVarToJs('node_id', init('id'));
                                     </th>
                                 </tr>
                                 <tr id="template-parameter" style="display:none">
-                                    <td key="parameter-index"></td>
-                                    <td key="parameter-name"></td>
-                                    <td key="parameter-type"></td>
-                                    <td key="parameter-value"></td>
-                                    <td key="parameter-edit"></td>
-                                    <td key="parameter-help"></td>
+                                    <td data-key="index"></td>
+                                    <td data-key="name"></td>
+                                    <td data-key="type"></td>
+                                    <td data-key="value"></td>
+                                    <td data-key="edit"></td>
+                                    <td data-key="help"></td>
                                 </tr>
                                 <tbody class="parameters"></tbody>
                             </table>
@@ -233,14 +233,14 @@ sendVarToJs('node_id', init('id'));
                                 <th>{{Date de mise à jour}}</th>
                             </tr>
                             <tr id="template-system" style="display:none">
-                                <td key="system-name"></td>
-                                <td key="system-value"></td>
-                                <td key="system-edit"></td>
-                                <td key="system-cc"></td>
-                                <td key="system-instance"></td>
-                                <td key="system-index"></td>
-                                <td key="system-type"></td>
-                                <td key="system-updatetime"></td>
+                                <td data-key="name"></td>
+                                <td data-key="value"></td>
+                                <td data-key="edit"></td>
+                                <td data-key="cc"></td>
+                                <td data-key="instance"></td>
+                                <td data-key="index"></td>
+                                <td data-key="type"></td>
+                                <td data-key="updatetime"></td>
                             </tr>
                             <tbody class="system_variables"></tbody>
 
