@@ -20,10 +20,6 @@
  nodes = {};
  node_selected = {};
  controller_id = -1;
- var template_node = $("#template-node").html();
- var template_variable = $("#template-variable").html();
- var template_parameter = $("#template-parameter").html();
- var template_system = $("#template-system").html();
  var isWarning = false;
  var warningMessage = "";
 
@@ -706,33 +702,33 @@ function display_node_info(){
                         if (genre == "Config") {
                             switch (pending_state) {
                                 case 1:
-                                parameters += "<tr class='greenrow' pid='" + id + "'>" + template_parameter + "</tr>";
+                                parameters += "<tr class='greenrow' pid='" + id + "'>" + $("#template-parameter").html() + "</tr>";
                                 break;
                                 case 2:
-                                parameters += "<tr class='redrow' pid='" + id + "'>" + template_parameter + "</tr>";
+                                parameters += "<tr class='redrow' pid='" + id + "'>" + $("#template-parameter").html() + "</tr>";
                                 break;
                                 case 3:
-                                parameters += "<tr class='yellowrow' pid='" + id + "'>" + template_parameter + "</tr>";
+                                parameters += "<tr class='yellowrow' pid='" + id + "'>" + $("#template-parameter").html() + "</tr>";
                                 break;
                                 default:
-                                parameters += "<tr pid='" + id + "'>" + template_parameter + "</tr>";
+                                parameters += "<tr pid='" + id + "'>" + $("#template-parameter").html() + "</tr>";
                             }
                         } else if (genre == "System") {
                             switch (pending_state) {
                                 case 1:
-                                system_variables += "<tr class='greenrow' sid='" + id + "'>" + template_system + "</tr>";
+                                system_variables += "<tr class='greenrow' sid='" + id + "'>" + $("#template-system").html() + "</tr>";
                                 break;
                                 case 2:
-                                system_variables += "<tr class='redrow' sid='" + id + "'>" + template_system + "</tr>";
+                                system_variables += "<tr class='redrow' sid='" + id + "'>" + $("#template-system").html() + "</tr>";
                                 break;
                                 case 3:
-                                system_variables += "<tr class='yellowrow' sid='" + id + "'>" + template_system + "</tr>";
+                                system_variables += "<tr class='yellowrow' sid='" + id + "'>" + $("#template-system").html() + "</tr>";
                                 break;
                                 default:
-                                system_variables += "<tr sid='" + id + "'>" + template_system + "</tr>";
+                                system_variables += "<tr sid='" + id + "'>" + $("#template-system").html() + "</tr>";
                             }
                         } else {
-                            variables += "<tr vid='" + id + "'>" + template_variable + "</tr>";
+                            variables += "<tr vid='" + id + "'>" + $("#template-variable").html() + "</tr>";
                         }
                     }
                 }
