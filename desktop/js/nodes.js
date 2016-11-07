@@ -189,38 +189,28 @@ if ($(this).data('valuetype') == "List") {
 }
 });
 } else if($(this).data('valuetype') == "Raw") {
-  bootbox.prompt({
-    title: title,
-    inputType: 'text',
-    callback: function (result) {
-        if(result === null){
-            return;
-        }
-        jeedom.openzwave.node.setRaw({
-            node_id : node_id,
-            slot_id : index,
-            value : result,
-            error: function (error) {
-                $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function () {
-             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-         }
-     });
+    var result = prompt(title);
+    if(result === null){
+        return;
     }
-});
+    jeedom.openzwave.node.setRaw({
+        node_id : node_id,
+        slot_id : index,
+        value : result,
+        error: function (error) {
+            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
+     }
+ });
 }else {
-  bootbox.prompt({
-    title: title,
-    inputType: 'number',
-    callback: function (result) {
-        if(result === null){
-            return;
-        }
-        valueApplyOption.value = result
-        jeedom.openzwave.node.set(valueApplyOption);
-    }
-});
+   var result = prompt(title);
+   if(result === null){
+    return;
+}
+valueApplyOption.value = result
+jeedom.openzwave.node.set(valueApplyOption);
 }
 });
 
@@ -272,7 +262,7 @@ if ($(this).data('valuetype') == "List") {
 
 
  $("body").off("click", ".editParam").on("click", ".editParam", function (e) {
-    var title = '{{Changer la valeur pour le paramètre} : }'+$(this).data('paramname')+' ('+ $(this).data('paramvalue')+')'
+    var title = '{{Changer la valeur pour le paramètre}} : '+$(this).data('paramname')+' ('+ $(this).data('paramvalue')+')'
     var setParamOptions = {
         node_id : node_id,
         id :  $(this).data('paramid'),
@@ -350,18 +340,13 @@ if ($(this).data('valuetype') == "List") {
     }
 });
 }else {
-    bootbox.prompt({
-        title: title,
-        inputType: 'number',
-        callback: function (result) {
-            if(result === null){
-                return;
-            }
-            setParamOptions.value = result.replace(/\//g, '@');
-            setParamOptions.length = result.length;
-            jeedom.openzwave.node.setParam(setParamOptions);
-        }
-    });
+   var result = prompt(title);
+   if(result === null){
+    return;
+}
+setParamOptions.value = result.replace(/\//g, '@');
+setParamOptions.length = result.length;
+jeedom.openzwave.node.setParam(setParamOptions);
 }
 });
 
