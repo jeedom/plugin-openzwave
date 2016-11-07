@@ -58,11 +58,7 @@
                 if (nodes[node_id].data == undefined) {
                     continue;
                 }
-                if (nodes[node_id].data.isEnable.value) {
-                    tbody += '<tr >';
-                }else {
-                    tbody += '<tr class="active">';
-                }
+                tbody += (nodes[node_id].data.isEnable.value) ?  '<tr>' : '<tr class="active">';
                 tbody += '<td>';
                 var name = '<span class="nodeConfiguration cursor" data-node-id="' + node_id + '">';
                 if (nodes[node_id].data.description.name != '') {
@@ -84,18 +80,10 @@
                     name += ' <span title="{{FLiRS}}"><i class="fa fa-assistive-listening-systems " aria-hidden="true"></i></span>';
                 }
                 name += '</span>';
-                if (nodes[node_id].data.isEnable.value) {
-                    tbody += name;
-                }else {
-                    tbody += '<div style="opacity:0.5"><i>' + name + '</i></div>';
-                }
+                tbody += (nodes[node_id].data.isEnable.value) ? name :  '<div style="opacity:0.5"><i>' + name + '</i></div>';
                 tbody += '</td>';
                 tbody += '<td>';
-                if (nodes[node_id].data.isEnable.value) {
-                    tbody += node_id;
-                }else {
-                    tbody += '<div style="opacity:0.5"><i>' + node_id + '</i></div>';
-                }
+                tbody += (nodes[node_id].data.isEnable.value) ? node_id : '<div style="opacity:0.5"><i>' + node_id + '</i></div>';
                 tbody += '</td>';
                 tbody += '<td>';
                 var notification = '';
@@ -110,11 +98,7 @@
                         notification += '<span class="label label-primary" style="font-size : 1em;" title="{{Non disponible}}">...</span>';
                     }
                 }
-                if (nodes[node_id].data.isEnable.value) {
-                    tbody += notification;
-                }else {
-                    tbody += '<div style="opacity:0.5"><i>' + notification + '</i></div>';
-                }
+                tbody += (nodes[node_id].data.isEnable.value) ? notification : '<div style="opacity:0.5"><i>' + notification + '</i></div>';
                 tbody += '</td>';
                 tbody += '<td>';
                 if (nodes[node_id].data.isEnable.value) {
@@ -171,11 +155,7 @@
                 } else {
                     status += '<span class="label label-danger" style="font-size : 1em;">{{DEATH}}</span>';
                 }
-                if (nodes[node_id].data.isEnable.value) {
-                    tbody += status;
-                }else {
-                    tbody += '<div style="opacity:0.5"><i>' + status + '</i></div>';
-                }
+                tbody += (nodes[node_id].data.isEnable.value) ? status : '<div style="opacity:0.5"><i>' + status + '</i></div>';
                 tbody += '</td>';
                 tbody += '<td>';
                 if (nodes[node_id].data.isEnable.value) {
