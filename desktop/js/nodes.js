@@ -933,8 +933,6 @@ function show_groups(){
     }
 }
 
-
-
 function getTranslation(){
     if (typeof node_id === 'undefined' || isNaN(node_id)) {
         return {configuration: {}};
