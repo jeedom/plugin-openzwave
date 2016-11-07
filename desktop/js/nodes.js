@@ -121,12 +121,12 @@
 });
 
  $("body").off("click", ".editValue").on("click", ".editValue", function (e) {
-   var title = '{{Changer la valeur de}} '+ $(this).data('valuename');
+   var title = '{{Changer la valeur de}} '+ $(this).data('name');
    var valueApplyOption={
     node_id : node_id,
-    instance :  $(this).data('valueinstance'),
-    class :  $(this).data('valuecc'),
-    index : $(this).data('valueidx'),
+    instance :  $(this).data('instance'),
+    class :  $(this).data('cc'),
+    index : $(this).data('index'),
     error: function (error) {
         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
     },
@@ -134,7 +134,7 @@
      $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
  }
 }
-if ($(this).data('valuetype') == "List") {
+if ($(this).data('type') == "List") {
     var options = [];
     $.each($(this).data('valuedataitems').split(";"), function (key, val) {
         options.push({value : val,text:val})
@@ -151,7 +151,7 @@ if ($(this).data('valuetype') == "List") {
         jeedom.openzwave.node.set(valueApplyOption);
     }
 });
-} else if ($(this).data('valuetype') == "Bool") {
+} else if ($(this).data('type') == "Bool") {
     bootbox.prompt({
         title: title,
         inputType: 'select',
@@ -168,7 +168,7 @@ if ($(this).data('valuetype') == "List") {
     }
 });
 
-} else if ($(this).data('valuetype') == "Button") {
+} else if ($(this).data('type') == "Button") {
  bootbox.prompt({
     title: title,
     inputType: 'select',
@@ -184,7 +184,7 @@ if ($(this).data('valuetype') == "List") {
     jeedom.openzwave.node.button(valueApplyOption);
 }
 });
-} else if($(this).data('valuetype') == "Raw") {
+} else if($(this).data('type') == "Raw") {
     var result = prompt(title);
     if(result === null){
         return;
@@ -213,9 +213,9 @@ jeedom.openzwave.node.set(valueApplyOption);
  $("body").off("click", ".forceRefresh").on("click", ".forceRefresh", function (e) {
      jeedom.openzwave.node.refreshData({
         node_id : node_id,
-        instance : $(this).attr('data-valueinstance'),
-        class :  $(this).attr('data-valuecc'),
-        index : $(this).attr('data-valueidx'),
+        instance : $(this).attr('data-instance'),
+        class :  $(this).attr('data-cc'),
+        index : $(this).attr('data-index'),
         error: function (error) {
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
         },
@@ -226,9 +226,9 @@ jeedom.openzwave.node.set(valueApplyOption);
  });
 
  $("body").off("click", ".editPolling").on("click", ".editPolling", function (e) {
-    var idx = $(this).data('valueidx');
-    var instance = $(this).data('valueinstance');
-    var cc = $(this).data('valuecc');
+    var idx = $(this).data('index');
+    var instance = $(this).data('instance');
+    var cc = $(this).data('cc');
     bootbox.prompt({
         title: "{{Changer le rafraichissement}}",
         inputType: 'select',
@@ -759,7 +759,7 @@ function display_node_info(){
                     var value = '';
                     var genre = data.instances[instance].commandClasses[commandclass].data[index].genre;
                     if (data.instances[instance].commandClasses[commandclass].data[index].read_only == false) {
-                        value += '<a class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></a> ';
+                        value += '<a class="btn btn-xs btn-primary editValue" data-index="' + index + '" data-instance="' + instance + '" data-cc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-type="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-name="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-value="' + data.instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></a> ';
                     }
                     if (data.instances[instance].commandClasses[commandclass].data[index].type == 'bool') {
                         var boolValue = data.instances[instance].commandClasses[commandclass].data[index].val;
@@ -783,8 +783,8 @@ function display_node_info(){
                     var polling = '<span style="width : 22px;"></span>';
                     if (data.instances[instance].commandClasses[commandclass].data[index].write_only == false && first_index_polling) {
                         first_index_polling = false;
-                        var polling = '<a style="position:relative;top:-1px;" class="btn btn-primary btn-xs editPolling cursor" data-valueidx="' + index + '" data-valuepolling="' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></a> ';
-                        row.find("td[key=variable-refresh]").html('<a class="btn btn-xs btn-primary forceRefresh" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-refresh"></i></a>');
+                        var polling = '<a style="position:relative;top:-1px;" class="btn btn-primary btn-xs editPolling cursor" data-index="' + index + '" data-polling="' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '" data-instance="' + instance + '" data-cc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-type="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-name="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-value="' + data.instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-wrench"></i></a> ';
+                        row.find("td[key=variable-refresh]").html('<a class="btn btn-xs btn-primary forceRefresh" data-index="' + index + '" data-instance="' + instance + '" data-cc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-type="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-name="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-value="' + data.instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-refresh"></i></a>');
                         if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 0) {
                             polling += '<span class="label label-success" style="font-size:1em;">{{Auto}}</span>';
                         } else if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 1) {
@@ -823,7 +823,7 @@ function display_node_info(){
                     }
                     row_system.find("td[key=system-value]").html(system_data);
                     if (data.instances[instance].commandClasses[commandclass].data[index].read_only == false) {
-                        row_system.find("td[key=system-edit]").html('<a class="btn btn-xs btn-primary editValue" data-valueidx="' + index + '" data-valueinstance="' + instance + '" data-valuecc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-valuetype="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-valuename="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-valuevalue="' + data.instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></a>');
+                        row_system.find("td[key=system-edit]").html('<a class="btn btn-xs btn-primary editValue" data-index="' + index + '" data-instance="' + instance + '" data-cc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-type="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-name="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-value="' + data.instances[instance].commandClasses[commandclass].data[index].val + '" data-valuegenre="' +genre +'"><i class="fa fa-wrench"></i></a>');
                     }
                     if (data.instances[instance].commandClasses[commandclass].data[index].write_only == false) {
                         row_system.find("td[key=system-updatetime]").html(jeedom.openzwave.timestampConverter(data.instances[instance].commandClasses[commandclass].data[index].updateTime));
