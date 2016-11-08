@@ -27,7 +27,7 @@ def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 			raise Exception('Node is not Ready for associations')
 	for val in globals.network.nodes[_node_id].get_values(class_id=_cc_id, genre='All', type='All', readonly=False, writeonly='All'):
 		if globals.network.nodes[_node_id].values[val].instance - 1 == _instance_id and (_index is None or globals.network.nodes[_node_id].values[val].index == _index):
-			value = convert_to_value_type(globals.network.nodes[_node_id].values[val].type,_value)
+			value = globals.network.nodes[_node_id].values[val].check_data(_value)
 			if _cc_id == COMMAND_CLASS_SWITCH_MULTILEVEL and value > 99:
 				logging.debug("Switch light ON to dim level that was last known")
 				value = 255
@@ -44,27 +44,3 @@ def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 				worker.start()
 			return True
 	raise Exception('Value not found')
-
-def convert_to_value_type(_type,_value):
-	logging.debug('Convert '+str(_value)+' to type '+str(_type))
-	if _type == 'Bool':
-		return not (_value == 0 or _value == '0')
-	if _type == 'Byte':
-		return int(_value)
-	if _type == 'Decimal':
-		return float(_value)
-	if _type == 'Int':
-		return int(_value)
-	if _type == 'List':
-		return _value
-	if _type == 'Schedule':
-		return _value
-	if _type == 'Short':
-		return int(_value)
-	if _type == 'String':
-		return _value
-	if _type == 'Button':
-		return not (_value == 0 or _value == '0')
-	if _type == 'Raw':
-		return _value
-	return _value

@@ -233,11 +233,11 @@ def set_config(_node_id, _index_id, _value, _size):
 				globals.network.manager.setValue(value_id, value)
 				mark_pending_change(my_value, value)
 			elif my_value.type == 'Bool':
-				value = commands.convert_to_value_type(my_value.type,value)
+				value = globals.network.nodes[_node_id].values[value_id].check_data(value)
 				globals.network.manager.setValue(value_id, value)
 				mark_pending_change(my_value, value)
 			else:
-				value = commands.convert_to_value_type(my_value.type,value)
+				value = globals.network.nodes[_node_id].values[value_id].check_data(value)
 				globals.network.nodes[_node_id].set_config_param(_index_id, value, _size)
 				if my_value is not None:
 					mark_pending_change(my_value, value)
