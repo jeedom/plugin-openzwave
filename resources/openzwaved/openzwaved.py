@@ -17,7 +17,6 @@ import argparse
 import os
 from ozwave import globals,server_utils,rest_server
 try:
-	from tornado.wsgi import WSGIContainer
 	from tornado.httpserver import HTTPServer
 	from tornado.ioloop import IOLoop
 except Exception as e:
@@ -71,13 +70,8 @@ server_utils.start_server()
 if __name__ == '__main__':
 	server_utils.write_pid()
 	try:
-		http_server = HTTPServer(WSGIContainer(globals.app))
+		http_server = HTTPServer(globals.app)
 		http_server.listen(globals.port_server)
 		IOLoop.instance().start()
-		if globals.log_level == 'Debug':
-			print('REST server starting in %s mode' % (globals.log_level,))
-			globals.app.run(host='0.0.0.0', port=int(globals.port_server), debug=True, threaded=True, use_reloader=False, use_debugger=True)
-		else:
-			globals.app.run(host='0.0.0.0', port=int(globals.port_server), debug=False, threaded=True, use_reloader=False, use_debugger=False)
 	except Exception, ex:
 		print "Fatal Error: %s" % str(ex)
