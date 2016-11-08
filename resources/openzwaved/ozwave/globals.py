@@ -35,7 +35,6 @@ NETWORK_REST_MAPPING = {'start' : network_utils.start_network,\
 	'stop' : network_utils.graceful_stop_network, \
 	'writeZWConfig' : utils.write_config,\
 	'manualBackup' : network_utils.manual_backup,\
-	'performSanityChecks' : network_utils.perform_sanity_checks,\
 	'getStatus': network_utils.get_status,\
 	'getHealth' : network_utils.get_health,\
 	'getNodesList' : network_utils.get_nodes_list,\
@@ -109,7 +108,7 @@ recovering_failed_nodes_timer = 900.0  # 15 minutes
 # perform sanitary jobs
 recovering_failed_nodes_jobs_timer = 900.0  # 15 minutes
 maximum_number_notifications = 25
-sanity_checks_delay = 15.0
+ghost_removal_delay = 15.0
 not_supported_nodes = [0, 255]
 user_values_to_refresh = ["Level", "Sensor", "Switch", "Power", "Temperature", "Alarm Type", "Alarm Type", "Power Management"]
 network = None

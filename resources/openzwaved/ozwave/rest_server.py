@@ -253,7 +253,7 @@ class NodeHandler(RequestHandler):
 		elif type == 'setconfig':
 			size = int(self.get_argument('size','0'))
 			value = self.get_argument('value','')
-			self.write(utils.format_json_result(data=value_utils.set_config(node_id, index_id, value, size)))
+			self.write(utils.format_json_result(data=value_utils.set_config(node_id, index, value, size)))
 		elif type == 'setvalue':
 			value = self.get_argument('value','')
 			self.write(utils.format_json_result(data=commands.send_command_zwave(node_id, cc_id, instance_id, index, value)))
@@ -303,7 +303,7 @@ class NodeHandler(RequestHandler):
 			self.write(utils.format_json_result())
 		elif type == 'association':
 			group = int(self.get_argument('group','0'))
-			self.write(node_utils.add_assoc(node_id, group, target_id,instance,action))
+			self.write(node_utils.add_assoc(node_id, group, target_id,instance_id,action))
 		else:
 			self.write(utils.format_json_result())
 

@@ -4,12 +4,6 @@ import os
 import sys
 import globals,manager_utils,network_utils,dispatcher_utils
 try:
-	from flask import request
-except Exception as e:
-	print(globals.MSG_CHECK_DEPENDENCY, 'error')
-	print("Error: %s" % str(e), 'error')
-	sys.exit(1)
-try:
 	from jeedom.jeedom import *
 except ImportError:
 	print "Error: importing module jeedom.jeedom"
@@ -38,12 +32,6 @@ def start_server():
 	logging.info('Python-OpenZwave Wrapper Version %s' % (globals.network.manager.getPythonLibraryVersionNumber(),))
 	logging.info("--> pass")
 	logging.info('Waiting for network to become ready')
-
-def shutdown_server():
-	func = request.environ.get('werkzeug.server.shutdown')
-	if func is None:
-		raise RuntimeError('Not running with the Werkzeug Server')
-	func()
 
 def check_start_server():
 	if globals.device is None or len(globals.device) == 0:

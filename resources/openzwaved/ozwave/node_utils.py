@@ -19,24 +19,17 @@ def save_node_event(node_id, value):
 			globals.jeedom_com.add_changes('controller::state', {"value": value})
 
 def push_node_notification(node_id, notification_code):
-	# check for notification Dead or Alive
 	if notification_code in [5, 6]:
 		if notification_code == 5:
-			# Report when a node is presumed dead
 			alert_type = 'node_dead'
 		else:
-			# Report when a node is revived
 			alert_type = 'node_alive'
 		changes = {'alert': {'type': alert_type, 'id': node_id}}
 		globals.jeedom_com.send_change_immediate(changes)
 
 def recovering_failed_nodes_asynchronous():
-	# wait 15 seconds on first launch
-	time.sleep(globals.sanity_checks_delay)
-	while True:
-		network_utils.sanity_checks()
-		# wait for next run
-		time.sleep(globals.recovering_failed_nodes_timer)
+	#leave that alone for now
+	return
 
 def nodes_queried(network):
 	utils.write_config()
@@ -68,7 +61,6 @@ def node_removed(network, node):
 		return
 	if network.state >= globals.network.STATE_AWAKED:
 		save_node_event(node.node_id, "removed")
-	# clean dict
 	if node.node_id in globals.node_notifications:
 		del globals.node_notifications[node.node_id]
 	if node.node_id in globals.pending_associations:

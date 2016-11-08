@@ -89,9 +89,21 @@ def network_awaked(network):
 	dispatcher_utils.add_dispatcher_listen(node_utils.node_group_changed, ZWaveNetwork.SIGNAL_GROUP)
 	save_network_state(network.state)
 	if globals.ghost_node_id is not None:
-		logging.info("Last step for Removing Ghost node will start in %d sec" % (globals.sanity_checks_delay,))
-		sanity_checks_job = threading.Timer(globals.sanity_checks_delay, sanity_checks, [True])
-		sanity_checks_job.start()
+		logging.info("Last step for Removing Ghost node will start in %d sec" % (globals.ghost_removal_delay,))
+		ghost_removal_job = threading.Timer(globals.ghost_removal_delay, ghost_removal)
+		ghost_removal_job.start()
+
+def ghost_removal():
+	logging.info("Perform ghost_removal")
+	for node_id in list(globals.network.nodes):
+		my_node = globals.network.nodes[node_id]
+		if globals.ghost_node_id is not None and node_id == globals.ghost_node_id and my_node.is_failed:
+			logging.info('* Try to remove a Ghost node (nodeId: %s)' % (node_id,))
+			globals.network.manager.removeFailedNode(globals.network.home_id, node_id)
+			time.sleep(10)
+			if globals.ghost_node_id not in globals.network.nodes:
+				globals.ghost_node_id = None
+				logging.info('=> Ghost node removed (nodeId: %s)' % (node_id,))
 
 def get_network_mode():
 	if globals.network_information.controller_is_busy:
@@ -164,104 +176,12 @@ def refresh_user_values_asynchronous():
 		retry_job = threading.Timer(240.0, refresh_user_values_asynchronous)
 		retry_job.start()
 
-def sanity_checks(force=False):
-	# if controller is busy skip this run
-	if globals.sanity_checks_running:
-		return
-	try:
-		globals.sanity_checks_running = True
-		if force or can_execute_network_command(0):
-			logging.info("Perform network sanity test/check")
-			for node_id in list(globals.network.nodes):
-				my_node = globals.network.nodes[node_id]
-				# first check if a ghost node wait to be removed
-				if globals.ghost_node_id is not None and node_id == globals.ghost_node_id and my_node.is_failed:
-					logging.info('* Try to remove a Ghost node (nodeId: %s)' % (node_id,))
-					globals.network.manager.removeFailedNode(globals.network.home_id, node_id)
-					time.sleep(10)
-					if globals.ghost_node_id not in globals.network.nodes:
-						# reset ghost node flag
-						globals.ghost_node_id = None
-						logging.info('=> Ghost node removed (nodeId: %s)' % (node_id,))
-					continue
-				if node_id in globals.not_supported_nodes:
-					logging.info('=> Remove not valid nodeId: %s' % (node_id,))
-					globals.network.manager.removeFailedNode(globals.network.home_id, node_id)
-					time.sleep(10)
-					continue
-				if node_id in globals.disabled_nodes:
-					continue
-				if my_node.is_failed:
-					if globals.ghost_node_id is not None and node_id == globals.ghost_node_id:
-						continue
-					logging.info('=> Try recovering, presumed Dead, nodeId: %s with a Ping' % (node_id,))
-					# a ping will try to revive the node
-					globals.network.manager.testNetworkNode(globals.network.home_id, node_id, 3)
-					# avoid stress network
-					time.sleep(5)
-					if globals.network.manager.hasNodeFailed(globals.network.home_id, node_id):
-						# avoid stress network
-						time.sleep(4)
-					if my_node.is_failed:
-						# relive failed nodes
-						logging.info('=> Try recovering, presumed Dead, nodeId: %s with a NIF' % (node_id,))
-						if globals.network.manager.sendNodeInformation(globals.network.home_id, node_id):
-							# avoid stress network
-							time.sleep(4)
-				elif my_node.is_listening_device and my_node.is_ready:
-					# check if a ping is require
-					if node_id in globals.node_notifications:
-						last_notification = globals.node_notifications[node_id]
-						logging.debug('=> last_notification for nodeId: %s is: %s(%s)' % (node_id, last_notification.description, last_notification.code,))
-						# is in timeout or dead
-						if last_notification.code in [1, 5]:
-							logging.info('=> Do a test on node %s' % (node_id,))
-							# a ping will try to resolve this situation with a NoOperation CC.
-							globals.network.manager.testNetworkNode(globals.network.home_id, node_id, 3)
-							# avoid stress network
-							time.sleep(10)
-				elif not my_node.is_listening_device and my_node.is_ready:
-					try:
-						can_wake_up = my_node.can_wake_up()
-					except RuntimeError:
-						can_wake_up = False
-					if can_wake_up and node_id in globals.node_notifications:
-						last_notification = globals.node_notifications[node_id]
-						# check if controller think is awake
-						if my_node.is_awake or last_notification.code == 3:
-							logging.info('trying to lull the node %s' % (node_id,))
-							# a ping will force the node to return sleep after the NoOperation CC. Will force node notification update
-							globals.network.manager.testNetworkNode(globals.network.home_id, node_id, 1)
-
-			logging.info("Network sanity test/check completed!")
-		else:
-			logging.debug("Network is loaded, skip sanity check this time")
-	except Exception as error:
-		logging.error('Unknown error during sanity checks: %s' % (str(error),))
-	finally:
-		globals.sanity_checks_running = False
-
 def manual_backup():
 	logging.info('Manually creating a backup')
 	if globals.files_manager.backup_xml_config('manual', globals.network.home_id_str):
 		return utils.format_json_result(data='Xml config file successfully backup')
 	else:
 		return utils.format_json_result(sucess='error',data='See openzwave log file for details')
-
-def perform_sanity_checks():
-	if int(time.time()) > (globals.network_information.start_time + 120):
-		if globals.network.state < globals.network.STATE_STARTED:
-			logging.error("Timeouts occurred during communication with your ZWave dongle. Please check the openzwaved log file for more details.")
-			try:
-				graceful_stop_network()
-			finally:
-				os.remove(globals.pidfile)
-			try:
-				server_utils.shutdown_server()
-			finally:
-				sys.exit()
-			sanity_checks()
-	return utils.format_json_result()
 
 def get_status():
 	json_result = {}
