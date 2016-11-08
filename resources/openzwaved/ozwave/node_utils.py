@@ -346,15 +346,13 @@ def add_assoc(node_id, group, target_id,instance,action):
 	if node_id not in globals.pending_associations:
 		globals.pending_associations[node_id] = dict()
 	if action == 'remove':
-		globals.pending_associations[node_id][group] = PendingAssociation(pending_added=None, pending_removed=target_id,
-																		  timeout=0)
+		globals.pending_associations[node_id][group] = PendingAssociation(pending_added=None, pending_removed=target_id,timeout=0)
 		if instance < 1:
 			globals.network.manager.removeAssociation(globals.network.home_id, node_id, group, target_id)
 		else:
 			globals.network.manager.removeAssociation(globals.network.home_id, node_id, group, target_id, instance)
 	if action == 'add':
-		globals.pending_associations[node_id][group] = PendingAssociation(pending_added=target_id, pending_removed=None,
-																		  timeout=0)
+		globals.pending_associations[node_id][group] = PendingAssociation(pending_added=target_id, pending_removed=None,timeout=0)
 		if instance < 1:
 			globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id)
 		else:
