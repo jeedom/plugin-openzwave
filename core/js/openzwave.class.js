@@ -84,7 +84,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'controller/action('+_params.action+')',
+ 		request: 'controller?type=action&action='+_params.action,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -103,7 +103,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'controller/addNodeToNetwork(1,'+_params.secure+')',
+ 		request: 'controller?type=addNode&security='+_params.secure,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -121,7 +121,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'controller/removeNodeFromNetwork(1)',
+ 		request: 'controller?type=removeNode',
  	};
  	$.ajax(paramsAJAX);
  }
@@ -139,7 +139,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'controller/replicationSend('+_params.bridge_controller_id+')',
+ 		request: 'controller?type=replicationSend&node_id='+_params.bridge_controller_id,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -162,7 +162,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/'+_params.node_id+'/action('+_params.action+')',
+ 		request: 'node?node_id='+_params.node_id+'&type=action&action='+_params.action,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -180,7 +180,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/'+_params.node_id+'/info('+_params.info+')',
+ 		request: 'node?node_id='+_params.node_id+'&type=info&info='+_params.info,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -198,7 +198,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/'+_params.node_id+'/removeDeviceZWConfig('+_params.all+')',
+ 		request: 'node?node_id='+_params.node_id+'&type=removeDeviceZWConfig&identical='+_params.all,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -216,7 +216,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/'+_params.node_id+'/cc/'+jeedom.openzwave.normalizeClass(_params.class)+'/refreshClass()',
+ 		request: 'node?node_id='+_params.node_id+'&cc_id='+jeedom.openzwave.normalizeClass(_params.class)+'&type=refreshClass',
  	};
  	$.ajax(paramsAJAX);
  }
@@ -234,7 +234,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/'+_params.node_id+'/cc/'+jeedom.openzwave.normalizeClass(_params.class)+'/data',
+ 		request: 'node?node_id='+_params.node_id+'&cc_id='+jeedom.openzwave.normalizeClass(_params.class)+'&type=data',
  	};
  	$.ajax(paramsAJAX);
  }
@@ -252,7 +252,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/cc/'+jeedom.openzwave.normalizeClass(_params.class)+'/index/'+_params.index+'/refreshData()',
+ 		request: '/node?node_id='+_params.node_id+'&instance_id='+_params.instance+'&cc_id='+jeedom.openzwave.normalizeClass(_params.class)+'&index='+_params.index+'&type=refreshData',
  	};
  	$.ajax(paramsAJAX);
  }
@@ -270,7 +270,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/cc/'+jeedom.openzwave.normalizeClass(_params.class)+'/index/'+_params.index+'/setPolling('+_params.polling+')',
+ 		request: '/node?node_id='+_params.node_id+'&instance_id='+_params.instance+'&cc_id='+jeedom.openzwave.normalizeClass(_params.class)+'&index='+_params.index+'&type=setPolling&frequency='+_params.polling,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -288,7 +288,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/cc/'+jeedom.openzwave.normalizeClass(_params.class)+'/index/'+_params.index+'/button('+_params.action+')',
+ 		request: '/node?node_id='+_params.node_id+'&instance_id='+_params.instance+'&cc_id='+jeedom.openzwave.normalizeClass(_params.class)+'&index='+_params.index+'&type=button&action='+_params.action,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -306,7 +306,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'node/'+_params.node_id+'/copyConfigurations('+_params.target_id+')',
+ 		request: 'node?node_id='+_params.node_id+'&type=copyConfigurations&target_id='+_params.target_id,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -324,8 +324,13 @@
  	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	url = '';
+ 	values = params.value.split(",");
+ 	for(var i in values){
+ 		url += '&value'+i+'='+values[i];
+ 	}
  	paramsAJAX.data = {
- 		request: 'node/'+_params.node_id+'/setRaw('+_params.slot_id+',['+_params.value+'])',
+ 		request: 'node?node_id='+_params.node_id+'&type=setRaw&slot_id='+_params.slot_id+url,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -343,7 +348,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: '/node/'+_params.node_id+'/instance/'+_params.instance+'/cc/'+jeedom.openzwave.normalizeClass(_params.class)+'/index/'+_params.index+'/set('+encodeURIComponent(_params.value)+')',
+ 		request: '/node?node_id='+_params.node_id+'&instance_id='+_params.instance+'&cc_id='+jeedom.openzwave.normalizeClass(_params.class)+'&index='+_params.index+'&type=set&value='+encodeURIComponent(_params.value),
  	};
  	$.ajax(paramsAJAX);
  }
@@ -361,7 +366,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: '/node/'+_params.node_id+'/instance/0/cc/112/index/0/set('+_params.id+','+encodeURIComponent(_params.value)+','+_params.length+')',
+ 		request: '/node?node_id='+_params.node_id+'&instance_id=0&cc_id=112&index='+_params.id+'&type=setconfig&value='+encodeURIComponent(_params.value)+'&size='+_params.length,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -380,7 +385,7 @@
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	_params.instance = _params.instance || 0
  	paramsAJAX.data = {
- 		request: '/node/'+_params.node_id+'/'+_params.action+'('+_params.group+','+_params.target_id+','+_params.instance+')',
+ 		request: '/node?node_id='+_params.node_id+'&type=association&action='+_params.action+'&group='+_params.group+'&target_id='+_params.target_id+'&instance_id='+_params.instance,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -410,7 +415,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'network/action('+_params.action+')',
+ 		request: 'network?type=action&action='+_params.action,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -428,7 +433,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'network/info('+_params.info+')',
+ 		request: 'network?type=info&info='+_params.info,
  	};
  	$.ajax(paramsAJAX);
  }

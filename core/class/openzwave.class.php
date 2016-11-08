@@ -61,7 +61,7 @@ class openzwave extends eqLogic {
 
 	public static function syncEqLogicWithOpenZwave($_logical_id = null) {
 		try {
-			$controlerState = self::callOpenzwave('/network/info(getStatus)');
+			$controlerState = self::callOpenzwave('/network?type=info&info=getStatus)');
 			$state = $controlerState['result']['data']['networkstate']['value'];
 		} catch (Exception $e) {
 			$state = 10;
@@ -136,7 +136,7 @@ class openzwave extends eqLogic {
 			return;
 		}
 
-		$results = self::callOpenzwave('/network/info(getNodesList)');
+		$results = self::callOpenzwave('/network?type=info&info=getNodesList');
 		$findDevice = array();
 		$include_device = '';
 		if (count($results['devices']) < 1) {
@@ -210,9 +210,6 @@ class openzwave extends eqLogic {
 	}
 
 	public static function cron15() {
-		if (config::byKey('enabled_sanity_tests', 'openzwave') == 1) {
-			self::callOpenzwave('/ZWaveAPI/Run/network.PerformSanityChecks()', null, false, null, true);
-		}
 		$pathlog = log::getPathToLog('openzwaved');
 		if (file_exists(log::getPathToLog('openzwaved')) && shell_exec('grep "Not enough space in stream buffer" ' . log::getPathToLog('openzwaved') . ' | wc -l') > 0) {
 			log::add('openzwave', 'error', 'Not enough space in stream buffer detected');
@@ -555,20 +552,20 @@ class openzwave extends eqLogic {
 		}
 		if (isset($device['recommended']['params'])) {
 			foreach ($device['recommended']['params'] as $value) {
-				openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/instance/0/cc/112/index/0/set(' . $value['index'] . ',' . $value['value'] . ',1)');
+				openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&instance_id=0&cc_id=112&index=' . $value['index'] . '&setconfig&value=' . $value['value'] . '&size=1');
 			}
 		}
 		if (isset($device['recommended']['groups'])) {
 			foreach ($device['recommended']['groups'] as $value) {
 				if ($value['value'] == 'add') {
-					openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/add('. $value['index'] . ',1,0)');
+					openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '/add(' . $value['index'] . ',1,0)');
 				} else if ($value['value'] == 'remove') {
-					openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/remove('. $value['index'] . ',1,0)');
+					openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '/remove(' . $value['index'] . ',1,0)');
 				}
 			}
 		}
 		if (isset($device['recommended']['wakeup'])) {
-			openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/instance/0/cc/132/index/0/set(' . $device['recommended']['wakeup'] . ')');
+			openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&instance_id=0&cc_id=132&index=0&type=setvalue&value=' . $device['recommended']['wakeup']);
 		}
 		if (isset($device['recommended']['polling'])) {
 			$pollinglist = $device['recommended']['polling'];
@@ -578,7 +575,7 @@ class openzwave extends eqLogic {
 				if (isset($value['index'])) {
 					$indexpolling = $value['index'];
 				}
-				openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/instance/' . $instancepolling . '/cc/' . $value['class'] . '/index/' . $indexpolling . ']/setPolling(1)');
+				openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&instance_id=' . $instancepolling . '&cc_id=' . $value['class'] . '&index=' . $indexpolling . '&type=setPolling&value=1');
 			}
 		}
 		if (isset($device['recommended']['needswakeup']) && $device['recommended']['needswakeup'] == true) {
@@ -630,7 +627,7 @@ class openzwave extends eqLogic {
 			'message' => __('Création des commandes en mode automatique', __FILE__),
 		));
 		if ($_data == null) {
-			$results = self::callOpenzwave('/node/' . $this->getLogicalId() . '/info(all)');
+			$results = self::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&type=info&info=all)');
 		} else {
 			$results = $_data;
 		}
@@ -906,7 +903,7 @@ class openzwaveCmd extends cmd {
 			return;
 		}
 		$value = $this->getConfiguration('value');
-		$request = '/node/' . $this->getEqLogic()->getLogicalId() . '/';
+		$request = '/node?node_id=' . $this->getEqLogic()->getLogicalId();
 		switch ($this->getSubType()) {
 			case 'slider':
 				$value = str_replace('#slider#', $_options['slider'], $value);
@@ -921,10 +918,10 @@ class openzwaveCmd extends cmd {
 				}
 				$value = str_replace('#color#', str_replace('#', '%23', $_options['color']), $value);
 		}
-		$request .= 'instance/' . $this->getConfiguration('instance', 0);
-		$request .= '/cc/' . $this->getConfiguration('class');
-		$request .= '/index/' . $this->getConfiguration('index');
-		$request .= '/' . str_replace(' ', '%20', $value);
+		$request .= '&instance_id=' . $this->getConfiguration('instance', 0);
+		$request .= '&cc_id=' . $this->getConfiguration('class');
+		$request .= '&index=' . $this->getConfiguration('index');
+		$request .= '&' . str_replace(' ', '%20', $value);
 		openzwave::callOpenzwave($request);
 	}
 
