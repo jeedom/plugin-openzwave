@@ -119,7 +119,7 @@ def node_notification(arguments):
 		else:
 			globals.node_notifications[node_id].refresh(code, wake_up_time)
 		if code == 3:
-			my_value = value_utils.get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval Step', False)
+			my_value = value_utils.get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval Step')
 			if my_value is not None:
 				wake_up_interval_step = my_value.data + 2.0
 			else: 
@@ -142,7 +142,7 @@ def node_event(network, node, value):
 	save_node_value_event(node.node_id, int(time.time()), COMMAND_CLASS_BASIC, 0, standard_type, value, 0)
 
 def get_wake_up_interval(node_id):
-	interval = value_utils.get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval', False)
+	interval = value_utils.get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval')
 	if interval is not None:
 		return interval.data
 	return None

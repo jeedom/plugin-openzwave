@@ -128,7 +128,7 @@ def serialize_node_to_json(node_id):
 		is_neighbours_ok = False
 	json_result['data']['is_neighbours_ok'] = {'value': len(my_node.neighbors) > 0,'neighbors': len(my_node.neighbors), 'enabled': is_neighbours_ok}
 	json_result['data']['is_manufacturer_specific_ok'] = {'value': my_node.manufacturer_id != 0 and my_node.product_id != 0 and my_node.product_type != 0,'enabled': query_stage_index >= 7} 
-	is_secured = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SECURITY, 1, 'Secured', False)
+	is_secured = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SECURITY, 1, 'Secured')
 	json_result['data']['isSecured'] = {'value': is_secured is not None and is_secured.data, 'enabled' : is_secured is not None}
 	pending_changes = 0
 	json_result['instances'] = {"updateTime": timestamp}

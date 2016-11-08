@@ -96,7 +96,7 @@ def extract_data(value, display_raw=False, convert_fahrenheit=True):
 		return int(value.data * int(power)) / power
 	return value.data
 
-def get_value_by_label(node_id, command_class, instance, label, trace=True):
+def get_value_by_label(node_id, command_class, instance, label):
 	if node_id in globals.network.nodes:
 		my_node = globals.network.nodes[node_id]
 		for value_id in my_node.get_values(class_id=command_class):
@@ -104,7 +104,7 @@ def get_value_by_label(node_id, command_class, instance, label, trace=True):
 				return my_node.values[value_id]
 	return None
 
-def get_value_by_index(node_id, command_class, instance, index_id, trace=True):
+def get_value_by_index(node_id, command_class, instance, index_id):
 	if node_id in globals.network.nodes:
 		my_node = globals.network.nodes[node_id]
 		for value_id in my_node.get_values(class_id=command_class):
