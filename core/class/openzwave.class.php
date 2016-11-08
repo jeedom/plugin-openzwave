@@ -25,11 +25,11 @@ class openzwave extends eqLogic {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function callOpenzwave($_url, $_timeout = null, $_noError = false, $_data = null, $_async = false) {
-		$url = 'http://127.0.0.1:' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim(str_replace(' ', '%20', $_url), '/');
-		if ($_async) {
-			shell_exec('curl -s -u "token:' . jeedom::getApiKey('openzwave') . '" -G "' . $url . '" >> /dev/null 2>&1 &');
-			return;
+	public static function callOpenzwave($_url) {
+		if (strpos($_url, '?') !== false) {
+			$url = 'http://127.0.0.1:' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim($_url, '/') . '&apikey=' . jeedom::getApiKey('openzwave');
+		} else {
+			$url = 'http://127.0.0.1:' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim($_url, '/') . '?apikey=' . jeedom::getApiKey('openzwave');
 		}
 		$ch = curl_init();
 		curl_setopt_array($ch, array(
@@ -37,26 +37,14 @@ class openzwave extends eqLogic {
 			CURLOPT_HEADER => false,
 			CURLOPT_RETURNTRANSFER => true,
 		));
-		if ($_timeout !== null) {
-			curl_setopt($ch, CURLOPT_TIMEOUT_MS, $_timeout);
-		}
-		curl_setopt($ch, CURLOPT_USERPWD, 'token:' . jeedom::getApiKey('openzwave'));
 		$result = curl_exec($ch);
-		if ($_noError) {
-			curl_close($ch);
-			return $result;
-		}
 		if (curl_errno($ch)) {
 			$curl_error = curl_error($ch);
 			curl_close($ch);
 			throw new Exception(__('Echec de la requête http : ', __FILE__) . $url . ' Curl error : ' . $curl_error, 404);
 		}
 		curl_close($ch);
-		if (is_json($result)) {
-			return json_decode($result, true);
-		} else {
-			return $result;
-		}
+		return (is_json($result)) ? json_decode($result, true) : $result;
 	}
 
 	public static function syncEqLogicWithOpenZwave($_logical_id = null) {
