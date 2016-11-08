@@ -18,7 +18,6 @@ class ControllerHandler(RequestHandler):
 	def get(self):
 		type = self.get_argument('type','')
 		node_id = int(self.get_argument('node_id','0'))
-		state = int(self.get_argument('state','0'))
 		info = self.get_argument('info','')
 		action = self.get_argument('action','')
 		do_security = int(self.get_argument('security','0'))
@@ -40,38 +39,28 @@ class ControllerHandler(RequestHandler):
 		elif type == 'addNode':
 			if globals.network_information.controller_is_busy:
 				raise HTTPError(500,'Controller is busy')
-			if state == 1:
-				if not network_utils.can_execute_network_command(0):
-					raise HTTPError(500,'Controller is busy')
-				if do_security == 1:
-					do_security = True
-					logging.info("Start the Inclusion Process to add a Node to the Network with Security CC if the node is supports it")
-				else:
-					do_security = False
-					logging.info("Start the Inclusion Process to add a Node to the Network")
-				execution_result = globals.network.manager.addNode(globals.network.home_id, do_security)
-				if execution_result:
-					globals.network_information.actual_mode = ControllerMode.AddDevice
-				self.write(utils.format_json_result(data=execution_result))
-			elif state == 0:
-				logging.info("Start the Inclusion (Cancel)")
-				globals.network.manager.cancelControllerCommand(globals.network.home_id)
-				self.write(utils.format_json_result())
+			if not network_utils.can_execute_network_command(0):
+				raise HTTPError(500,'Controller is busy')
+			if do_security == 1:
+				do_security = True
+				logging.info("Start the Inclusion Process to add a Node to the Network with Security CC if the node is supports it")
+			else:
+				do_security = False
+				logging.info("Start the Inclusion Process to add a Node to the Network")
+			execution_result = globals.network.manager.addNode(globals.network.home_id, do_security)
+			if execution_result:
+				globals.network_information.actual_mode = ControllerMode.AddDevice
+			self.write(utils.format_json_result(data=execution_result))
 		elif type == 'removeNode':
 			if globals.network_information.controller_is_busy:
 				raise HTTPError(500,'Controller is busy')
-			if state == 1:
-				if not network_utils.can_execute_network_command(0):
-					raise HTTPError(500,'Controller is busy')
-				logging.info("Remove a Device from the Z-Wave Network (Started)")
-				execution_result = globals.network.manager.removeNode(globals.network.home_id)
-				if execution_result:
-					globals.network_information.actual_mode = ControllerMode.RemoveDevice
-				self.write(utils.format_json_result(data=execution_result))
-			elif state == 0:
-				logging.info("Remove a Device from the Z-Wave Network (Cancel)")
-				globals.network.manager.cancelControllerCommand(globals.network.home_id)
-				self.write(utils.format_json_result())
+			if not network_utils.can_execute_network_command(0):
+				raise HTTPError(500,'Controller is busy')
+			logging.info("Remove a Device from the Z-Wave Network (Started)")
+			execution_result = globals.network.manager.removeNode(globals.network.home_id)
+			if execution_result:
+				globals.network_information.actual_mode = ControllerMode.RemoveDevice
+			self.write(utils.format_json_result(data=execution_result))
 		else:
 			self.write(utils.format_json_result())
 
