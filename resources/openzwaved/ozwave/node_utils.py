@@ -5,8 +5,8 @@ from lxml import etree
 from utilities.NodeExtend import *
 from utilities.Constants import *
 
-def save_node_value_event(node_id, timestamp, command_class, value_index, standard_type, value, instance):
-	globals.jeedom_com.add_changes('devices::' + str(node_id)+'::'+  str(command_class) + str(instance) + str(value_index),{'node_id': node_id, 'instance': instance, 'CommandClass': command_class, 'index': value_index,'value': value, 'type': standard_type, 'updateTime': timestamp})
+def save_node_value_event(node_id, command_class, value_index, value, instance):
+	globals.jeedom_com.add_changes('devices::' + str(node_id)+'::'+  str(command_class) + str(instance) + str(value_index),{'node_id': node_id, 'instance': instance, 'CommandClass': command_class, 'index': value_index,'value': value})
 
 def save_node_event(node_id, value):
 	if value == "removed":
@@ -134,12 +134,7 @@ def node_event(network, node, value):
 		my_value = network.nodes[node.node_id].values[val]
 		if my_value.genre == "User" and not my_value.is_write_only:
 			value_utils.value_update(network, node, my_value)
-	'''
-	the value is actually the event data, not a zwave value object.
-	This is commonly caused when a node sends a Basic_Set command to the controller.
-	'''
-	standard_type = 'int'
-	save_node_value_event(node.node_id, int(time.time()), COMMAND_CLASS_BASIC, 0, standard_type, value, 0)
+	save_node_value_event(node.node_id, COMMAND_CLASS_BASIC, 0, value, 0)
 
 def get_wake_up_interval(node_id):
 	interval = value_utils.get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval')

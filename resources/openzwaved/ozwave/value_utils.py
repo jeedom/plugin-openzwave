@@ -53,7 +53,7 @@ def save_value(node, value, last_update):
 			return
 		my_node.last_update = last_update
 		value.last_update = last_update
-		node_utils.save_node_value_event(node.node_id, int(time.time()), value.command_class, value.index, utils.get_standard_value_type(value.type), extract_data(value, False), utils.change_instance(value))
+		node_utils.save_node_value_event(node.node_id, value.command_class, value.index, extract_data(value, False), utils.change_instance(value))
 
 def prepare_value_notification(node, value):
 	if value.id_on_network in globals.pending_configurations:

@@ -38,7 +38,7 @@ def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 				value_utils.prepare_refresh(_node_id, val, value, utils.is_motor(_node_id))
 			if _cc_id == COMMAND_CLASS_THERMOSTAT_SETPOINT:
 				logging.debug("COMMAND_CLASS_THERMOSTAT_SETPOINT")
-				node_utils.save_node_value_event(_node_id, int(time.time()), COMMAND_CLASS_THERMOSTAT_SETPOINT, _index, utils.get_standard_value_type(globals.network.nodes[_node_id].values[val].type), value, _instance_id + 10)
+				node_utils.save_node_value_event(_node_id,  COMMAND_CLASS_THERMOSTAT_SETPOINT, _index, value, _instance_id + 10)
 			if _cc_id == COMMAND_CLASS_SWITCH_BINARY:
 				worker = threading.Timer(interval=0.5, function=value_utils.refresh_switch_binary, args=(_node_id, val, value))
 				worker.start()
