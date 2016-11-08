@@ -103,7 +103,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'controller?type=addNode&addNode='+_params.secure,
+ 		request: 'controller?type=addNode&security='+_params.secure,
  	};
  	$.ajax(paramsAJAX);
  }
