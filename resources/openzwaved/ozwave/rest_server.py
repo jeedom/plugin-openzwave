@@ -227,13 +227,13 @@ class NodeHandler(RequestHandler):
 								my_value.disable_poll()
 			utils.write_config()
 			self.write(utils.format_json_result())
-		elif type == 'setPolling':
-			logging.info('Button nodeId : '+str(node_id)+' instance: '+str(instance_id)+' cc : '+str(cc_id)+' index : '+str(index)+' : ' +str(buttonaction))
+		elif type == 'buttonaction':
+			logging.info('Button nodeId : '+str(node_id)+' instance: '+str(instance_id)+' cc : '+str(cc_id)+' index : '+str(index)+' : ' +str(action))
 			for val in globals.network.nodes[node_id].get_values(class_id=cc_id, genre='All', type='All', readonly='All', writeonly='All'):
 				if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[val].index == index:
-					if buttonaction == 'press':
+					if action == 'press':
 						globals.network.manager.pressButton(globals.network.nodes[node_id].values[val].value_id)
-					elif buttonaction == 'release':
+					elif action == 'release':
 						globals.network.manager.releaseButton(globals.network.nodes[node_id].values[val].value_id)
 					self.write(utils.format_json_result())
 			self.write(utils.format_json_result(success='error', data='Button not found'))
