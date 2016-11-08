@@ -130,14 +130,14 @@ def write_config():
 	return format_json_result()
 
 def create_worker(node_id, value_id, target_value, starting_value, counter, motor):
-	# create a new refresh worker
 	refresh_interval = globals.refresh_interval
 	if motor :
-		# a full operation take time, wait longer on each refresh
 		refresh_interval = globals.refresh_interval * 5
 	worker = threading.Timer(interval=refresh_interval, function=value_utils.refresh_background,
 							 args=(node_id, value_id, target_value, starting_value, counter, motor))
-	# save worker
 	globals.refresh_workers[value_id] = worker
-	# start refresh timer
 	worker.start()
+	
+def check_apikey(apikey):
+	if globals.apikey != apikey:
+		raise Exception('Invalid apikey provided')
