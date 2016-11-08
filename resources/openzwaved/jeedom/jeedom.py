@@ -17,6 +17,7 @@
 import time
 import logging
 import threading
+import thread
 import requests
 import datetime
 import collections
@@ -98,6 +99,9 @@ class jeedom_com():
 				self.changes[key] = value
 
 	def send_change_immediate(self,change):
+		thread.start_new_thread( self.thread_change, (change,))
+
+	def thread_change(self,change):
 		logging.debug('Send to jeedom :  %s' % (str(change),))
 		i=0
 		while i < self.retry:
