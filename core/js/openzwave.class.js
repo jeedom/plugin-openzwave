@@ -324,8 +324,13 @@
  	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	url = '';
+ 	values = params.value.split(",");
+ 	for(var i in values){
+ 		url += '&value'+i+'='+values[i];
+ 	}
  	paramsAJAX.data = {
- 		request: 'node?node_id='+_params.node_id+'&type=setRaw('+_params.slot_id+',['+_params.value+'])',
+ 		request: 'node?node_id='+_params.node_id+'&type=setRaw&slot_id='+_params.slot_id+url,
  	};
  	$.ajax(paramsAJAX);
  }
