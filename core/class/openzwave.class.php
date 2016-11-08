@@ -561,9 +561,9 @@ class openzwave extends eqLogic {
 		if (isset($device['recommended']['groups'])) {
 			foreach ($device['recommended']['groups'] as $value) {
 				if ($value['value'] == 'add') {
-					openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/add('. $value['index'] . ',1,0)');
+					openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/add(' . $value['index'] . ',1,0)');
 				} else if ($value['value'] == 'remove') {
-					openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/remove('. $value['index'] . ',1,0)');
+					openzwave::callOpenzwave('/node/' . $this->getLogicalId() . '/remove(' . $value['index'] . ',1,0)');
 				}
 			}
 		}
@@ -906,7 +906,7 @@ class openzwaveCmd extends cmd {
 			return;
 		}
 		$value = $this->getConfiguration('value');
-		$request = '/node/' . $this->getEqLogic()->getLogicalId() . '/';
+		$request = '/node?node_id=' . $this->getEqLogic()->getLogicalId();
 		switch ($this->getSubType()) {
 			case 'slider':
 				$value = str_replace('#slider#', $_options['slider'], $value);
@@ -921,10 +921,10 @@ class openzwaveCmd extends cmd {
 				}
 				$value = str_replace('#color#', str_replace('#', '%23', $_options['color']), $value);
 		}
-		$request .= 'instance/' . $this->getConfiguration('instance', 0);
-		$request .= '/cc/' . $this->getConfiguration('class');
-		$request .= '/index/' . $this->getConfiguration('index');
-		$request .= '/' . str_replace(' ', '%20', $value);
+		$request .= '&instance=' . $this->getConfiguration('instance', 0);
+		$request .= '&cc=' . $this->getConfiguration('class');
+		$request .= '&index=' . $this->getConfiguration('index');
+		$request .= '&' . str_replace(' ', '%20', $value);
 		openzwave::callOpenzwave($request);
 	}
 

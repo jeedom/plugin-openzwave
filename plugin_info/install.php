@@ -35,9 +35,10 @@ function openzwave_update() {
 	}
 	foreach (eqLogic::byType('openzwave') as $eqLogic) {
 		foreach ($eqLogic->getCmd() as $cmd) {
-			if (strpos('0x', $cmd->getConfiguration('class')) !== false) {
-				$cmd->setConfiguration('class', hexdec($cmd->getConfiguration('class')));
+			if (strpos('0x', $cmd->getConfiguration('class')) === false) {
+				continue;
 			}
+			$cmd->setConfiguration('class', hexdec($cmd->getConfiguration('class')));
 			$cmd->setConfiguration('instance', $cmd->getConfiguration('instanceId'));
 			$matches = array();
 			preg_match_all('/data\[(.*)\]\.(.*)/', $cmd->getConfiguration('value'), $matches);
@@ -51,6 +52,32 @@ function openzwave_update() {
 				$matches[2][0] = str_replace('ReleaseButton()', 'button(release)', $matches[2][0]);
 				$cmd->setConfiguration('value', $matches[2][0]);
 			}
+			if ($cmd->getConfiguration('value') == 'button(press)') {
+				$cmd->setConfiguration('value', 'type=buttonaction&action=press');
+			} else if ($cmd->getConfiguration('value') == 'button(release)') {
+				$cmd->setConfiguration('value', 'type=buttonaction&action=release');
+			} else if (strpos($cmd->getConfiguration('value'), '.val') !== false) {
+				$cmd->setConfiguration('value', '');
+			} else {
+				preg_match_all('/set\((.*),(.*),(.*)\)/', $cmd->getConfiguration('value'), $matches);
+				if (isset($matches[1][0])) {
+					$cmd->setConfiguration('index', $matches[1][0]);
+					$cmd->setConfiguration('value', 'type=setconfig&value=' . urlencode($matches[2][0]) . '&size=' . urlencode($matches[3][0]));
+				} else {
+					preg_match_all('/set\((.*)\)/', $cmd->getConfiguration('value'), $matches);
+					if (isset($matches[1][0])) {
+						$cmd->setConfiguration('value', 'type=setvalue&value=' . urlencode($matches[1][0]));
+					} else {
+						preg_match_all('/SwitchAll\((.*)\)/', $cmd->getConfiguration('value'), $matches);
+						if (isset($matches[1][0])) {
+							$cmd->setConfiguration('value', 'type=switchall&value=' . urlencode($matches[1][0]));
+						} else {
+
+						}
+					}
+				}
+			}
+			$cmd->setConfiguration('value', str_replace('%23', '#', $cmd->getConfiguration('value')));
 			$cmd->save();
 		}
 	}

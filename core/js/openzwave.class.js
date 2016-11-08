@@ -84,7 +84,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'controller/action('+_params.action+')',
+ 		request: 'controller?type=action&action='+_params.action,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -103,7 +103,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'controller/addNodeToNetwork(1,'+_params.secure+')',
+ 		request: 'controller?type=addNode&addNode='+_params.secure,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -121,7 +121,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'controller/removeNodeFromNetwork(1)',
+ 		request: 'controller?type=removeNode',
  	};
  	$.ajax(paramsAJAX);
  }
@@ -139,7 +139,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'controller/replicationSend('+_params.bridge_controller_id+')',
+ 		request: 'controller?type=replicationSend&node_id='+_params.bridge_controller_id,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -410,7 +410,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'network/action('+_params.action+')',
+ 		request: 'network?type=action&action='+_params.action,
  	};
  	$.ajax(paramsAJAX);
  }
@@ -428,7 +428,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: 'network/info('+_params.info+')',
+ 		request: 'network?type=info&info='+_params.info,
  	};
  	$.ajax(paramsAJAX);
  }
