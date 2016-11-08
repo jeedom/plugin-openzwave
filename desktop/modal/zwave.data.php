@@ -28,7 +28,7 @@ if (!is_object($eqLogic)) {
 include_file('3rdparty', 'jsonTree/jsonTree', 'css', 'openzwave');
 include_file('3rdparty', 'jsonTree/jsonTree', 'js', 'openzwave');
 
-$json = openzwave::callOpenzwave('/node/' . $eqLogic->getLogicalId() . '/info(all)');
+$json = openzwave::callOpenzwave('/node?node_id=' . $eqLogic->getLogicalId() . '&type=info&info=all');
 sendVarToJs('zwaveDataTree', $json);
 ?>
 <div id="div_zwaveDataTree"></div>

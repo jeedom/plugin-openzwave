@@ -52,7 +52,7 @@ if (isset($results['devices'])) {
 		if (is_object($eqLogic)) {
 			foreach ($datas as $result) {
 				foreach ($eqLogic->getCmd('info', $result['instance'] . '.' . $result['CommandClass'] . '.' . $result['index'], null, true) as $cmd) {
-					$cmd->handleUpdateValue($result);
+					$cmd->event($result['value']);
 				}
 				if ($result['CommandClass'] == '0x80') {
 					$eqLogic->batteryStatus($result['value']);

@@ -785,65 +785,7 @@ class openzwave extends eqLogic {
 class openzwaveCmd extends cmd {
 	/*     * ***********************Methode static*************************** */
 
-	public static function handleResult($_val) {
-		if (!is_array($_val)) {
-			return '';
-		}
-		if (!isset($_val['value'])) {
-			return '';
-		}
-		if (!isset($_val['type'])) {
-			return $_val['value'];
-		}
-		$value = $_val['value'];
-		switch ($_val['type']) {
-			case 'float':
-				$value = floatval($value);
-				break;
-			case 'int':
-				$value = intval($value);
-				break;
-			case 'bool':
-				$value = intval($value);
-				break;
-			case 'binary':
-				if (is_array($_val['value'])) {
-					$value = '';
-					foreach ($_val['value'] as $ascii) {
-						if ($ascii != 0) {
-							$value .= $ascii;
-						}
-					}
-				}
-				break;
-		}
-		return $value;
-	}
-
 	/*     * *********************Methode d'instance************************* */
-
-	public function handleUpdateValue($_result) {
-		if (isset($_result['val'])) {
-			$value = self::handleResult($_result['val']);
-			if (isset($_result['val']['updateTime'])) {
-				$this->setCollectDate(date('Y-m-d H:i:s', $_result['val']['updateTime']));
-			}
-		} else {
-			$value = self::handleResult($_result);
-			if (isset($_result['updateTime'])) {
-				$this->setCollectDate(date('Y-m-d H:i:s', $_result['updateTime']));
-			}
-		}
-		if ($value === '') {
-			try {
-				$value = $this->execute();
-				$this->setCollectDate('');
-			} catch (Exception $e) {
-				return;
-			}
-		}
-		$this->event($value, 0);
-	}
 
 	public function preSave() {
 		if ($this->getConfiguration('instance') === '') {
@@ -856,33 +798,6 @@ class openzwaveCmd extends cmd {
 			$this->setConfiguration('class', hexdec($this->getConfiguration('class')));
 		}
 		$this->setLogicalId($this->getConfiguration('instance') . '.' . $this->getConfiguration('class') . '.' . $this->getConfiguration('index'));
-	}
-
-	public function sendZwaveResquest($_url, $_options = array()) {
-		$eqLogic = $this->getEqLogic();
-		if ($this->getType() == 'action') {
-			openzwave::callOpenzwave($_url);
-			return;
-		}
-		$result = openzwave::callOpenzwave($_url);
-		if (is_array($result)) {
-			$value = self::handleResult($result);
-			if (isset($result['updateTime'])) {
-				$this->setCollectDate(date('Y-m-d H:i:s', $result['updateTime']));
-			}
-		} else {
-			$value = $result;
-			if ($value === true) {
-				return 1;
-			}
-			if ($value === false) {
-				return 0;
-			}
-			if (is_numeric($value)) {
-				return round($value, 2);
-			}
-		}
-		return $value;
 	}
 
 	public function execute($_options = array()) {
