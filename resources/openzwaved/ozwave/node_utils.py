@@ -92,13 +92,6 @@ def node_notification(arguments):
 			globals.node_notifications[node_id] = NodeNotification(code, wake_up_time)
 		else:
 			globals.node_notifications[node_id].refresh(code, wake_up_time)
-		if code == 3:
-			my_value = value_utils.get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval Step')
-			if my_value is not None:
-				wake_up_interval_step = my_value.data + 2.0
-			else: 
-				wake_up_interval_step = 60.0
-			threading.Timer(interval=wake_up_interval_step, function=force_sleeping, args=(node_id, 1)).start()
 		logging.info('NodeId %s send a notification: %s' % (node_id, globals.node_notifications[node_id].description,))
 		push_node_notification(node_id, code)
 
@@ -115,17 +108,6 @@ def get_wake_up_interval(node_id):
 	if interval is not None:
 		return interval.data
 	return None
-
-def force_sleeping(node_id, count=1):
-	if node_id in globals.network.nodes:
-		my_node = globals.network.nodes[node_id]
-		logging.debug('check if node %s still awake' % (node_id,))
-		last_notification = None
-		if node_id in globals.node_notifications:
-			last_notification = globals.node_notifications[node_id]
-		if my_node.is_awake or (last_notification is not None and last_notification.code == 3):
-			logging.debug('trying to lull the node %s' % (node_id,))
-			globals.network.manager.testNetworkNode(globals.network.home_id, node_id, count)
 
 def validate_association_groups(node_id):
 	fake_found = False
