@@ -53,8 +53,6 @@ def network_started(network):
 	logging.info("Openzwave network are started with homeId %0.8x." % (network.home_id,))
 	globals.network_is_running = True
 	save_network_state(network.state)
-	if network.manager.getPollInterval() != globals.default_poll_interval:
-		network.set_poll_interval(globals.default_poll_interval, False)
 
 def network_stopped(network):
 	logging.info("Openzwave network are %s" % (network.state_str,))
