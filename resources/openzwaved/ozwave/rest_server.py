@@ -2,7 +2,6 @@
 import sys
 import binascii
 import logging
-import json
 from lxml import etree
 import globals,utils,network_utils,node_utils
 import value_utils,commands

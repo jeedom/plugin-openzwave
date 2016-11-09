@@ -1,6 +1,6 @@
 import logging
 import threading
-import globals,utils,value_utils,serialization,network_utils
+import globals,utils,value_utils,serialization
 from lxml import etree
 from utilities.NodeExtend import *
 from utilities.Constants import *

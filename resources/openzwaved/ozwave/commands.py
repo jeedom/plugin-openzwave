@@ -1,7 +1,5 @@
 import logging
-import time
 import globals,utils
-import threading
 from ozwave.utilities.Constants import *
 import node_utils,value_utils
 

@@ -1,5 +1,5 @@
 import logging
-import globals,utils,node_utils,value_utils,network_utils
+import globals,utils,node_utils,value_utils
 from utilities.Constants import *
 
 def serialize_neighbour_to_json(node_id):

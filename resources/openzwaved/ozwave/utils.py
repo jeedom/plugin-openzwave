@@ -2,10 +2,8 @@ import logging
 import time
 import math
 import globals
-import threading
 import json
-from utilities.Constants import *
-import network_utils,value_utils
+import network_utils
 
 def get_standard_value_type(value_type):
 	if value_type in globals.CONVERSION:

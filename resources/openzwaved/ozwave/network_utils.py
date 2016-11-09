@@ -1,9 +1,8 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
-import os
 import logging
-import globals,utils,dispatcher_utils,node_utils,serialization,server_utils
+import globals,utils,dispatcher_utils,serialization
 import threading
 from openzwave.network import ZWaveNetwork,ZWaveController
 from utilities.NetworkExtend import *

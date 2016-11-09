@@ -1,7 +1,7 @@
 import logging
 import sys
 import globals
-import network_utils,node_utils,value_utils,scene_utils,controller_utils
+import network_utils,node_utils,value_utils,scene_utils
 try:
 	from louie import dispatcher
 except Exception as e:

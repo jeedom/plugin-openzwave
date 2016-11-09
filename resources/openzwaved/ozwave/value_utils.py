@@ -2,7 +2,7 @@ import logging
 import binascii
 import math
 import time
-import globals,utils,node_utils,commands
+import globals,utils,node_utils
 from utilities.NodeExtend import *
 from ozwave.utilities.Constants import *
 
