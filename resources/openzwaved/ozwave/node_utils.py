@@ -27,6 +27,7 @@ def node_added(network, node):
 		return
 	node.last_update = time.time()
 	if network.state >= globals.network.STATE_AWAKED:
+		utils.write_config()
 		save_node_event(node.node_id, "added")
 
 def node_removed(network, node):
@@ -34,6 +35,7 @@ def node_removed(network, node):
 	if node.node_id in globals.not_supported_nodes:
 		return
 	if network.state >= globals.network.STATE_AWAKED:
+		utils.write_config()
 		save_node_event(node.node_id, "removed")
 	if node.node_id in globals.node_notifications:
 		del globals.node_notifications[node.node_id]
