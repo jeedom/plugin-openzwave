@@ -37,9 +37,6 @@ def connect_dispatcher():
 	#add_dispatcher_listen(node_utils.node_notification, globals.network.SIGNAL_NOTIFICATION)
 	if globals.network.state >= globals.network.STATE_AWAKED:
 		add_dispatcher_listen(node_utils.node_group_changed, globals.network.SIGNAL_GROUP)
-	add_dispatcher_listen(controller_utils.controller_waiting, globals.network.SIGNAL_CONTROLLER_WAITING)
-	add_dispatcher_listen(controller_utils.controller_command, globals.network.SIGNAL_CONTROLLER_COMMAND)
-	add_dispatcher_listen(controller_utils.controller_message_complete, globals.network.SIGNAL_MSG_COMPLETE)
 	globals.dispatcher_is_connect = True
 
 def disconnect_dispatcher():
@@ -69,9 +66,6 @@ def disconnect_dispatcher():
 		#remove_dispatcher_listent(node_utils.node_notification, globals.network.SIGNAL_NOTIFICATION)
 		if globals.network.state >= globals.network.STATE_AWAKED:
 			remove_dispatcher_listen(node_utils.node_group_changed, globals.network.SIGNAL_GROUP)
-		remove_dispatcher_listen(controller_utils.controller_waiting, globals.network.SIGNAL_CONTROLLER_WAITING)
-		remove_dispatcher_listen(controller_utils.controller_command, globals.network.SIGNAL_CONTROLLER_COMMAND)
-		remove_dispatcher_listen(controller_utils.controller_message_complete, globals.network.SIGNAL_MSG_COMPLETE)
 	except Exception:
 		pass
 	globals.dispatcher_is_connect = False
