@@ -1,29 +1,28 @@
 {
-	"name": "FGGC-001 Swipe",
-	"doc": "",
-	"type": "Contrôleur gestuel",
-	"comlink": "3423-fibaro-controleur-gestuel-z-wave-swipe-blanc-fggc-001-5902020528821",
-	"remark": "Partiellement compatible: Fonctionne en association directe seulement",
-	"imglink": "fibaro.fggc001",
-	"battery_type": "4x1.5V AA",
-	"ignore": 0,
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [
-    {
-        "name": "Batterie",
-        "type": "info",
-        "subtype": "numeric",
-        "isVisible": 0,
-        "isHistorized": 0,
-        "unite": "%",
-        "display": {
-            "generic_type": "BATTERY"
-        },
-        "configuration": {
-            "class": "0x80",
-            "value": "data[0].val"
+    "name": "FGGC-001 Swipe",
+    "doc": "",
+    "type": "Contrôleur gestuel",
+    "comlink": "3423-fibaro-controleur-gestuel-z-wave-swipe-blanc-fggc-001-5902020528821",
+    "remark": "Partiellement compatible: Fonctionne en association directe seulement",
+    "imglink": "fibaro.fggc001",
+    "battery_type": "4x1.5V AA",
+    "ignore": 0,
+    "commands": [
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "%",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": "0"
+            }
         }
-    }]
+    ]
 }

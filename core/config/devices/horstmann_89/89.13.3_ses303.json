@@ -1,122 +1,128 @@
 {
-	"name": "SES 303 Temperature and Humidity Sensor",
-	"doc": "secure.ses303_-_Temperature_Humidite",
-	"type": "Multicapteurs",
-	"comlink": "3227-secure-sonde-de-temperature-et-d-humidite-sur-piles-z-wave-5015914840098",
-	"remark": "Module vendu sous la marque Secure",
-	"imglink": "horstmann.ses303",
-	"battery_type": "2x1.5V AA",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Température",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "°C",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"configuration": {
-			"class": "0x31",
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Humidité",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "%",
-		"display": {
-			"generic_type": "HUMIDITY"
-		},
-		"configuration": {
-			"class": "0x31",
-			"value": "data[5].val"
-		}
-	},
-	{
-		"name": "Température 2",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 1,
-		"unite": "°C",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"configuration": {
-			"class": "0x31",
-			"instanceId": 2,
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Température 3",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 1,
-		"unite": "°C",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"configuration": {
-			"class": "0x31",
-			"instanceId": 3,
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Température 4",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 1,
-		"unite": "°C",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"configuration": {
-			"class": "0x31",
-			"instanceId": 4,
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Température 5",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 1,
-		"unite": "°C",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"configuration": {
-			"class": "0x31",
-			"instanceId": 5,
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"unite": "%",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"class": "0x80",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	}]
+    "name": "SES 303 Temperature and Humidity Sensor",
+    "doc": "secure.ses303_-_Temperature_Humidite",
+    "type": "Multicapteurs",
+    "comlink": "3227-secure-sonde-de-temperature-et-d-humidite-sur-piles-z-wave-5015914840098",
+    "remark": "Module vendu sous la marque Secure",
+    "imglink": "horstmann.ses303",
+    "battery_type": "2x1.5V AA",
+    "commands": [
+        {
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "°C",
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "index": "1"
+            }
+        },
+        {
+            "name": "Humidité",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "%",
+            "display": {
+                "generic_type": "HUMIDITY"
+            },
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "index": "5"
+            }
+        },
+        {
+            "name": "Température 2",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "unite": "°C",
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "instance": 2,
+                "index": "1"
+            }
+        },
+        {
+            "name": "Température 3",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "unite": "°C",
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "instance": 3,
+                "index": "1"
+            }
+        },
+        {
+            "name": "Température 4",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "unite": "°C",
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "instance": 4,
+                "index": "1"
+            }
+        },
+        {
+            "name": "Température 5",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "unite": "°C",
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "instance": 5,
+                "index": "1"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "unite": "%",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
+        }
+    ]
 }

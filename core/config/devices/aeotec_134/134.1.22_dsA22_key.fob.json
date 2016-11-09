@@ -1,45 +1,46 @@
 {
-	"name": "Key Fob (DSA22)",
-	"doc": "aeotec.keyfob_-_Telecommande",
-	"type": "Télécommande",
-	"comlink": "2677-aeon-labs-telecommande-porte-cles-z-wave-plus-4-boutons-gen5",
-	"remark": "Remplacé dans les boutiques par le keyfob Gen5",
-	"imglink": "aeotec.keyfob",
-	"battery_type": "1x3V CR2450",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Boutons",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x2b",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "tile",
-			"mobile": "tile"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "%",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"class": "0x80",
-			"value": "data[0].val"
-		}
-	}]
+    "name": "Key Fob (DSA22)",
+    "doc": "aeotec.keyfob_-_Telecommande",
+    "type": "Télécommande",
+    "comlink": "2677-aeon-labs-telecommande-porte-cles-z-wave-plus-4-boutons-gen5",
+    "remark": "Remplacé dans les boutiques par le keyfob Gen5",
+    "imglink": "aeotec.keyfob",
+    "battery_type": "1x3V CR2450",
+    "commands": [
+        {
+            "name": "Boutons",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 43,
+                "value": "",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "%",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": "0"
+            }
+        }
+    ]
 }

@@ -1,67 +1,70 @@
 {
-	"name": "SSA-03",
-	"doc": "",
-	"type": "Sirène",
-	"comlink": "978-fortrezz-sirene-exterieure-ip54-z-wave-flash-ssa-03-0661799563277",
-	"remark": "",
-	"imglink": "fortrezz.ssa03",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x26",
-			"instanceId": 0,
-			"value": "data[0].Set(0)"
-		}
-	},
-	{
-		"name": "Flash",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x26",
-			"instanceId": 0,
-			"value": "data[0].Set(33)"
-		}
-	},
-	{
-		"name": "Siren",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x26",
-			"instanceId": 0,
-			"value": "data[0].Set(66)"
-		}
-	},
-	{
-		"name": "Flash & Siren",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x26",
-			"instanceId": 0,
-			"value": "data[0].Set(99)"
-		}
-	}]
+    "name": "SSA-03",
+    "doc": "",
+    "type": "Sirène",
+    "comlink": "978-fortrezz-sirene-exterieure-ip54-z-wave-flash-ssa-03-0661799563277",
+    "remark": "",
+    "imglink": "fortrezz.ssa03",
+    "commands": [
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=0",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Flash",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=33",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Siren",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=66",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Flash & Siren",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=99",
+                "instance": 0,
+                "index": "0"
+            }
+        }
+    ]
 }

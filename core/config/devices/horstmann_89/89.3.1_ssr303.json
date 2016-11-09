@@ -1,61 +1,71 @@
 {
-	"name": "SSR303 ASR-ZW Receiver",
-	"doc": "",
-	"type": "Thermostat",
-	"comlink": "1987-secure-actionneur-de-chaudiere-ssr303-z-wave-5015914250095",
-	"remark": "Module vendu sous la marque Secure",
-	"imglink": "horstmann.asrzw",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].Set(255)"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].Set(0)"
-		}
-	},
-	{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "binary",
-		"unite": "",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "THERMOSTAT_STATE"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	}],
-	"recommended" : {
-		"polling": [
-			{ "instanceId": "0", "index": 0, "class": "0x32" },
-			{ "instanceId": "0", "index": 0, "class": "0x40" }
-		],
-		"needswakeup" : false
-	}
+    "name": "SSR303 ASR-ZW Receiver",
+    "doc": "",
+    "type": "Thermostat",
+    "comlink": "1987-secure-actionneur-de-chaudiere-ssr303-z-wave-5015914250095",
+    "remark": "Module vendu sous la marque Secure",
+    "imglink": "horstmann.asrzw",
+    "commands": [
+        {
+            "name": "On",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "binary",
+            "unite": "",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "THERMOSTAT_STATE"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
+        }
+    ],
+    "recommended": {
+        "polling": [
+            {
+                "instanceId": "0",
+                "index": 0,
+                "class": "0x32"
+            },
+            {
+                "instanceId": "0",
+                "index": 0,
+                "class": "0x40"
+            }
+        ],
+        "needswakeup": false
+    }
 }

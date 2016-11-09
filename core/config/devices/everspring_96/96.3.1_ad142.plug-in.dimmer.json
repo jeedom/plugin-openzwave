@@ -1,71 +1,74 @@
 {
-	"name": "AD142-6",
-	"doc": "",
-	"type": "Prise",
-	"comlink": "825-everspring-module-lampe-z-wave-french-3700946500035",
-	"remark": "",
-	"imglink": "everspring.ad142-6",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "%",
-		"display": {
-			"generic_type": "LIGHT_STATE"
-		},
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"value": "Etat",
-		"display": {
-			"generic_type": "LIGHT_ON"
-		},
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].Set(99)"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"value": "Etat",
-		"display": {
-			"generic_type": "LIGHT_OFF"
-		},
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].Set(0)"
-		}
-	},
-	{
-		"name": "Intensité",
-		"type": "action",
-		"subtype": "slider",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "LIGHT_SLIDER"
-		},
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].Set(#slider#)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	}]
+    "name": "AD142-6",
+    "doc": "",
+    "type": "Prise",
+    "comlink": "825-everspring-module-lampe-z-wave-french-3700946500035",
+    "remark": "",
+    "imglink": "everspring.ad142-6",
+    "commands": [
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "%",
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "",
+                "index": "0"
+            }
+        },
+        {
+            "name": "On",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 0,
+            "value": "Etat",
+            "display": {
+                "generic_type": "LIGHT_ON"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=99",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 0,
+            "value": "Etat",
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Intensité",
+            "type": "action",
+            "subtype": "slider",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "LIGHT_SLIDER"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=#slider#",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        }
+    ]
 }

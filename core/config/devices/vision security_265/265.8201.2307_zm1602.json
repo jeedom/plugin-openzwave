@@ -1,52 +1,54 @@
 {
-	"name": "ZM1602",
-	"doc": "",
-	"type": "Sirène",
-	"comlink": "2436-vision-security-sirene-z-wave-zm1602-alimentee-sur-secteur",
-	"remark": "",
-	"imglink": "vision.zm1602",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat",
-		"type": "info",
-		"display": {
-			"generic_type": "SIREN_STATE"
-		},
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "",
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "On",
-		"type": "action",
-		"display": {
-			"generic_type": "SIREN_ON"
-		},
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(255)"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"display": {
-			"generic_type": "SIREN_OFF"
-		},
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(0)"
-		}
-	}]
+    "name": "ZM1602",
+    "doc": "",
+    "type": "Sirène",
+    "comlink": "2436-vision-security-sirene-z-wave-zm1602-alimentee-sur-secteur",
+    "remark": "",
+    "imglink": "vision.zm1602",
+    "commands": [
+        {
+            "name": "Etat",
+            "type": "info",
+            "display": {
+                "generic_type": "SIREN_STATE"
+            },
+            "subtype": "binary",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "",
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "index": "0"
+            }
+        },
+        {
+            "name": "On",
+            "type": "action",
+            "display": {
+                "generic_type": "SIREN_ON"
+            },
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "display": {
+                "generic_type": "SIREN_OFF"
+            },
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "index": "0"
+            }
+        }
+    ]
 }

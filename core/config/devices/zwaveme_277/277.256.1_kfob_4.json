@@ -1,45 +1,46 @@
 {
-	"name": "KFOB Key Chain Controller",
-	"doc": "",
-	"type": "Télécommande",
-	"comlink": "2311-z-waveme-telecommande-porte-cles-4-boutons-z-wave-0696859123344",
-	"remark": "",
-	"imglink": "zwaveme.keyfob4",
-	"battery_type": "1x3V CR2032",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Boutons",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "GENERIC"
-		},
-		"isHistorized": 0,
-		"configuration": {
-			"class": "0x2b",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "tile",
-			"mobile": "tile"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "%",
-		"configuration": {
-			"class": "0x80",
-			"value": "data[0].val"
-		}
-	}]
+    "name": "KFOB Key Chain Controller",
+    "doc": "",
+    "type": "Télécommande",
+    "comlink": "2311-z-waveme-telecommande-porte-cles-4-boutons-z-wave-0696859123344",
+    "remark": "",
+    "imglink": "zwaveme.keyfob4",
+    "battery_type": "1x3V CR2032",
+    "commands": [
+        {
+            "name": "Boutons",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "GENERIC"
+            },
+            "isHistorized": 0,
+            "configuration": {
+                "class": 43,
+                "value": "",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "%",
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": "0"
+            }
+        }
+    ]
 }

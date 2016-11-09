@@ -1,89 +1,101 @@
 {
-	"name": "HRT4-ZW Transmitter",
-	"doc": "",
-	"type": "Thermostat",
-	"comlink": "1982-secure-thermostat-srt321-avec-ecran-lcd-z-wave-5015914250071",
-	"remark": "Module vendu sous la marque Secure SRT321",
-	"imglink": "horstmann.hrt4",
-	"battery_type": "2x1.5V AAA",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Température",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "°C",
-		"display": {
-			"generic_type": "THERMOSTAT_TEMPERATURE"
-		},
-		"configuration": {
-			"class": "0x31",
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "ConsigneEtat",
-		"type": "info",
-		"subType": "numeric",
-		"isVisible": 0,
-		"unite": "°C",
-		"display": {
-			"generic_type": "THERMOSTAT_SETPOINT"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x43",
-			"value": "data[1].val",
-			"minValue": "5",
-			"maxValue": "30"
-		}
-	},
-	{
-		"name": "Consigne",
-		"type": "action",
-		"subType": "slider",
-		"isVisible": 1,
-		"unite": "°C",
-		"value": "ConsigneEtat",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_SETPOINT"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x43",
-			"value": "data[1].Set(#slider#)",
-			"minValue": "5",
-			"maxValue": "30"
-		}
-	},
-	{
-		"name": "Consigne pending",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "°C",
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x43",
-			"instanceId": 10,
-			"value": "data[1].val",
-			"maxValue": 30,
-			"minValue": 4
-		}
-	}],
-	"recommended" : {
-		"params" : [
-			{"index": 1, "value" : "Enable"},
-			{"index": 2, "value" : "Celsius"},
-			{"index": 3, "value" : 5}
-		],
-		"wakeup" : 900,
-		"needswakeup" : true
-	}
+    "name": "HRT4-ZW Transmitter",
+    "doc": "",
+    "type": "Thermostat",
+    "comlink": "1982-secure-thermostat-srt321-avec-ecran-lcd-z-wave-5015914250071",
+    "remark": "Module vendu sous la marque Secure SRT321",
+    "imglink": "horstmann.hrt4",
+    "battery_type": "2x1.5V AAA",
+    "commands": [
+        {
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "°C",
+            "display": {
+                "generic_type": "THERMOSTAT_TEMPERATURE"
+            },
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "index": "1"
+            }
+        },
+        {
+            "name": "ConsigneEtat",
+            "type": "info",
+            "subType": "numeric",
+            "isVisible": 0,
+            "unite": "°C",
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            },
+            "configuration": {
+                "class": 67,
+                "value": "",
+                "minValue": "5",
+                "maxValue": "30",
+                "instance": "0",
+                "index": "1"
+            }
+        },
+        {
+            "name": "Consigne",
+            "type": "action",
+            "subType": "slider",
+            "isVisible": 1,
+            "unite": "°C",
+            "value": "ConsigneEtat",
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            },
+            "configuration": {
+                "class": 67,
+                "value": "type=setvalue&value=#slider#",
+                "minValue": "5",
+                "maxValue": "30",
+                "instance": "0",
+                "index": "1"
+            }
+        },
+        {
+            "name": "Consigne pending",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "°C",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 67,
+                "value": "",
+                "maxValue": 30,
+                "minValue": 4,
+                "instance": 10,
+                "index": "1"
+            }
+        }
+    ],
+    "recommended": {
+        "params": [
+            {
+                "index": 1,
+                "value": "Enable"
+            },
+            {
+                "index": 2,
+                "value": "Celsius"
+            },
+            {
+                "index": 3,
+                "value": 5
+            }
+        ],
+        "wakeup": 900,
+        "needswakeup": true
+    }
 }

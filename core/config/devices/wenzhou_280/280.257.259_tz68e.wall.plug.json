@@ -1,63 +1,65 @@
 {
-	"name": "TZ68e",
-	"doc": "",
-	"type": "Prise",
-	"comlink": "",
-	"remark": "Vendu aussi sous la marque TkbHome",
-	"imglink": "tkb.tz68e",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"display": {
-			"generic_type": "ENERGY_ON"
-		},
-		"isVisible": 1,
-		"value": "Etat",
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"display": {
-			"generic_type": "ENERGY_OFF"
-		},
-		"isVisible": 1,
-		"value": "Etat",
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "Etat",
-		"type": "info",
-		"display": {
-			"generic_type": "ENERGY_STATE"
-		},
-		"subtype": "binary",
-		"isVisible": 0,
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	}]
+    "name": "TZ68e",
+    "doc": "",
+    "type": "Prise",
+    "comlink": "",
+    "remark": "Vendu aussi sous la marque TkbHome",
+    "imglink": "tkb.tz68e",
+    "commands": [
+        {
+            "name": "On",
+            "type": "action",
+            "subtype": "other",
+            "display": {
+                "generic_type": "ENERGY_ON"
+            },
+            "isVisible": 1,
+            "value": "Etat",
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            },
+            "isVisible": 1,
+            "value": "Etat",
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            },
+            "subtype": "binary",
+            "isVisible": 0,
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
+        }
+    ]
 }

@@ -35,7 +35,7 @@ function openzwave_update() {
 	}
 	foreach (eqLogic::byType('openzwave') as $eqLogic) {
 		foreach ($eqLogic->getCmd() as $cmd) {
-			if (strpos('0x', $cmd->getConfiguration('class')) === false) {
+			if (strpos($cmd->getConfiguration('class'), '0x') === false) {
 				continue;
 			}
 			$cmd->setConfiguration('class', hexdec($cmd->getConfiguration('class')));
@@ -58,6 +58,10 @@ function openzwave_update() {
 				$cmd->setConfiguration('value', 'type=buttonaction&action=release');
 			} else if (strpos($cmd->getConfiguration('value'), '.val') !== false) {
 				$cmd->setConfiguration('value', '');
+			} else if (strpos($cmd['configuration']['value'], '.val') !== false || $cmd['configuration']['value'] == 'Get()') {
+				unset($cmd['configuration']['value']);
+			} else if ($cmd['configuration']['value'] == 'ForceRefresh()') {
+				$cmd['configuration']['value'] = 'type=action&action=forceRefresh';
 			} else {
 				preg_match_all('/set\((.*),(.*),(.*)\)/', $cmd->getConfiguration('value'), $matches);
 				if (isset($matches[1][0])) {

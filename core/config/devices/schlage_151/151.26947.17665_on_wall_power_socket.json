@@ -1,115 +1,120 @@
 {
-	"name": "On-Wall Power Socket",
-	"doc": "",
-	"type": "Prise",
-	"comlink": "",
-	"remark": "Ce module est actuellement vendu sous la marque TapHome",
-	"imglink": "taphome.onwallpowersocket",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"display": {
-			"generic_type": "ENERGY_ON"
-		},
-		"isVisible": 1,
-		"value": "Etat",
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x25",
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"display": {
-			"generic_type": "ENERGY_OFF"
-		},
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat",
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x25",
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "binary",
-		"display": {
-			"generic_type": "ENERGY_STATE"
-		},
-		"isVisible": 0,
-		"isHistorized": 0,
-		"eventOnly": 1,
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x25",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Température",
-		"type": "info",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "°C",
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x31",
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Puissance",
-		"type": "info",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "W",
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x32",
-			"value": "data[8].val",
-			"minValue": 0,
-			"maxValue": 2300
-		}
-	},
-	{
-		"name": "Consommation",
-		"type": "info",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 1,
-		"unite": "kWh",
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x32",
-			"value": "data[0].val"
-		}
-	}]
+    "name": "On-Wall Power Socket",
+    "doc": "",
+    "type": "Prise",
+    "comlink": "",
+    "remark": "Ce module est actuellement vendu sous la marque TapHome",
+    "imglink": "taphome.onwallpowersocket",
+    "commands": [
+        {
+            "name": "On",
+            "type": "action",
+            "subtype": "other",
+            "display": {
+                "generic_type": "ENERGY_ON"
+            },
+            "isVisible": 1,
+            "value": "Etat",
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            },
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat",
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "binary",
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            },
+            "isVisible": 0,
+            "isHistorized": 0,
+            "eventOnly": 1,
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Température",
+            "type": "info",
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "°C",
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "instance": 0,
+                "index": "1"
+            }
+        },
+        {
+            "name": "Puissance",
+            "type": "info",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "W",
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "minValue": 0,
+                "maxValue": 2300,
+                "instance": 0,
+                "index": "8"
+            }
+        },
+        {
+            "name": "Consommation",
+            "type": "info",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "unite": "kWh",
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
+        }
+    ]
 }

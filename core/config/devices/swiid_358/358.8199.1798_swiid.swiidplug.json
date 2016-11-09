@@ -1,62 +1,64 @@
 {
-	"name": "SwiidPlug",
-	"doc": "",
-	"type": "Prise",
-	"comlink": "2737-swiid-prise-gigogne-z-wave-plus-swiidplug-format-francais-370092591101",
-	"remark": "",
-	"imglink": "swiid.plug",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat",
-		"eventOnly": 1,
-		"isHistorized": 0,
-		"isVisible": 0,
-		"subtype": "binary",
-		"display": {
-			"generic_type": "ENERGY_STATE"
-		},
-		"type": "info",
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"display": {
-			"generic_type": "ENERGY_ON"
-		},
-		"isVisible": 1,
-		"value": "Etat",
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"display": {
-			"generic_type": "ENERGY_OFF"
-		},
-		"isVisible": 1,
-		"value": "Etat",
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	}]
+    "name": "SwiidPlug",
+    "doc": "",
+    "type": "Prise",
+    "comlink": "2737-swiid-prise-gigogne-z-wave-plus-swiidplug-format-francais-370092591101",
+    "remark": "",
+    "imglink": "swiid.plug",
+    "commands": [
+        {
+            "name": "Etat",
+            "eventOnly": 1,
+            "isHistorized": 0,
+            "isVisible": 0,
+            "subtype": "binary",
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            },
+            "type": "info",
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "index": "0"
+            }
+        },
+        {
+            "name": "On",
+            "type": "action",
+            "subtype": "other",
+            "display": {
+                "generic_type": "ENERGY_ON"
+            },
+            "isVisible": 1,
+            "value": "Etat",
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            },
+            "isVisible": 1,
+            "value": "Etat",
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        }
+    ]
 }

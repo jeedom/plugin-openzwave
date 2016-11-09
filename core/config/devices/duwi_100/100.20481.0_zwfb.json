@@ -1,45 +1,46 @@
 {
-	"name": "Wireless remote control 10-channel",
-	"doc": "",
-	"type": "Télécommande",
-	"comlink": "3075-z-waveme-telecommande-z-wave-10-canaux",
-	"remark": "Remplacé par la Z-WAVE.ME RC2",
-	"imglink": "duwi.rzwfb",
-	"battery_type": "4x1.5V AAA",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Boutons",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x2b",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "tile",
-			"mobile": "tile"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "%",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"class": "0x80",
-			"value": "data[0].val"
-		}
-	}]
+    "name": "Wireless remote control 10-channel",
+    "doc": "",
+    "type": "Télécommande",
+    "comlink": "3075-z-waveme-telecommande-z-wave-10-canaux",
+    "remark": "Remplacé par la Z-WAVE.ME RC2",
+    "imglink": "duwi.rzwfb",
+    "battery_type": "4x1.5V AAA",
+    "commands": [
+        {
+            "name": "Boutons",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 43,
+                "value": "",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "%",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": "0"
+            }
+        }
+    ]
 }

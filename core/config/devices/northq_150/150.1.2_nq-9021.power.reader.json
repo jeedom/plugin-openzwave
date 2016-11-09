@@ -1,69 +1,69 @@
 {
-  "name": "Power Reader",
-  "doc": "",
-  "type": "Compteur",
-  "comlink": "1537-northq-compteur-optique-de-consommation-z-wave",
-  "remark": "Activer le rafraichissement manuel à 5 minutes sur la valeur Energy pour avoir les rapports",
-  "imglink": "northq.powerreader",
-  "battery_type": "2x1.5V AAA",
-  "configuration": {
-    "conf_version": 1
-  },
-  "commands": [
-    {
-      "name": "Consommation",
-      "type": "info",
-      "subType": "numeric",
-      "isHistorized": "0",
-      "unite": "kwH",
-      "isVisible": 1,
-      "display": {
-        "generic_type": "CONSUMPTION"
-      },
-      "configuration": {
-        "instanceId": "0",
-        "class": "0x32",
-        "value": "data[0].val"
-      }
-    },
-    {
-      "name": "Batterie",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "unite": "%",
-      "display": {
-        "generic_type": "BATTERY"
-      },
-      "configuration": {
-        "class": "0x80",
-        "value": "data[0].val"
-      }
-    },
-    {
-      "name": "Actualiser la date et heure",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "unite": "",
-      "configuration": {
-        "instanceId": "0",
-        "class": "0x8b",
-        "value": "data[3].PressButton()"
-      }
-    }
-  ],
-  "recommended": {
-    "polling": [
-      {
-        "instanceId": "0",
-        "index": 0,
-        "class": "0x32"
-      }
+    "name": "Power Reader",
+    "doc": "",
+    "type": "Compteur",
+    "comlink": "1537-northq-compteur-optique-de-consommation-z-wave",
+    "remark": "Activer le rafraichissement manuel à 5 minutes sur la valeur Energy pour avoir les rapports",
+    "imglink": "northq.powerreader",
+    "battery_type": "2x1.5V AAA",
+    "commands": [
+        {
+            "name": "Consommation",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "unite": "kwH",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "%",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Actualiser la date et heure",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "configuration": {
+                "class": 139,
+                "value": "type=buttonaction&action=press",
+                "instance": "0",
+                "index": "3"
+            }
+        }
     ],
-    "wakeup": 900,
-    "needswakeup": true
-  }
+    "recommended": {
+        "polling": [
+            {
+                "instanceId": "0",
+                "index": 0,
+                "class": "0x32"
+            }
+        ],
+        "wakeup": 900,
+        "needswakeup": true
+    }
 }

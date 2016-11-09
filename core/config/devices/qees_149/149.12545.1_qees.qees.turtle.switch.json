@@ -1,109 +1,120 @@
 {
-	"name": "Turtle Switch",
-	"doc": "",
-	"type": "Interrupteur",
-	"comlink": "",
-	"remark": "",
-	"imglink": "qees.turtle-switch",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "binary",
-		"display": {
-			"generic_type": "ENERGY_STATE"
-		},
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "",
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"display": {
-			"generic_type": "ENERGY_ON"
-		},
-		"isVisible": 1,
-		"value": "Etat",
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"display": {
-			"generic_type": "ENERGY_OFF"
-		},
-		"isVisible": 1,
-		"value": "Etat",
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Puissance",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "W",
-		"configuration": {
-			"class": "0x32",
-			"value": "data[8].val",
-			"maxValue": 2500,
-			"minValue": 0
-		},
-		"template": {
-			"dashboard": "tile"
-		}
-	},
-	{
-		"name": "Consommation",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "kWh",
-		"configuration": {
-			"class": "0x32",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "tile"
-		}
-	}],
-	"recommended" : {		
-		"groups" : [
-          {"index": 1, "value": "add"}
+    "name": "Turtle Switch",
+    "doc": "",
+    "type": "Interrupteur",
+    "comlink": "",
+    "remark": "",
+    "imglink": "qees.turtle-switch",
+    "commands": [
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "binary",
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            },
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "index": "0"
+            }
+        },
+        {
+            "name": "On",
+            "type": "action",
+            "subtype": "other",
+            "display": {
+                "generic_type": "ENERGY_ON"
+            },
+            "isVisible": 1,
+            "value": "Etat",
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            },
+            "isVisible": 1,
+            "value": "Etat",
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Puissance",
+            "type": "info",
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "W",
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "maxValue": 2500,
+                "minValue": 0,
+                "index": "8"
+            },
+            "template": {
+                "dashboard": "tile"
+            }
+        },
+        {
+            "name": "Consommation",
+            "type": "info",
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "kWh",
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "tile"
+            }
+        }
+    ],
+    "recommended": {
+        "groups": [
+            {
+                "index": 1,
+                "value": "add"
+            }
         ],
-		"polling": [
-            { "instanceId": "0", "index": 0, "class": "0x32" }
+        "polling": [
+            {
+                "instanceId": "0",
+                "index": 0,
+                "class": "0x32"
+            }
         ],
-		"needswakeup" : false
+        "needswakeup": false
     }
 }

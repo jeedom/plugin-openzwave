@@ -1,43 +1,44 @@
 {
-	"name": "SP103",
-	"doc": "",
-	"type": "Mouvement",
-	"comlink": "854-everspring-detecteur-de-mouvement-pir-z-wave-sp-103-3700946500257",
-	"remark": "",
-	"imglink": "everspring.sp103",
-	"battery_type": "3x1.5V AAA",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "%",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"class": "0x80",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Présence",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "",
-		"invertBinary": 1,
-		"display": {
-			"generic_type": "PRESENCE"
-		},
-		"configuration": {
-			"class": "0x30",
-			"value": "data[0].val"
-		}
-	}]
+    "name": "SP103",
+    "doc": "",
+    "type": "Mouvement",
+    "comlink": "854-everspring-detecteur-de-mouvement-pir-z-wave-sp-103-3700946500257",
+    "remark": "",
+    "imglink": "everspring.sp103",
+    "battery_type": "3x1.5V AAA",
+    "commands": [
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "%",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Présence",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "",
+            "invertBinary": 1,
+            "display": {
+                "generic_type": "PRESENCE"
+            },
+            "configuration": {
+                "class": 48,
+                "value": "",
+                "index": "0"
+            }
+        }
+    ]
 }

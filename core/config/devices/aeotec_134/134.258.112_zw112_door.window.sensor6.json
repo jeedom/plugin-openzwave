@@ -1,53 +1,57 @@
 {
-	"name": "Door/Window Sensor 6 (ZW112)",
-	"doc": "",
-	"type": "Ouverture",
-	"comlink": "3579-aeon-labs-capteur-pour-porte-et-fenetre-z-wave-dw-sensor-6-1220000013162",
-	"remark": "",
-	"imglink": "aeotec.doorwindow6",
-	"battery_type": "Batterie",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"configuration": {
-			"class": "0x30",
-			"value": "data[0].val"
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "OPENING"
-		},
-		"template": {
-			"dashboard": "door",
-			"mobile": "door"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "%",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"class": "0x80",
-			"value": "data[0].val"
-		}
-	}],
-	"recommended" : {
-		"params" : [       
-          {"index": 121, "value" : "Basic Set and Sensor Binary Report"}
+    "name": "Door\/Window Sensor 6 (ZW112)",
+    "doc": "",
+    "type": "Ouverture",
+    "comlink": "3579-aeon-labs-capteur-pour-porte-et-fenetre-z-wave-dw-sensor-6-1220000013162",
+    "remark": "",
+    "imglink": "aeotec.doorwindow6",
+    "battery_type": "Batterie",
+    "commands": [
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 48,
+                "value": "",
+                "index": "0"
+            },
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "OPENING"
+            },
+            "template": {
+                "dashboard": "door",
+                "mobile": "door"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "%",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": "0"
+            }
+        }
+    ],
+    "recommended": {
+        "params": [
+            {
+                "index": 121,
+                "value": "Basic Set and Sensor Binary Report"
+            }
         ],
-		"wakeup" : 14400,
-		"needswakeup" : true
+        "wakeup": 14400,
+        "needswakeup": true
     }
 }

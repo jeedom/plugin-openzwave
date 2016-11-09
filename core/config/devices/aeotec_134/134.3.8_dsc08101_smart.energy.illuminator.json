@@ -1,112 +1,117 @@
 {
-	"name": "Smart Energy Illuminator (DSC08101)",
-	"doc": "",
-	"type": "Prise",
-	"comlink": "283-aeon-labs-smart-energy-illuminator-z-wave-1220000010499",
-	"remark": "",
-	"imglink": "aeotec.smart-energy-illuminator",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "ENERGY_ON"
-		},
-		"configuration": {
-			"class": "0x26",
-			"instanceId": 0,
-			"value": "data[0].Set(99)"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "ENERGY_OFF"
-		},
-		"configuration": {
-			"class": "0x26",
-			"instanceId": 0,
-			"value": "data[0].Set(0)"
-		}
-	},
-	{
-		"name": "Intensité",
-		"type": "action",
-		"subtype": "slider",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "ENERGY_SLIDER"
-		},
-		"value": "Etat",
-		"configuration": {
-			"class": "0x26",
-			"instanceId": 0,
-			"value": "data[0].Set(#slider#)",
-			"minValue": 0,
-			"maxValue": 99
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "numeric",
-		"unite": "%",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"display": {
-			"generic_type": "ENERGY_STATE"
-		},
-		"configuration": {
-			"class": "0x26",
-			"instanceId": 0,
-			"value": "data[0].val",
-			"maxValue": 100,
-			"minValue": 0
-		}
-	},
-	{
-		"name": "Puissance",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "W",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 0,
-			"value": "data[8].val",
-			"maxValue": 2500,
-			"minValue": 0
-		}
-	},
-	{
-		"name": "Consommation",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "kWh",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	}]
+    "name": "Smart Energy Illuminator (DSC08101)",
+    "doc": "",
+    "type": "Prise",
+    "comlink": "283-aeon-labs-smart-energy-illuminator-z-wave-1220000010499",
+    "remark": "",
+    "imglink": "aeotec.smart-energy-illuminator",
+    "commands": [
+        {
+            "name": "On",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "ENERGY_ON"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=99",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=0",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Intensité",
+            "type": "action",
+            "subtype": "slider",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "ENERGY_SLIDER"
+            },
+            "value": "Etat",
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=#slider#",
+                "minValue": 0,
+                "maxValue": 99,
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "numeric",
+            "unite": "%",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "",
+                "maxValue": 100,
+                "minValue": 0,
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Puissance",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "W",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "maxValue": 2500,
+                "minValue": 0,
+                "instance": 0,
+                "index": "8"
+            }
+        },
+        {
+            "name": "Consommation",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "kWh",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
+        }
+    ]
 }

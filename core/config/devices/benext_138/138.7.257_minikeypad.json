@@ -1,105 +1,108 @@
 {
-	"name": "Mini Keypad RFID",
-	"doc": "zipato.minikeypad_-_Clavier_Rfid",
-	"type": "Clavier RFID",
-	"comlink": "2470-zipato-clavier-a-code-et-rfid-z-wave-3858890730579",
-	"remark": "Le badge utilisé ne remonte pas. Ce module est actuellement vendu sous la marque Zipato",
-	"imglink": "zipato.minikeypad",
-	"battery_type": "2x1.5V AAA",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Action",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x71",
-			"value": "data[9].val",
-			"minValue": 0,
-			"maxValue": 255
-		},
-		"template": {
-			"dashboard": "Rfid_HomeAway_fr",
-			"mobile": "Rfid_HomeAway_fr"
-		}
-	},
-	{
-		"name": "Sabotage",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"configuration": {
-			"class": "0x71",
-			"value": "data[10].val",
-			"returnStateTime": 1,
-			"returnStateValue": 0
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "SABOTAGE"
-		}
-	},
-	{
-		"name": "Code",
-		"type": "info",
-		"subtype": "string",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x63",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 1,
-		"unite": "%",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"class": "0x80",
-			"value": "data[0].val",
-			"maxValue": 100,
-			"minValue": 0
-		}
-	}],
-	"configuration": {
-		"1": {
-			"name": "Reset",
-			"help": "Remise à zéro de tous les paramètres du clavier"
-		},
-		"2": {
-			"name": "Durée d'annulation",
-			"help": "Durée pour passer un badge ou rentrer un code. 0 veut dire désactivé, 255 veut dire infini"
-		},
-		"3": {
-			"name": "Retour par bip",
-			"help": "Retour par bip. Accusé réception"
-		},
-		"4": {
-			"name": "Nombre de bips par seconde",
-			"help": "Nombre de bips par seconde. Si option 3 activée."
-		},
-		"5": {
-			"name": "Mode",
-			"help": "Mode de fonctionnement.",
-			"list": {
-				"Mode 1: Normal operating mode.": "Mode 1 : Normal",
-				"Mode 3: Z-Wave chip is always on to request e.g. version or manufacturer id.": "Mode 3 : Toujours réveillé"
-			}
-		}
-	}
+    "name": "Mini Keypad RFID",
+    "doc": "zipato.minikeypad_-_Clavier_Rfid",
+    "type": "Clavier RFID",
+    "comlink": "2470-zipato-clavier-a-code-et-rfid-z-wave-3858890730579",
+    "remark": "Le badge utilisé ne remonte pas. Ce module est actuellement vendu sous la marque Zipato",
+    "imglink": "zipato.minikeypad",
+    "battery_type": "2x1.5V AAA",
+    "configuration": {
+        "1": {
+            "name": "Reset",
+            "help": "Remise à zéro de tous les paramètres du clavier"
+        },
+        "2": {
+            "name": "Durée d'annulation",
+            "help": "Durée pour passer un badge ou rentrer un code. 0 veut dire désactivé, 255 veut dire infini"
+        },
+        "3": {
+            "name": "Retour par bip",
+            "help": "Retour par bip. Accusé réception"
+        },
+        "4": {
+            "name": "Nombre de bips par seconde",
+            "help": "Nombre de bips par seconde. Si option 3 activée."
+        },
+        "5": {
+            "name": "Mode",
+            "help": "Mode de fonctionnement.",
+            "list": {
+                "Mode 1: Normal operating mode.": "Mode 1 : Normal",
+                "Mode 3: Z-Wave chip is always on to request e.g. version or manufacturer id.": "Mode 3 : Toujours réveillé"
+            }
+        }
+    },
+    "commands": [
+        {
+            "name": "Action",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 113,
+                "value": "",
+                "minValue": 0,
+                "maxValue": 255,
+                "index": "9"
+            },
+            "template": {
+                "dashboard": "Rfid_HomeAway_fr",
+                "mobile": "Rfid_HomeAway_fr"
+            }
+        },
+        {
+            "name": "Sabotage",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 113,
+                "value": "",
+                "returnStateTime": 1,
+                "returnStateValue": 0,
+                "index": "10"
+            },
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "SABOTAGE"
+            }
+        },
+        {
+            "name": "Code",
+            "type": "info",
+            "subtype": "string",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 99,
+                "value": "",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "unite": "%",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "maxValue": 100,
+                "minValue": 0,
+                "index": "0"
+            }
+        }
+    ]
 }

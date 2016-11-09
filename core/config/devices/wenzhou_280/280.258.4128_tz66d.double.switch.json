@@ -1,77 +1,80 @@
 {
-	"name": "TZ66D",
-	"doc": "",
-	"type": "Interrupteur",
-	"comlink": "2058-tkb-home-tz66d-interrupteur-double-z-wave-blanc-6959174466010",
-	"remark": "Vendu aussi sous la marque TkbHome. Bouton de droit fonctionne en association seulement.",
-	"imglink": "tkb.tz66d",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"display": {
-			"generic_type": "LIGHT_ON"
-		},
-		"isVisible": 1,
-		"value": "Etat",
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat",
-		"display": {
-			"generic_type": "LIGHT_OFF"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "LIGHT_STATE"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Bounton2",
-		"type": "info",
-		"display": {
-			"generic_type": "LIGHT_STATE"
-		},
-		"subtype": "binary",
-		"isVisible": 0,
-		"configuration": {
-			"class": "0x20",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	}]
+    "name": "TZ66D",
+    "doc": "",
+    "type": "Interrupteur",
+    "comlink": "2058-tkb-home-tz66d-interrupteur-double-z-wave-blanc-6959174466010",
+    "remark": "Vendu aussi sous la marque TkbHome. Bouton de droit fonctionne en association seulement.",
+    "imglink": "tkb.tz66d",
+    "commands": [
+        {
+            "name": "On",
+            "type": "action",
+            "subtype": "other",
+            "display": {
+                "generic_type": "LIGHT_ON"
+            },
+            "isVisible": 1,
+            "value": "Etat",
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat",
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Bounton2",
+            "type": "info",
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            },
+            "subtype": "binary",
+            "isVisible": 0,
+            "configuration": {
+                "class": 32,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
+        }
+    ]
 }
