@@ -1,117 +1,121 @@
 {
-	"name": "SRT 323 Electronic Room Thermostat and Temperature",
-	"doc": "secure.srt323_-_Thermostat",
-	"type": "Thermostat",
-	"comlink": "3218-secure-thermostat-srt323-avec-ecran-lcd-et-relai-integre-5015914250569",
-	"remark": "Module vendu sous la marque Secure SRT323",
-	"imglink": "horstmann.srt323",
-	"battery_type": "2x1.5V AAA",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Température",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "°C",
-		"display": {
-			"generic_type": "THERMOSTAT_TEMPERATURE"
-		},
-		"configuration": {
-			"class": "0x31",
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Etat de chauffe",
-		"type": "info",
-		"subtype": "binary",
-		"unite": "",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"display": {
-			"generic_type": "THERMOSTAT_STATE"
-		},
-		"configuration": {
-			"class": "0x42",
-			"instanceId": 0,
-			"value": "data[0].val",
-			"calculValueOffset": "#value#=='Heating'"
-		}
-	},
-	{
-		"name": "ConsigneEtat",
-		"type": "info",
-		"subType": "numeric",
-		"isVisible": 0,
-		"unite": "°C",
-		"display": {
-			"generic_type": "THERMOSTAT_SETPOINT"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x43",
-			"value": "data[1].val",
-			"minValue": "5",
-			"maxValue": "30"
-		}
-	},
-	{
-		"name": "Consigne",
-		"type": "action",
-		"subType": "slider",
-		"isVisible": 1,
-		"unite": "°C",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_SETPOINT"
-		},
-		"value": "ConsigneEtat",
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x43",
-			"value": "data[1].Set(#slider#)",
-			"minValue": "5",
-			"maxValue": "30"
-		},
-		"template": {
-			"dashboard": "thermostat",
-			"mobile": "thermostat"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"unite": "%",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"class": "0x80",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	}],
-	"configuration": {
-		"1": {
-			"name": "Activation/Désactivation du capteur de température interne",
-			"help": "Activation/Désactivation du capteur de température interne",
-			"list": {
-				"Enabled": "Activé",
-				"Disabled": "Désactivé"
-			}
-		},
-		"2": {
-			"name": "Echelle de température",
-			"help": "Celcius/Farenheit"
-		},
-		"3": {
-			"name": "Variation de température pour un rapport",
-			"help": "Différence de température pour déclencher une remontée (10-->1)"
-		}
-	}
+    "name": "SRT 323 Electronic Room Thermostat and Temperature",
+    "doc": "secure.srt323_-_Thermostat",
+    "type": "Thermostat",
+    "comlink": "3218-secure-thermostat-srt323-avec-ecran-lcd-et-relai-integre-5015914250569",
+    "remark": "Module vendu sous la marque Secure SRT323",
+    "imglink": "horstmann.srt323",
+    "battery_type": "2x1.5V AAA",
+    "configuration": {
+        "1": {
+            "name": "Activation\/Désactivation du capteur de température interne",
+            "help": "Activation\/Désactivation du capteur de température interne",
+            "list": {
+                "Enabled": "Activé",
+                "Disabled": "Désactivé"
+            }
+        },
+        "2": {
+            "name": "Echelle de température",
+            "help": "Celcius\/Farenheit"
+        },
+        "3": {
+            "name": "Variation de température pour un rapport",
+            "help": "Différence de température pour déclencher une remontée (10-->1)"
+        }
+    },
+    "commands": [
+        {
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "°C",
+            "display": {
+                "generic_type": "THERMOSTAT_TEMPERATURE"
+            },
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "index": "1"
+            }
+        },
+        {
+            "name": "Etat de chauffe",
+            "type": "info",
+            "subtype": "binary",
+            "unite": "",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "display": {
+                "generic_type": "THERMOSTAT_STATE"
+            },
+            "configuration": {
+                "class": 66,
+                "value": "",
+                "calculValueOffset": "#value#=='Heating'",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "ConsigneEtat",
+            "type": "info",
+            "subType": "numeric",
+            "isVisible": 0,
+            "unite": "°C",
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            },
+            "configuration": {
+                "class": 67,
+                "value": "",
+                "minValue": "5",
+                "maxValue": "30",
+                "instance": "0",
+                "index": "1"
+            }
+        },
+        {
+            "name": "Consigne",
+            "type": "action",
+            "subType": "slider",
+            "isVisible": 1,
+            "unite": "°C",
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            },
+            "value": "ConsigneEtat",
+            "configuration": {
+                "class": 67,
+                "value": "type=setvalue&value=#slider#",
+                "minValue": "5",
+                "maxValue": "30",
+                "instance": "0",
+                "index": "1"
+            },
+            "template": {
+                "dashboard": "thermostat",
+                "mobile": "thermostat"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "unite": "%",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
+        }
+    ]
 }

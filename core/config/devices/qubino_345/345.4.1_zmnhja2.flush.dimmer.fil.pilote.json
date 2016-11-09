@@ -1,189 +1,199 @@
 {
-	"name": "ZMNHJA2 Fil Pilote",
-	"doc": "",
-	"type": "Micromodule",
-	"comlink": "2654-qubino-module-fil-pilote-encastrable-z-wave-zmnhja2",
-	"remark": "",
-	"imglink": "qubino.zmnhja2",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "HEATING_STATE"
-		},
-		"isVisible": 1,
-		"isHistorized": 0,
-		"eventOnly": 1,
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x26",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "heatpilotewire6ordres",
-			"mobile": "heatpilotewire6ordres"
-		}
-	},
-	{
-		"name": "Arret",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x26",
-			"value": "data[0].Set(0)"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-power-off\"><\/i>",
-			"generic_type": "HEATING_OFF"
-		}
-	},
-	{
-		"name": "Confort",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x26",
-			"value": "data[0].Set(99)"
-		},
-		"display": {
-			"icon": "<i class=\"icon jeedom-thermo-chaud\"><\/i>",
-			"generic_type": "HEATING_ON"
-		}
-	},
-	{
-		"name": "Eco",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x26",
-			"value": "data[0].Set(30)"
-		},
-		"display": {
-			"icon": "<i class=\"icon divers-triangular42\"><\/i>",
-			"generic_type": "HEATING_OTHER"
-		}
-	},
-	{
-		"name": "Hors Gel",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x26",
-			"value": "data[0].Set(20)"
-		},
-		"display": {
-			"icon": "<i class=\"icon nature-snowflake\"><\/i>",
-			"generic_type": "HEATING_OTHER"
-		}
-	},
-	{
-		"name": "Confort -1",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x26",
-			"value": "data[0].Set(50)"
-		},
-		"display": {
-			"icon": "<i class=\"icon jeedom-thermo-moyen\"><\/i>",
-			"generic_type": "HEATING_OTHER"
-		}
-	},
-	{
-		"name": "Confort -2",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x26",
-			"value": "data[0].Set(40)"
-		},
-		"display": {
-			"icon": "<i class=\"icon jeedom-thermo-froid\"><\/i>",
-			"generic_type": "HEATING_OTHER"
-		}
-	},
-	{
-		"name": "Température",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"isVisible": 0,
-		"isHistorized": 1,
-		"eventOnly": 1,
-		"unite": "°C",
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x31",
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "I1",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"eventOnly": 1,
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x30",
-			"value": "data[1].val"
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "GENERIC"
-		}
-	},
-	{
-		"name": "I2",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"eventOnly": 1,
-		"configuration": {
-			"instanceId": 1,
-			"class": "0x30",
-			"value": "data[1].val"
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "GENERIC"
-		}
-	},
-	{
-		"name": "I3",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"eventOnly": 1,
-		"configuration": {
-			"instanceId": 2,
-			"class": "0x30",
-			"value": "data[1].val"
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "GENERIC"
-		}
-	}]
+    "name": "ZMNHJA2 Fil Pilote",
+    "doc": "",
+    "type": "Micromodule",
+    "comlink": "2654-qubino-module-fil-pilote-encastrable-z-wave-zmnhja2",
+    "remark": "",
+    "imglink": "qubino.zmnhja2",
+    "commands": [
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "HEATING_STATE"
+            },
+            "isVisible": 1,
+            "isHistorized": 0,
+            "eventOnly": 1,
+            "configuration": {
+                "class": 38,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "heatpilotewire6ordres",
+                "mobile": "heatpilotewire6ordres"
+            }
+        },
+        {
+            "name": "Arret",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=0",
+                "instance": 0,
+                "index": "0"
+            },
+            "display": {
+                "icon": "<i class=\"fa fa-power-off\"><\/i>",
+                "generic_type": "HEATING_OFF"
+            }
+        },
+        {
+            "name": "Confort",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=99",
+                "instance": 0,
+                "index": "0"
+            },
+            "display": {
+                "icon": "<i class=\"icon jeedom-thermo-chaud\"><\/i>",
+                "generic_type": "HEATING_ON"
+            }
+        },
+        {
+            "name": "Eco",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=30",
+                "instance": 0,
+                "index": "0"
+            },
+            "display": {
+                "icon": "<i class=\"icon divers-triangular42\"><\/i>",
+                "generic_type": "HEATING_OTHER"
+            }
+        },
+        {
+            "name": "Hors Gel",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=20",
+                "instance": 0,
+                "index": "0"
+            },
+            "display": {
+                "icon": "<i class=\"icon nature-snowflake\"><\/i>",
+                "generic_type": "HEATING_OTHER"
+            }
+        },
+        {
+            "name": "Confort -1",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=50",
+                "instance": 0,
+                "index": "0"
+            },
+            "display": {
+                "icon": "<i class=\"icon jeedom-thermo-moyen\"><\/i>",
+                "generic_type": "HEATING_OTHER"
+            }
+        },
+        {
+            "name": "Confort -2",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=40",
+                "instance": 0,
+                "index": "0"
+            },
+            "display": {
+                "icon": "<i class=\"icon jeedom-thermo-froid\"><\/i>",
+                "generic_type": "HEATING_OTHER"
+            }
+        },
+        {
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "isVisible": 0,
+            "isHistorized": 1,
+            "eventOnly": 1,
+            "unite": "°C",
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "instance": 0,
+                "index": "1"
+            }
+        },
+        {
+            "name": "I1",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "eventOnly": 1,
+            "configuration": {
+                "class": 48,
+                "value": "",
+                "instance": 0,
+                "index": "1"
+            },
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "GENERIC"
+            }
+        },
+        {
+            "name": "I2",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "eventOnly": 1,
+            "configuration": {
+                "class": 48,
+                "value": "",
+                "instance": 1,
+                "index": "1"
+            },
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "GENERIC"
+            }
+        },
+        {
+            "name": "I3",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "eventOnly": 1,
+            "configuration": {
+                "class": 48,
+                "value": "",
+                "instance": 2,
+                "index": "1"
+            },
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "GENERIC"
+            }
+        }
+    ]
 }

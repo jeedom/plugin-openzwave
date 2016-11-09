@@ -1,66 +1,68 @@
 {
-	"name": "MH-S411 Simple",
-	"doc": "",
-	"type": "Interrupteur",
-	"comlink": "2888-mcohome-interrupteur-tactile-en-verre-z-wave-1-charge-blanc-2015032300123",
-	"remark": "",
-	"imglink": "mco.mhs411",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat",
-		"type": "info",
-		"subType": "binary",
-		"isHistorized": "0",
-		"display": {
-			"generic_type": "LIGHT_STATE"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x25",
-			"value": "data[0].val"
-		},
-		"isVisible": "0"
-	},
-	{
-		"name": "On",
-		"type": "action",
-		"subType": "other",
-		"isHistorized": "0",
-		"display": {
-			"generic_type": "LIGHT_ON"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x25",
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		},
-		"value": "Etat",
-		"isVisible": "1"
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subType": "other",
-		"isHistorized": "0",
-		"display": {
-			"generic_type": "LIGHT_OFF"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x25",
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		},
-		"value": "Etat",
-		"isVisible": "1"
-	}]
+    "name": "MH-S411 Simple",
+    "doc": "",
+    "type": "Interrupteur",
+    "comlink": "2888-mcohome-interrupteur-tactile-en-verre-z-wave-1-charge-blanc-2015032300123",
+    "remark": "",
+    "imglink": "mco.mhs411",
+    "commands": [
+        {
+            "name": "Etat",
+            "type": "info",
+            "subType": "binary",
+            "isHistorized": "0",
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": "0",
+                "index": "0"
+            },
+            "isVisible": "0"
+        },
+        {
+            "name": "On",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "display": {
+                "generic_type": "LIGHT_ON"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": "0",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            },
+            "value": "Etat",
+            "isVisible": "1"
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subType": "other",
+            "isHistorized": "0",
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": "0",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            },
+            "value": "Etat",
+            "isVisible": "1"
+        }
+    ]
 }

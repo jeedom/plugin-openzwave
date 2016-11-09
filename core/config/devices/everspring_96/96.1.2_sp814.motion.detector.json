@@ -1,42 +1,43 @@
 {
-	"name": "SP814 Motion Detector",
-	"doc": "",
-	"type": "Multicapteurs",
-	"comlink": "857-everspring-detecteur-de-presence-z-wave-sp814-3700946500288",
-	"remark": "",
-	"imglink": "everspring.sp814",
-	"battery_type": "3x1.5V AAA",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Présence",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "",
-		"display": {
-			"generic_type": "PRESENCE"
-		},
-		"configuration": {
-			"class": "0x30",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 1,
-		"unite": "%",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"class": "0x80",
-			"value": "data[0].val"
-		}
-	}]
+    "name": "SP814 Motion Detector",
+    "doc": "",
+    "type": "Multicapteurs",
+    "comlink": "857-everspring-detecteur-de-presence-z-wave-sp814-3700946500288",
+    "remark": "",
+    "imglink": "everspring.sp814",
+    "battery_type": "3x1.5V AAA",
+    "commands": [
+        {
+            "name": "Présence",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "",
+            "display": {
+                "generic_type": "PRESENCE"
+            },
+            "configuration": {
+                "class": 48,
+                "value": "",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "unite": "%",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": "0"
+            }
+        }
+    ]
 }

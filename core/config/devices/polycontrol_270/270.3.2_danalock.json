@@ -1,91 +1,93 @@
 {
-  "name": "Danalock",
-  "doc": "",
-  "type": "Serrure",
-  "comlink": "",
-  "remark": "Inclusion en mode sécurisé",
-  "imglink": "polycontrol.danalock",
-  "battery_type": "1xER26500M",
-  "configuration": {
-    "conf_version": 1
-  },
-  "commands": [
-    {
-      "name": "Statut",
-      "type": "info",
-      "subtype": "binary",
-      "display": {
-        "generic_type": "LOCK_STATE"
-      },
-      "isVisible": 1,
-      "isHistorized": 1,
-      "configuration": {
-        "instanceId": "0",
-        "class": "0x62",
-        "value": "data[0].val"
-      },
-      "template": {
-        "dashboard": "lock",
-        "mobile": "lock"
-      }
-    },
-    {
-      "name": "Verrouillage",
-      "type": "action",
-      "subtype": "other",
-      "display": {
-        "generic_type": "LOCK_CLOSE"
-      },
-      "isVisible": 1,
-      "isHistorized": 0,
-      "configuration": {
-        "instanceId": "0",
-        "class": "0x62",
-        "value": "data[0].Set(255)"
-      }
-    },
-    {
-      "name": "Déverrouillage",
-      "type": "action",
-      "subtype": "other",
-      "display": {
-        "generic_type": "LOCK_OPEN"
-      },
-      "isVisible": 1,
-      "isHistorized": 0,
-      "configuration": {
-        "instanceId": "0",
-        "class": "0x62",
-        "value": "data[0].Set(0)"
-      }
-    },
-    {
-      "name": "Batterie",
-      "type": "info",
-      "subtype": "numeric",
-      "display": {
-        "generic_type": "BATTERY"
-      },
-      "isVisible": 0,
-      "isHistorized": 0,
-      "unite": "%",
-      "configuration": {
-        "class": "0x80",
-        "value": "data[0].val"
-      }
-    },
-    {
-      "name": "Actualiser la date et heure",
-      "type": "action",
-      "subtype": "other",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "unite": "",
-      "configuration": {
-        "instanceId": "0",
-        "class": "0x8b",
-        "value": "data[3].PressButton()"
-      }
-    }
-  ]
+    "name": "Danalock",
+    "doc": "",
+    "type": "Serrure",
+    "comlink": "",
+    "remark": "Inclusion en mode sécurisé",
+    "imglink": "polycontrol.danalock",
+    "battery_type": "1xER26500M",
+    "commands": [
+        {
+            "name": "Statut",
+            "type": "info",
+            "subtype": "binary",
+            "display": {
+                "generic_type": "LOCK_STATE"
+            },
+            "isVisible": 1,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 98,
+                "value": "",
+                "instance": "0",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "lock",
+                "mobile": "lock"
+            }
+        },
+        {
+            "name": "Verrouillage",
+            "type": "action",
+            "subtype": "other",
+            "display": {
+                "generic_type": "LOCK_CLOSE"
+            },
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 98,
+                "value": "type=setvalue&value=255",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Déverrouillage",
+            "type": "action",
+            "subtype": "other",
+            "display": {
+                "generic_type": "LOCK_OPEN"
+            },
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 98,
+                "value": "type=setvalue&value=0",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "%",
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Actualiser la date et heure",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "configuration": {
+                "class": 139,
+                "value": "type=buttonaction&action=press",
+                "instance": "0",
+                "index": "3"
+            }
+        }
+    ]
 }

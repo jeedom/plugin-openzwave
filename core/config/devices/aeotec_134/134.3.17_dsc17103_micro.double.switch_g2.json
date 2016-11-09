@@ -1,161 +1,168 @@
 {
-	"name": "Micro Double Smart Switch (DSC17103)",
-	"doc": "",
-	"type": "Micromodule",
-	"comlink": "285-aeon-labs-micromodule-commutateur-double-et-compteur-d-energie-1220000010949",
-	"remark": "Module pratiquement plus commercialisé",
-	"imglink": "aeotec.double-microswitch",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat 1",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "",
-		"display": {
-			"generic_type": "ENERGY_STATE"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 1,
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "On 1",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat 1",
-		"display": {
-			"generic_type": "ENERGY_ON"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 1,
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "Off 1",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat 1",
-		"display": {
-			"generic_type": "ENERGY_OFF"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 1,
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "Etat 2",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "",
-		"display": {
-			"generic_type": "ENERGY_STATE"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 2,
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "On 2",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat 2",
-		"display": {
-			"generic_type": "ENERGY_ON"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 2,
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "Off 2",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat 2",
-		"display": {
-			"generic_type": "ENERGY_OFF"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 2,
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "Puissance",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 1,
-		"unite": "W",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 0,
-			"value": "data[8].val",
-			"maxValue": 1150,
-			"minValue": 0
-		}
-	},
-	{
-		"name": "Consommation",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "kWh",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	}]
+    "name": "Micro Double Smart Switch (DSC17103)",
+    "doc": "",
+    "type": "Micromodule",
+    "comlink": "285-aeon-labs-micromodule-commutateur-double-et-compteur-d-energie-1220000010949",
+    "remark": "Module pratiquement plus commercialisé",
+    "imglink": "aeotec.double-microswitch",
+    "commands": [
+        {
+            "name": "Etat 1",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 1,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "On 1",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat 1",
+            "display": {
+                "generic_type": "ENERGY_ON"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 1,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Off 1",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat 1",
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 1,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Etat 2",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 2,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "On 2",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat 2",
+            "display": {
+                "generic_type": "ENERGY_ON"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 2,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Off 2",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat 2",
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 2,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Puissance",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "unite": "W",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "maxValue": 1150,
+                "minValue": 0,
+                "instance": 0,
+                "index": "8"
+            }
+        },
+        {
+            "name": "Consommation",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "kWh",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
+        }
+    ]
 }

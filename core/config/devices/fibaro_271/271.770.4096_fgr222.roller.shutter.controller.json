@@ -1,388 +1,385 @@
 {
-	"name": "FGR-222 Volet roulant",
-	"doc": "fibaro.fgr222_-_Volets",
-	"type": "Volets",
-	"comlink": "3250-fibaro-micromodule-pour-volet-roulant-z-wave-fgr-222",
-	"remark": "Nouveau nom du module FGR-221",
-	"imglink": "fibaro.fgr222",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Up",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[0].Set(99)"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-arrow-up\"></i>",
-			"generic_type": "FLAP_UP"
-		}
-	},
-	{
-		"name": "Down",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[0].Set(0)"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-arrow-down\"></i>",
-			"generic_type": "DOWN"
-		}
-	},
-	{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "FLAP_STATE"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Positionnement",
-		"type": "action",
-		"subtype": "slider",
-		"isVisible": 1,
-		"value": "Etat",
-		"display": {
-			"generic_type": "FLAP_SLIDER"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[0].Set(#slider#)",
-			"minValue": 0,
-			"maxValue": 99
-		},
-		"template": {
-			"dashboard": "store",
-			"mobile": "store"
-		}
-	},
-	{
-		"name": "Rafraichir",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "Get()"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-refresh\"><\/i>",
-			"generic_type": "DONT"
-		}
-	},
-	{
-		"name": "Puissance",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"unite": "W",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x31",
-			"value": "data[4].val"
-		},
-		"template": {
-			"dashboard": "tile",
-			"mobile": "tile"
-		}
-	},
-	{
-		"name": "Consommation",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"unite": "kWh",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x32",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "tile",
-			"mobile": "tile"
-		}
-	},
-	{
-		"name": "Stop",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[2].ReleaseButton()"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-stop\"><\/i>",
-			"generic_type": "FLAP_STOP"
-		}
-	},
-	{
-		"name": "Stop BSO",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[7].ReleaseButton()"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-stop\"><\/i>",
-			"generic_type": "DONT"
-		}
-	},
-	{
-		"name": "Incliner",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[7].PressButton()"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-plus\"><\/i>",
-			"generic_type": "DONT"
-		}
-	},
-	{
-		"name": "Décliner",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[8].PressButton()"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-minus\"><\/i>",
-			"generic_type": "DONT"
-		}
-	},
-	{
-		"name": "Pas",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[6].val"
-		}
-	},
-	{
-		"name": "Étalonner",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x70",
-			"value": "data[0].Set(29,1,1)"
-		}
-	},
-	{
-		"name": "Scene",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x2b",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "tile",
-			"mobile": "tile"
-		}
-	}],
-	"configuration": {
-		"1": {
-			"name": "Protection Locale",
-			"help": "Lorsque cette fonction est activée, le module  ne réponds plus au boutons S1 et S2. Le SCENE ID et les commandes d'associations ne seront pas envoyés. Seul le bouton d'inclusion B-bouton fonctionne. ",
-			"list": {
-				"No protection. Roller Shutter responds to push buttons": "Pas de protection. Les volets roulants répondent au commande boutons",
-				"Not supported": "Non supporté",
-				"Local protection active. Roller Shutter does not respond to push buttons": "Protection Locale activée. Les commandes boutons nes répondent pas."
-			}
-		},
-		"2": {
-			"name": "Protection RF (protection radio)",
-			"help": "Lorsque cette fonction est activée, le module  ne réponds plus au commandes de positionnement logiciel. Cependant, il est toujours possible de paramétrer le modules et de récupérer les différentes valeurs remonté (Energie, Consommation, postion)",
-			"list": {
-				"No protection. Roller Shutter responds to command frames": "Pas de protection. Les volets roulants répondent aux commandes logiciel",
-				"RF Protection active. Roller Shutter does not respond to the Z-Wave control frames": "Protection RF activée. Les commandes logiciels nes répondent pas.",
-				"Not supported": "Non supporté"
-			}
-		},
-		"3": {
-			"name": "Type de retour d'information",
-			"help": "Commandes Fibaro, doit être utilisé pour le contrôle de volets vénitiens.",
-			"list": {
-				"Blind position reports sent to the main controller using Z-Wave Command Class": "Classes de commande Z-Wave standard",
-				"Blind position reports sent to the main controller using Fibar Command Class": "Classes de commande Z-Wave Fibaro"
-			}
-		},
-		"10": {
-			"name": "Modes de fonctionnement et fonction de positionnement.",
-			"help": "Modification de la fonction de positionnement du volet. Valeur par défaut 1",
-			"list": {
-				"0 - Roller Blind Mode, without positioning": "0 - Mode volet roulant sans positionnement",
-				"1 - Roller Blind Mode, with positioning": "1 - Mode volet roulant avec positionnement",
-				"2 - Venetian Blind Mode, with positioning": "2 - Mode volets vénitiens avec positionnement",
-				"3 - Gate Mode, without positioning": "3 - Mode Portail sans positionnement",
-				"4 - Gate Mode, with positioning": "4 - Mode Portail avec positionnement"
-			}
-		},
-		"12": {
-			"name": "Temps de fermeture des lamelles en mode vénitien ou le délai de fermeture automatique en mode porte/portail ",
-			"help": "Options pour ce paramètre 0-65535 (0 - 655,35s) 0 - cette valeur désactive la fermeture en mode portal. Valeur par défaut 150."
-		},
-		"13": {
-			"name": "Rétablir la position précédente des lames",
-			"help": "En mode volets vénitiens (parametre 10 à 2), ce paramètre détermine le comportement des lames dans différentes situations.",
-			"list": {
-				"0 - Lamellas return to previously set position only in case of the main controller operation": "0 - Rétablir la position avec la box domotique uniquement",
-				"1 - Lamellas return to previously set position in case of the main controller operation, momentary switch operation, or when the limit switch is reached": "1 - Rétablir la position avec la box domotique, un poussoir ou une butée.",
-				"2 - Lamellas return to previously set position in case of the main controller operation, momentary switch operation, when the limit switch is reached or after receiving a STOP control frame (Switch Multilevel Stop).": "2 - Rétablir la position avec la box domotique, un poussoir, une butée ou un bouton « stop »."
-			}
-		},
-		"14": {
-			"name": "Type d’interrupteur utilisé sur le commutateur.",
-			"help": "Configuration du type d’interrupteur. Valeur par défaut 1",
-			"list": {
-				"Momentary switches": "Deux boutons poussoirs impulsionnels (mono-stable)",
-				"Toggle switches": "Commutateur montée / descente (bi-stable)",
-				"Single, momentary switch.": "Un seul bouton poussoir impulsionnel (mono-stable)"
-			}
-		},
-		"17": {
-			"name": "Paramètre de délai d’ouverture du relai après mise en butée du volet ou du délai avant fermeture automatique de l'ouvrant porte/portail.",
-			"help": "Options pour ce paramètre 0-255s"
-		},
-		"18": {
-			"name": "Détection d’activité moteur",
-			"help": "Seuil de puissance en Watts pouvant être interprétée comme une arrivée en butée. Options pour ce paramètre 0-255w. 0 désactive la fonction de détection de butée."
-		},
-		"22": {
-			"name": "Durée maximale d’alimentation du moteur",
-			"help": "Durée maximale d’alimentation du moteur. Options pour ce paramètre 0-65535s. 0 désactive la fonction de détection de butée."
-		},
-		"29": {
-			"name": "Forcer l’étalonnage de l’équipement",
-			"help": "Doit être fixé à 1 pour lancer l'étalonnage automatique d'un équipement. Le positionnement doit être actif (paramètre 10 aux valeurs 1,2 ou 4). Le paramètre repasse à 0 automatiquement à la fin de l'étalonnage.",
-			"list": {
-				"Default": "Défaut",
-				"Start calibration process": "Démarrer l’étalonnage"
-			}
-		},
-		"30": {
-			"name": "Alarme générale, prévue pour le volet",
-			"help": "Alarme générale, prévue pour le volet. Valeur par défaut 2",
-			"list": {
-				"No reaction": "Pas de réaction",
-				"Open blind": "Ouvrir les volets",
-				"Close blind": "Fermer les volets"
-			}
-		},
-		"31": {
-			"name": "Alarme d'inondation, prévue pour le volet.",
-			"help": "Alarme d'inondation, prévue pour le volet. Valeur par défaut 0",
-			"list": {
-				"No reaction": "Pas de réaction",
-				"Open blind": "Ouvrir les volets",
-				"Close blind": "Fermer les volets"
-			}
-		},
-		"32": {
-			"name": "Alarme Fumée, CO, CO2, prévue pour le volet.",
-			"help": "Alarme Fumée, CO, CO2, prévue pour le volet. Valeur par défaut 1",
-			"list": {
-				"No reaction": "Pas de réaction",
-				"Open blind": "Ouvrir les volets",
-				"Close blind": "Fermer les volets"
-			}
-		},
-		"33": {
-			"name": "Alarme Température.",
-			"help": "Alarme Température. Valeur par défaut 1",
-			"list": {
-				"No reaction": "Pas de réaction",
-				"Open blind": "Ouvrir les volets",
-				"Close blind": "Fermer les volets"
-			}
-		},
-		"35": {
-			"name": "Réponse de Lames suite à une Alarme",
-			"help": "Réponse de Lames suite à une Alarme. N’est utile qu’en mode volet vénitien",
-			"list": {
-				"Do not change lamellas position - lamellas return to the last set position": "Ne change pas la position des lames",
-				"Set lamellas to their extreme position": "Fermer les lames"
-			}
-		},
-		"40": {
-			"name": "Pourcentage de variation déclenchant la transmission de la puissance active consommée.",
-			"help": "Options pour ce paramètre 0-100. 0 : Pas de transmission Valeur par défaut 10."
-		},
-		"42": {
-			"name": "Envoi périodique de la puissance active consommée et de la consommation cumulée.",
-			"help": "Options pour ce paramètre 0~32767 en secondes = 1s à 9,1h. 0 : Pas de transmission. Valeur par défaut 3600."
-		},
-		"43": {
-			"name": "Envoi de la consommation cumulée.",
-			"help": "Augmentation de consommation cumulée déclenchant l’envoi de cette information au contrôleur domotique. Options pour ce paramètre 1-255. 0 : Pas de transmission Valeur par défaut 10."
-		},
-		"44": {
-			"name": "Mesure de consommation propre du module.",
-			"help": "",
-			"list": {
-				"Self-measurement inactive": "Le module n’ajoute pas sa propre consommation aux mesures.",
-				"Self-measurement active": "Le module ajoute sa propre consommation aux mesures."
-			}
-		},
-		"50": {
-			"name": "Fonctionnalité d’activation de scènes",
-			"help": "Le module offre la possibilité d'envoyer des commandes compatibles avec une commande d’activation de scène. L'information est transmise aux périphériques affectées au groupe d'association n°3. Les contrôleurs comme le Home Center 2 sont capables d'interpréter ces commandes afin d’activer des scènes, pour lesquelles un identifiant spécifique de scène spécifique a été attribué. L'utilisateur peut étendre la fonctionnalité du bouton relié aux entrées S1 et S2 en distinguant les actions des touches connectées à ces entrées. Par exemple: double-cliquer activerait la scène bonsoir et triple clic pourrait activer la scène Matin",
-			"list": {
-				"Associations activation": "Fonctionnalité désactivée",
-				"Scenes activation": "Fonctionnalité activée"
-			}
-		}
-	}
+    "name": "FGR-222 Volet roulant",
+    "doc": "fibaro.fgr222_-_Volets",
+    "type": "Volets",
+    "comlink": "3250-fibaro-micromodule-pour-volet-roulant-z-wave-fgr-222",
+    "remark": "Nouveau nom du module FGR-221",
+    "imglink": "fibaro.fgr222",
+    "configuration": {
+        "1": {
+            "name": "Protection Locale",
+            "help": "Lorsque cette fonction est activée, le module  ne réponds plus au boutons S1 et S2. Le SCENE ID et les commandes d'associations ne seront pas envoyés. Seul le bouton d'inclusion B-bouton fonctionne. ",
+            "list": {
+                "No protection. Roller Shutter responds to push buttons": "Pas de protection. Les volets roulants répondent au commande boutons",
+                "Not supported": "Non supporté",
+                "Local protection active. Roller Shutter does not respond to push buttons": "Protection Locale activée. Les commandes boutons nes répondent pas."
+            }
+        },
+        "2": {
+            "name": "Protection RF (protection radio)",
+            "help": "Lorsque cette fonction est activée, le module  ne réponds plus au commandes de positionnement logiciel. Cependant, il est toujours possible de paramétrer le modules et de récupérer les différentes valeurs remonté (Energie, Consommation, postion)",
+            "list": {
+                "No protection. Roller Shutter responds to command frames": "Pas de protection. Les volets roulants répondent aux commandes logiciel",
+                "RF Protection active. Roller Shutter does not respond to the Z-Wave control frames": "Protection RF activée. Les commandes logiciels nes répondent pas.",
+                "Not supported": "Non supporté"
+            }
+        },
+        "3": {
+            "name": "Type de retour d'information",
+            "help": "Commandes Fibaro, doit être utilisé pour le contrôle de volets vénitiens.",
+            "list": {
+                "Blind position reports sent to the main controller using Z-Wave Command Class": "Classes de commande Z-Wave standard",
+                "Blind position reports sent to the main controller using Fibar Command Class": "Classes de commande Z-Wave Fibaro"
+            }
+        },
+        "10": {
+            "name": "Modes de fonctionnement et fonction de positionnement.",
+            "help": "Modification de la fonction de positionnement du volet. Valeur par défaut 1",
+            "list": {
+                "0 - Roller Blind Mode, without positioning": "0 - Mode volet roulant sans positionnement",
+                "1 - Roller Blind Mode, with positioning": "1 - Mode volet roulant avec positionnement",
+                "2 - Venetian Blind Mode, with positioning": "2 - Mode volets vénitiens avec positionnement",
+                "3 - Gate Mode, without positioning": "3 - Mode Portail sans positionnement",
+                "4 - Gate Mode, with positioning": "4 - Mode Portail avec positionnement"
+            }
+        },
+        "12": {
+            "name": "Temps de fermeture des lamelles en mode vénitien ou le délai de fermeture automatique en mode porte\/portail ",
+            "help": "Options pour ce paramètre 0-65535 (0 - 655,35s) 0 - cette valeur désactive la fermeture en mode portal. Valeur par défaut 150."
+        },
+        "13": {
+            "name": "Rétablir la position précédente des lames",
+            "help": "En mode volets vénitiens (parametre 10 à 2), ce paramètre détermine le comportement des lames dans différentes situations.",
+            "list": {
+                "0 - Lamellas return to previously set position only in case of the main controller operation": "0 - Rétablir la position avec la box domotique uniquement",
+                "1 - Lamellas return to previously set position in case of the main controller operation, momentary switch operation, or when the limit switch is reached": "1 - Rétablir la position avec la box domotique, un poussoir ou une butée.",
+                "2 - Lamellas return to previously set position in case of the main controller operation, momentary switch operation, when the limit switch is reached or after receiving a STOP control frame (Switch Multilevel Stop).": "2 - Rétablir la position avec la box domotique, un poussoir, une butée ou un bouton « stop »."
+            }
+        },
+        "14": {
+            "name": "Type d’interrupteur utilisé sur le commutateur.",
+            "help": "Configuration du type d’interrupteur. Valeur par défaut 1",
+            "list": {
+                "Momentary switches": "Deux boutons poussoirs impulsionnels (mono-stable)",
+                "Toggle switches": "Commutateur montée \/ descente (bi-stable)",
+                "Single, momentary switch.": "Un seul bouton poussoir impulsionnel (mono-stable)"
+            }
+        },
+        "17": {
+            "name": "Paramètre de délai d’ouverture du relai après mise en butée du volet ou du délai avant fermeture automatique de l'ouvrant porte\/portail.",
+            "help": "Options pour ce paramètre 0-255s"
+        },
+        "18": {
+            "name": "Détection d’activité moteur",
+            "help": "Seuil de puissance en Watts pouvant être interprétée comme une arrivée en butée. Options pour ce paramètre 0-255w. 0 désactive la fonction de détection de butée."
+        },
+        "22": {
+            "name": "Durée maximale d’alimentation du moteur",
+            "help": "Durée maximale d’alimentation du moteur. Options pour ce paramètre 0-65535s. 0 désactive la fonction de détection de butée."
+        },
+        "29": {
+            "name": "Forcer l’étalonnage de l’équipement",
+            "help": "Doit être fixé à 1 pour lancer l'étalonnage automatique d'un équipement. Le positionnement doit être actif (paramètre 10 aux valeurs 1,2 ou 4). Le paramètre repasse à 0 automatiquement à la fin de l'étalonnage.",
+            "list": {
+                "Default": "Défaut",
+                "Start calibration process": "Démarrer l’étalonnage"
+            }
+        },
+        "30": {
+            "name": "Alarme générale, prévue pour le volet",
+            "help": "Alarme générale, prévue pour le volet. Valeur par défaut 2",
+            "list": {
+                "No reaction": "Pas de réaction",
+                "Open blind": "Ouvrir les volets",
+                "Close blind": "Fermer les volets"
+            }
+        },
+        "31": {
+            "name": "Alarme d'inondation, prévue pour le volet.",
+            "help": "Alarme d'inondation, prévue pour le volet. Valeur par défaut 0",
+            "list": {
+                "No reaction": "Pas de réaction",
+                "Open blind": "Ouvrir les volets",
+                "Close blind": "Fermer les volets"
+            }
+        },
+        "32": {
+            "name": "Alarme Fumée, CO, CO2, prévue pour le volet.",
+            "help": "Alarme Fumée, CO, CO2, prévue pour le volet. Valeur par défaut 1",
+            "list": {
+                "No reaction": "Pas de réaction",
+                "Open blind": "Ouvrir les volets",
+                "Close blind": "Fermer les volets"
+            }
+        },
+        "33": {
+            "name": "Alarme Température.",
+            "help": "Alarme Température. Valeur par défaut 1",
+            "list": {
+                "No reaction": "Pas de réaction",
+                "Open blind": "Ouvrir les volets",
+                "Close blind": "Fermer les volets"
+            }
+        },
+        "35": {
+            "name": "Réponse de Lames suite à une Alarme",
+            "help": "Réponse de Lames suite à une Alarme. N’est utile qu’en mode volet vénitien",
+            "list": {
+                "Do not change lamellas position - lamellas return to the last set position": "Ne change pas la position des lames",
+                "Set lamellas to their extreme position": "Fermer les lames"
+            }
+        },
+        "40": {
+            "name": "Pourcentage de variation déclenchant la transmission de la puissance active consommée.",
+            "help": "Options pour ce paramètre 0-100. 0 : Pas de transmission Valeur par défaut 10."
+        },
+        "42": {
+            "name": "Envoi périodique de la puissance active consommée et de la consommation cumulée.",
+            "help": "Options pour ce paramètre 0~32767 en secondes = 1s à 9,1h. 0 : Pas de transmission. Valeur par défaut 3600."
+        },
+        "43": {
+            "name": "Envoi de la consommation cumulée.",
+            "help": "Augmentation de consommation cumulée déclenchant l’envoi de cette information au contrôleur domotique. Options pour ce paramètre 1-255. 0 : Pas de transmission Valeur par défaut 10."
+        },
+        "44": {
+            "name": "Mesure de consommation propre du module.",
+            "help": "",
+            "list": {
+                "Self-measurement inactive": "Le module n’ajoute pas sa propre consommation aux mesures.",
+                "Self-measurement active": "Le module ajoute sa propre consommation aux mesures."
+            }
+        },
+        "50": {
+            "name": "Fonctionnalité d’activation de scènes",
+            "help": "Le module offre la possibilité d'envoyer des commandes compatibles avec une commande d’activation de scène. L'information est transmise aux périphériques affectées au groupe d'association n°3. Les contrôleurs comme le Home Center 2 sont capables d'interpréter ces commandes afin d’activer des scènes, pour lesquelles un identifiant spécifique de scène spécifique a été attribué. L'utilisateur peut étendre la fonctionnalité du bouton relié aux entrées S1 et S2 en distinguant les actions des touches connectées à ces entrées. Par exemple: double-cliquer activerait la scène bonsoir et triple clic pourrait activer la scène Matin",
+            "list": {
+                "Associations activation": "Fonctionnalité désactivée",
+                "Scenes activation": "Fonctionnalité activée"
+            }
+        }
+    },
+    "commands": [
+        {
+            "name": "Up",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=99",
+                "instance": "0",
+                "index": "0"
+            },
+            "display": {
+                "icon": "<i class=\"fa fa-arrow-up\"><\/i>",
+                "generic_type": "FLAP_UP"
+            }
+        },
+        {
+            "name": "Down",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=0",
+                "instance": "0",
+                "index": "0"
+            },
+            "display": {
+                "icon": "<i class=\"fa fa-arrow-down\"><\/i>",
+                "generic_type": "DOWN"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "FLAP_STATE"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Positionnement",
+            "type": "action",
+            "subtype": "slider",
+            "isVisible": 1,
+            "value": "Etat",
+            "display": {
+                "generic_type": "FLAP_SLIDER"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=#slider#",
+                "minValue": 0,
+                "maxValue": 99,
+                "instance": "0",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "store",
+                "mobile": "store"
+            }
+        },
+        {
+            "name": "Puissance",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "unite": "W",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "instance": "0",
+                "index": "4"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        },
+        {
+            "name": "Consommation",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "unite": "kWh",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": "0",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        },
+        {
+            "name": "Stop",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 38,
+                "value": "type=buttonaction&action=release",
+                "instance": "0",
+                "index": "2"
+            },
+            "display": {
+                "icon": "<i class=\"fa fa-stop\"><\/i>",
+                "generic_type": "FLAP_STOP"
+            }
+        },
+        {
+            "name": "Stop BSO",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 0,
+            "configuration": {
+                "class": 38,
+                "value": "type=buttonaction&action=release",
+                "instance": "0",
+                "index": "7"
+            },
+            "display": {
+                "icon": "<i class=\"fa fa-stop\"><\/i>",
+                "generic_type": "DONT"
+            }
+        },
+        {
+            "name": "Incliner",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 0,
+            "configuration": {
+                "class": 38,
+                "value": "type=buttonaction&action=press",
+                "instance": "0",
+                "index": "7"
+            },
+            "display": {
+                "icon": "<i class=\"fa fa-plus\"><\/i>",
+                "generic_type": "DONT"
+            }
+        },
+        {
+            "name": "Décliner",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 0,
+            "configuration": {
+                "class": 38,
+                "value": "type=buttonaction&action=press",
+                "instance": "0",
+                "index": "8"
+            },
+            "display": {
+                "icon": "<i class=\"fa fa-minus\"><\/i>",
+                "generic_type": "DONT"
+            }
+        },
+        {
+            "name": "Pas",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "",
+                "instance": "0",
+                "index": "6"
+            }
+        },
+        {
+            "name": "Étalonner",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 112,
+                "value": "type=setconfig&value=1&size=1",
+                "instance": "0",
+                "index": "29"
+            }
+        },
+        {
+            "name": "Scene",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 43,
+                "value": "",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        }
+    ]
 }

@@ -1,274 +1,291 @@
 {
-	"name": "ZXT-120",
-	"doc": "",
-	"type": "Thermostat",
-	"comlink": "826-remotec-zxt-120-passerelle-z-wave-vers-ir-pour-climatiseur-ac",
-	"remark": "Pose soucis sur des réseaux avec d'autres modules",
-	"imglink": "remotec.zxt120",
-	"battery_type": "3x1.5V AAA",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Mode",
-		"type": "info",
-		"subType": "string",
-		"display": {
-			"generic_type": "THERMOSTAT_MODE"
-		},
-		"isHistorized": "0",
-		"unite": "",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x40",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Vitesse",
-		"type": "info",
-		"subType": "string",
-		"isHistorized": "0",
-		"unite": "",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x44",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Température",
-		"type": "info",
-		"subType": "numeric",
-		"display": {
-			"generic_type": "THERMOSTAT_TEMPERATURE"
-		},
-		"isHistorized": "0",
-		"unite": "°C",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x31",
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_MODE"
-		},
-		"subType": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x40",
-			"value": "data[0].Set(Off)"
-		}
-	},
-	{
-		"name": "On",
-		"type": "action",
-		"subType": "other",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_MODE"
-		},
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x40",
-			"value": "data[0].Set(Resume)"
-		}
-	},
-	{
-		"name": "Clim",
-		"type": "action",
-		"subType": "other",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_MODE"
-		},
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x40",
-			"value": "data[0].Set(Cool)"
-		}
-	},
-	{
-		"name": "Chauffe",
-		"type": "action",
-		"subType": "other",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_MODE"
-		},
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x40",
-			"value": "data[0].Set(Heat)"
-		}
-	},
-	{
-		"name": "Dry",
-		"type": "action",
-		"subType": "other",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_MODE"
-		},
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x40",
-			"value": "data[0].Set(Dry Air)"
-		}
-	},
-	{
-		"name": "Ventilateur Seul",
-		"type": "action",
-		"subType": "other",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_MODE"
-		},
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x40",
-			"value": "data[0].Set(Fan Only)"
-		}
-	},
-	{
-		"name": "Consigne Chaud",
-		"type": "action",
-		"subType": "slider",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_SETPOINT"
-		},
-		"isVisible": 1,
-		"value": "Temp Chauffe",
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x43",
-			"value": "data[1].Set(#slider#)"
-		}
-	},
-	{
-		"name": "Consigne Clim",
-		"type": "action",
-		"subType": "slider",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_SETPOINT"
-		},
-		"isVisible": 1,
-		"value": "Temp Clim",
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x43",
-			"value": "data[2].Set(#slider#)"
-		}
-	},
-	{
-		"name": "Temp Chauffe",
-		"type": "info",
-		"subType": "numeric",
-		"display": {
-			"generic_type": "THERMOSTAT_SETPOINT"
-		},
-		"isHistorized": "0",
-		"unite": "°C",
-		"isVisible": 0,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x43",
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Temp Clim",
-		"type": "info",
-		"subType": "numeric",
-		"isHistorized": "0",
-		"display": {
-			"generic_type": "THERMOSTAT_SETPOINT"
-		},
-		"unite": "°C",
-		"isVisible": 0,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x43",
-			"value": "data[2].val"
-		}
-	},
-	{
-		"name": "Auto Bas",
-		"type": "action",
-		"subType": "other",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_MODE"
-		},
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x44",
-			"value": "data[0].Set(Auto Low)"
-		}
-	},
-	{
-		"name": "On Bas",
-		"type": "action",
-		"subType": "other",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_MODE"
-		},
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x44",
-			"value": "data[0].Set(On Low)"
-		}
-	},
-	{
-		"name": "Auto Haut",
-		"type": "action",
-		"subType": "other",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_MODE"
-		},
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x44",
-			"value": "data[0].Set(Auto High)"
-		}
-	},
-	{
-		"name": "On Haut",
-		"type": "action",
-		"subType": "other",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_MODE"
-		},
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x44",
-			"value": "data[0].Set(On High)"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "%",
-		"configuration": {
-			"class": "0x80",
-			"value": "data[0].val"
-		}
-	}]
+    "name": "ZXT-120",
+    "doc": "",
+    "type": "Thermostat",
+    "comlink": "826-remotec-zxt-120-passerelle-z-wave-vers-ir-pour-climatiseur-ac",
+    "remark": "Pose soucis sur des réseaux avec d'autres modules",
+    "imglink": "remotec.zxt120",
+    "battery_type": "3x1.5V AAA",
+    "commands": [
+        {
+            "name": "Mode",
+            "type": "info",
+            "subType": "string",
+            "display": {
+                "generic_type": "THERMOSTAT_MODE"
+            },
+            "isHistorized": "0",
+            "unite": "",
+            "isVisible": 1,
+            "configuration": {
+                "class": 64,
+                "value": "",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Vitesse",
+            "type": "info",
+            "subType": "string",
+            "isHistorized": "0",
+            "unite": "",
+            "isVisible": 1,
+            "configuration": {
+                "class": 68,
+                "value": "",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Température",
+            "type": "info",
+            "subType": "numeric",
+            "display": {
+                "generic_type": "THERMOSTAT_TEMPERATURE"
+            },
+            "isHistorized": "0",
+            "unite": "°C",
+            "isVisible": 1,
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "instance": "0",
+                "index": "1"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            },
+            "subType": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 64,
+                "value": "type=setvalue&value=Off",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "On",
+            "type": "action",
+            "subType": "other",
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            },
+            "isVisible": 1,
+            "configuration": {
+                "class": 64,
+                "value": "type=setvalue&value=Resume",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Clim",
+            "type": "action",
+            "subType": "other",
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            },
+            "isVisible": 1,
+            "configuration": {
+                "class": 64,
+                "value": "type=setvalue&value=Cool",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Chauffe",
+            "type": "action",
+            "subType": "other",
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            },
+            "isVisible": 1,
+            "configuration": {
+                "class": 64,
+                "value": "type=setvalue&value=Heat",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Dry",
+            "type": "action",
+            "subType": "other",
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            },
+            "isVisible": 1,
+            "configuration": {
+                "class": 64,
+                "value": "type=setvalue&value=Dry+Air",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Ventilateur Seul",
+            "type": "action",
+            "subType": "other",
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            },
+            "isVisible": 1,
+            "configuration": {
+                "class": 64,
+                "value": "type=setvalue&value=Fan+Only",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Consigne Chaud",
+            "type": "action",
+            "subType": "slider",
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            },
+            "isVisible": 1,
+            "value": "Temp Chauffe",
+            "configuration": {
+                "class": 67,
+                "value": "type=setvalue&value=#slider#",
+                "instance": "0",
+                "index": "1"
+            }
+        },
+        {
+            "name": "Consigne Clim",
+            "type": "action",
+            "subType": "slider",
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            },
+            "isVisible": 1,
+            "value": "Temp Clim",
+            "configuration": {
+                "class": 67,
+                "value": "type=setvalue&value=#slider#",
+                "instance": "0",
+                "index": "2"
+            }
+        },
+        {
+            "name": "Temp Chauffe",
+            "type": "info",
+            "subType": "numeric",
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            },
+            "isHistorized": "0",
+            "unite": "°C",
+            "isVisible": 0,
+            "configuration": {
+                "class": 67,
+                "value": "",
+                "instance": "0",
+                "index": "1"
+            }
+        },
+        {
+            "name": "Temp Clim",
+            "type": "info",
+            "subType": "numeric",
+            "isHistorized": "0",
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            },
+            "unite": "°C",
+            "isVisible": 0,
+            "configuration": {
+                "class": 67,
+                "value": "",
+                "instance": "0",
+                "index": "2"
+            }
+        },
+        {
+            "name": "Auto Bas",
+            "type": "action",
+            "subType": "other",
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            },
+            "isVisible": 1,
+            "configuration": {
+                "class": 68,
+                "value": "type=setvalue&value=Auto+Low",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "On Bas",
+            "type": "action",
+            "subType": "other",
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            },
+            "isVisible": 1,
+            "configuration": {
+                "class": 68,
+                "value": "type=setvalue&value=On+Low",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Auto Haut",
+            "type": "action",
+            "subType": "other",
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            },
+            "isVisible": 1,
+            "configuration": {
+                "class": 68,
+                "value": "type=setvalue&value=Auto+High",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "On Haut",
+            "type": "action",
+            "subType": "other",
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            },
+            "isVisible": 1,
+            "configuration": {
+                "class": 68,
+                "value": "type=setvalue&value=On+High",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "%",
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": "0"
+            }
+        }
+    ]
 }

@@ -1,595 +1,663 @@
 {
-	"name": "Powernode 6 prises",
-	"doc": "greenwave.powernode_-_Multiprise",
-	"type": "Multiprise",
-	"comlink": "2728-greenwave-multiprise-z-wave-6-ports-powernode-schuko--8886464000242",
-	"remark": "Bien lire la documentation pour la remontée automatique des consommations",
-	"imglink": "greenwave.powernode",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat-1",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "",
-		"display": {
-			"generic_type": "ENERGY_STATE"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "On-1",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat-1",
-		"display": {
-			"generic_type": "ENERGY_ON"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Off-1",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat-1",
-		"display": {
-			"generic_type": "ENERGY_OFF"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Etat-2",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "",
-		"display": {
-			"generic_type": "ENERGY_STATE"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 1,
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "On-2",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat-2",
-		"display": {
-			"generic_type": "ENERGY_ON"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 1,
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Off-2",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat-2",
-		"display": {
-			"generic_type": "ENERGY_OFF"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 1,
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Etat-3",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "",
-		"display": {
-			"generic_type": "ENERGY_STATE"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 2,
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "On-3",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat-3",
-		"display": {
-			"generic_type": "ENERGY_ON"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 2,
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Off-3",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat-3",
-		"display": {
-			"generic_type": "ENERGY_OFF"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 2,
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Etat-4",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "",
-		"display": {
-			"generic_type": "ENERGY_STATE"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 3,
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "On-4",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat-4",
-		"display": {
-			"generic_type": "ENERGY_ON"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 3,
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Off-4",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat-4",
-		"display": {
-			"generic_type": "ENERGY_OFF"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 3,
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Etat-5",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "",
-		"display": {
-			"generic_type": "ENERGY_STATE"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 4,
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "On-5",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat-5",
-		"display": {
-			"generic_type": "ENERGY_ON"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 4,
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Off-5",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat-5",
-		"display": {
-			"generic_type": "ENERGY_OFF"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 4,
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Etat-6",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "",
-		"display": {
-			"generic_type": "ENERGY_STATE"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 5,
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "On-6",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat-6",
-		"display": {
-			"generic_type": "ENERGY_ON"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 5,
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Off-6",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat-6",
-		"display": {
-			"generic_type": "ENERGY_OFF"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 5,
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Puissance-1",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "W",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 0,
-			"value": "data[8].val",
-			"maxValue": 2500,
-			"minValue": 0
-		},
-		"template": {
-			"dashboard": "badge-Multiprise"
-		}
-	},
-	{
-		"name": "Puissance-2",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "W",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 1,
-			"value": "data[8].val",
-			"maxValue": 2500,
-			"minValue": 0
-		},
-		"template": {
-			"dashboard": "badge-Multiprise"
-		}
-	},
-	{
-		"name": "Puissance-3",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "W",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 2,
-			"value": "data[8].val",
-			"maxValue": 2500,
-			"minValue": 0
-		},
-		"template": {
-			"dashboard": "badge-Multiprise"
-		}
-	},
-	{
-		"name": "Puissance-4",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "W",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 3,
-			"value": "data[8].val",
-			"maxValue": 2500,
-			"minValue": 0
-		},
-		"template": {
-			"dashboard": "badge-Multiprise"
-		}
-	},
-	{
-		"name": "Puissance-5",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "W",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 4,
-			"value": "data[8].val",
-			"maxValue": 2500,
-			"minValue": 0
-		},
-		"template": {
-			"dashboard": "badge-Multiprise"
-		}
-	},
-	{
-		"name": "Puissance-6",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "W",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 5,
-			"value": "data[8].val",
-			"maxValue": 2500,
-			"minValue": 0
-		},
-		"template": {
-			"dashboard": "badge-Multiprise"
-		}
-	},
-	{
-		"name": "Conso-1",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "kWh",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 0,
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "badge-Multiprise"
-		}
-	},
-	{
-		"name": "Conso-2",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "kWh",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 1,
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "badge-Multiprise"
-		}
-	},
-	{
-		"name": "Conso-3",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "kWh",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 2,
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "badge-Multiprise"
-		}
-	},
-	{
-		"name": "Conso-4",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "kWh",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 3,
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "badge-Multiprise"
-		}
-	},
-	{
-		"name": "Conso-5",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "kWh",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 4,
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "badge-Multiprise"
-		}
-	},
-	{
-		"name": "Conso-6",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "kWh",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 5,
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "badge-Multiprise"
-		}
-	}],
-	"recommended" : {
-		"params" : [
-          {"index": 1, "value" : 255},          
-          {"index": 3, "value" : "Remember last state"},
-		  {"index": 4, "value" : "Disable"}
+    "name": "Powernode 6 prises",
+    "doc": "greenwave.powernode_-_Multiprise",
+    "type": "Multiprise",
+    "comlink": "2728-greenwave-multiprise-z-wave-6-ports-powernode-schuko--8886464000242",
+    "remark": "Bien lire la documentation pour la remontée automatique des consommations",
+    "imglink": "greenwave.powernode",
+    "commands": [
+        {
+            "name": "Etat-1",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "On-1",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat-1",
+            "display": {
+                "generic_type": "ENERGY_ON"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Off-1",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat-1",
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Etat-2",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 1,
+                "index": "0"
+            }
+        },
+        {
+            "name": "On-2",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat-2",
+            "display": {
+                "generic_type": "ENERGY_ON"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 1,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Off-2",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat-2",
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 1,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Etat-3",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 2,
+                "index": "0"
+            }
+        },
+        {
+            "name": "On-3",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat-3",
+            "display": {
+                "generic_type": "ENERGY_ON"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 2,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Off-3",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat-3",
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 2,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Etat-4",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 3,
+                "index": "0"
+            }
+        },
+        {
+            "name": "On-4",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat-4",
+            "display": {
+                "generic_type": "ENERGY_ON"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 3,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Off-4",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat-4",
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 3,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Etat-5",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 4,
+                "index": "0"
+            }
+        },
+        {
+            "name": "On-5",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat-5",
+            "display": {
+                "generic_type": "ENERGY_ON"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 4,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Off-5",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat-5",
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 4,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Etat-6",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 5,
+                "index": "0"
+            }
+        },
+        {
+            "name": "On-6",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat-6",
+            "display": {
+                "generic_type": "ENERGY_ON"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 5,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Off-6",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat-6",
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 5,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "prise",
+                "mobile": "prise"
+            }
+        },
+        {
+            "name": "Puissance-1",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "W",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "maxValue": 2500,
+                "minValue": 0,
+                "instance": 0,
+                "index": "8"
+            },
+            "template": {
+                "dashboard": "badge-Multiprise"
+            }
+        },
+        {
+            "name": "Puissance-2",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "W",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "maxValue": 2500,
+                "minValue": 0,
+                "instance": 1,
+                "index": "8"
+            },
+            "template": {
+                "dashboard": "badge-Multiprise"
+            }
+        },
+        {
+            "name": "Puissance-3",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "W",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "maxValue": 2500,
+                "minValue": 0,
+                "instance": 2,
+                "index": "8"
+            },
+            "template": {
+                "dashboard": "badge-Multiprise"
+            }
+        },
+        {
+            "name": "Puissance-4",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "W",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "maxValue": 2500,
+                "minValue": 0,
+                "instance": 3,
+                "index": "8"
+            },
+            "template": {
+                "dashboard": "badge-Multiprise"
+            }
+        },
+        {
+            "name": "Puissance-5",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "W",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "maxValue": 2500,
+                "minValue": 0,
+                "instance": 4,
+                "index": "8"
+            },
+            "template": {
+                "dashboard": "badge-Multiprise"
+            }
+        },
+        {
+            "name": "Puissance-6",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "W",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "maxValue": 2500,
+                "minValue": 0,
+                "instance": 5,
+                "index": "8"
+            },
+            "template": {
+                "dashboard": "badge-Multiprise"
+            }
+        },
+        {
+            "name": "Conso-1",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "kWh",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "badge-Multiprise"
+            }
+        },
+        {
+            "name": "Conso-2",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "kWh",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": 1,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "badge-Multiprise"
+            }
+        },
+        {
+            "name": "Conso-3",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "kWh",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": 2,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "badge-Multiprise"
+            }
+        },
+        {
+            "name": "Conso-4",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "kWh",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": 3,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "badge-Multiprise"
+            }
+        },
+        {
+            "name": "Conso-5",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "kWh",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": 4,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "badge-Multiprise"
+            }
+        },
+        {
+            "name": "Conso-6",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "kWh",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": 5,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "badge-Multiprise"
+            }
+        }
+    ],
+    "recommended": {
+        "params": [
+            {
+                "index": 1,
+                "value": 255
+            },
+            {
+                "index": 3,
+                "value": "Remember last state"
+            },
+            {
+                "index": 4,
+                "value": "Disable"
+            }
         ],
-		"groups" : [
-          {"index": 1, "value": "add"},
-		  {"index": 3, "value": "add"}
+        "groups": [
+            {
+                "index": 1,
+                "value": "add"
+            },
+            {
+                "index": 3,
+                "value": "add"
+            }
         ],
-		"polling": [
-            { "instanceId": "0", "index": 0, "class": "0x32" },
-			{ "instanceId": "1", "index": 0, "class": "0x32" },
-			{ "instanceId": "2", "index": 0, "class": "0x32" },
-			{ "instanceId": "3", "index": 0, "class": "0x32" },
-			{ "instanceId": "4", "index": 0, "class": "0x32" },
-            { "instanceId": "5", "index": 0, "class": "0x32" }
+        "polling": [
+            {
+                "instanceId": "0",
+                "index": 0,
+                "class": "0x32"
+            },
+            {
+                "instanceId": "1",
+                "index": 0,
+                "class": "0x32"
+            },
+            {
+                "instanceId": "2",
+                "index": 0,
+                "class": "0x32"
+            },
+            {
+                "instanceId": "3",
+                "index": 0,
+                "class": "0x32"
+            },
+            {
+                "instanceId": "4",
+                "index": 0,
+                "class": "0x32"
+            },
+            {
+                "instanceId": "5",
+                "index": 0,
+                "class": "0x32"
+            }
         ],
-		"needswakeup" : false
+        "needswakeup": false
     }
 }

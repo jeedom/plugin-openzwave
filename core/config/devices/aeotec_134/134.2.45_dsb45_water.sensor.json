@@ -1,70 +1,75 @@
 {
-	"name": "Water Sensor (DSB45)",
-	"doc": "",
-	"type": "Fuite",
-	"comlink": "3182-aeon-labs-capteur-d-eau-z-wave-1220000012486",
-	"remark": "Paramètre 121 doit être forcé a 4113",
-	"imglink": "aeotec.dsb45",
-	"battery_type": "2x1.5V AAA",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Fuite",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"configuration": {
-			"class": "0x30",
-			"instanceId": 0,
-			"value": "data[0].val"
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "FLOOD"
-		},
-		"template": {
-			"dashboard": "inondation",
-			"mobile": "inondation"
-		}
-	},
-	{
-		"name": "Sabotage",
-		"type": "info",
-		"subtype": "binary",
-		"configuration": {
-			"class": "0x9C",
-			"instanceId": 0,
-			"value": "data[0].val",
-			"returnStateTime": "1",
-			"returnStateValue": "0"
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "SABOTAGE"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"unite": "%",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"class": "0x80",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	}],
-	"recommended" : {
-		"params" : [
-          {"index": 121, "value" : 4113}
+    "name": "Water Sensor (DSB45)",
+    "doc": "",
+    "type": "Fuite",
+    "comlink": "3182-aeon-labs-capteur-d-eau-z-wave-1220000012486",
+    "remark": "Paramètre 121 doit être forcé a 4113",
+    "imglink": "aeotec.dsb45",
+    "battery_type": "2x1.5V AAA",
+    "commands": [
+        {
+            "name": "Fuite",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 48,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            },
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "FLOOD"
+            },
+            "template": {
+                "dashboard": "inondation",
+                "mobile": "inondation"
+            }
+        },
+        {
+            "name": "Sabotage",
+            "type": "info",
+            "subtype": "binary",
+            "configuration": {
+                "class": 156,
+                "value": "",
+                "returnStateTime": "1",
+                "returnStateValue": "0",
+                "instance": 0,
+                "index": "0"
+            },
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "SABOTAGE"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "unite": "%",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
+        }
+    ],
+    "recommended": {
+        "params": [
+            {
+                "index": 121,
+                "value": 4113
+            }
         ],
-		"wakeup" : 14400,
-		"needswakeup" : true
+        "wakeup": 14400,
+        "needswakeup": true
     }
 }

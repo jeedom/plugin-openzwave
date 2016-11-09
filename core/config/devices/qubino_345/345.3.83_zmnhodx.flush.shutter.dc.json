@@ -5,9 +5,6 @@
     "comlink": "2951-qubino-z-wave-flush-shutter-dc-zmnhod1-3830062070089",
     "remark": "",
     "imglink": "qubino.zmnhod1",
-    "configuration": {
-        "conf_version": 1
-    },
     "commands": [
         {
             "name": "Info Position",
@@ -18,8 +15,9 @@
                 "generic_type": "FLAP_STATE"
             },
             "configuration": {
-                "class": "0x26",
-                "value": "data[0].val"
+                "class": 38,
+                "value": "",
+                "index": "0"
             },
             "template": {
                 "dashboard": "store",
@@ -35,19 +33,18 @@
             "display": {
                 "generic_type": "FLAP_SLIDER"
             },
-            "configuration":
-                    {
-                        "instanceId": "0",
-                        "class": "0x26",
-                        "value": "data[0].Set(#slider#)",
-                        "minValue": 0,
-                        "maxValue": 99
-                    },
-            "template":
-                    {
-                        "dashboard": "store",
-                        "mobile": "store"
-                    }
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=#slider#",
+                "minValue": 0,
+                "maxValue": 99,
+                "instance": "0",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "store",
+                "mobile": "store"
+            }
         },
         {
             "name": "Puissance",
@@ -59,14 +56,14 @@
             "display": {
                 "generic_type": "POWER"
             },
-            "configuration":
-                    {
-                        "instanceId": 0,
-                        "class": "0x32",
-                        "value": "data[8].val",
-                        "minValue": 0,
-                        "maxValue": 48
-                    }
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "minValue": 0,
+                "maxValue": 48,
+                "instance": 0,
+                "index": "8"
+            }
         },
         {
             "name": "Consommation",
@@ -78,12 +75,12 @@
             "display": {
                 "generic_type": "CONSUMPTION"
             },
-            "configuration":
-                    {
-                        "instanceId": 0,
-                        "class": "0x32",
-                        "value": "data[0].val"
-                    }
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
         },
         {
             "name": "Monter",
@@ -91,11 +88,12 @@
             "subtype": "other",
             "isVisible": 1,
             "configuration": {
-                "class": "0x26",
-                "value": "data[1].PressButton()"
+                "class": 38,
+                "value": "type=buttonaction&action=press",
+                "index": "1"
             },
             "display": {
-                "icon": "<i class=\"fa fa-arrow-up\"></i>",
+                "icon": "<i class=\"fa fa-arrow-up\"><\/i>",
                 "generic_type": "FLAP_UP"
             }
         },
@@ -105,11 +103,12 @@
             "subtype": "other",
             "isVisible": 1,
             "configuration": {
-                "class": "0x26",
-                "value": "data[2].PressButton()"
+                "class": 38,
+                "value": "type=buttonaction&action=press",
+                "index": "2"
             },
             "display": {
-                "icon": "<i class=\"fa fa-arrow-down\"></i>",
+                "icon": "<i class=\"fa fa-arrow-down\"><\/i>",
                 "generic_type": "FLAP_DOWN"
             }
         },
@@ -124,8 +123,9 @@
                 "generic_type": "TEMPERATURE"
             },
             "configuration": {
-                "class": "0x31",
-                "value": "data[1].val"
+                "class": 49,
+                "value": "",
+                "index": "1"
             }
         },
         {
@@ -134,9 +134,10 @@
             "subtype": "other",
             "isVisible": 1,
             "configuration": {
-                "instanceId": "0",
-                "class": "0x26",
-                "value": "data[2].ReleaseButton()"
+                "class": 38,
+                "value": "type=buttonaction&action=release",
+                "instance": "0",
+                "index": "2"
             },
             "display": {
                 "icon": "<i class=\"fa fa-stop\"><\/i>",
@@ -149,9 +150,10 @@
             "subtype": "other",
             "isVisible": 0,
             "configuration": {
-                "instanceId": "0",
-                "class": "0x26",
-                "value": "data[7].ReleaseButton()"
+                "class": 38,
+                "value": "type=buttonaction&action=release",
+                "instance": "0",
+                "index": "7"
             },
             "display": {
                 "icon": "<i class=\"fa fa-stop\"><\/i>",
@@ -163,10 +165,11 @@
             "type": "action",
             "subtype": "other",
             "isVisible": 0,
-           "configuration": {
-                "instanceId": "0",
-                "class": "0x26",
-                "value": "data[7].PressButton()"
+            "configuration": {
+                "class": 38,
+                "value": "type=buttonaction&action=press",
+                "instance": "0",
+                "index": "7"
             },
             "display": {
                 "icon": "<i class=\"fa fa-plus\"><\/i>",
@@ -179,9 +182,10 @@
             "subtype": "other",
             "isVisible": 0,
             "configuration": {
-                "instanceId": "0",
-                "class": "0x26",
-                "value": "data[8].PressButton()"
+                "class": 38,
+                "value": "type=buttonaction&action=press",
+                "instance": "0",
+                "index": "8"
             },
             "display": {
                 "icon": "<i class=\"fa fa-minus\"><\/i>",
@@ -197,23 +201,10 @@
             },
             "isVisible": 0,
             "configuration": {
-                "instanceId": "0",
-                "class": "0x26",
-                "value": "data[6].val"
-            }
-        },
-        {
-            "name": "Rafraichir",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
-            "configuration": {
-                "class": "0x26",
-                "value": "Get()"
-            },
-            "display": {
-                "icon": "<i class=\"fa fa-refresh\"></i>",
-                "generic_type": "DONT"
+                "class": 38,
+                "value": "",
+                "instance": "0",
+                "index": "6"
             }
         }
     ]

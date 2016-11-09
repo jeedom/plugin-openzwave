@@ -1,119 +1,125 @@
 {
-	"name": "Z-Weather Wind and Weather Sensor",
-	"doc": "",
-	"type": "Multicapteurs",
-	"comlink": "2961-popp-station-meteo-z-wave-z-weather",
-	"remark": "Vendu sous le nom POPP - Station météo Z-Wave+ Z-Weather",
-	"imglink": "popp.zweather",
-	"battery_type": "Cellule solaire",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Température",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "°C",
-		"configuration": {
-			"class": "0x31",
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Luminosité",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "BRIGHTNESS"
-		},
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "%",
-		"configuration": {
-			"class": "0x31",
-			"value": "data[3].val",
-			"maxValue": 100,
-			"minValue": 0
-		}
-	},
-	{
-		"name": "Humidité",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"display": {
-			"generic_type": "HUMIDITY"
-		},
-		"unite": "%",
-		"configuration": {
-			"class": "0x31",
-			"value": "data[5].val"
-		}
-	},
-	{
-		"name": "Vitesse du vent",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "WIND_SPEED"
-		},
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "m/s",
-		"configuration": {
-			"class": "0x31",
-			"value": "data[6].val"
-		}
-	},
-	{
-		"name": "Pression barométrique",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "PRESSURE"
-		},
-		"isHistorized": 1,
-		"unite": "kPa",
-		"configuration": {
-			"class": "0x31",
-			"value": "data[9].val"
-		}
-	},
-	{
-		"name": "Point de rosée",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "GENERIC"
-		},
-		"isHistorized": 1,
-		"unite": "°C",
-		"configuration": {
-			"class": "0x31",
-			"value": "data[11].val"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"isHistorized": 0,
-		"unite": "%",
-		"configuration": {
-			"class": "0x80",
-			"value": "data[0].val"
-		}
-	}]
+    "name": "Z-Weather Wind and Weather Sensor",
+    "doc": "",
+    "type": "Multicapteurs",
+    "comlink": "2961-popp-station-meteo-z-wave-z-weather",
+    "remark": "Vendu sous le nom POPP - Station météo Z-Wave+ Z-Weather",
+    "imglink": "popp.zweather",
+    "battery_type": "Cellule solaire",
+    "commands": [
+        {
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "°C",
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "index": "1"
+            }
+        },
+        {
+            "name": "Luminosité",
+            "type": "info",
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "BRIGHTNESS"
+            },
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "%",
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "maxValue": 100,
+                "minValue": 0,
+                "index": "3"
+            }
+        },
+        {
+            "name": "Humidité",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "display": {
+                "generic_type": "HUMIDITY"
+            },
+            "unite": "%",
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "index": "5"
+            }
+        },
+        {
+            "name": "Vitesse du vent",
+            "type": "info",
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "WIND_SPEED"
+            },
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "m\/s",
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "index": "6"
+            }
+        },
+        {
+            "name": "Pression barométrique",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "PRESSURE"
+            },
+            "isHistorized": 1,
+            "unite": "kPa",
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "index": "9"
+            }
+        },
+        {
+            "name": "Point de rosée",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "GENERIC"
+            },
+            "isHistorized": 1,
+            "unite": "°C",
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "index": "11"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "isHistorized": 0,
+            "unite": "%",
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": "0"
+            }
+        }
+    ]
 }

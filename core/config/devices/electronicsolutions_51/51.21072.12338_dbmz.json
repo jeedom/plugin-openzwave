@@ -1,91 +1,95 @@
 {
-	"name": "DBMZ Motor Control",
-	"doc": "",
-	"type": "Volets",
-	"comlink": "",
-	"remark": "",
-	"imglink": "electronicsolutions.dbmz",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Up",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[0].Set(99)"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-arrow-up\"></i>",
-			"generic_type": "FLAP_UP"
-		}
-	},
-	{
-		"name": "Down",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[0].Set(0)"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-arrow-down\"></i>",
-			"generic_type": "FLAP_DOWN"
-		}
-	},
-	{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "FLAP_STATE"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Positionnement",
-		"type": "action",
-		"subtype": "slider",
-		"isVisible": 1,
-		"value": "Etat",
-		"display": {
-			"generic_type": "FLAP_SLIDER"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[0].Set(#slider#)",
-			"minValue": 0,
-			"maxValue": 99
-		},
-		"template": {
-			"dashboard": "store",
-			"mobile": "store"
-		}
-	},
-	{
-		"name": "Stop",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[2].ReleaseButton()"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-stop\"><\/i>",
-			"generic_type": "FLAP_STOP"
-		}
-	}]
+    "name": "DBMZ Motor Control",
+    "doc": "",
+    "type": "Volets",
+    "comlink": "",
+    "remark": "",
+    "imglink": "electronicsolutions.dbmz",
+    "commands": [
+        {
+            "name": "Up",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=99",
+                "instance": "0",
+                "index": "0"
+            },
+            "display": {
+                "icon": "<i class=\"fa fa-arrow-up\"><\/i>",
+                "generic_type": "FLAP_UP"
+            }
+        },
+        {
+            "name": "Down",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=0",
+                "instance": "0",
+                "index": "0"
+            },
+            "display": {
+                "icon": "<i class=\"fa fa-arrow-down\"><\/i>",
+                "generic_type": "FLAP_DOWN"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "FLAP_STATE"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "",
+                "instance": "0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Positionnement",
+            "type": "action",
+            "subtype": "slider",
+            "isVisible": 1,
+            "value": "Etat",
+            "display": {
+                "generic_type": "FLAP_SLIDER"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=#slider#",
+                "minValue": 0,
+                "maxValue": 99,
+                "instance": "0",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "store",
+                "mobile": "store"
+            }
+        },
+        {
+            "name": "Stop",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "configuration": {
+                "class": 38,
+                "value": "type=buttonaction&action=release",
+                "instance": "0",
+                "index": "2"
+            },
+            "display": {
+                "icon": "<i class=\"fa fa-stop\"><\/i>",
+                "generic_type": "FLAP_STOP"
+            }
+        }
+    ]
 }

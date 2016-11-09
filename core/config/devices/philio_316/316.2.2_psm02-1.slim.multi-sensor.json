@@ -1,122 +1,127 @@
 {
-	"name": "PSP01/PSM02",
-	"doc": "philio.psp01_-_Multicapteurs",
-	"type": "Multicapteurs",
-	"comlink": "2608-zipato-detecteur-z-wave-4-en-1-mouvement-ouverture-luminosite-tem-3858890730425",
-	"remark": "Vendu aussi sous la marque Zipato",
-	"imglink": "philio.psp01",
-	"battery_type": "1x3V CR123A",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Présence",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x30",
-			"value": "data[0].val",
-			"returnStateTime": 1,
-			"returnStateValue": 0
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "PRESENCE"
-		},
-		"template": {
-			"dashboard": "presence",
-			"mobile": "presence"
-		}
-	},
-	{
-		"name": "Ouverture",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x30",
-			"value": "data[1].val"
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "OPENING"
-		},
-		"template": {
-			"dashboard": "door",
-			"mobile": "door"
-		}
-	},
-	{
-		"name": "Température",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x31",
-			"value": "data[1].val",
-			"unite": "°C"
-		}
-	},
-	{
-		"name": "Luminosité",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"display": {
-			"generic_type": "BRIGHTNESS"
-		},
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x31",
-			"value": "data[3].val",
-			"unite": "%",
-			"maxValue": 100,
-			"minValue": 0
-		}
-	},
-	{
-		"name": "Sabotage",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x30",
-			"value": "data[2].val",
-			"returnStateTime": 1,
-			"returnStateValue": 0
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "SABOTAGE"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x80",
-			"value": "data[0].val",
-			"unite": "%"
-		}
-	}]
+    "name": "PSP01\/PSM02",
+    "doc": "philio.psp01_-_Multicapteurs",
+    "type": "Multicapteurs",
+    "comlink": "2608-zipato-detecteur-z-wave-4-en-1-mouvement-ouverture-luminosite-tem-3858890730425",
+    "remark": "Vendu aussi sous la marque Zipato",
+    "imglink": "philio.psp01",
+    "battery_type": "1x3V CR123A",
+    "commands": [
+        {
+            "name": "Présence",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 48,
+                "value": "",
+                "returnStateTime": 1,
+                "returnStateValue": 0,
+                "instance": 0,
+                "index": "0"
+            },
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "PRESENCE"
+            },
+            "template": {
+                "dashboard": "presence",
+                "mobile": "presence"
+            }
+        },
+        {
+            "name": "Ouverture",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 48,
+                "value": "",
+                "instance": 0,
+                "index": "1"
+            },
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "OPENING"
+            },
+            "template": {
+                "dashboard": "door",
+                "mobile": "door"
+            }
+        },
+        {
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "unite": "°C",
+                "instance": 0,
+                "index": "1"
+            }
+        },
+        {
+            "name": "Luminosité",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "display": {
+                "generic_type": "BRIGHTNESS"
+            },
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "unite": "%",
+                "maxValue": 100,
+                "minValue": 0,
+                "instance": 0,
+                "index": "3"
+            }
+        },
+        {
+            "name": "Sabotage",
+            "type": "info",
+            "subtype": "binary",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 48,
+                "value": "",
+                "returnStateTime": 1,
+                "returnStateValue": 0,
+                "instance": 0,
+                "index": "2"
+            },
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "SABOTAGE"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "unite": "%",
+                "instance": 0,
+                "index": "0"
+            }
+        }
+    ]
 }

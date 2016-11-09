@@ -1,101 +1,106 @@
 {
-	"name": "Plug In Dimmer",
-	"doc": "",
-	"type": "Prise",
-	"comlink": "2347-benext-module-prise-variateur-z-wave-avec-mesure-d-energie-0632181493779",
-	"remark": "",
-	"imglink": "benext.plugin-dimmer",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Intensité",
-		"type": "action",
-		"subtype": "slider",
-		"isVisible": 1,
-		"value": "Etat",
-		"display": {
-			"generic_type": "LIGHT_SLIDER"
-		},
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].Set(#slider#)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "LIGHT_ON"
-		},
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].Set(99)"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "LIGHT_OFF"
-		},
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].Set(0)"
-		}
-	},
-	{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "numeric",
-		"unite": "%",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "LIGHT_STATE"
-		},
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].val",
-			"minValue": 0,
-			"maxValue": 100
-		}
-	},
-	{
-		"name": "Puissance",
-		"type": "info",
-		"subtype": "numeric",
-		"unite": "W",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "POWER"
-		},
-		"configuration": {
-			"class": "0x32",
-			"value": "data[8].val",
-			"minValue": 0,
-			"maxValue": 125
-		}
-	},
-	{
-		"name": "Consommation",
-		"type": "info",
-		"subtype": "numeric",
-		"unite": "kWh",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"configuration": {
-			"class": "0x32",
-			"value": "data[0].val"
-		}
-	}]
+    "name": "Plug In Dimmer",
+    "doc": "",
+    "type": "Prise",
+    "comlink": "2347-benext-module-prise-variateur-z-wave-avec-mesure-d-energie-0632181493779",
+    "remark": "",
+    "imglink": "benext.plugin-dimmer",
+    "commands": [
+        {
+            "name": "Intensité",
+            "type": "action",
+            "subtype": "slider",
+            "isVisible": 1,
+            "value": "Etat",
+            "display": {
+                "generic_type": "LIGHT_SLIDER"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=#slider#",
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "On",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "LIGHT_ON"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=99",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=0",
+                "index": "0"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "numeric",
+            "unite": "%",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "",
+                "minValue": 0,
+                "maxValue": 100,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Puissance",
+            "type": "info",
+            "subtype": "numeric",
+            "unite": "W",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "POWER"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "minValue": 0,
+                "maxValue": 125,
+                "index": "8"
+            }
+        },
+        {
+            "name": "Consommation",
+            "type": "info",
+            "subtype": "numeric",
+            "unite": "kWh",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "index": "0"
+            }
+        }
+    ]
 }

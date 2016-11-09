@@ -1,115 +1,120 @@
 {
-	"name": "Micro Dimmer (DSC27103)",
-	"doc": "",
-	"type": "Micromodule",
-	"comlink": "",
-	"remark": "",
-	"imglink": "aeotec.micro-smart-energy-illuminator",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "LIGHT_ON"
-		},
-		"configuration": {
-			"class": "0x26",
-			"instanceId": 0,
-			"value": "data[0].Set(99)"
-		}
-	},
-		{
-			"name": "Off",
-			"type": "action",
-			"subtype": "other",
-			"isVisible": 1,
-			"display": {
-				"generic_type": "LIGHT_OFF"
-			},
-			"configuration": {
-				"class": "0x26",
-				"instanceId": 0,
-				"value": "data[0].Set(0)"
-			}
-		},
-		{
-			"name": "Intensité",
-			"type": "action",
-			"subtype": "slider",
-			"isVisible": 1,
-			"value": "Etat",
-			"display": {
-				"generic_type": "LIGHT_SLIDER"
-			},
-			"configuration": {
-				"class": "0x26",
-				"instanceId": 0,
-				"value": "data[0].Set(#slider#)",
-				"minValue": 0,
-				"maxValue": 100
-			},
-			"template": {
-				"dashboard": "light",
-				"mobile": "light"
-			}
-		},
-		{
-			"name": "Etat",
-			"type": "info",
-			"subtype": "numeric",
-			"unite": "%",
-			"isVisible": 0,
-			"display": {
-				"generic_type": "LIGHT_STATE"
-			},
-			"configuration": {
-				"class": "0x26",
-				"instanceId": 0,
-				"value": "data[0].val",
-				"minValue": 0,
-				"maxValue": 100
-			}
-		},
-		{
-			"name": "Puissance",
-			"type": "info",
-			"subtype": "numeric",
-			"isVisible": 0,
-			"isHistorized": 1,
-			"unite": "W",
-			"display": {
-				"generic_type": "POWER"
-			},
-			"configuration": {
-				"class": "0x32",
-				"instanceId": 0,
-				"value": "data[8].val",
-				"maxValue": 2500,
-				"minValue": 0
-			}
-		},
-		{
-			"name": "Consommation",
-			"type": "info",
-			"subtype": "numeric",
-			"isVisible": 0,
-			"isHistorized": 0,
-			"unite": "kWh",
-			"display": {
-				"generic_type": "CONSUMPTION"
-			},
-			"configuration": {
-				"class": "0x32",
-				"instanceId": 0,
-				"value": "data[0].val"
-			},
-			"template": {
-				"dashboard": "tile",
-				"mobile": "tile"
-			}
-		}]
+    "name": "Micro Dimmer (DSC27103)",
+    "doc": "",
+    "type": "Micromodule",
+    "comlink": "",
+    "remark": "",
+    "imglink": "aeotec.micro-smart-energy-illuminator",
+    "commands": [
+        {
+            "name": "On",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "LIGHT_ON"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=99",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=0",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Intensité",
+            "type": "action",
+            "subtype": "slider",
+            "isVisible": 1,
+            "value": "Etat",
+            "display": {
+                "generic_type": "LIGHT_SLIDER"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=#slider#",
+                "minValue": 0,
+                "maxValue": 100,
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "subtype": "numeric",
+            "unite": "%",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            },
+            "configuration": {
+                "class": 38,
+                "value": "",
+                "minValue": 0,
+                "maxValue": 100,
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Puissance",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "unite": "W",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "maxValue": 2500,
+                "minValue": 0,
+                "instance": 0,
+                "index": "8"
+            }
+        },
+        {
+            "name": "Consommation",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "kWh",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        }
+    ]
 }

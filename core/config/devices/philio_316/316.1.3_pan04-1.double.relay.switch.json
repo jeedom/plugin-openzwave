@@ -1,262 +1,276 @@
 {
-	"name": "PAN04 In Wall Switch Module with meter 2X1.5KW",
-	"doc": "",
-	"type": "Micromodule",
-	"comlink": "2610-zipato-micromodule-commutateur-double-z-wave-avec-mesure-d-energie-3858890730821",
-	"remark": "Vendu aussi sous la marque Zipato",
-	"imglink": "philio.pan04",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "On global",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 2,
-			"value": "data[0].Set(255)"
-		}
-	},
-	{
-		"name": "Off global",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 2,
-			"value": "data[0].Set(0)"
-		}
-	},
-	{
-		"name": "Etat global",
-		"type": "info",
-		"subtype": "numeric",
-		"unite": "",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 2,
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Puissance globale",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "W",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 2,
-			"value": "data[2].val",
-			"maxValue": 3200,
-			"minValue": 0
-		}
-	},
-	{
-		"name": "Consommation globale",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "kWh",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 2,
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "On 1",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat 1",
-		"display": {
-			"generic_type": "LIGHT_ON"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "Off 1",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat 1",
-		"display": {
-			"generic_type": "LIGHT_OFF"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "Etat 1",
-		"type": "info",
-		"subtype": "numeric",
-		"unite": "",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "LIGHT_STATE"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Puissance 1",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "W",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 0,
-			"value": "data[2].val",
-			"maxValue": 2000,
-			"minValue": 0
-		}
-	},
-	{
-		"name": "Consommation 1",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "kWh",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "On 2",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat 2",
-		"display": {
-			"generic_type": "LIGHT_ON"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 1,
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "Off 2",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Etat 2",
-		"display": {
-			"generic_type": "LIGHT_OFF"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 1,
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "Etat 2",
-		"type": "info",
-		"subtype": "numeric",
-		"unite": "",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "LIGHT_STATE"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 1,
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Puissance 2",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "W",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 1,
-			"value": "data[2].val",
-			"maxValue": 2000,
-			"minValue": 0
-		}
-	},
-	{
-		"name": "Consommation 2",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "kWh",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"configuration": {
-			"class": "0x32",
-			"instanceId": 1,
-			"value": "data[0].val"
-		}
-	}]
+    "name": "PAN04 In Wall Switch Module with meter 2X1.5KW",
+    "doc": "",
+    "type": "Micromodule",
+    "comlink": "2610-zipato-micromodule-commutateur-double-z-wave-avec-mesure-d-energie-3858890730821",
+    "remark": "Vendu aussi sous la marque Zipato",
+    "imglink": "philio.pan04",
+    "commands": [
+        {
+            "name": "On global",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 2,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Off global",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 2,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Etat global",
+            "type": "info",
+            "subtype": "numeric",
+            "unite": "",
+            "isVisible": 1,
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 2,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Puissance globale",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "W",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "maxValue": 3200,
+                "minValue": 0,
+                "instance": 2,
+                "index": "2"
+            }
+        },
+        {
+            "name": "Consommation globale",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "kWh",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": 2,
+                "index": "0"
+            }
+        },
+        {
+            "name": "On 1",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat 1",
+            "display": {
+                "generic_type": "LIGHT_ON"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Off 1",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat 1",
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 0,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Etat 1",
+            "type": "info",
+            "subtype": "numeric",
+            "unite": "",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Puissance 1",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "W",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "maxValue": 2000,
+                "minValue": 0,
+                "instance": 0,
+                "index": "2"
+            }
+        },
+        {
+            "name": "Consommation 1",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "kWh",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": 0,
+                "index": "0"
+            }
+        },
+        {
+            "name": "On 2",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat 2",
+            "display": {
+                "generic_type": "LIGHT_ON"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "instance": 1,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Off 2",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Etat 2",
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "instance": 1,
+                "index": "0"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Etat 2",
+            "type": "info",
+            "subtype": "numeric",
+            "unite": "",
+            "isVisible": 0,
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            },
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "instance": 1,
+                "index": "0"
+            }
+        },
+        {
+            "name": "Puissance 2",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "W",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "maxValue": 2000,
+                "minValue": 0,
+                "instance": 1,
+                "index": "2"
+            }
+        },
+        {
+            "name": "Consommation 2",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "kWh",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "instance": 1,
+                "index": "0"
+            }
+        }
+    ]
 }
