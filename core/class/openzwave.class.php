@@ -187,16 +187,6 @@ class openzwave extends eqLogic {
 		));
 	}
 
-	public static function cronDaily() {
-		if (config::byKey('auto_updateConf', 'openzwave') == 1) {
-			try {
-				openzwave::syncconfOpenzwave();
-			} catch (Exception $e) {
-			}
-		}
-
-	}
-
 	public static function cron15() {
 		if (file_exists($pathlog) && shell_exec('grep "Not enough space in stream buffer" ' . $pathlog . ' | wc -l') > 0) {
 			log::add('openzwave', 'error', 'Not enough space in stream buffer detected');
@@ -256,19 +246,6 @@ class openzwave extends eqLogic {
 			return false;
 		}
 		return true;
-	}
-
-	public static function syncconfOpenzwave($_background = true) {
-		log::remove('openzwave_syncconf');
-		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../resources/syncconf.sh';
-		if ($_background) {
-			$cmd .= ' >> ' . log::getPathToLog('openzwave_syncconf') . ' 2>&1 &';
-		}
-		log::add('openzwave_syncconf', 'info', $cmd);
-		shell_exec($cmd);
-		foreach (self::byType('openzwave') as $eqLogic) {
-			$eqLogic->loadCmdFromConf(true);
-		}
 	}
 
 	public static function deamon_info() {

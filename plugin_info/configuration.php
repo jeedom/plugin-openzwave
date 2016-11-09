@@ -79,7 +79,6 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 			<label class="col-lg-4 control-label">{{Options avancées}}</label>
 			<div class="col-lg-5">
 				<a class="btn btn-warning" id="bt_backupsZwave"><i class="fa fa-floppy-o"></i> {{Backups}}</a>
-				<a class="btn btn-success" id="bt_syncconfigZwave"><i class="fa fa-refresh"></i> {{Configs modules}}</a>
 			</div>
 		</div>
 	</fieldset>
@@ -89,14 +88,5 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 	$('#bt_backupsZwave').on('click', function () {
 		$('#md_modal2').dialog({title: "{{Backups}}"});
 		$('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=backup').dialog('open');
-	});
-
-	$('#bt_syncconfigZwave').on('click',function(){
-		bootbox.confirm('{{Etes-vous sûr de vouloir télécharger les dernières configurations des modules ?}}', function (result) {
-			if (result) {
-				$('#md_modal2').dialog({title: "{{Téléchargement des configurations}}"});
-				$('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=syncconf.openzwave').dialog('open');
-			}
-		});
 	});
 </script>

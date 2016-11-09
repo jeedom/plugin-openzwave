@@ -26,11 +26,6 @@ try {
 
 	ajax::init();
 
-	if (init('action') == 'syncconfOpenzwave') {
-		openzwave::syncconfOpenzwave();
-		ajax::success();
-	}
-
 	if (init('action') == 'syncEqLogicWithOpenZwave') {
 		openzwave::syncEqLogicWithOpenZwave();
 		ajax::success();

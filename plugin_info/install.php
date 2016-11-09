@@ -81,7 +81,6 @@ function openzwave_update() {
 			$cmd->save();
 		}
 	}
-	openzwave::syncconfOpenzwave();
 }
 
 function openzwave_remove() {
