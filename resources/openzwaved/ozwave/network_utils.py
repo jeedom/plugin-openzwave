@@ -47,13 +47,11 @@ def network_ready(network):
 		"Openzwave network is ready with %d nodes (%d are sleeping). All nodes are queried, the network is fully functional." % (
 		network.nodes_count, utils.get_sleeping_nodes_count(),))
 	utils.write_config()
-	globals.network_information.assign_controller_notification(ZWaveController.SIGNAL_CTRL_NORMAL, "Network is ready")
 	save_network_state(network.state)
 
 def network_started(network):
 	logging.info("Openzwave network are started with homeId %0.8x." % (network.home_id,))
 	globals.network_is_running = True
-	globals.network_information.assign_controller_notification(ZWaveController.SIGNAL_CTRL_STARTING, "Network is started")
 	save_network_state(network.state)
 	if network.manager.getPollInterval() != globals.default_poll_interval:
 		network.set_poll_interval(globals.default_poll_interval, False)
@@ -67,7 +65,6 @@ def save_network_state(network_state):
 
 def network_failed(network):
 	logging.error("Openzwave network can't load")
-	globals.network_information.assign_controller_notification(ZWaveController.SIGNAL_CTRL_ERROR, "Network have failed")
 	save_network_state(network.state)
 
 def network_awaked(network):
