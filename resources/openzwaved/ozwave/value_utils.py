@@ -46,11 +46,10 @@ def value_polling_enabled(network, node, value):
 def save_value(node, value, last_update):
 	logging.debug('A node value has been updated. nodeId:%s value:%s' % (node.node_id, value.label))
 	if node.node_id in globals.network.nodes:
-		my_node = globals.network.nodes[node.node_id]
-		if my_node.last_update > last_update:
-			logging.warning('Timing Error. nodeLastUpdate:%s Last_update:%s' % (str(my_node.last_update), str(last_update)))
+		if globals.network.nodes[node.node_id].last_update > last_update:
+			logging.warning('Timing Error. nodeLastUpdate:%s Last_update:%s' % (str(globals.network.nodes[node.node_id].last_update), str(last_update)))
 			return
-		my_node.last_update = last_update
+		globals.network.nodes[node.node_id].last_update = last_update
 		value.last_update = last_update
 		node_utils.save_node_value_event(node.node_id, value.command_class, value.index, extract_data(value, False), utils.change_instance(value))
 
