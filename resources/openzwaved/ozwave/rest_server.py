@@ -5,7 +5,6 @@ import logging
 from lxml import etree
 import globals,utils,network_utils,node_utils
 import value_utils,commands
-from utilities.Constants import *
 from utilities.NetworkExtend import *
 try:
 	from tornado.web import RequestHandler,Application,HTTPError
@@ -162,7 +161,7 @@ class NodeHandler(RequestHandler):
 							continue
 						if configuration_value.is_write_only:
 							continue
-						target_value = value_utils.get_value_by_index(target_id, COMMAND_CLASS_CONFIGURATION, 1,configuration_value.index)
+						target_value = value_utils.get_value_by_index(target_id, globals.COMMAND_CLASS_CONFIGURATION, 1,configuration_value.index)
 						if target_value is not None:
 							if configuration_value.type == 'List':
 								globals.network.manager.setValue(target_value.value_id, configuration_value.data)
@@ -241,7 +240,7 @@ class NodeHandler(RequestHandler):
 				value10 = self.get_argument('value10','')
 				logging.info("set_user_code2 nodeId:%s slot:%s user code:%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" % (node_id, slot_id, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10,))
 				result_value = {}
-				for value_id in globals.network.nodes[node_id].get_values(class_id=COMMAND_CLASS_USER_CODE):
+				for value_id in globals.network.nodes[node_id].get_values(class_id=globals.COMMAND_CLASS_USER_CODE):
 					if globals.network.nodes[node_id].values[value_id].index == slot_id:
 						result_value['data'] = {}
 						value = utils.convert_user_code_to_hex(value1) + utils.convert_user_code_to_hex(value2) + utils.convert_user_code_to_hex(value3) + utils.convert_user_code_to_hex(value4) + utils.convert_user_code_to_hex(value5) + utils.convert_user_code_to_hex(value6) + utils.convert_user_code_to_hex(value7) + utils.convert_user_code_to_hex(value8) + utils.convert_user_code_to_hex(value9) + utils.convert_user_code_to_hex(value10)

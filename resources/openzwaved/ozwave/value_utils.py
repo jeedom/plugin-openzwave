@@ -117,7 +117,7 @@ def set_config(_node_id, _index_id, _value, _size):
 	if _size > 4:
 		_size = 4
 	logging.info('Set_config 2 for nodeId : '+str(_node_id)+' index : '+str(_index_id)+', value : '+str(_value)+', size : '+str(_size))	
-	for value_id in globals.network.nodes[_node_id].get_values(class_id=COMMAND_CLASS_CONFIGURATION, genre='All', type='All', readonly=False, writeonly='All'):
+	for value_id in globals.network.nodes[_node_id].get_values(class_id=globals.COMMAND_CLASS_CONFIGURATION, genre='All', type='All', readonly=False, writeonly='All'):
 		if globals.network.nodes[_node_id].values[value_id].index == _index_id:
 			value = _value.replace("@", "/")
 			my_value = globals.network.nodes[_node_id].values[value_id]

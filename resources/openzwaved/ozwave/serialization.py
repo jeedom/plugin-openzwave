@@ -1,6 +1,5 @@
 import logging
 import globals,utils,node_utils,value_utils
-from utilities.Constants import *
 
 def serialize_neighbour_to_json(node_id):
 	json_result = {}
@@ -128,7 +127,7 @@ def serialize_node_to_json(node_id):
 		is_neighbours_ok = False
 	json_result['data']['is_neighbours_ok'] = {'value': len(my_node.neighbors) > 0,'neighbors': len(my_node.neighbors), 'enabled': is_neighbours_ok}
 	json_result['data']['is_manufacturer_specific_ok'] = {'value': my_node.manufacturer_id != 0 and my_node.product_id != 0 and my_node.product_type != 0,'enabled': query_stage_index >= 7} 
-	is_secured = value_utils.get_value_by_label(node_id, COMMAND_CLASS_SECURITY, 1, 'Secured')
+	is_secured = value_utils.get_value_by_label(node_id, globals.COMMAND_CLASS_SECURITY, 1, 'Secured')
 	json_result['data']['isSecured'] = {'value': is_secured is not None and is_secured.data, 'enabled' : is_secured is not None}
 	pending_changes = 0
 	json_result['instances'] = {"updateTime": timestamp}
@@ -157,7 +156,7 @@ def serialize_node_to_json(node_id):
 	instances = []
 	for value_id in my_node.get_values():
 		my_value = my_node.values[value_id]
-		if my_value.command_class is None or (my_value.instance > 1 and my_value.command_class in [COMMAND_CLASS_ZWAVEPLUS_INFO,COMMAND_CLASS_VERSION]):
+		if my_value.command_class is None or (my_value.instance > 1 and my_value.command_class in [globals.COMMAND_CLASS_ZWAVEPLUS_INFO,globals.COMMAND_CLASS_VERSION]):
 			continue
 		try:
 			label = my_value.label
@@ -218,7 +217,7 @@ def serialize_node_to_json(node_id):
 		elif index2 not in json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']:
 			serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,pending_state, standard_type, timestamp, value2, value_help, value_units)
 	json_result['data']['pending_changes'] = {'count': pending_changes}
-	json_result['multi_instance'] = {'support': COMMAND_CLASS_MULTI_CHANNEL in my_node.command_classes,'instances': len(instances)}
+	json_result['multi_instance'] = {'support': globals.COMMAND_CLASS_MULTI_CHANNEL in my_node.command_classes,'instances': len(instances)}
 	return json_result
 
 def serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,pending_state, standard_type, timestamp, value2, value_help, value_units):

@@ -6,7 +6,6 @@ import globals,utils,dispatcher_utils,serialization
 import threading
 from openzwave.network import ZWaveNetwork,ZWaveController
 from utilities.NetworkExtend import *
-from utilities.Constants import *
 
 def start_network():
 	globals.pending_configurations.clear()
@@ -178,7 +177,7 @@ def get_nodes_list():
 			if my_node.values[value_id].instance in instances:
 				continue
 			instances.append(my_node.values[value_id].instance)
-		json_node['multi_instance'] = {'support': COMMAND_CLASS_MULTI_CHANNEL in my_node.command_classes,'instances': len(instances)}
+		json_node['multi_instance'] = {'support': globals.COMMAND_CLASS_MULTI_CHANNEL in my_node.command_classes,'instances': len(instances)}
 		json_node['capabilities'] = {'isListening': my_node.is_listening_device,'isRouting': my_node.is_routing_device,'isBeaming': my_node.is_beaming_device,'isFlirs': my_node.is_frequent_listening_device}
 		nodes_data[node_id] = json_node
 	nodes_list['devices'] = nodes_data

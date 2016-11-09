@@ -3,7 +3,6 @@ import threading
 import globals,utils,value_utils,serialization
 from lxml import etree
 from utilities.NodeExtend import *
-from utilities.Constants import *
 
 def save_node_value_event(node_id, command_class, value_index, value, instance):
 	globals.jeedom_com.add_changes('devices::' + str(node_id)+'::'+  str(command_class) + str(instance) + str(value_index),{'node_id': node_id, 'instance': instance, 'CommandClass': command_class, 'index': value_index,'value': value})
@@ -62,10 +61,10 @@ def node_event(network, node, value):
 		my_value = network.nodes[node.node_id].values[value_id]
 		if my_value.genre == "User" and not my_value.is_write_only:
 			value_utils.value_update(network, node, my_value)
-	save_node_value_event(node.node_id, COMMAND_CLASS_BASIC, 0, value, 0)
+	save_node_value_event(node.node_id, globals.COMMAND_CLASS_BASIC, 0, value, 0)
 
 def get_wake_up_interval(node_id):
-	interval = value_utils.get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval')
+	interval = value_utils.get_value_by_label(node_id, globals.COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval')
 	if interval is not None:
 		return interval.data
 	return None
@@ -189,7 +188,7 @@ def ghost_killer(node_id):
 			message = 'commandClasses not found'
 		else:
 			for command_Class in command_classes.findall(".//{%s}CommandClass" % namespace):
-				if int(command_Class.get("id")[:7]) == COMMAND_CLASS_WAKE_UP:
+				if int(command_Class.get("id")[:7]) == globals.COMMAND_CLASS_WAKE_UP:
 					command_classes.remove(command_Class)
 					found = True
 					break
