@@ -80,8 +80,7 @@ def network_awaked(network):
 def ghost_removal():
 	logging.info("Perform ghost_removal")
 	for node_id in list(globals.network.nodes):
-		my_node = globals.network.nodes[node_id]
-		if globals.ghost_node_id is not None and node_id == globals.ghost_node_id and my_node.is_failed:
+		if globals.ghost_node_id is not None and node_id == globals.ghost_node_id and globals.network.nodes[node_id].is_failed:
 			logging.info('* Try to remove a Ghost node (nodeId: %s)' % (node_id,))
 			globals.network.manager.removeFailedNode(globals.network.home_id, node_id)
 			time.sleep(10)

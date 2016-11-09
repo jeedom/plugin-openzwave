@@ -18,11 +18,6 @@ def save_node_event(node_id, value):
 		if globals.network.state >= globals.network.STATE_AWAKED:
 			globals.jeedom_com.add_changes('controller::state', {"value": value})
 
-def node_new(network, node_id):
-	if node_id in globals.not_supported_nodes:
-		return
-	logging.info('A new node (%s), not already stored in zwcfg*.xml file, was found.' % (node_id,))
-
 def node_added(network, node):
 	logging.info('A node has been added to OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
 	if node.node_id in globals.not_supported_nodes:

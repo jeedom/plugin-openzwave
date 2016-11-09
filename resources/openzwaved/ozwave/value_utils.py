@@ -29,20 +29,6 @@ def value_refreshed(network, node, value):
 	logging.debug('value_refreshed. %s %s' % (node.node_id, value.label,))
 	prepare_value_notification(node, value)
 
-def value_polling_enabled(network, node, value):
-	if value.poll_intensity > globals.maximum_poll_intensity:
-		changes_value_polling(globals.maximum_poll_intensity, value)
-	if value.poll_intensity > 0:
-		logging.debug('Poll intensity on nodeId:%s value %s command_class %s instance %s index %s' % (node.node_id, value.label, value.command_class, value.instance, value.index))
-		for value_id in node.get_values(class_id=value.command_class):
-			if node.values[value_id].instance == value.instance:
-				if node.values[value_id].index < value.index & node.values[value_id].poll_intensity == 0:
-					poll_intensity = value.poll_intensity
-					value.disable_poll()
-					changes_value_polling(poll_intensity, node.values[value_id])
-					logging.info('Changes poll intensity on nodeId:%s form %s to %s' % (node.node_id, value.label, node.values[value_id].label,))
-					break
-
 def save_value(node, value, last_update):
 	logging.debug('A node value has been updated. nodeId:%s value:%s' % (node.node_id, value.label))
 	if node.node_id in globals.network.nodes:
