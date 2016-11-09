@@ -35,7 +35,6 @@ def node_new(network, node_id):
 	if node_id in globals.not_supported_nodes:
 		return
 	logging.info('A new node (%s), not already stored in zwcfg*.xml file, was found.' % (node_id,))
-	globals.force_refresh_nodes.append(node_id)
 
 def node_added(network, node):
 	logging.info('A node has been added to OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))

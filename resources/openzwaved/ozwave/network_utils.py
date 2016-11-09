@@ -11,7 +11,6 @@ from utilities.Constants import *
 
 def start_network():
 	# reset flags
-	globals.force_refresh_nodes = []
 	globals.pending_configurations.clear()
 	globals.pending_associations.clear()
 	globals.node_notifications.clear()

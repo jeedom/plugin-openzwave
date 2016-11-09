@@ -94,13 +94,6 @@ cycle = 0.3
 default_poll_interval = 300000  # 5 minutes
 maximum_poll_intensity = 1
 controller_state = -1
-# maximum time (in seconds) allowed for a background refresh
-refresh_timeout = 120
-# background refresh interval step in seconds
-refresh_interval = 3
-# post topology loaded delay tasks
-refresh_configuration_timer = 360.0
-refresh_user_values_timer = 120.0
 validate_association_groups_timer = 45.0
 recovering_failed_nodes_timer = 900.0  # 15 minutes
 # perform sanitary jobs
@@ -111,7 +104,6 @@ not_supported_nodes = [0, 255]
 user_values_to_refresh = ["Level", "Sensor", "Switch", "Power", "Temperature", "Alarm Type", "Alarm Type", "Power Management"]
 network = None
 network_information = None
-force_refresh_nodes = []
 changes_async = {'device': {}}
 ghost_node_id = None
 sanity_checks_running = False
