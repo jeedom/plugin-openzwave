@@ -119,21 +119,6 @@ def get_value_by_id(node_id, value_id):
 	logging.debug("get_value_by_id Value not found for node_id:%s, value_id:%s" % (node_id, value_id,))
 	return None
 	
-def prepare_refresh(node_id, value_id, target_value=None, motor=False):
-	if globals.suppress_refresh:
-		return
-	stop_refresh(node_id, value_id)
-	starting_value = globals.network.nodes[node_id].values[value_id].data
-	utils.create_worker(node_id, value_id, target_value, starting_value, 0, motor)
-	globals.network.nodes[node_id].values[value_id].start_refresh_time = int(time.time())
-	
-def stop_refresh(node_id, value_id):
-	worker = globals.refresh_workers.get(value_id)
-	if worker is not None:
-		worker.cancel()
-		del globals.refresh_workers[value_id]
-	globals.network.nodes[node_id].values[value_id].start_refresh_time = 0
-	
 def mark_pending_change(my_value, data, wake_up_time=0):
 	if my_value is not None and not my_value.is_write_only:
 		globals.pending_configurations[my_value.id_on_network] = PendingConfiguration(data, wake_up_time)
@@ -173,42 +158,6 @@ def changes_value_polling(intensity, value):
 		if intensity > globals.maximum_poll_intensity:
 			intensity = globals.maximum_poll_intensity
 		value.enable_poll(intensity)
-
-def refresh_background(node_id, value_id, target_value, starting_value, counter, motor):
-	do_refresh = True
-	actual_value = globals.network.nodes[node_id].values[value_id].data
-	if target_value is not None:
-		if isinstance(target_value, basestring):
-			actual_value = actual_value.lower()
-			target_value = target_value.lower()
-			do_refresh = actual_value != target_value
-		else:
-			delta = abs(actual_value - target_value)
-			if delta < 2:
-				do_refresh = False
-	if do_refresh:
-		if starting_value == actual_value:
-			counter += 1
-			if counter > 2:
-				do_refresh = False
-		else:
-			counter = 0
-			starting_value = actual_value
-	if do_refresh:
-		globals.network.nodes[node_id].values[value_id].refresh()
-		timeout = int(time.time()) - globals.network.nodes[node_id].values[value_id].start_refresh_time
-		if timeout < globals.refresh_timeout:
-			utils.create_worker(node_id, value_id, target_value, starting_value, counter, motor)
-	else:
-		del globals.refresh_workers[value_id]
-
-def refresh_switch_binary(node_id, value_id, target_value):
-	if node_id in globals.network.nodes:
-		my_value = globals.network.nodes[node_id].values[value_id]
-		if my_value is not None:
-			if my_value.data != target_value:
-				logging.debug("Force refresh switch binary")
-				my_value.refresh()
 
 def set_config(_node_id, _index_id, _value, _size):
 	if globals.network_information.controller_is_busy:

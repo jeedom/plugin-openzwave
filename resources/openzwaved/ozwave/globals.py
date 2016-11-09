@@ -127,4 +127,3 @@ know_sticks = [{'idVendor': '0658', 'idProduct': '0200', 'name': 'Sigma Designs,
 jeedom_com = ''
 options = ''
 app = ''
-refresh_workers = {}

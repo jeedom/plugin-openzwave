@@ -129,43 +129,6 @@ def validate_association_groups_asynchronous():
 			# avoid stress network
 			time.sleep(3)
 
-def refresh_configuration_asynchronous():
-	if can_execute_network_command(0):
-		for node_id in list(globals.force_refresh_nodes):
-			if node_id in globals.network.nodes and not globals.network.nodes[node_id].is_failed:
-				logging.info('Request All Configuration Parameters for nodeId: %s' % (node_id,))
-				globals.network.manager.requestAllConfigParams(globals.network.home_id, node_id)
-				time.sleep(3)
-	else:
-		# I will try again in 2 minutes
-		retry_job = threading.Timer(240.0, refresh_configuration_asynchronous)
-		retry_job.start()
-
-def refresh_user_values_asynchronous():
-	logging.info("Refresh User Values of powered devices")
-	if can_execute_network_command(0):
-		for node_id in list(globals.network.nodes):
-			my_node = globals.network.nodes[node_id]
-			if my_node.is_ready and my_node.is_listening_device and not my_node.is_failed:
-				logging.info('Refresh User Values for nodeId: %s' % (node_id,))
-				for value_id in my_node.get_values():
-					current_value = my_node.values[value_id]
-					if current_value.genre == 'User':
-						if current_value.type == 'Button':
-							continue
-						if current_value.is_write_only:
-							continue
-						if current_value.label in globals.user_values_to_refresh:
-							current_value.refresh()
-				while not can_execute_network_command(0):
-					logging.debug("BackgroundWorker is waiting others tasks has be completed before proceeding")
-					time.sleep(30)
-	else:
-		logging.debug("Network is loaded, do not execute this time")
-		# I will try again in 2 minutes
-		retry_job = threading.Timer(240.0, refresh_user_values_asynchronous)
-		retry_job.start()
-
 def manual_backup():
 	logging.info('Manually creating a backup')
 	if globals.files_manager.backup_xml_config('manual', globals.network.home_id_str):

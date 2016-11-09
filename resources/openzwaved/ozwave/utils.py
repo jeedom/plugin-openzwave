@@ -128,15 +128,6 @@ def write_config():
 	finally:
 		globals.network_information.config_file_save_in_progress = False
 	return format_json_result()
-
-def create_worker(node_id, value_id, target_value, starting_value, counter, motor):
-	refresh_interval = globals.refresh_interval
-	if motor :
-		refresh_interval = globals.refresh_interval * 5
-	worker = threading.Timer(interval=refresh_interval, function=value_utils.refresh_background,
-							 args=(node_id, value_id, target_value, starting_value, counter, motor))
-	globals.refresh_workers[value_id] = worker
-	worker.start()
 	
 def check_apikey(apikey):
 	if globals.apikey != apikey:

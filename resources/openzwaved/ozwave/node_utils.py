@@ -62,7 +62,6 @@ def node_removed(network, node):
 def node_queries_complete(network, node):
 	logging.info('All the initialisation queries on a node have been completed. id:[%s] model:[%s].' % (node.node_id, node.product_name,))
 	node.last_update = time.time()
-	utils.write_config()
 
 def node_group_changed(network, node, groupidx):
 	logging.info('Group changed for nodeId %s index %s' % (node.node_id, groupidx,))
