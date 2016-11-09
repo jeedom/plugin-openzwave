@@ -155,8 +155,8 @@ def serialize_node_to_json(node_id):
 	for command_class in my_node.command_classes:
 		json_result['command_classes'][command_class] = {'name': my_node.get_command_class_as_string(command_class),'hex': '0x' + utils.convert_user_code_to_hex(command_class)}
 	instances = []
-	for val in my_node.get_values():
-		my_value = my_node.values[val]
+	for value_id in my_node.get_values():
+		my_value = my_node.values[value_id]
 		if my_value.command_class is None or (my_value.instance > 1 and my_value.command_class in [COMMAND_CLASS_ZWAVEPLUS_INFO,COMMAND_CLASS_VERSION]):
 			continue
 		try:
@@ -204,7 +204,7 @@ def serialize_node_to_json(node_id):
 		except TypeError:
 			timestamp = int(1)
 		if my_value.genre == 'User' and not my_value.instance in instances:
-			instances.append(my_node.values[val].instance)
+			instances.append(my_node.values[value_id].instance)
 		if instance2 not in json_result['instances']:
 			json_result['instances'][instance2] = {"updateTime": timestamp}
 			json_result['instances'][instance2]['commandClasses'] = {"updateTime": timestamp}

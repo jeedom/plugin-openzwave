@@ -106,8 +106,8 @@ def node_notification(arguments):
 
 def node_event(network, node, value):
 	logging.info('NodeId %s sends a Basic_Set command to the controller with value %s' % (node.node_id, value,))
-	for val in network.nodes[node.node_id].get_values():
-		my_value = network.nodes[node.node_id].values[val]
+	for value_id in network.nodes[node.node_id].get_values():
+		my_value = network.nodes[node.node_id].values[value_id]
 		if my_value.genre == "User" and not my_value.is_write_only:
 			value_utils.value_update(network, node, my_value)
 	save_node_value_event(node.node_id, COMMAND_CLASS_BASIC, 0, value, 0)
@@ -151,8 +151,8 @@ def validate_association_groups(node_id):
 def check_pending_changes(node_id):
 	my_node = globals.network.nodes[node_id]
 	pending_changes = 0
-	for val in my_node.get_values():
-		my_value = my_node.values[val]
+	for value_id in my_node.get_values():
+		my_value = my_node.values[value_id]
 		if my_value.command_class is None:
 			continue
 		if my_value.is_write_only:
@@ -249,8 +249,8 @@ def refresh_all_values(node_id):
 	current_node = globals.network.nodes[node_id]
 	counter = 0
 	logging.info("refresh_all_values node %s" % (node_id,))
-	for val in current_node.get_values():
-		current_value = current_node.values[val]
+	for value_id in current_node.get_values():
+		current_value = current_node.values[value_id]
 		if current_value.type == 'Button':
 			continue
 		if current_value.is_write_only:

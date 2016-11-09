@@ -122,10 +122,9 @@ class NodeHandler(RequestHandler):
 					self.write(utils.format_json_result())
 			elif type == 'refreshClass':
 				logging.info('Request values refresh for '+str(node_id)+' on class '+str(cc_id))
-				for val in globals.network.nodes[node_id].get_values(class_id=cc_id):
-					configuration_item = globals.network.nodes[node_id].values[val]
-					if configuration_item.id_on_network in globals.pending_configurations:
-						del globals.pending_configurations[configuration_item.id_on_network]
+				for value_id in globals.network.nodes[node_id].get_values(class_id=cc_id):
+					if globals.network.nodes[node_id].values[value_id].id_on_network in globals.pending_configurations:
+						del globals.pending_configurations[globals.network.nodes[node_id].values[value_id].id_on_network]
 				globals.network.manager.requestAllConfigParams(globals.network.home_id, node_id)
 				self.write(utils.format_json_result())
 			elif type == 'removeDeviceZWConfig':
@@ -165,8 +164,8 @@ class NodeHandler(RequestHandler):
 				target = globals.network.nodes[target_id]
 				if source.manufacturer_id != target.manufacturer_id or source.product_type != target.product_type or source.product_id != target.product_id:
 					raise Exception('The two nodes must be with same: manufacturer_id, product_type and product_id')
-				for val in source.get_values():
-					configuration_value = source.values[val]
+				for value_id in source.get_values():
+					configuration_value = source.values[value_id]
 					if configuration_value.genre == 'Config':
 						if configuration_value.type == 'Button':
 							continue
@@ -185,19 +184,19 @@ class NodeHandler(RequestHandler):
 				my_result = items != 0
 				self.write(utils.format_json_result())
 			elif type == 'refreshData':
-				for val in globals.network.nodes[node_id].get_values(class_id=cc_id):
-					if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[val].index == index:
-						globals.network.nodes[node_id].values[val].refresh()
+				for value_id in globals.network.nodes[node_id].get_values(class_id=cc_id):
+					if globals.network.nodes[node_id].values[value_id].instance - 1 == instance_id and globals.network.nodes[node_id].values[value_id].index == index:
+						globals.network.nodes[node_id].values[value_id].refresh()
 						self.write(utils.format_json_result())
 				raise Exception('This device does not contain the specified value')
 			elif type == 'data':
 				logging.debug("get_config for nodeId:%s" % (node_id,))
 				config = {}
-				for val in globals.network.nodes[node_id].values:
+				for value_id in globals.network.nodes[node_id].values:
 					list_values = []
-					my_value = globals.network.nodes[node_id].values[val]
+					my_value = globals.network.nodes[node_id].values[value_id]
 					if my_value.command_class == cc_id:
-						config[globals.network.nodes[node_id].values[val].index] = {}
+						config[globals.network.nodes[node_id].values[value_id].index] = {}
 						if my_value.type == "List" and not my_value.is_read_only:
 							result_data = globals.network.manager.getValueListSelectionNum(my_value.value_id)
 							values = my_value.data_items
@@ -215,13 +214,13 @@ class NodeHandler(RequestHandler):
 				self.write(utils.format_json_result(data=config))
 			elif type == 'setPolling':
 				logging.info('set_polling_value for nodeId: '+str(node_id)+' instance: '+str(instance_id)+' cc : '+str(cc_id)+' index : '+str(index)+' at: '+str(frequency))
-				for val in globals.network.nodes[node_id].get_values(class_id=cc_id):
-					if globals.network.nodes[node_id].values[val].instance - 1 == instance_id:
-						my_value = globals.network.nodes[node_id].values[val]
+				for value_id in globals.network.nodes[node_id].get_values(class_id=cc_id):
+					if globals.network.nodes[node_id].values[value_id].instance - 1 == instance_id:
+						my_value = globals.network.nodes[node_id].values[value_id]
 						if frequency == 0 & my_value.poll_intensity > 0:
 							my_value.disable_poll()
 						else:
-							if globals.network.nodes[node_id].values[val].index == index:
+							if globals.network.nodes[node_id].values[value_id].index == index:
 								value_utils.changes_value_polling(frequency, my_value)
 							elif my_value.poll_intensity > 0:
 									my_value.disable_poll()
@@ -229,12 +228,12 @@ class NodeHandler(RequestHandler):
 				self.write(utils.format_json_result())
 			elif type == 'buttonaction':
 				logging.info('Button nodeId : '+str(node_id)+' instance: '+str(instance_id)+' cc : '+str(cc_id)+' index : '+str(index)+' : ' +str(action))
-				for val in globals.network.nodes[node_id].get_values(class_id=cc_id, genre='All', type='All', readonly='All', writeonly='All'):
-					if globals.network.nodes[node_id].values[val].instance - 1 == instance_id and globals.network.nodes[node_id].values[val].index == index:
+				for value_id in globals.network.nodes[node_id].get_values(class_id=cc_id, genre='All', type='All', readonly=False, writeonly='All'):
+					if globals.network.nodes[node_id].values[value_id].instance - 1 == instance_id and globals.network.nodes[node_id].values[value_id].index == index:
 						if action == 'press':
-							globals.network.manager.pressButton(globals.network.nodes[node_id].values[val].value_id)
+							globals.network.manager.pressButton(globals.network.nodes[node_id].values[value_id].value_id)
 						elif action == 'release':
-							globals.network.manager.releaseButton(globals.network.nodes[node_id].values[val].value_id)
+							globals.network.manager.releaseButton(globals.network.nodes[node_id].values[value_id].value_id)
 						self.write(utils.format_json_result())
 				self.write(utils.format_json_result(success='error', data='Button not found'))
 			elif type == 'setRaw':
@@ -251,14 +250,14 @@ class NodeHandler(RequestHandler):
 				value10 = self.get_argument('value10','')
 				logging.info("set_user_code2 nodeId:%s slot:%s user code:%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" % (node_id, slot_id, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10,))
 				result_value = {}
-				for val in globals.network.nodes[node_id].get_values(class_id=COMMAND_CLASS_USER_CODE):
-					if globals.network.nodes[node_id].values[val].index == slot_id:
+				for value_id in globals.network.nodes[node_id].get_values(class_id=COMMAND_CLASS_USER_CODE):
+					if globals.network.nodes[node_id].values[value_id].index == slot_id:
 						result_value['data'] = {}
 						value = utils.convert_user_code_to_hex(value1) + utils.convert_user_code_to_hex(value2) + utils.convert_user_code_to_hex(value3) + utils.convert_user_code_to_hex(value4) + utils.convert_user_code_to_hex(value5) + utils.convert_user_code_to_hex(value6) + utils.convert_user_code_to_hex(value7) + utils.convert_user_code_to_hex(value8) + utils.convert_user_code_to_hex(value9) + utils.convert_user_code_to_hex(value10)
 						original_value = value
 						value = binascii.a2b_hex(value)
-						globals.network.nodes[node_id].values[val].data = value
-						result_value['data'][val] = {'device': node_id, 'slot': slot_id, 'val': original_value}
+						globals.network.nodes[node_id].values[value_id].data = value
+						result_value['data'][value_id] = {'device': node_id, 'slot': slot_id, 'val': original_value}
 						self.write(utils.format_json_result(result_value))
 				self.write(utils.format_json_result())
 			elif type == 'setconfig':

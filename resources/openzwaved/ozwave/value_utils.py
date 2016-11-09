@@ -34,14 +34,13 @@ def value_polling_enabled(network, node, value):
 		changes_value_polling(globals.maximum_poll_intensity, value)
 	if value.poll_intensity > 0:
 		logging.debug('Poll intensity on nodeId:%s value %s command_class %s instance %s index %s' % (node.node_id, value.label, value.command_class, value.instance, value.index))
-		for val in node.get_values(class_id=value.command_class):
-			if node.values[val].instance == value.instance:
-				my_value = node.values[val]
-				if my_value.index < value.index & my_value.poll_intensity == 0:
+		for value_id in node.get_values(class_id=value.command_class):
+			if node.values[value_id].instance == value.instance:
+				if node.values[value_id].index < value.index & node.values[value_id].poll_intensity == 0:
 					poll_intensity = value.poll_intensity
 					value.disable_poll()
-					changes_value_polling(poll_intensity, my_value)
-					logging.info('Changes poll intensity on nodeId:%s form %s to %s' % (node.node_id, value.label, my_value.label,))
+					changes_value_polling(poll_intensity, node.values[value_id])
+					logging.info('Changes poll intensity on nodeId:%s form %s to %s' % (node.node_id, value.label, node.values[value_id].label,))
 					break
 
 def save_value(node, value, last_update):

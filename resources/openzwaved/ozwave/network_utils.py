@@ -158,8 +158,8 @@ def refresh_user_values_asynchronous():
 			my_node = globals.network.nodes[node_id]
 			if my_node.is_ready and my_node.is_listening_device and not my_node.is_failed:
 				logging.info('Refresh User Values for nodeId: %s' % (node_id,))
-				for val in my_node.get_values():
-					current_value = my_node.values[val]
+				for value_id in my_node.get_values():
+					current_value = my_node.values[value_id]
 					if current_value.genre == 'User':
 						if current_value.type == 'Button':
 							continue
@@ -241,10 +241,10 @@ def get_nodes_list():
 		json_node['description'] = {'name': node_name, 'location': node_location,'product_name': my_node.product_name,'is_static_controller': my_node.basic == 2,'is_enable': int(node_id) not in globals.disabled_nodes}
 		json_node['product'] = {'manufacturer_id': manufacturer_id,'product_type': product_type,'product_id': product_id,'is_valid': manufacturer_id is not None and product_id is not None and product_type is not None}
 		instances = []
-		for val in my_node.get_values(genre='User'):
-			if my_node.values[val].instance in instances:
+		for value_id in my_node.get_values(genre='User'):
+			if my_node.values[value_id].instance in instances:
 				continue
-			instances.append(my_node.values[val].instance)
+			instances.append(my_node.values[value_id].instance)
 		json_node['multi_instance'] = {'support': COMMAND_CLASS_MULTI_CHANNEL in my_node.command_classes,'instances': len(instances)}
 		json_node['capabilities'] = {'isListening': my_node.is_listening_device,'isRouting': my_node.is_routing_device,'isBeaming': my_node.is_beaming_device,'isFlirs': my_node.is_frequent_listening_device}
 		nodes_data[node_id] = json_node
