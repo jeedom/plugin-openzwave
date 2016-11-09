@@ -32,12 +32,6 @@ if (!isConnect('admin')) {
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-4 control-label">{{Mettre à jour la configuration des modules automatiquement}}</label>
-			<div class="col-sm-2">
-				<input type="checkbox" class="configKey" data-l1key="auto_updateConf" checked/>
-			</div>
-		</div>
-		<div class="form-group">
 			<label class="col-sm-4 control-label">{{Appliquer le jeu de configuration recommandée à l'inclusion}}</label>
 			<div class="col-sm-2">
 				<input type="checkbox" class="configKey" data-l1key="auto_applyRecommended" checked/>
