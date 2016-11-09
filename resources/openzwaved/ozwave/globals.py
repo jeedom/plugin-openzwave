@@ -85,7 +85,6 @@ pidfile = '/tmp/openzwaved.pid'
 apikey = ''
 callback = ''
 assumeAwake = False
-suppress_refresh = False
 disabled_nodes = []
 cycle = 0.3
 
@@ -93,19 +92,12 @@ cycle = 0.3
 default_poll_interval = 300000  # 5 minutes
 maximum_poll_intensity = 1
 controller_state = -1
-validate_association_groups_timer = 45.0
-recovering_failed_nodes_timer = 900.0  # 15 minutes
-# perform sanitary jobs
-recovering_failed_nodes_jobs_timer = 900.0  # 15 minutes
 maximum_number_notifications = 25
 ghost_removal_delay = 15.0
 not_supported_nodes = [0, 255]
-user_values_to_refresh = ["Level", "Sensor", "Switch", "Power", "Temperature", "Alarm Type", "Alarm Type", "Power Management"]
 network = None
 network_information = None
-changes_async = {'device': {}}
 ghost_node_id = None
-sanity_checks_running = False
 pending_configurations = {}
 pending_associations = {}
 node_notifications = {}
