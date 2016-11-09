@@ -219,8 +219,7 @@ def assign_return_route(node_id):
 	return utils.format_json_result(data=globals.network.manager.assignReturnRoute(globals.network.home_id, node_id))
 
 def add_assoc(node_id, group, target_id,instance,action):
-	if globals.network_information.controller_is_busy:
-		raise Exception('Controller is busy')
+	utils.can_execute_command(0)
 	utils.check_node_exist(node_id)
 	utils.check_node_exist(target_id)
 	logging.info(action + ' assoc to nodeId: ' + str(node_id) + ' in group ' + str(group) + ' with nodeId: ' + str(
@@ -242,8 +241,7 @@ def add_assoc(node_id, group, target_id,instance,action):
 	return utils.format_json_result()
 
 def test_node(node_id, count=3):
-	if not utils.can_execute_network_command():
-		raise Exception('Controller is bussy')
+	utils.can_execute_command()
 	utils.check_node_exist(node_id,True)
 	globals.network.manager.testNetworkNode(globals.network.home_id, node_id, count)
 	return utils.format_json_result()

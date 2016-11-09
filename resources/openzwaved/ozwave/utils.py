@@ -64,11 +64,6 @@ def check_node_exist(_node_id,enable=False):
 		raise Exception('Disabled node id '+str(_node_id))
 	return
 
-def check_network_can_execute():
-	if not network_utils.can_execute_network_command():
-		raise Exception('Controller is busy')
-	return
-
 def convert_user_code_to_hex(value, length=2):
 	value1 = int(value)
 	my_result = hex(value1)[length:]
@@ -110,3 +105,11 @@ def write_config():
 def check_apikey(apikey):
 	if globals.apikey != apikey:
 		raise Exception('Invalid apikey provided')
+
+def can_execute_command(param=None):
+	if param:
+		if not network_utils.can_execute_network_command(param):
+			raise Exception('Controller is busy')
+	else:
+		if not network_utils.can_execute_network_command():
+			raise Exception('Controller is busy')

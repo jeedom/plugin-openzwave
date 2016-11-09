@@ -24,8 +24,7 @@ class ControllerHandler(RequestHandler):
 			action = self.get_argument('action','')
 			do_security = int(self.get_argument('security','0'))
 			if type == 'replicationSend':
-				if not network_utils.can_execute_network_command(0):
-					raise Exception('Controller is busy')
+				utils.can_execute_command(0)
 				utils.check_node_exist(node_id)
 				logging.info('Send information from primary to secondary %s' % (node_id,))
 				self.write(utils.format_json_result(data=globals.network.manager.replicationSend(globals.network.home_id, node_id)))
@@ -39,10 +38,7 @@ class ControllerHandler(RequestHandler):
 				else:
 					self.write(utils.format_json_result())
 			elif type == 'addNode':
-				if globals.network_information.controller_is_busy:
-					raise Exception('Controller is busy')
-				if not network_utils.can_execute_network_command(0):
-					raise Exception('Controller is busy')
+				utils.can_execute_command(0)
 				if do_security == 1:
 					do_security = True
 					logging.info("Start the Inclusion Process to add a Node to the Network with Security CC if the node is supports it")
@@ -54,10 +50,7 @@ class ControllerHandler(RequestHandler):
 					globals.network_information.actual_mode = ControllerMode.AddDevice
 				self.write(utils.format_json_result(data=execution_result))
 			elif type == 'removeNode':
-				if globals.network_information.controller_is_busy:
-					raise Exception('Controller is busy')
-				if not network_utils.can_execute_network_command(0):
-					raise Exception('Controller is busy')
+				utils.can_execute_command(0)
 				logging.info("Remove a Device from the Z-Wave Network (Started)")
 				execution_result = globals.network.manager.removeNode(globals.network.home_id)
 				if execution_result:
@@ -107,7 +100,7 @@ class NodeHandler(RequestHandler):
 			buttonaction = self.get_argument('buttonaction','')
 			utils.check_node_exist(node_id)
 			if type == 'action':
-				utils.check_network_can_execute()
+				utils.can_execute_command()
 				logging.info("node action "+str(action))
 				if action in globals.NODE_REST_MAPPING:
 					self.write(globals.NODE_REST_MAPPING[action](node_id))
@@ -154,8 +147,7 @@ class NodeHandler(RequestHandler):
 				network_utils.start_network()
 				self.write(utils.format_json_result())
 			elif type == 'copyConfigurations':
-				if globals.network_information.controller_is_busy:
-					raise Exception('Controller is busy')
+				utils.can_execute_command(0)
 				logging.info("copy_configuration from source_id:%s to target_id:%s" % (node_id, target_id,))
 				items = 0
 				utils.check_node_exist(target_id)

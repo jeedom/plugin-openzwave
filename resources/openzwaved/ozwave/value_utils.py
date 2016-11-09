@@ -110,8 +110,7 @@ def changes_value_polling(intensity, value):
 		value.enable_poll(intensity)
 
 def set_config(_node_id, _index_id, _value, _size):
-	if globals.network_information.controller_is_busy:
-		raise Exception('Controller is bussy')
+	utils.can_execute_command(0)
 	utils.check_node_exist(_node_id)
 	if _size == 0:
 		_size = 2
