@@ -119,15 +119,6 @@ def can_execute_network_command(allowed_queue_count=5):
 		return False
 	return True
 
-def validate_association_groups_asynchronous():
-	if not globals.network_is_running:
-		return
-	logging.debug("Check association")
-	for node_id in list(globals.network.nodes):
-		if node_utils.validate_association_groups(node_id):
-			# avoid stress network
-			time.sleep(3)
-
 def manual_backup():
 	logging.info('Manually creating a backup')
 	if globals.files_manager.backup_xml_config('manual', globals.network.home_id_str):
@@ -222,10 +213,3 @@ def get_oz_config():
 	with open(filename, "r") as ins:
 		content = ins.read()
 	return utils.format_json_result(data=content)
-
-def get_oz_logs():
-	std_in, std_out = os.popen2("tail -n 1000 " + globals.data_folder + "/openzwave.log")
-	std_in.close()
-	lines = std_out.readlines()
-	std_out.close()
-	return utils.format_json_result(data=lines)

@@ -110,45 +110,10 @@ def get_value_by_index(node_id, command_class, instance, index_id):
 			if my_node.values[value_id].instance == instance and my_node.values[value_id].index == index_id:
 				return my_node.values[value_id]
 	return None
-
-def get_value_by_id(node_id, value_id):
-	if node_id in globals.network.nodes:
-		my_node = globals.network.nodes[node_id]
-		if value_id in my_node.values:
-			return my_node.values[value_id]
-	logging.debug("get_value_by_id Value not found for node_id:%s, value_id:%s" % (node_id, value_id,))
-	return None
 	
 def mark_pending_change(my_value, data, wake_up_time=0):
 	if my_value is not None and not my_value.is_write_only:
 		globals.pending_configurations[my_value.id_on_network] = PendingConfiguration(data, wake_up_time)
-
-def set_value(node_id, value_id, data):
-	utils.check_node_exist(node_id)
-	logging.debug("set a value for nodeId:%s valueId:%s data:%s" % (node_id, value_id, data,))
-	my_node = globals.network.nodes[node_id]
-	if not my_node.is_ready:
-		return utils.format_json_result(False, 'The node must be Ready', 'debug')
-	for value in my_node.get_values():
-		if value == value_id:
-			zwave_value = my_node.values[value]
-			data = zwave_value.check_data(data=data)
-			if data is None:
-				return utils.format_json_result({'result': False, 'reason': 'cant convert in desired dataType'})
-			my_result = globals.network.manager.setValue(zwave_value.value_id, data)
-			if my_result == 0:
-				result_message = 'fails'
-			elif my_result == 1:
-				result_message = 'succeed'
-			elif my_result == 2:
-				result_message = 'fails (valueId not exist)'
-			else:
-				result_message = 'fails (unknown error)'
-			if my_result == 1:
-				return utils.format_json_result()
-			return utils.format_json_result(False, result_message, 'warning')
-	return utils.format_json_result(False, 'valueId not exist', 'warning')
-
 
 def changes_value_polling(intensity, value):
 	if intensity == 0: 

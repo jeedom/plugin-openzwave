@@ -38,7 +38,6 @@ NETWORK_REST_MAPPING = {'start' : network_utils.start_network,\
 	'getStatus': network_utils.get_status,\
 	'getHealth' : network_utils.get_health,\
 	'getNodesList' : network_utils.get_nodes_list,\
-	'getOZLogs' : network_utils.get_oz_logs,\
 	'getZWConfig' : network_utils.get_oz_config,\
 	'getOZBackups' : network_utils.get_oz_backups,\
 	'getNeighbours' : network_utils.get_neighbours,\

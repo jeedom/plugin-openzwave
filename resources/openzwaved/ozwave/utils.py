@@ -12,27 +12,10 @@ def get_standard_value_type(value_type):
 		value_type = globals.CONVERSION[value_type]
 	return value_type
 
-def set_log_level(level):
-	globals.log_level = 'none'
-	if level in globals.CONVERSION:
-		globals.log_level = globals.CONVERSION[level]
-
 def convert_query_stage_to_int(stage):
 	if stage in globals.CONVERSION:
 		return globals.CONVERSION[stage]
 	return 0
-
-def convert_level_to_color(level):
-	if level > 99:
-		return 255
-	return level * 255 / 99
-
-def convert_color_to_level(color):
-	if color > 255:
-		return 99
-	elif color < 0:
-		return 0
-	return color * 99 / 255
 
 def is_none_or_empty(value):
 	if value is None:

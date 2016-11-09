@@ -18,19 +18,6 @@ def save_node_event(node_id, value):
 		if globals.network.state >= globals.network.STATE_AWAKED:
 			globals.jeedom_com.add_changes('controller::state', {"value": value})
 
-def push_node_notification(node_id, notification_code):
-	if notification_code in [5, 6]:
-		if notification_code == 5:
-			alert_type = 'node_dead'
-		else:
-			alert_type = 'node_alive'
-		changes = {'alert': {'type': alert_type, 'id': node_id}}
-		globals.jeedom_com.send_change_immediate(changes)
-
-def recovering_failed_nodes_asynchronous():
-	#leave that alone for now
-	return
-
 def node_new(network, node_id):
 	if node_id in globals.not_supported_nodes:
 		return
@@ -73,28 +60,6 @@ def node_group_changed(network, node, groupidx):
 			if pending_association is not None:
 				pending_association.associations = node.groups[groupidx].associations
 
-def node_notification(arguments):
-	code = int(arguments['notificationCode'])
-	node_id = int(arguments['nodeId'])
-	if node_id in globals.not_supported_nodes:
-		return
-	if node_id in globals.disabled_nodes:
-		return
-	if node_id in globals.network.nodes:
-		my_node = globals.network.nodes[node_id]
-		my_node.last_update = time.time()
-		if node_id in globals.not_supported_nodes and globals.network.state >= globals.network.STATE_AWAKED:
-			logging.info('remove fake nodeId: %s' % (node_id,))
-			globals.network.manager.removeFailedNode(globals.network.home_id, node_id)
-			return
-		wake_up_time = get_wake_up_interval(node_id)
-		if node_id not in globals.node_notifications:
-			globals.node_notifications[node_id] = NodeNotification(code, wake_up_time)
-		else:
-			globals.node_notifications[node_id].refresh(code, wake_up_time)
-		logging.info('NodeId %s send a notification: %s' % (node_id, globals.node_notifications[node_id].description,))
-		push_node_notification(node_id, code)
-
 def node_event(network, node, value):
 	logging.info('NodeId %s sends a Basic_Set command to the controller with value %s' % (node.node_id, value,))
 	for value_id in network.nodes[node.node_id].get_values():
@@ -127,38 +92,6 @@ def validate_association_groups(node_id):
 						globals.network.manager.removeAssociation(globals.network.home_id, node_id, group_index, target_node_id)
 						fake_found = True
 	return fake_found
-
-def check_pending_changes(node_id):
-	my_node = globals.network.nodes[node_id]
-	pending_changes = 0
-	for value_id in my_node.get_values():
-		my_value = my_node.values[value_id]
-		if my_value.command_class is None:
-			continue
-		if my_value.is_write_only:
-			continue
-		if my_value.is_read_only:
-			continue
-		pending_state = None
-		if my_value.id_on_network in globals.pending_configurations:
-			pending_configuration = globals.pending_configurations[my_value.id_on_network]
-			if pending_configuration is not None:
-				pending_state = pending_configuration.state
-
-		if pending_state is None or pending_state == 1:
-			continue
-		pending_changes += 1
-	if my_node.node_id in globals.pending_associations:
-		pending_associations = globals.pending_associations[my_node.node_id]
-		for index_group in list(pending_associations):
-			pending_association = pending_associations[index_group]
-			pending_state = None
-			if pending_association is not None:
-				pending_state = pending_association.state
-			if pending_state is None or pending_state == 1:
-				continue
-			pending_changes += 1
-	return pending_changes
 
 def check_primary_controller(my_node):
 	for groupIndex in list(my_node.groups):
