@@ -1,7 +1,7 @@
 import logging
 import sys
 import globals
-import network_utils,node_utils,value_utils,scene_utils,controller_utils,button_utils
+import network_utils,node_utils,value_utils,scene_utils,controller_utils
 try:
 	from louie import dispatcher
 except Exception as e:
@@ -34,8 +34,6 @@ def connect_dispatcher():
 	add_dispatcher_listen(node_utils.nodes_queried, globals.network.SIGNAL_AWAKE_NODES_QUERIED)
 	add_dispatcher_listen(node_utils.nodes_queried, globals.network.SIGNAL_ALL_NODES_QUERIED)
 	add_dispatcher_listen(node_utils.nodes_queried_some_dead, globals.network.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
-	add_dispatcher_listen(button_utils.button_on, globals.network.SIGNAL_BUTTON_ON)
-	add_dispatcher_listen(button_utils.button_off, globals.network.SIGNAL_BUTTON_OFF)
 	#add_dispatcher_listen(node_utils.node_notification, globals.network.SIGNAL_NOTIFICATION)
 	if globals.network.state >= globals.network.STATE_AWAKED:
 		add_dispatcher_listen(node_utils.node_group_changed, globals.network.SIGNAL_GROUP)
@@ -68,8 +66,6 @@ def disconnect_dispatcher():
 		remove_dispatcher_listen(node_utils.nodes_queried, globals.network.SIGNAL_AWAKE_NODES_QUERIED)
 		remove_dispatcher_listen(node_utils.nodes_queried, globals.network.SIGNAL_ALL_NODES_QUERIED)
 		remove_dispatcher_listen(node_utils.nodes_queried_some_dead, globals.network.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
-		remove_dispatcher_listen(button_utils.button_on, globals.network.SIGNAL_BUTTON_ON)
-		remove_dispatcher_listen(button_utils.button_off, globals.network.SIGNAL_BUTTON_OFF)
 		#remove_dispatcher_listent(node_utils.node_notification, globals.network.SIGNAL_NOTIFICATION)
 		if globals.network.state >= globals.network.STATE_AWAKED:
 			remove_dispatcher_listen(node_utils.node_group_changed, globals.network.SIGNAL_GROUP)
