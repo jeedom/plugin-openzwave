@@ -29,11 +29,7 @@ def connect_dispatcher():
 	# dispatcher.connect(value_utils.value_polling_enabled, globals.network.SIGNAL_POLLING_ENABLED)
 	add_dispatcher_listen(node_utils.node_event, globals.network.SIGNAL_NODE_EVENT)
 	add_dispatcher_listen(scene_utils.scene_event, globals.network.SIGNAL_SCENE_EVENT)
-	add_dispatcher_listen(node_utils.essential_node_queries_complete, globals.network.SIGNAL_ESSENTIAL_NODE_QUERIES_COMPLETE)
 	add_dispatcher_listen(node_utils.node_queries_complete, globals.network.SIGNAL_NODE_QUERIES_COMPLETE)
-	add_dispatcher_listen(node_utils.nodes_queried, globals.network.SIGNAL_AWAKE_NODES_QUERIED)
-	add_dispatcher_listen(node_utils.nodes_queried, globals.network.SIGNAL_ALL_NODES_QUERIED)
-	add_dispatcher_listen(node_utils.nodes_queried_some_dead, globals.network.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
 	#add_dispatcher_listen(node_utils.node_notification, globals.network.SIGNAL_NOTIFICATION)
 	if globals.network.state >= globals.network.STATE_AWAKED:
 		add_dispatcher_listen(node_utils.node_group_changed, globals.network.SIGNAL_GROUP)
@@ -58,11 +54,7 @@ def disconnect_dispatcher():
 		#remove_dispatcher_listen(value_utils.value_polling_enabled, globals.network.SIGNAL_POLLING_ENABLED)
 		remove_dispatcher_listen(node_utils.node_event, globals.network.SIGNAL_NODE_EVENT)
 		remove_dispatcher_listen(scene_utils.scene_event, globals.network.SIGNAL_SCENE_EVENT)
-		remove_dispatcher_listen(node_utils.essential_node_queries_complete, globals.network.SIGNAL_ESSENTIAL_NODE_QUERIES_COMPLETE)
 		remove_dispatcher_listen(node_utils.node_queries_complete, globals.network.SIGNAL_NODE_QUERIES_COMPLETE)
-		remove_dispatcher_listen(node_utils.nodes_queried, globals.network.SIGNAL_AWAKE_NODES_QUERIED)
-		remove_dispatcher_listen(node_utils.nodes_queried, globals.network.SIGNAL_ALL_NODES_QUERIED)
-		remove_dispatcher_listen(node_utils.nodes_queried_some_dead, globals.network.SIGNAL_ALL_NODES_QUERIED_SOME_DEAD)
 		#remove_dispatcher_listent(node_utils.node_notification, globals.network.SIGNAL_NOTIFICATION)
 		if globals.network.state >= globals.network.STATE_AWAKED:
 			remove_dispatcher_listen(node_utils.node_group_changed, globals.network.SIGNAL_GROUP)

@@ -31,13 +31,6 @@ def recovering_failed_nodes_asynchronous():
 	#leave that alone for now
 	return
 
-def nodes_queried(network):
-	utils.write_config()
-
-def nodes_queried_some_dead(network):
-	utils.write_config()
-	logging.info("All nodes have been queried, but some node ar mark dead")
-
 def node_new(network, node_id):
 	if node_id in globals.not_supported_nodes:
 		return
@@ -66,18 +59,9 @@ def node_removed(network, node):
 	if node.node_id in globals.pending_associations:
 		del globals.pending_associations[node.node_id]
 
-def essential_node_queries_complete(network, node):
-	logging.info(
-		'The essential queries on a node have been completed. id:[%s] model:[%s].' % (node.node_id, node.product_name,))
-	my_node = network.nodes[node.node_id]
-	my_node.last_update = time.time()
-	# at this time is not good to save value, I skip this step
-
 def node_queries_complete(network, node):
-	logging.info('All the initialisation queries on a node have been completed. id:[%s] model:[%s].' % (
-	node.node_id, node.product_name,))
+	logging.info('All the initialisation queries on a node have been completed. id:[%s] model:[%s].' % (node.node_id, node.product_name,))
 	node.last_update = time.time()
-	# save config
 	utils.write_config()
 
 def node_group_changed(network, node, groupidx):
