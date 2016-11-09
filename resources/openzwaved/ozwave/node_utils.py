@@ -331,3 +331,10 @@ def add_assoc(node_id, group, target_id,instance,action):
 		else:
 			globals.network.manager.addAssociation(globals.network.home_id, node_id, group, target_id, instance)
 	return utils.format_json_result()
+
+def test_node(node_id, count=3):
+	if not can_execute_network_command():
+		raise Exception('Controller is bussy')
+	check_node_exist(node_id,True)
+	globals.network.manager.testNetworkNode(globals.network.home_id, node_id, count)
+	return format_json_result()
