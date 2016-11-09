@@ -49,7 +49,6 @@ def node_queries_complete(network, node):
 def node_group_changed(network, node, groupidx):
 	logging.info('Group changed for nodeId %s index %s' % (node.node_id, groupidx,))
 	validate_association_groups(node.node_id)
-	# check pending for this group index
 	if node.node_id in globals.pending_associations:
 		pending = globals.pending_associations[node.node_id]
 		if groupidx in pending:
@@ -243,8 +242,8 @@ def add_assoc(node_id, group, target_id,instance,action):
 	return utils.format_json_result()
 
 def test_node(node_id, count=3):
-	if not can_execute_network_command():
+	if not utils.can_execute_network_command():
 		raise Exception('Controller is bussy')
-	check_node_exist(node_id,True)
+	utils.check_node_exist(node_id,True)
 	globals.network.manager.testNetworkNode(globals.network.home_id, node_id, count)
-	return format_json_result()
+	return utils.format_json_result()

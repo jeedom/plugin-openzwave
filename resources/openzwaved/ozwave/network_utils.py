@@ -9,7 +9,6 @@ from utilities.NetworkExtend import *
 from utilities.Constants import *
 
 def start_network():
-	# reset flags
 	globals.pending_configurations.clear()
 	globals.pending_associations.clear()
 	globals.node_notifications.clear()
@@ -27,10 +26,8 @@ def graceful_stop_network():
 		home_id = globals.network.home_id_str
 		globals.network_is_running = False
 		globals.network.stop()
-		# We disconnect to the louie dispatcher
 		dispatcher_utils.disconnect_dispatcher()
 		globals.network.destroy()
-		# avoid a second pass
 		globals.network = None
 		logging.info('The Openzwave REST-server was stopped in a normal way')
 		globals.files_manager.backup_xml_config('stop', home_id)
