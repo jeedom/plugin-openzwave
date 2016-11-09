@@ -38,7 +38,6 @@ NETWORK_REST_MAPPING = {'start' : network_utils.start_network,\
 	'getStatus': network_utils.get_status,\
 	'getHealth' : network_utils.get_health,\
 	'getNodesList' : network_utils.get_nodes_list,\
-	'getControllerStatus' : controller_utils.get_controller_status,\
 	'getOZLogs' : network_utils.get_oz_logs,\
 	'getZWConfig' : network_utils.get_oz_config,\
 	'getOZBackups' : network_utils.get_oz_backups,\
@@ -48,7 +47,6 @@ NETWORK_REST_MAPPING = {'start' : network_utils.start_network,\
 NODE_REST_MAPPING = {'all' : node_utils.get_all_info,\
 	'getNodeStatistics' : node_utils.get_statistics, \
 	'getPendingChanges' : node_utils.get_pending_changes,\
-	'getLastNotification' : node_utils.get_last_notification,\
 	'getHealth' : node_utils.get_health,\
 	'requestNodeNeighbourUpdate': node_utils.request_neighbour_update,\
 	'removeFailedNode': node_utils.remove_failed,\

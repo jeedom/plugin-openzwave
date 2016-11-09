@@ -1,13 +1,6 @@
 import logging
 import time
 import globals,serialization,network_utils,node_utils,utils
-
-def get_controller_status():
-	controller_status = {}
-	if globals.network is not None and globals.network.state >= globals.network.STATE_STARTED and globals.network_is_running:
-		if globals.network.controller:
-			controller_status = serialization.serialize_controller_to_json()
-	return utils.format_json_result(data=controller_status)
 	
 def hard_reset():
 	globals.network.controller.hard_reset()

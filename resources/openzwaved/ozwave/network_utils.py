@@ -196,7 +196,6 @@ def get_status():
 					   'OpenZwaveLibraryVersion': globals.network.manager.getOzwLibraryVersionNumber(),
 					   'PythonOpenZwaveLibraryVersion': globals.network.manager.getPythonLibraryVersionNumber(),
 					   'neighbors': utils.concatenate_list(globals.network.controller.node.neighbors),
-					   'notifications': list(globals.network_information.last_controller_notifications),
 					   'isBusy': globals.network_information.controller_is_busy, 'startTime': globals.network_information.start_time,
 					   'isPrimaryController': globals.network.controller.is_primary_controller,
 					   'isStaticUpdateController': globals.network.controller.is_static_update_controller,

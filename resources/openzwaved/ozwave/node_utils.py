@@ -206,9 +206,6 @@ def get_pending_changes(node_id):
 	query_stage_code = globals.network.manager.getNodeQueryStageCode(query_stage_description)
 	return utils.format_json_result(data={'statistics': globals.network.manager.getNodeStatistics(globals.network.home_id, node_id), 'queryStageCode': query_stage_code, 'queryStageDescription': query_stage_description})
 
-def get_last_notification(node_id):
-	return utils.format_json_result(data=serialization.serialize_node_notification(node_id))
-
 def get_health(node_id):
 	return utils.format_json_result(data=serialization.serialize_node_to_json(node_id))
 

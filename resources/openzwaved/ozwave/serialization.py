@@ -243,17 +243,6 @@ def serialize_command_class_info(instance2, json_result, my_node, my_value, time
 	json_result['instances'][instance2]['commandClasses'][my_value.command_class] = {"name": my_node.get_command_class_as_string(my_value.command_class)}
 	json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data'] = {"updateTime": timestamp}
 
-def serialize_controller_to_json():
-	json_result = {'data': {}}
-	json_result['data']['roles'] = {'isPrimaryController': globals.network.controller.is_primary_controller, 'isStaticUpdateController': globals.network.controller.is_static_update_controller, 'isBridgeController': globals.network.controller.is_bridge_controller}
-	json_result['data']['nodeId'] = {'value': globals.network.controller.node_id}
-	json_result['data']['mode'] = {'value': network_utils.get_network_mode()}
-	json_result['data']['softwareVersion'] = {'ozw_library': globals.network.controller.ozw_library_version, 'python_library': globals.network.controller.python_library_version}
-	json_result['data']['notification'] = globals.network_information.last_controller_notifications[0]
-	json_result['data']['isBusy'] = {"value": globals.network_information.controller_is_busy}
-	json_result['data']['networkstate'] = {"value": globals.network.state}
-	return json_result
-
 def serialize_associations(node_id):
 	json_result = {}
 	for other_node_id in list(globals.network.nodes):
@@ -267,14 +256,3 @@ def serialize_associations(node_id):
 					except KeyError:
 						json_result[other_node_id] = [value]
 	return json_result
-
-def serialize_node_notification(node_id):
-	json_result = {}
-	if node_id in globals.not_supported_nodes:
-		return json_result
-	my_node = globals.network.nodes[node_id]
-	if node_id in globals.node_notifications:
-		notification = globals.node_notifications[node_id]
-		return {"receiveTime": notification.receive_time,"description": notification.description,"isFailed": my_node.is_failed}
-	else:
-		return {"receiveTime": None,"description": None,"isFailed": my_node.is_failed}
