@@ -73,7 +73,6 @@ if (!isConnect('admin')) {
         <div id="content">
             <ul id="tabs_network" class="nav nav-tabs" data-tabs="tabs">
                 <li class="active"><a href="#summary_network" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Résumé}}</a></li>
-                <li><a href="#notifications" data-toggle="tab"><i class="fa fa-bell-o"></i> {{Notifications}}</a> </li>
                 <li><a href="#actions_network" data-toggle="tab"><i class="fa fa-sliders"></i> {{Actions}}</a></li>
                 <li><a href="#statistics_network" data-toggle="tab"><i class="fa fa-bar-chart"></i> {{Statistiques}}</a></li>
                 <li id="tab_graph"><a href="#graph_network" data-toggle="tab"><i class="fa fa-picture-o"></i> {{Graphique du réseau}}</a></li>
@@ -110,17 +109,6 @@ if (!isConnect('admin')) {
                             <p>{{Version de la librairie Python-OpenZwave :}} <span class="zwaveNetworkAttr label label-default" data-l1key="PythonOpenZwaveLibraryVersion" style="font-size : 1em;"></span></p>
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane" id="notifications">
-                    <br>
-                    <table class="table table-striped">
-                        <tr>
-                            <th>{{Reçu}}</th>
-                            <th>{{Détails}}</th>
-                            <th>{{Erreur}}</th>
-                        </tr>
-                        <tbody class="notification_variables"></tbody>
-                    </table>
                 </div>
                 <div id="graph_network" class="tab-pane">
                     <table class="table table-bordered table-condensed" style="width: 350px;position:fixed;margin-top : 25px;">

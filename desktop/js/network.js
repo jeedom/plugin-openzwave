@@ -425,19 +425,6 @@ function network_load_info(){
             }else {
                 data.outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg rediconcolor'></i>";
             }
-            var table_notifications = '';
-            for (i = 0; i < data.notifications.length; i++) {
-                table_notifications += '<tr>';
-                table_notifications += '<td>' + jeedom.openzwave.timestampConverter(data.notifications[i].timestamp) + '</td>';
-                table_notifications += '<td>' + data.notifications[i].details + '</td>';
-                if (data.notifications[i].error_description != null && data.notifications[i].error_description != 'None.') {
-                    table_notifications += '<td>' + data.notifications[i].error_description + '</td>';
-                }else {
-                    table_notifications += '<td></td>';
-                }
-                table_notifications += '</tr>';
-            }
-            $("#div_templateNetwork .notification_variables").html(table_notifications);
             $('#div_templateNetwork').setValues(data, '.zwaveNetworkAttr');
             if($('#div_templateNetwork').html() != undefined && $('#div_templateNetwork').is(':visible')){
                 setTimeout(function(){ network_load_info(); }, 2000);
