@@ -46,9 +46,6 @@ def convert_fahrenheit_celsius(value):
 		power = math.pow(10, value.precision)
 	return int(((float(value.data_as_string) - 32) * 5.0 / 9.0) * int(power)) / power
 
-def is_motor(node_id):
-	return globals.network.nodes[node_id].specific in [SPECIFIC_TYPE_MOTOR_MULTI_POSITION, SPECIFIC_TYPE_CLASS_A_MOTOR_CONTROL, SPECIFIC_TYPE_CLASS_B_MOTOR_CONTROL, SPECIFIC_TYPE_CLASS_C_MOTOR_CONTROL]
-
 def get_sleeping_nodes_count():
 	sleeping_nodes_count = 0
 	for idNode in list(globals.network.nodes):
