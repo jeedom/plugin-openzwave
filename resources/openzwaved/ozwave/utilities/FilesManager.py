@@ -130,12 +130,8 @@ class FilesManager(object):
 
 
     def get_openzwave_backups(self):
-        # Return the list of all available backups
-        self._logging.debug("List all backups")
-        my_result = {}
         backup_list = []
         backup_folder = self._data_folder + "/xml_backups"
-        # noinspection PyBroadException
         try:
             os.stat(backup_folder)
         except:
@@ -147,8 +143,8 @@ class FilesManager(object):
         for candidateBackup in actual_backups:
             if candidateBackup[-3:] in filters and pattern in candidateBackup:
                 backup_list.append(candidateBackup)
-        my_result['Backups'] = backup_list
-        return my_result
+        self._logging.debug("List all backups : "+str(backup_list))
+        return backup_list
 
 
     def remove_unknowns_devices_openzwave_config(self, home_id_str):

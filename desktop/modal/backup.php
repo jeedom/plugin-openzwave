@@ -49,7 +49,5 @@ if (!isConnect('admin')) {
         </fieldset>
     </form>
 </div>
+<?php include_file('core', 'openzwave', 'class.js', 'openzwave');?>
 <?php include_file('desktop', 'backup', 'js', 'openzwave');?>
-<script>
-    updateListBackup();
-</script>

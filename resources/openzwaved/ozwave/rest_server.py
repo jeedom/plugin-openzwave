@@ -2,6 +2,7 @@
 import sys
 import binascii
 import logging
+import os
 from lxml import etree
 import globals,utils,network_utils,node_utils
 import value_utils,commands
@@ -309,8 +310,56 @@ class NodeHandler(RequestHandler):
 		except Exception,e:
 			raise HTTPError(500,str(e)) 
 
+class BackupHandler(RequestHandler):
+	def get(self):
+		try:
+			utils.check_apikey(self.get_argument('apikey',''))
+			type = self.get_argument('type','')
+			if type == 'do':
+				logging.info('Manually creating a backup')
+				if globals.files_manager.backup_xml_config('manual', globals.network.home_id_str):
+					self.write(utils.format_json_result())
+				else:
+					raise Exception ('See openzwave log file for details')
+			elif type == 'list':
+				self.write(utils.format_json_result(data=globals.files_manager.get_openzwave_backups()))
+			elif type == 'restore':
+				backup = self.get_argument('backup','')
+				logging.info('Restoring backup ' + backup)
+				backup_folder = globals.data_folder + "/xml_backups"
+				try:
+					os.stat(backup_folder)
+				except:
+					os.mkdir(backup_folder)
+				backup_file = os.path.join(backup_folder, backup)
+				target_file = globals.data_folder + "/zwcfg_" + globals.network.home_id_str + ".xml"
+				if not os.path.isfile(backup_file):
+					raise Exception ('No config file found with name ' + str(backup))
+				else:
+					tree = etree.parse(backup_file)
+					globals.network_is_running = False
+					globals.network.stop()
+					logging.info('ZWave network is now stopped')
+					time.sleep(3)
+					shutil.copy2(backup_file, target_file)
+					os.chmod(target_file, 0777)
+					start_network()
+				self.write(utils.format_json_result())
+			elif type == 'delete':
+				backup = self.get_argument('backup','')
+				logging.info('Manually deleting a backup')
+				backup_file = os.path.join(globals.data_folder + '/xml_backups', backup)
+				if not os.path.isfile(backup_file):
+					raise Exception ('No config file found with name ' + str(backup))
+				else:
+					os.unlink(backup_file)
+				self.write(utils.format_json_result())
+		except Exception,e:
+			raise HTTPError(500,str(e)) 
+
 globals.app = Application([
 		(r"/controller", ControllerHandler),
 		(r"/network", NetworkHandler),
-		(r"/node", NodeHandler)
+		(r"/node", NodeHandler),
+		(r"/backup", BackupHandler)
     ])

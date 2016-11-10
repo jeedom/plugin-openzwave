@@ -396,8 +396,81 @@
  jeedom.openzwave.backup = function() {
  };
 
+ jeedom.openzwave.backup.do = function (_params) {
+ 	var paramsRequired = [];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	paramsAJAX.data = {
+ 		request: 'backup?type=do',
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
 
- /*************************Backup************************************************/
+ jeedom.openzwave.backup.delete = function (_params) {
+ 	var paramsRequired = ['backup'];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	paramsAJAX.data = {
+ 		request: 'backup?type=delete&backup='+_params.backup,
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
+
+ jeedom.openzwave.backup.restore = function (_params) {
+ 	var paramsRequired = ['backup'];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	paramsAJAX.data = {
+ 		request: 'backup?type=restore&backup='+_params.backup,
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
+
+
+ jeedom.openzwave.backup.list = function (_params) {
+ 	var paramsRequired = [];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
+ 	paramsAJAX.data = {
+ 		request: 'backup?type=list',
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
+
+
+ /*************************network************************************************/
 
  jeedom.openzwave.network = function() {
  };
