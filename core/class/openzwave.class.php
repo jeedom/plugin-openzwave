@@ -187,22 +187,6 @@ class openzwave extends eqLogic {
 		));
 	}
 
-	public static function cron15() {
-		if (file_exists($pathlog) && shell_exec('grep "Not enough space in stream buffer" ' . $pathlog . ' | wc -l') > 0) {
-			log::add('openzwave', 'error', 'Not enough space in stream buffer detected');
-			self::deamon_stop();
-			log::clear('openzwaved');
-			try {
-				$plugin = plugin::byId('openzwave');
-				if (is_object($plugin)) {
-					$plugin->deamon_start();
-				}
-			} catch (Exception $e) {
-
-			}
-		}
-	}
-
 	/*     * ********************************************************************** */
 	/*     * ***********************OPENZWAVE MANAGEMENT*************************** */
 
