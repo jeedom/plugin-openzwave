@@ -97,6 +97,7 @@ DISTFILES =	.gitignore \
 	config/duwi/ZWES1000.xml \
 	config/duwi/ZWESJ300.xml \
 	config/duwi/zwfb.xml \
+	config/ecolink/sensor.xml \
 	config/electronicsolutions/dbmz.xml \
 	config/enerwave/zw15s.xml \
 	config/enerwave/zw20r.xml \
@@ -141,7 +142,6 @@ DISTFILES =	.gitignore \
 	config/fibaro/fgms.xml \
 	config/fibaro/fgpb101.xml \
 	config/fibaro/fgr221.xml \
-	config/fibaro/fgr222.xml \
 	config/fibaro/fgrgbwm441.xml \
 	config/fibaro/fgrm222.xml \
 	config/fibaro/fgs211.xml \
@@ -288,6 +288,7 @@ DISTFILES =	.gitignore \
 	config/trane/TZEMT400BB32MAA.xml \
 	config/vision/zd2102.xml \
 	config/vision/zd2201.xml \
+	config/vision/zd2301.xml \
 	config/vision/zg8101.xml \
 	config/vision/zm1601eu.xml \
 	config/vision/zm1601eu5.xml \

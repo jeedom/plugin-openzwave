@@ -235,7 +235,6 @@ bool Basic::HandleMsg
 	return false;
 }
 
-
 //-----------------------------------------------------------------------------
 // <Basic::SetValue>
 // Set a value on the Z-Wave device

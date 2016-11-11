@@ -1,10 +1,11 @@
 //-----------------------------------------------------------------------------
 //
-//	ValueButton.h
+//	EventImpl.cpp
 //
-//	Represents a write-only value that triggers activity in a device
+//	Windows implementation of a cross-platform event
 //
-//	Copyright (c) 2010 Mal Lansell <openzwave@lansell.org>
+//	Copyright (c) 2010 Mal Lansell <mal@lansell.org>
+//	All rights reserved.
 //
 //	SOFTWARE NOTICE AND LICENSE
 //
@@ -24,97 +25,78 @@
 //	along with OpenZWave.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
+#include <windows.h>
 
-#include "tinyxml.h"
-#include "value_classes/ValueButton.h"
-#include "Manager.h"
-#include "Driver.h"
-#include "Node.h"
-#include "platform/Log.h"
+#include "Defs.h"
+#include "EventImpl.h"
 
 using namespace OpenZWave;
 
 
 //-----------------------------------------------------------------------------
-// <ValueButton::ValueButton>
-// Constructor
+//	<EventImpl::EventImpl>
+//	Constructor
 //-----------------------------------------------------------------------------
-ValueButton::ValueButton
-(
-	uint32 const _homeId,
-	uint8 const _nodeId,
-	ValueID::ValueGenre const _genre,
-	uint8 const _commandClassId,
-	uint8 const _instance,
-	uint8 const _index,
-	string const& _label,
-	uint8 const _pollIntensity
-):
-	Value( _homeId, _nodeId, _genre, _commandClassId, _instance, _index, ValueID::ValueType_Button, _label, "", false, true, true, _pollIntensity ),
-	m_pressed( false )
-{
-}
-
-//-----------------------------------------------------------------------------
-// <ValueButton::ReadXML>
-// Apply settings from XML
-//-----------------------------------------------------------------------------
-void ValueButton::ReadXML
-(
-	uint32 const _homeId,
-	uint8 const _nodeId,
-	uint8 const _commandClassId,
-	TiXmlElement const* _valueElement
-)
-{
-	Value::ReadXML( _homeId, _nodeId, _commandClassId, _valueElement );
-}
-
-//-----------------------------------------------------------------------------
-// <ValueButton::WriteXML>
-// Write ourselves to an XML document
-//-----------------------------------------------------------------------------
-void ValueButton::WriteXML
-(
-	TiXmlElement* _valueElement
-)
-{
-	Value::WriteXML( _valueElement );
-}
-
-//-----------------------------------------------------------------------------
-// <ValueButton::PressButton>
-// Start an activity in a device
-//-----------------------------------------------------------------------------
-bool ValueButton::PressButton
+EventImpl::EventImpl
 (
 )
 {
-	// Set the value in the device.
-	m_pressed = true;
-	return Value::Set();
+	// Create a manual reset event
+	m_hEvent = ::CreateEvent( NULL, TRUE, FALSE, NULL );
 }
 
 //-----------------------------------------------------------------------------
-// <ValueButton::ReleaseButton>
-// Stop an activity in a device
+//	<EventImpl::~EventImpl>
+//	Destructor
 //-----------------------------------------------------------------------------
-bool ValueButton::ReleaseButton
+EventImpl::~EventImpl
 (
 )
 {
-	// Set the value in the device.
-	m_pressed = false;
-	bool res = Value::Set();
-	if( Driver* driver = Manager::Get()->GetDriver( GetID().GetHomeId() ) )
-	{
-		if( Node* node = driver->GetNodeUnsafe( GetID().GetNodeId() ) )
-		{
-			node->RequestDynamicValues();
-		}
-	}
-	return res;
+	::CloseHandle( m_hEvent );
 }
 
+//-----------------------------------------------------------------------------
+//	<EventImpl::Set>
+//	Set the event to signalled
+//-----------------------------------------------------------------------------
+void EventImpl::Set
+(
+)
+{
+	::SetEvent( m_hEvent );
+}
 
+//-----------------------------------------------------------------------------
+//	<EventImpl::Reset>
+//	Set the event to not signalled
+//-----------------------------------------------------------------------------
+void EventImpl::Reset
+(
+)
+{
+	::ResetEvent( m_hEvent );
+}
 
+//-----------------------------------------------------------------------------
+//	<EventImpl::IsSignalled>
+//	Test whether the event is set
+//-----------------------------------------------------------------------------
+bool EventImpl::IsSignalled
+(
+)
+{
+	return( WAIT_OBJECT_0 == WaitForSingleObject( m_hEvent, 0 ) );
+}
+
+//-----------------------------------------------------------------------------
+//	<EventImpl::Wait>
+//	Wait for the event to become signalled
+//-----------------------------------------------------------------------------
+bool EventImpl::Wait
+(
+	int32 const _timeout
+)
+{
+	return( WAIT_TIMEOUT != ::WaitForSingleObject( m_hEvent, (DWORD)_timeout ) );
+}

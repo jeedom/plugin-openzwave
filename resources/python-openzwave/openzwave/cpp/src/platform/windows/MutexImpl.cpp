@@ -1,10 +1,11 @@
 //-----------------------------------------------------------------------------
 //
-//	ValueButton.h
+//	MutexImpl.cpp
 //
-//	Represents a write-only value that triggers activity in a device
+//	Windows Implementation of the cross-platform mutex
 //
-//	Copyright (c) 2010 Mal Lansell <openzwave@lansell.org>
+//	Copyright (c) 2010 Mal Lansell <mal@lansell.org>
+//	All rights reserved.
 //
 //	SOFTWARE NOTICE AND LICENSE
 //
@@ -24,97 +25,90 @@
 //	along with OpenZWave.  If not, see <http://www.gnu.org/licenses/>.
 //
 //-----------------------------------------------------------------------------
+#include "Defs.h"
+#include "MutexImpl.h"
 
-#include "tinyxml.h"
-#include "value_classes/ValueButton.h"
-#include "Manager.h"
-#include "Driver.h"
-#include "Node.h"
-#include "platform/Log.h"
 
 using namespace OpenZWave;
 
-
 //-----------------------------------------------------------------------------
-// <ValueButton::ValueButton>
-// Constructor
+//	<MutexImpl::MutexImpl>
+//	Constructor
 //-----------------------------------------------------------------------------
-ValueButton::ValueButton
+MutexImpl::MutexImpl
 (
-	uint32 const _homeId,
-	uint8 const _nodeId,
-	ValueID::ValueGenre const _genre,
-	uint8 const _commandClassId,
-	uint8 const _instance,
-	uint8 const _index,
-	string const& _label,
-	uint8 const _pollIntensity
 ):
-	Value( _homeId, _nodeId, _genre, _commandClassId, _instance, _index, ValueID::ValueType_Button, _label, "", false, true, true, _pollIntensity ),
-	m_pressed( false )
+	m_lockCount( 0 )
 {
+	InitializeCriticalSection( &m_criticalSection );
 }
 
 //-----------------------------------------------------------------------------
-// <ValueButton::ReadXML>
-// Apply settings from XML
+//	<MutexImpl::~MutexImpl>
+//	Destructor
 //-----------------------------------------------------------------------------
-void ValueButton::ReadXML
+MutexImpl::~MutexImpl
 (
-	uint32 const _homeId,
-	uint8 const _nodeId,
-	uint8 const _commandClassId,
-	TiXmlElement const* _valueElement
 )
 {
-	Value::ReadXML( _homeId, _nodeId, _commandClassId, _valueElement );
+	DeleteCriticalSection( &m_criticalSection );
 }
 
 //-----------------------------------------------------------------------------
-// <ValueButton::WriteXML>
-// Write ourselves to an XML document
+//	<MutexImpl::Lock>
+//	Lock the mutex
 //-----------------------------------------------------------------------------
-void ValueButton::WriteXML
+bool MutexImpl::Lock
 (
-	TiXmlElement* _valueElement
+	bool const _bWait // = true;
 )
 {
-	Value::WriteXML( _valueElement );
-}
-
-//-----------------------------------------------------------------------------
-// <ValueButton::PressButton>
-// Start an activity in a device
-//-----------------------------------------------------------------------------
-bool ValueButton::PressButton
-(
-)
-{
-	// Set the value in the device.
-	m_pressed = true;
-	return Value::Set();
-}
-
-//-----------------------------------------------------------------------------
-// <ValueButton::ReleaseButton>
-// Stop an activity in a device
-//-----------------------------------------------------------------------------
-bool ValueButton::ReleaseButton
-(
-)
-{
-	// Set the value in the device.
-	m_pressed = false;
-	bool res = Value::Set();
-	if( Driver* driver = Manager::Get()->GetDriver( GetID().GetHomeId() ) )
+	if( _bWait )
 	{
-		if( Node* node = driver->GetNodeUnsafe( GetID().GetNodeId() ) )
-		{
-			node->RequestDynamicValues();
-		}
+		// We will wait for the lock
+		EnterCriticalSection( &m_criticalSection );
+		++m_lockCount;
+		return true;
 	}
-	return res;
+
+	// Returns immediately, even if the lock was not available.
+	if( TryEnterCriticalSection( &m_criticalSection ) )
+	{
+		++m_lockCount;
+		return true;
+	}
+
+	return false;
 }
 
+//-----------------------------------------------------------------------------
+//	<MutexImpl::Unlock>
+//	Release our lock on the mutex
+//-----------------------------------------------------------------------------
+void MutexImpl::Unlock
+(
+)
+{
+	if( !m_lockCount )
+	{
+		// No locks - we have a mismatched lock/release pair
+		assert(0);
+	}
+	else
+	{
+		--m_lockCount;
+		LeaveCriticalSection( &m_criticalSection );
+	}
+}
 
+//-----------------------------------------------------------------------------
+//	<MutexImpl::IsSignalled>
+//	Test whether the mutex is free
+//-----------------------------------------------------------------------------
+bool MutexImpl::IsSignalled
+(
+)
+{
+	return( 0 == m_lockCount );
+}
 

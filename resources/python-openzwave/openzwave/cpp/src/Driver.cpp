@@ -3169,7 +3169,7 @@ void Driver::HandleRemoveNodeFromNetworkRequest
 		}
 		case REMOVE_NODE_STATUS_REMOVING_CONTROLLER:
 		{
-			Log::Write( LogLevel_Info, "REMOVE_NODE_STATUS_REMOVING_CONTROLLER %d", _data[4] );
+			Log::Write( LogLevel_Info, "REMOVE_NODE_STATUS_REMOVING_CONTROLLER" );
 			m_currentControllerCommand->m_controllerCommandNode = _data[4];
 			if( m_currentControllerCommand->m_controllerCommandNode == 0 ) // Some controllers don't return node number
 			{
