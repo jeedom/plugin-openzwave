@@ -213,7 +213,7 @@ if (!isConnect('admin')) {
                             <td>{{Changer de contrôleur primaire. Le contrôleur primaire existant devient contrôleur secondaire.}}<br><i>{{Approcher l'autre contrôleur à moins de 2m du contrôleur primaire.}}</i></td>
                         </tr>
                         <tr>
-                            <td><a data-action="writeZWConfig" class="btn btn-info  controller_action"><i class="fa fa-pencil"></i> {{Ecrire le fichier de configuration}}</a></td>
+                            <td><a id="writeconfigfile" class="btn btn-info"><i class="fa fa-pencil"></i> {{Ecrire le fichier de configuration}}</a></td>
                             <td>{{Ecrit le fichier de configuration OpenZwave.}}</td>
                         </tr>
                         <tr>

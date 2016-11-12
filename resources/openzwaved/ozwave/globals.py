@@ -68,8 +68,7 @@ CONTROLLER_REST_MAPPING = {'hardReset' : controller_utils.hard_reset,\
 	'testNetwork' : controller_utils.test_network,\
 	'serialAPISoftReset': controller_utils.serial_api_soft_reset,\
 	'healNetwork': controller_utils.heal_network,\
-	'cancelCommand': controller_utils.cancel_command, \
-	'writeZWConfig' : utils.write_config, \
+	'cancelCommand': controller_utils.cancel_command,\
 	}
 
 #Various message
