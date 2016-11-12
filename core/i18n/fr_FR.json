@@ -58,7 +58,14 @@
         "Options": "Options",
         "Le réseau Z-Wave est en cours de démarrage sur le serveur ": "Le réseau Z-Wave est en cours de démarrage sur le serveur ",
         "Vous êtes en mode exclusion sur Local. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion sur Local. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode",
-        "Appliquer le mapping de commandes": "Appliquer le mapping de commandes"
+        "Appliquer le mapping de commandes": "Appliquer le mapping de commandes",
+        "Configuration avancée": "Configuration avancée",
+        "Equipement": "Equipement",
+        "Mapping de commandes": "Mapping de commandes",
+        "Arbre Z-Wave": "Arbre Z-Wave",
+        "Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage": "Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage",
+        "Index": "Index",
+        "Impossible de contacter le serveur Z-wave": "Impossible de contacter le serveur Z-wave"
     },
     "plugins\/openzwave\/core\/php\/jeeZwave.php": {
         "Le réseaux Z-Wave est en cours de démarrage sur le serveur ": "Le réseaux Z-Wave est en cours de démarrage sur le serveur ",
@@ -68,7 +75,8 @@
         " pour synchronisation avec le module": " pour synchronisation avec le module",
         "Inclusion en cours...": "Inclusion en cours...",
         "Un périphérique Z-Wave est en cours d'exclusion. Logical ID : ": "Un périphérique Z-Wave est en cours d'exclusion. Logical ID : ",
-        "Le réseaux Z-Wave est en erreur sur le serveur ": "Le réseaux Z-Wave est en erreur sur le serveur "
+        "Le réseaux Z-Wave est en erreur sur le serveur ": "Le réseaux Z-Wave est en erreur sur le serveur ",
+        "Le réseau Z-Wave est en cours de démarrage sur le serveur": "Le réseau Z-Wave est en cours de démarrage sur le serveur"
     },
     "plugins\/openzwave\/plugin_info\/configuration.php": {
         "Général": "Général",
@@ -93,7 +101,8 @@
         "Configuration": "Configuration",
         "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ?": "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ?",
         "Téléchargement des configurations": "Téléchargement des configurations",
-        "Démon sur l'esclave": "Démon sur l'esclave"
+        "Démon sur l'esclave": "Démon sur l'esclave",
+        "Cycle (s)": "Cycle (s)"
     },
     "plugins\/openzwave\/desktop\/modal\/health.php": {
         "Demande envoyée": "Demande envoyée",
@@ -112,7 +121,8 @@
         "% OK": "% OK",
         "Temporisation": "Temporisation",
         "Dernière notification": "Dernière notification",
-        "Ping": "Ping"
+        "Ping": "Ping",
+        "Rafraichir": "Rafraichir"
     },
     "plugins\/openzwave\/desktop\/js\/health.js": {
         "Non disponible": "Non disponible",
@@ -127,7 +137,8 @@
         "FLiRS": "FLiRS",
         "ZWAVE PLUS": "ZWAVE PLUS",
         "Sécurisé": "Sécurisé",
-        "Non sécurisé": "Non sécurisé"
+        "Non sécurisé": "Non sécurisé",
+        "Action réalisée avec succès": "Action réalisée avec succès"
     },
     "plugins\/openzwave\/desktop\/modal\/network.php": {
         "Confirmation": "Confirmation",
@@ -248,7 +259,8 @@
         "Présumé mort": "Présumé mort",
         "Mise à jour des noeuds voisins": "Mise à jour des noeuds voisins",
         "Nom": "Nom",
-        "Soigner le réseau": "Soigner le réseau"
+        "Soigner le réseau": "Soigner le réseau",
+        "Action réalisée avec succès": "Action réalisée avec succès"
     },
     "plugins\/openzwave\/desktop\/modal\/node.configure.php": {
         "inconnu": "inconnu",
@@ -482,7 +494,44 @@
         "Sélection des modules a appliquer ces paramètres": "Sélection des modules a appliquer ces paramètres",
         "ZWAVE PLUS": "ZWAVE PLUS",
         "Source": "Source",
-        "Destination": "Destination"
+        "Destination": "Destination",
+        "Contrôleur A\/V": "Contrôleur A\/V",
+        "Répéteue": "Répéteue",
+        "Interrupteur binaire": "Interrupteur binaire",
+        "Interrupteur multi-niveau": "Interrupteur multi-niveau",
+        "Interrupteur distant": "Interrupteur distant",
+        "Interrupteur à levier": "Interrupteur à levier",
+        "Passerelle Z-Wave\/IP": "Passerelle Z-Wave\/IP",
+        "Noeud Z-Wave\/IP": "Noeud Z-Wave\/IP",
+        "Contrôleur mural": "Contrôleur mural",
+        "Capteur multi-niveau": "Capteur multi-niveau",
+        "Niveau d\\'eau": "Niveau d\\'eau",
+        "Mesure d\\'impulsion": "Mesure d\\'impulsion",
+        "Contrôle d\\'entrée": "Contrôle d\\'entrée",
+        "Semi-interopérable": "Semi-interopérable",
+        "Capteur d\\'alarme": "Capteur d\\'alarme",
+        "Non interopérable": "Non interopérable",
+        "Le processus de l’interview est terminé": "Le processus de l’interview est terminé",
+        "Action réalisée avec succès": "Action réalisée avec succès",
+        "Les étapes suivantes seront éxécutées:Arrêt du réseau Z-Wave,Retirer classe de commande de Wake Up du fichier ZWCFG,Redémarrage du réseau Z-WaveAttendre que le réseau soit à nouveau opérationnel (2-5 minutes),Nœud passe en échec,Supprimer le nœud en échec,Validation de la suppression.": "Les étapes suivantes seront éxécutées:Arrêt du réseau Z-Wave,Retirer classe de commande de Wake Up du fichier ZWCFG,Redémarrage du réseau Z-WaveAttendre que le réseau soit à nouveau opérationnel (2-5 minutes),Nœud passe en échec,Supprimer le nœud en échec,Validation de la suppression.",
+        "Cette action permet de remplacer un nœud en échec.Attention, le controleur sera automatiquement en mode inclusion. Veuillez lancer la procédure sur votre module après la confirmation de cette action.": "Cette action permet de remplacer un nœud en échec.Attention, le controleur sera automatiquement en mode inclusion. Veuillez lancer la procédure sur votre module après la confirmation de cette action.",
+        "Liste des groupes d\\'associations où le module": "Liste des groupes d\\'associations où le module",
+        "Selectionner le noeud : ": "Selectionner le noeud : ",
+        "Sélection des modules cible": "Sélection des modules cible",
+        "Endormi <i>(FLiRS)<\/i>": "Endormi <i>(FLiRS)<\/i>",
+        "Le contrôleur pense que ce noeud est en échec, essayez ": "Le contrôleur pense que ce noeud est en échec, essayez ",
+        "Le noeud supporte les caractéristiques de sécurité avancées": "Le noeud supporte les caractéristiques de sécurité avancées",
+        "<i>FLiRS<\/i>, routeurs esclaves à écoute fréquente": "<i>FLiRS<\/i>, routeurs esclaves à écoute fréquente",
+        "Le noeud est capable d'envoyer une trame réseau": "Le noeud est capable d'envoyer une trame réseau",
+        "Liste des voisins non disponible": "Liste des voisins non disponible",
+        "Le noeud est dormant et nécessite un réveil avant qu'une commande puisse être exécutée.<br\/>Vous pouvez le réveiller manuellement ou attendre son délai de réveil.": "Le noeud est dormant et nécessite un réveil avant qu'une commande puisse être exécutée.<br\/>Vous pouvez le réveiller manuellement ou attendre son délai de réveil.",
+        "(nombre maximum d\\'associations :": "(nombre maximum d\\'associations :",
+        "Changer la valeur pour le paramètre} : }'+$(this).data('paramname')+' ('+ $(this).data('paramvalue')+')'\r\n    var setParamOptions = {\r\n        node_id : node_id,\r\n        id :  $(this).data('paramid'),\r\n        error: function (error) {\r\n            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});\r\n        },\r\n        success: function () {\r\n           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès": "Changer la valeur pour le paramètre} : }'+$(this).data('paramname')+' ('+ $(this).data('paramvalue')+')'\r\n    var setParamOptions = {\r\n        node_id : node_id,\r\n        id :  $(this).data('paramid'),\r\n        error: function (error) {\r\n            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});\r\n        },\r\n        success: function () {\r\n           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès",
+        "Presser": "Presser",
+        "Relacher": "Relacher",
+        "Changer la valeur pour le paramètre} : }'+$(this).data('paramname')+' ('+ $(this).data('paramvalue')+')'\r\n    var setParamOptions = {\r\n        node_id : node_id,\r\n        id :  $(this).data('paramid'),\r\n        error: function (error) {\r\n            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});\r\n        },\r\n        success: function () {\r\n         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès": "Changer la valeur pour le paramètre} : }'+$(this).data('paramname')+' ('+ $(this).data('paramvalue')+')'\r\n    var setParamOptions = {\r\n        node_id : node_id,\r\n        id :  $(this).data('paramid'),\r\n        error: function (error) {\r\n            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});\r\n        },\r\n        success: function () {\r\n         $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès",
+        "Oui\/On": "Oui\/On",
+        "Non\/Off": "Non\/Off"
     },
     "plugins\/openzwave\/desktop\/modal\/backup.php": {
         "Demande envoyée": "Demande envoyée",
@@ -502,7 +551,8 @@
         "Suppression réussie": "Suppression réussie",
         "Etes-vous sûr de vouloir restaurer Openzwave avec ": "Etes-vous sûr de vouloir restaurer Openzwave avec ",
         "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave.": "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave.",
-        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Restauration réussie. Redémarrage d\\'OpenZwave en cours."
+        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Restauration réussie. Redémarrage d\\'OpenZwave en cours.",
+        "Action réalisée avec succès": "Action réalisée avec succès"
     },
     "plugins\/openzwave\/desktop\/modal\/config.php": {
         "Sauvegarder les changements": "Sauvegarder les changements"
@@ -564,6 +614,29 @@
         "Unité": "Unité",
         "Min": "Min",
         "Max": "Max",
-        "Tester": "Tester"
+        "Tester": "Tester",
+        "Action réalisée avec succès": "Action réalisée avec succès",
+        "Inclusion": "Inclusion",
+        "Vous êtes en mode exclusion": "Vous êtes en mode exclusion"
+    },
+    "plugins\/openzwave\/plugin_info\/info.json": {
+        "Plugin permettant la gestion du protocol Z-Wave": "Plugin permettant la gestion du protocol Z-Wave"
+    },
+    "plugins\/openzwave\/mobile\/js\/openzwave.js": {
+        "Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\\'inclusion pour sortir de ce mode": "Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\\'inclusion pour sortir de ce mode",
+        "Stop inclusion": "Stop inclusion",
+        "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d\\'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d\\'exclusion pour sortir de ce mode",
+        "Stop exclusion": "Stop exclusion",
+        "Aucun mode actif": "Aucun mode actif",
+        "Exclusion": "Exclusion",
+        "Inclusion": "Inclusion",
+        "Action réalisée avec succès": "Action réalisée avec succès"
+    },
+    "plugins\/openzwave\/mobile\/html\/openzwave.html": {
+        "Inclusion": "Inclusion",
+        "Exclusion": "Exclusion",
+        "Nouveau module inclus, configuration : ": "Nouveau module inclus, configuration : ",
+        "Nom": "Nom",
+        "Valider": "Valider"
     }
 }
