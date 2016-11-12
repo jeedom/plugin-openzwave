@@ -118,7 +118,7 @@ def manual_backup():
 	if globals.files_manager.backup_xml_config('manual', globals.network.home_id_str):
 		return utils.format_json_result(data='Xml config file successfully backup')
 	else:
-		return utils.format_json_result(success='error',data='See openzwave log file for details')
+		return utils.format_json_result(sucess='error',data='See openzwave log file for details')
 
 def get_status():
 	json_result = {}
