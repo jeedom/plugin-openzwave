@@ -217,7 +217,7 @@ if (!isConnect('admin')) {
                             <td>{{Ecrit le fichier de configuration OpenZwave.}}</td>
                         </tr>
                         <tr>
-                            <td><a id="regenerateNodesCfgFile" class="btn btn-warning"><i class="fa fa-repeat"></i> {{Régénérer la détection des noeuds inconnus}}</a></td>
+                            <td><a data-action="removeUnknownsDevices" class="btn btn-info controller_action"><i class="fa fa-repeat"></i> {{Régénérer la détection des noeuds inconnus}}</a></td>
                             <td>{{Supprime les informations des noeuds inconnus dans le fichier de config afin qu'il soit régénéré.}}<br><i>{{(Attention : Relance du réseau)}}</i></td>
                         </tr>
                         <tr>

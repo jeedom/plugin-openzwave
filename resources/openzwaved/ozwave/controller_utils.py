@@ -65,3 +65,8 @@ def cancel_command():
 	if globals.network.manager.cancelControllerCommand(globals.network.home_id):
 		globals.network_information.controller_is_busy = False
 	return utils.format_json_result()
+
+
+
+def	remove_unknowns_devices_openzwave_config():
+	globals.files_manager.remove_unknowns_devices_openzwave_config(globals.network.home_id_str)
