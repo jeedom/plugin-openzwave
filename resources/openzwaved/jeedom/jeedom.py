@@ -284,8 +284,6 @@ class jeedom_serial():
 			except OSError, e:
 				logging.error("Error: " + str(e))
 			buf += byte
-		if buf == '':
-			raise e
 		return buf
 
 # ------------------------------------------------------------------------------
