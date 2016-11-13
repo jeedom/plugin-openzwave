@@ -122,22 +122,10 @@
 });
 });
 
-$("#addDevice").off("click").on("click", function () {
+$(".bt_addDevice").off("click").on("click", function () {
    jeedom.openzwave.controller.addNodeToNetwork({
-    secure : 0,
+    secure : $(this).data('secure'),
     dataType: 'json',
-    error: function (error) {
-        $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-        $('#div_networkOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
-    }
-});
-});
-
-$("#addDeviceSecure").off("click").on("click", function () {
-  jeedom.openzwave.controller.addNodeToNetwork({
-    secure : 1,
     error: function (error) {
         $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
     },
