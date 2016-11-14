@@ -49,4 +49,5 @@ if (!isConnect('admin')) {
 
     </tbody>
 </table>
+<?php include_file('core', 'openzwave', 'class.js', 'openzwave');?>
 <?php include_file('desktop', 'health', 'js', 'openzwave');?>
