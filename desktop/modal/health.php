@@ -25,7 +25,7 @@ if (!isConnect('admin')) {
 </span>
 <br/><br/>
 <div id='div_networkHealthAlert' style="display: none;"></div>
-<table class="table table-condensed tablesorter" id="table_healthNetwork">
+<table class="table table-condensed" id="table_healthNetwork">
     <thead>
         <tr>
             <th>{{Module}}</th>
