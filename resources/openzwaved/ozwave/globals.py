@@ -70,7 +70,7 @@ CONTROLLER_REST_MAPPING = {'hardReset' : controller_utils.hard_reset,\
 	'healNetwork': controller_utils.heal_network,\
 	'cancelCommand': controller_utils.cancel_command,\
 	'writeZWConfig' : utils.write_config,\
-	'removeUnknownsDevices' : remove_unknowns_devices_openzwave_config,\
+	'removeUnknownsDevices' : controller_utils.remove_unknowns_devices_openzwave_config,\
 	}
 
 #Various message
