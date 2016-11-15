@@ -59,6 +59,7 @@ enum CentralScene_ValueID_Index
     CentralSceneIndex_Supported_KeyAttributes_Scene_1    = 0x06,
     CentralSceneIndex_Supported_KeyAttributes_Scene_2    = 0x07,
     CentralSceneIndex_Supported_KeyAttributes_Scene_3    = 0x08,
+    CentralSceneIndex_SceneNumber                        = 0x80,
 
 };
 
@@ -210,6 +211,7 @@ bool CentralScene::HandleMsg
 		// Central Scene Set received so send notification
 		uint8 keyAttribute = _data[2];
 		uint8 sceneID = _data[3];
+		uint8 sceneNumber = sceneID*10 + keyAttribute;
 		Log::Write( LogLevel_Info, GetNodeId(), "Received Central Scene set from node %d: scene id=%d with key Attribute %d. Sending event notification.", GetNodeId(), sceneID, keyAttribute);
 
 		if( ValueList* value = static_cast<ValueList*>( GetValue( _instance, CentralSceneIndex_Scene_KeyAttribute ) ) )
@@ -223,6 +225,14 @@ bool CentralScene::HandleMsg
         if( ValueByte* value = static_cast<ValueByte*>( GetValue( _instance, CentralSceneIndex_SceneID ) ) )
         {
             value->OnValueRefreshed( sceneID );
+            value->Release();
+        } else {
+            Log::Write( LogLevel_Warning, GetNodeId(), "No ValueID created for Scene ID");
+            return false;
+        }
+		if( ValueByte* value = static_cast<ValueByte*>( GetValue( _instance, CentralSceneIndex_SceneNumber ) ) )
+        {
+            value->OnValueRefreshed( sceneNumber );
             value->Release();
         } else {
             Log::Write( LogLevel_Warning, GetNodeId(), "No ValueID created for Scene ID");
@@ -350,6 +360,7 @@ void CentralScene::CreateVars
         node->CreateValueList( ValueID::ValueGenre_User, GetCommandClassId(), _instance, CentralSceneIndex_Scene_KeyAttribute, "Scene KeyAttribute", "", false, false, size, items, 0, 0 );
 
         node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, CentralSceneIndex_SceneID, "Scene ID", "", true, false, 0, 0 );
+        node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, CentralSceneIndex_SceneNumber, "Scene Number", "", true, false, 0, 0 );
         node->CreateValueButton(ValueID::ValueGenre_User, GetCommandClassId(), _instance, CentralSceneIndex_Button, "Button", 0 );
         node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, CentralSceneIndex_Scenes_Identical, "Scenes Identical", "", true, false, 0, 0 );
 	}
