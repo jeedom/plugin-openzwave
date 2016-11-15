@@ -45,7 +45,6 @@ $results = json_decode(file_get_contents("php://input"), true);
 if (!is_array($results)) {
 	die();
 }
-log::add('openzwave','error', print_r($results,true));
 if (isset($results['devices'])) {
 	foreach ($results['devices'] as $node_id => $datas) {
 		$eqLogic = openzwave::byLogicalId($node_id, 'openzwave');
