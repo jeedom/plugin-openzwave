@@ -678,6 +678,7 @@ function display_node_info(){
                 $("#div_nodeConfigure .node-neighbours").html( data.data.neighbours.value.join());
             }else {
                 $("#div_nodeConfigure .node-neighbours").html("...");
+                var genericDeviceClass = parseInt(data.data.genericType.value, 0);
                 if (genericDeviceClass != 1 && (genericDeviceClass != 8 || data.data.isListening.value)) {
                     warningMessage += "<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <a id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</a> {{ou}} <a id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</a> {{pour corriger.}}</li>";
                 }
