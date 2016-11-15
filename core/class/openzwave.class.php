@@ -50,7 +50,7 @@ class openzwave extends eqLogic {
 	public static function syncEqLogicWithOpenZwave($_logical_id = null) {
 		try {
 			$controlerState = self::callOpenzwave('/network?type=info&info=getStatus');
-			$state = $controlerState['result']['data']['networkstate']['value'];
+			$state = $controlerState['result']['state'];
 		} catch (Exception $e) {
 			$state = 10;
 		}
@@ -127,7 +127,7 @@ class openzwave extends eqLogic {
 		$results = self::callOpenzwave('/network?type=info&info=getNodesList');
 		$findDevice = array();
 		$include_device = '';
-		if (count($results['devices']) < 1) {
+		if (count($results['result']['devices']) < 1) {
 			event::add('jeedom::alert', array(
 				'level' => 'warning',
 				'page' => 'openzwave',
@@ -135,7 +135,7 @@ class openzwave extends eqLogic {
 			));
 			return;
 		}
-		foreach ($results['devices'] as $nodeId => $result) {
+		foreach ($results['result']['devices'] as $nodeId => $result) {
 			$findDevice[$nodeId] = $nodeId;
 			if (!isset($result['product']['is_valid']) || !$result['product']['is_valid']) {
 				continue;
