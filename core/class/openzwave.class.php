@@ -49,7 +49,7 @@ class openzwave extends eqLogic {
 
 	public static function syncEqLogicWithOpenZwave($_logical_id = null) {
 		try {
-			$controlerState = self::callOpenzwave('/network?type=info&info=getStatus)');
+			$controlerState = self::callOpenzwave('/network?type=info&info=getStatus');
 			$state = $controlerState['result']['data']['networkstate']['value'];
 		} catch (Exception $e) {
 			$state = 10;
@@ -82,7 +82,7 @@ class openzwave extends eqLogic {
 				));
 				return;
 			}
-			$result = self::callOpenzwave('/node/' . $_logical_id . '/info(all)');
+			$result = self::callOpenzwave('/node?node_id=' . $_logical_id . '&type=info&info=all');
 			if (count($result) == 0) {
 				event::add('jeedom::alert', array(
 					'level' => 'warning',
@@ -326,7 +326,7 @@ class openzwave extends eqLogic {
 		$deamon_info = self::deamon_info();
 		if ($deamon_info['state'] == 'ok') {
 			try {
-				self::callOpenzwave('/network/action(stop)', 30000);
+				self::callOpenzwave('/network?action=stop&type=action', 30000);
 			} catch (Exception $e) {
 
 			}
@@ -450,7 +450,7 @@ class openzwave extends eqLogic {
 			$name = str_replace(array_keys($replace), $replace, $this->getName());
 			$humanLocation = urlencode(trim($location));
 			$humanName = urlencode(trim($name));
-			self::callOpenzwave('/node/' . $this->getLogicalId() . '/setDeviceName(' . $humanLocation . ',' . $humanName . ',' . $this->getIsEnable() . ')');
+			self::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&type=setDeviceName&location=' . $humanLocation . '&name=' . $humanName . '&is_enable=' . $this->getIsEnable());
 		} catch (Exception $e) {
 
 		}
@@ -500,15 +500,15 @@ class openzwave extends eqLogic {
 		}
 		if (isset($device['recommended']['params'])) {
 			foreach ($device['recommended']['params'] as $value) {
-				openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&instance_id=0&cc_id=112&index=' . $value['index'] . '&setconfig&value=' . $value['value'] . '&size=1');
+				openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&instance_id=0&cc_id=112&index=' . $value['index'] . '&type=setconfig&value=' . $value['value'] . '&size=1');
 			}
 		}
 		if (isset($device['recommended']['groups'])) {
 			foreach ($device['recommended']['groups'] as $value) {
 				if ($value['value'] == 'add') {
-					openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '/add(' . $value['index'] . ',1,0)');
+					openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&type=association&action=add&group=' . $value['index'] . '&target_id=1&instance_id=0');
 				} else if ($value['value'] == 'remove') {
-					openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '/remove(' . $value['index'] . ',1,0)');
+					openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&type=association&action=remove&group=' . $value['index'] . '&target_id=1&instance_id=0');
 				}
 			}
 		}
@@ -575,7 +575,7 @@ class openzwave extends eqLogic {
 			'message' => __('Création des commandes en mode automatique', __FILE__),
 		));
 		if ($_data == null) {
-			$results = self::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&type=info&info=all)');
+			$results = self::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&type=info&info=all');
 		} else {
 			$results = $_data;
 		}

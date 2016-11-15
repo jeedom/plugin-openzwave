@@ -287,8 +287,8 @@ class NodeHandler(RequestHandler):
 								my_node.values[dimmer].refresh()
 				self.write(utils.format_json_result())
 			elif type == 'setDeviceName':
-				location = int(self.get_argument('location',''))
-				name = int(self.get_argument('name',''))
+				location = self.get_argument('location','')
+				name = self.get_argument('name','')
 				is_enable = int(self.get_argument('is_enable','0'))
 				logging.info("set_device_name node_id:%s new name ; '%s'. Is enable: %s" % (node_id, name, is_enable,))
 				if node_id in globals.disabled_nodes and is_enable:
