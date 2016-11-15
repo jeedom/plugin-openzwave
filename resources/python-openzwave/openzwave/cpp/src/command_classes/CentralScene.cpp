@@ -235,7 +235,7 @@ bool CentralScene::HandleMsg
             value->OnValueRefreshed( sceneNumber );
             value->Release();
         } else {
-            Log::Write( LogLevel_Warning, GetNodeId(), "No ValueID created for Scene ID");
+            Log::Write( LogLevel_Warning, GetNodeId(), "No ValueID created for Scene Number");
             return false;
         }
         if ( keyAttribute == CentralScene_KeyAttributes_KeyHeldDown )
