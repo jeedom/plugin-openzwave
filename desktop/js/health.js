@@ -86,21 +86,6 @@
                 tbody += (nodes[node_id].data.isEnable.value) ? node_id : '<div style="opacity:0.5"><i>' + node_id + '</i></div>';
                 tbody += '</td>';
                 tbody += '<td>';
-                var notification = '';
-                if (nodes[node_id].last_notification != undefined) {
-                    if (nodes[node_id].last_notification.description == 'Timeout') {
-                        notification += '<span class="label label-warning" style="font-size : 1em;" title="' + nodes[node_id].last_notification.help + '">' + nodes[node_id].last_notification.description + '</span>';
-                    } else if (nodes[node_id].last_notification.description == 'Dead') {
-                        notification += '<span class="label label-danger" style="font-size : 1em;" title="' + nodes[node_id].last_notification.help + '">' + nodes[node_id].last_notification.description + '</span>';
-                    } else if (nodes[node_id].last_notification.description != undefined) {
-                        notification += '<span class="label label-primary" style="font-size : 1em;" title="' + nodes[node_id].last_notification.help + '">' + nodes[node_id].last_notification.description + '</span>';
-                    } else {
-                        notification += '<span class="label label-primary" style="font-size : 1em;" title="{{Non disponible}}">...</span>';
-                    }
-                }
-                tbody += (nodes[node_id].data.isEnable.value) ? notification : '<div style="opacity:0.5"><i>' + notification + '</i></div>';
-                tbody += '</td>';
-                tbody += '<td>';
                 if (nodes[node_id].data.isEnable.value) {
                     if (nodes[node_id].data.is_groups_ok != undefined && nodes[node_id].data.is_groups_ok.value) {
                         tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
