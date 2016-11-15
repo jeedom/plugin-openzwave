@@ -1,7 +1,7 @@
 import logging
 import sys
 import globals
-import network_utils,node_utils,value_utils,scene_utils
+import network_utils,node_utils,value_utils,scene_utils,controller_utils
 try:
 	from louie import dispatcher
 except Exception as e:
@@ -27,6 +27,7 @@ def connect_dispatcher():
 	add_dispatcher_listen(value_utils.value_removed, globals.network.SIGNAL_VALUE_REMOVED)
 	add_dispatcher_listen(node_utils.node_event, globals.network.SIGNAL_NODE_EVENT)
 	add_dispatcher_listen(scene_utils.scene_event, globals.network.SIGNAL_SCENE_EVENT)
+	add_dispatcher_listen(controller_utils.controller_command, globals.network.SIGNAL_CONTROLLER_COMMAND)
 	add_dispatcher_listen(node_utils.node_queries_complete, globals.network.SIGNAL_NODE_QUERIES_COMPLETE)
 	if globals.network.state >= globals.network.STATE_AWAKED:
 		add_dispatcher_listen(node_utils.node_group_changed, globals.network.SIGNAL_GROUP)
@@ -49,6 +50,7 @@ def disconnect_dispatcher():
 		remove_dispatcher_listen(value_utils.value_removed, globals.network.SIGNAL_VALUE_REMOVED)
 		remove_dispatcher_listen(node_utils.node_event, globals.network.SIGNAL_NODE_EVENT)
 		remove_dispatcher_listen(scene_utils.scene_event, globals.network.SIGNAL_SCENE_EVENT)
+		remove_dispatcher_listen(controller_utils.controller_command, globals.network.SIGNAL_CONTROLLER_COMMAND)
 		remove_dispatcher_listen(node_utils.node_queries_complete, globals.network.SIGNAL_NODE_QUERIES_COMPLETE)
 		if globals.network.state >= globals.network.STATE_AWAKED:
 			remove_dispatcher_listen(node_utils.node_group_changed, globals.network.SIGNAL_GROUP)

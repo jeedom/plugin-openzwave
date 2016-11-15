@@ -1,6 +1,6 @@
 import logging
 import time
-import globals,network_utils,utils
+import globals,network_utils,utils,node_utils
 	
 def hard_reset():
 	globals.network.controller.hard_reset()
@@ -66,7 +66,13 @@ def cancel_command():
 		globals.network_information.controller_is_busy = False
 	return utils.format_json_result()
 
-
-
 def	remove_unknowns_devices_openzwave_config():
 	globals.files_manager.remove_unknowns_devices_openzwave_config(globals.network.home_id_str)
+
+def controller_command(network, controller, node, node_id, state_int, state, state_full, error_int, error, error_full):
+	logging.info('%s (%s)' % (state_full, state))
+	if error_int > 0:
+		logging.error('%s (%s)' % (error_full, error,))
+	globals.network_information.assign_controller_notification(state, state_full, error, error_full)
+	node_utils.save_node_event(network.controller.node_id, globals.network_information.generate_jeedom_message())
+	logging.debug('The controller is busy ? %s' % (globals.network_information.controller_is_busy,))
