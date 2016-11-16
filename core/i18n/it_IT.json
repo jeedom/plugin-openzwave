@@ -59,12 +59,12 @@
         "Le réseau Z-Wave est en cours de démarrage sur le serveur ": "Le réseau Z-Wave est en cours de démarrage sur le serveur",
         "Vous êtes en mode exclusion sur Local. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode": "Siete in modalità esclusione Locale. Fare di clic nuovamente sul pulsante di esclusione per uscire da questa modalità",
         "Appliquer le mapping de commandes": "Appliquer le mapping de commandes",
-        "Configuration avancée": "Configuration avancée",
-        "Equipement": "Equipement",
+        "Configuration avancée": "Configurazione avanzata",
+        "Equipement": "Dispositivo",
         "Mapping de commandes": "Mapping de commandes",
         "Arbre Z-Wave": "Arbre Z-Wave",
         "Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage": "Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage",
-        "Index": "Index",
+        "Index": "Indice",
         "Impossible de contacter le serveur Z-wave": "Impossible de contacter le serveur Z-wave"
     },
     "plugins/openzwave/core/php/jeeZwave.php": {
@@ -122,7 +122,7 @@
         "Temporisation": "Ritardo",
         "Dernière notification": "Dernière notification",
         "Ping": "Ping",
-        "Rafraichir": "Rafraichir"
+        "Rafraichir": "Ricarica"
     },
     "plugins/openzwave/desktop/js/health.js": {
         "Non disponible": "Non disponible",
@@ -523,7 +523,7 @@
         "Le noeud supporte les caractéristiques de sécurité avancées": "Le noeud supporte les caractéristiques de sécurité avancées",
         "<i>FLiRS</i>, routeurs esclaves à écoute fréquente": "<i>FLiRS</i>, routeurs esclaves à écoute fréquente",
         "Le noeud est capable d'envoyer une trame réseau": "Le noeud est capable d'envoyer une trame réseau",
-        "Liste des voisins non disponible": "Liste des voisins non disponible",
+        "Liste des voisins non disponible": "Elenco di vicini non disponibili",
         "Le noeud est dormant et nécessite un réveil avant qu'une commande puisse être exécutée.<br/>Vous pouvez le réveiller manuellement ou attendre son délai de réveil.": "Le noeud est dormant et nécessite un réveil avant qu'une commande puisse être exécutée.<br/>Vous pouvez le réveiller manuellement ou attendre son délai de réveil.",
         "(nombre maximum d\\'associations :": "(nombre maximum d\\'associations :",
         "Changer la valeur pour le paramètre} : }'+$(this).data('paramname')+' ('+ $(this).data('paramvalue')+')'\r\n    var setParamOptions = {\r\n        node_id : node_id,\r\n        id :  $(this).data('paramid'),\r\n        error: function (error) {\r\n            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});\r\n        },\r\n        success: function () {\r\n           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès": "Changer la valeur pour le paramètre} : }'+$(this).data('paramname')+' ('+ $(this).data('paramvalue')+')'\r\n    var setParamOptions = {\r\n        node_id : node_id,\r\n        id :  $(this).data('paramid'),\r\n        error: function (error) {\r\n            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});\r\n        },\r\n        success: function () {\r\n           $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès",
@@ -616,27 +616,27 @@
         "Max": "Max",
         "Tester": "Prova",
         "Action réalisée avec succès": "Action réalisée avec succès",
-        "Inclusion": "Inclusion",
+        "Inclusion": "InclusioneInclusione",
         "Vous êtes en mode exclusion": "Vous êtes en mode exclusion"
     },
     "plugins/openzwave/plugin_info/info.json": {
         "Plugin permettant la gestion du protocol Z-Wave": "Plugin permettant la gestion du protocol Z-Wave"
     },
     "plugins/openzwave/mobile/js/openzwave.js": {
-        "Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\\'inclusion pour sortir de ce mode": "Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\\'inclusion pour sortir de ce mode",
-        "Stop inclusion": "Stop inclusion",
-        "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d\\'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d\\'exclusion pour sortir de ce mode",
-        "Stop exclusion": "Stop exclusion",
-        "Aucun mode actif": "Aucun mode actif",
-        "Exclusion": "Exclusion",
-        "Inclusion": "Inclusion",
+        "Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\\'inclusion pour sortir de ce mode": "Sei in modalità inclusione. Clicca nuovamente il pulsante per uscire da questa modalità",
+        "Stop inclusion": "Ferma inclusione",
+        "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d\\'exclusion pour sortir de ce mode": "Se in modalità esclusione. Clicca il pulsante nuovamente per uscire dalla modalità esclusione",
+        "Stop exclusion": "Ferma esclusione",
+        "Aucun mode actif": "Nessuna modalità attiva",
+        "Exclusion": "Esclusione",
+        "Inclusion": "InclusioneInclusione",
         "Action réalisée avec succès": "Action réalisée avec succès"
     },
     "plugins/openzwave/mobile/html/openzwave.html": {
-        "Inclusion": "Inclusion",
-        "Exclusion": "Exclusion",
+        "Inclusion": "InclusioneInclusione",
+        "Exclusion": "Esclusione",
         "Nouveau module inclus, configuration : ": "Nouveau module inclus, configuration :",
-        "Nom": "Nom",
-        "Valider": "Valider"
+        "Nom": "Nome",
+        "Valider": "Convalida"
     }
 }

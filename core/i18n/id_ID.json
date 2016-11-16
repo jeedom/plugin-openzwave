@@ -60,7 +60,7 @@
         "Vous êtes en mode exclusion sur Local. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion sur Local. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode",
         "Appliquer le mapping de commandes": "Appliquer le mapping de commandes",
         "Configuration avancée": "Configuration avancée",
-        "Equipement": "Equipement",
+        "Equipement": "Peralatan",
         "Mapping de commandes": "Mapping de commandes",
         "Arbre Z-Wave": "Arbre Z-Wave",
         "Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage": "Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage",
@@ -616,7 +616,7 @@
         "Max": "Max",
         "Tester": "Coba",
         "Action réalisée avec succès": "Action réalisée avec succès",
-        "Inclusion": "Inclusion",
+        "Inclusion": "Penyertaan",
         "Vous êtes en mode exclusion": "Vous êtes en mode exclusion"
     },
     "plugins/openzwave/plugin_info/info.json": {
@@ -629,14 +629,14 @@
         "Stop exclusion": "Stop exclusion",
         "Aucun mode actif": "Aucun mode actif",
         "Exclusion": "Exclusion",
-        "Inclusion": "Inclusion",
+        "Inclusion": "Penyertaan",
         "Action réalisée avec succès": "Action réalisée avec succès"
     },
     "plugins/openzwave/mobile/html/openzwave.html": {
-        "Inclusion": "Inclusion",
+        "Inclusion": "Penyertaan",
         "Exclusion": "Exclusion",
         "Nouveau module inclus, configuration : ": "Nouveau module inclus, configuration :",
-        "Nom": "Nom",
-        "Valider": "Valider"
+        "Nom": "Nama",
+        "Valider": "Mengesahkan"
     }
 }

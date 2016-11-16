@@ -59,8 +59,8 @@
         "Le réseau Z-Wave est en cours de démarrage sur le serveur ": "Le réseau Z-Wave est en cours de démarrage sur le serveur",
         "Vous êtes en mode exclusion sur Local. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion sur Local. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode",
         "Appliquer le mapping de commandes": "Appliquer le mapping de commandes",
-        "Configuration avancée": "Configuration avancée",
-        "Equipement": "Equipement",
+        "Configuration avancée": "Расширенные настройки",
+        "Equipement": "Оборудование",
         "Mapping de commandes": "Mapping de commandes",
         "Arbre Z-Wave": "Arbre Z-Wave",
         "Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage": "Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage",
@@ -122,7 +122,7 @@
         "Temporisation": "Тайм-аут",
         "Dernière notification": "Dernière notification",
         "Ping": "Пинг",
-        "Rafraichir": "Rafraichir"
+        "Rafraichir": "Обновить"
     },
     "plugins/openzwave/desktop/js/health.js": {
         "Non disponible": "Non disponible",
@@ -138,7 +138,7 @@
         "ZWAVE PLUS": "ZWAVE PLUS",
         "Sécurisé": "Sécurisé",
         "Non sécurisé": "Non sécurisé",
-        "Action réalisée avec succès": "Action réalisée avec succès"
+        "Action réalisée avec succès": "Действие успешно завершено"
     },
     "plugins/openzwave/desktop/modal/network.php": {
         "Confirmation": "Confirmation",
@@ -260,7 +260,7 @@
         "Mise à jour des noeuds voisins": "Mise à jour des noeuds voisins",
         "Nom": "Имя",
         "Soigner le réseau": "Soigner le réseau",
-        "Action réalisée avec succès": "Action réalisée avec succès"
+        "Action réalisée avec succès": "Действие успешно завершено"
     },
     "plugins/openzwave/desktop/modal/node.configure.php": {
         "inconnu": "inconnu",
@@ -512,7 +512,7 @@
         "Capteur d\\'alarme": "Capteur d\\'alarme",
         "Non interopérable": "Non interopérable",
         "Le processus de l’interview est terminé": "Le processus de l’interview est terminé",
-        "Action réalisée avec succès": "Action réalisée avec succès",
+        "Action réalisée avec succès": "Действие успешно завершено",
         "Les étapes suivantes seront éxécutées:Arrêt du réseau Z-Wave,Retirer classe de commande de Wake Up du fichier ZWCFG,Redémarrage du réseau Z-WaveAttendre que le réseau soit à nouveau opérationnel (2-5 minutes),Nœud passe en échec,Supprimer le nœud en échec,Validation de la suppression.": "Les étapes suivantes seront éxécutées:Arrêt du réseau Z-Wave,Retirer classe de commande de Wake Up du fichier ZWCFG,Redémarrage du réseau Z-WaveAttendre que le réseau soit à nouveau opérationnel (2-5 minutes),Nœud passe en échec,Supprimer le nœud en échec,Validation de la suppression.",
         "Cette action permet de remplacer un nœud en échec.Attention, le controleur sera automatiquement en mode inclusion. Veuillez lancer la procédure sur votre module après la confirmation de cette action.": "Cette action permet de remplacer un nœud en échec.Attention, le controleur sera automatiquement en mode inclusion. Veuillez lancer la procédure sur votre module après la confirmation de cette action.",
         "Liste des groupes d\\'associations où le module": "Liste des groupes d\\'associations où le module",
@@ -552,7 +552,7 @@
         "Etes-vous sûr de vouloir restaurer Openzwave avec ": "Etes-vous sûr de vouloir restaurer Openzwave avec",
         "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave.": "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave.",
         "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Restauration réussie. Redémarrage d\\'OpenZwave en cours.",
-        "Action réalisée avec succès": "Action réalisée avec succès"
+        "Action réalisée avec succès": "Действие успешно завершено"
     },
     "plugins/openzwave/desktop/modal/config.php": {
         "Sauvegarder les changements": "Sauvegarder les changements"
@@ -615,28 +615,28 @@
         "Min": "Мин",
         "Max": "Макс",
         "Tester": "Тест",
-        "Action réalisée avec succès": "Action réalisée avec succès",
-        "Inclusion": "Inclusion",
+        "Action réalisée avec succès": "Действие успешно завершено",
+        "Inclusion": "Интеграция",
         "Vous êtes en mode exclusion": "Vous êtes en mode exclusion"
     },
     "plugins/openzwave/plugin_info/info.json": {
         "Plugin permettant la gestion du protocol Z-Wave": "Plugin permettant la gestion du protocol Z-Wave"
     },
     "plugins/openzwave/mobile/js/openzwave.js": {
-        "Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\\'inclusion pour sortir de ce mode": "Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\\'inclusion pour sortir de ce mode",
-        "Stop inclusion": "Stop inclusion",
-        "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d\\'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d\\'exclusion pour sortir de ce mode",
-        "Stop exclusion": "Stop exclusion",
-        "Aucun mode actif": "Aucun mode actif",
-        "Exclusion": "Exclusion",
-        "Inclusion": "Inclusion",
-        "Action réalisée avec succès": "Action réalisée avec succès"
+        "Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\\'inclusion pour sortir de ce mode": "Вы в режиме включения. Нажмите еще раз на кнопку включения для выхода из этого режима",
+        "Stop inclusion": "Останов включения",
+        "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d\\'exclusion pour sortir de ce mode": "Вы в режиме выключения. Нажмите кнопку еще раз, чтобы выйти из этого режима",
+        "Stop exclusion": "Останов исключения",
+        "Aucun mode actif": "Нет активного режима",
+        "Exclusion": "Исключение",
+        "Inclusion": "Интеграция",
+        "Action réalisée avec succès": "Действие успешно завершено"
     },
     "plugins/openzwave/mobile/html/openzwave.html": {
-        "Inclusion": "Inclusion",
-        "Exclusion": "Exclusion",
+        "Inclusion": "Интеграция",
+        "Exclusion": "Исключение",
         "Nouveau module inclus, configuration : ": "Nouveau module inclus, configuration :",
-        "Nom": "Nom",
-        "Valider": "Valider"
+        "Nom": "Имя",
+        "Valider": "Применить"
     }
 }
