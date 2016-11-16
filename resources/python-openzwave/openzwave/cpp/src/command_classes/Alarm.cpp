@@ -50,7 +50,8 @@ enum
 {
 	AlarmIndex_Type = 0,
 	AlarmIndex_Level,
-	AlarmIndex_SourceNodeId
+	AlarmIndex_SourceNodeId,
+	AlarmIndex_Notification
 };
 
 enum
@@ -293,6 +294,92 @@ bool Alarm::HandleMsg
 }
 
 //-----------------------------------------------------------------------------
+// <Alarm::SetValue>
+// Set a new value for the switch    (UGLY HACK FOR NOW)
+//-----------------------------------------------------------------------------
+bool Alarm::SetValue
+(
+	Value const& _value
+)
+{
+	uint8 instance = _value.GetID().GetInstance();
+
+	switch( _value.GetID().GetIndex() )
+	{
+		case AlarmIndex_Notification:
+		{
+			ValueByte const* value = static_cast<ValueByte const*>(&_value);
+			ValueByte* valueObj = static_cast<ValueByte*>( GetValue( instance, AlarmIndex_Notification ) );
+			Log::Write( LogLevel_Info, GetNodeId(), "AlarmNotification::Set - Setting node %d to %d", GetNodeId(), value->GetValue());
+			Msg* msg = new Msg( "AlarmNotification_Set", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true );
+			msg->SetInstance( this, instance );
+			msg->Append( GetNodeId() );
+			msg->Append( 3 );
+			msg->Append( GetCommandClassId() );
+			msg->Append( AlarmCmd_Report );
+			msg->Append( 0x00 );
+			msg->Append( 0x00 );
+			msg->Append( 0x00 );
+			msg->Append( 0x00 );
+			switch( value->GetValue() )
+				{
+					case 1:
+						{
+							msg->Append( 0x07 );
+							msg->Append( 0x01 );
+							break;
+						}
+					case 2:
+						{
+							msg->Append( 0x0A );
+							msg->Append( 0x02 );
+							break;
+						}
+					case 3:
+						{
+							msg->Append( 0x0A );
+							msg->Append( 0x03 );
+							break;
+						}
+					case 4:
+						{
+							msg->Append( 0x0A );
+							msg->Append( 0x01 );
+							break;
+						}
+					case 5:
+						{
+							msg->Append( 0x06 );
+							msg->Append( 0x16 );
+							break;
+						}
+					case 6:
+						{
+							msg->Append( 0x0A );
+							msg->Append( 0x05 );
+							break;
+						}
+					default:
+						{
+							msg->Append( 0x07 );
+							msg->Append( 0x01 );
+							break;
+						}
+				}
+				msg->Append( 0x00 );
+				msg->Append( 0x00 );
+				msg->Append( GetDriver()->GetTransmitOptions() );
+				GetDriver()->SendMsg( msg, Driver::MsgQueue_Send );
+				valueObj->OnValueRefreshed(value->GetValue());
+				valueObj->Release();
+				return true;
+				break;
+		}
+	}
+	return false;
+}
+
+//-----------------------------------------------------------------------------
 // <Alarm::CreateVars>
 // Create the values managed by this command class
 //-----------------------------------------------------------------------------
@@ -305,6 +392,7 @@ void Alarm::CreateVars
 	{
 		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, AlarmIndex_Type, "Alarm Type", "", true, false, 0, 0 );
 		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, AlarmIndex_Level, "Alarm Level", "", true, false, 0, 0 );
+		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, AlarmIndex_Notification, "Alarm Notification", "", false, false, 0, 0 );
 	}
 }
 

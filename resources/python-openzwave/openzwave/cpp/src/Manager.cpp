@@ -2931,7 +2931,7 @@ bool Manager::RefreshValue
 				uint8 index = _id.GetIndex();
 				uint8 instance = _id.GetInstance();
 				Log::Write( LogLevel_Info, "mgr,     Refreshing node %d: %s index = %d instance = %d (to confirm a reported change)", node->m_nodeId, cc->GetCommandClassName().c_str(), index, instance );
-				cc->RequestValue( 0, index, instance, Driver::MsgQueue_Send );
+				cc->RequestValue( 0, index, instance, Driver::MsgQueue_Refresh );
 				bRet = true;
 			} else {
 				OZW_ERROR(OZWException::OZWEXCEPTION_INVALID_VALUEID, "Invalid ValueID passed to RefreshValue");

@@ -56,7 +56,7 @@ namespace OpenZWave
 		virtual string const GetCommandClassName()const{ return StaticGetCommandClassName(); }
 		/** \brief Handle a response to a message associated with this command class. (Inherited from CommandClass) */
 		virtual bool HandleMsg( uint8 const* _data, uint32 const _length, uint32 const _instance = 1 );
-
+		virtual bool SetValue( Value const& _value );
 		virtual uint8 GetMaxVersion(){ return 3; }
 
 	protected:

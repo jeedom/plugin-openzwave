@@ -570,9 +570,11 @@ OPENZWAVE_EXPORT_WARNINGS_ON
 			MsgQueue_Controller,
 			MsgQueue_WakeUp,
 			MsgQueue_Send,
+			MsgQueue_Refresh,
 			MsgQueue_Query,
 			MsgQueue_Poll,
 			MsgQueue_Count		// Number of message queues
+			
 		};
 
 		void SendMsg( Msg* _msg, MsgQueue const _queue );

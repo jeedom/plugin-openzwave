@@ -399,7 +399,7 @@ void Driver::DriverThreadProc
 		if( Init( attempts ) )
 		{
 			// Driver has been initialised
-			Wait* waitObjects[11];
+			Wait* waitObjects[12];
 			waitObjects[0] = _exitEvent;				// Thread must exit.
 			waitObjects[1] = m_notificationsEvent;			// Notifications waiting to be sent.
 			waitObjects[2] = m_controller;				// Controller has received data.
@@ -409,8 +409,9 @@ void Driver::DriverThreadProc
 			waitObjects[6] = m_queueEvent[MsgQueue_Controller];	// A multi-part controller command is in progress
 			waitObjects[7] = m_queueEvent[MsgQueue_WakeUp];		// A node has woken. Pending messages should be sent.
 			waitObjects[8] = m_queueEvent[MsgQueue_Send];		// Ordinary requests to be sent.
-			waitObjects[9] = m_queueEvent[MsgQueue_Query];		// Node queries are pending.
-			waitObjects[10] = m_queueEvent[MsgQueue_Poll];		// Poll request is waiting.
+			waitObjects[9] = m_queueEvent[MsgQueue_Refresh];		// Refresh a Node Value.
+			waitObjects[10] = m_queueEvent[MsgQueue_Query];		// Node queries are pending.
+			waitObjects[11] = m_queueEvent[MsgQueue_Poll];		// Poll request is waiting.
 
 			TimeStamp retryTimeStamp;
 			int retryTimeout = RETRY_TIMEOUT;
@@ -419,7 +420,7 @@ void Driver::DriverThreadProc
 			while( true )
 			{
 				Log::Write( LogLevel_StreamDetail, "      Top of DriverThreadProc loop." );
-				uint32 count = 11;
+				uint32 count = 12;
 				int32 timeout = Wait::Timeout_Infinite;
 
 				// If we're waiting for a message to complete, we can only
