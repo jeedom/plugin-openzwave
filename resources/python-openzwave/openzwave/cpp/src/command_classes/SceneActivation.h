@@ -54,6 +54,7 @@ namespace OpenZWave
 		virtual string const GetCommandClassName()const{ return StaticGetCommandClassName(); }
 		/** \brief Handle a response to a message associated with this command class. (Inherited from CommandClass) */
 		virtual bool HandleMsg( uint8 const* _data, uint32 const _length, uint32 const _instance = 1 );
+		void CreateVars( uint8 const _instance );
 
 	private:
 		SceneActivation( uint32 const _homeId, uint8 const _nodeId ): CommandClass( _homeId, _nodeId ){}

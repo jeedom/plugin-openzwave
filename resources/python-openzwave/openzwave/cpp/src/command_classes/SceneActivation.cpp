@@ -33,6 +33,7 @@
 #include "Driver.h"
 #include "Notification.h"
 #include "platform/Log.h"
+#include "value_classes/ValueByte.h"
 
 using namespace OpenZWave;
 
@@ -41,6 +42,11 @@ enum SceneActivationCmd
 	SceneActivationCmd_Set				= 0x01
 };
 
+enum SceneActivation_ValueID_Index
+{
+    SceneActivationIndex_SceneNumber                        = 0x00,
+
+};
 
 //-----------------------------------------------------------------------------
 // <SceneActivation::HandleMsg>
@@ -65,14 +71,32 @@ bool SceneActivation::HandleMsg
 			snprintf( msg, sizeof(msg), "%d minutes", _data[2] );
 		else
 			snprintf( msg, sizeof(msg), "via configuration" );
-		Log::Write( LogLevel_Info, GetNodeId(), "Received Scene Activation set from node %d: scene id=%d %s. Sending event notification.", GetNodeId(), _data[1], msg );
-		Notification* notification = new Notification( Notification::Type_SceneEvent );
-		notification->SetHomeAndNodeIds( GetHomeId(), GetNodeId() );
-		notification->SetSceneId( _data[1] );
-		GetDriver()->QueueNotification( notification );
-		return true;
+		if(ValueByte* value = static_cast<ValueByte*>( GetValue( _instance, SceneActivationIndex_SceneNumber ) ) )
+		{
+			value->OnValueRefreshed( _data[1] );
+			value->Release();
+		} else {
+			Log::Write( LogLevel_Warning, GetNodeId(), "No ValueID created for Scene Number");
+			return false;
+		}
 	}
 
 	return false;
 }
+
+//-----------------------------------------------------------------------------
+// <SceneActivation::CreateVars>
+// Create the values managed by this command class
+//-----------------------------------------------------------------------------
+void SceneActivation::CreateVars
+(
+		uint8 const _instance
+)
+{
+	if( Node* node = GetNodeUnsafe() )
+	{
+		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, SceneActivationIndex_SceneNumber, "Scene Activation Number", "", true, false, 0, 0 );
+	}
+}
+
 
