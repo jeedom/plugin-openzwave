@@ -59,7 +59,7 @@ class ControllerHandler(RequestHandler):
 			else:
 				self.write(utils.format_json_result())
 		except Exception,e:
-			raise HTTPError(500,str(e)) 
+			self.write(utils.format_json_result(success="error",data=str(e)))
 
 class NetworkHandler(RequestHandler):
 	def get(self):
@@ -81,7 +81,7 @@ class NetworkHandler(RequestHandler):
 			else:
 				self.write(utils.format_json_result())
 		except Exception,e:
-			raise HTTPError(500,str(e)) 
+			self.write(utils.format_json_result(success="error",data=str(e)))
 
 class NodeHandler(RequestHandler):
 	def get(self):
@@ -309,7 +309,7 @@ class NodeHandler(RequestHandler):
 			else:
 				self.write(utils.format_json_result())
 		except Exception,e:
-			raise HTTPError(500,str(e)) 
+			self.write(utils.format_json_result(success="error",data=str(e)))
 
 class BackupHandler(RequestHandler):
 	def get(self):
@@ -356,7 +356,7 @@ class BackupHandler(RequestHandler):
 					os.unlink(backup_file)
 				self.write(utils.format_json_result())
 		except Exception,e:
-			raise HTTPError(500,str(e)) 
+			self.write(utils.format_json_result(success="error",data=str(e)))
 
 globals.app = Application([
 		(r"/controller", ControllerHandler),
