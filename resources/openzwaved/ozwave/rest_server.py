@@ -176,7 +176,7 @@ class NodeHandler(RequestHandler):
 				self.write(utils.format_json_result())
 			elif type == 'refreshData':
 				for value_id in globals.network.nodes[node_id].get_values(class_id=cc_id):
-					if globals.network.nodes[node_id].values[value_id].instance - 1 == instance_id and globals.network.nodes[node_id].values[value_id].index == index:
+					if globals.network.nodes[node_id].values[value_id].instance == instance_id and globals.network.nodes[node_id].values[value_id].index == index:
 						globals.network.nodes[node_id].values[value_id].refresh()
 						self.write(utils.format_json_result())
 						return
@@ -207,7 +207,7 @@ class NodeHandler(RequestHandler):
 			elif type == 'setPolling':
 				logging.info('set_polling_value for nodeId: '+str(node_id)+' instance: '+str(instance_id)+' cc : '+str(cc_id)+' index : '+str(index)+' at: '+str(frequency))
 				for value_id in globals.network.nodes[node_id].get_values(class_id=cc_id):
-					if globals.network.nodes[node_id].values[value_id].instance - 1 == instance_id:
+					if globals.network.nodes[node_id].values[value_id].instance == instance_id:
 						my_value = globals.network.nodes[node_id].values[value_id]
 						if frequency == 0 & my_value.poll_intensity > 0:
 							my_value.disable_poll()
@@ -221,7 +221,7 @@ class NodeHandler(RequestHandler):
 			elif type == 'buttonaction':
 				logging.info('Button nodeId : '+str(node_id)+' instance: '+str(instance_id)+' cc : '+str(cc_id)+' index : '+str(index)+' : ' +str(action))
 				for value_id in globals.network.nodes[node_id].get_values(class_id=cc_id, genre='All', type='All', readonly=False, writeonly='All'):
-					if globals.network.nodes[node_id].values[value_id].instance - 1 == instance_id and globals.network.nodes[node_id].values[value_id].index == index:
+					if globals.network.nodes[node_id].values[value_id].instance == instance_id and globals.network.nodes[node_id].values[value_id].index == index:
 						if action == 'press':
 							globals.network.manager.pressButton(globals.network.nodes[node_id].values[value_id].value_id)
 						elif action == 'release':

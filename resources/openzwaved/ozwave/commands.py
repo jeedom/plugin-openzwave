@@ -9,7 +9,7 @@ def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 	if _cc_id == globals.COMMAND_CLASS_ASSOCIATION or _cc_id == globals.COMMAND_CLASS_WAKE_UP:
 		return
 	for value_id in globals.network.nodes[_node_id].get_values(class_id=_cc_id, genre='All', type='All', readonly=False, writeonly='All'):
-		if globals.network.nodes[_node_id].values[value_id].instance - 1 == _instance_id and (_index is None or globals.network.nodes[_node_id].values[value_id].index == _index):
+		if globals.network.nodes[_node_id].values[value_id].instance == _instance_id and (_index is None or globals.network.nodes[_node_id].values[value_id].index == _index):
 			value = globals.network.nodes[_node_id].values[value_id].check_data(_value)
 			globals.network.nodes[_node_id].values[value_id].data = value
 			if globals.network.nodes[_node_id].values[value_id].genre == 'System':

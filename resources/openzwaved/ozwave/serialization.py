@@ -183,7 +183,7 @@ def serialize_node_to_json(node_id):
 				value2 = utils.normalize_short_value(my_value.data)
 			else:
 				value2 = value_utils.extract_data(my_value)
-		instance2 = utils.change_instance(my_value)
+		instance2 = my_value.instance
 		if my_value.index:
 			index2 = my_value.index
 		else:

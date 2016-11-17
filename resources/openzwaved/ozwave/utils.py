@@ -23,11 +23,6 @@ def is_none_or_empty(value):
 	else:
 		return True
 
-def change_instance(my_value):
-	if my_value.instance > 1:
-		return my_value.instance - 1
-	return 0
-
 def normalize_short_value(value):
 	my_result = value
 	try:
