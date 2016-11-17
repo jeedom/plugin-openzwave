@@ -179,6 +179,7 @@ class NodeHandler(RequestHandler):
 					if globals.network.nodes[node_id].values[value_id].instance - 1 == instance_id and globals.network.nodes[node_id].values[value_id].index == index:
 						globals.network.nodes[node_id].values[value_id].refresh()
 						self.write(utils.format_json_result())
+						return
 				raise Exception('This device does not contain the specified value')
 			elif type == 'data':
 				logging.debug("get_config for nodeId:%s" % (node_id,))
