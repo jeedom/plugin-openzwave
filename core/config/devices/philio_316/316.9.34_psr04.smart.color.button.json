@@ -48,7 +48,8 @@
                 "calculValueOffset": "(#value#==255) ? 99 :  ((#value#==1) ? 0 : #value#)",
                 "minValue": 0,
                 "maxValue": 99,
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         },
         {

@@ -19,7 +19,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=255",
-                "instance": 1,
+                "instance": 0,
                 "index": "0"
             },
             "template": {
@@ -39,7 +39,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=0",
-                "instance": 1,
+                "instance": 0,
                 "index": "0"
             },
             "template": {
@@ -60,7 +60,7 @@
             "configuration": {
                 "class": 37,
                 "value": "",
-                "instance": 1,
+                "instance": 0,
                 "index": "0"
             }
         },
@@ -76,7 +76,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=255",
-                "instance": 2,
+                "instance": 1,
                 "index": "0"
             },
             "template": {
@@ -96,7 +96,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=0",
-                "instance": 2,
+                "instance": 1,
                 "index": "0"
             },
             "template": {
@@ -116,7 +116,7 @@
             "configuration": {
                 "class": 37,
                 "value": "",
-                "instance": 2,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -152,7 +152,7 @@
                 "value": "",
                 "minValue": 0,
                 "maxValue": 1840,
-                "instance": 1,
+                "instance": 0,
                 "index": "8"
             }
         },
@@ -169,7 +169,7 @@
             "configuration": {
                 "class": 50,
                 "value": "",
-                "instance": 1,
+                "instance": 0,
                 "index": "0"
             }
         },
@@ -188,7 +188,7 @@
                 "value": "",
                 "minValue": 0,
                 "maxValue": 1840,
-                "instance": 2,
+                "instance": 1,
                 "index": "8"
             }
         },
@@ -205,7 +205,7 @@
             "configuration": {
                 "class": 50,
                 "value": "",
-                "instance": 2,
+                "instance": 1,
                 "index": "0"
             }
         }

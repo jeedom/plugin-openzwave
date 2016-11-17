@@ -169,7 +169,7 @@
             "configuration": {
                 "class": 48,
                 "value": "",
-                "instance": 1,
+                "instance": 0,
                 "index": "1"
             },
             "display": {
@@ -187,7 +187,7 @@
             "configuration": {
                 "class": 48,
                 "value": "",
-                "instance": 2,
+                "instance": 1,
                 "index": "1"
             },
             "display": {

@@ -16,7 +16,8 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=255",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "template": {
                 "dashboard": "GarageDoor_BarrierOperatorBasic",
@@ -32,7 +33,8 @@
             "configuration": {
                 "class": 32,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "display": {
                 "invertBinary": "1"
@@ -52,7 +54,8 @@
             "configuration": {
                 "class": 112,
                 "value": "",
-                "index": "44"
+                "index": "44",
+                "instance": 0
             },
             "template": {
                 "dashboard": "tile",
@@ -70,7 +73,8 @@
                 "class": 112,
                 "value": "",
                 "calculValueOffset": "#value#\/10.0",
-                "index": "45"
+                "index": "45",
+                "instance": 0
             }
         },
         {
@@ -82,7 +86,8 @@
             "configuration": {
                 "class": 112,
                 "value": "type=action&action=forceRefresh",
-                "index": "45"
+                "index": "45",
+                "instance": 0
             }
         },
         {
@@ -95,7 +100,8 @@
                 "class": 112,
                 "value": "",
                 "calculValueOffset": "#value#=='Sensor is removed'",
-                "index": "41"
+                "index": "41",
+                "instance": 0
             },
             "display": {
                 "invertBinary": "1",

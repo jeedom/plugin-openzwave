@@ -19,7 +19,8 @@
             "configuration": {
                 "class": 37,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "template": {
                 "dashboard": "prise",
@@ -38,7 +39,8 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=255",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "template": {
                 "dashboard": "prise",
@@ -57,7 +59,8 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=0",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "template": {
                 "dashboard": "prise",
@@ -79,7 +82,8 @@
                 "value": "",
                 "maxValue": 9600,
                 "minValue": 0,
-                "index": "8"
+                "index": "8",
+                "instance": 0
             }
         },
         {
@@ -95,7 +99,8 @@
             "configuration": {
                 "class": 50,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "template": {
                 "dashboard": "tile",
@@ -115,7 +120,8 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "index": "1"
+                "index": "1",
+                "instance": 0
             }
         },
         {
@@ -133,7 +139,8 @@
                 "value": "",
                 "maxValue": 200,
                 "minValue": 260,
-                "index": "16"
+                "index": "16",
+                "instance": 0
             },
             "template": {
                 "dashboard": "tile",
@@ -155,7 +162,8 @@
                 "value": "",
                 "maxValue": 40,
                 "minValue": 0,
-                "index": "20"
+                "index": "20",
+                "instance": 0
             },
             "template": {
                 "dashboard": "tile",

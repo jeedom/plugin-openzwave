@@ -54,7 +54,8 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "index": "5"
+                "index": "5",
+                "instance": 0
             }
         },
         {
@@ -70,7 +71,8 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "index": "1"
+                "index": "1",
+                "instance": 0
             }
         }
     ]

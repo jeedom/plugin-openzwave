@@ -22,7 +22,8 @@
                 "maxValue": 14,
                 "minValue": 0,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "template": {
                 "dashboard": "badge",

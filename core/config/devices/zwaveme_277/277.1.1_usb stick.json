@@ -19,7 +19,8 @@
             "value": "",
             "configuration": {
                 "class": 240,
-                "value": "type=switchall&value=255"
+                "value": "type=switchall&value=255",
+                "instance": 0
             }
         },
         {
@@ -33,7 +34,8 @@
             "value": "",
             "configuration": {
                 "class": 240,
-                "value": "type=switchall&value=0"
+                "value": "type=switchall&value=0",
+                "instance": 0
             }
         }
     ]

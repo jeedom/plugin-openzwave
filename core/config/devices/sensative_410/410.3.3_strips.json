@@ -15,7 +15,8 @@
             "configuration": {
                 "class": 48,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "template": {
                 "dashboard": "door",

@@ -158,7 +158,8 @@
             "configuration": {
                 "class": 51,
                 "value": "type=setvalue&value=#color#",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         },
         {
@@ -173,7 +174,8 @@
             "configuration": {
                 "class": 51,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         }
     ],

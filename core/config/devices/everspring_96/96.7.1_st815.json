@@ -22,7 +22,8 @@
                 "value": "",
                 "minValue": 0,
                 "maxValue": 3000,
-                "index": "3"
+                "index": "3",
+                "instance": 0
             }
         }
     ]

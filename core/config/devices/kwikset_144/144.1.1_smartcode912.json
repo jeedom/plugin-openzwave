@@ -72,7 +72,7 @@
             "configuration": {
                 "class": 98,
                 "value": "",
-                "instance": "1",
+                "instance": 0,
                 "index": "0"
             },
             "template": {
@@ -93,7 +93,8 @@
             "configuration": {
                 "class": 128,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         }
     ]

@@ -39,7 +39,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": 2,
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -54,7 +54,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": 1,
+                "instance": 0,
                 "index": "3"
             }
         },

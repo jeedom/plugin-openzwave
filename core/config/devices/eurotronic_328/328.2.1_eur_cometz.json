@@ -141,7 +141,7 @@
                 "value": "",
                 "maxValue": 28,
                 "minValue": 0,
-                "instance": 10,
+                "instance": 9,
                 "index": "1"
             }
         },
@@ -199,7 +199,7 @@
                 "value": "",
                 "maxValue": 28,
                 "minValue": 0,
-                "instance": 10,
+                "instance": 9,
                 "index": "11"
             }
         },
@@ -216,7 +216,8 @@
             "configuration": {
                 "class": 128,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         }
     ]

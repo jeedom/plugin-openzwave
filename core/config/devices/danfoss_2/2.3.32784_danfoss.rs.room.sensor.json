@@ -72,7 +72,8 @@
             "configuration": {
                 "class": 135,
                 "value": "type=setvalue&value=1",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         },
         {

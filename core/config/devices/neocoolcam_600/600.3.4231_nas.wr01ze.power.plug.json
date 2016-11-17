@@ -20,7 +20,8 @@
             "configuration": {
                 "class": 37,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "template": {
                 "dashboard": "prise",
@@ -39,7 +40,8 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=255",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "template": {
                 "dashboard": "prise",
@@ -58,7 +60,8 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=0",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "template": {
                 "dashboard": "prise",
@@ -80,7 +83,8 @@
                 "value": "",
                 "maxValue": 2500,
                 "minValue": 0,
-                "index": "4"
+                "index": "4",
+                "instance": 0
             }
         },
         {
@@ -96,7 +100,8 @@
             "configuration": {
                 "class": 50,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "template": {
                 "dashboard": "tile"

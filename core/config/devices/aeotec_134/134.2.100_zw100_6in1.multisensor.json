@@ -16,7 +16,8 @@
             "configuration": {
                 "class": 48,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "display": {
                 "invertBinary": "1",
@@ -40,7 +41,8 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "index": "1"
+                "index": "1",
+                "instance": 0
             }
         },
         {
@@ -58,7 +60,8 @@
                 "value": "",
                 "maxValue": 40000,
                 "minValue": 0,
-                "index": "3"
+                "index": "3",
+                "instance": 0
             }
         },
         {
@@ -74,7 +77,8 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "index": "5"
+                "index": "5",
+                "instance": 0
             }
         },
         {
@@ -90,7 +94,8 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "index": "27"
+                "index": "27",
+                "instance": 0
             }
         },
         {
@@ -103,7 +108,8 @@
                 "class": 113,
                 "value": "",
                 "calculValueOffset": "#value#==3",
-                "index": "10"
+                "index": "10",
+                "instance": 0
             },
             "display": {
                 "invertBinary": "1",
@@ -127,7 +133,8 @@
             "configuration": {
                 "class": 128,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         }
     ],

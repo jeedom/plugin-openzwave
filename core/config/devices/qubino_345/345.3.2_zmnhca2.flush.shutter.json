@@ -17,7 +17,8 @@
             "configuration": {
                 "class": 38,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "template": {
                 "dashboard": "store",
@@ -54,7 +55,8 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=0",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "display": {
                 "icon": "<i class=\"fa fa-arrow-down\"><\/i>",
@@ -69,7 +71,8 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=99",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "display": {
                 "icon": "<i class=\"fa fa-arrow-up\"><\/i>",
@@ -89,7 +92,8 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "index": "1"
+                "index": "1",
+                "instance": 0
             },
             "template": {
                 "dashboard": "badge",

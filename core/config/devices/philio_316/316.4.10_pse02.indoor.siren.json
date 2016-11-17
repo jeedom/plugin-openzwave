@@ -16,7 +16,8 @@
             "configuration": {
                 "class": 37,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "display": {
                 "invertBinary": 1,
@@ -38,7 +39,8 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=255",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         },
         {
@@ -52,7 +54,8 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=0",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         },
         {
@@ -66,7 +69,8 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=Emergency",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         },
         {
@@ -80,7 +84,8 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=Fire",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         },
         {
@@ -94,7 +99,8 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=Ambulance",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         },
         {
@@ -108,7 +114,8 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=Police",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         },
         {
@@ -122,7 +129,8 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=Door+chime",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         },
         {
@@ -136,7 +144,8 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=Beep+Beep",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         },
         {
@@ -150,7 +159,8 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=Stop",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         }
     ]

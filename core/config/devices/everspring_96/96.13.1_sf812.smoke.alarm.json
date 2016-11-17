@@ -17,7 +17,8 @@
             "configuration": {
                 "class": 156,
                 "value": "",
-                "index": "1"
+                "index": "1",
+                "instance": 0
             },
             "display": {
                 "invertBinary": "1",

@@ -16,7 +16,8 @@
             "configuration": {
                 "class": 32,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "display": {
                 "invertBinary": "1",
@@ -36,7 +37,8 @@
             "configuration": {
                 "class": 48,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "display": {
                 "invertBinary": "1",
@@ -60,7 +62,8 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "index": "1"
+                "index": "1",
+                "instance": 0
             }
         },
         {
@@ -76,7 +79,8 @@
             "configuration": {
                 "class": 128,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         }
     ]

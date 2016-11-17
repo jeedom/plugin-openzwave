@@ -158,7 +158,8 @@
                 "value": "",
                 "maxValue": 200,
                 "minValue": 260,
-                "index": "16"
+                "index": "16",
+                "instance": 0
             },
             "template": {
                 "dashboard": "tile"

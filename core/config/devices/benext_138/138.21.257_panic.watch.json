@@ -16,7 +16,8 @@
             "configuration": {
                 "class": 48,
                 "value": "",
-                "index": "0"
+                "index": "0",
+                "instance": 0
             },
             "template": {
                 "dashboard": "alert",
@@ -36,7 +37,8 @@
             "configuration": {
                 "class": 113,
                 "value": "",
-                "index": "1"
+                "index": "1",
+                "instance": 0
             },
             "template": {
                 "dashboard": "alert",
@@ -62,7 +64,8 @@
                 "value": "",
                 "maxValue": 100,
                 "minValue": 0,
-                "index": "0"
+                "index": "0",
+                "instance": 0
             }
         }
     ]

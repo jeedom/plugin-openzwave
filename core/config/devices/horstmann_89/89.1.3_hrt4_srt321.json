@@ -20,7 +20,8 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "index": "1"
+                "index": "1",
+                "instance": 0
             }
         },
         {
@@ -75,7 +76,7 @@
                 "value": "",
                 "maxValue": 30,
                 "minValue": 4,
-                "instance": 10,
+                "instance": 9,
                 "index": "1"
             }
         }
