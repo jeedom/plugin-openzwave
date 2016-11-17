@@ -12,7 +12,7 @@
   message -->
   <CommandClass id="51" coloridxbug="true" >
 	 <!--  The Fibaro doesn't report immediate color values, so we need to verify the value -->
-  	<Value type="string" genre="user" instance="1" index="0" label="Color" units="#RRGGBBWW" verify_changes="false" value="#00000000" />
+  	<Value type="string" genre="user" instance="1" index="0" label="Color" units="#RRGGBBWW" verify_changes="true" value="#00000000" />
   </CommandClass>
   <!-- Fibaro devices refuse to send a Report message when color changes are done.. so manually trigger a refresh -->
   <CommandClass id="38">
