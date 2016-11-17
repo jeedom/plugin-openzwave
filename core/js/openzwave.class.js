@@ -348,7 +348,7 @@
  	var paramsAJAX = jeedom.private.getParamsAJAX(params);
  	paramsAJAX.url = 'plugins/openzwave/core/php/jeeZwaveProxy.php';
  	paramsAJAX.data = {
- 		request: '/node?node_id='+_params.node_id+'&instance_id='+_params.instance+'&cc_id='+jeedom.openzwave.normalizeClass(_params.class)+'&index='+_params.index+'&type=set&value='+encodeURIComponent(_params.value),
+ 		request: '/node?node_id='+_params.node_id+'&instance_id='+_params.instance+'&cc_id='+jeedom.openzwave.normalizeClass(_params.class)+'&index='+_params.index+'&type=setvalue&value='+encodeURIComponent(_params.value),
  	};
  	$.ajax(paramsAJAX);
  }
