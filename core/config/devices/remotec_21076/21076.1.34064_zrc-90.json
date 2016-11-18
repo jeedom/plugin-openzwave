@@ -21,6 +21,7 @@
             "configuration": {
                 "class": 91,
                 "value": "",
+                "repeatEventManagement" : "always",
                 "index": "128",
                 "instance": 1
             }
@@ -38,6 +39,7 @@
             "configuration": {
                 "class": 91,
                 "value": "",
+                "repeatEventManagement" : "always",
                 "index": "2",
                 "instance": 1
             }
@@ -55,6 +57,7 @@
             "configuration": {
                 "class": 91,
                 "value": "",
+                "repeatEventManagement" : "always",
                 "index": "1",
                 "instance": 1
             }
