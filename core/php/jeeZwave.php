@@ -74,7 +74,7 @@ if (isset($results['controller'])) {
 			'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
 		));
 		sleep(2);
-		openzwave::syncEqLogicWithOpenZwave($results['controller']['excluded']['value']);
+		openzwave::syncEqLogicWithOpenZwave($results['controller']['excluded']['value'],1);
 	}
 	if (isset($results['controller']['included'])) {
 		for ($i = 0; $i < 10; $i++) {
