@@ -4,7 +4,6 @@ import math
 import time
 import globals,utils,node_utils
 from utilities.NodeExtend import *
-from ozwave.utilities.Constants import *
 
 def value_added(network, node, value):
 	if node.node_id in globals.not_supported_nodes:
