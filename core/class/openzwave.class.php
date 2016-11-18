@@ -95,6 +95,7 @@ class openzwave extends eqLogic {
 				'page' => 'openzwave',
 				'message' => __('Nouveau module en cours d\'inclusion', __FILE__),
 			));
+			$result=$result['result'];
 			$eqLogic = new eqLogic();
 			$eqLogic->setEqType_name('openzwave');
 			$eqLogic->setIsEnable(1);
