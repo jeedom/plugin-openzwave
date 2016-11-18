@@ -3,11 +3,62 @@
     "doc": "",
     "type": "Contrôleur portable",
     "comlink": "",
-    "remark": "Partiellement compatible: Fonctionne en association directe seulement",
+    "remark": "",
     "imglink": "remotec.zrc90",
     "battery_type": "2x1.5V AAA",
     "ignore": 0,
     "commands": [
+         {
+            "name": "SceneNumber",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": "128",
+                "instance": 1
+            }
+        },
+         {
+            "name": "SceneID",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": "2",
+                "instance": 1
+            }
+        },
+        {
+            "name": "SceneAttribute",
+            "type": "info",
+            "subtype": "string",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": "1",
+                "instance": 1
+            }
+        },
         {
             "name": "Batterie",
             "type": "info",
