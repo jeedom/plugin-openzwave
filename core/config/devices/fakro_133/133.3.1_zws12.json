@@ -15,7 +15,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=buttonaction&action=press",
-                "instance": "0",
+                "instance": 1,
                 "index": "1"
             },
             "display": {
@@ -31,7 +31,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=buttonaction&action=press",
-                "instance": "0",
+                "instance": 1,
                 "index": "2"
             },
             "display": {
@@ -47,7 +47,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=buttonaction&action=release",
-                "instance": "0",
+                "instance": 1,
                 "index": "2"
             },
             "display": {

@@ -20,7 +20,7 @@
                 "class": 50,
                 "value": "",
                 "minValue": 0,
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -38,7 +38,7 @@
                 "class": 50,
                 "value": "",
                 "minValue": 0,
-                "instance": 0,
+                "instance": 2,
                 "index": "0"
             }
         },
@@ -56,7 +56,7 @@
                 "class": 50,
                 "value": "",
                 "minValue": 0,
-                "instance": 1,
+                "instance": 3,
                 "index": "0"
             }
         },
@@ -74,7 +74,7 @@
                 "class": 50,
                 "value": "",
                 "minValue": 0,
-                "instance": 2,
+                "instance": 4,
                 "index": "0"
             }
         },
@@ -93,7 +93,7 @@
                 "value": "",
                 "maxValue": 12000,
                 "minValue": 0,
-                "instance": 0,
+                "instance": 1,
                 "index": "8"
             }
         },
@@ -112,7 +112,7 @@
                 "value": "",
                 "maxValue": 12000,
                 "minValue": 0,
-                "instance": 0,
+                "instance": 2,
                 "index": "8"
             }
         },
@@ -131,7 +131,7 @@
                 "value": "",
                 "maxValue": 12000,
                 "minValue": 0,
-                "instance": 1,
+                "instance": 3,
                 "index": "8"
             }
         },
@@ -150,7 +150,7 @@
                 "value": "",
                 "maxValue": 12000,
                 "minValue": 0,
-                "instance": 2,
+                "instance": 4,
                 "index": "8"
             }
         },
@@ -169,7 +169,7 @@
                 "value": "",
                 "maxValue": 240,
                 "minValue": 220,
-                "instance": 0,
+                "instance": 1,
                 "index": "16"
             }
         },
@@ -188,7 +188,7 @@
                 "value": "",
                 "maxValue": 240,
                 "minValue": 220,
-                "instance": 0,
+                "instance": 2,
                 "index": "16"
             }
         },
@@ -207,7 +207,7 @@
                 "value": "",
                 "maxValue": 240,
                 "minValue": 220,
-                "instance": 1,
+                "instance": 3,
                 "index": "16"
             }
         },
@@ -226,7 +226,7 @@
                 "value": "",
                 "maxValue": 240,
                 "minValue": 220,
-                "instance": 2,
+                "instance": 4,
                 "index": "16"
             }
         },
@@ -245,7 +245,7 @@
                 "value": "",
                 "maxValue": 200,
                 "minValue": 0,
-                "instance": 0,
+                "instance": 1,
                 "index": "20"
             }
         },
@@ -264,7 +264,7 @@
                 "value": "",
                 "maxValue": 60,
                 "minValue": 0,
-                "instance": 0,
+                "instance": 2,
                 "index": "20"
             }
         },
@@ -283,7 +283,7 @@
                 "value": "",
                 "maxValue": 60,
                 "minValue": 0,
-                "instance": 1,
+                "instance": 3,
                 "index": "20"
             }
         },
@@ -302,7 +302,7 @@
                 "value": "",
                 "maxValue": 60,
                 "minValue": 0,
-                "instance": 2,
+                "instance": 4,
                 "index": "20"
             }
         }

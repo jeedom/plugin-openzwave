@@ -20,7 +20,7 @@
                 "class": 38,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -36,7 +36,7 @@
                 "class": 38,
                 "value": "type=setvalue&value=99",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -52,7 +52,7 @@
                 "class": 38,
                 "value": "type=setvalue&value=0",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -67,7 +67,7 @@
                 "class": 38,
                 "value": "type=setvalue&value=#slider#",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "light",

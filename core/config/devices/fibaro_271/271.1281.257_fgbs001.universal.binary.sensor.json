@@ -125,7 +125,7 @@
             "configuration": {
                 "class": 48,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -144,7 +144,7 @@
             "configuration": {
                 "class": 48,
                 "value": "",
-                "instance": 0,
+                "instance": 2,
                 "index": "0"
             }
         },
@@ -161,7 +161,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -178,7 +178,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": 0,
+                "instance": 2,
                 "index": "1"
             }
         },
@@ -195,7 +195,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": 1,
+                "instance": 3,
                 "index": "1"
             }
         },
@@ -212,7 +212,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": 2,
+                "instance": 4,
                 "index": "1"
             }
         }

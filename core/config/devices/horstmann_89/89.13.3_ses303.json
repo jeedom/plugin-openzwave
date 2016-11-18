@@ -21,7 +21,7 @@
                 "class": 49,
                 "value": "",
                 "index": "1",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -38,45 +38,11 @@
                 "class": 49,
                 "value": "",
                 "index": "5",
-                "instance": 0
+                "instance": 1
             }
         },
         {
             "name": "Température 2",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 1,
-            "unite": "°C",
-            "display": {
-                "generic_type": "TEMPERATURE"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "instance": 1,
-                "index": "1"
-            }
-        },
-        {
-            "name": "Température 3",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 1,
-            "unite": "°C",
-            "display": {
-                "generic_type": "TEMPERATURE"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "instance": 2,
-                "index": "1"
-            }
-        },
-        {
-            "name": "Température 4",
             "type": "info",
             "subtype": "numeric",
             "isVisible": 0,
@@ -93,7 +59,7 @@
             }
         },
         {
-            "name": "Température 5",
+            "name": "Température 3",
             "type": "info",
             "subtype": "numeric",
             "isVisible": 0,
@@ -110,6 +76,40 @@
             }
         },
         {
+            "name": "Température 4",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "unite": "°C",
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "instance": 5,
+                "index": "1"
+            }
+        },
+        {
+            "name": "Température 5",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "unite": "°C",
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "instance": 6,
+                "index": "1"
+            }
+        },
+        {
             "name": "Batterie",
             "type": "info",
             "subtype": "numeric",
@@ -122,7 +122,7 @@
             "configuration": {
                 "class": 128,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         }

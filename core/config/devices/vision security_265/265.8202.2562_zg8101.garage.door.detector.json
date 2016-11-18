@@ -21,7 +21,7 @@
                 "class": 128,
                 "value": "",
                 "unite": "%",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -34,7 +34,7 @@
             "configuration": {
                 "class": 48,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             },
             "display": {
@@ -52,7 +52,7 @@
                 "class": 113,
                 "value": "",
                 "calculValueOffset": "#value#==3",
-                "instance": 0,
+                "instance": 1,
                 "index": "10"
             },
             "display": {

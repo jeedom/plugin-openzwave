@@ -48,7 +48,7 @@
                 "minValue": 0,
                 "maxValue": 255,
                 "index": "9",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "Rfid_HomeAway_fr",
@@ -67,7 +67,7 @@
                 "returnStateTime": 1,
                 "returnStateValue": 0,
                 "index": "10",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "invertBinary": "1",
@@ -86,7 +86,7 @@
                 "class": 99,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -105,7 +105,7 @@
                 "maxValue": 100,
                 "minValue": 0,
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         }
     ]

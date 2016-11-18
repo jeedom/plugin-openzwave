@@ -18,7 +18,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=255",
-                "instance": 0,
+                "instance": 2,
                 "index": "0"
             },
             "template": {
@@ -38,7 +38,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=0",
-                "instance": 0,
+                "instance": 2,
                 "index": "0"
             },
             "template": {
@@ -59,7 +59,7 @@
             "configuration": {
                 "class": 37,
                 "value": "",
-                "instance": 0,
+                "instance": 2,
                 "index": "0"
             }
         },
@@ -75,7 +75,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=255",
-                "instance": 1,
+                "instance": 3,
                 "index": "0"
             },
             "template": {
@@ -95,7 +95,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=0",
-                "instance": 1,
+                "instance": 3,
                 "index": "0"
             },
             "template": {
@@ -116,7 +116,7 @@
             "configuration": {
                 "class": 37,
                 "value": "",
-                "instance": 1,
+                "instance": 3,
                 "index": "0"
             }
         },
@@ -133,7 +133,7 @@
             "configuration": {
                 "class": 50,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "8"
             }
         },
@@ -151,7 +151,7 @@
                 "class": 50,
                 "value": "",
                 "minValue": 1,
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -168,7 +168,7 @@
             "configuration": {
                 "class": 50,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "4"
             }
         },
@@ -186,7 +186,7 @@
                 "class": 50,
                 "value": "",
                 "index": "16",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -204,7 +204,7 @@
                 "value": "",
                 "calculValueOffset": "#value#\/100",
                 "index": "20",
-                "instance": 0
+                "instance": 1
             }
         }
     ]

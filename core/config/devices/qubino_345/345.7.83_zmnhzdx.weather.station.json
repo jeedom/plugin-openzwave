@@ -22,7 +22,7 @@
                 "value": "",
                 "maxValue": 60,
                 "minValue": -10,
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -41,7 +41,7 @@
                 "value": "",
                 "maxValue": 100,
                 "minValue": 0,
-                "instance": 6,
+                "instance": 8,
                 "index": "5"
             }
         },
@@ -60,7 +60,7 @@
                 "value": "",
                 "maxValue": 60,
                 "minValue": -10,
-                "instance": 7,
+                "instance": 9,
                 "index": "1"
             }
         },
@@ -79,7 +79,7 @@
                 "value": "",
                 "maxValue": 100,
                 "minValue": 0,
-                "instance": 8,
+                "instance": 10,
                 "index": "5"
             }
         },
@@ -98,7 +98,7 @@
                 "value": "",
                 "maxValue": 60,
                 "minValue": -10,
-                "instance": 3,
+                "instance": 5,
                 "index": "1"
             }
         },
@@ -117,7 +117,7 @@
                 "value": "",
                 "maxValue": 60,
                 "minValue": -10,
-                "instance": 4,
+                "instance": 6,
                 "index": "1"
             }
         },
@@ -136,7 +136,7 @@
                 "value": "",
                 "maxValue": 360,
                 "minValue": 0,
-                "instance": 0,
+                "instance": 2,
                 "index": "7"
             },
             "template": {
@@ -159,7 +159,7 @@
                 "value": "",
                 "maxValue": 88,
                 "minValue": 0,
-                "instance": 1,
+                "instance": 3,
                 "index": "6"
             }
         },
@@ -178,7 +178,7 @@
                 "value": "",
                 "maxValue": 300,
                 "minValue": 0,
-                "instance": 5,
+                "instance": 7,
                 "index": "12"
             }
         }

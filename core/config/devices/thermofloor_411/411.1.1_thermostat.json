@@ -19,7 +19,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": "0",
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -34,7 +34,7 @@
             "configuration": {
                 "class": 64,
                 "value": "",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -50,7 +50,7 @@
             "configuration": {
                 "class": 64,
                 "value": "type=setvalue&value=Off",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -66,7 +66,7 @@
             "configuration": {
                 "class": 64,
                 "value": "type=setvalue&value=Heat",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -82,7 +82,7 @@
             "configuration": {
                 "class": 64,
                 "value": "type=setvalue&value=Heat+Econ",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -96,7 +96,7 @@
                 "class": 67,
                 "value": "",
                 "maxValue": "30",
-                "instance": "0",
+                "instance": 1,
                 "index": "2"
             }
         },
@@ -111,7 +111,7 @@
                 "class": 67,
                 "value": "type=setvalue&value=#slider#",
                 "maxValue": "30",
-                "instance": "0",
+                "instance": 1,
                 "index": "2"
             }
         },
@@ -125,7 +125,7 @@
                 "class": 67,
                 "value": "",
                 "maxValue": "30",
-                "instance": "0",
+                "instance": 1,
                 "index": "8"
             }
         },
@@ -140,7 +140,7 @@
                 "class": 67,
                 "value": "type=setvalue&value=#slider#",
                 "maxValue": "30",
-                "instance": "0",
+                "instance": 1,
                 "index": "8"
             }
         }

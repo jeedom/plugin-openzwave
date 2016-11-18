@@ -16,7 +16,7 @@
             "configuration": {
                 "class": 37,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             },
             "display": {
@@ -40,7 +40,7 @@
                 "class": 37,
                 "value": "type=setvalue&value=255",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -55,7 +55,7 @@
                 "class": 37,
                 "value": "type=setvalue&value=0",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -71,7 +71,7 @@
                 "class": 128,
                 "value": "",
                 "unite": "%",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         }

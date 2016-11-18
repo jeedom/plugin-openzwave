@@ -15,7 +15,7 @@
             "configuration": {
                 "class": 48,
                 "value": "",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             },
             "template": {
@@ -42,7 +42,7 @@
                 "class": 128,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         }
     ],

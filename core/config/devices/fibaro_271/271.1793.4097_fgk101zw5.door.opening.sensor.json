@@ -17,7 +17,7 @@
                 "class": 156,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "door",
@@ -41,7 +41,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -59,7 +59,7 @@
                 "class": 128,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         }
     ]

@@ -178,7 +178,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=0",
-                "instance": "0&&1",
+                "instance": 1,
                 "index": "0].Set(0)&&data[0"
             }
         },
@@ -193,7 +193,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=255",
-                "instance": "0&&1",
+                "instance": 1,
                 "index": "0].Set(255)&&data[0"
             }
         },
@@ -208,7 +208,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=255",
-                "instance": "0&&1",
+                "instance": 1,
                 "index": "0].Set(0)&&data[0"
             }
         },
@@ -223,7 +223,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=0",
-                "instance": "0&&1",
+                "instance": 1,
                 "index": "0].Set(255)&&data[0"
             }
         },
@@ -237,7 +237,7 @@
             },
             "configuration": {
                 "value": "pilotWire",
-                "instance": "0&&1"
+                "instance": 1
             },
             "template": {
                 "dashboard": "heatPiloteWire",

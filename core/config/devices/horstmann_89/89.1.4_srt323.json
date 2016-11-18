@@ -39,7 +39,7 @@
                 "class": 49,
                 "value": "",
                 "index": "1",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -56,7 +56,7 @@
                 "class": 66,
                 "value": "",
                 "calculValueOffset": "#value#=='Heating'",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -74,7 +74,7 @@
                 "value": "",
                 "minValue": "5",
                 "maxValue": "30",
-                "instance": "0",
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -93,7 +93,7 @@
                 "value": "type=setvalue&value=#slider#",
                 "minValue": "5",
                 "maxValue": "30",
-                "instance": "0",
+                "instance": 1,
                 "index": "1"
             },
             "template": {
@@ -114,7 +114,7 @@
             "configuration": {
                 "class": 128,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         }

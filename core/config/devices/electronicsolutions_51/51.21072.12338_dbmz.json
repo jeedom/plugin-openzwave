@@ -14,7 +14,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=99",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             },
             "display": {
@@ -30,7 +30,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=0",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             },
             "display": {
@@ -49,7 +49,7 @@
             "configuration": {
                 "class": 38,
                 "value": "",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -67,7 +67,7 @@
                 "value": "type=setvalue&value=#slider#",
                 "minValue": 0,
                 "maxValue": 99,
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             },
             "template": {
@@ -83,7 +83,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=buttonaction&action=release",
-                "instance": "0",
+                "instance": 1,
                 "index": "2"
             },
             "display": {

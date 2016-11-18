@@ -17,7 +17,7 @@
                 "class": 48,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "invertBinary": "1",
@@ -42,7 +42,7 @@
                 "class": 49,
                 "value": "",
                 "index": "1",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -61,7 +61,7 @@
                 "maxValue": 100,
                 "minValue": 0,
                 "index": "3",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -75,7 +75,7 @@
                 "value": "",
                 "calculValueOffset": "#value#==3",
                 "index": "10",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "invertBinary": "1",
@@ -100,7 +100,7 @@
                 "class": 128,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         }
     ]

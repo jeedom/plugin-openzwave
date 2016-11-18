@@ -167,7 +167,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=99",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             },
             "display": {
@@ -183,7 +183,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=0",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             },
             "display": {
@@ -202,7 +202,7 @@
             "configuration": {
                 "class": 38,
                 "value": "",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -220,7 +220,7 @@
                 "value": "type=setvalue&value=#slider#",
                 "minValue": 0,
                 "maxValue": 99,
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             },
             "template": {
@@ -235,7 +235,7 @@
             "isVisible": 0,
             "configuration": {
                 "class": 38,
-                "instance": "0",
+                "instance": 1,
                 "value": ""
             },
             "display": {
@@ -255,7 +255,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": "0",
+                "instance": 1,
                 "index": "4"
             },
             "template": {
@@ -275,7 +275,7 @@
             "configuration": {
                 "class": 50,
                 "value": "",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             },
             "template": {
@@ -291,7 +291,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=buttonaction&action=release",
-                "instance": "0",
+                "instance": 1,
                 "index": "2"
             },
             "display": {
@@ -307,7 +307,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=buttonaction&action=release",
-                "instance": "0",
+                "instance": 1,
                 "index": "7"
             },
             "display": {
@@ -323,7 +323,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=buttonaction&action=press",
-                "instance": "0",
+                "instance": 1,
                 "index": "7"
             },
             "display": {
@@ -339,7 +339,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=buttonaction&action=press",
-                "instance": "0",
+                "instance": 1,
                 "index": "8"
             },
             "display": {
@@ -358,7 +358,7 @@
             "configuration": {
                 "class": 38,
                 "value": "",
-                "instance": "0",
+                "instance": 1,
                 "index": "6"
             }
         },
@@ -373,7 +373,7 @@
             "configuration": {
                 "class": 112,
                 "value": "type=setconfig&value=1&size=1",
-                "instance": "0",
+                "instance": 1,
                 "index": "29"
             }
         },
@@ -390,7 +390,7 @@
                 "class": 43,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "tile",

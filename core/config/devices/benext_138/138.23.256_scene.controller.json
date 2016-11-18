@@ -3,75 +3,29 @@
     "doc": "",
     "type": "Télécommande",
     "comlink": "2534-benext-telecommande-7-boutons-z-wave-scene-controller-0632181493786",
-    "remark": "",
+    "remark": "Télécommande non fonctionnelle, fonctionne cependant en association avec d'autres modules",
     "imglink": "benext.scene-controller",
     "commands": [
         {
-            "name": "SceneNumber",
+            "name": "Scene",
             "type": "info",
             "subtype": "numeric",
-            "isVisible": 0,
+            "isVisible": 1,
             "isHistorized": 0,
-            "unite": "",
             "display": {
                 "generic_type": "DONT"
             },
             "configuration": {
                 "class": 91,
-                "value": "",
-                "index": "128",
-                "instance": 1
-            }
-        },
-         {
-            "name": "SceneID",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "",
-            "display": {
-                "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 91,
-                "value": "",
-                "index": "2",
-                "instance": 1
-            }
-        },
-        {
-            "name": "SceneAttribute",
-            "type": "info",
-            "subtype": "string",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "",
-            "display": {
-                "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 91,
-                "value": "",
-                "index": "1",
-                "instance": 1
-            }
-        },
-        {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
-            "display": {
-                "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
+                "maxValue": 14,
+                "minValue": 0,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
+            },
+            "template": {
+                "dashboard": "badge",
+                "mobile": "badge"
             }
         }
     ]

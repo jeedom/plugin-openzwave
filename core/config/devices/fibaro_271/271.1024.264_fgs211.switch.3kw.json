@@ -127,7 +127,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=255",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             },
             "template": {
@@ -147,7 +147,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=0",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             },
             "template": {
@@ -166,7 +166,7 @@
             "configuration": {
                 "class": 37,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -183,7 +183,7 @@
                 "class": 43,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "tile",

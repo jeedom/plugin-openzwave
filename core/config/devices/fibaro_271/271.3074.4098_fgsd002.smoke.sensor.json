@@ -16,7 +16,7 @@
             "configuration": {
                 "class": 156,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             },
             "display": {
@@ -39,7 +39,7 @@
                 "value": "",
                 "returnStateTime": 1,
                 "returnStateValue": 0,
-                "instance": 0,
+                "instance": 1,
                 "index": "4"
             },
             "display": {
@@ -59,7 +59,7 @@
             "configuration": {
                 "class": 156,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             },
             "display": {
@@ -78,7 +78,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             },
             "display": {
@@ -96,7 +96,7 @@
                 "value": "",
                 "returnStateTime": 1,
                 "returnStateValue": 0,
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             },
             "display": {
@@ -116,7 +116,7 @@
             "configuration": {
                 "class": 128,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         }

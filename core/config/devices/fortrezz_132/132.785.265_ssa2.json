@@ -17,7 +17,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=0",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -32,7 +32,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=33",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -47,7 +47,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=66",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -62,7 +62,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=99",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         }

@@ -21,7 +21,7 @@
                 "class": 49,
                 "value": "",
                 "index": "1",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -40,7 +40,7 @@
                 "maxValue": 100,
                 "minValue": 0,
                 "index": "3",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -57,7 +57,7 @@
                 "class": 49,
                 "value": "",
                 "index": "5",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -74,7 +74,7 @@
                 "class": 49,
                 "value": "",
                 "index": "6",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -91,7 +91,7 @@
                 "class": 49,
                 "value": "",
                 "index": "9",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -108,7 +108,7 @@
                 "class": 49,
                 "value": "",
                 "index": "11",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -125,7 +125,7 @@
                 "class": 128,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         }
     ]

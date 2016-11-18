@@ -18,7 +18,7 @@
             "configuration": {
                 "class": 38,
                 "value": "",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             },
             "isVisible": "0"
@@ -34,7 +34,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=255",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             },
             "template": {
@@ -55,7 +55,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=0",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             },
             "template": {
@@ -76,7 +76,7 @@
             "configuration": {
                 "class": 38,
                 "value": "",
-                "instance": 1,
+                "instance": 3,
                 "index": "0"
             },
             "isVisible": "0"
@@ -92,7 +92,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=255",
-                "instance": 1,
+                "instance": 3,
                 "index": "0"
             },
             "template": {
@@ -113,7 +113,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=0",
-                "instance": 1,
+                "instance": 3,
                 "index": "0"
             },
             "template": {
@@ -134,7 +134,7 @@
             "configuration": {
                 "class": 38,
                 "value": "",
-                "instance": 2,
+                "instance": 4,
                 "index": "0"
             },
             "isVisible": "0"
@@ -150,7 +150,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=255",
-                "instance": 2,
+                "instance": 4,
                 "index": "0"
             },
             "template": {
@@ -171,7 +171,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=0",
-                "instance": 2,
+                "instance": 4,
                 "index": "0"
             },
             "template": {
@@ -192,7 +192,7 @@
             "configuration": {
                 "class": 38,
                 "value": "",
-                "instance": 3,
+                "instance": 5,
                 "index": "0"
             },
             "isVisible": "0"
@@ -208,7 +208,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=255",
-                "instance": 3,
+                "instance": 5,
                 "index": "0"
             },
             "template": {
@@ -229,7 +229,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=0",
-                "instance": 3,
+                "instance": 5,
                 "index": "0"
             },
             "template": {
@@ -250,7 +250,7 @@
             "configuration": {
                 "class": 38,
                 "value": "",
-                "instance": 4,
+                "instance": 6,
                 "index": "0"
             },
             "isVisible": "0"
@@ -266,7 +266,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=255",
-                "instance": 4,
+                "instance": 6,
                 "index": "0"
             },
             "template": {
@@ -287,7 +287,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=0",
-                "instance": 4,
+                "instance": 6,
                 "index": "0"
             },
             "template": {
@@ -308,7 +308,7 @@
             "configuration": {
                 "class": 38,
                 "value": "",
-                "instance": 5,
+                "instance": 7,
                 "index": "0"
             },
             "isVisible": "0"
@@ -324,7 +324,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=255",
-                "instance": 5,
+                "instance": 7,
                 "index": "0"
             },
             "template": {
@@ -345,7 +345,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=0",
-                "instance": 5,
+                "instance": 7,
                 "index": "0"
             },
             "template": {

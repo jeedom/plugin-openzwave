@@ -19,7 +19,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -38,7 +38,7 @@
                 "value": "",
                 "maxValue": 28,
                 "minValue": 12,
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -57,7 +57,7 @@
                 "value": "",
                 "maxValue": 28,
                 "minValue": 12,
-                "instance": 0,
+                "instance": 1,
                 "index": "2"
             }
         },
@@ -73,7 +73,7 @@
                 "class": 135,
                 "value": "type=setvalue&value=1",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -91,7 +91,7 @@
                 "value": "",
                 "maxValue": 100,
                 "minValue": 0,
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         }

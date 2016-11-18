@@ -19,7 +19,7 @@
                 "class": 38,
                 "value": "type=setvalue&value=#slider#",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "light",
@@ -38,7 +38,7 @@
                 "class": 38,
                 "value": "type=setvalue&value=99",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -53,7 +53,7 @@
                 "class": 38,
                 "value": "type=setvalue&value=0",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -71,7 +71,7 @@
                 "minValue": 0,
                 "maxValue": 100,
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -89,7 +89,7 @@
                 "minValue": 0,
                 "maxValue": 125,
                 "index": "8",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -105,7 +105,7 @@
                 "class": 50,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         }
     ]

@@ -20,7 +20,7 @@
                 "class": 37,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -33,7 +33,7 @@
                 "class": 48,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "invertBinary": "1",
@@ -56,7 +56,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=255",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -72,7 +72,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=0",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -89,7 +89,7 @@
                 "class": 112,
                 "value": "",
                 "index": "31",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -103,7 +103,7 @@
             "configuration": {
                 "class": 112,
                 "value": "type=setvalue&value=1",
-                "instance": 0,
+                "instance": 1,
                 "index": "31"
             }
         },
@@ -118,7 +118,7 @@
             "configuration": {
                 "class": 112,
                 "value": "type=setvalue&value=6",
-                "instance": 0,
+                "instance": 1,
                 "index": "31"
             }
         },
@@ -133,7 +133,7 @@
             "configuration": {
                 "class": 112,
                 "value": "type=setvalue&value=12",
-                "instance": 0,
+                "instance": 1,
                 "index": "31"
             }
         },
@@ -148,7 +148,7 @@
             "configuration": {
                 "class": 112,
                 "value": "type=setvalue&value=60",
-                "instance": 0,
+                "instance": 1,
                 "index": "31"
             }
         }

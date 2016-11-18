@@ -18,7 +18,7 @@
                 "class": 156,
                 "value": "",
                 "index": "1",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "invertBinary": "1",
@@ -38,7 +38,7 @@
                 "class": 113,
                 "value": "",
                 "calculValueOffset": "#value#==255",
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             },
             "display": {
@@ -62,7 +62,7 @@
             "configuration": {
                 "class": 128,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         }

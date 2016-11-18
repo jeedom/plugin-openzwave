@@ -17,7 +17,7 @@
                 "class": 37,
                 "value": "type=setvalue&value=255",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "GarageDoor_BarrierOperatorBasic",
@@ -34,7 +34,7 @@
                 "class": 32,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "invertBinary": "1"
@@ -55,7 +55,7 @@
                 "class": 112,
                 "value": "",
                 "index": "44",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "tile",
@@ -74,7 +74,7 @@
                 "value": "",
                 "calculValueOffset": "#value#\/10.0",
                 "index": "45",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -87,7 +87,7 @@
                 "class": 112,
                 "value": "type=action&action=forceRefresh",
                 "index": "45",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -101,7 +101,7 @@
                 "value": "",
                 "calculValueOffset": "#value#=='Sensor is removed'",
                 "index": "41",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "invertBinary": "1",

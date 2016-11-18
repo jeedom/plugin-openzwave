@@ -19,7 +19,7 @@
                 "class": 51,
                 "value": "type=setvalue&value=#color#",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -38,7 +38,7 @@
                 "maxValue": 2500,
                 "minValue": 0,
                 "index": "4",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -55,7 +55,7 @@
                 "class": 50,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "tile"
@@ -70,7 +70,7 @@
                 "class": 112,
                 "value": "type=setconfig&value=6&size=1",
                 "index": "72",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "icon": "<i class=\"icon jeedom-feu\"><\/i>",
@@ -86,7 +86,7 @@
                 "class": 112,
                 "value": "type=setconfig&value=7&size=1",
                 "index": "72",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "icon": "<i class=\"icon meteo-orage\"><\/i>",
@@ -102,7 +102,7 @@
                 "class": 112,
                 "value": "type=setconfig&value=8&size=1",
                 "index": "72",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "icon": "<i class=\"icon meteo-soleil\"><\/i>",
@@ -118,7 +118,7 @@
                 "class": 112,
                 "value": "type=setconfig&value=9&size=1",
                 "index": "72",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "icon": "<i class=\"icon divers-triangular42\"><\/i>",
@@ -134,7 +134,7 @@
                 "class": 112,
                 "value": "type=setconfig&value=10&size=1",
                 "index": "72",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "icon": "<i class=\"icon jeedom-alerte\"><\/i>",
@@ -150,7 +150,7 @@
                 "class": 51,
                 "value": "type=setvalue&value=Cool+White",
                 "index": "1",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "icon": "<i class=\"icon nature-snowflake\"><\/i>",
@@ -166,7 +166,7 @@
                 "class": 51,
                 "value": "type=setvalue&value=Warm+White",
                 "index": "1",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "icon": "<i class=\"icon meteo-brouillard\"><\/i>",
@@ -182,7 +182,7 @@
                 "class": 38,
                 "value": "type=setvalue&value=99",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "icon": "<i class=\"icon jeedom-lumiere-on\"><\/i>",
@@ -198,7 +198,7 @@
                 "class": 38,
                 "value": "type=setvalue&value=0",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "display": {
                 "icon": "<i class=\"icon jeedom-lumiere-off\"><\/i>",
@@ -220,7 +220,7 @@
                 "minValue": 0,
                 "maxValue": 99,
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -238,7 +238,7 @@
                 "minValue": 0,
                 "maxValue": 99,
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -253,7 +253,7 @@
             "configuration": {
                 "class": 38,
                 "value": "#color#",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -270,7 +270,7 @@
                 "value": "type=setvalue&value=#slider#",
                 "minValue": 0,
                 "maxValue": 99,
-                "instance": 4,
+                "instance": 6,
                 "index": "0"
             },
             "template": {
@@ -289,7 +289,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=99",
-                "instance": 4,
+                "instance": 6,
                 "index": "0"
             }
         },
@@ -304,7 +304,7 @@
             "configuration": {
                 "class": 38,
                 "value": "type=setvalue&value=0",
-                "instance": 4,
+                "instance": 6,
                 "index": "0"
             }
         },
@@ -322,7 +322,7 @@
                 "value": "",
                 "minValue": 0,
                 "maxValue": 99,
-                "instance": 4,
+                "instance": 6,
                 "index": "0"
             }
         }

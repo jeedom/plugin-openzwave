@@ -17,7 +17,7 @@
                 "class": 48,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "alert",
@@ -38,7 +38,7 @@
                 "class": 113,
                 "value": "",
                 "index": "1",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "alert",
@@ -65,7 +65,7 @@
                 "maxValue": 100,
                 "minValue": 0,
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         }
     ]

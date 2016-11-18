@@ -21,7 +21,7 @@
                 "class": 49,
                 "value": "",
                 "index": "1",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -38,7 +38,7 @@
                 "value": "",
                 "minValue": "5",
                 "maxValue": "30",
-                "instance": "0",
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -57,7 +57,7 @@
                 "value": "type=setvalue&value=#slider#",
                 "minValue": "5",
                 "maxValue": "30",
-                "instance": "0",
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -76,7 +76,7 @@
                 "value": "",
                 "maxValue": 30,
                 "minValue": 4,
-                "instance": 9,
+                "instance": 11,
                 "index": "1"
             }
         }

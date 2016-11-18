@@ -19,7 +19,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=255",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             },
             "template": {
@@ -39,7 +39,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=0",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             },
             "template": {
@@ -60,7 +60,7 @@
             "configuration": {
                 "class": 37,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -77,7 +77,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -96,7 +96,7 @@
                 "value": "",
                 "minValue": 0,
                 "maxValue": 2300,
-                "instance": 0,
+                "instance": 1,
                 "index": "8"
             }
         },
@@ -113,7 +113,7 @@
             "configuration": {
                 "class": 50,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -129,7 +129,7 @@
             "configuration": {
                 "class": 48,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -145,7 +145,7 @@
             "configuration": {
                 "class": 48,
                 "value": "",
-                "instance": 0,
+                "instance": 2,
                 "index": "0"
             }
         }

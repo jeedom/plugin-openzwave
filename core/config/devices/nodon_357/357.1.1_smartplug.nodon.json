@@ -19,7 +19,7 @@
                 "class": 37,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -35,7 +35,7 @@
                 "class": 37,
                 "value": "type=setvalue&value=255",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "prise",
@@ -55,7 +55,7 @@
                 "class": 37,
                 "value": "type=setvalue&value=0",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "prise",
@@ -75,7 +75,7 @@
                 "value": "",
                 "calculValueOffset": "#value#==2",
                 "index": "1",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "alarme_prise",

@@ -17,7 +17,7 @@
                 "class": 113,
                 "value": "",
                 "calculValueOffset": "#value#==2",
-                "instance": 0,
+                "instance": 1,
                 "index": "8"
             },
             "display": {
@@ -42,7 +42,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -54,7 +54,7 @@
                 "class": 113,
                 "value": "",
                 "calculValueOffset": "#value#==3",
-                "instance": 0,
+                "instance": 1,
                 "index": "10"
             },
             "display": {
@@ -74,7 +74,7 @@
             "configuration": {
                 "class": 128,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         }

@@ -49,7 +49,7 @@
                 "minValue": 0,
                 "maxValue": 99,
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -65,7 +65,7 @@
                 "class": 128,
                 "value": "",
                 "unite": "%",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         }

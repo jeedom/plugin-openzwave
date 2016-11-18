@@ -354,7 +354,7 @@
                 "minValue": 0,
                 "maxValue": 99,
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "light",
@@ -373,7 +373,7 @@
                 "class": 38,
                 "value": "type=setvalue&value=99",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -388,7 +388,7 @@
                 "class": 38,
                 "value": "type=setvalue&value=0",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -406,7 +406,7 @@
                 "minValue": 0,
                 "maxValue": 99,
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -425,7 +425,7 @@
                 "maxValue": 250,
                 "minValue": 0,
                 "index": "4",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -442,7 +442,7 @@
                 "class": 50,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "tile"
@@ -461,7 +461,7 @@
                 "class": 43,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "tile",

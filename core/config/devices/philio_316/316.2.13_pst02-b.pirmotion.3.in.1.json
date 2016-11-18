@@ -16,7 +16,7 @@
             "configuration": {
                 "class": 48,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             },
             "display": {
@@ -41,7 +41,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -60,7 +60,7 @@
                 "value": "",
                 "maxValue": 100,
                 "minValue": 0,
-                "instance": 0,
+                "instance": 1,
                 "index": "3"
             }
         },
@@ -74,7 +74,7 @@
                 "class": 113,
                 "value": "",
                 "calculValueOffset": "#value#==3",
-                "instance": 0,
+                "instance": 1,
                 "index": "10"
             },
             "display": {
@@ -101,7 +101,7 @@
                 "value": "",
                 "maxValue": 100,
                 "minValue": 0,
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         }

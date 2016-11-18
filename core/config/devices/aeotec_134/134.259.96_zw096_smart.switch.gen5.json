@@ -20,7 +20,7 @@
                 "class": 37,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "prise",
@@ -40,7 +40,7 @@
                 "class": 37,
                 "value": "type=setvalue&value=255",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "prise",
@@ -60,7 +60,7 @@
                 "class": 37,
                 "value": "type=setvalue&value=0",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "prise",
@@ -83,7 +83,7 @@
                 "maxValue": 2500,
                 "minValue": 0,
                 "index": "8",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -100,7 +100,7 @@
                 "class": 50,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "tile",
@@ -121,7 +121,7 @@
                 "class": 50,
                 "value": "",
                 "index": "16",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "tile",
@@ -142,7 +142,7 @@
                 "class": 50,
                 "value": "",
                 "index": "20",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "tile",
@@ -162,7 +162,7 @@
                 "class": 51,
                 "value": "type=setvalue&value=#color#",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -178,7 +178,7 @@
                 "class": 51,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         }
     ],

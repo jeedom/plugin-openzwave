@@ -16,7 +16,7 @@
             "configuration": {
                 "class": 48,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             },
             "display": {
@@ -41,7 +41,7 @@
                 "class": 49,
                 "value": "",
                 "unite": "°C",
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -60,7 +60,7 @@
                 "unite": "%",
                 "maxValue": 100,
                 "minValue": 0,
-                "instance": 0,
+                "instance": 1,
                 "index": "3"
             }
         },
@@ -77,7 +77,7 @@
                 "class": 128,
                 "value": "",
                 "unite": "%",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         }

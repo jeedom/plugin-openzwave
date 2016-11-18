@@ -20,7 +20,7 @@
             "configuration": {
                 "class": 49,
                 "value": "",
-                "instance": "0",
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -35,7 +35,7 @@
             "configuration": {
                 "class": 64,
                 "value": "",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -51,7 +51,7 @@
             "configuration": {
                 "class": 64,
                 "value": "type=setvalue&value=Off",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -67,7 +67,7 @@
             "configuration": {
                 "class": 64,
                 "value": "type=setvalue&value=Heat",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -83,7 +83,7 @@
             "configuration": {
                 "class": 64,
                 "value": "type=setvalue&value=Heat+Econ",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -103,7 +103,7 @@
                 "value": "type=setvalue&value=#slider#",
                 "maxValue": 28,
                 "minValue": 4,
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -122,7 +122,7 @@
                 "value": "",
                 "maxValue": 28,
                 "minValue": 0,
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -141,7 +141,7 @@
                 "value": "",
                 "maxValue": 28,
                 "minValue": 0,
-                "instance": 9,
+                "instance": 11,
                 "index": "1"
             }
         },
@@ -161,7 +161,7 @@
                 "value": "type=setvalue&value=#slider#",
                 "maxValue": 28,
                 "minValue": 4,
-                "instance": 0,
+                "instance": 1,
                 "index": "11"
             }
         },
@@ -180,7 +180,7 @@
                 "value": "",
                 "maxValue": 28,
                 "minValue": 0,
-                "instance": 0,
+                "instance": 1,
                 "index": "11"
             }
         },
@@ -199,7 +199,7 @@
                 "value": "",
                 "maxValue": 28,
                 "minValue": 0,
-                "instance": 9,
+                "instance": 11,
                 "index": "11"
             }
         },
@@ -217,7 +217,7 @@
                 "class": 128,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         }
     ]

@@ -22,7 +22,7 @@
                 "value": "type=setvalue&value=#slider#",
                 "maxValue": 28,
                 "minValue": 4,
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -41,7 +41,7 @@
                 "value": "",
                 "maxValue": 28,
                 "minValue": 0,
-                "instance": 0,
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -60,7 +60,7 @@
                 "value": "",
                 "maxValue": 28,
                 "minValue": 0,
-                "instance": 9,
+                "instance": 11,
                 "index": "1"
             }
         },
@@ -79,7 +79,7 @@
                 "value": "",
                 "maxValue": 100,
                 "minValue": 0,
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         }

@@ -21,7 +21,7 @@
                 "class": 49,
                 "value": "",
                 "index": "1",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -38,7 +38,7 @@
                 "class": 66,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -54,7 +54,7 @@
             "configuration": {
                 "class": 64,
                 "value": "type=setvalue&value=Off",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -71,7 +71,7 @@
             "configuration": {
                 "class": 64,
                 "value": "type=setvalue&value=Heat",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -89,7 +89,7 @@
                 "value": "",
                 "minValue": "5",
                 "maxValue": "30",
-                "instance": "0",
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -108,7 +108,7 @@
                 "value": "type=setvalue&value=#slider#",
                 "minValue": "5",
                 "maxValue": "30",
-                "instance": "0",
+                "instance": 1,
                 "index": "1"
             }
         },
@@ -124,7 +124,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=255",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -140,7 +140,7 @@
             "configuration": {
                 "class": 37,
                 "value": "type=setvalue&value=0",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -157,7 +157,7 @@
             "configuration": {
                 "class": 37,
                 "value": "",
-                "instance": 0,
+                "instance": 1,
                 "index": "0"
             }
         }

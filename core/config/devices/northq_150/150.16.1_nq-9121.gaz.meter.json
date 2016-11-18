@@ -20,7 +20,7 @@
             "configuration": {
                 "class": 50,
                 "value": "",
-                "instance": "0",
+                "instance": 1,
                 "index": "0"
             }
         },
@@ -38,7 +38,7 @@
                 "class": 128,
                 "value": "",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             }
         },
         {
@@ -51,7 +51,7 @@
             "configuration": {
                 "class": 139,
                 "value": "type=buttonaction&action=press",
-                "instance": "0",
+                "instance": 1,
                 "index": "3"
             }
         }
