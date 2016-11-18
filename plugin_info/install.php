@@ -39,11 +39,7 @@ function openzwave_update() {
 				continue;
 			}
 			$cmd->setConfiguration('class', hexdec($cmd->getConfiguration('class')));
-			if ($cmd->getConfiguration('instanceId') > 0) {
-				$cmd->setConfiguration('instance', $cmd->getConfiguration('instanceId') - 1);
-			} else {
-				$cmd->setConfiguration('instance', $cmd->getConfiguration('instanceId'));
-			}
+			$cmd->setConfiguration('instance', $cmd->getConfiguration('instanceId') + 1);
 			$matches = array();
 			preg_match_all('/data\[(.*)\]\.(.*)/', $cmd->getConfiguration('value'), $matches);
 			if (count($matches[1]) == 1 && count($matches[2]) == 1) {
