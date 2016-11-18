@@ -3,29 +3,75 @@
     "doc": "",
     "type": "Télécommande",
     "comlink": "2534-benext-telecommande-7-boutons-z-wave-scene-controller-0632181493786",
-    "remark": "Télécommande non fonctionnelle, fonctionne cependant en association avec d'autres modules",
+    "remark": "",
     "imglink": "benext.scene-controller",
     "commands": [
         {
-            "name": "Scene",
+            "name": "SceneNumber",
             "type": "info",
             "subtype": "numeric",
-            "isVisible": 1,
+            "isVisible": 0,
             "isHistorized": 0,
+            "unite": "",
             "display": {
                 "generic_type": "DONT"
             },
             "configuration": {
                 "class": 91,
-                "maxValue": 14,
-                "minValue": 0,
+                "value": "",
+                "index": "128",
+                "instance": 1
+            }
+        },
+         {
+            "name": "SceneID",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": "2",
+                "instance": 1
+            }
+        },
+        {
+            "name": "SceneAttribute",
+            "type": "info",
+            "subtype": "string",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": "1",
+                "instance": 1
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "%",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": 128,
                 "value": "",
                 "index": "0",
                 "instance": 0
-            },
-            "template": {
-                "dashboard": "badge",
-                "mobile": "badge"
             }
         }
     ]
