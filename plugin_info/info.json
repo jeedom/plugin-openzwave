@@ -3,7 +3,7 @@
 	"name" : "Z-Wave",
 	"description" : "Plugin permettant la gestion du protocol Z-Wave",
 	"licence" : "AGPL",
-	"author" : "Thomas MARTINEZ (tmartinez) - Jean-François AUGER (Nechry)",
+	"author" : "tmartinez - nechry - sarakha63 - loic)",
 	"require" : "2.4",
 	"category" : "automation protocol",
 	"mobile" : "openzwave",
