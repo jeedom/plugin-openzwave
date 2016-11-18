@@ -47,7 +47,7 @@ class openzwave extends eqLogic {
 		return (is_json($result)) ? json_decode($result, true) : $result;
 	}
 
-	public static function syncEqLogicWithOpenZwave($_logical_id = null) {
+	public static function syncEqLogicWithOpenZwave($_logical_id = null, $_exclusion = 0) {
 		try {
 			$controlerState = self::callOpenzwave('/network?type=info&info=getStatus');
 			$state = $controlerState['result']['state'];
@@ -64,7 +64,7 @@ class openzwave extends eqLogic {
 		}
 		if ($_logical_id !== null && $_logical_id != 0) {
 			$eqLogic = self::byLogicalId($_logical_id, 'openzwave');
-			if (is_object($eqLogic)) {
+			if (is_object($eqLogic) && $_exclusion == 1) {
 				event::add('jeedom::alert', array(
 					'level' => 'warning',
 					'page' => 'openzwave',
