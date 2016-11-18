@@ -781,7 +781,7 @@ class openzwaveCmd extends cmd {
 				}
 				$value = str_replace('#color#', str_replace('#', '%23', $_options['color']), $value);
 		}
-		$request .= '&instance_id=' . $this->getConfiguration('instance', 0);
+		$request .= '&instance_id=' . $this->getConfiguration('instance', 1);
 		$request .= '&cc_id=' . $this->getConfiguration('class');
 		$request .= '&index=' . $this->getConfiguration('index');
 		$request .= '&' . str_replace(' ', '%20', $value);
