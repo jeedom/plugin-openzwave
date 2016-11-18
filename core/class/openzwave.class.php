@@ -750,7 +750,7 @@ class openzwaveCmd extends cmd {
 
 	public function preSave() {
 		if ($this->getConfiguration('instance') === '') {
-			$this->setConfiguration('instance', '0');
+			$this->setConfiguration('instance', '1');
 		}
 		if ($this->getConfiguration('index') === '') {
 			$this->setConfiguration('index', '0');
