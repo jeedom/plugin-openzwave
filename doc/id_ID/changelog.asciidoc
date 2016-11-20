@@ -209,7 +209,7 @@
 ** Ajout du push notification en case de node_event, permet la mise en place d’une cmd info en CC 0x20 pour récupérer des événement sur les nodes.
 ** Ajout de la route ForceRefresh \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ForceRefresh()
 pouvant être utilisée dans les commandes.
-** Ajout du route SwitchAll \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[0].commandClasses[0xF0].SwitchAll(<int:state>)
+** Ajout du route SwitchAll \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[1].commandClasses[0xF0].SwitchAll(<int:state>)
 disponible via le contrôleur principal.
 ** Ajout de la route ToggleSwitch \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ToggleSwitch()
 pouvant être utilisée dans les commandes.
