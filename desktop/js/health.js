@@ -211,15 +211,14 @@
             tbody += '<td>';
             if (nodes[node_id].data.isEnable.value) {
                 if (nodes[node_id].data.isListening.value) {
-                    tbody += jeedom.openzwave.timestampConverter(nodes[node_id].data.lastReceived.updateTime, false);
-                }
-                else if (nodes[node_id].last_notification.description != undefined && nodes[node_id].data.lastReceived != undefined && nodes[node_id].data.lastReceived.updateTime != null) {
-                    tbody += jeedom.openzwave.timestampConverter(nodes[node_id].data.lastReceived.updateTime, false);
+                    tbody += jeedom.openzwave.timestampConverter(nodes[node_id].data.lastReceived.updateTime);
+                }else if (nodes[node_id].last_notification.description != undefined && nodes[node_id].data.lastReceived != undefined && nodes[node_id].data.lastReceived.updateTime != null) {
+                    tbody += jeedom.openzwave.timestampConverter(nodes[node_id].data.lastReceived.updateTime);
                     if (nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.next_wakeup != null) {
                         if (now > nodes[node_id].data.wakeup_interval.next_wakeup) {
-                            tbody += ' <i class="fa fa-arrow-right text-danger"></i> <span class="label label-warning" style="font-size : 1em;" title="{{Le noeud ne s\'est pas réveillé comme prévue}}"> ' + app_health.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup, true) + ' </span>';
+                            tbody += ' <i class="fa fa-arrow-right text-danger"></i> <span class="label label-warning" style="font-size : 1em;" title="{{Le noeud ne s\'est pas réveillé comme prévue}}"> ' + app_health.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup) + ' </span>';
                         }else {
-                            tbody += ' <i class="fa fa-arrow-right"></i> ' + jeedom.openzwave.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup, true) + ' <i class="fa fa-clock-o"></i>';
+                            tbody += ' <i class="fa fa-arrow-right"></i> ' + jeedom.openzwave.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup) + ' <i class="fa fa-clock-o"></i>';
                         }
                     }
                 } else if (nodes[node_id].data.isListening.value == false && nodes[node_id].data.last_notification == undefined && nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.value != null && nodes[node_id].data.lastReceived != undefined && nodes[node_id].data.lastReceived.updateTime != null) {
