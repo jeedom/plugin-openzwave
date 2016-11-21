@@ -61,7 +61,7 @@ def node_event(network, node, value):
 		my_value = network.nodes[node.node_id].values[value_id]
 		if my_value.genre == "User" and not my_value.is_write_only:
 			value_utils.value_update(network, node, my_value)
-	save_node_value_event(node.node_id, globals.COMMAND_CLASS_BASIC, 0, value, 0)
+	save_node_value_event(node.node_id, globals.COMMAND_CLASS_BASIC, 0, value, 1)
 
 def get_wake_up_interval(node_id):
 	interval = value_utils.get_value_by_label(node_id, globals.COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval')
