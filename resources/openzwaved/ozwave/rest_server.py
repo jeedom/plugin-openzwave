@@ -3,6 +3,7 @@ import sys
 import binascii
 import logging
 import os
+import shutil
 from lxml import etree
 import globals,utils,network_utils,node_utils
 import value_utils,commands
@@ -344,7 +345,7 @@ class BackupHandler(RequestHandler):
 					time.sleep(3)
 					shutil.copy2(backup_file, target_file)
 					os.chmod(target_file, 0777)
-					start_network()
+					network_utils.start_network()
 				self.write(utils.format_json_result())
 			elif type == 'delete':
 				backup = self.get_argument('backup','')
