@@ -1,6 +1,6 @@
 import logging
 import threading
-import globals,utils,value_utils,serialization
+import globals,utils,value_utils,serialization,network_utils
 from lxml import etree
 from utilities.NodeExtend import *
 
@@ -200,6 +200,7 @@ def ghost_killer(node_id):
 			else:
 				message = 'commandClass wake_up not found'
 		globals.ghost_node_id = node_id
+	network_utils.start_network()
 	return utils.format_json_result(found, message)
 
 def refresh_dynamic(node_id):
