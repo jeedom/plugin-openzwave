@@ -55,7 +55,7 @@ NODE_REST_MAPPING = {'all' : node_utils.get_all_info,\
 	'hasNodeFailed': node_utils.has_failed,\
 	'testNode': node_utils.test,\
 	'refreshAllValues': node_utils.refresh_all_values,\
-	'ghostKiller': node_utils.ghost_killer,\
+	'removeGhostNode': node_utils.ghost_killer,\
 	'requestNodeDynamic': node_utils.refresh_dynamic,\
 	'refreshNodeInfo': node_utils.refresh_info,\
 	'assignReturnRoute': node_utils.assign_return_route,\
