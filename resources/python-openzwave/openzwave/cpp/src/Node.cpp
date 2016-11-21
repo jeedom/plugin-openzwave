@@ -589,6 +589,31 @@ void Node::AdvanceQueries
 			}
 			case QueryStage_Associations:
 			{
+				// if this device supports COMMAND_CLASS_ASSOCIATION, determine to which groups this node belong
+				Log::Write( LogLevel_Detail, m_nodeId, "QueryStage_Associations" );
+				MultiInstanceAssociation* macc = static_cast<MultiInstanceAssociation*>( GetCommandClass( MultiInstanceAssociation::StaticGetCommandClassId() ) );
+				if( macc )
+				{
+					macc->RequestAllGroups( 0 );
+					m_queryPending = true;
+					addQSC = true;
+				}
+				else
+				{
+					Association* acc = static_cast<Association*>( GetCommandClass( Association::StaticGetCommandClassId() ) );
+					if( acc )
+					{
+						acc->RequestAllGroups( 0 );
+						m_queryPending = true;
+						addQSC = true;
+					}
+					else
+					{
+						// if this device doesn't support Associations, move to retrieve Session information
+						m_queryStage = QueryStage_Neighbors;
+						m_queryRetries = 0;
+					}
+				}
 				break;
 			}
 			case QueryStage_Neighbors:
@@ -631,6 +656,26 @@ void Node::AdvanceQueries
 				if( !m_queryPending )
 				{
 					m_queryStage = QueryStage_Configuration;
+					m_queryRetries = 0;
+				}
+				break;
+			}
+			case QueryStage_Configuration:
+			{
+				// Request the configurable parameter values from the node.
+				Log::Write( LogLevel_Detail, m_nodeId, "QueryStage_Configuration" );
+				if( m_queryConfiguration )
+				{
+					if( RequestAllConfigParams( 0 ) )
+					{
+						m_queryPending = true;
+						addQSC = true;
+					}
+					m_queryConfiguration = false;
+				}
+				if( !m_queryPending )
+				{
+					m_queryStage = QueryStage_Complete;
 					m_queryRetries = 0;
 				}
 				break;

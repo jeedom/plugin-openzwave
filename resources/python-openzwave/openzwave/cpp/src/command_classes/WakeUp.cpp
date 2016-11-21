@@ -457,7 +457,6 @@ void WakeUp::SendPending
 			sendToSleep = false;
 		}
 	}
-	sendToSleep = false;
 	if( sendToSleep )
 	{
 		Msg* msg = new Msg( "WakeUpCmd_NoMoreInformation", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true );
