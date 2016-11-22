@@ -1,0 +1,256 @@
+{
+	"name": "FGWPE/FGWPF Wall Plug",
+	"doc": "fibaro.fgwpe101_-_Wall_Plug",
+	"type": "Prise",
+	"comlink": "2934-fibaro-module-prise-commutateur-z-wave-avec-mesure-d-energie-fgwpf-102-schuko-5902020528302",
+	"remark": "",
+	"imglink": "fibaro.fgwpe101",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "",
+		"display": {
+			"generic_type": "ENERGY_STATE"
+		},
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "prise",
+			"mobile": "prise"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "ENERGY_ON"
+		},
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "prise",
+			"mobile": "prise"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "ENERGY_OFF"
+		},
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "prise",
+			"mobile": "prise"
+		}
+	},
+	{
+		"name": "Puissance",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "W",
+		"display": {
+			"generic_type": "POWER"
+		},
+		"configuration": {
+			"class": "0x31",
+			"value": "data[4].val",
+			"maxValue": 2500,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Consommation",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "kWh",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"configuration": {
+			"class": "0x32",
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "tile"
+		}
+	}],
+	"configuration": {
+		"1": {
+			"name": "Fonction always on (toujours actif).",
+			"help": "Si cette fonction est activée, le Wall Plug sera toujours sur ON (la charge sera donc toujours activée), ne réagira plus aux messages cadre et on ne pourra plus le désactiver en appuyant le bouton B. La fonction always on transforme le Wall Plug en un dispositif de mesure de puissance et d’énergie consommée par la charge. La charge connectée ne se désactivera pas lors de la réception d’une trame d’alarme par un autre dispositif Z-Wave (le paramètre 35 est ignoré). Dans le mode de always on, la charge connectée pourra être désactivée lors d’un dépassement du seuil de puissance défini par l’utilisateur (paramètre 70). Dans ce cas, la charge connectée se réactivera en appuyant sur le bouton B ou en envoyant une trame de contrôle.",
+			"list": {
+				"function activated": "Fonction active",
+				"function inactive": "Fonction désactivée"
+			}
+		},
+		"16": {
+			"name": "Mémorisation de l`état du dispositif après une chute d`alimentation.",
+			"help": "Ce paramètre définit le comportement du Wall Plug une fois le retour de l`alimentation.",
+			"list": {
+				"Wall Plug does not memorize its state after a power failure": "Le Wall Plug ne mémorise pas l`état du dispositif après la désactivation de l`alimentation.",
+				"Wall Plug memorizes its state after a power failure": "Le Wall Plug garde l`état du dispositif après la désactivation de l`alimentation."
+			}
+		},
+		"34": {
+			"name": "Réaction aux alarmes",
+			"help": "Ce paramètre détermine à quels types d`alarme du réseau Z-Wave va réagir le Wall Plug.",
+			"list": {
+				"ALARM GENERIC": "Alarme générale",
+				"ALARM SMOKE": "Alarme de fumée",
+				"ALARM CO": "Alarme de CO",
+				"ALARM CO2": "Alarme de CO2",
+				"ALARM HEAT": "Alarme de température haute",
+				"ALARM WATER": "Alarme d`inondation",
+				"ALARM ALL": "Alarme de tous type"
+			}
+		},
+		"35": {
+			"name": "Comportement du Wall Plug en cas d`alarmes",
+			"help": "Ce paramètre détermine la réponse du Wall Plug aux alarmes (changement d`état de la charge).",
+			"list": {
+				"No reaction": "Pas de réaction",
+				"Turn on connected device": "Activation de la charge",
+				"Turn off connected device": "Désactivation de la charge",
+				"Cyclically change device state, each 1second": "Changement de l’état de la charge cycliquement, chaque seconde"
+			}
+		},
+		"39": {
+			"name": "Durée de l’alarme",
+			"help": "Durée du mode alarme du Wall Plug. Si un dispositif envoie une trame d’alarme dans le réseau Z-wave en définissant une durée de l’alarme, alors la valeur de ce paramètre est ignorée. Valeur pour ce paramètre 1-65536s"
+		},
+		"40": {
+			"name": "Rapport de puissance instantanée",
+			"help": "Ce paramètre définit le pourcentage du changement de la puissance pour que la valeur soit envoyée au contrôleur principal avec la priorité maximale. La configuration par défaut forcera le Wall Plug Fibaro à envoyer l`information sur la valeur de la puissance immédiatement dès qu`elle varie d`au moins 80%. Valeurs disponibles pour ce paramètre : 1-100%. 100% Rapport désactivé"
+		},
+		"42": {
+			"name": "Rapport standard sur la puissance de la charge.",
+			"help": "Ce paramètre détermine la valeur pour laquelle la puissance de la charge devra changer pour que le contrôleur principal soit informé. Par défaut, le Wall Plug Fibaro enverra un rapport de puissance si la puissance de la charge change de 15%. Par défaut, le dispositif enverra 5 rapports maximum toutes les 30 secondes. Le Wall Plug peut envoyer 5 rapports pendant le temps configuré dans le paramètre 43. Valeurs disponibles pour ce paramètre : 1-100%. 100% Rapport désactivé"
+		},
+		"43": {
+			"name": "Fréquence d`envoi des rapports de puissance",
+			"help": "Ce paramètre définit la fréquence d`envoi des rapports de puissance (paramètre 42). Par défaut le Wall Plug Fibaro enverra 5 rapports maximum toutes les 30 secondes sur le changement de la puissance d’au moins 15%. Valeurs disponibles pour ce paramètre : 1-254s La valeur 255 - les rapports seront envoyés uniquement en fonction des réglages du paramètre 47 ou dans le cas d’une demande"
+		},
+		"45": {
+			"name": "Rapports sur les changements de l’énergie consommée par les dispositifs contrôlés",
+			"help": "Une nouvelle valeur du rapport d’énergie est calculée en fonction de la dernière valeur du rapport. Valeurs disponibles pour ce paramètre : 1-254 (0,01kWh - 2,54kWh) - Valeur 255 - les changements de consommation d’énergie ne seront pas notifiés. Les rapports seront uniquement envoyés lors d’une demande."
+		},
+		"47": {
+			"name": "Période de temps entre des rapports de la puissance de la charge et l’énergie consommée",
+			"help": "Ce paramètre définit la période de temps entre les rapports envoyés lorsque les changements de la puissance de la charge n’ont pas été enregistrés. Par défaut, si les changements de la puissance de la charge n’ont pas été enregistrés, alors les rapports seront envoyés chaque heure. Valeurs disponibles pour ce paramètre : 1 - 65534s. La valeur 65535 - pas de rapports envoyés périodiquement. Les rapports seront envoyés uniquement dans le cas d’un changement de puissance de la charge/consommation (paramètres 40, 42, 43, 45) ou dans le cas d’une demande."
+		},
+		"49": {
+			"name": "Mesure de la puissance consommée par le Wall Plug lui-même.",
+			"help": "Ce paramètre détermine si au cours de la mesure d`énergie consommée, la valeur consommée par le Wall Plug Fibaro lui-même sera prise en compte. Cette puissance sera ajoutée à celle consommée par la charge.",
+			"list": {
+				"function inactive": "Fonction inactive",
+				"function activated": "Fonction activée"
+			}
+		},
+		"50": {
+			"name": "Valeur BASSE",
+			"help": "Seuil de puissance inférieur - utilisé dans le paramètre 52. Valeurs disponibles pour ce paramètre : 0-25000 (0,0W - 2500W) - cette valeur ne pourra être supérieure à celle définie dans le paramètre 51."
+		},
+		"51": {
+			"name": "Valeur HAUTE",
+			"help": "Seuil de puissance supérieur - utilisé dans le paramètre 52. Valeurs disponibles pour ce paramètre : 0-25000 (0,0W - 2500W) - cette valeur ne pourra être inférieur à celle définie dans le paramètre 51."
+		},
+		"52": {
+			"name": "Configuration du comportement dans le cas du dépassement des seuils de puissance (Paramètre 50 et 51)",
+			"help": "Ce paramètre définit le mode de contrôle des dispositifs associés au deuxième groupe d’association en fonction de la puissance actuelle.",
+			"list": {
+				"Function inactive": "Fonction désactivée",
+				"Turn the associated devices on,Power below DOWN": "Activer les dispositifs associés quand la puissance chute en dessous de la valeur BASSE (paramètre 50)",
+				"Turn the associated devices off,Power below DOWN": "Désactiver les dispositifs associés quand la puissance chute en dessous de la valeur BASSE (paramètre 50)",
+				"Turn the associated devices on,Power above UP": "Activer les dispositifs associés quand la puissance chute en dessous de la valeur HAUTE (paramètre 50)",
+				"Turn the associated devices off,Power above UP": "Désactiver les dispositifs associés quand la puissance chute en dessous de la valeur HAUTE (paramètre 50)",
+				"1 and 4 combine": "Combinaison des options 1 et 4.",
+				"2 and 3 combined": "Combinaison des options 2 et 3"
+			}
+		},
+		"60": {
+			"name": "Valeur du seuil de la puissance instantanée qui fera clignoter l`anneau LED en violet.",
+			"help": "Cette fonction est activée uniquement lorsque le paramètre 61 est réglé à 0 ou 1. Valeurs disponibles pour ce paramètre : 1000 - 32000 (100W - 3200W)."
+		},
+		"61": {
+			"name": "Couleur d’illumination de l’anneau LED lorsque la charge est activée.",
+			"help": "",
+			"list": {
+				"Depending on power consumption changes": "Dépends de la consommation de la charge",
+				"Using full spectrum of available colorus": "Utilise les spectre complet des couleurs disponible",
+				"White illumination": "Allumé en Blanc",
+				"Red illumination": "Allumé en Rouge",
+				"Green illumination": "Allumé en Vert",
+				"Blue illumination": "Allumé en Bleu",
+				"Yellow illumination": "Allumé en Jaune",
+				"Cyan illumination": "Allumé en Cyan",
+				"Magenta illumination": "Allumé en Magenta",
+				"illumination turned off completely": "Eteinte"
+			}
+		},
+		"62": {
+			"name": "Couleur de l`anneau lorsqu'il n'y a pas de charge.",
+			"help": "",
+			"list": {
+				"Depending on the last measured power": "Dépends de la dernière puissance instantanée mesurée",
+				"White illumination": "Allumé en Blanc",
+				"Red illumination": "Allumé en Rouge",
+				"Green illumination": "Allumé en Vert",
+				"Blue illumination": "Allumé en Bleu",
+				"Yellow illumination": "Allumé en Jaune",
+				"Cyan illuminatio": "Allumé en Cyan",
+				"Magenta illumination": "Allumé en Magenta",
+				"illumination turned off completely": "Eteinte"
+			}
+		},
+		"63": {
+			"name": "Couleur de l`anneau lors du déclenchement de l'alarme Z-Wave",
+			"help": "",
+			"list": {
+				"No change in colour": "Pas de changement de couleur",
+				"LED ring flashes red / blue / white": "Clignotement Rouge/Bleu/Blanc (Police)",
+				"White illumination": "Allumé en Blanc",
+				"Red illumination": "Allumé en Rouge",
+				"Green illumination": "Allumé en Vert",
+				"Blue illumination": "Allumé en Bleu",
+				"Yellow illumination": "Allumé en Jaune",
+				"Cyan illuminatio": "Allumé en Cyan",
+				"Magenta illumination": "Allumé en Magenta",
+				"illumination turned off completely": "Eteinte"
+			}
+		},
+		"70": {
+			"name": "Fonction de l`interrupteur de surcharge",
+			"help": "Cette fonction permet de désactiver la charge en cas de dépassement de la puissance définie. La charge se désactivera même si la fonction Always on est activée (paramètre 1). On peut activer de nouveau la charge en appuyant sur le bouton B ou en envoyant une trame de contrôle. Valeurs disponibles pour ce paramètre 10 - 65535 (1W-6553,5W)"
+		}
+	},
+	"recommended" : {
+		"groups" : [
+			{"index": 3, "value": "add"}
+		],
+		"needswakeup" : false
+	}
+}
