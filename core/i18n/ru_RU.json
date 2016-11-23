@@ -127,7 +127,7 @@
     "plugins/openzwave/desktop/js/health.js": {
         "Non disponible": "Non disponible",
         "OK": "ОК",
-        "NOK": "NOK",
+        "NOK": "Неактивен",
         "configuration(s) en attente d\\'être appliquée(s)": "configuration(s) en attente d\\'être appliquée(s)",
         "DEATH": "DEATH",
         "Secteur": "Secteur",
@@ -175,7 +175,7 @@
         "Version de la librairie Python-OpenZwave :": "Version de la librairie Python-OpenZwave :",
         "Reçu": "Reçu",
         "Détails": "Подробности",
-        "Erreur": "Erreur",
+        "Erreur": "Ошибка",
         "Légende": "Легенда",
         "Communication directe": "Прямая связь",
         "Virtuellement associé au contrôleur primaire": "Virtuellement associé au contrôleur primaire",
