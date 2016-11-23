@@ -55,6 +55,19 @@
             }
         },
         {
+            "name": "Etat Label",
+            "type": "info",
+            "subtype": "string",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 102,
+                "value": "",
+                "index": "1",
+                "instance": 1
+            }
+        },
+        {
             "name": "Volume",
             "type": "info",
             "subtype": "numeric",
