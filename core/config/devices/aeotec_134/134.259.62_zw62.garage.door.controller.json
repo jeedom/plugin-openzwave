@@ -8,47 +8,57 @@
     "ignore": 0,
     "commands": [
         {
-            "name": "Open\/Close",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Position",
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "index": "0",
-                "instance": 1
-            },
-            "template": {
-                "dashboard": "GarageDoor_BarrierOperatorBasic",
-                "mobile": "GarageDoor_BarrierOperatorBasic"
-            }
-        },
-        {
             "name": "Position",
             "type": "info",
             "subtype": "numeric",
             "isVisible": 0,
             "isHistorized": 1,
             "configuration": {
-                "class": 32,
+                "class": 102,
                 "value": "",
+                "index": "2",
+                "instance": 1
+            }
+        },
+        {
+            "name": "Ouvrir/Stop",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Position",
+            "configuration": {
+                "class": 102,
+                "value": "type=setvalue&value=1",
+                "index": "0",
+                "instance": 0
+            },
+            "template": {
+                "dashboard": "garageBarrierOperator",
+                "mobile": "garageBarrierOperator"
+            }
+        },
+        {
+            "name": "Fermer",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "value": "Position",
+            "configuration": {
+                "class": 102,
+                "value": "type=setvalue&value=0",
                 "index": "0",
                 "instance": 1
             },
-            "display": {
-                "invertBinary": "1"
-            },
             "template": {
-                "dashboard": "door",
-                "mobile": "door"
+                "dashboard": "garageBarrierOperator",
+                "mobile": "garageBarrierOperator"
             }
         },
         {
             "name": "Volume",
             "type": "info",
             "subtype": "numeric",
-            "isVisible": 1,
+            "isVisible": 0,
             "isHistorized": 1,
             "unite": "",
             "configuration": {
@@ -91,6 +101,32 @@
             }
         },
         {
+            "name": "Jouer son",
+            "type": "action",
+            "subtype": "slider",
+            "isVisible": 0,
+            "value": "",
+            "configuration": {
+                "class": 112,
+                "value": "type=setvalue&value=#slider#",
+                "index": "43",
+                "instance": 1
+            }
+        },
+        {
+            "name": "Stopper son",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 0,
+            "value": "",
+            "configuration": {
+                "class": 112,
+                "value": "type=setvalue&value=255",
+                "index": "43",
+                "instance": 1
+            }
+        },
+        {
             "name": "Sabotage",
             "type": "info",
             "subtype": "binary",
@@ -108,14 +144,5 @@
                 "generic_type": "SABOTAGE"
             }
         }
-    ],
-    "recommended": {
-        "params": [
-            {
-                "index": 80,
-                "value": "Hail"
-            }
-        ],
-        "needswakeup": false
-    }
+    ]
 }
