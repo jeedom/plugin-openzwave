@@ -59,7 +59,7 @@ function openzwave_update() {
 			} else if (strpos($cmd->getConfiguration('value'), '.val') !== false) {
 				$cmd->setConfiguration('value', '');
 			} else if (strpos($cmd->getConfiguration('value'), '.val') !== false || $cmd->getConfiguration('value') == 'Get()') {
-				$cmd->remove();
+				$cmd->setConfiguration('value', 'type=refreshData');
 			} else if ($cmd->getConfiguration('value') == 'ForceRefresh()') {
 				$cmd->setConfiguration('value','type=refreshData');
 			} else {
