@@ -108,7 +108,7 @@
             "value": "",
             "configuration": {
                 "class": 112,
-                "value": "type=action&action=forceRefresh",
+                "value": "type=refreshData",
                 "index": "45",
                 "instance": 1
             }
