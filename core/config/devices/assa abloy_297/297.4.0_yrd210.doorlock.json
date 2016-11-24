@@ -1,0 +1,76 @@
+{
+  "name": "Yale Push Button Deadbolt (YRD210)",
+  "doc": "",
+  "type": "Serrure",
+  "comlink": "",
+  "remark": "Inclusion en mode sécurisé",
+  "imglink": "assa_abloy.YRD210",
+  "battery_type": "",
+  "ignore": 0,
+  "commands": [
+    {
+      "name": "Statut",
+      "type": "info",
+      "subtype": "binary",
+      "display": {
+        "generic_type": "LOCK_STATE"
+      },
+      "isVisible": 1,
+      "isHistorized": 1,
+      "configuration": {
+        "instanceId": "0",
+        "class": "0x62",
+        "value": "data[0].val"
+      },
+      "template": {
+        "dashboard": "lock",
+        "mobile": "lock"
+      }
+    },
+    {
+      "name": "Verrouillage",
+      "type": "action",
+      "subtype": "other",
+      "display": {
+        "generic_type": "LOCK_CLOSE"
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "instanceId": "0",
+        "class": "0x62",
+        "value": "data[0].Set(255)"
+      }
+    },
+    {
+      "name": "Déverrouillage",
+      "type": "action",
+      "subtype": "other",
+      "display": {
+        "generic_type": "LOCK_OPEN"
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "instanceId": "0",
+        "class": "0x62",
+        "value": "data[0].Set(0)"
+      }
+    },
+    {
+      "name": "Batterie",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "BATTERY"
+      },
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "%",
+      "configuration": {
+        "class": "0x80",
+        "value": "data[0].val"
+      }
+    }
+  ]
+}
