@@ -30,7 +30,7 @@
                 "class": 102,
                 "value": "type=setvalue&value=1",
                 "index": "0",
-                "instance": 0
+                "instance": 1
             },
             "template": {
                 "dashboard": "garageBarrierOperator",
