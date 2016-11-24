@@ -59,6 +59,13 @@ enum BarrierOperatorState
 	BarrierOperatorState_Open = 0xFF,
 };
 
+enum BarrierOperator_SignalAttributesMask
+{
+    BarrierOperatorSignalMask_Audible      = 0x02,
+    BarrierOperatorSignalMask_Visual       = 0x04,
+    BarrierOperatorSignalMask_All          = 0x06,
+};
+
 static char const* c_BarrierOperator_States[] =
 {
         "Closed",
@@ -90,12 +97,14 @@ bool BarrierOperator::RequestState
 		Driver::MsgQueue const _queue
 )
 {
+	bool res = false;
 	if( _requestFlags & RequestFlag_Dynamic )
 	{
-		return RequestValue( _requestFlags, 0, _instance, _queue );
+		res |= RequestValue( _requestFlags, BarrierOperatorCmd_Get,0, _instance, _queue );
+		res |= RequestValue( _requestFlags, BarrierOperatorCmd_SignalSupportedGet,0, _instance, _queue );
 	}
 
-	return false;
+	return res;
 }
 
 //-----------------------------------------------------------------------------
@@ -105,26 +114,46 @@ bool BarrierOperator::RequestState
 bool BarrierOperator::RequestValue
 (
 		uint32 const _requestFlags,
-		uint8 const _dummy1,	// = 0 (not used)
+		uint8 const _what,
+		uint8 const _signal,
 		uint8 const _instance,
 		Driver::MsgQueue const _queue
 )
 {
-	if (IsGetSupported())
-	{
-		Log::Write(LogLevel_Info, GetNodeId(), "Requesting BarrierOperator status");
+	Log::Write(LogLevel_Info, GetNodeId(), "Requesting BarrierOperator status");
+	if (_what == BarrierOperatorCmd_Get) {
 		Msg* msg = new Msg("BarrierOperatorCmd_Get", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true, true, FUNC_ID_APPLICATION_COMMAND_HANDLER, GetCommandClassId());
 		msg->SetInstance(this, _instance);
 		msg->Append(GetNodeId());
 		msg->Append(2);
 		msg->Append(GetCommandClassId());
-		msg->Append(BarrierOperatorCmd_Get);
+		msg->Append(_what);
 		msg->Append(GetDriver()->GetTransmitOptions());
 		GetDriver()->SendMsg(msg, _queue);
 		return true;
 	}
-	else {
-		Log::Write(LogLevel_Info, GetNodeId(), "BarrierOperatorCmd_Get Not Supported on this node");
+	else if ( _what == BarrierOperatorCmd_SignalSupportedGet ) {
+		Msg* msg = new Msg("BarrierOperatorCmd_SignalSupportedGet", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true, true, FUNC_ID_APPLICATION_COMMAND_HANDLER, GetCommandClassId());
+		msg->SetInstance(this, _instance);
+		msg->Append(GetNodeId());
+		msg->Append(2);
+		msg->Append(GetCommandClassId());
+		msg->Append(_what);
+		msg->Append(GetDriver()->GetTransmitOptions());
+		GetDriver()->SendMsg(msg, _queue);
+		return true;
+	}
+	else if ( _what == BarrierOperatorCmd_SignalGet ) {
+		Msg* msg = new Msg("BarrierOperatorCmd_SignalGet", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true, true, FUNC_ID_APPLICATION_COMMAND_HANDLER, GetCommandClassId());
+		msg->SetInstance(this, _instance);
+		msg->Append(GetNodeId());
+		msg->Append(3);
+		msg->Append(GetCommandClassId());
+		msg->Append(_what);
+		msg->Append(_signal);
+		msg->Append(GetDriver()->GetTransmitOptions());
+		GetDriver()->SendMsg(msg, _queue);
+		return true;
 	}
 	return false;
 }
@@ -180,11 +209,62 @@ bool BarrierOperator::HandleMsg
 	if (BarrierOperatorCmd_SignalSupportedReport == (BarrierOperatorCmd)_data[0])
 	{
 		Log::Write(LogLevel_Info, GetNodeId(), "Received BarrierOperator Signal Support Report");
+		if (BarrierOperatorSignalMask_Audible == _data[1])
+		{
+			Log::Write(LogLevel_Info, GetNodeId(), "Received Audible support");
+			if (Node* node = GetNodeUnsafe())
+			{
+				node->CreateValueBool(ValueID::ValueGenre_User, GetCommandClassId(), _instance, 3, "Audible", "", false, false, false, 0);
+			}
+			RequestValue( 0, BarrierOperatorCmd_SignalGet,0x01, _instance, Driver::MsgQueue_Send );
+		}
+		else if (BarrierOperatorSignalMask_Visual == _data[1])
+		{
+			Log::Write(LogLevel_Info, GetNodeId(), "Received Visual support");
+			if (Node* node = GetNodeUnsafe())
+			{
+				node->CreateValueBool(ValueID::ValueGenre_User, GetCommandClassId(), _instance, 4, "Visual", "", false, false, false, 0);
+			}
+			RequestValue( 0, BarrierOperatorCmd_SignalGet,0x02, _instance, Driver::MsgQueue_Send );
+		}
+		else if (BarrierOperatorSignalMask_All == _data[1])
+		{
+			Log::Write(LogLevel_Info, GetNodeId(), "Received All (Audible and Visual) support");
+			if (Node* node = GetNodeUnsafe())
+			{
+				node->CreateValueBool(ValueID::ValueGenre_User, GetCommandClassId(), _instance, 3, "Audible", "", false, false, false, 0);
+				node->CreateValueBool(ValueID::ValueGenre_User, GetCommandClassId(), _instance, 4, "Visual", "", false, false, false, 0);
+			}
+			RequestValue( 0, BarrierOperatorCmd_SignalGet,0x01, _instance, Driver::MsgQueue_Send );
+			RequestValue( 0, BarrierOperatorCmd_SignalGet,0x02, _instance, Driver::MsgQueue_Send );
+		}
+		else
+		{
+			Log::Write(LogLevel_Info, GetNodeId(), "Received No support");
+		}
 		return true;
 	}
 	if (BarrierOperatorCmd_SignalReport == (BarrierOperatorCmd)_data[0])
 	{
 		Log::Write(LogLevel_Info, GetNodeId(), "Received BarrierOperator Signal Report");
+		if (_data[1] == 0x01)
+		{
+			Log::Write(LogLevel_Info, GetNodeId(), "Received BarrierOperator Signal Report for Audible");
+			if (ValueBool* value = static_cast<ValueBool*>(GetValue(_instance, 3)))
+			{
+				value->OnValueRefreshed(_data[2] != 0x00);
+				value->Release();
+			}
+		}
+		if (_data[1] == 0x02)
+		{
+			Log::Write(LogLevel_Info, GetNodeId(), "Received BarrierOperator Signal Report for Visual");
+			if (ValueBool* value = static_cast<ValueBool*>(GetValue(_instance, 4)))
+			{
+				value->OnValueRefreshed(_data[2] != 0x00);
+				value->Release();
+			}
+		}
 		return true;
 	}
 
@@ -201,23 +281,59 @@ bool BarrierOperator::SetValue
 	Value const& _value
 	)
 {
+	uint8 idx = _value.GetID().GetIndex();
 	if (ValueID::ValueType_Bool == _value.GetID().GetType())
 	{
-		ValueBool const* value = static_cast<ValueBool const*>(&_value);
-
-		Log::Write(LogLevel_Info, GetNodeId(), "BarrierOperator::Set - Requesting barrier to be %s", value->GetValue() ? "Open" : "Closed");
-		Msg* msg = new Msg("LockCmd_Get", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true);
-		msg->SetInstance(this, _value.GetID().GetInstance());
-		msg->Append(GetNodeId());
-		msg->Append(3);
-		msg->Append(GetCommandClassId());
-		msg->Append(BarrierOperatorCmd_Set);
-		msg->Append(value->GetValue() ? 0xFF : 0x00);
-		msg->Append(GetDriver()->GetTransmitOptions());
-		GetDriver()->SendMsg(msg, Driver::MsgQueue_Send);
-		return true;
+		if (idx == 0)
+		{
+			ValueBool const* value = static_cast<ValueBool const*>(&_value);
+			Log::Write(LogLevel_Info, GetNodeId(), "BarrierOperator::Set - Requesting barrier to be %s", value->GetValue() ? "Open" : "Closed");
+			Msg* msg = new Msg("BarrierOperatorCmd_Set", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true);
+			msg->SetInstance(this, _value.GetID().GetInstance());
+			msg->Append(GetNodeId());
+			msg->Append(3);
+			msg->Append(GetCommandClassId());
+			msg->Append(BarrierOperatorCmd_Set);
+			msg->Append(value->GetValue() ? 0xFF : 0x00);
+			msg->Append(GetDriver()->GetTransmitOptions());
+			GetDriver()->SendMsg(msg, Driver::MsgQueue_Send);
+			return true;
+		}
+		else if (idx == 3)
+		{
+			ValueBool const* value = static_cast<ValueBool const*>(&_value);
+			Log::Write(LogLevel_Info, GetNodeId(), "BarrierOperatorSignal::Set - Requesting Audible to be %s", value->GetValue() ? "ON" : "OFF");
+			Msg* msg = new Msg("BarrierOperatorSignalCmd_Set", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true);
+			msg->SetInstance(this, _value.GetID().GetInstance());
+			msg->Append(GetNodeId());
+			msg->Append(4);
+			msg->Append(GetCommandClassId());
+			msg->Append(BarrierOperatorCmd_SignalSet);
+			msg->Append(1);
+			msg->Append(value->GetValue() ? 0xFF : 0x00);
+			msg->Append(GetDriver()->GetTransmitOptions());
+			GetDriver()->SendMsg(msg, Driver::MsgQueue_Send);
+			RequestValue( 0, BarrierOperatorCmd_SignalGet,0x01, _value.GetID().GetInstance(), Driver::MsgQueue_Refresh );
+			return true;
+		}
+		else if (idx == 4)
+		{
+			ValueBool const* value = static_cast<ValueBool const*>(&_value);
+			Log::Write(LogLevel_Info, GetNodeId(), "BarrierOperatorSignal::Set - Requesting Visual to be %s", value->GetValue() ? "ON" : "OFF");
+			Msg* msg = new Msg("BarrierOperatorSignalCmd_Set", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true);
+			msg->SetInstance(this, _value.GetID().GetInstance());
+			msg->Append(GetNodeId());
+			msg->Append(4);
+			msg->Append(GetCommandClassId());
+			msg->Append(BarrierOperatorCmd_SignalSet);
+			msg->Append(2);
+			msg->Append(value->GetValue() ? 0xFF : 0x00);
+			msg->Append(GetDriver()->GetTransmitOptions());
+			GetDriver()->SendMsg(msg, Driver::MsgQueue_Send);
+			RequestValue( 0, BarrierOperatorCmd_SignalGet,0x02, _value.GetID().GetInstance(), Driver::MsgQueue_Refresh );
+			return true;
+		}
 	}
-
 	return false;
 }
 
@@ -242,7 +358,7 @@ void BarrierOperator::CreateVars
             item.m_value = i;
             items.push_back( item );
         }
-		node->CreateValueList( ValueID::ValueGenre_User, GetCommandClassId(), _instance, 1, "Barrier State Label", "", false, false, size, items, 0, 0 );
+		node->CreateValueList( ValueID::ValueGenre_User, GetCommandClassId(), _instance, 1, "Barrier State Label", "", true, false, size, items, 0, 0 );
 		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, 2 ,"Barrier State Numeric", "", true, false, 0, 0 );
 	}
 }
