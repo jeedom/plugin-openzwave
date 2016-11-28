@@ -28,8 +28,12 @@ $networkState = 10;
 try {
 	$result = openzwave::callOpenzwave('/network?type=info&info=getStatus');
 	if (isset($result['result'])) {
-		$networkState = $result['result']['state'];
-		$controllerMode = $result['result']['mode'];
+		if (isset($result['result']['state'])) {
+			$networkState = $result['result']['state'];
+		}
+		if (isset($result['result']['mode'])) {
+			$controllerMode = $result['result']['mode'];
+		}
 	}
 } catch (Exception $e) {
 	$controllerMode = null;
