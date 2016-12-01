@@ -16,7 +16,7 @@
 		"isVisible": 1,
 		"isHistorized": 1,
 		"configuration": {
-			"class": "0x9c",
+			"class": "0x30",
 			"value": "data[0].val"
 		},
 		"template": {
@@ -58,5 +58,16 @@
 			"class": "0x80",
 			"value": "data[0].val"
 		}
-	}]
+	}],
+	"recommended" : {
+		"params" : [       
+          {"index": 31, "value" : "Send tamper cancellation report"}
+        ],
+		"groups" : [
+          {"index": 2, "value": "add"},
+		  {"index": 4, "value": "add"}
+        ],
+		"wakeup" : 3600,
+		"needswakeup" : true
+    }
 }
