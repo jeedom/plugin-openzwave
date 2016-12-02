@@ -576,7 +576,7 @@ function display_node_info(){
         node_selected = data;
         var nodeIsFailed = (data.data.isFailed) ? data.data.isFailed.value : false;
         data.data.lastReceived.updateTime = jeedom.openzwave.timestampConverter(data.data.lastReceived.updateTime)
-        data.data.basicDeviceClassDescription = (isset(BASIC_CLASS_DESC[data.data.basicType.value])) ? BASIC_CLASS_DESC[parseInt(data.data.basicType.value, 0)] : basicDeviceClass;
+        data.data.basicDeviceClassDescription = (isset(BASIC_CLASS_DESC[data.data.basicType.value])) ? BASIC_CLASS_DESC[parseInt(data.data.basicType.value, 0)] : '';
         data.data.genericDeviceClassDescription = (isset(GENERIC_CLASS_DESC[data.data.genericType.value])) ? GENERIC_CLASS_DESC[data.data.genericType.value] : '';
         var queryStageDescrition = (isset(QUERY_STAGE_DESC[data.data.state.value])) ? QUERY_STAGE_DESC[data.data.state.value] : '{{Inconnue}}';
         var queryStageIndex = 0;
