@@ -732,7 +732,7 @@ class openzwave extends eqLogic {
 													$cmd = new openzwaveCmd();
 													$cmd->setType('action');
 													$cmd->setEqLogic_id($this->getId());
-													$cmd->setName($value);
+													$cmd->setName($cmd_name. ' ' .$value);
 													$cmd->setConfiguration('instanceId', $instanceID);
 													$cmd->setConfiguration('class', $ccId);
 													$cmd->setConfiguration('value', 'data[' . $index . '].Set(' . $value . ')');
