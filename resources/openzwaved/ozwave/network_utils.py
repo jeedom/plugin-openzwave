@@ -66,6 +66,7 @@ def network_awaked(network):
 		network.nodes_count, utils.get_sleeping_nodes_count(),))
 	logging.debug("Controller is: %s" % (network.controller,))
 	globals.network_information.set_as_awake()
+	dispatcher_utils.add_dispatcher_listen(node_utils.node_group_changed, globals.network.SIGNAL_GROUP)
 	save_network_state(network.state)
 	if globals.ghost_node_id is not None:
 		logging.info("Last step for Removing Ghost node will start in %d sec" % (globals.ghost_removal_delay,))
