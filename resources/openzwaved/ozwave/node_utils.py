@@ -1,6 +1,7 @@
 import logging
 import threading
 import globals,utils,value_utils,serialization,network_utils
+import time
 from lxml import etree
 from utilities.NodeExtend import *
 
@@ -245,3 +246,42 @@ def test_node(node_id, count=3):
 	utils.check_node_exist(node_id,True)
 	globals.network.manager.testNetworkNode(globals.network.home_id, node_id, count)
 	return utils.format_json_result()
+
+def node_notification(args):
+	code = int(args['notificationCode'])
+	node_id = int(args['nodeId'])
+	if node_id in globals.not_supported_nodes:
+		return
+	if node_id in globals.disabled_nodes:
+		return
+	if node_id in globals.network.nodes:
+		my_node = globals.network.nodes[node_id]
+		# mark as updated
+		my_node.last_update = time.time()
+		# try auto remove unsupported nodes
+		if node_id in globals.not_supported_nodes and globals.network.state >= globals.network.STATE_AWAKED:
+			logging.info('remove fake nodeId: %s' % (node_id,))
+			globals.network.manager.removeFailedNode(globals.network.home_id, node_id)
+			return
+		wake_up_time = get_wake_up_interval(node_id)
+		if node_id not in globals.node_notifications:
+			globals.node_notifications[node_id] = NodeNotification(code, wake_up_time)
+		else:
+			globals.node_notifications[node_id].refresh(code, wake_up_time)
+		if code == 3:
+			my_value = value_utils.get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval Step', False)
+			if my_value is not None:
+				wake_up_interval_step = my_value.data + 2.0
+			else:
+				wake_up_interval_step = 60.0
+		logging.info('NodeId %s send a notification: %s' % (node_id, globals.node_notifications[node_id].description,))
+		push_node_notification(node_id, code)
+
+def push_node_notification(node_id, notification_code):
+	if notification_code in [5, 6]:
+		if notification_code == 5:
+			alert_type = 'node_dead'
+		else:
+			alert_type = 'node_alive'
+		changes = {'alert': {'type': alert_type, 'id': node_id}}
+		globals.jeedom_com.send_change_immediate(changes)

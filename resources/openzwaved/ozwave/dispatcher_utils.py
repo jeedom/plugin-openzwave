@@ -29,6 +29,7 @@ def connect_dispatcher():
 	add_dispatcher_listen(scene_utils.scene_event, globals.network.SIGNAL_SCENE_EVENT)
 	add_dispatcher_listen(controller_utils.controller_command, globals.network.SIGNAL_CONTROLLER_COMMAND)
 	add_dispatcher_listen(node_utils.node_queries_complete, globals.network.SIGNAL_NODE_QUERIES_COMPLETE)
+	add_dispatcher_listen(node_utils.node_notification, globals.network.SIGNAL_NOTIFICATION)
 	if globals.network.state >= globals.network.STATE_AWAKED:
 		add_dispatcher_listen(node_utils.node_group_changed, globals.network.SIGNAL_GROUP)
 	globals.dispatcher_is_connect = True
@@ -52,6 +53,7 @@ def disconnect_dispatcher():
 		remove_dispatcher_listen(scene_utils.scene_event, globals.network.SIGNAL_SCENE_EVENT)
 		remove_dispatcher_listen(controller_utils.controller_command, globals.network.SIGNAL_CONTROLLER_COMMAND)
 		remove_dispatcher_listen(node_utils.node_queries_complete, globals.network.SIGNAL_NODE_QUERIES_COMPLETE)
+		remove_dispatcher_listen(node_utils.node_notification, globals.network.SIGNAL_NOTIFICATION)
 		if globals.network.state >= globals.network.STATE_AWAKED:
 			remove_dispatcher_listen(node_utils.node_group_changed, globals.network.SIGNAL_GROUP)
 	except Exception:
