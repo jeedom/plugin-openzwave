@@ -80,7 +80,20 @@ class openzwave extends eqLogic {
 					'page' => 'openzwave',
 					'message' => '',
 				));
-
+				return;
+			} elseif ($_exclusion == 1){
+				sleep(3);
+				event::add('jeedom::alert', array(
+					'level' => 'warning',
+					'page' => 'openzwave',
+					'message' => __('Le module ', __FILE__) . __(' vient d\'être exclu', __FILE__),
+				));
+				sleep(3);
+				event::add('jeedom::alert', array(
+					'level' => 'warning',
+					'page' => 'openzwave',
+					'message' => '',
+				));
 				return;
 			}
 			$result = self::callOpenzwave('/node?node_id=' . $_logical_id . '&type=info&info=all');
