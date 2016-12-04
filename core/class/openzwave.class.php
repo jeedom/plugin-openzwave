@@ -81,7 +81,7 @@ class openzwave extends eqLogic {
 					'message' => '',
 				));
 				return;
-			} elseif ($_exclusion == 1){
+			} elseif ($_exclusion == 1) {
 				sleep(3);
 				event::add('jeedom::alert', array(
 					'level' => 'warning',
@@ -732,7 +732,7 @@ class openzwave extends eqLogic {
 													$cmd = new openzwaveCmd();
 													$cmd->setType('action');
 													$cmd->setEqLogic_id($this->getId());
-													$cmd->setName($cmd_name. ' ' .$value);
+													$cmd->setName($cmd_name . ' ' . $value);
 													$cmd->setConfiguration('instanceId', $instanceID);
 													$cmd->setConfiguration('class', $ccId);
 													$cmd->setConfiguration('value', 'data[' . $index . '].Set(' . $value . ')');
