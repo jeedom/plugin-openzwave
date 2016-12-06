@@ -64,7 +64,6 @@
           {"index": 31, "value" : "Send tamper cancellation report"}
         ],
 		"groups" : [
-          {"index": 2, "value": "add"},
 		  {"index": 4, "value": "add"}
         ],
 		"wakeup" : 3600,
