@@ -72,8 +72,8 @@
 			"generic_type": "POWER"
 		},
 		"configuration": {
-			"class": "0x31",
-			"value": "data[4].val",
+			"class": "0x32",
+			"value": "data[8].val",
 			"maxValue": 2500,
 			"minValue": 0
 		}
