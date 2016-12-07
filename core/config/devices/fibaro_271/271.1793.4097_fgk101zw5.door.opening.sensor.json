@@ -60,6 +60,20 @@
 		}
 	},
 	{
+		"name": "SceneId",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x2b",
+			"instanceId": 0,
+			"value": "data[0].val"
+		},
+		"display": {
+			"generic_type": "DONT"
+		}
+	},
+	{
 		"name": "Batterie",
 		"type": "info",
 		"subtype": "numeric",
