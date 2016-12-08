@@ -9,7 +9,7 @@
 * Improvements/Enhancements
 
 ** Optimisation du code du serveur REST.
-** Rafraîchissement de l'état après une COMMAND_CLASS_SWITCH_BINARY si aucune notification reçu.
+** Rafraîchissement de l'état après une COMMAND_CLASS_SWITCH_BINARY si aucune notification reçue.
 
 * Bug Fixes
 
@@ -30,7 +30,7 @@
 
 * Bug Fixes
 
-** Teste des informations constructeur dans l'écran de santé ne remonte plus des NOK.
+** Test des informations constructeur dans l'écran de santé ne remonte plus des NOK.
 ** Perte des cases-à-cocher dans l'onglet Commandes de la page équipement.
 
 == 2016-08-17
@@ -55,7 +55,7 @@
 
 * New Features
 
-** Prise en charge de la restauration du dernier niveau connue sur les dimmer.
+** Prise en charge de la restauration du dernier niveau connue sur les dimmers.
 ** Distinction des modules FLiRS dans l'écran de santé.
 ** Ajout de la demande de mise à jour des routes de retour au contrôleur.
 ** Assistant pour appliquer les paramètres de configuration d'un module à plusieurs autres modules.
@@ -86,7 +86,7 @@
 
 * Bug Fixes
 
-** Correction de possible problèmes lors de la mise à jour des configurations de modules.
+** Correction de possibles problèmes lors de la mise à jour des configurations de modules.
 ** Graphique réseau, calcul des sauts sur l'id du contrôleur principal et non assumer l'ID 1.
 ** Gestion du bouton ajouter une association groupe.
 ** Affichage des valeurs False dans l'onglet Configuration.
@@ -107,7 +107,7 @@
 ** Permettre la sélection de toutes les instances des modules lors des associations directes.
 ** Mise à jour du wrapper python OpenZWave en version 0.3.0.
 ** Mise à jour de la librairie OpenZWave 1.4.248.
-** Ne pas afficher d'avertissement de wakeup expiré pour les modules sur piles alimentées par secteur.
+** Ne pas afficher d'avertissement de wakeup expiré pour les modules sur piles alimentés par secteur.
 ** Validation qu'un module est identique au niveau ids pour permettre la copie des paramètres.
 ** Simplification de l'assistant de copie des paramètres.
 ** Masquer des valeurs de l'onglet système qui n'ont pas lieu d'être affichées.
@@ -132,12 +132,12 @@
 ** Ajout d'un assistant de configuration recommandée.
 ** Ajout d'option pour activer/désactiver l'assistant de configuration recommandée lors de l'inclusion de nouveaux modules.
 ** Ajout d'option pour activer/désactiver la mise à jour des configurations des modules chaque nuit.
-** Ajout d'une route pour gérer les multi instances associations.
+** Ajout d'une route pour gérer les multi-instance associations.
 ** Ajout des Query Stage manquants.
 ** Ajout de la validation de la sélection du Dongle USB au démarrage du démon.
 ** Ajout de la validation et test du callback au démarrage du démon.
-** Ajout d'une option pour désactiver la mise à jour automatique des config de module.
-** Ajout d'une route pour modifier à l'exécution les traces de log du serveur REST. Note: aucun effect sur le niveau OpenZWave. http://ip_jeedom:8083/ZWaveAPI/Run/ChangeLogLevel(level) level => 40:Error, 20: Debug 10 Info
+** Ajout d'une option pour désactiver la mise à jour automatique des configs des modules.
+** Ajout d'une route pour modifier à l'exécution les traces de log du serveur REST. Note: aucun effet sur le niveau OpenZWave. http://ip_jeedom:8083/ZWaveAPI/Run/ChangeLogLevel(level) level => 40:Error, 20: Debug 10 Info
 
 * Improvements/Enhancements
 
@@ -151,18 +151,18 @@
 ** Affichage dans l'écran d'équipement si des éléments de configuration ne sont pas appliqués.
 ** Affichage dans l'écran de santé si un module sur piles ne s'est jamais réveillé.
 ** Affichage dans l'écran de santé si un module sur piles a dépassé le temps du réveil prévu.
-** Ajout de traces lors d'erreur de notifications.
+** Ajout de traces lors d'erreurs de notifications.
 ** Meilleure remontée de l'état des piles.
 ** Conformité du résumé / santé pour les thermostats sur piles.
 ** Meilleur détection de modules sur piles.
 ** Optimisation du mode Debug pour le serveur REST.
-** Forcer une actualisation de l'état des interrupteurs et dimer suite à l'envoi d'une commande switch all.
+** Forcer une actualisation de l'état des interrupteurs et dimmers suite à l'envoi d'une commande switch all.
 
 * Bug Fixes
 
 ** Correction de la découverte des groupes d'associations.
 ** Correction de l'erreur "Exception KeyError: (91,) in 'libopenzwave.notif_callback' ignored".
-** Correction de la sélection de la documentation de module pour les modules avec plusieurs profils.
+** Correction de la sélection de la documentation de modules pour les modules avec plusieurs profils.
 ** Gestion des boutons action du module.
 ** Correction de description de nom générique de class.
 ** Correction de la sauvegarde du fichier zwcfg.
@@ -200,7 +200,7 @@
 * Bug Fixes
 
 ** Correction fil pilote Fibaro retour d'état.
-** Correction d'un bug qui recréer les commandes lors de la mise à jour.
+** Correction d'un bug qui recrée les commandes lors de la mise à jour.
 
 == 2016.02.09
 
@@ -219,16 +219,16 @@ pouvant être utilisée dans les commandes.
 ** Ajout de notification réseau.
 ** Ajout d’une légende dans le graphe réseau.
 ** Ajout de la fonction soigner réseau via la table de routage.
-** Suppression automatique de nœud fantôme en un seul click.
+** Suppression automatique de nœud fantôme en un seul clic.
 ** Gestion des actions sur nœud selon l’état du noeud et le type.
 ** Gestion des actions réseau selon l’état du réseau.
 ** Mise à jour de la configuration de module automatique toutes les nuits.
 
 * Improvements/Enhancements
 
-** Refactoring complet du code du serveur REST, optimisation de vitesse de démarrage, lisibilité, respect de convention de nommage.
+** Refactoring complet du code du serveur REST, optimisation de la vitesse de démarrage, lisibilité, respect de la convention de nommage.
 ** Mise à l’équerre des logs.
-** Simplification de la gestion du refresh manuel 5min avec possibilité d’appliquer sur les nœuds sur piles.
+** Simplification de la gestion du refresh manuel 5 min avec possibilité d’appliquer sur les nœuds sur piles.
 ** Mise à jour de la librairie OpenZWave en 1.4
 ** Modification du test sanitaire pour réanimer les nœuds présumés morts plus facilement sans actions utilisateurs.
 ** Utilisation de couleurs vives de la table de routage et du graphe réseau.
