@@ -79,7 +79,7 @@
         "instanceId": 0,
         "value": "data[0].Set(#slider#)",
         "minValue": 0,
-        "maxValue": 100
+        "maxValue": 99
       },
       "template": {
         "dashboard": "light",
@@ -100,7 +100,7 @@
         "instanceId": 0,
         "value": "data[0].val",
         "minValue": 0,
-        "maxValue": 100
+        "maxValue": 99
       }
     },
     {
