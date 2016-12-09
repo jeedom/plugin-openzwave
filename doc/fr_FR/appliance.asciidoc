@@ -1,6 +1,6 @@
 == Configuration des équipements
 
-La configuration des équipements Z-Wave est accessible à partir du menu plugin :
+La configuration des équipements Z-Wave est accessible à partir du menu Plugins :
 
 image:../images/appliance01.png[]
 
@@ -35,7 +35,7 @@ image:../images/appliance04.png[]
 * *Configuration* : fenêtre de configuration des paramètres du module
 * *Assistant* : disponible uniquement sur certains modules, il vous aide à configurer le module (cas sur le zipato keyboard par exemple)
 * *Documentation* : ce bouton vous permet d'ouvrir directement la documentation Jeedom concernant ce module.
-* *Supprimer* : Permet de supprimer un équipement ainsi que tous ces commandes rattaché sans l'exclure du réseau Z-Wave.
+* *Supprimer* : Permet de supprimer un équipement ainsi que toutes ses commandes rattachées sans l'exclure du réseau Z-Wave.
 
 [IMPORTANT]
 La suppression d'un équipement n'engendre pas une exclusion du module sur le contrôleur.
@@ -54,12 +54,12 @@ En fonction des types et sous-types, certaines options peuvent être absentes.
 
 * le nom affiché sur le dashboard
 * icône : dans le cas d'une action permet de choisir une icône à afficher sur le dashboard au lieu du texte
-* valeur de la commande : dans le cas d'une commande type action, sa valeur peut être liée à une commande de type info, c'est ici que cela se configure. Exemple pour une lampe l'intensité est liée à son état, cela permet au widget d'avoir l'état réel de la lampe.
+* valeur de la commande : dans le cas d'une commande type action, sa valeur peut être liée à une commande de type info, c'est ici que cela se configure. Exemple, pour une lampe l'intensité est liée à son état, cela permet au widget d'avoir l'état réel de la lampe.
 * le type et le sous-type.
-* l'instance de cette commande Z-Wave (réservée aux experts).
-* la classe de la commande Z-Wave (réservée aux experts).
-* la commande en elle-même (réservée aux experts).
-* "Valeur de retour d'état" et "Durée avant retour d'état" : permet d'indiquer à Jeedom qu'après un changement sur l'information sa valeur doit revenir à Y, X min après le changement. Exemple : dans le cas d'un détecteur de présence qui n'émet que lors d'une détection de présence, il est utile de mettre par exemple 0 en valeur et 4 en durée, pour que 4 min après une détection de mouvement (et si ensuite, il n'y en a pas eu de nouvelles) Jeedom remette la valeur de l'information à 0 (plus de mouvement détecté).
+* l'instance de cette commande Z-Wave (réservé aux experts).
+* la classe de la commande Z-Wave (réservé aux experts).
+* la commande en elle-même (réservé aux experts).
+* "Valeur de retour d'état" et "Durée avant retour d'état" : permet d'indiquer à Jeedom qu'après un changement sur l'information sa valeur doit revenir à Y, X min après le changement. Exemple : dans le cas d'un détecteur de présence qui n'émet que lors d'une détection de présence, il est utile de mettre par exemple 0 en valeur et 4 en durée, pour que 4 min après une détection de mouvement (et si ensuite, il n'y en a pas eu de nouvelle) Jeedom remette la valeur de l'information à 0 (plus de mouvement détecté).
 * Historiser : permet d'historiser la donnée.
 * Afficher : permet d'afficher la donnée sur le dashboard.
 * Inverser : permet d'inverser l'état pour les types binaires.
@@ -94,7 +94,7 @@ image:../images/appliance06.png[]
 Vous pouvez les sélectionner via les choix possibles, si le module le permet.
 
 [IMPORTANT]
-Vous devez effectuer la loupe pour appliquer le nouveau jeux de commandes.
+Vous devez effectuer la loupe pour appliquer le nouveau jeu de commandes.
 
 === Documentation et Assistant
 
