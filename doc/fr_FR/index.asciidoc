@@ -35,7 +35,7 @@ include::zwcfg.asciidoc[]
 include::update.asciidoc[]
 
 '''
-== Liste des modules compatible
+== Liste des modules compatibles
 Vous trouverez la liste des modules compatibles link:https://jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-equipement.compatible.html[ici]
 
 '''
