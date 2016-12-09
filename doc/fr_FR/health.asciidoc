@@ -15,12 +15,12 @@ Vous avez ici :
 * *Constructeur* : indique si la récupération des informations d'identification du module est ok
 * *Voisin* : indique si la liste des voisins a bien été récupérée
 * *Statut* : Indique le statut de l'interview (query stage) du module
-* *Batterie* : niveau de batterie du module (un fiche secteur indique que le module est alimenté au secteur).
+* *Batterie* : niveau de batterie du module (une fiche secteur indique que le module est alimenté par secteur).
 * *Wakeup time* : pour les modules sur batterie, il donne la fréquence en secondes des instants où le module se réveille automatiquement.
 * *Paquet total* : affiche le nombre total de paquets reçus ou envoyés avec succès au module.
 * *%OK* : affiche le pourcentage de paquets envoyés/reçus avec succès.
 * *Temporisation* : affiche le délai moyen d'envoi de paquet en ms.
-* *Dernière notification* : Date de dernière notification reçue du module ainsi que l'heure du prochain réveil prévue, pour les modules qui dorment.
+* *Dernière notification* : Date de dernière notification reçue du module ainsi que l'heure du prochain réveil prévu, pour les modules qui dorment.
 ** Elle permet en plus d'informer si le noeud ne s'est pas encore réveillé une fois depuis le lancement du démon.
 ** Et indique si un noeud ne s'est pas réveillé comme prévu.
 * *Ping* : Permet d'envoyer une série de messages au module pour tester son bon fonctionnement.
@@ -88,7 +88,7 @@ Etape de l'interview d'un module après le démarrage du démon.
 * *ManufacturerSpecific1* Récupérer le nom du fabricant et de produits ids si ProtocolInfo le permet.
 * *NodeInfo* Récupérer les infos sur la prise en charge des classes de commandes supportées.
 * *NodePlusInfo* Récupérer les infos ZWave+ sur la prise en charge des classes de commandes supportées.
-* *SecurityReport* Récupérer la liste des classes de commande qui nécessitent de la sécurité.
+* *SecurityReport* Récupérer la liste des classes de commandes qui nécessitent de la sécurité.
 * *ManufacturerSpecific2* Récupérer le nom du fabricant et les identifiants de produits.
 * *Versions* Récupérer des informations de version.
 * *Instances* Récupérer des informations multi-instances de classe de commande.
