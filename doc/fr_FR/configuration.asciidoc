@@ -35,9 +35,9 @@ Le démon local et l'ensemble des démons déportés seront affichés avec leurs
 ** Le *Statut* indique que le démon est actuellement en fonction.
 ** La *Configuration* indique si la configuration du démon est valide.
 ** Le bouton *(Re)Démarrer* permet de forcer le redémarrage du plugin, en mode normal ou de le lancer une première fois.
-** Le bouton *Arrête*, visible seulement si la gestion automatique est désactivée, force l'arrêt du démon.
+** Le bouton *Arrêter*, visible seulement si la gestion automatique est désactivée, force l'arrêt du démon.
 ** La *Gestion automatique* permet à Jeedom de lancer automatiquement le démon au démarrage de Jeedom, ainsi que de le relancer en cas de problème.
-** Le *Dernier lancement* est comme son nom l'indique la date du dernier lancement connue du demon.
+** Le *Dernier lancement* est comme son nom l'indique la date du dernier lancement connu du demon.
 
 === Log
 Cette partie permet de choisir le niveau de log ainsi que d'en consulter le contenu.
@@ -63,14 +63,14 @@ image:../images/configuration06.png[]
 ** *Soigner le réseau automatiquement 2 fois par semaine* : option pour activer un soin automatique du réseau  Z-Wave (vivement conseillée en début d'installation si on déplace régulièrement les modules)
 ** *Mettre à jour la configuration des modules automatiquement, chaque jour à minuit* : option pour activer la mise à jour des configuration de module OpenZWave ainsi que les fichiers de commande Z-Wave.
 ** *Appliquer le jeu de configuration recommandé à l'inclusion* : option pour appliquer directement à l'inclusion le jeu de configuration recommandé par l'équipe Jeedom (conseillée)
-** *Activer les tests sanitaires* : au 15 minutes de l'heure le plugin va effectuer une série de tests sur l'ensemble des équipements actifs de votre réseau.
+** *Activer les tests sanitaires* : aux 15 minutes de l'heure le plugin va effectuer une série de tests sur l'ensemble des équipements actifs de votre réseau.
 *** Tentative de remonter les noeuds présumés morts par le contrôleur.
 *** Validation que le réseau ne contient pas d'Ids invalides comme un nodeId 0.
 *** Tests des modules secteurs ayant retournés une notification 'Timeout'.
 *** Tests si des modules sur piles ne sont pas retournés en sommeil profond après leur cycle de réveil.
 
 [IMPORTANT]
-Les tests sanitaires, seront exécutés seulement si le réseau n'est pas sollicité. Si des messages sont en attente de traitement, le serveur n'autorisera pas l'exécution des tests sanitaires.
+Les tests sanitaires seront exécutés seulement si le réseau n'est pas sollicité. Si des messages sont en attente de traitement, le serveur n'autorisera pas l'exécution des tests sanitaires.
 
 
 
@@ -119,4 +119,4 @@ La sélection du Port clé Z-Wave en mode de détection automatique, *Auto*, ne 
 === Paneau Mobile
 image:../images/configuration09.png[]
 
-Permet d'afficher ou non le panel mobile lors que vous utiliser l'application sur un téléphone.
+Permet d'afficher ou non le panel mobile lors que vous utilisez l'application sur un téléphone.
