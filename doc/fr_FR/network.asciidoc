@@ -35,7 +35,7 @@ Le réseau est dit fonctionnel au moment où il atteint le statut *Topology Load
 Un réseau *Ready*, signifie que tous les nœuds secteur et sur pile ont complété leur interview.
 
 [TIP]
-Selon les modules dont vous disposez, il est possible que le réseau n'atteigne jamais de lui-même le statut *Ready*. Les télécommandes, par exemple, ne se réveillent pas d'elles-mêmes et ne compléteront jamais leur interview. Dans ce genre de cas, le réseau est tout-à-fait opérationnel et même si les télécommandes n'ont pas complété leur interview, elles assurent leurs fonctionnalités au sein du réseau.
+Selon les modules dont vous disposez, il est possible que le réseau n'atteigne jamais de lui-même le statut *Ready*. Les télécommandes, par exemple, ne se réveillent pas d'elles-mêmes et ne compléteront jamais leur interview. Dans ce genre de cas, le réseau est tout à fait opérationnel et même si les télécommandes n'ont pas complété leur interview, elles assurent leurs fonctionnalités au sein du réseau.
 
 *Capacités*
 
@@ -99,7 +99,7 @@ Explication la légende des couleurs :
 * *Rouge* : présumé mort, ou sans voisin, ne participe pas/plus au maillage du réseau.
 
 [TIP]
-Seul les équipements actifs seront affichés dans le graphique réseau.
+Seuls les équipements actifs seront affichés dans le graphique réseau.
 
 Le réseau Z-Wave est constitué de trois différents types de nœuds avec trois fonctions principales.
 
@@ -127,7 +127,7 @@ Explication la légende des couleurs :
 * *Orange* : Toutes les routes ont plus d'un saut. Peut engendrer des latences.
 
 [TIP]
-Seul les équipements actifs seront affichés dans le graphique réseau.
+Seuls les équipements actifs seront affichés dans le graphique réseau.
 
 [IMPORTANT]
 Un module présumé mort, ne participe pas/plus au maillage du réseau. Il sera marqué ici d'un point d'exclamation rouge dans un triangle.
