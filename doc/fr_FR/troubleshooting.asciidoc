@@ -1,13 +1,13 @@
-==  Depannage et diagnostic
+==  Dépannage et diagnostic
 
-=== Mon module est pas detecte ou ne remonte pas ses identifiants produit et type
+=== Mon module n'est pas détecté ou ne remonte pas ses identifiants produit et type
 image:../images/troubleshooting01.png[]
 
 Lancer la Régénération de la détection du nœud depuis l'onglet Actions du module.
 
 Si vous avez plusieurs modules dans ce cas de figure, lancer *Régénérer la détection de nœuds inconnues* depuis l'écran *Réseau ZWave* onglet *Actions*.
 
-=== Mon module est presume mort par le controleur Dead
+=== Mon module est présumé mort par le contrôleur Dead
 image:../images/troubleshooting02.png[]
 
 Si le module est toujours branché et joignable, suivre les solutions proposées dans l'écran du module.
@@ -15,7 +15,7 @@ Si le module est toujours branché et joignable, suivre les solutions proposées
 Si le module a été décommissioné ou est réellement défectueux, vous pouvez l'exclure du réseau en utilisant *supprimer le nœud en erreur* via onglet *Actions*.
 
 Si le module est parti en réparation et un nouveau module de remplacement a été livré, vous pouvez lancer *Remplacer nœud en échec* via onglet *Actions*, le contrôleur déclenche l'inclusion puis vous devez procéder à l'inclusion sur le module.
-L'id de l'ancien module sera conservé ainsi que ces commandes.
+L'id de l'ancien module sera conservé ainsi que ses commandes.
 
 
 === Comment utiliser la commande SwitchAll
@@ -24,7 +24,7 @@ image:../images/troubleshooting03.png[]
 Elle est disponible via votre nœud contrôleur.
 Votre contrôleur devrait avoir les commandes Switch All On et Switch All Off.
 
-Si votre contrôleur n'apparaît pas dans votre liste de module, lancez la synchronisation.
+Si votre contrôleur n'apparaît pas dans votre liste de modules, lancez la synchronisation.
 
 image:../images/troubleshooting04.png[]
 
@@ -33,7 +33,7 @@ La Commande Classe Switch All est en général supportée sur les interrupteurs 
 On peut donc soit:
 
 ** Désactiver la Commande Classe Switch All.
-** Activé pour le On et le Off.
+** Activer pour le On et le Off.
 ** Activer le On seulement.
 ** Activer le Off seulement.
 
@@ -52,7 +52,7 @@ Il s'agit d'une commande *Info* en CC *0x2b* Instance *0* commande *data[0].val*
 Le mode scène doit être activé dans les paramètres du module. Voir la documentation de votre module pour plus de détails.
 
 
-=== Forcer le rafraichissement de valeurs
+=== Forcer le rafraîchissement des valeurs
 
 Il est  possible de forcer à la demande le rafraîchissement des valeurs d'une instance pour une commande classe spécifique.
 
@@ -75,7 +75,7 @@ L'accès a l'api REST ayant changé voir les détails link:./restapi.asciidoc[i�
 === Transferer les modules sur un nouveau controleur
 Pour différentes raisons vous pouvez être amené à devoir transférer l'ensemble de vos modules sur un nouveau contrôleur principal.
 
-Vous décidez de passer du *raZberry* à un *Z-Stick Gen5* ou parce que, vous devez effectuer un *Reset* complet du contrôleur principal.
+Vous décidez de passer du *raZberry* à un *Z-Stick Gen5* ou parce que vous devez effectuer un *Reset* complet du contrôleur principal.
 
 Voici différentes étapes pour y arriver sans perdre vos scénarios, widget et historique de valeur:
 
@@ -90,7 +90,7 @@ Voici différentes étapes pour y arriver sans perdre vos scénarios, widget et 
 ** 8) (Via deuxième onglet) Faire une exclusion puis une inclusion du module. Un nouvel équipement sera créé.
 ** 9) Copier l'ID Z-Wave du nouvel équipement, puis supprimer cet équipement.
 ** 10) Retourner sur l'onglet de l'ancien module (1er onglet) puis coller le nouvel ID à la place de l'ancien ID.
-** 11) Les paramètres ZWave ont été perdus lors de l'exclusion/inclusion, pensez à remettre vos paramètres spécifiques si vous n'utilisez les valeurs par défaut.
+** 11) Les paramètres ZWave ont été perdus lors de l'exclusion/inclusion, pensez à remettre vos paramètres spécifiques si vous n'utilisez pas les valeurs par défaut.
 ** 11) Répéter les étapes 7 à 11 pour chaque module à transférer.
 ** 12) A la fin vous ne devriez plus avoir d'équipement en ID 0.
 ** 13) Vérifier que tous les modules sont bien nommés dans l'écran de santé Z-Wave. Lancer la Synchronisation si ce n'est pas le cas.
@@ -119,13 +119,13 @@ Si le module n'est pas présumé "Dead" mais est toujours accessible:
 ** Remettre vos paramètres spécifiques.
 
 
-=== Suppression de noeud fantome
+=== Suppression de noeud fantôme
 Si vous avez perdu toute communication avec un module sur pile et que vous souhaitez l'exclure du réseau, il est possible que l'exclusion n’aboutisse pas ou que le nœud reste présent dans votre réseau.
 
 Un assistant automatique de nœud fantôme est disponible.
 
 ** Allez sur l'onglet actions du module à supprimer.
-** Il aura probablement un statu *CacheLoad*.
+** Il aura probablement un statut *CacheLoad*.
 ** Lancer la commande *Supprimer nœud fantôme*.
 ** Le réseau Z-Wave s'arrête. L'assistant automatique modifie le fichier *zwcfg* pour supprimer la CC WakeUp du module. Le réseau redémarre.
 ** Fermer l'écran du module.
@@ -139,9 +139,9 @@ Cette assistant est disponible seulement pour les modules sur piles.
 
 
 
-=== Actions post inclusion
+=== Actions post-inclusion
 
-On recommande d'effectuer l'inclusion à moins 1M du contrôleur principal, or ce ne sera pas la position finale de votre nouveau module.
+On recommande d'effectuer l'inclusion à moins d'1m du contrôleur principal, or ce ne sera pas la position finale de votre nouveau module.
 Voici quelques bonnes pratiques à faire suite à l’inclusion d'un nouveau module dans votre réseau.
 
 Une fois l'inclusion terminée, il faut appliquer un certain nombre de paramètres à notre nouveau module afin d'en tirer le maximum. Rappel, les modules suite à l'inclusion ont les paramètres par défaut du constructeur.
@@ -152,7 +152,7 @@ Tester votre module, valider les remontées d'informations, retour d'état et ac
 
 Lors de l'interview votre nouveau module a recherché ses voisins. Toutefois les modules de votre réseau ne connaissent pas encore votre nouveau module.
 
-Déplacer votre module à son emplacement définitif. Lancer la mise à jour de ces voisins et réveiller-le encore une fois.
+Déplacez votre module à son emplacement définitif. Lancez la mise à jour de ses voisins et réveillez-le encore une fois.
 
 image:../images/troubleshooting07.png[]
 
@@ -164,38 +164,38 @@ Cette action peut prendre 24 heures avant d'être terminée, vos modules sur pil
 
 image:../images/troubleshooting08.png[]
 
-L'option de soigner le réseau 2x par semaine permet de faire ce processus sans action de votre part, elle est utile lors de la mise en place de nouveaux modules et ou lorsqu'on les déplace.
+L'option de soigner le réseau 2x par semaine permet de faire ce processus sans action de votre part, elle est utile lors de la mise en place de nouveaux modules et/ou lorsqu'on les déplace.
 
 
-=== Pas de remontee etat de la pile
+=== Pas de remontée état de la pile
 
 Les modules Z-Wave n'envoie que très rarement l'état de leurs piles au contrôleur.
-Certains vont le faire à l'inclusion puis seulement lorsque celle-ci atteint 20% ou une autre valeur de seuil critique.
+Certains vont le faire à l'inclusion puis seulement lorsque celles-ci atteignent 20% ou une autre valeur de seuil critique.
 
 Pour vous aider à mieux suivre l'état de vos piles l'écran Batteries sous le menu Analyse vous donne une vue d'ensemble de l'état de vos piles.
 Un mécanisme de notification de piles faibles est aussi disponible.
 
 La valeur remontée de l'écran Piles est la dernière connue dans le cache.
 
-Toutes les nuits, le plugin Z-Wave demande à chaque module de rafraichir la valeur Battery. Au prochain réveil, le module envoie la valeur à Jeedom pour être ajouté au cache.
+Toutes les nuits, le plugin Z-Wave demande à chaque module de rafraîchir la valeur Battery. Au prochain réveil, le module envoie la valeur à Jeedom pour être ajouté au cache.
 Donc il faut en général attendre au moins 24h avant l'obtention d'une valeur dans l'écran Batteries.
 
 [TIP]
-Il est bien entendu possible de rafraichir manuellement la valeur Battery via l'onglet Valeurs du module puis, soit attendre le prochain réveil ou encore de réveiller manuellement le module pour obtenir une remontée immédiate.
+Il est bien entendu possible de rafraîchir manuellement la valeur Battery via l'onglet Valeurs du module puis, soit attendre le prochain réveil ou encore de réveiller manuellement le module pour obtenir une remontée immédiate.
 Le cycle de réveil (Wake-up Interval) du module est défini dans l'onglet Système du module. Pour optimiser la vie de vos piles il est recommandé d'espacer au maximum ce délai. Pour 4h il faudrait appliquer 14400, 12h 43200.
-Certains modules doivent écouter régulièrement des messages du contrôleur comme les Thermostats dans ce cas il faut penser à 15min  soit 900. Chaque module est différent il n'y a donc pas de règle exact c'est au cas par cas et selon l’expérience.
+Certains modules doivent écouter régulièrement des messages du contrôleur comme les Thermostats dans ce cas il faut penser à 15min  soit 900. Chaque module est différent il n'y a donc pas de règle exacte c'est au cas par cas et selon l’expérience.
 
 [TIP]
 La décharge d'une pile n'est pas linéaire, certains modules vont montrer un grosse perte en pourcentage dans les premiers jours de mise en service, puis ne plus bouger durant des semaines pour se vider rapidement une fois passé les 20%.
 
 
-=== Controleur est en cours d initialisation
+=== Contrôleur est en cours d initialisation
 
 Lorsque vous démarrez le démon Z-Wave, si vous essayez de lancer immédiatement une inclusion/exclusion vous risquez d'obtenir ce message:
 * "Le contrôleur est en cours d'initialisation veuillez réessayer dans quelques minutes"
 
 [TIP]
-Suite au démarrage du démon, le contrôleur passe sur l'ensemble des modules afin de refaire leur interview. Ce comportement est tout-à-fait normal en OpenZWave.
+Suite au démarrage du démon, le contrôleur passe sur l'ensemble des modules afin de refaire leur interview. Ce comportement est tout à fait normal en OpenZWave.
 
 Si toutefois après plusieurs minutes (plus de 10 minutes) vous avez toujours ce message ce n'est plus normal.
 
@@ -221,7 +221,7 @@ Si le problème persiste toujours, il faut réinitialiser le contrôleur:
 * Arrêter complément votre Jeedom via le menu d'arrêt dans le profil utilisateur.
 * Débrancher l'alimentation.
 * Retirer le dongle USB ou le Razberry selon le cas, environ 5 minutes.
-* Re brancher le tout et essayer à nouveau.
+* Rebrancher le tout et essayer à nouveau.
 
 === Le controleur ne repond plus
 
@@ -237,12 +237,12 @@ Si le problème persiste, il faut réinitialiser le contrôleur:
 * Arrêter complément votre Jeedom via le menu d'arrêt dans le profil utilisateur.
 * Débrancher l'alimentation.
 * Retirer le dongle USB ou le Razberry selon le cas, environ 5 minutes.
-* Re brancher le tout et essayer à nouveau.
+* Rebrancher le tout et essayer à nouveau.
 
 
-=== Erreur lors des dependances
+=== Erreur lors des dépendances
 
-Plusieurs erreurs erreur peuvent survenir lors de la mise à jour des dépendances.
+Plusieurs erreurs peuvent survenir lors de la mise à jour des dépendances.
 Il faut consulter le log de mise à jour des dépendances afin de déterminer quelle est exactement l'erreur.
 De façon générale l'erreur se trouve à la fin du log dans les quelque dernières lignes.
 
@@ -276,7 +276,7 @@ Cette erreur peut survenir suite à un manque de mémoire RAM durant la compilat
 
 Depuis l'UI jeedom, lancer la compilation des dépendances.
 
-Une fois lancée, en ssh, arrêté ces processus (consommateurs en mémoire) :
+Une fois lancée, en ssh, arrêtez ces processus (consommateurs de mémoire) :
 
  sudo systemctl stop cron
  sudo systemctl stop apache2
@@ -286,14 +286,14 @@ Pour suivre l'avancement de la compilation on fait un tail sur le fichier log op
 
  tail -f /var/www/html/log/openzwave_update
 
-Lorsque la compilation est terminée et sans erreur, relancez  les services que vous avez arrêté
+Lorsque la compilation est terminée et sans erreur, relancez  les services que vous avez arrêtés
 
 sudo systemctl start cron
 sudo systemctl start apache2
 sudo systemctl start mysql
 
 [TIP]
-Si vous etes toujours sous nginx il faudra remplacer *apache2* par *nginx* dans les commandes *stop* / *start*.
+Si vous êtes toujours sous nginx il faudra remplacer *apache2* par *nginx* dans les commandes *stop* / *start*.
 Le fichier log openzwave_update sera dans le dossier: /usr/share/nginx/www/jeedom/log .
 
 
