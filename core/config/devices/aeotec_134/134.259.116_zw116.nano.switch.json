@@ -1,0 +1,142 @@
+{
+	"name": "Nano Switch (ZW116)",
+	"doc": "",
+	"type": "Micromodule",
+	"comlink": "",
+	"remark": "",
+	"imglink": "aeotec.nanoswitch",
+	"commands": [
+	{
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "",
+      "display": {
+        "generic_type": "LIGHT_STATE"
+      },
+      "configuration": {
+        "class": "0x25",
+        "value": "data[0].val"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+    {
+      "name": "On",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "value": "Etat",
+      "display": {
+        "generic_type": "LIGHT_ON"
+      },
+      "configuration": {
+        "class": "0x25",
+        "value": "data[0].Set(255)"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+    {
+      "name": "Off",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "value": "Etat",
+      "display": {
+        "generic_type": "LIGHT_OFF"
+      },
+      "configuration": {
+        "class": "0x25",
+        "value": "data[0].Set(0)"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+    {
+      "name": "Puissance",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite": "W",
+      "display": {
+        "generic_type": "POWER"
+      },
+      "configuration": {
+        "class": "0x32",
+        "value": "data[8].val",
+        "maxValue": 2300,
+        "minValue": 0
+      }
+    },
+    {
+      "name": "Consommation",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite": "kWh",
+      "display": {
+        "generic_type": "CONSUMPTION"
+      },
+      "configuration": {
+        "class": "0x32",
+        "value": "data[0].val"
+      },
+      "template": {
+        "dashboard": "tile"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
+      }
+    },
+    {
+      "name": "Tension",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite": "V",
+      "display": {
+        "generic_type": "VOLTAGE"
+      },
+      "configuration": {
+        "class": "0x32",
+        "value": "data[16].val"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
+      }
+    },
+    {
+      "name": "Intensité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite": "A",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "configuration": {
+        "class": "0x32",
+        "value": "data[20].val"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
+      }
+    }
+	]
+}
