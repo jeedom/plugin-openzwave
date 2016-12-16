@@ -38,11 +38,11 @@
 		"configuration": {
 			"class": "0x71",
 			"instanceId": 0,
-			"value": "data[8].val",
-			"calculValueOffset": "#value#!=2"
+			"value": "data[1].val",
+			"calculValueOffset": "#value#==255"
 		},
 		"display": {
-			"invertBinary": "1",
+			"invertBinary": "0",
 			"generic_type": "FLOOD"
 		},
 		"template": {
@@ -55,14 +55,13 @@
 		"type": "info",
 		"subtype": "binary",
 		"configuration": {
-			"class": "0x9C",
+			"class": "0x71",
 			"instanceId": 0,
 			"value": "data[0].val",
-			"returnStateTime": "1",
-			"returnStateValue": "0"
+			"calculValueOffset": "#value#==7"
 		},
 		"display": {
-			"invertBinary": "1",
+			"invertBinary": "0",
 			"generic_type": "SABOTAGE"
 		}
 	},
