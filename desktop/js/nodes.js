@@ -400,14 +400,14 @@ jeedom.openzwave.node.setParam(setParamOptions);
                 if (node_selected.multi_instance.support) {
                     if (val.description.is_static_controller) {
                      if (associations.indexOf(key + ';0') < 0) {
-                      options.push({value : key + ';0', text :  text + ' (0)'});
+                      options.push({value : key + ';0', text :  text });
                   }
                   if (associations.indexOf(key + ';1') < 0) {
                      options.push({value : key + ';1', text :  text + ' (1)'});
                  }
              }else if(val.multi_instance.instances == 1){
                if (associations.indexOf(key + ';0') < 0) {
-                  options.push({value : key + ';0', text :  text + ' (0)'});
+                  options.push({value : key + ';0', text :  text});
               }
           }else {
             for (i = 1; i <= val.multi_instance.instances; i++) {
@@ -419,7 +419,7 @@ jeedom.openzwave.node.setParam(setParamOptions);
         }
     }else{
        if (associations.indexOf(key + ';0') < 0) {
-         options.push({value : key + ';0', text :  text + ' (0)'});
+         options.push({value : key + ';0', text :  text });
      }
  }
 }
@@ -891,7 +891,7 @@ function show_groups(){
                         var node_name = nodes[target_id].description.product_name;
                     }
                     if (node_instance > 0) {
-                        var instanceDisplay = node_instance -1;
+                        var instanceDisplay = node_instance;
                         node_name += " (Instance: " + instanceDisplay + ")";
                     }
                 } else {
