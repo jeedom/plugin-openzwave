@@ -21,7 +21,7 @@
 			"value": "data[0].val"
 		},
 		"display": {
-			"invertBinary": "1",
+			"invertBinary": "0",
 			"generic_type": "FLOOD"
 		},
 		"template": {
@@ -40,7 +40,7 @@
 			"calculValueOffset": "#value#==7"
 		},
 		"display": {
-			"invertBinary": "0",
+			"invertBinary": "1",
 			"generic_type": "SABOTAGE"
 		}
 	},
