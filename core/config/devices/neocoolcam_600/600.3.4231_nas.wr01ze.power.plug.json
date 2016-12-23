@@ -95,5 +95,47 @@
 		"template": {
 			"dashboard": "tile"
 		}
+	},
+	{
+		"name": "Tension",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "V",
+		"display": {
+			"generic_type": "VOLTAGE"
+		},
+		"configuration": {
+			"class": "0x32",
+			"value": "data[16].val",
+			"maxValue": 200,
+			"minValue": 260
+		},
+		"template": {
+			"dashboard": "tile",
+			"mobile": "tile"
+		}
+	},
+	{
+		"name": "Intensité",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "A",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x32",
+			"value": "data[20].val",
+			"maxValue": 13,
+			"minValue": 0
+		},
+		"template": {
+			"dashboard": "tile",
+			"mobile": "tile"
+		}
 	}]
 }
