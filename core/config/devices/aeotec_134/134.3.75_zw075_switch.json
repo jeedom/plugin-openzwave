@@ -76,7 +76,7 @@
 			"class": "0x32",
 			"value": "data[8].val",
 			"minValue": 0,
-			"maxValue": 2200
+			"maxValue": 3520
 		}
 	},
 	{

@@ -77,7 +77,7 @@
       "configuration": {
         "class": "0x32",
         "value": "data[8].val",
-        "maxValue": 2500,
+        "maxValue": 3000,
         "minValue": 0
       }
     },
