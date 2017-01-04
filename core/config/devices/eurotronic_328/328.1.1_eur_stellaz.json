@@ -208,5 +208,39 @@
 			"class": "0x80",
 			"value": "data[0].val"
 		}
+	},
+	{
+		"name": "Level",
+		"type": "action",
+		"subtype": "slider",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x26",
+			"instanceId": 0,
+			"value": "data[0].Set(#slider#)",
+			"minValue": 0,
+			"maxValue": 99
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x26",
+			"instanceId": 0,
+			"value": "data[0].val",
+			"minValue": 0,
+			"maxValue": 99
+		}
 	}]
 }
