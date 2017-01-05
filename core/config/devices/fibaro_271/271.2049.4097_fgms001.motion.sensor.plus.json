@@ -6,9 +6,6 @@
 	"remark": "Par défaut possède une configuration très économique. Lire la documentation pour le configurer correctement. Faire les associations à jeedom pour les groupes 1, 4 et 5",
 	"imglink": "fibaro.fgms001zw5",
 	"battery_type": "1x3V CR123A",
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
 		"name": "Présence",
 		"type": "info",
@@ -163,9 +160,9 @@
 			"name": "Configuration des messages des classes de commande classiques BASIC COMMAND CLASS",
 			"help": "Ce paramètre définit quels messages seront envoyés dans le premier groupe d`association (lié avec le capteur PIR). Les valeurs des messages de commande BASIC ON et BASIC OFF peuvent être modifiées par les paramètres dédiés.",
 			"list": {
-				"BASIC ON and BASIC OFF command frames sent in Basic Command Class.": "Envoi du message de commande BASIC ON et BASIC OFF dans Basic Command Class",
-				"only the BASIC ON command frame sent in Basic Command Class.": "Le message de commande BASIC ON sera uniquement envoyé dans Basic Command",
-				"only the BASIC OFF command frame sent in Basic Command Class.": "e message de commande BASIC OFF sera uniquement envoyé dans Basic Command"
+				"BASIC On and OFF": "BASIC ON et BASIC OFF",
+				"Only the BASIC On": "BASIC ON uniquement",
+				"Only the BASIC Off": "BASIC OFF uniquement"
 			}
 		},
 		"14": {
@@ -189,10 +186,8 @@
 			"help": "Ce paramètre définit le comportement et le mode de notification du capteur anti-sabotage. Sabotage : la détection d'un sabotage par le détecteur est notifiée dans la classe de commande du détecteur d’alarme. Annulation : L`annulation du capteur anti-sabotage est notifiée dans la classe de commande du détecteur d’alarme après le temps défini dans le paramètre 22 (délai d’annulation de l`alarme de sabotage). Orientation : L'orientation du détecteur dans l'espace est notifiée dans la classe de commande du détecteur d’alarme après le délai indiqué dans le paramètre 22. Vibration : Le niveau maximum de vibrations est enregistré durant la période définie dans le paramètre 22. Les rapports cessent d’être envoyés lorsque les vibrations cessent. Ceux-ci sont envoyés dans la classe de commande du détecteur d’alarme. La valeur affichée dans le champ valeur (0 - 100) dépendra de la force des vibrations. Les rapports aux groupes d’association sont envoyés à l’aide de la classe de commande du détecteur d’alarme.",
 			"list": {
 				"Tamper": "Sabotage",
-				"Tamper + Cancellation": "Sabotage + Annulation",
-				"Tamper + Orientation": "Sabotage + Orientation",
-				"Tamper + Cancellation + Orientation": "Sabotage + Annulation + Orientation",
-				"Vibration": "Vibration"
+				"Tamper and earthquake detector": "Sabotage + Secousse",
+				"Tamper and orientation in space": "Sabotage + Orientation"
 			}
 		},
 		"26": {
@@ -291,7 +286,8 @@
 	},
 	"recommended" : {
 		"params" : [       
-          {"index": 24, "value" : "Tamper + Cancellation"}
+          	{"index": 18, "value" : 0},
+			{"index": 24, "value" : 1}
         ],
 		"groups" : [
           {"index": 1, "value": "add"},
