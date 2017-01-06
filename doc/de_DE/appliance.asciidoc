@@ -1,4 +1,4 @@
-== Configuration des équipements
+== Geräte Konfiguration
 
 La configuration des équipements Z-Wave est accessible à partir du menu plugin :
 
