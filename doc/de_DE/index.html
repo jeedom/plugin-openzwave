@@ -430,7 +430,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_dépendances">3.1. Dépendances</a></li>
 <li><a href="#_démon">3.2. Démon</a></li>
 <li><a href="#_log">3.3. Log</a></li>
-<li><a href="#_configuration">3.4. Configuration</a></li>
+<li><a href="#_konfiguration">3.4. Konfiguration</a></li>
 <li><a href="#_démon_local_ou_démon_xxx">3.5. Démon local ou Démon XXX</a></li>
 <li><a href="#_paneau_mobile">3.6. Paneau Mobile</a></li>
 </ul>
@@ -501,7 +501,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#_api_http">14. API HTTP</a></li>
-<li><a href="#_changelog">15. Changelog</a></li>
+<li><a href="#_Änderungsprotokoll">15. Änderungsprotokoll</a></li>
 <li><a href="#__beta">16. (beta)</a></li>
 <li><a href="#_2016_08_26">17. 2016-08-26</a></li>
 <li><a href="#_2016_08_17">18. 2016-08-17</a></li>
@@ -857,7 +857,7 @@ Une fois le debug terminé, il ne faut pas oublier de retourner sur un niveau mo
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configuration">3.4. Configuration</h3>
+<h3 id="_konfiguration">3.4. Konfiguration</h3>
 <div class="paragraph">
 <p>Cette partie permet de configurer les paramètres généraux du plugin
 <span class="image"><img src="../images/configuration06.png" alt="configuration06"></span></p>
@@ -3465,7 +3465,7 @@ Pour lancer un ping sur le noeud id 2</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_changelog">15. Changelog</h2>
+<h2 id="_Änderungsprotokoll">15. Änderungsprotokoll</h2>
 <div class="sectionbody">
 
 </div>
@@ -3506,10 +3506,10 @@ Pour lancer un ping sur le noeud id 2</p>
 <p>Rafraîchissement de l&#8217;ensemble des instances suite a un broadcast de la CC Switch ALL.</p>
 </li>
 <li>
-<p>Retour json de la route /ZWaveAPI/Run/devices[&lt;int:node_id&gt;].GetPendingChanges() plus inclue dans result.</p>
+<p>Rückgabe des json Pfad /ZWaveAPI/Run/devices[&lt;int:node_id&gt;].GetPendingChanges() plus hinzugefügtem Resultat.</p>
 </li>
 <li>
-<p>Retour json de la route /ZWaveAPI/Run/devices[&lt;int:node_id&gt;].GetLastNotification() plus inclue dans result.</p>
+<p>Rückgabe des json Pfad /ZWaveAPI/Run/devices[&lt;int:node_id&gt;].GetLastNotification() plus hinzugefügtem Resultat.</p>
 </li>
 </ul>
 </div>
@@ -3583,7 +3583,7 @@ Pour lancer un ping sur le noeud id 2</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Mise à jour de la librairie OpenZWave 1.4.2088.</p>
+<p>OpenZWave Bibliothek 1.4.2088 aktualisiert.</p>
 </li>
 <li>
 <p>Correction de l’orthographe.</p>
@@ -3707,7 +3707,7 @@ Pour lancer un ping sur le noeud id 2</p>
 <p>Correction de l&#8217;orthographe des écrans, merci @Juan-Pedro aka: kiko.</p>
 </li>
 <li>
-<p>Mise à jour de la documentation du plugin.</p>
+<p>Plugin Dokumentations Update.</p>
 </li>
 </ul>
 </div>
@@ -4068,7 +4068,7 @@ Pour lancer un ping sur le noeud id 2</p>
 <p>Ajout du push notification en case de node_event, permet la mise en place d’une cmd info en CC 0x20 pour récupérer des événement sur les nodes.</p>
 </li>
 <li>
-<p>Ajout de la route ForceRefresh http://ip_jeedom:8083/ZWaveAPI/Run/devices&lt;int:node_id&gt;.instances[&lt;int:instance_id&gt;].commandClasses[&lt;cc_id&gt;].data[&lt;int:index&gt;].ForceRefresh()
+<p>ForceRefresh Pfad hinzufügen http://ip_jeedom:8083/ZWaveAPI/Run/devices&lt;int:node_id&gt;.instances[&lt;int:instance_id&gt;].commandClasses[&lt;cc_id&gt;].data[&lt;int:index&gt;].ForceRefresh()
 pouvant être utilisée dans les commandes.</p>
 </li>
 <li>

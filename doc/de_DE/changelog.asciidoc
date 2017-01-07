@@ -1,4 +1,4 @@
-== Changelog
+== Änderungsprotokoll
 
 == (beta)
 
@@ -14,8 +14,8 @@
 * Bug Fixes
 
 ** Rafraîchissement de l'ensemble des instances suite a un broadcast de la CC Switch ALL.
-** Retour json de la route /ZWaveAPI/Run/devices[<int:node_id>].GetPendingChanges() plus inclue dans result.
-** Retour json de la route /ZWaveAPI/Run/devices[<int:node_id>].GetLastNotification() plus inclue dans result.
+** Rückgabe des json Pfad /ZWaveAPI/Run/devices[<int:node_id>].GetPendingChanges() plus hinzugefügtem Resultat.
+** Rückgabe des json Pfad /ZWaveAPI/Run/devices[<int:node_id>].GetLastNotification() plus hinzugefügtem Resultat.
 
 == 2016-08-26
 
@@ -41,7 +41,7 @@
 
 * Improvements/Enhancements
 
-** Mise à jour de la librairie OpenZWave 1.4.2088.
+** OpenZWave Bibliothek 1.4.2088 aktualisiert.
 ** Correction de l’orthographe.
 ** Refonte de l'écran équipements avec onglets.
 
@@ -82,7 +82,7 @@
 ** Ecran de santé, modification de nom de colonne et avertissement en cas de non communication avec un module.
 ** Optimisation du serveur REST.
 ** Correction de l'orthographe des écrans, merci @Juan-Pedro aka: kiko.
-** Mise à jour de la documentation du plugin.
+** Plugin Dokumentations Update.
 
 * Bug Fixes
 
@@ -207,7 +207,7 @@
 * New Features
 
 ** Ajout du push notification en case de node_event, permet la mise en place d’une cmd info en CC 0x20 pour récupérer des événement sur les nodes.
-** Ajout de la route ForceRefresh \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ForceRefresh()
+** ForceRefresh Pfad hinzufügen \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ForceRefresh()
 pouvant être utilisée dans les commandes.
 ** Ajout du route SwitchAll \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[1].commandClasses[0xF0].SwitchAll(<int:state>)
 disponible via le contrôleur principal.

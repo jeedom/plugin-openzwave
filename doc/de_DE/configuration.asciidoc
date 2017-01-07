@@ -54,7 +54,7 @@ Il n’est pas recommandé de laisser tourner le démon en *Debug* en permanence
 Une fois le debug terminé, il ne faut pas oublier de retourner sur un niveau moins élevé comme le niveau *Error* qui ne remonte que d'éventuelles erreurs.
 
 
-=== Configuration
+=== Konfiguration
 Cette partie permet de configurer les paramètres généraux du plugin
 image:../images/configuration06.png[]
 
