@@ -51,7 +51,7 @@
 		"configuration": {
 			"instanceId": "0",
 			"class": "0x40",
-			"value": "data[0].Set(Off)"
+			"value": "data[0].Set(Frost Protection)"
 		}
 	},
 	{
@@ -66,11 +66,11 @@
 		"configuration": {
 			"instanceId": "0",
 			"class": "0x40",
-			"value": "data[0].Set(Heat)"
+			"value": "data[0].Set(Comfort)"
 		}
 	},
 	{
-		"name": "ECO",
+		"name": "Energy Saving",
 		"type": "action",
 		"value":"Mode Actuel",
 		"display": {
@@ -81,7 +81,7 @@
 		"configuration": {
 			"instanceId": "0",
 			"class": "0x40",
-			"value": "data[0].Set(Heat Econ)"
+			"value": "data[0].Set(Energy Saving)"
 		}
 	},
 	{
