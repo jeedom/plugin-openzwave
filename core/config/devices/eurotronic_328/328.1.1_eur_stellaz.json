@@ -40,7 +40,7 @@
 		}
 	},
 	{
-		"name": "Off",
+		"name": "Frost Protection",
 		"type": "action",
 		"value":"Mode Actuel",
 		"display": {
