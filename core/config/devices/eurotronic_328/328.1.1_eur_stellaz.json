@@ -85,6 +85,21 @@
 		}
 	},
 	{
+		"name": "Direct Valve Control",
+		"type": "action",
+		"value":"Mode Actuel",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_MODE"
+		},
+		"subType": "other",
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x40",
+			"value": "data[0].Set(Direct Valve Control)"
+		}
+	},
+	{
 		"name": "Commande Comfort",
 		"type": "action",
 		"subtype": "slider",
