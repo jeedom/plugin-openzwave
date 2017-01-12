@@ -65,7 +65,7 @@
 		"configuration": {
 			"instanceId": "0",
 			"class": "0x40",
-			"value": "data[0].Set(Heat)"
+			"value": "data[0].Set(Heat (Default))"
 		}
 	},
 	{
@@ -80,7 +80,7 @@
 		"configuration": {
 			"instanceId": "0",
 			"class": "0x40",
-			"value": "data[0].Set(Heat Econ)"
+			"value": "data[0].Set(Energy Heat)"
 		}
 	},
 	{
