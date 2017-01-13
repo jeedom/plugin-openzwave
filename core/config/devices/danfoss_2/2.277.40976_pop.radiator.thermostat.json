@@ -12,6 +12,7 @@
 		"name": "Commande",
 		"type": "action",
 		"subtype": "slider",
+		"value" : "Consigne",
 		"isVisible": 1,
 		"isHistorized": 0,
 		"unite": "°C",
@@ -30,7 +31,7 @@
 		"name": "Consigne",
 		"type": "info",
 		"subtype": "numeric",
-		"isVisible": 1,
+		"isVisible": 0,
 		"isHistorized": 0,
 		"unite": "°C",
 		"display": {
