@@ -1,9 +1,9 @@
 {
-	"name": "Thermostat Living Connect",
+	"name": "RA Plus-W Radiator Thermostat",
 	"type": "Thermostat",
-	"comlink": "2495-danfoss-tete-electronique-living-connect-z-wave-lc-13-5013567421497",
+	"comlink": "",
 	"remark": "",
-	"imglink": "danfoss.living-connect",
+	"imglink": "danfoss.ra.plus-w",
 	"battery_type": "2x1.5V AAA",
 	"configuration": {
 		"conf_version": 1
@@ -12,6 +12,7 @@
 		"name": "Commande",
 		"type": "action",
 		"subtype": "slider",
+		"value": "Consigne",
 		"isVisible": 1,
 		"isHistorized": 0,
 		"unite": "°C",
@@ -30,7 +31,7 @@
 		"name": "Consigne",
 		"type": "info",
 		"subtype": "numeric",
-		"isVisible": 1,
+		"isVisible": 0,
 		"isHistorized": 0,
 		"unite": "°C",
 		"display": {
@@ -39,6 +40,24 @@
 		"configuration": {
 			"class": "0x43",
 			"instanceId": 0,
+			"value": "data[1].val",
+			"maxValue": 28,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Consigne pending",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x43",
+			"instanceId": 10,
 			"value": "data[1].val",
 			"maxValue": 28,
 			"minValue": 0
