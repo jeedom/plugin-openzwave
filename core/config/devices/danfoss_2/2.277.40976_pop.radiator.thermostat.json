@@ -9,6 +9,22 @@
 		"conf_version": 1
 	},
 	"commands": [{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "°C",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"display": {
+			"generic_type": "THERMOSTAT_TEMPERATURE"
+		},
+		"configuration": {
+			"class": "0x31",
+			"instanceId": 0,
+			"value": "data[1].val"
+		}
+	},
+	{
 		"name": "Commande",
 		"type": "action",
 		"subtype": "slider",
