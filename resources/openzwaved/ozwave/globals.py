@@ -89,6 +89,7 @@ callback = ''
 assumeAwake = False
 disabled_nodes = []
 cycle = 0.3
+socket_host = '127.0.0.1'
 
 # default_poll_interval = 1800000  # 30 minutes
 default_poll_interval = 300000  # 5 minutes
