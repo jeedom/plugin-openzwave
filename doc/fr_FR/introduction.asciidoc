@@ -1,8 +1,8 @@
 == Introduction
-Z-Wave communique en utilisant une technologie radio de faible puissance dans la bande de fréquence de 868,42 MHz. Il est spécifiquement conçu pour les applications de domotique.
+Z-Wave communique en utilisant une technologie radio de faible puissance dans la bande de fréquences de 868,42 MHz. Il est spécifiquement conçu pour les applications de domotique.
 Le protocole radio Z-Wave est optimisé pour des échanges à faible bande passante (entre 9 et 40 kbit/s) entre des appareils sur pile ou alimentés sur secteur.
 
-Z-Wave fonctionne dans la gamme de fréquences sous-gigahertz, selon les régions (868 MHz en Europe, 908 MHz aux US, et d'autres fréquences suivant les bandes ISM des régions). La portée théorique est d'environ 30 mètres en intérieur et 100 mètres en extérieur. Le réseau Z-Wave utilise la technologie du maillage (mesh) pour augmenter la portée et la fiabilité.
+Z-Wave fonctionne dans la gamme de fréquences inférieures à un gigahertz, selon les régions (868 MHz en Europe, 908 MHz aux US, et d'autres fréquences suivant les bandes ISM des régions). La portée théorique est d'environ 30 mètres en intérieur et 100 mètres en extérieur. Le réseau Z-Wave utilise la technologie du maillage (mesh) pour augmenter la portée et la fiabilité.
 Z-Wave est conçu pour être facilement intégré dans les produits électroniques de basse consommation, y compris les appareils à piles tels que les télécommandes, les détecteurs de fumée et capteurs de sécurité.
 
 Le Z-Wave+, apporte certaines améliorations dont une meilleure portée et améliore la durée de vie des batteries entre autres. La rétrocompatibilité est totale avec le Z-Wave.
@@ -19,7 +19,7 @@ Exemples de sources radioélectriques:
 ** Les dispositifs de pré-accouplement pour lampes fluorescentes
 
 [TIP]
-Si vous disposez un contrôleur USB (Z-Stick), il est recommandé de l'éloigner de la box à l'aide d'une simple rallonge USB de 1M par exemple.
+Si vous disposez d'un contrôleur USB (Z-Stick), il est recommandé de l'éloigner de la box à l'aide d'une simple rallonge USB de 1m par exemple.
 
 
 La distance entre d'autres émetteurs sans fil tels que les téléphones sans fil ou transmissions radio audio doit être d'au moins 3 mètres.
@@ -87,7 +87,7 @@ Il existe des modules répéteur pour combler des zones où aucun module secteur
 
 En résumé:
 
-* Chaque appareil Z -Wave peut recevoir et accuser réception de messages
+* Chaque appareil Z -Wave peut recevoir et accuser réception des messages
 * Les contrôleurs peuvent envoyer des messages à tous les nœuds du réseau, sollicités ou non « Le maître peut parler quand il veut et à qui il veut »
 * Les esclaves ne peuvent pas envoyer des messages non sollicités, mais seulement une réponse aux demandes «L'esclave ne parle que si on le lui demande »
 * Les esclaves de routage peuvent répondre à des demandes et ils sont autorisés à envoyer des messages non sollicités à certains nœuds que le contrôleur a prédéfini « L'esclave est toujours un esclave, mais sur autorisation, il peut parler »
