@@ -59,7 +59,7 @@ Les modules sur pile vont appliquer les changements de paramètres seulement au 
 Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
 
 [TIP]
-La commande *Reprendre de...* vous permet reprendre la configuration d'un autre module identique, sur le module en cours.
+La commande *Reprendre de...* vous permet de reprendre la configuration d'un autre module identique, sur le module en cours.
 
 image:../images/node06.png[]
 
@@ -71,13 +71,13 @@ image:../images/node18.png[]
 [TIP]
 La commande *Actualiser les paramètres* force le module à actualiser les paramètres sauvegardés dans le module.
 
-Si aucun fichier de configuration est définie pour le module, un assistant manuel vous permet d'appliquer des paramètres au module.
+Si aucun fichier de configuration n'est défini pour le module, un assistant manuel vous permet d'appliquer des paramètres au module.
 image:../images/node17.png[]
 Veillez vous référer à la documentation du fabricant pour connaitre la définition de l'index, valeur et taille.
 
 === Associations
 
-C'est ici que se retrouve la gestion des groupes d'association de votre module.
+C'est ici que se retrouve la gestion des groupes d'associations de votre module.
 
 image:../images/node07.png[]
 
@@ -85,16 +85,16 @@ Les modules Z-Wave peuvent contrôler d'autres modules Z-Wave, sans passer par l
 La relation entre un module de contrôle et un autre module est appelée association.
 
 Afin de contrôler un autre module, le module de commande a besoin de maintenir une liste des appareils qui recevront le contrôle des commandes.
-Ces listes sont appelées groupes d'association et elles sont toujours liées à certains événements (par exemple le bouton
+Ces listes sont appelées groupes d'associations et elles sont toujours liées à certains événements (par exemple le bouton
 pressé, les déclencheurs de capteurs, ... ).
 
-Dans le cas où un événement se produit, tous les périphériques enregistrés dans le groupe d'association concerné recevront une commande Basic.
+Dans le cas où un événement se produit, tous les périphériques enregistrés dans le groupe d'associations concerné recevront une commande Basic.
 
 [TIP]
 Voir la documentation du module, pour comprendre les différents groupes d'associations possibles et leur comportement.
 
 [TIP]
-La majorité des modules ont un groupe d'association qui est réservé pour le contrôleur principal, il est utilisé pour remonter les informations au contrôleur. Il se nomme en général : *Report* ou *LifeLine*.
+La majorité des modules ont un groupe d'associations qui est réservé pour le contrôleur principal, il est utilisé pour remonter les informations au contrôleur. Il se nomme en général : *Report* ou *LifeLine*.
 
 [TIP]
 Il est possible que votre module ne possède aucun groupe.
@@ -111,13 +111,13 @@ L'ensemble des modules utilisant le module en cours ainsi que le nom des groupes
 
 *Associations multi-instances*
 
-certain module supporte une commande classe multi-instance associations.
+certains modules supportent une commande classe multi-instance associations.
 Lorsqu'un module supporte cette CC, il est possible de spécifier avec quelle instance on souhaite créer l'association
 
 image:../images/node09.png[]
 
 [IMPORTANT]
-Certains modules doivent être associés à l'instance 0 du contrôleur principale afin de bien fonctionner.
+Certains modules doivent être associés à l'instance 0 du contrôleur principal afin de bien fonctionner.
 Pour cette raison, le contrôleur est présent avec et sans l'instance 0.
 
 
@@ -147,7 +147,7 @@ Il ne faut pas utiliser les actions sur un module si on ne sait pas ce que l'on 
 
 [TIP]
 La *Régénération de la détection du noeud* permet de détecter le module pour reprendre les derniers jeux de paramètres.
-Cette action est requise lorsqu'on vous informe qu'une mise a jour de paramètres et ou de comportement du module est requit pour le bon fonctionnement.
+Cette action est requise lorsqu'on vous informe qu'une mise a jour de paramètres et ou de comportement du module sont requises pour le bon fonctionnement.
 La Régénération de la détection du noeud implique un redémarrage du réseau, l'assistant l'effectue automatiquement.
 
 [TIP]
@@ -164,7 +164,7 @@ image:../images/node14.png[]
 Une fois lancé, il est recommandé de fermer l'écran de configuration du module et de surveiller la suppression du module via l'écran de santé Z-Wave.
 
 [IMPORTANT]
-Seul les modules sur pile peuvent être supprimés via cette assistant.
+Seuls les modules sur pile peuvent être supprimés via cet assistant.
 
 === Statistiques
 
