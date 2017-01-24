@@ -10,13 +10,13 @@ URL = http://token:\#APIKEY#@\#IP_JEEDOM#:\#PORTDEMON#/\#ROUTE#
 
 * \#API_KEY# correspond à votre clé API, propre à votre installation. Pour la trouver il faut aller dans le menu « Général », puis « Administration » et « Configuration », en activant le mode Expert vous verrez alors une ligne Clef API.
 
-* \#IP_JEEDOM# correspond à votre url d’accès à Jeedom.
+* \#IP_JEEDOM# correspond à votre URL d’accès à Jeedom.
 
 * \#PORTDEMON# correspond au numéro de port spécifié dans la page de configuration du plugin Z-Wave, par défaut: 8083.
 
 * \#ROUTE# correspond à la route sur le serveur REST a exécuter.
 
-Pour connaitre l'ensemble des route veillez vous référer
+Pour connaître l'ensemble des route veuillez vous référer
 link:https://github.com/jeedom/plugin-openzwave[github] du plugin Z-Wave.
 
 Example:
