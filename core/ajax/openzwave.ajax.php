@@ -56,7 +56,7 @@ try {
 	}
 
 	if (init('action') == 'migrateZwave') {
-		$cmd = 'sudo php ' . dirname(__FILE__) . '/../../script/migrate.php';
+		$cmd = 'php ' . dirname(__FILE__) . '/../../script/migrate.php';
 		$cmd .= ' >> ' . log::getPathToLog('openzwave_migrate') . ' 2>&1 &';
 		exec($cmd);
 		ajax::success();
