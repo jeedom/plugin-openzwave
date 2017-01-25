@@ -217,14 +217,9 @@ class openzwave extends eqLogic {
 	}
 
 	public static function dependancy_install() {
-		if (file_exists('/tmp/compilation_ozw_in_progress')) {
-			return;
-		}
 		config::save('currentOzwVersion', config::byKey('openzwave_version', 'openzwave'), 'openzwave');
-		log::remove('openzwave_update');
-		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../resources/install.sh';
-		$cmd .= ' >> ' . log::getPathToLog('openzwave_update') . ' 2>&1 &';
-		exec($cmd);
+		log::remove(__CLASS__ . '_update');
+		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh', 'log' => log::getPathToLog(__CLASS__ . '_update'));
 	}
 
 	public static function getVersion($_module = 'openzwave') {
