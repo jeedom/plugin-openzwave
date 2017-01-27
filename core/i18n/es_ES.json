@@ -102,7 +102,7 @@
         "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ?": "¿Seguro que desea descargar las últimas configuraciones de los módulos?",
         "Téléchargement des configurations": "Descarga de configuraciones",
         "Démon sur l'esclave": "Demonio en el esclavo",
-        "Cycle (s)": "Cycle (s)"
+        "Cycle (s)": "Ciclo (s)"
     },
     "plugins/openzwave/desktop/modal/health.php": {
         "Demande envoyée": "Solicitud enviada",
