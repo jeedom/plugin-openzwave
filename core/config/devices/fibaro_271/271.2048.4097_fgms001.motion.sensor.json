@@ -6,9 +6,6 @@
 	"remark": "Par défaut possède une configuration très économique. Lire la documentation pour le configurer correctement",
 	"imglink": "fibaro.fgms001",
 	"battery_type": "1x3V CR123A",
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
 		"name": "Présence",
 		"type": "info",
