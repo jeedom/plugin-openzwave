@@ -29,6 +29,27 @@
 		}
 	},
 	{
+		"name": "Sabotage",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x71",
+			"value": "data[10].val",
+			"calculValueOffset": "#value#==3"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "SABOTAGE"
+		},
+		"template": {
+			"dashboard": "vibration",
+			"mobile": "vibration"
+		}
+	},	
+	{
 		"name": "Batterie",
 		"type": "info",
 		"subtype": "numeric",
