@@ -53,5 +53,200 @@
 			"class": "0x25",
 			"value": "data[0].Set(0)"
 		}
+	},	
+	{
+		"name": "Sound 1 Low",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 1 - Low Volume)"
+		}
+	},
+	{
+		"name": "Sound 1 Mid",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 1 - Mid Volume)"
+		}
+	},
+	{
+		"name": "Sound 1 High",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 1 - High Volume)"
+		}
+	},	
+	{
+		"name": "Sound 2 Low",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 2 - Low Volume)"
+		}
+	},
+	{
+		"name": "Sound 2 Mid",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 2 - Mid Volume)"
+		}
+	},
+	{
+		"name": "Sound 2 High",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 2 - High Volume)"
+		}
+	},	
+	{
+		"name": "Sound 3 Low",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 3 - Low Volume)"
+		}
+	},
+	{
+		"name": "Sound 3 Mid",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 3 - Mid Volume)"
+		}
+	},
+	{
+		"name": "Sound 3 High",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 3 - High Volume)"
+		}
+	},	
+	{
+		"name": "Police Low",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 4 - Low Volume)"
+		}
+	},
+	{
+		"name": "Police Mid",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 4 - Mid Volume)"
+		}
+	},
+	{
+		"name": "Police High",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 4 - High Volume)"
+		}
+	},	
+	{
+		"name": "Sound 5 Low",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 5 - Low Volume)"
+		}
+	},
+	{
+		"name": "Sound 5 Mid",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 5 - Mid Volume)"
+		}
+	},
+	{
+		"name": "Sound 5 High",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x70",
+			"value": "data[37].Set(Sound 5 - High Volume)"
+		}
 	}]
 }
