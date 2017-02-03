@@ -17,20 +17,14 @@
  */
 require_once dirname(__FILE__) . "/../../../../core/php/core.inc.php";
 
-if (!jeedom::apiAccess(init('apikey'), 'openzwave')) {
-	echo __('Clef API non valide, vous n\'êtes pas autorisé à effectuer cette action (jeeZwave)', __FILE__);
+if (!jeedom::apiAccess(init('apikey'), 'openzwave') || getClientIp() != '127.0.0.1') {
+	echo __('Clef API non valide ou client non autorisé, vous n\'êtes pas autorisé à effectuer cette action', __FILE__);
 	die();
 }
-if (getClientIp() != '127.0.0.1') {
-	echo __('Clef API non valide, vous n\'êtes pas autorisé à effectuer cette action (jeeZwave)', __FILE__);
-	die();
-}
-
 if (isset($_GET['test'])) {
 	echo 'OK';
 	die();
 }
-
 $results = json_decode(file_get_contents("php://input"), true);
 if (!is_array($results)) {
 	die();
