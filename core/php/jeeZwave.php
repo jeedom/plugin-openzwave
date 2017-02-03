@@ -18,7 +18,7 @@
 require_once dirname(__FILE__) . "/../../../../core/php/core.inc.php";
 
 if (!jeedom::apiAccess(init('apikey'), 'openzwave')) {
-	echo __('Clef API non valide ou client non autorisé, vous n\'êtes pas autorisé à effectuer cette action', __FILE__);
+	echo __('Vous n\'etes pas autorisé à effectuer cette action', __FILE__);
 	die();
 }
 if (isset($_GET['test'])) {
