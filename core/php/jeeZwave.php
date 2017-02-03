@@ -21,23 +21,13 @@ if (!jeedom::apiAccess(init('apikey'), 'openzwave')) {
 	echo __('Clef API non valide, vous n\'êtes pas autorisé à effectuer cette action (jeeZwave)', __FILE__);
 	die();
 }
+if (getClientIp() != '127.0.0.1') {
+	echo __('Clef API non valide, vous n\'êtes pas autorisé à effectuer cette action (jeeZwave)', __FILE__);
+	die();
+}
 
 if (isset($_GET['test'])) {
 	echo 'OK';
-	die();
-}
-
-if (isset($_GET['stopOpenzwave'])) {
-	config::save('allowStartDeamon', 0, 'openzwave');
-	openzwave::stopDeamon();
-	die();
-}
-
-if (isset($_GET['startOpenzwave'])) {
-	log::add('openzwave', 'debug', 'Restart Zwave deamon');
-	config::save('allowStartDeamon', 1, 'openzwave');
-	openzwave::runDeamon();
-	openzwave::getVersion();
 	die();
 }
 
