@@ -310,7 +310,7 @@ class openzwave extends eqLogic {
 		$cmd .= ' --suppressRefresh ' . $suppressRefresh;
 		$cmd .= ' --cycle ' . config::byKey('cycle', 'openzwave');
 		if ($disabledNodes != '') {
-			$cmd .= ' --disabledNodes=' . $disabledNodes;
+			$cmd .= ' --disabledNodes ' . $disabledNodes;
 		}
 
 		log::add('openzwave', 'info', 'Lancement démon openzwave : ' . $cmd);
