@@ -17,7 +17,7 @@
  */
 require_once dirname(__FILE__) . "/../../../../core/php/core.inc.php";
 
-if (!jeedom::apiAccess(init('apikey'), 'openzwave') || getClientIp() != '127.0.0.1') {
+if (!jeedom::apiAccess(init('apikey'), 'openzwave')) {
 	echo __('Clef API non valide ou client non autorisé, vous n\'êtes pas autorisé à effectuer cette action', __FILE__);
 	die();
 }

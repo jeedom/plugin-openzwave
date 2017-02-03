@@ -16,7 +16,16 @@
  * along with Plugin openzwave for jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+function openzwave_install() {
+	if (config::byKey('api::openzwave::mode') == '') {
+		config::save('api::openzwave::mode', 'localhost');
+	}
+}
+
 function openzwave_update() {
+	if (config::byKey('api::openzwave::mode') == '') {
+		config::save('api::openzwave::mode', 'localhost');
+	}
 	if (!file_exists(dirname(__FILE__) . '/../data')) {
 		mkdir(dirname(__FILE__) . '/../data');
 		if (file_exists('/opt/python-openzwave/xml_backups')) {
@@ -61,7 +70,7 @@ function openzwave_update() {
 			} else if (strpos($cmd->getConfiguration('value'), '.val') !== false || $cmd->getConfiguration('value') == 'Get()') {
 				$cmd->setConfiguration('value', 'type=refreshData');
 			} else if ($cmd->getConfiguration('value') == 'ForceRefresh()') {
-				$cmd->setConfiguration('value','type=refreshData');
+				$cmd->setConfiguration('value', 'type=refreshData');
 			} else {
 				preg_match_all('/set\((.*),(.*),(.*)\)/', $cmd->getConfiguration('value'), $matches);
 				if (isset($matches[1][0])) {
