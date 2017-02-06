@@ -1,0 +1,179 @@
+{
+	"name": "Nano Dimmer (ZW111)",
+	"doc": "",
+	"type": "Micromodule",
+	"comlink": "",
+	"remark": "",
+	"imglink": "aeotec.nanodimmer",
+	"commands": [
+    {
+      "name": "On",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "display": {
+        "generic_type": "LIGHT_ON"
+      },
+      "configuration": {
+        "class": "0x26",
+        "instanceId": 0,
+        "value": "data[0].Set(99)"
+      }
+    },
+    {
+      "name": "Off",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "display": {
+        "generic_type": "LIGHT_OFF"
+      },
+      "configuration": {
+        "class": "0x26",
+        "instanceId": 0,
+        "value": "data[0].Set(0)"
+      }
+    },
+    {
+      "name": "Intensité",
+      "type": "action",
+      "subtype": "slider",
+      "isVisible": 1,
+      "value": "Etat",
+      "display": {
+        "generic_type": "LIGHT_SLIDER"
+      },
+      "configuration": {
+        "class": "0x26",
+        "instanceId": 0,
+        "value": "data[0].Set(#slider#)",
+        "minValue": 0,
+        "maxValue": 99
+      },
+      "template": {
+        "dashboard": "light",
+        "mobile": "light"
+      }
+    },
+    {
+      "name": "Etat",
+      "type": "info",
+      "subtype": "numeric",
+      "unite": "%",
+      "isVisible": 0,
+      "display": {
+        "generic_type": "LIGHT_STATE"
+      },
+      "configuration": {
+        "class": "0x26",
+        "instanceId": 0,
+        "value": "data[0].val",
+        "minValue": 0,
+        "maxValue": 99
+      }
+    },
+    {
+      "name": "Puissance",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite": "W",
+      "display": {
+        "generic_type": "POWER"
+      },
+      "configuration": {
+        "class": "0x32",
+        "value": "data[8].val",
+        "maxValue": 2300,
+        "minValue": 0
+      }
+    },
+    {
+      "name": "Consommation",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "kWh",
+      "display": {
+        "generic_type": "CONSUMPTION"
+      },
+      "configuration": {
+        "class": "0x32",
+        "value": "data[0].val"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
+      }
+    },
+    {
+      "name": "Tension",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "V",
+      "display": {
+        "generic_type": "VOLTAGE"
+      },
+      "configuration": {
+        "class": "0x32",
+        "value": "data[16].val"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
+      }
+    },
+    {
+      "name": "Courant",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "A",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "configuration": {
+        "class": "0x32",
+        "value": "data[20].val"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
+      }
+    }
+	],
+    "recommended": {
+      "params": [
+        {
+          "index": 80,
+          "value": "Hail"
+        },
+        {
+          "index": 90,
+          "value": "Enable"
+        },
+        {
+          "index": 101,
+          "value": 4
+        },
+        {
+          "index": 102,
+          "value": 8
+        },
+        {
+          "index": 103,
+          "value": 1
+        },
+        {
+          "index": 111,
+          "value": 120
+        }
+      ],
+      "needswakeup": false
+    }
+}
