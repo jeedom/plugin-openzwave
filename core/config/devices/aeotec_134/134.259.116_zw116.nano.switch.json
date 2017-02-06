@@ -82,7 +82,7 @@
       "name": "Consommation",
       "type": "info",
       "subtype": "numeric",
-      "isVisible": 1,
+      "isVisible": 0,
       "isHistorized": 0,
       "unite": "kWh",
       "display": {
@@ -93,9 +93,6 @@
         "value": "data[0].val"
       },
       "template": {
-        "dashboard": "tile"
-      },
-      "template": {
         "dashboard": "tile",
         "mobile": "tile"
       }
@@ -104,7 +101,7 @@
       "name": "Tension",
       "type": "info",
       "subtype": "numeric",
-      "isVisible": 1,
+      "isVisible": 0,
       "isHistorized": 0,
       "unite": "V",
       "display": {
@@ -123,7 +120,7 @@
       "name": "Intensité",
       "type": "info",
       "subtype": "numeric",
-      "isVisible": 1,
+      "isVisible": 0,
       "isHistorized": 0,
       "unite": "A",
       "display": {
@@ -138,5 +135,34 @@
         "mobile": "tile"
       }
     }
-	]
+	],
+  "recommended": {
+    "params": [
+      {
+        "index": 80,
+        "value": "Hail"
+      },
+      {
+        "index": 90,
+        "value": "Enable"
+      },
+      {
+        "index": 101,
+        "value": 4
+      },
+      {
+        "index": 102,
+        "value": 8
+      },
+      {
+        "index": 103,
+        "value": 1
+      },
+      {
+        "index": 111,
+        "value": 120
+      }
+    ],
+    "needswakeup": false
+  }
 }
