@@ -1,0 +1,45 @@
+{
+	"name": "Scene Switch MT 2652",
+	"doc": "",
+	"type": "Télécommande",
+	"comlink": "",
+	"remark": "",
+	"imglink": "develo.scene_switch_2652",
+	"battery_type": "1x3V CR2032",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Boutons",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "GENERIC"
+		},
+		"isHistorized": 0,
+		"configuration": {
+			"class": "0x2b",
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "tile",
+			"mobile": "tile"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "BATTERIE"
+		},
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "%",
+		"configuration": {
+			"class": "0x80",
+			"value": "data[0].val"
+		}
+	}]
+}
