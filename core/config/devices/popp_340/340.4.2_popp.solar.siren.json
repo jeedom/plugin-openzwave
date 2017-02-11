@@ -6,9 +6,6 @@
 	"remark": "",
 	"imglink": "popp.solar-siren",
 	"battery_type": "Batterie",
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
 		"name": "Etat",
 		"type": "info",
@@ -86,6 +83,64 @@
 		"display": {
 			"invertBinary": "1",
 			"generic_type": "GENERIC"
+		}
+	},
+	{
+		"name": "Flash",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x70",
+			"value": "data[0].Set(5,1,1)"
+		}
+	},
+	{
+		"name": "Sirène",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x70",
+			"value": "data[0].Set(5,0,1)"
+		}
+	},
+	{
+		"name": "Flash + Sirène",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x70",
+			"value": "data[0].Set(5,2,1)"
+		}
+	},
+	{
+		"name": "Mode",
+		"type": "info",
+		"subtype": "other",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "",
+		"configuration": {
+			"class": "0x70",
+			"value": "data[0].val"
+		},
+		"display": {
+			"generic_type": "DONT"
+		},
+		"template": {
+			"dashboard": "tile",
+			"mobile": "tile"
 		}
 	},
 	{
