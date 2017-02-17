@@ -21,9 +21,9 @@
 		},
 		"configuration": {
 			"class": "0x5b",
-			"maxValue": 14,
+			"maxValue": 42,
 			"minValue": 0,
-			"value": "data[0].val"
+			"value": "data[128].val"
 		},
 		"template": {
 			"dashboard": "badge",
