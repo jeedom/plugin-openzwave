@@ -1,0 +1,28 @@
+{
+	"name": "FGKF-601 Keyfob",
+	"doc": "",
+	"type": "Télécommande",
+	"comlink": "3994-fibaro-telecommande-porte-cles-z-wave-fibaro-keyfob-fgkf-601-5905279987562",
+	"remark": "",
+	"imglink": "fibaro.fgkf601",
+	"battery_type": "1x3V CR2450",		
+	"commands": [
+	{
+		"name": "Scene",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x2b",
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "tile",
+			"mobile": "tile"
+		}
+	}]
+}
