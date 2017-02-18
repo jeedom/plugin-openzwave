@@ -127,8 +127,8 @@
 		"configuration": {
 			"class": "0x32",
 			"value": "data[16].val",
-			"maxValue": 200,
-			"minValue": 260
+			"maxValue": 80,
+			"minValue": 150
 		},
 		"template": {
 			"dashboard": "tile",
