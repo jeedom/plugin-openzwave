@@ -65,7 +65,7 @@
 		"name": "Intensité",
 		"type": "info",
 		"subtype": "numeric",
-		"isVisible": 1,
+		"isVisible": 0,
 		"isHistorized": 1,
 		"unite": "A",
 		"display": {
@@ -78,5 +78,16 @@
 			"maxValue": 200,
 			"minValue": 0
 		}
-	}]
+	}],
+	"recommended" : {
+		"params" : [
+			{"index": 101, "value" : 524554},
+			{"index": 111, "value" : 120},
+			{"index": 102, "value" : 2049},
+			{"index": 112, "value" : 900},
+			{"index": 103, "value" : 65540},
+			{"index": 113, "value" : 3600}
+		],
+		"needswakeup" : false
+	}
 }
