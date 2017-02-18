@@ -1,0 +1,93 @@
+{
+	"name": "Home Energy Meter Gen5 (ZW095)",
+	"doc": "",
+	"type": "Consommation",
+	"comlink": "",
+	"remark": "",
+	"imglink": "aeotec.zw095",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Consommation",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "KWh",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[0].val",
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Puissance",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "W",
+		"display": {
+			"generic_type": "POWER"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[8].val",
+			"maxValue": 48000,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Tension",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "V",
+		"display": {
+			"generic_type": "VOLTAGE"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[16].val",
+			"maxValue": 80,
+			"minValue": 150
+		}
+	},
+	{
+		"name": "Intensité",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 1,
+		"unite": "A",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[20].val",
+			"maxValue": 200,
+			"minValue": 0
+		}
+	}],
+	"recommended" : {
+		"params" : [
+			{"index": 101, "value" : 524554},
+			{"index": 111, "value" : 120},
+			{"index": 102, "value" : 2049},
+			{"index": 112, "value" : 900},
+			{"index": 103, "value" : 65540},
+			{"index": 113, "value" : 3600}
+		],
+		"needswakeup" : false
+	}
+}
