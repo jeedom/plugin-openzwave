@@ -39,7 +39,7 @@
 			"class": "0x32",
 			"instanceId": 0,
 			"value": "data[8].val",
-			"maxValue": 12000,
+			"maxValue": 48000,
 			"minValue": 0
 		}
 	},
@@ -57,8 +57,8 @@
 			"class": "0x32",
 			"instanceId": 0,
 			"value": "data[16].val",
-			"maxValue": 240,
-			"minValue": 220
+			"maxValue": 260,
+			"minValue": 180
 		}
 	},
 	{
