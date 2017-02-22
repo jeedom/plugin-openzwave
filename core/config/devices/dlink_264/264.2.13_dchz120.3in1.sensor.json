@@ -94,5 +94,11 @@
 			"class": "0x80",
 			"value": "data[0].val"
 		}
-	}]
+	}],
+	"recommended" : {
+		"params" : [       
+          {"index": 7, "value" : 30}
+        ],
+		"needswakeup" : true
+    }
 }
