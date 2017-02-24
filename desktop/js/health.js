@@ -216,7 +216,7 @@
                     tbody += jeedom.openzwave.timestampConverter(nodes[node_id].data.lastReceived.updateTime);
                     if (nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.next_wakeup != null) {
                         if (now > nodes[node_id].data.wakeup_interval.next_wakeup) {
-                            tbody += ' <i class="fa fa-arrow-right text-danger"></i> <span class="label label-warning" style="font-size : 1em;" title="{{Le noeud ne s\'est pas réveillé comme prévue}}"> ' + app_health.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup) + ' </span>';
+                            tbody += ' <i class="fa fa-arrow-right text-danger"></i> <span class="label label-warning" style="font-size : 1em;" title="{{Le noeud ne s\'est pas réveillé comme prévue}}"> ' + jeedom.openzwave.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup) + ' </span>';
                         }else {
                             tbody += ' <i class="fa fa-arrow-right"></i> ' + jeedom.openzwave.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup) + ' <i class="fa fa-clock-o"></i>';
                         }
