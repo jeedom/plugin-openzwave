@@ -79,8 +79,8 @@ namespace OpenZWave
 		int32 operator- ( TimeStamp const& _other );
 
 	private:
-		TimeStamp( TimeStamp const& );					// prevent copy
-		TimeStamp& operator = ( TimeStamp const& );			// prevent assignment
+		TimeStamp( TimeStamp const& );				// prevent copy
+		TimeStamp& operator = ( TimeStamp const& );	// prevent assignment
 
 		TimeStampImpl*	m_pImpl;					// Pointer to an object that encapsulates the platform-specific implementation of the TimeStamp.
 	};
@@ -88,4 +88,3 @@ namespace OpenZWave
 } // namespace OpenZWave
 
 #endif //_TimeStamp_H
-
