@@ -39,7 +39,7 @@ TARCH	+= -arch i386 -arch x86_64
 LDFLAGS += -dynamiclib -install_name "$(DESTDIR)/$(instlibdir)/$(SHARED_LIB_NAME)"
 LIBS	+= -framework IOKit -framework CoreFoundation -arch i386 -arch x86_64
 else ifeq ($(UNAME),FreeBSD)
-LDFLAGS+= -shared -lusb -Wl,-soname,$(SHARED_LIB_NAME)
+LDFLAGS+= -shared -lusb -Wl,-soname,libopenzwave.so.$(VERSION)
 
 # Pre FreeBSD 10.2 we have no native, or "old" native iconv.h (non-posix compliant
 # const modifiers)
@@ -58,7 +58,7 @@ endif
 # For 10.2 and later, use iconv from base, no extra include path required.
 
 else
-LDFLAGS += -shared -Wl,-soname,$(SHARED_LIB_NAME)
+LDFLAGS += -shared -Wl,-soname,libopenzwave.so.$(VERSION)
 LIBS 	+= -ludev
 endif
 CFLAGS  += $(CPPFLAGS)
