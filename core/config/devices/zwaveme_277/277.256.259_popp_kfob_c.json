@@ -6,11 +6,8 @@
 	"remark": "",
 	"imglink": "zwaveme.keyfobc",
 	"battery_type": "1x3V CR2032",
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
-		"name": "Boutons",
+		"name": "Scene",
 		"type": "info",
 		"subtype": "numeric",
 		"isVisible": 1,
@@ -20,6 +17,7 @@
 		"isHistorized": 0,
 		"configuration": {
 			"class": "0x2b",
+			"repeatEventManagement" : "always",
 			"value": "data[0].val"
 		},
 		"template": {

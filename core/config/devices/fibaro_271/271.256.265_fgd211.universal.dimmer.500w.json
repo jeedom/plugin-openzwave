@@ -5,9 +5,6 @@
 	"comlink": "2965-fibaro-micromodule-variateur-z-wave-fgd-212",
 	"remark": "Ce module est remplacé dans les boutiques par le FGD-212",
 	"imglink": "fibaro.fgd211",
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
 		"name": "Intensité",
 		"type": "action",
@@ -81,6 +78,7 @@
 		},
 		"configuration": {
 			"class": "0x2b",
+			"repeatEventManagement" : "always",
 			"value": "data[0].val"
 		},
 		"template": {

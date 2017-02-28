@@ -6,20 +6,18 @@
 	"remark": "",
 	"imglink": "aeotec.minimote",
 	"battery_type": "Batterie",
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
-		"name": "Boutons",
+		"name": "Scene",
 		"type": "info",
 		"subtype": "numeric",
-		"isVisible": 1,
+		"isVisible": 0,
 		"isHistorized": 0,
 		"display": {
 			"generic_type": "DONT"
 		},
 		"configuration": {
 			"class": "0x2b",
+			"repeatEventManagement" : "always",
 			"value": "data[0].val"
 		},
 		"template": {

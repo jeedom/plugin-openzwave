@@ -6,9 +6,6 @@
 	"remark": "",
 	"imglink": "fibaro.fgk101zw5",
 	"battery_type": "1x3.6V ER14250",
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
 		"name": "Etat",
 		"type": "info",
@@ -66,6 +63,7 @@
 		"isVisible": 0,
 		"configuration": {
 			"class": "0x2b",
+			"repeatEventManagement" : "always",
 			"instanceId": 0,
 			"value": "data[0].val"
 		},

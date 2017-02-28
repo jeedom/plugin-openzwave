@@ -5,9 +5,6 @@
 	"comlink": "2862-fibaro-micromodule-commutateur-z-wave-fgs-212-5902020528272",
 	"remark": "Module remplacé par le FGS-212",
 	"imglink": "fibaro.fgs211",
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
 		"name": "On",
 		"type": "action",
@@ -71,6 +68,7 @@
 		},
 		"configuration": {
 			"class": "0x2b",
+			"repeatEventManagement" : "always",
 			"value": "data[0].val"
 		},
 		"template": {

@@ -5,9 +5,6 @@
 	"comlink": "3250-fibaro-micromodule-pour-volet-roulant-z-wave-fgr-222",
 	"remark": "Nouveau nom du module FGR-221",
 	"imglink": "fibaro.fgr222",
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
 		"name": "Up",
 		"type": "action",
@@ -225,6 +222,7 @@
 		},
 		"configuration": {
 			"class": "0x2b",
+			"repeatEventManagement" : "always",
 			"value": "data[0].val"
 		},
 		"template": {

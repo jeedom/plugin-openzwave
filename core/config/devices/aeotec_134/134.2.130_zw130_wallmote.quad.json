@@ -7,9 +7,6 @@
 	"imglink": "aeotec.zw130",
 	"battery_type": "Batterie",
 	"ignore": 1,
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
 		"name": "Scene",
 		"type": "info",
@@ -21,8 +18,9 @@
 		},
 		"configuration": {
 			"class": "0x5b",
-			"maxValue": 42,
+			"maxValue": 50,
 			"minValue": 0,
+			"repeatEventManagement" : "always",
 			"value": "data[128].val"
 		},
 		"template": {

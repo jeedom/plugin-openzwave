@@ -5,9 +5,6 @@
 	"comlink": "2863-fibaro-micromodule-commutateur-double-z-wave-fgs-222-5902020528289",
 	"remark": "Remplace le FGS-221",
 	"imglink": "fibaro.fgs222",
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
 		"name": "On 1",
 		"type": "action",
@@ -123,6 +120,7 @@
 		},
 		"configuration": {
 			"class": "0x2b",
+			"repeatEventManagement" : "always",
 			"value": "data[0].val"
 		},
 		"template": {
