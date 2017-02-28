@@ -1,0 +1,79 @@
+{
+    "name": "Scene Controller 1",
+    "doc": "",
+    "type": "Contrôleur portable",
+    "comlink": "",
+    "remark": "",
+    "imglink": "520.512.9_scene-controller-1",
+    "battery_type": "2x1.5V AAA",
+    "ignore": 0,
+    "commands": [
+        {
+            "name": "SceneNumber",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": "0x5b",			
+				"repeatEventManagement" : "always",
+				"value": "data[128].val",                
+                "instance": 0
+            }
+        },
+         {
+            "name": "SceneID",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": "0x5b",
+                "value": "data[2].val"
+                "repeatEventManagement" : "always",                
+                "instance": 0
+            }
+        },
+        {
+            "name": "SceneAttribute",
+            "type": "info",
+            "subtype": "string",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": "0x5b",
+                "value": "data[1].val"
+                "repeatEventManagement" : "always",
+                "instance": 0
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "%",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": "0x80",
+                "value": "data[0].val",
+                "instance": 0
+            }
+        }
+    ]
+}
