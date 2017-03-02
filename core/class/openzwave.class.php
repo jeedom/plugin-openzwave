@@ -368,77 +368,10 @@ class openzwave extends eqLogic {
 		if (!is_array($device) || !isset($device['commands'])) {
 			return true;
 		}
-		$cmd_order = 0;
-		$link_cmds = array();
 		if (isset($device['name']) && !$_update) {
 			$this->setName('[' . $this->getLogicalId() . ']' . $device['name']);
 		}
-		if (isset($device['configuration'])) {
-			foreach ($device['configuration'] as $key => $value) {
-				try {
-					$this->setConfiguration($key, $value);
-				} catch (Exception $e) {
-
-				}
-			}
-		}
-		if (isset($device['battery_type'])) {
-			$this->setConfiguration('battery_type', $device['battery_type']);
-		}
-		event::add('jeedom::alert', array(
-			'level' => 'warning',
-			'page' => 'openzwave',
-			'message' => __('Création des commandes à partir d\'une configuration', __FILE__),
-		));
-		$commands = $device['commands'];
-		foreach ($commands as &$command) {
-			if (!isset($command['configuration']['instanceId'])) {
-				$command['configuration']['instanceId'] = 0;
-			}
-			if (!isset($command['configuration']['class'])) {
-				$command['configuration']['class'] = '';
-			}
-			foreach ($this->getCmd(null, $command['configuration']['instanceId'] . '.' . $command['configuration']['class'], null, true) as $cmd) {
-				if ($cmd->getConfiguration('value') == $command['configuration']['value']) {
-					if ($cmd->getDisplay('generic_type') == '' && isset($command['display']['generic_type'])) {
-						$cmd->setDisplay('generic_type', $command['display']['generic_type']);
-						$cmd->save();
-					}
-					continue 2;
-				}
-			}
-			try {
-				$cmd = new openzwaveCmd();
-				$cmd->setOrder($cmd_order);
-				$cmd->setEqLogic_id($this->getId());
-				utils::a2o($cmd, $command);
-				if (isset($command['value'])) {
-					$cmd->setValue(null);
-				}
-				$cmd->save();
-				if (isset($command['value'])) {
-					$link_cmds[$cmd->getId()] = $command['value'];
-				}
-				$cmd_order++;
-			} catch (Exception $exc) {
-
-			}
-		}
-
-		if (count($link_cmds) > 0) {
-			foreach ($this->getCmd() as $eqLogic_cmd) {
-				foreach ($link_cmds as $cmd_id => $link_cmd) {
-					if ($link_cmd == $eqLogic_cmd->getName()) {
-						$cmd = cmd::byId($cmd_id);
-						if (is_object($cmd)) {
-							$cmd->setValue($eqLogic_cmd->getId());
-							$cmd->save();
-						}
-					}
-				}
-			}
-		}
-		$this->save();
+		$this->import($device);
 		sleep(1);
 		event::add('jeedom::alert', array(
 			'level' => 'warning',
