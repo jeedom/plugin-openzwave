@@ -16,10 +16,11 @@
 
  $('.controller_action').on('click',function(){
     if($(this).data('action') == 'hardReset' || $(this).data('action') == 'softReset'){
+	 $action = $(this).data('action');
      bootbox.confirm("Etes-vous sûr ? Cette opération est risquée", function (result) {
       if (result) {
          jeedom.openzwave.controller.action({
-            action : $(this).data('action'),
+            action : $action,
             error: function (error) {
                 $('#div_networkOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
             },
