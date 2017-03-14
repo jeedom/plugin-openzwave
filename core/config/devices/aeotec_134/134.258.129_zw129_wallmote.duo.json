@@ -1,0 +1,37 @@
+{
+	"name": "WallMote Duo (ZW129)",
+	"doc": "",
+	"type": "Télécommande",
+	"comlink": "",
+	"remark": "",
+	"imglink": "aeotec.zw130",
+	"battery_type": "Batterie",
+	"ignore": 1,
+	"commands": [{
+		"name": "Scene",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x5b",
+			"maxValue": 50,
+			"minValue": 0,
+			"repeatEventManagement" : "always",
+			"value": "data[128].val"
+		},
+		"template": {
+			"dashboard": "badge",
+			"mobile": "badge"
+		}
+	}],
+	"recommended" : {
+		"params" : [
+          {"index": 1, "value" : "Disable"}
+        ],
+		"needswakeup" : true
+    }
+}
