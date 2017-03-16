@@ -134,6 +134,26 @@
         "dashboard": "tile",
         "mobile": "tile"
       }
+    },
+    {
+      "name": "Scene",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "display": {
+        "generic_type": "DONT"
+      },
+      "configuration": {
+        "class": "0x5b",
+        "instanceId": 0,
+        "repeatEventManagement" : "always",
+        "value": "data[128].val"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
+      }
     }
 	],
   "recommended": {

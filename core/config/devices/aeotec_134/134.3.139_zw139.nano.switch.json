@@ -1,0 +1,93 @@
+{
+	"name": "Nano Switch (ZW139)",
+	"doc": "",
+	"type": "Micromodule",
+	"comlink": "",
+	"remark": "",
+	"imglink": "aeotec.nanoswitch",
+	"commands": [
+	{
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "",
+      "display": {
+        "generic_type": "LIGHT_STATE"
+      },
+      "configuration": {
+        "class": "0x25",
+        "value": "data[0].val"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+    {
+      "name": "On",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "value": "Etat",
+      "display": {
+        "generic_type": "LIGHT_ON"
+      },
+      "configuration": {
+        "class": "0x25",
+        "value": "data[0].Set(255)"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+    {
+      "name": "Off",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "value": "Etat",
+      "display": {
+        "generic_type": "LIGHT_OFF"
+      },
+      "configuration": {
+        "class": "0x25",
+        "value": "data[0].Set(0)"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+    {
+      "name": "Scene",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "display": {
+        "generic_type": "DONT"
+      },
+      "configuration": {
+        "class": "0x5b",
+        "instanceId": 0,
+        "repeatEventManagement" : "always",
+        "value": "data[128].val"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
+      }
+    }],
+  "recommended": {
+    "params": [
+      {
+        "index": 80,
+        "value": "Hail"
+      }
+    ],
+    "needswakeup": false
+  }
+}
