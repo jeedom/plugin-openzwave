@@ -56,7 +56,7 @@ def check_start_server():
 
 	if globals.device == 'auto':
 		for stick in globals.know_sticks:
-			globals.device = jeedom_utils.find_tty_usb(stick['idVendor'], stick['idProduct'])
+			globals.device = globals.jeedom_utils.find_tty_usb(stick['idVendor'], stick['idProduct'])
 			if globals.device is not None:
 				logging.info('USB Z-Wave Stick found : ' + stick['name'] + ' at ' + globals.device)
 				break
@@ -65,10 +65,10 @@ def check_start_server():
 			sys.exit(1)
 
 def set_log_level():
-	jeedom_utils.set_log_level(globals.log_level)
+	globals.jeedom_utils.set_log_level(globals.log_level)
 
 def init_jeedom_com():
-	globals.jeedom_com = jeedom_com(apikey=globals.apikey, url=globals.callback, cycle=globals.cycle)
+	globals.jeedom_com = globals.jeedom_com(apikey=globals.apikey, url=globals.callback, cycle=globals.cycle)
 
 def write_pid():
-	jeedom_utils.write_pid(str(globals.pidfile))
+	globals.jeedom_utils.write_pid(str(globals.pidfile))
