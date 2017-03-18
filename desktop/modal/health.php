@@ -30,7 +30,7 @@ if (!isConnect('admin')) {
         <tr>
             <th>{{Module}}</th>
             <th>{{ID}}</th>
-            <th></th>
+            <th width="50"></th>
             <th>{{Groupes}}</th>
             <th>{{Constructeur}}</th>
             <th>{{Voisins}}</th>

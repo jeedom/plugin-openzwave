@@ -42,7 +42,7 @@
 
  $('#bt_refreshHealth').on('click',function(){
     display_health_info();
-})
+});
 
  function display_health_info(){
    jeedom.openzwave.network.info({
@@ -97,11 +97,13 @@
             }
             tbody += '</td>';
             tbody += '<td>';
-            if (nodes[node_id].data.isEnable.value) {
-                if (nodes[node_id].data.is_manufacturer_specific_ok != undefined && nodes[node_id].data.is_manufacturer_specific_ok.value) {
-                    tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-                } else {
-                    tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
+            if (nodes[node_id].data.isEnable.value && nodes[node_id].data.is_manufacturer_specific_ok != undefined) {
+                if (nodes[node_id].data.is_manufacturer_specific_ok.enabled){
+                    if (nodes[node_id].data.is_manufacturer_specific_ok.value) {
+                        tbody += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
+                    } else {
+                        tbody += '<span class="label label-danger" style="font-size : 1em;">{{NOK}}</span>';
+                    }
                 }
             }
             tbody += '</td>';
@@ -127,8 +129,10 @@
             tbody += '</td>';
             tbody += '<td>';
             var status = '';
+            var query_stage = '';
             if (nodes[node_id].data.isFailed != undefined && !nodes[node_id].data.isFailed.value) {
                 if (nodes[node_id].data.state != undefined) {
+                    query_stage = nodes[node_id].data.state.value;
                     if (nodes[node_id].data.state.value == 'Complete') {
                         status += '<span class="label label-success" style="font-size : 1em;">' + nodes[node_id].data.state.value + '</span>';
                     } else {
@@ -144,36 +148,47 @@
             tbody += '</td>';
             tbody += '<td>';
             if (nodes[node_id].data.isEnable.value) {
-                if (nodes[node_id].data.isListening.value) {
-                    tbody += '<span class="label label-primary" style="font-size : 1em;" title="{{Secteur}}"><i class="fa fa-plug"></i></span>';
-                } else {
-                    if (nodes[node_id].data.battery_level != undefined && nodes[node_id].data.battery_level.value != null) {
-                        var updateTime = '';
-                        if (nodes[node_id].data.battery_level.updateTime != undefined) {
-                            updateTime = jeedom.openzwave.timestampConverter(nodes[node_id].data.battery_level.updateTime, false);
+                if (query_stage != '' && query_stage != 'Probe'){
+                    if (nodes[node_id].data.isListening.value) {
+                        tbody += '<span class="label label-primary" style="font-size : 1em;" title="{{Secteur}}"><i class="fa fa-plug"></i></span>';
+                    } else {
+                        if (nodes[node_id].data.battery_level != undefined && nodes[node_id].data.battery_level.value != null) {
+                            var updateTime = '';
+                            if (nodes[node_id].data.battery_level.updateTime != undefined) {
+                                updateTime = jeedom.openzwave.timestampConverter(nodes[node_id].data.battery_level.updateTime, false);
+                            }
+                            if (nodes[node_id].data.battery_level.value > 75) {
+                                tbody += '<span class="label label-success" style="font-size : 1em;" title="' + updateTime + '">' + nodes[node_id].data.battery_level.value + '%</span>';
+                            } else if (nodes[node_id].data.battery_level.value > 50) {
+                                tbody += '<span class="label label-warning" style="font-size : 1em;" title="' + updateTime + '">' + nodes[node_id].data.battery_level.value + '%</span>';
+                            } else {
+                                tbody += '<span class="label label-danger" style="font-size : 1em;" title="' + updateTime + '">' + nodes[node_id].data.battery_level.value + '%</span>';
+                            }
+                        } else if (nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.value != null) {
+                            tbody += '<span class="label label-warning" style="font-size : 1em;">--</span>';
                         }
-                        if (nodes[node_id].data.battery_level.value > 75) {
-                            tbody += '<span class="label label-success" style="font-size : 1em;" title="' + updateTime + '">' + nodes[node_id].data.battery_level.value + '%</span>';
-                        } else if (nodes[node_id].data.battery_level.value > 50) {
-                            tbody += '<span class="label label-warning" style="font-size : 1em;" title="' + updateTime + '">' + nodes[node_id].data.battery_level.value + '%</span>';
-                        } else {
-                            tbody += '<span class="label label-danger" style="font-size : 1em;" title="' + updateTime + '">' + nodes[node_id].data.battery_level.value + '%</span>';
-                        }
-                    } else if (nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.value != null) {
-                        tbody += '<span class="label label-warning" style="font-size : 1em;">--</span>';
                     }
+                }
+                else{
+                    tbody += '<span class="label label-warning" style="font-size : 1em;">--</span>';
                 }
             }
             tbody += '</td>';
             tbody += '<td>';
             if (nodes[node_id].data.isEnable.value) {
                 if (!nodes[node_id].data.isListening.value && nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.value != null) {
-                    if (nodes[node_id].data.wakeup_interval.value == 0 || nodes[node_id].data.wakeup_interval.value > 86400) {
+                    if (nodes[node_id].data.wakeup_interval.value != 0 && nodes[node_id].data.wakeup_interval.value < 3600) {
                         tbody += '<span class="label label-warning" style="font-size : 1em;">'
                     }else {
                         tbody += '<span class="label label-info" style="font-size : 1em;">'
                     }
-                    tbody += nodes[node_id].data.wakeup_interval.value + '</span>';
+                    if (nodes[node_id].data.wakeup_interval.value != 0){
+                        tbody += nodes[node_id].data.wakeup_interval.value + '</span>';
+                    }
+                    else{
+                        tbody += '--</span>';
+                    }
+
                 }
             }
             tbody += '</td>';
@@ -216,9 +231,9 @@
                     tbody += jeedom.openzwave.timestampConverter(nodes[node_id].data.lastReceived.updateTime);
                     if (nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.next_wakeup != null) {
                         if (now > nodes[node_id].data.wakeup_interval.next_wakeup) {
-                            tbody += ' <i class="fa fa-arrow-right text-danger"></i> <span class="label label-warning" style="font-size : 1em;" title="{{Le noeud ne s\'est pas réveillé comme prévue}}"> ' + jeedom.openzwave.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup) + ' </span>';
+                            tbody += ' <i class="fa fa-arrow-right text-danger"></i><span class="label label-warning" style="font-size : 1em;" title="{{Le noeud ne s\'est pas réveillé comme prévue}}"> ' + jeedom.openzwave.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup) + ' </span>';
                         }else {
-                            tbody += ' <i class="fa fa-arrow-right"></i> ' + jeedom.openzwave.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup) + ' <i class="fa fa-clock-o"></i>';
+                            tbody += ' <i class="fa fa-arrow-right"></i><br> ' + jeedom.openzwave.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup) + ' <i class="fa fa-clock-o"></i>';
                         }
                     }
                 } else if (nodes[node_id].data.isListening.value == false && nodes[node_id].data.last_notification == undefined && nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.value != null && nodes[node_id].data.lastReceived != undefined && nodes[node_id].data.lastReceived.updateTime != null) {

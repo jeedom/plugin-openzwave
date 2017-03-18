@@ -269,7 +269,7 @@ def node_notification(args):
 		else:
 			globals.node_notifications[node_id].refresh(code, wake_up_time)
 		if code == 3:
-			my_value = value_utils.get_value_by_label(node_id, COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval Step', False)
+			my_value = value_utils.get_value_by_label(node_id, globals.COMMAND_CLASS_WAKE_UP, 1, 'Wake-up Interval Step')
 			if my_value is not None:
 				wake_up_interval_step = my_value.data + 2.0
 			else:
