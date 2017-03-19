@@ -94,7 +94,7 @@ sendVarToJs('node_id', init('id'));
                             <p>
                                 <span class="zwaveNodeAttr" data-l1key="zwave_id"></span></p>
                                 <p>{{Etat des demandes :}}
-                                    <b><span class="zwaveNodeAttr label label-default" data-l1key="queryStage" style="font-size : 1em;"></span></b>
+                                    <b><span class="node-queryStage label label-default" data-l1key="queryStage" style="font-size : 1em;"></span></b>
                                 </p>
                                 <p>{{Etat :}} <b><span class="node-sleep label label-default" data-l1key="location" data-l2key="value" style="font-size : 1em;"></span></b>
                                     <span class="node-battery-span">{{Batterie : }} <b><span class="zwaveNodeAttr label label-default" data-l1key="battery_level" data-l2key="value" style="font-size : 1em;"></span>%</b></span>

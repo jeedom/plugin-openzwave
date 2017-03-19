@@ -77,11 +77,11 @@
         inputOptions: [
         {
             text: '{{Ce module seulement}}',
-            value: '0',
+            value: '0'
         },
         {
             text: '{{Tous les modules}} : '+node_selected.data.product_name.value+'  '+node_selected.data.vendorString.value,
-            value: '1',
+            value: '1'
         }
         ],
         callback: function (result) {
@@ -591,8 +591,20 @@ function display_node_info(){
         } else {
             $("#div_nodeConfigure .node-next-wakeup-span").hide();
         }
-        data.data.zwave_id = "{{Identifiant du fabricant :}} <span class='label label-default' style='font-size : 1em;'>" + data.data.manufacturerId.value + " [" + data.data.manufacturerId.hex + "]</span> {{Type de produit :}} <span class='label label-default' style='font-size : 1em;'>" + data.data.manufacturerProductType.value + ' [' + data.data.manufacturerProductType.hex + "]</span> {{Identifiant du produit :}} <span class='label label-default' style='font-size : 1em;'>" + data.data.manufacturerProductId.value + ' [' + data.data.manufacturerProductId.hex + "]</span>";
-        data.data.queryStage = (nodeIsFailed) ? 'Dead' : data.data.state.value;
+        var manufacturer_span = "<span class='label label-default' style='font-size : 1em;'>";
+        if (queryStageIndex > 7 && data.data.product_name.value == "") {
+            manufacturer_span = "<span class='label label-danger' style='font-size : 1em;'>";
+        }
+        if (queryStageIndex > 2){
+            data.data.zwave_id = "{{Identifiant du fabricant :}} "+ manufacturer_span + data.data.manufacturerId.value + " [" + data.data.manufacturerId.hex + "]</span> {{Type de produit :}} " +manufacturer_span + data.data.manufacturerProductType.value + ' [' + data.data.manufacturerProductType.hex + "]</span> {{Identifiant du produit :}} " + manufacturer_span + data.data.manufacturerProductId.value + ' [' + data.data.manufacturerProductId.hex + "]</span>";
+        }
+        else{
+            data.data.zwave_id = "{{Identifiant du fabricant :}} "+ manufacturer_span +  "--</span> {{Type de produit :}} " + manufacturer_span + "--</span> {{Identifiant du produit :}} " + manufacturer_span + "--</span>";
+        }
+        $("#div_nodeConfigure .node-queryStage").html((nodeIsFailed) ? 'Dead' : data.data.state.value);
+        if(nodeIsFailed) {
+            $("#div_nodeConfigure .node-queryStage").removeClass("label-default").addClass("label-danger")
+        }
         $("#div_nodeConfigure .node-sleep").html("---");
         $("#div_nodeConfigure .node-battery-span").hide();
         if (queryStageIndex > 2) {
@@ -601,13 +613,13 @@ function display_node_info(){
                 $("#div_nodeConfigure .node-sleep").html('<i class="fa fa-plug text-success fa-lg"></i>');
                 $("#div_nodeConfigure .node-battery-span").hide();
             }else {
-                $("#div_nodeConfigure .node-sleep").removeClass("label-success").addClass("label-default")
+                $("#div_nodeConfigure .node-sleep").removeClass("label-success").addClass("label-default");
                 if (data.data.battery_level.value != null) {
                     if (data.data.isFrequentListening.value) {
                         $("#div_nodeConfigure .node-sleep").html("{{Endormi <i>(FLiRS)</i>}}");
                     } else if (data.data.can_wake_up.value) {
                         if (data.data.isAwake.value) {
-                            $("#div_nodeConfigure .node-sleep").removeClass("label-default").addClass("label-success")
+                            $("#div_nodeConfigure .node-sleep").removeClass("label-default").addClass("label-success");
                             $("#div_nodeConfigure .node-sleep").html("{{Réveillé}}");
                         }else {
                             $("#div_nodeConfigure .node-sleep").html("{{Endormi}}");
@@ -641,8 +653,8 @@ function display_node_info(){
         }
         if (nodeIsFailed) {
             warningMessage += "<li>{{Le contrôleur pense que ce noeud est en échec, essayez }} " +
-            "<a id='hasNodeFailed_summary' class='btn btn-xs btn-primary hasNodeFailed'><i class='fa fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</a> {{ou}}" +
-            "<a id='testNode' class='btn btn-info testNode'><i class='fa fa-check-square-o'></i> {{Tester le nœud}}</a> {{pour essayer de corriger.}}</li>"
+            "<a data-action='hasNodeFailed' class='btn btn-xs btn-primary  node_action'><i class='fa fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</a> {{ou}}" +
+            "<a data-action='testNode' class='btn btn-info  node_action'><i class='fa fa-check-square-o'></i> {{Tester le nœud}}</a> {{pour essayer de corriger.}}</li>"
         }
         if (data.data.genericType.value == 1) {
             data.data.can_wake_up.value = true;
@@ -680,14 +692,14 @@ function display_node_info(){
                 $("#div_nodeConfigure .node-neighbours").html("...");
                 var genericDeviceClass = parseInt(data.data.genericType.value, 0);
                 if (genericDeviceClass != 1 && (genericDeviceClass != 8 || data.data.isListening.value)) {
-                    warningMessage += "<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <a id='healNode' class='btn btn-success healNode'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</a> {{ou}} <a id='requestNodeNeighboursUpdate' class='btn btn-primary requestNodeNeighboursUpdate'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</a> {{pour corriger.}}</li>";
+                    warningMessage += "<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <a data-action='healNode' class='btn btn-success node_action'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</a> {{ou}} <a data-action='requestNodeNeighboursUpdate' class='btn btn-primary node_action'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</a> {{pour corriger.}}</li>";
                 }
             }
         }else {
             $("#div_nodeConfigure .node-neighbours").html("<i>{{La liste des noeuds voisin n'est pas encore disponible.}}</i>");
         }
         if (queryStageIndex > 7 && data.data.product_name.value == "") {
-            warningMessage += "<li>{{Les identifiants constructeur ne sont pas detectés.}}<br/>{{Utilisez}} <a id='refreshNodeInfo' class='btn btn-success refreshNodeInfo'><i class='fa fa-retweet'></i> {{Rafraîchir infos du noeud}}</a> {{pour corriger}}</li>";
+            warningMessage += "<li>{{Les identifiants constructeur ne sont pas detectés.}}<br/>{{Utilisez}} <a data-action='refreshNodeInfo' class='btn btn-success node_action'><i class='fa fa-retweet'></i> {{Rafraîchir infos du noeud}}</a> {{pour corriger}}</li>";
         }
         $("#div_nodeConfigure .panel-danger").hide();
         $("#div_nodeConfigure .zwaveNodeAttr[data-l1key=warning]").html("");
