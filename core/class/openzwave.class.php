@@ -245,7 +245,7 @@ class openzwave extends eqLogic {
 	public static function deamon_info() {
 		$return = array();
 		$return['state'] = 'nok';
-		$pid_file = '/tmp/openzwaved.pid';
+		$pid_file = jeedom::getTmpFolder('openzwave') . '/deamon.pid';
 		if (file_exists($pid_file)) {
 			if (posix_getsid(trim(file_get_contents($pid_file)))) {
 				$return['state'] = 'ok';
@@ -299,7 +299,6 @@ class openzwave extends eqLogic {
 		$disabledNodes = trim($disabledNodes, ',');
 
 		$cmd = '/usr/bin/python ' . $openzwave_path . '/openzwaved/openzwaved.py ';
-		$cmd .= ' --pidfile /tmp/openzwaved.pid';
 		$cmd .= ' --device ' . $port;
 		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('openzwave'));
 		$cmd .= ' --port ' . $port_server;
@@ -309,6 +308,7 @@ class openzwave extends eqLogic {
 		$cmd .= ' --apikey ' . jeedom::getApiKey('openzwave');
 		$cmd .= ' --suppressRefresh ' . $suppressRefresh;
 		$cmd .= ' --cycle ' . config::byKey('cycle', 'openzwave');
+		$cmd .= ' --pid ' . jeedom::getTmpFolder('openzwave') . '/deamon.pid';
 		if ($disabledNodes != '') {
 			$cmd .= ' --disabledNodes ' . $disabledNodes;
 		}
@@ -341,7 +341,7 @@ class openzwave extends eqLogic {
 
 			}
 		}
-		$pid_file = '/tmp/openzwaved.pid';
+		$pid_file = jeedom::getTmpFolder('openzwave') . '/deamon.pid';
 		if (file_exists($pid_file)) {
 			$pid = intval(trim(file_get_contents($pid_file)));
 			system::kill($pid);
