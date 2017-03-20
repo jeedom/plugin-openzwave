@@ -208,7 +208,7 @@ class openzwave extends eqLogic {
 	public static function dependancy_info() {
 		$return = array();
 		$return['log'] = 'openzwave_update';
-		$return['progress_file'] = '/tmp/compilation_ozw_in_progress';
+		$return['progress_file'] = jeedom::getTmpFolder('openzwave') . '/dependance';
 		$return['state'] = (self::compilationOk()) ? 'ok' : 'nok';
 		if ($return['state'] == 'ok' && self::getVersion('openzwave') != -1 && version_compare(config::byKey('openzwave_version', 'openzwave'), self::getVersion('openzwave'), '>')) {
 			$return['state'] = 'nok';
@@ -219,7 +219,7 @@ class openzwave extends eqLogic {
 	public static function dependancy_install() {
 		config::save('currentOzwVersion', config::byKey('openzwave_version', 'openzwave'), 'openzwave');
 		log::remove(__CLASS__ . '_update');
-		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh', 'log' => log::getPathToLog(__CLASS__ . '_update'));
+		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('openzwave') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
 	}
 
 	public static function getVersion($_module = 'openzwave') {
