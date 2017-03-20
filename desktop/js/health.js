@@ -130,19 +130,19 @@
             tbody += '<td>';
             var status = '';
             var query_stage = '';
-            if (nodes[node_id].data.isFailed != undefined && !nodes[node_id].data.isFailed.value) {
-                if (nodes[node_id].data.state != undefined) {
-                    query_stage = nodes[node_id].data.state.value;
+            if (nodes[node_id].data.state != undefined) {
+                query_stage = nodes[node_id].data.state.value;
+                if (nodes[node_id].data.isFailed != undefined && !nodes[node_id].data.isFailed.value) {
                     if (nodes[node_id].data.state.value == 'Complete') {
                         status += '<span class="label label-success" style="font-size : 1em;">' + nodes[node_id].data.state.value + '</span>';
                     } else {
                         status += '<span class="label label-warning" style="font-size : 1em;">' + nodes[node_id].data.state.value + '</span>';
                     }
                 } else {
-                    status += '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
+                    status += '<span class="label label-danger" style="font-size : 1em;">{{DEATH}}</span>';
                 }
             } else {
-                status += '<span class="label label-danger" style="font-size : 1em;">{{DEATH}}</span>';
+                status += '<span class="label label-warning" style="font-size : 1em;">--</span>';
             }
             tbody += (nodes[node_id].data.isEnable.value) ? status : '<div style="opacity:0.5"><i>' + status + '</i></div>';
             tbody += '</td>';
