@@ -605,6 +605,9 @@ function display_node_info(){
         if(nodeIsFailed) {
             $("#div_nodeConfigure .node-queryStage").removeClass("label-default").addClass("label-danger")
         }
+        else{
+            $("#div_nodeConfigure .node-queryStage").removeClass("label-danger").addClass("label-default")
+        }
         $("#div_nodeConfigure .node-sleep").html("---");
         $("#div_nodeConfigure .node-battery-span").hide();
         if (queryStageIndex > 2) {
@@ -693,6 +696,10 @@ function display_node_info(){
                 var genericDeviceClass = parseInt(data.data.genericType.value, 0);
                 if (genericDeviceClass != 1 && (genericDeviceClass != 8 || data.data.isListening.value)) {
                     warningMessage += "<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <a data-action='healNode' class='btn btn-success node_action'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</a> {{ou}} <a data-action='requestNodeNeighboursUpdate' class='btn btn-primary node_action'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</a> {{pour corriger.}}</li>";
+                    $("#div_nodeConfigure .node-neighbours").removeClass("label-default").addClass("label-danger")
+                }
+                else{
+                    $("#div_nodeConfigure .node-neighbours").removeClass("label-danger").addClass("label-default")
                 }
             }
         }else {
