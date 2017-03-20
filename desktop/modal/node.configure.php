@@ -53,6 +53,9 @@ sendVarToJs('node_id', init('id'));
 <div id='div_nodeConfigureOpenzwaveAlert' style="display: none;"></div>
 <div class='node' nid='' id="div_nodeConfigure">
     <div class="container-fluid">
+        <h3>
+            <span class="node-name fixed">{{inconnu}}</span> - {{Node Id:}} <span class="node-id">{{inconnu}}</span>
+        </h3>
         <div id="content">
             <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
                 <li id="tab-summary" class="active"><a href="#summary" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Résumé}}</a></li>

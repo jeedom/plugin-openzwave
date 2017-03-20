@@ -22,8 +22,10 @@
  controller_id = -1;
  var isWarning = false;
  var warningMessage = "";
+var selected_node_id = -1;
 
  $('.node_action').on('click',function(){
+    console.debug($(this).data('action'));
     jeedom.openzwave.node.action({
         action : $(this).data('action'),
         node_id : node_id,
@@ -564,6 +566,7 @@ function display_node_stats(){
 }
 
 function display_node_info(){
+   var selected_node_id = node_id;
    jeedom.openzwave.node.info({
     node_id : node_id,
     info:'all',
@@ -574,6 +577,10 @@ function display_node_info(){
     success: function (data) {
         warningMessage = '';
         node_selected = data;
+
+        $("#div_nodeConfigure .node-id").html(selected_node_id);
+        $("#div_nodeConfigure .node-name").html(data.data.name.value);
+
         var nodeIsFailed = (data.data.isFailed) ? data.data.isFailed.value : false;
         data.data.lastReceived.updateTime = jeedom.openzwave.timestampConverter(data.data.lastReceived.updateTime);
         data.data.basicDeviceClassDescription = (isset(BASIC_CLASS_DESC[data.data.basicType.value])) ? BASIC_CLASS_DESC[parseInt(data.data.basicType.value, 0)] : '';
