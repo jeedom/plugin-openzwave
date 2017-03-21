@@ -22,10 +22,9 @@
  controller_id = -1;
  var isWarning = false;
  var warningMessage = "";
-var selected_node_id = -1;
+ var selected_node_id = -1;
 
- $('.node_action').on('click',function(){
-    console.debug($(this).data('action'));
+ $("body").off("click", ".node_action").on("click", ".node_action", function (e) {
     jeedom.openzwave.node.action({
         action : $(this).data('action'),
         node_id : node_id,
