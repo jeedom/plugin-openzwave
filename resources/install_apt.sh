@@ -115,6 +115,7 @@ echo 60 > /tmp/compilation_ozw_in_progress
 cd python-openzwave
 sudo pip uninstall -y Cython
 cd /opt/python-openzwave
+sudo rm /opt/python-openzwave/openzwave/cpp/src/command_classes/MultiInstanceAssociation.* > /dev/null 2>&1
 sudo make cython-deps
 echo 65 > /tmp/compilation_ozw_in_progress
 sudo make repo-deps
