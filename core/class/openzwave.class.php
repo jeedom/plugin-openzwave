@@ -489,6 +489,10 @@ class openzwave extends eqLogic {
 		return false;
 	}
 
+	public function getImage() {
+		return 'plugins/openzwave/core/config/devices/' . $this->getImgFilePath();
+	}
+
 	public function getAssistantFilePath() {
 		$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
 		$files = ls(dirname(__FILE__) . '/../config/devices', $id . '_*.php', false, array('files', 'quiet'));
