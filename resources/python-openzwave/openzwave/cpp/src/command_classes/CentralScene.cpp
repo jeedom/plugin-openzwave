@@ -210,6 +210,11 @@ bool CentralScene::HandleMsg
 	{
 		// Central Scene Set received so send notification
 		uint8 keyAttribute = _data[2];
+		//ugly hack for fibaro keyfob
+		if (keyAttribute >= 0x80)
+		{
+			keyAttribute = keyAttribute - 0x80;
+		}
 		uint8 sceneID = _data[3];
 		uint8 sceneNumber = sceneID*10 + keyAttribute;
 		Log::Write( LogLevel_Info, GetNodeId(), "Received Central Scene set from node %d: scene id=%d with key Attribute %d. Sending event notification.", GetNodeId(), sceneID, keyAttribute);
