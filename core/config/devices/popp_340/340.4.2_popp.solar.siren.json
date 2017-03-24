@@ -127,7 +127,7 @@
 	{
 		"name": "Mode",
 		"type": "info",
-		"subtype": "other",
+		"subtype": "string",
 		"isVisible": 1,
 		"isHistorized": 0,
 		"unite": "",
