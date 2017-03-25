@@ -133,7 +133,7 @@
 		"unite": "",
 		"configuration": {
 			"class": "0x70",
-			"value": "data[0].val"
+			"value": "data[5].val"
 		},
 		"display": {
 			"generic_type": "DONT"
