@@ -1,0 +1,83 @@
+{
+    "name": "FGKF601 Keyfob",
+    "doc": "",
+    "type": "Télécommande",
+    "comlink": "3994-fibaro-telecommande-porte-cles-z-wave-fibaro-keyfob-fgkf-601-5905279987562",
+    "remark": "",
+    "imglink": "fibaro.fgkf601",
+    "battery_type": "1x3V CR2450",
+    "ignore": 0,
+    "commands": [
+        {
+            "name": "Scene",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "repeatEventManagement" : "always",
+                "index": "128",
+                "instance": 1
+            }
+        },
+         {
+            "name": "SceneID",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "repeatEventManagement" : "always",
+                "index": "2",
+                "instance": 1
+            }
+        },
+        {
+            "name": "SceneAttribute",
+            "type": "info",
+            "subtype": "string",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "repeatEventManagement" : "always",
+                "index": "1",
+                "instance": 1
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "%",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": "0",
+                "instance": 1
+            }
+        }
+    ]
+}
