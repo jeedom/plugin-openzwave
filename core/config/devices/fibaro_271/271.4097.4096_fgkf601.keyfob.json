@@ -36,7 +36,7 @@
             },
             "configuration": {
                 "class": "0x5b",
-                "value": "data[2].val"
+                "value": "data[2].val",
                 "repeatEventManagement": "always",                
                 "instance": 0
             }
@@ -53,7 +53,7 @@
             },
             "configuration": {
                 "class": "0x5b",
-                "value": "data[1].val"
+                "value": "data[1].val",
                 "repeatEventManagement": "always",
                 "instance": 0
             }
