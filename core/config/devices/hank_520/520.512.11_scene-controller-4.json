@@ -1,7 +1,7 @@
 {
     "name": "Scene Controller 4",
     "doc": "",
-    "type": "Contrôleur portable",
+    "type": "ContrÃ´leur portable",
     "comlink": "",
     "remark": "",
     "imglink": "520.512.11_scene-controller-4",
@@ -9,7 +9,7 @@
     "ignore": 0,
     "commands": [
         {
-            "name": "SceneNumber",
+            "name": "Scene",
             "type": "info",
             "subtype": "numeric",
             "isVisible": 0,
