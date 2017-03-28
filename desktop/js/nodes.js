@@ -111,13 +111,13 @@
         } else {
             message += '<b>' + nodes[key].description.product_name + '</b>';
         }
-        message += '<br><ul class="fa-ul">'
+        message += '<br><ul class="fa-ul">';
         $.each(val, function (key2, val2) {
             message += '<li><i class="fa fa-arrow-right btn-success" aria-hidden="true"></i>  ' + val2.label + ' (' + val2.index + ')</li>';
         });
         message += '</ul></p></li>';
-    })
-    message += '</ul>'
+    });
+    message += '</ul>';
     bootbox.alert(message);
 });
 
@@ -134,7 +134,7 @@
         success: function () {
            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
        }
-   }
+   };
    if ($(this).data('type') == "List") {
     var options = [];
     $.each($(this).data('valuedataitems').split(";"), function (key, val) {
@@ -148,7 +148,7 @@
          if(result === null){
             return;
         }
-        valueApplyOption.value = result
+        valueApplyOption.value = result;
         jeedom.openzwave.node.set(valueApplyOption);
     }
 });
@@ -164,7 +164,7 @@
            if(result === null){
             return;
         }
-        valueApplyOption.value = result
+        valueApplyOption.value = result;
         jeedom.openzwave.node.set(valueApplyOption);
     }
 });
@@ -181,7 +181,7 @@
      if(result === null){
         return;
     }
-    valueApplyOption.action = result
+    valueApplyOption.action = result;
     jeedom.openzwave.node.button(valueApplyOption);
 }
 });
@@ -206,7 +206,7 @@
  if(result === null){
     return;
 }
-valueApplyOption.value = result
+valueApplyOption.value = result;
 jeedom.openzwave.node.set(valueApplyOption);
 }
 });
@@ -269,7 +269,7 @@ jeedom.openzwave.node.set(valueApplyOption);
         success: function () {
            $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: '{{Action réalisée avec succès}}', level: 'success'});
        }
-   }
+   };
    if ($(this).data('paramtype') == "List") {
      jeedom.openzwave.node.dataClass({
         node_id : node_id,
@@ -972,7 +972,7 @@ function getTranslation(){
             translation: 1,
             manufacturer_id: node_selected.data.manufacturerId.value,
             product_type: node_selected.data.manufacturerProductType.value,
-            product_id: node_selected.data.manufacturerProductId.value,
+            product_id: node_selected.data.manufacturerProductId.value
         },
         success: function (data) {
             result = data.result;
