@@ -63,7 +63,7 @@
           {"index": 5, "value" : 20},
           {"index": 8, "value" : "Enable"},
           {"index": 9, "value" : 10},
-          {"index": 10, "value" : "Disable"},
+          {"index": 10, "value" : "Disable"}
         ],
 		"wakeup" : 21600,
 		"needswakeup" : true
