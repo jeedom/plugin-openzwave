@@ -16,8 +16,9 @@
 #  along with Plugin openzwave for jeedom. If not, see <http://www.gnu.org/licenses/>.
 
 #set -x  # make sure each command is printed in the terminal
-touch /tmp/compilation_ozw_in_progress
-echo 0 > /tmp/compilation_ozw_in_progress
+PROGRESS_FILE=/tmp/jeedom/openzwave/dependance
+touch ${PROGRESS_FILE}
+echo 0 > ${PROGRESS_FILE}
 echo "Lancement de l'installation/mise à jour des dépendances openzwave"
 
 BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
@@ -26,7 +27,7 @@ function apt_install {
   sudo apt-get -y install "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $1 - abort"
-    rm /tmp/compilation_ozw_in_progress
+    rm ${PROGRESS_FILE}
     exit 1
   fi
 }
@@ -35,7 +36,7 @@ function pip_install {
   sudo pip install "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
-    rm /tmp/compilation_ozw_in_progress
+    rm ${PROGRESS_FILE}
     exit 1
   fi
 }
@@ -57,46 +58,46 @@ fi
 if [ ! -d /opt ]; then
   sudo mkdir /opt
 fi
-echo 10 > /tmp/compilation_ozw_in_progress
+echo 10 > ${PROGRESS_FILE}
 sudo rm -f /var/lib/dpkg/updates/*
 sudo apt-get clean
-echo 20 > /tmp/compilation_ozw_in_progress
+echo 20 > ${PROGRESS_FILE}
 sudo apt-get update
-echo 30 > /tmp/compilation_ozw_in_progress
+echo 30 > ${PROGRESS_FILE}
 echo "Installation des dependances"
 apt_install mercurial git python-pip python-dev python-pyudev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml unzip libjpeg-dev python-serial python-requests
-echo 40 > /tmp/compilation_ozw_in_progress
+echo 40 > ${PROGRESS_FILE}
 # Python
 echo "Installation des dependances Python"
 pip_install sphinxcontrib-blockdiag
-echo 41 > /tmp/compilation_ozw_in_progress
+echo 41 > ${PROGRESS_FILE}
 pip_install sphinxcontrib-actdiag
-echo 42 > /tmp/compilation_ozw_in_progress
+echo 42 > ${PROGRESS_FILE}
 pip_install sphinxcontrib-nwdiag
-echo 43 > /tmp/compilation_ozw_in_progress
+echo 43 > ${PROGRESS_FILE}
 pip_install sphinxcontrib-seqdiag
-echo 44 > /tmp/compilation_ozw_in_progress
+echo 44 > ${PROGRESS_FILE}
 pip_install urwid
-echo 45 > /tmp/compilation_ozw_in_progress
+echo 45 > ${PROGRESS_FILE}
 pip_install louie
-echo 46 > /tmp/compilation_ozw_in_progress
+echo 46 > ${PROGRESS_FILE}
 pip_install flask
-echo 47 > /tmp/compilation_ozw_in_progress
+echo 47 > ${PROGRESS_FILE}
 pip_install flask-restful
-echo 48 > /tmp/compilation_ozw_in_progress
+echo 48 > ${PROGRESS_FILE}
 pip_install flask-httpauth
-echo 49 > /tmp/compilation_ozw_in_progress
+echo 49 > ${PROGRESS_FILE}
 pip_install six
-echo 50 > /tmp/compilation_ozw_in_progress
+echo 50 > ${PROGRESS_FILE}
 pip_install tornado
-echo 51 > /tmp/compilation_ozw_in_progress
+echo 51 > ${PROGRESS_FILE}
 
 sudo mkdir /opt
 if [ -d /opt/python-openzwave ]; then
   cd /opt/python-openzwave
   echo "Désinstallation de la version précédente";
   sudo make uninstall > /dev/null 2>&1
-  echo 55 > /tmp/compilation_ozw_in_progress
+  echo 55 > ${PROGRESS_FILE}
   sudo rm -rf /usr/local/lib/python2.7/dist-packages/libopenzwave*
   sudo rm -rf /usr/local/lib/python2.7/dist-packages/openzwave* 
   cd /opt
@@ -108,33 +109,33 @@ cd /opt
 cp -R ${BASEDIR}/python-openzwave python-openzwave
 if [ $? -ne 0 ]; then
   echo "Unable to copy python-openzwave source"
-  rm /tmp/compilation_ozw_in_progress
+  rm ${PROGRESS_FILE}
   exit 1
 fi
-echo 60 > /tmp/compilation_ozw_in_progress
+echo 60 > ${PROGRESS_FILE}
 cd python-openzwave
 sudo pip uninstall -y Cython
 cd /opt/python-openzwave
 sudo rm /opt/python-openzwave/openzwave/cpp/src/command_classes/MultiInstanceAssociation.* > /dev/null 2>&1
 sudo make cython-deps
-echo 65 > /tmp/compilation_ozw_in_progress
+echo 65 > ${PROGRESS_FILE}
 sudo make repo-deps
-echo 70 > /tmp/compilation_ozw_in_progress
+echo 70 > ${PROGRESS_FILE}
 cp -R ${BASEDIR}/python-openzwave/openzwave openzwave
 if [ $? -ne 0 ]; then
   echo "Unable to copy openzwave"
-  rm /tmp/compilation_ozw_in_progress
+  rm ${PROGRESS_FILE}
   exit 1
 fi
-echo 75 > /tmp/compilation_ozw_in_progress
+echo 75 > ${PROGRESS_FILE}
 cd /opt/python-openzwave
 mkdir /opt/python-openzwave/.git
 sudo make install-api
-echo 80 > /tmp/compilation_ozw_in_progress
+echo 80 > ${PROGRESS_FILE}
 sudo mkdir /opt/python-openzwave/python-eggs
 sudo chown -R www-data:www-data /opt/python-openzwave
 sudo chmod -R 777 /opt/python-openzwave
-echo 90 > /tmp/compilation_ozw_in_progress
+echo 90 > ${PROGRESS_FILE}
 if [ -e /dev/ttyAMA0 ];  then 
   sudo sed -i 's/console=ttyAMA0,115200//; s/kgdboc=ttyAMA0,115200//' /boot/cmdline.txt
   sudo sed -i 's|[^:]*:[^:]*:respawn:/sbin/getty[^:]*ttyAMA0[^:]*||' /etc/inittab
@@ -160,7 +161,7 @@ then
       echo "And reboot your Raspberry Pi"
    fi
 fi
-echo 100 > /tmp/compilation_ozw_in_progress
+echo 100 > ${PROGRESS_FILE}
 echo "Everything is successfully installed!"
-rm /tmp/compilation_ozw_in_progress
+rm ${PROGRESS_FILE}
 
