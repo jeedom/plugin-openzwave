@@ -20,6 +20,7 @@
 		},
 		"configuration": {
 			"class": "0x71",
+			"repeatEventManagement" : "always",
 			"value": "data[9].val",
 			"minValue": 0,
 			"maxValue": 255
