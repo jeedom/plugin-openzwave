@@ -69,9 +69,9 @@ sendVarToJs('node_id', init('id'));
             <div id="my-tab-content" class="tab-content">
                 <div class="tab-pane active" id="summary">
                     <br>
-                    <div id="panel-danger" class="panel panel-danger template">
+                    <div id="panel-danger" class="panel panel-warning template">
                         <div class="panel-heading">
-                            <h4 class="panel-title"><i class="fa fa-exclamation-circle"></i> {{Attention}}</h4>
+                            <h4 class="panel-title"><i class="fa fa-exclamation-triangle text-danger"></i> {{Attention}}</h4>
                         </div>
                         <div class="panel-body">
                             <p><span class="zwaveNodeAttr" data-l1key="warning"></span></p>
