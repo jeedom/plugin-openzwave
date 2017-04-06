@@ -712,13 +712,13 @@ function display_node_info(){
         if (queryStageIndex > 7 && data.data.product_name.value == "") {
             warningMessage += "<li>{{Les identifiants constructeur ne sont pas detectés.}}<br/>{{Utilisez}} <a data-action='refreshNodeInfo' class='btn btn-success node_action'><i class='fa fa-retweet'></i> {{Rafraîchir infos du noeud}}</a> {{pour corriger}}</li>";
         }
-        $("#div_nodeConfigure .panel-danger").hide();
+        $("#div_nodeConfigure .panel-warning").hide();
         $("#div_nodeConfigure .zwaveNodeAttr[data-l1key=warning]").html("");
         if (warningMessage != '') {
             if (data.data.can_wake_up.value) {
                 warningMessage += "<br><p>{{Le noeud est dormant et nécessite un réveil avant qu'une commande puisse être exécutée.<br/>Vous pouvez le réveiller manuellement ou attendre son délai de réveil.}}<br/>{{Voir l'interval de réveil dans l'onglet Système}}</p>";
             }
-            $("#div_nodeConfigure .panel-danger").show();
+            $("#div_nodeConfigure .panel-warning").show();
             $("#div_nodeConfigure .zwaveNodeAttr[data-l1key=warning]").html(warningMessage);
         }
         var variables = "";
