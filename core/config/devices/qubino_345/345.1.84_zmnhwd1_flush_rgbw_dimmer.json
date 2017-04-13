@@ -1,0 +1,225 @@
+{
+	"name": "Variateur RGBW",
+	"doc": "",
+	"type": "RGBW",
+	"comlink": "3990-qubino-micromodule-variateur-rgbw-z-wave",
+	"remark": "",
+	"imglink": "qubino.zmnhwd1",
+	"commands": [{
+		"name": "Couleur",
+		"type": "action",
+		"subtype": "color",
+		"isVisible": 1,
+		"value": "Etat couleur",
+		"display": {
+			"generic_type": "LIGHT_SET_COLOR"
+		},
+		"configuration": {
+			"class": "0x33",
+			"value": "data[0].Set(#color#)"
+		}
+	},
+	{
+		"name": "Puissance",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 1,
+		"unite": "W",
+		"display": {
+			"generic_type": "POWER"
+		},
+		"configuration": {
+			"class": "0x31",
+			"value": "data[4].val",
+			"maxValue": 2500,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Consommation",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "kWh",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"configuration": {
+			"class": "0x32",
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "tile"
+		}
+	},	
+	{
+		"name": "Blanc Froid",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x33",
+			"value": "data[1].Set(Cool White)"
+		},
+		"display": {
+			"icon": "<i class=\"icon nature-snowflake\"><\/i>",
+			"generic_type": "DONT"
+		}
+	},
+	{
+		"name": "Blanc Chaud",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"configuration": {
+			"class": "0x33",
+			"value": "data[1].Set(Warm White)"
+		},
+		"display": {
+			"icon": "<i class=\"icon meteo-brouillard\"><\/i>",
+			"generic_type": "DONT"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(99)"
+		},
+		"display": {
+			"icon": "<i class=\"icon jeedom-lumiere-on\"><\/i>",
+			"generic_type": "LIGHT_ON"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		},
+		"display": {
+			"icon": "<i class=\"icon jeedom-lumiere-off\"><\/i>",
+			"generic_type": "LIGHT_OFF"
+		}
+	},
+	{
+		"name": "Intensité",
+		"type": "action",
+		"subtype": "slider",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "LIGHT_SLIDER"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(#slider#)",
+			"minValue": 0,
+			"maxValue": 99
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].val",
+			"minValue": 0,
+			"maxValue": 99
+		}
+	},
+	{
+		"name": "Etat couleur",
+		"type": "info",
+		"subtype": "string",
+		"unite": "",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_COLOR"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "#color#"
+		}
+	},
+	{
+		"name": "Blanc Intensité",
+		"type": "action",
+		"subtype": "slider",
+		"isVisible": 0,
+		"value": "Blanc Etat",
+		"display": {
+			"generic_type": "LIGHT_SLIDER"
+		},
+		"configuration": {
+			"class": "0x26",
+			"instanceId": 5,
+			"value": "data[0].Set(#slider#)",
+			"minValue": 0,
+			"maxValue": 99
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Blanc On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"configuration": {
+			"class": "0x26",
+			"instanceId": 5,
+			"value": "data[0].Set(99)"
+		}
+	},
+	{
+		"name": "Blanc Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"configuration": {
+			"class": "0x26",
+			"instanceId": 5,
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Blanc Etat",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"class": "0x26",
+			"instanceId": 5,
+			"value": "data[0].val",
+			"minValue": 0,
+			"maxValue": 99
+		}
+	}]
+}
