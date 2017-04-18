@@ -17,7 +17,6 @@
 		"unite": "",
 		"configuration": {
 			"class": "0x71",
-			"instanceId": 1,
 			"value": "data[1].val"
 		}
 	}]

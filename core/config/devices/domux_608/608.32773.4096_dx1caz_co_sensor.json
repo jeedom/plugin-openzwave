@@ -18,7 +18,6 @@
 		"unite": "",
 		"configuration": {
 			"class": "0x30",
-			"instanceId": 1,
 			"value": "data[0].val"
 		}
 	},
@@ -34,7 +33,6 @@
 		},
 		"configuration": {
 			"class": "0x80",
-			"instanceId": 1,
 			"value": "data[0].val"
 		}
 	}]
