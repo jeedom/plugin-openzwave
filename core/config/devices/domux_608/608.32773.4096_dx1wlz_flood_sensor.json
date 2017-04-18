@@ -1,0 +1,49 @@
+{
+	"name": "Flood Sensor (DX1WL-Z)",
+	"doc": "",
+	"type": "Fuite",
+	"comlink": "",
+	"remark": "",
+	"imglink": "domux.dx1wlz",
+	"battery_type": "2x1.5V LR03",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Fuite",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "",
+		"configuration": {
+			"class": "0x30",
+			"instanceId": 1,
+			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "FLOOD"
+		},
+		"template": {
+			"dashboard": "inondation",
+			"mobile": "inondation"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "%",
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"instanceId": 1,
+			"value": "data[0].val"
+		}
+	}]
+}

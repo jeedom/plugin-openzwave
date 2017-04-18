@@ -1,0 +1,24 @@
+{
+	"name": "Gaz Sensor (DX1CG-Z)",
+	"doc": "",
+	"type": "Gaz",
+	"comlink": "",
+	"remark": "",
+	"imglink": "domux.dx1cgz",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Fuite gaz",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "",
+		"configuration": {
+			"class": "0x71",
+			"instanceId": 1,
+			"value": "data[1].val"
+		}
+	}]
+}

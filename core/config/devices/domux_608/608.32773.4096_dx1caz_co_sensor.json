@@ -1,0 +1,41 @@
+{
+	"name": "CO Sensor (DX1CA-Z)",
+	"doc": "",
+	"type": "CO",
+	"comlink": "",
+	"remark": "",
+	"imglink": "domux.dx1caz",
+	"battery_type": "1x3V CR17335",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Alerte CO",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "",
+		"configuration": {
+			"class": "0x30",
+			"instanceId": 1,
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "%",
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"instanceId": 1,
+			"value": "data[0].val"
+		}
+	}]
+}
