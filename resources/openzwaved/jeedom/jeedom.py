@@ -71,6 +71,8 @@ class jeedom_com():
 			timer_duration = self.cycle - ms
 			if timer_duration < 0.1:
 				timer_duration = 0.1
+			if timer_duration > self.cycle:
+				timer_duration = self.cycle
 			resend_changes = threading.Timer(timer_duration, self.send_changes_async)
 			resend_changes.start() 
 		except Exception as error:
