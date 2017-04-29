@@ -13,6 +13,8 @@ def value_added(network, node, value):
 def value_removed(network, node, value):
 	if node.node_id in globals.not_supported_nodes:
 		return
+	if value == None:
+		return
 	if value.value_id in globals.pending_configurations:
 		del globals.pending_configurations[value.value_id]
 
