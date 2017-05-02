@@ -56,7 +56,7 @@
 		"configuration": {
 			"class": "0x31",
 			"value": "data[3].val",
-			"maxValue": 16000,
+			"maxValue": 32000,
 			"minValue": 0
 		}
 	},
