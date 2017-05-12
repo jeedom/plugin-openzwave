@@ -47,7 +47,7 @@
 		"params" : [       
           {"index": 121, "value" : "Basic Set and Sensor Binary Report"}
         ],
-		"wakeup" : 14400,
+		"wakeup" : 86400,
 		"needswakeup" : true
     }
 }
