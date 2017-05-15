@@ -1,100 +1,99 @@
 {
-	"name": "Popp Radiator Thermostat",
-	"type": "Thermostat",
-	"comlink": "3683-popp-tete-thermostatique-sans-fil-z-wave-0019962010101",
-	"remark": "",
-	"imglink": "danfoss.living-connect",
-	"battery_type": "2x1.5V AAA",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Température",
-		"type": "info",
-		"subtype": "numeric",
-		"unite": "°C",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"display": {
-			"generic_type": "THERMOSTAT_TEMPERATURE"
-		},
-		"configuration": {
-			"class": "0x31",
-			"instanceId": 0,
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Commande",
-		"type": "action",
-		"subtype": "slider",
-		"value" : "Consigne",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "°C",
-		"display": {
-			"generic_type": "THERMOSTAT_SET_SETPOINT"
-		},
-		"configuration": {
-			"class": "0x43",
-			"instanceId": 0,
-			"value": "data[1].Set(#slider#)",
-			"maxValue": 30,
-			"minValue": 0
-		}
-	},
-	{
-		"name": "Consigne",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "°C",
-		"display": {
-			"generic_type": "THERMOSTAT_SETPOINT"
-		},
-		"configuration": {
-			"class": "0x43",
-			"instanceId": 0,
-			"value": "data[1].val",
-			"maxValue": 30,
-			"minValue": 0
-		}
-	},
-	{
-		"name": "Consigne pending",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "°C",
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x43",
-			"instanceId": 10,
-			"value": "data[1].val",
-			"maxValue": 30,
-			"minValue": 0
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "%",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"class": "0x80",
-			"instanceId": 0,
-			"value": "data[0].val",
-			"maxValue": 100,
-			"minValue": 0
-		}
-	}]
+  "name": "Popp Radiator Thermostat",
+  "type": "Thermostat",
+  "comlink": "3683-popp-tete-thermostatique-sans-fil-z-wave-0019962010101",
+  "remark": "",
+  "imglink": "danfoss.living-connect",
+  "battery_type": "2x1.5V AAA",
+  "commands": [
+    {
+      "name": "Température",
+      "type": "info",
+      "subtype": "numeric",
+      "unite": "°C",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "display": {
+        "generic_type": "THERMOSTAT_TEMPERATURE"
+      },
+      "configuration": {
+        "class": "0x31",
+        "instanceId": 0,
+        "value": "data[1].val"
+      }
+    },
+    {
+      "name": "Commande",
+      "type": "action",
+      "subtype": "slider",
+      "value": "Consigne",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "unite": "°C",
+      "display": {
+        "generic_type": "THERMOSTAT_SET_SETPOINT"
+      },
+      "configuration": {
+        "class": "0x43",
+        "instanceId": 0,
+        "value": "data[1].Set(#slider#)",
+        "maxValue": 30,
+        "minValue": 0
+      }
+    },
+    {
+      "name": "Consigne",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "°C",
+      "display": {
+        "generic_type": "THERMOSTAT_SETPOINT"
+      },
+      "configuration": {
+        "class": "0x43",
+        "instanceId": 0,
+        "value": "data[1].val",
+        "maxValue": 30,
+        "minValue": 0
+      }
+    },
+    {
+      "name": "Consigne pending",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "°C",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "configuration": {
+        "class": "0x43",
+        "instanceId": 10,
+        "value": "data[1].val",
+        "maxValue": 30,
+        "minValue": 0
+      }
+    },
+    {
+      "name": "Batterie",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "%",
+      "display": {
+        "generic_type": "BATTERY"
+      },
+      "configuration": {
+        "class": "0x80",
+        "instanceId": 0,
+        "value": "data[0].val",
+        "maxValue": 100,
+        "minValue": 0
+      }
+    }
+  ]
 }
