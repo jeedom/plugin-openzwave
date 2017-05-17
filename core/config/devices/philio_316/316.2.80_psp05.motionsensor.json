@@ -1,0 +1,68 @@
+{
+	"name": "PSP05 B, C & D version",
+	"doc": "",
+	"type": "Multicapteurs",
+	"comlink": "4108-philio-detecteur-de-mouvement-exterieur-z-wave-4713698573508",
+	"remark": "",
+	"imglink": "philio.psp05",
+	"battery_type": "1x3V CR123A",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Présence",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x30",
+			"value": "data[0].val",
+			"returnStateTime": 1,
+			"returnStateValue": 0
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "PRESENCE"
+		},
+		"template": {
+			"dashboard": "presence",
+			"mobile": "presence"
+		}
+	},
+	{
+		"name": "Sabotage",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x30",
+			"value": "data[2].val",
+			"returnStateTime": 1,
+			"returnStateValue": 0
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "SABOTAGE"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x80",
+			"value": "data[0].val",
+			"unite": "%"
+		}
+	}]
+}
