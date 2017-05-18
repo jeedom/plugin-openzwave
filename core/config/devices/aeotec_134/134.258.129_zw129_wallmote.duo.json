@@ -3,10 +3,10 @@
 	"doc": "",
 	"type": "Télécommande",
 	"comlink": "",
-	"remark": "",
+	"remark": "Partiellement compatible: Fonctionne en association directe seulement ",
 	"imglink": "aeotec.zw130",
 	"battery_type": "Batterie",
-	"ignore": 1,
+	"ignore": 0,
 	"commands": [
         {
             "name": "Scene",
