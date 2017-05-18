@@ -5,7 +5,7 @@
 	"comlink": "",
 	"remark": "",
 	"imglink": "",
-	"ignore": 1,
+	"ignore": 0,
 	"commands": [{
 		"name": "Etat",
 		"type": "info",
