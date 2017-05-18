@@ -1,13 +1,10 @@
 {
-  "name": "Home Control Smart Metering Plug (MT02646)",
+  "name": "Metering Plug (MT02646)",
   "doc": "",
   "type": "Prise",
   "comlink": "",
   "remark": "",
   "imglink": "devolo.mt02646",
-  "configuration": {
-    "conf_version": 1
-  },
   "commands": [
     {
       "name": "Etat",
