@@ -274,7 +274,7 @@ $.ajax({
 
 
 /**********************Envent js requests *****************************/
-$('body').on('zwave::controller.data.controllerState', function (_event, _options) {
+$('body').off('zwave::controller.data.controllerState').on('zwave::controller.data.controllerState', function (_event, _options) {
     $.hideAlert();
     if (_options.state == 1) {
         $('.changeIncludeState[data-mode=1]:not(.card)').removeClass('btn-default').addClass('btn-success');
@@ -310,7 +310,7 @@ $('body').on('zwave::controller.data.controllerState', function (_event, _option
     }
 });
 
-$('body').on('zwave::includeDevice', function (_event, _options) {
+$('body').off('zwave::includeDevice').on('zwave::includeDevice', function (_event, _options) {
     if (modifyWithoutSave) {
         $('#div_inclusionAlert').showAlert({
             message: '{{Un périphérique vient d\'être inclu/exclu. Veuillez réactualiser la page}}',

@@ -16,7 +16,7 @@
 
  function initOpenzwaveOpenzwave() {
 
-    $('body').on('zwave::controller.data.controllerState', function (_event,_options) {
+    $('body').off('zwave::controller.data.controllerState').on('zwave::controller.data.controllerState', function (_event,_options) {
       if (_options.state == 1) {
         $('.changeIncludeState[data-mode=1]').removeClass('ui-btn-a').addClass('ui-btn-b');
         $('.changeIncludeState[data-mode=1]').attr('data-state', 0);
@@ -36,11 +36,11 @@
     }
 });
 
-    $('body').on('zwave::notification', function (_event,_options) {
+    $('body').off('zwave::notification').on('zwave::notification', function (_event,_options) {
        $('#div_inclusionAlert').html(_options);
    });
 
-    $('body').on('zwave::includeDevice', function (_event,_options) {
+    $('body').off('zwave::includeDevice').on('zwave::includeDevice', function (_event,_options) {
       $('.eqLogicAttr[data-l1key=id]').value('');
       if (_options != '') {
         $("#div_configIncludeDevice").show();
