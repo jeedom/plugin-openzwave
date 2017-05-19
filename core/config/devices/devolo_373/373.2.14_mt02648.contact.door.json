@@ -1,10 +1,10 @@
 {
-  "name": "9511",
+  "name": "Door/Window Contact MT02648",
   "doc": "",
   "type": "Ouverture",
   "comlink": "",
   "remark": "",
-  "imglink": "devolo.9511",
+  "imglink": "devolo.mt02648",
   "battery_type": "1x3V CR123A",
   "commands": [{
     "name": "Ouverture",
