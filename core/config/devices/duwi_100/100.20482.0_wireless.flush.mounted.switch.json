@@ -1,0 +1,25 @@
+{
+	"name": "Wireless Flush Mounted Switch (5443)",
+	"doc": "",
+	"type": "Télécommande",
+	"comlink": "",
+	"remark": "",
+	"imglink": "duwi.5443",
+	"battery_type": "2x1.5V LR61",
+	"commands": [
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "BATTERIE"
+		},
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "%",
+		"configuration": {
+			"class": "0x80",
+			"value": "data[0].val"
+		}
+	}]
+}
