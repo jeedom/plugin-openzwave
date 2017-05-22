@@ -13,8 +13,6 @@ def value_added(network, node, value):
 def value_removed(network, node, value):
 	if node.node_id in globals.not_supported_nodes:
 		return
-	if value == None:
-		return
 	if value.value_id in globals.pending_configurations:
 		del globals.pending_configurations[value.value_id]
 
@@ -118,10 +116,6 @@ def set_config(_node_id, _index_id, _value, _size):
 	if _size > 4:
 		_size = 4
 	logging.info('Set_config 2 for nodeId : '+str(_node_id)+' index : '+str(_index_id)+', value : '+str(_value)+', size : '+str(_size))	
-	wake_up_time = node_utils.get_wake_up_interval(_node_id)
-	if wake_up_time is None :
-		wake_up_time = 0 
-	wake_up_time += 10
 	for value_id in globals.network.nodes[_node_id].get_values(class_id=globals.COMMAND_CLASS_CONFIGURATION, genre='All', type='All', readonly=False, writeonly='All'):
 		if globals.network.nodes[_node_id].values[value_id].index == _index_id:
 			value = _value.replace("@", "/")
@@ -133,15 +127,15 @@ def set_config(_node_id, _index_id, _value, _size):
 					globals.network.manager.releaseButton(my_value.value_id)
 			elif my_value.type == 'List':
 				globals.network.manager.setValue(value_id, value)
-				mark_pending_change(my_value, value,wake_up_time)
+				mark_pending_change(my_value, value)
 			elif my_value.type == 'Bool':
 				value = globals.network.nodes[_node_id].values[value_id].check_data(value)
 				globals.network.manager.setValue(value_id, value)
-				mark_pending_change(my_value, value,wake_up_time)
+				mark_pending_change(my_value, value)
 			else:
 				value = globals.network.nodes[_node_id].values[value_id].check_data(value)
 				globals.network.nodes[_node_id].set_config_param(_index_id, value, _size)
 				if my_value is not None:
-					mark_pending_change(my_value, value,wake_up_time)
+					mark_pending_change(my_value, value)
 			return
 	raise Exception('Configuration index : '+str(_index_id)+' not found')

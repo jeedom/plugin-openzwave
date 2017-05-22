@@ -1,0 +1,104 @@
+L'interface avancée est composée de 4 onglets principaux.
+
+image:../images/openzwave5.png[]
+
+* *Nodes :*
+
+Dans l'onglet Nodes, vous trouverez l'ensemble des modules Z-Wave inclus sur votre réseaux ainsi que 7 onglets :
+
+	** *Summary :*
+	
+Informations générales à propos du module :
+image:../images/openzwave6.png[]
+
+	** *Values :*
+	
+Liste de toutes les valeurs du module :
+image:../images/openzwave7.png[]
+
+Il est possible de modifier les valeurs en cliquant sur l'icone de la colonne "Edit Value".
+image:../images/openzwave8.png[]
+
+Il est également possible de modifier le polling pour les valeurs ne remontant pas automatiquement leur statut en cliquant sur l'icone de la colonne "Edit Polling".
+
+	** *Parameters :*
+	
+Liste de tous les paramètres disponibles pour le module :
+image:../images/openzwave9.png[]
+
+Les paramètres sont modifiables en cliquant sur l'icone de la colonne "Edit".
+
+	** *Groups :*
+	
+Liste les associations pour le module. Il est possible d'ajouter/supprimer des équipements aux groupes du node.
+image:../images/openzwave10.png[]
+
+	** *Systems :*
+
+Informations systeme du module :
+image:../images/openzwave11.png[]
+
+C'est également dans cet onglet qu'il possible de modifier le "Wake-Up" pour les modules fonctionnant sur piles.
+
+	** *Actions :*
+
+image:../images/openzwave12.png[]
+
+*Request Node Neighbours Update :* Permet de mettre à jour la liste des modules voisins.
+*Heal Node :* Répare le module.
+*Test Node :* Envoie des paquets au module pour vérifier si celui-ci répond.
+*Refresh All Values :* Demande une mise à jour des valeurs au module.
+*Refresh Node Info :* Demande une mise à jour des informations génériques du module.
+*Has Node Failed ? :* Teste si un module est "Dead". Le résultat de la commande se trouve dans l'onglet "Console".
+*Remove Failed Node :* Force la suppression d'un module considéré comme "Dead".
+*Replace Failed Node :* Permet de remplacer un node "Dead".
+*Send Node Info :* Envoie d'un NIF.
+
+	** *Statistics :*
+	
+Statistiques sur le module :
+image:../images/openzwave13.png[]
+
+* *Network*
+
+Dans l'onglet Network, vous trouverez 3 onglets :
+
+	** *Summary :*
+	
+Informations générales à propos du réseau Z-Wave :
+image:../images/openzwave14.png[]
+
+	** *Network Graph :*
+
+Représentation graphique de votre réseau Z-Wave.
+En passant la souris sur les modules, il est possible de connaitre les liens entre celui-ci et les autres modules.
+image:../images/openzwave15.png[]
+
+	** *Actions :*
+
+image:../images/openzwave16.png[]
+	
+*Add Device :* Passe le contrôleur en mode Inclusion.
+*Remove Device :* Passe le contrôleur en mode Exclusion.
+*Cancel Command :* Annule les commandes en cours.
+*Test Network :* Envoie de messages sur le réseau pour le tester.
+*Heal Network :* Répare tous les modules du réseau.
+*Create New Primary :* Ajout d'un nouveau contrôleur primaire.
+*Replication Send :* Envoi d'informations entre le contrôleur primaire et secondaire.
+*Request Network Update :* Mise à jour du contrôleur à partir du SUC/SIS.
+*Transfer Primary Role :* Transfert le contrôleur primaire vers un autre contrôleur.
+*Soft Reset :* Réinitialisation du contrôleur.
+*Hard Reset :* Réinitialisation complète du contrôleur. ATTENTION : toutes les inclusions seront perdues.
+
+* *Console*
+
+Dans l'onglet Console, vous pouvez suivre les logs OpenZwave en temps réel.
+
+image:../images/openzwave17.png[]
+
+* *Config*
+
+Dans l'onglet Config, vous pouvez éditer le fichier de configuration OpenZwave.
+A l'enregistrement, le serveur OpenZwave est relancé.
+
+image:../images/openzwave18.png[]

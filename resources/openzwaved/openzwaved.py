@@ -34,7 +34,7 @@ parser.add_argument("--port", help="Port for OZW server", type=str)
 parser.add_argument("--loglevel", help="Log Level for the daemon", type=str)
 parser.add_argument("--config_folder", help="Read or Write", type=str)
 parser.add_argument("--data_folder", help="Handle to read or write", type=str)
-parser.add_argument("--pid", help="Value to write", type=str)
+parser.add_argument("--pidfile", help="Value to write", type=str)
 parser.add_argument("--callback", help="Value to write", type=str)
 parser.add_argument("--apikey", help="Value to write", type=str)
 parser.add_argument("--suppressRefresh", help="Value to write", type=str)
@@ -52,8 +52,8 @@ if args.config_folder:
 	globals.config_folder = args.config_folder
 if args.data_folder:
 	globals.data_folder = args.data_folder
-if args.pid:
-	globals.pidfile = args.pid
+if args.pidfile:
+	globals.pidfile = args.pidfile
 if args.callback:
 	globals.callback = args.callback
 if args.apikey:

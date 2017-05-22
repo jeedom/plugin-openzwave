@@ -1,0 +1,11 @@
+* *Installation des dépendances :*
+
+Avant de pouvoir utiliser OpenZwave dans Jeedom, vous devez installer les dépendances :
+
+Si votre installation le permet (droits sudo à l'utiliseur www-data), il vous suffit de cliquer sur le bouton comme dans l'exemple ci-dessous :
+
+image:../images/openzwave0.png[]
+
+Sinon vous devez ajouter les droits sudo à jeedom (voir link:http://doc.jeedom.fr/fr_FR/doc-installation.html[ici] partie 1.7.4).
+
+L'installation peut prendre un peut de temps (plus d'une heure en fonction des configurations)

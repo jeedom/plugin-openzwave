@@ -208,7 +208,7 @@ class openzwave extends eqLogic {
 	public static function dependancy_info() {
 		$return = array();
 		$return['log'] = 'openzwave_update';
-		$return['progress_file'] = jeedom::getTmpFolder('openzwave') . '/dependance';
+		$return['progress_file'] = '/tmp/compilation_ozw_in_progress';
 		$return['state'] = (self::compilationOk()) ? 'ok' : 'nok';
 		if ($return['state'] == 'ok' && self::getVersion('openzwave') != -1 && version_compare(config::byKey('openzwave_version', 'openzwave'), self::getVersion('openzwave'), '>')) {
 			$return['state'] = 'nok';
@@ -217,9 +217,14 @@ class openzwave extends eqLogic {
 	}
 
 	public static function dependancy_install() {
+		if (file_exists('/tmp/compilation_ozw_in_progress')) {
+			return;
+		}
 		config::save('currentOzwVersion', config::byKey('openzwave_version', 'openzwave'), 'openzwave');
-		log::remove(__CLASS__ . '_update');
-		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('openzwave') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
+		log::remove('openzwave_update');
+		$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../resources/install.sh';
+		$cmd .= ' >> ' . log::getPathToLog('openzwave_update') . ' 2>&1 &';
+		exec($cmd);
 	}
 
 	public static function getVersion($_module = 'openzwave') {
@@ -245,12 +250,12 @@ class openzwave extends eqLogic {
 	public static function deamon_info() {
 		$return = array();
 		$return['state'] = 'nok';
-		$pid_file = jeedom::getTmpFolder('openzwave') . '/deamon.pid';
+		$pid_file = '/tmp/openzwaved.pid';
 		if (file_exists($pid_file)) {
 			if (posix_getsid(trim(file_get_contents($pid_file)))) {
 				$return['state'] = 'ok';
 			} else {
-				shell_exec(system::getCmdSudo() . 'rm -rf ' . $pid_file . ' 2>&1 > /dev/null');
+				shell_exec('sudo rm -rf ' . $pid_file . ' 2>&1 > /dev/null;rm -rf ' . $pid_file . ' 2>&1 > /dev/null;');
 			}
 		}
 		$return['launchable'] = 'ok';
@@ -261,7 +266,7 @@ class openzwave extends eqLogic {
 				$return['launchable'] = 'nok';
 				$return['launchable_message'] = __('Le port n\'est pas configuré', __FILE__);
 			} else {
-				exec(system::getCmdSudo() . 'chmod 777 ' . $port . ' > /dev/null 2>&1');
+				exec('sudo chmod 777 ' . $port . ' > /dev/null 2>&1');
 			}
 		}
 		return $return;
@@ -308,7 +313,7 @@ class openzwave extends eqLogic {
 		$cmd .= ' --apikey ' . jeedom::getApiKey('openzwave');
 		$cmd .= ' --suppressRefresh ' . $suppressRefresh;
 		$cmd .= ' --cycle ' . config::byKey('cycle', 'openzwave');
-		$cmd .= ' --pid ' . jeedom::getTmpFolder('openzwave') . '/deamon.pid';
+		$cmd .= ' --pidfile /tmp/openzwaved.pid';
 		if ($disabledNodes != '') {
 			$cmd .= ' --disabledNodes ' . $disabledNodes;
 		}
@@ -341,7 +346,7 @@ class openzwave extends eqLogic {
 
 			}
 		}
-		$pid_file = jeedom::getTmpFolder('openzwave') . '/deamon.pid';
+		$pid_file = '/tmp/openzwaved.pid';
 		if (file_exists($pid_file)) {
 			$pid = intval(trim(file_get_contents($pid_file)));
 			system::kill($pid);
@@ -368,10 +373,77 @@ class openzwave extends eqLogic {
 		if (!is_array($device) || !isset($device['commands'])) {
 			return true;
 		}
-		if (isset($device['name']) && !$_update) {
-			$this->setName('[' . $this->getLogicalId() . ']' . $device['name']);
-		}
-		$this->import($device);
+		$cmd_order = 0;
+ 		$link_cmds = array();
+ 		if (isset($device['name']) && !$_update) {
+ 			$this->setName('[' . $this->getLogicalId() . ']' . $device['name']);
+ 		}
+ 		if (isset($device['configuration'])) {
+ 			foreach ($device['configuration'] as $key => $value) {
+ 				try {
+ 					$this->setConfiguration($key, $value);
+ 				} catch (Exception $e) {
+ 
+ 				}
+ 			}
+ 		}
+ 		if (isset($device['battery_type'])) {
+ 			$this->setConfiguration('battery_type', $device['battery_type']);
+ 		}
+ 		event::add('jeedom::alert', array(
+ 			'level' => 'warning',
+ 			'page' => 'openzwave',
+ 			'message' => __('Création des commandes à partir d\'une configuration', __FILE__),
+ 		));
+ 		$commands = $device['commands'];
+ 		foreach ($commands as &$command) {
+ 			if (!isset($command['configuration']['instanceId'])) {
+ 				$command['configuration']['instanceId'] = 0;
+ 			}
+ 			if (!isset($command['configuration']['class'])) {
+ 				$command['configuration']['class'] = '';
+ 			}
+ 			foreach ($this->getCmd(null, $command['configuration']['instanceId'] . '.' . $command['configuration']['class'], null, true) as $cmd) {
+ 				if ($cmd->getConfiguration('value') == $command['configuration']['value']) {
+ 					if ($cmd->getDisplay('generic_type') == '' && isset($command['display']['generic_type'])) {
+ 						$cmd->setDisplay('generic_type', $command['display']['generic_type']);
+ 						$cmd->save();
+ 					}
+ 					continue 2;
+ 				}
+ 			}
+ 			try {
+ 				$cmd = new openzwaveCmd();
+ 				$cmd->setOrder($cmd_order);
+ 				$cmd->setEqLogic_id($this->getId());
+ 				utils::a2o($cmd, $command);
+ 				if (isset($command['value'])) {
+ 					$cmd->setValue(null);
+ 				}
+ 				$cmd->save();
+ 				if (isset($command['value'])) {
+ 					$link_cmds[$cmd->getId()] = $command['value'];
+ 				}
+ 				$cmd_order++;
+ 			} catch (Exception $exc) {
+ 
+ 			}
+ 		}
+ 
+ 		if (count($link_cmds) > 0) {
+ 			foreach ($this->getCmd() as $eqLogic_cmd) {
+ 				foreach ($link_cmds as $cmd_id => $link_cmd) {
+ 					if ($link_cmd == $eqLogic_cmd->getName()) {
+ 						$cmd = cmd::byId($cmd_id);
+ 						if (is_object($cmd)) {
+ 							$cmd->setValue($eqLogic_cmd->getId());
+ 							$cmd->save();
+ 						}
+ 					}
+ 				}
+ 			}
+ 		}
+ 		$this->save();
 		sleep(1);
 		event::add('jeedom::alert', array(
 			'level' => 'warning',
