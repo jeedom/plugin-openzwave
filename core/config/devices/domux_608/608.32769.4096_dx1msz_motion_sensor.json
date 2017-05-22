@@ -22,6 +22,10 @@
 		"configuration": {
 			"class": "0x30",
 			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "presence",
+			"mobile": "presence"
 		}
 	},
 	{
