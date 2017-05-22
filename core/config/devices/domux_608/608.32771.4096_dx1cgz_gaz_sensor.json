@@ -18,6 +18,14 @@
 		"configuration": {
 			"class": "0x71",
 			"value": "data[1].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "CO2"
+		},
+		"template": {
+			"dashboard": "alert",
+			"mobile": "alert"
 		}
 	}]
 }
