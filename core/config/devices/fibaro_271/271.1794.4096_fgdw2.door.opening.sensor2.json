@@ -6,7 +6,7 @@
 	"remark": "",
 	"imglink": "fibaro.fgdw2",
 	"battery_type": "1x3.6V ER14250",
-	"ignore": "1",
+	"ignore": "0",
 	"commands": [{
 		"name": "Etat",
 		"type": "info",
@@ -32,7 +32,7 @@
 		"name": "Température",
 		"type": "info",
 		"subtype": "numeric",
-		"isVisible": 0,
+		"isVisible": 1,
 		"isHistorized": 1,
 		"unite": "°C",
 		"display": {
