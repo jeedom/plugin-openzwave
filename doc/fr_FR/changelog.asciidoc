@@ -1,6 +1,6 @@
 == Changelog
 
-== (beta)
+=== (beta)
 
 * New Features
 
@@ -17,7 +17,7 @@
 ** Retour json de la route /ZWaveAPI/Run/devices[<int:node_id>].GetPendingChanges() plus inclue dans result.
 ** Retour json de la route /ZWaveAPI/Run/devices[<int:node_id>].GetLastNotification() plus inclue dans result.
 
-== 2016-08-26
+=== 2016-08-26
 
 * New Features
 
@@ -33,7 +33,7 @@
 ** Teste des informations constructeur dans l'écran de santé ne remonte plus des NOK.
 ** Perte des cases-à-cocher dans l'onglet Commandes de la page équipement.
 
-== 2016-08-17
+=== 2016-08-17
 
 * New Features
 
@@ -51,7 +51,7 @@
 ** Modules Vision Secure qui ne retournent pas en veille durant l'interview.
 ** Installation des dépendances en boucle (problème coté github).
 
-== 2016-07-11
+=== 2016-07-11
 
 * New Features
 
@@ -92,7 +92,7 @@
 ** Affichage des valeurs False dans l'onglet Configuration.
 ** Ne plus assumer la date du jour sur l'état des piles si pas reçu de rapport de l'équipement.
 
-== 2016-05-30
+=== 2016-05-30
 
 * New Features
 
@@ -121,7 +121,7 @@
 ** Correction de l'inclusion en mode sécurisé.
 ** Correction de l'appel asynchrone. (error: [Errno 32] Broken pipe)
 
-== 2016-05-04
+=== 2016-05-04
 
 * New Features
 
@@ -168,7 +168,7 @@
 ** Correction de la sauvegarde du fichier zwcfg.
 
 
-== 2016-03-01
+=== 2016-03-01
 
 * New Features
 
@@ -191,7 +191,7 @@
 ** Validation du contenu du fichier zwcfg avant de l'appliquer.
 ** Correction de l'installation.
 
-== 2016-02-12
+=== 2016-02-12
 
 * Improvements/Enhancements
 
@@ -202,7 +202,7 @@
 ** Correction fil pilote Fibaro retour d'état.
 ** Correction d'un bug qui recréer les commandes lors de la mise à jour.
 
-== 2016.02.09
+=== 2016.02.09
 
 * New Features
 
