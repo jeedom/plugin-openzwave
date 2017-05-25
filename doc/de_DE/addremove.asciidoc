@@ -12,7 +12,7 @@ image:../images/addremove01.png[]
 
 Diese Schaltfläche erlaubt es Ihnen, in den Inklusions Modus zu gehen, um ein Modul zu Ihrem Z-Wave Netz hinzuzufügen.
 
-Vous povez choisir le mode d'inclusion après avoir cliqué le bouton *Inclusion*.
+Sie können den Inklusions Modus wählen, nachdem Sie die *Inklusions* Schaltfläche geklickt haben.
 
 image:../images/addremove02.png[]
 
