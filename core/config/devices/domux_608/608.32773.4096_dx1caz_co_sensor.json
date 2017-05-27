@@ -6,9 +6,6 @@
 	"remark": "",
 	"imglink": "domux.dx1caz",
 	"battery_type": "1x3V CR17335",
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
 		"name": "Alerte CO",
 		"type": "info",

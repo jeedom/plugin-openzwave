@@ -5,9 +5,6 @@
 	"comlink": "",
 	"remark": "",
 	"imglink": "domux.dx1cgz",
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
 		"name": "Fuite gaz",
 		"type": "info",

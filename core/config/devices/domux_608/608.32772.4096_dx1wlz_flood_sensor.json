@@ -6,9 +6,6 @@
 	"remark": "",
 	"imglink": "domux.dx1wlz",
 	"battery_type": "2x1.5V LR03",
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
 		"name": "Fuite",
 		"type": "info",

@@ -5,9 +5,6 @@
 	"comlink": "",
 	"remark": "",
 	"imglink": "domux.dx2skz",
-	"configuration": {
-		"conf_version": 1
-	},
 	"commands": [{
 		"name": "Etat",
 		"type": "info",
