@@ -192,7 +192,7 @@
     }
     jeedom.openzwave.node.setRaw({
         node_id : node_id,
-        slot_id : index,
+        slot_id : $(this).data('index'),
         value : result,
         error: function (error) {
             $('#div_nodeConfigureOpenzwaveAlert').showAlert({message: error.message, level: 'danger'});
