@@ -15,7 +15,7 @@
 			"type": "info",
 			"subtype": "numeric",
 			"display": {
-				"generic_type": "THERMOSTAT_TEMPERATURE"
+				"generic_type": "TEMPERATURE"
 			},
 			"isVisible": 1,
 			"isHistorized": 1,
@@ -51,7 +51,7 @@
 			"type": "info",
 			"subtype": "numeric",
 			"display": {
-				"generic_type": "THERMOSTAT_TEMPERATURE"
+				"generic_type": "TEMPERATURE"
 			},
 			"isVisible": 1,
 			"isHistorized": 1,
@@ -87,7 +87,7 @@
 			"type": "info",
 			"subtype": "numeric",
 			"display": {
-				"generic_type": "THERMOSTAT_TEMPERATURE"
+				"generic_type": "TEMPERATURE"
 			},
 			"isVisible": 1,
 			"isHistorized": 1,
@@ -105,7 +105,7 @@
 			"type": "info",
 			"subtype": "numeric",
 			"display": {
-				"generic_type": "THERMOSTAT_TEMPERATURE"
+				"generic_type": "TEMPERATURE"
 			},
 			"isVisible": 1,
 			"isHistorized": 1,
