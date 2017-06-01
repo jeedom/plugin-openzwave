@@ -330,7 +330,7 @@
  		url += '&value'+i+'='+values[i];
  	}
  	paramsAJAX.data = {
- 		request: 'node?node_id='+_params.node_id+'&type=setRaw&slot_id='+_params.slot_id+url,
+ 		request: 'node?node_id='+_params.node_id+'&type=setRaw&slot_id='+_params.slot_id+url
  	};
  	$.ajax(paramsAJAX);
  }
