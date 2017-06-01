@@ -231,25 +231,14 @@ class NodeHandler(RequestHandler):
 				self.write(utils.format_json_result(success='error', data='Button not found'))
 			elif type == 'setRaw':
 				slot_id = int(self.get_argument('slot_id','0'))
-				value1 = self.get_argument('value1','')
-				value2 = self.get_argument('value2','')
-				value3 = self.get_argument('value3','')
-				value4 = self.get_argument('value4','')
-				value5 = self.get_argument('value5','')
-				value6 = self.get_argument('value6','')
-				value7 = self.get_argument('value7','')
-				value8 = self.get_argument('value8','')
-				value9 = self.get_argument('value9','')
-				value10 = self.get_argument('value10','')
-				logging.info("set_user_code2 nodeId:%s slot:%s user code:%s,%s,%s,%s,%s,%s,%s,%s,%s,%s" % (node_id, slot_id, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10,))
+				value0 = self.get_argument('value0','')
+				logging.info("set_user_code2 nodeId:%s slot:%s user code:%s" % (node_id, slot_id, value0,))
 				result_value = {}
 				for value_id in globals.network.nodes[node_id].get_values(class_id=globals.COMMAND_CLASS_USER_CODE):
 					if globals.network.nodes[node_id].values[value_id].index == slot_id:
 						result_value['data'] = {}
-						value = utils.convert_user_code_to_hex(value1) + utils.convert_user_code_to_hex(value2) + utils.convert_user_code_to_hex(value3) + utils.convert_user_code_to_hex(value4) + utils.convert_user_code_to_hex(value5) + utils.convert_user_code_to_hex(value6) + utils.convert_user_code_to_hex(value7) + utils.convert_user_code_to_hex(value8) + utils.convert_user_code_to_hex(value9) + utils.convert_user_code_to_hex(value10)
-						original_value = value
-						value = binascii.a2b_hex(value)
-						globals.network.nodes[node_id].values[value_id].data = value
+						original_value = value0
+						globals.network.nodes[node_id].values[value_id].data = binascii.a2b_hex(value0)
 						result_value['data'][value_id] = {'device': node_id, 'slot': slot_id, 'val': original_value}
 						self.write(utils.format_json_result(result_value))
 				self.write(utils.format_json_result())
@@ -310,6 +299,7 @@ class NodeHandler(RequestHandler):
 			else:
 				self.write(utils.format_json_result())
 		except Exception,e:
+			logging.error('RequestHandler ' + e.message)
 			self.write(utils.format_json_result(success="error",data=str(e)))
 
 class BackupHandler(RequestHandler):
