@@ -129,7 +129,7 @@
 		"configuration": {
 			"class": "0x25",
 			"instanceId": 3,
-			"value": "data[0].val"
+			"value": "data[0].Set(0)"
 		},
 		"template": {
 			"dashboard": "light",
