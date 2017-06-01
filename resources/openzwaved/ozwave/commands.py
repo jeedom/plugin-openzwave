@@ -14,5 +14,8 @@ def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 			globals.network.nodes[_node_id].values[value_id].data = value
 			if globals.network.nodes[_node_id].values[value_id].genre == 'System':
 				value_utils.mark_pending_change(globals.network.nodes[_node_id].values[value_id], value)
+			if _cc_id == globals.COMMAND_CLASS_THERMOSTAT_SETPOINT:
+				# send back thermostat pending SETPOINT value
+				node_utils.save_node_value_event(_node_id, _cc_id, _index, _value, _instance_id+10)
 			return True
 	raise Exception('Value not found')
