@@ -88,9 +88,5 @@
 			"class": "0x80",
 			"value": "data[0].val"
 		}
-	}],
-	"recommended" : {		
-		"wakeup" : 14400,
-		"needswakeup" : true
-    }
+	}]
 }
