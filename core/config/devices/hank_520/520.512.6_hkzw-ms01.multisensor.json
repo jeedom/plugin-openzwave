@@ -1,0 +1,96 @@
+{
+	"name": "MultiSensor (HKZW-MS01)",
+	"doc": "",
+	"type": "Multicapteurs",
+	"comlink": "",
+	"remark": "",
+	"imglink": "hank.multiSensor01",
+	"battery_type": "2x3V CR123",
+	"commands": [{
+		"name": "Présence",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"class": "0x30",
+			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "PRESENCE"
+		},
+		"template": {
+			"dashboard": "presence",
+			"mobile": "presence"
+		}
+	},
+	{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "°C",
+		"display": {
+			"generic_type": "TEMPERATURE"
+		},
+		"configuration": {
+			"class": "0x31",
+			"value": "data[1].val"
+		}
+	},
+	{
+		"name": "Luminosité",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "Lux",
+		"display": {
+			"generic_type": "BRIGHTNESS"
+		},
+		"configuration": {
+			"class": "0x31",
+			"value": "data[3].val",
+			"maxValue": 65535,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Humidité",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "%",
+		"display": {
+			"generic_type": "HUMIDITY"
+		},
+		"configuration": {
+			"class": "0x31",
+			"value": "data[5].val",
+			"maxValue": 100,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "%",
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"value": "data[0].val"
+		}
+	}],
+	"recommended" : {		
+		"wakeup" : 14400,
+		"needswakeup" : true
+    }
+}
