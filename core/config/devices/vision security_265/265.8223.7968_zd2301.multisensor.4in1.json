@@ -5,7 +5,7 @@
 	"comlink": "3823-zipato-detecteur-z-wave-plus-4-en-1-3858890732153",
 	"remark": "Vendu aussi sous la marque Zipato.",
 	"imglink": "vision.zd2301",
-	"battery_type": "2x1.5V AAA",
+	"battery_type": "1x3V CR14250",
 	"ignore": 0,
 	"configuration": {
 		"conf_version": 1
