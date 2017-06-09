@@ -1,0 +1,177 @@
+{
+    "name": "RS Room Sensor", 
+    "type": "Thermostat", 
+    "comlink": "3069-danfoss-sonde-d-ambiance-z-wave-danfoss-link-rs", 
+    "remark": "", 
+    "imglink": "danfoss.room-sensor", 
+    "commands": [
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": 28, 
+                "value": "type=setvalue&value=#slider#", 
+                "minValue": 12, 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "action", 
+            "name": "Commande-Chaud", 
+            "isVisible": 1, 
+            "value": "Consigne-Chaud", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": 28, 
+                "value": "", 
+                "minValue": 12, 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "info", 
+            "name": "Consigne-Chaud", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": 28, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 11, 
+                "class": 67
+            }, 
+            "type": "info", 
+            "name": "Consigne-Chaud pending", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 2, 
+                "maxValue": 28, 
+                "value": "type=setvalue&value=#slider#", 
+                "minValue": 4, 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "action", 
+            "name": "Commande-Froid", 
+            "isVisible": 0, 
+            "value": "Consigne-Froid", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 2, 
+                "maxValue": 28, 
+                "value": "", 
+                "minValue": 4, 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "info", 
+            "name": "Consigne-Froid", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": 28, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 11, 
+                "class": 67
+            }, 
+            "type": "info", 
+            "name": "Consigne-Froid pending", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 135, 
+                "value": "type=setvalue&value=1", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Diode", 
+            "isVisible": 0, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}

@@ -1,48 +1,49 @@
 {
-    "name": "Wireless remote control 10-channel",
-    "doc": "",
-    "type": "Télécommande",
-    "comlink": "3075-z-waveme-telecommande-z-wave-10-canaux",
-    "remark": "Remplacé par la Z-WAVE.ME RC2",
-    "imglink": "duwi.rzwfb",
-    "battery_type": "4x1.5V AAA",
+    "name": "Wireless remote control 10-channel", 
+    "type": "Télécommande", 
+    "comlink": "3075-z-waveme-telecommande-z-wave-10-canaux", 
+    "remark": "Remplacé par la Z-WAVE.ME RC2", 
+    "imglink": "duwi.rzwfb", 
     "commands": [
         {
-            "name": "Boutons",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "repeatEventManagement": "always", 
+                "class": 43, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Scene", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 43,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            },
+            }, 
             "template": {
-                "dashboard": "tile",
+                "dashboard": "tile", 
                 "mobile": "tile"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

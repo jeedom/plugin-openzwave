@@ -1,64 +1,65 @@
 {
-    "name": "SwiidInter",
-    "doc": "swiid.inter_-_Interrupteur_Cordon",
-    "type": "Interrupteur",
-    "comlink": "2675-swiid-interrupteur-sur-cordon-z-wave-swiidinter-blanc-370092591002",
-    "remark": "",
-    "imglink": "swiid.inter",
+    "name": "SwiidInter", 
+    "type": "Interrupteur", 
+    "comlink": "2675-swiid-interrupteur-sur-cordon-z-wave-swiidinter-blanc-370092591002", 
+    "remark": "", 
+    "imglink": "swiid.inter", 
     "commands": [
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
-            },
-            "isVisible": 0,
-            "isHistorized": 0,
-            "configuration": {
-                "class": 37,
-                "value": "",
-                "index": "0",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "On",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "On", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "value": "Etat",
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "index": "0",
-                "instance": 1
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Off",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
-            },
-            "value": "Etat",
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "index": "0",
-                "instance": 1
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
         }

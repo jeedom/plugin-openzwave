@@ -1,0 +1,70 @@
+{
+    "name": "Flood-Sensor (ZF5201)", 
+    "type": "Fuite", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "vision.zf5201", 
+    "commands": [
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Fuite", 
+            "isVisible": 1, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "0", 
+                "generic_type": "FLOOD"
+            }, 
+            "template": {
+                "dashboard": "inondation", 
+                "mobile": "inondation"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 113, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 0, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SABOTAGE"
+            }, 
+            "template": {
+                "dashboard": "vibration", 
+                "mobile": "vibration"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}

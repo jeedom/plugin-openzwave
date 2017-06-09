@@ -1,59 +1,59 @@
 {
-    "name": "Recessed Door Sensor (DSB54)",
-    "doc": "",
-    "type": "Ouverture",
-    "comlink": "",
-    "remark": "",
-    "imglink": "aeotec.dsb54",
-    "battery_type": "1x3V CR2",
+    "name": "Recessed Door Sensor (DSB54)", 
+    "type": "Ouverture", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "aeotec.dsb54", 
     "commands": [
         {
-            "name": "Etat",
-            "type": "info",
-            "subType": "binary",
-            "isHistorized": "1",
+            "isHistorized": "1", 
             "configuration": {
-                "class": 48,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            },
-            "template": {
-                "dashboard": "door",
-                "mobile": "door"
-            },
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": "1", 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "OPENING"
-            },
-            "isVisible": "1"
-        },
+            }, 
+            "template": {
+                "dashboard": "door", 
+                "mobile": "door"
+            }
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
-    ],
+    ], 
     "recommended": {
         "params": [
             {
-                "index": 121,
+                "index": 121, 
                 "value": 16
             }
-        ],
-        "wakeup": 14400,
+        ], 
+        "wakeup": 14400, 
         "needswakeup": true
     }
 }

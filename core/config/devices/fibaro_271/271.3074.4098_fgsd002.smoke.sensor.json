@@ -1,124 +1,125 @@
 {
-    "name": "FGSD-002 Smoke Sensor CE",
-    "doc": "fibaro.fgsd102_-_Fumees",
-    "type": "Fumée",
-    "comlink": "2751-fibaro-detecteur-de-fumee-z-wave-plus-fgsd-002-5902020528265",
-    "remark": "",
-    "imglink": "fibaro.fgsd102",
-    "battery_type": "1x3V CR123A",
+    "name": "FGSD-002 Smoke Sensor CE", 
+    "type": "Fumée", 
+    "comlink": "2751-fibaro-detecteur-de-fumee-z-wave-plus-fgsd-002-5902020528265", 
+    "remark": "", 
+    "imglink": "fibaro.fgsd102", 
     "commands": [
         {
-            "name": "Fumées",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "eventOnly": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 156,
-                "value": "",
-                "instance": 1,
-                "index": "1"
-            },
+                "index": 1, 
+                "class": 156, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Fumées", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SMOKE"
-            },
+            }, 
             "template": {
-                "dashboard": "feu",
+                "dashboard": "feu", 
                 "mobile": "feu"
             }
-        },
+        }, 
         {
-            "name": "Chaleur",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 0,
-            "eventOnly": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 156,
-                "value": "",
-                "returnStateTime": 1,
-                "returnStateValue": 0,
-                "instance": 1,
-                "index": "4"
-            },
+                "index": 4, 
+                "returnStateValue": 0, 
+                "value": "", 
+                "instance": 1, 
+                "returnStateTime": 1, 
+                "class": 156
+            }, 
+            "type": "info", 
+            "name": "Chaleur", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "DONT"
-            },
+            }, 
             "template": {
-                "dashboard": "feu",
+                "dashboard": "feu", 
                 "mobile": "feu"
             }
-        },
+        }, 
         {
-            "name": "Sabotage",
-            "type": "info",
-            "subtype": "binary",
-            "eventOnly": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 156,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            },
+                "index": 0, 
+                "class": 156, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
             }
-        },
+        }, 
         {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "unite": "°C",
-            "isVisible": 1,
-            "eventOnly": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
             "configuration": {
-                "class": 49,
-                "value": "",
-                "instance": 1,
-                "index": "1"
-            },
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Alerte Test",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 0,
-            "eventOnly": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 113,
-                "value": "",
-                "returnStateTime": 1,
-                "returnStateValue": 0,
-                "instance": 1,
-                "index": "1"
-            },
+                "index": 1, 
+                "returnStateValue": 0, 
+                "value": "", 
+                "instance": 1, 
+                "returnStateTime": 1, 
+                "class": 113
+            }, 
+            "type": "info", 
+            "name": "Alerte Test", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "DONT"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "unite": "%",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

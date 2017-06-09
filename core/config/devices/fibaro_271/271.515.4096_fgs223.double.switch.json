@@ -1,0 +1,219 @@
+{
+    "name": "FGS-223 Double charge", 
+    "type": "Micromodule", 
+    "comlink": "3728-fibaro-micromodule-commutateur-double-z-wave-fgs-223-5902020528661", 
+    "remark": "Le rafraîchissement manuel est requis sur l'instance 1 (Switch S2) pour la remonté de puissance et l'état du S2. Les notification de scènes ne sont pas remontées, elles requièrent le support de la CC Central Scene.", 
+    "imglink": "fibaro.fgs223", 
+    "commands": [
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "On 1", 
+            "isVisible": 1, 
+            "value": "Etat 1", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off 1", 
+            "isVisible": 1, 
+            "value": "Etat 1", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat 1", 
+            "isVisible": 0, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }
+        }, 
+        {
+            "isHistorized": "1", 
+            "configuration": {
+                "index": 8, 
+                "maxValue": "2500", 
+                "value": "", 
+                "minValue": "0", 
+                "instance": 1, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance 1", 
+            "isVisible": "1", 
+            "subtype": "numeric", 
+            "display": {
+                "invertBinary": "0", 
+                "generic_type": "POWER"
+            }, 
+            "template": {
+                "dashboard": "default", 
+                "mobile": "default"
+            }, 
+            "unite": "W"
+        }, 
+        {
+            "isHistorized": "0", 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Consommation 1", 
+            "isVisible": "1", 
+            "subtype": "numeric", 
+            "display": {
+                "invertBinary": "0", 
+                "generic_type": "CONSUMPTION"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }, 
+            "unite": "kWh"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 2
+            }, 
+            "type": "action", 
+            "name": "On 2 ", 
+            "isVisible": 1, 
+            "value": "Etat 2", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 2
+            }, 
+            "type": "action", 
+            "name": "Off 2 ", 
+            "isVisible": 1, 
+            "value": "Etat 2", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 2
+            }, 
+            "type": "info", 
+            "name": "Etat 2", 
+            "isVisible": 0, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }
+        }, 
+        {
+            "isHistorized": "1", 
+            "configuration": {
+                "index": 8, 
+                "maxValue": "2500", 
+                "value": "", 
+                "minValue": "0", 
+                "instance": 2, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance 2", 
+            "isVisible": "1", 
+            "subtype": "numeric", 
+            "display": {
+                "invertBinary": "0", 
+                "generic_type": "POWER"
+            }, 
+            "template": {
+                "dashboard": "default", 
+                "mobile": "default"
+            }, 
+            "unite": "W"
+        }, 
+        {
+            "isHistorized": "0", 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 2
+            }, 
+            "type": "info", 
+            "name": "Consommation 2", 
+            "isVisible": "1", 
+            "subtype": "numeric", 
+            "display": {
+                "invertBinary": "0", 
+                "generic_type": "CONSUMPTION"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }, 
+            "unite": "kWh"
+        }
+    ]
+}

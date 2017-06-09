@@ -1,79 +1,82 @@
 {
-    "name": "TZ66D",
-    "doc": "",
-    "type": "Interrupteur",
-    "comlink": "2058-tkb-home-tz66d-interrupteur-double-z-wave-blanc-6959174466010",
-    "remark": "Vendu aussi sous la marque TkbHome. Bouton de droit fonctionne en association seulement.",
-    "imglink": "tkb.tz66d",
+    "name": "TZ66D", 
+    "type": "Interrupteur", 
+    "comlink": "2058-tkb-home-tz66d-interrupteur-double-z-wave-blanc-6959174466010", 
+    "remark": "Vendu aussi sous la marque TkbHome. Bouton de droit fonctionne en association seulement.", 
+    "imglink": "tkb.tz66d", 
     "commands": [
         {
-            "name": "On",
-            "type": "action",
-            "subtype": "other",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "On", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "isVisible": 1,
-            "value": "Etat",
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Off",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Etat",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Bounton2",
-            "type": "info",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 32, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Bounton2", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
-            },
-            "subtype": "binary",
-            "isVisible": 0,
-            "configuration": {
-                "class": 32,
-                "value": "",
-                "instance": 1,
-                "index": "0"
             }
         }
     ]

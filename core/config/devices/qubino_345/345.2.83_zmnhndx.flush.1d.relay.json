@@ -1,152 +1,152 @@
 {
-    "name": "ZMNHNDx Contact sec Z-Wave+",
-    "doc": "",
-    "type": "Micromodule",
-    "comlink": "2950-qubino-micromodule-contact-sec-z-wave-zmnhnd1-3830062070072",
-    "remark": "",
-    "imglink": "qubino.zmnhndx",
-    "ignore": 0,
+    "name": "ZMNHNDx Contact sec Z-Wave+", 
+    "type": "Micromodule", 
+    "comlink": "2950-qubino-micromodule-contact-sec-z-wave-zmnhnd1-3830062070072", 
+    "remark": "", 
+    "imglink": "qubino.zmnhndx", 
     "commands": [
         {
-            "name": "On",
-            "type": "action",
-            "subtype": "other",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "On", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "isVisible": 1,
-            "value": "Etat",
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Off",
-            "type": "action",
-            "subtype": "other",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
-            },
-            "isVisible": 1,
-            "value": "Etat",
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
-            },
-            "isVisible": 0,
-            "isHistorized": 0,
-            "eventOnly": 1,
-            "configuration": {
-                "class": 37,
-                "value": "",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "°C",
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "instance": 1,
-                "index": "1"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Puissance",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 2300, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "W",
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "minValue": 0,
-                "maxValue": 2300,
-                "instance": 1,
-                "index": "8"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "Consommation",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Consommation", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "isVisible": 0,
-            "isHistorized": 1,
-            "unite": "kWh",
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            }
-        },
+            }, 
+            "unite": "kWh"
+        }, 
         {
-            "name": "I1",
-            "type": "info",
-            "subtype": "binary",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "I1", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "GENERIC"
-            },
-            "isVisible": 0,
-            "isHistorized": 1,
-            "configuration": {
-                "class": 48,
-                "value": "",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "I2",
-            "type": "info",
-            "subtype": "binary",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
+                "instance": 2
+            }, 
+            "type": "info", 
+            "name": "I2", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "GENERIC"
-            },
-            "isVisible": 0,
-            "isHistorized": 1,
-            "configuration": {
-                "class": 48,
-                "value": "",
-                "instance": 2,
-                "index": "0"
             }
         }
     ]

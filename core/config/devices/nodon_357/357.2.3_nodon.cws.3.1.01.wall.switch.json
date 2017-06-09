@@ -1,122 +1,123 @@
 {
-    "name": "Wall Switch",
-    "doc": "nodon.wall_-_Switch_-_Interrupteur",
-    "type": "Interrupteur",
-    "comlink": "2995-nodon-interrupteur-mural-z-wave-plus-cozi-white-3700313920268",
-    "remark": "Fonctionne en mode scene et non central scene",
-    "imglink": "nodon.wallswitch",
-    "battery_type": "1x3V CR2032",
+    "name": "Wall Switch", 
+    "type": "Interrupteur", 
+    "comlink": "2995-nodon-interrupteur-mural-z-wave-plus-cozi-white-3700313920268", 
+    "remark": "Fonctionne en mode scene et non central scene", 
+    "imglink": "nodon.wallswitch", 
+    "commands": [
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "repeatEventManagement": "always", 
+                "class": 43, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Scene", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ], 
     "configuration": {
         "1": {
-            "name": "Profile des boutons 1 et 3",
-            "help": "Ce paramètre permet de définir le profil des boutons 1 et 3",
+            "name": "Profile des boutons 1 et 3", 
+            "help": "Ce paramètre permet de définir le profil des boutons 1 et 3", 
             "list": {
-                "Scene Mode": "Mode scène",
-                "Mono Mode": "Mode mono",
+                "Scene Mode": "Mode scène", 
+                "Mono Mode": "Mode mono", 
                 "Duo Mode": "Mode duo"
             }
-        },
+        }, 
         "2": {
-            "name": "Profile des boutons 2 et 4",
-            "help": "Ce paramètre permet de définir le profil des boutons 2 et 4",
+            "name": "Profile des boutons 2 et 4", 
+            "help": "Ce paramètre permet de définir le profil des boutons 2 et 4", 
             "list": {
-                "Scene Mode": "Mode scène",
-                "Mono Mode": "Mode mono",
+                "Scene Mode": "Mode scène", 
+                "Mono Mode": "Mode mono", 
                 "Duo Mode": "Mode duo"
             }
-        },
+        }, 
         "3": {
-            "name": "Type de scène",
-            "help": "Ce paramètre permet de définir le type de scène",
+            "name": "Type de scène", 
+            "help": "Ce paramètre permet de définir le type de scène", 
             "list": {
-                "Central Scene": "Mode scène centrale",
+                "Central Scene": "Mode scène centrale", 
                 "Scene Activation": "Mode scène"
             }
-        },
+        }, 
         "4": {
-            "name": "Action du bouton 1 en mode mono",
-            "help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions",
+            "name": "Action du bouton 1 en mode mono", 
+            "help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions", 
             "list": {
-                "Control Group 2": "Contrôle du groupe 2",
-                "All Switch ON": "Tous ON",
+                "Control Group 2": "Contrôle du groupe 2", 
+                "All Switch ON": "Tous ON", 
                 "All Switch OFF": "Tous OFF"
             }
-        },
+        }, 
         "5": {
-            "name": "Action du bouton 2 en mode mono",
-            "help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions",
+            "name": "Action du bouton 2 en mode mono", 
+            "help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions", 
             "list": {
-                "Control Group 3": "Contrôle du groupe 3",
-                "All Switch ON": "Tous ON",
+                "Control Group 3": "Contrôle du groupe 3", 
+                "All Switch ON": "Tous ON", 
                 "All Switch OFF": "Tous OFF"
             }
-        },
+        }, 
         "6": {
-            "name": "Action du bouton 3 en mode mono",
-            "help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions",
+            "name": "Action du bouton 3 en mode mono", 
+            "help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions", 
             "list": {
-                "Control Group 4": "Contrôle du groupe 4",
-                "All Switch ON": "Tous ON",
+                "Control Group 4": "Contrôle du groupe 4", 
+                "All Switch ON": "Tous ON", 
                 "All Switch OFF": "Tous OFF"
             }
-        },
+        }, 
         "7": {
-            "name": "Action du bouton 4 en mode mono",
-            "help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions",
+            "name": "Action du bouton 4 en mode mono", 
+            "help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions", 
             "list": {
-                "Control Group 5": "Contrôle du groupe 5",
-                "All Switch ON": "Tous ON",
+                "Control Group 5": "Contrôle du groupe 5", 
+                "All Switch ON": "Tous ON", 
                 "All Switch OFF": "Tous OFF"
             }
-        },
+        }, 
         "8": {
-            "name": "Fonctionnement de la led",
-            "help": "Réglage de la diode de la télécommande",
+            "name": "Fonctionnement de la led", 
+            "help": "Réglage de la diode de la télécommande", 
             "list": {
-                "Led OFF": "Désactivée",
-                "Led Blink on button action": "Clignote sur appui boutons",
-                "Led Blink on transmission result": "Clignote sur accusé réception de transmission",
+                "Led OFF": "Désactivée", 
+                "Led Blink on button action": "Clignote sur appui boutons", 
+                "Led Blink on transmission result": "Clignote sur accusé réception de transmission", 
                 "Led Blink on button action and transmission result": "Clignote dans les deux cas"
             }
         }
-    },
-    "commands": [
-        {
-            "name": "Boutons",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 0,
-            "display": {
-                "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 43,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            },
-            "template": {
-                "dashboard": "tile",
-                "mobile": "tile"
-            }
-        },
-        {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
-            "display": {
-                "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
-        }
-    ]
+    }
 }

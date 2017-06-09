@@ -1,75 +1,78 @@
 {
-    "name": "Water Sensor (DSB45)",
-    "doc": "",
-    "type": "Fuite",
-    "comlink": "3182-aeon-labs-capteur-d-eau-z-wave-1220000012486",
-    "remark": "Paramètre 121 doit être forcé a 4113",
-    "imglink": "aeotec.dsb45",
-    "battery_type": "2x1.5V AAA",
+    "name": "Water Sensor (DSB45)", 
+    "type": "Fuite", 
+    "comlink": "3182-aeon-labs-capteur-d-eau-z-wave-1220000012486", 
+    "remark": "Paramètre 121 doit être forcé a 4113", 
+    "imglink": "aeotec.dsb45", 
     "commands": [
         {
-            "name": "Fuite",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
             "configuration": {
-                "class": 48,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            },
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Fuite", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "FLOOD"
-            },
+            }, 
             "template": {
-                "dashboard": "inondation",
+                "dashboard": "inondation", 
                 "mobile": "inondation"
             }
-        },
+        }, 
         {
-            "name": "Sabotage",
-            "type": "info",
-            "subtype": "binary",
+            "isHistorized": 0, 
             "configuration": {
-                "class": 156,
-                "value": "",
-                "returnStateTime": "1",
-                "returnStateValue": "0",
-                "instance": 1,
-                "index": "0"
-            },
+                "index": 0, 
+                "returnStateValue": "0", 
+                "value": "", 
+                "instance": 1, 
+                "returnStateTime": "1", 
+                "class": 156
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "unite": "%",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            }
+            }, 
+            "unite": "%"
         }
-    ],
+    ], 
     "recommended": {
         "params": [
             {
-                "index": 121,
+                "index": 121, 
                 "value": 4113
             }
-        ],
-        "wakeup": 14400,
+        ], 
+        "wakeup": 14400, 
         "needswakeup": true
     }
 }

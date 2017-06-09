@@ -1,0 +1,87 @@
+{
+    "name": "12730 Smart Fan Control", 
+    "type": "Micromodule", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "ge.12730", 
+    "commands": [
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=#slider#", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Intensité", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "LIGHT_SLIDER"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=99", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "On", 
+            "isVisible": 0, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=0", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 0, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }, 
+            "unite": "%"
+        }
+    ]
+}

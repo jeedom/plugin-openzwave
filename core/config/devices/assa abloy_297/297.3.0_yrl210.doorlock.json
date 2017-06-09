@@ -1,0 +1,80 @@
+{
+    "name": "Yale Push Button Lever Lock (YRL210)", 
+    "type": "Serrure", 
+    "comlink": "", 
+    "remark": "Inclusion en mode sécurisé", 
+    "imglink": "assa_abloy.YRL210", 
+    "commands": [
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "class": 98, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Statut", 
+            "isVisible": 1, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "LOCK_STATE"
+            }, 
+            "template": {
+                "dashboard": "lock", 
+                "mobile": "lock"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 98, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Verrouillage", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LOCK_CLOSE"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 98, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Déverrouillage", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LOCK_OPEN"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}

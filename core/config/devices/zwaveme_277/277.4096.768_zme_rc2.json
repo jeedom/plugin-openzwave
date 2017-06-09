@@ -1,48 +1,49 @@
 {
-    "name": "Remote Control 2",
-    "doc": "",
-    "type": "Télécommande",
-    "comlink": "3075-z-waveme-telecommande-z-wave-10-canaux",
-    "remark": "",
-    "imglink": "zwaveme.rc2",
-    "battery_type": "4x1.5V AAA",
+    "name": "Remote Control 2", 
+    "type": "Télécommande", 
+    "comlink": "3075-z-waveme-telecommande-z-wave-10-canaux", 
+    "remark": "", 
+    "imglink": "zwaveme.rc2", 
     "commands": [
         {
-            "name": "Boutons",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "repeatEventManagement": "always", 
+                "class": 43, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Scene", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "GENERIC"
-            },
-            "isHistorized": 0,
-            "configuration": {
-                "class": 43,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            },
+            }, 
             "template": {
-                "dashboard": "tile",
+                "dashboard": "tile", 
                 "mobile": "tile"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

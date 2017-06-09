@@ -1,161 +1,130 @@
 {
-    "name": "Garage Door Controller Gen5 (ZW062)",
-    "doc": "aeotec.zw062_garage_door_controller",
-    "type": "Porte",
-    "comlink": "3403-aeon-labs-controleur-de-porte-de-garage-z-wave-gen5",
-    "remark": "",
-    "imglink": "aeotec.garagedoorcontroller",
-    "ignore": 0,
+    "name": "Garage Door Controller Gen5 (ZW062)", 
+    "type": "Porte", 
+    "comlink": "3403-aeon-labs-controleur-de-porte-de-garage-z-wave-gen5", 
+    "remark": "", 
+    "imglink": "aeotec.garagedoorcontroller", 
     "commands": [
         {
-            "name": "Position",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 102,
-                "value": "",
-                "index": "2",
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
                 "instance": 1
-            }
-        },
-        {
-            "name": "Ouvrir/Stop",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Position",
-            "configuration": {
-                "class": 102,
-                "value": "type=setvalue&value=1",
-                "index": "0",
-                "instance": 1
-            },
-            "template": {
-                "dashboard": "garageBarrierOperator",
-                "mobile": "garageBarrierOperator"
-            }
-        },
-        {
-            "name": "Fermer",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Position",
-            "configuration": {
-                "class": 102,
-                "value": "type=setvalue&value=0",
-                "index": "0",
-                "instance": 1
-            },
-            "template": {
-                "dashboard": "garageBarrierOperator",
-                "mobile": "garageBarrierOperator"
-            }
-        },
-        {
-            "name": "Etat Label",
-            "type": "info",
-            "subtype": "string",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "configuration": {
-                "class": 102,
-                "value": "",
-                "index": "1",
-                "instance": 1
-            }
-        },
-        {
-            "name": "Volume",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 1,
-            "unite": "",
-            "configuration": {
-                "class": 112,
-                "value": "",
-                "index": "44",
-                "instance": 1
-            },
-            "template": {
-                "dashboard": "tile",
-                "mobile": "tile"
-            }
-        },
-        {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "°C",
-            "configuration": {
-                "class": 112,
-                "value": "",
-                "calculValueOffset": "#value#\/10.0",
-                "index": "45",
-                "instance": 1
-            }
-        },
-        {
-            "name": "Actualiser Température",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
-            "value": "",
-            "configuration": {
-                "class": 112,
-                "value": "type=refreshData",
-                "index": "45",
-                "instance": 1
-            }
-        },
-        {
-            "name": "Jouer son",
-            "type": "action",
-            "subtype": "slider",
-            "isVisible": 0,
-            "value": "",
-            "configuration": {
-                "class": 112,
-                "value": "type=setvalue&value=#slider#",
-                "index": "43",
-                "instance": 1
-            }
-        },
-        {
-            "name": "Stopper son",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
-            "value": "",
-            "configuration": {
-                "class": 112,
-                "value": "type=setvalue&value=255",
-                "index": "43",
-                "instance": 1
-            }
-        },
-        {
-            "name": "Sabotage",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "configuration": {
-                "class": 112,
-                "value": "",
-                "calculValueOffset": "#value#=='Sensor is removed'",
-                "index": "41",
-                "instance": 1
-            },
+            }, 
+            "type": "action", 
+            "name": "Open/Close", 
+            "isVisible": 1, 
+            "value": "Position", 
+            "subtype": "other", 
             "display": {
-                "invertBinary": "1",
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "GarageDoor_BarrierOperatorBasic", 
+                "mobile": "GarageDoor_BarrierOperatorBasic"
+            }
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "class": 32, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Position", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "invertBinary": "1"
+            }, 
+            "template": {
+                "dashboard": "door", 
+                "mobile": "door"
+            }
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 44, 
+                "class": 112, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Volume", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 45, 
+                "class": 112, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 45, 
+                "class": 112, 
+                "value": "ForceRefresh()", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Actualiser Température", 
+            "isVisible": 0, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 41, 
+                "class": 112, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 1, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
             }
         }
-    ]
+    ], 
+    "recommended": {
+        "params": [
+            {
+                "index": 80, 
+                "value": "Hail"
+            }
+        ], 
+        "needswakeup": false
+    }
 }

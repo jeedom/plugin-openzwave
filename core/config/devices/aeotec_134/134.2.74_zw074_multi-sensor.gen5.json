@@ -1,132 +1,134 @@
 {
-    "name": "MultiSensor Gen5 (ZW074)",
-    "doc": "",
-    "type": "Multicapteurs",
-    "comlink": "2681-aeon-labs-detecteur-multifonction-multisensor-z-wave-plus-gen5-1220000012684",
-    "remark": "Attention ce module peut remonter de mauvaises données, il faut bien faire attention à la configuration",
-    "imglink": "aeotec.multisensor-gen5",
-    "battery_type": "4x1.5V AAA",
+    "name": "MultiSensor Gen5 (ZW074)", 
+    "type": "Multicapteurs", 
+    "comlink": "2681-aeon-labs-detecteur-multifonction-multisensor-z-wave-plus-gen5-1220000012684", 
+    "remark": "Attention ce module peut remonter de mauvaises données, il faut bien faire attention à la configuration", 
+    "imglink": "aeotec.multisensor-gen5", 
     "commands": [
         {
-            "name": "Présence",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
             "configuration": {
-                "class": 48,
-                "value": "",
-                "index": "0",
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
                 "instance": 1
-            },
+            }, 
+            "type": "info", 
+            "name": "Présence", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "PRESENCE"
-            },
+            }, 
             "template": {
-                "dashboard": "presence",
+                "dashboard": "presence", 
                 "mobile": "presence"
             }
-        },
+        }, 
         {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "°C",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "index": "1",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Luminosité",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "Lux",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 3, 
+                "maxValue": 1000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Luminosité", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BRIGHTNESS"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "maxValue": 1000,
-                "minValue": 0,
-                "index": "3",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "Lux"
+        }, 
         {
-            "name": "Humidité",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "%",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 5, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Humidité", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "HUMIDITY"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "index": "5",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "%"
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
-    ],
+    ], 
     "recommended": {
         "params": [
             {
-                "index": 4,
+                "index": 4, 
                 "value": "Enabled"
-            },
+            }, 
             {
-                "index": 5,
+                "index": 5, 
                 "value": "Binary Sensor Report"
-            },
+            }, 
             {
-                "index": 101,
+                "index": 101, 
                 "value": 224
-            },
+            }, 
             {
-                "index": 102,
+                "index": 102, 
                 "value": 1
-            },
+            }, 
             {
-                "index": 111,
+                "index": 111, 
                 "value": 3600
-            },
+            }, 
             {
-                "index": 112,
+                "index": 112, 
                 "value": 28800
             }
-        ],
-        "wakeup": 14400,
+        ], 
+        "wakeup": 14400, 
         "needswakeup": true
     }
 }

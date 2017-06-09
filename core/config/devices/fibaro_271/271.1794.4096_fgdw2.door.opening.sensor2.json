@@ -1,0 +1,99 @@
+{
+    "name": "FGDW-002 Door Sensor 2", 
+    "type": "Ouverture", 
+    "comlink": "4105-fibaro-detecteur-d-ouverture-z-wave-doorwindow-sensor-2-blanc-5902701700348", 
+    "remark": "", 
+    "imglink": "fibaro.fgdw2", 
+    "commands": [
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 9, 
+                "class": 113, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 1, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "OPENING"
+            }, 
+            "template": {
+                "dashboard": "door", 
+                "mobile": "door"
+            }
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 10, 
+                "class": 113, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 0, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SABOTAGE"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ], 
+    "recommended": {
+        "params": [
+            {
+                "index": 31, 
+                "value": "Send tamper cancellation report"
+            }
+        ], 
+        "groups": [
+            {
+                "index": 4, 
+                "value": "add"
+            }
+        ], 
+        "wakeup": 3600, 
+        "needswakeup": true
+    }
+}

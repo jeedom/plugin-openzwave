@@ -1,218 +1,222 @@
 {
-    "name": "Smart Switch 6 (ZW096)",
-    "doc": "",
-    "type": "Prise",
-    "comlink": "2918-aeon-labs-mini-prise-commutateur-z-wave-plus-avec-consometre-smart-switch-6-1220000013049",
-    "remark": "",
-    "imglink": "aeotec.smartswitch",
+    "name": "Smart Switch 6 (ZW096)", 
+    "type": "Prise", 
+    "comlink": "2918-aeon-labs-mini-prise-commutateur-z-wave-plus-avec-consometre-smart-switch-6-1220000013049", 
+    "remark": "", 
+    "imglink": "aeotec.smartswitch", 
     "commands": [
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "ENERGY_STATE"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            },
+            }, 
             "template": {
-                "dashboard": "prise",
+                "dashboard": "prise", 
                 "mobile": "prise"
-            }
-        },
+            }, 
+            "unite": ""
+        }, 
         {
-            "name": "On",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Etat",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "On", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "ENERGY_ON"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "index": "0",
-                "instance": 1
-            },
+            }, 
             "template": {
-                "dashboard": "prise",
+                "dashboard": "prise", 
                 "mobile": "prise"
             }
-        },
+        }, 
         {
-            "name": "Off",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Etat",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "ENERGY_OFF"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "index": "0",
-                "instance": 1
-            },
+            }, 
             "template": {
-                "dashboard": "prise",
+                "dashboard": "prise", 
                 "mobile": "prise"
             }
-        },
+        }, 
         {
-            "name": "Puissance",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "W",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 3000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 2500,
-                "minValue": 0,
-                "index": "8",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "Consommation",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 0,
-            "unite": "kWh",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Consommation", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            },
+            }, 
             "template": {
-                "dashboard": "tile",
+                "dashboard": "tile", 
                 "mobile": "tile"
-            }
-        },
+            }, 
+            "unite": "kWh"
+        }, 
         {
-            "name": "Tension",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 0,
-            "unite": "V",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 16, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Tension", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "VOLTAGE"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "index": "16",
-                "instance": 1
-            },
+            }, 
             "template": {
-                "dashboard": "tile",
+                "dashboard": "tile", 
                 "mobile": "tile"
-            }
-        },
+            }, 
+            "unite": "V"
+        }, 
         {
-            "name": "Intensité",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 0,
-            "unite": "A",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 20, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Intensité", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "index": "20",
-                "instance": 1
-            },
+            }, 
             "template": {
-                "dashboard": "tile",
+                "dashboard": "tile", 
                 "mobile": "tile"
-            }
-        },
+            }, 
+            "unite": "A"
+        }, 
         {
-            "name": "Couleur",
-            "type": "action",
-            "subtype": "color",
-            "isVisible": 0,
-            "value": "Etat couleur",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 51, 
+                "value": "type=setvalue&value=#color#", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Couleur", 
+            "isVisible": 0, 
+            "value": "Etat couleur", 
+            "subtype": "color", 
             "display": {
                 "generic_type": "LIGHT_SET_COLOR"
-            },
-            "configuration": {
-                "class": 51,
-                "value": "type=setvalue&value=#color#",
-                "index": "0",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Etat couleur",
-            "type": "info",
-            "subtype": "string",
-            "unite": "",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 51, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat couleur", 
+            "isVisible": 0, 
+            "subtype": "string", 
             "display": {
                 "generic_type": "LIGHT_COLOR"
-            },
-            "configuration": {
-                "class": 51,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": ""
         }
-    ],
+    ], 
     "recommended": {
         "params": [
             {
-                "index": 80,
+                "index": 80, 
                 "value": "Basic"
-            },
+            }, 
             {
-                "index": 101,
+                "index": 101, 
                 "value": 4
-            },
+            }, 
             {
-                "index": 102,
+                "index": 102, 
                 "value": 8
-            },
+            }, 
             {
-                "index": 103,
+                "index": 103, 
                 "value": 1
-            },
+            }, 
             {
-                "index": 111,
+                "index": 111, 
                 "value": 120
-            },
+            }, 
             {
-                "index": 112,
+                "index": 112, 
                 "value": 1800
-            },
+            }, 
             {
-                "index": 113,
+                "index": 113, 
                 "value": 14400
             }
-        ],
+        ], 
         "needswakeup": false
     }
 }

@@ -1,0 +1,81 @@
+{
+    "name": "SSA-01", 
+    "type": "Sirène", 
+    "comlink": "979-fortrezz-sirene-z-wave-flash-clair-ssa1-0661799486033", 
+    "remark": "", 
+    "imglink": "fortrezz.ssa01", 
+    "commands": [
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=0", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "All Off", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=33", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Flash", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=66", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Siren", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=99", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Flash & Siren", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }
+    ]
+}

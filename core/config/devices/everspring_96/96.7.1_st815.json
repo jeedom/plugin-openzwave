@@ -1,30 +1,28 @@
 {
-    "name": "ST815",
-    "doc": "",
-    "type": "Luminosité",
-    "comlink": "2498-everspring-capteur-de-luminosite-z-wave-avec-ecran-lcd-st815-3700946500349",
-    "remark": "",
-    "imglink": "everspring.st815",
-    "battery_type": "3x1.5V AAA",
+    "name": "ST815", 
+    "type": "Luminosité", 
+    "comlink": "2498-everspring-capteur-de-luminosite-z-wave-avec-ecran-lcd-st815-3700946500349", 
+    "remark": "", 
+    "imglink": "everspring.st815", 
     "commands": [
         {
-            "name": "Luminosité",
-            "type": "info",
-            "subType": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "Lux",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 3, 
+                "maxValue": 3000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Luminosité", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BRIGHTNESS"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "minValue": 0,
-                "maxValue": 3000,
-                "index": "3",
-                "instance": 1
-            }
+            }, 
+            "unite": "Lux"
         }
     ]
 }

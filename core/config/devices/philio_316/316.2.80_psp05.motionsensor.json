@@ -1,0 +1,77 @@
+{
+    "name": "PSP05 B, C & D version", 
+    "type": "Multicapteurs", 
+    "comlink": "4108-philio-detecteur-de-mouvement-exterieur-z-wave-4713698573508", 
+    "remark": "", 
+    "imglink": "philio.psp05", 
+    "commands": [
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "returnStateValue": 0, 
+                "value": "", 
+                "instance": 1, 
+                "returnStateTime": 1, 
+                "class": 48
+            }, 
+            "type": "info", 
+            "name": "Présence", 
+            "isVisible": 1, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "PRESENCE"
+            }, 
+            "template": {
+                "dashboard": "presence", 
+                "mobile": "presence"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 2, 
+                "returnStateValue": 0, 
+                "value": "", 
+                "instance": 1, 
+                "returnStateTime": 1, 
+                "class": 48
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 1, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SABOTAGE"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 128, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }
+        }
+    ], 
+    "recommended": {
+        "params": [
+            {
+                "index": 7, 
+                "value": 22
+            }
+        ], 
+        "wakeup": 14400, 
+        "needswakeup": true
+    }
+}

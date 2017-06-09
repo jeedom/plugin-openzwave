@@ -1,155 +1,159 @@
 {
-    "name": "DCH-Z510",
-    "doc": "",
-    "type": "Sirène",
-    "comlink": "3696-d-link-sirene-z-wave-6-sons-110-db--790069410758",
-    "remark": "",
-    "imglink": "dlink.dchz510",
-    "battery_type": "",
+    "name": "DCH-Z510", 
+    "type": "Sirène", 
+    "comlink": "3696-d-link-sirene-z-wave-6-sons-110-db--790069410758", 
+    "remark": "", 
+    "imglink": "dlink.dchz510", 
     "commands": [
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 0,
-            "isHistorized": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "",
-                "index": "0",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Sabotage",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 0,
-            "isHistorized": 1,
+            "isHistorized": 1, 
             "configuration": {
-                "class": 48,
-                "value": "",
-                "index": "0",
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
                 "instance": 1
-            },
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
-            },
+            }, 
             "template": {
-                "dashboard": "vibration",
+                "dashboard": "vibration", 
                 "mobile": "vibration"
             }
-        },
+        }, 
         {
-            "name": "On",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Etat",
-            "display": {
-                "generic_type": "DONT"
-            },
+            "isHistorized": 0, 
             "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "instance": 1,
-                "index": "0"
-            }
-        },
-        {
-            "name": "Off",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Etat",
-            "display": {
-                "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
-                "index": "0"
-            }
-        },
-        {
-            "name": "Durée alarme",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 0,
-            "display": {
-                "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 112,
-                "value": "",
-                "index": "31",
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
                 "instance": 1
-            }
-        },
-        {
-            "name": "30s",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            }, 
+            "type": "action", 
+            "name": "On", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 112,
-                "value": "type=setvalue&value=1",
-                "instance": 1,
-                "index": "31"
             }
-        },
+        }, 
         {
-            "name": "3min",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 112,
-                "value": "type=setvalue&value=6",
-                "instance": 1,
-                "index": "31"
             }
-        },
+        }, 
         {
-            "name": "6min",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 31, 
+                "class": 112, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Durée alarme", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 112,
-                "value": "type=setvalue&value=12",
-                "instance": 1,
-                "index": "31"
             }
-        },
+        }, 
         {
-            "name": "30min",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 31, 
+                "class": 112, 
+                "value": "type=setvalue&value=1", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "30s", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
+            }
+        }, 
+        {
+            "isHistorized": 0, 
             "configuration": {
-                "class": 112,
-                "value": "type=setvalue&value=60",
-                "instance": 1,
-                "index": "31"
+                "index": 31, 
+                "class": 112, 
+                "value": "type=setvalue&value=6", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "3min", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 31, 
+                "class": 112, 
+                "value": "type=setvalue&value=12", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "6min", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 31, 
+                "class": 112, 
+                "value": "type=setvalue&value=60", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "30min", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
             }
         }
     ]

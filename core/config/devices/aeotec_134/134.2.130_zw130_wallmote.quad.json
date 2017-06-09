@@ -1,43 +1,91 @@
 {
-    "name": "WallMote Quad (ZW130)",
-    "doc": "",
-    "type": "Télécommande",
-    "comlink": "",
-    "remark": "",
-    "imglink": "aeotec.zw130",
-    "battery_type": "Batterie",
-    "ignore": 1,
+    "name": "WallMote Quad (ZW130)", 
+    "type": "Télécommande", 
+    "comlink": "", 
+    "remark": "Partiellement compatible: Fonctionne en association directe seulement ", 
+    "imglink": "aeotec.zw130", 
     "commands": [
         {
-            "name": "Scene",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 128, 
+                "repeatEventManagement": "always", 
+                "class": 91, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Scene", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
-            },
+            }, 
+            "unite": ""
+        }, 
+        {
+            "isHistorized": 0, 
             "configuration": {
-                "class": 91,
-                "maxValue": 14,
-                "minValue": 0,
-                "value": "",
-                "index": "0",
+                "index": 2, 
+                "repeatEventManagement": "always", 
+                "class": 91, 
+                "value": "", 
                 "instance": 1
-            },
-            "template": {
-                "dashboard": "badge",
-                "mobile": "badge"
-            }
+            }, 
+            "type": "info", 
+            "name": "SceneID", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "repeatEventManagement": "always", 
+                "class": 91, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "SceneAttribute", 
+            "isVisible": 0, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
         }
-    ],
+    ], 
     "recommended": {
         "params": [
             {
-                "index": 1,
+                "index": 1, 
                 "value": "Disable"
             }
-        ],
+        ], 
         "needswakeup": true
     }
 }

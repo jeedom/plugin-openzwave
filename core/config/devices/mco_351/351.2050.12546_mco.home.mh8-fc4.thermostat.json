@@ -1,0 +1,291 @@
+{
+    "name": "Thermostat MH8-FC4-EU", 
+    "type": "Thermostat", 
+    "comlink": "3736-mcohome-thermostat-pour-ventilo-convecteur-a-2-tubes-z-wave-mh8-fc-4251295700205", 
+    "remark": "", 
+    "imglink": "mco.home.mh8-fc", 
+    "commands": [
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 68, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Mode ventilation", 
+            "isVisible": 1, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_MODE"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 64, 
+                "value": "type=setvalue&value=Off", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 68, 
+                "value": "type=setvalue&value=On Low", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "vitesse faible", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 68, 
+                "value": "type=setvalue&value=On Medium", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "vitesse moyenne", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 68, 
+                "value": "type=setvalue&value=On High", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "vitesse haute", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 64, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Mode", 
+            "isVisible": 1, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_MODE"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 64, 
+                "value": "type=setvalue&value=Cool", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "refroidissement", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 64, 
+                "value": "type=setvalue&value=Heat", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "chauffage", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 64, 
+                "value": "type=setvalue&value=Fan Only", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "ventilation", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 2, 
+                "maxValue": "30", 
+                "value": "", 
+                "minValue": "5", 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "info", 
+            "name": "ConsigneEtat refroidissement", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 2, 
+                "maxValue": "30", 
+                "value": "type=setvalue&value=#slider#", 
+                "minValue": "5", 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "action", 
+            "name": "Consigne refroidissement", 
+            "isVisible": 1, 
+            "value": "ConsigneEtat refroidissement", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": "30", 
+                "value": "", 
+                "minValue": "5", 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "info", 
+            "name": "ConsigneEtat chauffage", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": "30", 
+                "value": "type=setvalue&value=#slider#", 
+                "minValue": "5", 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "action", 
+            "name": "Consigne chauffage", 
+            "isVisible": 1, 
+            "value": "ConsigneEtat chauffage", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 66, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 1, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_MODE"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 69, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat ventilation", 
+            "isVisible": 1, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_MODE"
+            }, 
+            "unite": ""
+        }
+    ]
+}

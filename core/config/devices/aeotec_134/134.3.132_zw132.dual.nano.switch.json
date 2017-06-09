@@ -1,0 +1,341 @@
+{
+    "name": "Dual Nano Switch (ZW132)", 
+    "type": "Micromodule", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "aeotec.nanoswitch", 
+    "commands": [
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "On 1", 
+            "isVisible": 1, 
+            "value": "Etat 1", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off 1", 
+            "isVisible": 1, 
+            "value": "Etat 1", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat 1", 
+            "isVisible": 0, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 2300, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance 1", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "POWER"
+            }, 
+            "unite": "W"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Consommation 1", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "CONSUMPTION"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }, 
+            "unite": "kWh"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 16, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Tension 1", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "VOLTAGE"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }, 
+            "unite": "V"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 20, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Intensité 1", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }, 
+            "unite": "A"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 2
+            }, 
+            "type": "action", 
+            "name": "On 2 ", 
+            "isVisible": 1, 
+            "value": "Etat 2", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 2
+            }, 
+            "type": "action", 
+            "name": "Off 2 ", 
+            "isVisible": 1, 
+            "value": "Etat 2", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 2
+            }, 
+            "type": "info", 
+            "name": "Etat 2", 
+            "isVisible": 0, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 128, 
+                "repeatEventManagement": "always", 
+                "class": 91, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Scene", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 2300, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 2, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance 2", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "POWER"
+            }, 
+            "unite": "W"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 2
+            }, 
+            "type": "info", 
+            "name": "Consommation 2", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "CONSUMPTION"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }, 
+            "unite": "kWh"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 16, 
+                "class": 50, 
+                "value": "", 
+                "instance": 2
+            }, 
+            "type": "info", 
+            "name": "Tension 2", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "VOLTAGE"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }, 
+            "unite": "V"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 20, 
+                "class": 50, 
+                "value": "", 
+                "instance": 2
+            }, 
+            "type": "info", 
+            "name": "Intensité 2", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }, 
+            "unite": "A"
+        }
+    ], 
+    "recommended": {
+        "params": [
+            {
+                "index": 80, 
+                "value": "Hail"
+            }, 
+            {
+                "index": 90, 
+                "value": "Enable"
+            }, 
+            {
+                "index": 101, 
+                "value": 6145
+            }, 
+            {
+                "index": 102, 
+                "value": 770
+            }, 
+            {
+                "index": 103, 
+                "value": 196612
+            }, 
+            {
+                "index": 111, 
+                "value": 120
+            }
+        ], 
+        "needswakeup": false
+    }
+}

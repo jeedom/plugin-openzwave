@@ -1,70 +1,71 @@
 {
-    "name": "ZCombo Smoke and Carbon Monoxide Detector",
-    "doc": "",
-    "type": "Fumée",
-    "comlink": "",
-    "remark": "",
-    "imglink": "firstalert.zcombo",
-    "ignore": 1,
-    "battery_type": "1x9V",
+    "name": "ZCombo Smoke and Carbon Monoxide Detector", 
+    "type": "Fumée", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "firstalert.zcombo", 
+    "ignore": true, 
     "commands": [
         {
-            "name": "Fumée",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
             "configuration": {
-                "class": 156,
-                "value": "",
-                "index": "1",
+                "index": 1, 
+                "class": 156, 
+                "value": "", 
                 "instance": 1
-            },
+            }, 
+            "type": "info", 
+            "name": "Fumée", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SMOKE"
-            },
+            }, 
             "template": {
-                "dashboard": "feu",
+                "dashboard": "feu", 
                 "mobile": "feu"
             }
-        },
+        }, 
         {
-            "name": "CO",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 113,
-                "value": "",
-                "calculValueOffset": "#value#==255",
-                "instance": 1,
-                "index": "1"
-            },
+                "index": 1, 
+                "class": 113, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "CO", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "CO2"
-            },
+            }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "unite": "%",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

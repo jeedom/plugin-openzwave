@@ -1,212 +1,216 @@
 {
-    "name": "ZMNHBA2 Double Charge",
-    "doc": "",
-    "type": "Micromodule",
-    "comlink": "3062-qubino-micromodule-commutateur-2-relais-et-consometre-z-wave-zmnhbd1-3830062070119.html",
-    "remark": "Problème connue de remonté d'état, Switch1 et Puissance. Remplacé par ZMNHBD1",
-    "imglink": "qubino.zmnhba2",
+    "name": "ZMNHBA2 Double Charge", 
+    "type": "Micromodule", 
+    "comlink": "3062-qubino-micromodule-commutateur-2-relais-et-consometre-z-wave-zmnhbd1-3830062070119.html", 
+    "remark": "Problème connue de remonté d'état, Switch1 et Puissance. Remplacé par ZMNHBD1", 
+    "imglink": "qubino.zmnhba2", 
     "commands": [
         {
-            "name": "On 1",
-            "type": "action",
-            "subtype": "other",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 2
+            }, 
+            "type": "action", 
+            "name": "On 1", 
+            "isVisible": 1, 
+            "value": "Etat 1", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "isVisible": 1,
-            "value": "Etat 1",
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "instance": 2,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Off 1",
-            "type": "action",
-            "subtype": "other",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 2
+            }, 
+            "type": "action", 
+            "name": "Off 1", 
+            "isVisible": 1, 
+            "value": "Etat 1", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
-            },
-            "isVisible": 1,
-            "value": "Etat 1",
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "instance": 2,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Etat 1",
-            "type": "info",
-            "subtype": "binary",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 2
+            }, 
+            "type": "info", 
+            "name": "Etat 1", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
-            },
-            "isVisible": 0,
-            "isHistorized": 0,
-            "eventOnly": 1,
-            "configuration": {
-                "class": 37,
-                "value": "",
-                "instance": 2,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "On 2",
-            "type": "action",
-            "subtype": "other",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 3
+            }, 
+            "type": "action", 
+            "name": "On 2", 
+            "isVisible": 1, 
+            "value": "Etat 2", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "isVisible": 1,
-            "value": "Etat 2",
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "instance": 3,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Off 2",
-            "type": "action",
-            "subtype": "other",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 3
+            }, 
+            "type": "action", 
+            "name": "Off 2", 
+            "isVisible": 1, 
+            "value": "Etat 2", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
-            },
-            "isVisible": 1,
-            "value": "Etat 2",
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "instance": 3,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Etat 2",
-            "type": "info",
-            "subtype": "binary",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 3
+            }, 
+            "type": "info", 
+            "name": "Etat 2", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
-            },
-            "isVisible": 0,
-            "isHistorized": 0,
-            "configuration": {
-                "class": 37,
-                "value": "",
-                "instance": 3,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "°C",
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "instance": 1,
-                "index": "1"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Puissance 1",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 1840, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 2, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance 1", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "W",
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "minValue": 0,
-                "maxValue": 1840,
-                "instance": 2,
-                "index": "8"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "Consommation 1",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 2
+            }, 
+            "type": "info", 
+            "name": "Consommation 1", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "isVisible": 0,
-            "isHistorized": 1,
-            "unite": "kWh",
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "instance": 2,
-                "index": "0"
-            }
-        },
+            }, 
+            "unite": "kWh"
+        }, 
         {
-            "name": "Puissance 2",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 1840, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 3, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance 2", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "W",
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "minValue": 0,
-                "maxValue": 1840,
-                "instance": 3,
-                "index": "8"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "Consommation 2",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 3
+            }, 
+            "type": "info", 
+            "name": "Consommation 2", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "isVisible": 0,
-            "isHistorized": 1,
-            "unite": "kWh",
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "instance": 3,
-                "index": "0"
-            }
+            }, 
+            "unite": "kWh"
         }
     ]
 }

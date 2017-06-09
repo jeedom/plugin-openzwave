@@ -1,0 +1,124 @@
+{
+    "name": "Door/Window Contact MT02648", 
+    "type": "Ouverture", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "devolo.mt02648", 
+    "commands": [
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Ouverture", 
+            "isVisible": 1, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "OPENING"
+            }, 
+            "template": {
+                "dashboard": "door", 
+                "mobile": "door"
+            }
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 3, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Luminosité", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BRIGHTNESS"
+            }, 
+            "unite": "%"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 10, 
+                "class": 113, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 1, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SABOTAGE"
+            }, 
+            "template": {
+                "dashboard": "vibration", 
+                "mobile": "vibration"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ], 
+    "recommended": {
+        "params": [
+            {
+                "index": 5, 
+                "value": 8
+            }, 
+            {
+                "index": 6, 
+                "value": 22
+            }, 
+            {
+                "index": 7, 
+                "value": 20
+            }
+        ], 
+        "wakeup": 14400, 
+        "needswakeup": true
+    }
+}

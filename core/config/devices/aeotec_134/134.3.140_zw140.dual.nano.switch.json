@@ -1,0 +1,175 @@
+{
+    "name": "Dual Nano Switch (ZW140)", 
+    "type": "Micromodule", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "aeotec.nanoswitch", 
+    "commands": [
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "On 1", 
+            "isVisible": 1, 
+            "value": "Etat 1", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off 1", 
+            "isVisible": 1, 
+            "value": "Etat 1", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat 1", 
+            "isVisible": 0, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 2
+            }, 
+            "type": "action", 
+            "name": "On 2 ", 
+            "isVisible": 1, 
+            "value": "Etat 2", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 2
+            }, 
+            "type": "action", 
+            "name": "Off 2 ", 
+            "isVisible": 1, 
+            "value": "Etat 2", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 2
+            }, 
+            "type": "info", 
+            "name": "Etat 2", 
+            "isVisible": 0, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 128, 
+                "repeatEventManagement": "always", 
+                "class": 91, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Scene", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }
+        }
+    ], 
+    "recommended": {
+        "params": [
+            {
+                "index": 80, 
+                "value": "Hail"
+            }, 
+            {
+                "index": 90, 
+                "value": "Enable"
+            }, 
+            {
+                "index": 101, 
+                "value": 4
+            }, 
+            {
+                "index": 102, 
+                "value": 8
+            }, 
+            {
+                "index": 103, 
+                "value": 1
+            }, 
+            {
+                "index": 111, 
+                "value": 120
+            }
+        ], 
+        "needswakeup": false
+    }
+}

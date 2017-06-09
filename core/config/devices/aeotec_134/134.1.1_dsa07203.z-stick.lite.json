@@ -1,41 +1,40 @@
 {
-    "name": "Z-Stick Lite (DSA07203)",
-    "doc": "",
-    "type": "Contrôleur",
-    "comlink": "",
-    "remark": "",
-    "imglink": "aeotec.dsa02203",
-    "battery_type": "",
-    "isVisible": 0,
+    "name": "Z-Stick Lite (DSA07203)", 
+    "type": "Contrôleur", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "aeotec.dsa02203", 
     "commands": [
         {
-            "name": "Switch All On",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
-            "value": "",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 240, 
+                "value": "type=switchall&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Switch All On", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "ENERGY_ON"
-            },
-            "configuration": {
-                "class": 240,
-                "value": "type=switchall&value=255",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Switch All Off",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
-            "value": "",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 240, 
+                "value": "type=switchall&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Switch All Off", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "ENERGY_OFF"
-            },
-            "configuration": {
-                "class": 240,
-                "value": "type=switchall&value=0",
-                "instance": 1
             }
         }
     ]

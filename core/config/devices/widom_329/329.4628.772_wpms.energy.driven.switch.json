@@ -1,111 +1,114 @@
 {
-    "name": "WPMS Energy Driven Switch",
-    "doc": "",
-    "type": "Micromodule",
-    "comlink": "3688-widom-micromodule-z-wave-commutateur-avec-mesure-d-energie",
-    "remark": "",
-    "imglink": "widom.wpms",
+    "name": "WPMS Energy Driven Switch", 
+    "type": "Micromodule", 
+    "comlink": "3688-widom-micromodule-z-wave-commutateur-avec-mesure-d-energie", 
+    "remark": "", 
+    "imglink": "widom.wpms", 
     "commands": [
         {
-            "name": "On",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Etat",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "On", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Off",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Etat",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Puissance",
-            "type": "info",
-            "subType": "numeric",
-            "isHistorized": "1",
-            "unite": "W",
+            "isHistorized": "1", 
             "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": "2500",
-                "minValue": "0",
-                "instance": 1,
-                "index": "8"
-            },
-            "template": {
-                "dashboard": "default",
-                "mobile": "default"
-            },
+                "index": 8, 
+                "maxValue": "2500", 
+                "value": "", 
+                "minValue": "0", 
+                "instance": 1, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance", 
+            "isVisible": "1", 
+            "subtype": "numeric", 
             "display": {
-                "invertBinary": "0",
+                "invertBinary": "0", 
                 "generic_type": "POWER"
-            },
-            "isVisible": "1"
-        },
-        {
-            "name": "Consommation",
-            "type": "info",
-            "subType": "numeric",
-            "isHistorized": "0",
-            "unite": "kWh",
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "tile",
-                "mobile": "tile"
-            },
+                "dashboard": "default", 
+                "mobile": "default"
+            }, 
+            "unite": "W"
+        }, 
+        {
+            "isHistorized": "0", 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Consommation", 
+            "isVisible": "1", 
+            "subtype": "numeric", 
             "display": {
-                "invertBinary": "0",
+                "invertBinary": "0", 
                 "generic_type": "CONSUMPTION"
-            },
-            "isVisible": "1"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }, 
+            "unite": "kWh"
         }
     ]
 }

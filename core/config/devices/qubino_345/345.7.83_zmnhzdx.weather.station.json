@@ -1,186 +1,184 @@
 {
-    "name": "ZMNHZDx Weather Station Z-Wave+",
-    "doc": "",
-    "type": "Weather Station",
-    "comlink": "3443-qubino-station-meteo-z-wave-zmnhzd1-3830062070560",
-    "imglink": "qubino.zmnhzdx",
-    "remark": "",
-    "ignore": 0,
+    "name": "ZMNHZDx Weather Station Z-Wave+", 
+    "type": "Weather Station", 
+    "comlink": "3443-qubino-station-meteo-z-wave-zmnhzd1-3830062070560", 
+    "remark": "", 
+    "imglink": "qubino.zmnhzdx", 
     "commands": [
         {
-            "name": "Temp Ch1",
-            "type": "info",
-            "subtype": "numeric",
-            "display": {
-                "generic_type": "THERMOSTAT_TEMPERATURE"
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "°C",
+            "isHistorized": 1, 
             "configuration": {
-                "class": 49,
-                "value": "",
-                "maxValue": 60,
-                "minValue": -10,
-                "instance": 1,
-                "index": "1"
-            }
-        },
-        {
-            "name": "Humiditée Ch1",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "%",
+                "index": 1, 
+                "maxValue": 60, 
+                "value": "", 
+                "minValue": -10, 
+                "instance": 1, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Temp Ch1", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
-                "generic_type": "HUMIDITY"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "maxValue": 100,
-                "minValue": 0,
-                "instance": 8,
-                "index": "5"
-            }
-        },
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Temp Ch2",
-            "type": "info",
-            "subtype": "numeric",
-            "display": {
-                "generic_type": "THERMOSTAT_TEMPERATURE"
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "°C",
+            "isHistorized": 1, 
             "configuration": {
-                "class": 49,
-                "value": "",
-                "maxValue": 60,
-                "minValue": -10,
-                "instance": 9,
-                "index": "1"
-            }
-        },
-        {
-            "name": "Humiditée Ch2",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "%",
+                "index": 5, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 8, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Humiditée Ch1", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "HUMIDITY"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "maxValue": 100,
-                "minValue": 0,
-                "instance": 10,
-                "index": "5"
-            }
-        },
+            }, 
+            "unite": "%"
+        }, 
         {
-            "name": "Temp Anémomètre",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": 60, 
+                "value": "", 
+                "minValue": -10, 
+                "instance": 9, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Temp Ch2", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
-                "generic_type": "THERMOSTAT_TEMPERATURE"
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "°C",
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "maxValue": 60,
-                "minValue": -10,
-                "instance": 5,
-                "index": "1"
-            }
-        },
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Refroidissement",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 5, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 10, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Humiditée Ch2", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
-                "generic_type": "THERMOSTAT_TEMPERATURE"
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "°C",
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "maxValue": 60,
-                "minValue": -10,
-                "instance": 6,
-                "index": "1"
-            }
-        },
+                "generic_type": "HUMIDITY"
+            }, 
+            "unite": "%"
+        }, 
         {
-            "name": "Direction vent",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": 60, 
+                "value": "", 
+                "minValue": -10, 
+                "instance": 5, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Temp Anémomètre", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": 60, 
+                "value": "", 
+                "minValue": -10, 
+                "instance": 6, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Refroidissement", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 7, 
+                "maxValue": 360, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 2, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Direction vent", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": ""
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "°",
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "maxValue": 360,
-                "minValue": 0,
-                "instance": 2,
-                "index": "7"
-            },
+            }, 
             "template": {
-                "dashboard": "tile",
+                "dashboard": "tile", 
                 "mobile": "tile"
-            }
-        },
+            }, 
+            "unite": "°"
+        }, 
         {
-            "name": "Vitesse vent",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 6, 
+                "maxValue": 88, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 3, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Vitesse vent", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": ""
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "m\/s",
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "maxValue": 88,
-                "minValue": 0,
-                "instance": 3,
-                "index": "6"
-            }
-        },
+            }, 
+            "unite": "m/s"
+        }, 
         {
-            "name": "Pluviometre",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 12, 
+                "maxValue": 300, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 7, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Pluviometre", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": ""
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "mm\/h",
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "maxValue": 300,
-                "minValue": 0,
-                "instance": 7,
-                "index": "12"
-            }
+            }, 
+            "unite": "mm/h"
         }
     ]
 }

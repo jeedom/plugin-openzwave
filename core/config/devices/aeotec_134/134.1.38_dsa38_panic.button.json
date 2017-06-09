@@ -1,48 +1,49 @@
 {
-    "name": "Panic Button (DSA38)",
-    "doc": "aeotec.panic_button_-_Telecommande",
-    "type": "Télécommande",
-    "comlink": "278-aeon-labs-telecommande-z-wave-porte-cles-1-bouton",
-    "remark": "",
-    "imglink": "aeotec.panicbutton",
-    "battery_type": "1x3V CR2450",
+    "name": "Panic Button (DSA38)", 
+    "type": "Télécommande", 
+    "comlink": "278-aeon-labs-telecommande-z-wave-porte-cles-1-bouton", 
+    "remark": "", 
+    "imglink": "aeotec.panicbutton", 
     "commands": [
         {
-            "name": "Boutons",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "repeatEventManagement": "always", 
+                "class": 43, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Scene", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 43,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            },
+            }, 
             "template": {
-                "dashboard": "tile",
+                "dashboard": "tile", 
                 "mobile": "tile"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

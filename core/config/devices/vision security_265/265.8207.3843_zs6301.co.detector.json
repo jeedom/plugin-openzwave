@@ -1,53 +1,53 @@
 {
-    "name": "ZS 6301 Wireless CO Detector",
-    "doc": "",
-    "type": "CO",
-    "comlink": "2159-vision-security-detecteur-de-monoxyde-de-carbone-z-wave",
-    "remark": "",
-    "imglink": "vision.zs6301",
-    "ignore": 0,
-    "battery_type": "3x1.5V AA",
+    "name": "ZS 6301 Wireless CO Detector", 
+    "type": "CO", 
+    "comlink": "2159-vision-security-detecteur-de-monoxyde-de-carbone-z-wave", 
+    "remark": "", 
+    "imglink": "vision.zs6301", 
     "commands": [
         {
-            "name": "CO",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 113,
-                "value": "",
-                "calculValueOffset": "#value#==255",
-                "instance": 1,
-                "index": "1"
-            },
+                "index": 1, 
+                "class": 113, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "CO", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "CO2"
-            },
+            }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
             }
-        },
+        }, 
         {
-            "name": "Battery",
-            "type": "info",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Battery", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "subtype": "numeric",
-            "unite": "%",
-            "isVisible": 0,
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "tile",
+                "dashboard": "tile", 
                 "mobile": "tile"
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

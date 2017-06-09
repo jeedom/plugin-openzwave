@@ -1,169 +1,202 @@
 {
-    "name": "PAN08-1 In Wall Roller Shutter Controller",
-    "doc": "",
-    "type": "Volets",
-    "comlink": "",
-    "remark": "",
-    "imglink": "philio.pan08",
+    "name": "PAN08-1 In Wall Roller Shutter Controller", 
+    "type": "Volets", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "philio.pan08", 
     "commands": [
         {
-            "name": "Up",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=99",
-                "instance": 1,
-                "index": "0"
-            },
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=99", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Up", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-arrow-up\"><\/i>",
+                "icon": "<i class=\"fa fa-arrow-up\"></i>", 
                 "generic_type": "FLAP_UP"
             }
-        },
+        }, 
         {
-            "name": "Down",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
-                "index": "0"
-            },
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=0", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Down", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-arrow-down\"><\/i>",
+                "icon": "<i class=\"fa fa-arrow-down\"></i>", 
                 "generic_type": "FLAP_DOWN"
             }
-        },
+        }, 
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 38, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "FLAP_STATE"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Positionnement",
-            "type": "action",
-            "subtype": "slider",
-            "isVisible": 1,
-            "value": "Etat",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=#slider#", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Positionnement", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "slider", 
             "display": {
                 "generic_type": "FLAP_SLIDER"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=#slider#",
-                "minValue": 0,
-                "maxValue": 99,
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "tooltip",
+                "dashboard": "tooltip", 
                 "mobile": "tooltip"
             }
-        },
+        }, 
         {
-            "name": "Stop",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 38,
-                "value": "type=buttonaction&action=release",
-                "instance": 1,
-                "index": "2"
-            },
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "Get()", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Rafraichir", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-stop\"><\/i>",
-                "generic_type": "FLAP_STOP"
-            }
-        },
-        {
-            "name": "Stop BSO",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
-            "configuration": {
-                "class": 38,
-                "value": "type=buttonaction&action=release",
-                "instance": 1,
-                "index": "7"
-            },
-            "display": {
-                "icon": "<i class=\"fa fa-stop\"><\/i>",
+                "icon": "<i class=\"fa fa-refresh\"></i>", 
                 "generic_type": "DONT"
             }
-        },
+        }, 
         {
-            "name": "Puissance",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 1,
-            "unite": "W",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 2, 
+                "maxValue": 99, 
+                "value": "button(release)", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Stop", 
+            "isVisible": 1, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-stop\"></i>", 
+                "generic_type": "FLAP_STOP"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 7, 
+                "maxValue": 99, 
+                "value": "button(release)", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Stop BSO", 
+            "isVisible": 0, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-stop\"></i>", 
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 2500, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 2500,
-                "minValue": 0,
-                "instance": 1,
-                "index": "8"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "Consommation",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "kWh",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Consommation", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            }
-        },
+            }, 
+            "unite": "kWh"
+        }, 
         {
-            "name": "Tension",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 0,
-            "unite": "V",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 16, 
+                "maxValue": 200, 
+                "value": "", 
+                "minValue": 260, 
+                "instance": 1, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Tension", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "VOLTAGE"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 200,
-                "minValue": 260,
-                "index": "16",
-                "instance": 1
-            },
+            }, 
             "template": {
                 "dashboard": "tile"
-            }
+            }, 
+            "unite": "V"
         }
     ]
 }

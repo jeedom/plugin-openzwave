@@ -1,69 +1,80 @@
 {
-    "name": "SSA-02",
-    "doc": "",
-    "type": "Sirène",
-    "comlink": "980-fortrezz-sirene-z-wave-flash-rouge-ssa2-0661799486026",
-    "remark": "",
-    "imglink": "fortrezz.ssa02",
+    "name": "SSA-02", 
+    "type": "Sirène", 
+    "comlink": "980-fortrezz-sirene-z-wave-flash-rouge-ssa2-0661799486026", 
+    "remark": "", 
+    "imglink": "fortrezz.ssa02", 
     "commands": [
         {
-            "name": "Off",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=0", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Flash",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=33", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Flash", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=33",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Siren",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=66", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Siren", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=66",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Flash & Siren",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=99", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Flash & Siren", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=99",
-                "instance": 1,
-                "index": "0"
             }
         }
     ]

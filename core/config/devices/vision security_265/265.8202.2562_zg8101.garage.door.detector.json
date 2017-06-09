@@ -1,66 +1,61 @@
 {
-    "name": "ZG8101",
-    "doc": "",
-    "type": "Ouverture",
-    "comlink": "2434-vision-security-detecteur-de-porte-de-garage-z-wave-zg8101-0696859123412.html",
-    "remark": "",
-    "imglink": "vision.zg8101",
-    "ignore": 0,
-    "battery_type": "1x3V CR123A",
+    "name": "ZG8101", 
+    "type": "Ouverture", 
+    "comlink": "2434-vision-security-detecteur-de-porte-de-garage-z-wave-zg8101-0696859123412.html", 
+    "remark": "", 
+    "imglink": "vision.zg8101", 
     "commands": [
         {
-            "name": "Batterie",
-            "type": "info",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 128, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "unite": "%",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 48,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            },
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "OPENING"
             }
-        },
+        }, 
         {
-            "name": "Sabotage",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 113,
-                "value": "",
-                "calculValueOffset": "#value#==3",
-                "instance": 1,
-                "index": "10"
-            },
+                "index": 10, 
+                "class": 113, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
-            },
+            }, 
             "template": {
-                "dashboard": "vibration",
+                "dashboard": "vibration", 
                 "mobile": "vibration"
             }
         }

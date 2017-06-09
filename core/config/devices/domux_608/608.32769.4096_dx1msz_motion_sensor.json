@@ -1,0 +1,49 @@
+{
+    "name": "Motion Sensor (DX1MS-Z)", 
+    "type": "Multicapteurs", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "domux.dx1msz", 
+    "commands": [
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Présence", 
+            "isVisible": 1, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "PRESENCE"
+            }, 
+            "template": {
+                "dashboard": "presence", 
+                "mobile": "presence"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}

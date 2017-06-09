@@ -1,87 +1,87 @@
 {
-    "name": "Door sensor",
-    "doc": "",
-    "type": "Ouverture",
-    "comlink": "",
-    "remark": "",
-    "imglink": "benext.door",
-    "battery_type": "2x1.5V AAA",
+    "name": "Door sensor", 
+    "type": "Ouverture", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "benext.door", 
     "commands": [
         {
-            "name": "Interne",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
             "configuration": {
-                "class": 32,
-                "value": "",
-                "index": "0",
+                "index": 0, 
+                "class": 32, 
+                "value": "", 
                 "instance": 1
-            },
+            }, 
+            "type": "info", 
+            "name": "Interne", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "OPENING"
-            },
+            }, 
             "template": {
-                "dashboard": "door",
+                "dashboard": "door", 
                 "mobile": "door"
             }
-        },
+        }, 
         {
-            "name": "Externe",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
             "configuration": {
-                "class": 48,
-                "value": "",
-                "index": "0",
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
                 "instance": 1
-            },
+            }, 
+            "type": "info", 
+            "name": "Externe", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "OPENING"
-            },
+            }, 
             "template": {
-                "dashboard": "door",
+                "dashboard": "door", 
                 "mobile": "door"
             }
-        },
+        }, 
         {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "°C",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "index": "1",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

@@ -1,0 +1,53 @@
+{
+    "name": "Door Sensor", 
+    "type": "Ouverture", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "shenzen_neo.nas-ds01z", 
+    "commands": [
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 1, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "OPENING"
+            }, 
+            "template": {
+                "dashboard": "door", 
+                "mobile": "door"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ], 
+    "recommended": {
+        "wakeup": 43200, 
+        "needswakeup": true
+    }
+}

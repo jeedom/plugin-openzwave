@@ -1,41 +1,40 @@
 {
-    "name": "USB Stick",
-    "doc": "",
-    "type": "Contrôleur",
-    "comlink": "",
-    "remark": "",
-    "imglink": "zwaveme.uzb",
-    "battery_type": "",
-    "isVisible": 0,
+    "name": "USB Stick", 
+    "type": "Contrôleur", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "zwaveme.uzb", 
     "commands": [
         {
-            "name": "Switch All On",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 240, 
+                "value": "type=switchall&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Switch All On", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "value": "",
-            "configuration": {
-                "class": 240,
-                "value": "type=switchall&value=255",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Switch All Off",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 240, 
+                "value": "type=switchall&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Switch All Off", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "value": "",
-            "configuration": {
-                "class": 240,
-                "value": "type=switchall&value=0",
-                "instance": 1
             }
         }
     ]

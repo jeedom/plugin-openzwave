@@ -1,148 +1,167 @@
 {
-    "name": "Heatit Z-Wave thermostat",
-    "doc": "",
-    "type": "Thermostat",
-    "comlink": "2731-thermofloor-thermostat-z-wave-heatit-3600w-16a-blanc-7071236011934",
-    "remark": "",
-    "imglink": "heatit.thermostat",
+    "name": "Heatit Z-Wave thermostat", 
+    "type": "Thermostat", 
+    "comlink": "2731-thermofloor-thermostat-z-wave-heatit-3600w-16a-blanc-7071236011934", 
+    "remark": "", 
+    "imglink": "heatit.thermostat", 
     "commands": [
         {
-            "name": "Température",
-            "type": "info",
-            "subType": "numeric",
+            "isHistorized": "0", 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "THERMOSTAT_TEMPERATURE"
-            },
-            "isHistorized": "0",
-            "unite": "°C",
-            "isVisible": 1,
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "instance": 1,
-                "index": "1"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Mode Actuel",
-            "type": "info",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 64, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Mode Actuel", 
+            "isVisible": 1, 
+            "subtype": "string", 
             "display": {
                 "generic_type": "THERMOSTAT_MODE"
-            },
-            "subType": "string",
-            "isVisible": 1,
-            "configuration": {
-                "class": 64,
-                "value": "",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Off",
-            "type": "action",
-            "value": "Mode Actuel",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 64, 
+                "value": "type=setvalue&value=Off", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 1, 
+            "value": "Mode Actuel", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "THERMOSTAT_SET_MODE"
-            },
-            "subType": "other",
-            "isVisible": 1,
-            "configuration": {
-                "class": 64,
-                "value": "type=setvalue&value=Off",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Confort",
-            "type": "action",
-            "value": "Mode Actuel",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 64, 
+                "value": "type=setvalue&value=Heat (Default)", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Confort", 
+            "isVisible": 1, 
+            "value": "Mode Actuel", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "THERMOSTAT_SET_MODE"
-            },
-            "subType": "other",
-            "isVisible": 1,
-            "configuration": {
-                "class": 64,
-                "value": "type=setvalue&value=Heat",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "ECO",
-            "type": "action",
-            "value": "Mode Actuel",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 64, 
+                "value": "type=setvalue&value=Energy Heat", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "ECO", 
+            "isVisible": 1, 
+            "value": "Mode Actuel", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "THERMOSTAT_SET_MODE"
-            },
-            "subType": "other",
-            "isVisible": 1,
-            "configuration": {
-                "class": 64,
-                "value": "type=setvalue&value=Heat+Econ",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "CoolingEtat",
-            "type": "info",
-            "subType": "numeric",
-            "isVisible": 0,
-            "unite": "°C",
+            "isHistorized": 0, 
             "configuration": {
-                "class": 67,
-                "value": "",
-                "maxValue": "30",
-                "instance": 1,
-                "index": "2"
-            }
-        },
+                "index": 2, 
+                "maxValue": "30", 
+                "class": 67, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "CoolingEtat", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Cooling",
-            "type": "action",
-            "subType": "slider",
-            "isVisible": 0,
-            "value": "CoolingEtat",
-            "unite": "°C",
+            "isHistorized": 0, 
             "configuration": {
-                "class": 67,
-                "value": "type=setvalue&value=#slider#",
-                "maxValue": "30",
-                "instance": 1,
-                "index": "2"
-            }
-        },
+                "index": 2, 
+                "maxValue": "30", 
+                "class": 67, 
+                "value": "type=setvalue&value=#slider#", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Cooling", 
+            "isVisible": 0, 
+            "value": "CoolingEtat", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "AirEtat",
-            "type": "info",
-            "subType": "numeric",
-            "isVisible": 0,
-            "unite": "°C",
+            "isHistorized": 0, 
             "configuration": {
-                "class": 67,
-                "value": "",
-                "maxValue": "30",
-                "instance": 1,
-                "index": "8"
-            }
-        },
+                "index": 8, 
+                "maxValue": "30", 
+                "class": 67, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "AirEtat", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Dry Air",
-            "type": "action",
-            "subType": "slider",
-            "isVisible": 1,
-            "value": "ConsigneEtat",
-            "unite": "°C",
+            "isHistorized": 0, 
             "configuration": {
-                "class": 67,
-                "value": "type=setvalue&value=#slider#",
-                "maxValue": "30",
-                "instance": 1,
-                "index": "8"
-            }
+                "index": 8, 
+                "maxValue": "30", 
+                "class": 67, 
+                "value": "type=setvalue&value=#slider#", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Dry Air", 
+            "isVisible": 1, 
+            "value": "ConsigneEtat", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "°C"
         }
     ]
 }

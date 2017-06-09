@@ -1,41 +1,40 @@
 {
-    "name": "Z-Wave Plus USB Controller",
-    "doc": "",
-    "type": "Contrôleur",
-    "comlink": "3171-sigma-designs-controleur-z-wave-plus-usb",
-    "remark": "",
-    "imglink": "sigma.usb",
-    "battery_type": "",
-    "isVisible": 0,
+    "name": "Z-Wave Plus USB Controller", 
+    "type": "Contrôleur", 
+    "comlink": "3171-sigma-designs-controleur-z-wave-plus-usb", 
+    "remark": "", 
+    "imglink": "sigma.usb", 
     "commands": [
         {
-            "name": "Switch All On",
-            "type": "action",
-            "subtype": "other",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 240, 
+                "value": "type=switchall&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Switch All On", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "isVisible": 0,
-            "value": "",
-            "configuration": {
-                "class": 240,
-                "value": "type=switchall&value=255",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Switch All Off",
-            "type": "action",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 240, 
+                "value": "type=switchall&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Switch All Off", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "subtype": "other",
-            "isVisible": 0,
-            "value": "",
-            "configuration": {
-                "class": 240,
-                "value": "type=switchall&value=0",
-                "instance": 1
             }
         }
     ]

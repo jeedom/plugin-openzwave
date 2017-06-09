@@ -1,49 +1,70 @@
 {
-    "name": "ZD2102",
-    "doc": "",
-    "type": "Ouverture",
-    "comlink": "2609-zipato-detecteur-d-ouverture-z-wave-3858890730470",
-    "remark": "Vendu aussi sous la marque Zipato.",
-    "imglink": "vision.zd2102",
-    "battery_type": "1x3V CR123A",
+    "name": "ZD2102", 
+    "type": "Ouverture", 
+    "comlink": "2609-zipato-detecteur-d-ouverture-z-wave-3858890730470", 
+    "remark": "Vendu aussi sous la marque Zipato.", 
+    "imglink": "vision.zd2102", 
     "commands": [
         {
-            "name": "Ouverture",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 113,
-                "value": "",
-                "index": "1",
+                "index": 1, 
+                "class": 113, 
+                "value": "", 
                 "instance": 1
-            },
+            }, 
+            "type": "info", 
+            "name": "Ouverture", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "OPENING"
-            },
+            }, 
             "template": {
-                "dashboard": "door",
+                "dashboard": "door", 
                 "mobile": "door"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 10, 
+                "class": 113, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 1, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SABOTAGE"
+            }, 
+            "template": {
+                "dashboard": "vibration", 
+                "mobile": "vibration"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "unite": "%",
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

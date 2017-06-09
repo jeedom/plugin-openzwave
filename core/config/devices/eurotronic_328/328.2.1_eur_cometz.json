@@ -1,224 +1,228 @@
 {
-    "name": "Vanne thermostatique Z-Wave+ Comet",
-    "doc": "",
-    "type": "Thermostat",
-    "comlink": "3228-eurotronic-vanne-thermostatique-z-wave-comet-4260012711011",
-    "remark": "",
-    "imglink": "eurotronic.cometz",
-    "battery_type": "",
+    "name": "Vanne thermostatique Z-Wave+ Comet", 
+    "type": "Thermostat", 
+    "comlink": "3228-eurotronic-vanne-thermostatique-z-wave-comet-4260012711011", 
+    "remark": "", 
+    "imglink": "eurotronic.cometz", 
     "commands": [
         {
-            "name": "Température",
-            "type": "info",
-            "subType": "numeric",
+            "isHistorized": "0", 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "THERMOSTAT_TEMPERATURE"
-            },
-            "isHistorized": "0",
-            "unite": "°C",
-            "isVisible": 1,
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "instance": 1,
-                "index": "1"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Mode Actuel",
-            "type": "info",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 64, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Mode Actuel", 
+            "isVisible": 1, 
+            "subtype": "string", 
             "display": {
                 "generic_type": "THERMOSTAT_MODE"
-            },
-            "subType": "string",
-            "isVisible": 1,
-            "configuration": {
-                "class": 64,
-                "value": "",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Off",
-            "type": "action",
-            "value": "Mode Actuel",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 64, 
+                "value": "type=setvalue&value=Off", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 1, 
+            "value": "Mode Actuel", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "THERMOSTAT_SET_MODE"
-            },
-            "subType": "other",
-            "isVisible": 1,
-            "configuration": {
-                "class": 64,
-                "value": "type=setvalue&value=Off",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Confort",
-            "type": "action",
-            "value": "Mode Actuel",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 64, 
+                "value": "type=setvalue&value=Heat", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Confort", 
+            "isVisible": 1, 
+            "value": "Mode Actuel", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "THERMOSTAT_SET_MODE"
-            },
-            "subType": "other",
-            "isVisible": 1,
-            "configuration": {
-                "class": 64,
-                "value": "type=setvalue&value=Heat",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "ECO",
-            "type": "action",
-            "value": "Mode Actuel",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 64, 
+                "value": "type=setvalue&value=Heat Econ", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "ECO", 
+            "isVisible": 1, 
+            "value": "Mode Actuel", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "THERMOSTAT_SET_MODE"
-            },
-            "subType": "other",
-            "isVisible": 1,
-            "configuration": {
-                "class": 64,
-                "value": "type=setvalue&value=Heat+Econ",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Commande Comfort",
-            "type": "action",
-            "subtype": "slider",
-            "value": "Consigne Comfort",
-            "isVisible": 1,
-            "isHistorized": 0,
-            "unite": "°C",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": 28, 
+                "value": "type=setvalue&value=#slider#", 
+                "minValue": 4, 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "action", 
+            "name": "Commande Comfort", 
+            "isVisible": 1, 
+            "value": "Consigne Comfort", 
+            "subtype": "slider", 
             "display": {
                 "generic_type": "THERMOSTAT_SET_SETPOINT"
-            },
-            "configuration": {
-                "class": 67,
-                "value": "type=setvalue&value=#slider#",
-                "maxValue": 28,
-                "minValue": 4,
-                "instance": 1,
-                "index": "1"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Consigne Comfort",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "°C",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": 28, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "info", 
+            "name": "Consigne Comfort", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "THERMOSTAT_SETPOINT"
-            },
-            "configuration": {
-                "class": 67,
-                "value": "",
-                "maxValue": 28,
-                "minValue": 0,
-                "instance": 1,
-                "index": "1"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Consigne Comfort pending",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "°C",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": 28, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 11, 
+                "class": 67
+            }, 
+            "type": "info", 
+            "name": "Consigne Comfort pending", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 67,
-                "value": "",
-                "maxValue": 28,
-                "minValue": 0,
-                "instance": 11,
-                "index": "1"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Commande Energy saving",
-            "type": "action",
-            "subtype": "slider",
-            "value": "Consigne Energy saving",
-            "isVisible": 1,
-            "isHistorized": 0,
-            "unite": "°C",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 11, 
+                "maxValue": 28, 
+                "value": "type=setvalue&value=#slider#", 
+                "minValue": 4, 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "action", 
+            "name": "Commande Energy saving", 
+            "isVisible": 1, 
+            "value": "Consigne Energy saving", 
+            "subtype": "slider", 
             "display": {
                 "generic_type": "THERMOSTAT_SET_SETPOINT"
-            },
-            "configuration": {
-                "class": 67,
-                "value": "type=setvalue&value=#slider#",
-                "maxValue": 28,
-                "minValue": 4,
-                "instance": 1,
-                "index": "11"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Consigne Energy saving",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "°C",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 11, 
+                "maxValue": 28, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "info", 
+            "name": "Consigne Energy saving", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "THERMOSTAT_SETPOINT"
-            },
-            "configuration": {
-                "class": 67,
-                "value": "",
-                "maxValue": 28,
-                "minValue": 0,
-                "instance": 1,
-                "index": "11"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Consigne Energy saving pending",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "°C",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 11, 
+                "maxValue": 28, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 11, 
+                "class": 67
+            }, 
+            "type": "info", 
+            "name": "Consigne Energy saving pending", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 67,
-                "value": "",
-                "maxValue": 28,
-                "minValue": 0,
-                "instance": 11,
-                "index": "11"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

@@ -1,84 +1,79 @@
 {
-    "name": "PST02-C Door\/Window 3in1 sensor",
-    "doc": "philio.pst02c_-_3_en_1_Ouverture",
-    "type": "Multicapteurs",
-    "comlink": "2606-zipato-detecteur-z-wave-3-en-1-ouverture-luminosite-temperature-3858890730371",
-    "remark": "Vendu aussi sous la marque Zipato",
-    "imglink": "philio.pst02c",
-    "battery_type": "1x3V CR123A",
+    "name": "PST02-C Door/Window 3in1 sensor", 
+    "type": "Multicapteurs", 
+    "comlink": "2606-zipato-detecteur-z-wave-3-en-1-ouverture-luminosite-temperature-3858890730371", 
+    "remark": "Vendu aussi sous la marque Zipato", 
+    "imglink": "philio.pst02c", 
     "commands": [
         {
-            "name": "Ouverture",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 48,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            },
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Ouverture", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "OPENING"
-            },
+            }, 
             "template": {
-                "dashboard": "door",
+                "dashboard": "door", 
                 "mobile": "door"
             }
-        },
+        }, 
         {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "unite": "°C",
-                "instance": 1,
-                "index": "1"
             }
-        },
+        }, 
         {
-            "name": "Luminosité",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 3, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Luminosité", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BRIGHTNESS"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "unite": "%",
-                "maxValue": 100,
-                "minValue": 0,
-                "instance": 1,
-                "index": "3"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 128, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "unite": "%",
-                "instance": 1,
-                "index": "0"
             }
         }
     ]

@@ -1,0 +1,45 @@
+{
+    "name": "10-Year Smoke Detector (009402)", 
+    "type": "Fumée", 
+    "comlink": "3636-popp-detecteur-de-fumee-z-wave-avec-autonomie-10-ans-0019962009402", 
+    "remark": "", 
+    "imglink": "popp.009402.smoke-detector", 
+    "commands": [
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Fumées", 
+            "isVisible": 0, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SMOKE"
+            }
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}

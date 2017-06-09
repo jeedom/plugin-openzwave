@@ -1,59 +1,62 @@
 {
-    "name": "Power Reader",
-    "doc": "",
-    "type": "Compteur",
-    "comlink": "1538-northq-compteur-optique-de-consommation-z-wave-adaptateur-ac-dc-5707162002242",
-    "remark": "Activer le rafraichissement manuel à 5 minutes sur la valeur Energy pour avoir les rapports",
-    "imglink": "northq.powerreader",
-    "battery_type": "2x1.5V AAA",
+    "name": "Power Reader", 
+    "type": "Compteur", 
+    "comlink": "1538-northq-compteur-optique-de-consommation-z-wave-adaptateur-ac-dc-5707162002242", 
+    "remark": "Activer le rafraichissement manuel à 5 minutes sur la valeur Energy pour avoir les rapports", 
+    "imglink": "northq.powerreader", 
     "commands": [
         {
-            "name": "Consommation",
-            "type": "info",
-            "subType": "numeric",
-            "isHistorized": "0",
-            "unite": "kwH",
-            "isVisible": 1,
+            "isHistorized": "0", 
+            "configuration": {
+                "index": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Consommation", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            }
-        },
+            }, 
+            "unite": "kwH"
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "%"
+        }, 
         {
-            "name": "Actualiser la date et heure",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "",
+            "isHistorized": 0, 
             "configuration": {
-                "class": 139,
-                "value": "type=buttonaction&action=press",
-                "instance": 1,
-                "index": "3"
-            }
+                "index": 3, 
+                "class": 139, 
+                "value": "button(press)", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Actualiser la date et heure", 
+            "isVisible": 0, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": ""
         }
     ]
 }

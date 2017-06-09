@@ -1,0 +1,263 @@
+{
+    "name": "Home Energy Meter Gen5 (ZW095)", 
+    "type": "Consommation", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "aeotec.zw095", 
+    "commands": [
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Consommation totale", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "CONSUMPTION"
+            }, 
+            "unite": "KWh"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 48000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance totale", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "POWER"
+            }, 
+            "unite": "W"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 16, 
+                "maxValue": 80, 
+                "value": "", 
+                "minValue": 150, 
+                "instance": 1, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Tension moyènne", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "VOLTAGE"
+            }, 
+            "unite": "V"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 20, 
+                "maxValue": 200, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Intensité totale", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "A"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 2
+            }, 
+            "type": "info", 
+            "name": "Consommation Phase 1", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "CONSUMPTION"
+            }, 
+            "unite": "KWh"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 48000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 2, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance Phase 1", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "POWER"
+            }, 
+            "unite": "W"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 16, 
+                "maxValue": 80, 
+                "value": "", 
+                "minValue": 150, 
+                "instance": 2, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Tension Phase 1", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "VOLTAGE"
+            }, 
+            "unite": "V"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 20, 
+                "maxValue": 200, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 2, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Intensité Phase 1", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "A"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 3
+            }, 
+            "type": "info", 
+            "name": "Consommation Phase 2", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "CONSUMPTION"
+            }, 
+            "unite": "KWh"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 48000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 3, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance Phase 2", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "POWER"
+            }, 
+            "unite": "W"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 16, 
+                "maxValue": 260, 
+                "value": "", 
+                "minValue": 180, 
+                "instance": 3, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Tension Phase 2", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "VOLTAGE"
+            }, 
+            "unite": "V"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 20, 
+                "maxValue": 200, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 3, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Intensité Phase 2", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "A"
+        }
+    ], 
+    "recommended": {
+        "params": [
+            {
+                "index": 101, 
+                "value": 1573642
+            }, 
+            {
+                "index": 111, 
+                "value": 120
+            }, 
+            {
+                "index": 102, 
+                "value": 6145
+            }, 
+            {
+                "index": 112, 
+                "value": 900
+            }, 
+            {
+                "index": 103, 
+                "value": 196612
+            }, 
+            {
+                "index": 113, 
+                "value": 3600
+            }
+        ], 
+        "needswakeup": false
+    }
+}

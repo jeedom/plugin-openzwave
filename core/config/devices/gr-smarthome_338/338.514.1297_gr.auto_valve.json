@@ -1,56 +1,58 @@
 {
-    "name": "Vanne 1\/4 de tour (GR-105)",
-    "doc": "",
-    "type": "Vanne",
-    "comlink": "2958-gr-smarthome-motorisation-z-wave-pour-vanne-14-de-tour",
-    "remark": "",
-    "imglink": "gr.autovalve",
+    "name": "Vanne 1/4 de tour (GR-105)", 
+    "type": "Vanne", 
+    "comlink": "2958-gr-smarthome-motorisation-z-wave-pour-vanne-14-de-tour", 
+    "remark": "", 
+    "imglink": "gr.autovalve", 
     "commands": [
         {
-            "name": "Ouvrir",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Etat",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Ouvrir", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Fermer",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Etat",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Fermer", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "",
-                "instance": 1,
-                "index": "0"
             }
         }
     ]

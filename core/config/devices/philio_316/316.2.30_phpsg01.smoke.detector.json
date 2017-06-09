@@ -1,51 +1,53 @@
 {
-    "name": "PH-PSG01 Smoke Sensor",
-    "doc": "",
-    "type": "Fumée",
-    "comlink": "3149-zipato-capteur-de-fumee-z-wave--3858890733051",
-    "remark": "",
-    "imglink": "philio.phpsg01",
-    "battery_type": "1x3V CR123A",
+    "name": "PH-PSG01 Smoke Sensor", 
+    "type": "Fumée", 
+    "comlink": "3149-zipato-capteur-de-fumee-z-wave--3858890733051", 
+    "remark": "", 
+    "imglink": "philio.phpsg01", 
     "commands": [
         {
-            "name": "Fumées",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 48,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            },
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Fumées", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SMOKE"
-            },
+            }, 
             "template": {
-                "dashboard": "feu",
+                "dashboard": "feu", 
                 "mobile": "feu"
             }
-        },
+        }, 
         {
-            "name": "Battery",
-            "type": "info",
-            "subtype": "numeric",
-            "unite": "%",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Battery", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "tile",
+                "dashboard": "tile", 
                 "mobile": "tile"
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

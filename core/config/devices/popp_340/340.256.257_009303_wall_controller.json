@@ -1,48 +1,82 @@
 {
-    "name": "009303 Z-Wave Plus Battery Wall Controller",
-    "doc": "",
-    "type": "Télécommande",
-    "comlink": "3074-popp-controleur-mural-sans-fil-z-wave",
-    "remark": "",
-    "imglink": "popp.009303",
-    "battery_type": "1x3V CR2032",
+    "name": "009303 Z-Wave Plus Battery Wall Controller", 
+    "type": "Télécommande", 
+    "comlink": "3074-popp-controleur-mural-sans-fil-z-wave", 
+    "remark": "", 
+    "imglink": "popp.009303", 
     "commands": [
         {
-            "name": "Boutons",
-            "type": "info",
-            "subtype": "numeric",
-            "display": {
-                "generic_type": "GENERIC"
-            },
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 43,
-                "value": "",
-                "index": "0",
+                "index": 128, 
+                "repeatEventManagement": "always", 
+                "class": 91, 
+                "value": "", 
                 "instance": 1
-            },
-            "template": {
-                "dashboard": "tile",
-                "mobile": "tile"
-            }
-        },
+            }, 
+            "type": "info", 
+            "name": "Scene", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": ""
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 2, 
+                "repeatEventManagement": "always", 
+                "class": 91, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "SceneID", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "repeatEventManagement": "always", 
+                "class": 91, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "SceneAttribute", 
+            "isVisible": 0, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

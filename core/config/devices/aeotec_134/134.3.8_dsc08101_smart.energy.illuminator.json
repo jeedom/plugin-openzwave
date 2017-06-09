@@ -1,117 +1,124 @@
 {
-    "name": "Smart Energy Illuminator (DSC08101)",
-    "doc": "",
-    "type": "Prise",
-    "comlink": "283-aeon-labs-smart-energy-illuminator-z-wave-1220000010499",
-    "remark": "",
-    "imglink": "aeotec.smart-energy-illuminator",
+    "name": "Smart Energy Illuminator (DSC08101)", 
+    "type": "Prise", 
+    "comlink": "283-aeon-labs-smart-energy-illuminator-z-wave-1220000010499", 
+    "remark": "", 
+    "imglink": "aeotec.smart-energy-illuminator", 
     "commands": [
         {
-            "name": "On",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=99", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "On", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "ENERGY_ON"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=99",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Off",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=0", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "ENERGY_OFF"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Intensité",
-            "type": "action",
-            "subtype": "slider",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=#slider#", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Intensité", 
+            "isVisible": 1, 
+            "value": "Etat", 
+            "subtype": "slider", 
             "display": {
                 "generic_type": "ENERGY_SLIDER"
-            },
-            "value": "Etat",
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=#slider#",
-                "minValue": 0,
-                "maxValue": 99,
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "numeric",
-            "unite": "%",
-            "isVisible": 0,
-            "isHistorized": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "ENERGY_STATE"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "",
-                "maxValue": 100,
-                "minValue": 0,
-                "instance": 1,
-                "index": "0"
-            }
-        },
+            }, 
+            "unite": "%"
+        }, 
         {
-            "name": "Puissance",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "W",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 2500, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 2500,
-                "minValue": 0,
-                "instance": 1,
-                "index": "8"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "Consommation",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "kWh",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Consommation", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            }
+            }, 
+            "unite": "kWh"
         }
     ]
 }

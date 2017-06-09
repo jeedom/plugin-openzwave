@@ -1,127 +1,126 @@
 {
-    "name": "MH-S312 Double",
-    "doc": "",
-    "type": "Interrupteur",
-    "comlink": "2889-mcohome-interrupteur-tactile-en-verre-z-wave-2-charges-blanc",
-    "remark": "Equivalent au MH-S412",
-    "imglink": "mco.mhs312",
-    "ignore": 1,
+    "name": "MH-S312 Double", 
+    "type": "Interrupteur", 
+    "comlink": "2889-mcohome-interrupteur-tactile-en-verre-z-wave-2-charges-blanc", 
+    "remark": "Equivalent au MH-S412", 
+    "imglink": "mco.mhs312", 
+    "ignore": true, 
     "commands": [
         {
-            "name": "Etat",
-            "type": "info",
-            "subType": "binary",
-            "isHistorized": "0",
+            "isHistorized": "0", 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": "0", 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            },
-            "isVisible": "0"
-        },
+            }
+        }, 
         {
-            "name": "On",
-            "type": "action",
-            "subType": "other",
-            "isHistorized": "0",
+            "isHistorized": "0", 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "On", 
+            "isVisible": "1", 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
-            },
-            "value": "Etat",
-            "isVisible": "1"
-        },
+            }
+        }, 
         {
-            "name": "Off",
-            "type": "action",
-            "subType": "other",
-            "isHistorized": "0",
+            "isHistorized": "0", 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": "1", 
+            "value": "Etat", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
-            },
-            "value": "Etat",
-            "isVisible": "1"
-        },
+            }
+        }, 
         {
-            "name": "Etat2",
-            "type": "info",
-            "subType": "binary",
-            "isHistorized": "0",
+            "isHistorized": "0", 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 2
+            }, 
+            "type": "info", 
+            "name": "Etat2", 
+            "isVisible": "0", 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "",
-                "instance": 2,
-                "index": "0"
-            },
-            "isVisible": "0"
-        },
+            }
+        }, 
         {
-            "name": "On2",
-            "type": "action",
-            "subType": "other",
-            "isHistorized": "0",
+            "isHistorized": "0", 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 2
+            }, 
+            "type": "action", 
+            "name": "On2", 
+            "isVisible": "1", 
+            "value": "Etat2", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "instance": 2,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
-            },
-            "value": "Etat2",
-            "isVisible": "1"
-        },
+            }
+        }, 
         {
-            "name": "Off2",
-            "type": "action",
-            "subType": "other",
-            "isHistorized": "0",
+            "isHistorized": "0", 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 2
+            }, 
+            "type": "action", 
+            "name": "Off2", 
+            "isVisible": "1", 
+            "value": "Etat2", 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "instance": 2,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
-            },
-            "value": "Etat2",
-            "isVisible": "1"
+            }
         }
     ]
 }

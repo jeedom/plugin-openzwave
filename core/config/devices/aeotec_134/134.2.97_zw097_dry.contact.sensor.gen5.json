@@ -1,76 +1,76 @@
 {
-    "name": "Dry Contact Sensor Gen5 (ZW097)",
-    "doc": "",
-    "type": "Ouverture",
-    "comlink": "",
-    "remark": "",
-    "imglink": "aeotec.zw097",
-    "battery_type": "1×3V CR123A",
-    "ignore": 0,
+    "name": "Dry Contact Sensor Gen5 (ZW097)", 
+    "type": "Ouverture", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "aeotec.zw097", 
     "commands": [
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
             "configuration": {
-                "class": 48,
-                "value": "",
-                "index": "0",
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
                 "instance": 1
-            },
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "OPENING"
-            },
+            }, 
             "template": {
-                "dashboard": "door",
+                "dashboard": "door", 
                 "mobile": "door"
             }
-        },
+        }, 
         {
-            "name": "Sabotage",
-            "type": "info",
-            "subtype": "binary",
+            "isHistorized": 0, 
             "configuration": {
-                "class": 113,
-                "value": "",
-                "calculValueOffset": "#value#==3",
-                "instance": 1,
-                "index": "10"
-            },
+                "index": 10, 
+                "class": 113, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
-    ],
+    ], 
     "recommended": {
         "params": [
             {
-                "index": 121,
+                "index": 121, 
                 "value": "Basic Set and Sensor Binary Report"
             }
-        ],
-        "wakeup": 14400,
+        ], 
+        "wakeup": 14400, 
         "needswakeup": true
     }
 }

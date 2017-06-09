@@ -1,63 +1,62 @@
 {
-    "name": "004308 Smoke Detector",
-    "doc": "",
-    "type": "Fumée",
-    "comlink": "",
-    "remark": "Détecté comme le Zwave-me USB Stick. Pas d'assistant pour les parametrès.",
-    "imglink": "popp.smoke-detector",
-    "battery_type": "1xCR123A",
-    "isVisible": 1,
+    "name": "004308 Smoke Detector", 
+    "type": "Fumée", 
+    "comlink": "", 
+    "remark": "Détecté comme le Zwave-me USB Stick. Pas d'assistant pour les parametrès.", 
+    "imglink": "popp.smoke-detector", 
     "commands": [
         {
-            "name": "Fumées",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 0,
-            "eventOnly": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 48,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            },
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Fumées", 
+            "isVisible": 0, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SMOKE"
             }
-        },
+        }, 
         {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "unite": "°C",
-            "isVisible": 1,
-            "eventOnly": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "instance": 1,
-                "index": "1"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "unite": "%",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

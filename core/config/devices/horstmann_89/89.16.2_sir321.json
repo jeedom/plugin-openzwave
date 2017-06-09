@@ -1,83 +1,84 @@
 {
-    "name": "SIR 321 RF Countdown Timer",
-    "doc": "",
-    "type": "Timer",
-    "comlink": "3216-secure-minuterie-manuelle-3060120-minutes-z-wave-5015914083563",
-    "remark": "",
-    "imglink": "horstmann.sir321",
+    "name": "SIR 321 RF Countdown Timer", 
+    "type": "Timer", 
+    "comlink": "3216-secure-minuterie-manuelle-3060120-minutes-z-wave-5015914083563", 
+    "remark": "", 
+    "imglink": "horstmann.sir321", 
     "configuration": {
         "1": {
-            "name": "Mode Fail Safe",
-            "help": "Active ou désactive la fonction Fails Safe",
+            "name": "Mode Fail Safe", 
+            "help": "Active ou désactive la fonction Fails Safe", 
             "list": {
-                "Enabled": "Fonction active",
+                "Enabled": "Fonction active", 
                 "Disabled": "Fonction désactivée"
             }
-        },
+        }, 
         "2": {
-            "name": "Echelle de température",
-            "help": "Celcius\/Farenheit"
-        },
+            "name": "Echelle de température", 
+            "help": "Celcius/Farenheit"
+        }, 
         "3": {
-            "name": "Intervalle de temps pour un rapport",
+            "name": "Intervalle de temps pour un rapport", 
             "help": "Durée en secondes pour un rapport de température"
-        },
+        }, 
         "4": {
-            "name": "Variation de température pour un rapport",
+            "name": "Variation de température pour un rapport", 
             "help": "Différence de température pour déclencher une remontée (10-->1)"
-        },
+        }, 
         "5": {
-            "name": "Température de Cutt Off",
+            "name": "Température de Cutt Off", 
             "help": "Température de sécurité au delà de laquelle le switch sera coupée"
         }
-    },
+    }, 
     "commands": [
         {
-            "name": "On",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "On", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "index": "0",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Off",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "index": "0",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "°C",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "index": "1",
-                "instance": 1
-            }
+            }, 
+            "unite": "°C"
         }
     ]
 }

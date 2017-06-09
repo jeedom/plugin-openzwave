@@ -1,116 +1,119 @@
 {
-    "name": "Polylock",
-    "doc": "polycontrol.polylock_-_Serrure",
-    "type": "Serrure",
-    "comlink": "1752-poly-control-serrure-motorisee-poly-lock-z-wave",
-    "remark": "Inclusion en mode sécurisé",
-    "imglink": "polycontrol.polylock",
-    "battery_type": "1xER26500M",
-    "configuration": [
-        {
-            "name": "Inversion de direction",
+    "name": "Polylock", 
+    "type": "Serrure", 
+    "comlink": "1752-poly-control-serrure-motorisee-poly-lock-z-wave", 
+    "remark": "Inclusion en mode sécurisé", 
+    "imglink": "polycontrol.polylock", 
+    "configuration": {
+        "0": {
+            "name": "Inversion de direction", 
             "help": "Ce paramètre définit le sens de rotation"
-        },
-        {
-            "name": "Durée de fermeture",
+        }, 
+        "1": {
+            "name": "Durée de fermeture", 
             "help": "Durée pendant laquelle le moteur tournera pour fermer"
-        },
-        {
-            "name": "Durée d'ouverture",
+        }, 
+        "2": {
+            "name": "Durée d'ouverture", 
             "help": "Durée pendant laquelle le moteur tournera pour ouvrir"
-        },
-        {
-            "name": "Vitesse du moteur",
+        }, 
+        "3": {
+            "name": "Vitesse du moteur", 
             "help": "0 = plus rapide 15=plus lent"
-        },
-        {
-            "name": "Mode de fonctionnement du moteur",
-            "help": "Ce paramètre détermine le mode de fonctionnement du moteur (couple\/puissance\/vitesse)"
+        }, 
+        "4": {
+            "name": "Mode de fonctionnement du moteur", 
+            "help": "Ce paramètre détermine le mode de fonctionnement du moteur (couple/puissance/vitesse)"
         }
-    ],
+    }, 
     "commands": [
         {
-            "name": "Statut",
-            "type": "info",
-            "subtype": "binary",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "class": 98, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Statut", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "LOCK_STATE"
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "configuration": {
-                "class": 98,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "lock",
+                "dashboard": "lock", 
                 "mobile": "lock"
             }
-        },
+        }, 
         {
-            "name": "Ouvrir",
-            "type": "action",
-            "subtype": "other",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 98, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Ouvrir", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LOCK_OPEN"
-            },
-            "isVisible": 1,
-            "isHistorized": 0,
-            "configuration": {
-                "class": 98,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Fermer",
-            "type": "action",
-            "subtype": "other",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 98, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Fermer", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LOCK_CLOSE"
-            },
-            "isVisible": 1,
-            "isHistorized": 0,
-            "configuration": {
-                "class": 98,
-                "value": "type=setvalue&value=255",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "%"
+        }, 
         {
-            "name": "Actualiser la date et heure",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "",
+            "isHistorized": 0, 
             "configuration": {
-                "class": 139,
-                "value": "type=buttonaction&action=press",
-                "instance": 1,
-                "index": "3"
-            }
+                "index": 3, 
+                "class": 139, 
+                "value": "button(press)", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Actualiser la date et heure", 
+            "isVisible": 0, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": ""
         }
     ]
 }

@@ -1,97 +1,104 @@
 {
-    "name": "Micro Motor Controller (DSC14104)",
-    "doc": "",
-    "type": "Volets",
-    "comlink": "284-aeon-labs-micromodule-z-wave-pour-volet-roulant-1220000010864",
-    "remark": "",
-    "imglink": "aeotec.blind-control",
+    "name": "Micro Motor Controller (DSC14104)", 
+    "type": "Volets", 
+    "comlink": "284-aeon-labs-micromodule-z-wave-pour-volet-roulant-1220000010864", 
+    "remark": "", 
+    "imglink": "aeotec.blind-control", 
     "commands": [
         {
-            "name": "Monter",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=99", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Monter", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "FLAP_UP"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=99",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Descendre",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=0", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Descendre", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "FLAP_DOWN"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
-            "unite": "",
-            "isVisible": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 38,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            },
+                "index": 0, 
+                "class": 38, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "FLAP_STATE"
-            },
+            }, 
             "template": {
-                "dashboard": "store",
+                "dashboard": "store", 
                 "mobile": "store"
-            }
-        },
+            }, 
+            "unite": ""
+        }, 
         {
-            "name": "Puissance",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 1,
-            "unite": "W",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 2500, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 2500,
-                "minValue": 0,
-                "instance": 1,
-                "index": "8"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "Consommation",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "kWh",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Consommation", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            }
+            }, 
+            "unite": "kWh"
         }
     ]
 }

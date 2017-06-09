@@ -1,124 +1,125 @@
 {
-    "name": "ZD2201 Multisensor 4in1",
-    "doc": "",
-    "type": "Ouverture",
-    "comlink": "3150-zipato-detecteur-z-wave-plus-4-en-1-3858890732931",
-    "remark": "Vendu aussi sous la marque Zipato.",
-    "imglink": "vision.zd2201",
-    "battery_type": "2x1.5V AAA",
-    "ignore": 0,
+    "name": "ZD2201 Multisensor 4in1", 
+    "type": "Ouverture", 
+    "comlink": "3150-zipato-detecteur-z-wave-plus-4-en-1-3858890732931", 
+    "remark": "Vendu aussi sous la marque Zipato.", 
+    "imglink": "vision.zd2201", 
     "commands": [
         {
-            "name": "Ouverture",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 113,
-                "value": "",
-                "index": "1",
+                "index": 1, 
+                "class": 113, 
+                "value": "", 
                 "instance": 1
-            },
+            }, 
+            "type": "info", 
+            "name": "Ouverture", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "OPENING"
-            },
+            }, 
             "template": {
-                "dashboard": "door",
+                "dashboard": "door", 
                 "mobile": "door"
             }
-        },
+        }, 
         {
-            "name": "Sabotage",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 113,
-                "value": "",
-                "index": "10",
+                "index": 10, 
+                "class": 113, 
+                "value": "", 
                 "instance": 1
-            },
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
-            },
+            }, 
             "template": {
-                "dashboard": "alarm",
+                "dashboard": "alarm", 
                 "mobile": "alarm"
             }
-        },
+        }, 
         {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "°C",
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "index": "1",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Luminosité",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 3, 
+                "maxValue": 1000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Luminosité", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BRIGHTNESS"
-            },
-            "unite": "Lux",
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "maxValue": 1000,
-                "minValue": 0,
-                "index": "3",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "Lux"
+        }, 
         {
-            "name": "Humidité",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 5, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Humidité", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "HUMIDITY"
-            },
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "%",
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "index": "5",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "%"
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

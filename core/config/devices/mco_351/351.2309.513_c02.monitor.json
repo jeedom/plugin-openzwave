@@ -1,0 +1,108 @@
+{
+    "name": "CO2 Monitor (MH9-CO2-WD)", 
+    "type": "Multicapteurs", 
+    "comlink": "3734-mcohome-capteur-d-humidite-temperature-et-co2-avec-ecran-z-wave-mh9-co2-4251295700229", 
+    "remark": "", 
+    "imglink": "mcohome.mh9co2", 
+    "commands": [
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 6, 
+                "class": 113, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "CO2", 
+            "isVisible": 1, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "GENERIC"
+            }, 
+            "template": {
+                "dashboard": "alert", 
+                "mobile": "alert"
+            }
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 17, 
+                "maxValue": 2000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Niveau CO2", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "GENERIC"
+            }, 
+            "unite": "ppm"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": 50, 
+                "value": "", 
+                "minValue": -9, 
+                "instance": 1, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 5, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Humidité", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "HUMIDITY"
+            }, 
+            "unite": "%"
+        }, 
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 10, 
+                "class": 113, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 1, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SABOTAGE"
+            }, 
+            "template": {
+                "dashboard": "vibration", 
+                "mobile": "vibration"
+            }
+        }
+    ]
+}

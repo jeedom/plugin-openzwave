@@ -1,26 +1,24 @@
 {
-    "name": "ST812",
-    "doc": "",
-    "type": "Fuite",
-    "comlink": "860-everspring-detecteur-d-eau-z-wave-st-812-3700946500318",
-    "remark": "",
-    "imglink": "everspring.st812",
-    "battery_type": "3x1.5V AAA",
+    "name": "ST812", 
+    "type": "Fuite", 
+    "comlink": "860-everspring-detecteur-d-eau-z-wave-st-812-3700946500318", 
+    "remark": "", 
+    "imglink": "everspring.st812", 
     "commands": [
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
             "configuration": {
-                "class": 156,
-                "value": "",
-                "index": "5",
+                "index": 5, 
+                "class": 156, 
+                "value": "", 
                 "instance": 1
-            },
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "FLOOD"
             }
         }

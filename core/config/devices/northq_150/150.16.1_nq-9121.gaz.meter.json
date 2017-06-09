@@ -1,76 +1,79 @@
 {
-    "name": "NQ-9121 Gaz Meter",
-    "doc": "",
-    "type": "Compteur",
-    "comlink": "1539-northq-compteur-optique-de-consommation-de-gaz-z-wave",
-    "remark": "Activer le rafraichissement manuel à 5 minutes sur la valeur Gaz pour avoir les rapports",
-    "imglink": "northq.nq9121",
-    "battery_type": "2x1.5V AAA",
+    "name": "NQ-9121 Gaz Meter", 
+    "type": "Compteur", 
+    "comlink": "1539-northq-compteur-optique-de-consommation-de-gaz-z-wave", 
+    "remark": "Activer le rafraichissement manuel à 5 minutes sur la valeur Gaz pour avoir les rapports", 
+    "imglink": "northq.nq9121", 
     "commands": [
         {
-            "name": "Consommation",
-            "type": "info",
-            "subType": "numeric",
-            "isHistorized": "0",
-            "unite": "cubic meters",
-            "isVisible": 1,
+            "isHistorized": "0", 
+            "configuration": {
+                "index": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Consommation", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            }
-        },
+            }, 
+            "unite": "cubic meters"
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "%"
+        }, 
         {
-            "name": "Actualiser la date et heure",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "",
+            "isHistorized": 0, 
             "configuration": {
-                "class": 139,
-                "value": "type=buttonaction&action=press",
-                "instance": 1,
-                "index": "3"
-            }
+                "index": 3, 
+                "class": 139, 
+                "value": "button(press)", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Actualiser la date et heure", 
+            "isVisible": 0, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": ""
         }
-    ],
+    ], 
     "recommended": {
         "params": [
             {
-                "index": 10,
+                "index": 10, 
                 "value": 3
             }
-        ],
+        ], 
         "polling": [
             {
-                "instanceId": "0",
-                "index": 0,
+                "instanceId": "0", 
+                "index": 0, 
                 "class": "0x32"
             }
-        ],
-        "wakeup": 900,
+        ], 
+        "wakeup": 900, 
         "needswakeup": true
     }
 }

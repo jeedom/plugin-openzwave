@@ -1,214 +1,254 @@
 {
-    "name": "ZMNHOD1 Flush shutter DC",
-    "doc": "",
-    "type": "Volets",
-    "comlink": "2951-qubino-z-wave-flush-shutter-dc-zmnhod1-3830062070089",
-    "remark": "",
-    "imglink": "qubino.zmnhod1",
+    "name": "ZMNHOD1 Flush shutter DC", 
+    "type": "Volets", 
+    "comlink": "2951-qubino-z-wave-flush-shutter-dc-zmnhod1-3830062070089", 
+    "remark": "", 
+    "imglink": "qubino.zmnhod1", 
     "commands": [
         {
-            "name": "Info Position",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 38, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Info Position", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "FLAP_STATE"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            },
+            }, 
             "template": {
-                "dashboard": "store",
+                "dashboard": "store", 
                 "mobile": "store"
             }
-        },
+        }, 
         {
-            "name": "Position",
-            "type": "action",
-            "subtype": "slider",
-            "isVisible": 1,
-            "value": "Level",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=#slider#", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Position", 
+            "isVisible": 1, 
+            "value": "Level", 
+            "subtype": "slider", 
             "display": {
                 "generic_type": "FLAP_SLIDER"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=#slider#",
-                "minValue": 0,
-                "maxValue": 99,
-                "instance": 1,
-                "index": "0"
-            },
+            }, 
             "template": {
-                "dashboard": "store",
+                "dashboard": "store", 
                 "mobile": "store"
             }
-        },
+        }, 
         {
-            "name": "Puissance",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "W",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 48, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Puissance", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "minValue": 0,
-                "maxValue": 48,
-                "instance": 1,
-                "index": "8"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "Consommation",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "kWh",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Consommation", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            }
-        },
+            }, 
+            "unite": "kWh"
+        }, 
         {
-            "name": "Monter",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 38,
-                "value": "type=buttonaction&action=press",
-                "index": "1",
-                "instance": 1
-            },
+                "index": 1, 
+                "maxValue": 99, 
+                "value": "button(press)", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Monter", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-arrow-up\"><\/i>",
+                "icon": "<i class=\"fa fa-arrow-up\"></i>", 
                 "generic_type": "FLAP_UP"
             }
-        },
+        }, 
         {
-            "name": "Descendre",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 38,
-                "value": "type=buttonaction&action=press",
-                "index": "2",
-                "instance": 1
-            },
+                "index": 2, 
+                "maxValue": 99, 
+                "value": "button(press)", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Descendre", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-arrow-down\"><\/i>",
+                "icon": "<i class=\"fa fa-arrow-down\"></i>", 
                 "generic_type": "FLAP_DOWN"
             }
-        },
+        }, 
         {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 1,
-            "unite": "°C",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "index": "1",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Stop",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 38,
-                "value": "type=buttonaction&action=release",
-                "instance": 1,
-                "index": "2"
-            },
+                "index": 2, 
+                "maxValue": 99, 
+                "value": "button(release)", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Stop", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-stop\"><\/i>",
+                "icon": "<i class=\"fa fa-stop\"></i>", 
                 "generic_type": "FLAP_STOP"
             }
-        },
+        }, 
         {
-            "name": "Stop BSO",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 38,
-                "value": "type=buttonaction&action=release",
-                "instance": 1,
-                "index": "7"
-            },
+                "index": 7, 
+                "maxValue": 99, 
+                "value": "button(release)", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Stop BSO", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-stop\"><\/i>",
+                "icon": "<i class=\"fa fa-stop\"></i>", 
                 "generic_type": "FLAP_BSO_STOP"
             }
-        },
+        }, 
         {
-            "name": "Incliner",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 38,
-                "value": "type=buttonaction&action=press",
-                "instance": 1,
-                "index": "7"
-            },
+                "index": 7, 
+                "maxValue": 99, 
+                "value": "button(press)", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Incliner", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-plus\"><\/i>",
+                "icon": "<i class=\"fa fa-plus\"></i>", 
                 "generic_type": "FLAP_BSO_UP"
             }
-        },
+        }, 
         {
-            "name": "Décliner",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 38,
-                "value": "type=buttonaction&action=press",
-                "instance": 1,
-                "index": "8"
-            },
+                "index": 8, 
+                "maxValue": 99, 
+                "value": "button(press)", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Décliner", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-minus\"><\/i>",
+                "icon": "<i class=\"fa fa-minus\"></i>", 
                 "generic_type": "FLAP_BSO_DOWN"
             }
-        },
+        }, 
         {
-            "name": "Pas",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 6, 
+                "class": 38, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Pas", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "GENERIC"
-            },
-            "isVisible": 0,
+            }
+        }, 
+        {
+            "isHistorized": 0, 
             "configuration": {
-                "class": 38,
-                "value": "",
-                "instance": 1,
-                "index": "6"
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "Get()", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Rafraichir", 
+            "isVisible": 0, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-refresh\"></i>", 
+                "generic_type": "DONT"
             }
         }
     ]

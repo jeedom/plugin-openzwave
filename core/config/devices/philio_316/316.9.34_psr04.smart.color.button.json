@@ -1,72 +1,69 @@
 {
-    "name": "PSR04 Smart Color Button",
-    "doc": "philio.psr04_-_Smart_Color_Button",
-    "type": "Interrupteur",
-    "comlink": "3207-philio-interrupteurtelecommande-mural-z-wave-4713698571542",
-    "remark": "",
-    "imglink": "philio.psr04",
-    "battery_type": "Batterie",
+    "name": "PSR04 Smart Color Button", 
+    "type": "Interrupteur", 
+    "comlink": "3207-philio-interrupteurtelecommande-mural-z-wave-4713698571542", 
+    "remark": "", 
+    "imglink": "philio.psr04", 
     "configuration": {
         "1": {
-            "name": "Niveau Off Minimum",
+            "name": "Niveau Off Minimum", 
             "help": "Permet de définir la borne minimum (côté gauche)"
-        },
+        }, 
         "2": {
-            "name": "Niveau On Maximum",
+            "name": "Niveau On Maximum", 
             "help": "Permet de définir la borne maximum (côté droit)"
-        },
+        }, 
         "10": {
-            "name": "Rapport de niveau de batterie",
+            "name": "Rapport de niveau de batterie", 
             "help": "L'intervalle de temps d'un rapport de niveau de batterie (0 désactivé, valeur max 127)"
-        },
+        }, 
         "25": {
-            "name": "Fonction custom",
+            "name": "Fonction custom", 
             "help": "Bit 0 : Fonctionnement du dimmer. (0 envoie la valeur après fin de rotation, 1 envoie la valeur après avoir appuyé sur le bouton après la rotation). Bit 1 : Buzzer en mode timer (0 : activé, 1: désactivé)"
-        },
+        }, 
         "26": {
-            "name": "Envoie de scène sur appui bouton central",
-            "help": "Envoie de scène sur appui bouton central",
+            "name": "Envoie de scène sur appui bouton central", 
+            "help": "Envoie de scène sur appui bouton central", 
             "list": {
-                "Enabled": "Activé",
+                "Enabled": "Activé", 
                 "Disabled": "Désactivé"
             }
         }
-    },
+    }, 
     "commands": [
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "numeric",
-            "unite": "%",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 32
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 32,
-                "value": "",
-                "calculValueOffset": "(#value#==255) ? 99 :  ((#value#==1) ? 0 : #value#)",
-                "minValue": 0,
-                "maxValue": 99,
-                "index": "0",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "%"
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 128, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "unite": "%",
-                "instance": 1,
-                "index": "0"
             }
         }
     ]

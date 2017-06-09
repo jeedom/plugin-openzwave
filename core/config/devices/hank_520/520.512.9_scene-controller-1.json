@@ -1,83 +1,82 @@
 {
-    "name": "Scene Controller 1",
-    "doc": "",
-    "type": "Contrôleur portable",
-    "comlink": "",
-    "remark": "",
-    "imglink": "520.512.9_scene-controller-1",
-    "battery_type": "2x1.5V AAA",
-    "ignore": 0,
+    "name": "Scene Controller 1", 
+    "type": "Contrôleur portable", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "520.512.9_scene-controller-1", 
     "commands": [
         {
-            "name": "SceneNumber",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 128, 
+                "repeatEventManagement": "always", 
+                "class": 91, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Scene", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 91,
-                "value": "",
-                "repeatEventManagement" : "always",
-                "index": "128",
-                "instance": 1
-            }
-        },
-         {
-            "name": "SceneID",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "",
-            "display": {
-                "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 91,
-                "value": "",
-                "repeatEventManagement" : "always",
-                "index": "2",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": ""
+        }, 
         {
-            "name": "SceneAttribute",
-            "type": "info",
-            "subtype": "string",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 2, 
+                "repeatEventManagement": "always", 
+                "class": 91, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "SceneID", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 91,
-                "value": "",
-                "repeatEventManagement" : "always",
-                "index": "1",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": ""
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "repeatEventManagement": "always", 
+                "class": 91, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "SceneAttribute", 
+            "isVisible": 0, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

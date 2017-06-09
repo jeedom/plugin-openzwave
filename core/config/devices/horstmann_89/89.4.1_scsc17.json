@@ -1,165 +1,165 @@
 {
-    "name": "SCS317, 7 Day Programmable Room Thermostat",
-    "doc": "",
-    "type": "Thermostat",
-    "comlink": "2419-secure-thermostat-electronique-programmable-z-wave-scs317-5015914370083",
-    "remark": "Module vendu sous la marque Secure",
-    "imglink": "horstmann.scs317",
-    "battery_type": "2x1.5V AAA",
+    "name": "SCS317, 7 Day Programmable Room Thermostat", 
+    "type": "Thermostat", 
+    "comlink": "2419-secure-thermostat-electronique-programmable-z-wave-scs317-5015914370083", 
+    "remark": "Module vendu sous la marque Secure", 
+    "imglink": "horstmann.scs317", 
     "commands": [
         {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "°C",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "THERMOSTAT_TEMPERATURE"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "index": "1",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Mode",
-            "type": "info",
-            "subtype": "string",
-            "isVisible": 1,
-            "isHistorized": 0,
-            "unite": "",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 66, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Mode", 
+            "isVisible": 1, 
+            "subtype": "string", 
             "display": {
                 "generic_type": "THERMOSTAT_MODE"
-            },
+            }, 
+            "unite": ""
+        }, 
+        {
+            "isHistorized": 0, 
             "configuration": {
-                "class": 66,
-                "value": "",
-                "index": "0",
+                "index": 0, 
+                "class": 64, 
+                "value": "type=setvalue&value=Off", 
                 "instance": 1
-            }
-        },
-        {
-            "name": "Off",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "isHistorized": 0,
-            "unite": "°C",
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 64,
-                "value": "type=setvalue&value=Off",
-                "instance": 1,
-                "index": "0"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Heat",
-            "type": "action",
-            "subType": "other",
-            "isVisible": 1,
-            "isHistorized": 0,
-            "unite": "°C",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 64, 
+                "value": "type=setvalue&value=Heat", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Heat", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 64,
-                "value": "type=setvalue&value=Heat",
-                "instance": 1,
-                "index": "0"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "ConsigneEtat",
-            "type": "info",
-            "subType": "numeric",
-            "isVisible": 0,
-            "unite": "°C",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": "30", 
+                "value": "", 
+                "minValue": "5", 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "info", 
+            "name": "ConsigneEtat", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "THERMOSTAT_SETPOINT"
-            },
-            "configuration": {
-                "class": 67,
-                "value": "",
-                "minValue": "5",
-                "maxValue": "30",
-                "instance": 1,
-                "index": "1"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Consigne",
-            "type": "action",
-            "subType": "slider",
-            "isVisible": 1,
-            "unite": "°C",
-            "value": "ConsigneEtat",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": "30", 
+                "value": "type=setvalue&value=#slider#", 
+                "minValue": "5", 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "action", 
+            "name": "Consigne", 
+            "isVisible": 1, 
+            "value": "ConsigneEtat", 
+            "subtype": "slider", 
             "display": {
                 "generic_type": "THERMOSTAT_SET_SETPOINT"
-            },
-            "configuration": {
-                "class": 67,
-                "value": "type=setvalue&value=#slider#",
-                "minValue": "5",
-                "maxValue": "30",
-                "instance": 1,
-                "index": "1"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Set holiday mode",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Set holiday mode", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Cancel holiday mode",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Cancel holiday mode", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
-                "index": "0"
             }
-        },
+        }, 
         {
-            "name": "Holiday mode",
-            "type": "info",
-            "subtype": "binary",
-            "unite": "",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Holiday mode", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "THERMOSTAT_STATE"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            }
+            }, 
+            "unite": ""
         }
     ]
 }

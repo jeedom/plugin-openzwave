@@ -1,72 +1,70 @@
 {
-    "name": "Panic Button",
-    "doc": "",
-    "type": "Télécommande",
-    "comlink": "2349-benext-telecommande-bouton-d-urgence-z-wave-0632181493731",
-    "remark": "",
-    "imglink": "benext.panicbutton",
-    "battery_type": "1x3V CR2032",
+    "name": "Panic Button", 
+    "type": "Télécommande", 
+    "comlink": "2349-benext-telecommande-bouton-d-urgence-z-wave-0632181493731", 
+    "remark": "", 
+    "imglink": "benext.panicbutton", 
     "commands": [
         {
-            "name": "Panic Button",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
             "configuration": {
-                "class": 37,
-                "value": "",
-                "index": "0",
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
                 "instance": 1
-            },
-            "template": {
-                "dashboard": "alert",
-                "mobile": "alert"
-            },
+            }, 
+            "type": "info", 
+            "name": "Panic Button", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "alert", 
+                "mobile": "alert"
             }
-        },
+        }, 
         {
-            "name": "Panic Button basic",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
             "configuration": {
-                "class": 32,
-                "value": "",
-                "index": "0",
+                "index": 0, 
+                "class": 32, 
+                "value": "", 
                 "instance": 1
-            },
-            "template": {
-                "dashboard": "alert",
-                "mobile": "alert"
-            },
+            }, 
+            "type": "info", 
+            "name": "Panic Button basic", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "alert", 
+                "mobile": "alert"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 1,
-            "unite": "%",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "maxValue": 100,
-                "minValue": 0,
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

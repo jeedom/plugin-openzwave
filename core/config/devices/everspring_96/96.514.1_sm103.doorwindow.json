@@ -1,67 +1,68 @@
 {
-    "name": "SM103",
-    "doc": "",
-    "type": "Ouverture",
-    "comlink": "851-everspring-capteur-d-ouverture-z-wave-sm103-3700946500233",
-    "remark": "",
-    "imglink": "everspring.sm103",
-    "battery_type": "3x1.5V AAA",
+    "name": "SM103", 
+    "type": "Ouverture", 
+    "comlink": "851-everspring-capteur-d-ouverture-z-wave-sm103-3700946500233", 
+    "remark": "", 
+    "imglink": "everspring.sm103", 
     "commands": [
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
             "configuration": {
-                "class": 48,
-                "value": "",
-                "index": "0",
+                "index": 0, 
+                "class": 48, 
+                "value": "", 
                 "instance": 1
-            },
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "OPENING"
-            },
+            }, 
             "template": {
-                "dashboard": "door",
+                "dashboard": "door", 
                 "mobile": "door"
             }
-        },
+        }, 
         {
-            "name": "Sabotage",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 113,
-                "value": "",
-                "returnStateTime": 1,
-                "returnStateValue": 0,
-                "instance": 1,
-                "index": "0"
-            },
+                "index": 0, 
+                "returnStateValue": 0, 
+                "value": "", 
+                "instance": 1, 
+                "returnStateTime": 1, 
+                "class": 113
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "unite": "%",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "instance": 1,
-                "index": "0"
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

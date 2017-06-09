@@ -1,254 +1,252 @@
 {
-    "name": "Home Energy Meter (DSB09104)",
-    "doc": "",
-    "type": "Consommation",
-    "comlink": "",
-    "remark": "Remplacé par le Home Energy Meter 2G (DSB28)",
-    "imglink": "aeotec.hem",
-    "battery_type": "4x1.5V AAA",
+    "name": "Home Energy Meter (DSB09104)", 
+    "type": "Consommation", 
+    "comlink": "", 
+    "remark": "Remplacé par le Home Energy Meter 2G (DSB28)", 
+    "imglink": "aeotec.hem", 
     "commands": [
         {
-            "name": "P1_Power_Consum",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "W",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 6000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 2, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "P1_Power_Consum", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 6000,
-                "minValue": 0,
-                "instance": 2,
-                "index": "8"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "P2_Power_Consum",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "W",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 6000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 3, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "P2_Power_Consum", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 6000,
-                "minValue": 0,
-                "instance": 3,
-                "index": "8"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "P3_Power_Consum",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "W",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 8, 
+                "maxValue": 6000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 4, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "P3_Power_Consum", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 6000,
-                "minValue": 0,
-                "instance": 4,
-                "index": "8"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "P1_Electric_Consum",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "W",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 2, 
+                "maxValue": 6000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 2, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "P1_Electric_Consum", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 6000,
-                "minValue": 0,
-                "instance": 2,
-                "index": "2"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "P2_Electric_Consum",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "W",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 2, 
+                "maxValue": 6000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 3, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "P2_Electric_Consum", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 6000,
-                "minValue": 0,
-                "instance": 3,
-                "index": "2"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "P3_Electric_Consum",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "W",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 2, 
+                "maxValue": 6000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 4, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "P3_Electric_Consum", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 6000,
-                "minValue": 0,
-                "instance": 4,
-                "index": "2"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "Tri_Power_Consum",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "W",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 4, 
+                "maxValue": 6000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Tri_Power_Consum", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "maxValue": 6000,
-                "minValue": 0,
-                "instance": 1,
-                "index": "4"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "Tri_Electric_Consum",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "W",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 2, 
+                "maxValue": 6000, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 50
+            }, 
+            "type": "info", 
+            "name": "Tri_Electric_Consum", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 6000,
-                "minValue": 0,
-                "instance": 1,
-                "index": "2"
-            }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "maxValue": 100,
-                "minValue": 0,
-                "instance": 1,
-                "index": "0"
-            }
-        },
+            }, 
+            "unite": "%"
+        }, 
         {
-            "name": "P1_Electric_Consum_kWh",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "kWh",
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 2
+            }, 
+            "type": "info", 
+            "name": "P1_Electric_Consum_kWh", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "minValue": 0,
-                "instance": 2,
-                "index": "0"
-            }
-        },
+            }, 
+            "unite": "kWh"
+        }, 
         {
-            "name": "P2_Electric_Consum_kWh",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "kWh",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 3
+            }, 
+            "type": "info", 
+            "name": "P2_Electric_Consum_kWh", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "minValue": 0,
-                "instance": 3,
-                "index": "0"
-            }
-        },
+            }, 
+            "unite": "kWh"
+        }, 
         {
-            "name": "P3_Electric_Consum_kWh",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "kWh",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 4
+            }, 
+            "type": "info", 
+            "name": "P3_Electric_Consum_kWh", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "minValue": 0,
-                "instance": 4,
-                "index": "0"
-            }
-        },
+            }, 
+            "unite": "kWh"
+        }, 
         {
-            "name": "Tri_Electric_Consum_kWh",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "kWh",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "minValue": 0, 
+                "class": 50, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Tri_Electric_Consum_kWh", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "configuration": {
-                "class": 50,
-                "value": "",
-                "minValue": 0,
-                "instance": 1,
-                "index": "0"
-            }
+            }, 
+            "unite": "kWh"
         }
     ]
 }

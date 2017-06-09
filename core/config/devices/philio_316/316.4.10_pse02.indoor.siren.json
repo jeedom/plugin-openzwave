@@ -1,166 +1,188 @@
 {
-    "name": "PH-PSE02 Sirène Z-Wave+",
-    "doc": "",
-    "type": "Sirène",
-    "comlink": "2960-zipato-sirene-d-interieur-z-wave-3858890733310",
-    "remark": "Sélection du son présentement non supporté",
-    "imglink": "philio.pse02",
+    "name": "PH-PSE02 Sirène Z-Wave+", 
+    "type": "Sirène", 
+    "comlink": "2960-zipato-sirene-d-interieur-z-wave-3858890733310", 
+    "remark": "Sélection du son présentement non supporté", 
+    "imglink": "philio.pse02", 
     "commands": [
         {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 0,
-            "unite": "",
+            "isHistorized": 0, 
             "configuration": {
-                "class": 37,
-                "value": "",
-                "index": "0",
+                "index": 0, 
+                "class": 37, 
+                "value": "", 
                 "instance": 1
-            },
+            }, 
+            "type": "info", 
+            "name": "Etat", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": 1,
+                "invertBinary": 1, 
                 "generic_type": "DONT"
-            },
+            }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
-            }
-        },
+            }, 
+            "unite": ""
+        }, 
         {
-            "name": "On",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "On", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "index": "0",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Off",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Off", 
+            "isVisible": 1, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "index": "0",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Emergency",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=Emergency", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Emergency", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=Emergency",
-                "index": "0",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Fire",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=Fire", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Fire", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=Fire",
-                "index": "0",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Ambulance",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=Ambulance", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Ambulance", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=Ambulance",
-                "index": "0",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Police",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=Police", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Police", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=Police",
-                "index": "0",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Door chime",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=Door chime", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Door chime", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=Door+chime",
-                "index": "0",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Beep Beep",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=Beep Beep", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Beep Beep", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=Beep+Beep",
-                "index": "0",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Stop",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 99, 
+                "value": "type=setvalue&value=Stop", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 38
+            }, 
+            "type": "action", 
+            "name": "Stop", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
-            "configuration": {
-                "class": 38,
-                "value": "type=setvalue&value=Stop",
-                "index": "0",
-                "instance": 1
             }
         }
     ]

@@ -1,48 +1,49 @@
 {
-    "name": "Secure Wall Controller",
-    "doc": "",
-    "type": "Télécommande",
-    "comlink": "",
-    "remark": "",
-    "imglink": "zwaveme.wallcs",
-    "battery_type": "1x3V CR2032",
+    "name": "Secure Wall Controller", 
+    "type": "Télécommande", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "zwaveme.wallcs", 
     "commands": [
         {
-            "name": "Boutons",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "repeatEventManagement": "always", 
+                "class": 43, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Scene", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "GENERIC"
-            },
-            "isHistorized": 0,
-            "configuration": {
-                "class": 43,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            },
+            }, 
             "template": {
-                "dashboard": "tile",
+                "dashboard": "tile", 
                 "mobile": "tile"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERIE"
-            },
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

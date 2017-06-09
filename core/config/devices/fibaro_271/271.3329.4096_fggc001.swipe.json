@@ -1,83 +1,28 @@
 {
-    "name": "FGGC-001 Swipe",
-    "doc": "",
-    "type": "Contrôleur gestuel",
-    "comlink": "3423-fibaro-controleur-gestuel-z-wave-swipe-blanc-fggc-001-5902020528821",
-    "remark": "",
-    "imglink": "fibaro.fggc001",
-    "battery_type": "4x1.5V AA",
-    "ignore": 0,
+    "name": "FGGC-001 Swipe", 
+    "type": "Contrôleur gestuel", 
+    "comlink": "3423-fibaro-controleur-gestuel-z-wave-swipe-blanc-fggc-001-5902020528821", 
+    "remark": "Partiellement compatible: Fonctionne en association directe seulement", 
+    "imglink": "fibaro.fggc001", 
     "commands": [
         {
-            "name": "SceneNumber",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "",
-            "display": {
-                "generic_type": "DONT"
-            },
+            "isHistorized": 0, 
             "configuration": {
-                "class": 91,
-                "value": "",
-                "repeatEventManagement" : "always",
-                "index": "128",
-                "instance": 1
-            }
-        },
-         {
-            "name": "SceneID",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "",
-            "display": {
-                "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 91,
-                "value": "",
-                "repeatEventManagement" : "always",
-                "index": "2",
-                "instance": 1
-            }
-        },
-        {
-            "name": "SceneAttribute",
-            "type": "info",
-            "subtype": "string",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "",
-            "display": {
-                "generic_type": "DONT"
-            },
-            "configuration": {
-                "class": 91,
-                "value": "",
-                "repeatEventManagement" : "always",
-                "index": "1",
-                "instance": 1
-            }
-        },
-        {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "unite": "%",
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "index": "0",
-                "instance": 1
-            }
+            }, 
+            "unite": "%"
         }
     ]
 }

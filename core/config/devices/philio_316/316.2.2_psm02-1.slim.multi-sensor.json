@@ -1,126 +1,121 @@
 {
-    "name": "PSP01\/PSM02",
-    "doc": "philio.psp01_-_Multicapteurs",
-    "type": "Multicapteurs",
-    "comlink": "2608-zipato-detecteur-z-wave-4-en-1-mouvement-ouverture-luminosite-tem-3858890730425",
-    "remark": "Vendu aussi sous la marque Zipato",
-    "imglink": "philio.psp01",
-    "battery_type": "1x3V CR123A",
+    "name": "PSP01/PSM02", 
+    "type": "Multicapteurs", 
+    "comlink": "2608-zipato-detecteur-z-wave-4-en-1-mouvement-ouverture-luminosite-tem-3858890730425", 
+    "remark": "Vendu aussi sous la marque Zipato", 
+    "imglink": "philio.psp01", 
     "commands": [
         {
-            "name": "Présence",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 48,
-                "value": "",
-                "returnStateTime": 1,
-                "returnStateValue": 0,
-                "instance": 1,
-                "index": "0"
-            },
+                "index": 0, 
+                "returnStateValue": 0, 
+                "value": "", 
+                "instance": 1, 
+                "returnStateTime": 1, 
+                "class": 48
+            }, 
+            "type": "info", 
+            "name": "Présence", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "PRESENCE"
-            },
+            }, 
             "template": {
-                "dashboard": "presence",
+                "dashboard": "presence", 
                 "mobile": "presence"
             }
-        },
+        }, 
         {
-            "name": "Ouverture",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 48,
-                "value": "",
-                "instance": 1,
-                "index": "1"
-            },
+                "index": 1, 
+                "class": 48, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Ouverture", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "OPENING"
-            },
+            }, 
             "template": {
-                "dashboard": "door",
+                "dashboard": "door", 
                 "mobile": "door"
             }
-        },
+        }, 
         {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "unite": "°C",
-                "instance": 1,
-                "index": "1"
             }
-        },
+        }, 
         {
-            "name": "Luminosité",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 3, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Luminosité", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BRIGHTNESS"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "unite": "%",
-                "maxValue": 100,
-                "minValue": 0,
-                "instance": 1,
-                "index": "3"
             }
-        },
+        }, 
         {
-            "name": "Sabotage",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 1,
-            "isHistorized": 0,
+            "isHistorized": 0, 
             "configuration": {
-                "class": 48,
-                "value": "",
-                "returnStateTime": 1,
-                "returnStateValue": 0,
-                "instance": 1,
-                "index": "2"
-            },
+                "index": 2, 
+                "returnStateValue": 0, 
+                "value": "", 
+                "instance": 1, 
+                "returnStateTime": 1, 
+                "class": 48
+            }, 
+            "type": "info", 
+            "name": "Sabotage", 
+            "isVisible": 1, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 0,
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 128, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
-            "configuration": {
-                "class": 128,
-                "value": "",
-                "unite": "%",
-                "instance": 1,
-                "index": "0"
             }
         }
     ]

@@ -1,41 +1,40 @@
 {
-    "name": "RaZberry Controller ZWave+",
-    "doc": "",
-    "type": "Contrôleur",
-    "comlink": "2312-z-waveme-carte-d-extension-razberry-z-wave-pour-raspberry-pi-696859123290",
-    "remark": "",
-    "imglink": "zwaveme.razberry",
-    "battery_type": "",
-    "isVisible": 0,
+    "name": "RaZberry Controller ZWave+", 
+    "type": "Contrôleur", 
+    "comlink": "2312-z-waveme-carte-d-extension-razberry-z-wave-pour-raspberry-pi-696859123290", 
+    "remark": "", 
+    "imglink": "zwaveme.razberry", 
     "commands": [
         {
-            "name": "Switch All On",
-            "type": "action",
-            "subtype": "other",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 240, 
+                "value": "type=switchall&value=255", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Switch All On", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "isVisible": 0,
-            "value": "",
-            "configuration": {
-                "class": 240,
-                "value": "type=switchall&value=255",
-                "instance": 1
             }
-        },
+        }, 
         {
-            "name": "Switch All Off",
-            "type": "action",
-            "subtype": "other",
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "class": 240, 
+                "value": "type=switchall&value=0", 
+                "instance": 1
+            }, 
+            "type": "action", 
+            "name": "Switch All Off", 
+            "isVisible": 0, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "isVisible": 0,
-            "value": "",
-            "configuration": {
-                "class": 240,
-                "value": "type=switchall&value=0",
-                "instance": 1
             }
         }
     ]

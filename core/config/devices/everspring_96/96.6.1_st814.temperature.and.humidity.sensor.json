@@ -1,79 +1,79 @@
 {
-    "name": "ST814",
-    "doc": "",
-    "type": "Multicapteurs",
-    "comlink": "861-everspring-capteur-de-temperature-et-d-humidite-z-wave-st814-3700946500325",
-    "remark": "",
-    "imglink": "everspring.st814",
-    "battery_type": "3x1.5V AAA",
+    "name": "ST814", 
+    "type": "Multicapteurs", 
+    "comlink": "861-everspring-capteur-de-temperature-et-d-humidite-z-wave-st814-3700946500325", 
+    "remark": "", 
+    "imglink": "everspring.st814", 
     "configuration": {
         "1": {
-            "name": "Niveau basic",
+            "name": "Niveau basic", 
             "help": "Définit le niveau à partir duquel un évènement est envoyé au groupe 2. 0 pour le désactiver"
-        },
+        }, 
         "2": {
-            "name": "Seuil alarme température haute",
+            "name": "Seuil alarme température haute", 
             "help": "Définit la température à partir de laquel un évènement ON est envoyé au groupe 2. 99 pour le désactiver"
-        },
+        }, 
         "3": {
-            "name": "Seuil alarme température basse",
+            "name": "Seuil alarme température basse", 
             "help": "Définit la température en dessous de laquel un évènement OFF est envoyé au groupe 2. 99 pour le désactiver"
-        },
+        }, 
         "4": {
-            "name": "Seuil alarme humidité haute",
+            "name": "Seuil alarme humidité haute", 
             "help": "Définit le niveau d'humidité à partir duquel un évènement ON est envoyé au groupe 2. 99 pour le désactiver"
-        },
+        }, 
         "5": {
-            "name": "Seuil alarme humidité basse",
+            "name": "Seuil alarme humidité basse", 
             "help": "Définit le niveau d'humidité en dessous duquel un évènement OFF est envoyé au groupe 2. 99 pour le désactiver"
-        },
+        }, 
         "6": {
-            "name": "Délai entre 2 rapports",
+            "name": "Délai entre 2 rapports", 
             "help": "Définit le délai entre 2 rapports en minute. 0 pour le désactiver"
-        },
+        }, 
         "7": {
-            "name": "Rapport automatique de température",
+            "name": "Rapport automatique de température", 
             "help": "Définit l'écart en degré, pour l'envoie automatique de rapports de température. 0 pour le désactiver"
-        },
+        }, 
         "8": {
-            "name": "Rapports automatique d'humidité",
+            "name": "Rapports automatique d'humidité", 
             "help": "Définit l'écart en pourcent, pour l'envoie automatique de rapports d'humidité. 0 pour le désactiver"
         }
-    },
+    }, 
     "commands": [
         {
-            "name": "Humidité",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "unite": "%",
-            "isHistorized": 1,
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 5, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 49
+            }, 
+            "type": "info", 
+            "name": "Humidité", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "HUMIDITY"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "index": "5",
-                "instance": 1
-            }
-        },
+            }, 
+            "unite": "%"
+        }, 
         {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "unite": "°C",
-            "isHistorized": 1,
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
-            },
-            "configuration": {
-                "class": 49,
-                "value": "",
-                "index": "1",
-                "instance": 1
-            }
+            }, 
+            "unite": "°C"
         }
     ]
 }

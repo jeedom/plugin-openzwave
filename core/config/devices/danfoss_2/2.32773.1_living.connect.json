@@ -1,0 +1,103 @@
+{
+    "name": "Living Connect Radiator Thermostat", 
+    "type": "Thermostat", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "danfoss.living-connect", 
+    "commands": [
+        {
+            "isHistorized": 1, 
+            "configuration": {
+                "index": 1, 
+                "class": 49, 
+                "value": "", 
+                "instance": 1
+            }, 
+            "type": "info", 
+            "name": "Température", 
+            "isVisible": 1, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": 28, 
+                "value": "type=setvalue&value=#slider#", 
+                "minValue": 4, 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "action", 
+            "name": "Commande", 
+            "isVisible": 1, 
+            "value": "Consigne", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": 28, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 67
+            }, 
+            "type": "info", 
+            "name": "Consigne", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 1, 
+                "maxValue": 28, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 11, 
+                "class": 67
+            }, 
+            "type": "info", 
+            "name": "Consigne pending", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "isHistorized": 0, 
+            "configuration": {
+                "index": 0, 
+                "maxValue": 100, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
+                "class": 128
+            }, 
+            "type": "info", 
+            "name": "Batterie", 
+            "isVisible": 0, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}
