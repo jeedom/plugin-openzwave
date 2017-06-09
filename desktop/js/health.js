@@ -73,10 +73,12 @@
             tbody += (nodes[node_id].data.isEnable.value) ? node_id : '<div style="opacity:0.5"><i>' + node_id + '</i></div>';
             tbody += '</td>';
             tbody += '<td>';
-            if (nodes[node_id].data.isSecured.value) {
-                tbody += '  <span title="{{Sécurisé}}"><i class="fa fa-lock text-success" aria-hidden="true"></i></span> ';
-            }else {
-                tbody += '  <span title="{{Non sécurisé}}"><i class="fa fa-unlock  text-success" aria-hidden="true"></i></span> ';
+            if (nodes[node_id].data.isSecured.enabled) {
+                if (nodes[node_id].data.isSecured.value) {
+                    tbody += '  <span title="{{Sécurisé}}"><i class="fa fa-lock text-success" aria-hidden="true"></i></span> ';
+                } else {
+                    tbody += '  <span title="{{Non sécurisé}}"><i class="fa fa-unlock  text-success" aria-hidden="true"></i></span> ';
+                }
             }
             if (nodes[node_id].data.isZwavePlus.value) {
                 tbody += ' <span title="{{ZWAVE PLUS}}"><i class="fa fa-plus-circle text-info" aria-hidden="true"></i></span> ';
