@@ -1,69 +1,74 @@
 {
-	"name": "ZM1601",
-	"doc": "",
-	"type": "Sirène",
-	"comlink": "",
-	"remark": "Remplacé par la ZM1601EU5",
-	"imglink": "vision.zm1601",
-	"battery_type": "4x1.5V AAA",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat",
-		"type": "info",
-		"display": {
-			"generic_type": "SIREN_STATE"
-		},
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "",
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "On",
-		"type": "action",
-		"display": {
-			"generic_type": "SIREN_ON"
-		},
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(255)"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"display": {
-			"generic_type": "SIREN_OFF"
-		},
-		"isVisible": 1,
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(0)"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"configuration": {
-			"class": "0x80",
-			"instanceId": 0,
-			"value": "data[0].val",
-			"unite": "%"
-		}
-	}]
+    "name": "ZM1601", 
+    "type": "Sirène", 
+    "comlink": "", 
+    "remark": "Remplacé par la ZM1601EU5", 
+    "imglink": "vision.zm1601", 
+    "commands": [
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "SIREN_STATE"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "SIREN_ON"
+            }
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "SIREN_OFF"
+            }
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }
+        }
+    ]
 }

@@ -1,73 +1,87 @@
 {
-	"name": "TZ55",
-	"doc": "",
-	"type": "Interrupteur",
-	"comlink": "",
-	"remark": "Le deuxième Bouton sert uniquement en association direct",
-	"imglink": "tkb.tz55",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Intensité",
-		"type": "action",
-		"subtype": "slider",
-		"display": {
-			"generic_type": "LIGHT_SLIDER"
-		},
-		"isVisible": 1,
-		"value": "Etat",
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].Set(#slider#)",
-			"minValue": 0,
-			"maxValue": 99
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"display": {
-			"generic_type": "LIGHT_ON"
-		},
-		"isVisible": 0,
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].Set(99)"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"display": {
-			"generic_type": "LIGHT_OFF"
-		},
-		"isVisible": 0,
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].Set(0)"
-		}
-	},
-	{
-		"name": "Etat",
-		"type": "info",
-		"display": {
-			"generic_type": "LIGHT_STATE"
-		},
-		"subtype": "numeric",
-		"unite": "%",
-		"isVisible": 0,
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].val",
-			"minValue": 0,
-			"maxValue": 99
-		}
-	}]
+    "name": "TZ55", 
+    "type": "Interrupteur", 
+    "comlink": "", 
+    "remark": "Le deuxième Bouton sert uniquement en association direct", 
+    "imglink": "tkb.tz55", 
+    "commands": [
+        {
+            "name": "Intensité", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "value": "Etat", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "LIGHT_SLIDER"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=99", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }
+        }, 
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }, 
+            "unite": "%"
+        }
+    ]
 }

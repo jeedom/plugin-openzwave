@@ -1,44 +1,50 @@
 {
-	"name": "Flood Sensor",
-	"doc": "",
-	"type": "Fuite",
-	"comlink": "",
-	"remark": "",
-	"imglink": "",
-	"ignore": 1,
-	"commands": [{
-		"name": "Fuite",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"configuration": {
-			"class": "0x30",
-			"instanceId": 0,
-			"value": "data[0].val"
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "FLOOD"
-		},
-		"template": {
-			"dashboard": "inondation",
-			"mobile": "inondation"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"unite": "%",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"class": "0x80",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	}]
+    "name": "Flood Sensor", 
+    "type": "Fuite", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "", 
+    "ignore": true, 
+    "commands": [
+        {
+            "name": "Fuite", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 48, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "FLOOD"
+            }, 
+            "template": {
+                "dashboard": "inondation", 
+                "mobile": "inondation"
+            }
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
 }

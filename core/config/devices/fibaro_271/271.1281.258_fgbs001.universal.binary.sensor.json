@@ -1,215 +1,221 @@
 {
-	"name": "FGBS-001 Universal Relay",
-	"doc": "",
-	"type": "Micromodule",
-	"comlink": "916-fibaro-detecteur-universel-z-wave-fgbs-001-5902020528074",
-	"remark": "",
-	"imglink": "fibaro.fgbs001",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat 1",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "OPENING"
-		},
-		"template": {
-			"dashboard": "door",
-			"mobile": "door"
-		},
-		"configuration": {
-			"class": "0x30",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Etat 2",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "OPENING"
-		},
-		"template": {
-			"dashboard": "door",
-			"mobile": "door"
-		},
-		"configuration": {
-			"class": "0x30",
-			"instanceId": 1,
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Température 1",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "°C",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"configuration": {
-			"class": "0x31",
-			"instanceId": 0,
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Température 2",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "°C",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"configuration": {
-			"class": "0x31",
-			"instanceId": 1,
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Température 3",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "°C",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"configuration": {
-			"class": "0x31",
-			"instanceId": 2,
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Température 4",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "°C",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"configuration": {
-			"class": "0x31",
-			"instanceId": 3,
-			"value": "data[1].val"
-		}
-	}],
-	"configuration": {
-		"1": {
-			"name": "Délai d’annulation d’alarme de l’entrée 1",
-			"help": "Nombre de secondes avant l’annulation de l’alarme après que le capteur de l’entrée 1 soit repassé à son état normal. Valeurs pour ce paramètre [0- 65535] Valeur par défaut 0"
-		},
-		"2": {
-			"name": "Délai d’annulation d’alarme de l’entrée 2",
-			"help": "Nombre de secondes avant l’annulation de l’alarme après que le capteur de l’entrée 2 soit repassé à son état normal. Valeurs pour ce paramètre [0- 65535] Valeur par défaut 0"
-		},
-		"3": {
-			"name": "Type d’entrée (entrée 1)",
-			"help": "Type d’entrée (entrée 1) Ce que reportera l'entrée s'il n'y a aucun contact",
-			"list": {
-				"Input NO (Normal Open)": "Entrée normalement ouverte",
-				"Input NC (Normal Close)": "Entrée normalement fermée",
-				"Input MONOSTABLE": "Entrée monostable (bouton poussoir)",
-				"Input BISTABLE": "Entrée bistable (interrupteur)"
-			}
-		},
-		"4": {
-			"name": "Type d’entrée (entrée 2)",
-			"help": "Type d’entrée (entrée 2) Ce que reportera l'entrée s'il n'y a aucun contact",
-			"list": {
-				"Input NO (Normal Open)": "Entrée normalement ouverte",
-				"Input NC (Normal Close)": "Entrée normalement fermée",
-				"Input MONOSTABLE": "Entrée monostable (bouton poussoir)",
-				"Input BISTABLE": "Entrée bistable (interrupteur)"
-			}
-		},
-		"5": {
-			"name": "Type d’information transmise (entrée 1)",
-			"help": "Type de trame transmise au groupe 1, activer via l'entrée 1. Ce paramètre permet de spécifier le type de trame Alarme ou de forcer la trasmission de trame de controle.",
-			"list": {
-				"ALARM GENERIC": "Trame ALARM GENERIC",
-				"ALARM SMOKE": "Trame ALARM SMOKE",
-				"ALARM CO": "Trame ALARM CO",
-				"ALARM CO2": "Trame ALARM CO2",
-				"ALARM HEAT": "Trame ALARM HEAT",
-				"ALARM WATER": "Trame ALARM WATER",
-				"BASIC_SET": "Trame BASIC_SET"
-			}
-		},
-		"6": {
-			"name": "Type d’information transmise (entrée 2)",
-			"help": "Type de trame transmise au groupe 2, activer via l'entrée 2. Ce paramètre permet de spécifier le type de trame Alarme ou de forcer la trasmission de trame de controle.",
-			"list": {
-				"ALARM GENERIC": "Trame ALARM GENERIC",
-				"ALARM SMOKE": "Trame ALARM SMOKE",
-				"ALARM CO": "Trame ALARM CO",
-				"ALARM CO2": "Trame ALARM CO2",
-				"ALARM HEAT": "Trame ALARM HEAT",
-				"ALARM WATER": "Trame ALARM WATER",
-				"BASIC_SET": "Trame BASIC_SET"
-			}
-		},
-		"7": {
-			"name": "Valeur forcée transmise au groupe 1 (entrée 1)",
-			"help": "Valeur pour ce paramètre 1-99 : spécifie le niveau de variation d’un éclairage ou d’ouverture d’un volet pour une action « On » 255 : Demande au variateur de lumière de s’allumer au niveau de variation précédemment utilisé avant son extinction."
-		},
-		"8": {
-			"name": "Valeur forcée transmise au groupe 2 (entrée 2)",
-			"help": "Valeur pour ce paramètre 1-99 : spécifie le niveau de variation d’un éclairage ou d’ouverture d’un volet pour une action « On » 255 : Demande au variateur de lumière de s’allumer au niveau de variation précédemment utilisé avant son extinction."
-		},
-		"9": {
-			"name": "Ordre d’extinction après annulation de l’alarme",
-			"help": "Ce parametre permet de désactiver la fonction de désactivation ou la fonction d'annulation de l'alarme pour les modules associés sur les bonnes entrées des capteurs Fibaro.",
-			"list": {
-				"Groups 1 and 2 sent": "L’ordre est envoyé aux groupe 1 et 2",
-				"Group 1 sent, Group 2 not sent.": "L’ordre est envoyé uniquement au groupe 1",
-				"Group 1 not sent, Group 2 sent.": "L’ordre est envoyé uniquement au groupe 2",
-				"Group 1 not sent, Group 2 not sent.": "L'ordre n'est envoyé ni au groupe 1, ni au groupe 2."
-			}
-		},
-		"10": {
-			"name": "Intervalle de lecture des températures",
-			"help": "Nombre de secondes entre deux interrogation des capteurs de température."
-		},
-		"11": {
-			"name": "Intervalle de transmission forcée des températures",
-			"help": "Nombre de secondes entre deux transmissions forcées des températures mesurées. La valeur 0 désactive les transmissions forcées et nécessite donc des interrogations manuelles."
-		},
-		"12": {
-			"name": "Delta minimum entre 2 valeurs transmises",
-			"help": "Valeur = xx°C x 16. Exemple pour 0,5°C --> 0,5x16 = 8 (valeur par défaut)"
-		},
-		"13": {
-			"name": "Transmet à tous les modules à proximité (broadcast)",
-			"help": "Transmet l'alarme ou la trame de controle en mode broadcast (tous les modules à portée), l'information envoyé dans ce mode n'est pas répétée par le réseau maillé. Attention si le mode broadcast pour la transmission des informations est activé pour une bande donnée, alors la transmission d'information en mode singlecast pour les modules associé au groupe de cette bande est désactivée",
-			"list": {
-				"Sensor 1 and 2 Broadcast inactive": "IN 1 & 2 : Broadcast inactif",
-				"Sensor 1 broadcast mode active, Sensor 2 broadcast mode inactive": "IN 1 : Broadcast actif / IN 2 : Broadcast inactif",
-				"Sensor 1 broadcast mode inactive, Sensor 2 broadcast mode active": "IN 2 : Broadcast actif / IN 1 : Broadcast inactif",
-				"Sensor 1 and 2 broadcast mode active": "IN 1 & 2 : Broadcast actif"
-			}
-		},
-		"14": {
-			"name": "Ajout de fonctionnalités dans les scènes",
-			"help": "Le module offre la possibilité d'envoyer des commandes compatibles avec une commande d’activation de scène. L'information est transmise aux périphériques affectées au groupe d'association n°3. Les contrôleurs comme le Home Center 2 sont capables d'interpréter ces commandes afin d’activer des scènes, pour lesquelles un identifiant spécifique de scène spécifique a été attribué. L'utilisateur peut étendre la fonctionnalité du bouton relié aux entrées S1 et S2 en distinguant les actions des touches connectées à ces entrées. Par exemple: double-cliquer activerait la scène bonsoir et triple clic pourrait activer la scène Matin",
-			"list": {
-				"Functionality deactivated": "Fonctionnalité désactivée",
-				"Functionality activated": "Fonctionnalité activée"
-			}
-		}
-	}
+    "name": "FGBS-001 Universal Relay", 
+    "type": "Micromodule", 
+    "comlink": "916-fibaro-detecteur-universel-z-wave-fgbs-001-5902020528074", 
+    "remark": "", 
+    "imglink": "fibaro.fgbs001", 
+    "configuration": {
+        "1": {
+            "name": "Délai d’annulation d’alarme de l’entrée 1", 
+            "help": "Nombre de secondes avant l’annulation de l’alarme après que le capteur de l’entrée 1 soit repassé à son état normal. Valeurs pour ce paramètre [0- 65535] Valeur par défaut 0"
+        }, 
+        "2": {
+            "name": "Délai d’annulation d’alarme de l’entrée 2", 
+            "help": "Nombre de secondes avant l’annulation de l’alarme après que le capteur de l’entrée 2 soit repassé à son état normal. Valeurs pour ce paramètre [0- 65535] Valeur par défaut 0"
+        }, 
+        "3": {
+            "name": "Type d’entrée (entrée 1)", 
+            "help": "Type d’entrée (entrée 1) Ce que reportera l'entrée s'il n'y a aucun contact", 
+            "list": {
+                "Input NO (Normal Open)": "Entrée normalement ouverte", 
+                "Input NC (Normal Close)": "Entrée normalement fermée", 
+                "Input MONOSTABLE": "Entrée monostable (bouton poussoir)", 
+                "Input BISTABLE": "Entrée bistable (interrupteur)"
+            }
+        }, 
+        "4": {
+            "name": "Type d’entrée (entrée 2)", 
+            "help": "Type d’entrée (entrée 2) Ce que reportera l'entrée s'il n'y a aucun contact", 
+            "list": {
+                "Input NO (Normal Open)": "Entrée normalement ouverte", 
+                "Input NC (Normal Close)": "Entrée normalement fermée", 
+                "Input MONOSTABLE": "Entrée monostable (bouton poussoir)", 
+                "Input BISTABLE": "Entrée bistable (interrupteur)"
+            }
+        }, 
+        "5": {
+            "name": "Type d’information transmise (entrée 1)", 
+            "help": "Type de trame transmise au groupe 1, activer via l'entrée 1. Ce paramètre permet de spécifier le type de trame Alarme ou de forcer la trasmission de trame de controle.", 
+            "list": {
+                "ALARM GENERIC": "Trame ALARM GENERIC", 
+                "ALARM SMOKE": "Trame ALARM SMOKE", 
+                "ALARM CO": "Trame ALARM CO", 
+                "ALARM CO2": "Trame ALARM CO2", 
+                "ALARM HEAT": "Trame ALARM HEAT", 
+                "ALARM WATER": "Trame ALARM WATER", 
+                "BASIC_SET": "Trame BASIC_SET"
+            }
+        }, 
+        "6": {
+            "name": "Type d’information transmise (entrée 2)", 
+            "help": "Type de trame transmise au groupe 2, activer via l'entrée 2. Ce paramètre permet de spécifier le type de trame Alarme ou de forcer la trasmission de trame de controle.", 
+            "list": {
+                "ALARM GENERIC": "Trame ALARM GENERIC", 
+                "ALARM SMOKE": "Trame ALARM SMOKE", 
+                "ALARM CO": "Trame ALARM CO", 
+                "ALARM CO2": "Trame ALARM CO2", 
+                "ALARM HEAT": "Trame ALARM HEAT", 
+                "ALARM WATER": "Trame ALARM WATER", 
+                "BASIC_SET": "Trame BASIC_SET"
+            }
+        }, 
+        "7": {
+            "name": "Valeur forcée transmise au groupe 1 (entrée 1)", 
+            "help": "Valeur pour ce paramètre 1-99 : spécifie le niveau de variation d’un éclairage ou d’ouverture d’un volet pour une action « On » 255 : Demande au variateur de lumière de s’allumer au niveau de variation précédemment utilisé avant son extinction."
+        }, 
+        "8": {
+            "name": "Valeur forcée transmise au groupe 2 (entrée 2)", 
+            "help": "Valeur pour ce paramètre 1-99 : spécifie le niveau de variation d’un éclairage ou d’ouverture d’un volet pour une action « On » 255 : Demande au variateur de lumière de s’allumer au niveau de variation précédemment utilisé avant son extinction."
+        }, 
+        "9": {
+            "name": "Ordre d’extinction après annulation de l’alarme", 
+            "help": "Ce parametre permet de désactiver la fonction de désactivation ou la fonction d'annulation de l'alarme pour les modules associés sur les bonnes entrées des capteurs Fibaro.", 
+            "list": {
+                "Groups 1 and 2 sent": "L’ordre est envoyé aux groupe 1 et 2", 
+                "Group 1 sent, Group 2 not sent.": "L’ordre est envoyé uniquement au groupe 1", 
+                "Group 1 not sent, Group 2 sent.": "L’ordre est envoyé uniquement au groupe 2", 
+                "Group 1 not sent, Group 2 not sent.": "L'ordre n'est envoyé ni au groupe 1, ni au groupe 2."
+            }
+        }, 
+        "10": {
+            "name": "Intervalle de lecture des températures", 
+            "help": "Nombre de secondes entre deux interrogation des capteurs de température."
+        }, 
+        "11": {
+            "name": "Intervalle de transmission forcée des températures", 
+            "help": "Nombre de secondes entre deux transmissions forcées des températures mesurées. La valeur 0 désactive les transmissions forcées et nécessite donc des interrogations manuelles."
+        }, 
+        "12": {
+            "name": "Delta minimum entre 2 valeurs transmises", 
+            "help": "Valeur = xx°C x 16. Exemple pour 0,5°C --> 0,5x16 = 8 (valeur par défaut)"
+        }, 
+        "13": {
+            "name": "Transmet à tous les modules à proximité (broadcast)", 
+            "help": "Transmet l'alarme ou la trame de controle en mode broadcast (tous les modules à portée), l'information envoyé dans ce mode n'est pas répétée par le réseau maillé. Attention si le mode broadcast pour la transmission des informations est activé pour une bande donnée, alors la transmission d'information en mode singlecast pour les modules associé au groupe de cette bande est désactivée", 
+            "list": {
+                "Sensor 1 and 2 Broadcast inactive": "IN 1 & 2 : Broadcast inactif", 
+                "Sensor 1 broadcast mode active, Sensor 2 broadcast mode inactive": "IN 1 : Broadcast actif / IN 2 : Broadcast inactif", 
+                "Sensor 1 broadcast mode inactive, Sensor 2 broadcast mode active": "IN 2 : Broadcast actif / IN 1 : Broadcast inactif", 
+                "Sensor 1 and 2 broadcast mode active": "IN 1 & 2 : Broadcast actif"
+            }
+        }, 
+        "14": {
+            "name": "Ajout de fonctionnalités dans les scènes", 
+            "help": "Le module offre la possibilité d'envoyer des commandes compatibles avec une commande d’activation de scène. L'information est transmise aux périphériques affectées au groupe d'association n°3. Les contrôleurs comme le Home Center 2 sont capables d'interpréter ces commandes afin d’activer des scènes, pour lesquelles un identifiant spécifique de scène spécifique a été attribué. L'utilisateur peut étendre la fonctionnalité du bouton relié aux entrées S1 et S2 en distinguant les actions des touches connectées à ces entrées. Par exemple: double-cliquer activerait la scène bonsoir et triple clic pourrait activer la scène Matin", 
+            "list": {
+                "Functionality deactivated": "Fonctionnalité désactivée", 
+                "Functionality activated": "Fonctionnalité activée"
+            }
+        }
+    }, 
+    "commands": [
+        {
+            "name": "Etat 1", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 48, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "OPENING"
+            }, 
+            "template": {
+                "dashboard": "door", 
+                "mobile": "door"
+            }
+        }, 
+        {
+            "name": "Etat 2", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 48, 
+                "value": "", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "OPENING"
+            }, 
+            "template": {
+                "dashboard": "door", 
+                "mobile": "door"
+            }
+        }, 
+        {
+            "name": "Température 1", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Température 2", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 2
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Température 3", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 3
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Température 4", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 4
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }
+    ]
 }

@@ -1,43 +1,49 @@
 {
-	"name": "Remote Control 2",
-	"doc": "",
-	"type": "Télécommande",
-	"comlink": "3075-z-waveme-telecommande-z-wave-10-canaux",
-	"remark": "",
-	"imglink": "zwaveme.rc2",
-	"battery_type": "4x1.5V AAA",
-	"commands": [{
-		"name": "Scene",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "GENERIC"
-		},
-		"isHistorized": 0,
-		"configuration": {
-			"class": "0x2b",
-			"repeatEventManagement" : "always",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "tile",
-			"mobile": "tile"
-		}
-	},
-	{
-		"name": "Batterie",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "%",
-		"configuration": {
-			"class": "0x80",
-			"value": "data[0].val"
-		}
-	}]
+    "name": "Remote Control 2", 
+    "type": "Télécommande", 
+    "comlink": "3075-z-waveme-telecommande-z-wave-10-canaux", 
+    "remark": "", 
+    "imglink": "zwaveme.rc2", 
+    "commands": [
+        {
+            "name": "Scene", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 43, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "GENERIC"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
 }

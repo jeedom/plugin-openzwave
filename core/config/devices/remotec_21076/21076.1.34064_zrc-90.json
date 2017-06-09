@@ -1,29 +1,28 @@
 {
-	"name": "ZRC-90",
-	"doc": "",
-	"type": "Contrôleur portable",
-	"comlink": "",
-	"remark": "Partiellement compatible: Fonctionne en association directe seulement",
-	"imglink": "remotec.zrc90",
-	"battery_type": "2x1.5V AAA",
-	"ignore": 0,
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [
-    {
-        "name": "Batterie",
-        "type": "info",
-        "subtype": "numeric",
-        "isVisible": 0,
-        "isHistorized": 0,
-        "unite": "%",
-        "display": {
-            "generic_type": "BATTERY"
-        },
-        "configuration": {
-            "class": "0x80",
-            "value": "data[0].val"
+    "name": "ZRC-90", 
+    "type": "Contrôleur portable", 
+    "comlink": "", 
+    "remark": "Partiellement compatible: Fonctionne en association directe seulement", 
+    "imglink": "remotec.zrc90", 
+    "commands": [
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
         }
-    }]
+    ]
 }

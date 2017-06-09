@@ -1,381 +1,442 @@
 {
-	"name": "FGRGB-101 RGBW",
-	"doc": "fibaro.fgrgb101_-_RGVBControler",
-	"type": "RGBW",
-	"comlink": "2367-fibaro-controleur-rgbw-z-wave-fgrgb-101-5902020528159",
-	"remark": "Peut aussi servir de capteurs multisondes",
-	"imglink": "fibaro.fgrgb101",
-	"commands": [{
-		"name": "Couleur",
-		"type": "action",
-		"subtype": "color",
-		"isVisible": 1,
-		"value": "Etat couleur",
-		"display": {
-			"generic_type": "LIGHT_SET_COLOR"
-		},
-		"configuration": {
-			"class": "0x33",
-			"value": "data[0].Set(#color#)"
-		}
-	},
-	{
-		"name": "Puissance",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 1,
-		"unite": "W",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"configuration": {
-			"class": "0x31",
-			"value": "data[4].val",
-			"maxValue": 2500,
-			"minValue": 0
-		}
-	},
-	{
-		"name": "Consommation",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "kWh",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"configuration": {
-			"class": "0x32",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "tile"
-		}
-	},
-	{
-		"name": "Cheminée",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"class": "0x70",
-			"value": "data[0].Set(72,6,1)"
-		},
-		"display": {
-			"icon": "<i class=\"icon jeedom-feu\"><\/i>",
-			"generic_type": "DONT"
-		}
-	},
-	{
-		"name": "Orage",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"class": "0x70",
-			"value": "data[0].Set(72,7,1)"
-		},
-		"display": {
-			"icon": "<i class=\"icon meteo-orage\"><\/i>",
-			"generic_type": "DONT"
-		}
-	},
-	{
-		"name": "Aube",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"class": "0x70",
-			"value": "data[0].Set(72,8,1)"
-		},
-		"display": {
-			"icon": "<i class=\"icon meteo-soleil\"><\/i>",
-			"generic_type": "DONT"
-		}
-	},
-	{
-		"name": "Fading",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"class": "0x70",
-			"value": "data[0].Set(72,9,1)"
-		},
-		"display": {
-			"icon": "<i class=\"icon divers-triangular42\"><\/i>",
-			"generic_type": "DONT"
-		}
-	},
-	{
-		"name": "RBB",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"class": "0x70",
-			"value": "data[0].Set(72,10,1)"
-		},
-		"display": {
-			"icon": "<i class=\"icon jeedom-alerte\"><\/i>",
-			"generic_type": "DONT"
-		}
-	},
-	{
-		"name": "Blanc Froid",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"configuration": {
-			"class": "0x33",
-			"value": "data[1].Set(Cool White)"
-		},
-		"display": {
-			"icon": "<i class=\"icon nature-snowflake\"><\/i>",
-			"generic_type": "DONT"
-		}
-	},
-	{
-		"name": "Blanc Chaud",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"configuration": {
-			"class": "0x33",
-			"value": "data[1].Set(Warm White)"
-		},
-		"display": {
-			"icon": "<i class=\"icon meteo-brouillard\"><\/i>",
-			"generic_type": "DONT"
-		}
-	},
-	{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].Set(99)"
-		},
-		"display": {
-			"icon": "<i class=\"icon jeedom-lumiere-on\"><\/i>",
-			"generic_type": "LIGHT_ON"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].Set(0)"
-		},
-		"display": {
-			"icon": "<i class=\"icon jeedom-lumiere-off\"><\/i>",
-			"generic_type": "LIGHT_OFF"
-		}
-	},
-	{
-		"name": "Intensité",
-		"type": "action",
-		"subtype": "slider",
-		"isVisible": 1,
-		"value": "Etat",
-		"display": {
-			"generic_type": "LIGHT_SLIDER"
-		},
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].Set(#slider#)",
-			"minValue": 0,
-			"maxValue": 99
-		}
-	},
-	{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "numeric",
-		"unite": "%",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "LIGHT_STATE"
-		},
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].val",
-			"minValue": 0,
-			"maxValue": 99
-		}
-	},
-	{
-		"name": "Etat couleur",
-		"type": "info",
-		"subtype": "string",
-		"unite": "",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "LIGHT_COLOR"
-		},
-		"configuration": {
-			"class": "0x33",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Blanc Intensité",
-		"type": "action",
-		"subtype": "slider",
-		"isVisible": 0,
-		"value": "Blanc Etat",
-		"display": {
-			"generic_type": "LIGHT_SLIDER"
-		},
-		"configuration": {
-			"class": "0x26",
-			"instanceId": 5,
-			"value": "data[0].Set(#slider#)",
-			"minValue": 0,
-			"maxValue": 99
-		},
-		"template": {
-			"dashboard": "light",
-			"mobile": "light"
-		}
-	},
-	{
-		"name": "Blanc On",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "LIGHT_ON"
-		},
-		"configuration": {
-			"class": "0x26",
-			"instanceId": 5,
-			"value": "data[0].Set(99)"
-		}
-	},
-	{
-		"name": "Blanc Off",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "LIGHT_OFF"
-		},
-		"configuration": {
-			"class": "0x26",
-			"instanceId": 5,
-			"value": "data[0].Set(0)"
-		}
-	},
-	{
-		"name": "Blanc Etat",
-		"type": "info",
-		"subtype": "numeric",
-		"unite": "%",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "LIGHT_STATE"
-		},
-		"configuration": {
-			"class": "0x26",
-			"instanceId": 5,
-			"value": "data[0].val",
-			"minValue": 0,
-			"maxValue": 99
-		}
-	}],
-	"configuration": {
-		"1": {
-			"name": "Activer les fonctions ALL ON/ALL OFF",
-			"help": "Activer/Désactiver ALL ON/OFF"
-		},
-		"6": {
-			"name": "Action des boutons (type de commande Z-Wave envoyées)",
-			"help": "Choissiez quelle classe est envoyé au péripéhrique associé"
-		},
-		"8": {
-			"name": "Mode de transition",
-			"help": "Choisissez le comportement des transitions entre les différents niveaux"
-		},
-		"9": {
-			"name": "Sélection du nombre d’étapes pour le paramètre 8.",
-			"help": "Durée de l' étape pour chaque changement de niveau durant la transition"
-		},
-		"10": {
-			"name": "Sélection du délai entre chaque étapes pour le paramètre 8",
-			"help": "Le temps entre chaque étape dans une transition entre les niveaux. Mettre cette option à zéro signifie un changement immédiat"
-		},
-		"11": {
-			"name": "Sélection de la durée de la transition d’état pour le paramètre 9 (transition progressive)",
-			"help": "0 - changement immédiat ; 1- > 63 : 20ms- > 126ms ( valeur * 20ms ) ; 65- > 127: 1S- > 63S ( valeur 64) * 1s ; 129- > 191 : 630S 10s- > 10s (valeur - 128 ) * ; 193- > 255 : 1min- > 63min ( valeur 192 ) * 1min . Réglage par défaut: 67 (3s )"
-		},
-		"12": {
-			"name": "Niveau maximum de luminosité",
-			"help": "Niveau de luminosité maximale pour le gradateur"
-		},
-		"13": {
-			"name": "Niveau minimum  de variation",
-			"help": "Niveau de luminosité minimal pour le gradateur"
-		},
-		"14": {
-			"name": "Configuration des entrées/sorties",
-			"help": "Ceci est trop complexe à décrire ici , étant donné que cette valeur est constitué de quatre bits pour chacun des quatre canaux. Reportez-vous à la table dans le manuel du produit . La valeur par défaut est 4369 (1111 en hexadécimal ) ."
-		},
-		"15": {
-			"name": "Résultat d’un double clic",
-			"help": "Option double-clic ( kit d'éclairage à 100 % ) . 0 - Double cliquez sur Désactivé , 1 - Double-cliquez activé. Réglage 1 par défaut"
-		},
-		"16": {
-			"name": "Mémorisation d’état à la coupure d’alimentation",
-			"help": "Enregistrement l'états avant que le courant soit coupé"
-		},
-		"30": {
-			"name": "Réaction aux Alarmes (alerte générale, alerte inondation, alerte température, alerte à la fumée CO, CO2)",
-			"help": "Alarme de tout type ( alarme générale , l'alarme de l'injection d'eau , détecteur de fumée : CO , CO2 , alarme de température ) . Réglage par défaut 0 ( inactif )"
-		},
-		"38": {
-			"name": "Programme de séquence d’alerte",
-			"help": "Numéro du programme sélectionné parmi les 10 disponibles."
-		},
-		"39": {
-			"name": "Choix du de la duré du programme d’alerte",
-			"help": "En mode programme ALARM ( voir paramètre 30 ) , ce paramètre définit le temps en secondes du programme ( 1S- > 65534s )"
-		},
-		"42": {
-			"name": "Classe de commande utilisée pour la  remontée d'information lors des changements de statuts",
-			"help": "Précisez quelle commande classe est utilisé pour signaler les changements d'état de sortie"
-		},
-		"43": {
-			"name": "Seuil de déclenchement de remontée d'information sur les entrées 0-10V",
-			"help": "Paramètre qui définir la plage de variation de la tension d'entrée qui déclenche un envoi au controleur . La nouvelle valeur est calculée sur la base de la dernière valeur déclarée : Réglage par défaut : 5 ( 0.5V ) . Gamme: 1- > 100 - ( 0.1V- > 10V ) ."
-		},
-		"44": {
-			"name": "Fréquence des mesures de puissance",
-			"help": "Envoyé si la dernière valeur déclarée diffère de la valeur actuelle . Des rapports seront également envoyés en cas de mise à jour. Réglage par défaut: 30 (30s ) . Gamme: 1- > 65534 ( 1S- > 65534s ) - intervalle entre les rapports . Zéro signifie rapports sont envoyés uniquement dans le cas d'une mise à jour."
-		},
-		"45": {
-			"name": "Seuil de variation déclenchant la remontée de la consommation cumulée du produit contrôlé",
-			"help": "Intervalle entre les rapports de consommation d'énergie ( en kWh ) . 1- > 254 ( 0.01kWh- > 2.54kWh ) . Zéro signifie des changements dans l'énergie consommée ne seront pas signalés"
-		},
-		"71": {
-			"name": "Réaction d’une luminosité à 0%",
-			"help": "Définissez si vous voulez que le module se rappel de la couleur précédente après que la luminosité soit tombé à 0"
-		},
-		"72": {
-			"name": "Démarrer un programme prédéfini au démarrage du mode RGB/RGBW",
-			"help": "Premier programme prédéfini à utiliser lorsque l'appareil est réglé pour fonctionner en mode RGB / RGBW (paramètre 14 )"
-		},
-		"73": {
-			"name": "Résultat d’un triple clic",
-			"help": "Comportement lors du triple clique"
-		}
-	}
+    "name": "FGRGB-101 RGBW", 
+    "type": "RGBW", 
+    "comlink": "2367-fibaro-controleur-rgbw-z-wave-fgrgb-101-5902020528159", 
+    "remark": "Peut aussi servir de capteurs multisondes", 
+    "imglink": "fibaro.fgrgb101", 
+    "commands": [
+        {
+            "name": "Couleur", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 51, 
+                "value": "type=setvalue&value=#color#", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Etat couleur", 
+            "subtype": "color", 
+            "display": {
+                "generic_type": "LIGHT_SET_COLOR"
+            }
+        }, 
+        {
+            "name": "Puissance", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 4, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 2500
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "POWER"
+            }, 
+            "unite": "W"
+        }, 
+        {
+            "name": "Consommation", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "CONSUMPTION"
+            }, 
+            "template": {
+                "dashboard": "tile"
+            }, 
+            "unite": "kWh"
+        }, 
+        {
+            "name": "Cheminée", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setconfig&value=6&size=1", 
+                "index": 72, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"icon jeedom-feu\"></i>", 
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Orage", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setconfig&value=7&size=1", 
+                "index": 72, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"icon meteo-orage\"></i>", 
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Aube", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setconfig&value=8&size=1", 
+                "index": 72, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"icon meteo-soleil\"></i>", 
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Fading", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setconfig&value=9&size=1", 
+                "index": 72, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"icon divers-triangular42\"></i>", 
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "RBB", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setconfig&value=10&size=1", 
+                "index": 72, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"icon jeedom-alerte\"></i>", 
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Blanc Froid", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 51, 
+                "value": "type=setvalue&value=Cool White", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"icon nature-snowflake\"></i>", 
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Blanc Chaud", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 51, 
+                "value": "type=setvalue&value=Warm White", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"icon meteo-brouillard\"></i>", 
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=99", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"icon jeedom-lumiere-on\"></i>", 
+                "generic_type": "LIGHT_ON"
+            }
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"icon jeedom-lumiere-off\"></i>", 
+                "generic_type": "LIGHT_OFF"
+            }
+        }, 
+        {
+            "name": "Intensité", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "value": "Etat", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "LIGHT_SLIDER"
+            }
+        }, 
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }, 
+            "unite": "%"
+        }, 
+        {
+            "name": "Etat couleur", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 51, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "LIGHT_COLOR"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "name": "Blanc Intensité", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 0, 
+                "instance": 6, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "value": "Blanc Etat", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "LIGHT_SLIDER"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "name": "Blanc On", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=99", 
+                "index": 0, 
+                "instance": 6, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }
+        }, 
+        {
+            "name": "Blanc Off", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 6, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }
+        }, 
+        {
+            "name": "Blanc Etat", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "", 
+                "index": 0, 
+                "instance": 6, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }, 
+            "unite": "%"
+        }
+    ], 
+    "configuration": {
+        "1": {
+            "name": "Activer les fonctions ALL ON/ALL OFF", 
+            "help": "Activer/Désactiver ALL ON/OFF"
+        }, 
+        "6": {
+            "name": "Action des boutons (type de commande Z-Wave envoyées)", 
+            "help": "Choissiez quelle classe est envoyé au péripéhrique associé"
+        }, 
+        "8": {
+            "name": "Mode de transition", 
+            "help": "Choisissez le comportement des transitions entre les différents niveaux"
+        }, 
+        "9": {
+            "name": "Sélection du nombre d’étapes pour le paramètre 8.", 
+            "help": "Durée de l' étape pour chaque changement de niveau durant la transition"
+        }, 
+        "10": {
+            "name": "Sélection du délai entre chaque étapes pour le paramètre 8", 
+            "help": "Le temps entre chaque étape dans une transition entre les niveaux. Mettre cette option à zéro signifie un changement immédiat"
+        }, 
+        "11": {
+            "name": "Sélection de la durée de la transition d’état pour le paramètre 9 (transition progressive)", 
+            "help": "0 - changement immédiat ; 1- > 63 : 20ms- > 126ms ( valeur * 20ms ) ; 65- > 127: 1S- > 63S ( valeur 64) * 1s ; 129- > 191 : 630S 10s- > 10s (valeur - 128 ) * ; 193- > 255 : 1min- > 63min ( valeur 192 ) * 1min . Réglage par défaut: 67 (3s )"
+        }, 
+        "12": {
+            "name": "Niveau maximum de luminosité", 
+            "help": "Niveau de luminosité maximale pour le gradateur"
+        }, 
+        "13": {
+            "name": "Niveau minimum  de variation", 
+            "help": "Niveau de luminosité minimal pour le gradateur"
+        }, 
+        "14": {
+            "name": "Configuration des entrées/sorties", 
+            "help": "Ceci est trop complexe à décrire ici , étant donné que cette valeur est constitué de quatre bits pour chacun des quatre canaux. Reportez-vous à la table dans le manuel du produit . La valeur par défaut est 4369 (1111 en hexadécimal ) ."
+        }, 
+        "15": {
+            "name": "Résultat d’un double clic", 
+            "help": "Option double-clic ( kit d'éclairage à 100 % ) . 0 - Double cliquez sur Désactivé , 1 - Double-cliquez activé. Réglage 1 par défaut"
+        }, 
+        "16": {
+            "name": "Mémorisation d’état à la coupure d’alimentation", 
+            "help": "Enregistrement l'états avant que le courant soit coupé"
+        }, 
+        "30": {
+            "name": "Réaction aux Alarmes (alerte générale, alerte inondation, alerte température, alerte à la fumée CO, CO2)", 
+            "help": "Alarme de tout type ( alarme générale , l'alarme de l'injection d'eau , détecteur de fumée : CO , CO2 , alarme de température ) . Réglage par défaut 0 ( inactif )"
+        }, 
+        "38": {
+            "name": "Programme de séquence d’alerte", 
+            "help": "Numéro du programme sélectionné parmi les 10 disponibles."
+        }, 
+        "39": {
+            "name": "Choix du de la duré du programme d’alerte", 
+            "help": "En mode programme ALARM ( voir paramètre 30 ) , ce paramètre définit le temps en secondes du programme ( 1S- > 65534s )"
+        }, 
+        "42": {
+            "name": "Classe de commande utilisée pour la  remontée d'information lors des changements de statuts", 
+            "help": "Précisez quelle commande classe est utilisé pour signaler les changements d'état de sortie"
+        }, 
+        "43": {
+            "name": "Seuil de déclenchement de remontée d'information sur les entrées 0-10V", 
+            "help": "Paramètre qui définir la plage de variation de la tension d'entrée qui déclenche un envoi au controleur . La nouvelle valeur est calculée sur la base de la dernière valeur déclarée : Réglage par défaut : 5 ( 0.5V ) . Gamme: 1- > 100 - ( 0.1V- > 10V ) ."
+        }, 
+        "44": {
+            "name": "Fréquence des mesures de puissance", 
+            "help": "Envoyé si la dernière valeur déclarée diffère de la valeur actuelle . Des rapports seront également envoyés en cas de mise à jour. Réglage par défaut: 30 (30s ) . Gamme: 1- > 65534 ( 1S- > 65534s ) - intervalle entre les rapports . Zéro signifie rapports sont envoyés uniquement dans le cas d'une mise à jour."
+        }, 
+        "45": {
+            "name": "Seuil de variation déclenchant la remontée de la consommation cumulée du produit contrôlé", 
+            "help": "Intervalle entre les rapports de consommation d'énergie ( en kWh ) . 1- > 254 ( 0.01kWh- > 2.54kWh ) . Zéro signifie des changements dans l'énergie consommée ne seront pas signalés"
+        }, 
+        "71": {
+            "name": "Réaction d’une luminosité à 0%", 
+            "help": "Définissez si vous voulez que le module se rappel de la couleur précédente après que la luminosité soit tombé à 0"
+        }, 
+        "72": {
+            "name": "Démarrer un programme prédéfini au démarrage du mode RGB/RGBW", 
+            "help": "Premier programme prédéfini à utiliser lorsque l'appareil est réglé pour fonctionner en mode RGB / RGBW (paramètre 14 )"
+        }, 
+        "73": {
+            "name": "Résultat d’un triple clic", 
+            "help": "Comportement lors du triple clique"
+        }
+    }
 }

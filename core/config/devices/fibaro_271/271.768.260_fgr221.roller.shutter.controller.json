@@ -1,218 +1,245 @@
 {
-	"name": "FGRM-221 Volet roulant",
-	"doc": "",
-	"type": "Volets",
-	"comlink": "2604-fibaro-micromodule-pour-volet-roulant-z-wave-fgrm-222-5902020528227",
-	"remark": "Module équivalent au FGRM-222",
-	"imglink": "fibaro.fgrm222",
-	"commands": [{
-		"name": "Up",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[0].Set(99)"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-arrow-up\"></i>",
-			"generic_type": "FLAP_UP"
-		}
-	},
-	{
-		"name": "Down",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[0].Set(0)"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-arrow-down\"></i>",
-			"generic_type": "FLAP_DOWN"
-		}
-	},
-	{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "FLAP_STATE"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Positionnement",
-		"type": "action",
-		"subtype": "slider",
-		"isVisible": 1,
-		"value": "Etat",
-		"display": {
-			"generic_type": "FLAP_SLIDER"
-		},
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[0].Set(#slider#)",
-			"minValue": 0,
-			"maxValue": 99
-		},
-		"template": {
-			"dashboard": "tooltip",
-			"mobile": "tooltip"
-		}
-	},
-	{
-		"name": "Rafraichir",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "Get()"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-refresh\"><\/i>",
-			"generic_type": "DONT"
-		}
-	},
-	{
-		"name": "Stop",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[2].ReleaseButton()"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-stop\"><\/i>",
-			"generic_type": "FLAP_STOP"
-		}
-	},
-	{
-		"name": "Stop BSO",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[7].ReleaseButton()"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-stop\"><\/i>",
-			"generic_type": "DONT"
-		}
-	},
-	{
-		"name": "Scene",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x2b",
-			"repeatEventManagement" : "always",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "tile",
-			"mobile": "tile"
-		}
-	}],
-	"configuration": {
-		"1": {
-			"name": "Activation/Désactivation des fonctions ALL ON / ALL OFF",
-			"help": "Activation/Désactivation des fonctions ALL ON / ALL OFF. Valeur par défaut 255",
-			"list": {
-				"ALL ON disabled/ ALL OFF disable - Default": "ALL ON inactif / ALL OFF inactif",
-				"ALL ON disabled/ ALL OFF active": "ALL ON inactif / ALL OFF actif",
-				"ALL ON active / ALL OFF disabled": "ALL ON actif / ALL OFF inactif",
-				"ALL ON active / ALL OFF active": "ALL ON actif / ALL OFF actif"
-			}
-		},
-		"10": {
-			"name": "Modification de la fonction de positionnement du volet.",
-			"help": "Modification de la fonction de positionnement du volet. Valeur par défaut 0",
-			"list": {
-				"Turning on the shutter positioning function - Default": "Activation de la fonction de positionnement du volet",
-				"Turning off the shutter positioning function": "Désactivation de la fonction de positionnement du volet"
-			}
-		},
-		"14": {
-			"name": "Type d’interrupteur utilisé sur le commutateur.",
-			"help": "Configuration du type d’interrupteur. Valeur par défaut 1",
-			"list": {
-				"Mono-stable switch (button) - Default": "Deux boutons poussoirs impulsionnels (mono-stable)",
-				"Bi-stable switch (switch)": "Commutateur montée / descente (bi-stable)",
-				"Single Mono-stable switch": "Un seul bouton poussoir impulsionnel (mono-stable)"
-			}
-		},
-		"20": {
-			"name": "Sauvegarde de la position Favoris.",
-			"help": "Options pour modifier le paramètre 1-99. Valeur par défaut 15",
-			"list": {
-				"Disable Dimmer/Roller shutter control": "Le contrôle des Dimmers et Volets roulants n’est pas actif",
-				"Enable Dimmer/Roller shutter control": "Le contrôle des Dimmers et Volets roulants est actif"
-			}
-		},
-		"30": {
-			"name": "Alarme générale, prévue pour le volet n°1",
-			"help": "Alarme générale, prévue pour le volet n°1. Valeur par défaut 2",
-			"list": {
-				"DEACTIVATION - the device does not respond to alarm data frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
-				"OPEN SHUTTER ALARM - the device closes the roller shutter after detecting an alarm": "ALARME VOLET OUVERT - le dispositif ferme le volet roulant après la détection d'une alarme",
-				"CLOSED SHUTTER ALARM - the device opens the roller shutter after detecting an alarm - Default": "ALARME VOLET FERME - le dispositif ouvre le volet roulant après la détection d'une alarme"
-			}
-		},
-		"31": {
-			"name": "Alarme d'inondation, prévue pour le volet.",
-			"help": "Alarme d'inondation, prévue pour le volet. Valeur par défaut 0",
-			"list": {
-				"DEACTIVATION - the device does not respond to alarm data frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
-				"OPEN SHUTTER ALARM - the device closes the roller shutter after detecting an alarm": "ALARME VOLET OUVERT - le dispositif ferme le volet roulant après la détection d'une alarme",
-				"CLOSED SHUTTER ALARM - the device opens the roller shutter after detecting an alarm - Default": "ALARME VOLET FERME - le dispositif ouvre le volet roulant après la détection d'une alarme"
-			}
-		},
-		"32": {
-			"name": "Alarme Fumée, CO, CO2, prévue pour le volet.",
-			"help": "Alarme Fumée, CO, CO2, prévue pour le volet. Valeur par défaut 1",
-			"list": {
-				"DEACTIVATION - the device does not respond to alarm data frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
-				"OPEN SHUTTER ALARM - the device closes the roller shutter after detecting an alarm": "ALARME VOLET OUVERT - le dispositif ferme le volet roulant après la détection d'une alarme",
-				"CLOSED SHUTTER ALARM - the device opens the roller shutter after detecting an alarm - Default": "ALARME VOLET FERME - le dispositif ouvre le volet roulant après la détection d'une alarme"
-			}
-		},
-		"33": {
-			"name": "Alarme Température.",
-			"help": "Alarme Température. Valeur par défaut 1",
-			"list": {
-				"DEACTIVATION - the device does not respond to alarm data frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
-				"OPEN SHUTTER ALARM - the device closes the roller shutter after detecting an alarm": "ALARME VOLET OUVERT - le dispositif ferme le volet roulant après la détection d'une alarme",
-				"CLOSED SHUTTER ALARM - the device opens the roller shutter after detecting an alarm - Default": "ALARME VOLET FERME - le dispositif ouvre le volet roulant après la détection d'une alarme"
-			}
-		},
-		"41": {
-			"name": "Fonctionnalité d’activation de scènes",
-			"help": "Le module offre la possibilité d'envoyer des commandes compatibles avec une commande d’activation de scène. L'information est transmise aux périphériques affectées au groupe d'association n°3. Les contrôleurs comme le Home Center 2 sont capables d'interpréter ces commandes afin d’activer des scènes, pour lesquelles un identifiant spécifique de scène spécifique a été attribué. L'utilisateur peut étendre la fonctionnalité du bouton relié aux entrées S1 et S2 en distinguant les actions des touches connectées à ces entrées. Par exemple: double-cliquer activerait la scène bonsoir et triple clic pourrait activer la scène Matin",
-			"list": {
-				"Deactivation of functionality - Default": "Fonctionnalité désactivée",
-				"Activation of functionality": "Fonctionnalité activée"
-			}
-		}
-	}
+    "name": "FGRM-221 Volet roulant", 
+    "type": "Volets", 
+    "comlink": "2604-fibaro-micromodule-pour-volet-roulant-z-wave-fgrm-222-5902020528227", 
+    "remark": "Module équivalent au FGRM-222", 
+    "imglink": "fibaro.fgrm222", 
+    "commands": [
+        {
+            "name": "Up", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=99", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-arrow-up\"></i>", 
+                "generic_type": "FLAP_UP"
+            }
+        }, 
+        {
+            "name": "Down", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-arrow-down\"></i>", 
+                "generic_type": "FLAP_DOWN"
+            }
+        }, 
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "FLAP_STATE"
+            }
+        }, 
+        {
+            "name": "Positionnement", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "value": "Etat", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "FLAP_SLIDER"
+            }, 
+            "template": {
+                "dashboard": "tooltip", 
+                "mobile": "tooltip"
+            }
+        }, 
+        {
+            "name": "Rafraichir", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "Get()", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-refresh\"></i>", 
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Stop", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=buttonaction&action=release", 
+                "index": 2, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-stop\"></i>", 
+                "generic_type": "FLAP_STOP"
+            }
+        }, 
+        {
+            "name": "Stop BSO", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=buttonaction&action=release", 
+                "index": 7, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-stop\"></i>", 
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Scene", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 43, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }
+        }
+    ], 
+    "configuration": {
+        "1": {
+            "name": "Activation/Désactivation des fonctions ALL ON / ALL OFF", 
+            "help": "Activation/Désactivation des fonctions ALL ON / ALL OFF. Valeur par défaut 255", 
+            "list": {
+                "ALL ON disabled/ ALL OFF disable - Default": "ALL ON inactif / ALL OFF inactif", 
+                "ALL ON disabled/ ALL OFF active": "ALL ON inactif / ALL OFF actif", 
+                "ALL ON active / ALL OFF disabled": "ALL ON actif / ALL OFF inactif", 
+                "ALL ON active / ALL OFF active": "ALL ON actif / ALL OFF actif"
+            }
+        }, 
+        "10": {
+            "name": "Modification de la fonction de positionnement du volet.", 
+            "help": "Modification de la fonction de positionnement du volet. Valeur par défaut 0", 
+            "list": {
+                "Turning on the shutter positioning function - Default": "Activation de la fonction de positionnement du volet", 
+                "Turning off the shutter positioning function": "Désactivation de la fonction de positionnement du volet"
+            }
+        }, 
+        "14": {
+            "name": "Type d’interrupteur utilisé sur le commutateur.", 
+            "help": "Configuration du type d’interrupteur. Valeur par défaut 1", 
+            "list": {
+                "Mono-stable switch (button) - Default": "Deux boutons poussoirs impulsionnels (mono-stable)", 
+                "Bi-stable switch (switch)": "Commutateur montée / descente (bi-stable)", 
+                "Single Mono-stable switch": "Un seul bouton poussoir impulsionnel (mono-stable)"
+            }
+        }, 
+        "20": {
+            "name": "Sauvegarde de la position Favoris.", 
+            "help": "Options pour modifier le paramètre 1-99. Valeur par défaut 15", 
+            "list": {
+                "Disable Dimmer/Roller shutter control": "Le contrôle des Dimmers et Volets roulants n’est pas actif", 
+                "Enable Dimmer/Roller shutter control": "Le contrôle des Dimmers et Volets roulants est actif"
+            }
+        }, 
+        "30": {
+            "name": "Alarme générale, prévue pour le volet n°1", 
+            "help": "Alarme générale, prévue pour le volet n°1. Valeur par défaut 2", 
+            "list": {
+                "DEACTIVATION - the device does not respond to alarm data frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme", 
+                "OPEN SHUTTER ALARM - the device closes the roller shutter after detecting an alarm": "ALARME VOLET OUVERT - le dispositif ferme le volet roulant après la détection d'une alarme", 
+                "CLOSED SHUTTER ALARM - the device opens the roller shutter after detecting an alarm - Default": "ALARME VOLET FERME - le dispositif ouvre le volet roulant après la détection d'une alarme"
+            }
+        }, 
+        "31": {
+            "name": "Alarme d'inondation, prévue pour le volet.", 
+            "help": "Alarme d'inondation, prévue pour le volet. Valeur par défaut 0", 
+            "list": {
+                "DEACTIVATION - the device does not respond to alarm data frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme", 
+                "OPEN SHUTTER ALARM - the device closes the roller shutter after detecting an alarm": "ALARME VOLET OUVERT - le dispositif ferme le volet roulant après la détection d'une alarme", 
+                "CLOSED SHUTTER ALARM - the device opens the roller shutter after detecting an alarm - Default": "ALARME VOLET FERME - le dispositif ouvre le volet roulant après la détection d'une alarme"
+            }
+        }, 
+        "32": {
+            "name": "Alarme Fumée, CO, CO2, prévue pour le volet.", 
+            "help": "Alarme Fumée, CO, CO2, prévue pour le volet. Valeur par défaut 1", 
+            "list": {
+                "DEACTIVATION - the device does not respond to alarm data frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme", 
+                "OPEN SHUTTER ALARM - the device closes the roller shutter after detecting an alarm": "ALARME VOLET OUVERT - le dispositif ferme le volet roulant après la détection d'une alarme", 
+                "CLOSED SHUTTER ALARM - the device opens the roller shutter after detecting an alarm - Default": "ALARME VOLET FERME - le dispositif ouvre le volet roulant après la détection d'une alarme"
+            }
+        }, 
+        "33": {
+            "name": "Alarme Température.", 
+            "help": "Alarme Température. Valeur par défaut 1", 
+            "list": {
+                "DEACTIVATION - the device does not respond to alarm data frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme", 
+                "OPEN SHUTTER ALARM - the device closes the roller shutter after detecting an alarm": "ALARME VOLET OUVERT - le dispositif ferme le volet roulant après la détection d'une alarme", 
+                "CLOSED SHUTTER ALARM - the device opens the roller shutter after detecting an alarm - Default": "ALARME VOLET FERME - le dispositif ouvre le volet roulant après la détection d'une alarme"
+            }
+        }, 
+        "41": {
+            "name": "Fonctionnalité d’activation de scènes", 
+            "help": "Le module offre la possibilité d'envoyer des commandes compatibles avec une commande d’activation de scène. L'information est transmise aux périphériques affectées au groupe d'association n°3. Les contrôleurs comme le Home Center 2 sont capables d'interpréter ces commandes afin d’activer des scènes, pour lesquelles un identifiant spécifique de scène spécifique a été attribué. L'utilisateur peut étendre la fonctionnalité du bouton relié aux entrées S1 et S2 en distinguant les actions des touches connectées à ces entrées. Par exemple: double-cliquer activerait la scène bonsoir et triple clic pourrait activer la scène Matin", 
+            "list": {
+                "Deactivation of functionality - Default": "Fonctionnalité désactivée", 
+                "Activation of functionality": "Fonctionnalité activée"
+            }
+        }
+    }
 }

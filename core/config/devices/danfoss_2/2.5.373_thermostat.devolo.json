@@ -1,99 +1,103 @@
 {
-  "name": "Devolo Home Control Radiator Thermostat",
-  "type": "Thermostat",
-  "comlink": "",
-  "remark": "",
-  "imglink": "danfoss.devoloz",
-  "battery_type": "2x1.5V AAA",
-  "commands": [
-    {
-      "name": "Température",
-      "type": "info",
-      "subtype": "numeric",
-      "unite": "°C",
-      "isVisible": 1,
-      "isHistorized": 1,
-      "display": {
-        "generic_type": "THERMOSTAT_TEMPERATURE"
-      },
-      "configuration": {
-        "class": "0x31",
-        "instanceId": 0,
-        "value": "data[1].val"
-      }
-    },
-    {
-      "name": "Commande",
-      "type": "action",
-      "subtype": "slider",
-      "value": "Consigne",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "unite": "°C",
-      "display": {
-        "generic_type": "THERMOSTAT_SET_SETPOINT"
-      },
-      "configuration": {
-        "class": "0x43",
-        "instanceId": 0,
-        "value": "data[1].Set(#slider#)",
-        "maxValue": 28,
-        "minValue": 4
-      }
-    },
-    {
-      "name": "Consigne",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "unite": "°C",
-      "display": {
-        "generic_type": "THERMOSTAT_SETPOINT"
-      },
-      "configuration": {
-        "class": "0x43",
-        "instanceId": 0,
-        "value": "data[1].val",
-        "maxValue": 28,
-        "minValue": 0
-      }
-    },
-    {
-      "name": "Consigne pending",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "unite": "°C",
-      "display": {
-        "generic_type": "DONT"
-      },
-      "configuration": {
-        "class": "0x43",
-        "instanceId": 10,
-        "value": "data[1].val",
-        "maxValue": 28,
-        "minValue": 0
-      }
-    },
-    {
-      "name": "Batterie",
-      "type": "info",
-      "subtype": "numeric",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "unite": "%",
-      "display": {
-        "generic_type": "BATTERY"
-      },
-      "configuration": {
-        "class": "0x80",
-        "instanceId": 0,
-        "value": "data[0].val",
-        "maxValue": 100,
-        "minValue": 0
-      }
-    }
-  ]
+    "name": "Devolo Home Control Radiator Thermostat", 
+    "type": "Thermostat", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "danfoss.devoloz", 
+    "commands": [
+        {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Commande", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 1, 
+                "instance": 1, 
+                "minValue": 4, 
+                "maxValue": 28
+            }, 
+            "value": "Consigne", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Consigne", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 28
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Consigne pending", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "", 
+                "index": 1, 
+                "instance": 11, 
+                "minValue": 0, 
+                "maxValue": 28
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
 }

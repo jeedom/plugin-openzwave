@@ -1,41 +1,41 @@
 {
-	"name": "Z-Wave Plus USB Controller",
-	"doc": "",
-	"type": "Contrôleur",
-	"comlink": "3171-sigma-designs-controleur-z-wave-plus-usb",
-	"remark": "",
-	"imglink": "sigma.usb",
-	"battery_type": "",
-	"configuration": {
-		"conf_version": 1
-	},
-	"isVisible": 0,
-	"commands": [{
-		"name": "Switch All On",
-		"type": "action",
-		"subtype": "other",
-		"display": {
-			"generic_type": "DONT"
-		},
-		"isVisible": 0,
-		"value": "",
-		"configuration": {
-			"class": "0xF0",
-			"value": "SwitchAll(255)"
-		}
-	},
-	{
-		"name": "Switch All Off",
-		"type": "action",
-		"display": {
-			"generic_type": "DONT"
-		},
-		"subtype": "other",
-		"isVisible": 0,
-		"value": "",
-		"configuration": {
-			"class": "0xF0",
-			"value": "SwitchAll(0)"
-		}
-	}]
+    "name": "Z-Wave Plus USB Controller", 
+    "type": "Contrôleur", 
+    "comlink": "3171-sigma-designs-controleur-z-wave-plus-usb", 
+    "remark": "", 
+    "imglink": "sigma.usb", 
+    "commands": [
+        {
+            "name": "Switch All On", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 240, 
+                "value": "type=switchall&value=255", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Switch All Off", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 240, 
+                "value": "type=switchall&value=0", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }
+    ]
 }

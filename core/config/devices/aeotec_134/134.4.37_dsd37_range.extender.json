@@ -1,11 +1,7 @@
 {
-	"name": "Range Extender (DSD37)",
-	"doc": "",
-	"type": "Répéteur",
-	"comlink": "2342-aeon-labs-repeteur-de-signal-z-wave-1220000012660",
-	"remark": "Module sans fonctionnalité hors mis le fait de relayer les infos du réseau",
-	"imglink": "aeotec.extender",
-	"configuration": {
-		"conf_version": 1
-	}
+    "name": "Range Extender (DSD37)", 
+    "type": "Répéteur", 
+    "comlink": "2342-aeon-labs-repeteur-de-signal-z-wave-1220000012660", 
+    "remark": "Module sans fonctionnalité hors mis le fait de relayer les infos du réseau", 
+    "imglink": "aeotec.extender"
 }

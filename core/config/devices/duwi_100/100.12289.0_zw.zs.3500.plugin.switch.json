@@ -1,54 +1,58 @@
 {
-	"name": "ZW ZS 3500 Plugin Switch",
-	"type": "Prise",
-	"comlink": "752-duwi-module-prise-on-off-z-wave-pour-l-exterieur-4008297054382",
-	"remark": "Il faut activer le polling pour avoir une remonté d'état",
-	"imglink": "duwi.zwzs-3500",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "LIGHT_ON"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].Set(255)"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "LIGHT_OFF"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].Set(0)"
-		}
-	},
-	{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "binary",
-		"unite": "",
-		"isVisible": 1,
-		"eventOnly": 1,
-		"display": {
-			"generic_type": "LIGHT_STATE"
-		},
-		"configuration": {
-			"class": "0x25",
-			"instanceId": 0,
-			"value": "data[0].val"
-		}
-	}]
+    "name": "ZW ZS 3500 Plugin Switch", 
+    "type": "Prise", 
+    "comlink": "752-duwi-module-prise-on-off-z-wave-pour-l-exterieur-4008297054382", 
+    "remark": "Il faut activer le polling pour avoir une remonté d'état", 
+    "imglink": "duwi.zwzs-3500", 
+    "commands": [
+        {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }
+        }, 
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }, 
+            "unite": ""
+        }
+    ]
 }

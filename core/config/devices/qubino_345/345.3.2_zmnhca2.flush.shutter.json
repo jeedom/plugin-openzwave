@@ -1,218 +1,259 @@
 {
-	"name": "ZMNHCA2 Volets",
-	"doc": "",
-	"type": "Volets",
-	"comlink": "3061-qubino-micromodule-pour-volet-roulant-et-consometre-z-wave-zmnhcd1-3830062070126",
-	"remark": "Remplacé par ZMNHCD1",
-	"imglink": "qubino.zmnhca2",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "FLAP_STATE"
-		},
-		"isVisible": 0,
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "store",
-			"mobile": "store"
-		}
-	},
-	{
-		"name": "Positionnement",
-		"type": "action",
-		"subtype": "slider",
-		"display": {
-			"generic_type": "FLAP_SLIDER"
-		},
-		"isVisible": 1,
-		"value": "Etat",
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[0].Set(#slider#)",
-			"minValue": 0,
-			"maxValue": 99
-		},
-		"template": {
-			"dashboard": "store",
-			"mobile": "store"
-		}
-	},
-	{
-		"name": "Descendre",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].Set(0)"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-arrow-down\"></i>",
-			"generic_type": "FLAP_DOWN"
-		}
-	},
-	{
-		"name": "Monter",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"class": "0x26",
-			"value": "data[0].Set(99)"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-arrow-up\"></i>",
-			"generic_type": "FLAP_UP"
-		}
-	},
-	{
-		"name": "Température",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"isVisible": 0,
-		"isHistorized": 1,
-		"unite": "°C",
-		"configuration": {
-			"class": "0x31",
-			"value": "data[1].val"
-		},
-		"template": {
-			"dashboard": "badge",
-			"mobile": "badge"
-		}
-	},
-	{
-		"name": "Puissance",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "W",
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x32",
-			"value": "data[8].val",
-			"minValue": 0,
-			"maxValue": 1840
-		}
-	},
-	{
-		"name": "Consommation",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"isVisible": 0,
-		"isHistorized": 1,
-		"unite": "kWh",
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x32",
-			"value": "data[0].val"
-		}
-	},
-	{
-		"name": "Stop",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[2].ReleaseButton()"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-stop\"><\/i>",
-			"generic_type": "FLAP_STOP"
-		}
-	},
-	{
-		"name": "Stop BSO",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[7].ReleaseButton()"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-stop\"><\/i>",
-			"generic_type": "FLAP_BSO_STOP"
-		}
-	},
-	{
-		"name": "Incliner",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[7].PressButton()"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-plus\"><\/i>",
-			"generic_type": "FLAP_BSO_UP"
-		}
-	},
-	{
-		"name": "Décliner",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[8].PressButton()"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-minus\"><\/i>",
-			"generic_type": "FLAP_BSO_DOWN"
-		}
-	},
-	{
-		"name": "Pas",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "GENERIC"
-		},
-		"isVisible": 0,
-		"configuration": {
-			"instanceId": "0",
-			"class": "0x26",
-			"value": "data[6].val"
-		}
-	},
-	{
-		"name": "Rafraichir",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"configuration": {
-			"class": "0x26",
-			"value": "Get()"
-		},
-		"display": {
-			"icon": "<i class=\"fa fa-refresh\"></i>",
-			"generic_type": "DONT"
-		}
-	}]
+    "name": "ZMNHCA2 Volets", 
+    "type": "Volets", 
+    "comlink": "3061-qubino-micromodule-pour-volet-roulant-et-consometre-z-wave-zmnhcd1-3830062070126", 
+    "remark": "Remplacé par ZMNHCD1", 
+    "imglink": "qubino.zmnhca2", 
+    "commands": [
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "FLAP_STATE"
+            }, 
+            "template": {
+                "dashboard": "store", 
+                "mobile": "store"
+            }
+        }, 
+        {
+            "name": "Positionnement", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "value": "Etat", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "FLAP_SLIDER"
+            }, 
+            "template": {
+                "dashboard": "store", 
+                "mobile": "store"
+            }
+        }, 
+        {
+            "name": "Descendre", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-arrow-down\"></i>", 
+                "generic_type": "FLAP_DOWN"
+            }
+        }, 
+        {
+            "name": "Monter", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=99", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-arrow-up\"></i>", 
+                "generic_type": "FLAP_UP"
+            }
+        }, 
+        {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "template": {
+                "dashboard": "badge", 
+                "mobile": "badge"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Puissance", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 8, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 1840
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "POWER"
+            }, 
+            "unite": "W"
+        }, 
+        {
+            "name": "Consommation", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "CONSUMPTION"
+            }, 
+            "unite": "kWh"
+        }, 
+        {
+            "name": "Stop", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=buttonaction&action=release", 
+                "index": 2, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-stop\"></i>", 
+                "generic_type": "FLAP_STOP"
+            }
+        }, 
+        {
+            "name": "Stop BSO", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=buttonaction&action=release", 
+                "index": 7, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-stop\"></i>", 
+                "generic_type": "FLAP_BSO_STOP"
+            }
+        }, 
+        {
+            "name": "Incliner", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=buttonaction&action=press", 
+                "index": 7, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-plus\"></i>", 
+                "generic_type": "FLAP_BSO_UP"
+            }
+        }, 
+        {
+            "name": "Décliner", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=buttonaction&action=press", 
+                "index": 8, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-minus\"></i>", 
+                "generic_type": "FLAP_BSO_DOWN"
+            }
+        }, 
+        {
+            "name": "Pas", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "", 
+                "index": 6, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "GENERIC"
+            }
+        }, 
+        {
+            "name": "Rafraichir", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "Get()", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-refresh\"></i>", 
+                "generic_type": "DONT"
+            }
+        }
+    ]
 }

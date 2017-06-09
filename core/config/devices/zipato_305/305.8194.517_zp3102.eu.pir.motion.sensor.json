@@ -1,83 +1,87 @@
 {
-	"name": "ZP3102",
-	"doc": "",
-	"type": "Multicapteurs",
-	"comlink": "2605-zipato-detecteur-de-mouvement-et-capteur-de-temperature-z-wave-3858890730272",
-	"remark": "",
-	"imglink": "vision.zp3102",
-	"battery_type": "1x3V CR123A",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Présence",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x20",
-			"value": "data[0].val"
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "PRESENCE"
-		},
-		"template": {
-			"dashboard": "presence",
-			"mobile": "presence"
-		}
-	},
-	{
-		"name": "Température",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "°C",
-		"configuration": {
-			"class": "0x31",
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Sabotage",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"configuration": {
-			"instanceId": 0,
-			"class": "0x71",
-			"value": "data[10].val",
-			"calculValueOffset": "#value#==3"
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "SABOTAGE"
-		},
-		"template": {
-			"dashboard": "vibration",
-			"mobile": "vibration"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 1,
-		"unite": "%",
-		"configuration": {
-			"class": "0x80",
-			"value": "data[0].val"
-		}
-	}]
+    "name": "ZP3102", 
+    "type": "Multicapteurs", 
+    "comlink": "2605-zipato-detecteur-de-mouvement-et-capteur-de-temperature-z-wave-3858890730272", 
+    "remark": "", 
+    "imglink": "vision.zp3102", 
+    "commands": [
+        {
+            "name": "Présence", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 32, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "PRESENCE"
+            }, 
+            "template": {
+                "dashboard": "presence", 
+                "mobile": "presence"
+            }
+        }, 
+        {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Sabotage", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 113, 
+                "value": "", 
+                "index": 10, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SABOTAGE"
+            }, 
+            "template": {
+                "dashboard": "vibration", 
+                "mobile": "vibration"
+            }
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
 }

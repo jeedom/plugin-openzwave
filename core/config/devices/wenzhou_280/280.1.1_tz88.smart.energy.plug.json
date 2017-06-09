@@ -1,101 +1,112 @@
 {
-	"name": "TZ88",
-	"doc": "",
-	"type": "Prise",
-	"comlink": "",
-	"remark": "Vendu aussi sous la marque TkbHome",
-	"imglink": "tkb.tz88",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "binary",
-		"display": {
-			"generic_type": "ENERGY_STATE"
-		},
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "",
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"display": {
-			"generic_type": "ENERGY_ON"
-		},
-		"isVisible": 1,
-		"value": "Etat",
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"display": {
-			"generic_type": "ENERGY_OFF"
-		},
-		"isVisible": 1,
-		"value": "Etat",
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		}
-	},
-	{
-		"name": "Puissance",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "POWER"
-		},
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "W",
-		"configuration": {
-			"class": "0x32",
-			"value": "data[8].val",
-			"maxValue": 2500,
-			"minValue": 0
-		}
-	},
-	{
-		"name": "Consommation",
-		"type": "info",
-		"subtype": "numeric",
-		"display": {
-			"generic_type": "CONSUMPTION"
-		},
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "kWh",
-		"configuration": {
-			"class": "0x32",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "tile"
-		}
-	}]
+    "name": "TZ88", 
+    "type": "Prise", 
+    "comlink": "", 
+    "remark": "Vendu aussi sous la marque TkbHome", 
+    "imglink": "tkb.tz88", 
+    "commands": [
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            }, 
+            "template": {
+                "dashboard": "prise", 
+                "mobile": "prise"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Etat", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "ENERGY_ON"
+            }, 
+            "template": {
+                "dashboard": "prise", 
+                "mobile": "prise"
+            }
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Etat", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            }, 
+            "template": {
+                "dashboard": "prise", 
+                "mobile": "prise"
+            }
+        }, 
+        {
+            "name": "Puissance", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 8, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 2500
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "POWER"
+            }, 
+            "unite": "W"
+        }, 
+        {
+            "name": "Consommation", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "CONSUMPTION"
+            }, 
+            "template": {
+                "dashboard": "tile"
+            }, 
+            "unite": "kWh"
+        }
+    ]
 }

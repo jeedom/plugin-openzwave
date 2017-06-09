@@ -1,218 +1,253 @@
 {
-    "name": "ZMNHOD1 Flush shutter DC",
-    "doc": "",
-    "type": "Volets",
-    "comlink": "2951-qubino-z-wave-flush-shutter-dc-zmnhod1-3830062070089",
-    "remark": "",
-    "imglink": "qubino.zmnhod1",
-    "configuration": {
-        "conf_version": 1
-    },
+    "name": "ZMNHOD1 Flush shutter DC", 
+    "type": "Volets", 
+    "comlink": "2951-qubino-z-wave-flush-shutter-dc-zmnhod1-3830062070089", 
+    "remark": "", 
+    "imglink": "qubino.zmnhod1", 
     "commands": [
         {
-            "name": "Info Position",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
+            "name": "Info Position", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "FLAP_STATE"
-            },
-            "configuration": {
-                "class": "0x26",
-                "value": "data[0].val"
-            },
+            }, 
             "template": {
-                "dashboard": "store",
+                "dashboard": "store", 
                 "mobile": "store"
             }
-        },
+        }, 
         {
-            "name": "Position",
-            "type": "action",
-            "subtype": "slider",
-            "isVisible": 1,
-            "value": "Level",
+            "name": "Position", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "value": "Level", 
+            "subtype": "slider", 
             "display": {
                 "generic_type": "FLAP_SLIDER"
-            },
-            "configuration":
-                    {
-                        "instanceId": "0",
-                        "class": "0x26",
-                        "value": "data[0].Set(#slider#)",
-                        "minValue": 0,
-                        "maxValue": 99
-                    },
-            "template":
-                    {
-                        "dashboard": "store",
-                        "mobile": "store"
-                    }
-        },
+            }, 
+            "template": {
+                "dashboard": "store", 
+                "mobile": "store"
+            }
+        }, 
         {
-            "name": "Puissance",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "W",
+            "name": "Puissance", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 8, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 48
+            }, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
-            },
-            "configuration":
-                    {
-                        "instanceId": 0,
-                        "class": "0x32",
-                        "value": "data[8].val",
-                        "minValue": 0,
-                        "maxValue": 48
-                    }
-        },
+            }, 
+            "unite": "W"
+        }, 
         {
-            "name": "Consommation",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "kWh",
+            "name": "Consommation", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
+            }, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
-            "configuration":
-                    {
-                        "instanceId": 0,
-                        "class": "0x32",
-                        "value": "data[0].val"
-                    }
-        },
+            }, 
+            "unite": "kWh"
+        }, 
         {
-            "name": "Monter",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "name": "Monter", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
             "configuration": {
-                "class": "0x26",
-                "value": "data[1].PressButton()"
-            },
+                "class": 38, 
+                "value": "type=buttonaction&action=press", 
+                "index": 1, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-arrow-up\"></i>",
+                "icon": "<i class=\"fa fa-arrow-up\"></i>", 
                 "generic_type": "FLAP_UP"
             }
-        },
+        }, 
         {
-            "name": "Descendre",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "name": "Descendre", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
             "configuration": {
-                "class": "0x26",
-                "value": "data[2].PressButton()"
-            },
+                "class": 38, 
+                "value": "type=buttonaction&action=press", 
+                "index": 2, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-arrow-down\"></i>",
+                "icon": "<i class=\"fa fa-arrow-down\"></i>", 
                 "generic_type": "FLAP_DOWN"
             }
-        },
+        }, 
         {
-            "name": "Température",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 0,
-            "isHistorized": 1,
-            "unite": "°C",
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
-            },
-            "configuration": {
-                "class": "0x31",
-                "value": "data[1].val"
-            }
-        },
+            }, 
+            "unite": "°C"
+        }, 
         {
-            "name": "Stop",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
+            "name": "Stop", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
             "configuration": {
-                "instanceId": "0",
-                "class": "0x26",
-                "value": "data[2].ReleaseButton()"
-            },
+                "class": 38, 
+                "value": "type=buttonaction&action=release", 
+                "index": 2, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-stop\"><\/i>",
+                "icon": "<i class=\"fa fa-stop\"></i>", 
                 "generic_type": "FLAP_STOP"
             }
-        },
+        }, 
         {
-            "name": "Stop BSO",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "name": "Stop BSO", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
             "configuration": {
-                "instanceId": "0",
-                "class": "0x26",
-                "value": "data[7].ReleaseButton()"
-            },
+                "class": 38, 
+                "value": "type=buttonaction&action=release", 
+                "index": 7, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-stop\"><\/i>",
+                "icon": "<i class=\"fa fa-stop\"></i>", 
                 "generic_type": "FLAP_BSO_STOP"
             }
-        },
+        }, 
         {
-            "name": "Incliner",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
-           "configuration": {
-                "instanceId": "0",
-                "class": "0x26",
-                "value": "data[7].PressButton()"
-            },
+            "name": "Incliner", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=buttonaction&action=press", 
+                "index": 7, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-plus\"><\/i>",
+                "icon": "<i class=\"fa fa-plus\"></i>", 
                 "generic_type": "FLAP_BSO_UP"
             }
-        },
+        }, 
         {
-            "name": "Décliner",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "name": "Décliner", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
             "configuration": {
-                "instanceId": "0",
-                "class": "0x26",
-                "value": "data[8].PressButton()"
-            },
+                "class": 38, 
+                "value": "type=buttonaction&action=press", 
+                "index": 8, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-minus\"><\/i>",
+                "icon": "<i class=\"fa fa-minus\"></i>", 
                 "generic_type": "FLAP_BSO_DOWN"
             }
-        },
+        }, 
         {
-            "name": "Pas",
-            "type": "info",
-            "subtype": "numeric",
+            "name": "Pas", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "", 
+                "index": 6, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "GENERIC"
-            },
-            "isVisible": 0,
-            "configuration": {
-                "instanceId": "0",
-                "class": "0x26",
-                "value": "data[6].val"
             }
-        },
+        }, 
         {
-            "name": "Rafraichir",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 0,
+            "name": "Rafraichir", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
             "configuration": {
-                "class": "0x26",
-                "value": "Get()"
-            },
+                "class": 38, 
+                "value": "Get()", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-refresh\"></i>",
+                "icon": "<i class=\"fa fa-refresh\"></i>", 
                 "generic_type": "DONT"
             }
         }

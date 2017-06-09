@@ -1,136 +1,159 @@
 {
-	"name": "MultiSensor 6 (ZW100)",
-	"doc": "",
-	"type": "Multicapteurs",
-	"comlink": "2921-aeon-labs-detecteur-multifonctions-6-en-1-multisensor-z-wave-plus-gen5-1220000013100",
-	"remark": "",
-	"imglink": "aeotec.multisensor6",
-	"battery_type": "2x3V CR123A",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Présence",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"configuration": {
-			"class": "0x30",
-			"value": "data[0].val"
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "PRESENCE"
-		},
-		"template": {
-			"dashboard": "presence",
-			"mobile": "presence"
-		}
-	},
-	{
-		"name": "Température",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "°C",
-		"display": {
-			"generic_type": "TEMPERATURE"
-		},
-		"configuration": {
-			"class": "0x31",
-			"value": "data[1].val"
-		}
-	},
-	{
-		"name": "Luminosité",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "Lux",
-		"display": {
-			"generic_type": "BRIGHTNESS"
-		},
-		"configuration": {
-			"class": "0x31",
-			"value": "data[3].val",
-			"maxValue": 40000,
-			"minValue": 0
-		}
-	},
-	{
-		"name": "Humidité",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "%",
-		"display": {
-			"generic_type": "HUMIDITY"
-		},
-		"configuration": {
-			"class": "0x31",
-			"value": "data[5].val"
-		}
-	},
-	{
-		"name": "Ultraviolet",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "",
-		"display": {
-			"generic_type": "UV"
-		},
-		"configuration": {
-			"class": "0x31",
-			"value": "data[27].val"
-		}
-	},
-	{
-		"name": "Sabotage",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"configuration": {
-			"class": "0x71",
-			"value": "data[10].val",
-			"calculValueOffset": "#value#==3"
-		},
-		"display": {
-			"invertBinary": "1",
-			"generic_type": "SABOTAGE"
-		},
-		"template": {
-			"dashboard": "vibration",
-			"mobile": "vibration"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "%",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"class": "0x80",
-			"value": "data[0].val"
-		}
-	}],
-	"recommended" : {
-		"params" : [
-          {"index": 5, "value" : "Binary Sensor Report"},
-		  {"index": 101, "value" : 240},
-		  {"index": 111, "value" : 900}
-        ],
-		"needswakeup" : true
+    "name": "MultiSensor 6 (ZW100)", 
+    "type": "Multicapteurs", 
+    "comlink": "2921-aeon-labs-detecteur-multifonctions-6-en-1-multisensor-z-wave-plus-gen5-1220000013100", 
+    "remark": "", 
+    "imglink": "aeotec.multisensor6", 
+    "commands": [
+        {
+            "name": "Présence", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 48, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "PRESENCE"
+            }, 
+            "template": {
+                "dashboard": "presence", 
+                "mobile": "presence"
+            }
+        }, 
+        {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Luminosité", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 3, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 40000
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BRIGHTNESS"
+            }, 
+            "unite": "Lux"
+        }, 
+        {
+            "name": "Humidité", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 5, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "HUMIDITY"
+            }, 
+            "unite": "%"
+        }, 
+        {
+            "name": "Ultraviolet", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 27, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "UV"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "name": "Sabotage", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 113, 
+                "value": "", 
+                "index": 10, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SABOTAGE"
+            }, 
+            "template": {
+                "dashboard": "vibration", 
+                "mobile": "vibration"
+            }
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ], 
+    "recommended": {
+        "params": [
+            {
+                "index": 5, 
+                "value": "Binary Sensor Report"
+            }, 
+            {
+                "index": 101, 
+                "value": 240
+            }, 
+            {
+                "index": 111, 
+                "value": 900
+            }
+        ], 
+        "needswakeup": true
     }
 }

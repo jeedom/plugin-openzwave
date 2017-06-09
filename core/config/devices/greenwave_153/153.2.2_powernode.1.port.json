@@ -1,113 +1,117 @@
 {
-	"name": "Powernode 1",
-	"doc": "greenwave.Powernode1_-_Prise",
-	"type": "Prise",
-	"comlink": "2857-greenwave-module-prise-z-wave-powernode-schuko-8886464000235",
-	"remark": "",
-	"imglink": "greenwave.Powernode1",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat",
-		"type": "info",
-		"subType": "binary",
-		"isHistorized": "0",
-		"configuration": {
-			"class": "0x25",
-			"instanceId": "0",
-			"value": "data[0].val"
-		},
-		"display": {
-			"invertBinary": "0",
-			"generic_type": "ENERGY_STATE"
-		},
-		"isVisible": "0"
-	},
-	{
-		"name": "On",
-		"type": "action",
-		"subType": "other",
-		"isHistorized": "0",
-		"configuration": {
-			"class": "0x25",
-			"instanceId": "0",
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		},
-		"display": {
-			"invertBinary": "0",
-			"generic_type": "ENERGY_ON"
-		},
-		"value": "Etat",
-		"isVisible": "1"
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subType": "other",
-		"isHistorized": "0",
-		"configuration": {
-			"class": "0x25",
-			"instanceId": "0",
-			"value": "data[0].Set(0)"
-		},
-		"template": {
-			"dashboard": "prise",
-			"mobile": "prise"
-		},
-		"display": {
-			"invertBinary": "0",
-			"generic_type": "ENERGY_OFF"
-		},
-		"value": "Etat",
-		"isVisible": "1"
-	},
-	{
-		"name": "Puissance",
-		"type": "info",
-		"subType": "numeric",
-		"isHistorized": "1",
-		"unite": "W",
-		"configuration": {
-			"class": "0x32",
-			"instanceId": "0",
-			"value": "data[8].val",
-			"maxValue": "2500",
-			"minValue": "0"
-		},
-		"template": {
-			"dashboard": "default",
-			"mobile": "default"
-		},
-		"display": {
-			"invertBinary": "0",
-			"generic_type": "POWER"
-		},
-		"isVisible": "1"
-	},
-	{
-		"name": "Consommation",
-		"type": "info",
-		"subType": "numeric",
-		"isHistorized": "0",
-		"unite": "kWh",
-		"configuration": {
-			"class": "0x32",
-			"instanceId": "0",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "tile",
-			"mobile": "tile"
-		},
-		"display": {
-			"invertBinary": "0",
-			"generic_type": "CONSUMPTION"
-		},
-		"isVisible": "1"
-	}]
+    "name": "Powernode 1", 
+    "type": "Prise", 
+    "comlink": "2857-greenwave-module-prise-z-wave-powernode-schuko-8886464000235", 
+    "remark": "", 
+    "imglink": "greenwave.Powernode1", 
+    "commands": [
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": "0", 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "0", 
+                "generic_type": "ENERGY_STATE"
+            }
+        }, 
+        {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": "1", 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Etat", 
+            "subtype": "other", 
+            "display": {
+                "invertBinary": "0", 
+                "generic_type": "ENERGY_ON"
+            }, 
+            "template": {
+                "dashboard": "prise", 
+                "mobile": "prise"
+            }
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": "1", 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Etat", 
+            "subtype": "other", 
+            "display": {
+                "invertBinary": "0", 
+                "generic_type": "ENERGY_OFF"
+            }, 
+            "template": {
+                "dashboard": "prise", 
+                "mobile": "prise"
+            }
+        }, 
+        {
+            "name": "Puissance", 
+            "type": "info", 
+            "isVisible": "1", 
+            "isHistorized": "1", 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 8, 
+                "instance": 1, 
+                "minValue": "0", 
+                "maxValue": "2500"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "invertBinary": "0", 
+                "generic_type": "POWER"
+            }, 
+            "template": {
+                "dashboard": "default", 
+                "mobile": "default"
+            }, 
+            "unite": "W"
+        }, 
+        {
+            "name": "Consommation", 
+            "type": "info", 
+            "isVisible": "1", 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "invertBinary": "0", 
+                "generic_type": "CONSUMPTION"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }, 
+            "unite": "kWh"
+        }
+    ]
 }

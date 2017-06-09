@@ -1,252 +1,303 @@
 {
-	"name": "Siren Gen5 (ZW080)",
-	"doc": "",
-	"type": "Sirène",
-	"comlink": "2592-aeon-labs-sirene-z-wave-plus-sur-prise-electrique-gen5-1220000012592",
-	"remark": "",
-	"imglink": "aeotec.zw080",
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Etat",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 0,
-		"unite": "",
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].val"
-		},
-		"display": {
-			"invertBinary": 1,
-			"generic_type": "DONT"
-		},
-		"template": {
-			"dashboard": "alert",
-			"mobile": "alert"
-		}
-	},
-	{
-		"name": "On",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(255)"
-		}
-	},
-	{
-		"name": "Off",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(0)"
-		}
-	},	
-	{
-		"name": "Sound 1 Low",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 1 - Low Volume)"
-		}
-	},
-	{
-		"name": "Sound 1 Mid",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 1 - Mid Volume)"
-		}
-	},
-	{
-		"name": "Sound 1 High",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 1 - High Volume)"
-		}
-	},	
-	{
-		"name": "Sound 2 Low",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 2 - Low Volume)"
-		}
-	},
-	{
-		"name": "Sound 2 Mid",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 2 - Mid Volume)"
-		}
-	},
-	{
-		"name": "Sound 2 High",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 2 - High Volume)"
-		}
-	},	
-	{
-		"name": "Sound 3 Low",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 3 - Low Volume)"
-		}
-	},
-	{
-		"name": "Sound 3 Mid",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 3 - Mid Volume)"
-		}
-	},
-	{
-		"name": "Sound 3 High",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 3 - High Volume)"
-		}
-	},	
-	{
-		"name": "Police Low",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 4 - Low Volume)"
-		}
-	},
-	{
-		"name": "Police Mid",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 4 - Mid Volume)"
-		}
-	},
-	{
-		"name": "Police High",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 4 - High Volume)"
-		}
-	},	
-	{
-		"name": "Sound 5 Low",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 5 - Low Volume)"
-		}
-	},
-	{
-		"name": "Sound 5 Mid",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 5 - Mid Volume)"
-		}
-	},
-	{
-		"name": "Sound 5 High",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x70",
-			"value": "data[37].Set(Sound 5 - High Volume)"
-		}
-	}]
+    "name": "Siren Gen5 (ZW080)", 
+    "type": "Sirène", 
+    "comlink": "2592-aeon-labs-sirene-z-wave-plus-sur-prise-electrique-gen5-1220000012592", 
+    "remark": "", 
+    "imglink": "aeotec.zw080", 
+    "commands": [
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": 1, 
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "alert", 
+                "mobile": "alert"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Sound 1 Low", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 1 - Low Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Sound 1 Mid", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 1 - Mid Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Sound 1 High", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 1 - High Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Sound 2 Low", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 2 - Low Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Sound 2 Mid", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 2 - Mid Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Sound 2 High", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 2 - High Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Sound 3 Low", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 3 - Low Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Sound 3 Mid", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 3 - Mid Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Sound 3 High", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 3 - High Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Police Low", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 4 - Low Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Police Mid", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 4 - Mid Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Police High", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 4 - High Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Sound 5 Low", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 5 - Low Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Sound 5 Mid", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 5 - Mid Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Sound 5 High", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setvalue&value=Sound 5 - High Volume", 
+                "index": 37, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }
+    ]
 }

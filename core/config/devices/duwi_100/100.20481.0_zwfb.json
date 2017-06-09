@@ -1,43 +1,49 @@
 {
-	"name": "Wireless remote control 10-channel",
-	"doc": "",
-	"type": "Télécommande",
-	"comlink": "3075-z-waveme-telecommande-z-wave-10-canaux",
-	"remark": "Remplacé par la Z-WAVE.ME RC2",
-	"imglink": "duwi.rzwfb",
-	"battery_type": "4x1.5V AAA",
-	"commands": [{
-		"name": "Scene",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"display": {
-			"generic_type": "DONT"
-		},
-		"configuration": {
-			"class": "0x2b",
-			"repeatEventManagement" : "always",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "tile",
-			"mobile": "tile"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "%",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"class": "0x80",
-			"value": "data[0].val"
-		}
-	}]
+    "name": "Wireless remote control 10-channel", 
+    "type": "Télécommande", 
+    "comlink": "3075-z-waveme-telecommande-z-wave-10-canaux", 
+    "remark": "Remplacé par la Z-WAVE.ME RC2", 
+    "imglink": "duwi.rzwfb", 
+    "commands": [
+        {
+            "name": "Scene", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 43, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
 }

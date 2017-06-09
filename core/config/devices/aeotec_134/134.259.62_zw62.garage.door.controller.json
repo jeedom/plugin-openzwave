@@ -1,108 +1,130 @@
 {
-	"name": "Garage Door Controller Gen5 (ZW062)",
-	"doc": "aeotec.zw062_garage_door_controller",
-	"type": "Porte",
-	"comlink": "3403-aeon-labs-controleur-de-porte-de-garage-z-wave-gen5",
-	"remark": "",
-	"imglink": "aeotec.garagedoorcontroller",
-	"ignore": 0,
-	"configuration": {
-		"conf_version": 1
-	},
-	"commands": [{
-		"name": "Open/Close",
-		"type": "action",
-		"subtype": "other",
-		"isVisible": 1,
-		"value": "Position",
-		"configuration": {
-			"class": "0x25",
-			"value": "data[0].Set(255)"
-		},
-		"template": {
-			"dashboard": "GarageDoor_BarrierOperatorBasic",
-			"mobile": "GarageDoor_BarrierOperatorBasic"
-		}
-	},
-	{
-		"name": "Position",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 1,
-		"configuration": {
-			"class": "0x20",
-			"value": "data[0].val"
-		},
-		"display": {
-			"invertBinary": "1"
-		},
-		"template": {
-			"dashboard": "door",
-			"mobile": "door"
-		}
-	},
-	{
-		"name": "Volume",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "",
-		"configuration": {
-			"class": "0x70",
-			"value": "data[44].val"
-		},
-		"template": {
-			"dashboard": "tile",
-			"mobile": "tile"
-		}
-	},
-	{
-		"name": "Température",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "°C",
-		"configuration": {
-			"class": "0x70",
-			"value": "data[45].val",
-			"calculValueOffset": "#value#/10.0"
-		}
-	},
-		{
-			"name": "Actualiser Température",
-			"type": "action",
-			"subtype": "other",
-			"isVisible": 0,
-			"value": "",
-			"configuration": {
-				"class": "0x70",
-				"value": "data[45].ForceRefresh()"
-			}
-		},
-		{
-			"name": "Sabotage",
-			"type": "info",
-			"subtype": "binary",
-			"isVisible": 1,
-			"isHistorized": 1,
-			"configuration": {
-				"class": "0x70",
-				"value": "data[41].val",
-				"calculValueOffset": "#value#=='Sensor is removed'"
-			},
-			"display": {
-				"invertBinary": "1",
-				"generic_type": "SABOTAGE"
-			}
-		}
-	],
-	"recommended" : {
-		"params" : [
-		  {"index": 80, "value" : "Hail"}          
-        ],		
-		"needswakeup" : false
+    "name": "Garage Door Controller Gen5 (ZW062)", 
+    "type": "Porte", 
+    "comlink": "3403-aeon-labs-controleur-de-porte-de-garage-z-wave-gen5", 
+    "remark": "", 
+    "imglink": "aeotec.garagedoorcontroller", 
+    "commands": [
+        {
+            "name": "Open/Close", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Position", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "GarageDoor_BarrierOperatorBasic", 
+                "mobile": "GarageDoor_BarrierOperatorBasic"
+            }
+        }, 
+        {
+            "name": "Position", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 32, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "invertBinary": "1"
+            }, 
+            "template": {
+                "dashboard": "door", 
+                "mobile": "door"
+            }
+        }, 
+        {
+            "name": "Volume", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 112, 
+                "value": "", 
+                "index": 44, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 112, 
+                "value": "", 
+                "index": 45, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Actualiser Température", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=refreshData", 
+                "index": 45, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Sabotage", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 112, 
+                "value": "", 
+                "index": 41, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SABOTAGE"
+            }
+        }
+    ], 
+    "recommended": {
+        "params": [
+            {
+                "index": 80, 
+                "value": "Hail"
+            }
+        ], 
+        "needswakeup": false
     }
 }

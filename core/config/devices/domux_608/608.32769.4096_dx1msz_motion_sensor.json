@@ -1,43 +1,49 @@
 {
-	"name": "Motion Sensor (DX1MS-Z)",
-	"doc": "",
-	"type": "Multicapteurs",
-	"comlink": "",
-	"remark": "",
-	"imglink": "domux.dx1msz",
-	"battery_type": "1x3V CR17335",
-	"commands": [{
-		"name": "Présence",
-		"type": "info",
-		"subtype": "binary",
-		"isVisible": 1,
-		"isHistorized": 1,
-		"unite": "",
-		"display": {
-			"generic_type": "PRESENCE"
-		},
-		"configuration": {
-			"class": "0x30",
-			"value": "data[0].val"
-		},
-		"template": {
-			"dashboard": "presence",
-			"mobile": "presence"
-		}
-	},
-	{
-		"name": "Batterie",
-		"type": "info",
-		"subtype": "numeric",
-		"isVisible": 0,
-		"isHistorized": 0,
-		"unite": "%",
-		"display": {
-			"generic_type": "BATTERY"
-		},
-		"configuration": {
-			"class": "0x80",
-			"value": "data[0].val"
-		}
-	}]
+    "name": "Motion Sensor (DX1MS-Z)", 
+    "type": "Multicapteurs", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "domux.dx1msz", 
+    "commands": [
+        {
+            "name": "Présence", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 48, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "PRESENCE"
+            }, 
+            "template": {
+                "dashboard": "presence", 
+                "mobile": "presence"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
 }
