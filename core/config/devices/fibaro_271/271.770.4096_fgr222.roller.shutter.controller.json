@@ -89,7 +89,7 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 38, 
-                "value": "Get()", 
+                "value": "type=refreshData", 
                 "index": 0, 
                 "instance": 1, 
                 "minValue": 0, 
