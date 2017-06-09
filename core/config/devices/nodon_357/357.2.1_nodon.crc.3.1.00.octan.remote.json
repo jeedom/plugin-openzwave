@@ -1,123 +1,117 @@
 {
-    "name": "Octan Remote", 
-    "type": "Télécommande", 
-    "comlink": "2939-nodon-octan-telecommande-murale-z-wave-3700313920282", 
-    "remark": "Fonctionne en mode scene et non central scene", 
-    "imglink": "nodon.octan", 
-    "commands": [
-        {
-            "name": "Scene", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 43, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "repeatEventManagement": "always"
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "template": {
-                "dashboard": "tile", 
-                "mobile": "tile"
-            }
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }
-    ], 
-    "configuration": {
-        "1": {
-            "name": "Profile des boutons 1 et 3", 
-            "help": "Ce paramètre permet de définir le profil des boutons 1 et 3", 
-            "list": {
-                "Scene Mode": "Mode scène", 
-                "Mono Mode": "Mode mono", 
-                "Duo Mode": "Mode duo"
-            }
-        }, 
-        "2": {
-            "name": "Profile des boutons 2 et 4", 
-            "help": "Ce paramètre permet de définir le profil des boutons 2 et 4", 
-            "list": {
-                "Scene Mode": "Mode scène", 
-                "Mono Mode": "Mode mono", 
-                "Duo Mode": "Mode duo"
-            }
-        }, 
-        "3": {
-            "name": "Type de scène", 
-            "help": "Ce paramètre permet de définir le type de scène", 
-            "list": {
-                "Central Scene": "Mode scène centrale", 
-                "Scene Activation": "Mode scène"
-            }
-        }, 
-        "4": {
-            "name": "Action du bouton 1 en mode mono", 
-            "help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions", 
-            "list": {
-                "Control Group 2": "Contrôle du groupe 2", 
-                "All Switch ON": "Tous ON", 
-                "All Switch OFF": "Tous OFF"
-            }
-        }, 
-        "5": {
-            "name": "Action du bouton 2 en mode mono", 
-            "help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions", 
-            "list": {
-                "Control Group 3": "Contrôle du groupe 3", 
-                "All Switch ON": "Tous ON", 
-                "All Switch OFF": "Tous OFF"
-            }
-        }, 
-        "6": {
-            "name": "Action du bouton 3 en mode mono", 
-            "help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions", 
-            "list": {
-                "Control Group 4": "Contrôle du groupe 4", 
-                "All Switch ON": "Tous ON", 
-                "All Switch OFF": "Tous OFF"
-            }
-        }, 
-        "7": {
-            "name": "Action du bouton 4 en mode mono", 
-            "help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions", 
-            "list": {
-                "Control Group 5": "Contrôle du groupe 5", 
-                "All Switch ON": "Tous ON", 
-                "All Switch OFF": "Tous OFF"
-            }
-        }, 
-        "8": {
-            "name": "Fonctionnement de la led", 
-            "help": "Réglage de la diode de la télécommande", 
-            "list": {
-                "Led OFF": "Désactivée", 
-                "Led Blink on button action": "Clignote sur appui boutons", 
-                "Led Blink on transmission result": "Clignote sur accusé réception de transmission", 
-                "Led Blink on button action and transmission result": "Clignote dans les deux cas"
-            }
-        }
-    }
+	"name": "Octan Remote",
+	"doc": "nodon.octan_-_Remote_-_Telecommande",
+	"type": "Télécommande",
+	"comlink": "2939-nodon-octan-telecommande-murale-z-wave-3700313920282",
+	"remark": "Fonctionne en mode scene et non central scene",
+	"imglink": "nodon.octan",
+	"battery_type": "1x3V CR2032",
+	"commands": [{
+		"name": "Scene",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x2b",
+			"repeatEventManagement" : "always",
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "tile",
+			"mobile": "tile"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "%",
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"value": "data[0].val"
+		}
+	}],
+	"configuration": {
+		"1": {
+			"name": "Profile des boutons 1 et 3",
+			"help": "Ce paramètre permet de définir le profil des boutons 1 et 3",
+			"list": {
+				"Scene Mode": "Mode scène",
+				"Mono Mode": "Mode mono",
+				"Duo Mode": "Mode duo"
+			}
+		},
+		"2": {
+			"name": "Profile des boutons 2 et 4",
+			"help": "Ce paramètre permet de définir le profil des boutons 2 et 4",
+			"list": {
+				"Scene Mode": "Mode scène",
+				"Mono Mode": "Mode mono",
+				"Duo Mode": "Mode duo"
+			}
+		},
+		"3": {
+			"name": "Type de scène",
+			"help": "Ce paramètre permet de définir le type de scène",
+			"list": {
+				"Central Scene": "Mode scène centrale",
+				"Scene Activation": "Mode scène"
+			}
+		},
+		"4": {
+			"name": "Action du bouton 1 en mode mono",
+			"help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions",
+			"list": {
+				"Control Group 2": "Contrôle du groupe 2",
+				"All Switch ON": "Tous ON",
+				"All Switch OFF": "Tous OFF"
+			}
+		},
+		"5": {
+			"name": "Action du bouton 2 en mode mono",
+			"help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions",
+			"list": {
+				"Control Group 3": "Contrôle du groupe 3",
+				"All Switch ON": "Tous ON",
+				"All Switch OFF": "Tous OFF"
+			}
+		},
+		"6": {
+			"name": "Action du bouton 3 en mode mono",
+			"help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions",
+			"list": {
+				"Control Group 4": "Contrôle du groupe 4",
+				"All Switch ON": "Tous ON",
+				"All Switch OFF": "Tous OFF"
+			}
+		},
+		"7": {
+			"name": "Action du bouton 4 en mode mono",
+			"help": "Quand le bouton est définit en mode mono il peut avoir plusieurs fonctions",
+			"list": {
+				"Control Group 5": "Contrôle du groupe 5",
+				"All Switch ON": "Tous ON",
+				"All Switch OFF": "Tous OFF"
+			}
+		},
+		"8": {
+			"name": "Fonctionnement de la led",
+			"help": "Réglage de la diode de la télécommande",
+			"list": {
+				"Led OFF": "Désactivée",
+				"Led Blink on button action": "Clignote sur appui boutons",
+				"Led Blink on transmission result": "Clignote sur accusé réception de transmission",
+				"Led Blink on button action and transmission result": "Clignote dans les deux cas"
+			}
+		}
+	}
 }

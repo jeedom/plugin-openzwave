@@ -1,169 +1,153 @@
 {
-    "name": "PAN06 In Wall Switch Module 2X1.5KW", 
-    "type": "Micromodule", 
-    "comlink": "2482-philio-micromodule-commutateur-double-z-wave-4713698570019", 
-    "remark": "", 
-    "imglink": "philio.pan06", 
-    "commands": [
-        {
-            "name": "On All", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 2
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "Off All", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 2
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "Etat All", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "", 
-                "index": 0, 
-                "instance": 2
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "On 1", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 3
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_ON"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "name": "Off 1", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 3
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_OFF"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "name": "Etat 1", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "", 
-                "index": 0, 
-                "instance": 3
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "LIGHT_STATE"
-            }
-        }, 
-        {
-            "name": "On 2", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 4
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_ON"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "name": "Off 2", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 4
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_OFF"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "name": "Etat 2", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "", 
-                "index": 0, 
-                "instance": 4
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "LIGHT_STATE"
-            }
-        }
-    ]
+	"name": "PAN06 In Wall Switch Module 2X1.5KW",
+	"doc": "",
+	"type": "Micromodule",
+	"comlink": "2482-philio-micromodule-commutateur-double-z-wave-4713698570019",
+	"remark": "",
+	"imglink": "philio.pan06",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "On All",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 1,
+			"value": "data[0].Set(255)"
+		}
+	},
+	{
+		"name": "Off All",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 1,
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Etat All",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 1,
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "On 1",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 2,
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Off 1",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 2,
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Etat 1",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 2,
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "On 2",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 3,
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Off 2",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 3,
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Etat 2",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 3,
+			"value": "data[0].val"
+		}
+	}]
 }

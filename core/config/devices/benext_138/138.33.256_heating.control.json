@@ -1,155 +1,141 @@
 {
-    "name": "Heating Control", 
-    "type": "Micromodule", 
-    "comlink": "", 
-    "remark": "", 
-    "imglink": "benext.heatingControl", 
-    "commands": [
-        {
-            "name": "Température", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 49, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "THERMOSTAT_TEMPERATURE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Mode", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 64, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "string", 
-            "display": {
-                "generic_type": "THERMOSTAT_MODE"
-            }, 
-            "unite": ""
-        }, 
-        {
-            "name": "Heat", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 64, 
-                "value": "type=setvalue&value=Heat", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_MODE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Energy Save heating", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 64, 
-                "value": "type=setvalue&value=Energy Heat", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_MODE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "ConsigneEtatHeating", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 67, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1, 
-                "minValue": "5", 
-                "maxValue": "30"
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "THERMOSTAT_SETPOINT"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Consigne Chaud", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 67, 
-                "value": "type=setvalue&value=#slider#", 
-                "index": 1, 
-                "instance": 1, 
-                "minValue": "5", 
-                "maxValue": "30"
-            }, 
-            "value": "ConsigneEtatHeating", 
-            "subtype": "slider", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_SETPOINT"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "ConsigneEtatEnergySave", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 67, 
-                "value": "", 
-                "index": 11, 
-                "instance": 1, 
-                "minValue": "5", 
-                "maxValue": "30"
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "THERMOSTAT_SETPOINT"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Consigne Energy Save heating", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 67, 
-                "value": "type=setvalue&value=#slider#", 
-                "index": 11, 
-                "instance": 1, 
-                "minValue": "5", 
-                "maxValue": "30"
-            }, 
-            "value": "ConsigneEtatEnergySave", 
-            "subtype": "slider", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_SETPOINT"
-            }, 
-            "unite": "°C"
-        }
-    ]
+	"name": "Heating Control",
+	"doc": "",
+	"type": "Micromodule",
+	"comlink": "",
+	"remark": "",
+	"imglink": "benext.heatingControl",
+	"commands": [{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "THERMOSTAT_TEMPERATURE"
+		},
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "°C",
+		"configuration": {
+			"class": "0x31",
+			"value": "data[1].val"
+		}
+	},
+		{
+			"name": "Mode",
+			"type": "info",
+			"subtype": "string",
+			"display": {
+				"generic_type": "THERMOSTAT_MODE"
+			},
+			"isVisible": 1,
+			"isHistorized": 0,
+			"unite": "",
+			"configuration": {
+				"class": "0x40",
+				"value": "data[0].val"
+			}
+		},
+		{
+			"name": "Heat",
+			"type": "action",
+			"subtype": "other",
+			"display": {
+				"generic_type": "THERMOSTAT_SET_MODE"
+			},
+			"isVisible": 1,
+			"isHistorized": 0,
+			"unite": "°C",
+			"configuration": {
+				"class": "0x40",
+				"instanceId": 0,
+				"value": "data[0].Set(Heat)"
+			}
+		},
+		{
+			"name": "Energy Save heating",
+			"type": "action",
+			"subType": "other",
+			"display": {
+				"generic_type": "THERMOSTAT_SET_MODE"
+			},
+			"isVisible": 1,
+			"isHistorized": 0,
+			"unite": "°C",
+			"configuration": {
+				"class": "0x40",
+				"instanceId": 0,
+				"value": "data[0].Set(Energy Heat)"
+			}
+		},
+		{
+			"name": "ConsigneEtatHeating",
+			"type": "info",
+			"subType": "numeric",
+			"display": {
+				"generic_type": "THERMOSTAT_SETPOINT"
+			},
+			"isVisible": 0,
+			"unite": "°C",
+			"configuration": {
+				"instanceId": "0",
+				"class": "0x43",
+				"value": "data[1].val",
+				"minValue": "5",
+				"maxValue": "30"
+			}
+		},
+		{
+			"name": "Consigne Chaud",
+			"type": "action",
+			"subType": "slider",
+			"display": {
+				"generic_type": "THERMOSTAT_SET_SETPOINT"
+			},
+			"isVisible": 1,
+			"unite": "°C",
+			"value": "ConsigneEtatHeating",
+			"configuration": {
+				"instanceId": "0",
+				"class": "0x43",
+				"value": "data[1].Set(#slider#)",
+				"minValue": "5",
+				"maxValue": "30"
+			}
+		},
+		{
+			"name": "ConsigneEtatEnergySave",
+			"type": "info",
+			"subType": "numeric",
+			"display": {
+				"generic_type": "THERMOSTAT_SETPOINT"
+			},
+			"isVisible": 0,
+			"unite": "°C",
+			"configuration": {
+				"instanceId": "0",
+				"class": "0x43",
+				"value": "data[11].val",
+				"minValue": "5",
+				"maxValue": "30"
+			}
+		},
+		{
+			"name": "Consigne Energy Save heating",
+			"type": "action",
+			"subType": "slider",
+			"display": {
+				"generic_type": "THERMOSTAT_SET_SETPOINT"
+			},
+			"isVisible": 1,
+			"unite": "°C",
+			"value": "ConsigneEtatEnergySave",
+			"configuration": {
+				"instanceId": "0",
+				"class": "0x43",
+				"value": "data[11].Set(#slider#)",
+				"minValue": "5",
+				"maxValue": "30"
+			}
+		}
+	]
 }

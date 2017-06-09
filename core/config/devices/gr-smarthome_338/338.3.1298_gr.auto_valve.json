@@ -1,59 +1,55 @@
 {
-    "name": "Vanne 1/4 de tour (GR-105N)", 
-    "type": "Vanne", 
-    "comlink": "", 
-    "remark": "", 
-    "imglink": "gr.autovalve", 
-    "commands": [
-        {
-            "name": "Ouvrir", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "Fermer", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "Etat", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }
-    ]
+	"name": "Vanne 1/4 de tour (GR-105N)",
+	"doc": "",
+	"type": "Vanne",
+	"comlink": "",
+	"remark": "",
+	"imglink": "gr.autovalve",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Ouvrir",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].Set(255)"
+		}
+	},
+	{
+		"name": "Fermer",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].val"
+		}
+	}]
 }

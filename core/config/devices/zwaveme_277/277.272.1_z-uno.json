@@ -1,7 +1,12 @@
 {
-    "name": "Z-Uno", 
-    "type": "Carte de développeur", 
-    "comlink": "", 
-    "remark": "", 
-    "imglink": "zwaveme.zuno"
+	"name": "Z-Uno",
+	"doc": "",
+	"type": "Carte de développeur",
+	"comlink": "",
+	"remark": "",
+	"imglink": "zwaveme.zuno",
+	"battery_type": "",
+	"configuration": {
+		"conf_version": 1
+	}
 }

@@ -1,60 +1,56 @@
 {
-    "name": "Automated Water Shut-Off Valve (WV-01)", 
-    "type": "Valve", 
-    "comlink": "2957-fortrezz-vanne-d-arret-d-eau-34-z-wave-661799486057", 
-    "remark": "", 
-    "imglink": "fortrezz.wv01", 
-    "commands": [
-        {
-            "name": "Close", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "Open", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "Etat", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "invertBinary": "1", 
-                "generic_type": "DONT"
-            }
-        }
-    ]
+	"name": "Automated Water Shut-Off Valve (WV-01)",
+	"doc": "",
+	"type": "Valve",
+	"comlink": "2957-fortrezz-vanne-d-arret-d-eau-34-z-wave-661799486057",
+	"remark": "",
+	"imglink": "fortrezz.wv01",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Close",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].Set(255)"
+		}
+	},
+		{
+			"name": "Open",
+			"type": "action",
+			"subtype": "other",
+			"isVisible": 1,
+			"value": "Etat",
+			"display": {
+				"generic_type": "DONT"
+			},
+			"configuration": {
+				"class": "0x25",
+				"instanceId": 0,
+				"value": "data[0].Set(0)"
+			}
+		},
+		{
+			"name": "Etat",
+			"type": "info",
+			"subtype": "binary",
+			"isVisible": 1,
+			"display": {
+				"invertBinary": "1",
+				"generic_type": "DONT"
+			},
+			"configuration": {
+				"class": "0x25",
+				"instanceId": 0,
+				"value": "data[0].val"
+			}
+		}]
 }

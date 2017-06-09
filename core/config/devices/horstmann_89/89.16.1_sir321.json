@@ -1,67 +1,63 @@
 {
-    "name": "SIR 321 RF Countdown Timer", 
-    "type": "Timer", 
-    "comlink": "3216-secure-minuterie-manuelle-3060120-minutes-z-wave-5015914083563", 
-    "remark": "Pas de gestion de Schedule, pas de remonté d'état", 
-    "imglink": "horstmann.sir321", 
-    "configuration": {
-        "1": {
-            "name": "Mode Fail Safe", 
-            "help": "Active ou désactive la fonction Fails Safe", 
-            "list": {
-                "Enabled": "Fonction active", 
-                "Disabled": "Fonction désactivée"
-            }
-        }, 
-        "2": {
-            "name": "Echelle de température", 
-            "help": "Celcius/Farenheit"
-        }, 
-        "3": {
-            "name": "Intervalle de temps pour un rapport", 
-            "help": "Durée en secondes pour un rapport de température"
-        }, 
-        "4": {
-            "name": "Variation de température pour un rapport", 
-            "help": "Différence de température pour déclencher une remontée (10-->1)"
-        }, 
-        "5": {
-            "name": "Température de Cutt Off", 
-            "help": "Température de sécurité au delà de laquelle le switch sera coupée"
-        }
-    }, 
-    "commands": [
-        {
-            "name": "On", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "Off", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }
-    ]
+	"name": "SIR 321 RF Countdown Timer",
+	"doc": "secure.sir321_-_Timer",
+	"type": "Timer",
+	"comlink": "3216-secure-minuterie-manuelle-3060120-minutes-z-wave-5015914083563",
+	"remark": "Pas de gestion de Schedule, pas de remonté d'état",
+	"imglink": "horstmann.sir321",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(255)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(0)"
+		}
+	}],
+	"configuration": {
+		"1": {
+			"name": "Mode Fail Safe",
+			"help": "Active ou désactive la fonction Fails Safe",
+			"list": {
+				"Enabled": "Fonction active",
+				"Disabled": "Fonction désactivée"
+			}
+		},
+		"2": {
+			"name": "Echelle de température",
+			"help": "Celcius/Farenheit"
+		},
+		"3": {
+			"name": "Intervalle de temps pour un rapport",
+			"help": "Durée en secondes pour un rapport de température"
+		},
+		"4": {
+			"name": "Variation de température pour un rapport",
+			"help": "Différence de température pour déclencher une remontée (10-->1)"
+		},
+		"5": {
+			"name": "Température de Cutt Off",
+			"help": "Température de sécurité au delà de laquelle le switch sera coupée"
+		}
+	}
 }

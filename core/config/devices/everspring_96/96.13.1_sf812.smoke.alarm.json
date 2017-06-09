@@ -1,50 +1,47 @@
 {
-    "name": "SF812", 
-    "type": "Fumée", 
-    "comlink": "848-everspring-detecteur-de-fumee-z-wave-sf812-3700946500219", 
-    "remark": "", 
-    "imglink": "everspring.sf812", 
-    "ignore": true, 
-    "commands": [
-        {
-            "name": "Alarme", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 156, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "invertBinary": "1", 
-                "generic_type": "SMOKE"
-            }, 
-            "template": {
-                "dashboard": "feu", 
-                "mobile": "feu"
-            }
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }
-    ]
+	"name": "SF812",
+	"doc": "",
+	"type": "Fumée",
+	"comlink": "848-everspring-detecteur-de-fumee-z-wave-sf812-3700946500219",
+	"remark": "",
+	"imglink": "everspring.sf812",
+	"ignore": 1,
+	"battery_type": "1x9V",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Alarme",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"class": "0x9C",
+			"value": "data[1].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "SMOKE"
+		},
+		"template": {
+			"dashboard": "feu",
+			"mobile": "feu"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"instanceId": 0,
+			"value": "data[0].val"
+		}
+	}]
 }

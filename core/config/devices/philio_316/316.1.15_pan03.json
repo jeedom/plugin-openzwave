@@ -1,138 +1,129 @@
 {
-    "name": "PAN03 Switch Module with meter 3 KW X1", 
-    "type": "Micromodule", 
-    "comlink": "2959-zipato-micromodule-commutateur-z-wave-avec-mesure-d-energie-3858890733242", 
-    "remark": "Vendu aussi sous la marque Zipato", 
-    "imglink": "philio.pan03", 
-    "commands": [
-        {
-            "name": "On", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_ON"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "name": "Off", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_OFF"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "name": "Etat", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "LIGHT_STATE"
-            }
-        }, 
-        {
-            "name": "Puissance", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 8, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 3200
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "POWER"
-            }, 
-            "unite": "W"
-        }, 
-        {
-            "name": "Intensité", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 20, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "unite": "A"
-        }, 
-        {
-            "name": "Tension", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 16, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "VOLTAGE"
-            }, 
-            "unite": "V"
-        }, 
-        {
-            "name": "Consommation", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "CONSUMPTION"
-            }, 
-            "unite": "kWh"
-        }
-    ]
+	"name": "PAN03 Switch Module with meter 3 KW X1",
+	"doc": "",
+	"type": "Micromodule",
+	"comlink": "2959-zipato-micromodule-commutateur-z-wave-avec-mesure-d-energie-3858890733242",
+	"remark": "Vendu aussi sous la marque Zipato",
+	"imglink": "philio.pan03",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": 0,
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "Puissance",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "W",
+		"display": {
+			"generic_type": "POWER"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[8].val",
+			"maxValue": 3200,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Intensité",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "A",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[20].val"
+		}
+	},
+	{
+		"name": "Tension",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "V",
+		"display": {
+			"generic_type": "VOLTAGE"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[16].val"
+		}
+	},
+	{
+		"name": "Consommation",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "kWh",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[0].val"
+		}
+	}]
 }

@@ -1,205 +1,188 @@
 {
-    "name": "Nano Switch (ZW116)", 
-    "type": "Micromodule", 
-    "comlink": "", 
-    "remark": "", 
-    "imglink": "aeotec.nanoswitch", 
-    "commands": [
-        {
-            "name": "Etat", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "LIGHT_STATE"
-            }, 
-            "template": {
-                "dashboard": "prise", 
-                "mobile": "prise"
-            }, 
-            "unite": ""
-        }, 
-        {
-            "name": "On", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_ON"
-            }, 
-            "template": {
-                "dashboard": "prise", 
-                "mobile": "prise"
-            }
-        }, 
-        {
-            "name": "Off", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_OFF"
-            }, 
-            "template": {
-                "dashboard": "prise", 
-                "mobile": "prise"
-            }
-        }, 
-        {
-            "name": "Puissance", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 8, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 2300
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "POWER"
-            }, 
-            "unite": "W"
-        }, 
-        {
-            "name": "Consommation", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "CONSUMPTION"
-            }, 
-            "template": {
-                "dashboard": "tile", 
-                "mobile": "tile"
-            }, 
-            "unite": "kWh"
-        }, 
-        {
-            "name": "Tension", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 16, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "VOLTAGE"
-            }, 
-            "template": {
-                "dashboard": "tile", 
-                "mobile": "tile"
-            }, 
-            "unite": "V"
-        }, 
-        {
-            "name": "Intensité", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 20, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "template": {
-                "dashboard": "tile", 
-                "mobile": "tile"
-            }, 
-            "unite": "A"
-        }, 
-        {
-            "name": "Scene", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 91, 
-                "value": "", 
-                "index": 128, 
-                "instance": 1, 
-                "repeatEventManagement": "always"
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "template": {
-                "dashboard": "tile", 
-                "mobile": "tile"
-            }
-        }
-    ], 
-    "recommended": {
-        "params": [
-            {
-                "index": 80, 
-                "value": "Hail"
-            }, 
-            {
-                "index": 90, 
-                "value": "Enable"
-            }, 
-            {
-                "index": 101, 
-                "value": 4
-            }, 
-            {
-                "index": 102, 
-                "value": 8
-            }, 
-            {
-                "index": 103, 
-                "value": 1
-            }, 
-            {
-                "index": 111, 
-                "value": 120
-            }
-        ], 
-        "needswakeup": false
+	"name": "Nano Switch (ZW116)",
+	"doc": "",
+	"type": "Micromodule",
+	"comlink": "",
+	"remark": "",
+	"imglink": "aeotec.nanoswitch",
+	"commands": [
+	{
+      "name": "Etat",
+      "type": "info",
+      "subtype": "binary",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "",
+      "display": {
+        "generic_type": "LIGHT_STATE"
+      },
+      "configuration": {
+        "class": "0x25",
+        "value": "data[0].val"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+    {
+      "name": "On",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "value": "Etat",
+      "display": {
+        "generic_type": "LIGHT_ON"
+      },
+      "configuration": {
+        "class": "0x25",
+        "value": "data[0].Set(255)"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+    {
+      "name": "Off",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "value": "Etat",
+      "display": {
+        "generic_type": "LIGHT_OFF"
+      },
+      "configuration": {
+        "class": "0x25",
+        "value": "data[0].Set(0)"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+    {
+      "name": "Puissance",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite": "W",
+      "display": {
+        "generic_type": "POWER"
+      },
+      "configuration": {
+        "class": "0x32",
+        "value": "data[8].val",
+        "maxValue": 2300,
+        "minValue": 0
+      }
+    },
+    {
+      "name": "Consommation",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "kWh",
+      "display": {
+        "generic_type": "CONSUMPTION"
+      },
+      "configuration": {
+        "class": "0x32",
+        "value": "data[0].val"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
+      }
+    },
+    {
+      "name": "Tension",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "V",
+      "display": {
+        "generic_type": "VOLTAGE"
+      },
+      "configuration": {
+        "class": "0x32",
+        "value": "data[16].val"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
+      }
+    },
+    {
+      "name": "Intensité",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "A",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "configuration": {
+        "class": "0x32",
+        "value": "data[20].val"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
+      }
+    },
+    {
+      "name": "Scene",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "display": {
+        "generic_type": "DONT"
+      },
+      "configuration": {
+        "class": "0x5b",
+        "instanceId": 0,
+        "repeatEventManagement" : "always",
+        "value": "data[128].val"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
+      }
     }
+	],
+  "recommended": {
+    "params": [
+      {
+        "index": 80,
+        "value": "Hail"
+      },
+      {
+        "index": 90,
+        "value": "Enable"
+      },
+      {
+        "index": 101,
+        "value": 4
+      },
+      {
+        "index": 102,
+        "value": 8
+      },
+      {
+        "index": 103,
+        "value": 1
+      },
+      {
+        "index": 111,
+        "value": 120
+      }
+    ],
+    "needswakeup": false
+  }
 }

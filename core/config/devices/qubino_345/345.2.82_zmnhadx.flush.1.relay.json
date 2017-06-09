@@ -1,169 +1,161 @@
 {
-    "name": "ZMNHADx Simple Charge", 
-    "type": "Micromodule", 
-    "comlink": "3060-qubino-micromodule-commutateur-1-relai-et-consometre-z-wave-zmnhad1-3830062070102", 
-    "remark": "", 
-    "imglink": "qubino.zmnhadx", 
-    "commands": [
-        {
-            "name": "On", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_ON"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "name": "Off", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_OFF"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "name": "Etat", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "LIGHT_STATE"
-            }
-        }, 
-        {
-            "name": "Température", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 49, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "TEMPERATURE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Puissance", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 8, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 2300
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "POWER"
-            }, 
-            "unite": "W"
-        }, 
-        {
-            "name": "Consommation", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "CONSUMPTION"
-            }, 
-            "unite": "kWh"
-        }, 
-        {
-            "name": "I1", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 48, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "GENERIC"
-            }
-        }, 
-        {
-            "name": "I2", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 48, 
-                "value": "", 
-                "index": 0, 
-                "instance": 2
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "GENERIC"
-            }
-        }, 
-        {
-            "name": "I3", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 48, 
-                "value": "", 
-                "index": 0, 
-                "instance": 3
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "GENERIC"
-            }
-        }
-    ]
+	"name": "ZMNHADx Simple Charge",
+	"doc": "",
+	"type": "Micromodule",
+	"comlink": "3060-qubino-micromodule-commutateur-1-relai-et-consometre-z-wave-zmnhad1-3830062070102",
+	"remark": "",
+	"imglink": "qubino.zmnhadx",
+	"ignore": 0,
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"isVisible": 1,
+		"value": "Etat",
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x25",
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"isVisible": 1,
+		"value": "Etat",
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x25",
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"isVisible": 0,
+		"isHistorized": 0,
+		"eventOnly": 1,
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x25",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "TEMPERATURE"
+		},
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "°C",
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x31",
+			"value": "data[1].val"
+		}
+	},
+	{
+		"name": "Puissance",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "POWER"
+		},
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "W",
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x32",
+			"value": "data[8].val",
+			"minValue": 0,
+			"maxValue": 2300
+		}
+	},
+	{
+		"name": "Consommation",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"isVisible": 0,
+		"isHistorized": 1,
+		"unite": "kWh",
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x32",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "I1",
+		"type": "info",
+		"subtype": "binary",
+		"display": {
+			"generic_type": "GENERIC"
+		},
+		"isVisible": 0,
+		"isHistorized": 1,
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x30",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "I2",
+		"type": "info",
+		"subtype": "binary",
+		"display": {
+			"generic_type": "GENERIC"
+		},
+		"isVisible": 0,
+		"isHistorized": 1,
+		"configuration": {
+			"instanceId": 1,
+			"class": "0x30",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "I3",
+		"type": "info",
+		"subtype": "binary",
+		"display": {
+			"generic_type": "GENERIC"
+		},
+		"isVisible": 0,
+		"isHistorized": 1,
+		"configuration": {
+			"instanceId": 2,
+			"class": "0x30",
+			"value": "data[0].val"
+		}
+	}]
 }

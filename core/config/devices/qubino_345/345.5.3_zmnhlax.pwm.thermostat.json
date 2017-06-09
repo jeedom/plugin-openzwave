@@ -1,185 +1,172 @@
 {
-    "name": "ZMNHLAx PWM Thermostat", 
-    "type": "Micromodule", 
-    "comlink": "2941-qubino-micromodule-thermostat-pwm-encastrable-z-wave-zmnhla2-3830062070065", 
-    "remark": "", 
-    "imglink": "qubino.zmnhlax", 
-    "commands": [
-        {
-            "name": "Température", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 49, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "THERMOSTAT_TEMPERATURE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Mode", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 64, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "string", 
-            "display": {
-                "generic_type": "THERMOSTAT_MODE"
-            }, 
-            "unite": ""
-        }, 
-        {
-            "name": "Off", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 64, 
-                "value": "type=setvalue&value=Off", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_MODE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Auto", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 64, 
-                "value": "type=setvalue&value=Auto", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_MODE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "ConsigneEtat", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 67, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1, 
-                "minValue": "5", 
-                "maxValue": "30"
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "THERMOSTAT_SETPOINT"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Consigne", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 67, 
-                "value": "type=setvalue&value=#slider#", 
-                "index": 1, 
-                "instance": 1, 
-                "minValue": "5", 
-                "maxValue": "30"
-            }, 
-            "value": "ConsigneEtat", 
-            "subtype": "slider", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_SETPOINT"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Input2", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 48, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "GENERIC"
-            }
-        }, 
-        {
-            "name": "Input3", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 48, 
-                "value": "", 
-                "index": 0, 
-                "instance": 2
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "GENERIC"
-            }
-        }, 
-        {
-            "name": "Puissance", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 8, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 2300
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "POWER"
-            }, 
-            "unite": "W"
-        }, 
-        {
-            "name": "Consommation", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "CONSUMPTION"
-            }, 
-            "unite": "kWh"
-        }
-    ]
+	"name": "ZMNHLAx PWM Thermostat",
+	"doc": "",
+	"type": "Micromodule",
+	"comlink": "2941-qubino-micromodule-thermostat-pwm-encastrable-z-wave-zmnhla2-3830062070065",
+	"remark": "",
+	"imglink": "qubino.zmnhlax",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "THERMOSTAT_TEMPERATURE"
+		},
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "°C",
+		"configuration": {
+			"class": "0x31",
+			"value": "data[1].val"
+		}
+	},
+	{
+		"name": "Mode",
+		"type": "info",
+		"subtype": "string",
+		"display": {
+			"generic_type": "THERMOSTAT_MODE"
+		},
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "",
+		"configuration": {
+			"class": "0x40",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_MODE"
+		},
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "°C",
+		"configuration": {
+			"class": "0x40",
+			"instanceId": 0,
+			"value": "data[0].Set(Off)"
+		}
+	},
+	{
+		"name": "Auto",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_MODE"
+		},
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "°C",
+		"configuration": {
+			"class": "0x40",
+			"instanceId": 0,
+			"value": "data[0].Set(Auto)"
+		}
+	},
+	{
+		"name": "ConsigneEtat",
+		"type": "info",
+		"subType": "numeric",
+		"display": {
+			"generic_type": "THERMOSTAT_SETPOINT"
+		},
+		"isVisible": 0,
+		"unite": "°C",
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x43",
+			"value": "data[1].val",
+			"minValue": "5",
+			"maxValue": "30"
+		}
+	},
+	{
+		"name": "Consigne",
+		"type": "action",
+		"subType": "slider",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_SETPOINT"
+		},
+		"isVisible": 1,
+		"unite": "°C",
+		"value": "ConsigneEtat",
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x43",
+			"value": "data[1].Set(#slider#)",
+			"minValue": "5",
+			"maxValue": "30"
+		}
+	},
+	{
+		"name": "Input2",
+		"type": "info",
+		"subtype": "binary",
+		"display": {
+			"generic_type": "GENERIC"
+		},
+		"isVisible": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x30",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "Input3",
+		"type": "info",
+		"subtype": "binary",
+		"display": {
+			"generic_type": "GENERIC"
+		},
+		"isVisible": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"instanceId": "1",
+			"class": "0x30",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "Puissance",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "POWER"
+		},
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "W",
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x32",
+			"value": "data[8].val",
+			"minValue": 0,
+			"maxValue": 2300
+		}
+	},
+	{
+		"name": "Consommation",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"isVisible": 0,
+		"isHistorized": 1,
+		"unite": "kWh",
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x32",
+			"value": "data[0].val"
+		}
+	}]
 }

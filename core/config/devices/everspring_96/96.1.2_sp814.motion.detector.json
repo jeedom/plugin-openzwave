@@ -1,45 +1,42 @@
 {
-    "name": "SP814 Motion Detector", 
-    "type": "Multicapteurs", 
-    "comlink": "857-everspring-detecteur-de-presence-z-wave-sp814-3700946500288", 
-    "remark": "", 
-    "imglink": "everspring.sp814", 
-    "commands": [
-        {
-            "name": "Présence", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 48, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "PRESENCE"
-            }, 
-            "unite": ""
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }
-    ]
+	"name": "SP814 Motion Detector",
+	"doc": "",
+	"type": "Multicapteurs",
+	"comlink": "857-everspring-detecteur-de-presence-z-wave-sp814-3700946500288",
+	"remark": "",
+	"imglink": "everspring.sp814",
+	"battery_type": "3x1.5V AAA",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Présence",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "",
+		"display": {
+			"generic_type": "PRESENCE"
+		},
+		"configuration": {
+			"class": "0x30",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 1,
+		"unite": "%",
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"value": "data[0].val"
+		}
+	}]
 }

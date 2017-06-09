@@ -1,50 +1,44 @@
 {
-    "name": "Door Sensor (DX1DS-Z)", 
-    "type": "Ouverture", 
-    "comlink": "", 
-    "remark": "", 
-    "imglink": "domux.dx1dsz", 
-    "commands": [
-        {
-            "name": "Ouverture", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 48, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "invertBinary": "1", 
-                "generic_type": "OPENING"
-            }, 
-            "template": {
-                "dashboard": "door", 
-                "mobile": "door"
-            }, 
-            "unite": ""
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }
-    ]
+	"name": "Door Sensor (DX1DS-Z)",
+	"doc": "",
+	"type": "Ouverture",
+	"comlink": "",
+	"remark": "",
+	"imglink": "domux.dx1dsz",
+	"battery_type": "2x1.5V LR03",
+	"commands": [{
+		"name": "Ouverture",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "",
+		"configuration": {
+			"class": "0x30",
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "door",
+			"mobile": "door"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "OPENING"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "%",
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"value": "data[0].val"
+		}
+	}]
 }

@@ -1,73 +1,69 @@
 {
-    "name": "Power Reader", 
-    "type": "Compteur", 
-    "comlink": "1537-northq-compteur-optique-de-consommation-z-wave", 
-    "remark": "Activer le rafraichissement manuel à 5 minutes sur la valeur Energy pour avoir les rapports", 
-    "imglink": "northq.powerreader", 
-    "commands": [
-        {
-            "name": "Consommation", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": "0", 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "CONSUMPTION"
-            }, 
-            "unite": "kwH"
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }, 
-        {
-            "name": "Actualiser la date et heure", 
-            "type": "action", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 139, 
-                "value": "button(press)", 
-                "index": 3, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "unite": ""
-        }
-    ], 
-    "recommended": {
-        "polling": [
-            {
-                "instanceId": "0", 
-                "index": 0, 
-                "class": "0x32"
-            }
-        ], 
-        "wakeup": 900, 
-        "needswakeup": true
+  "name": "Power Reader",
+  "doc": "",
+  "type": "Compteur",
+  "comlink": "1537-northq-compteur-optique-de-consommation-z-wave",
+  "remark": "Activer le rafraichissement manuel à 5 minutes sur la valeur Energy pour avoir les rapports",
+  "imglink": "northq.powerreader",
+  "battery_type": "2x1.5V AAA",
+  "configuration": {
+    "conf_version": 1
+  },
+  "commands": [
+    {
+      "name": "Consommation",
+      "type": "info",
+      "subType": "numeric",
+      "isHistorized": "0",
+      "unite": "kwH",
+      "isVisible": 1,
+      "display": {
+        "generic_type": "CONSUMPTION"
+      },
+      "configuration": {
+        "instanceId": "0",
+        "class": "0x32",
+        "value": "data[0].val"
+      }
+    },
+    {
+      "name": "Batterie",
+      "type": "info",
+      "subtype": "numeric",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "%",
+      "display": {
+        "generic_type": "BATTERY"
+      },
+      "configuration": {
+        "class": "0x80",
+        "value": "data[0].val"
+      }
+    },
+    {
+      "name": "Actualiser la date et heure",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "",
+      "configuration": {
+        "instanceId": "0",
+        "class": "0x8b",
+        "value": "data[3].PressButton()"
+      }
     }
+  ],
+  "recommended": {
+    "polling": [
+      {
+        "instanceId": "0",
+        "index": 0,
+        "class": "0x32"
+      }
+    ],
+    "wakeup": 900,
+    "needswakeup": true
+  }
 }

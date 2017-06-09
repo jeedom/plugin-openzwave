@@ -1,31 +1,31 @@
 {
-    "name": "Scene Controller 7 boutons", 
-    "type": "Télécommande", 
-    "comlink": "2534-benext-telecommande-7-boutons-z-wave-scene-controller-0632181493786", 
-    "remark": "Télécommande non fonctionnelle, fonctionne cependant en association avec d'autres modules", 
-    "imglink": "benext.scene-controller", 
-    "commands": [
-        {
-            "name": "Scene", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 91, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 14
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "template": {
-                "dashboard": "badge", 
-                "mobile": "badge"
-            }
-        }
-    ]
+	"name": "Scene Controller 7 boutons",
+	"doc": "",
+	"type": "Télécommande",
+	"comlink": "2534-benext-telecommande-7-boutons-z-wave-scene-controller-0632181493786",
+	"remark": "Télécommande non fonctionnelle, fonctionne cependant en association avec d'autres modules",
+	"imglink": "benext.scene-controller",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Scene",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x5b",
+			"maxValue": 14,
+			"minValue": 0,
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "badge",
+			"mobile": "badge"
+		}
+	}]
 }

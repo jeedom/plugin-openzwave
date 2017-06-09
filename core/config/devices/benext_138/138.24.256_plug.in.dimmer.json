@@ -1,124 +1,101 @@
 {
-    "name": "Plug In Dimmer", 
-    "type": "Prise", 
-    "comlink": "2347-benext-module-prise-variateur-z-wave-avec-mesure-d-energie-0632181493779", 
-    "remark": "", 
-    "imglink": "benext.plugin-dimmer", 
-    "commands": [
-        {
-            "name": "Intensité", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=#slider#", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "value": "Etat", 
-            "subtype": "slider", 
-            "display": {
-                "generic_type": "LIGHT_SLIDER"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "name": "On", 
-            "type": "action", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=99", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_ON"
-            }
-        }, 
-        {
-            "name": "Off", 
-            "type": "action", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_OFF"
-            }
-        }, 
-        {
-            "name": "Etat", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "LIGHT_STATE"
-            }, 
-            "unite": "%"
-        }, 
-        {
-            "name": "Puissance", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 8, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 125
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "POWER"
-            }, 
-            "unite": "W"
-        }, 
-        {
-            "name": "Consommation", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "CONSUMPTION"
-            }, 
-            "unite": "kWh"
-        }
-    ]
+	"name": "Plug In Dimmer",
+	"doc": "",
+	"type": "Prise",
+	"comlink": "2347-benext-module-prise-variateur-z-wave-avec-mesure-d-energie-0632181493779",
+	"remark": "",
+	"imglink": "benext.plugin-dimmer",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Intensité",
+		"type": "action",
+		"subtype": "slider",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "LIGHT_SLIDER"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(#slider#)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(99)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].val",
+			"minValue": 0,
+			"maxValue": 99
+		}
+	},
+	{
+		"name": "Puissance",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "W",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "POWER"
+		},
+		"configuration": {
+			"class": "0x32",
+			"value": "data[8].val",
+			"minValue": 0,
+			"maxValue": 125
+		}
+	},
+	{
+		"name": "Consommation",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "kWh",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"configuration": {
+			"class": "0x32",
+			"value": "data[0].val"
+		}
+	}]
 }

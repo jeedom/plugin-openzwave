@@ -1,45 +1,42 @@
 {
-    "name": "HSP02", 
-    "type": "Multicapteurs", 
-    "comlink": "842-everspring-detecteur-de-mouvement-z-wave-hsp02-3700946500165", 
-    "remark": "Ce module est actuellement vendu sous la marque Everspring", 
-    "imglink": "chromagic.hsp02", 
-    "commands": [
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }, 
-        {
-            "name": "Présence", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 48, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "PRESENCE"
-            }, 
-            "unite": ""
-        }
-    ]
+	"name": "HSP02",
+	"doc": "",
+	"type": "Multicapteurs",
+	"comlink": "842-everspring-detecteur-de-mouvement-z-wave-hsp02-3700946500165",
+	"remark": "Ce module est actuellement vendu sous la marque Everspring",
+	"imglink": "chromagic.hsp02",
+	"battery_type": "1x3V CR2",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 1,
+		"unite": "%",
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "Présence",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "",
+		"display": {
+			"generic_type": "PRESENCE"
+		},
+		"configuration": {
+			"class": "0x30",
+			"value": "data[0].val"
+		}
+	}]
 }

@@ -1,105 +1,96 @@
 {
-    "name": "Micro Smart Energy Switch (DSC12103)", 
-    "type": "Micromodule", 
-    "comlink": "286-aeon-labs-micromodule-commutateur-et-compteur-d-energie-g2-1220000011014", 
-    "remark": "", 
-    "imglink": "aeotec.insert-switch", 
-    "commands": [
-        {
-            "name": "Etat", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "ENERGY_STATE"
-            }, 
-            "unite": ""
-        }, 
-        {
-            "name": "On", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "ENERGY_ON"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "name": "Off", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "ENERGY_OFF"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "name": "Puissance", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 8, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 2500
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "POWER"
-            }, 
-            "unite": "W"
-        }, 
-        {
-            "name": "Consommation", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "CONSUMPTION"
-            }, 
-            "unite": "kWh"
-        }
-    ]
+	"name": "Micro Smart Energy Switch (DSC12103)",
+	"doc": "",
+	"type": "Micromodule",
+	"comlink": "286-aeon-labs-micromodule-commutateur-et-compteur-d-energie-g2-1220000011014",
+	"remark": "",
+	"imglink": "aeotec.insert-switch",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "",
+		"display": {
+			"generic_type": "ENERGY_STATE"
+		},
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].val"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "ENERGY_ON"
+		},
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "ENERGY_OFF"
+		},
+		"configuration": {
+			"class": "0x25",
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "Puissance",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 1,
+		"unite": "W",
+		"display": {
+			"generic_type": "POWER"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[8].val",
+			"maxValue": 2500,
+			"minValue": 0
+		}
+	},
+	{
+		"name": "Consommation",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "kWh",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"configuration": {
+			"class": "0x32",
+			"instanceId": 0,
+			"value": "data[0].val"
+		}
+	}]
 }

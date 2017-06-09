@@ -1,91 +1,85 @@
 {
-    "name": "WallMote Duo (ZW129)", 
-    "type": "Télécommande", 
-    "comlink": "", 
-    "remark": "Partiellement compatible: Fonctionne en association directe seulement ", 
-    "imglink": "aeotec.zw129", 
-    "commands": [
+	"name": "WallMote Duo (ZW129)",
+	"doc": "",
+	"type": "Télécommande",
+	"comlink": "",
+	"remark": "Partiellement compatible: Fonctionne en association directe seulement ",
+	"imglink": "aeotec.zw129",
+	"battery_type": "Batterie",
+	"ignore": 0,
+	"commands": [
         {
-            "name": "Scene", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 91, 
-                "value": "", 
-                "index": 128, 
-                "instance": 1, 
-                "repeatEventManagement": "always"
-            }, 
-            "subtype": "numeric", 
+            "name": "Scene",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
             "display": {
                 "generic_type": "DONT"
-            }, 
-            "unite": ""
-        }, 
-        {
-            "name": "SceneID", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            },
             "configuration": {
-                "class": 91, 
-                "value": "", 
-                "index": 2, 
-                "instance": 1, 
-                "repeatEventManagement": "always"
-            }, 
-            "subtype": "numeric", 
+                "class": "0x5b",			
+				"repeatEventManagement" : "always",
+				"value": "data[128].val",                
+                "instance": 0
+            }
+        },
+         {
+            "name": "SceneID",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
             "display": {
                 "generic_type": "DONT"
-            }, 
-            "unite": ""
-        }, 
-        {
-            "name": "SceneAttribute", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            },
             "configuration": {
-                "class": 91, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1, 
-                "repeatEventManagement": "always"
-            }, 
-            "subtype": "string", 
+                "class": "0x5b",
+                "value": "data[2].val",
+                "repeatEventManagement" : "always",                
+                "instance": 0
+            }
+        },
+        {
+            "name": "SceneAttribute",
+            "type": "info",
+            "subtype": "string",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "",
             "display": {
                 "generic_type": "DONT"
-            }, 
-            "unite": ""
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            },
             "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
+                "class": "0x5b",
+                "value": "data[1].val",
+                "repeatEventManagement" : "always",
+                "instance": 0
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "unite": "%",
             "display": {
                 "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }
-    ], 
-    "recommended": {
-        "params": [
-            {
-                "index": 1, 
-                "value": "Disable"
+            },
+            "configuration": {
+                "class": "0x80",
+                "value": "data[0].val",
+                "instance": 0
             }
-        ], 
-        "needswakeup": true
+        }
+    ],
+	"recommended" : {
+		"params" : [
+			{"index": 1, "value" : "Disable"}
+		],
+		"needswakeup" : true
     }
 }

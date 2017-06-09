@@ -1,81 +1,67 @@
 {
-    "name": "SSA-01", 
-    "type": "Sirène", 
-    "comlink": "979-fortrezz-sirene-z-wave-flash-clair-ssa1-0661799486033", 
-    "remark": "", 
-    "imglink": "fortrezz.ssa01", 
-    "commands": [
-        {
-            "name": "All Off", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "Flash", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=33", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "Siren", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=66", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "Flash & Siren", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=99", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }
-    ]
+	"name": "SSA-01",
+	"doc": "",
+	"type": "Sirène",
+	"comlink": "979-fortrezz-sirene-z-wave-flash-clair-ssa1-0661799486033",
+	"remark": "",
+	"imglink": "fortrezz.ssa01",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "All Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x26",
+			"instanceId": 0,
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Flash",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x26",
+			"instanceId": 0,
+			"value": "data[0].Set(33)"
+		}
+	},
+	{
+		"name": "Siren",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x26",
+			"instanceId": 0,
+			"value": "data[0].Set(66)"
+		}
+	},
+	{
+		"name": "Flash & Siren",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x26",
+			"instanceId": 0,
+			"value": "data[0].Set(99)"
+		}
+	}]
 }

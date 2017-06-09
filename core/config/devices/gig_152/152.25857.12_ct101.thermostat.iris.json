@@ -1,269 +1,243 @@
 {
-    "name": "CT101 Thermostat Iris", 
-    "type": "Thermostat", 
-    "comlink": "", 
-    "remark": "", 
-    "imglink": "gig.ct101", 
-    "commands": [
-        {
-            "name": "Température", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 49, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "THERMOSTAT_TEMPERATURE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Commande Chaud", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 67, 
-                "value": "type=setvalue&value=#slider#", 
-                "index": 1, 
-                "instance": 1, 
-                "minValue": 4, 
-                "maxValue": 28
-            }, 
-            "value": "Consigne-Chaud", 
-            "subtype": "slider", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_SETPOINT"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Consigne-Chaud", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 67, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1, 
-                "minValue": 12, 
-                "maxValue": 28
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "THERMOSTAT_SETPOINT"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Commande Froid", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 67, 
-                "value": "type=setvalue&value=#slider#", 
-                "index": 2, 
-                "instance": 1, 
-                "minValue": 4, 
-                "maxValue": 28
-            }, 
-            "value": "Consigne-Froid", 
-            "subtype": "slider", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_SETPOINT"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Consigne-Froid", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 67, 
-                "value": "", 
-                "index": 2, 
-                "instance": 1, 
-                "minValue": 12, 
-                "maxValue": 28
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "THERMOSTAT_SETPOINT"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Mode", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": "0", 
-            "configuration": {
-                "class": 64, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "string", 
-            "display": {
-                "generic_type": "THERMOSTAT_MODE"
-            }, 
-            "unite": ""
-        }, 
-        {
-            "name": "Off", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 64, 
-                "value": "type=setvalue&value=Off", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_MODE"
-            }
-        }, 
-        {
-            "name": "Froid", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 64, 
-                "value": "type=setvalue&value=Cool", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_MODE"
-            }
-        }, 
-        {
-            "name": "Chaud", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 64, 
-                "value": "type=setvalue&value=Heat", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_MODE"
-            }
-        }, 
-        {
-            "name": "Auto", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 64, 
-                "value": "type=setvalue&value=Auto", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_MODE"
-            }
-        }, 
-        {
-            "name": "Aux Heat", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 64, 
-                "value": "type=setvalue&value=Aux Heat", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_MODE"
-            }
-        }, 
-        {
-            "name": "Vitesse", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": "0", 
-            "configuration": {
-                "class": 69, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "string", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "unite": ""
-        }, 
-        {
-            "name": "Auto low", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 68, 
-                "value": "type=setvalue&value=Auto Low", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_MODE"
-            }
-        }, 
-        {
-            "name": "On Low", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 68, 
-                "value": "type=setvalue&value=On Low", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "THERMOSTAT_SET_MODE"
-            }
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }
-    ]
+	"name": "CT101 Thermostat Iris",
+	"type": "Thermostat",
+	"comlink": "",
+	"remark": "",
+	"imglink": "gig.ct101",
+	"battery_type": "",	
+	"commands": [{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "°C",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"display": {
+			"generic_type": "THERMOSTAT_TEMPERATURE"
+		},
+		"configuration": {
+			"class": "0x31",
+			"instanceId": 0,
+			"value": "data[1].val"
+		}
+	},
+	{
+		"name": "Commande Chaud",
+		"type": "action",
+		"subtype": "slider",
+		"value": "Consigne-Chaud",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_SETPOINT"
+		},
+		"configuration": {
+			"class": "0x43",
+			"instanceId": 0,
+			"value": "data[1].Set(#slider#)",
+			"maxValue": 28,
+			"minValue": 4
+		}
+	},
+	{
+		"name": "Consigne-Chaud",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "THERMOSTAT_SETPOINT"
+		},
+		"configuration": {
+			"class": "0x43",
+			"instanceId": 0,
+			"value": "data[1].val",
+			"maxValue": 28,
+			"minValue": 12
+		}
+	},
+	{
+		"name": "Commande Froid",
+		"type": "action",
+		"subtype": "slider",
+		"value": "Consigne-Froid",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_SETPOINT"
+		},
+		"configuration": {
+			"class": "0x43",
+			"instanceId": 0,
+			"value": "data[2].Set(#slider#)",
+			"maxValue": 28,
+			"minValue": 4
+		}
+	},
+	{
+		"name": "Consigne-Froid",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "°C",
+		"display": {
+			"generic_type": "THERMOSTAT_SETPOINT"
+		},
+		"configuration": {
+			"class": "0x43",
+			"instanceId": 0,
+			"value": "data[2].val",
+			"maxValue": 28,
+			"minValue": 12
+		}
+	},		
+	{
+		"name": "Mode",
+		"type": "info",
+		"subType": "string",
+		"display": {
+			"generic_type": "THERMOSTAT_MODE"
+		},
+		"isHistorized": "0",
+		"unite": "",
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x40",
+			"value": "data[0].val"
+		}
+	},	
+	{
+		"name": "Off",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_MODE"
+		},
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x40",
+			"value": "data[0].Set(Off)"
+		}
+	},
+	{
+		"name": "Froid",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_MODE"
+		},
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x40",
+			"value": "data[0].Set(Cool)"
+		}
+	},
+	{
+		"name": "Chaud",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_MODE"
+		},
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x40",
+			"value": "data[0].Set(Heat)"
+		}
+	},
+	{
+		"name": "Auto",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_MODE"
+		},
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x40",
+			"value": "data[0].Set(Auto)"
+		}
+	},
+	{
+		"name": "Aux Heat",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_MODE"
+		},
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x40",
+			"value": "data[0].Set(Aux Heat)"
+		}
+	},	
+	{
+		"name": "Vitesse",
+		"type": "info",
+		"subType": "string",
+		"isHistorized": "0",
+		"unite": "",
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x45",
+			"value": "data[0].val"
+		}
+	},	
+	{
+		"name": "Auto low",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_MODE"
+		},
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x44",
+			"value": "data[0].Set(Auto Low)"
+		}
+	},
+	{
+		"name": "On Low",
+		"type": "action",
+		"subType": "other",
+		"display": {
+			"generic_type": "THERMOSTAT_SET_MODE"
+		},
+		"isVisible": 1,
+		"configuration": {
+			"instanceId": "0",
+			"class": "0x44",
+			"value": "data[0].Set(On Low)"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "%",
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"instanceId": 0,
+			"value": "data[0].val",
+			"maxValue": 100,
+			"minValue": 0
+		}
+	}]
 }

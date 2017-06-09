@@ -1,87 +1,70 @@
 {
-    "name": "DURO 2000 Dimmer 05458", 
-    "type": "Interrupteur", 
-    "comlink": "2307-z-waveme-interrupteur-variateur-z-wave-avance-finition-duro-2000-0019962003509", 
-    "remark": "", 
-    "imglink": "duwi.05458", 
-    "commands": [
-        {
-            "name": "Intensité", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=#slider#", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "value": "Etat", 
-            "subtype": "slider", 
-            "display": {
-                "generic_type": "LIGHT_SLIDER"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "name": "On", 
-            "type": "action", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_ON"
-            }
-        }, 
-        {
-            "name": "Off", 
-            "type": "action", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_OFF"
-            }
-        }, 
-        {
-            "name": "Etat", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "LIGHT_STATE"
-            }, 
-            "unite": "%"
-        }
-    ]
+	"name": "DURO 2000 Dimmer 05458",
+	"type": "Interrupteur",
+	"comlink": "2307-z-waveme-interrupteur-variateur-z-wave-avance-finition-duro-2000-0019962003509",
+	"remark": "",
+	"imglink": "duwi.05458",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Intensité",
+		"type": "action",
+		"subtype": "slider",
+		"isVisible": 1,
+		"value": "Etat",
+		"display": {
+			"generic_type": "LIGHT_SLIDER"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(#slider#)"
+		},
+		"template": {
+			"dashboard": "light",
+			"mobile": "light"
+		}
+	},
+	{
+		"name": "On",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_ON"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(255)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_OFF"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "LIGHT_STATE"
+		},
+		"configuration": {
+			"class": "0x26",
+			"value": "data[0].val",
+			"minValue": 0,
+			"maxValue": 99
+		}
+	}]
 }

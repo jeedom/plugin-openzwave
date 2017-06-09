@@ -1,70 +1,67 @@
 {
-    "name": "ZD2102", 
-    "type": "Ouverture", 
-    "comlink": "2609-zipato-detecteur-d-ouverture-z-wave-3858890730470", 
-    "remark": "Vendu aussi sous la marque Zipato.", 
-    "imglink": "vision.zd2102", 
-    "commands": [
-        {
-            "name": "Ouverture", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 48, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "invertBinary": "1", 
-                "generic_type": "OPENING"
-            }, 
-            "template": {
-                "dashboard": "door", 
-                "mobile": "door"
-            }
-        }, 
-        {
-            "name": "Sabotage", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 113, 
-                "value": "", 
-                "index": 10, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "invertBinary": "1", 
-                "generic_type": "SABOTAGE"
-            }, 
-            "template": {
-                "dashboard": "vibration", 
-                "mobile": "vibration"
-            }
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }
-    ]
+	"name": "ZD2102",
+	"doc": "",
+	"type": "Ouverture",
+	"comlink": "2609-zipato-detecteur-d-ouverture-z-wave-3858890730470",
+	"remark": "Vendu aussi sous la marque Zipato.",
+	"imglink": "vision.zd2102",
+	"battery_type": "1x3V CR123A",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Ouverture",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"configuration": {
+			"class": "0x30",
+			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "OPENING"
+		},
+		"template": {
+			"dashboard": "door",
+			"mobile": "door"
+		}
+	},
+	{
+		"name": "Sabotage",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x71",
+			"value": "data[10].val",
+			"calculValueOffset": "#value#==3"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "SABOTAGE"
+		},
+		"template": {
+			"dashboard": "vibration",
+			"mobile": "vibration"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"isHistorized": 0,
+		"unite": "%",
+		"configuration": {
+			"class": "0x80",
+			"value": "data[0].val"
+		}
+	}]
 }

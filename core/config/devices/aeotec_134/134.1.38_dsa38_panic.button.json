@@ -1,49 +1,43 @@
 {
-    "name": "Panic Button (DSA38)", 
-    "type": "Télécommande", 
-    "comlink": "278-aeon-labs-telecommande-z-wave-porte-cles-1-bouton", 
-    "remark": "", 
-    "imglink": "aeotec.panicbutton", 
-    "commands": [
-        {
-            "name": "Scene", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 43, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "repeatEventManagement": "always"
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "template": {
-                "dashboard": "tile", 
-                "mobile": "tile"
-            }
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }
-    ]
+	"name": "Panic Button (DSA38)",
+	"doc": "aeotec.panic_button_-_Telecommande",
+	"type": "Télécommande",
+	"comlink": "278-aeon-labs-telecommande-z-wave-porte-cles-1-bouton",
+	"remark": "",
+	"imglink": "aeotec.panicbutton",
+	"battery_type": "1x3V CR2450",
+	"commands": [{
+		"name": "Scene",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x2b",
+			"repeatEventManagement" : "always",
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "tile",
+			"mobile": "tile"
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 0,
+		"isHistorized": 0,
+		"unite": "%",
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"value": "data[0].val"
+		}
+	}]
 }

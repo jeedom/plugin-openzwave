@@ -1,66 +1,59 @@
 {
-    "name": "ZWS12 Chain actuator 12VDC", 
-    "type": "Volets", 
-    "comlink": "", 
-    "remark": "Nécessite une inclusion en mode sécurisé", 
-    "imglink": "fakro.zws12", 
-    "commands": [
-        {
-            "name": "Up", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "button(press)", 
-                "index": 1, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "icon": "<i class=\"fa fa-arrow-up\"></i>", 
-                "generic_type": "FLAP_UP"
-            }
-        }, 
-        {
-            "name": "Down", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "button(press)", 
-                "index": 2, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "icon": "<i class=\"fa fa-arrow-down\"></i>", 
-                "generic_type": "FLAP_DOWN"
-            }
-        }, 
-        {
-            "name": "Stop", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "button(release)", 
-                "index": 2, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "icon": "<i class=\"fa fa-stop\"></i>", 
-                "generic_type": "FLAP_STOP"
-            }
-        }
-    ]
+  "name": "ZWS12 Chain actuator 12VDC",
+  "doc": "",
+  "type": "Volets",
+  "comlink": "",
+  "remark": "Nécessite une inclusion en mode sécurisé",
+  "imglink": "fakro.zws12",
+  "ignore": 0,
+  "configuration": {
+    "conf_version": 1
+  },
+  "commands": [
+    {
+      "name": "Up",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "configuration": {
+        "instanceId": "0",
+        "class": "0x26",
+        "value": "data[1].PressButton()"
+      },
+      "display": {
+        "icon": "<i class=\"fa fa-arrow-up\"></i>",
+        "generic_type": "FLAP_UP"
+      }
+    },
+    {
+      "name": "Down",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "configuration": {
+        "instanceId": "0",
+        "class": "0x26",
+        "value": "data[2].PressButton()"
+      },
+      "display": {
+        "icon": "<i class=\"fa fa-arrow-down\"></i>",
+        "generic_type": "FLAP_DOWN"
+      }
+    },
+    {
+      "name": "Stop",
+      "type": "action",
+      "subtype": "other",
+      "isVisible": 1,
+      "configuration": {
+        "instanceId": "0",
+        "class": "0x26",
+        "value": "data[2].ReleaseButton()"
+      },
+      "display": {
+        "icon": "<i class=\"fa fa-stop\"><\/i>",
+        "generic_type": "FLAP_STOP"
+      }
+    }
+  ]
 }

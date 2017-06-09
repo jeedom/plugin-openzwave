@@ -1,211 +1,199 @@
 {
-    "name": "ZMNHTDx Smart meter", 
-    "type": "Rail-din", 
-    "comlink": "3251-qubino-module-rail-din-compteur-d-energie-z-wave-3830062070362", 
-    "remark": "Le module doit être inclus en mode sécurisé pour pouvoir contrôler les relais", 
-    "imglink": "qubino.zmnhtdx", 
-    "commands": [
-        {
-            "name": "On1", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 2
-            }, 
-            "value": "Etat1", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "ENERGY_ON"
-            }, 
-            "template": {
-                "dashboard": "prise", 
-                "mobile": "prise"
-            }
-        }, 
-        {
-            "name": "Off1", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 2
-            }, 
-            "value": "Etat1", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "ENERGY_OFF"
-            }, 
-            "template": {
-                "dashboard": "prise", 
-                "mobile": "prise"
-            }
-        }, 
-        {
-            "name": "Etat1", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "", 
-                "index": 0, 
-                "instance": 2
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "ENERGY_STATE"
-            }
-        }, 
-        {
-            "name": "On2", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 3
-            }, 
-            "value": "Etat2", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "ENERGY_ON"
-            }, 
-            "template": {
-                "dashboard": "prise", 
-                "mobile": "prise"
-            }
-        }, 
-        {
-            "name": "Off2", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 3
-            }, 
-            "value": "Etat2", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "ENERGY_OFF"
-            }, 
-            "template": {
-                "dashboard": "prise", 
-                "mobile": "prise"
-            }
-        }, 
-        {
-            "name": "Etat2", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "", 
-                "index": 0, 
-                "instance": 3
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "ENERGY_STATE"
-            }
-        }, 
-        {
-            "name": "Puissance", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 8, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "POWER"
-            }, 
-            "unite": "W"
-        }, 
-        {
-            "name": "Consommation kWh", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "CONSUMPTION"
-            }, 
-            "unite": "kWh"
-        }, 
-        {
-            "name": "Consommation kVAh", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 4, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "CONSUMPTION"
-            }, 
-            "unite": "kVAh"
-        }, 
-        {
-            "name": "Tension", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 16, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "VOLTAGE"
-            }, 
-            "unite": "V"
-        }, 
-        {
-            "name": "Intensité", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 20, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "unite": "A"
-        }
-    ]
+	"name": "ZMNHTDx Smart meter",
+	"doc": "",
+	"type": "Rail-din",
+	"comlink": "3251-qubino-module-rail-din-compteur-d-energie-z-wave-3830062070362",
+	"imglink": "qubino.zmnhtdx",
+	"remark": "Le module doit être inclus en mode sécurisé pour pouvoir contrôler les relais",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "On1",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "ENERGY_ON"
+		},
+		"isVisible": 1,
+		"value": "Etat1",
+		"configuration": {
+			"instanceId": 1,
+			"class": "0x25",
+			"value": "data[0].Set(255)"
+		},
+		"template": {
+			"dashboard": "prise",
+			"mobile": "prise"
+		}
+	},
+	{
+		"name": "Off1",
+		"type": "action",
+		"subtype": "other",
+		"display": {
+			"generic_type": "ENERGY_OFF"
+		},
+		"isVisible": 1,
+		"value": "Etat1",
+		"configuration": {
+			"instanceId": 1,
+			"class": "0x25",
+			"value": "data[0].Set(0)"
+		},
+		"template": {
+			"dashboard": "prise",
+			"mobile": "prise"
+		}
+	},
+	{
+		"name": "Etat1",
+		"type": "info",
+		"subtype": "binary",
+		"display": {
+			"generic_type": "ENERGY_STATE"
+		},
+		"isVisible": 0,
+		"isHistorized": 0,
+		"eventOnly": 1,
+		"configuration": {
+			"instanceId": 1,
+			"class": "0x25",
+			"value": "data[0].val"
+		}
+	},
+		{
+			"name": "On2",
+			"type": "action",
+			"subtype": "other",
+			"display": {
+				"generic_type": "ENERGY_ON"
+			},
+			"isVisible": 1,
+			"value": "Etat2",
+			"configuration": {
+				"instanceId": 2,
+				"class": "0x25",
+				"value": "data[0].Set(255)"
+			},
+			"template": {
+				"dashboard": "prise",
+				"mobile": "prise"
+			}
+		},
+		{
+			"name": "Off2",
+			"type": "action",
+			"subtype": "other",
+			"display": {
+				"generic_type": "ENERGY_OFF"
+			},
+			"isVisible": 1,
+			"value": "Etat2",
+			"configuration": {
+				"instanceId": 2,
+				"class": "0x25",
+				"value": "data[0].Set(0)"
+			},
+			"template": {
+				"dashboard": "prise",
+				"mobile": "prise"
+			}
+		},
+		{
+			"name": "Etat2",
+			"type": "info",
+			"subtype": "binary",
+			"display": {
+				"generic_type": "ENERGY_STATE"
+			},
+			"isVisible": 0,
+			"isHistorized": 0,
+			"eventOnly": 1,
+			"configuration": {
+				"instanceId": 2,
+				"class": "0x25",
+				"value": "data[0].val"
+			}
+		},
+	{
+		"name": "Puissance",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "POWER"
+		},
+		"isVisible": 1,
+		"isHistorized": 1,
+		"unite": "W",
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x32",
+			"value": "data[8].val"
+		}
+	},
+	{
+		"name": "Consommation kWh",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"isVisible": 0,
+		"isHistorized": 1,
+		"unite": "kWh",
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x32",
+			"value": "data[0].val",
+            "minValue": 1
+		}
+	},
+	{
+		"name": "Consommation kVAh",
+		"type": "info",
+		"subtype": "numeric",
+		"display": {
+			"generic_type": "CONSUMPTION"
+		},
+		"isVisible": 0,
+		"isHistorized": 1,
+		"unite": "kVAh",
+		"configuration": {
+			"instanceId": 0,
+			"class": "0x32",
+			"value": "data[4].val"
+		}
+	},
+	{
+		"name": "Tension",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "V",
+		"display": {
+			"generic_type": "VOLTAGE"
+		},
+		"configuration": {
+			"class": "0x32",
+			"value": "data[16].val"
+		}
+	},
+	{
+		"name": "Intensité",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"isHistorized": 0,
+		"unite": "A",
+		"display": {
+			"generic_type": "DONT"
+		},
+		"configuration": {
+			"class": "0x32",
+			"value": "data[20].val",
+			"calculValueOffset": "#value#/100"
+		}
+	}]
 }

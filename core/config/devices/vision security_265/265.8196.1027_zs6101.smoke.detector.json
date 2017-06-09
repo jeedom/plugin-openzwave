@@ -1,53 +1,50 @@
 {
-    "name": "ZS6101 Smoke Detector ", 
-    "type": "Fumée", 
-    "comlink": "2158-vision-security-detecteur-de-fumee-z-wave-0696859123443", 
-    "remark": "", 
-    "imglink": "vision.zs6101", 
-    "commands": [
-        {
-            "name": "Fumées", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 48, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "invertBinary": "1", 
-                "generic_type": "SMOKE"
-            }, 
-            "template": {
-                "dashboard": "feu", 
-                "mobile": "feu"
-            }
-        }, 
-        {
-            "name": "Battery", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "template": {
-                "dashboard": "tile", 
-                "mobile": "tile"
-            }, 
-            "unite": "%"
-        }
-    ]
+	"name": "ZS6101 Smoke Detector ",
+	"doc": "",
+	"type": "Fumée",
+	"comlink": "2158-vision-security-detecteur-de-fumee-z-wave-0696859123443",
+	"remark": "",
+	"imglink": "vision.zs6101",
+	"battery_type": "1x3V CR123A",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Fumées",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"configuration": {
+			"class": "0x30",
+			"instanceId": 0,
+			"value": "data[0].val"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "SMOKE"
+		},
+		"template": {
+			"dashboard": "feu",
+			"mobile": "feu"
+		}
+	},
+	{
+		"name": "Battery",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": "0x80",
+			"instanceId": 0,
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "tile",
+			"mobile": "tile"
+		}
+	}]
 }

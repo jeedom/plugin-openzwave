@@ -1,39 +1,36 @@
 {
-    "name": "Strips", 
-    "type": "Ouverture", 
-    "comlink": "3200-sensative-capteur-d-ouverture-extra-fin-strips-z-wave-7330985122972", 
-    "remark": "", 
-    "imglink": "strips", 
-    "commands": [
-        {
-            "name": "Etat", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 48, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "invertBinary": "1", 
-                "generic_type": "OPENING"
-            }, 
-            "template": {
-                "dashboard": "door", 
-                "mobile": "door"
-            }
-        }
-    ], 
-    "recommended": {
-        "params": [
-            {
-                "index": 1, 
-                "value": "Binary Sensor report"
-            }
-        ], 
-        "needswakeup": true
+	"name": "Strips",
+	"doc": "",
+	"type": "Ouverture",
+	"comlink": "3200-sensative-capteur-d-ouverture-extra-fin-strips-z-wave-7330985122972",
+	"remark": "",
+	"imglink": "strips",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"configuration": {
+			"class": "0x30",
+			"value": "data[0].val"
+		},
+		"template": {
+			"dashboard": "door",
+			"mobile": "door"
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "OPENING"
+		}
+	}],
+	"recommended" : {
+		"params" : [
+         	{"index": 1, "value" : "Binary Sensor report"}
+		],
+		"needswakeup" : true
     }
 }

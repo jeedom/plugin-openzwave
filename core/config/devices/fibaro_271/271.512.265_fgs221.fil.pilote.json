@@ -1,248 +1,245 @@
 {
-    "name": "FGS-221 Double charge",
-    "doc": "",
-    "type": "Micromodule",
-    "comlink": "2863-fibaro-micromodule-commutateur-double-z-wave-fgs-222-5902020528289",
-    "remark": "Ce module est remplacé dans les boutiques par le FGS-222",
-    "imglink": "fibaro.fgs221",
-    "configuration": {
-        "1": {
-            "name": "Activation\/Désactivation des fonctions ALL ON \/ ALL OFF",
-            "help": "Activation\/Désactivation des fonctions ALL ON \/ ALL OFF. Valeur par défaut 255",
-            "list": {
-                "ALL ON disabled\/ ALL OFF disabled": "ALL ON inactif \/ ALL OFF inactif",
-                "ALL ON disabled\/ ALL OFF active": "ALL ON inactif \/ ALL OFF actif",
-                "ALL ON active \/ ALL OFF disabled": "ALL ON actif \/ ALL OFF inactif",
-                "ALL ON active \/ ALL OFF active": "ALL ON actif \/ ALL OFF actif"
-            }
-        },
-        "3": {
-            "name": "Arrêt automatique après délai avec possibilité d’intervention manuelle",
-            "help": "Arrêt automatique après délai avec possibilité d’intervention manuelle, mise Off immédiate après pression sur le bouton",
-            "list": {
-                "Manual override disabled": "Action manuelle impossible",
-                "Manual override enabled": "Action manuelle possible"
-            }
-        },
-        "4": {
-            "name": "Arrêt automatique pour relais 1.",
-            "help": "Valeurs de configuration de ce paramètre [1- 65535] (10ms - 6553,5s) Délai d’extinction automatique. \n Valeur par défaut 0 Auto OFF désactivé"
-        },
-        "5": {
-            "name": "Arrêt automatique pour relais 2.",
-            "help": "Valeurs de configuration de ce paramètre [1- 65535] (10ms - 6553,5s) Délai d’extinction automatique. \n Valeur par défaut 0 Auto OFF désactivé"
-        },
-        "6": {
-            "name": "Envoi de commandes au groupe no. 1",
-            "help": "Activation\/Désactivation de l'envoi de commande au groupe N°1 - Note: Le paramètre 15 doit être positionné à 1 pour fonctionner correctement. Valeur par défaut 0.",
-            "list": {
-                "Map status to all devices in group 1 (default)": "Allumer et éteindre entraine l’envoi de commandes à tous les modules du groupe 1",
-                "Map OFF status to all devices in group 1, Double click on key 1 will send ON to all devices in group 1, all dimmers set to prev.value": "Eteindre entraine l'envoi à tous les dispositifs du groupe 1. Double-cliquer, allume tous les appareils associés, les variateurs sont fixés au dernier état enregistré",
-                "Map OFF status to all devices in group 1, Double click on key 1 will send ON to all devices in group 1, all dimmers set to 100%": "Eteindre entraine l'envoi à tous les dispositifs du groupe 1. Double-cliquer, allume tous les appareils associés, les variateurs sont fixés à 100%"
-            }
-        },
-        "7": {
-            "name": "Vérification de l'état de l'appareil avant d'envoyer une trame de controle à partir du n ° 2",
-            "help": "La touche 2 n'est pas représentée par un dispositif physique comme on pourrait s’attendre à la voir sur la liste. Cette fonctionnalité prévient le manque de réaction après l’appui sur la touche 2 car tous les dispositifs associés sont testés ainsi que l’état réel des associations. Valeur par défaut 1",
-            "list": {
-                "Device status is not checked": "L’état de l'appareil n'est pas vérifié.",
-                "Device status is checked": "L’état de l'appareil est testé."
-            }
-        },
-        "13": {
-            "name": "Cette fonction permet à l’utilisateur de modifier l’état [on \/ off] d’un interrupteur à 2 positions (paramètre n°. 14)",
-            "help": "Options pour ce paramètre 1-98. Valeur par défaut 2",
-            "list": {
-                "Toggle": "0 [On \/ Off] change en fonction de l’état des contacts.",
-                "Follow switch contact (closed=ON, open=OFF)": "ON est actif lorsque le contact est fermé. OFF est actif après avoir les contacts ouverts."
-            }
-        },
-        "14": {
-            "name": "Type d’interrupteur utilisé sur le commutateur.",
-            "help": "Configuration du type d’interrupteur. Valeur par défaut 1",
-            "list": {
-                "Mono-stable input (button)": "Interrupteur type poussoir (monostable)",
-                "Bi-stable input (switch)": "Interrupteur à 2 positions (bistable)"
-            }
-        },
-        "15": {
-            "name": "Fonctionnement des modules graduateur et volets roulants",
-            "help": "L’activation de cette option permet à l'utilisateur d'obscurcir l’éclairage \/ arrêt rouleau en associant les modules Dimmer \/ Volet roulant et en opérant une double pression sur l’interrupteur (seulement avec un interrupteur type poussoir). Valeur par défaut 0",
-            "list": {
-                "Disable Dimmer\/Roller shutter control": "Le contrôle des Dimmers et Volets roulants n’est pas actif",
-                "Enable Dimmer\/Roller shutter control": "Le contrôle des Dimmers et Volets roulants est actif"
-            }
-        },
-        "16": {
-            "name": "Sauvegarde de l'état de l'appareil après une coupure de courant",
-            "help": "Sauvegarde de l'état de l'appareil après une coupure de courant. Valeur par défaut 1",
-            "list": {
-                "State NOT saved at power failure, all outputs are set to OFF upon power restore": "Etats non sauvé lors de la coupure de courant, toutes les sorties seront à OFF lors de la remise du courant",
-                "State saved at power failure, all outputs are set to previous state upon power restore": "Etats sauvé lors de la coupure de courant, toute les sorties seront à l'état précedent lors de la remise du courant"
-            }
-        },
-        "30": {
-            "name": "Alarme Générale, en rapport avec le relais 1",
-            "help": "Alarme Générale, en rapport avec le relais 1. Valeur par défaut 3",
-            "list": {
-                "DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
-                "ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
-                "ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
-                "ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
-            }
-        },
-        "31": {
-            "name": "Alarme d'inondation, prévu pour relais 1",
-            "help": "Alarme de température, pour le relais no. 1. Valeur par défaut 2",
-            "list": {
-                "DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
-                "ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
-                "ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
-                "ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
-            }
-        },
-        "32": {
-            "name": "Alarme fumée, CO, CO2, pour le relais no. 1",
-            "help": "Alarme fumée, CO, CO2, pour le relais no. 1. Valeur par défaut 3",
-            "list": {
-                "DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
-                "ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
-                "ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
-                "ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
-            }
-        },
-        "33": {
-            "name": "Alarme de température, pour le relais no. 1",
-            "help": "Alarme de température, pour le relais no. 1. Valeur par défaut 1",
-            "list": {
-                "DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
-                "ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
-                "ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
-                "ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
-            }
-        },
-        "39": {
-            "name": "Durée du clignotement lors d’alarme",
-            "help": "Valeurs de configuration de ce paramètre: [1 - 65535][ms] Valeur par défaut: 600"
-        },
-        "40": {
-            "name": "Alarme Générale, en rapport avec le relais 2",
-            "help": "Alarme Générale, en rapport avec le relais 2. Valeur par défaut 3",
-            "list": {
-                "DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
-                "ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
-                "ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
-                "ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
-            }
-        },
-        "41": {
-            "name": "Alarme d'inondation, prévu pour relais 2",
-            "help": "Alarme de température, pour le relais no. 2. Valeur par défaut 2",
-            "list": {
-                "DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
-                "ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
-                "ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
-                "ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
-            }
-        },
-        "42": {
-            "name": "Alarme fumée, CO, CO2, pour le relais no. 2",
-            "help": "Alarme fumée, CO, CO2, pour le relais no. 2. Valeur par défaut 3",
-            "list": {
-                "DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
-                "ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
-                "ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
-                "ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
-            }
-        },
-        "43": {
-            "name": "Alarme de température, pour le relais no. 2",
-            "help": "Alarme de température, pour le relais no. 2. Valeur par défaut 1",
-            "list": {
-                "DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
-                "ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
-                "ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
-                "ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
-            }
-        }
-    },
-    "commands": [
-        {
-            "name": "Confort",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "display": {
-                "generic_type": "HEATING_ON"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
-                "index": "0].Set(0)&&data[0"
-            }
-        },
-        {
-            "name": "Eco",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "display": {
-                "generic_type": "HEATING_OTHER"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "instance": 1,
-                "index": "0].Set(255)&&data[0"
-            }
-        },
-        {
-            "name": "Hors Gel",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "display": {
-                "generic_type": "HEATING_OTHER"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "instance": 1,
-                "index": "0].Set(0)&&data[0"
-            }
-        },
-        {
-            "name": "Off",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "display": {
-                "generic_type": "HEATING_OFF"
-            },
-            "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
-                "index": "0].Set(255)&&data[0"
-            }
-        },
-        {
-            "name": "Etat",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "display": {
-                "generic_type": "HEATING_STATE"
-            },
-            "configuration": {
-                "value": "pilotWire",
-                "instance": 1
-            },
-            "template": {
-                "dashboard": "heatPiloteWire",
-                "mobile": "heatPiloteWire"
-            }
-        }
-    ]
+	"name": "FGS-221 Double charge",
+	"doc": "",
+	"type": "Micromodule",
+	"comlink": "2863-fibaro-micromodule-commutateur-double-z-wave-fgs-222-5902020528289",
+	"remark": "Ce module est remplacé dans les boutiques par le FGS-222",
+	"imglink": "fibaro.fgs221",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "Confort",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "HEATING_ON"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": "0&&1",
+			"value": "data[0].Set(0)&&data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Eco",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "HEATING_OTHER"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": "0&&1",
+			"value": "data[0].Set(255)&&data[0].Set(255)"
+		}
+	},
+	{
+		"name": "Hors Gel",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "HEATING_OTHER"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": "0&&1",
+			"value": "data[0].Set(0)&&data[0].Set(255)"
+		}
+	},
+	{
+		"name": "Off",
+		"type": "action",
+		"subtype": "other",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "HEATING_OFF"
+		},
+		"configuration": {
+			"class": "0x25",
+			"instanceId": "0&&1",
+			"value": "data[0].Set(255)&&data[0].Set(0)"
+		}
+	},
+	{
+		"name": "Etat",
+		"type": "info",
+		"subtype": "numeric",
+		"isVisible": 1,
+		"display": {
+			"generic_type": "HEATING_STATE"
+		},
+		"configuration": {
+			"instanceId": "0&&1",
+			"value": "pilotWire"
+		},
+		"template": {
+			"dashboard": "heatPiloteWire",
+			"mobile": "heatPiloteWire"
+		}
+	}],
+	"configuration": {
+		"1": {
+			"name": "Activation/Désactivation des fonctions ALL ON / ALL OFF",
+			"help": "Activation/Désactivation des fonctions ALL ON / ALL OFF. Valeur par défaut 255",
+			"list": {
+				"ALL ON disabled/ ALL OFF disabled": "ALL ON inactif / ALL OFF inactif",
+				"ALL ON disabled/ ALL OFF active": "ALL ON inactif / ALL OFF actif",
+				"ALL ON active / ALL OFF disabled": "ALL ON actif / ALL OFF inactif",
+				"ALL ON active / ALL OFF active": "ALL ON actif / ALL OFF actif"
+			}
+		},
+		"3": {
+			"name": "Arrêt automatique après délai avec possibilité d’intervention manuelle",
+			"help": "Arrêt automatique après délai avec possibilité d’intervention manuelle, mise Off immédiate après pression sur le bouton",
+			"list": {
+				"Manual override disabled": "Action manuelle impossible",
+				"Manual override enabled": "Action manuelle possible"
+			}
+		},
+		"4": {
+			"name": "Arrêt automatique pour relais 1.",
+			"help": "Valeurs de configuration de ce paramètre [1- 65535] (10ms - 6553,5s) Délai d’extinction automatique. \n Valeur par défaut 0 Auto OFF désactivé"
+		},
+		"5": {
+			"name": "Arrêt automatique pour relais 2.",
+			"help": "Valeurs de configuration de ce paramètre [1- 65535] (10ms - 6553,5s) Délai d’extinction automatique. \n Valeur par défaut 0 Auto OFF désactivé"
+		},
+		"6": {
+			"name": "Envoi de commandes au groupe no. 1",
+			"help": "Activation/Désactivation de l'envoi de commande au groupe N°1 - Note: Le paramètre 15 doit être positionné à 1 pour fonctionner correctement. Valeur par défaut 0.",
+			"list": {
+				"Map status to all devices in group 1 (default)": "Allumer et éteindre entraine l’envoi de commandes à tous les modules du groupe 1",
+				"Map OFF status to all devices in group 1, Double click on key 1 will send ON to all devices in group 1, all dimmers set to prev.value": "Eteindre entraine l'envoi à tous les dispositifs du groupe 1. Double-cliquer, allume tous les appareils associés, les variateurs sont fixés au dernier état enregistré",
+				"Map OFF status to all devices in group 1, Double click on key 1 will send ON to all devices in group 1, all dimmers set to 100%": "Eteindre entraine l'envoi à tous les dispositifs du groupe 1. Double-cliquer, allume tous les appareils associés, les variateurs sont fixés à 100%"
+			}
+		},
+		"7": {
+			"name": "Vérification de l'état de l'appareil avant d'envoyer une trame de controle à partir du n ° 2",
+			"help": "La touche 2 n'est pas représentée par un dispositif physique comme on pourrait s’attendre à la voir sur la liste. Cette fonctionnalité prévient le manque de réaction après l’appui sur la touche 2 car tous les dispositifs associés sont testés ainsi que l’état réel des associations. Valeur par défaut 1",
+			"list": {
+				"Device status is not checked": "L’état de l'appareil n'est pas vérifié.",
+				"Device status is checked": "L’état de l'appareil est testé."
+			}
+		},
+		"13": {
+			"name": "Cette fonction permet à l’utilisateur de modifier l’état [on / off] d’un interrupteur à 2 positions (paramètre n°. 14)",
+			"help": "Options pour ce paramètre 1-98. Valeur par défaut 2",
+			"list": {
+				"Toggle": "0 [On / Off] change en fonction de l’état des contacts.",
+				"Follow switch contact (closed=ON, open=OFF)": "ON est actif lorsque le contact est fermé. OFF est actif après avoir les contacts ouverts."
+			}
+		},
+		"14": {
+			"name": "Type d’interrupteur utilisé sur le commutateur.",
+			"help": "Configuration du type d’interrupteur. Valeur par défaut 1",
+			"list": {
+				"Mono-stable input (button)": "Interrupteur type poussoir (monostable)",
+				"Bi-stable input (switch)": "Interrupteur à 2 positions (bistable)"
+			}
+		},
+		"15": {
+			"name": "Fonctionnement des modules graduateur et volets roulants",
+			"help": "L’activation de cette option permet à l'utilisateur d'obscurcir l’éclairage / arrêt rouleau en associant les modules Dimmer / Volet roulant et en opérant une double pression sur l’interrupteur (seulement avec un interrupteur type poussoir). Valeur par défaut 0",
+			"list": {
+				"Disable Dimmer/Roller shutter control": "Le contrôle des Dimmers et Volets roulants n’est pas actif",
+				"Enable Dimmer/Roller shutter control": "Le contrôle des Dimmers et Volets roulants est actif"
+			}
+		},
+		"16": {
+			"name": "Sauvegarde de l'état de l'appareil après une coupure de courant",
+			"help": "Sauvegarde de l'état de l'appareil après une coupure de courant. Valeur par défaut 1",
+			"list": {
+				"State NOT saved at power failure, all outputs are set to OFF upon power restore": "Etats non sauvé lors de la coupure de courant, toutes les sorties seront à OFF lors de la remise du courant",
+				"State saved at power failure, all outputs are set to previous state upon power restore": "Etats sauvé lors de la coupure de courant, toute les sorties seront à l'état précedent lors de la remise du courant"
+			}
+		},
+		"30": {
+			"name": "Alarme Générale, en rapport avec le relais 1",
+			"help": "Alarme Générale, en rapport avec le relais 1. Valeur par défaut 3",
+			"list": {
+				"DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
+				"ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
+				"ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
+				"ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
+			}
+		},
+		"31": {
+			"name": "Alarme d'inondation, prévu pour relais 1",
+			"help": "Alarme de température, pour le relais no. 1. Valeur par défaut 2",
+			"list": {
+				"DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
+				"ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
+				"ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
+				"ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
+			}
+		},
+		"32": {
+			"name": "Alarme fumée, CO, CO2, pour le relais no. 1",
+			"help": "Alarme fumée, CO, CO2, pour le relais no. 1. Valeur par défaut 3",
+			"list": {
+				"DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
+				"ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
+				"ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
+				"ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
+			}
+		},
+		"33": {
+			"name": "Alarme de température, pour le relais no. 1",
+			"help": "Alarme de température, pour le relais no. 1. Valeur par défaut 1",
+			"list": {
+				"DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
+				"ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
+				"ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
+				"ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
+			}
+		},
+		"39": {
+			"name": "Durée du clignotement lors d’alarme",
+			"help": "Valeurs de configuration de ce paramètre: [1 - 65535][ms] Valeur par défaut: 600"
+		},
+		"40": {
+			"name": "Alarme Générale, en rapport avec le relais 2",
+			"help": "Alarme Générale, en rapport avec le relais 2. Valeur par défaut 3",
+			"list": {
+				"DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
+				"ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
+				"ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
+				"ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
+			}
+		},
+		"41": {
+			"name": "Alarme d'inondation, prévu pour relais 2",
+			"help": "Alarme de température, pour le relais no. 2. Valeur par défaut 2",
+			"list": {
+				"DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
+				"ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
+				"ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
+				"ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
+			}
+		},
+		"42": {
+			"name": "Alarme fumée, CO, CO2, pour le relais no. 2",
+			"help": "Alarme fumée, CO, CO2, pour le relais no. 2. Valeur par défaut 3",
+			"list": {
+				"DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
+				"ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
+				"ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
+				"ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
+			}
+		},
+		"43": {
+			"name": "Alarme de température, pour le relais no. 2",
+			"help": "Alarme de température, pour le relais no. 2. Valeur par défaut 1",
+			"list": {
+				"DEACTIVATION - no response to alarm frames": "DESACTIVATION Le dispositif ne répond pas aux données d'alarme",
+				"ALARM RELAY ON - relay will turn ON upon receipt of alarm frame": "ALARME RELAIS ON le dispositif se met en marche après la détection d'une alarme",
+				"ALARM RELAY OFF - relay will turn OFF upon receipt of alarm frame": "ALARME RELAIS OFF l'appareil s'éteint après la détection d'une alarme",
+				"ALARM FLASHING - relay will turn ON and OFF periodically (see param.39)": "ALARME FLASH le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
+			}
+		}
+	}
 }
