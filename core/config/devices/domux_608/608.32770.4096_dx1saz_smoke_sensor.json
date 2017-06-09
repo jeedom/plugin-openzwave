@@ -6,16 +6,16 @@
     "imglink": "domux.dx1saz", 
     "commands": [
         {
+            "name": "Fumées", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
                 "class": 113, 
                 "value": "", 
+                "index": 1, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Fumées", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 

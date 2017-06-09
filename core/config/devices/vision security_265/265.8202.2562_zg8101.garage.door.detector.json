@@ -6,32 +6,32 @@
     "imglink": "vision.zg8101", 
     "commands": [
         {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 128, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Batterie", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
             }
         }, 
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 48, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -39,16 +39,16 @@
             }
         }, 
         {
+            "name": "Sabotage", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 10, 
                 "class": 113, 
                 "value": "", 
+                "index": 10, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Sabotage", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 

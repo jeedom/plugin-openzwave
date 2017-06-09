@@ -6,74 +6,74 @@
     "imglink": "qubino.zmnhtdx", 
     "commands": [
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "instance": 2
-            }, 
-            "type": "action", 
             "name": "On1", 
-            "isVisible": 1, 
-            "value": "Etat1", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "ENERGY_ON"
-            }, 
-            "template": {
-                "dashboard": "prise", 
-                "mobile": "prise"
-            }
-        }, 
-        {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "instance": 2
-            }, 
             "type": "action", 
-            "name": "Off1", 
             "isVisible": 1, 
-            "value": "Etat1", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "ENERGY_OFF"
-            }, 
-            "template": {
-                "dashboard": "prise", 
-                "mobile": "prise"
-            }
-        }, 
-        {
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "", 
-                "instance": 2
-            }, 
-            "type": "info", 
-            "name": "Etat1", 
-            "isVisible": 0, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "ENERGY_STATE"
-            }
-        }, 
-        {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "value": "Etat1", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "ENERGY_ON"
+            }, 
+            "template": {
+                "dashboard": "prise", 
+                "mobile": "prise"
+            }
+        }, 
+        {
+            "name": "Off1", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "value": "Etat1", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            }, 
+            "template": {
+                "dashboard": "prise", 
+                "mobile": "prise"
+            }
+        }, 
+        {
+            "name": "Etat1", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            }
+        }, 
+        {
+            "name": "On2", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 3
             }, 
-            "type": "action", 
-            "name": "On2", 
-            "isVisible": 1, 
             "value": "Etat2", 
             "subtype": "other", 
             "display": {
@@ -85,16 +85,16 @@
             }
         }, 
         {
+            "name": "Off2", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 3
             }, 
-            "type": "action", 
-            "name": "Off2", 
-            "isVisible": 1, 
             "value": "Etat2", 
             "subtype": "other", 
             "display": {
@@ -106,32 +106,32 @@
             }
         }, 
         {
+            "name": "Etat2", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 3
             }, 
-            "type": "info", 
-            "name": "Etat2", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "ENERGY_STATE"
             }
         }, 
         {
+            "name": "Puissance", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 8, 
                 "class": 50, 
                 "value": "", 
+                "index": 8, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Puissance", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -139,17 +139,17 @@
             "unite": "W"
         }, 
         {
+            "name": "Consommation kWh", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 0, 
-                "minValue": 0, 
                 "class": 50, 
                 "value": "", 
-                "instance": 1
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
             }, 
-            "type": "info", 
-            "name": "Consommation kWh", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -157,16 +157,16 @@
             "unite": "kWh"
         }, 
         {
+            "name": "Consommation kVAh", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 4, 
                 "class": 50, 
                 "value": "", 
+                "index": 4, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Consommation kVAh", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -174,16 +174,16 @@
             "unite": "kVAh"
         }, 
         {
+            "name": "Tension", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 16, 
                 "class": 50, 
                 "value": "", 
+                "index": 16, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Tension", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "VOLTAGE"
@@ -191,16 +191,16 @@
             "unite": "V"
         }, 
         {
+            "name": "Intensité", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 20, 
                 "class": 50, 
                 "value": "", 
+                "index": 20, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Intensité", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"

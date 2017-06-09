@@ -6,16 +6,16 @@
     "imglink": "everspring.han01", 
     "commands": [
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "ENERGY_STATE"
@@ -23,16 +23,16 @@
             "unite": ""
         }, 
         {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "On", 
-            "isVisible": 1, 
             "value": "Etat", 
             "subtype": "other", 
             "display": {
@@ -44,16 +44,16 @@
             }
         }, 
         {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Off", 
-            "isVisible": 1, 
             "value": "Etat", 
             "subtype": "other", 
             "display": {

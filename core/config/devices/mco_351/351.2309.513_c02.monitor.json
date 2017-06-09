@@ -6,16 +6,16 @@
     "imglink": "mcohome.mh9co2", 
     "commands": [
         {
+            "name": "CO2", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 6, 
                 "class": 113, 
                 "value": "", 
+                "index": 6, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "CO2", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -27,18 +27,18 @@
             }
         }, 
         {
+            "name": "Niveau CO2", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 17, 
-                "maxValue": 2000, 
+                "class": 49, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 17, 
                 "instance": 1, 
-                "class": 49
+                "minValue": 0, 
+                "maxValue": 2000
             }, 
-            "type": "info", 
-            "name": "Niveau CO2", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "GENERIC"
@@ -46,18 +46,18 @@
             "unite": "ppm"
         }, 
         {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 1, 
-                "maxValue": 50, 
+                "class": 49, 
                 "value": "", 
-                "minValue": -9, 
+                "index": 1, 
                 "instance": 1, 
-                "class": 49
+                "minValue": -9, 
+                "maxValue": 50
             }, 
-            "type": "info", 
-            "name": "Température", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
@@ -65,18 +65,18 @@
             "unite": "°C"
         }, 
         {
+            "name": "Humidité", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 5, 
-                "maxValue": 100, 
+                "class": 49, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 5, 
                 "instance": 1, 
-                "class": 49
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Humidité", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "HUMIDITY"
@@ -84,16 +84,16 @@
             "unite": "%"
         }, 
         {
+            "name": "Sabotage", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 10, 
                 "class": 113, 
                 "value": "", 
+                "index": 10, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Sabotage", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 

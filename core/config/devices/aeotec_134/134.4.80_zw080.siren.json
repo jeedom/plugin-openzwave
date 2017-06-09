@@ -6,16 +6,16 @@
     "imglink": "aeotec.zw080", 
     "commands": [
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": 1, 
@@ -28,272 +28,272 @@
             "unite": ""
         }, 
         {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "On", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Off", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Sound 1 Low", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 1 - Low Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Sound 1 Low", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Sound 1 Mid", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 1 - Mid Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Sound 1 Mid", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Sound 1 High", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 1 - High Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Sound 1 High", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Sound 2 Low", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 2 - Low Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Sound 2 Low", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Sound 2 Mid", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 2 - Mid Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Sound 2 Mid", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Sound 2 High", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 2 - High Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Sound 2 High", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Sound 3 Low", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 3 - Low Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Sound 3 Low", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Sound 3 Mid", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 3 - Mid Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Sound 3 Mid", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Sound 3 High", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 3 - High Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Sound 3 High", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Police Low", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 4 - Low Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Police Low", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Police Mid", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 4 - Mid Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Police Mid", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Police High", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 4 - High Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Police High", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Sound 5 Low", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 5 - Low Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Sound 5 Low", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Sound 5 Mid", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 5 - Mid Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Sound 5 Mid", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Sound 5 High", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 37, 
                 "class": 112, 
                 "value": "type=setvalue&value=Sound 5 - High Volume", 
+                "index": 37, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Sound 5 High", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"

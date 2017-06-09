@@ -6,16 +6,16 @@
     "imglink": "homeseer.ezmotion3en1", 
     "commands": [
         {
+            "name": "Présence", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 48, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Présence", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1"
@@ -26,50 +26,50 @@
             }
         }, 
         {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
                 "class": 49, 
                 "value": "", 
+                "index": 1, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Température", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
             }
         }, 
         {
+            "name": "Luminosité", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 3, 
                 "class": 49, 
                 "value": "", 
+                "index": 3, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Luminosité", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "BRIGHTNESS"
             }
         }, 
         {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 100, 
+                "class": 128, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 128
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Batterie", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"

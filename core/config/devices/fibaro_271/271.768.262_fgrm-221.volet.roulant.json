@@ -6,18 +6,18 @@
     "imglink": "fibaro.fgrm222", 
     "commands": [
         {
+            "name": "Up", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=99", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Up", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-arrow-up\"></i>", 
@@ -25,18 +25,18 @@
             }
         }, 
         {
+            "name": "Down", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=0", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Down", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-arrow-down\"></i>", 
@@ -44,34 +44,34 @@
             }
         }, 
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 38, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "FLAP_STATE"
             }
         }, 
         {
+            "name": "Positionnement", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=#slider#", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Positionnement", 
-            "isVisible": 1, 
             "value": "Etat", 
             "subtype": "slider", 
             "display": {
@@ -83,18 +83,18 @@
             }
         }, 
         {
+            "name": "Rafraichir", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "Get()", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Rafraichir", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-refresh\"></i>", 
@@ -102,18 +102,18 @@
             }
         }, 
         {
+            "name": "Stop", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 2, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "button(release)", 
-                "minValue": 0, 
+                "index": 2, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Stop", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-stop\"></i>", 
@@ -121,18 +121,18 @@
             }
         }, 
         {
+            "name": "Stop BSO", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 7, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "button(release)", 
-                "minValue": 0, 
+                "index": 7, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Stop BSO", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-stop\"></i>", 
@@ -140,17 +140,17 @@
             }
         }, 
         {
+            "name": "Scene", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "repeatEventManagement": "always", 
                 "class": 43, 
                 "value": "", 
-                "instance": 1
+                "index": 0, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
             }, 
-            "type": "info", 
-            "name": "Scene", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"

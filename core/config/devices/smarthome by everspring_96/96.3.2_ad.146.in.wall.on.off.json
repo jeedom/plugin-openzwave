@@ -6,16 +6,16 @@
     "imglink": "smarthomebyeverspring.AD146-0", 
     "commands": [
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 38, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
@@ -27,18 +27,18 @@
             "unite": ""
         }, 
         {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=99", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "On", 
-            "isVisible": 0, 
             "value": "Etat", 
             "subtype": "other", 
             "display": {
@@ -46,18 +46,18 @@
             }
         }, 
         {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=0", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Off", 
-            "isVisible": 0, 
             "value": "Etat", 
             "subtype": "other", 
             "display": {

@@ -6,16 +6,16 @@
     "imglink": "aeotec.multisensor6", 
     "commands": [
         {
+            "name": "Présence", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 0, 
                 "class": 48, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Présence", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -27,16 +27,16 @@
             }
         }, 
         {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 1, 
                 "class": 49, 
                 "value": "", 
+                "index": 1, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Température", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
@@ -44,18 +44,18 @@
             "unite": "°C"
         }, 
         {
+            "name": "Luminosité", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 3, 
-                "maxValue": 40000, 
+                "class": 49, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 3, 
                 "instance": 1, 
-                "class": 49
+                "minValue": 0, 
+                "maxValue": 40000
             }, 
-            "type": "info", 
-            "name": "Luminosité", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "BRIGHTNESS"
@@ -63,18 +63,18 @@
             "unite": "Lux"
         }, 
         {
+            "name": "Humidité", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 5, 
-                "maxValue": 100, 
+                "class": 49, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 5, 
                 "instance": 1, 
-                "class": 49
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Humidité", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "HUMIDITY"
@@ -82,16 +82,16 @@
             "unite": "%"
         }, 
         {
+            "name": "Ultraviolet", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 27, 
                 "class": 49, 
                 "value": "", 
+                "index": 27, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Ultraviolet", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "UV"
@@ -99,16 +99,16 @@
             "unite": ""
         }, 
         {
+            "name": "Sabotage", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 10, 
                 "class": 113, 
                 "value": "", 
+                "index": 10, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Sabotage", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -120,18 +120,18 @@
             }
         }, 
         {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 100, 
+                "class": 128, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 128
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Batterie", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"

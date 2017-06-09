@@ -110,36 +110,16 @@
     }, 
     "commands": [
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 48, 
-                "value": "", 
-                "instance": 1
-            }, 
-            "type": "info", 
             "name": "Etat 1", 
+            "type": "info", 
             "isVisible": 1, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "OPENING"
-            }, 
-            "template": {
-                "dashboard": "door", 
-                "mobile": "door"
-            }
-        }, 
-        {
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 48, 
                 "value": "", 
-                "instance": 2
+                "index": 0, 
+                "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat 2", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "OPENING"
@@ -150,33 +130,36 @@
             }
         }, 
         {
-            "isHistorized": 1, 
-            "configuration": {
-                "index": 1, 
-                "class": 49, 
-                "value": "", 
-                "instance": 1
-            }, 
+            "name": "Etat 2", 
             "type": "info", 
-            "name": "Température 1", 
             "isVisible": 1, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "TEMPERATURE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "isHistorized": 1, 
+            "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
-                "class": 49, 
+                "class": 48, 
                 "value": "", 
+                "index": 0, 
                 "instance": 2
             }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "OPENING"
+            }, 
+            "template": {
+                "dashboard": "door", 
+                "mobile": "door"
+            }
+        }, 
+        {
+            "name": "Température 1", 
             "type": "info", 
-            "name": "Température 2", 
             "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
@@ -184,16 +167,33 @@
             "unite": "°C"
         }, 
         {
+            "name": "Température 2", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 1, 
                 "class": 49, 
                 "value": "", 
+                "index": 1, 
+                "instance": 2
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Température 3", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
                 "instance": 3
             }, 
-            "type": "info", 
-            "name": "Température 3", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
@@ -201,16 +201,16 @@
             "unite": "°C"
         }, 
         {
+            "name": "Température 4", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 1, 
                 "class": 49, 
                 "value": "", 
+                "index": 1, 
                 "instance": 4
             }, 
-            "type": "info", 
-            "name": "Température 4", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"

@@ -6,16 +6,16 @@
     "imglink": "aeotec.nanoswitch", 
     "commands": [
         {
+            "name": "On 1", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "On 1", 
-            "isVisible": 1, 
             "value": "Etat 1", 
             "subtype": "other", 
             "display": {
@@ -27,16 +27,16 @@
             }
         }, 
         {
+            "name": "Off 1", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Off 1", 
-            "isVisible": 1, 
             "value": "Etat 1", 
             "subtype": "other", 
             "display": {
@@ -48,34 +48,34 @@
             }
         }, 
         {
+            "name": "Etat 1", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat 1", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
             }
         }, 
         {
+            "name": "Puissance 1", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 8, 
-                "maxValue": 2300, 
+                "class": 50, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 8, 
                 "instance": 1, 
-                "class": 50
+                "minValue": 0, 
+                "maxValue": 2300
             }, 
-            "type": "info", 
-            "name": "Puissance 1", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -83,17 +83,17 @@
             "unite": "W"
         }, 
         {
+            "name": "Consommation 1", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "minValue": 0, 
                 "class": 50, 
                 "value": "", 
-                "instance": 1
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
             }, 
-            "type": "info", 
-            "name": "Consommation 1", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -105,16 +105,16 @@
             "unite": "kWh"
         }, 
         {
+            "name": "Tension 1", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 16, 
                 "class": 50, 
                 "value": "", 
+                "index": 16, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Tension 1", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "VOLTAGE"
@@ -126,16 +126,16 @@
             "unite": "V"
         }, 
         {
+            "name": "Intensité 1", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 20, 
                 "class": 50, 
                 "value": "", 
+                "index": 20, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Intensité 1", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
@@ -147,16 +147,16 @@
             "unite": "A"
         }, 
         {
+            "name": "On 2 ", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 2
             }, 
-            "type": "action", 
-            "name": "On 2 ", 
-            "isVisible": 1, 
             "value": "Etat 2", 
             "subtype": "other", 
             "display": {
@@ -168,16 +168,16 @@
             }
         }, 
         {
+            "name": "Off 2 ", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 2
             }, 
-            "type": "action", 
-            "name": "Off 2 ", 
-            "isVisible": 1, 
             "value": "Etat 2", 
             "subtype": "other", 
             "display": {
@@ -189,33 +189,33 @@
             }
         }, 
         {
+            "name": "Etat 2", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 2
             }, 
-            "type": "info", 
-            "name": "Etat 2", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
             }
         }, 
         {
+            "name": "Scene", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 128, 
-                "repeatEventManagement": "always", 
                 "class": 91, 
                 "value": "", 
-                "instance": 1
+                "index": 128, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
             }, 
-            "type": "info", 
-            "name": "Scene", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
@@ -226,18 +226,18 @@
             }
         }, 
         {
+            "name": "Puissance 2", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 8, 
-                "maxValue": 2300, 
+                "class": 50, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 8, 
                 "instance": 2, 
-                "class": 50
+                "minValue": 0, 
+                "maxValue": 2300
             }, 
-            "type": "info", 
-            "name": "Puissance 2", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -245,17 +245,17 @@
             "unite": "W"
         }, 
         {
+            "name": "Consommation 2", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "minValue": 0, 
                 "class": 50, 
                 "value": "", 
-                "instance": 2
+                "index": 0, 
+                "instance": 2, 
+                "minValue": 0
             }, 
-            "type": "info", 
-            "name": "Consommation 2", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -267,16 +267,16 @@
             "unite": "kWh"
         }, 
         {
+            "name": "Tension 2", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 16, 
                 "class": 50, 
                 "value": "", 
+                "index": 16, 
                 "instance": 2
             }, 
-            "type": "info", 
-            "name": "Tension 2", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "VOLTAGE"
@@ -288,16 +288,16 @@
             "unite": "V"
         }, 
         {
+            "name": "Intensité 2", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 20, 
                 "class": 50, 
                 "value": "", 
+                "index": 20, 
                 "instance": 2
             }, 
-            "type": "info", 
-            "name": "Intensité 2", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"

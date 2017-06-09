@@ -6,18 +6,18 @@
     "imglink": "everspring.st815", 
     "commands": [
         {
+            "name": "Luminosité", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 3, 
-                "maxValue": 3000, 
+                "class": 49, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 3, 
                 "instance": 1, 
-                "class": 49
+                "minValue": 0, 
+                "maxValue": 3000
             }, 
-            "type": "info", 
-            "name": "Luminosité", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "BRIGHTNESS"

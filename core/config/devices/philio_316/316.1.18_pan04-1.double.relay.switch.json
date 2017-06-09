@@ -6,16 +6,16 @@
     "imglink": "philio.pan04", 
     "commands": [
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "instance": 1
-            }, 
-            "type": "action", 
             "name": "On 1", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 1
+            }, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
@@ -26,16 +26,16 @@
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "instance": 1
-            }, 
-            "type": "action", 
             "name": "Off 1", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1
+            }, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
@@ -46,16 +46,16 @@
             }
         }, 
         {
+            "name": "Etat 1", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat 1", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
@@ -67,18 +67,18 @@
             "unite": ""
         }, 
         {
+            "name": "Puissance 1", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 8, 
-                "maxValue": 2000, 
+                "class": 50, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 8, 
                 "instance": 1, 
-                "class": 50
+                "minValue": 0, 
+                "maxValue": 2000
             }, 
-            "type": "info", 
-            "name": "Puissance 1", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -86,17 +86,17 @@
             "unite": "W"
         }, 
         {
+            "name": "Consommation 1", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 0, 
-                "minValue": 0, 
                 "class": 50, 
                 "value": "", 
-                "instance": 1
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
             }, 
-            "type": "info", 
-            "name": "Consommation 1", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -108,16 +108,16 @@
             "unite": "kWh"
         }, 
         {
+            "name": "On 2", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 2
             }, 
-            "type": "action", 
-            "name": "On 2", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
@@ -128,16 +128,16 @@
             }
         }, 
         {
+            "name": "Off 2", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 2
             }, 
-            "type": "action", 
-            "name": "Off 2", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
@@ -148,16 +148,16 @@
             }
         }, 
         {
+            "name": "Etat 2", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 2
             }, 
-            "type": "info", 
-            "name": "Etat 2", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
@@ -169,18 +169,18 @@
             "unite": ""
         }, 
         {
+            "name": "Puissance 2", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 8, 
-                "maxValue": 2000, 
+                "class": 50, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 8, 
                 "instance": 2, 
-                "class": 50
+                "minValue": 0, 
+                "maxValue": 2000
             }, 
-            "type": "info", 
-            "name": "Puissance 2", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -188,17 +188,17 @@
             "unite": "W"
         }, 
         {
+            "name": "Consommation 2", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 0, 
-                "minValue": 0, 
                 "class": 50, 
                 "value": "", 
-                "instance": 2
+                "index": 0, 
+                "instance": 2, 
+                "minValue": 0
             }, 
-            "type": "info", 
-            "name": "Consommation 2", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -210,48 +210,48 @@
             "unite": "kWh"
         }, 
         {
+            "name": "On global", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 3
             }, 
-            "type": "action", 
-            "name": "On global", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Off global", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 3
             }, 
-            "type": "action", 
-            "name": "Off global", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Etat global", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 3
             }, 
-            "type": "info", 
-            "name": "Etat global", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
@@ -259,18 +259,18 @@
             "unite": ""
         }, 
         {
+            "name": "Puissance globale", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 2, 
-                "maxValue": 3200, 
+                "class": 50, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 2, 
                 "instance": 3, 
-                "class": 50
+                "minValue": 0, 
+                "maxValue": 3200
             }, 
-            "type": "info", 
-            "name": "Puissance globale", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -278,17 +278,17 @@
             "unite": "W"
         }, 
         {
+            "name": "Consommation globale", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 0, 
-                "minValue": 0, 
                 "class": 50, 
                 "value": "", 
-                "instance": 3
+                "index": 0, 
+                "instance": 3, 
+                "minValue": 0
             }, 
-            "type": "info", 
-            "name": "Consommation globale", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"

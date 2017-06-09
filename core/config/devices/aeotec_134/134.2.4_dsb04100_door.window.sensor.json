@@ -6,16 +6,16 @@
     "imglink": "aeotec.doorwindow", 
     "commands": [
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 0, 
                 "class": 48, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -27,16 +27,16 @@
             }
         }, 
         {
+            "name": "Sabotage", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
                 "class": 113, 
                 "value": "", 
+                "index": 1, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Sabotage", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -44,18 +44,18 @@
             }
         }, 
         {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 100, 
+                "class": 128, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 128
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Batterie", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"

@@ -6,79 +6,16 @@
     "imglink": "aeotec.double-microswitch", 
     "commands": [
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "", 
-                "instance": 2
-            }, 
-            "type": "info", 
             "name": "Etat 1", 
+            "type": "info", 
             "isVisible": 0, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "ENERGY_STATE"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }, 
-            "unite": ""
-        }, 
-        {
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "instance": 2
-            }, 
-            "type": "action", 
-            "name": "On 1", 
-            "isVisible": 1, 
-            "value": "Etat 1", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "ENERGY_ON"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "instance": 2
-            }, 
-            "type": "action", 
-            "name": "Off 1", 
-            "isVisible": 1, 
-            "value": "Etat 1", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "ENERGY_OFF"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
-                "instance": 3
+                "index": 0, 
+                "instance": 2
             }, 
-            "type": "info", 
-            "name": "Etat 2", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "ENERGY_STATE"
@@ -90,16 +27,79 @@
             "unite": ""
         }, 
         {
+            "name": "On 1", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "value": "Etat 1", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "ENERGY_ON"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "name": "Off 1", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "value": "Etat 1", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "name": "Etat 2", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
                 "instance": 3
             }, 
-            "type": "action", 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }, 
+            "unite": ""
+        }, 
+        {
             "name": "On 2", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 3
+            }, 
             "value": "Etat 2", 
             "subtype": "other", 
             "display": {
@@ -111,16 +111,16 @@
             }
         }, 
         {
+            "name": "Off 2", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 3
             }, 
-            "type": "action", 
-            "name": "Off 2", 
-            "isVisible": 1, 
             "value": "Etat 2", 
             "subtype": "other", 
             "display": {
@@ -132,18 +132,18 @@
             }
         }, 
         {
+            "name": "Puissance", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 8, 
-                "maxValue": 1150, 
+                "class": 50, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 8, 
                 "instance": 1, 
-                "class": 50
+                "minValue": 0, 
+                "maxValue": 1150
             }, 
-            "type": "info", 
-            "name": "Puissance", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -151,17 +151,17 @@
             "unite": "W"
         }, 
         {
+            "name": "Consommation", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "minValue": 0, 
                 "class": 50, 
                 "value": "", 
-                "instance": 1
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
             }, 
-            "type": "info", 
-            "name": "Consommation", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"

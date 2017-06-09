@@ -6,18 +6,18 @@
     "imglink": "philio.psp05", 
     "commands": [
         {
+            "name": "Présence", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "returnStateValue": 0, 
+                "class": 48, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1, 
                 "returnStateTime": 1, 
-                "class": 48
+                "returnStateValue": 0
             }, 
-            "type": "info", 
-            "name": "Présence", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -29,18 +29,18 @@
             }
         }, 
         {
+            "name": "Sabotage", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 2, 
-                "returnStateValue": 0, 
+                "class": 48, 
                 "value": "", 
+                "index": 2, 
                 "instance": 1, 
                 "returnStateTime": 1, 
-                "class": 48
+                "returnStateValue": 0
             }, 
-            "type": "info", 
-            "name": "Sabotage", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -48,16 +48,16 @@
             }
         }, 
         {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 128, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Batterie", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"

@@ -6,16 +6,16 @@
     "imglink": "devolo.mt02758", 
     "commands": [
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": 1, 
@@ -28,158 +28,158 @@
             "unite": ""
         }, 
         {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "On", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Off", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
-                "value": "type=setvalue&value=Emergency", 
-                "minValue": 0, 
-                "instance": 1, 
-                "class": 38
-            }, 
-            "type": "action", 
             "name": "Emergency", 
+            "type": "action", 
             "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=Emergency", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
-                "value": "type=setvalue&value=Fire", 
-                "minValue": 0, 
-                "instance": 1, 
-                "class": 38
-            }, 
-            "type": "action", 
             "name": "Fire", 
+            "type": "action", 
             "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=Fire", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
-                "value": "type=setvalue&value=Ambulance", 
-                "minValue": 0, 
-                "instance": 1, 
-                "class": 38
-            }, 
-            "type": "action", 
             "name": "Ambulance", 
+            "type": "action", 
             "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=Ambulance", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
-                "value": "type=setvalue&value=Police", 
-                "minValue": 0, 
-                "instance": 1, 
-                "class": 38
-            }, 
-            "type": "action", 
             "name": "Police", 
+            "type": "action", 
             "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=Police", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
-                "value": "type=setvalue&value=Door chime", 
-                "minValue": 0, 
-                "instance": 1, 
-                "class": 38
-            }, 
-            "type": "action", 
             "name": "Door chime", 
+            "type": "action", 
             "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=Door chime", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
-                "value": "type=setvalue&value=Beep Beep", 
-                "minValue": 0, 
-                "instance": 1, 
-                "class": 38
-            }, 
-            "type": "action", 
             "name": "Beep Beep", 
+            "type": "action", 
             "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=Beep Beep", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
             }
         }, 
         {
+            "name": "Stop", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=Stop", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Stop", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"

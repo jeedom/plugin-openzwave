@@ -6,16 +6,16 @@
     "imglink": "fortrezz.wv01", 
     "commands": [
         {
+            "name": "Close", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Close", 
-            "isVisible": 1, 
             "value": "Etat", 
             "subtype": "other", 
             "display": {
@@ -23,16 +23,16 @@
             }
         }, 
         {
+            "name": "Open", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Open", 
-            "isVisible": 1, 
             "value": "Etat", 
             "subtype": "other", 
             "display": {
@@ -40,16 +40,16 @@
             }
         }, 
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 

@@ -6,18 +6,18 @@
     "imglink": "fakro.zws230", 
     "commands": [
         {
+            "name": "Up", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "button(press)", 
-                "minValue": 0, 
+                "index": 1, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Up", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-arrow-up\"></i>", 
@@ -25,18 +25,18 @@
             }
         }, 
         {
+            "name": "Down", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 2, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "button(press)", 
-                "minValue": 0, 
+                "index": 2, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Down", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-arrow-down\"></i>", 
@@ -44,18 +44,18 @@
             }
         }, 
         {
+            "name": "Stop", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 2, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "button(release)", 
-                "minValue": 0, 
+                "index": 2, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Stop", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-stop\"></i>", 

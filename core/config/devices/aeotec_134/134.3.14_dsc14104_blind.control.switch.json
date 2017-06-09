@@ -6,52 +6,52 @@
     "imglink": "aeotec.blind-control", 
     "commands": [
         {
+            "name": "Monter", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=99", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Monter", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "FLAP_UP"
             }
         }, 
         {
+            "name": "Descendre", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=0", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Descendre", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "FLAP_DOWN"
             }
         }, 
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 38, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -64,18 +64,18 @@
             "unite": ""
         }, 
         {
+            "name": "Puissance", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 8, 
-                "maxValue": 2500, 
+                "class": 50, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 8, 
                 "instance": 1, 
-                "class": 50
+                "minValue": 0, 
+                "maxValue": 2500
             }, 
-            "type": "info", 
-            "name": "Puissance", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -83,17 +83,17 @@
             "unite": "W"
         }, 
         {
+            "name": "Consommation", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "minValue": 0, 
                 "class": 50, 
                 "value": "", 
-                "instance": 1
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
             }, 
-            "type": "info", 
-            "name": "Consommation", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"

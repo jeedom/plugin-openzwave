@@ -32,32 +32,32 @@
     }, 
     "commands": [
         {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "On", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Off", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"

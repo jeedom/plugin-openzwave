@@ -6,16 +6,16 @@
     "imglink": "aeotec.dsc11", 
     "commands": [
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "", 
-                "instance": 1
-            }, 
-            "type": "info", 
             "name": "Etat-1", 
+            "type": "info", 
             "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "ENERGY_STATE"
@@ -23,16 +23,16 @@
             "unite": ""
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "instance": 1
-            }, 
-            "type": "action", 
             "name": "On-1", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 1
+            }, 
             "value": "Etat-1", 
             "subtype": "other", 
             "display": {
@@ -44,16 +44,16 @@
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "instance": 1
-            }, 
-            "type": "action", 
             "name": "Off-1", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1
+            }, 
             "value": "Etat-1", 
             "subtype": "other", 
             "display": {
@@ -65,16 +65,16 @@
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "", 
-                "instance": 2
-            }, 
-            "type": "info", 
             "name": "Etat-2", 
+            "type": "info", 
             "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 2
+            }, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "ENERGY_STATE"
@@ -82,16 +82,16 @@
             "unite": ""
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "instance": 2
-            }, 
-            "type": "action", 
             "name": "On-2", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 2
+            }, 
             "value": "Etat-2", 
             "subtype": "other", 
             "display": {
@@ -103,16 +103,16 @@
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "instance": 2
-            }, 
-            "type": "action", 
             "name": "Off-2", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 2
+            }, 
             "value": "Etat-2", 
             "subtype": "other", 
             "display": {
@@ -124,16 +124,16 @@
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "", 
-                "instance": 3
-            }, 
-            "type": "info", 
             "name": "Etat-3", 
+            "type": "info", 
             "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 3
+            }, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "ENERGY_STATE"
@@ -141,16 +141,16 @@
             "unite": ""
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "instance": 3
-            }, 
-            "type": "action", 
             "name": "On-3", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 3
+            }, 
             "value": "Etat-3", 
             "subtype": "other", 
             "display": {
@@ -162,16 +162,16 @@
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "instance": 3
-            }, 
-            "type": "action", 
             "name": "Off-3", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 3
+            }, 
             "value": "Etat-3", 
             "subtype": "other", 
             "display": {
@@ -183,16 +183,16 @@
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "", 
-                "instance": 4
-            }, 
-            "type": "info", 
             "name": "Etat-4", 
+            "type": "info", 
             "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 4
+            }, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "ENERGY_STATE"
@@ -200,16 +200,16 @@
             "unite": ""
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "instance": 4
-            }, 
-            "type": "action", 
             "name": "On-4", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 4
+            }, 
             "value": "Etat-4", 
             "subtype": "other", 
             "display": {
@@ -221,16 +221,16 @@
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "instance": 4
-            }, 
-            "type": "action", 
             "name": "Off-4", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 4
+            }, 
             "value": "Etat-4", 
             "subtype": "other", 
             "display": {
@@ -242,16 +242,16 @@
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "", 
-                "instance": 5
-            }, 
-            "type": "info", 
             "name": "Etat-5", 
+            "type": "info", 
             "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 5
+            }, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "ENERGY_STATE"
@@ -259,16 +259,16 @@
             "unite": ""
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "instance": 5
-            }, 
-            "type": "action", 
             "name": "On-5", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 5
+            }, 
             "value": "Etat-5", 
             "subtype": "other", 
             "display": {
@@ -280,16 +280,16 @@
             }
         }, 
         {
+            "name": "Off-5", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 5
             }, 
-            "type": "action", 
-            "name": "Off-5", 
-            "isVisible": 1, 
             "value": "Etat-5", 
             "subtype": "other", 
             "display": {
@@ -301,16 +301,16 @@
             }
         }, 
         {
+            "name": "Etat-6", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 6
             }, 
-            "type": "info", 
-            "name": "Etat-6", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "ENERGY_STATE"
@@ -318,16 +318,16 @@
             "unite": ""
         }, 
         {
+            "name": "On-6", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 6
             }, 
-            "type": "action", 
-            "name": "On-6", 
-            "isVisible": 1, 
             "value": "Etat-6", 
             "subtype": "other", 
             "display": {
@@ -339,16 +339,16 @@
             }
         }, 
         {
+            "name": "Off-6", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 6
             }, 
-            "type": "action", 
-            "name": "Off-6", 
-            "isVisible": 1, 
             "value": "Etat-6", 
             "subtype": "other", 
             "display": {
@@ -360,18 +360,18 @@
             }
         }, 
         {
-            "isHistorized": 1, 
-            "configuration": {
-                "index": 8, 
-                "maxValue": 2500, 
-                "value": "", 
-                "minValue": 0, 
-                "instance": 1, 
-                "class": 50
-            }, 
-            "type": "info", 
             "name": "Puissance-1", 
+            "type": "info", 
             "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 8, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 2500
+            }, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -382,18 +382,18 @@
             "unite": "W"
         }, 
         {
-            "isHistorized": 1, 
-            "configuration": {
-                "index": 8, 
-                "maxValue": 2500, 
-                "value": "", 
-                "minValue": 0, 
-                "instance": 2, 
-                "class": 50
-            }, 
-            "type": "info", 
             "name": "Puissance-2", 
+            "type": "info", 
             "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 8, 
+                "instance": 2, 
+                "minValue": 0, 
+                "maxValue": 2500
+            }, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -404,18 +404,18 @@
             "unite": "W"
         }, 
         {
-            "isHistorized": 1, 
-            "configuration": {
-                "index": 8, 
-                "maxValue": 2500, 
-                "value": "", 
-                "minValue": 0, 
-                "instance": 3, 
-                "class": 50
-            }, 
-            "type": "info", 
             "name": "Puissance-3", 
+            "type": "info", 
             "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 8, 
+                "instance": 3, 
+                "minValue": 0, 
+                "maxValue": 2500
+            }, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -426,18 +426,18 @@
             "unite": "W"
         }, 
         {
-            "isHistorized": 1, 
-            "configuration": {
-                "index": 8, 
-                "maxValue": 2500, 
-                "value": "", 
-                "minValue": 0, 
-                "instance": 4, 
-                "class": 50
-            }, 
-            "type": "info", 
             "name": "Puissance-4", 
+            "type": "info", 
             "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 8, 
+                "instance": 4, 
+                "minValue": 0, 
+                "maxValue": 2500
+            }, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -448,40 +448,18 @@
             "unite": "W"
         }, 
         {
-            "isHistorized": 1, 
-            "configuration": {
-                "index": 8, 
-                "maxValue": 2500, 
-                "value": "", 
-                "minValue": 0, 
-                "instance": 5, 
-                "class": 50
-            }, 
-            "type": "info", 
             "name": "Puissance-5", 
+            "type": "info", 
             "isVisible": 1, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "POWER"
-            }, 
-            "template": {
-                "dashboard": "badge-Multiprise"
-            }, 
-            "unite": "W"
-        }, 
-        {
             "isHistorized": 1, 
             "configuration": {
-                "index": 8, 
-                "maxValue": 2500, 
+                "class": 50, 
                 "value": "", 
+                "index": 8, 
+                "instance": 5, 
                 "minValue": 0, 
-                "instance": 6, 
-                "class": 50
+                "maxValue": 2500
             }, 
-            "type": "info", 
-            "name": "Puissance-6", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -492,17 +470,39 @@
             "unite": "W"
         }, 
         {
-            "isHistorized": 0, 
+            "name": "Puissance-6", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
             "configuration": {
-                "index": 0, 
-                "minValue": 0, 
                 "class": 50, 
                 "value": "", 
-                "instance": 1
+                "index": 8, 
+                "instance": 6, 
+                "minValue": 0, 
+                "maxValue": 2500
             }, 
-            "type": "info", 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "POWER"
+            }, 
+            "template": {
+                "dashboard": "badge-Multiprise"
+            }, 
+            "unite": "W"
+        }, 
+        {
             "name": "Conso-1", 
+            "type": "info", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
+            }, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -513,17 +513,17 @@
             "unite": "kWh"
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "minValue": 0, 
-                "class": 50, 
-                "value": "", 
-                "instance": 2
-            }, 
-            "type": "info", 
             "name": "Conso-2", 
+            "type": "info", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 0, 
+                "instance": 2, 
+                "minValue": 0
+            }, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -534,17 +534,17 @@
             "unite": "kWh"
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "minValue": 0, 
-                "class": 50, 
-                "value": "", 
-                "instance": 3
-            }, 
-            "type": "info", 
             "name": "Conso-3", 
+            "type": "info", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 0, 
+                "instance": 3, 
+                "minValue": 0
+            }, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -555,17 +555,17 @@
             "unite": "kWh"
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "minValue": 0, 
-                "class": 50, 
-                "value": "", 
-                "instance": 4
-            }, 
-            "type": "info", 
             "name": "Conso-4", 
+            "type": "info", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 0, 
+                "instance": 4, 
+                "minValue": 0
+            }, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -576,17 +576,17 @@
             "unite": "kWh"
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "minValue": 0, 
-                "class": 50, 
-                "value": "", 
-                "instance": 5
-            }, 
-            "type": "info", 
             "name": "Conso-5", 
+            "type": "info", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 0, 
+                "instance": 5, 
+                "minValue": 0
+            }, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -597,17 +597,17 @@
             "unite": "kWh"
         }, 
         {
+            "name": "Conso-6", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "minValue": 0, 
                 "class": 50, 
                 "value": "", 
-                "instance": 6
+                "index": 0, 
+                "instance": 6, 
+                "minValue": 0
             }, 
-            "type": "info", 
-            "name": "Conso-6", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"

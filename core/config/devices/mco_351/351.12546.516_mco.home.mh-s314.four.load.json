@@ -7,53 +7,53 @@
     "ignore": true, 
     "commands": [
         {
-            "isHistorized": "0", 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "", 
-                "instance": 1
-            }, 
-            "type": "info", 
             "name": "Etat", 
+            "type": "info", 
             "isVisible": "0", 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
             }
         }, 
         {
-            "isHistorized": "0", 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "instance": 1
-            }, 
-            "type": "action", 
             "name": "On", 
+            "type": "action", 
             "isVisible": "1", 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_ON"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
             "isHistorized": "0", 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
-                "value": "type=setvalue&value=0", 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
+            "value": "Etat", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
             "name": "Off", 
+            "type": "action", 
             "isVisible": "1", 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1
+            }, 
             "value": "Etat", 
             "subtype": "other", 
             "display": {
@@ -65,53 +65,53 @@
             }
         }, 
         {
-            "isHistorized": "0", 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "", 
-                "instance": 2
-            }, 
-            "type": "info", 
             "name": "Etat 2", 
+            "type": "info", 
             "isVisible": "0", 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 2
+            }, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
             }
         }, 
         {
-            "isHistorized": "0", 
-            "configuration": {
-                "index": 0, 
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "instance": 2
-            }, 
-            "type": "action", 
             "name": "On 2", 
+            "type": "action", 
             "isVisible": "1", 
-            "value": "Etat 2", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_ON"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
             "isHistorized": "0", 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
-                "value": "type=setvalue&value=0", 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 2
             }, 
-            "type": "action", 
+            "value": "Etat 2", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
             "name": "Off 2", 
+            "type": "action", 
             "isVisible": "1", 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 2
+            }, 
             "value": "Etat 2", 
             "subtype": "other", 
             "display": {
@@ -123,32 +123,32 @@
             }
         }, 
         {
+            "name": "Etat 3", 
+            "type": "info", 
+            "isVisible": "0", 
             "isHistorized": "0", 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 3
             }, 
-            "type": "info", 
-            "name": "Etat 3", 
-            "isVisible": "0", 
             "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
             }
         }, 
         {
+            "name": "On 3", 
+            "type": "action", 
+            "isVisible": "1", 
             "isHistorized": "0", 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 3
             }, 
-            "type": "action", 
-            "name": "On 3", 
-            "isVisible": "1", 
             "value": "Etat 3", 
             "subtype": "other", 
             "display": {
@@ -160,16 +160,16 @@
             }
         }, 
         {
+            "name": "Off 3", 
+            "type": "action", 
+            "isVisible": "1", 
             "isHistorized": "0", 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 3
             }, 
-            "type": "action", 
-            "name": "Off 3", 
-            "isVisible": "1", 
             "value": "Etat 3", 
             "subtype": "other", 
             "display": {
@@ -181,32 +181,32 @@
             }
         }, 
         {
+            "name": "Etat 4", 
+            "type": "info", 
+            "isVisible": "0", 
             "isHistorized": "0", 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 4
             }, 
-            "type": "info", 
-            "name": "Etat 4", 
-            "isVisible": "0", 
             "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
             }
         }, 
         {
+            "name": "On 4", 
+            "type": "action", 
+            "isVisible": "1", 
             "isHistorized": "0", 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 4
             }, 
-            "type": "action", 
-            "name": "On 4", 
-            "isVisible": "1", 
             "value": "Etat 4", 
             "subtype": "other", 
             "display": {
@@ -218,16 +218,16 @@
             }
         }, 
         {
+            "name": "Off 4", 
+            "type": "action", 
+            "isVisible": "1", 
             "isHistorized": "0", 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 4
             }, 
-            "type": "action", 
-            "name": "Off 4", 
-            "isVisible": "1", 
             "value": "Etat4", 
             "subtype": "other", 
             "display": {

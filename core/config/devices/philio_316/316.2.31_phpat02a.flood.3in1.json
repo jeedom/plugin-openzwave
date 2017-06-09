@@ -6,16 +6,16 @@
     "imglink": "philio.phpat02", 
     "commands": [
         {
+            "name": "Fuite", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 8, 
                 "class": 113, 
                 "value": "", 
+                "index": 8, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Fuite", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -27,16 +27,16 @@
             }
         }, 
         {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
                 "class": 49, 
                 "value": "", 
+                "index": 1, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Température", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
@@ -44,18 +44,18 @@
             "unite": "°C"
         }, 
         {
+            "name": "Humidité", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 5, 
-                "maxValue": 100, 
+                "class": 49, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 5, 
                 "instance": 1, 
-                "class": 49
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Humidité", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "HUMIDITY"
@@ -63,18 +63,18 @@
             "unite": "%"
         }, 
         {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 100, 
+                "class": 128, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 128
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Batterie", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"

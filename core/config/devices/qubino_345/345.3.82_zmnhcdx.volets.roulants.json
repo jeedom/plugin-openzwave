@@ -6,16 +6,16 @@
     "imglink": "qubino.zmnhcdx", 
     "commands": [
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 38, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "FLAP_STATE"
@@ -26,18 +26,18 @@
             }
         }, 
         {
+            "name": "Positionnement", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=#slider#", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Positionnement", 
-            "isVisible": 1, 
             "value": "Etat", 
             "subtype": "slider", 
             "display": {
@@ -49,18 +49,18 @@
             }
         }, 
         {
+            "name": "Descendre", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=0", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Descendre", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-arrow-down\"></i>", 
@@ -68,18 +68,18 @@
             }
         }, 
         {
+            "name": "Monter", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=99", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Monter", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-arrow-up\"></i>", 
@@ -87,16 +87,16 @@
             }
         }, 
         {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 1, 
                 "class": 49, 
                 "value": "", 
+                "index": 1, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Température", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
@@ -108,18 +108,18 @@
             "unite": "°C"
         }, 
         {
+            "name": "Puissance", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 8, 
-                "maxValue": 1840, 
+                "class": 50, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 8, 
                 "instance": 1, 
-                "class": 50
+                "minValue": 0, 
+                "maxValue": 1840
             }, 
-            "type": "info", 
-            "name": "Puissance", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -127,17 +127,17 @@
             "unite": "W"
         }, 
         {
+            "name": "Consommation", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 0, 
-                "minValue": 0, 
                 "class": 50, 
                 "value": "", 
-                "instance": 1
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
             }, 
-            "type": "info", 
-            "name": "Consommation", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -145,18 +145,18 @@
             "unite": "kWh"
         }, 
         {
+            "name": "Stop", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 2, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "button(release)", 
-                "minValue": 0, 
+                "index": 2, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Stop", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-stop\"></i>", 
@@ -164,18 +164,18 @@
             }
         }, 
         {
+            "name": "Stop BSO", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 7, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "button(release)", 
-                "minValue": 0, 
+                "index": 7, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Stop BSO", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-stop\"></i>", 
@@ -183,18 +183,18 @@
             }
         }, 
         {
+            "name": "Incliner", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 7, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "button(press)", 
-                "minValue": 0, 
+                "index": 7, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Incliner", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-plus\"></i>", 
@@ -202,18 +202,18 @@
             }
         }, 
         {
+            "name": "Décliner", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 8, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "button(press)", 
-                "minValue": 0, 
+                "index": 8, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Décliner", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-minus\"></i>", 
@@ -221,34 +221,34 @@
             }
         }, 
         {
+            "name": "Pas", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 6, 
                 "class": 38, 
                 "value": "", 
+                "index": 6, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Pas", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "GENERIC"
             }
         }, 
         {
+            "name": "Rafraichir", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "Get()", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Rafraichir", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-refresh\"></i>", 

@@ -6,18 +6,18 @@
     "imglink": "duwi.edan-300", 
     "commands": [
         {
+            "name": "Intensité", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=#slider#", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Intensité", 
-            "isVisible": 1, 
             "value": "Etat", 
             "subtype": "slider", 
             "display": {
@@ -29,54 +29,54 @@
             }
         }, 
         {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=255", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "On", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
             }
         }, 
         {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=0", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Off", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
             }
         }, 
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 100, 
+                "class": 38, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "LIGHT_STATE"

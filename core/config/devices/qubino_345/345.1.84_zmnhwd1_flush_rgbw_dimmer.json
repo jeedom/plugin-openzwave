@@ -6,16 +6,16 @@
     "imglink": "qubino.zmnhwd1", 
     "commands": [
         {
+            "name": "Couleur", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 51, 
                 "value": "type=setvalue&value=#color#", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Couleur", 
-            "isVisible": 1, 
             "value": "Etat couleur", 
             "subtype": "color", 
             "display": {
@@ -23,18 +23,18 @@
             }
         }, 
         {
+            "name": "Puissance", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 4, 
-                "maxValue": 2500, 
+                "class": 49, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 4, 
                 "instance": 1, 
-                "class": 49
+                "minValue": 0, 
+                "maxValue": 2500
             }, 
-            "type": "info", 
-            "name": "Puissance", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -42,17 +42,17 @@
             "unite": "W"
         }, 
         {
+            "name": "Consommation", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "minValue": 0, 
                 "class": 50, 
                 "value": "", 
-                "instance": 1
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
             }, 
-            "type": "info", 
-            "name": "Consommation", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -63,16 +63,16 @@
             "unite": "kWh"
         }, 
         {
+            "name": "Blanc Froid", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
                 "class": 51, 
                 "value": "type=setvalue&value=Cool White", 
+                "index": 1, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Blanc Froid", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon nature-snowflake\"></i>", 
@@ -80,16 +80,16 @@
             }
         }, 
         {
+            "name": "Blanc Chaud", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
                 "class": 51, 
                 "value": "type=setvalue&value=Warm White", 
+                "index": 1, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Blanc Chaud", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon meteo-brouillard\"></i>", 
@@ -97,18 +97,18 @@
             }
         }, 
         {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=99", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "On", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-lumiere-on\"></i>", 
@@ -116,18 +116,18 @@
             }
         }, 
         {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=0", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Off", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-lumiere-off\"></i>", 
@@ -135,18 +135,18 @@
             }
         }, 
         {
+            "name": "Intensité", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=#slider#", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Intensité", 
-            "isVisible": 1, 
             "value": "Etat", 
             "subtype": "slider", 
             "display": {
@@ -154,18 +154,18 @@
             }
         }, 
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 100, 
+                "class": 38, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "LIGHT_STATE"
@@ -173,16 +173,16 @@
             "unite": "%"
         }, 
         {
+            "name": "Etat couleur", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 38, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat couleur", 
-            "isVisible": 0, 
             "subtype": "string", 
             "display": {
                 "generic_type": "LIGHT_COLOR"
@@ -190,18 +190,18 @@
             "unite": ""
         }, 
         {
+            "name": "Blanc Intensité", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=#slider#", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 6, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Blanc Intensité", 
-            "isVisible": 0, 
             "value": "Blanc Etat", 
             "subtype": "slider", 
             "display": {
@@ -213,54 +213,54 @@
             }
         }, 
         {
+            "name": "Blanc On", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=99", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 6, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Blanc On", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
             }
         }, 
         {
+            "name": "Blanc Off", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=0", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 6, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Blanc Off", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
             }
         }, 
         {
+            "name": "Blanc Etat", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 100, 
+                "class": 38, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 6, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Blanc Etat", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "LIGHT_STATE"

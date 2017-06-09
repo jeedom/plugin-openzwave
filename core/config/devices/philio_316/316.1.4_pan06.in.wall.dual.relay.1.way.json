@@ -6,64 +6,64 @@
     "imglink": "philio.pan06", 
     "commands": [
         {
+            "name": "On All", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 2
             }, 
-            "type": "action", 
-            "name": "On All", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Off All", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 2
             }, 
-            "type": "action", 
-            "name": "Off All", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Etat All", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 2
             }, 
-            "type": "info", 
-            "name": "Etat All", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "On 1", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 3
             }, 
-            "type": "action", 
-            "name": "On 1", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
@@ -74,16 +74,16 @@
             }
         }, 
         {
+            "name": "Off 1", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 3
             }, 
-            "type": "action", 
-            "name": "Off 1", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
@@ -94,32 +94,32 @@
             }
         }, 
         {
+            "name": "Etat 1", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 3
             }, 
-            "type": "info", 
-            "name": "Etat 1", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
             }
         }, 
         {
+            "name": "On 2", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 4
             }, 
-            "type": "action", 
-            "name": "On 2", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
@@ -130,16 +130,16 @@
             }
         }, 
         {
+            "name": "Off 2", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
+                "index": 0, 
                 "instance": 4
             }, 
-            "type": "action", 
-            "name": "Off 2", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
@@ -150,16 +150,16 @@
             }
         }, 
         {
+            "name": "Etat 2", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "", 
+                "index": 0, 
                 "instance": 4
             }, 
-            "type": "info", 
-            "name": "Etat 2", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"

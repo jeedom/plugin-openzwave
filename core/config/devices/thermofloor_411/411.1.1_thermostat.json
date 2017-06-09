@@ -6,16 +6,16 @@
     "imglink": "heatit.thermostat", 
     "commands": [
         {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": "0", 
             "configuration": {
-                "index": 1, 
                 "class": 49, 
                 "value": "", 
+                "index": 1, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Température", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "THERMOSTAT_TEMPERATURE"
@@ -23,32 +23,32 @@
             "unite": "°C"
         }, 
         {
+            "name": "Mode Actuel", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 64, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Mode Actuel", 
-            "isVisible": 1, 
             "subtype": "string", 
             "display": {
                 "generic_type": "THERMOSTAT_MODE"
             }
         }, 
         {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 64, 
                 "value": "type=setvalue&value=Off", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Off", 
-            "isVisible": 1, 
             "value": "Mode Actuel", 
             "subtype": "other", 
             "display": {
@@ -56,16 +56,16 @@
             }
         }, 
         {
+            "name": "Confort", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 64, 
                 "value": "type=setvalue&value=Heat (Default)", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Confort", 
-            "isVisible": 1, 
             "value": "Mode Actuel", 
             "subtype": "other", 
             "display": {
@@ -73,16 +73,16 @@
             }
         }, 
         {
+            "name": "ECO", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 64, 
                 "value": "type=setvalue&value=Energy Heat", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "ECO", 
-            "isVisible": 1, 
             "value": "Mode Actuel", 
             "subtype": "other", 
             "display": {
@@ -90,17 +90,17 @@
             }
         }, 
         {
+            "name": "CoolingEtat", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 2, 
-                "maxValue": "30", 
                 "class": 67, 
                 "value": "", 
-                "instance": 1
+                "index": 2, 
+                "instance": 1, 
+                "maxValue": "30"
             }, 
-            "type": "info", 
-            "name": "CoolingEtat", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
@@ -108,17 +108,17 @@
             "unite": "°C"
         }, 
         {
+            "name": "Cooling", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 2, 
-                "maxValue": "30", 
                 "class": 67, 
                 "value": "type=setvalue&value=#slider#", 
-                "instance": 1
+                "index": 2, 
+                "instance": 1, 
+                "maxValue": "30"
             }, 
-            "type": "action", 
-            "name": "Cooling", 
-            "isVisible": 0, 
             "value": "CoolingEtat", 
             "subtype": "slider", 
             "display": {
@@ -127,17 +127,17 @@
             "unite": "°C"
         }, 
         {
+            "name": "AirEtat", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 8, 
-                "maxValue": "30", 
                 "class": 67, 
                 "value": "", 
-                "instance": 1
+                "index": 8, 
+                "instance": 1, 
+                "maxValue": "30"
             }, 
-            "type": "info", 
-            "name": "AirEtat", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
@@ -145,17 +145,17 @@
             "unite": "°C"
         }, 
         {
+            "name": "Dry Air", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 8, 
-                "maxValue": "30", 
                 "class": 67, 
                 "value": "type=setvalue&value=#slider#", 
-                "instance": 1
+                "index": 8, 
+                "instance": 1, 
+                "maxValue": "30"
             }, 
-            "type": "action", 
-            "name": "Dry Air", 
-            "isVisible": 1, 
             "value": "ConsigneEtat", 
             "subtype": "slider", 
             "display": {

@@ -32,19 +32,19 @@
     }, 
     "commands": [
         {
+            "name": "Action", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 9, 
-                "maxValue": 255, 
+                "class": 113, 
                 "value": "", 
-                "repeatEventManagement": "always", 
+                "index": 9, 
                 "instance": 1, 
+                "repeatEventManagement": "always", 
                 "minValue": 0, 
-                "class": 113
+                "maxValue": 255
             }, 
-            "type": "info", 
-            "name": "Action", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
@@ -55,18 +55,18 @@
             }
         }, 
         {
+            "name": "Sabotage", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 10, 
-                "returnStateValue": 0, 
+                "class": 113, 
                 "value": "", 
+                "index": 10, 
                 "instance": 1, 
                 "returnStateTime": 1, 
-                "class": 113
+                "returnStateValue": 0
             }, 
-            "type": "info", 
-            "name": "Sabotage", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -74,34 +74,34 @@
             }
         }, 
         {
+            "name": "Code", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 99, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Code", 
-            "isVisible": 0, 
             "subtype": "string", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 100, 
+                "class": 128, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 128
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Batterie", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"

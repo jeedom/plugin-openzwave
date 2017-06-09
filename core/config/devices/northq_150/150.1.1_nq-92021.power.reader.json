@@ -6,16 +6,16 @@
     "imglink": "northq.powerreader", 
     "commands": [
         {
+            "name": "Consommation", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": "0", 
             "configuration": {
-                "index": 0, 
                 "class": 50, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Consommation", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -23,18 +23,18 @@
             "unite": "kwH"
         }, 
         {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 100, 
+                "class": 128, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 128
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Batterie", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
@@ -42,16 +42,16 @@
             "unite": "%"
         }, 
         {
+            "name": "Actualiser la date et heure", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 3, 
                 "class": 139, 
                 "value": "button(press)", 
+                "index": 3, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Actualiser la date et heure", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"

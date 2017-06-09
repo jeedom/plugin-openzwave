@@ -6,72 +6,72 @@
     "imglink": "fortrezz.ssa01", 
     "commands": [
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
-                "value": "type=setvalue&value=0", 
-                "minValue": 0, 
-                "instance": 1, 
-                "class": 38
-            }, 
-            "type": "action", 
             "name": "All Off", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
-                "value": "type=setvalue&value=33", 
-                "minValue": 0, 
-                "instance": 1, 
-                "class": 38
-            }, 
-            "type": "action", 
             "name": "Flash", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=33", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
-                "value": "type=setvalue&value=66", 
-                "minValue": 0, 
-                "instance": 1, 
-                "class": 38
-            }, 
-            "type": "action", 
             "name": "Siren", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=66", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Flash & Siren", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=99", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Flash & Siren", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"

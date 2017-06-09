@@ -6,16 +6,16 @@
     "imglink": "eurotronic.stellaz", 
     "commands": [
         {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": "0", 
             "configuration": {
-                "index": 1, 
                 "class": 49, 
                 "value": "", 
+                "index": 1, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Température", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "THERMOSTAT_TEMPERATURE"
@@ -23,32 +23,32 @@
             "unite": "°C"
         }, 
         {
+            "name": "Mode Actuel", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 64, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Mode Actuel", 
-            "isVisible": 1, 
             "subtype": "string", 
             "display": {
                 "generic_type": "THERMOSTAT_MODE"
             }
         }, 
         {
+            "name": "Frost Protection", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 64, 
                 "value": "type=setvalue&value=Frost Protection", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Frost Protection", 
-            "isVisible": 1, 
             "value": "Mode Actuel", 
             "subtype": "other", 
             "display": {
@@ -56,16 +56,16 @@
             }
         }, 
         {
+            "name": "Confort", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 64, 
                 "value": "type=setvalue&value=Comfort", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Confort", 
-            "isVisible": 1, 
             "value": "Mode Actuel", 
             "subtype": "other", 
             "display": {
@@ -73,16 +73,16 @@
             }
         }, 
         {
+            "name": "Energy Saving", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 64, 
                 "value": "type=setvalue&value=Energy Saving", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Energy Saving", 
-            "isVisible": 1, 
             "value": "Mode Actuel", 
             "subtype": "other", 
             "display": {
@@ -90,16 +90,16 @@
             }
         }, 
         {
+            "name": "Direct Valve Control", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 64, 
                 "value": "type=setvalue&value=Direct Valve Control", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Direct Valve Control", 
-            "isVisible": 1, 
             "value": "Mode Actuel", 
             "subtype": "other", 
             "display": {
@@ -107,18 +107,18 @@
             }
         }, 
         {
+            "name": "Commande Comfort", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
-                "maxValue": 28, 
+                "class": 67, 
                 "value": "type=setvalue&value=#slider#", 
-                "minValue": 4, 
+                "index": 1, 
                 "instance": 1, 
-                "class": 67
+                "minValue": 4, 
+                "maxValue": 28
             }, 
-            "type": "action", 
-            "name": "Commande Comfort", 
-            "isVisible": 1, 
             "value": "Consigne Comfort", 
             "subtype": "slider", 
             "display": {
@@ -127,18 +127,18 @@
             "unite": "°C"
         }, 
         {
+            "name": "Consigne Comfort", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
-                "maxValue": 28, 
+                "class": 67, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 1, 
                 "instance": 1, 
-                "class": 67
+                "minValue": 0, 
+                "maxValue": 28
             }, 
-            "type": "info", 
-            "name": "Consigne Comfort", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "THERMOSTAT_SETPOINT"
@@ -146,18 +146,18 @@
             "unite": "°C"
         }, 
         {
+            "name": "Consigne Comfort pending", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
-                "maxValue": 28, 
+                "class": 67, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 1, 
                 "instance": 11, 
-                "class": 67
+                "minValue": 0, 
+                "maxValue": 28
             }, 
-            "type": "info", 
-            "name": "Consigne Comfort pending", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
@@ -165,18 +165,18 @@
             "unite": "°C"
         }, 
         {
+            "name": "Commande Energy saving", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 11, 
-                "maxValue": 28, 
+                "class": 67, 
                 "value": "type=setvalue&value=#slider#", 
-                "minValue": 4, 
+                "index": 11, 
                 "instance": 1, 
-                "class": 67
+                "minValue": 4, 
+                "maxValue": 28
             }, 
-            "type": "action", 
-            "name": "Commande Energy saving", 
-            "isVisible": 1, 
             "value": "Consigne Energy saving", 
             "subtype": "slider", 
             "display": {
@@ -185,18 +185,18 @@
             "unite": "°C"
         }, 
         {
+            "name": "Consigne Energy saving", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 11, 
-                "maxValue": 28, 
+                "class": 67, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 11, 
                 "instance": 1, 
-                "class": 67
+                "minValue": 0, 
+                "maxValue": 28
             }, 
-            "type": "info", 
-            "name": "Consigne Energy saving", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "THERMOSTAT_SETPOINT"
@@ -204,18 +204,18 @@
             "unite": "°C"
         }, 
         {
+            "name": "Consigne Energy saving pending", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 11, 
-                "maxValue": 28, 
+                "class": 67, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 11, 
                 "instance": 11, 
-                "class": 67
+                "minValue": 0, 
+                "maxValue": 28
             }, 
-            "type": "info", 
-            "name": "Consigne Energy saving pending", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
@@ -223,18 +223,18 @@
             "unite": "°C"
         }, 
         {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 100, 
+                "class": 128, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 128
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Batterie", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
@@ -242,18 +242,18 @@
             "unite": "%"
         }, 
         {
+            "name": "Level", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=#slider#", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Level", 
-            "isVisible": 1, 
             "value": "Etat", 
             "subtype": "slider", 
             "display": {
@@ -261,18 +261,18 @@
             }
         }, 
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 100, 
+                "class": 38, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"

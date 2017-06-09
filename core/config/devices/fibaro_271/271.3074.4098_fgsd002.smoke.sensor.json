@@ -6,16 +6,16 @@
     "imglink": "fibaro.fgsd102", 
     "commands": [
         {
+            "name": "Fumées", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
                 "class": 156, 
                 "value": "", 
+                "index": 1, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Fumées", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -27,18 +27,18 @@
             }
         }, 
         {
+            "name": "Chaleur", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 4, 
-                "returnStateValue": 0, 
+                "class": 156, 
                 "value": "", 
+                "index": 4, 
                 "instance": 1, 
                 "returnStateTime": 1, 
-                "class": 156
+                "returnStateValue": 0
             }, 
-            "type": "info", 
-            "name": "Chaleur", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -50,16 +50,16 @@
             }
         }, 
         {
+            "name": "Sabotage", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 156, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Sabotage", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -67,16 +67,16 @@
             }
         }, 
         {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 1, 
                 "class": 49, 
                 "value": "", 
+                "index": 1, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Température", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
@@ -84,18 +84,18 @@
             "unite": "°C"
         }, 
         {
+            "name": "Alerte Test", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
-                "returnStateValue": 0, 
+                "class": 113, 
                 "value": "", 
+                "index": 1, 
                 "instance": 1, 
                 "returnStateTime": 1, 
-                "class": 113
+                "returnStateValue": 0
             }, 
-            "type": "info", 
-            "name": "Alerte Test", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -103,18 +103,18 @@
             }
         }, 
         {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 100, 
+                "class": 128, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 128
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Batterie", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"

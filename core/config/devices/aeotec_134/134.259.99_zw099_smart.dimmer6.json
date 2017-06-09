@@ -6,90 +6,90 @@
     "imglink": "aeotec.zw099", 
     "commands": [
         {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=99", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "On", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
             }
         }, 
         {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=0", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Off", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
             }
         }, 
         {
-            "isHistorized": 0, 
-            "configuration": {
-                "index": 2, 
-                "maxValue": 99, 
-                "value": "button(press)", 
-                "minValue": 0, 
-                "instance": 1, 
-                "class": 38
-            }, 
-            "type": "action", 
             "name": "Dim", 
+            "type": "action", 
             "isVisible": 0, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "button(press)", 
-                "minValue": 0, 
+                "index": 2, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Bright", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Bright", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
-                "value": "type=setvalue&value=#slider#", 
-                "minValue": 0, 
+                "class": 38, 
+                "value": "button(press)", 
+                "index": 1, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
             "name": "Intensité", 
+            "type": "action", 
             "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
             "value": "Etat", 
             "subtype": "slider", 
             "display": {
@@ -101,18 +101,18 @@
             }
         }, 
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 100, 
+                "class": 38, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 100
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "LIGHT_STATE"
@@ -120,18 +120,18 @@
             "unite": "%"
         }, 
         {
+            "name": "Puissance", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 8, 
-                "maxValue": 575, 
+                "class": 50, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 8, 
                 "instance": 1, 
-                "class": 50
+                "minValue": 0, 
+                "maxValue": 575
             }, 
-            "type": "info", 
-            "name": "Puissance", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -139,17 +139,17 @@
             "unite": "W"
         }, 
         {
+            "name": "Consommation", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "minValue": 0, 
                 "class": 50, 
                 "value": "", 
-                "instance": 1
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
             }, 
-            "type": "info", 
-            "name": "Consommation", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -161,16 +161,16 @@
             "unite": "kWh"
         }, 
         {
+            "name": "Couleur", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 51, 
                 "value": "type=setvalue&value=#color#", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Couleur", 
-            "isVisible": 0, 
             "value": "Etat couleur", 
             "subtype": "color", 
             "display": {
@@ -178,16 +178,16 @@
             }
         }, 
         {
+            "name": "Etat couleur", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 51, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat couleur", 
-            "isVisible": 0, 
             "subtype": "string", 
             "display": {
                 "generic_type": "LIGHT_COLOR"

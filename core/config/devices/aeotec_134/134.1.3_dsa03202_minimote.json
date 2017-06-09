@@ -6,17 +6,17 @@
     "imglink": "aeotec.minimote", 
     "commands": [
         {
+            "name": "Scene", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "repeatEventManagement": "always", 
                 "class": 43, 
                 "value": "", 
-                "instance": 1
+                "index": 0, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
             }, 
-            "type": "info", 
-            "name": "Scene", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"

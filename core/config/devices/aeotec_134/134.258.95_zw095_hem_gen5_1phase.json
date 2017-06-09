@@ -6,17 +6,17 @@
     "imglink": "aeotec.zw095", 
     "commands": [
         {
+            "name": "Consommation", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 0, 
-                "minValue": 0, 
                 "class": 50, 
                 "value": "", 
-                "instance": 1
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
             }, 
-            "type": "info", 
-            "name": "Consommation", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "CONSUMPTION"
@@ -24,18 +24,18 @@
             "unite": "KWh"
         }, 
         {
+            "name": "Puissance", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 8, 
-                "maxValue": 48000, 
+                "class": 50, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 8, 
                 "instance": 1, 
-                "class": 50
+                "minValue": 0, 
+                "maxValue": 48000
             }, 
-            "type": "info", 
-            "name": "Puissance", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "POWER"
@@ -43,18 +43,18 @@
             "unite": "W"
         }, 
         {
+            "name": "Tension", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 16, 
-                "maxValue": 80, 
+                "class": 50, 
                 "value": "", 
-                "minValue": 150, 
+                "index": 16, 
                 "instance": 1, 
-                "class": 50
+                "minValue": 150, 
+                "maxValue": 80
             }, 
-            "type": "info", 
-            "name": "Tension", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "VOLTAGE"
@@ -62,18 +62,18 @@
             "unite": "V"
         }, 
         {
+            "name": "Intensité", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 20, 
-                "maxValue": 200, 
+                "class": 50, 
                 "value": "", 
-                "minValue": 0, 
+                "index": 20, 
                 "instance": 1, 
-                "class": 50
+                "minValue": 0, 
+                "maxValue": 200
             }, 
-            "type": "info", 
-            "name": "Intensité", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"

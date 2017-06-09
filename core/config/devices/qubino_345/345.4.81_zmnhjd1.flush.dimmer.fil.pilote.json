@@ -6,16 +6,16 @@
     "imglink": "qubino.zmnhjd1", 
     "commands": [
         {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 38, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Etat", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "HEATING_STATE"
@@ -26,18 +26,18 @@
             }
         }, 
         {
+            "name": "Arret", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=0", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Arret", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-power-off\"></i>", 
@@ -45,18 +45,18 @@
             }
         }, 
         {
+            "name": "Confort", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=99", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Confort", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-thermo-chaud\"></i>", 
@@ -64,18 +64,18 @@
             }
         }, 
         {
+            "name": "Eco", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=30", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Eco", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon divers-triangular42\"></i>", 
@@ -83,18 +83,18 @@
             }
         }, 
         {
+            "name": "Hors Gel", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=20", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Hors Gel", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon nature-snowflake\"></i>", 
@@ -102,18 +102,18 @@
             }
         }, 
         {
+            "name": "Confort -1", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=50", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Confort -1", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-thermo-moyen\"></i>", 
@@ -121,18 +121,18 @@
             }
         }, 
         {
+            "name": "Confort -2", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
-                "maxValue": 99, 
+                "class": 38, 
                 "value": "type=setvalue&value=40", 
-                "minValue": 0, 
+                "index": 0, 
                 "instance": 1, 
-                "class": 38
+                "minValue": 0, 
+                "maxValue": 99
             }, 
-            "type": "action", 
-            "name": "Confort -2", 
-            "isVisible": 1, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-thermo-froid\"></i>", 
@@ -140,16 +140,16 @@
             }
         }, 
         {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 1, 
                 "class": 49, 
                 "value": "", 
+                "index": 1, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Température", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
@@ -157,16 +157,16 @@
             "unite": "°C"
         }, 
         {
+            "name": "I1", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
                 "class": 48, 
                 "value": "", 
+                "index": 1, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "I1", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -174,16 +174,16 @@
             }
         }, 
         {
+            "name": "I2", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
                 "class": 48, 
                 "value": "", 
+                "index": 1, 
                 "instance": 2
             }, 
-            "type": "info", 
-            "name": "I2", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -191,16 +191,16 @@
             }
         }, 
         {
+            "name": "I3", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 1, 
                 "class": 48, 
                 "value": "", 
+                "index": 1, 
                 "instance": 3
             }, 
-            "type": "info", 
-            "name": "I3", 
-            "isVisible": 0, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 

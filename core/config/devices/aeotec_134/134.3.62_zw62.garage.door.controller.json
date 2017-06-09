@@ -6,16 +6,16 @@
     "imglink": "aeotec.garagedoorcontroller", 
     "commands": [
         {
+            "name": "Open/Close", 
+            "type": "action", 
+            "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 0, 
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Open/Close", 
-            "isVisible": 1, 
             "value": "Position", 
             "subtype": "other", 
             "display": {
@@ -27,16 +27,16 @@
             }
         }, 
         {
+            "name": "Position", 
+            "type": "info", 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 0, 
                 "class": 32, 
                 "value": "", 
+                "index": 0, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Position", 
-            "isVisible": 0, 
             "subtype": "numeric", 
             "display": {
                 "invertBinary": "1"
@@ -47,16 +47,16 @@
             }
         }, 
         {
+            "name": "Volume", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 44, 
                 "class": 112, 
                 "value": "", 
+                "index": 44, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Volume", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
@@ -68,16 +68,16 @@
             "unite": ""
         }, 
         {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 45, 
                 "class": 112, 
                 "value": "", 
+                "index": 45, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Température", 
-            "isVisible": 1, 
             "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
@@ -85,32 +85,32 @@
             "unite": "°C"
         }, 
         {
+            "name": "Actualiser Température", 
+            "type": "action", 
+            "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "index": 45, 
                 "class": 112, 
                 "value": "ForceRefresh()", 
+                "index": 45, 
                 "instance": 1
             }, 
-            "type": "action", 
-            "name": "Actualiser Température", 
-            "isVisible": 0, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
         }, 
         {
+            "name": "Sabotage", 
+            "type": "info", 
+            "isVisible": 1, 
             "isHistorized": 1, 
             "configuration": {
-                "index": 41, 
                 "class": 112, 
                 "value": "", 
+                "index": 41, 
                 "instance": 1
             }, 
-            "type": "info", 
-            "name": "Sabotage", 
-            "isVisible": 1, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
