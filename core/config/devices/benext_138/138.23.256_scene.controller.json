@@ -2,28 +2,72 @@
     "name": "Scene Controller 7 boutons", 
     "type": "Télécommande", 
     "comlink": "2534-benext-telecommande-7-boutons-z-wave-scene-controller-0632181493786", 
-    "remark": "Télécommande non fonctionnelle, fonctionne cependant en association avec d'autres modules", 
+    "remark": "",
     "imglink": "benext.scene-controller", 
     "commands": [
         {
-            "name": "Scene", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
+            "name": "Scene",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
             "configuration": {
-                "class": 91, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 14
-            }, 
-            "subtype": "numeric", 
+                "class": 91,
+                "value": "",
+                "index": 128,
+                "instance": 1,
+                "repeatEventManagement": "always"
+            },
+            "subtype": "numeric",
             "display": {
                 "generic_type": "DONT"
-            }, 
+            },
+            "unite": "",
             "template": {
-                "dashboard": "badge", 
+                "dashboard": "badge",
+                "mobile": "badge"
+            }
+        },
+        {
+            "name": "SceneID",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": 2,
+                "instance": 1,
+                "repeatEventManagement": "always"
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "unite": "",
+            "template": {
+                "dashboard": "badge",
+                "mobile": "badge"
+            }
+        },
+        {
+            "name": "SceneAttribute",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": 1,
+                "instance": 1,
+                "repeatEventManagement": "always"
+            },
+            "subtype": "string",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "unite": "",
+            "template": {
+                "dashboard": "badge",
                 "mobile": "badge"
             }
         }

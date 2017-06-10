@@ -2,7 +2,7 @@
     "name": "FGKF-601 Keyfob", 
     "type": "Télécommande", 
     "comlink": "3994-fibaro-telecommande-porte-cles-z-wave-fibaro-keyfob-fgkf-601-5905279987562", 
-    "remark": "Télécommande en mode scène non fonctionnelle, fonctionne cependant en association avec d’autres modules", 
+    "remark": "",
     "imglink": "fibaro.fgkf601", 
     "commands": [
         {
@@ -21,7 +21,11 @@
             "display": {
                 "generic_type": "DONT"
             }, 
-            "unite": ""
+            "unite": "",
+            "template": {
+                "dashboard": "badge",
+                "mobile": "badge"
+            }
         }, 
         {
             "name": "SceneID", 
@@ -39,7 +43,11 @@
             "display": {
                 "generic_type": "DONT"
             }, 
-            "unite": ""
+            "unite": "",
+            "template": {
+                "dashboard": "badge",
+                "mobile": "badge"
+            }
         }, 
         {
             "name": "SceneAttribute", 
@@ -57,7 +65,11 @@
             "display": {
                 "generic_type": "DONT"
             }, 
-            "unite": ""
+            "unite": "",
+            "template": {
+                "dashboard": "badge",
+                "mobile": "badge"
+            }
         }, 
         {
             "name": "Batterie", 
