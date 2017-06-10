@@ -4,7 +4,7 @@
     "comlink": "", 
     "remark": "", 
     "imglink": "", 
-    "ignore": true, 
+    "ignore": false,
     "commands": [
         {
             "name": "Fuite", 
