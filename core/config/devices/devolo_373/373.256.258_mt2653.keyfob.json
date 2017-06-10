@@ -11,9 +11,9 @@
             "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 43, 
+                "class": 91,
                 "value": "", 
-                "index": 0, 
+                "index": 128,
                 "instance": 1, 
                 "repeatEventManagement": "always"
             }, 
