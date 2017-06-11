@@ -6,24 +6,45 @@
     "imglink": "aeotec.garagedoorcontroller",
     "commands": [
         {
-            "name": "Open/Close",
+            "name": "Ouvrir/Stop",
             "type": "action",
             "isVisible": 1,
             "isHistorized": 0,
             "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
+                "class": 102,
+                "value": "type=setvalue&value=1",
                 "index": 0,
                 "instance": 1
             },
             "value": "Position",
             "subtype": "other",
             "display": {
-                "generic_type": "DONT"
+                "generic_type": "GB_TOGGLE"
             },
             "template": {
-                "dashboard": "GarageDoor_BarrierOperatorBasic",
-                "mobile": "GarageDoor_BarrierOperatorBasic"
+                "dashboard": "garageBarrierOperator",
+                "mobile": "garageBarrierOperator"
+            }
+        },
+        {
+            "name": "Fermer",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 102,
+                "value": "type=setvalue&value=0",
+                "index": 0,
+                "instance": 1
+            },
+            "value": "Position",
+            "subtype": "other",
+            "display": {
+                "generic_type": "GB_TOGGLE"
+            },
+            "template": {
+                "dashboard": "garageBarrierOperator",
+                "mobile": "garageBarrierOperator"
             }
         },
         {
@@ -32,14 +53,14 @@
             "isVisible": 0,
             "isHistorized": 1,
             "configuration": {
-                "class": 32,
+                "class": 102,
                 "value": "",
-                "index": 0,
+                "index": 2,
                 "instance": 1
             },
             "subtype": "numeric",
             "display": {
-                "invertBinary": "1"
+                "generic_type": "GARAGE_STATE"
             },
             "template": {
                 "dashboard": "door",
@@ -119,14 +140,5 @@
                 "generic_type": "SABOTAGE"
             }
         }
-    ],
-    "recommended": {
-        "params": [
-            {
-                "index": 80,
-                "value": "Hail"
-            }
-        ],
-        "needswakeup": false
-    }
+    ]
 }

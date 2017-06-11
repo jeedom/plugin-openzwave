@@ -1,132 +1,144 @@
 {
-    "name": "Garage Door Controller Gen5 (ZW062)", 
-    "type": "Porte", 
-    "comlink": "3403-aeon-labs-controleur-de-porte-de-garage-z-wave-gen5", 
-    "remark": "", 
-    "imglink": "aeotec.garagedoorcontroller", 
+    "name": "Garage Door Controller Gen5 (ZW062)",
+    "type": "Porte",
+    "comlink": "3403-aeon-labs-controleur-de-porte-de-garage-z-wave-gen5",
+    "remark": "",
+    "imglink": "aeotec.garagedoorcontroller",
     "commands": [
         {
-            "name": "Open/Close", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
+            "name": "Ouvrir/Stop",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
             "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
+                "class": 102,
+                "value": "type=setvalue&value=1",
+                "index": 0,
                 "instance": 1
-            }, 
-            "value": "Position", 
-            "subtype": "other", 
+            },
+            "value": "Position",
+            "subtype": "other",
             "display": {
-                "generic_type": "DONT"
-            }, 
+                "generic_type": "GB_TOGGLE"
+            },
             "template": {
-                "dashboard": "GarageDoor_BarrierOperatorBasic", 
-                "mobile": "GarageDoor_BarrierOperatorBasic"
+                "dashboard": "garageBarrierOperator",
+                "mobile": "garageBarrierOperator"
             }
-        }, 
+        },
         {
-            "name": "Position", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
+            "name": "Fermer",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
             "configuration": {
-                "class": 32, 
-                "value": "", 
-                "index": 0, 
+                "class": 102,
+                "value": "type=setvalue&value=0",
+                "index": 0,
                 "instance": 1
-            }, 
-            "subtype": "numeric", 
+            },
+            "value": "Position",
+            "subtype": "other",
             "display": {
-                "invertBinary": "1"
-            }, 
+                "generic_type": "GB_TOGGLE"
+            },
             "template": {
-                "dashboard": "door", 
+                "dashboard": "garageBarrierOperator",
+                "mobile": "garageBarrierOperator"
+            }
+        },
+        {
+            "name": "Position",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 102,
+                "value": "",
+                "index": 2,
+                "instance": 1
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "GARAGE_STATE"
+            },
+            "template": {
+                "dashboard": "door",
                 "mobile": "door"
             }
-        }, 
+        },
         {
-            "name": "Volume", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
+            "name": "Volume",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
             "configuration": {
-                "class": 112, 
-                "value": "", 
-                "index": 44, 
+                "class": 112,
+                "value": "",
+                "index": 44,
                 "instance": 1
-            }, 
-            "subtype": "numeric", 
+            },
+            "subtype": "numeric",
             "display": {
                 "generic_type": "DONT"
-            }, 
+            },
             "template": {
-                "dashboard": "tile", 
+                "dashboard": "tile",
                 "mobile": "tile"
-            }, 
+            },
             "unite": ""
-        }, 
+        },
         {
-            "name": "Température", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
+            "name": "Température",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
             "configuration": {
-                "class": 112, 
-                "value": "", 
-                "index": 45, 
+                "class": 112,
+                "value": "",
+                "index": 45,
                 "instance": 1,
                 "calculValueOffset": "#value#/10.0"
-            }, 
-            "subtype": "numeric", 
+            },
+            "subtype": "numeric",
             "display": {
                 "generic_type": "DONT"
-            }, 
+            },
             "unite": "°C"
-        }, 
+        },
         {
-            "name": "Actualiser Température", 
-            "type": "action", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            "name": "Actualiser Température",
+            "type": "action",
+            "isVisible": 0,
+            "isHistorized": 0,
             "configuration": {
-                "class": 112, 
-                "value": "type=refreshData", 
-                "index": 45, 
+                "class": 112,
+                "value": "type=refreshData",
+                "index": 45,
                 "instance": 1
-            }, 
-            "subtype": "other", 
+            },
+            "subtype": "other",
             "display": {
                 "generic_type": "DONT"
             }
-        }, 
+        },
         {
-            "name": "Sabotage", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
+            "name": "Sabotage",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
             "configuration": {
-                "class": 112, 
-                "value": "", 
-                "index": 41, 
+                "class": 112,
+                "value": "",
+                "index": 41,
                 "instance": 1,
                 "calculValueOffset": "#value#=='Sensor is removed'"
-            }, 
-            "subtype": "binary", 
+            },
+            "subtype": "binary",
             "display": {
-                "invertBinary": "1", 
+                "invertBinary": "1",
                 "generic_type": "SABOTAGE"
             }
         }
-    ], 
-    "recommended": {
-        "params": [
-            {
-                "index": 80, 
-                "value": "Hail"
-            }
-        ], 
-        "needswakeup": false
-    }
+    ]
 }
