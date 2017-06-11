@@ -257,8 +257,8 @@
                 "generic_type": "SABOTAGE"
             }, 
             "template": {
-                "dashboard": "vibration", 
-                "mobile": "vibration"
+                "dashboard": "alert",
+                "mobile": "alert"
             }
         }, 
         {

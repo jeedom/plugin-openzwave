@@ -140,8 +140,8 @@
                 "generic_type": "SABOTAGE"
             },
             "template": {
-                "dashboard": "alarm",
-                "mobile": "alarm"
+                "dashboard": "alert",
+                "mobile": "alert"
             }
         }
     ]

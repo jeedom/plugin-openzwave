@@ -20,9 +20,9 @@
             "display": {
                 "invertBinary": "1", 
                 "generic_type": "DONT"
-            }, 
+            },
             "template": {
-                "dashboard": "alert", 
+                "dashboard": "alert",
                 "mobile": "alert"
             }
         }, 
@@ -41,9 +41,9 @@
             "display": {
                 "invertBinary": "1", 
                 "generic_type": "DONT"
-            }, 
+            },
             "template": {
-                "dashboard": "alert", 
+                "dashboard": "alert",
                 "mobile": "alert"
             }
         }, 

@@ -20,12 +20,11 @@
             "display": {
                 "invertBinary": 1, 
                 "generic_type": "SIREN_STATE"
-            }, 
+            },
             "template": {
-                "dashboard": "alert", 
+                "dashboard": "alert",
                 "mobile": "alert"
-            }, 
-            "unite": ""
+            }
         }, 
         {
             "name": "On", 
