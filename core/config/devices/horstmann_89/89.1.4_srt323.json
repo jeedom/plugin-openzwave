@@ -49,7 +49,8 @@
                 "class": 66, 
                 "value": "", 
                 "index": 0, 
-                "instance": 1
+                "instance": 1,
+                "calculValueOffset": "#value#=='Heating'"
             }, 
             "subtype": "binary", 
             "display": {

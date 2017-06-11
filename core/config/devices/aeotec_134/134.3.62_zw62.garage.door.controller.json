@@ -76,7 +76,8 @@
                 "class": 112, 
                 "value": "", 
                 "index": 45, 
-                "instance": 1
+                "instance": 1,
+                "calculValueOffset": "#value#/10.0"
             }, 
             "subtype": "numeric", 
             "display": {
@@ -109,7 +110,8 @@
                 "class": 112, 
                 "value": "", 
                 "index": 41, 
-                "instance": 1
+                "instance": 1,
+                "calculValueOffset": "#value#=='Sensor is removed'"
             }, 
             "subtype": "binary", 
             "display": {

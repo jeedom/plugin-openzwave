@@ -14,7 +14,8 @@
                 "class": 113, 
                 "value": "", 
                 "index": 9, 
-                "instance": 1
+                "instance": 1,
+                "calculValueOffset": "#value#==22"
             }, 
             "subtype": "binary", 
             "display": {
@@ -52,7 +53,8 @@
                 "class": 113, 
                 "value": "", 
                 "index": 10, 
-                "instance": 1
+                "instance": 1,
+                "calculValueOffset": "#value#==3"
             }, 
             "subtype": "binary", 
             "display": {

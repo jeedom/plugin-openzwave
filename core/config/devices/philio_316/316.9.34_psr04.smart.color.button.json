@@ -40,7 +40,8 @@
                 "class": 32, 
                 "value": "", 
                 "index": 0, 
-                "instance": 1, 
+                "instance": 1,
+                "calculValueOffset": "(#value#==255) ? 99 :  ((#value#==1) ? 0 : #value#)",
                 "minValue": 0, 
                 "maxValue": 100
             }, 

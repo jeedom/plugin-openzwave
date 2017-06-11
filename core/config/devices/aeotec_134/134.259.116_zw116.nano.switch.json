@@ -3,7 +3,7 @@
     "type": "Micromodule", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "aeotec.nanoswitch", 
+    "imglink": "aeotec.nanoswitch",
     "commands": [
         {
             "name": "Etat", 
@@ -160,7 +160,8 @@
                 "class": 113, 
                 "value": "", 
                 "index": 12, 
-                "instance": 1
+                "instance": 1,
+                "calculValueOffset": "#value#==6"
             }, 
             "subtype": "binary", 
             "display": {
@@ -181,7 +182,8 @@
                 "class": 113, 
                 "value": "", 
                 "index": 4, 
-                "instance": 1
+                "instance": 1,
+                "calculValueOffset": "#value#==2"
             }, 
             "subtype": "binary", 
             "display": {

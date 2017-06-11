@@ -130,7 +130,8 @@
                 "class": 50, 
                 "value": "", 
                 "index": 8, 
-                "instance": 1
+                "instance": 1,
+                "minValue": 0
             }, 
             "subtype": "numeric", 
             "display": {
@@ -165,7 +166,8 @@
                 "class": 50, 
                 "value": "", 
                 "index": 4, 
-                "instance": 1
+                "instance": 1,
+                "minValue": 0
             }, 
             "subtype": "numeric", 
             "display": {
@@ -199,7 +201,9 @@
                 "class": 50, 
                 "value": "", 
                 "index": 20, 
-                "instance": 1
+                "instance": 1,
+                "calculValueOffset": "#value#/100",
+                "minValue": 0
             }, 
             "subtype": "numeric", 
             "display": {

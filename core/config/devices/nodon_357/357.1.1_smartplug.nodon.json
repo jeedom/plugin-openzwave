@@ -72,7 +72,8 @@
                 "class": 113, 
                 "value": "", 
                 "index": 1, 
-                "instance": 1
+                "instance": 1,
+                "calculValueOffset": "#value#==2"
             }, 
             "subtype": "binary", 
             "display": {
