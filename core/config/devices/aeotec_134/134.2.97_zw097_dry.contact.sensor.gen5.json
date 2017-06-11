@@ -42,6 +42,10 @@
             "display": {
                 "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
+            },
+            "template": {
+                "dashboard": "alarm",
+                "mobile": "alarm"
             }
         }, 
         {
