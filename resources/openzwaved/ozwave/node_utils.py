@@ -222,7 +222,8 @@ def assign_return_route(node_id):
 def add_assoc(node_id, group, target_id,instance,action):
 	utils.can_execute_command(0)
 	utils.check_node_exist(node_id)
-	utils.check_node_exist(target_id)
+	if action == 'add':
+		utils.check_node_exist(target_id)
 	logging.info(action + ' assoc to nodeId: ' + str(node_id) + ' in group ' + str(group) + ' with nodeId: ' + str(
 		node_id) + ' on instance ' + str(instance))
 	if node_id not in globals.pending_associations:
