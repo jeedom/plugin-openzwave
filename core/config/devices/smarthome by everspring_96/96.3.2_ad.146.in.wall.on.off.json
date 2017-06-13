@@ -33,7 +33,7 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 38, 
-                "value": "type=setvalue&value=99", 
+                "value": "type=setvalue&value=255",
                 "index": 0, 
                 "instance": 1, 
                 "minValue": 0, 
