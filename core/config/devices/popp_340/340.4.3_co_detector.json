@@ -9,13 +9,12 @@
             "name": "CO", 
             "type": "info", 
             "isVisible": 1, 
-            "isHistorized": 0, 
+            "isHistorized": 1,
             "configuration": {
-                "class": 113, 
+                "class": 48,
                 "value": "", 
-                "index": 1, 
-                "instance": 1,
-                "calculValueOffset": "#value#==255"
+                "index": 0,
+                "instance": 1
             }, 
             "subtype": "binary", 
             "display": {
