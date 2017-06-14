@@ -502,15 +502,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_api_http">14. API HTTP</a></li>
 <li><a href="#_Änderungsprotokoll">15. Änderungsprotokoll</a></li>
-<li><a href="#__beta">16. (beta)</a></li>
-<li><a href="#_2016_08_26">17. 2016-08-26</a></li>
-<li><a href="#_2016_08_17">18. 2016-08-17</a></li>
-<li><a href="#_2016_07_11">19. 2016-07-11</a></li>
-<li><a href="#_2016_05_30">20. 2016-05-30</a></li>
-<li><a href="#_2016_05_04">21. 2016-05-04</a></li>
-<li><a href="#_2016_03_01">22. 2016-03-01</a></li>
-<li><a href="#_2016_02_12">23. 2016-02-12</a></li>
-<li><a href="#_2016_02_09">24. 2016.02.09</a></li>
+<li><a href="#_2017_06_xx">16. 2017-06-xx</a></li>
+<li><a href="#_2017_06_13">17. 2017-06-13</a></li>
+<li><a href="#_2017_05_31">18. 2017-05-31</a></li>
+<li><a href="#_2017_05_23">19. 2017-05-23</a></li>
+<li><a href="#_2016_08_26">20. 2016-08-26</a></li>
+<li><a href="#_2016_08_17">21. 2016-08-17</a></li>
+<li><a href="#_2016_07_11">22. 2016-07-11</a></li>
+<li><a href="#_2016_05_30">23. 2016-05-30</a></li>
+<li><a href="#_2016_05_04">24. 2016-05-04</a></li>
+<li><a href="#_2016_03_01">25. 2016-03-01</a></li>
+<li><a href="#_2016_02_12">26. 2016-02-12</a></li>
+<li><a href="#_2016_02_09">27. 2016.02.09</a></li>
 </ul>
 </div>
 </div>
@@ -3471,7 +3474,133 @@ Pour lancer un ping sur le noeud id 2</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="__beta">16. (beta)</h2>
+<h2 id="_2017_06_xx">16. 2017-06-xx</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>New Features</p>
+<div class="ulist">
+<ul>
+<li>
+<p>N/A</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improvements/Enhancements</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ajout l&#8217;ensemble des configurations de modules au nouveau format.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bug Fixes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ne pas tester si un nodeId existe lors de la suppresion d&#8217;un association.</p>
+</li>
+<li>
+<p>Restoration de la notification de consigne en attente sur les thermostats.</p>
+</li>
+<li>
+<p>Envoie de la Scene Activation en instance 1.</p>
+</li>
+<li>
+<p>Ne plus afficher le cadenas dans l&#8217;écran de santée sur les modules ne supportant pas la Classe de Commande Securitée.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2017_06_13">17. 2017-06-13</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>New Features</p>
+<div class="ulist">
+<ul>
+<li>
+<p>N/A</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improvements/Enhancements</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ajout de configuration de module Fibaro US</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bug Fixes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>N/A</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2017_05_31">18. 2017-05-31</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>New Features</p>
+<div class="ulist">
+<ul>
+<li>
+<p>N/A</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Improvements/Enhancements</p>
+<div class="ulist">
+<ul>
+<li>
+<p>N/A</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bug Fixes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Correction de l&#8217;assignation des valeurs au format RAW des codes pour lecteur RFid.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2017_05_23">19. 2017-05-23</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -3482,6 +3611,21 @@ Pour lancer un ping sur le noeud id 2</p>
 <li>
 <p>Suppression du mode maître / esclave. Remplacé par le plugin jeedom link.</p>
 </li>
+<li>
+<p>Utilisation d&#8217;une clé API privée au plugin ZWave.</p>
+</li>
+<li>
+<p>Nouveau format des fichiers de configuration dans le mapping de commande avec jeedom.</p>
+</li>
+<li>
+<p>Conversion automatique des commandes existantes au nouveau format lors de l&#8217;installation du plugin.</p>
+</li>
+<li>
+<p>Ajout du support de la Classe de Commande Central Scene.</p>
+</li>
+<li>
+<p>Ajout du support de la Classe de Commande Barrier Operator.</p>
+</li>
 </ul>
 </div>
 </li>
@@ -3490,10 +3634,51 @@ Pour lancer un ping sur le noeud id 2</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Optimisation du code du serveur REST.</p>
+<p>Refonte complète du serveur REST utilisation de TORNADO.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Modification de l&#8217;ensemble des routes existantes, les scripts devront être adapté si utilisation de l&#8217;API ZWave.</p>
 </li>
 <li>
-<p>Rafraîchissement de l&#8217;état après une COMMAND_CLASS_SWITCH_BINARY si aucune notification reçu.</p>
+<p>Renforcement de la sécurité, seul des appels sont écouté sur le serveur REST.</p>
+</li>
+<li>
+<p>Utilisation de la clé API ZWave est requise pour lancer des requêtes REST.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Désactivation (temporaire) des tests sanitaires.</p>
+</li>
+<li>
+<p>Désactivation (temporaire) du moteur de mise à jour des configurations de modules.</p>
+</li>
+<li>
+<p>Désactivation de la fonction soigner le réseau automatiquement deux fois par semaine (diminution des échanges avec le contrôleur).</p>
+</li>
+<li>
+<p>Optimisations du code de la librairie openzwave.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Fibaro FGK101 n&#8217;a plus à compléter l&#8217;interview pour annoncer un changement d&#8217;état.</p>
+</li>
+<li>
+<p>La commande bouton relâcher (Stop d&#8217;un volet) ne force plus la mise à jour de l’ensemble des valeurs du module (diminution de la queue de message).</p>
+</li>
+<li>
+<p>Possibilité de notifier des valeurs dans la Classe de Commande Alarm (sélection de la sonnerie sur les sirènes)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Plus de demande journalière du niveau des piles (moins de messages, économie sur les piles).</p>
+</li>
+<li>
+<p>Le niveau des piles est directement envoyé à l&#8217;écran de pile sur réception de rapport du niveau.</p>
 </li>
 </ul>
 </div>
@@ -3503,13 +3688,7 @@ Pour lancer un ping sur le noeud id 2</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Rafraîchissement de l&#8217;ensemble des instances suite a un broadcast de la CC Switch ALL.</p>
-</li>
-<li>
-<p>Rückgabe des json Pfad /ZWaveAPI/Run/devices[&lt;int:node_id&gt;].GetPendingChanges() plus hinzugefügtem Resultat.</p>
-</li>
-<li>
-<p>Rückgabe des json Pfad /ZWaveAPI/Run/devices[&lt;int:node_id&gt;].GetLastNotification() plus hinzugefügtem Resultat.</p>
+<p>Rafraîchissement de l&#8217;ensemble des instances suite à un broadcast de la CC Switch ALL.</p>
 </li>
 </ul>
 </div>
@@ -3519,7 +3698,7 @@ Pour lancer un ping sur le noeud id 2</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_2016_08_26">17. 2016-08-26</h2>
+<h2 id="_2016_08_26">20. 2016-08-26</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -3564,7 +3743,7 @@ Pour lancer un ping sur le noeud id 2</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_2016_08_17">18. 2016-08-17</h2>
+<h2 id="_2016_08_17">21. 2016-08-17</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -3615,7 +3794,7 @@ Pour lancer un ping sur le noeud id 2</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_2016_07_11">19. 2016-07-11</h2>
+<h2 id="_2016_07_11">22. 2016-07-11</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -3739,7 +3918,7 @@ Pour lancer un ping sur le noeud id 2</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_2016_05_30">20. 2016-05-30</h2>
+<h2 id="_2016_05_30">23. 2016-05-30</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -3823,7 +4002,7 @@ Pour lancer un ping sur le noeud id 2</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_2016_05_04">21. 2016-05-04</h2>
+<h2 id="_2016_05_04">24. 2016-05-04</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -3958,7 +4137,7 @@ Pour lancer un ping sur le noeud id 2</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_2016_03_01">22. 2016-03-01</h2>
+<h2 id="_2016_03_01">25. 2016-03-01</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -4024,7 +4203,7 @@ Pour lancer un ping sur le noeud id 2</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_2016_02_12">23. 2016-02-12</h2>
+<h2 id="_2016_02_12">26. 2016-02-12</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -4056,7 +4235,7 @@ Pour lancer un ping sur le noeud id 2</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_2016_02_09">24. 2016.02.09</h2>
+<h2 id="_2016_02_09">27. 2016.02.09</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
