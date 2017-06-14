@@ -1,21 +1,80 @@
 == Changelog
 
-== (beta)
+== 2017-06-xx
+
+* New Features
+
+** N/A
+
+* Improvements/Enhancements
+
+** Ajout l'ensemble des configurations de modules au nouveau format. 
+
+* Bug Fixes
+
+** Ne pas tester si un nodeId existe lors de la suppresion d'un association.
+** Restoration de la notification de consigne en attente sur les thermostats.
+** Envoie de la Scene Activation en instance 1. 
+** Ne plus afficher le cadenas dans l'écran de santée sur les modules ne supportant pas la Classe de Commande Securitée.
+
+== 2017-06-13
+
+* New Features
+
+** N/A
+
+* Improvements/Enhancements
+
+** Ajout de configuration de module Fibaro US
+
+* Bug Fixes
+
+** N/A
+
+== 2017-05-31
+
+* New Features
+
+** N/A
+
+* Improvements/Enhancements
+
+** N/A
+
+* Bug Fixes
+
+** Correction de l'assignation des valeurs au format RAW des codes pour lecteur RFid.
+
+== 2017-05-23
 
 * New Features
 
 ** Suppression du mode maître / esclave. Remplacé par le plugin jeedom link.
+** Utilisation d'une clé API privée au plugin ZWave.
+** Nouveau format des fichiers de configuration dans le mapping de commande avec jeedom.
+** Conversion automatique des commandes existantes au nouveau format lors de l'installation du plugin.
+** Ajout du support de la Classe de Commande Central Scene.
+** Ajout du support de la Classe de Commande Barrier Operator.
 
 * Improvements/Enhancements
 
-** Optimisation du code du serveur REST.
-** Rafraîchissement de l'état après une COMMAND_CLASS_SWITCH_BINARY si aucune notification reçu.
+** Refonte complète du serveur REST utilisation de TORNADO. 
+*** Modification de l'ensemble des routes existantes, les scripts devront être adapté si utilisation de l'API ZWave.
+*** Renforcement de la sécurité, seul des appels sont écouté sur le serveur REST.
+*** Utilisation de la clé API ZWave est requise pour lancer des requêtes REST.
+** Désactivation (temporaire) des tests sanitaires.
+** Désactivation (temporaire) du moteur de mise à jour des configurations de modules.
+** Désactivation de la fonction soigner le réseau automatiquement deux fois par semaine (diminution des échanges avec le contrôleur). 
+** Optimisations du code de la librairie openzwave.
+*** Fibaro FGK101 n'a plus à compléter l'interview pour annoncer un changement d'état.
+*** La commande bouton relâcher (Stop d'un volet) ne force plus la mise à jour de l’ensemble des valeurs du module (diminution de la queue de message).
+*** Possibilité de notifier des valeurs dans la Classe de Commande Alarm (sélection de la sonnerie sur les sirènes)
+** Plus de demande journalière du niveau des piles (moins de messages, économie sur les piles). 
+** Le niveau des piles est directement envoyé à l'écran de pile sur réception de rapport du niveau.
 
 * Bug Fixes
 
-** Rafraîchissement de l'ensemble des instances suite a un broadcast de la CC Switch ALL.
-** Retour json de la route /ZWaveAPI/Run/devices[<int:node_id>].GetPendingChanges() plus inclue dans result.
-** Retour json de la route /ZWaveAPI/Run/devices[<int:node_id>].GetLastNotification() plus inclue dans result.
+** Rafraîchissement de l'ensemble des instances suite à un broadcast de la CC Switch ALL.
 
 == 2016-08-26
 
