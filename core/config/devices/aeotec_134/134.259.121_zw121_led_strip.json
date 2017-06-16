@@ -65,10 +65,9 @@
                 "class": 38, 
                 "value": "type=setvalue&value=255",
                 "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
+                "instance": 1
+            },
+            "value": "Etat",
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-lumiere-on\"></i>", 
@@ -84,10 +83,9 @@
                 "class": 38, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
+                "instance": 1
+            },
+            "value": "Etat",
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-lumiere-off\"></i>", 
@@ -124,7 +122,7 @@
                 "index": 0, 
                 "instance": 1, 
                 "minValue": 0, 
-                "maxValue": 100
+                "maxValue": 99
             }, 
             "subtype": "numeric", 
             "display": {

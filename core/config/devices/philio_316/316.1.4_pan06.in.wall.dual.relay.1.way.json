@@ -63,7 +63,8 @@
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 3
-            }, 
+            },
+            "value": "Etat 1",
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
@@ -83,7 +84,8 @@
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 3
-            }, 
+            },
+            "value": "Etat 1",
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
@@ -119,7 +121,8 @@
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 4
-            }, 
+            },
+            "value": "Etat 2",
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
@@ -139,7 +142,8 @@
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 4
-            }, 
+            },
+            "value": "Etat 2",
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"

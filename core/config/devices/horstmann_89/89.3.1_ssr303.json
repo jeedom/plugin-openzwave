@@ -15,7 +15,8 @@
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1
-            }, 
+            },
+            "value": "Etat",
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
@@ -31,7 +32,8 @@
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 1
-            }, 
+            },
+            "value": "Etat",
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"

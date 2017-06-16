@@ -105,9 +105,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=255",
                 "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "subtype": "other", 
             "display": {
@@ -124,9 +122,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "subtype": "other", 
             "display": {
@@ -164,7 +160,7 @@
                 "index": 0, 
                 "instance": 1, 
                 "minValue": 0, 
-                "maxValue": 100
+                "maxValue": 99
             }, 
             "subtype": "numeric", 
             "display": {
@@ -259,7 +255,7 @@
                 "index": 0, 
                 "instance": 6, 
                 "minValue": 0, 
-                "maxValue": 100
+                "maxValue": 99
             }, 
             "subtype": "numeric", 
             "display": {

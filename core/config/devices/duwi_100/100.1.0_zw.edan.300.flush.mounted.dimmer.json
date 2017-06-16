@@ -40,7 +40,8 @@
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
-            }, 
+            },
+            "value": "Etat",
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
@@ -58,7 +59,8 @@
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
-            }, 
+            },
+            "value": "Etat",
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"

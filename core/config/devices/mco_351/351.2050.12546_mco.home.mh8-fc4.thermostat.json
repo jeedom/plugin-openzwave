@@ -184,9 +184,9 @@
                 "class": 67, 
                 "value": "", 
                 "index": 2, 
-                "instance": 1, 
-                "minValue": "5", 
-                "maxValue": "30"
+                "instance": 1,
+                "minValue": 5,
+                "maxValue": 30
             }, 
             "subtype": "numeric", 
             "display": {
@@ -203,9 +203,9 @@
                 "class": 67, 
                 "value": "type=setvalue&value=#slider#", 
                 "index": 2, 
-                "instance": 1, 
-                "minValue": "5", 
-                "maxValue": "30"
+                "instance": 1,
+                "minValue": 5,
+                "maxValue": 30
             }, 
             "value": "ConsigneEtat refroidissement", 
             "subtype": "slider", 
@@ -223,9 +223,9 @@
                 "class": 67, 
                 "value": "", 
                 "index": 1, 
-                "instance": 1, 
-                "minValue": "5", 
-                "maxValue": "30"
+                "instance": 1,
+                "minValue": 5,
+                "maxValue": 30
             }, 
             "subtype": "numeric", 
             "display": {
@@ -242,9 +242,9 @@
                 "class": 67, 
                 "value": "type=setvalue&value=#slider#", 
                 "index": 1, 
-                "instance": 1, 
-                "minValue": "5", 
-                "maxValue": "30"
+                "instance": 1,
+                "minValue": 5,
+                "maxValue": 30
             }, 
             "value": "ConsigneEtat chauffage", 
             "subtype": "slider", 

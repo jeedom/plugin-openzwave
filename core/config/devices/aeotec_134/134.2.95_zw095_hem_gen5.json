@@ -21,7 +21,7 @@
                 "value": "",
                 "minValue": 0,
                 "instance": 1,
-                "index": "0"
+                "index": 0
             }
         },
         {
@@ -40,7 +40,7 @@
                 "maxValue": 12000,
                 "minValue": 0,
                 "instance": 1,
-                "index": "8"
+                "index": 8
             }
         },
         {
@@ -59,7 +59,7 @@
                 "maxValue": 240,
                 "minValue": 220,
                 "instance": 1,
-                "index": "16"
+                "index": 16
             }
         },
         {
@@ -78,7 +78,7 @@
                 "maxValue": 200,
                 "minValue": 0,
                 "instance": 1,
-                "index": "20"
+                "index": 20
             }
         }
     ]

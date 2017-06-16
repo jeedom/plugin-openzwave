@@ -57,9 +57,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "subtype": "other", 
             "display": {
@@ -76,9 +74,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=99", 
                 "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "subtype": "other", 
             "display": {
@@ -153,9 +149,7 @@
                 "class": 38, 
                 "value": "type=buttonaction&action=release", 
                 "index": 2, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "subtype": "other", 
             "display": {
@@ -172,9 +166,7 @@
                 "class": 38, 
                 "value": "type=buttonaction&action=release", 
                 "index": 7, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "subtype": "other", 
             "display": {
@@ -191,9 +183,7 @@
                 "class": 38, 
                 "value": "type=buttonaction&action=press", 
                 "index": 7, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "subtype": "other", 
             "display": {
@@ -210,9 +200,7 @@
                 "class": 38, 
                 "value": "type=buttonaction&action=press", 
                 "index": 8, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "subtype": "other", 
             "display": {
@@ -245,9 +233,7 @@
                 "class": 38, 
                 "value": "type=refreshData", 
                 "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "subtype": "other", 
             "display": {

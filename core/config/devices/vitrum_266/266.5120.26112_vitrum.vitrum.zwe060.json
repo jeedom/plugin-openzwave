@@ -31,9 +31,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "value": "Etat", 
             "subtype": "other", 
@@ -54,9 +52,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "value": "Etat", 
             "subtype": "other", 
@@ -93,9 +89,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
-                "instance": 3, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 3
             }, 
             "value": "Etat2", 
             "subtype": "other", 
@@ -116,9 +110,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 3, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 3
             }, 
             "value": "Etat2", 
             "subtype": "other", 
@@ -155,9 +147,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
-                "instance": 4, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 4
             }, 
             "value": "Etat3", 
             "subtype": "other", 
@@ -178,9 +168,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 4, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 4
             }, 
             "value": "Etat3", 
             "subtype": "other", 
@@ -217,9 +205,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
-                "instance": 5, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 5
             }, 
             "value": "Etat4", 
             "subtype": "other", 
@@ -240,9 +226,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 5, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 5
             }, 
             "value": "Etat4", 
             "subtype": "other", 
@@ -279,9 +263,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
-                "instance": 6, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 6
             }, 
             "value": "Etat5", 
             "subtype": "other", 
@@ -302,9 +284,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 6, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 6
             }, 
             "value": "Etat5", 
             "subtype": "other", 
@@ -341,9 +321,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
-                "instance": 7, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 7
             }, 
             "value": "Etat6", 
             "subtype": "other", 
@@ -364,9 +342,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 7, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 7
             }, 
             "value": "Etat6", 
             "subtype": "other", 

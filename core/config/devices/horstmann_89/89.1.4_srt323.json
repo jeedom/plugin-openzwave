@@ -67,9 +67,9 @@
                 "class": 67, 
                 "value": "", 
                 "index": 1, 
-                "instance": 1, 
-                "minValue": "5", 
-                "maxValue": "30"
+                "instance": 1,
+                "minValue": 5,
+                "maxValue": 30
             }, 
             "subtype": "numeric", 
             "display": {
@@ -87,8 +87,8 @@
                 "value": "type=setvalue&value=#slider#", 
                 "index": 1, 
                 "instance": 1, 
-                "minValue": "5", 
-                "maxValue": "30"
+                "minValue": 5,
+                "maxValue": 30
             }, 
             "value": "ConsigneEtat", 
             "subtype": "slider", 

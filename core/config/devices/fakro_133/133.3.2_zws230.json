@@ -14,9 +14,7 @@
                 "class": 38, 
                 "value": "type=buttonaction&action=press", 
                 "index": 1, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "subtype": "other", 
             "display": {
@@ -33,9 +31,7 @@
                 "class": 38, 
                 "value": "type=buttonaction&action=press", 
                 "index": 2, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "subtype": "other", 
             "display": {
@@ -52,9 +48,7 @@
                 "class": 38, 
                 "value": "type=buttonaction&action=release", 
                 "index": 2, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "subtype": "other", 
             "display": {

@@ -35,7 +35,8 @@
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1
-            }, 
+            },
+            "value": "Statut",
             "subtype": "other", 
             "display": {
                 "generic_type": "LOCK_CLOSE"
@@ -51,7 +52,8 @@
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 1
-            }, 
+            },
+            "value": "Statut",
             "subtype": "other", 
             "display": {
                 "generic_type": "LOCK_OPEN"
