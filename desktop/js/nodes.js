@@ -295,7 +295,7 @@ jeedom.openzwave.node.set(valueApplyOption);
                     return;
                 }
                 setParamOptions.value = result.replace(/\//g, '@');
-                setParamOptions.length = result.length;
+                setParamOptions.length = 0;
                 jeedom.openzwave.node.setParam(setParamOptions);
             }
         });
@@ -315,7 +315,7 @@ jeedom.openzwave.node.set(valueApplyOption);
             return;
         }
         setParamOptions.value = result.replace(/\//g, '@');
-        setParamOptions.length = result.length;
+        setParamOptions.length = 0;
         jeedom.openzwave.node.setParam(setParamOptions);
     }
 });
@@ -332,7 +332,7 @@ jeedom.openzwave.node.set(valueApplyOption);
             return;
         }
         setParamOptions.value = result.replace(/\//g, '@');
-        setParamOptions.length = result.length;
+        setParamOptions.length = 0;
         jeedom.openzwave.node.setParam(setParamOptions);
     }
 });
@@ -342,7 +342,7 @@ jeedom.openzwave.node.set(valueApplyOption);
     return;
 }
 setParamOptions.value = result.replace(/\//g, '@');
-setParamOptions.length = result.length;
+setParamOptions.length = 0;
 jeedom.openzwave.node.setParam(setParamOptions);
 }
 });

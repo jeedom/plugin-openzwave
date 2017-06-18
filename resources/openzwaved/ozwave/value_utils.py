@@ -150,4 +150,8 @@ def set_config(_node_id, _index_id, _value, _size):
 					mark_pending_change(my_value, value,wake_up_time)
 			logging.debug('set_configuration result: %s' % (result,))
 			return
-	raise Exception('Configuration index : '+str(_index_id)+' not found')
+
+	if _value.isdigit() and globals.network.nodes[_node_id].set_config_param(_index_id, int(_value), _size):
+		logging.debug('set_configuration device without defined parameters')
+	else:
+		raise Exception('Configuration index : '+str(_index_id)+' not found')
