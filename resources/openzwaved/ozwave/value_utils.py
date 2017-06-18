@@ -48,8 +48,9 @@ def prepare_value_notification(node, value):
 			if value.type == 'Short':
 				data = utils.normalize_short_value(value.data)
 			pending.data = data
-	if not node.is_ready:
+	if not node.is_ready and value.command_class not in [globals.COMMAND_CLASS_CENTRAL_SCENE or value.command_class, globals.COMMAND_CLASS_SCENE_ACTIVATION]:
 		if hasattr(value, 'lastData') and value.lastData == value.data:
+			# we skip notification to avoid value refresh during the interview process
 			return
 	value.lastData = value.data
 	if value.genre == 'System':
