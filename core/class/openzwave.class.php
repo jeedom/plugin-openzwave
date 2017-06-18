@@ -443,7 +443,7 @@ class openzwave extends eqLogic {
 		}
 		if (isset($device['recommended']['params'])) {
 			foreach ($device['recommended']['params'] as $value) {
-				openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&instance_id=0&cc_id=112&index=' . $value['index'] . '&type=setconfig&value=' . urlencode($value['value']) . '&size=1');
+				openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&instance_id=0&cc_id=112&index=' . $value['index'] . '&type=setconfig&value=' . urlencode($value['value']) . '&size=0');
 			}
 		}
 		if (isset($device['recommended']['groups'])) {
