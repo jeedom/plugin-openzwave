@@ -122,32 +122,39 @@ def set_config(_node_id, _index_id, _value, _size):
 	if wake_up_time is None :
 		wake_up_time = 0 
 	wake_up_time += 10
-	for value_id in globals.network.nodes[_node_id].get_values(class_id=globals.COMMAND_CLASS_CONFIGURATION, genre='All', type='All', readonly=False, writeonly='All'):
-		if globals.network.nodes[_node_id].values[value_id].index == _index_id:
-			value = _value.replace("@", "/")
-			my_value = globals.network.nodes[_node_id].values[value_id]
-			if my_value.type == 'Button':
-				if value.lower() == 'true':
-					result = globals.network.manager.pressButton(my_value.value_id)
-				else:
-					result = globals.network.manager.releaseButton(my_value.value_id)
-			elif my_value.type == 'List' and _size == 0:
-				# list item must be a string, the size must be set to 0
-				result = globals.network.manager.setValue(value_id, value)
-				mark_pending_change(my_value, value,wake_up_time)
-			elif my_value.type == 'Bool':
-				value = globals.network.nodes[_node_id].values[value_id].check_data(value)
-				result = globals.network.manager.setValue(value_id, value)
-				mark_pending_change(my_value, value,wake_up_time)
-			else:
-				# recommend parameters size is set to 0, for list item value handling
-				if _size == 0:
-					_size = 1
-				# set a parameter list item with value or not configured device
-				result = globals.network.nodes[_node_id].set_config_param(_index_id, int(value), _size)
-				# don't mark list item if set with value
-				if my_value is not None and my_value.type != 'List':
+	if globals.COMMAND_CLASS_CONFIGURATION in globals.network.nodes[_node_id].command_classes:
+		for value_id in globals.network.nodes[_node_id].get_values(class_id=globals.COMMAND_CLASS_CONFIGURATION, genre='All', type='All', readonly=False, writeonly='All'):
+			if globals.network.nodes[_node_id].values[value_id].index == _index_id:
+				value = _value.replace("@", "/")
+				my_value = globals.network.nodes[_node_id].values[value_id]
+				if my_value.type == 'Button':
+					if value.lower() == 'true':
+						result = globals.network.manager.pressButton(my_value.value_id)
+					else:
+						result = globals.network.manager.releaseButton(my_value.value_id)
+				elif my_value.type == 'List' and _size == 0:
+					# list item must be a string, the size must be set to 0
+					result = globals.network.manager.setValue(value_id, value)
 					mark_pending_change(my_value, value,wake_up_time)
-			logging.debug('set_configuration result: %s' % (result,))
-			return
-	raise Exception('Configuration index : '+str(_index_id)+' not found')
+				elif my_value.type == 'Bool':
+					value = globals.network.nodes[_node_id].values[value_id].check_data(value)
+					result = globals.network.manager.setValue(value_id, value)
+					mark_pending_change(my_value, value,wake_up_time)
+				else:
+					# recommend parameters size is set to 0, for list item value handling
+					if _size == 0:
+						_size = 1
+					# set a parameter list item with value or not configured device
+					result = globals.network.nodes[_node_id].set_config_param(_index_id, int(value), _size)
+					# don't mark list item if set with value
+					if my_value is not None and my_value.type != 'List':
+						mark_pending_change(my_value, value,wake_up_time)
+				logging.debug('set_configuration result: %s' % (result,))
+				return
+		raise Exception('Configuration index : '+str(_index_id)+' not found')
+	else:
+		if _size == 0:
+			_size = 1
+		# set a parameter for a not configured device
+		logging.debug('set_configuration device without parameters')
+		globals.network.nodes[_node_id].set_config_param(_index_id, int(_value), _size)
