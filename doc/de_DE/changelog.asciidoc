@@ -1,6 +1,6 @@
 == Änderungsprotokoll
 
-== 2017-06-xx
+== 2017-06-20
 
 * New Features
 
@@ -16,6 +16,9 @@
 ** Restoration de la notification de consigne en attente sur les thermostats.
 ** Envoie de la Scene Activation en instance 1. 
 ** Ne plus afficher le cadenas dans l'écran de santée sur les modules ne supportant pas la Classe de Commande Securitée.
+** Répétition de valeur sur les télécommande avant la fin de l'interview (kyefob, minimote).
+** Modifier un paramètre de type liste par valeur via une commande Action.
+** Modifier un un paramètre sur un module sans configuration définie.
 
 == 2017-06-13
 
