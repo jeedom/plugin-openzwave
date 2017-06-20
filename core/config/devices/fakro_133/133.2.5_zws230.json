@@ -1,0 +1,60 @@
+{
+    "name": "ZWS230 Chain actuator 230VAC", 
+    "type": "Volets", 
+    "comlink": "2362-fakro-moteur-pour-fenetre-de-toit-z-wave-zws230-5900988500378", 
+    "remark": "Nécessite une inclusion en mode sécurisé", 
+    "imglink": "fakro.zws230", 
+    "commands": [
+        {
+            "name": "Up", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=buttonaction&action=press", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-arrow-up\"></i>", 
+                "generic_type": "FLAP_UP"
+            }
+        }, 
+        {
+            "name": "Down", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=buttonaction&action=press", 
+                "index": 2, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-arrow-down\"></i>", 
+                "generic_type": "FLAP_DOWN"
+            }
+        }, 
+        {
+            "name": "Stop", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=buttonaction&action=release", 
+                "index": 2, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fa fa-stop\"></i>", 
+                "generic_type": "FLAP_STOP"
+            }
+        }
+    ]
+}
