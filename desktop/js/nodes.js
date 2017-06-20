@@ -769,9 +769,7 @@ function display_node_info(){
         $("#div_nodeConfigure .variables").html(variables);
         $("#div_nodeConfigure .parameters").html(parameters);
         $("#div_nodeConfigure .system_variables").html(system_variables);
-        if (typeof openzwave_node_translation === 'undefined' || openzwave_node_translation == null) {
-            openzwave_node_translation = getTranslation();
-        }
+        openzwave_node_translation = getTranslation();
         if (typeof openzwave_node_translation.configuration === 'undefined') {
             openzwave_node_translation = {configuration: {}};
         }
