@@ -2,7 +2,7 @@
     "name": "Bulb 2",
     "type": "Ampoule", 
     "comlink": "4111-zipato-ampoule-led-rgbw-z-wave-v2-3858890733464",
-    "remark": "", 
+    "remark": "Onglet Système, modifié Color Channels avec la valeur 31 pour avoir des rapports de couleurs cohérants",
     "imglink": "zipato.bulb", 
     "commands": [
         {
