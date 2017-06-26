@@ -98,7 +98,6 @@ class NodeHandler(RequestHandler):
 			frequency = int(self.get_argument('frequency','0'))
 			action = self.get_argument('action','')
 			info = self.get_argument('info','')
-			buttonaction = self.get_argument('buttonaction','')
 			utils.check_node_exist(node_id)
 			if type == 'action':
 				utils.can_execute_command()
@@ -228,20 +227,18 @@ class NodeHandler(RequestHandler):
 						elif action == 'release':
 							globals.network.manager.releaseButton(globals.network.nodes[node_id].values[value_id].value_id)
 						self.write(utils.format_json_result())
+						return
 				self.write(utils.format_json_result(success='error', data='Button not found'))
 			elif type == 'setRaw':
 				slot_id = int(self.get_argument('slot_id','0'))
 				value0 = self.get_argument('value0','')
 				logging.info("set_user_code2 nodeId:%s slot:%s user code:%s" % (node_id, slot_id, value0,))
-				result_value = {}
 				for value_id in globals.network.nodes[node_id].get_values(class_id=globals.COMMAND_CLASS_USER_CODE):
 					if globals.network.nodes[node_id].values[value_id].index == slot_id:
-						result_value['data'] = {}
-						original_value = value0
 						globals.network.nodes[node_id].values[value_id].data = binascii.a2b_hex(value0)
-						result_value['data'][value_id] = {'device': node_id, 'slot': slot_id, 'val': original_value}
-						self.write(utils.format_json_result(result_value))
-				self.write(utils.format_json_result())
+						self.write(utils.format_json_result())
+						return
+				self.write(utils.format_json_result(success='error', data='Value not found'))
 			elif type == 'setconfig':
 				size = int(self.get_argument('size','0'))
 				value = self.get_argument('value','')
