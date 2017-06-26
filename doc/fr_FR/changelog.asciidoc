@@ -12,13 +12,13 @@
 
 * Bug Fixes
 
-** Ne pas tester si un nodeId existe lors de la suppresion d'un association.
-** Restoration de la notification de consigne en attente sur les thermostats.
-** Envoie de la Scene Activation en instance 1. 
-** Ne plus afficher le cadenas dans l'écran de santée sur les modules ne supportant pas la Classe de Commande Securitée.
-** Répétition de valeur sur les télécommande avant la fin de l'interview (kyefob, minimote).
+** Ne pas tester si un nodeId existe lors de la suppression d'un association.
+** Restauration de la notification de consigne en attente sur les thermostats.
+** Envoi de la Scène Activation en instance 1. 
+** Ne plus afficher le cadenas dans l'écran de santé sur les modules ne supportant pas la Classe de Commande Securité.
+** Répétition de valeur sur les télécommandes avant la fin de l'interview (kyefob, minimote).
 ** Modifier un paramètre de type liste par valeur via une commande Action.
-** Modifier un un paramètre sur un module sans configuration définie.
+** Modifier un paramètre sur un module sans configuration définie.
 
 == 2017-06-13
 
@@ -62,15 +62,15 @@
 * Improvements/Enhancements
 
 ** Refonte complète du serveur REST utilisation de TORNADO. 
-*** Modification de l'ensemble des routes existantes, les scripts devront être adapté si utilisation de l'API ZWave.
+*** Modification de l'ensemble des routes existantes, les scripts devront être adaptés si utilisation de l'API ZWave.
 *** Renforcement de la sécurité, seul des appels sont écouté sur le serveur REST.
-*** Utilisation de la clé API ZWave est requise pour lancer des requêtes REST.
+*** Utilisation de la clé API ZWave requise pour lancer des requêtes REST.
 ** Désactivation (temporaire) des tests sanitaires.
 ** Désactivation (temporaire) du moteur de mise à jour des configurations de modules.
-** Désactivation de la fonction soigner le réseau automatiquement deux fois par semaine (diminution des échanges avec le contrôleur). 
-** Optimisations du code de la librairie openzwave.
+** Désactivation de la fonction Soigner le réseau automatiquement deux fois par semaine (diminution des échanges avec le contrôleur). 
+** Optimisations du code de la bibliothèque openzwave.
 *** Fibaro FGK101 n'a plus à compléter l'interview pour annoncer un changement d'état.
-*** La commande bouton relâcher (Stop d'un volet) ne force plus la mise à jour de l’ensemble des valeurs du module (diminution de la queue de message).
+*** La commande bouton relâcher (Stop d'un volet) ne force plus la mise à jour de l’ensemble des valeurs du module (diminution de la file de messages).
 *** Possibilité de notifier des valeurs dans la Classe de Commande Alarm (sélection de la sonnerie sur les sirènes)
 ** Plus de demande journalière du niveau des piles (moins de messages, économie sur les piles). 
 ** Le niveau des piles est directement envoyé à l'écran de pile sur réception de rapport du niveau.
@@ -92,7 +92,7 @@
 
 * Bug Fixes
 
-** Teste des informations constructeur dans l'écran de santé ne remonte plus des NOK.
+** Test des informations constructeur dans l'écran de santé ne remonte plus des NOK.
 ** Perte des cases-à-cocher dans l'onglet Commandes de la page équipement.
 
 == 2016-08-17
