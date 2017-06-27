@@ -3,7 +3,8 @@
     "type": "Ouverture", 
     "comlink": "851-everspring-capteur-d-ouverture-z-wave-sm103-3700946500233", 
     "remark": "", 
-    "imglink": "everspring.sm103", 
+    "imglink": "everspring.sm103",
+    "battery_type": "3x1.5V AAA",
     "commands": [
         {
             "name": "Etat", 

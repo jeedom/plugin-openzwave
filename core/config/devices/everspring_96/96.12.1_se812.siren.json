@@ -3,7 +3,8 @@
     "type": "Sirène", 
     "comlink": "845-everspring-sirene-z-wave-se812-3700946500189", 
     "remark": "", 
-    "imglink": "everspring.se812", 
+    "imglink": "everspring.se812",
+    "battery_type": "4xLR14",
     "commands": [
         {
             "name": "Etat", 

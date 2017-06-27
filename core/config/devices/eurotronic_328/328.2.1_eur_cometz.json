@@ -3,7 +3,8 @@
     "type": "Thermostat", 
     "comlink": "3228-eurotronic-vanne-thermostatique-z-wave-comet-4260012711011", 
     "remark": "", 
-    "imglink": "eurotronic.cometz", 
+    "imglink": "eurotronic.cometz",
+    "battery_type": "1x1.5V AA",
     "commands": [
         {
             "name": "Température", 

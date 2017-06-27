@@ -3,7 +3,8 @@
     "type": "Ouverture", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "domux.dx1dsz", 
+    "imglink": "domux.dx1dsz",
+    "battery_type": "2x1.5V LR03",
     "commands": [
         {
             "name": "Ouverture", 

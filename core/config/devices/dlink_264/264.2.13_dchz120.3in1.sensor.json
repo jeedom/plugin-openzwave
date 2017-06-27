@@ -3,7 +3,8 @@
     "type": "Présence", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "dlink.dchz120", 
+    "imglink": "dlink.dchz120",
+    "battery_type": "1x3V CR123A",
     "commands": [
         {
             "name": "Présence", 

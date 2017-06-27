@@ -3,7 +3,8 @@
     "type": "Thermostat", 
     "comlink": "2361-eurotronic-vanne-thermostatique-z-wave-stellaz", 
     "remark": "", 
-    "imglink": "eurotronic.stellaz", 
+    "imglink": "eurotronic.stellaz",
+    "battery_type": "1x1.5V AA",
     "commands": [
         {
             "name": "Température", 

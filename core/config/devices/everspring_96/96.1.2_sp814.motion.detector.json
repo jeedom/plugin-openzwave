@@ -3,7 +3,8 @@
     "type": "Multicapteurs", 
     "comlink": "857-everspring-detecteur-de-presence-z-wave-sp814-3700946500288", 
     "remark": "", 
-    "imglink": "everspring.sp814", 
+    "imglink": "everspring.sp814",
+    "battery_type": "3x1.5V AAA",
     "commands": [
         {
             "name": "Présence", 

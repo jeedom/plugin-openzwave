@@ -3,7 +3,8 @@
     "type": "Télécommande", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "develo.mt2653", 
+    "imglink": "develo.mt2653",
+    "battery_type": "1x3V CR2032",
     "commands": [
         {
             "name": "Scene",

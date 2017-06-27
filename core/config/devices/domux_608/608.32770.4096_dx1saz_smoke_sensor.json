@@ -3,7 +3,8 @@
     "type": "Fumée", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "domux.dx1saz", 
+    "imglink": "domux.dx1saz",
+    "battery_type": "1x3V CR123A",
     "commands": [
         {
             "name": "Fumées", 

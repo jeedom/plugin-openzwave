@@ -3,7 +3,8 @@
     "type": "Gaz", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "domux.dx1cgz", 
+    "imglink": "domux.dx1cgz",
+    "battery_type": "2x1.5V LR03",
     "commands": [
         {
             "name": "Fuite gaz", 

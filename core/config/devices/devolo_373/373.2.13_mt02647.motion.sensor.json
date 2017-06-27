@@ -3,7 +3,8 @@
     "type": "Multicapteurs", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "devolo.mt02647", 
+    "imglink": "devolo.mt02647",
+    "battery_type": "1x3V CR123A",
     "commands": [
         {
             "name": "Présence", 

@@ -3,7 +3,8 @@
     "type": "Télécommande", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "develo.scene_switch_2652", 
+    "imglink": "develo.scene_switch_2652",
+    "battery_type": "1x3V CR2032",
     "commands": [
         {
             "name": "Scene",
