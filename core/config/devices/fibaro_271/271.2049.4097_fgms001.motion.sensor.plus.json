@@ -3,7 +3,8 @@
     "type": "Multicapteurs", 
     "comlink": "3422-fibaro-detecteur-de-mouvement-multifonctions-z-wave-fgms-001-5902020528579", 
     "remark": "Par défaut possède une configuration très économique. Lire la documentation pour le configurer correctement. Faire les associations à jeedom pour les groupes 1, 4 et 5", 
-    "imglink": "fibaro.fgms001zw5", 
+    "imglink": "fibaro.fgms001zw5",
+    "battery_type": "1x3V CR123A",
     "commands": [
         {
             "name": "Présence", 

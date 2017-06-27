@@ -3,7 +3,8 @@
     "type": "Contrôleur gestuel", 
     "comlink": "3423-fibaro-controleur-gestuel-z-wave-swipe-blanc-fggc-001-5902020528821", 
     "remark": "",
-    "imglink": "fibaro.fggc001", 
+    "imglink": "fibaro.fggc001",
+    "battery_type": "4x1.5V AA",
     "commands": [
         {
             "name": "Scene",

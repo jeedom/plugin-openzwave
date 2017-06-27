@@ -3,7 +3,8 @@
     "type": "Ouverture", 
     "comlink": "4105-fibaro-detecteur-d-ouverture-z-wave-doorwindow-sensor-2-blanc-5902701700348", 
     "remark": "", 
-    "imglink": "fibaro.fgdw2", 
+    "imglink": "fibaro.fgdw2",
+    "battery_type": "1x3.6V ER14250",
     "commands": [
         {
             "name": "Etat", 

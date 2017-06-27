@@ -3,7 +3,8 @@
     "type": "Télécommande", 
     "comlink": "3994-fibaro-telecommande-porte-cles-z-wave-fibaro-keyfob-fgkf-601-5905279987562", 
     "remark": "Télécommande en mode scène non fonctionnelle, fonctionne cependant en association avec d’autres modules", 
-    "imglink": "fibaro.fgkf601", 
+    "imglink": "fibaro.fgkf601",
+    "battery_type": "1x3V CR2450",
     "commands": [
         {
             "name": "Scene",

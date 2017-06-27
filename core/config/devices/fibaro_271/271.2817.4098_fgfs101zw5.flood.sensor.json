@@ -3,7 +3,8 @@
     "type": "Fuite", 
     "comlink": "3582-fibaro-detecteur-d-inondation-z-wave-fgfs-101-5902020528357", 
     "remark": "", 
-    "imglink": "fibaro.fgfs101zw5", 
+    "imglink": "fibaro.fgfs101zw5",
+    "battery_type": "1x3V CR123A",
     "commands": [
         {
             "name": "Fuite", 
