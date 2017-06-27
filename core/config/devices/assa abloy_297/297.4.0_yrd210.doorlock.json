@@ -3,7 +3,8 @@
     "type": "Serrure", 
     "comlink": "", 
     "remark": "Inclusion en mode sécurisé", 
-    "imglink": "assa_abloy.YRD210", 
+    "imglink": "assa_abloy.YRD210",
+    "battery_type": "4x1.5V AA",
     "commands": [
         {
             "name": "Statut", 

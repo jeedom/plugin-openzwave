@@ -3,7 +3,8 @@
     "type": "Clavier RFID", 
     "comlink": "2470-zipato-clavier-a-code-et-rfid-z-wave-3858890730579", 
     "remark": "Le badge utilisé ne remonte pas. Ce module est actuellement vendu sous la marque Zipato", 
-    "imglink": "zipato.minikeypad", 
+    "imglink": "zipato.minikeypad",
+    "battery_type": "2x1.5V AAA",
     "configuration": {
         "1": {
             "name": "Reset", 

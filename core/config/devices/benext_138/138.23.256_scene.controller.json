@@ -3,7 +3,8 @@
     "type": "Télécommande", 
     "comlink": "2534-benext-telecommande-7-boutons-z-wave-scene-controller-0632181493786", 
     "remark": "",
-    "imglink": "benext.scene-controller", 
+    "imglink": "benext.scene-controller",
+    "battery_type": "2x1.5V AA",
     "commands": [
         {
             "name": "Scene",
@@ -70,6 +71,25 @@
                 "dashboard": "badge",
                 "mobile": "badge"
             }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": 0,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 100
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "unite": "%"
         }
     ]
 }

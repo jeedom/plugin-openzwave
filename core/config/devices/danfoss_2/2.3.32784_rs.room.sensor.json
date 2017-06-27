@@ -3,7 +3,8 @@
     "type": "Thermostat", 
     "comlink": "3069-danfoss-sonde-d-ambiance-z-wave-danfoss-link-rs", 
     "remark": "", 
-    "imglink": "danfoss.room-sensor", 
+    "imglink": "danfoss.room-sensor",
+    "battery_type": "2x1.5V AA",
     "commands": [
         {
             "name": "Température", 

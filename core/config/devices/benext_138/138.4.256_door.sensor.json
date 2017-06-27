@@ -3,7 +3,8 @@
     "type": "Ouverture", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "benext.door", 
+    "imglink": "benext.door",
+    "battery_type": "2x1.5V AAA",
     "commands": [
         {
             "name": "Interne", 
