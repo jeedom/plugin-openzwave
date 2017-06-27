@@ -3,7 +3,8 @@
     "type": "Multicapteurs", 
     "comlink": "2681-aeon-labs-detecteur-multifonction-multisensor-z-wave-plus-gen5-1220000012684", 
     "remark": "Attention ce module peut remonter de mauvaises données, il faut bien faire attention à la configuration. Remplacé en boutique par son équivalent Gen5", 
-    "imglink": "aeotec.multisensor", 
+    "imglink": "aeotec.multisensor",
+    "battery_type": "2x1.5V AAA",
     "commands": [
         {
             "name": "Présence", 

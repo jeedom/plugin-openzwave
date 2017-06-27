@@ -3,7 +3,8 @@
     "type": "Ouverture", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "aeotec.zw097", 
+    "imglink": "aeotec.zw097",
+    "battery_type": "1×3V CR123A",
     "commands": [
         {
             "name": "Etat", 

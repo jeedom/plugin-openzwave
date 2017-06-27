@@ -3,7 +3,8 @@
     "type": "Ouverture", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "aeotec.zw120doorwindow", 
+    "imglink": "aeotec.zw120doorwindow",
+    "battery_type": "2×1.5V AAA",
     "commands": [
         {
             "name": "Etat", 

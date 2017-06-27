@@ -3,7 +3,8 @@
     "type": "Télécommande", 
     "comlink": "", 
     "remark": "",
-    "imglink": "aeotec.zw130", 
+    "imglink": "aeotec.zw130",
+    "battery_type": "Batterie",
     "commands": [
         {
             "name": "Scene",

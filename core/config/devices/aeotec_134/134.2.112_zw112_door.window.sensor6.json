@@ -3,7 +3,8 @@
     "type": "Ouverture", 
     "comlink": "3579-aeon-labs-capteur-pour-porte-et-fenetre-z-wave-dw-sensor-6-1220000013162", 
     "remark": "", 
-    "imglink": "aeotec.doorwindow6", 
+    "imglink": "aeotec.doorwindow6",
+    "battery_type": "Batterie",
     "commands": [
         {
             "name": "Etat", 
