@@ -3,7 +3,8 @@
     "type": "Télécommande", 
     "comlink": "2939-nodon-octan-telecommande-murale-z-wave-3700313920282", 
     "remark": "",
-    "imglink": "nodon.octan", 
+    "imglink": "nodon.octan",
+    "battery_type": "1x3V CR2032",
     "commands": [
         {
             "name": "Scene", 

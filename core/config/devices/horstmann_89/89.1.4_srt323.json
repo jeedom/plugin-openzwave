@@ -3,7 +3,8 @@
     "type": "Thermostat", 
     "comlink": "3218-secure-thermostat-srt323-avec-ecran-lcd-et-relai-integre-5015914250569", 
     "remark": "Module vendu sous la marque Secure SRT323", 
-    "imglink": "horstmann.srt323", 
+    "imglink": "horstmann.srt323",
+    "battery_type": "2x1.5V AAA",
     "configuration": {
         "1": {
             "name": "Activation/Désactivation du capteur de température interne", 

@@ -3,7 +3,8 @@
     "type": "Contrôleur portable", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "520.512.9_scene-controller-1", 
+    "imglink": "520.512.9_scene-controller-1",
+    "battery_type": "2x1.5V AAA",
     "commands": [
         {
             "name": "Scene",

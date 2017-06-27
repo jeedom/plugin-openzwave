@@ -3,8 +3,9 @@
     "type": "Fumée", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "firstalert.zcombo", 
-    "ignore": true, 
+    "imglink": "firstalert.zcombo",
+    "battery_type": "1x9V",
+    "ignore": true,
     "commands": [
         {
             "name": "Fumée", 
