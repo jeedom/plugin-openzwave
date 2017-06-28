@@ -3,7 +3,8 @@
     "type": "Serrure", 
     "comlink": "", 
     "remark": "Inclusion en mode sécurisé", 
-    "imglink": "vision.zm1702", 
+    "imglink": "vision.zm1702",
+    "battery_type": "4x1.5V AA",
     "commands": [
         {
             "name": "Statut", 

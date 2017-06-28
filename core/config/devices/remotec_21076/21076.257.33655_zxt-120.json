@@ -3,7 +3,8 @@
     "type": "Thermostat", 
     "comlink": "826-remotec-zxt-120-passerelle-z-wave-vers-ir-pour-climatiseur-ac", 
     "remark": "Pose soucis sur des réseaux avec d'autres modules", 
-    "imglink": "remotec.zxt120", 
+    "imglink": "remotec.zxt120",
+    "battery_type": "3x1.5V AAA",
     "commands": [
         {
             "name": "Mode", 

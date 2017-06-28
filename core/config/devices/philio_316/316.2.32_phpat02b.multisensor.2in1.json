@@ -3,7 +3,8 @@
     "type": "Multicapteurs", 
     "comlink": "", 
     "remark": "La première valeur d'humidité peut mettre un certain temps à remonter. Vendu aussi sous la marque Zipato", 
-    "imglink": "philio.phpat02b", 
+    "imglink": "philio.phpat02b",
+    "battery_type": "1x3V CR123A",
     "commands": [
         {
             "name": "Température", 

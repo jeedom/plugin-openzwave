@@ -3,7 +3,8 @@
     "type": "Télécommande", 
     "comlink": "3075-z-waveme-telecommande-z-wave-10-canaux", 
     "remark": "", 
-    "imglink": "zwaveme.rc2", 
+    "imglink": "zwaveme.rc2",
+    "battery_type": "4x1.5V AAA",
     "commands": [
         {
             "name": "Scene", 

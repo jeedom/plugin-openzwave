@@ -3,7 +3,8 @@
     "type": "Sirène", 
     "comlink": "3180-popp-sirene-exterieure-solaire-z-wave-0019962005107", 
     "remark": "", 
-    "imglink": "popp.solar-siren", 
+    "imglink": "popp.solar-siren",
+    "battery_type": "Batterie",
     "commands": [
         {
             "name": "Etat", 

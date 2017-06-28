@@ -3,7 +3,8 @@
     "type": "Multicapteurs", 
     "comlink": "3152-zipato-detecteur-d-inondation-3-en-1-z-wave-plus-3858890733112", 
     "remark": "Vendu aussi sous la marque Zipato", 
-    "imglink": "philio.phpat02", 
+    "imglink": "philio.phpat02",
+    "battery_type": "1x3V CR123A",
     "commands": [
         {
             "name": "Fuite", 

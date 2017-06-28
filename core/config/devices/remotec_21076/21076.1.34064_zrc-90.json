@@ -3,7 +3,8 @@
     "type": "Contrôleur portable", 
     "comlink": "", 
     "remark": "",
-    "imglink": "remotec.zrc90", 
+    "imglink": "remotec.zrc90",
+    "battery_type": "2x1.5V AAA",
     "commands": [
         {
             "name": "Scene",

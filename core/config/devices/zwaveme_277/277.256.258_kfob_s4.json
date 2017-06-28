@@ -3,7 +3,8 @@
     "type": "Télécommande", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "zwaveme.keyfobs4", 
+    "imglink": "zwaveme.keyfobs4",
+    "battery_type": "1x3V CR2032",
     "commands": [
         {
             "name": "Scene", 

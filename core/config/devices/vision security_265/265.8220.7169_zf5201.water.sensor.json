@@ -3,7 +3,8 @@
     "type": "Fuite", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "vision.zf5201", 
+    "imglink": "vision.zf5201",
+    "battery_type": "1x3.2V CR123A",
     "commands": [
         {
             "name": "Fuite", 

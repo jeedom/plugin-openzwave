@@ -3,7 +3,8 @@
     "type": "Serrure", 
     "comlink": "1752-poly-control-serrure-motorisee-poly-lock-z-wave", 
     "remark": "Inclusion en mode sécurisé", 
-    "imglink": "polycontrol.polylock", 
+    "imglink": "polycontrol.polylock",
+    "battery_type": "1xER26500M",
     "configuration": {
         "0": {
             "name": "Inversion de direction", 

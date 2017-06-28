@@ -3,7 +3,8 @@
     "type": "Télécommande", 
     "comlink": "3074-popp-controleur-mural-sans-fil-z-wave", 
     "remark": "", 
-    "imglink": "popp.009303", 
+    "imglink": "popp.009303",
+    "battery_type": "1x3V CR2032",
     "commands": [
         {
             "name": "Scene", 

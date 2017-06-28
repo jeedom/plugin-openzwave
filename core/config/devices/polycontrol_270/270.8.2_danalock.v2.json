@@ -3,7 +3,8 @@
     "type": "Serrure", 
     "comlink": "3175-danalock-serrure-connectee-bluetooth-et-z-wave-modele-circulaire-5712560000264", 
     "remark": "Inclusion en mode sécurisé", 
-    "imglink": "polycontrol.danalock", 
+    "imglink": "polycontrol.danalock",
+    "battery_type": "4x3V CR123A",
     "commands": [
         {
             "name": "Statut", 

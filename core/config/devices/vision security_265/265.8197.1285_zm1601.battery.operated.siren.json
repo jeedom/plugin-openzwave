@@ -3,7 +3,8 @@
     "type": "Sirène", 
     "comlink": "", 
     "remark": "Remplacé par la ZM1601EU5", 
-    "imglink": "vision.zm1601", 
+    "imglink": "vision.zm1601",
+    "battery_type": "4x1.5V AAA",
     "commands": [
         {
             "name": "Etat", 

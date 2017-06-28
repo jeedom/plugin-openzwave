@@ -3,7 +3,8 @@
     "type": "Multicapteurs", 
     "comlink": "2961-popp-station-meteo-z-wave-z-weather", 
     "remark": "Vendu sous le nom POPP - Station météo Z-Wave+ Z-Weather", 
-    "imglink": "popp.zweather", 
+    "imglink": "popp.zweather",
+    "battery_type": "Cellule solaire",
     "commands": [
         {
             "name": "Température", 

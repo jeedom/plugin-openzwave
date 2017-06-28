@@ -3,7 +3,8 @@
     "type": "Multicapteurs", 
     "comlink": "2605-zipato-detecteur-de-mouvement-et-capteur-de-temperature-z-wave-3858890730272", 
     "remark": "Vendu aussi sous la marque Zipato.", 
-    "imglink": "vision.zp3102", 
+    "imglink": "vision.zp3102",
+    "battery_type": "1x3V CR123A",
     "commands": [
         {
             "name": "Présence", 

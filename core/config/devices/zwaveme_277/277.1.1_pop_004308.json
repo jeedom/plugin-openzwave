@@ -3,7 +3,8 @@
     "type": "Fumée", 
     "comlink": "", 
     "remark": "Détecté comme le Zwave-me USB Stick. Pas d'assistant pour les parametrès.", 
-    "imglink": "popp.smoke-detector", 
+    "imglink": "popp.smoke-detector",
+    "battery_type": "1xCR123A",
     "commands": [
         {
             "name": "Fumées", 

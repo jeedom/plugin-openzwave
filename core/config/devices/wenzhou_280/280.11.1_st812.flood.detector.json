@@ -3,7 +3,8 @@
     "type": "Fuite", 
     "comlink": "860-everspring-detecteur-d-eau-z-wave-st-812-3700946500318", 
     "remark": "Vendu sous la marque Everspring", 
-    "imglink": "everspring.st812", 
+    "imglink": "everspring.st812",
+    "battery_type": "3x1.5V AAA",
     "commands": [
         {
             "name": "Etat", 

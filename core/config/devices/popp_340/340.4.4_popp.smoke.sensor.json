@@ -3,7 +3,8 @@
     "type": "Fumée", 
     "comlink": "3636-popp-detecteur-de-fumee-z-wave-avec-autonomie-10-ans-0019962009402", 
     "remark": "", 
-    "imglink": "popp.009402.smoke-detector", 
+    "imglink": "popp.009402.smoke-detector",
+    "battery_type": "1x1/2AA ER",
     "commands": [
         {
             "name": "Fumées", 

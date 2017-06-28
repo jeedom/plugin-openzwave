@@ -3,7 +3,8 @@
     "type": "CO", 
     "comlink": "3852-popp-detecteur-de-monoxyde-de-carbone-z-wave-0019962004407", 
     "remark": "", 
-    "imglink": "popp.004407", 
+    "imglink": "popp.004407",
+    "battery_type": "Batterie Lithium 10 ans",
     "commands": [
         {
             "name": "CO", 

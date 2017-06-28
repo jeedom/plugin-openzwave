@@ -3,7 +3,8 @@
     "type": "Ouverture", 
     "comlink": "2609-zipato-detecteur-d-ouverture-z-wave-3858890730470", 
     "remark": "", 
-    "imglink": "zipato.vszd2102", 
+    "imglink": "zipato.vszd2102",
+    "battery_type": "1x3V CR123A",
     "commands": [
         {
             "name": "Ouverture", 
