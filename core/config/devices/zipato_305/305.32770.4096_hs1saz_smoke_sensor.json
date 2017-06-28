@@ -12,9 +12,9 @@
             "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 113, 
+                "class": 48,
                 "value": "", 
-                "index": 1, 
+                "index": 0,
                 "instance": 1
             }, 
             "subtype": "binary", 
