@@ -1,0 +1,50 @@
+{
+    "name": "Flood Sensor (HS1WL-Z)",
+    "type": "Fuite", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "heiman.hs1wlz",
+    "commands": [
+        {
+            "name": "Fuite", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 48, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "FLOOD"
+            }, 
+            "template": {
+                "dashboard": "inondation", 
+                "mobile": "inondation"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}
