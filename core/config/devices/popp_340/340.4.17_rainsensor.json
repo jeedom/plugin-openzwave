@@ -20,7 +20,7 @@
             }, 
             "subtype": "binary",
             "display": {
-                "invertBinary": "0",
+                "invertBinary": "1",
                 "generic_type": "FLOOD"
             },
             "template": {
