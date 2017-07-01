@@ -1,5 +1,23 @@
 == Changelog
 
+== 2017-07-xx
+
+* New Features
+
+** N/A
+
+* Improvements/Enhancements
+
+** Supports de nouveaux modules, définitions ozw et commandes.
+
+* Bug Fixes
+
+** Correction de la migration de l'info Batterie.
+** Restoration du type de piles dans les configurations de modules.
+** Correction des actions sur les valeurs de type bouton dans l'écran du module.
+** Correction de la récupération des traductions de paramètres.
+** Correction erreur vide sur modification de valeurs de type RAW (code RFid).
+
 == 2017-06-20
 
 * New Features
