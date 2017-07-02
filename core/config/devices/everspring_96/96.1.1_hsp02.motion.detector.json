@@ -3,8 +3,10 @@
     "type": "Multicapteurs", 
     "comlink": "842-everspring-detecteur-de-mouvement-z-wave-hsp02-3700946500165", 
     "remark": "", 
-    "imglink": "everspring.hsp02",
-    "battery_type": "1x3V CR2",
+    "imglink": "everspring.hsp02", 
+    "configuration": {
+        "battery_type": "1x3V CR2"
+    }, 
     "commands": [
         {
             "name": "Présence", 

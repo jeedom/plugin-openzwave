@@ -3,8 +3,10 @@
     "type": "CO", 
     "comlink": "2159-vision-security-detecteur-de-monoxyde-de-carbone-z-wave", 
     "remark": "", 
-    "imglink": "vision.zs6301",
-    "battery_type": "3x1.5V AA",
+    "imglink": "vision.zs6301", 
+    "configuration": {
+        "battery_type": "3x1.5V AA"
+    }, 
     "commands": [
         {
             "name": "CO", 
@@ -15,7 +17,7 @@
                 "class": 113, 
                 "value": "", 
                 "index": 1, 
-                "instance": 1,
+                "instance": 1, 
                 "calculValueOffset": "#value#==255"
             }, 
             "subtype": "binary", 

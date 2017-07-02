@@ -3,8 +3,7 @@
     "type": "Interrupteur", 
     "comlink": "3207-philio-interrupteurtelecommande-mural-z-wave-4713698571542", 
     "remark": "", 
-    "imglink": "philio.psr04",
-    "battery_type": "Batterie",
+    "imglink": "philio.psr04", 
     "configuration": {
         "1": {
             "name": "Niveau Off Minimum", 
@@ -29,7 +28,8 @@
                 "Enabled": "Activé", 
                 "Disabled": "Désactivé"
             }
-        }
+        }, 
+        "battery_type": "Batterie"
     }, 
     "commands": [
         {
@@ -41,8 +41,8 @@
                 "class": 32, 
                 "value": "", 
                 "index": 0, 
-                "instance": 1,
-                "calculValueOffset": "(#value#==255) ? 99 :  ((#value#==1) ? 0 : #value#)",
+                "instance": 1, 
+                "calculValueOffset": "(#value#==255) ? 99 :  ((#value#==1) ? 0 : #value#)", 
                 "minValue": 0, 
                 "maxValue": 100
             }, 

@@ -35,13 +35,13 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 38, 
-                "value": "type=setvalue&value=255",
+                "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
@@ -59,8 +59,8 @@
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"

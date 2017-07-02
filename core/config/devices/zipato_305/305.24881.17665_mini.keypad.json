@@ -3,8 +3,7 @@
     "type": "Clavier RFID", 
     "comlink": "2470-zipato-clavier-a-code-et-rfid-z-wave-3858890730579", 
     "remark": "Le badge utilisé ne remonte pas.", 
-    "imglink": "zipato.minikeypad",
-    "battery_type": "2x1.5V AA",
+    "imglink": "zipato.minikeypad", 
     "configuration": {
         "1": {
             "name": "Reset", 
@@ -29,7 +28,8 @@
                 "Mode 1: Normal operating mode.": "Mode 1 : Normal", 
                 "Mode 3: Z-Wave chip is always on to request e.g. version or manufacturer id.": "Mode 3 : Toujours réveillé"
             }
-        }
+        }, 
+        "battery_type": "2x1.5V AA"
     }, 
     "commands": [
         {

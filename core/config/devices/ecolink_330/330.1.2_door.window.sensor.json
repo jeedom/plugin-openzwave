@@ -3,8 +3,10 @@
     "type": "Ouverture", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "ecolink.doorwindow",
-    "battery_type": "1x3V CR2",
+    "imglink": "ecolink.doorwindow", 
+    "configuration": {
+        "battery_type": "1x3V CR2"
+    }, 
     "commands": [
         {
             "name": "Etat", 

@@ -3,8 +3,10 @@
     "type": "Thermostat", 
     "comlink": "2495-danfoss-tete-electronique-living-connect-z-wave-lc-13-5013567421497", 
     "remark": "", 
-    "imglink": "danfoss.living-connect",
-    "battery_type": "2x1.5V AAA",
+    "imglink": "danfoss.living-connect", 
+    "configuration": {
+        "battery_type": "2x1.5V AAA"
+    }, 
     "commands": [
         {
             "name": "Température", 

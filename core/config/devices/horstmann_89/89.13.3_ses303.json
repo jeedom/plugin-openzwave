@@ -3,8 +3,10 @@
     "type": "Multicapteurs", 
     "comlink": "3227-secure-sonde-de-temperature-et-d-humidite-sur-piles-z-wave-5015914840098", 
     "remark": "Module vendu sous la marque Secure", 
-    "imglink": "horstmann.ses303",
-    "battery_type": "2x1.5V AA",
+    "imglink": "horstmann.ses303", 
+    "configuration": {
+        "battery_type": "2x1.5V AA"
+    }, 
     "commands": [
         {
             "name": "Température", 

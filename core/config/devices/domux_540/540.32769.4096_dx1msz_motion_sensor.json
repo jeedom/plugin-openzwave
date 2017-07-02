@@ -3,8 +3,10 @@
     "type": "Multicapteurs", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "domux.dx1msz",
-    "battery_type": "1x3V CR17335",
+    "imglink": "domux.dx1msz", 
+    "configuration": {
+        "battery_type": "1x3V CR17335"
+    }, 
     "commands": [
         {
             "name": "Présence", 

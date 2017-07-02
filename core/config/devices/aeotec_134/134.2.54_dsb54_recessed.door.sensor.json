@@ -3,8 +3,10 @@
     "type": "Ouverture", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "aeotec.dsb54",
-    "battery_type": "1x3V CR2",
+    "imglink": "aeotec.dsb54", 
+    "configuration": {
+        "battery_type": "1x3V CR2"
+    }, 
     "commands": [
         {
             "name": "Etat", 

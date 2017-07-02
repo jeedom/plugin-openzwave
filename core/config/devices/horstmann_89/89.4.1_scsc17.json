@@ -3,8 +3,10 @@
     "type": "Thermostat", 
     "comlink": "2419-secure-thermostat-electronique-programmable-z-wave-scs317-5015914370083", 
     "remark": "Module vendu sous la marque Secure", 
-    "imglink": "horstmann.scs317",
-    "battery_type": "2x1.5V AAA",
+    "imglink": "horstmann.scs317", 
+    "configuration": {
+        "battery_type": "2x1.5V AAA"
+    }, 
     "commands": [
         {
             "name": "Température", 
@@ -83,8 +85,8 @@
                 "class": 67, 
                 "value": "", 
                 "index": 1, 
-                "instance": 1,
-                "minValue": 5,
+                "instance": 1, 
+                "minValue": 5, 
                 "maxValue": 30
             }, 
             "subtype": "numeric", 
@@ -103,7 +105,7 @@
                 "value": "type=setvalue&value=#slider#", 
                 "index": 1, 
                 "instance": 1, 
-                "minValue": 5,
+                "minValue": 5, 
                 "maxValue": 30
             }, 
             "value": "ConsigneEtat", 
@@ -123,8 +125,8 @@
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Holiday mode",
+            }, 
+            "value": "Holiday mode", 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
@@ -140,8 +142,8 @@
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Holiday mode",
+            }, 
+            "value": "Holiday mode", 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"

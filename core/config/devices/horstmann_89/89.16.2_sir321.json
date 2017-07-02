@@ -32,21 +32,21 @@
     }, 
     "commands": [
         {
-            "name": "Etat",
-            "type": "info",
-            "isVisible": "0",
-            "isHistorized": "0",
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": "0", 
+            "isHistorized": "0", 
             "configuration": {
-                "class": 37,
-                "value": "",
-                "index": 0,
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
                 "instance": 1
-            },
-            "subtype": "binary",
+            }, 
+            "subtype": "binary", 
             "display": {
                 "generic_type": "DONT"
             }
-        },
+        }, 
         {
             "name": "On", 
             "type": "action", 
@@ -57,8 +57,8 @@
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
@@ -74,8 +74,8 @@
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"

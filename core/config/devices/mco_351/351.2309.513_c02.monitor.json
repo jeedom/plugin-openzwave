@@ -20,9 +20,9 @@
             "display": {
                 "invertBinary": "1", 
                 "generic_type": "GENERIC"
-            },
+            }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
             }
         }, 
@@ -92,16 +92,16 @@
                 "class": 113, 
                 "value": "", 
                 "index": 10, 
-                "instance": 1,
+                "instance": 1, 
                 "calculValueOffset": "#value#==3"
             }, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
-            },
+            }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
             }
         }

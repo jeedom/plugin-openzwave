@@ -3,9 +3,10 @@
     "type": "Fuite", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "",
-    "battery_type": "1x3V CR123A",
-    "ignore": false,
+    "imglink": "", 
+    "configuration": {
+        "battery_type": "1x3V CR123A"
+    }, 
     "commands": [
         {
             "name": "Fuite", 

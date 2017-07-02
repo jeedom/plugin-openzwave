@@ -3,8 +3,10 @@
     "type": "Thermostat", 
     "comlink": "3683-popp-tete-thermostatique-sans-fil-z-wave-0019962010101", 
     "remark": "", 
-    "imglink": "danfoss.living-connect",
-    "battery_type": "2x1.5V AAA",
+    "imglink": "danfoss.living-connect", 
+    "configuration": {
+        "battery_type": "2x1.5V AAA"
+    }, 
     "commands": [
         {
             "name": "Température", 

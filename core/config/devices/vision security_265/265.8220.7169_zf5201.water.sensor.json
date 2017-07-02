@@ -3,8 +3,10 @@
     "type": "Fuite", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "vision.zf5201",
-    "battery_type": "1x3.2V CR123A",
+    "imglink": "vision.zf5201", 
+    "configuration": {
+        "battery_type": "1x3.2V CR123A"
+    }, 
     "commands": [
         {
             "name": "Fuite", 
@@ -36,16 +38,16 @@
                 "class": 113, 
                 "value": "", 
                 "index": 0, 
-                "instance": 1,
+                "instance": 1, 
                 "calculValueOffset": "#value#==7"
             }, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
-            },
+            }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
             }
         }, 

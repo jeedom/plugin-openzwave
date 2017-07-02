@@ -2,76 +2,78 @@
     "name": "FGPB101 Button", 
     "type": "Contrôleur", 
     "comlink": "3701-fibaro-bouton-de-commande-the-button-z-wave-blanc--5902020528968", 
-    "remark": "",
-    "imglink": "fibaro.fgpb101",
-    "battery_type": "1X ER14250 3,6V",
+    "remark": "", 
+    "imglink": "fibaro.fgpb101", 
+    "configuration": {
+        "battery_type": "1X ER14250 3,6V"
+    }, 
     "commands": [
         {
-            "name": "Scene",
-            "type": "info",
-            "isVisible": 0,
-            "isHistorized": 0,
+            "name": "Scene", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
             "configuration": {
-                "class": 91,
-                "value": "",
-                "index": 128,
-                "instance": 1,
+                "class": 91, 
+                "value": "", 
+                "index": 128, 
+                "instance": 1, 
                 "repeatEventManagement": "always"
-            },
-            "subtype": "numeric",
+            }, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "unite": "",
+            }, 
+            "unite": "", 
             "template": {
-                "dashboard": "badge",
+                "dashboard": "badge", 
                 "mobile": "badge"
             }
-        },
+        }, 
         {
-            "name": "SceneID",
-            "type": "info",
-            "isVisible": 0,
-            "isHistorized": 0,
+            "name": "SceneID", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
             "configuration": {
-                "class": 91,
-                "value": "",
-                "index": 2,
-                "instance": 1,
+                "class": 91, 
+                "value": "", 
+                "index": 2, 
+                "instance": 1, 
                 "repeatEventManagement": "always"
-            },
-            "subtype": "numeric",
+            }, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "unite": "",
+            }, 
+            "unite": "", 
             "template": {
-                "dashboard": "badge",
+                "dashboard": "badge", 
                 "mobile": "badge"
             }
-        },
+        }, 
         {
-            "name": "SceneAttribute",
-            "type": "info",
-            "isVisible": 0,
-            "isHistorized": 0,
+            "name": "SceneAttribute", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
             "configuration": {
-                "class": 91,
-                "value": "",
-                "index": 1,
-                "instance": 1,
+                "class": 91, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1, 
                 "repeatEventManagement": "always"
-            },
-            "subtype": "string",
+            }, 
+            "subtype": "string", 
             "display": {
                 "generic_type": "DONT"
-            },
-            "unite": "",
+            }, 
+            "unite": "", 
             "template": {
-                "dashboard": "badge",
+                "dashboard": "badge", 
                 "mobile": "badge"
             }
-        },
+        }, 
         {
             "name": "Batterie", 
             "type": "info", 

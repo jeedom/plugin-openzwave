@@ -3,8 +3,10 @@
     "type": "Télécommande", 
     "comlink": "291-aeon-labs-telecommande-z-wave-blanche-1220000010253", 
     "remark": "", 
-    "imglink": "aeotec.minimote",
-    "battery_type": "Batterie",
+    "imglink": "aeotec.minimote", 
+    "configuration": {
+        "battery_type": "Batterie"
+    }, 
     "commands": [
         {
             "name": "Scene", 

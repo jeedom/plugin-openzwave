@@ -1,10 +1,12 @@
 {
-    "name": "Door Sensor (HS1DS-Z)",
+    "name": "Door Sensor (HS1DS-Z)", 
     "type": "Ouverture", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "heiman.hs1dsz",
-    "battery_type": "2x1.5V LR03",
+    "imglink": "heiman.hs1dsz", 
+    "configuration": {
+        "battery_type": "2x1.5V LR03"
+    }, 
     "commands": [
         {
             "name": "Ouverture", 

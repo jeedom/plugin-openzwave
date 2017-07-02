@@ -1,9 +1,9 @@
 {
-    "name": "Reto plug in Switch",
+    "name": "Reto plug in Switch", 
     "type": "Interrupteur", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "qees.reto-pluginswitch",
+    "imglink": "qees.reto-pluginswitch", 
     "commands": [
         {
             "name": "Etat", 

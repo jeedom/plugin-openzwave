@@ -1,10 +1,12 @@
 {
-    "name": "CO Sensor (HS1CA-Z)",
+    "name": "CO Sensor (HS1CA-Z)", 
     "type": "CO", 
-    "comlink": "4151-zipato-capteur-de-monoxyde-de-carbone-z-wave-3858890733563",
+    "comlink": "4151-zipato-capteur-de-monoxyde-de-carbone-z-wave-3858890733563", 
     "remark": "", 
-    "imglink": "zipato.dx1caz",
-    "battery_type": "1x3V CR17335",
+    "imglink": "zipato.dx1caz", 
+    "configuration": {
+        "battery_type": "1x3V CR17335"
+    }, 
     "commands": [
         {
             "name": "Alerte CO", 

@@ -3,8 +3,7 @@
     "type": "Ouverture", 
     "comlink": "922-fibaro-detecteur-d-ouverture-z-wave-avec-entree-contact-sec-blanc-5902020528111", 
     "remark": "", 
-    "imglink": "fibaro.fgk101-DS18B20",
-    "battery_type": "1x3.6V ER14250",
+    "imglink": "fibaro.fgk101-DS18B20", 
     "configuration": {
         "1": {
             "name": "Délai d’annulation d’alarme de l’entrée", 
@@ -83,7 +82,8 @@
                 "Scenes disabled": "Fonctionnalité désactivée", 
                 "Scenes enabled": "Fonctionnalité activée"
             }
-        }
+        }, 
+        "battery_type": "1x3.6V ER14250"
     }, 
     "commands": [
         {

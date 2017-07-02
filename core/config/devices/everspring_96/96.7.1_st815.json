@@ -3,8 +3,10 @@
     "type": "Luminosité", 
     "comlink": "2498-everspring-capteur-de-luminosite-z-wave-avec-ecran-lcd-st815-3700946500349", 
     "remark": "", 
-    "imglink": "everspring.st815",
-    "battery_type": "3x1.5V AAA",
+    "imglink": "everspring.st815", 
+    "configuration": {
+        "battery_type": "3x1.5V AAA"
+    }, 
     "commands": [
         {
             "name": "Luminosité", 

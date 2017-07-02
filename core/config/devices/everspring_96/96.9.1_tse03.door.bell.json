@@ -3,8 +3,10 @@
     "type": "Carillon", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "everspring.tse03",
-    "battery_type": "3xAA + 2x1.5V AAA",
+    "imglink": "everspring.tse03", 
+    "configuration": {
+        "battery_type": "3xAA + 2x1.5V AAA"
+    }, 
     "commands": [
         {
             "name": "Etat", 
@@ -37,8 +39,8 @@
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
@@ -54,8 +56,8 @@
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"

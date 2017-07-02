@@ -63,11 +63,11 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 38, 
-                "value": "type=setvalue&value=255",
+                "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-lumiere-on\"></i>", 
@@ -84,8 +84,8 @@
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-lumiere-off\"></i>", 

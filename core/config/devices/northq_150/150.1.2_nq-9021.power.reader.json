@@ -3,8 +3,10 @@
     "type": "Compteur", 
     "comlink": "1537-northq-compteur-optique-de-consommation-z-wave", 
     "remark": "Activer le rafraichissement manuel à 5 minutes sur la valeur Energy pour avoir les rapports", 
-    "imglink": "northq.powerreader",
-    "battery_type": "2x1.5V AAA",
+    "imglink": "northq.powerreader", 
+    "configuration": {
+        "battery_type": "2x1.5V AAA"
+    }, 
     "commands": [
         {
             "name": "Consommation", 

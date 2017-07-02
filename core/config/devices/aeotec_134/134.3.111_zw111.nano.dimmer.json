@@ -12,13 +12,13 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 38, 
-                "value": "type=setvalue&value=255",
+                "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
@@ -36,8 +36,8 @@
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
@@ -167,48 +167,48 @@
                 "mobile": "tile"
             }, 
             "unite": "A"
-        },
+        }, 
         {
-            "name": "Surintensité",
-            "type": "info",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "name": "Surintensité", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
             "configuration": {
-                "class": 113,
-                "value": "",
-                "index": 12,
-                "instance": 1,
+                "class": 113, 
+                "value": "", 
+                "index": 12, 
+                "instance": 1, 
                 "calculValueOffset": "#value#==6"
-            },
-            "subtype": "binary",
+            }, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
-            },
+            }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
             }
-        },
+        }, 
         {
-            "name": "Surchauffe",
-            "type": "info",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "name": "Surchauffe", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
             "configuration": {
-                "class": 113,
-                "value": "",
-                "index": 4,
-                "instance": 1,
+                "class": 113, 
+                "value": "", 
+                "index": 4, 
+                "instance": 1, 
                 "calculValueOffset": "#value#==2"
-            },
-            "subtype": "binary",
+            }, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
-            },
+            }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
             }
         }

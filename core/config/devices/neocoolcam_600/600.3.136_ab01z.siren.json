@@ -38,7 +38,7 @@
                 "index": 0, 
                 "instance": 1
             }, 
-			"value": "Sirene", 
+            "value": "Sirene", 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
@@ -55,7 +55,7 @@
                 "index": 0, 
                 "instance": 1
             }, 
-			"value": "Sirene", 
+            "value": "Sirene", 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
@@ -78,8 +78,7 @@
             "subtype": "slider", 
             "display": {
                 "generic_type": "DONT"
-            }, 
-            
+            }
         }, 
         {
             "name": "Level", 
@@ -99,6 +98,6 @@
                 "generic_type": "DONT"
             }, 
             "unite": ""
-        }        
+        }
     ]
 }

@@ -3,8 +3,10 @@
     "type": "Fumée", 
     "comlink": "3149-zipato-capteur-de-fumee-z-wave--3858890733051", 
     "remark": "", 
-    "imglink": "philio.phpsg01",
-    "battery_type": "1x3V CR123A",
+    "imglink": "philio.phpsg01", 
+    "configuration": {
+        "battery_type": "1x3V CR123A"
+    }, 
     "commands": [
         {
             "name": "Fumées", 

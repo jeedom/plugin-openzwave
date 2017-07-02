@@ -1,10 +1,12 @@
 {
-    "name": "Gaz Sensor (HS1CG-Z)",
+    "name": "Gaz Sensor (HS1CG-Z)", 
     "type": "Gaz", 
-    "comlink": "4153-zipato-capteur-de-gaz-z-wave-3858890733587",
+    "comlink": "4153-zipato-capteur-de-gaz-z-wave-3858890733587", 
     "remark": "", 
-    "imglink": "zipato.dx1cgz",
-    "battery_type": "2x1.5V LR03",
+    "imglink": "zipato.dx1cgz", 
+    "configuration": {
+        "battery_type": "2x1.5V LR03"
+    }, 
     "commands": [
         {
             "name": "Fuite gaz", 

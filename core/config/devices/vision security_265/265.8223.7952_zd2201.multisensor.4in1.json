@@ -3,8 +3,10 @@
     "type": "Ouverture", 
     "comlink": "3150-zipato-detecteur-z-wave-plus-4-en-1-3858890732931", 
     "remark": "Vendu aussi sous la marque Zipato.", 
-    "imglink": "vision.zd2201",
-    "battery_type": "2x1.5V AAA",
+    "imglink": "vision.zd2201", 
+    "configuration": {
+        "battery_type": "2x1.5V AAA"
+    }, 
     "commands": [
         {
             "name": "Ouverture", 
@@ -44,7 +46,7 @@
                 "generic_type": "SABOTAGE"
             }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
             }
         }, 

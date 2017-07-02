@@ -3,8 +3,10 @@
     "type": "Vibration", 
     "comlink": "2157-vision-security-detecteur-de-choc-z-wave-0019962005503", 
     "remark": "", 
-    "imglink": "vision.zs51015",
-    "battery_type": "1x3V CR123A",
+    "imglink": "vision.zs51015", 
+    "configuration": {
+        "battery_type": "1x3V CR123A"
+    }, 
     "commands": [
         {
             "name": "Etat", 
@@ -36,16 +38,16 @@
                 "class": 113, 
                 "value": "", 
                 "index": 10, 
-                "instance": 1,
+                "instance": 1, 
                 "calculValueOffset": "#value#==3"
             }, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
-            },
+            }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
             }
         }, 

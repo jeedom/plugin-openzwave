@@ -82,8 +82,8 @@
                 "class": 67, 
                 "value": "", 
                 "index": 1, 
-                "instance": 1,
-                "minValue": 5,
+                "instance": 1, 
+                "minValue": 5, 
                 "maxValue": 30
             }, 
             "subtype": "numeric", 
@@ -101,8 +101,8 @@
                 "class": 67, 
                 "value": "type=setvalue&value=#slider#", 
                 "index": 1, 
-                "instance": 1,
-                "minValue": 5,
+                "instance": 1, 
+                "minValue": 5, 
                 "maxValue": 30
             }, 
             "value": "ConsigneEtatHeating", 
@@ -121,8 +121,8 @@
                 "class": 67, 
                 "value": "", 
                 "index": 11, 
-                "instance": 1,
-                "minValue": 5,
+                "instance": 1, 
+                "minValue": 5, 
                 "maxValue": 30
             }, 
             "subtype": "numeric", 
@@ -140,8 +140,8 @@
                 "class": 67, 
                 "value": "type=setvalue&value=#slider#", 
                 "index": 11, 
-                "instance": 1,
-                "minValue": 5,
+                "instance": 1, 
+                "minValue": 5, 
                 "maxValue": 30
             }, 
             "value": "ConsigneEtatEnergySave", 

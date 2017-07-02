@@ -1,85 +1,87 @@
 {
-    "name": "FGFS-101 ZW5 Flood Sensor",
-    "type": "Fuite",
-    "comlink": "3582-fibaro-detecteur-d-inondation-z-wave-fgfs-101-5902020528357",
-    "remark": "",
-    "imglink": "fibaro.fgfs101zw5",
-    "battery_type": "1x3V CR123A",
+    "name": "FGFS-101 ZW5 Flood Sensor", 
+    "type": "Fuite", 
+    "comlink": "3582-fibaro-detecteur-d-inondation-z-wave-fgfs-101-5902020528357", 
+    "remark": "", 
+    "imglink": "fibaro.fgfs101zw5", 
+    "configuration": {
+        "battery_type": "1x3V CR123A"
+    }, 
     "commands": [
         {
-            "name": "Fuite",
-            "type": "info",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "name": "Fuite", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
             "configuration": {
-                "class": 113,
-                "value": "",
-                "index": 8,
-                "instance": 1,
+                "class": 113, 
+                "value": "", 
+                "index": 8, 
+                "instance": 1, 
                 "calculValueOffset": "#value#==2"
-            },
-            "subtype": "binary",
+            }, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "FLOOD"
-            },
+            }, 
             "template": {
-                "dashboard": "inondation",
+                "dashboard": "inondation", 
                 "mobile": "inondation"
             }
-        },
+        }, 
         {
-            "name": "Température",
-            "type": "info",
-            "isVisible": 1,
-            "isHistorized": 1,
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
             "configuration": {
-                "class": 49,
-                "value": "",
-                "index": 1,
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
                 "instance": 1
-            },
-            "subtype": "numeric",
+            }, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "TEMPERATURE"
-            },
+            }, 
             "unite": "°C"
-        },
+        }, 
         {
-            "name": "Sabotage",
-            "type": "info",
-            "isVisible": 0,
-            "isHistorized": 0,
+            "name": "Sabotage", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
             "configuration": {
-                "class": 113,
-                "value": "",
-                "index": 10,
-                "instance": 1,
+                "class": 113, 
+                "value": "", 
+                "index": 10, 
+                "instance": 1, 
                 "calculValueOffset": "#value#==3"
-            },
-            "subtype": "binary",
+            }, 
+            "subtype": "binary", 
             "display": {
-                "invertBinary": "1",
+                "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
             }
-        },
+        }, 
         {
-            "name": "Batterie",
-            "type": "info",
-            "isVisible": 0,
-            "isHistorized": 0,
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
             "configuration": {
-                "class": 128,
-                "value": "",
-                "index": 0,
-                "instance": 1,
-                "minValue": 0,
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
                 "maxValue": 100
-            },
-            "subtype": "numeric",
+            }, 
+            "subtype": "numeric", 
             "display": {
                 "generic_type": "BATTERY"
-            },
+            }, 
             "unite": "%"
         }
     ]

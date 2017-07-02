@@ -3,8 +3,10 @@
     "type": "Sirène", 
     "comlink": "", 
     "remark": "Remplacé par la ZM1601EU5", 
-    "imglink": "vision.zm1601",
-    "battery_type": "4x1.5V AAA",
+    "imglink": "vision.zm1601", 
+    "configuration": {
+        "battery_type": "4x1.5V AAA"
+    }, 
     "commands": [
         {
             "name": "Etat", 
@@ -33,8 +35,8 @@
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "SIREN_ON"
@@ -50,8 +52,8 @@
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "SIREN_OFF"

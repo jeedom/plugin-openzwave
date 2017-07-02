@@ -3,8 +3,7 @@
     "type": "Thermostat", 
     "comlink": "3218-secure-thermostat-srt323-avec-ecran-lcd-et-relai-integre-5015914250569", 
     "remark": "Module vendu sous la marque Secure SRT323", 
-    "imglink": "horstmann.srt323",
-    "battery_type": "2x1.5V AAA",
+    "imglink": "horstmann.srt323", 
     "configuration": {
         "1": {
             "name": "Activation/Désactivation du capteur de température interne", 
@@ -21,7 +20,8 @@
         "3": {
             "name": "Variation de température pour un rapport", 
             "help": "Différence de température pour déclencher une remontée (10-->1)"
-        }
+        }, 
+        "battery_type": "2x1.5V AAA"
     }, 
     "commands": [
         {
@@ -50,7 +50,7 @@
                 "class": 66, 
                 "value": "", 
                 "index": 0, 
-                "instance": 1,
+                "instance": 1, 
                 "calculValueOffset": "#value#=='Heating'"
             }, 
             "subtype": "binary", 
@@ -68,8 +68,8 @@
                 "class": 67, 
                 "value": "", 
                 "index": 1, 
-                "instance": 1,
-                "minValue": 5,
+                "instance": 1, 
+                "minValue": 5, 
                 "maxValue": 30
             }, 
             "subtype": "numeric", 
@@ -88,7 +88,7 @@
                 "value": "type=setvalue&value=#slider#", 
                 "index": 1, 
                 "instance": 1, 
-                "minValue": 5,
+                "minValue": 5, 
                 "maxValue": 30
             }, 
             "value": "ConsigneEtat", 

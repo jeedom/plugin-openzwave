@@ -1,233 +1,232 @@
 {
-    "name": "FGS-223 Double charge",
-    "doc": "",
-    "type": "Micromodule",
-    "comlink": "3728-fibaro-micromodule-commutateur-double-z-wave-fgs-223-5902020528661",
-    "remark": "Le rafraîchissement manuel est requis sur l'instance 1 (Switch S2) pour la remonté de puissance et l'état du S2. Les notification de scènes ne sont pas remontées, elles requièrent le support de la CC Central Scene.",
-    "imglink": "fibaro.fgs223",
+    "name": "FGS-223 Double charge", 
+    "type": "Micromodule", 
+    "comlink": "3728-fibaro-micromodule-commutateur-double-z-wave-fgs-223-5902020528661", 
+    "remark": "Le rafraîchissement manuel est requis sur l'instance 1 (Switch S2) pour la remonté de puissance et l'état du S2. Les notification de scènes ne sont pas remontées, elles requièrent le support de la CC Central Scene.", 
+    "imglink": "fibaro.fgs223", 
     "commands": [
         {
-            "name": "On 1",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Etat 1",
+            "name": "On 1", 
+            "type": "action", 
+            "subtype": "other", 
+            "isVisible": 1, 
+            "value": "Etat 1", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
+            }, 
             "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "instance": 1,
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 1, 
                 "index": 0
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Off 1",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Etat 1",
+            "name": "Off 1", 
+            "type": "action", 
+            "subtype": "other", 
+            "isVisible": 1, 
+            "value": "Etat 1", 
             "display": {
                 "generic_type": "LIGHT_OFF"
-            },
+            }, 
             "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "instance": 1,
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 1, 
                 "index": 0
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Etat 1",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 0,
+            "name": "Etat 1", 
+            "type": "info", 
+            "subtype": "binary", 
+            "isVisible": 0, 
             "display": {
                 "generic_type": "LIGHT_STATE"
-            },
+            }, 
             "configuration": {
-                "class": 37,
-                "value": "",
-                "instance": 1,
+                "class": 37, 
+                "value": "", 
+                "instance": 1, 
                 "index": 0
             }
-        },
+        }, 
         {
-            "name": "Puissance 1",
-            "type": "info",
-            "subType": "numeric",
-            "isHistorized": "1",
-            "unite": "W",
+            "name": "Puissance 1", 
+            "type": "info", 
+            "subType": "numeric", 
+            "isHistorized": "1", 
+            "unite": "W", 
             "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 2500,
-                "minValue": 0,
-                "instance": 1,
+                "class": 50, 
+                "value": "", 
+                "maxValue": 2500, 
+                "minValue": 0, 
+                "instance": 1, 
                 "index": 8
-            },
+            }, 
             "template": {
-                "dashboard": "default",
+                "dashboard": "default", 
                 "mobile": "default"
-            },
+            }, 
             "display": {
-                "invertBinary": "0",
+                "invertBinary": "0", 
                 "generic_type": "POWER"
-            },
+            }, 
             "isVisible": "1"
-        },
+        }, 
         {
-            "name": "Consommation 1",
-            "type": "info",
-            "subType": "numeric",
-            "isHistorized": "0",
-            "unite": "kWh",
+            "name": "Consommation 1", 
+            "type": "info", 
+            "subType": "numeric", 
+            "isHistorized": "0", 
+            "unite": "kWh", 
             "configuration": {
-                "class": 50,
-                "value": "",
-                "instance": 1,
+                "class": 50, 
+                "value": "", 
+                "instance": 1, 
                 "index": 0
-            },
+            }, 
             "template": {
-                "dashboard": "tile",
+                "dashboard": "tile", 
                 "mobile": "tile"
-            },
+            }, 
             "display": {
-                "invertBinary": "0",
+                "invertBinary": "0", 
                 "generic_type": "CONSUMPTION"
-            },
+            }, 
             "isVisible": "1"
-        },
+        }, 
         {
-            "name": "On 2 ",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Etat 2",
+            "name": "On 2 ", 
+            "type": "action", 
+            "subtype": "other", 
+            "isVisible": 1, 
+            "value": "Etat 2", 
             "display": {
                 "generic_type": "LIGHT_ON"
-            },
+            }, 
             "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=255",
-                "instance": 2,
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "instance": 2, 
                 "index": 0
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Off 2 ",
-            "type": "action",
-            "subtype": "other",
-            "isVisible": 1,
-            "value": "Etat 2",
+            "name": "Off 2 ", 
+            "type": "action", 
+            "subtype": "other", 
+            "isVisible": 1, 
+            "value": "Etat 2", 
             "display": {
                 "generic_type": "LIGHT_OFF"
-            },
+            }, 
             "configuration": {
-                "class": 37,
-                "value": "type=setvalue&value=0",
-                "instance": 2,
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "instance": 2, 
                 "index": 0
-            },
+            }, 
             "template": {
-                "dashboard": "light",
+                "dashboard": "light", 
                 "mobile": "light"
             }
-        },
+        }, 
         {
-            "name": "Etat 2",
-            "type": "info",
-            "subtype": "binary",
-            "isVisible": 0,
+            "name": "Etat 2", 
+            "type": "info", 
+            "subtype": "binary", 
+            "isVisible": 0, 
             "display": {
                 "generic_type": "LIGHT_STATE"
-            },
+            }, 
             "configuration": {
-                "class": 37,
-                "value": "",
-                "instance": 2,
+                "class": 37, 
+                "value": "", 
+                "instance": 2, 
                 "index": 0
             }
-        },
+        }, 
         {
-            "name": "Puissance 2",
-            "type": "info",
-            "subType": "numeric",
-            "isHistorized": "1",
-            "unite": "W",
+            "name": "Puissance 2", 
+            "type": "info", 
+            "subType": "numeric", 
+            "isHistorized": "1", 
+            "unite": "W", 
             "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 2500,
-                "minValue": 0,
-                "instance": 2,
+                "class": 50, 
+                "value": "", 
+                "maxValue": 2500, 
+                "minValue": 0, 
+                "instance": 2, 
                 "index": 8
-            },
+            }, 
             "template": {
-                "dashboard": "default",
+                "dashboard": "default", 
                 "mobile": "default"
-            },
+            }, 
             "display": {
-                "invertBinary": "0",
+                "invertBinary": "0", 
                 "generic_type": "POWER"
-            },
+            }, 
             "isVisible": "1"
-        },
+        }, 
         {
-            "name": "Consommation 2",
-            "type": "info",
-            "subType": "numeric",
-            "isHistorized": "0",
-            "unite": "kWh",
+            "name": "Consommation 2", 
+            "type": "info", 
+            "subType": "numeric", 
+            "isHistorized": "0", 
+            "unite": "kWh", 
             "configuration": {
-                "class": 50,
-                "value": "",
-                "instance": 2,
+                "class": 50, 
+                "value": "", 
+                "instance": 2, 
                 "index": 0
-            },
+            }, 
             "template": {
-                "dashboard": "tile",
+                "dashboard": "tile", 
                 "mobile": "tile"
-            },
+            }, 
             "display": {
-                "invertBinary": "0",
+                "invertBinary": "0", 
                 "generic_type": "CONSUMPTION"
-            },
+            }, 
             "isVisible": "1"
         }
-    ],
+    ], 
     "recommended": {
         "groups": [
             {
-                "index": 1,
+                "index": 1, 
                 "value": "add"
             }
-        ],
+        ], 
         "polling": [
             {
-                "instanceId": "1",
-                "index": 0,
+                "instanceId": "1", 
+                "index": 0, 
                 "class": "0x25"
-            },
+            }, 
             {
-                "instanceId": "1",
-                "index": 0,
+                "instanceId": "1", 
+                "index": 0, 
                 "class": "0x32"
             }
-        ],
+        ], 
         "needswakeup": false
     }
 }

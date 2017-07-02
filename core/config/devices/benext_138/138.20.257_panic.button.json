@@ -3,8 +3,10 @@
     "type": "Télécommande", 
     "comlink": "2349-benext-telecommande-bouton-d-urgence-z-wave-0632181493731", 
     "remark": "", 
-    "imglink": "benext.panicbutton",
-    "battery_type": "1x3V CR2032",
+    "imglink": "benext.panicbutton", 
+    "configuration": {
+        "battery_type": "1x3V CR2032"
+    }, 
     "commands": [
         {
             "name": "Panic Button", 

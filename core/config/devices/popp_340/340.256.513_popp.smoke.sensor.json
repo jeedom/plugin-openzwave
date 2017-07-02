@@ -3,8 +3,7 @@
     "type": "Fumée", 
     "comlink": "3073-popp-detecteur-de-fumee-et-sirene-d-interieur-z-wave-0019962004100", 
     "remark": "", 
-    "imglink": "popp.smoke-detector",
-    "battery_type": "1x9V",
+    "imglink": "popp.smoke-detector", 
     "configuration": {
         "1": {
             "name": "Intervalle de sonnerie de la sirène", 
@@ -37,7 +36,8 @@
                 "Inactive": "Désactivé", 
                 "Active (default)": "Activé"
             }
-        }
+        }, 
+        "battery_type": "1x9V"
     }, 
     "commands": [
         {

@@ -3,8 +3,10 @@
     "type": "Ouverture", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "aeotec.zw097",
-    "battery_type": "1×3V CR123A",
+    "imglink": "aeotec.zw097", 
+    "configuration": {
+        "battery_type": "1×3V CR123A"
+    }, 
     "commands": [
         {
             "name": "Etat", 
@@ -36,7 +38,7 @@
                 "class": 113, 
                 "value": "", 
                 "index": 10, 
-                "instance": 1,
+                "instance": 1, 
                 "calculValueOffset": "#value#==3"
             }, 
             "subtype": "binary", 

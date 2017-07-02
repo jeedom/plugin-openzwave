@@ -3,8 +3,7 @@
     "type": "Multicapteurs", 
     "comlink": "861-everspring-capteur-de-temperature-et-d-humidite-z-wave-st814-3700946500325", 
     "remark": "", 
-    "imglink": "everspring.st814",
-    "battery_type": "3x1.5V AAA",
+    "imglink": "everspring.st814", 
     "configuration": {
         "1": {
             "name": "Niveau basic", 
@@ -37,7 +36,8 @@
         "8": {
             "name": "Rapports automatique d'humidité", 
             "help": "Définit l'écart en pourcent, pour l'envoie automatique de rapports d'humidité. 0 pour le désactiver"
-        }
+        }, 
+        "battery_type": "3x1.5V AAA"
     }, 
     "commands": [
         {

@@ -2,51 +2,8 @@
     "name": "Wall Switch", 
     "type": "Interrupteur", 
     "comlink": "2995-nodon-interrupteur-mural-z-wave-plus-cozi-white-3700313920268", 
-    "remark": "",
-    "imglink": "nodon.wallswitch",
-    "battery_type": "1x3V CR2032",
-    "commands": [
-        {
-            "name": "Scene",
-            "type": "info",
-            "isVisible": 1,
-            "isHistorized": 0,
-            "configuration": {
-                "class": 43,
-                "value": "",
-                "index": 0,
-                "instance": 1,
-                "repeatEventManagement": "always"
-            },
-            "subtype": "numeric",
-            "display": {
-                "generic_type": "DONT"
-            },
-            "template": {
-                "dashboard": "tile",
-                "mobile": "tile"
-            }
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }
-    ], 
+    "remark": "", 
+    "imglink": "nodon.wallswitch", 
     "configuration": {
         "1": {
             "name": "Profile des boutons 1 et 3", 
@@ -119,6 +76,49 @@
                 "Led Blink on transmission result": "Clignote sur accusé réception de transmission", 
                 "Led Blink on button action and transmission result": "Clignote dans les deux cas"
             }
+        }, 
+        "battery_type": "1x3V CR2032"
+    }, 
+    "commands": [
+        {
+            "name": "Scene", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 43, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
         }
-    }
+    ]
 }

@@ -3,8 +3,10 @@
     "type": "Serrure", 
     "comlink": "", 
     "remark": "Inclusion en mode sécurisé", 
-    "imglink": "assa_abloy.yale",
-    "battery_type": "4x1.5V AA",
+    "imglink": "assa_abloy.yale", 
+    "configuration": {
+        "battery_type": "4x1.5V AA"
+    }, 
     "commands": [
         {
             "name": "Statut", 
@@ -36,8 +38,8 @@
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Statut",
+            }, 
+            "value": "Statut", 
             "subtype": "other", 
             "display": {
                 "generic_type": "LOCK_CLOSE"
@@ -53,8 +55,8 @@
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Statut",
+            }, 
+            "value": "Statut", 
             "subtype": "other", 
             "display": {
                 "generic_type": "LOCK_OPEN"

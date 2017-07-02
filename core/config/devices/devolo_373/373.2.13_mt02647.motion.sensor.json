@@ -3,8 +3,10 @@
     "type": "Multicapteurs", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "devolo.mt02647",
-    "battery_type": "1x3V CR123A",
+    "imglink": "devolo.mt02647", 
+    "configuration": {
+        "battery_type": "1x3V CR123A"
+    }, 
     "commands": [
         {
             "name": "Présence", 
@@ -72,16 +74,16 @@
                 "class": 113, 
                 "value": "", 
                 "index": 10, 
-                "instance": 1,
+                "instance": 1, 
                 "calculValueOffset": "#value#==3"
             }, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
-            },
+            }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
             }
         }, 

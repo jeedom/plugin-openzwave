@@ -3,8 +3,10 @@
     "type": "Télécommande", 
     "comlink": "2311-z-waveme-telecommande-porte-cles-4-boutons-z-wave-0696859123344", 
     "remark": "", 
-    "imglink": "zwaveme.keyfob4",
-    "battery_type": "1x3V CR2032",
+    "imglink": "zwaveme.keyfob4", 
+    "configuration": {
+        "battery_type": "1x3V CR2032"
+    }, 
     "commands": [
         {
             "name": "Scene", 

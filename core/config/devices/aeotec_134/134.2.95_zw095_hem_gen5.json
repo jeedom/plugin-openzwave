@@ -1,83 +1,82 @@
 {
-    "name": "Home Energy Meter Gen5 (ZW095)",
-    "doc": "",
-    "type": "Consommation",
-    "comlink": "",
-    "remark": "",
-    "imglink": "aeotec.zw095",
+    "name": "Home Energy Meter Gen5 (ZW095)", 
+    "type": "Consommation", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "aeotec.zw095", 
     "commands": [
         {
-            "name": "Consommation",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "KWh",
+            "name": "Consommation", 
+            "type": "info", 
+            "subtype": "numeric", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "unite": "KWh", 
             "display": {
                 "generic_type": "CONSUMPTION"
-            },
+            }, 
             "configuration": {
-                "class": 50,
-                "value": "",
-                "minValue": 0,
-                "instance": 1,
+                "class": 50, 
+                "value": "", 
+                "minValue": 0, 
+                "instance": 1, 
                 "index": 0
             }
-        },
+        }, 
         {
-            "name": "Puissance",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "W",
+            "name": "Puissance", 
+            "type": "info", 
+            "subtype": "numeric", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "unite": "W", 
             "display": {
                 "generic_type": "POWER"
-            },
+            }, 
             "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 12000,
-                "minValue": 0,
-                "instance": 1,
+                "class": 50, 
+                "value": "", 
+                "maxValue": 12000, 
+                "minValue": 0, 
+                "instance": 1, 
                 "index": 8
             }
-        },
+        }, 
         {
-            "name": "Tension",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "V",
+            "name": "Tension", 
+            "type": "info", 
+            "subtype": "numeric", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "unite": "V", 
             "display": {
                 "generic_type": "VOLTAGE"
-            },
+            }, 
             "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 240,
-                "minValue": 220,
-                "instance": 1,
+                "class": 50, 
+                "value": "", 
+                "maxValue": 240, 
+                "minValue": 220, 
+                "instance": 1, 
                 "index": 16
             }
-        },
+        }, 
         {
-            "name": "Intensité",
-            "type": "info",
-            "subtype": "numeric",
-            "isVisible": 1,
-            "isHistorized": 1,
-            "unite": "A",
+            "name": "Intensité", 
+            "type": "info", 
+            "subtype": "numeric", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "unite": "A", 
             "display": {
                 "generic_type": "DONT"
-            },
+            }, 
             "configuration": {
-                "class": 50,
-                "value": "",
-                "maxValue": 200,
-                "minValue": 0,
-                "instance": 1,
+                "class": 50, 
+                "value": "", 
+                "maxValue": 200, 
+                "minValue": 0, 
+                "instance": 1, 
                 "index": 20
             }
         }

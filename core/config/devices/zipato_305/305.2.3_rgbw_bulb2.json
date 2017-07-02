@@ -1,8 +1,8 @@
 {
-    "name": "Bulb 2",
+    "name": "Bulb 2", 
     "type": "Ampoule", 
-    "comlink": "4111-zipato-ampoule-led-rgbw-z-wave-v2-3858890733464",
-    "remark": "Onglet Système, modifier Color Channels avec la valeur 31 pour avoir des rapports de couleurs cohérents",
+    "comlink": "4111-zipato-ampoule-led-rgbw-z-wave-v2-3858890733464", 
+    "remark": "Onglet Système, modifier Color Channels avec la valeur 31 pour avoir des rapports de couleurs cohérents", 
     "imglink": "zipato.bulb", 
     "commands": [
         {
@@ -63,11 +63,11 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 38, 
-                "value": "type=setvalue&value=255",
+                "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-lumiere-on\"></i>", 
@@ -84,8 +84,8 @@
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-lumiere-off\"></i>", 
@@ -101,8 +101,8 @@
                 "class": 38, 
                 "value": "type=setvalue&value=#slider#", 
                 "index": 0, 
-                "instance": 1,
-                "minValue": 0,
+                "instance": 1, 
+                "minValue": 0, 
                 "maxValue": 99
             }, 
             "value": "Etat", 

@@ -3,8 +3,10 @@
     "type": "Mouvement", 
     "comlink": "854-everspring-detecteur-de-mouvement-pir-z-wave-sp-103-3700946500257", 
     "remark": "", 
-    "imglink": "everspring.sp103",
-    "battery_type": "3x1.5V AAA",
+    "imglink": "everspring.sp103", 
+    "configuration": {
+        "battery_type": "3x1.5V AAA"
+    }, 
     "commands": [
         {
             "name": "Batterie", 

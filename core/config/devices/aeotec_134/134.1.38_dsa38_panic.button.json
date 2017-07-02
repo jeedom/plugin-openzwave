@@ -3,8 +3,10 @@
     "type": "Télécommande", 
     "comlink": "278-aeon-labs-telecommande-z-wave-porte-cles-1-bouton", 
     "remark": "", 
-    "imglink": "aeotec.panicbutton",
-    "battery_type": "1x3V CR2450",
+    "imglink": "aeotec.panicbutton", 
+    "configuration": {
+        "battery_type": "1x3V CR2450"
+    }, 
     "commands": [
         {
             "name": "Scene", 

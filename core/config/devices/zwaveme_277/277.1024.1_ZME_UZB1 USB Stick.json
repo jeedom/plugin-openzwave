@@ -3,36 +3,36 @@
     "type": "controleur", 
     "comlink": "2669-z-waveme-mini-controleur-usb-z-wave-plus-0019962006500", 
     "remark": "", 
-    "imglink": "zwaveme.uzb1",
+    "imglink": "zwaveme.uzb1", 
     "commands": [
         {
-            "name": "Switch All On",
-            "type": "action",
-            "isVisible": 0,
-            "isHistorized": 0,
+            "name": "Switch All On", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
             "configuration": {
-                "class": 240,
-                "value": "type=switchall&value=255",
-                "index": 0,
+                "class": 240, 
+                "value": "type=switchall&value=255", 
+                "index": 0, 
                 "instance": 1
-            },
-            "subtype": "other",
+            }, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
-        },
+        }, 
         {
-            "name": "Switch All Off",
-            "type": "action",
-            "isVisible": 0,
-            "isHistorized": 0,
+            "name": "Switch All Off", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
             "configuration": {
-                "class": 240,
-                "value": "type=switchall&value=0",
-                "index": 0,
+                "class": 240, 
+                "value": "type=switchall&value=0", 
+                "index": 0, 
                 "instance": 1
-            },
-            "subtype": "other",
+            }, 
+            "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }

@@ -3,8 +3,10 @@
     "type": "Multicapteurs", 
     "comlink": "2608-zipato-detecteur-z-wave-4-en-1-mouvement-ouverture-luminosite-tem-3858890730425", 
     "remark": "Vendu aussi sous la marque Zipato", 
-    "imglink": "philio.pst02a",
-    "battery_type": "1x3V CR123A",
+    "imglink": "philio.pst02a", 
+    "configuration": {
+        "battery_type": "1x3V CR123A"
+    }, 
     "commands": [
         {
             "name": "Présence", 
@@ -15,7 +17,7 @@
                 "class": 113, 
                 "value": "", 
                 "index": 10, 
-                "instance": 1,
+                "instance": 1, 
                 "calculValueOffset": "#value#==8"
             }, 
             "subtype": "binary", 
@@ -37,7 +39,7 @@
                 "class": 113, 
                 "value": "", 
                 "index": 9, 
-                "instance": 1,
+                "instance": 1, 
                 "calculValueOffset": "#value#==22"
             }, 
             "subtype": "binary", 
@@ -101,9 +103,9 @@
             "display": {
                 "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
-            },
+            }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
             }
         }, 

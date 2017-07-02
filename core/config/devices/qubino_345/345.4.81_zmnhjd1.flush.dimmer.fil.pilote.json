@@ -37,8 +37,8 @@
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-power-off\"></i>", 
@@ -52,13 +52,13 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 38, 
-                "value": "type=setvalue&value=255",
+                "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-thermo-chaud\"></i>", 
@@ -77,8 +77,8 @@
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon divers-triangular42\"></i>", 
@@ -97,8 +97,8 @@
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon nature-snowflake\"></i>", 
@@ -117,8 +117,8 @@
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-thermo-moyen\"></i>", 
@@ -137,8 +137,8 @@
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-thermo-froid\"></i>", 

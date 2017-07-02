@@ -1,10 +1,12 @@
 {
-    "name": "Gaz Sensor (HS1CG-Z)",
+    "name": "Gaz Sensor (HS1CG-Z)", 
     "type": "Gaz", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "heiman.hs1cgz",
-    "battery_type": "2x1.5V LR03",
+    "imglink": "heiman.hs1cgz", 
+    "configuration": {
+        "battery_type": "2x1.5V LR03"
+    }, 
     "commands": [
         {
             "name": "Fuite gaz", 

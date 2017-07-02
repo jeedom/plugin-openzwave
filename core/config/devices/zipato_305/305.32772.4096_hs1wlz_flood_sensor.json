@@ -1,9 +1,9 @@
 {
-    "name": "Flood Sensor (HS1WL-Z)",
+    "name": "Flood Sensor (HS1WL-Z)", 
     "type": "Fuite", 
-    "comlink": "4159-zipato-capteur-d-inondation-z-wave--3858890733624",
+    "comlink": "4159-zipato-capteur-d-inondation-z-wave--3858890733624", 
     "remark": "", 
-    "imglink": "zipato.dx1wlz",
+    "imglink": "zipato.dx1wlz", 
     "commands": [
         {
             "name": "Fuite", 

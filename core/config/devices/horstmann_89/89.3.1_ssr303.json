@@ -3,7 +3,7 @@
     "type": "Thermostat", 
     "comlink": "1987-secure-actionneur-de-chaudiere-ssr303-z-wave-5015914250095", 
     "remark": "Module vendu sous la marque Secure", 
-    "imglink": "horstmann.asrzw",
+    "imglink": "horstmann.asrzw", 
     "commands": [
         {
             "name": "On", 
@@ -15,8 +15,8 @@
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
@@ -32,8 +32,8 @@
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"

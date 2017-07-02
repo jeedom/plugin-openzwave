@@ -3,8 +3,10 @@
     "type": "CO", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "domux.dx1caz",
-    "battery_type": "1x3V CR17335",
+    "imglink": "domux.dx1caz", 
+    "configuration": {
+        "battery_type": "1x3V CR17335"
+    }, 
     "commands": [
         {
             "name": "Alerte CO", 

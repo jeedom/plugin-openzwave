@@ -101,8 +101,8 @@
                 "class": 38, 
                 "value": "type=setvalue&value=#slider#", 
                 "index": 0, 
-                "instance": 1,
-                "minValue": 0,
+                "instance": 1, 
+                "minValue": 0, 
                 "maxValue": 99
             }, 
             "value": "Etat", 

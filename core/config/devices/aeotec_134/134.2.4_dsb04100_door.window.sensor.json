@@ -3,8 +3,10 @@
     "type": "Ouverture", 
     "comlink": "2340-aeon-labs-detecteur-d-ouverture-z-wave-g2-1220000011830", 
     "remark": "", 
-    "imglink": "aeotec.doorwindow",
-    "battery_type": "2x1.5V AAA",
+    "imglink": "aeotec.doorwindow", 
+    "configuration": {
+        "battery_type": "2x1.5V AAA"
+    }, 
     "commands": [
         {
             "name": "Etat", 
@@ -36,16 +38,16 @@
                 "class": 113, 
                 "value": "", 
                 "index": 1, 
-                "instance": 1,
+                "instance": 1, 
                 "calculValueOffset": "#value#==255"
             }, 
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
-            },
+            }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
             }
         }, 

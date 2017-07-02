@@ -3,8 +3,7 @@
     "type": "Multicapteurs", 
     "comlink": "2535-fibaro-detecteur-de-mouvement-multifonctions-z-wave-fgms-001-5902020528258", 
     "remark": "Par défaut possède une configuration très économique. Lire la documentation pour le configurer correctement", 
-    "imglink": "fibaro.fgms001",
-    "battery_type": "1x3V CR123A",
+    "imglink": "fibaro.fgms001", 
     "configuration": {
         "1": {
             "name": "Sensibilité du détecteur de mouvement", 
@@ -179,7 +178,8 @@
                 "LED does not indicate tamper alarm.": "La détection du capteur anti-sabotage n`est pas signalé par la LED allumée", 
                 "LED indicates tamper alarm.": "La détection du capteur anti-sabotage est signalée par la LED allumée"
             }
-        }
+        }, 
+        "battery_type": "1x3V CR123A"
     }, 
     "commands": [
         {
@@ -258,7 +258,7 @@
                 "generic_type": "SABOTAGE"
             }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
             }
         }, 

@@ -3,8 +3,10 @@
     "type": "Thermostat", 
     "comlink": "1982-secure-thermostat-srt321-avec-ecran-lcd-z-wave-5015914250071", 
     "remark": "Module vendu sous la marque Secure SRT321", 
-    "imglink": "horstmann.hrt4",
-    "battery_type": "2x1.5V AAA",
+    "imglink": "horstmann.hrt4", 
+    "configuration": {
+        "battery_type": "2x1.5V AAA"
+    }, 
     "commands": [
         {
             "name": "Température", 
@@ -33,7 +35,7 @@
                 "value": "", 
                 "index": 1, 
                 "instance": 1, 
-                "minValue": 5,
+                "minValue": 5, 
                 "maxValue": 30
             }, 
             "subtype": "numeric", 
@@ -51,8 +53,8 @@
                 "class": 67, 
                 "value": "type=setvalue&value=#slider#", 
                 "index": 1, 
-                "instance": 1,
-                "minValue": 5,
+                "instance": 1, 
+                "minValue": 5, 
                 "maxValue": 30
             }, 
             "value": "ConsigneEtat", 

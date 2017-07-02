@@ -1,9 +1,9 @@
 {
-    "name": "Smart Plug (HS2SK-Z)",
+    "name": "Smart Plug (HS2SK-Z)", 
     "type": "Prise", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "heiman.hs2skz",
+    "imglink": "heiman.hs2skz", 
     "commands": [
         {
             "name": "Etat", 

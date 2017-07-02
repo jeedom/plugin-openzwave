@@ -3,8 +3,10 @@
     "type": "Télécommande", 
     "comlink": "2677-aeon-labs-telecommande-porte-cles-z-wave-plus-4-boutons-gen5", 
     "remark": "Remplacé dans les boutiques par le keyfob Gen5", 
-    "imglink": "aeotec.keyfob",
-    "battery_type": "1x3V CR2450",
+    "imglink": "aeotec.keyfob", 
+    "configuration": {
+        "battery_type": "1x3V CR2450"
+    }, 
     "commands": [
         {
             "name": "Scene", 

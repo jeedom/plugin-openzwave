@@ -3,8 +3,10 @@
     "type": "Ouverture", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "hank.doorwindow",
-    "battery_type": "2x1.5V AAA",
+    "imglink": "hank.doorwindow", 
+    "configuration": {
+        "battery_type": "2x1.5V AAA"
+    }, 
     "commands": [
         {
             "name": "Etat", 

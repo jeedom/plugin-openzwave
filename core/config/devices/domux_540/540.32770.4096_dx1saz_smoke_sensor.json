@@ -3,8 +3,10 @@
     "type": "Fumée", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "domux.dx1saz",
-    "battery_type": "1x3V CR123A",
+    "imglink": "domux.dx1saz", 
+    "configuration": {
+        "battery_type": "1x3V CR123A"
+    }, 
     "commands": [
         {
             "name": "Fumées", 
@@ -12,9 +14,9 @@
             "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 48,
+                "class": 48, 
                 "value": "", 
-                "index": 0,
+                "index": 0, 
                 "instance": 1
             }, 
             "subtype": "binary", 

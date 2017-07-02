@@ -4,7 +4,9 @@
     "comlink": "860-everspring-detecteur-d-eau-z-wave-st-812-3700946500318", 
     "remark": "", 
     "imglink": "everspring.st812", 
-    "battery_type": "3x1.5V AA",
+    "configuration": {
+        "battery_type": "3x1.5V AA"
+    }, 
     "commands": [
         {
             "name": "Etat", 

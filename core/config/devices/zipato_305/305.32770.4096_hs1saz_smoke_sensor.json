@@ -1,10 +1,12 @@
 {
-    "name": "Smart Smoke Sensor (HS1SA-Z)",
+    "name": "Smart Smoke Sensor (HS1SA-Z)", 
     "type": "Fumée", 
-    "comlink": "4149-zipato-capteur-de-fumee-z-wave--3858890733594",
+    "comlink": "4149-zipato-capteur-de-fumee-z-wave--3858890733594", 
     "remark": "", 
-    "imglink": "zipato.dx1saz",
-    "battery_type": "1x3V CR123A",
+    "imglink": "zipato.dx1saz", 
+    "configuration": {
+        "battery_type": "1x3V CR123A"
+    }, 
     "commands": [
         {
             "name": "Fumées", 
@@ -12,9 +14,9 @@
             "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 48,
+                "class": 48, 
                 "value": "", 
-                "index": 0,
+                "index": 0, 
                 "instance": 1
             }, 
             "subtype": "binary", 

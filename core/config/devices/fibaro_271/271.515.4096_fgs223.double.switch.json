@@ -73,7 +73,7 @@
                 "value": "", 
                 "index": 8, 
                 "instance": 1, 
-                "minValue": 0,
+                "minValue": 0, 
                 "maxValue": 2500
             }, 
             "subtype": "numeric", 
@@ -178,7 +178,7 @@
                 "value": "", 
                 "index": 8, 
                 "instance": 2, 
-                "minValue": 0,
+                "minValue": 0, 
                 "maxValue": 2500
             }, 
             "subtype": "numeric", 

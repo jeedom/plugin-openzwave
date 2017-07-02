@@ -3,8 +3,7 @@
     "type": "Serrure", 
     "comlink": "1752-poly-control-serrure-motorisee-poly-lock-z-wave", 
     "remark": "Inclusion en mode sécurisé", 
-    "imglink": "polycontrol.polylock",
-    "battery_type": "1xER26500M",
+    "imglink": "polycontrol.polylock", 
     "configuration": {
         "0": {
             "name": "Inversion de direction", 
@@ -25,7 +24,8 @@
         "4": {
             "name": "Mode de fonctionnement du moteur", 
             "help": "Ce paramètre détermine le mode de fonctionnement du moteur (couple/puissance/vitesse)"
-        }
+        }, 
+        "battery_type": "1xER26500M"
     }, 
     "commands": [
         {
@@ -58,8 +58,8 @@
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Statut",
+            }, 
+            "value": "Statut", 
             "subtype": "other", 
             "display": {
                 "generic_type": "LOCK_OPEN"
@@ -75,8 +75,8 @@
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Statut",
+            }, 
+            "value": "Statut", 
             "subtype": "other", 
             "display": {
                 "generic_type": "LOCK_CLOSE"

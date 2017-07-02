@@ -1,9 +1,9 @@
 {
-    "name": "Flood Sensor (HS1WL-Z)",
+    "name": "Flood Sensor (HS1WL-Z)", 
     "type": "Fuite", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "heiman.hs1wlz",
+    "imglink": "heiman.hs1wlz", 
     "commands": [
         {
             "name": "Fuite", 

@@ -3,8 +3,10 @@
     "type": "Multicapteurs", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "hank.multiSensor01",
-    "battery_type": "2x3V CR123",
+    "imglink": "hank.multiSensor01", 
+    "configuration": {
+        "battery_type": "2x3V CR123"
+    }, 
     "commands": [
         {
             "name": "Présence", 

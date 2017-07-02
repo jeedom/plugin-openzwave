@@ -3,8 +3,10 @@
     "type": "Multicapteurs", 
     "comlink": "4108-philio-detecteur-de-mouvement-exterieur-z-wave-4713698573508", 
     "remark": "", 
-    "imglink": "philio.psp05",
-    "battery_type": "1x3V CR123A",
+    "imglink": "philio.psp05", 
+    "configuration": {
+        "battery_type": "1x3V CR123A"
+    }, 
     "commands": [
         {
             "name": "Présence", 
@@ -46,9 +48,9 @@
             "display": {
                 "invertBinary": "1", 
                 "generic_type": "SABOTAGE"
-            },
+            }, 
             "template": {
-                "dashboard": "alert",
+                "dashboard": "alert", 
                 "mobile": "alert"
             }
         }, 

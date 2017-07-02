@@ -3,8 +3,10 @@
     "type": "Sirène", 
     "comlink": "2435-vision-security-sirene-z-wave-zm1601-alimentee-sur-batterie-0019962005404", 
     "remark": "", 
-    "imglink": "vision.zm1601eu5",
-    "battery_type": "4x1.5V AAA",
+    "imglink": "vision.zm1601eu5", 
+    "configuration": {
+        "battery_type": "4x1.5V AAA"
+    }, 
     "commands": [
         {
             "name": "Etat", 
@@ -33,8 +35,8 @@
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "SIREN_ON"
@@ -50,8 +52,8 @@
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 1
-            },
-            "value": "Etat",
+            }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "SIREN_OFF"

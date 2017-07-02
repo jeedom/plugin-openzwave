@@ -3,8 +3,10 @@
     "type": "Multicapteurs", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "shenzen_neo.nas-pd01z",
-    "battery_type": "1x3V CR123A",
+    "imglink": "shenzen_neo.nas-pd01z", 
+    "configuration": {
+        "battery_type": "1x3V CR123A"
+    }, 
     "commands": [
         {
             "name": "Présence", 

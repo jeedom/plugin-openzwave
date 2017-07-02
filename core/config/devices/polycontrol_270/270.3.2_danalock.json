@@ -3,8 +3,10 @@
     "type": "Serrure", 
     "comlink": "", 
     "remark": "Inclusion en mode sécurisé", 
-    "imglink": "polycontrol.danalock",
-    "battery_type": "1xER26500M",
+    "imglink": "polycontrol.danalock", 
+    "configuration": {
+        "battery_type": "1xER26500M"
+    }, 
     "commands": [
         {
             "name": "Statut", 

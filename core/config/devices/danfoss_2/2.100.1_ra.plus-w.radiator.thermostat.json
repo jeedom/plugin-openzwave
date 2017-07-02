@@ -3,8 +3,10 @@
     "type": "Thermostat", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "danfoss.ra.plus-w",
-    "battery_type": "2x1.5V AAA",
+    "imglink": "danfoss.ra.plus-w", 
+    "configuration": {
+        "battery_type": "2x1.5V AAA"
+    }, 
     "commands": [
         {
             "name": "Température", 

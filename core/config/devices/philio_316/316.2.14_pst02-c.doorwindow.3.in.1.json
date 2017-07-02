@@ -3,8 +3,10 @@
     "type": "Multicapteurs", 
     "comlink": "2606-zipato-detecteur-z-wave-3-en-1-ouverture-luminosite-temperature-3858890730371", 
     "remark": "Vendu aussi sous la marque Zipato", 
-    "imglink": "philio.pst02c",
-    "battery_type": "1x3V CR123A",
+    "imglink": "philio.pst02c", 
+    "configuration": {
+        "battery_type": "1x3V CR123A"
+    }, 
     "commands": [
         {
             "name": "Ouverture", 

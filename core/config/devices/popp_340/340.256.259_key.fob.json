@@ -3,8 +3,10 @@
     "type": "Télécommande", 
     "comlink": "3071-popp-telecommande-porte-cles-4-boutons-z-wave-0019962009204", 
     "remark": "", 
-    "imglink": "popp.keyfob",
-    "battery_type": "1x3V CR2032",
+    "imglink": "popp.keyfob", 
+    "configuration": {
+        "battery_type": "1x3V CR2032"
+    }, 
     "commands": [
         {
             "name": "Scene", 

@@ -3,8 +3,10 @@
     "type": "Multicapteurs", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "domux.dx1htz",
-    "battery_type": "1x3V CR2450",
+    "imglink": "domux.dx1htz", 
+    "configuration": {
+        "battery_type": "1x3V CR2450"
+    }, 
     "commands": [
         {
             "name": "Température", 

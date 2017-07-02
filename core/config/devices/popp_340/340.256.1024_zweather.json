@@ -3,8 +3,10 @@
     "type": "Multicapteurs", 
     "comlink": "2961-popp-station-meteo-z-wave-z-weather", 
     "remark": "", 
-    "imglink": "popp.zweather",
-    "battery_type": "Cellule solaire",
+    "imglink": "popp.zweather", 
+    "configuration": {
+        "battery_type": "Cellule solaire"
+    }, 
     "commands": [
         {
             "name": "Température", 
