@@ -689,12 +689,14 @@ function display_node_info(){
         if (data.data.isZwavePlus.value) {
             $("#div_nodeConfigure .node-zwaveplus").html(" {{ZWAVE PLUS}}");
         }
-        if (data.data.isSecured.enabled && data.data.isSecured.value) {
-            $("#div_nodeConfigure .node-isSecured").html("<i class='fa fa-lock' aria-hidden='true'></i>");
-        }else {
-            $("#div_nodeConfigure .node-isSecured").html("<i class='fa fa-unlock' aria-hidden='true'></i>");
+        if (data.data.isSecured.enabled){
+            if (data.data.isSecured.value) {
+                $("#div_nodeConfigure .node-isSecured").html("<i class='fa fa-lock' aria-hidden='true'></i>");
+            }else {
+                $("#div_nodeConfigure .node-isSecured").html("<i class='fa fa-unlock' aria-hidden='true'></i>");
+            }
         }
-        $("#div_nodeConfigure .node-neighbours").removeClass("label-danger").addClass("label-default")
+        $("#div_nodeConfigure .node-neighbours").removeClass("label-danger").addClass("label-default");
         if (queryStageIndex > 13) {
             if (data.data.neighbours.value.length > 0) {
                 $("#div_nodeConfigure .node-neighbours").html( data.data.neighbours.value.join());
