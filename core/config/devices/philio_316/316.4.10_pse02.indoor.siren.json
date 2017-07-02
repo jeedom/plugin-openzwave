@@ -67,9 +67,9 @@
             "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=Emergency", 
-                "index": 0, 
+                "class": 113, 
+                "value": "type=setvalue&value=1", 
+                "index": 3, 
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
@@ -85,9 +85,9 @@
             "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=Fire", 
-                "index": 0, 
+                "class": 113, 
+                "value": "type=setvalue&value=2", 
+                "index": 3, 
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
@@ -103,9 +103,9 @@
             "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=Ambulance", 
-                "index": 0, 
+                "class": 113, 
+                "value": "type=setvalue&value=3", 
+                "index": 3, 
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
@@ -121,9 +121,9 @@
             "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=Police", 
-                "index": 0, 
+                "class": 113, 
+                "value": "type=setvalue&value=4", 
+                "index": 3, 
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
@@ -139,9 +139,9 @@
             "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=Door chime", 
-                "index": 0, 
+                "class": 113, 
+                "value": "type=setvalue&value=5", 
+                "index": 3, 
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
@@ -157,9 +157,9 @@
             "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=Beep Beep", 
-                "index": 0, 
+                "class": 113, 
+                "value": "type=setvalue&value=6", 
+                "index": 3, 
                 "instance": 1, 
                 "minValue": 0, 
                 "maxValue": 99
@@ -175,8 +175,8 @@
             "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=Stop", 
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
                 "index": 0, 
                 "instance": 1, 
                 "minValue": 0, 
