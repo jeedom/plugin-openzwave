@@ -356,7 +356,7 @@ class openzwave extends eqLogic {
 
 	/*     * *********************Methode d'instance************************* */
 
-	public function loadCmdFromConf($_update = false) {
+	public function loadCmdFromConf($_update = false, $_command = false) {
 		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
 			return;
 		}
@@ -371,7 +371,21 @@ class openzwave extends eqLogic {
 		if (isset($device['name']) && !$_update) {
 			$this->setName('[' . $this->getLogicalId() . ']' . $device['name']);
 		}
-		$this->import($device);
+		if ($_command){
+			$this->import($device);
+		} else {
+			if (isset($device['configuration'])) {
+				foreach ($device['configuration'] as $key => $value) {
+					$this->setConfiguration($key, $value);
+				}
+			}
+			if (isset($device['category'])) {
+				foreach ($device['category'] as $key => $value) {
+					$this->setCategory($key, $value);
+				}
+			}
+			$this->save();
+		}
 		sleep(1);
 		event::add('jeedom::alert', array(
 			'level' => 'warning',
@@ -507,13 +521,13 @@ class openzwave extends eqLogic {
 		return false;
 	}
 
-	public function createCommand($_update = false, $_data = null) {
+	public function createCommand($_update = false, $_data = null, $_command = false) {
 		$return = array();
 		if (!is_numeric($this->getLogicalId())) {
 			return;
 		}
 		if (is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
-			$this->loadCmdFromConf($_update);
+			$this->loadCmdFromConf($_update,$_command);
 			return;
 		}
 		event::add('jeedom::alert', array(

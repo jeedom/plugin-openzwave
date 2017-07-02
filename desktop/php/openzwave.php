@@ -282,7 +282,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{Informations}}</label>
                     <div class="col-sm-8">
-                        <a id="bt_autoDetectModule" class="expertModeVisible btn btn-danger"><i class="fa fa-search"></i> {{Mapping de commandes}}</a>
+                        <a id="bt_autoDetectModule" class="expertModeVisible btn btn-danger"><i class="fa fa-search"></i> {{Recharger configuration}}</a>
                         <a id="bt_displayZwaveData" class="expertModeVisible btn btn-default"><i class="fa fa-tree"></i> {{Arbre Z-Wave}}</a>
                         <span class="label label-warning isPending" style="font-size:0.6em;cursor:default;position:relative;top:-4px;left:20px;" title="{{Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage}}"></span>
                     </div>

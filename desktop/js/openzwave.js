@@ -326,31 +326,87 @@ $('body').off('zwave::includeDevice').on('zwave::includeDevice', function (_even
 });
 
 $('#bt_autoDetectModule').on('click', function () {
-    bootbox.confirm('{{Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes}}', function (result) {
-        if (result) {
-            $.ajax({
-                type: "POST", 
-                url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
-                data: {
-                    action: "autoDetectModule",
-                    id: $('.eqLogicAttr[data-l1key=id]').value(),
-                },
-                dataType: 'json',
-                global: false,
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, error);
-                },
-                success: function (data) { 
-                    if (data.state != 'ok') {
-                        $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                        return;
-                    }
-                    $('#div_alert').showAlert({message: '{{Opération réalisée avec succès}}', level: 'success'});
-                    $('.li_eqLogic[data-eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value() + ']').click();
-                }
-            });
-        }
-    });
+    var dialog_title = '{{Recharge configuration}}';
+    var dialog_message = '<form class="form-horizontal onsubmit="return false;"> ';
+    dialog_title = '{{Recharger la configuration}}';
+    dialog_message += '<label class="control-label" > {{Sélectionner le mode de rechargement de la configuration ?}} </label> ' +
+    '<div> <div class="radio"> <label > ' +
+    '<input type="radio" name="command" id="command-0" value="0" checked="checked"> {{Sans recréer les commandes}} </label> ' +
+    '</div><div class="radio"> <label > ' +
+    '<input type="radio" name="command" id="command-1" value="1"> {{En recréant les commandes}}</label> ' +
+    '</div> ' +
+    '</div><br>' +
+    '<label class="lbl lbl-warning" for="name">{{Attention, "en recréant les commandes" va supprimer les commandes existantes.}}</label> ';
+    dialog_message += '</form>';
+    bootbox.dialog({
+       title: dialog_title,
+       message: dialog_message,
+       buttons: {
+           "{{Annuler}}": {
+               className: "btn-danger",
+               callback: function () {
+               }
+           },
+           success: {
+               label: "{{Démarrer}}",
+               className: "btn-success",
+               callback: function () {
+                    if ($("input[name='command']:checked").val() == "1"){
+						bootbox.confirm('{{Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes}}', function (result) {
+                            if (result) {
+                                $.ajax({
+                                    type: "POST", 
+                                    url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
+                                    data: {
+                                        action: "autoDetectModule",
+                                        id: $('.eqLogicAttr[data-l1key=id]').value(),
+                                        createcommand: 1,
+                                    },
+                                    dataType: 'json',
+                                    global: false,
+                                    error: function (request, status, error) {
+                                        handleAjaxError(request, status, error);
+                                    },
+                                    success: function (data) { 
+                                        if (data.state != 'ok') {
+                                            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                                            return;
+                                        }
+                                        $('#div_alert').showAlert({message: '{{Opération réalisée avec succès}}', level: 'success'});
+                                        $('.li_eqLogic[data-eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value() + ']').click();
+                                    }
+                                });
+                            }
+                        });
+					} else {
+						$.ajax({
+                                    type: "POST", 
+                                    url: "plugins/openzwave/core/ajax/openzwave.ajax.php", 
+                                    data: {
+                                        action: "autoDetectModule",
+                                        id: $('.eqLogicAttr[data-l1key=id]').value(),
+                                        createcommand: 0,
+                                    },
+                                    dataType: 'json',
+                                    global: false,
+                                    error: function (request, status, error) {
+                                        handleAjaxError(request, status, error);
+                                    },
+                                    success: function (data) { 
+                                        if (data.state != 'ok') {
+                                            $('#div_alert').showAlert({message: data.result, level: 'danger'});
+                                            return;
+                                        }
+                                        $('#div_alert').showAlert({message: '{{Opération réalisée avec succès}}', level: 'success'});
+                                        $('.li_eqLogic[data-eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value() + ']').click();
+                                    }
+                                });
+					}
+            }
+        },
+    }
+});
+    
 });
 
 function syncEqLogicWithOpenZwave() {
