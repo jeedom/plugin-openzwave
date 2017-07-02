@@ -1,4 +1,4 @@
-== API HTTP
+== HTTP API
 
 Le plugin Z-Wave met à disposition des développeurs et des utilisateurs une API complète afin de pouvoir opérer le réseau Z-Wave via requête HTTP.
 
