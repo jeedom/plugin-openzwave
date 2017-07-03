@@ -104,8 +104,8 @@ sendVarToJs('node_id', init('id'));
                                 </p>
                                 <p>{{Dernier message :}}
                                     <b><span class="zwaveNodeAttr label label-default" data-l1key="lastReceived" data-l2key="updateTime" style="font-size : 1em;"></span></b>
-                                    <span class="node-next-wakeup-span">{{Prochain réveil : }}
-                                        <b><span class="zwaveNodeAttr label label-default" data-l1key="last_notification" data-l2key="next_wakeup" style="font-size : 1em;"></span></b>
+                                    <span class="node-next-wakeup-span">{{Prochain réveil (prévu): }}
+                                        <b><span class="zwaveNodeAttr label label-default" data-l1key="wakeup_interval" data-l2key="next_wakeup" style="font-size : 1em;"></span></b>
                                     </span>
                                 </p>
                                 <p>{{Voisins : }} <span class="node-neighbours label label-default" data-l1key="location" data-l2key="value" style="font-size : 1em;"></span></p>

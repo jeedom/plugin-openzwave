@@ -592,7 +592,8 @@ function display_node_info(){
             }
             queryStageIndex++;
         }
-        if (data.last_notification.next_wakeup != null) {
+        if (data.data.wakeup_interval.next_wakeup != null) {
+            data.data.wakeup_interval.next_wakeup = jeedom.openzwave.timestampConverter(data.data.wakeup_interval.next_wakeup);
             $("#div_nodeConfigure .node-next-wakeup-span").show();
         } else {
             $("#div_nodeConfigure .node-next-wakeup-span").hide();
