@@ -8,9 +8,11 @@
 				Notification Type,
 				0: Using Notification Report.
 				1: Using Sensor Binary Report.
+				128: Activate Alarm Notification (other sounds).
 			</Help>
 			<Item label="Using Notification Report" value="0" />
 			<Item label="Using Sensor Binary Report" value="1" />
+			<Item label="Activate Alarm Notification (other sounds)" value="128" />
 		</Value>
 		<Value type="list" index="29" genre="config" label="Disable Alarm" size="1" value="0">
 			<Help>
