@@ -356,7 +356,7 @@ class openzwave extends eqLogic {
 
 	/*     * *********************Methode d'instance************************* */
 
-	public function loadCmdFromConf($_update = false, $_command = false) {
+	public function loadCmdFromConf($_update = false, $_command = true) {
 		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
 			return;
 		}
