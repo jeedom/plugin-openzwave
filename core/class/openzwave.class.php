@@ -521,7 +521,7 @@ class openzwave extends eqLogic {
 		return false;
 	}
 
-	public function createCommand($_update = false, $_data = null, $_command = false) {
+	public function createCommand($_update = false, $_data = null, $_command = true) {
 		$return = array();
 		if (!is_numeric($this->getLogicalId())) {
 			return;
