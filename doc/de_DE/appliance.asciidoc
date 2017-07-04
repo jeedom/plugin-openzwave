@@ -15,7 +15,7 @@ Comme à beaucoup d'endroits sur Jeedom, placer la souris tout à gauche permet 
 Les boutons sur la ligne tout en haut *Synchroniser*, *Réseau-Zwave* et *Santé*, sont visibles seulement si vous êtes en mode *Expert*.
 image:../images/appliance03.png[]
 
-=== Général
+=== Allgemein
 
 Vous retrouvez ici toute la configuration de votre équipement :
 
