@@ -412,6 +412,9 @@ jeedom.openzwave.node.setParam(setParamOptions);
               }
           }else {
             for (i = 1; i <= val.multi_instance.instances; i++) {
+                if (associations.indexOf(key + ';0') < 0) {
+                    options.push({value : key + ';0', text :  text });
+                }
                 if (associations.indexOf(key + ';'+i) >= 0) {
                     continue;
                 }
