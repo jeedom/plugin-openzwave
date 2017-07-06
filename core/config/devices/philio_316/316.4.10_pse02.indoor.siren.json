@@ -163,7 +163,7 @@
             "isVisible": 0,
             "isHistorized": 0,
             "configuration": {
-                "class": 37,
+                "class": 113,
                 "value": "type=setvalue&value=0",
                 "index": 0,
                 "instance": 1
@@ -171,6 +171,49 @@
             "subtype": "other",
             "display": {
                 "generic_type": "LIGHT_ON"
+            }
+        },
+        {
+            "name": "Sound",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 113,
+                "value": "",
+                "index": 0,
+                "instance": 1,
+                "calculValueOffset": "(#value#==1) ? 'Emergency' : ((#value#==2) ? 'Fire' : ((#value#==3) ? 'Ambulance' : ((#value#==4) ? 'Police' : ((#value#==5) ? 'Door Chime' : ((#value#>=6) ? 'Beep Beep':Stop)))))"
+            },
+            "subtype": "other",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        },
+        {
+            "name": "Sabotage",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 113,
+                "value": "",
+                "index": 10,
+                "instance": 1,
+                "calculValueOffset": "#value#==3"
+            },
+            "subtype": "binary",
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "SABOTAGE"
+            },
+            "template": {
+                "dashboard": "alert",
+                "mobile": "alert"
             }
         }
     ],
