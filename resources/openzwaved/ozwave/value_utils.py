@@ -53,9 +53,6 @@ def prepare_value_notification(node, value):
 			# we skip notification to avoid value refresh during the interview process
 			return
 	value.lastData = value.data
-	if value.genre == 'System':
-		value.last_update = time.time()
-		return
 	command_class = globals.network.manager.COMMAND_CLASS_DESC[value.command_class].replace("COMMAND_CLASS_", "").replace("_", " ").lower().capitalize()
 	data = extract_data(value, False, False)
 	logging.info("Received %s report from node %s: %s=%s%s" % (command_class, node.node_id, value.label, data, value.units))
