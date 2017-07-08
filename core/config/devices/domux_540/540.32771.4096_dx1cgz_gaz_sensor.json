@@ -2,8 +2,9 @@
     "name": "Gaz Sensor (DX1CG-Z)", 
     "type": "Gaz", 
     "comlink": "", 
-    "remark": "", 
-    "imglink": "domux.dx1cgz", 
+    "remark": "Pas de remontée d'alerte au contrôleur. Sonne sur détection de gaz combustible",
+    "imglink": "domux.dx1cgz",
+    "ignore": true,
     "configuration": {
         "battery_type": "2x1.5V LR03"
     }, 

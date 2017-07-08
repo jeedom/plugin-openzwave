@@ -1,9 +1,10 @@
 {
     "name": "Gaz Sensor (HS1CG-Z)", 
     "type": "Gaz", 
-    "comlink": "4153-zipato-capteur-de-gaz-z-wave-3858890733587", 
-    "remark": "", 
-    "imglink": "zipato.dx1cgz", 
+    "comlink": "4153-zipato-capteur-de-gaz-z-wave-3858890733587",
+    "remark": "Pas de remontée d'alerte au contrôleur. Sonne sur détection de gaz combustible",
+    "imglink": "zipato.dx1cgz",
+    "ignore": true,
     "configuration": {
         "battery_type": "2x1.5V LR03"
     }, 

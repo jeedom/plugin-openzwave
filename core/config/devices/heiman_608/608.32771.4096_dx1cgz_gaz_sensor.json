@@ -1,9 +1,10 @@
 {
     "name": "Gaz Sensor (HS1CG-Z)", 
     "type": "Gaz", 
-    "comlink": "", 
-    "remark": "", 
-    "imglink": "heiman.hs1cgz", 
+    "comlink": "",
+    "remark": "Pas de remontée d'alerte au contrôleur. Sonne sur détection de gaz combustible",
+    "imglink": "heiman.hs1cgz",
+    "ignore": true,
     "configuration": {
         "battery_type": "2x1.5V LR03"
     }, 
