@@ -165,7 +165,7 @@
             "configuration": {
                 "class": 113,
                 "value": "type=setvalue&value=0",
-                "index": 0,
+                "index": 3,
                 "instance": 1
             },
             "subtype": "other",
@@ -181,11 +181,10 @@
             "configuration": {
                 "class": 113,
                 "value": "",
-                "index": 0,
-                "instance": 1,
-                "calculValueOffset": "(#value#==1) ? 'Emergency' : ((#value#==2) ? 'Fire' : ((#value#==3) ? 'Ambulance' : ((#value#==4) ? 'Police' : ((#value#==5) ? 'Door Chime' : ((#value#>=6) ? 'Beep Beep':Stop)))))"
+                "index": 3,
+                "instance": 1
             },
-            "subtype": "other",
+            "subtype": "numeric",
             "display": {
                 "generic_type": "DONT"
             },
