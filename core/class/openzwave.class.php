@@ -480,7 +480,7 @@ class openzwave extends eqLogic {
 				if (isset($value['index'])) {
 					$indexpolling = $value['index'];
 				}
-				openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&instance_id=' . $instancepolling . '&cc_id=' . $value['class'] . '&index=' . $indexpolling . '&type=setPolling&value=1');
+                openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&instance_id=' . $instancepolling . '&cc_id=' . $value['class'] . '&index=' . $indexpolling . '&type=setPolling&frequency=1');
 			}
 		}
 		if (isset($device['recommended']['needswakeup']) && $device['recommended']['needswakeup'] == true) {

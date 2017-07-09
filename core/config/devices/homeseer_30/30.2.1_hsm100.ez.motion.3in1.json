@@ -84,14 +84,14 @@
     "recommended": {
         "polling": [
             {
-                "instanceId": "1", 
+                "instanceId": "2",
                 "index": 3, 
-                "class": "0x31"
+                "class": "49"
             }, 
             {
-                "instanceId": "2", 
+                "instanceId": "3",
                 "index": 1, 
-                "class": "0x31"
+                "class": "49"
             }
         ], 
         "wakeup": 3600, 

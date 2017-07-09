@@ -71,9 +71,9 @@
         ], 
         "polling": [
             {
-                "instanceId": "0", 
+                "instanceId": "1",
                 "index": 0, 
-                "class": "0x32"
+                "class": "50"
             }
         ], 
         "wakeup": 900, 

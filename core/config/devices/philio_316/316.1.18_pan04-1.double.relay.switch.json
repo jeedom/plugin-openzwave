@@ -313,34 +313,34 @@
         ], 
         "polling": [
             {
-                "instanceId": "0", 
+                "instanceId": "1",
                 "index": 0, 
-                "class": "0x25"
+                "class": "37"
             }, 
             {
-                "instanceId": "0", 
+                "instanceId": "1",
                 "index": 0, 
-                "class": "0x32"
+                "class": "50"
             }, 
             {
-                "instanceId": "1", 
+                "instanceId": "2",
                 "index": 0, 
-                "class": "0x25"
+                "class": "37"
             }, 
             {
-                "instanceId": "1", 
+                "instanceId": "2",
                 "index": 0, 
-                "class": "0x32"
+                "class": "50"
             }, 
             {
-                "instanceId": "2", 
+                "instanceId": "3",
                 "index": 0, 
-                "class": "0x25"
+                "class": "37"
             }, 
             {
-                "instanceId": "2", 
+                "instanceId": "3",
                 "index": 0, 
-                "class": "0x32"
+                "class": "50"
             }
         ], 
         "needswakeup": false

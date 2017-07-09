@@ -645,34 +645,34 @@
         ], 
         "polling": [
             {
-                "instanceId": "0", 
+                "instanceId": "1",
                 "index": 0, 
-                "class": "0x32"
+                "class": "50"
             }, 
             {
-                "instanceId": "1", 
+                "instanceId": "2",
                 "index": 0, 
-                "class": "0x32"
+                "class": "50"
             }, 
             {
-                "instanceId": "2", 
+                "instanceId": "3",
                 "index": 0, 
-                "class": "0x32"
+                "class": "50"
             }, 
             {
-                "instanceId": "3", 
+                "instanceId": "4",
                 "index": 0, 
-                "class": "0x32"
+                "class": "50"
             }, 
             {
-                "instanceId": "4", 
+                "instanceId": "5",
                 "index": 0, 
-                "class": "0x32"
+                "class": "50"
             }, 
             {
-                "instanceId": "5", 
+                "instanceId": "6",
                 "index": 0, 
-                "class": "0x32"
+                "class": "50"
             }
         ], 
         "needswakeup": false

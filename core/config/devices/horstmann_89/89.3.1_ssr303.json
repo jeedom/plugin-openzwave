@@ -60,14 +60,14 @@
     "recommended": {
         "polling": [
             {
-                "instanceId": "0", 
+                "instanceId": "1",
                 "index": 0, 
-                "class": "0x32"
+                "class": "50"
             }, 
             {
-                "instanceId": "0", 
+                "instanceId": "1",
                 "index": 0, 
-                "class": "0x40"
+                "class": "64"
             }
         ], 
         "needswakeup": false
