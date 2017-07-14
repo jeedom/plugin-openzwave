@@ -36,8 +36,8 @@ if (!isConnect()) {
     <tbody>
         <tr>
             <?php
-$data = openzwave::callOpenzwave('/ZWaveAPI/Run/devices[' . init('logical_id') . ']', init('serverId'));
-$data = $data['instances'][0]['commandClasses'][99]['data'];
+$data = openzwave::callOpenzwave('/node?node_id=' . init('logical_id') . '&type=info&info=all');
+$data = $data['result']['instances'][1]['commandClasses'][99]['data'];
 for ($i = 1; $i < 11; $i++) {
 	echo '<td>';
 	echo '<a class="btn btn-success pull-right btn-xs bt_ziptatoKeypadSaveNewCode" data-position="' . $i . '"><i class="fa fa-floppy-o"></i></a>';
