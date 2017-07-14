@@ -266,7 +266,13 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
                     <div class="col-sm-2">
                         <input type="text" class="eqLogicAttr form-control" data-l1key="logicalId"/>
                     </div>
-                </div>                
+                </div>
+                <div class="form-group expertModeVisible">
+                    <label class="col-sm-4 control-label">{{Délai maximum autorisé entre 2 messages (min)}}</label>
+                    <div class="col-sm-4">
+                        <input class="eqLogicAttr form-control" data-l1key="timeout"/>
+                    </div>
+                </div>
             </fieldset>
         </form>
     </div>
