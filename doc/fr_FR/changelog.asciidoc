@@ -16,6 +16,7 @@
 * Bug Fixes
 
 ** Correction de la migration de l'info Batterie.
+** Correction de la remontée de l'info Batterie dans l'écran Equipements.
 ** Restauration du type de piles dans les configurations de modules.
 ** Correction des actions sur les valeurs de type bouton dans l'écran du module.
 ** Correction de la récupération des traductions de paramètres.
@@ -24,6 +25,7 @@
 ** Suppression de la notification du changement de valeur avant qu’elle est été appliqué.
 ** Ne plus afficher le cadenas dans l'écran du module si le module ne supporte pas la Classe de Commande Sécurité.
 ** Application du rafraichissement manuel dans les paramètres recommandés.
+** Assistant de gestion des badges pour les lecteurs RFID.
 
 == 2017-06-20
 
