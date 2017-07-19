@@ -772,9 +772,9 @@ function display_node_info(){
                 }
             }
         }
-        $("#div_nodeConfigure .variables").html(variables);
-        $("#div_nodeConfigure .parameters").html(parameters);
-        $("#div_nodeConfigure .system_variables").html(system_variables);
+        fragment_variables = $('<tbody></tbody>').append(variables);
+        fragment_parameters = $('<tbody></tbody>').append(parameters);
+        fragment_system_variables = $('<tbody></tbody>').append(system_variables);
         openzwave_node_translation = getTranslation();
         if (typeof openzwave_node_translation.configuration === 'undefined') {
             openzwave_node_translation = {configuration: {}};
@@ -784,9 +784,9 @@ function display_node_info(){
                 var first_index_polling = true;
                 for (index in data.instances[instance].commandClasses[commandclass].data) {
                     var id = instance + ":" + commandclass + ":" + index;
-                    var row = $("#div_nodeConfigure tr[vid='" + id + "']");
-                    var row_parameter = $("#div_nodeConfigure tr[pid='" + id + "']");
-                    var row_system = $("#div_nodeConfigure tr[sid='" + id + "']");
+                    var row = fragment_variables.find("tr[vid='" + id + "']");
+                    var row_parameter = fragment_parameters.find("tr[pid='" + id + "']");
+                    var row_system = fragment_system_variables.find("tr[sid='" + id + "']");
                     row.find("td[data-key=instance]").html(instance);
                     row.find("td[data-key=cc]").html(commandclass + ' (0x' + Number(commandclass).toString(16) + ')');
                     row.find("td[data-key=index]").html(index);
@@ -887,6 +887,9 @@ function display_node_info(){
                 }
             }
         }
+        $("#div_nodeConfigure .variables").html(fragment_variables.html());
+        $("#div_nodeConfigure .parameters").html(fragment_parameters.html());
+        $("#div_nodeConfigure .system_variables").html(fragment_system_variables.html());
         show_groups();
         if($('#div_nodeConfigure').html() != undefined && $('#div_nodeConfigure').is(':visible')){
             setTimeout(function(){ display_node_info(); }, 2000);
