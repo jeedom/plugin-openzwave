@@ -67,7 +67,12 @@ def cancel_command():
 	return utils.format_json_result()
 
 def remove_unknowns_devices_openzwave_config():
+	globals.network_is_running = False
+	globals.network.stop()
+	logging.info('ZWave network is now stopped')
 	globals.files_manager.remove_unknowns_devices_openzwave_config(globals.network.home_id_str)
+	network_utils.start_network()
+	return utils.format_json_result()
 
 def controller_command(network, controller, node, node_id, state_int, state, state_full, error_int, error, error_full):
 	logging.info('%s (%s)' % (state_full, state))
