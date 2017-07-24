@@ -932,7 +932,7 @@ function show_groups(){
                 tr_groups += "</td></tr>";
             }
             var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right">';
-            if (count(node_selected.groups[z].associations) < node_selected.groups[z].maximumAssociations) {
+            if (node_selected.groups[z].associations.length < node_selected.groups[z].maximumAssociations) {
                 newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" data-groupindex="' + z + '">';
             } else {
                 newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="-1">';
