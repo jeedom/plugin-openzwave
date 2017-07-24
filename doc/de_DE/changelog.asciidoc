@@ -11,7 +11,8 @@
 
 ** Supports de nouveaux modules, définitions ozw et commandes.
 ** Possibilité de sélectionner l'association par défaut (sans instance) sur les modules supportant les associations multi-instances.
-** Vérification de la validité des groupes d'associations à la fin de l'interview.  
+** Vérification de la validité des groupes d'associations à la fin de l'interview.
+** Récupération du dernier niveau des piles au démarrage du démon.
 
 * Bug Fixes
 
@@ -26,6 +27,7 @@
 ** Ne plus afficher le cadenas dans l'écran du module si le module ne supporte pas la Classe de Commande Sécurité.
 ** Application du rafraichissement manuel dans les paramètres recommandés.
 ** Assistant de gestion des badges pour les lecteurs RFID.
+** Correction de l'assistant de détection de modules inconnus.
 
 == 2017-06-20
 

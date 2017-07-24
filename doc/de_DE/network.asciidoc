@@ -49,18 +49,6 @@ Affiche diverses informations système.
 *Version der OpenZwave Bibliothek
 *Version der Python-OpenZwave Bibliothek
 
-=== Notifications
-
-Vous retrouvez ici les dernières notifications du contrôleur ainsi que le détail du message correspondant.
-Les notifications sont ordonnées par leur date d'arrivée, la plus récente en premier.
-
-image:../images/network04.png[]
-
-[TIP]
-Ce sont des informations techniques, mais qui nous permettent de comprendre les derniers échanges avec le contrôleur.
-
-[IMPORTANT]
-Une notification indiquant qu'une commande a échoué, ne signifie pas obligatoirement un problème sur votre réseau.
 
 === Aktion
 

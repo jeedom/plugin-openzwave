@@ -60,24 +60,13 @@ image:../images/configuration06.png[]
 
 * *Général* :
 ** *Supprimer automatiquement les périphériques exclus* : L'option Oui, permet de supprimer les périphériques exclus du réseau  Z-Wave. L’option Non, permet de conserver les équipements dans Jeedom même s’ils ont été exclus du réseau. L’équipement devra être alors supprimé manuellement ou réutilisé en lui assignant un nouvel ID Z-Wave si on exécute une migration du contrôleur principal.
-** *Soigner le réseau automatiquement 2 fois par semaine* : option pour activer un soin automatique du réseau  Z-Wave (vivement conseillée en début d'installation si on déplace régulièrement les modules)
-** *Mettre à jour la configuration des modules automatiquement, chaque jour à minuit* : option pour activer la mise à jour des configuration de module OpenZWave ainsi que les fichiers de commande Z-Wave.
 ** *Appliquer le jeu de configuration recommandé à l'inclusion* : option pour appliquer directement à l'inclusion le jeu de configuration recommandé par l'équipe Jeedom (conseillée)
-** *Activer les tests sanitaires* : au 15 minutes de l'heure le plugin va effectuer une série de tests sur l'ensemble des équipements actifs de votre réseau.
-*** Tentative de remonter les noeuds présumés morts par le contrôleur.
-*** Validation que le réseau ne contient pas d'Ids invalides comme un nodeId 0.
-*** Tests des modules secteurs ayant retournés une notification 'Timeout'.
-*** Tests si des modules sur piles ne sont pas retournés en sommeil profond après leur cycle de réveil.
-
-[IMPORTANT]
-Les tests sanitaires, seront exécutés seulement si le réseau n'est pas sollicité. Si des messages sont en attente de traitement, le serveur n'autorisera pas l'exécution des tests sanitaires.
-
-
-
-* *Gestion avancée* :
-
+** *Désactiver l'actualisation en arrière-plan des variateurs* : Ne pas demander de rafraichissement des variateurs en arrière-plan.
+** *Cycle (s)* : permet de définir la fréquence des remontées à jeedom.
+** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-Wave est connectée.
+Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 possibilités à la fin de la liste.
+** *Port du Serveur* (modification dangereuse, doit avoir la même valeur sur tous les Jeedoms déportés Z-Wave) : permet de modifier le port de communication interne du démon.
 ** *Backups* : permet de gérer les backups du fichier de topologie réseaux (voir plus bas)
-** *zwcfg* : permet de voir et modifier le fichier de topologie réseaux (voir plus bas)
 ** *Config modules* : permet de récupérer, manuellement, les fichiers de configurations OpenZWave avec les paramètres des modules ainsi que la définition des commandes de modules pour leurs utilisations.
 [TIP]
 La récupération des configurations de module s'effectue automatiquement chaque nuit.
@@ -94,16 +83,6 @@ Une fois les configurations récupérées, il faudra selon les changements appor
 [TIP]
 Dans le doute, exclure et ré-inclure le module est recommandé.
 
-
-=== Démon local ou Démon XXX
-Paramètres de la configuration locale (ou déportée, en fonction de l'intitulé) du démon.
-image:../images/configuration07.png[]
-
-** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-Wave est connectée.
-Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 possibilités à la fin de la liste.
-** *Port du Serveur* (modification dangereuse, doit avoir la même valeur sur tous les Jeedoms déportés Z-Wave) : permet de modifier le port de communication interne du démon.
-
-[TIP]
 N'oubliez pas de
 image:../images/configuration08.png[]
 si vous effectuez une modification.
