@@ -28,8 +28,6 @@ include::health.asciidoc[]
 '''
 include::backup.asciidoc[]
 
-'''
-include::zwcfg.asciidoc[]
 
 '''
 include::update.asciidoc[]
