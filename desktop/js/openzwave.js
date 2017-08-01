@@ -331,7 +331,7 @@ $('#bt_autoDetectModule').on('click', function () {
     dialog_title = '{{Recharger la configuration}}';
     dialog_message += '<label class="control-label" > {{Sélectionner le mode de rechargement de la configuration ?}} </label> ' +
     '<div> <div class="radio"> <label > ' +
-    '<input type="radio" name="command" id="command-0" value="0" checked="checked"> {{Sans recréer les commandes}} </label> ' +
+    '<input type="radio" name="command" id="command-0" value="0" checked="checked"> {{Sans recréer les commandes mais en créeant les manquantes}} </label> ' +
     '</div><div class="radio"> <label > ' +
     '<input type="radio" name="command" id="command-1" value="1"> {{En recréant les commandes}}</label> ' +
     '</div> ' +

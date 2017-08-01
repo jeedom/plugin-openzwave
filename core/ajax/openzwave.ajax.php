@@ -52,10 +52,8 @@ try {
 			foreach ($eqLogic->getCmd() as $cmd) {
 				$cmd->remove();
 			}
-			$eqLogic->createCommand(true,false,true);
-		} else {
-			$eqLogic->createCommand(true,false,false);
 		}
+		$eqLogic->createCommand(true);
 		ajax::success();
 	}
 
