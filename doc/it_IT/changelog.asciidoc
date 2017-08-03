@@ -5,11 +5,11 @@
 * New Features
 
 ** Possibilité de rafraichir les commandes d'un équipement sans supprimer les existantes.
-** Possibilité de créer de commande information sur les valeurs de l'onglet Système.
+** Possibilité de créer une commande information sur les valeurs de l'onglet Système.
 
 * Improvements/Enhancements
 
-** Supports de nouveaux modules, définitions ozw et commandes.
+** Prise en charge de nouveaux modules, définitions ozw et commandes.
 ** Possibilité de sélectionner l'association par défaut (sans instance) sur les modules supportant les associations multi-instances.
 ** Vérification de la validité des groupes d'associations à la fin de l'interview.
 ** Récupération du dernier niveau des piles au démarrage du démon.
@@ -23,7 +23,7 @@
 ** Correction de la récupération des traductions de paramètres.
 ** Correction erreur vide sur modification de valeurs de type RAW (code RFid).
 ** Correction de l'affichage des valeurs en attente d'être appliqué.
-** Suppression de la notification du changement de valeur avant qu’elle est été appliqué.
+** Suppression de la notification du changement de valeur avant qu’elle ne soit appliquée.
 ** Ne plus afficher le cadenas dans l'écran du module si le module ne supporte pas la Classe de Commande Sécurité.
 ** Application du rafraichissement manuel dans les paramètres recommandés.
 ** Assistant de gestion des badges pour les lecteurs RFID.
@@ -155,7 +155,7 @@
 ** Ajout de la possibilité de sélectionner l'instance 0 du contrôleur pour les associations multi-instances.
 ** Sécurisation de l'ensemble des appels au serveur REST.
 ** Détection automatique du dongle, dans la page de configuration du plugin.
-** Dialogue d'inclusion avec le choix du mode d'inclusion pour simplifier l'inclusion sécurisé.
+** Dialogue d'inclusion avec le choix du mode d'inclusion pour simplifier l'inclusion sécurisée.
 ** Prise en compte des équipements désactivés au sein du moteur Z-Wave.
 *** Affichage grisé dans l'écran de santé sans analyse sur le nœud.
 *** Masquée dans la Table réseau et Graphique réseau.
