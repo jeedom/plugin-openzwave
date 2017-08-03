@@ -13,9 +13,9 @@
 
 * Bug Fixes
 
-** Rafraîchissement de l'ensemble des instances suite a un broadcast de la CC Switch ALL.
-** Retour json de la route /ZWaveAPI/Run/devices[<int:node_id>].GetPendingChanges() plus inclue dans result.
-** Retour json de la route /ZWaveAPI/Run/devices[<int:node_id>].GetLastNotification() plus inclue dans result.
+** Rafraîchissement de l'ensemble des instances suite à un broadcast de la CC Switch ALL.
+** Retour json de la route /ZWaveAPI/Run/devices[<int:node_id>].GetPendingChanges() plus inclus dans result.
+** Retour json de la route /ZWaveAPI/Run/devices[<int:node_id>].GetLastNotification() plus inclus dans result.
 
 === 2016-08-26
 
@@ -64,7 +64,7 @@
 ** Ajout de la possibilité de sélectionner l'instance 0 du contrôleur pour les associations multi-instances.
 ** Sécurisation de l'ensemble des appels au serveur REST.
 ** Détection automatique du dongle, dans la page de configuration du plugin.
-** Dialogue d'inclusion avec le choix du mode d'inclusion pour simplifier l'inclusion sécurisé.
+** Dialogue d'inclusion avec le choix du mode d'inclusion pour simplifier l'inclusion sécurisée.
 ** Prise en compte des équipements désactivés au sein du moteur Z-Wave.
 *** Affichage grisé dans l'écran de santé sans analyse sur le nœud.
 *** Masquée dans la Table réseau et Graphique réseau.
