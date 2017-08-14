@@ -40,7 +40,7 @@
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"fa fa-arrow-down\"></i>", 
-                "generic_type": "DOWN"
+                "generic_type": "FLAP_DOWN"
             }
         }, 
         {
