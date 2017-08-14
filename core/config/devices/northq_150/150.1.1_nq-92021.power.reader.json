@@ -5,7 +5,7 @@
     "remark": "Activer le rafraichissement manuel à 5 minutes sur la valeur Energy pour avoir les rapports", 
     "imglink": "northq.powerreader", 
     "configuration": {
-        "battery_type": "2x1.5V AAA"
+        "battery_type": "2x1.5V AA"
     }, 
     "commands": [
         {
