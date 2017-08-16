@@ -1,0 +1,71 @@
+{
+    "name": "HSM02",
+    "type": "Ouverture",
+    "comlink": "838-everspring-mini-detecteur-d-ouverture-z-wave-hsm02-3700946500134",
+    "remark": "",
+    "imglink": "everspring.hsm02",
+    "configuration": {
+        "battery_type": "2x3V CR2450"
+    },
+    "commands": [
+        {
+            "name": "Etat",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 48,
+                "value": "",
+                "index": 0,
+                "instance": 1
+            },
+            "subtype": "binary",
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "OPENING"
+            },
+            "template": {
+                "dashboard": "door",
+                "mobile": "door"
+            }
+        },
+        {
+            "name": "Sabotage",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 113,
+                "value": "",
+                "index": 0,
+                "instance": 1,
+                "returnStateTime": 1,
+                "returnStateValue": 0
+            },
+            "subtype": "binary",
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "SABOTAGE"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": 0,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 100
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "unite": "%"
+        }
+    ]
+}
