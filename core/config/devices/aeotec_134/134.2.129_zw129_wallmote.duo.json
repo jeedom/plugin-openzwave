@@ -92,6 +92,24 @@
                 "generic_type": "BATTERY"
             }, 
             "unite": "%"
+        },
+        {
+            "name": "Power management",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 113,
+                "value": "",
+                "index": 11,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 15
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "BATTERY_CHARGING"
+            }
         }
     ], 
     "recommended": {
