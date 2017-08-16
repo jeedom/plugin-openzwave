@@ -28,6 +28,7 @@
 ** Application du rafraichissement manuel dans les paramètres recommandés.
 ** Assistant de gestion des badges pour les lecteurs RFID.
 ** Correction de l'assistant de détection de modules inconnus.
+** Correction des assistants de "Reprendre de.." et "Appliquer sur..." dans l'onglet paramètres.
 
 == 2017-06-20
 
