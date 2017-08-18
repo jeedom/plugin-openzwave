@@ -18,7 +18,7 @@
             }, 
             "subtype": "binary", 
             "display": {
-                "generic_type": "ENERGY_STATE"
+                "generic_type": "LIGHT_STATE"
             }, 
             "unite": ""
         }, 
@@ -36,7 +36,7 @@
             "value": "Etat", 
             "subtype": "other", 
             "display": {
-                "generic_type": "ENERGY_ON"
+                "generic_type": "LIGHT_ON"
             }, 
             "template": {
                 "dashboard": "light", 
@@ -57,7 +57,7 @@
             "value": "Etat", 
             "subtype": "other", 
             "display": {
-                "generic_type": "ENERGY_OFF"
+                "generic_type": "LIGHT_OFF"
             }, 
             "template": {
                 "dashboard": "light", 

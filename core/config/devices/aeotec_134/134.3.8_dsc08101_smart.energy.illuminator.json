@@ -21,7 +21,7 @@
             "value": "Etat", 
             "subtype": "other", 
             "display": {
-                "generic_type": "ENERGY_ON"
+                "generic_type": "LIGHT_ON"
             }
         }, 
         {
@@ -40,7 +40,7 @@
             "value": "Etat", 
             "subtype": "other", 
             "display": {
-                "generic_type": "ENERGY_OFF"
+                "generic_type": "LIGHT_OFF"
             }
         }, 
         {
@@ -59,7 +59,7 @@
             "value": "Etat", 
             "subtype": "slider", 
             "display": {
-                "generic_type": "ENERGY_SLIDER"
+                "generic_type": "LIGHT_SLIDER"
             }, 
             "template": {
                 "dashboard": "light", 
