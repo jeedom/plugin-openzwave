@@ -1,0 +1,41 @@
+{
+    "name": "USB Stick ZU 1401", 
+    "type": "Contrôleur", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "vision.zu1401", 
+    "commands": [
+        {
+            "name": "Switch All On", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 240, 
+                "value": "type=switchall&value=255", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Switch All Off", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 240, 
+                "value": "type=switchall&value=0", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }
+    ]
+}
