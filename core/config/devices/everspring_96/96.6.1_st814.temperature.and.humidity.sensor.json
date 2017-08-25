@@ -95,5 +95,18 @@
             }, 
             "unite": "%"
         }
-    ]
+    ],
+    "recommended": {
+        "params": [
+            {
+                "index": 7,
+                "value": 1
+            },
+            {
+                "index": 8,
+                "value": 1
+            }
+        ],
+        "needswakeup": true
+    }
 }
