@@ -1,0 +1,167 @@
+{
+    "name": "Z-Wave thermostat",
+    "type": "Thermostat", 
+    "comlink": "",
+    "remark": "", 
+    "imglink": "zwaveme.thermostat",
+    "commands": [
+        {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Mode Actuel", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_MODE"
+            }
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Off", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Mode Actuel", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }
+        }, 
+        {
+            "name": "Confort", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Heat (Default)", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Mode Actuel", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }
+        }, 
+        {
+            "name": "ECO", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Energy Heat", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Mode Actuel", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }
+        }, 
+        {
+            "name": "CoolingEtat", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "", 
+                "index": 2, 
+                "instance": 1, 
+                "maxValue": "30"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Cooling", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 2, 
+                "instance": 1, 
+                "maxValue": "30"
+            }, 
+            "value": "CoolingEtat", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "AirEtat", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "", 
+                "index": 8, 
+                "instance": 1, 
+                "maxValue": "30"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Dry Air", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 8, 
+                "instance": 1, 
+                "maxValue": "30"
+            }, 
+            "value": "ConsigneEtat", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "°C"
+        }
+    ]
+}

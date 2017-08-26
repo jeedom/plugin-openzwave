@@ -1,0 +1,48 @@
+{
+    "name": "Smoke Sensor",
+    "type": "Fumée", 
+    "comlink": "",
+    "remark": "", 
+    "imglink": "zwaveme.smoke-sensor",
+    "configuration": {
+        "battery_type": "1x9V"
+    }, 
+    "commands": [
+        {
+            "name": "Fumées", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 48, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SMOKE"
+            }
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}
