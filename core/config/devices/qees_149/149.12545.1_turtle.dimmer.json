@@ -1,0 +1,144 @@
+{
+    "name": "Turtle Dimmer",
+    "type": "Variateur",
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "qees.turtle-switch", 
+    "commands": [
+        {
+            "name": "On",
+            "type": "action",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=255",
+                "index": 0,
+                "instance": 1
+            },
+            "value": "Etat",
+            "subtype": "other",
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=0",
+                "index": 0,
+                "instance": 1
+            },
+            "value": "Etat",
+            "subtype": "other",
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }
+        },
+        {
+            "name": "Intensité",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=#slider#",
+                "index": 0,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 99
+            },
+            "value": "Etat",
+            "subtype": "slider",
+            "display": {
+                "generic_type": "LIGHT_SLIDER"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 38,
+                "value": "",
+                "index": 0,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 99
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            },
+            "unite": "%"
+        }, 
+        {
+            "name": "Puissance", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 8, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 2500
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "POWER"
+            }, 
+            "template": {
+                "dashboard": "tile"
+            }, 
+            "unite": "W"
+        }, 
+        {
+            "name": "Consommation", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "CONSUMPTION"
+            }, 
+            "template": {
+                "dashboard": "tile"
+            }, 
+            "unite": "kWh"
+        }
+    ], 
+    "recommended": {
+        "groups": [
+            {
+                "index": 1, 
+                "value": "add"
+            }
+        ], 
+        "polling": [
+            {
+                "instanceId": "1",
+                "index": 0, 
+                "class": "50"
+            }
+        ], 
+        "needswakeup": false
+    }
+}
