@@ -190,10 +190,9 @@
                 "class": 38, 
                 "value": "type=setvalue&value=99", 
                 "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-lumiere-on\"></i>", 
@@ -209,10 +208,9 @@
                 "class": 38, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-lumiere-off\"></i>", 
@@ -306,9 +304,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=99", 
                 "index": 0, 
-                "instance": 6, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 6
             }, 
             "subtype": "other", 
             "display": {
@@ -324,9 +320,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 6, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 6
             }, 
             "subtype": "other", 
             "display": {
