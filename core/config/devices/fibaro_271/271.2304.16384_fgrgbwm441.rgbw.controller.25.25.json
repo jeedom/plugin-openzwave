@@ -306,6 +306,7 @@
                 "index": 0, 
                 "instance": 6
             }, 
+            "value": "Blanc Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
@@ -322,6 +323,7 @@
                 "index": 0, 
                 "instance": 6
             }, 
+            "value": "Blanc Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
