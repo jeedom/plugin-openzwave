@@ -454,11 +454,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_statistiques">5.7. Statistiques</a></li>
 </ul>
 </li>
-<li><a href="#_inclusion_exclusion">6. inclusion / exclusion</a>
+<li><a href="#_inclusion_exclusion">6. Inclusion / exclusion</a>
 <ul class="sectlevel2">
-<li><a href="#_mode_inclusion">6.1. Mode inclusion</a></li>
-<li><a href="#_mode_exclusion">6.2. Mode exclusion</a></li>
-<li><a href="#_synchroniser">6.3. Synchroniser</a></li>
+<li><a href="#_inclusion_mode">6.1. Inclusion mode</a></li>
+<li><a href="#_exclusion_mode">6.2. Exclusion mode</a></li>
+<li><a href="#_synchronize">6.3. Synchronize</a></li>
 </ul>
 </li>
 <li><a href="#_réseaux_z_wave">7. Réseaux  Z-Wave</a>
@@ -1750,46 +1750,46 @@ Seul les modules sur pile peuvent être supprimés via cette assistant.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_inclusion_exclusion">6. inclusion / exclusion</h2>
+<h2 id="_inclusion_exclusion">6. Inclusion / exclusion</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A sa sortie d&#8217;usine, un module ne fait partie d&#8217;aucun réseau Z-Wave.</p>
+<p>When brand new, a module doesn&#8217;t belong to any Z-Wave network.</p>
 </div>
 <div class="sect2">
-<h3 id="_mode_inclusion">6.1. Mode inclusion</h3>
+<h3 id="_inclusion_mode">6.1. Inclusion mode</h3>
 <div class="paragraph">
-<p>Le module doit se joindre à un réseau Z-Wave existant pour communiquer avec les autres modules de ce réseau.
-Ce processus est appelé <strong>Inclusion</strong>.
-Les périphériques peuvent également sortir d&#8217;un réseau. Ce processus est appelé <strong>Exclusion</strong>.
-Les deux processus sont initiés par le contrôleur principal du réseau Z-Wave.</p>
+<p>The module needs to join an existing Z-Wave network to be able to communicate with the other modules of that network.
+This process is called "inclusion".
+Modules can also be removed form a network. This process is called "exclusion".
+Those two processes are initiated by the primary controller of the Z-Wave network.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../images/addremove01.png" alt="addremove01"></span></p>
 </div>
 <div class="paragraph">
-<p>Ce bouton vous permet de passer en mode inclusion pour ajouter un module à votre réseau Z-Wave.</p>
+<p>This button allows you to initiate the inclusion mode to add a module to your Z-Wave network.</p>
 </div>
 <div class="paragraph">
-<p>Vous povez choisir le mode d&#8217;inclusion après avoir cliqué le bouton <strong>Inclusion</strong>.</p>
+<p>You can choose the inclusion mode after having clicked on the *Inclusion" button.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../images/addremove02.png" alt="addremove02"></span></p>
 </div>
 <div class="paragraph">
-<p>Depuis l&#8217;apparition du Z-Wave+ il est possible de sécuriser les échanges entre le contrôleur et les noeuds.
-Il est donc recommandé de faire les inclusions en mode <strong>Sécurisé</strong>.</p>
+<p>Since the introduction of the Z-Wave+ protocol it is possible to secure the information exchange between the controller and the nodes.
+It is thus recommended to include modules in "Secure" mode.</p>
 </div>
 <div class="paragraph">
-<p>Si toute fois un module ne peut être inclue en mode sécurisé, veillez l&#8217;inclure en mode <strong>Non sécurisé</strong>.</p>
+<p>If a module does not support the secure mode, you&#8217;ll have to include it in "Non-secure" mode.</p>
 </div>
 <div class="paragraph">
-<p>Une fois en mode inclusion : Jeedom vous le signale.</p>
+<p>When inclusion mode started, Jeedom lets you know.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../images/addremove03.png" alt="addremove03"></span></p>
 </div>
 <div class="paragraph">
-<p>Une fois l&#8217;assistant lancé, il faut en faire de même sur votre module (se référer à la documentation de celui-ci pour le passer en mode inclusion).</p>
+<p>When the wizard has launched, you have to set the module in inclusion mode (please refer to its documentation to set it in inclusion mode).</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1798,13 +1798,13 @@ Il est donc recommandé de faire les inclusions en mode <strong>Sécurisé</stro
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Tant que vous n&#8217;avez pas le bandeau, vous n&#8217;êtes pas en mode inclusion.
+As long as you don&#8217;t see the ribbon, you are not in inclusion mode.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Si vous re cliquez sur le bouton vous sortez du mode inclusion.</p>
+<p>If you re-click on the button this will exit the inclusion mode.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1813,8 +1813,8 @@ Tant que vous n&#8217;avez pas le bandeau, vous n&#8217;êtes pas en mode inclus
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Il est recommandé avant l&#8217;inclusion d&#8217;un nouveau module qui serait "nouveau" sur le marché, de lancer la commande <strong>Config modules</strong> via l&#8217;écran de configuration du plugin.
-Cette action va récupérer l&#8217;ensemble des dernières versions des fichiers de configurations openzwave ainsi que le mapping de commandes Jeedom.
+It is recommended before including a new type of module (recently appeared on the market), to launch the *Config modules" command from the plugin configuration screen.
+This action will result in updating the set of openzwave configuration files, as well as the Jeedom command mappinga, with their latest versions.
 </td>
 </tr>
 </table>
@@ -1826,7 +1826,7 @@ Cette action va récupérer l&#8217;ensemble des dernières versions des fichier
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Lors d&#8217;une inclusion, il est conseillé que le module soit à proximité du contrôleur principal, soit à moins d&#8217;un mètre de votre jeedom.
+During inclusion, it is recommended that the module is positioned less than one meter from the primary controller,
 </td>
 </tr>
 </table>
@@ -1838,7 +1838,7 @@ Lors d&#8217;une inclusion, il est conseillé que le module soit à proximité d
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Certains modules requièrent obligatoirement une inclusion en mode <strong>sécurisé</strong>, par exemple pour les serrures de porte.
+The <strong>secure</strong> mode inclusion is compulsory for some modules, for instance door locks.
 </td>
 </tr>
 </table>
@@ -1850,7 +1850,7 @@ Certains modules requièrent obligatoirement une inclusion en mode <strong>sécu
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-A noter que l&#8217;interface mobile vous donne aussi accès à l&#8217;inclusion, le panel mobile doit avoir été activé.
+Please note that the mobile interface also allows inclusion (the mobile panel has to be activated).
 </td>
 </tr>
 </table>
@@ -1862,8 +1862,8 @@ A noter que l&#8217;interface mobile vous donne aussi accès à l&#8217;inclusio
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Si le module appartient déjà à un réseau, suivez le processus d&#8217;exclusion avant de l&#8217;inclure dans votre réseau. Sinon l&#8217;inclusion de ce module va échouer.
-Il est d&#8217;ailleurs recommandé d&#8217;exécuter une exclusion avant l&#8217;inclusion, même si le produit est neuf, sorti du carton.
+If a module already belongs to a network, you have to follow the exclusion process before including it, otherwise its inclusion will fail.
+It is by the way recommended to initially follow the exclusion process of a module before attempting to include it, even if brand new.
 </td>
 </tr>
 </table>
@@ -1875,19 +1875,19 @@ Il est d&#8217;ailleurs recommandé d&#8217;exécuter une exclusion avant l&#821
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Une fois le module à son emplacement définitif, il faut lancer l&#8217;action soigner le réseau, afin de demander à tous les modules de rafraichir l&#8217;ensemble des voisins.
+When the included module has been moved to its final location, the network healing command has to be launched, so all the modules will refresh their list of neighbors.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_mode_exclusion">6.2. Mode exclusion</h3>
+<h3 id="_exclusion_mode">6.2. Exclusion mode</h3>
 <div class="paragraph">
 <p><span class="image"><img src="../images/addremove04.png" alt="addremove04"></span></p>
 </div>
 <div class="paragraph">
-<p>Ce bouton vous permet de passer en mode exclusion, cela pour retirer un module de votre réseau Z-Wave, il faut en faire de même avec votre module (se référer à la documentation de celui-ci pour le passer en mode exclusion).</p>
+<p>This button allows you to initiate the exclusion mode to remove a module from your Z-Wave network. You also have to set the module in exclusion mode (please refer to its documentation).</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../images/addremove05.png" alt="addremove05"></span></p>
@@ -1899,13 +1899,13 @@ Une fois le module à son emplacement définitif, il faut lancer l&#8217;action 
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Tant que vous n&#8217;avez pas le bandeau, vous n&#8217;êtes pas en mode exclusion.
+As long as you don&#8217;t see the ribbon, you are not in exclusion mode.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Si vous re cliquez sur le bouton vous sortez du mode exclusion.</p>
+<p>If you re-click on the button this will exit the exclusion mode.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1914,7 +1914,7 @@ Tant que vous n&#8217;avez pas le bandeau, vous n&#8217;êtes pas en mode exclus
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-A noter que l&#8217;interface mobile vous donne aussi accès à l&#8217;exclusion.
+Please note that the mobile interface also allows exclusion.
 </td>
 </tr>
 </table>
@@ -1926,22 +1926,22 @@ A noter que l&#8217;interface mobile vous donne aussi accès à l&#8217;exclusio
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Un module n&#8217;a pas besoin d&#8217;être exclu par le même contrôleur sur lequel il a été préalablement inclu. D&#8217;où le fait qu&#8217;on recommande d&#8217;exécuter une exclusion avant chaque inclusion.
+A module needs not be excluded by the same controller by which it was previously included. Hence the fact we recommend to do an exclusion before any inclusion.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_synchroniser">6.3. Synchroniser</h3>
+<h3 id="_synchronize">6.3. Synchronize</h3>
 <div class="paragraph">
 <p><span class="image"><img src="../images/addremove06.png" alt="addremove06"></span></p>
 </div>
 <div class="paragraph">
-<p>Bouton permettant de synchroniser les modules du réseau Z-Wave avec les équipements Jeedom. Les modules sont associés au contrôleur principal, les équipements dans Jeedom sont créés automatiquement lors de leur inclusion. Ils sont aussi supprimés automatiquement lors de l&#8217;exclusion, si l&#8217;option <strong>Supprimer automatiquement les périphériques exclus</strong> est activé.</p>
+<p>Button allowing to synchronize the modules of the Z-Wave network with the Jeedom equipments. Modules are associated with the primary controller and the corresponding Jeedom equipments are automatically created upon their inclusion. They are also automatically deleted upon exclusion if the option "Automatically delete excluded modules" is activated.</p>
 </div>
 <div class="paragraph">
-<p>Si vous avez inclue des modules sans Jeedom (requiert un dongle avec pile comme le Aeon-labs Z-Stick GEN5), une synchronisation sera nécessaire suite au branchement de la clé, une fois le démon démarré et fonctionnel.</p>
+<p>If you included modules independently of Jeedom (requires a battery-powered dongle as the Aeon-labs T-Stick GEN5), a synchronization will be necessary after the dongle is reconnected and the daemon is started and operational.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1950,7 +1950,7 @@ Un module n&#8217;a pas besoin d&#8217;être exclu par le même contrôleur sur 
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Si vous n&#8217;avez pas l&#8217;image ou que Jeedom n&#8217;a pas reconnu votre module, ce bouton peut permettre de corriger (sous réserve que l&#8217;interview du module soit complète).
+If you don&#8217;t see the image or if Jeedom did not recognize your module, this button can fix it (as long as the interview of the module is complete).
 </td>
 </tr>
 </table>
@@ -1962,13 +1962,13 @@ Si vous n&#8217;avez pas l&#8217;image ou que Jeedom n&#8217;a pas reconnu votre
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Si sur votre table de routage et/ou sur l&#8217;écran de santé Z-Wave vous avez un ou des modules nommés avec leur <strong>nom générique</strong>, la synchronisation permettra de remédier à cette situation.
+If on the routing table and/or the Z-Wave health screen you have one or more modules named after their <strong>generic name</strong>, synchronization should allow to remediate this situation.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Le bouton Synchroniser n&#8217;est visible qu&#8217;en mode expert :
+<p>The Synchronization button is only visible in expert mode :
 <span class="image"><img src="../images/addremove07.png" alt="addremove07"></span></p>
 </div>
 <hr>
