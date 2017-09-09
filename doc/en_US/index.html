@@ -436,8 +436,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_configuration_of_devices">4. Configuration of devices</a>
 <ul class="sectlevel2">
-<li><a href="#_général">4.1. Général</a></li>
-<li><a href="#_commandes">4.2. Commandes</a></li>
+<li><a href="#_general">4.1. General</a></li>
+<li><a href="#_commands">4.2. Commands</a></li>
 <li><a href="#_jeux_de_commandes">4.3. Jeux de Commandes</a></li>
 <li><a href="#_documentation_et_assistant">4.4. Documentation et Assistant</a></li>
 <li><a href="#_configuration_recommandée">4.5. Configuration recommandée</a></li>
@@ -1010,13 +1010,13 @@ La sélection du Port clé Z-Wave en mode de détection automatique, <strong>Aut
 <h2 id="_configuration_of_devices">4. Configuration of devices</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La configuration des équipements Z-Wave est accessible à partir du menu plugin :</p>
+<p>The configuration of the Z-Wave devices is accessible from the plugin menu :</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../images/appliance01.png" alt="appliance01"></span></p>
 </div>
 <div class="paragraph">
-<p>Ci-dessous un exemple d&#8217;une page du plugin Z-Wave (présentée avec quelques équipements) :</p>
+<p>Here below an example of a page of the Z-Wave plugin (presented with some devices) :</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../images/appliance02.png" alt="appliance02"></span></p>
@@ -1028,7 +1028,7 @@ La sélection du Port clé Z-Wave en mode de détection automatique, <strong>Aut
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Comme à beaucoup d&#8217;endroits sur Jeedom, placer la souris tout à gauche permet de faire apparaître un menu d&#8217;accès rapide (vous pouvez, à partir de votre profil, le laisser toujours visible).
+As in many places in Jeedom, moving the mouse towards the far left opens a quick options menu (you can have it always visible by setting your profile&#8217;s options).
 </td>
 </tr>
 </table>
@@ -1040,16 +1040,16 @@ Comme à beaucoup d&#8217;endroits sur Jeedom, placer la souris tout à gauche p
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Les boutons sur la ligne tout en haut <strong>Synchroniser</strong>, <strong>Réseau-Zwave</strong> et <strong>Santé</strong>, sont visibles seulement si vous êtes en mode <strong>Expert</strong>.
+The upper-line buttons <strong>Synchronize</strong>, <strong>Z-Wave network</strong> and <strong>Health</strong> are visible only if you&#8217;re in <strong>Expert</strong> mode.
 <span class="image"><img src="../images/appliance03.png" alt="appliance03"></span>
 </td>
 </tr>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_général">4.1. Général</h3>
+<h3 id="_general">4.1. General</h3>
 <div class="paragraph">
-<p>Vous retrouvez ici toute la configuration de votre équipement :</p>
+<p>You can find here the full configuration of your device :</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../images/appliance04.png" alt="appliance04"></span></p>
@@ -1057,40 +1057,40 @@ Les boutons sur la ligne tout en haut <strong>Synchroniser</strong>, <strong>Ré
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Nom de l&#8217;équipement</strong> : nom de votre module Z-Wave.</p>
+<p><strong>Name of the devise</strong> : name of your Z-Wave module.</p>
 </li>
 <li>
-<p><strong>Objet parent</strong> : indique l&#8217;objet parent auquel appartient l&#8217;équipement.</p>
+<p><strong>Parent object</strong> : indicates the parent object to which the device belongs.</p>
 </li>
 <li>
-<p><strong>Catégorie</strong> : les catégories de l&#8217;équipement (il peut appartenir à plusieurs catégories).</p>
+<p><strong>Category</strong> : the device categories (the device may belong to more multiple categories).</p>
 </li>
 <li>
-<p><strong>Activer</strong> : permet de rendre votre équipement actif.</p>
+<p><strong>Activate</strong> : sets your device as active.</p>
 </li>
 <li>
-<p><strong>Visible</strong> : le rend visible sur le dashboard.</p>
+<p><strong>Visible</strong> : visible on the dashboard.</p>
 </li>
 <li>
-<p><strong>Node ID</strong> : ID du module sur le réseau Z-Wave. Ceci peut être utile si, par exemple, vous voulez remplacer un module défaillant. Il suffit d&#8217;inclure le nouveau module, de récupérer son ID, et le mettre à la place de l&#8217;ID de l&#8217;ancien module et enfin de supprimer le nouveau module.</p>
+<p><strong>Node ID</strong> : ID of the module in the Z-Wave network. This can be useful of for example you want to replace a faulty module : just include the new module, note its ID, and replace the old one with that ID ; finally delete the faulty module.</p>
 </li>
 <li>
-<p><strong>Module</strong> : ce champ n&#8217;apparaît que s&#8217;il existe différents types de configuration pour votre module (cas pour les modules pouvant faire fils pilotes par exemple). Il vous permet de choisir la configuration à utiliser ou de la modifier par la suite</p>
+<p><strong>Module</strong> : this field only appears if there exists multiple configuration types for your module (for instance "fil pilote" modules). It allows you to choose the configuration to be used now or later..</p>
 </li>
 <li>
-<p><strong>Marque</strong> : fabricant de votre module Z-Wave.</p>
+<p><strong>Brand</strong> : Maker of your Z-Wave module.</p>
 </li>
 <li>
-<p><strong>Configuration</strong> : fenêtre de configuration des paramètres du module</p>
+<p><strong>Configuration</strong> : window for configuration of the parameters of the module.</p>
 </li>
 <li>
-<p><strong>Assistant</strong> : disponible uniquement sur certains modules, il vous aide à configurer le module (cas sur le zipato keyboard par exemple)</p>
+<p><strong>Wizard</strong> : only available for some modules, it assists you configuring them  (Zipato keyboard for instance).</p>
 </li>
 <li>
-<p><strong>Documentation</strong> : ce bouton vous permet d&#8217;ouvrir directement la documentation Jeedom concernant ce module.</p>
+<p><strong>Documentation</strong> : this button gives access to the Jeedom documentation related to the module.</p>
 </li>
 <li>
-<p><strong>Supprimer</strong> : Permet de supprimer un équipement ainsi que tous ces commandes rattaché sans l&#8217;exclure du réseau Z-Wave.</p>
+<p><strong>Delete</strong> : allows deletion of a device as well as its commands without excluding the module from the Z-Wave network.</p>
 </li>
 </ul>
 </div>
@@ -1101,18 +1101,18 @@ Les boutons sur la ligne tout en haut <strong>Synchroniser</strong>, <strong>Ré
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-La suppression d&#8217;un équipement n&#8217;engendre pas une exclusion du module sur le contrôleur.
+Deletion of an device does not exclude its corresponding module from the primary controller.
 <span class="image"><img src="../images/appliance11.png" alt="appliance11"></span>
-Un équipement supprimé qui est toujours rattaché à son contrôleur sera automatiquement recréé suite à la synchronisation.
+A deleted device whose module is still attached to its controller will be recreated at the next synchronization.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_commandes">4.2. Commandes</h3>
+<h3 id="_commands">4.2. Commands</h3>
 <div class="paragraph">
-<p>Ci-dessous vous retrouvez la liste des commandes :</p>
+<p>Here below you can fond the list of commands :</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../images/appliance05.png" alt="appliance05"></span></p>
@@ -1124,7 +1124,7 @@ Un équipement supprimé qui est toujours rattaché à son contrôleur sera auto
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-En fonction des types et sous-types, certaines options peuvent être absentes.
+According to types and subtypes, given options might not be available.
 </td>
 </tr>
 </table>
@@ -1132,52 +1132,52 @@ En fonction des types et sous-types, certaines options peuvent être absentes.
 <div class="ulist">
 <ul>
 <li>
-<p>le nom affiché sur le dashboard</p>
+<p>the name displayed on the dashboard</p>
 </li>
 <li>
-<p>icône : dans le cas d&#8217;une action permet de choisir une icône à afficher sur le dashboard au lieu du texte</p>
+<p>icon : allows, in case of an action, to choose an icon to display instead of its text on the dashboard</p>
 </li>
 <li>
-<p>valeur de la commande : dans le cas d&#8217;une commande type action, sa valeur peut être liée à une commande de type info, c&#8217;est ici que cela se configure. Exemple pour une lampe l&#8217;intensité est liée à son état, cela permet au widget d&#8217;avoir l&#8217;état réel de la lampe.</p>
+<p>value of the command : in the case of an action type of command, its value may be linked to an info type of command. For example when for a lamp its intensity is linked to its state, allowing the widget to display the true state of the lamp.</p>
 </li>
 <li>
-<p>le type et le sous-type.</p>
+<p>the type and the subtype.</p>
 </li>
 <li>
-<p>l&#8217;instance de cette commande Z-Wave (réservée aux experts).</p>
+<p>the instance of this Z-Wave command (reserved for experts).</p>
 </li>
 <li>
-<p>la classe de la commande Z-Wave (réservée aux experts).</p>
+<p>the class of the Z-Wave command (reserved for experts).</p>
 </li>
 <li>
-<p>l&#8217;index de la valeur (réservée aux experts).</p>
+<p>the index of the Z-Wave command (reserved for experts).</p>
 </li>
 <li>
-<p>la commande en elle-même (réservée aux experts).</p>
+<p>the actual command (reserved for experts).</p>
 </li>
 <li>
 <p>"Valeur de retour d&#8217;état" et "Durée avant retour d&#8217;état" : permet d&#8217;indiquer à Jeedom qu&#8217;après un changement sur l&#8217;information sa valeur doit revenir à Y, X min après le changement. Exemple : dans le cas d&#8217;un détecteur de présence qui n&#8217;émet que lors d&#8217;une détection de présence, il est utile de mettre par exemple 0 en valeur et 4 en durée, pour que 4 min après une détection de mouvement (et si ensuite, il n&#8217;y en a pas eu de nouvelles) Jeedom remette la valeur de l&#8217;information à 0 (plus de mouvement détecté).</p>
 </li>
 <li>
-<p>Historiser : permet d&#8217;historiser la donnée.</p>
+<p>Historization : allows to historize the data.</p>
 </li>
 <li>
-<p>Afficher : permet d&#8217;afficher la donnée sur le dashboard.</p>
+<p>Display : allows the display of the data on the dashboard.</p>
 </li>
 <li>
-<p>Inverser : permet d&#8217;inverser l&#8217;état pour les types binaires.</p>
+<p>Invert : allows the inversion of the state for binary types.</p>
 </li>
 <li>
-<p>Unité : unité de la donnée (peut être vide).</p>
+<p>Unit : the unit of the data (can be left empty).</p>
 </li>
 <li>
-<p>Min/Max : bornes de la donnée (peuvent être vides).</p>
+<p>Min/Max : bounds of the data (can be left empty).</p>
 </li>
 <li>
-<p>Configuration avancée (petites roues crantées) : permet d&#8217;afficher la configuration avancée de la commande (méthode d&#8217;historisation, widget&#8230;&#8203;).</p>
+<p>Avanced configuration (small notched wheel) : allows to display the advanced configuration of the command (historization method, widget&#8230;&#8203;).</p>
 </li>
 <li>
-<p>Tester : permet de tester la commande.</p>
+<p>Test : allows to test the command.</p>
 </li>
 <li>
 <p>Supprimer (signe -) : permet de supprimer la commande.</p>
@@ -1938,7 +1938,7 @@ A module needs not be excluded by the same controller by which it was previously
 <p><span class="image"><img src="../images/addremove06.png" alt="addremove06"></span></p>
 </div>
 <div class="paragraph">
-<p>Button allowing to synchronize the modules of the Z-Wave network with the Jeedom equipments. Modules are associated with the primary controller and the corresponding Jeedom equipments are automatically created upon their inclusion. They are also automatically deleted upon exclusion if the option "Automatically delete excluded modules" is activated.</p>
+<p>Button allowing to synchronize the modules of the Z-Wave network with the Jeedom devices. Modules are associated with the primary controller and the corresponding Jeedom devices are automatically created upon their inclusion. They are also automatically deleted upon exclusion if the option "Automatically delete excluded modules" is activated.</p>
 </div>
 <div class="paragraph">
 <p>If you included modules independently of Jeedom (requires a battery-powered dongle as the Aeon-labs T-Stick GEN5), a synchronization will be necessary after the dongle is reconnected and the daemon is started and operational.</p>
@@ -1969,7 +1969,7 @@ If on the routing table and/or the Z-Wave health screen you have one or more mod
 </div>
 <div class="paragraph">
 <p>The Synchronization button is only visible in expert mode :
-<span class="image"><img src="../images/addremove07.png" alt="addremove07"></span></p>
+mage:../images/addremove07.png[]</p>
 </div>
 <hr>
 </div>
@@ -2590,18 +2590,18 @@ Ouvrir le détail du/des modules, pour essayer les suggestions de solution propo
 <h2 id="_backups">9. Backups</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>La partie backup va vous permettre de gérer les backups de la topologie de votre réseau. C&#8217;est votre fichier zwcfgxxx.xml, il constitue le dernier état connu de votre réseau, c&#8217;est une forme de cache de votre réseau. A partir de cet écran vous pourrez :</p>
+<p>The backup area allows you to manage the backups of your network&#8217;s topology. It is your zwcfgxxx.xml file, containing the latest known state of the network ; it is a kind  of cache. From this screen you can :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Lancer un backup (un backup est fait à chaque arrêt relance du réseau et pendant les opérations critiques). Les 12 derniers backups sont conservés</p>
+<p>Start a backup (one is done each time each time the network is restarted and during critical operations). The last 12 backups are kept.</p>
 </li>
 <li>
-<p>Restaurer un backup (en le sélectionnant dans la liste juste au-dessus)</p>
+<p>Restore a backup (by selecting it in the list just above)</p>
 </li>
 <li>
-<p>Supprimer un backup</p>
+<p>Delete a backup</p>
 </li>
 </ul>
 </div>

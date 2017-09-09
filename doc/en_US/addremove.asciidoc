@@ -76,7 +76,7 @@ A module needs not be excluded by the same controller by which it was previously
 
 image:../images/addremove06.png[]
 
-Button allowing to synchronize the modules of the Z-Wave network with the Jeedom equipments. Modules are associated with the primary controller and the corresponding Jeedom equipments are automatically created upon their inclusion. They are also automatically deleted upon exclusion if the option "Automatically delete excluded modules" is activated.
+Button allowing to synchronize the modules of the Z-Wave network with the Jeedom devices. Modules are associated with the primary controller and the corresponding Jeedom devices are automatically created upon their inclusion. They are also automatically deleted upon exclusion if the option "Automatically delete excluded modules" is activated.
 
 If you included modules independently of Jeedom (requires a battery-powered dongle as the Aeon-labs T-Stick GEN5), a synchronization will be necessary after the dongle is reconnected and the daemon is started and operational.
 
@@ -87,4 +87,4 @@ If you don't see the image or if Jeedom did not recognize your module, this butt
 If on the routing table and/or the Z-Wave health screen you have one or more modules named after their *generic name*, synchronization should allow to remediate this situation.
 
 The Synchronization button is only visible in expert mode :
-image:../images/addremove07.png[]
+mage:../images/addremove07.png[]
