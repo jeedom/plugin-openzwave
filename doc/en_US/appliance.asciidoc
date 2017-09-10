@@ -57,7 +57,7 @@ According to types and subtypes, given options might not be available.
 * the class of the Z-Wave command (reserved for experts).
 * the index of the Z-Wave command (reserved for experts).
 * the actual command (reserved for experts).
-* "Valeur de retour d'état" et "Durée avant retour d'état" : permet d'indiquer à Jeedom qu'après un changement sur l'information sa valeur doit revenir à Y, X min après le changement. Exemple : dans le cas d'un détecteur de présence qui n'émet que lors d'une détection de présence, il est utile de mettre par exemple 0 en valeur et 4 en durée, pour que 4 min après une détection de mouvement (et si ensuite, il n'y en a pas eu de nouvelles) Jeedom remette la valeur de l'information à 0 (plus de mouvement détecté).
+* "Value of return state" and "Time before return state" : indicates to Jeedom that after a change on the information its value is to be reset to X, after Y minutes. Example : in the case of a motion sensor which only emits when motion is sensed, one can reset its value to 0 after 4 minutes (if no further motion was detected).
 * Historization : allows to historize the data.
 * Display : allows the display of the data on the dashboard.
 * Invert : allows the inversion of the state for binary types.
@@ -65,82 +65,82 @@ According to types and subtypes, given options might not be available.
 * Min/Max : bounds of the data (can be left empty).
 * Avanced configuration (small notched wheel) : allows to display the advanced configuration of the command (historization method, widget...).
 * Test : allows to test the command.
-* Supprimer (signe -) : permet de supprimer la commande.
+* Delete (- sign) : allows to delete the command.
 
 
 [IMPORTANT]
-Le bouton *Tester* dans le cas d'une commande de type Info, ne va pas interroger le module directement mais la valeur disponible dans le cache de Jeedom.
-Le test retournera la bonne valeur seulement si le module en question a transmis une nouvelle valeur correspondant à la définition de la commande.
-Il est alors tout à fait normal de ne pas obtenir de résultat suite à la création d'une nouvelle commande Info, spécialement sur un module sur pile qui notifie rarement Jeedom.
+The *Test* button of a info type command does not directly query the module, but the available value in Jeedom's cache.
+The test will only return the current value if the related module transmitted a new value re. the definition of the command. 
+It is absolutely normal to not obtain an immediate result when an info type command is created, especially for battery-powered modules that seldom notify Jeedom.
 
-La *loupe*, disponible dans l'onglet général, permet de recréer l'ensemble des commandes pour le module en cours.
+The *magnifying glass*, available the general tab, allows to re-create the set of commands for the current module.
 image:../images/appliance13.png[]
-Si aucune commande n’est présente ou si les commandes sont erronées la loupe devrait remédier à la situation.
+If no commands are available or if there are, but they are erroneous, the magnifying glass can remediate to this situation.
 
 
 [IMPORTANT]
-La *loupe* va supprimer les commandes existantes. Si les commandes étaient utilisées dans des scénarios, vous devrez alors corriger vos scénarios aux autres endroits où les commandes étaient exploitées.
+The *magnifying glass* will delete existing commands. If they were referenced in scenarios or elsewhere, you'll have to correct those references.
 
 
-=== Jeux de Commandes
+=== Command sets
 
-Certains modules possèdent plusieurs jeux de commandes préconfigurées
+Some modules have multiple pre-configured command sets
 
 image:../images/appliance06.png[]
 
-Vous pouvez les sélectionner via les choix possibles, si le module le permet.
+You can select one in the possible choices, if the module supports it.
 
 [IMPORTANT]
-Vous devez effectuer la loupe pour appliquer le nouveau jeux de commandes.
+You have to action the magnifying glass to apply the new set of commands.
 
-=== Documentation et Assistant
+=== Documentation and Wizard
 
-Pour un certain nombre de modules, une aide spécifique pour la mise en place ainsi que des recommandations de paramètres sont disponibles.
+For some modules, specific assistance to their setup, as well as recommendations on parameters are available.
 
 image:../images/appliance07.png[]
 
-Le bouton *Documentation* permet d'accéder à la documentation spécifique du module pour Jeedom.
+The button *Documentation* gives access to the Jeedom module-specific documentation.
 
-Des modules particuliers disposent aussi d'un assistant spécifique afin de faciliter l'application de certains paramètres ou fonctionnements.
+Given modules also have a specific wizard to assist in the application of their parameters and usage. 
 
-Le bouton *Assistant* permet d'accéder à l'écran assistant spécifique du module.
+The *Wizard* button allows access to the module-specific wizard screen. 
 
 
-=== Configuration recommandée
+=== Recommended configuration
 
 image:../images/appliance08.png[]
 
-Permet d'appliquer un jeu de configuration recommandée par l'équipe Jeedom.
+Allows the application of a configuration that is recommended by the Jeedom team.
 
 [TIP]
-Lors de leur inclusion, les modules ont les paramètres par défaut du constructeur et certaines fonctions ne sont pas activées par défaut.
+Upon inclusion, module are driven by their default parameters,  and some functionalities are not activated.
 
-Les éléments suivants, selon le cas, seront appliqués pour simplifier l'utilisation du module.
+The following elements, depending on the situation, will be applied to simplify the use of the module.
 
-* *Paramètres* permettant la mise en service rapide de l'ensemble des fonctionnalités du module.
-* *Groupes d'association* requis au bon fonctionnement.
-* *Intervalle de réveil*, pour les modules sur pile.
-* Activation du *rafraîchissement manuel* pour les modules ne remontant pas d'eux-mêmes leurs changements d'états.
+* *Parameters* allowing for the quick setup of all fonctionnalities of the module.
+* *Association groups* required for correct usage.
+* *Wake-up interval*, for the battery-powered modules.
+* Activation of the *manual refresh* for the modules that don't notify their change of states without being requested to do so.
 
-Pour appliquer le jeu de configuration recommandé, cliquer sur le bouton : *Configuration recommandée*,
-puis confirmer l'application des configurations recommandées.
+To apply the recommended configuration set, click on the *Recommended configuration" button.
+and then confirm the application of the recommended configuration.
 
 image:../images/appliance09.png[]
 
-L'assistant active les différents éléments de configurations.
+The wizard activates the different configuration elements.
 
-Une confirmation du bon déroulement sera affichée sous forme de bandeau
+A confirmation of the correct flow will be displayed as a ribbon.
 
 image:../images/appliance10.png[]
 
 [IMPORTANT]
-Les modules sur piles doivent être réveillés pour appliquer le jeu de configuration.
+The battery-powered modules have to be woken-up to apply the configuration elements.
 
-La page de l'équipement vous informe si des éléments n'ont pas encore été activés sur le module.
-Veuillez-vous référer à la documentation du module pour le réveiller manuellement ou attendre le prochain cycle de réveil.
+The device page informs you if configuration elements have not yet been applied to the module.
+Please either refer to the documentation of the module to manually wake it up, or wait for its next wake-up
 
 image:../images/appliance11.png[]
 
 
 [TIP]
-Il est possible d'activer automatiquement l'application du jeu de configuration recommandé lors de l'inclusion de nouveau module, voir la section Configuration du plugin pour plus de détails.
+It is possible to automatically apply the recommended configurations when including modules, refer to the plugin configuration section for details.

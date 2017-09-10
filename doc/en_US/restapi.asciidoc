@@ -1,25 +1,25 @@
 == API HTTP
 
-Le plugin Z-Wave met à disposition des développeurs et des utilisateurs une API complète afin de pouvoir opérer le réseau Z-Wave via requête HTTP.
+The Z-Wave plugin implements a complete API so developers and users can operate the Z-Wave network via HTTP requests.
 
-Il vous est possible d'exploiter, l'ensemble des méthodes exposé par le serveur REST du démon Z-Wave.
+It is possible to invoke the whole set of methods that are exposed by the REST server of the Z-Wave daemon.
 
-La syntaxe pour appeler les routes est sous cette forme:
+The syntax to invoke routes is as follows :
 
 URL = http://token:\#APIKEY#@\#IP_JEEDOM#:\#PORTDEMON#/\#ROUTE#
 
-* \#API_KEY# correspond à votre clé API, propre à votre installation. Pour la trouver il faut aller dans le menu « Général », puis « Administration » et « Configuration », en activant le mode Expert vous verrez alors une ligne Clef API.
+* \#API_KEY# corresponds to your API key, custom to your installation. To find it, go to the "General" menu, then "Administration" and "Configuration", and having activated the expert mode, you will see the API key information.
 
-* \#IP_JEEDOM# correspond à votre url d’accès à Jeedom.
+* \#IP_JEEDOM# corresponds to access url to Jeedom.
 
-* \#PORTDEMON# correspond au numéro de port spécifié dans la page de configuration du plugin Z-Wave, par défaut: 8083.
+* \#PORTDEMON# corresponds to the port ID specified on the Z-Wave plugin configuration screen ; 8083 by default.
 
-* \#ROUTE# correspond à la route sur le serveur REST a exécuter.
+* \#ROUTE# corresponds to the route to be invoked on the REST server.
 
-Pour connaitre l'ensemble des route veillez vous référer
-link:https://github.com/jeedom/plugin-openzwave[github] du plugin Z-Wave.
+To have the list of all possible routes, please refer to
+link:https://github.com/jeedom/plugin-openzwave[github] of the Z-Wave plugin.
 
-Example:
-Pour lancer un ping sur le noeud id 2
+Example :
+To Ping node with ID 2
 
 URL = \http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices[[2]].TestNode()
