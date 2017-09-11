@@ -9,6 +9,7 @@
 		<Product type="1e12" id="015e" name="CT30 Thermostat" config="2gig/ct30.xml"/>
 		<Product type="6401" id="0105" name="CT100 Thermostat" config="2gig/ct100.xml"/>
 		<Product type="6401" id="0107" name="CT100 Thermostat USA" config="2gig/ct100.xml"/>
+		<Product type="6402" id="0100" name="CT100 Plus Thermostat" config="2gig/ct100.xml"/>
 		<Product type="6402" id="0001" name="CT100 Plus Thermostat" config="2gig/ct100.xml"/>
 		<Product type="6501" id="000c" name="CT101 Thermostat (Iris)" config="2gig/ct101.xml"/>
 		<Product type="6501" id="000d" name="CT101 Thermostat" config="2gig/ct101.xml"/>
@@ -311,6 +312,9 @@
 		<Product type="0002" id="0002" name="Dimmer Actuator"/>
 	</Manufacturer>
 	<Manufacturer id="0050" name="Digital 5">
+	</Manufacturer>
+	<Manufacturer id="021f" name="Dome">
+		<Product type="0003" id="0101" name="Door/Window Sensor" config="dome/0101.xml"/>
 	</Manufacturer>
 	<Manufacturer id="020e" name="Domitech">
 		<Product type="4c42" id="3134" name="Smart LED Retrofit Kit ZE27EU" config="domitech/ze27eu.xml"/>
@@ -816,6 +820,7 @@
 		<Product type="0003" id="6085" name="Water Leakage Detector" config="shenzen_neo/nas-ws02z.xml"/>
 		<Product type="0003" id="0088" name="Siren Alarm" config="shenzen_neo/nas-ab01z.xml"/>
 		<Product type="0003" id="1088" name="Siren Alarm" config="shenzen_neo/nas-ab01z.xml"/>
+		<Product type="0003" id="108b" name="Wall Switch (2 channels)" config="shenzen_neo/ls02ch.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0178" name="Nexia">
 		<!-- full name in Z-wave database: Ingersoll Rand - Nexia Home Intelligence -->
@@ -1080,6 +1085,7 @@
 		<Product type="2003" id="0301" name="ZS5101 Shock and Vibration Sensor" config="vision/zs5101eu.xml"/>
 		<Product type="2003" id="0302" name="ZS5101 Shock and Vibration Sensor" config="vision/zs5101eu.xml"/>
 		<Product type="2003" id="0306" name="ZS5101 Shock and Vibration Sensor" config="vision/zs5101eu.xml"/>
+		<Product type="2003" id="0307" name="ZS5101 Shock and Vibration Sensor" config="vision/zs5101eu.xml"/>
 		<Product type="2004" id="0403" name="ZS6101 Smoke Detector"/>
 		<Product type="2005" id="0503" name="ZM1601 Battery Operated Siren" config="vision/zm1601eu.xml"/>
 		<Product type="2005" id="0505" name="ZM1601 Battery Operated Siren" config="vision/zm1601eu.xml"/>

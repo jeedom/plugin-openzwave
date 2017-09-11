@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- QEES RETO Dimmer Plus 2013 -->
-<Product xmlns='http://code.google.com/p/open-zwave/'>
+<Product xmlns='http://code.google.com/p/open-zwave/'>	
 	<!-- Basic set as report -->
 	<CommandClass id="32" setasreport="true"/>
 	<!-- Association Groups -->
