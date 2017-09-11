@@ -1,8 +1,8 @@
 :icons: font
-= OpenZwave
+= OpenZWave
 
 == Description
-Ce plugin permet l'exploitation de modules Z-Wave par l'intermédiaire de la librairie OpenZwave.
+This plugin enables the operation of Z-Wave modules using the OpenZWave library.
 
 '''
 include::introduction.asciidoc[]
@@ -33,8 +33,8 @@ include::backup.asciidoc[]
 include::update.asciidoc[]
 
 '''
-== Liste des modules compatible
-Vous trouverez la liste des modules compatibles link:https://jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-equipement.compatible.html[ici]
+== List of compatible modules
+You can find the list of compatible modules https://jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-equipement.compatible.html[here]
 
 '''
 include::troubleshooting.asciidoc[]

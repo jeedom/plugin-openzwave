@@ -1,90 +1,90 @@
-== Réseaux  Z-Wave
+== Z-Wave networks
 
 image:../images/network01.png[]
 
-Vous retrouvez ici des informations générales sur votre réseau Z-Wave.
+You will find here general information on your Z-Wave network.
 
 image:../images/network02.png[]
 
-=== Résumé
+=== Summary
 
-Le premier onglet vous donne le résumé de base de votre réseau Z-Wave, vous retrouvez notamment l'état du réseau Z-Wave ainsi que le nombre d'éléments dans la file d'attente.
+The first tab show a basic summary of your Z-Wave network, in particular the state of the network as well as the number of elements in the wait queue.
 
-*Informations*
+*Information*
 
-* Donne des informations générales sur le réseau, la date de démarrage, le temps requis pour l'obtention du réseau dans un état dit fonctionnel.
-* Le nombre de nœuds total du réseau ainsi que le nombre qui dorment dans le moment.
-* L'intervalle des demandes est associé au rafraichissement manuel. Il est prédéfini dans le moteur Z-Wave à 5 minutes.
-* Les voisins du contrôleur.
+* Shows general information on the network, its startup timestamp, the time  it took for it to be up and running.
+* The total number of nodes as well as the number of the currently sleeping ones.
+* The interval of queries associated with manual refresh. It is predefined to 5 minutes in the Z-Wave engine.
+* The neighbors of the controller.
 
-*Etat*
+*State*
 
 image:../images/network03.png[]
 
-Un ensemble d'informations sur l'état actuel du réseau,  à savoir :
+Information on the current state of the network :
 
-* Etat actuel, peut-être *Driver Initialised*, *Topology loaded* ou *Ready*.
-* Queue sortante, indique le nombre de messages en queue dans le contrôleur en attente d’être envoyé.
-Cette valeur est généralement élevée durant le démarrage du réseau lorsque l'état est encore en *Driver Initialised*.
+* Current state, can be : *Driver initialized*, *Topology loaded* or "Ready*.
+* Out queue, indicates the number of outbound messages in queue waiting to be sent.
+This value is usually high while the network is starting when in "Driver initialized state".
 
-Une fois que le réseau a au minimum atteint *Topology loaded*, des mécanismes internes au serveur Z-Wave vont forcer des mises à jour de valeurs, il est alors tout-à-fait normal de voir monter le nombre de messages. Celui-ci va rapidement retourner à 0.
-
-[TIP]
-Le réseau est dit fonctionnel au moment où il atteint le statut *Topology Loaded*, c'est-à-dire que l'ensemble des nœuds secteurs ont complété leurs interviews. Selon le nombre de modules, la répartition pile/secteur, le choix du dongle USB et le PC sur lequel tourne le plugin  Z-Wave, le réseau va atteindre cette état entre une et cinq minutes.
-
-Un réseau *Ready*, signifie que tous les nœuds secteur et sur pile ont complété leur interview.
+Once the network has at least reached the *Topology loaded* state, internal Z-Wave server mechanisms will force values update ; it is then normal to observe the number of messages increasing. It will then rapidly decrease to 0.
 
 [TIP]
-Selon les modules dont vous disposez, il est possible que le réseau n'atteigne jamais de lui-même le statut *Ready*. Les télécommandes, par exemple, ne se réveillent pas d'elles-mêmes et ne compléteront jamais leur interview. Dans ce genre de cas, le réseau est tout-à-fait opérationnel et même si les télécommandes n'ont pas complété leur interview, elles assurent leurs fonctionnalités au sein du réseau.
+The network is operational when it reaches the state "Topology loaded*, that is when all the nodes have completed their interview. According to the number of modules, their ratio between battery- and mains-powered, the choice of the Z-Wave dongle and the system on which the systems runs, this can take between one and five minutes. 
 
-*Capacités*
+A *ReadY* network means that all the modules, battery- or mains-powered, have completed their interview.
 
-Permet de savoir si le contrôleur est un contrôleur principal ou secondaire.
+[TIP]
+According to the modules in the network, it is possible the network will never reach by itself the *Ready* status. Remote controls for instance will not wake-up by themselves and therefore not complete their interview. Even in this case the network is fully operational, and although remote controls did not complete their interview they are functioning.
 
-*Système*
+*Capabilities*
 
-Affiche diverses informations système.
+Allows to know if the controller is a primary or secondary controller.
 
-* Information sur le port USB utilisé.
-* Version de la librairie OpenZwave
-* Version de la librairie Python-OpenZwave
+*System*
+
+Displays miscellaneous system information.
+
+* Information of the used USB port.
+* OpenZWave library version
+* Python-OpenZWave library version
 
 
 === Actions
 
 image:../images/network05.png[]
 
-Vous retrouvez ici toutes les actions possibles sur l'ensemble de votre réseau Z-Wave. Chaque action est accompagnée d’une description sommaire.
+You will find here all possible actions on the whole of the Z-wave network. Each action is complemented by a brief description.
 
 [IMPORTANT]
-Certaines actions sont vraiment risquées voire irréversibles, l'équipe Jeedom ne pourra être tenue responsable en cas de mauvaise manipulation.
+Some actions are really dangerous and / or can not be unapplied ; the Jeedom team will not be held responsible for any wrongdoing.
 
 [IMPORTANT]
-Certains modules requièrent une inclusion en mode sécurisé, par exemple pour les serrures de porte. L’inclusion sécurisée doit être lancée via l'action de cet écran.
+Some modules require a inclusion in secured mode, for instance door locks. Secured inclusion has to be initiated from this screen.
 
 [TIP]
-Si une action ne peut être lancée, elle sera désactivée jusqu'au moment où elle pourra être à nouveau exécutée.
+If an action can not be launched, it will be deactivated until it is again available.
 
-=== Statistiques
+=== Statistics
 
 image:../images/network06.png[]
 
-Vous retrouvez ici les statistiques générales sur l'ensemble de votre réseau Z-Wave.
+You will find here general statistics on the whole of the Z-Wave network.
 
-=== Graphique du réseau
+=== Graph of the network 
 
 image:../images/network07.png[]
 
-Cet onglet vous donnera une représentation graphique des différents liens entre les nœuds.
+This tabs shows a graphical representation of the links between the nodes. 
 
-Explication la légende des couleurs :
+Color codes :
 
-* *Noir* : Le contrôleur principal, en général représenté comme Jeedom.
-* *Vert* : Communication directe avec le contrôleur, idéal.
-* *Blue* : Pour les contrôleurs, comme les télécommandes, ils sont associés au contrôleur primaire, mais n'ont pas de voisin.
-* *Jaune* : Toute les routes ont plus d’un saut avant d'arriver au contrôleur.
-* *Gris* : L'interview n'est pas encore complété, les liens seront réellement connus une fois l'interview complété.
-* *Rouge* : présumé mort, ou sans voisin, ne participe pas/plus au maillage du réseau.
+* *Black* : The primary controller, in general shown as Jeedom.
+* *Green* : Direct communication with the controller, ideal situation.
+* *Blue* : controllers, such as remote controls, that are associated with the primary controller but have no neighbors.
+* *Yellow* : All routes have more than one hop to reach the controller.
+* *Grey* : The interview has not yet completed ; links will be only determined when the interviews are complete.
+* *Red* : presumed dead, or without neighbors ; no longer participates in the network mesh.
 
 [TIP]
 Seul les équipements actifs seront affichés dans le graphique réseau.
@@ -106,9 +106,9 @@ image:../images/network08.png[]
 Les lignes du tableau contiennent les nœuds de source et les colonnes contiennent les nœuds de destination.
 Se référer à la légende pour comprendre les couleurs de cellule qui indiquent les liens entre deux nœuds.
 
-Explication la légende des couleurs :
+Color codes :
 
-* *Vert* : Communication directe avec le contrôleur, idéal.
+* *Green* : Direct communication with the controller, ideal situation.
 * *Blue* : Au moins 2 routes avec un saut.
 * *Jaune* : Moins de 2 routes avec un saut.
 * *Gris* : L'interview n'est pas encore complété, sera réellement mis à jour une fois l'interview complété.
