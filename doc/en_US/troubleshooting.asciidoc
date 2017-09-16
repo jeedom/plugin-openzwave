@@ -1,122 +1,122 @@
-==  Depannage et diagnostic
+== Fixing and diagnostic
 
-=== Mon module est pas detecte ou ne remonte pas ses identifiants produit et type
+=== My module is not detected or does not communicate its product identifiers and type 
 image:../images/troubleshooting01.png[]
 
-Lancer la Régénération de la détection du nœud depuis l'onglet Actions du module.
+Request the regeneration of the node from the Actions tab of the module.
 
-Si vous avez plusieurs modules dans ce cas de figure, lancer *Régénérer la détection de nœuds inconnues* depuis l'écran *Réseau ZWave* onglet *Actions*.
+If you have several modules in this situation, request the "Regeneration of unknown nodes" from the Actions tab of the "Z-Wave network" screen.
 
-=== Mon module est presume mort par le controleur Dead
+=== My module is presumed Dead by the controller
 image:../images/troubleshooting02.png[]
 
-Si le module est toujours branché et joignable, suivre les solutions proposées dans l'écran du module.
+If the module is still powered and joinable, follow the proposed solutions in the module's screen.
 
-Si le module a été décommissioné ou est réellement défectueux, vous pouvez l'exclure du réseau en utilisant *supprimer le nœud en erreur* via onglet *Actions*.
+If a module was decommissioned or is really faulty, you can excluded it from the network using "Delete the faulty node" from the *Actions* tab.
 
-Si le module est parti en réparation et un nouveau module de remplacement a été livré, vous pouvez lancer *Remplacer nœud en échec* via onglet *Actions*, le contrôleur déclenche l'inclusion puis vous devez procéder à l'inclusion sur le module.
-L'id de l'ancien module sera conservé ainsi que ces commandes.
+If a module was removed and sent to get repaired and a new one was received, you can request *Replace a faulty node* from the *Actions* tab ; the controller goes in inclusion mode and you can proceed with the new module's inclusion. 
+The id of the device will remain the same, as well as its commands.
 
 
-=== Comment utiliser la commande SwitchAll
+=== How to use the SwitchAll command
 image:../images/troubleshooting03.png[]
 
-Elle est disponible via votre nœud contrôleur.
-Votre contrôleur devrait avoir les commandes Switch All On et Switch All Off.
+It is available on your controller node.
+Your controller should have the commands Switch All On and Switch All Off.
 
-Si votre contrôleur n'apparaît pas dans votre liste de module, lancez la synchronisation.
+If the controller does not appear in the list of the nodes, launch a synchronization.
 
 image:../images/troubleshooting04.png[]
 
-La Commande Classe Switch All est en général supportée sur les interrupteurs et les variateurs. Son comportement est configurable sur chaque module qui la supporte.
+The Switch All command class is generally supported on switches and dimmers. Its behavior can be configured on each module that supports it.
 
-On peut donc soit:
+One can either :
 
-** Désactiver la Commande Classe Switch All.
-** Activé pour le On et le Off.
-** Activer le On seulement.
-** Activer le Off seulement.
+** Deactivate the Switch All command class.
+** Activate it for the On and the Off.
+** Activate On only.
+** Activate Off only.
 
-Le choix d'options dépend d'un constructeur à l'autre.
+The choice of options depends on the manufacturer.
 
-Il faut donc bien prendre le temps de passer en revue l'ensemble de ses interrupteurs/variateurs avant de mettre en place un scénario si vous ne pilotez pas que des lumières.
+You have to carefully study all switches and dimmers before setting up a scenario, if these modules are not only used for lights.
 
 
-=== Mon module n a pas de commande Scene ou Bouton
+=== My module has no Scene or Button command
 image:../images/troubleshooting05.png[]
 
-Vous pouvez ajouter la commande dans l'écran de "mapping" des commandes.
+You can add the command in the command "mapping" screen.
 
-Il s'agit d'une commande *Info* en CC *0x2b* Instance *0* commande *data[0].val*
+It is an *Info* command CC *0x2b* Instance *0* command *data{0}.val*
 
-Le mode scène doit être activé dans les paramètres du module. Voir la documentation de votre module pour plus de détails.
+The Scene mode has to be activated in the parameters of the module. Refer to the documentation of the module for details.
 
 
-=== Forcer le rafraichissement de valeurs
+=== Force refresh of the values
 
-Il est  possible de forcer à la demande le rafraîchissement des valeurs d'une instance pour une commande classe spécifique.
+It is possible to request the refresh of the values of an instance for a specific command class. 
 
-Il est possible de faire via une requête http ou de créer une commande dans l'écran de mapping d'un équipement.
+One can do it using an http request or by creating a command on the command mapping screen of a device.
 
 image:../images/troubleshooting06.png[]
 
-Il s'agit d'une commande *Action* choisir la *CC* souhaitée pour une *Instance* donnée avec la commande *data[0].ForceRefresh()*
+Create an *Action* command, select the wanted CC for a given *instance* with a command *data[0].ForceRefresh()*
 
-L'ensemble des index de l'instance pour cette commande Classe sera mise à jour. Les nœuds sur piles, attendront leur prochain réveil avant d'effectuer la mise à jour de leur valeurs.
+The whole set of indexes of the instance for this command will be updated. The battery-powered nodes will refresh their values at their next wake-up.
 
-Vous pouvez aussi utiliser par script en lançant une requête http au serveur REST Z-Wave.
+You can also request it by script with an http request to the Z-Wave REST server.
 
-Remplacer ip_jeedom, node_id, instance_id, cc_id et index
+Replace ip_jeedom, node_id, instance_id, cc_id and index in
 
 \http://token:#APIKEY#@ip_jeedom:8083/ZWaveAPI/Run/devices[node_id].instances[instance_id].commandClasses[cc_id].data[index].ForceRefresh()
 
-L'accès a l'api REST ayant changé voir les détails link:./restapi.asciidoc[içi].
+The access to the REST API having changed, refer to link:./restapi.asciidoc[içi].
 
-=== Transferer les modules sur un nouveau controleur
-Pour différentes raisons vous pouvez être amené à devoir transférer l'ensemble de vos modules sur un nouveau contrôleur principal.
+=== Transfer the modules on a new controller
+You might for several reasons need to transfer all your modules on a new primary controller.
 
-Vous décidez de passer du *raZberry* à un *Z-Stick Gen5* ou parce que, vous devez effectuer un *Reset* complet du contrôleur principal.
+For instance, you decide to replace a *raZberry* by a *Z-Stick Gen5*, or you need to reset the primary controller.
 
-Voici différentes étapes pour y arriver sans perdre vos scénarios, widget et historique de valeur:
+Here are the steps to follow so as to not lose your scenarios, widgets and values histories :
 
-** 1) Faire un backup Jeedom.
-** 2) Pensez à noter (copie écran) vos valeurs de paramètres pour chaque module, ils seront perdus suite à l'exclusion.
-** 3) Dans la configuration Z-Wave décocher l'option "Supprimer automatiquement les périphériques exclus" et sauvegarder. Le réseau redémarre.
-** 4a) Dans le cas d'un *Reset* Faire le Reset du contrôleur principal et redémarrer le plugin.
-** 4b) Pour un nouveau contrôleur, stopper Jeedom, débrancher l'ancien contrôleur et brancher le nouveau. Démarrer Jeedom.
-** 5) Pour chaque équipements Z-Wave, modifier l'ID ZWave à *0*.
-** 6) Ouvrir 2 pages du plugin Z-Wave dans des onglets différents.
-** 7) (Via le premier onglet) Aller sur la page de configuration d'un module que vous désirez inclure au nouveau contrôleur.
-** 8) (Via deuxième onglet) Faire une exclusion puis une inclusion du module. Un nouvel équipement sera créé.
-** 9) Copier l'ID Z-Wave du nouvel équipement, puis supprimer cet équipement.
-** 10) Retourner sur l'onglet de l'ancien module (1er onglet) puis coller le nouvel ID à la place de l'ancien ID.
-** 11) Les paramètres ZWave ont été perdus lors de l'exclusion/inclusion, pensez à remettre vos paramètres spécifiques si vous n'utilisez les valeurs par défaut.
-** 11) Répéter les étapes 7 à 11 pour chaque module à transférer.
-** 12) A la fin vous ne devriez plus avoir d'équipement en ID 0.
-** 13) Vérifier que tous les modules sont bien nommés dans l'écran de santé Z-Wave. Lancer la Synchronisation si ce n'est pas le cas.
+** 1) Backup Jeedom
+** 2) Note (print screen) your parameters values for each module, as they will be lost after exclusion.
+** 3) In the Z-Wave configuration unset the option "Automatically delete excluded devices" and save. The network restart.
+** 4a) In the case of a *Reset*, reset the primary controller and restart the plugin.
+** 4b) for a new controller, stop Jeedom, unplug the current controller and plug the new one in. Start the network.
+** 5) for each Z-Wave device, set its Z-Wave ID to *0*.
+** 6) Open 2 pages of the Z-Wave plugin in 2 different pages.
+** 7) (from the first screen) fo on the configuration screen of a module to be included in the new controller.
+** 8) (from the second screen) exclude then include the module. A new device will be created.
+** 9) copy the Z-Wave ID of the new device, then delete it.
+** 10) on the first screen set the Z-wave ID to the one that was copied.
+** 11) The Z-Wave parameters are lost during exclusion/inclusion, so reset them to your specific values.
+** 11) repeat steps 7 to 11 for each module to transfer.
+** 12) when done you should have no devices left with Z-Wave ID 0.
+** 13) verify all modules are present in the Z-Wave Health screen. If not, launch a synchronization.
 
 
-=== Remplacer un module defaillant
-Comment refaire l'inclusion d'un module défaillant sans perdre vos scénarios, widgets et historiques de valeur
+=== Replacement of a faulty module
+How to re-include a faulty module without losing your scenarios, widgets and its values history
 
-Si le module est présumé "Dead" :
+If the module is presumed "Dead" :
 
-** Noter (copie écran) vos valeurs de paramètres, elles seront perdues suite à l'inclusion.
-** Allez sur l'onglet actions du module et lancer la commande "Remplacer noeud en échec".
-** Le contrôleur est en mode inclusion, procéder à l'inclusion selon la documentation du module.
-** Remettre vos paramètres spécifiques.
+** Note (print screen) its parameters values, as they will be lost after exclusion.
+** Go to Actions tab of the module and launch the "Replace faulty mode" command.
+** The controller is in inclusion mode, proceed with the module's inclusion.
+** Reset your specific parameters.
 
 Si le module n'est pas présumé "Dead" mais est toujours accessible:
 
 ** Dans la configuration ZWave décocher l'option "Supprimer automatiquement les périphériques exclus".
-** Noter (copie écran) vos valeurs de paramètres, elles seront perdues suite à l'inclusion.
+** Note (print screen) its parameters values, as they will be lost after exclusion.
 ** Exclure le module défaillant.
 ** Aller sur la page de configuration du module défaillant.
 ** Ouvrir la page du plugin ZWave dans un nouvel onglet.
 ** Faire l'inclusion du module.
 ** Copier l'ID du nouveau module, puis supprimer cet équipement.
 ** Retourner sur l'onglet de l'ancien module puis coller le nouvel ID à la place de l'ancien ID.
-** Remettre vos paramètres spécifiques.
+** Reset your specific parameters.
 
 
 === Suppression de noeud fantome

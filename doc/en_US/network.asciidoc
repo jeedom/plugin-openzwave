@@ -87,38 +87,38 @@ Color codes :
 * *Red* : presumed dead, or without neighbors ; no longer participates in the network mesh.
 
 [TIP]
-Seul les équipements actifs seront affichés dans le graphique réseau.
+Only the active devices will be displayed in the network graph.
 
-Le réseau Z-Wave est constitué de trois différents types de nœuds avec trois fonctions principales.
+The Z-Wave network has three types of nodes with three main functions.
 
-La principale différence entre les trois types de nœuds est leur connaissance de la table de routage du réseau et par la suite leur capacité à envoyer des messages au réseau:
+The principal difference between the node types is their knowledge of the network routing table and thus their ability to send messages to the network :
 
 
-=== Table de routage
+=== Routing table
 
-Chaque nœud est en mesure de déterminer quels autres nœuds sont en communication directe.
-Ces nœuds sont appelés voisins.
-Au cours de l'inclusion et/ou plus tard sur demande, le nœud est en mesure d'informer le contrôleur de la liste de voisins.
-Grâce à ces informations, le contrôleur est capable de construire une table qui a toutes les informations sur les routes possibles de communication dans un réseau.
+Each node type can determine which other nodes are in direct communication.
+Those nodes are called neighbors.
+During inclusion and/or later upon demand, the node is able to inform the controller about its list of neighbors.
+Thanks to this information, the controller is able to construct a table that holds all the possible communication routes in the network.
 
 image:../images/network08.png[]
 
-Les lignes du tableau contiennent les nœuds de source et les colonnes contiennent les nœuds de destination.
-Se référer à la légende pour comprendre les couleurs de cellule qui indiquent les liens entre deux nœuds.
+The tables rows contain the source nodes and the columns contain the destination nodes.
+Please refer to the caption to understand the color of the cells, indicating the links between two nodes.
 
 Color codes :
 
 * *Green* : Direct communication with the controller, ideal situation.
-* *Blue* : Au moins 2 routes avec un saut.
-* *Jaune* : Moins de 2 routes avec un saut.
-* *Gris* : L'interview n'est pas encore complété, sera réellement mis à jour une fois l'interview complété.
-* *Orange* : Toutes les routes ont plus d'un saut. Peut engendrer des latences.
+* *Blue* : at least 2 routes with one hop.
+* *Yellow" : less than 2 routes with a hop.
+* *Grey* : the interview is not yet completed ; will be updated when it completes.
+* *Orange* : All routes have more than one hop. Can imply latency.
 
 [TIP]
-Seul les équipements actifs seront affichés dans le graphique réseau.
+Only the active devices will be displayed in the network graph.
 
 [IMPORTANT]
-Un module présumé mort, ne participe pas/plus au maillage du réseau. Il sera marqué ici d'un point d'exclamation rouge dans un triangle.
+A module presumed dead doesn't (any longer) participate in the network mesh. It will be signaled with an red exclamation mark in a triangle.
 
 [TIP]
-Vous pouvez lancer manuellement la mise à jour des voisins, par module ou pour l'ensemble du réseau à l'aide des boutons disponibles dans la table de routage.
+You can manually request the update of the neighbors, for one or all the modules with the buttons available in the routing table.
