@@ -1,4 +1,4 @@
-== Configuration des modules
+== Modules configuration
 
 C'est ici que vous retrouverez toutes les informations sur votre module
 
@@ -6,14 +6,14 @@ image:../images/node01.png[]
 
 La fenêtre possède plusieurs onglets :
 
-=== Résumé
+=== Summary
 
 Fournit un résumé complet de votre nœud avec différentes informations sur celui-ci, comme par exemple l'état des demandes qui permet de savoir si le nœud est en attente d'information ou la liste des nœuds voisins.
 
 [TIP]
 Sur cet onglet il est possible d'avoir des alertes en cas de détection possible d'un souci de configuration, Jeedom vous indiquera la marche à suivre pour corriger. Il ne faut pas confondre une alerte avec une erreur, l'alerte est dans une majorité des cas, une simple recommandation.
 
-=== Valeurs
+=== Values
 
 image:../images/node02.png[]
 
@@ -33,7 +33,7 @@ image:../images/node16.png[]
 L'ensemble des valeurs (index) de l'instance d'une commande classe sera remonté, en activant le rafraichissement manuel sur le plus petit index de l'instance de la commande classe.
 Répéter pour chaque instance si nécessaire.
 
-=== Paramètres
+=== Parameters
 
 image:../images/node03.png[]
 
@@ -109,7 +109,7 @@ image:../images/node08.png[]
 
 L'ensemble des modules utilisant le module en cours ainsi que le nom des groupes d'associations seront affichés.
 
-*Associations multi-instances*
+=== Multi-instances associations
 
 certain module supporte une commande classe multi-instance associations.
 Lorsqu'un module supporte cette CC, il est possible de spécifier avec quelle instance on souhaite créer l'association
@@ -121,7 +121,7 @@ Certains modules doivent être associés à l'instance 0 du contrôleur principa
 Pour cette raison, le contrôleur est présent avec et sans l'instance 0.
 
 
-=== Systèmes
+=== Systems
 
 Onglet regroupant les paramètres systèmes du module.
 
@@ -136,40 +136,40 @@ Les modules *Interrupteur* et *Variateur* peuvent implémenter une Classe de com
 
 === Actions
 
-Permet d'effectuer certaines actions sur le module.
+Allows to carry on given actions on the module.
 
 image:../images/node12.png[]
 
-Certaines actions seront actives selon le type de module et ses possibilités ou encore selon l'état actuel du module comme par exemple s'il est présumé mort par le contrôleur.
+Given actions are only active depending on the type of the module and its capabilities and also its current state, for instance presumed dead.
 
 [IMPORTANT]
-Il ne faut pas utiliser les actions sur un module si on ne sait pas ce que l'on fait. Certaines actions sont irréversibles. Les actions peuvent aider à la résolution de problèmes avec un ou des modules Z-Wave.
+Do not launch an action on a module if you don't know what its effects will be. Some action can not be reversed. Actions can assist in resolving issues with Z-Wave modules.
 
 [TIP]
-La *Régénération de la détection du noeud* permet de détecter le module pour reprendre les derniers jeux de paramètres.
-Cette action est requise lorsqu'on vous informe qu'une mise a jour de paramètres et ou de comportement du module est requit pour le bon fonctionnement.
-La Régénération de la détection du noeud implique un redémarrage du réseau, l'assistant l'effectue automatiquement.
+The "Regenaration of the detection of the node" will detect the module to retrieve its latest set parameters.
+This action is required when you are informed that a parameters update is necessary for the module to operate correctly.
+The regeneration of the node detection results in a network restart that will occur automatically.
 
 [TIP]
-Si vous avez plusieurs modules identiques dont il est requis d'exécuter la *Régénération de la détection du noeud*, il est possible de la lancer une fois pour tous les modules identiques.
+If you have more than one module for which regeneration of the detection is required, it is possible to action it for all identical modules.
 
 image:../images/node13.png[]
 
 [TIP]
-Si un module sur pile n'est plus joignable et que vous souhaitez l'exclure, que l'exclusion ne s'effectue pas, vous pouvez lancer *Supprimer le noeud fantôme*
-Un assistant effectuera différentes actions afin de supprimer le module dit fantôme. Cette action implique de redémarrer le réseau et peut prendre plusieurs minutes avant d'être complétée.
+If a battery-powered module can no longer be reached and can not be excluded, you can launch the "Remove ghost node" action.
+A wizard will do different actions so as to remove the module from the network. This will result in the network being restarted and can take several minutes before completing. 
 
 image:../images/node14.png[]
 
-Une fois lancé, il est recommandé de fermer l'écran de configuration du module et de surveiller la suppression du module via l'écran de santé Z-Wave.
+Once started, it is recommended to close the module's configuration screen and check the removal of the node in the Z-Wave health screen.
 
 [IMPORTANT]
-Seul les modules sur pile peuvent être supprimés via cette assistant.
+Only battery-powered modules can be removed using this assistant.
 
-=== Statistiques
+=== Statistics
 
-Cet onglet donne quelques statistiques de communication avec le nœud.
+This tab displays communication statistics with the node. 
 
 image:../images/node15.png[]
 
-Peut être intéressant en cas de modules qui sont présumés morts par le contrôleur "Dead".
+This information can be useful in the case of a module that is presumed *Dead* by the controller.

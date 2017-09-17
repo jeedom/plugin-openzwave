@@ -106,163 +106,163 @@ If the module is presumed "Dead" :
 ** The controller is in inclusion mode, proceed with the module's inclusion.
 ** Reset your specific parameters.
 
-Si le module n'est pas présumé "Dead" mais est toujours accessible:
+If a module is not presumed *Dead* but is still accessible :
 
-** Dans la configuration ZWave décocher l'option "Supprimer automatiquement les périphériques exclus".
+** In the Z-Wave configuration unset the option "Automatically delete excluded devices".
 ** Note (print screen) its parameters values, as they will be lost after exclusion.
-** Exclure le module défaillant.
-** Aller sur la page de configuration du module défaillant.
-** Ouvrir la page du plugin ZWave dans un nouvel onglet.
-** Faire l'inclusion du module.
-** Copier l'ID du nouveau module, puis supprimer cet équipement.
-** Retourner sur l'onglet de l'ancien module puis coller le nouvel ID à la place de l'ancien ID.
+** Exclude the faulty module.
+** Go to the faulty module's screen.
+** Open the Z-Wave plugin screen in a new tab.
+** Include the module.
+** Copy the ID of the new module, then delete this device.
+** Go back to the tab of the current module and replace its ID with the new one.
 ** Reset your specific parameters.
 
 
-=== Suppression de noeud fantome
-Si vous avez perdu toute communication avec un module sur pile et que vous souhaitez l'exclure du réseau, il est possible que l'exclusion n’aboutisse pas ou que le nœud reste présent dans votre réseau.
+=== Ghost nodes removal
+If you lost communication with a battery-powered module and you wish to exclude it form the network, it is possible the exclusion does not correctly complete and the module is not removed from the network.
 
-Un assistant automatique de nœud fantôme est disponible.
+A ghost module automatic wizard is available.
 
-** Allez sur l'onglet actions du module à supprimer.
-** Il aura probablement un statu *CacheLoad*.
-** Lancer la commande *Supprimer nœud fantôme*.
-** Le réseau Z-Wave s'arrête. L'assistant automatique modifie le fichier *zwcfg* pour supprimer la CC WakeUp du module. Le réseau redémarre.
-** Fermer l'écran du module.
-** Ouvrir l'écran de Santé Z-Wave.
-** Attendre que le cycle de démarrage soit complété (topology loaded).
-** Le module sera normalement marqué comme étant présumé mort (Dead).
-** La minute suivante vous devriez voir le nœud disparaître de l'écran de santé.
-** Si dans la configuration Z-Wave vous avez décoché l'option "Supprimer automatiquement les périphériques exclus", il vous faudra supprimer manuellement l'équipement correspondant.
+** Go to the screen of the module to remove.
+** It will probably display a *CacheLoad* status.
+Launch the *Remove ghost node* command.
+** The Z-Wave network stops. The wizard updates the *zwcfg* file to remove the WakeUp CC of the module. The network restarts.
+** Close the module's screen.
+** Open the Z-Wave Health screen.
+** Wait for the network startup to complete (topology loaded).
+** The module should be marked as presumed Dead.
+** Then within a minute you should see the node disappear from the Health screen.
+** IF in the configuration you have unset the option "Automatically remove the excluded devices", you will have to manually delete the device.
 
-Cette assistant est disponible seulement pour les modules sur piles.
+This wizard is only available for battery-powered modules.
 
 
 
-=== Actions post inclusion
+=== Post-inclusion actions
 
-On recommande d'effectuer l'inclusion à moins 1M du contrôleur principal, or ce ne sera pas la position finale de votre nouveau module.
-Voici quelques bonnes pratiques à faire suite à l’inclusion d'un nouveau module dans votre réseau.
+It is recommended to include a module at a distance of less than 1 meter form the primary controller ; this in general will not be the module's final location.
+The following a a few good practices following the inclusion of a new module in the network.
 
-Une fois l'inclusion terminée, il faut appliquer un certain nombre de paramètres à notre nouveau module afin d'en tirer le maximum. Rappel, les modules suite à l'inclusion ont les paramètres par défaut du constructeur.
-Profiter d'être à côté du contrôleur et de l'interface Jeedom pour bien paramétrer votre nouveau module. Il sera aussi plus simple de réveiller le module pour voir l'effet immédiat du changement.
-Certains modules ont une documentation spécifique Jeedom afin de vous aider avec les différents paramètres ainsi que des valeurs recommandées.
+Once the inclusion is done, you have to apply some parameters to your new module so as it's optimally configured. As mentioned, included modules are set with default parameters.
+** While still close to the primary controller, update the module's parameters. Wake up the module to see the immediate effect of the change.
+** Some module have a specific Jeedom documentation to assist you with the different parameters and their recommended values.
 
-Tester votre module, valider les remontées d'informations, retour d'état et actions possibles dans le cas d'un actuateur.
+Test your module, validate it's communicating with the primary controller, and for actuators that the commands work and result in feedback.
 
-Lors de l'interview votre nouveau module a recherché ses voisins. Toutefois les modules de votre réseau ne connaissent pas encore votre nouveau module.
+While its interview is being performed, your new module has looked for its neighbors. However the current modules don't know the new one yet.
 
-Déplacer votre module à son emplacement définitif. Lancer la mise à jour de ces voisins et réveiller-le encore une fois.
+Move your module to its final location. Launch the update of its neighbors and wake it up again.
 
 image:../images/troubleshooting07.png[]
 
-On constate qu'il voit un certain nombre de voisins mais que les voisin, eux, ne le voient pas.
+One notices that although he sees his neighbors, they don't see it.
 
-Pour remédier à cette situation il faut lancer l'action soigner le réseau, afin de demander à tous les modules de retrouver leurs voisins.
+To remedy this situation you have to launch the heal the network action, to request all nodes find out about their neighbors.
 
-Cette action peut prendre 24 heures avant d'être terminée, vos modules sur pile effectueront l'action seulement à leur prochain réveil.
+This can take 24 hours - or more, as the battery-powered modules will only comply at their next wake-up.
 
 image:../images/troubleshooting08.png[]
 
-L'option de soigner le réseau 2x par semaine permet de faire ce processus sans action de votre part, elle est utile lors de la mise en place de nouveaux modules et ou lorsqu'on les déplace.
+The option to heal the network twice per week allows to do this automatically and is useful if you install new modules or move existing ones.
 
 
-=== Pas de remontee etat de la pile
+=== No battery information returned
 
-Les modules Z-Wave n'envoie que très rarement l'état de leurs piles au contrôleur.
-Certains vont le faire à l'inclusion puis seulement lorsque celle-ci atteint 20% ou une autre valeur de seuil critique.
+The Z-Wave modules only rarely send their battery status.
+Some will typically send it at inclusion and when it reaches 20%, or some other critical value.
 
-Pour vous aider à mieux suivre l'état de vos piles l'écran Batteries sous le menu Analyse vous donne une vue d'ensemble de l'état de vos piles.
-Un mécanisme de notification de piles faibles est aussi disponible.
+To help you follow the levels of the batteries, the Batteries screen of the Analysis menu give you an overall view of the battery levels.
+A notification mechanism to alert when battery levels are low is also available.
 
-La valeur remontée de l'écran Piles est la dernière connue dans le cache.
+The levels displayed are the latest values in the cache.
 
-Toutes les nuits, le plugin Z-Wave demande à chaque module de rafraichir la valeur Battery. Au prochain réveil, le module envoie la valeur à Jeedom pour être ajouté au cache.
-Donc il faut en général attendre au moins 24h avant l'obtention d'une valeur dans l'écran Batteries.
-
-[TIP]
-Il est bien entendu possible de rafraichir manuellement la valeur Battery via l'onglet Valeurs du module puis, soit attendre le prochain réveil ou encore de réveiller manuellement le module pour obtenir une remontée immédiate.
-Le cycle de réveil (Wake-up Interval) du module est défini dans l'onglet Système du module. Pour optimiser la vie de vos piles il est recommandé d'espacer au maximum ce délai. Pour 4h il faudrait appliquer 14400, 12h 43200.
-Certains modules doivent écouter régulièrement des messages du contrôleur comme les Thermostats dans ce cas il faut penser à 15min  soit 900. Chaque module est différent il n'y a donc pas de règle exact c'est au cas par cas et selon l’expérience.
+Every night the Z-Wave plugin requests to each module to update its battery level. At next wake-up, the module will update its battery level.
+In general, it might take at least 24 hours to obtain the levels in the Batteries screen.
 
 [TIP]
-La décharge d'une pile n'est pas linéaire, certains modules vont montrer un grosse perte en pourcentage dans les premiers jours de mise en service, puis ne plus bouger durant des semaines pour se vider rapidement une fois passé les 20%.
-
-
-=== Controleur est en cours d initialisation
-
-Lorsque vous démarrez le démon Z-Wave, si vous essayez de lancer immédiatement une inclusion/exclusion vous risquez d'obtenir ce message:
-* "Le contrôleur est en cours d'initialisation veuillez réessayer dans quelques minutes"
+It is obviously possible to manually request an update of the battery level from the Values tab of the module, and either wait for the module's next wake up or manually wake it up to obtain immediate information.
+The wake-up cycle (Wake-up Interval) of the module is defined in the System tab of the module. To optimize battery life it is recommended to set the interval as large as possible. For 4 hours, apply 14400, for 12 apply 43200.
+Some modules such as thermostats have to periodically listen to the controller's messages, in this case you can apply for 15 min 900. Each kind of module is different and there is no general rule. So set this interval based on the specificity of the module and your experience.
 
 [TIP]
-Suite au démarrage du démon, le contrôleur passe sur l'ensemble des modules afin de refaire leur interview. Ce comportement est tout-à-fait normal en OpenZWave.
-
-Si toutefois après plusieurs minutes (plus de 10 minutes) vous avez toujours ce message ce n'est plus normal.
-
-Il faut essayer les différentes étapes:
-
-* S'assurer que les voyants de l'écran santé Jeedom soient au vert.
-* S'assurer que la configuration du plugin est en ordre.
-* S'assurer que vous avez bien sélectionné le bon port de la clé ZWave.
-* S'assurer que votre configuration Réseau Jeedom est juste. (Attention si vous avez fait un Restore d’une installation DIY vers image officielle, le suffixe /jeedom ne doit pas y figurer)
-* Regarder le log du plugin afin de voir si une erreur n'est pas remontée.
-* Regarder la *Console* du plugin ZWave, afin de voir si une erreur n'est pas remontée.
-* Lancer le Demon en *Debug* regarder à nouveau la *Console* et les logs du plugin.
-* Redémarrer complètement Jeedom.
-* Il faut s'assurer que vous avez bien un contrôleur Z-Wave, les Razberry sont souvent confondus avec les EnOcean (erreur lors de la commande).
-
-Il faut maintenant débuter les tests hardwares:
-
-* Le Razberry est bien branché au port GPIO.
-* L'alimentation USB est suffisante.
-
-Si le problème persiste toujours, il faut réinitialiser le contrôleur:
-
-* Arrêter complément votre Jeedom via le menu d'arrêt dans le profil utilisateur.
-* Débrancher l'alimentation.
-* Retirer le dongle USB ou le Razberry selon le cas, environ 5 minutes.
-* Re brancher le tout et essayer à nouveau.
-
-=== Le controleur ne repond plus
-
-Plus aucune commande n'est transmise aux modules mais les retours d'états sont remontés vers Jeedom.
-
-Il est possible que la queue de messages du contrôleur soit remplie.
-Voir l'écran Réseau Z-Wave si le nombre de messages en attente ne fait qu'augmenter.
-
-Il faut dans ce cas relancer le Demon Z-Wave.
-
-Si le problème persiste, il faut réinitialiser le contrôleur:
-
-* Arrêter complément votre Jeedom via le menu d'arrêt dans le profil utilisateur.
-* Débrancher l'alimentation.
-* Retirer le dongle USB ou le Razberry selon le cas, environ 5 minutes.
-* Re brancher le tout et essayer à nouveau.
+The discharge of a battery is not linear ; some modules will report a big level decrease early in the initial days of service, and then that level will almost not change during weeks, and then decrease again rapidly when it reached 20%.
 
 
-=== Erreur lors des dependances
+=== Controller in use
 
-Plusieurs erreurs erreur peuvent survenir lors de la mise à jour des dépendances.
-Il faut consulter le log de mise à jour des dépendances afin de déterminer quelle est exactement l'erreur.
-De façon générale l'erreur se trouve à la fin du log dans les quelque dernières lignes.
+When the Z-Wave network starts and you immediately try to include or exclude a module you will get the following message : 
+* "The controller is initializing, please try again in a few minutes".
 
-Voici les possibles problèmes ainsi que leurs possibles résolutions:
+[TIP]
+When the deamon has started, the controller interviews all the modules. This is normal behavior in OpenZWave.
 
-* could not install mercurial – abort
+But if this message is still displayed after more than 10 minutes or so, this is no longer normal.
 
-Le package mercurial ne veut pas s'installer, pour corriger lancer en ssh:
+You have to then try the following steps :
+
+* Check that the Jeedom health screen items are in green status.
+* Check that the plugin configuration is correct.
+* Check that you have correctly selected the Z-Wave dongle port.
+* Check that the Jeedom network configuration is correct (pay attention to the fact that if you restored a DIY backup to an official installation, the /jeedom suffix should not appear).
+* Check the plugin log for any error that might be reported.
+* Check the *Console* of the Z-wave plugin, to see if any error was reported.
+* Launch the daemon in *Debug* mode and check the *Console* and the logs of the plugin.
+* Restart the whole Jeedom system.
+* Make sure you have as expected a Z-Wave controller , raZberry controllers can easily be confused with EnOcean ones.
+
+* Then proceed to hardware testing :
+
+* The raZberry is correctly connected to the GPIO port.
+* USB power is sufficient.
+
+If you still have a problem, you have to reset the controller.
+
+* Stop the Jeedom system from the Stop item in the user profile menu.
+* Unplug the power adapter.
+* Remove the USB dongle or the raZberry and wait 5 minutes.
+* Re-connect everything and try again.
+
+=== The controller no longer communicates
+
+No command is sent to the modules although information is received by controller.
+
+IT is possible that the outgoing message queue on the controller is full.
+Check the Z-Wave network screen to see if the number of waiting messages keeps increasing.
+
+If so, you have to restart the Z-Wave daemon.
+
+If this keeps happening, you have to reset the controller.
+
+* Stop the Jeedom system from the Stop item in the user profile menu.
+* Unplug the power adapter.
+* Remove the USB dongle or the raZberry and wait 5 minutes.
+* Re-connect everything and try again.
+
+
+=== Errors during dependencies
+
+Different types of errors can occur when updating dependencies.
+You have to check the dependencies update log to determine what errors occurred.
+In general, you will find the error at the end of the log in the few last lines.
+
+Here is a list of some errors and their possible remediations :
+
+* Could not install Mercurial - abort
+
+The Mercurial package does not install ; to fix this issue the following ssh commands :
 
  sudo rm /var/lib/dpkg/info/$mercurial* -f
  sudo apt-get install mercurial
 
-* Les dépendances semblent bloquées sur 75%
+* Dependencies seem not to progress beyond 75%
 
-A 75% c'est le début de la compilation de la librairie openzwave ainsi que du wrapper python openzwave.
-Cette étape est très longue, on peut toutefois consulter la progression via la vue du log de mise à jour.
-Il faut donc être simplement patient.
+At 75% the OpenZWave library compiles and so does its Python wrapper.
+This might take a very long time, although it is possible to see progress in the update log.
+Be patient.
 
 
-* Erreur lors de la compilation de la librairie openzwave
+* Error during compilation of the OpenZWave library
 
  arm-linux-gnueabihf-gcc: internal compiler error: Killed (program cc1plus)
  Please submit a full bug report,
@@ -272,42 +272,42 @@ Il faut donc être simplement patient.
  Makefile:266: recipe for target 'build' failed
  make: *** [build] Error 1
 
-Cette erreur peut survenir suite à un manque de mémoire RAM durant la compilation.
+This can happen due to a lack of RAM memory while compiling.
 
-Depuis l'UI jeedom, lancer la compilation des dépendances.
+From the Jeedom interface, start the dependencies compilation.
 
-Une fois lancée, en ssh, arrêté ces processus (consommateurs en mémoire) :
+Once started, in ssh stop the following processes that are heavy in memory usage :
 
  sudo systemctl stop cron
  sudo systemctl stop apache2
  sudo systemctl stop mysql
 
-Pour suivre l'avancement de la compilation on fait un tail sur le fichier log openzwave_update.
+To measure progress of the compilation do a tail on the log file openzwave_update.
 
  tail -f /var/www/html/log/openzwave_update
 
-Lorsque la compilation est terminée et sans erreur, relancez  les services que vous avez arrêté
+When compilation completes with no errors, restart the services you stopped before
 
 sudo systemctl start cron
 sudo systemctl start apache2
 sudo systemctl start mysql
 
 [TIP]
-Si vous etes toujours sous nginx il faudra remplacer *apache2* par *nginx* dans les commandes *stop* / *start*.
-Le fichier log openzwave_update sera dans le dossier: /usr/share/nginx/www/jeedom/log .
+If you still use nginx replace *apache2* by *nginx* in the *start* / *stop* commands.
+You will find the openzwave_update log in the directory /usr/share/nginx/www/jeedom/log.
 
 
-=== Utilisation de la carte Razberry sur un Raspberry Pi 3
+=== Use of the raZberry card on an RPI3
 
-Pour utiliser un contrôleur Razberry sur un Raspberry Pi 3, le contrôleur Bluetooth interne du Raspberry doit être désactivé.
+In that configuration, the internal Bluetooth controller of the RPI3 has to be deactivated.
 
 
-Ajouter cette ligne:
+add this line :
 
  dtoverlay=pi3-miniuart-bt
 
-À la fin du fichier:
+at the end of the file :
 
  /boot/config.txt
 
-Puis redémarrer votre Raspberry.
+and restart the RPI3
