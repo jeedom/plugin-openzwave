@@ -9,7 +9,7 @@ Le plugin est préconfiguré avec des valeurs par défaut ; vous n'avez normalem
 Cependant vous pouvez modifier la configuration.
 
 
-=== Dépendances
+=== Dependencies
 Cette partie permet de valider et d'installer les dépendances requises au bon fonctionnement du plugin Zwave  (aussi bien en local qu'en déporté, ici en local)
 image:../images/configuration02.png[]
 
@@ -27,7 +27,7 @@ La mise à jour des dépendances est normalement à effectuer seulement si le St
 Si vous êtes en mode déporté, les dépendances du démon local peuvent être NOK, c'est tout à fait normal.
 
 
-=== Démon
+=== Daemon
 Cette partie permet de valider l'état actuel du ou des démons et de configurer la gestion automatique de ceux-ci.
 image:../images/configuration04.png[]
 Le démon local et l'ensemble des démons déportés seront affichés avec leurs différentes informations
@@ -83,19 +83,19 @@ Une fois les configurations récupérées, il faudra selon les changements appor
 [TIP]
 Dans le doute, exclure et ré-inclure le module est recommandé.
 
-N'oubliez pas de
+Don't forget to
 image:../images/configuration08.png[]
-si vous effectuez une modification.
+if you update something.
 
 [IMPORTANT]
-Si vous utilisez Ubuntu : Pour que le démon fonctionne, il faut absolument avoir ubuntu 15.04 (les versions inférieures ont un bug et le démon n'arrive pas à se lancer).
-Attention si vous faites une mise à jour à partir de 14.04 il faut une fois en 15.04 relancer l'installation des dépendances.
+If you use Ubunto : for the daemon to work, you have to use Ubuntu 15.04 (older releases have a bug that prevents the daemon to start).
+Warning : if you upgrade from 14.04 you have to re-start the installation of dependencies when 15.04 is installed.
 
 [IMPORTANT]
-La sélection du Port clé Z-Wave en mode de détection automatique, *Auto*, ne fonctionne que pour les dongles USB.
+The selection of the Z-Wave port in *Auto* detection mode is only suitable for USB dongles.
 
 
-=== Paneau Mobile
-image:../images/configuration09.png[]
+=== Mobile panel
+image:../images/configuration09.png[]         
 
-Permet d'afficher ou non le panel mobile lors que vous utiliser l'application sur un téléphone.
+Allows to display or not the mobile panel when you use the application on a mobile phone or system.
