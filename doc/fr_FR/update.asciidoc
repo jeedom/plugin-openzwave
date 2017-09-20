@@ -6,18 +6,18 @@ Un NOK au niveau des dépendances sera affiché:
 image:../images/update01.png[]
 
 [TIP]
-Une mise à jour des dépendances n'est pas a faire à chaque mise à jour du plugin.
+Une mise à jour des dépendances n'est pas à faire à chaque mise à jour du plugin.
 
-Jeedom devrait lancer de lui même la mise à jour des dépendances si le plugin considère qu'elle ne sont *NOK*.
-Cette validation est effectuée au 5 minutes.
+Jeedom devrait lancer de lui même la mise à jour des dépendances si le plugin considère qu'elle sont *NOK*.
+Cette validation est effectuée au bout de 5 minutes.
 
 
 La durée de cette opération peut varier en fonction de votre système (jusqu'à plus de 1h sur raspberry pi)
 
 
-Une fois les la mise à jour des dépendances complété, le démon se relancera automatiquement à la validation de Jeedom.
-Cette validation est effectuée au 5 minutes.
+Une fois la mise à jour des dépendances complétée, le démon se relancera automatiquement à la validation de Jeedom.
+Cette validation est effectuée au bout de 5 minutes.
 
 
 [TIP]
-Dans l'éventualité où la mise à jour des dépendances ne ce compléterait pas, veiller consulter le log *Openzwave_update* qui devrait vous informer sur le problème.
+Dans l'éventualité où la mise à jour des dépendances ne se complèterait pas, veillez consulter le log *Openzwave_update* qui devrait vous informer sur le problème.
