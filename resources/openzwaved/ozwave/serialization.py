@@ -217,7 +217,7 @@ def serialize_node_to_json(node_id):
 		elif index2 not in json_result['instances'][instance2]['commandClasses'][my_value.command_class]['data']:
 			serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,pending_state, standard_type, timestamp, value2, value_help, value_units)
 	json_result['data']['pending_changes'] = {'count': pending_changes}
-	json_result['multi_instance'] = {'support': globals.COMMAND_CLASS_MULTI_CHANNEL in my_node.command_classes,'instances': len(instances)}
+	json_result['multi_instance'] = {'support': globals.COMMAND_CLASS_MULTI_CHANNEL_ASSOCIATION in my_node.command_classes,'instances': len(instances)}
 	return json_result
 
 def serialize_command_class_data(data_items, expected_data, index2, instance2, json_result, label, my_value,pending_state, standard_type, timestamp, value2, value_help, value_units):
