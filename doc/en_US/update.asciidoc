@@ -6,18 +6,18 @@ A NOK will be displayed at dependencies level.
 image:../images/update01.png[]
 
 [TIP]
-A refresh of the dependencies is not required at each update of the plugin.
+Une mise à jour des dépendances n'est pas à faire à chaque mise à jour du plugin.
 
-Jeedom should refresh the dependencies itself if it detects they are NOK.
-This validation is performed after 5 minutes.
+Jeedom devrait lancer de lui même la mise à jour des dépendances si le plugin considère qu'elle sont *NOK*.
+Cette validation est effectuée au bout de 5 minutes.
 
 
 The length of this operation can vary according to your system (up to more than an hour on a raspberry pi).
 
 
-Upon completion of the dependencies refresh, the daemon will restart automatically at Jeedom validation.
-This validation is performed after 5 minutes.
+Une fois la mise à jour des dépendances complétée, le démon se relancera automatiquement à la validation de Jeedom.
+Cette validation est effectuée au bout de 5 minutes.
 
 
 [TIP]
-In case the dependencies refresh does not complete itself, please check the *Openzwave_update* log that should contain information about the problem.
+Dans l'éventualité où la mise à jour des dépendances ne se complèterait pas, veillez consulter le log *Openzwave_update* qui devrait vous informer sur le problème.

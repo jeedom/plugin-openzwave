@@ -1,138 +1,138 @@
 == Modules configuration
 
-C'est ici que vous retrouverez toutes les informations sur votre module
+Here you will find all the information on your module.
 
 image:../images/node01.png[]
 
-La fenêtre possède plusieurs onglets :
+The screen has different tabs :
 
 === Summary
 
-Fournit un résumé complet de votre nœud avec différentes informations sur celui-ci, comme par exemple l'état des demandes qui permet de savoir si le nœud est en attente d'information ou la liste des nœuds voisins.
+Provides a full summary of your module, including for instance the state of the queries allowing to determine if the module is expecting information or the list of its neighbors. 
 
 [TIP]
-Sur cet onglet il est possible d'avoir des alertes en cas de détection possible d'un souci de configuration, Jeedom vous indiquera la marche à suivre pour corriger. Il ne faut pas confondre une alerte avec une erreur, l'alerte est dans une majorité des cas, une simple recommandation.
+On this tab you might have alerts if a configuration problem is detected. Jeedom will hint at how to fix them. Do not confused alerts with errors : alerts are in general just configuration recommendations.
 
 === Values
 
 image:../images/node02.png[]
 
-Vous retrouvez ici toutes les commandes et états possibles sur votre module. Ils sont ordonnés par instance et classe de commande puis index. Le « mapping » des commandes est entièrement basé sur ces informations.
+You will find here all the commands and possible states on your module. They are ordered by instance and command class and then by index. Mapping of the commands rely entirely on this information.
 
 [TIP]
-Forcer la mise à jour d'une valeur. Les modules sur pile vont rafraichir une valeur seulement au prochain cycle de réveil. Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
+Force the update of a value. Battery-powered modules will only refresh a value upon their next wake up. It is however possible to manually wake up a module, refer to its documentation.
 
 [TIP]
-Il est possible d'avoir plus de commandes ici que sur Jeedom, c'est tout à fait normal. Dans Jeedom les commandes ont été présélectionnées pour vous.
+It is possible to have more commands here than in Jeedom and it is normal. In Jeedom commands were preselected for you.
 
 [IMPORTANT]
-Certains modules n'envoient pas automatiquement leurs états, il faut dans ce cas activer le rafraichissement manuel à 5 minutes sur la ou les valeurs souhaitées.
-Il est recommandé de laisser en automatique le rafraichissement.
-Abuser du rafraichissement manuel peut impacter fortement les performances du réseau  Z-Wave, utilisez seulement pour les valeurs recommandées dans la documentation spécifique Jeedom.
+Some modules do not automatically report their state. You have in this case to activate a manual refresh every 5 minutes on the desired values.
+It is recommended to leave the refresh on automatic.
+Frequent manual refreshes can negatively impact performance of the Z-Wave network. Use it only for the recommended values in the specific Jeedom documentation.
 image:../images/node16.png[]
-L'ensemble des valeurs (index) de l'instance d'une commande classe sera remonté, en activant le rafraichissement manuel sur le plus petit index de l'instance de la commande classe.
-Répéter pour chaque instance si nécessaire.
+The set of values (index) of the instance of a command class will be reported when manually refreshing the smallest index of the instance of the command class.
+Repeat as necessary for each instance.
 
 === Parameters
 
 image:../images/node03.png[]
 
-Vous retrouvez ici toutes les possibilités de configuration des paramètres de votre module ainsi que la possibilité de copier la configuration d'un autre nœud déjà en place.
+You can find here all the possibilities to configure your module as well as the possibility to copy the configuration of another already included modules.
 
 
-Lorsqu'un paramètre est modifié, la ligne correspondante passe en jaune,
+When a parameter is modified, its line becomes yellow.
 image:../images/node04.png[]
-le paramètre est en attente d'être appliqué.
+The parameter is waiting to be applied.
 
-Si le module accepte le paramètre, la ligne redevient transparente.
+If the module accepts the parameter, its line becomes transparent.
 
-Si toutefois le module refuse la valeur, la ligne passera alors en rouge avec la valeur appliquée retournée par le module.
+If however the module refuses the value, its line will become red with the value that was returned by the module.
 image:../images/node05.png[]
 
 
-A l'inclusion, un nouveau module est détecté avec les paramètres par défaut du constructeur.
-Sur certains modules, des fonctionnalités ne seront pas actives sans modifier un ou plusieurs paramètres.
-Référez-vous à la documentation du constructeur et à nos recommandations afin de bien paramétrer vos nouveaux modules.
+At inclusion, a new module is included with default factory parameters.
+On some modules, functions might not be available without modifying one or more parameters.
+Refer to the documentation of the modules and our recommendations to correctly parameterize your new modules.
 
 [TIP]
-Les modules sur pile vont appliquer les changements de paramètres seulement au prochain cycle de réveil.
-Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
+the battery-powered modules will apply the changes of parameters only at their next wake up.
+It is however possible to manually wake up a module, refer to its documentation.
 
 [TIP]
-La commande *Reprendre de...* vous permet reprendre la configuration d'un autre module identique, sur le module en cours.
+The command *From...* allows you to reuse the configuration of another identical module on the current module.
 
 image:../images/node06.png[]
 
 [TIP]
-La commande *Appliquer sur...* vous permet d'appliquer la configuration actuelle du module sur un ou plusieurs modules identiques.
+The *Apply on...* command allows you to apply the current configuration of the module to one or several identical modules.
 
 image:../images/node18.png[]
 
 [TIP]
-La commande *Actualiser les paramètres* force le module à actualiser les paramètres sauvegardés dans le module.
+The command *Update the parameters* forces the module to update its parameters.
 
-Si aucun fichier de configuration est définie pour le module, un assistant manuel vous permet d'appliquer des paramètres au module.
+If no predefined configuration is defined for the module, a manual wizard allows you to apply parameters to it.
 image:../images/node17.png[]
-Veillez vous référer à la documentation du fabricant pour connaitre la définition de l'index, valeur et taille.
+Please check out the documentation of the module to know the definition of the index, value and size.
 
 === Associations
 
-C'est ici que se retrouve la gestion des groupes d'association de votre module.
+From here you can manage the association groups of your module.
 
 image:../images/node07.png[]
 
-Les modules Z-Wave peuvent contrôler d'autres modules Z-Wave, sans passer par le contrôleur ni Jeedom.
-La relation entre un module de contrôle et un autre module est appelée association.
+Z-Wave modules can control other modules directly, without going through the primary controller.
+The relationship between a controlling module and another module is called association.
 
-Afin de contrôler un autre module, le module de commande a besoin de maintenir une liste des appareils qui recevront le contrôle des commandes.
-Ces listes sont appelées groupes d'association et elles sont toujours liées à certains événements (par exemple le bouton
-pressé, les déclencheurs de capteurs, ... ).
+To control another module, the controlling module has to maintain a list of modules that will receive the commands.
+Those lists are called association groups and are always linked to given events, such as the button
+pressed, the setting off of a sensor...
 
-Dans le cas où un événement se produit, tous les périphériques enregistrés dans le groupe d'association concerné recevront une commande Basic.
-
-[TIP]
-Voir la documentation du module, pour comprendre les différents groupes d'associations possibles et leur comportement.
+If an event occurs, all the nodes recorded in the relevant association group will receive a *Basic* command.
 
 [TIP]
-La majorité des modules ont un groupe d'association qui est réservé pour le contrôleur principal, il est utilisé pour remonter les informations au contrôleur. Il se nomme en général : *Report* ou *LifeLine*.
+Check out the documentation of the module to understand the different association groups and their behavior.
 
 [TIP]
-Il est possible que votre module ne possède aucun groupe.
+Most of the modules have an association group that is reserved for the primary controller. It is used to transmit module information to the controller. It is usually named *Report* or *LifeLine*.
 
 [TIP]
-La modification des groupes d'associations d'un module sur pile sera appliquée au prochain cycle de réveil.
-Il est toutefois possible de réveiller à la main un module, voir la documentation du module.
+It is possible your module has no group.
 
-Pour connaitre avec quels autres modules le module en cours est associé, il suffit de cliquer sur le menu *Associé à quels modules*
+[TIP]
+The update of the association groups will be applied at the next wake up.
+It is however possible to manually wake up a module, refer to its documentation.
+
+To know to which other modules the current module is associated, just click on the *Associated with which modules* menu.
 
 image:../images/node08.png[]
 
-L'ensemble des modules utilisant le module en cours ainsi que le nom des groupes d'associations seront affichés.
+The list of modules using the current module and the name of the association groups will be displayed.
 
 === Multi-instances associations
 
-certain module supporte une commande classe multi-instance associations.
-Lorsqu'un module supporte cette CC, il est possible de spécifier avec quelle instance on souhaite créer l'association
+Some modules implement a multi-instance association command class.
+When a module supports this CC, one can specify with which instance to create the association.
 
 image:../images/node09.png[]
 
 [IMPORTANT]
-Certains modules doivent être associés à l'instance 0 du contrôleur principale afin de bien fonctionner.
-Pour cette raison, le contrôleur est présent avec et sans l'instance 0.
+Given modules have to be associated with the instance 0 of the primary controller in order to work correctly.
+For this reason, the controller is present with and without the instance 0.
 
 
 === Systems
 
-Onglet regroupant les paramètres systèmes du module.
+Tab grouping the system parameters of the module.
 
 image:../images/node10.png[]
 
 [TIP]
-Les modules sur piles se réveillent à des cycles réguliers, appelés intervalles de réveil (Wakeup Interval). L'intervalle de réveil est un compromis entre le temps maximal de vie de la batterie et les réponses souhaitées du dispositif. Pour maximiser la durée de vie de vos modules, adapter la valeur Wakeup Interval par exemple à 14400 secondes (4h), voir encore plus élevé selon les modules et leur usage.
+Battery-powered modules wake up at regular intervals, called WakeUp Intervals. The interval is a compromise between maximal battery life and feedback frequency. To lengthen the battery life of your modules, choose for instance a value of 14400 seconds (4 hours), or more according to the specificity of the modules and their usage.
 image:../images/node11.png[]
 
 [TIP]
-Les modules *Interrupteur* et *Variateur* peuvent implémenter une Classe de commande spéciale appelée *SwitchAll* 0x27. Vous pouvez en modifier ici le comportement. Selon le module, plusieurs options sont à disposition. La commande *SwitchAll On/OFF* peut être lancée via votre module contrôleur principal.
+*Switches* and *Dimmer" modules can implement a special command class named "SwitchAll" 0x27. Here you can modify its behavior. According to the type of the module, several options are available. The *SwitchAll On/Off* can be sent from the primary controller.
 
 === Actions
 

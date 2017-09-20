@@ -2,13 +2,13 @@
 
 The Z-Wave plugin implements a complete API so developers and users can operate the Z-Wave network via HTTP requests.
 
-It is possible to invoke the whole set of methods that are exposed by the REST server of the Z-Wave daemon.
+Il vous est possible d'exploiter l'ensemble des méthodes exposées par le serveur REST du démon Z-Wave.
 
 The syntax to invoke routes is as follows :
 
 URL = http://token:\#APIKEY#@\#IP_JEEDOM#:\#PORTDEMON#/\#ROUTE#
 
-* \#API_KEY# corresponds to your API key, custom to your installation. To find it, go to the "General" menu, then "Administration" and "Configuration", and having activated the expert mode, you will see the API key information.
+* \#API_KEY# correspond à votre clé API, propre à votre installation. Pour la trouver, il faut aller dans le menu « Général », puis « Administration » et « Configuration », en activant le mode Expert, vous verrez alors une ligne Clef API.
 
 * \#IP_JEEDOM# corresponds to access url to Jeedom.
 
@@ -16,7 +16,7 @@ URL = http://token:\#APIKEY#@\#IP_JEEDOM#:\#PORTDEMON#/\#ROUTE#
 
 * \#ROUTE# corresponds to the route to be invoked on the REST server.
 
-To have the list of all possible routes, please refer to
+Pour connaitre l'ensemble des routes, veuillez vous référer
 link:https://github.com/jeedom/plugin-openzwave[github] of the Z-Wave plugin.
 
 Example :

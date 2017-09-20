@@ -1,21 +1,21 @@
 == Fixing and diagnostic
 
-=== My module is not detected or does not communicate its product identifiers and type 
+=== Mon module n'est pas détecté ou ne remonte pas ses identifiants produit et type
 image:../images/troubleshooting01.png[]
 
-Request the regeneration of the node from the Actions tab of the module.
+Lancer la Regénération de la détection du nœud depuis l'onglet Actions du module.
 
-If you have several modules in this situation, request the "Regeneration of unknown nodes" from the Actions tab of the "Z-Wave network" screen.
+Si vous avez plusieurs modules dans ce cas de figure, lancer *Regénérer la détection de nœuds inconnues* depuis l'écran *Réseau ZWave* onglet *Actions*.
 
-=== My module is presumed Dead by the controller
+=== Mon module est présumé mort par le controleur Dead
 image:../images/troubleshooting02.png[]
 
 If the module is still powered and joinable, follow the proposed solutions in the module's screen.
 
-If a module was decommissioned or is really faulty, you can excluded it from the network using "Delete the faulty node" from the *Actions* tab.
+Si le module a été décommissionné ou est réellement défectueux, vous pouvez l'exclure du réseau en utilisant *supprimer le nœud en erreur* via onglet *Actions*.
 
 If a module was removed and sent to get repaired and a new one was received, you can request *Replace a faulty node* from the *Actions* tab ; the controller goes in inclusion mode and you can proceed with the new module's inclusion. 
-The id of the device will remain the same, as well as its commands.
+L'id de l'ancien module sera conservé ainsi que ses commandes.
 
 
 === How to use the SwitchAll command
@@ -33,7 +33,7 @@ The Switch All command class is generally supported on switches and dimmers. Its
 One can either :
 
 ** Deactivate the Switch All command class.
-** Activate it for the On and the Off.
+** Activer pour le On et le Off.
 ** Activate On only.
 ** Activate Off only.
 
@@ -62,7 +62,7 @@ image:../images/troubleshooting06.png[]
 
 Create an *Action* command, select the wanted CC for a given *instance* with a command *data[0].ForceRefresh()*
 
-The whole set of indexes of the instance for this command will be updated. The battery-powered nodes will refresh their values at their next wake-up.
+L'ensemble des index de l'instance pour cette commande Classe sera mise à jour. Les nœuds sur piles attendront leur prochain réveil avant d'effectuer la mise à jour de leur valeur.
 
 You can also request it by script with an http request to the Z-Wave REST server.
 
@@ -70,19 +70,19 @@ Replace ip_jeedom, node_id, instance_id, cc_id and index in
 
 \http://token:#APIKEY#@ip_jeedom:8083/ZWaveAPI/Run/devices[node_id].instances[instance_id].commandClasses[cc_id].data[index].ForceRefresh()
 
-The access to the REST API having changed, refer to link:./restapi.asciidoc[içi].
+L'accès a l'api REST ayant changé, voir les détails link:./restapi.asciidoc[içi].
 
 === Transfer the modules on a new controller
-You might for several reasons need to transfer all your modules on a new primary controller.
+Pour différentes raisons, vous pouvez être amené à devoir transférer l'ensemble de vos modules sur un nouveau contrôleur principal.
 
 For instance, you decide to replace a *raZberry* by a *Z-Stick Gen5*, or you need to reset the primary controller.
 
-Here are the steps to follow so as to not lose your scenarios, widgets and values histories :
+Voici différentes étapes pour y arriver sans perdre vos scénarios, widgets et historiques de valeur:
 
 ** 1) Backup Jeedom
 ** 2) Note (print screen) your parameters values for each module, as they will be lost after exclusion.
-** 3) In the Z-Wave configuration unset the option "Automatically delete excluded devices" and save. The network restart.
-** 4a) In the case of a *Reset*, reset the primary controller and restart the plugin.
+** 3) Dans la configuration Z-Wave, décocher l'option "Supprimer automatiquement les périphériques exclus" et sauvegarder. Le réseau redémarre.
+** 4a) Dans le cas d'un *Reset*, Faire le Reset du contrôleur principal et redémarrer le plugin.
 ** 4b) for a new controller, stop Jeedom, unplug the current controller and plug the new one in. Start the network.
 ** 5) for each Z-Wave device, set its Z-Wave ID to *0*.
 ** 6) Open 2 pages of the Z-Wave plugin in 2 different pages.
@@ -92,7 +92,7 @@ Here are the steps to follow so as to not lose your scenarios, widgets and value
 ** 10) on the first screen set the Z-wave ID to the one that was copied.
 ** 11) The Z-Wave parameters are lost during exclusion/inclusion, so reset them to your specific values.
 ** 11) repeat steps 7 to 11 for each module to transfer.
-** 12) when done you should have no devices left with Z-Wave ID 0.
+** 12) A la fin, vous ne devriez plus avoir d'équipement en ID 0.
 ** 13) verify all modules are present in the Z-Wave Health screen. If not, launch a synchronization.
 
 
@@ -102,13 +102,13 @@ How to re-include a faulty module without losing your scenarios, widgets and its
 If the module is presumed "Dead" :
 
 ** Note (print screen) its parameters values, as they will be lost after exclusion.
-** Go to Actions tab of the module and launch the "Replace faulty mode" command.
+** Aller sur l'onglet actions du module et lancez la commande "Remplacer noeud en échec".
 ** The controller is in inclusion mode, proceed with the module's inclusion.
 ** Reset your specific parameters.
 
 If a module is not presumed *Dead* but is still accessible :
 
-** In the Z-Wave configuration unset the option "Automatically delete excluded devices".
+** Dans la configuration ZWave, décocher l'option "Supprimer automatiquement les périphériques exclus".
 ** Note (print screen) its parameters values, as they will be lost after exclusion.
 ** Exclude the faulty module.
 ** Go to the faulty module's screen.
@@ -124,18 +124,18 @@ If you lost communication with a battery-powered module and you wish to exclude 
 
 A ghost module automatic wizard is available.
 
-** Go to the screen of the module to remove.
-** It will probably display a *CacheLoad* status.
+** Aller sur l'onglet actions du module à supprimer.
+** Il aura probablement un statut *CacheLoad*.
 Launch the *Remove ghost node* command.
 ** The Z-Wave network stops. The wizard updates the *zwcfg* file to remove the WakeUp CC of the module. The network restarts.
 ** Close the module's screen.
 ** Open the Z-Wave Health screen.
 ** Wait for the network startup to complete (topology loaded).
 ** The module should be marked as presumed Dead.
-** Then within a minute you should see the node disappear from the Health screen.
-** IF in the configuration you have unset the option "Automatically remove the excluded devices", you will have to manually delete the device.
+** La minute suivante, vous devriez voir le nœud disparaître de l'écran de santé.
+** Si dans la configuration Z-Wave, vous avez décoché l'option "Supprimer automatiquement les périphériques exclus", il vous faudra supprimer manuellement l'équipement correspondant.
 
-This wizard is only available for battery-powered modules.
+Cet assistant est disponible seulement pour les modules sur piles.
 
 
 
@@ -144,21 +144,21 @@ This wizard is only available for battery-powered modules.
 It is recommended to include a module at a distance of less than 1 meter form the primary controller ; this in general will not be the module's final location.
 The following a a few good practices following the inclusion of a new module in the network.
 
-Once the inclusion is done, you have to apply some parameters to your new module so as it's optimally configured. As mentioned, included modules are set with default parameters.
-** While still close to the primary controller, update the module's parameters. Wake up the module to see the immediate effect of the change.
+Une fois l'inclusion terminée, il faut appliquer un certain nombre de paramètres à notre nouveau module afin d'en tirer le maximum. Rappel, les modules, suite à l'inclusion, ont les paramètres par défaut du constructeur.
+Profitez d'être à côté du contrôleur et de l'interface Jeedom pour bien paramétrer votre nouveau module. Il sera aussi plus simple de réveiller le module pour voir l'effet immédiat du changement.
 ** Some module have a specific Jeedom documentation to assist you with the different parameters and their recommended values.
 
-Test your module, validate it's communicating with the primary controller, and for actuators that the commands work and result in feedback.
+Testez votre module, validez les remontées d'informations, retour d'état et actions possibles dans le cas d'un actuateur.
 
-While its interview is being performed, your new module has looked for its neighbors. However the current modules don't know the new one yet.
+Lors de l'interview, votre nouveau module a recherché ses voisins. Toutefois, les modules de votre réseau ne connaissent pas encore votre nouveau module.
 
-Move your module to its final location. Launch the update of its neighbors and wake it up again.
+Déplacez votre module à son emplacement définitif. Lancez la mise à jour de ses voisins et réveillez-le encore une fois.
 
 image:../images/troubleshooting07.png[]
 
-One notices that although he sees his neighbors, they don't see it.
+On constate qu'il voit un certain nombre de voisins mais que les voisins, eux, ne le voient pas.
 
-To remedy this situation you have to launch the heal the network action, to request all nodes find out about their neighbors.
+Pour remédier à cette situation, il faut lancer l'action soigner le réseau, afin de demander à tous les modules de retrouver leurs voisins.
 
 This can take 24 hours - or more, as the battery-powered modules will only comply at their next wake-up.
 
@@ -167,12 +167,12 @@ image:../images/troubleshooting08.png[]
 The option to heal the network twice per week allows to do this automatically and is useful if you install new modules or move existing ones.
 
 
-=== No battery information returned
+=== Pas de remontee état de la pile
 
-The Z-Wave modules only rarely send their battery status.
+Les modules Z-Wave n'envoient que très rarement l'état de leur pile au contrôleur.
 Some will typically send it at inclusion and when it reaches 20%, or some other critical value.
 
-To help you follow the levels of the batteries, the Batteries screen of the Analysis menu give you an overall view of the battery levels.
+Pour vous aider à mieux suivre l'état de vos piles, l'écran Batteries sous le menu Analyse vous donne une vue d'ensemble de l'état de vos piles.
 A notification mechanism to alert when battery levels are low is also available.
 
 The levels displayed are the latest values in the cache.
@@ -182,8 +182,8 @@ In general, it might take at least 24 hours to obtain the levels in the Batterie
 
 [TIP]
 It is obviously possible to manually request an update of the battery level from the Values tab of the module, and either wait for the module's next wake up or manually wake it up to obtain immediate information.
-The wake-up cycle (Wake-up Interval) of the module is defined in the System tab of the module. To optimize battery life it is recommended to set the interval as large as possible. For 4 hours, apply 14400, for 12 apply 43200.
-Some modules such as thermostats have to periodically listen to the controller's messages, in this case you can apply for 15 min 900. Each kind of module is different and there is no general rule. So set this interval based on the specificity of the module and your experience.
+Le cycle de réveil (Wake-up Interval) du module est défini dans l'onglet Système du module. Pour optimiser la vie de vos piles, il est recommandé d'espacer au maximum ce délai. Pour 4h, il faudrait appliquer 14400, 12h 43200.
+Certains modules doivent écouter régulièrement des messages du contrôleur comme les Thermostats. Dans ce cas, il faut penser à 15min  soit 900. Chaque module est différent, il n'y a donc pas de règle exacte, c'est au cas par cas et selon l’expérience.
 
 [TIP]
 The discharge of a battery is not linear ; some modules will report a big level decrease early in the initial days of service, and then that level will almost not change during weeks, and then decrease again rapidly when it reached 20%.
@@ -191,13 +191,13 @@ The discharge of a battery is not linear ; some modules will report a big level 
 
 === Controller in use
 
-When the Z-Wave network starts and you immediately try to include or exclude a module you will get the following message : 
-* "The controller is initializing, please try again in a few minutes".
+Lorsque vous démarrez le démon Z-Wave, si vous essayez de lancer immédiatement une inclusion/exclusion, vous risquez d'obtenir ce message:
+* "Le contrôleur est en cours d'initialisation, veuillez réessayer dans quelques minutes"
 
 [TIP]
 When the deamon has started, the controller interviews all the modules. This is normal behavior in OpenZWave.
 
-But if this message is still displayed after more than 10 minutes or so, this is no longer normal.
+Si toutefois après plusieurs minutes (plus de 10 minutes), vous avez toujours ce message, ce n'est plus normal.
 
 You have to then try the following steps :
 
@@ -223,7 +223,7 @@ If you still have a problem, you have to reset the controller.
 * Remove the USB dongle or the raZberry and wait 5 minutes.
 * Re-connect everything and try again.
 
-=== The controller no longer communicates
+=== Le controleur ne répond plus
 
 No command is sent to the modules although information is received by controller.
 
@@ -242,9 +242,9 @@ If this keeps happening, you have to reset the controller.
 
 === Errors during dependencies
 
-Different types of errors can occur when updating dependencies.
+Plusieurs erreurs peuvent survenir lors de la mise à jour des dépendances.
 You have to check the dependencies update log to determine what errors occurred.
-In general, you will find the error at the end of the log in the few last lines.
+De façon générale, l'erreur se trouve à la fin du log dans les quelque dernières lignes.
 
 Here is a list of some errors and their possible remediations :
 
@@ -274,15 +274,15 @@ Be patient.
 
 This can happen due to a lack of RAM memory while compiling.
 
-From the Jeedom interface, start the dependencies compilation.
+Depuis l'UI jeedom, lancez la compilation des dépendances.
 
-Once started, in ssh stop the following processes that are heavy in memory usage :
+Une fois lancée, en ssh, arrêtez ces processus (consommateurs en mémoire) :
 
  sudo systemctl stop cron
  sudo systemctl stop apache2
  sudo systemctl stop mysql
 
-To measure progress of the compilation do a tail on the log file openzwave_update.
+Pour suivre l'avancement de la compilation, on fait un tail sur le fichier log openzwave_update.
 
  tail -f /var/www/html/log/openzwave_update
 
@@ -293,7 +293,7 @@ sudo systemctl start apache2
 sudo systemctl start mysql
 
 [TIP]
-If you still use nginx replace *apache2* by *nginx* in the *start* / *stop* commands.
+Si vous etes toujours sous nginx, il faudra remplacer *apache2* par *nginx* dans les commandes *stop* / *start*.
 You will find the openzwave_update log in the directory /usr/share/nginx/www/jeedom/log.
 
 

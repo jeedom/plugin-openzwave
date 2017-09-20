@@ -12,14 +12,14 @@ image:../images/addremove01.png[]
 
 This button allows you to initiate the inclusion mode to add a module to your Z-Wave network.
 
-You can choose the inclusion mode after having clicked on the *Inclusion" button.
+Vous pouvez choisir le mode d'inclusion après avoir cliqué le bouton *Inclusion*.
 
 image:../images/addremove02.png[]
 
-Since the introduction of the Z-Wave+ protocol it is possible to secure the information exchange between the controller and the nodes.
+Depuis l'apparition du Z-Wave+, il est possible de sécuriser les échanges entre le contrôleur et les noeuds.
 It is thus recommended to include modules in "Secure" mode.
 
-If a module does not support the secure mode, you'll have to include it in "Non-secure" mode.
+Si toutefois, un module ne peut être inclus en mode sécurisé, veuillez l'inclure en mode *Non sécurisé*.
 
 When inclusion mode started, Jeedom lets you know.
 
@@ -30,10 +30,10 @@ When the wizard has launched, you have to set the module in inclusion mode (plea
 [TIP]
 As long as you don't see the ribbon, you are not in inclusion mode.
 
-If you re-click on the button this will exit the inclusion mode.
+Si vous re cliquez sur le bouton, vous sortez du mode inclusion.
 
 [TIP]
-It is recommended before including a new type of module (recently appeared on the market), to launch the *Config modules" command from the plugin configuration screen.
+Il est recommandé, avant l'inclusion d'un nouveau module qui serait "nouveau" sur le marché, de lancer la commande *Config modules* via l'écran de configuration du plugin.
 This action will result in updating the set of openzwave configuration files, as well as the Jeedom command mappinga, with their latest versions.
 
 [IMPORTANT]
@@ -64,27 +64,27 @@ image:../images/addremove05.png[]
 [TIP]
 As long as you don't see the ribbon, you are not in exclusion mode.
 
-If you re-click on the button this will exit the exclusion mode.
+Si vous re cliquez sur le bouton, vous sortez du mode exclusion.
 
 [TIP]
 Please note that the mobile interface also allows exclusion.
 
 [TIP]
-A module needs not be excluded by the same controller by which it was previously included. Hence the fact we recommend to do an exclusion before any inclusion.
+Un module n'a pas besoin d'être exclu par le même contrôleur sur lequel il a été préalablement inclus. D'où le fait qu'on recommande d'exécuter une exclusion avant chaque inclusion.
 
 === Synchronize
 
 image:../images/addremove06.png[]
 
-Button allowing to synchronize the modules of the Z-Wave network with the Jeedom devices. Modules are associated with the primary controller and the corresponding Jeedom devices are automatically created upon their inclusion. They are also automatically deleted upon exclusion if the option "Automatically delete excluded modules" is activated.
+Bouton permettant de synchroniser les modules du réseau Z-Wave avec les équipements Jeedom. Les modules sont associés au contrôleur principal, les équipements dans Jeedom sont créés automatiquement lors de leur inclusion. Ils sont aussi supprimés automatiquement lors de l'exclusion, si l'option *Supprimer automatiquement les périphériques exclus* est activée.
 
-If you included modules independently of Jeedom (requires a battery-powered dongle as the Aeon-labs T-Stick GEN5), a synchronization will be necessary after the dongle is reconnected and the daemon is started and operational.
+Si vous avez inclus des modules sans Jeedom (requiert un dongle avec pile comme le Aeon-labs Z-Stick GEN5), une synchronisation sera nécessaire suite au branchement de la clé, une fois le démon démarré et fonctionnel.
 
 [TIP]
 If you don't see the image or if Jeedom did not recognize your module, this button can fix it (as long as the interview of the module is complete).
 
 [TIP]
-If on the routing table and/or the Z-Wave health screen you have one or more modules named after their *generic name*, synchronization should allow to remediate this situation.
+Si sur votre table de routage et/ou sur l'écran de santé Z-Wave, vous avez un ou des modules nommés avec leur *nom générique*, la synchronisation permettra de remédier à cette situation.
 
 The Synchronization button is only visible in expert mode :
 mage:../images/addremove07.png[]

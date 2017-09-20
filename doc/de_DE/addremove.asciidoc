@@ -12,14 +12,14 @@ image:../images/addremove01.png[]
 
 Diese Schaltfläche erlaubt es Ihnen, in den Inklusions Modus zu gehen, um ein Modul zu Ihrem Z-Wave Netz hinzuzufügen.
 
-Sie können den Inklusions Modus wählen, nachdem Sie die *Inklusions* Schaltfläche geklickt haben.
+Vous pouvez choisir le mode d'inclusion après avoir cliqué le bouton *Inclusion*.
 
 image:../images/addremove02.png[]
 
-Depuis l'apparition du Z-Wave+ il est possible de sécuriser les échanges entre le contrôleur et les noeuds.
+Depuis l'apparition du Z-Wave+, il est possible de sécuriser les échanges entre le contrôleur et les noeuds.
 Il est donc recommandé de faire les inclusions en mode *Sécurisé*.
 
-Si toute fois un module ne peut être inclue en mode sécurisé, veillez l'inclure en mode *Non sécurisé*.
+Si toutefois, un module ne peut être inclus en mode sécurisé, veuillez l'inclure en mode *Non sécurisé*.
 
 Einmal im Inklusions Modus : Wird Sie Jeedom informieren.
 
@@ -30,10 +30,10 @@ Ist der Assistent einmal gestartet, muß man daß auch auf dem Modul machen (les
 [TIP]
 Solange Sie nicht das Banner sehen, sind Sie nicht im Inklusions Modus.
 
-Si vous re cliquez sur le bouton vous sortez du mode inclusion.
+Si vous re cliquez sur le bouton, vous sortez du mode inclusion.
 
 [TIP]
-Il est recommandé avant l'inclusion d'un nouveau module qui serait "nouveau" sur le marché, de lancer la commande *Config modules* via l'écran de configuration du plugin.
+Il est recommandé, avant l'inclusion d'un nouveau module qui serait "nouveau" sur le marché, de lancer la commande *Config modules* via l'écran de configuration du plugin.
 Cette action va récupérer l'ensemble des dernières versions des fichiers de configurations openzwave ainsi que le mapping de commandes Jeedom.
 
 [IMPORTANT]
@@ -64,27 +64,27 @@ image:../images/addremove05.png[]
 [TIP]
 Solange Sie nicht das Banner sehen, sind Sie nicht im Exclusions Modus.
 
-Wenn Sie erneut auf die Schaltfläche klicken, beenden Sie den Exclusions Modus.
+Si vous re cliquez sur le bouton, vous sortez du mode exclusion.
 
 [TIP]
 Beachten Sie, dass die mobile Schnittstelle auch auf den Exclusions Modus zugreifen kann.
 
 [TIP]
-Un module n'a pas besoin d'être exclu par le même contrôleur sur lequel il a été préalablement inclu. D'où le fait qu'on recommande d'exécuter une exclusion avant chaque inclusion.
+Un module n'a pas besoin d'être exclu par le même contrôleur sur lequel il a été préalablement inclus. D'où le fait qu'on recommande d'exécuter une exclusion avant chaque inclusion.
 
 === Synchronisieren
 
 image:../images/addremove06.png[]
 
-Bouton permettant de synchroniser les modules du réseau Z-Wave avec les équipements Jeedom. Les modules sont associés au contrôleur principal, les équipements dans Jeedom sont créés automatiquement lors de leur inclusion. Ils sont aussi supprimés automatiquement lors de l'exclusion, si l'option *Supprimer automatiquement les périphériques exclus* est activé.
+Bouton permettant de synchroniser les modules du réseau Z-Wave avec les équipements Jeedom. Les modules sont associés au contrôleur principal, les équipements dans Jeedom sont créés automatiquement lors de leur inclusion. Ils sont aussi supprimés automatiquement lors de l'exclusion, si l'option *Supprimer automatiquement les périphériques exclus* est activée.
 
-Si vous avez inclue des modules sans Jeedom (requiert un dongle avec pile comme le Aeon-labs Z-Stick GEN5), une synchronisation sera nécessaire suite au branchement de la clé, une fois le démon démarré et fonctionnel.
+Si vous avez inclus des modules sans Jeedom (requiert un dongle avec pile comme le Aeon-labs Z-Stick GEN5), une synchronisation sera nécessaire suite au branchement de la clé, une fois le démon démarré et fonctionnel.
 
 [TIP]
 Si vous n'avez pas l'image ou que Jeedom n'a pas reconnu votre module, ce bouton peut permettre de corriger (sous réserve que l'interview du module soit complète).
 
 [TIP]
-Si sur votre table de routage et/ou sur l'écran de santé Z-Wave vous avez un ou des modules nommés avec leur *nom générique*, la synchronisation permettra de remédier à cette situation.
+Si sur votre table de routage et/ou sur l'écran de santé Z-Wave, vous avez un ou des modules nommés avec leur *nom générique*, la synchronisation permettra de remédier à cette situation.
 
 Die Schaltfläche "Synchronisieren" ist nur im "Experten Modus" sichtbar :
 image:../images/addremove07.png[]

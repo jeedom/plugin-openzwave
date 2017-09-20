@@ -1,87 +1,87 @@
 == Plugin configuration
 
-Après le téléchargement du plugin, il vous suffit de l'activer et de le configurer.
+After downloading the plugin you just need to activate and configure it.
 
 image:../images/configuration01.png[]
 
-Une fois activé, le démon devrait se lancer.
-Le plugin est préconfiguré avec des valeurs par défaut ; vous n'avez normalement plus rien à faire.
-Cependant vous pouvez modifier la configuration.
+After activation, the daemon should start itself.
+The plugin is preconfigured with default values, in general you don't need any further action.
+However you can modify the configuration.
 
 
 === Dependencies
-Cette partie permet de valider et d'installer les dépendances requises au bon fonctionnement du plugin Zwave  (aussi bien en local qu'en déporté, ici en local)
+This section allows the validation and installation of the dependencies that are required for the Z-Wave plugin to operate (local as well are remote, here local)
 image:../images/configuration02.png[]
 
-** Un Statut *OK* confirme que les dépendances sont satisfaites.
-** Si le statut est *NOK*, il faudra réinstaller les dépendances à l'aide du bouton
+** A status *OK* confirms the dependencies are satisfied.
+** If the status is * NOK* you will have to reinstall the dependencies by clicking on the button.
 image:../images/configuration03.png[]
 
 [TIP]
-La mise à jour des dépendances peut prendre plus de 20 minutes selon votre matériel.
-La progression est affichée en temps réel et un log *Openzwave_update* est accessible.
+Depending on your hardware, the update of dependencies could take more than 20 minutes.
+Progress is updated in real time and a *Openzwave_update* log is accessible.
 
 [IMPORTANT]
-La mise à jour des dépendances est normalement à effectuer seulement si le Statut est *NOK*, mais il est toutefois possible, pour régler certains problèmes, d'être appelé à refaire l'installation des dépendances.
+Updating dependencies is usually only required if the status is *NOK*, but you might, to solve some problems, reinstall the dependencies.
 [TIP]
-Si vous êtes en mode déporté, les dépendances du démon local peuvent être NOK, c'est tout à fait normal.
+If your are in remote mode, the local dependencies can be *NOK*, this is normal.
 
 
 === Daemon
-Cette partie permet de valider l'état actuel du ou des démons et de configurer la gestion automatique de ceux-ci.
+This sections allows you to validate the current state of the daemon(s) and to configure their automatic management.
 image:../images/configuration04.png[]
-Le démon local et l'ensemble des démons déportés seront affichés avec leurs différentes informations
+The local daemon and all remote daemons will be displayed along with information on them.
 
-** Le *Statut* indique que le démon est actuellement en fonction.
-** La *Configuration* indique si la configuration du démon est valide.
-** Le bouton *(Re)Démarrer* permet de forcer le redémarrage du plugin, en mode normal ou de le lancer une première fois.
-** Le bouton *Arrête*, visible seulement si la gestion automatique est désactivée, force l'arrêt du démon.
-** La *Gestion automatique* permet à Jeedom de lancer automatiquement le démon au démarrage de Jeedom, ainsi que de le relancer en cas de problème.
-** Le *Dernier lancement* est comme son nom l'indique la date du dernier lancement connue du demon.
+** *Status* indicates that the daemon is currently running.
+** *Configuration* indicated the configuration is valid. 
+** The *(Re)Start* button allows you to (re)start the daemon.
+** The button *Stop*, only visible if the automatic management has been deactivated, will halt the daemon.
+** *Automatic management* allows Jeedom to automagically start the daemon when it starts up, or in case of problems. 
+** *Last start* indicates the date of the last know start of the daemon.
 
 === Log
-Cette partie permet de choisir le niveau de log ainsi que d'en consulter le contenu.
+This sections allows to set the logging level and to visualize its content.
 
 image:../images/configuration05.png[]
 
-Sélectionner le niveau puis sauvegarder, le démon sera alors relancé avec les instructions et traces sélectionnées.
+Select the level and save, the daemon will then restart with the desired information and traces logged.
 
-Le niveau *Debug* ou *Info* peuvent être utiles pour comprendre pourquoi le démon plante ou ne remonte pas une valeur.
+The *Debug* or *Info* level can be used to udnerstand why the daemon crashes or does not report a value.
 
 [IMPORTANT]
-En mode *Debug* le démon est très verbeux, il est recommandé d'utiliser ce mode seulement si vous devez diagnostiquer un problème particulier.
-Il n’est pas recommandé de laisser tourner le démon en *Debug* en permanence, si on utilise une *SD-Card*.
-Une fois le debug terminé, il ne faut pas oublier de retourner sur un niveau moins élevé comme le niveau *Error* qui ne remonte que d'éventuelles erreurs.
+In *Debug* mode the daemon logs a lot of information, so it is recommended to only set this level if you have to detect the cause of a particular problem.
+It is not recommended to leave the daemon running in *Debug* mode if you use a *SD-Card*.
+When debugging is done, don't forget to return the log level to a normal level, such as *Error* which only reports possible errors.
 
 
 === Configuration
-Cette partie permet de configurer les paramètres généraux du plugin
+This sections allows to configure the general parameters of the plugin.
 image:../images/configuration06.png[]
 
-* *Général* :
-** *Supprimer automatiquement les périphériques exclus* : L'option Oui, permet de supprimer les périphériques exclus du réseau  Z-Wave. L’option Non, permet de conserver les équipements dans Jeedom même s’ils ont été exclus du réseau. L’équipement devra être alors supprimé manuellement ou réutilisé en lui assignant un nouvel ID Z-Wave si on exécute une migration du contrôleur principal.
-** *Appliquer le jeu de configuration recommandé à l'inclusion* : option pour appliquer directement à l'inclusion le jeu de configuration recommandé par l'équipe Jeedom (conseillée)
-** *Désactiver l'actualisation en arrière-plan des variateurs* : Ne pas demander de rafraichissement des variateurs en arrière-plan.
-** *Cycle (s)* : permet de définir la fréquence des remontées à jeedom.
-** *Port clé Z-Wave* : le port USB sur lequel votre interface Z-Wave est connectée.
-Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 possibilités à la fin de la liste.
-** *Port du Serveur* (modification dangereuse, doit avoir la même valeur sur tous les Jeedoms déportés Z-Wave) : permet de modifier le port de communication interne du démon.
-** *Backups* : permet de gérer les backups du fichier de topologie réseaux (voir plus bas)
-** *Config modules* : permet de récupérer, manuellement, les fichiers de configurations OpenZWave avec les paramètres des modules ainsi que la définition des commandes de modules pour leurs utilisations.
+* *General* :
+** *Automatically remove excluded devices* : if yes, will result in the excluded devices to be removed from the Z-Wave network. If no, excluded devices will still be in the network, and they will have to be manually deleted, or reused by assignment of a new Z-wave ID if one is migrating the primary controller.
+** *Apply the recommended configuration on inclusion" : the configuration recommended by the Jeedom team will be automatically set post-inclusion.
+** *Deactivate* the background update of the dimmers* : background updating of dimmers will not be performed.
+** *Cycle(s)* : allows to define the frequency of the reports to Jeedom.
+** *Z-Wave port" : the USB port on which the T-Wave interface is connected.
+If you have a raZberry, you have, according to your architecture (RPI or Jeedomboard) 2 possibilities at the end of the list.
+** *Server port* (dangerous to modify, has to be the same value on the remote Z-Wave Jeedoms) : allows to change to internal communication port of the daemon.
+** *Backups* : allow to manage backups of the network's topology files (see below)
+** *Modules config* : allows to manually update the OpenZWave configuration files with the modules' parameters and commands definitions.
 [TIP]
-La récupération des configurations de module s'effectue automatiquement chaque nuit.
+The update of the modules' configurations is automatically done nightly.
 [TIP]
-Le redémarrage du démon suite à la mise à jour des configurations de module est inutile.
+There is no need to restart the daemon after updating the configuration files.
 [IMPORTANT]
-Si vous avez un module non reconnu et qu'une mise à jour de configuration vient d'être appliquée, vous pouvez manuellement lancer la récupération des configurations de modules.
+If you have an unknown module and a update of the configuration files is available, you can manually update them.
 
-Une fois les configurations récupérées, il faudra selon les changements apportés:
+Once the configuration files have been updated, and according to their changes, you will have to :
 
-** Pour un nouveau module sans configuration ni commande : exclure et ré-inclure le module.
-** Pour un module pour lequel seuls les paramètres ont été mis à jour : lancer la régénération de la détection du nœud, via l'onglet Actions du module (le plugin doit redémarrer).
-** Pour un module dont le « mapping » de commandes a été corrigé : la loupe sur les commandes, voir plus bas.
+** For a new module without any configuration nor command : exclude and reinclude the module.
+** For a module for which only the parameters were updated : do a regeneration of the node's detection from the Action tab of the module (the plugin will restart).
+** For a module for which the command mapping was corrected, use the magnifying glass, see below.
 [TIP]
-Dans le doute, exclure et ré-inclure le module est recommandé.
+In case of doubt, exclude and reinclude the module.
 
 Don't forget to
 image:../images/configuration08.png[]
