@@ -168,19 +168,19 @@ if ($controllerMode == 5) {
         </center>
         <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Configuration}}</center></span>
     </div>
-    <div class="cursor expertModeVisible" id="bt_syncEqLogic" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;">
+    <div class="cursor" id="bt_syncEqLogic" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;">
         <center>
             <i class="fa fa-refresh" style="font-size : 6em;color:#767676;"></i>
         </center>
         <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Synchroniser}}</center></span>
     </div>
-    <div class="cursor expertModeVisible" id="bt_zwaveNetwork" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;">
+    <div class="cursor" id="bt_zwaveNetwork" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;">
         <center>
             <i class="fa fa-sitemap" style="font-size : 6em;color:#767676;"></i>
         </center>
         <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#767676"><center>{{Réseau Zwave}}</center></span>
     </div>
-    <div class="cursor expertModeVisible" id="bt_zwaveHealth" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;">
+    <div class="cursor" id="bt_zwaveHealth" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;">
         <center>
             <i class="fa fa-medkit" style="font-size : 6em;color:#767676;"></i>
         </center>
@@ -261,7 +261,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
                     <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
                 </div>
             </div>
-            <div class="form-group expertModeVisible">
+            <div class="form-group">
                 <label class="col-sm-4 control-label">{{Node ID}}</label>
                 <div class="col-sm-2">
                     <input type="text" class="eqLogicAttr form-control" data-l1key="logicalId"/>
@@ -276,8 +276,8 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
             <div class="form-group">
                 <label class="col-sm-2 control-label">{{Informations}}</label>
                 <div class="col-sm-8">
-                    <a id="bt_autoDetectModule" class="expertModeVisible btn btn-danger"><i class="fa fa-search"></i> {{Recharger configuration}}</a>
-                    <a id="bt_displayZwaveData" class="expertModeVisible btn btn-default"><i class="fa fa-tree"></i> {{Arbre Z-Wave}}</a>
+                    <a id="bt_autoDetectModule" class="btn btn-danger"><i class="fa fa-search"></i> {{Recharger configuration}}</a>
+                    <a id="bt_displayZwaveData" class="btn btn-default"><i class="fa fa-tree"></i> {{Arbre Z-Wave}}</a>
                     <span class="label label-warning isPending" style="font-size:0.6em;cursor:default;position:relative;top:-4px;left:20px;" title="{{Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage}}"></span>
                 </div>
             </div>
@@ -315,17 +315,17 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
 
 </div>
 <div role="tabpanel" class="tab-pane" id="commandtab">
-    <a class="btn btn-success btn-sm cmdAction expertModeVisible pull-right" data-action="add" style="margin-top:5px;"> <i class="fa fa-plus-circle"></i> {{Commandes}}</a>
+    <a class="btn btn-success btn-sm cmdAction pull-right" data-action="add" style="margin-top:5px;"> <i class="fa fa-plus-circle"></i> {{Commandes}}</a>
     <br/><br/>
     <table id="table_cmd" class="table table-bordered table-condensed">
         <thead>
             <tr>
                 <th style="width: 300px;">{{Nom}}</th>
-                <th style="width: 130px;" class="expertModeVisible">{{Type}}</th>
-                <th class="expertModeVisible">{{Instance}}</th>
-                <th class="expertModeVisible">{{Classe}}</th>
-                <th class="expertModeVisible">{{Index}}</th>
-                <th class="expertModeVisible">{{Commande}}</th>
+                <th style="width: 130px;">{{Type}}</th>
+                <th>{{Instance}}</th>
+                <th>{{Classe}}</th>
+                <th>{{Index}}</th>
+                <th>{{Commande}}</th>
                 <th style="width: 200px;">{{Paramètres}}</th>
                 <th style="width: 100px;">{{Options}}</th>
                 <th></th>
