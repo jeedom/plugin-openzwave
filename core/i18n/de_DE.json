@@ -326,7 +326,7 @@
         "Vérifie si le nœud est dans la liste des nœuds en erreur.": "Überprüft, ob der Knoten in der Liste der fehlerhaften Knoten ist. ",
         "Supprimer le nœud en échec": "Fehlerhaften Knoten entfernen",
         "Permet de supprimer un nœud marqué comme défaillant par le contrôleur.": "Erlaubt, einen Knoten abzuschaffen, der als ausgefallen durch den Controller markiert wurde.",
-        "Le nœud doit être en échec.": "Der Knoten muß einen Feheler haben.",
+        "Le nœud doit être en échec.": "Der Knoten muß einen Fehler haben.",
         "Remplacer nœud en échec": "Den fehlerhafte Knoten ersetzen",
         "Remplace un module en échec par un autre. Si le nœud n'est pas dans la liste des nœuds en échec sur le contrôleur, ou que le nœud répond, la commande va échouer.": "Ersetzen eines fehlerhaften Moduls mit einem anderen. Wenn der Knoten nicht in der Liste der ausgefallenen Knoten der Controller ist, oder der Knoten antwortet, wird der Befehl fehlschlagen.",
         "Envoi infos du nœud": "Knoten-Infos versenden",
