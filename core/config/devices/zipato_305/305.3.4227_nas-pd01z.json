@@ -1,0 +1,71 @@
+{
+    "name": "PIR Sensor", 
+    "type": "Multicapteurs", 
+    "comlink": "4160-zipato-capteur-de-mouvement-pir-z-wave-3858890733341", 
+    "remark": "", 
+    "imglink": "shenzen_neo.nas-pd01z", 
+    "configuration": {
+        "battery_type": "1x3V CR123A"
+    }, 
+    "commands": [
+        {
+            "name": "Présence", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 48, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "PRESENCE"
+            }, 
+            "template": {
+                "dashboard": "presence", 
+                "mobile": "presence"
+            }
+        }, 
+        {
+            "name": "Luminosité", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 3, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 1000
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BRIGHTNESS"
+            }, 
+            "unite": "Lux"
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}
