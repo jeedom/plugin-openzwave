@@ -1,0 +1,146 @@
+{
+    "name": "Water Sensor 6 (ZW122)", 
+    "type": "Fuite", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "aeotec.dsb122", 
+    "configuration": {
+        "battery_type": "1x3.0V CR123A"
+    }, 
+    "commands": [
+        {
+            "name": "Fuite 1", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 113, 
+                "value": "", 
+                "index": 8, 
+                "instance": 1, 
+                "calculValueOffset": "#value#==2"
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "FLOOD"
+            }, 
+            "template": {
+                "dashboard": "inondation", 
+                "mobile": "inondation"
+            }
+        }, 
+        {
+            "name": "Fuite 2", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 113, 
+                "value": "", 
+                "index": 8, 
+                "instance": 2, 
+                "calculValueOffset": "#value#==2"
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "FLOOD"
+            }, 
+            "template": {
+                "dashboard": "inondation", 
+                "mobile": "inondation"
+            }
+        }, 
+        {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Alerte température élevée", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 113, 
+                "value": "", 
+                "index": 4, 
+                "instance": 1, 
+                "calculValueOffset": "#value#==2"
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SABOTAGE"
+            }, 
+            "template": {
+                "dashboard": "alert", 
+                "mobile": "alert"
+            }
+        }, 
+        {
+            "name": "Alerte basse température", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 113, 
+                "value": "", 
+                "index": 4, 
+                "instance": 1, 
+                "calculValueOffset": "#value#==6"
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SABOTAGE"
+            }, 
+            "template": {
+                "dashboard": "alert", 
+                "mobile": "alert"
+            }
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ], 
+    "recommended": {
+        "params": [
+            {
+                "index": 94, 
+                "value": "CR123A battery level"
+            }
+        ], 
+        "wakeup": 14400, 
+        "needswakeup": true
+    }
+}
