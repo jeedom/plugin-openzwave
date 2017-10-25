@@ -23,6 +23,10 @@ Si toutefois, un module ne peut être inclus en mode sécurisé, veuillez l'incl
 
 When inclusion mode started, Jeedom lets you know.
 
+[TIP] Un module 'non sécurisé' peut commander des modules 'non sécurisés'.
+Un module 'non sécurisé' ne peut pas commander un module 'sécurisé'.
+Un module 'sécurisé' pourra commander des modules 'non sécurisés' sous réserve que l’émetteur le supporte.
+
 image:../images/addremove03.png[]
 
 When the wizard has launched, you have to set the module in inclusion mode (please refer to its documentation to set it in inclusion mode).

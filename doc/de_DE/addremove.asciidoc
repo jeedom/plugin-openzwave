@@ -23,6 +23,10 @@ Si toutefois, un module ne peut être inclus en mode sécurisé, veuillez l'incl
 
 Einmal im Inklusions Modus : Wird Sie Jeedom informieren.
 
+[TIP] Un module 'non sécurisé' peut commander des modules 'non sécurisés'.
+Un module 'non sécurisé' ne peut pas commander un module 'sécurisé'.
+Un module 'sécurisé' pourra commander des modules 'non sécurisés' sous réserve que l’émetteur le supporte.
+
 image:../images/addremove03.png[]
 
 Ist der Assistent einmal gestartet, muß man daß auch auf dem Modul machen (lesen Sie die Dokumentation, wie man in den Inklusions Modus gelangt).
