@@ -1,0 +1,131 @@
+{
+    "name": "STZW402+ Electronic Thermostat",
+    "type": "Thermostat",
+    "comlink": "",
+    "remark": "",
+    "imglink": "stelpro.stzw402",
+    "commands": [
+        {
+            "name": "Consigne",
+            "type": "action",
+            "subtype": "slider",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 67,
+                "value": "type=setvalue&value=#slider#",
+                "index": 1,
+                "instance": 1,
+				"minValue": 5, 
+                "maxValue": 30
+            },
+            "template": {
+                "dashboard": "thermostat",
+                "mobile": "thermostat"
+            },
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }
+        },
+		{
+            "name": "Info Consigne",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+			"unite": "°C",
+            "configuration": {
+                "class": 67,
+                "value": "",
+                "index": 1,
+                "instance": 1,
+				"minValue": 5, 
+                "maxValue": 30
+            },
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }
+        },
+		{
+            "name": "Mode",
+            "type": "info",
+            "subtype": "string",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 64,
+                "value": "",
+                "index": 0,
+                "instance": 1
+            },
+            "display": {
+                "generic_type": "THERMOSTAT_MODE"
+            }
+        },
+		{
+            "name": "Confort",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 64,
+                "value": "type=setvalue&value=Heat",
+                "index": 0,
+                "instance": 1
+            },
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }
+        },
+		{
+            "name": "Eco",
+            "type": "action",
+            "subtype": "other",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 64,
+                "value": "type=setvalue&value=Heat Econ",
+                "index": 0,
+                "instance": 1
+            },
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }
+        },
+		{
+            "name": "Etat",
+            "type": "info",
+            "subtype": "string",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 66,
+                "value": "",
+                "index": 0,
+                "instance": 1
+            },
+            "display": {
+                "generic_type": ""
+            }
+        },
+        {
+            "name": "Température",
+            "type": "info",
+            "subtype": "numeric",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "unite": "°C",
+            "display": {
+                "generic_type": "THERMOSTAT_TEMPERATURE"
+            },
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "instance": 1,
+                "index": "1"
+            }
+        }
+    ]
+}
