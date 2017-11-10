@@ -1,0 +1,52 @@
+{
+    "name": "Leak Sensor",
+    "type": "Fuite", 
+    "comlink": "",
+    "remark": "",
+    "imglink": "dome.leaksensor",
+    "configuration": {
+        "battery_type": "2x3.0V CR2"
+    }, 
+    "commands": [
+        {
+            "name": "Fuite", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 48, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "FLOOD"
+            }, 
+            "template": {
+                "dashboard": "inondation", 
+                "mobile": "inondation"
+            }
+        },
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}
