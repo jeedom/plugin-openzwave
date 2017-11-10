@@ -1,0 +1,213 @@
+{
+    "name": "MIMOlite",
+    "type": "Compteur",
+    "comlink": "2380-fortrezz-module-entree-sortie-z-wave-mimolite-0661799563291",
+    "remark": "", 
+    "imglink": "fortrezz.mimolite",
+    "commands": [
+        {
+            "name": "On",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "index": 0,
+                "instance": 1
+            },
+            "value": "Etat",
+            "subtype": "other",
+            "display": {
+                "generic_type": "LIGHT_ON"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "index": 0,
+                "instance": 1
+            },
+            "value": "Etat",
+            "subtype": "other",
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "index": 0,
+                "instance": 1
+            },
+            "subtype": "binary",
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }
+        },
+        {
+            "name": "Contact sec",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 48,
+                "value": "",
+                "index": 0,
+                "instance": 1
+            },
+            "subtype": "binary",
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "OPENING"
+            },
+            "template": {
+                "dashboard": "door",
+                "mobile": "door"
+            }
+        },
+      {
+        "name": "Compteur",
+        "type": "info",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "configuration": {
+          "class": 53,
+          "value": "",
+          "index": 0,
+          "instance": 1
+        },
+        "subtype": "numeric",
+        "display": {
+          "generic_type": "DONT"
+        },
+        "template": {
+          "dashboard": "tile",
+          "mobile": "tile"
+        },
+        "unite": "tic"
+      },
+      {
+        "name": "Refresh",
+        "type": "action",
+        "isVisible": 0,
+        "isHistorized": 0,
+        "configuration": {
+          "class": 53,
+          "value": "type=refreshData",
+          "index": 0,
+          "instance": 1
+        },
+        "subtype": "other",
+        "display": {
+          "generic_type": "DONT"
+        }
+      },{
+          "name": "Reset",
+          "type": "action",
+          "isVisible": 0,
+          "isHistorized": 0,
+          "configuration": {
+              "class": 112,
+              "value": "type=buttonaction&action=press",
+              "index": 2,
+              "instance": 1
+          },
+          "subtype": "other",
+          "display": {
+              "generic_type": "DONT"
+          }
+      },
+      {
+        "name": "Tension",
+        "type": "info",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "configuration": {
+          "class": 49,
+          "value": "",
+          "index": 2,
+          "instance": 1,
+          "minValue": 0,
+          "maxValue": 15,
+          "calculValueOffset": "(((1.5338*(10**-16))*(#value#**5)) - ((1.2630*(10**-12))*(#value#**4)) + ((3.8111*(10**-9))*(#value#**3)) - ((4.7739*(10**-6))*(#value#**2)) + ((2.8558*(10**-3))*(#value#)) - (2.2721*(10**-2)))",
+          "historizeRound" : 1
+        },
+        "subtype": "numeric",
+        "display": {
+          "generic_type": "DONT"
+        },
+        "unite": "Volts"
+      },
+      {
+        "name": "ADC",
+        "type": "info",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "configuration": {
+          "class": 49,
+          "value": "",
+          "index": 2,
+          "instance": 1,
+          "minValue": 0,
+          "maxValue": 4095
+        },
+        "subtype": "numeric",
+        "display": {
+          "generic_type": "DONT"
+        },
+        "unite": ""
+      },
+      {
+        "name": "Power drop",
+        "type": "info",
+        "isVisible": 1,
+        "isHistorized": 1,
+        "configuration": {
+          "class": 113,
+          "value": "",
+          "index": 1,
+          "instance": 1
+        },
+        "subtype": "binary",
+        "display": {
+          "invertBinary": "1",
+          "generic_type": "SABOTAGE"
+        },
+        "template": {
+          "dashboard": "alert",
+          "mobile": "alert"
+        }
+      }
+    ],
+  "recommended": {
+    "groups": [
+      {
+        "index": 3,
+        "value": "add"
+      },
+      {
+        "index": 5,
+        "value": "add"
+      }
+    ]
+  }
+}
