@@ -39,6 +39,7 @@
                 "index": 0, 
                 "instance": 1
             }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_ON"
@@ -55,6 +56,7 @@
                 "index": 0, 
                 "instance": 1
             }, 
+            "value": "Etat", 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
