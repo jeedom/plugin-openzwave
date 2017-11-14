@@ -19,7 +19,7 @@
             "value": "Position", 
             "subtype": "other", 
             "display": {
-                "generic_type": "GB_TOGGLE"
+                "generic_type": "GB_OPEN"
             }, 
             "template": {
                 "dashboard": "garageBarrierOperator", 
@@ -40,7 +40,7 @@
             "value": "Position", 
             "subtype": "other", 
             "display": {
-                "generic_type": "GB_TOGGLE"
+                "generic_type": "GB_CLOSE"
             }, 
             "template": {
                 "dashboard": "garageBarrierOperator", 
