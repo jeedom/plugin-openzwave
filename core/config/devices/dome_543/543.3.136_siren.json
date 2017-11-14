@@ -1,0 +1,106 @@
+{
+    "name": "Siren",
+    "type": "Sirène", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "dome.siren",
+    "configuration": {
+        "battery_type": "2x3.0V CR2"
+    },
+    "commands": [
+        {
+            "name": "Sirene", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": 1, 
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "alert", 
+                "mobile": "alert"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Sirene", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Sirene", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Carillon",
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 135, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 1, 
+                "maxValue": 10
+            }, 
+            "value": "CarillonIndex",
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "CarillonIndex",
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 135, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 1, 
+                "maxValue": 10
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": ""
+        }
+    ]
+}
