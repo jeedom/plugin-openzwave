@@ -1,26 +1,26 @@
 == Änderungsprotokoll
 
-Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
+Detailliertes Änderungsprotokoll : https://github.com/jeedom/plugin-openzwave/commits/stable
 
 == 2017-08-xx
 
-* New Features
+* Neue Eigenschaften
 
-** Possibilité de rafraichir les commandes d'un équipement sans supprimer les existantes.
-** Possibilité de créer une commande information sur les valeurs de l'onglet Système.
+** Möglichkeit, die Steuerelemente eines Geräts zu aktualisieren, ohne die vorhandenen zu entfernen.
+** Möglichkeit, einen Informationsbefehl für die Werte der Registerkarte System zu erstellen.
 
-* Improvements/Enhancements
+* Verbesserungen/Erweiterungen
 
-** Prise en charge de nouveaux modules, définitions ozw et commandes.
-** Possibilité de sélectionner l'association par défaut (sans instance) sur les modules supportant les associations multi-instances.
-** Vérification de la validité des groupes d'associations à la fin de l'interview.
-** Récupération du dernier niveau des piles au démarrage du démon.
+** Unterstützung für neue Module, OZW Definitionen und Befehle.
+** Die Möglichkeit, der standard Assoziation (ohne Instanz) für die Module auszuwählen, die die multi-Instanzen Assoziationen unterstützen.
+** Überprüfung der Gültigkeit der Assoziations-Gruppen am Ende des Interviews.
+** Wiederherstellung des letzten Batteriestands beim starten des Daemons.
 
-* Bug Fixes
+* Fehlerbehebungen
 
-** Correction de la migration de l'info Batterie.
-** Correction de la remontée de l'info Batterie dans l'écran Equipements.
-** Restauration du type de piles dans les configurations de modules.
+** Die Migration der Batterie-Informationen wurde korrigiert.
+** Die Rückmeldung der Batterieinfo im Gerätebildschirm wurde behoben
+** Wiederherstellen des Batterien-Typs in der Modul Konfiguration.
 ** Correction des actions sur les valeurs de type bouton dans l'écran du module.
 ** Correction de la récupération des traductions de paramètres.
 ** Correction erreur vide sur modification de valeurs de type RAW (code RFid).
@@ -34,15 +34,15 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 
 == 2017-06-20
 
-* New Features
+* Neue Eigenschaften
 
-** N/A
+** keine Änderung
 
-* Improvements/Enhancements
+* Verbesserungen/Erweiterungen
 
 ** Ajout l'ensemble des configurations de modules au nouveau format. 
 
-* Bug Fixes
+* Fehlerbehebungen
 
 ** Ne pas tester si un nodeId existe lors de la suppression d'un association.
 ** Restauration de la notification de consigne en attente sur les thermostats.
@@ -54,35 +54,35 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 
 == 2017-06-13
 
-* New Features
+* Neue Eigenschaften
 
-** N/A
+** keine Änderung
 
-* Improvements/Enhancements
+* Verbesserungen/Erweiterungen
 
 ** Ajout de configuration de module Fibaro US
 
-* Bug Fixes
+* Fehlerbehebungen
 
-** N/A
+** keine Änderung
 
 == 2017-05-31
 
-* New Features
+* Neue Eigenschaften
 
-** N/A
+** keine Änderung
 
-* Improvements/Enhancements
+* Verbesserungen/Erweiterungen
 
-** N/A
+** keine Änderung
 
-* Bug Fixes
+* Fehlerbehebungen
 
 ** Correction de l'assignation des valeurs au format RAW des codes pour lecteur RFid.
 
 == 2017-05-23
 
-* New Features
+* Neue Eigenschaften
 
 ** Suppression du mode maître / esclave. Remplacé par le plugin jeedom link.
 ** Utilisation d'une clé API privée au plugin ZWave.
@@ -91,7 +91,7 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 ** Ajout du support de la Classe de Commande Central Scene.
 ** Ajout du support de la Classe de Commande Barrier Operator.
 
-* Improvements/Enhancements
+* Verbesserungen/Erweiterungen
 
 ** Refonte complète du serveur REST utilisation de TORNADO. 
 *** Modification de l'ensemble des routes existantes, les scripts devront être adaptés si utilisation de l'API ZWave.
@@ -107,39 +107,39 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 ** Plus de demande journalière du niveau des piles (moins de messages, économie sur les piles). 
 ** Le niveau des piles est directement envoyé à l'écran de pile sur réception de rapport du niveau.
 
-* Bug Fixes
+* Fehlerbehebungen
 
 ** Rafraîchissement de l'ensemble des instances suite à un broadcast de la CC Switch ALL.
 
 == 2016-08-26
 
-* New Features
+* Neue Eigenschaften
 
-** Aucune
+** keine
 
-* Improvements/Enhancements
+* Verbesserungen/Erweiterungen
 
 ** Détection du RPI3 dans la mise à jour des dépendances.
 ** Activer le mode d'inclusion en non-sécurisé par défaut.
 
-* Bug Fixes
+* Fehlerbehebungen
 
 ** Test des informations constructeur dans l'écran de santé ne remonte plus des NOK.
 ** Perte des cases-à-cocher dans l'onglet Commandes de la page équipement.
 
 == 2016-08-17
 
-* New Features
+* Neue Eigenschaften
 
 ** Relance du demon si détection du contrôleur en timeout lors de l'initialisation du contrôleur.
 
-* Improvements/Enhancements
+* Verbesserungen/Erweiterungen
 
 ** OpenZWave Bibliothek 1.4.2088 aktualisiert.
 ** Correction de l’orthographe.
 ** Refonte de l'écran équipements avec onglets.
 
-* Bug Fixes
+* Fehlerbehebungen
 
 ** Problème d'affichage de certains modules sur la table de routage et Graph réseau.
 ** Modules Vision Secure qui ne retournent pas en veille durant l'interview.
@@ -147,7 +147,7 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 
 == 2016-07-11
 
-* New Features
+* Neue Eigenschaften
 
 ** Prise en charge de la restauration du dernier niveau connue sur les dimmer.
 ** Distinction des modules FLiRS dans l'écran de santé.
@@ -164,7 +164,7 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 *** Masquée dans la Table réseau et Graphique réseau.
 *** Nœuds désactivés, excluent des tests sanitaires.
 
-* Improvements/Enhancements
+* Verbesserungen/Erweiterungen
 
 ** Optimisation des contrôles sanitaires.
 ** Optimisation du graphique réseau.
@@ -178,7 +178,7 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 ** Correction de l'orthographe des écrans, merci @Juan-Pedro aka: kiko.
 ** Plugin Dokumentations Update.
 
-* Bug Fixes
+* Fehlerbehebungen
 
 ** Correction de possible problèmes lors de la mise à jour des configurations de modules.
 ** Graphique réseau, calcul des sauts sur l'id du contrôleur principal et non assumer l'ID 1.
@@ -188,14 +188,14 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 
 == 2016-05-30
 
-* New Features
+* Neue Eigenschaften
 
 ** Ajout d'une option pour activer/désactiver les contrôles sanitaires sur l'ensemble des modules.
 ** Ajout d'un onglet Notifications pour visualiser les dernières 25 notifications du contrôleur.
 ** Ajout d'une route pour récupérer la santé d'un noeud. ip_jeedom:8083/ZWaveAPI/Run/devices[node_id].GetHealth()
 ** Ajout d'une route pour récupérer la dernière notification d'un noeud. ip_jeedom:8083/ZWaveAPI/Run/devices[node_id].GetLastNotification()
 
-* Improvements/Enhancements
+* Verbesserungen/Erweiterungen
 
 ** Permettre la sélection des modules FLiRS lors des associations directes.
 ** Permettre la sélection de toutes les instances des modules lors des associations directes.
@@ -209,7 +209,7 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 ** Mise à jour de la documentation.
 ** Correction de l'orthographe de la documentation, merci @Juan-Pedro aka: kiko.
 
-* Bug Fixes
+* Fehlerbehebungen
 
 ** Correction orthographe.
 ** Correction de l'inclusion en mode sécurisé.
@@ -217,7 +217,7 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 
 == 2016-05-04
 
-* New Features
+* Neue Eigenschaften
 
 ** Ajout d'option pour désactiver l'actualisation en arrière-plan des variateurs.
 ** Affichage des associations avec qui un module est en association (find usage).
@@ -233,7 +233,7 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 ** Ajout d'une option pour désactiver la mise à jour automatique des config de module.
 ** Ajout d'une route pour modifier à l'exécution les traces de log du serveur REST. Note: aucun effect sur le niveau OpenZWave. http://ip_jeedom:8083/ZWaveAPI/Run/ChangeLogLevel(level) level => 40:Error, 20: Debug 10 Info
 
-* Improvements/Enhancements
+* Verbesserungen/Erweiterungen
 
 ** Mise à jour du wrapper python OpenZWave en version 0.3.0b9.
 ** Mise en évidence des groupes d'associations qui sont en attente d'être appliqués.
@@ -252,7 +252,7 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 ** Optimisation du mode Debug pour le serveur REST.
 ** Forcer une actualisation de l'état des interrupteurs et dimer suite à l'envoi d'une commande switch all.
 
-* Bug Fixes
+* Fehlerbehebungen
 
 ** Correction de la découverte des groupes d'associations.
 ** Correction de l'erreur "Exception KeyError: (91,) in 'libopenzwave.notif_callback' ignored".
@@ -264,13 +264,13 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 
 == 2016-03-01
 
-* New Features
+* Neue Eigenschaften
 
 ** Ajout du bouton Configuration via l'écran de gestion des équipements.
 ** Ajout des nouveaux états de l'interview de module.
 ** Modification de libellés dans les UI.
 
-* Improvements/Enhancements
+* Verbesserungen/Erweiterungen
 
 ** Meilleur gestion des boutons Actions de modules.
 ** Documentation Ajout de sections.
@@ -279,7 +279,7 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 ** Ne plus remonter les informations de l'état de la pile sur un module branché sur secteur.
 ** Mise à jour de la documentation.
 
-* Bug Fixes
+* Fehlerbehebungen
 
 ** Documentation Corrections orthographiques et grammaticales.
 ** Validation du contenu du fichier zwcfg avant de l'appliquer.
@@ -287,18 +287,18 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 
 == 2016-02-12
 
-* Improvements/Enhancements
+* Verbesserungen/Erweiterungen
 
 ** Pas d'alerte de nœud mort si celui-ci est désactivé.
 
-* Bug Fixes
+* Fehlerbehebungen
 
 ** Correction fil pilote Fibaro retour d'état.
 ** Correction d'un bug qui recréer les commandes lors de la mise à jour.
 
 == 2016.02.09
 
-* New Features
+* Neue Eigenschaften
 
 ** Ajout du push notification en case de node_event, permet la mise en place d’une cmd info en CC 0x20 pour récupérer des événement sur les nodes.
 ** ForceRefresh Pfad hinzufügen \http://ip_jeedom:8083/ZWaveAPI/Run/devices[<int:node_id>].instances[<int:instance_id>].commandClasses[<cc_id>].data[<int:index>].ForceRefresh()
@@ -318,7 +318,7 @@ pouvant être utilisée dans les commandes.
 ** Gestion des actions réseau selon l’état du réseau.
 ** Mise à jour de la configuration de module automatique toutes les nuits.
 
-* Improvements/Enhancements
+* Verbesserungen/Erweiterungen
 
 ** Refactoring complet du code du serveur REST, optimisation de vitesse de démarrage, lisibilité, respect de convention de nommage.
 ** Mise à l’équerre des logs.
@@ -331,7 +331,7 @@ pouvant être utilisée dans les commandes.
 ** Meilleur gestion des paramètres en lecture seule ou en écriture seule dans l’onglet Paramètres.
 ** Amélioration des warning sur les thermostats sur piles.
 
-* Bug Fixes
+* Fehlerbehebungen
 
 ** Température convertie en Celsius retourne l’unité C à la place de F.
 ** Correction du rafraîchissement des valeurs au démarrage.
