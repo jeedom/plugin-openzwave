@@ -1,5 +1,7 @@
 import logging
-import globals,utils,node_utils,value_utils
+import globals,utils,node_utils,value_utils, network_utils
+import thread
+import time
 
 def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 	logging.info("Send command to node "+str(_node_id)+" on class "+str(_cc_id)+" instance "+str(_instance_id)+" index "+str(_index)+" value "+str(_value))
@@ -17,5 +19,15 @@ def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 			if _cc_id == globals.COMMAND_CLASS_THERMOSTAT_SETPOINT:
 				# send back thermostat pending SETPOINT value
 				node_utils.save_node_value_event(_node_id, _cc_id, _index, _value, _instance_id+10)
+				thread.start_new_thread( refresh_value, (_node_id,_instance_id,_cc_id,_index,5))
+			if _cc_id == globals.COMMAND_CLASS_THERMOSTAT_MODE:
+				thread.start_new_thread( refresh_value, (_node_id,_instance_id,_cc_id,_index,5))
 			return True
 	raise Exception('Value not found')
+	
+def refresh_value(node_id,instance_id,cc_id,index,sleep):
+	time.sleep(sleep)
+	for value_id in globals.network.nodes[node_id].get_values(class_id=cc_id):
+		if globals.network.nodes[node_id].values[value_id].instance == instance_id and globals.network.nodes[node_id].values[value_id].index == index:
+			globals.network.nodes[node_id].values[value_id].refresh()
+	return

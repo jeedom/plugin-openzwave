@@ -1,0 +1,118 @@
+{
+	"name": "FGT-001 HEAT CONTROLLER",
+	"doc": "",
+	"type": "Thermostat",
+	"imglink": "fibaro.fgt001",
+	"configuration": {
+		"conf_version": 1
+	},
+	"commands": [
+        {
+            "name": "Temperature", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 40
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "unite": "°C"
+        }, 
+        {
+            "name": "Consigne", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 67, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1, 
+                "minValue": 16,
+                "maxValue": 24
+            }, 
+            "subtype": "numeric", 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Consigne Action", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 1, 
+                "instance": 1,
+                "minValue": 16,
+                "maxValue": 24
+            }, 
+            "value": "Consigne",
+            "subtype": "slider",
+            "template":{
+            	"dashboard":"thermostat",
+            	"mobile":"thermostat"
+            }
+        },
+        {
+            "name": "Mode", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 64, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "string"
+        },
+        {
+            "name": "Arret", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Off", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other"
+        },
+        {
+            "name": "Thermostat", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Heat", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other"
+        },
+        {
+            "name": "Forcer", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Manual Valve Control", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other"
+        }
+        ]	
+}

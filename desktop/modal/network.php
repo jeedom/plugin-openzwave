@@ -205,7 +205,7 @@ if (!isConnect('admin')) {
                             <td>{{Mettez le contrôleur cible en mode de réception de configuration.}}<br>{{Le contrôleur cible doit être moins de 2m du contrôleur primaire. Nécessite SUC.}}</td>
                         </tr>
                         <tr>
-                            <td><a data-action="receiveConfiguration" class="btn btn-danger controller_action"><i class="fa fa-file"></i> {{Receive Configuration}}</a></td>
+                            <td><a data-action="receiveConfiguration" class="btn btn-danger controller_action"><i class="fa fa-file"></i> {{Recevoir Configuration}}</a></td>
                             <td>{{Transfert de la configuration réseau à partir d'un autre contrôleur.}}<br><i>{{Approcher l'autre contrôleur à moins de 2m du contrôleur primaire .}}</i></td>
                         </tr>
                         <tr>
