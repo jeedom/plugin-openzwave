@@ -1,5 +1,12 @@
 import utils,network_utils,controller_utils,node_utils
 #Various mappings
+REFRESH_MAPPING = {'271|4865|4096': \#Fibaro Vanne thermostatique
+						{'64|1|0' : {'sleep' :5 , 'number' :1},\
+						{'67|1|1' : {'sleep' :5 , 'number' :1},\
+						}\
+				}
+
+
 CONVERSION = {'Int': 'int',\
 	'Decimal': 'float',\
 	'Bool':'bool',\
