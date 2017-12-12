@@ -1,7 +1,7 @@
 import utils,network_utils,controller_utils,node_utils
 #Various mappings
-REFRESH_MAPPING = {'271|4865|4096': \
-						{'64|1|0' : {'sleep' :5 , 'number' :1},'67|1|1' : {'sleep' :5 , 'number' :1}},\
+REFRESH_MAPPING = {'271|4865|4096': {'64|1|0' : {'sleep' :5 , 'number' :1},'67|1|1' : {'sleep' :5 , 'number' :1}},\
+					'271|2304|4096': {'51|1|0' : {'sleep' :5 , 'number' :2 , 'other' : '38|1|0'},'38|1|0' : {'sleep' :5 , 'number' :2 , 'other' : '51|1|0'}},\
 					}
 
 

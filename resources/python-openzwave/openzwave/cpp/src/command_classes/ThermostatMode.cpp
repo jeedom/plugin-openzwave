@@ -64,7 +64,24 @@ static char const* c_modeName[] =
 	"Heat Econ",
 	"Cool Econ",
 	"Away",
-	"Unknown"
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Unknown",
+	"Manual Valve Control"
 };
 
 //-----------------------------------------------------------------------------
@@ -94,7 +111,7 @@ void ThermostatMode::ReadXML
 					int index;
 					if( TIXML_SUCCESS == modeElement->QueryIntAttribute( "index", &index ) )
 					{
-						if (index > 13) /* size of c_modeName minus Invalid */
+						if (index > 31) /* size of c_modeName minus Invalid */
 						{
 							Log::Write (LogLevel_Warning, GetNodeId(), "index Value in XML was greater than range. Setting to Invalid");
 							index = 14;

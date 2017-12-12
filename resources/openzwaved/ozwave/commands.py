@@ -29,16 +29,27 @@ def refresh_value(node_id,instance_id,cc_id,index):
 		product_type = str(int(my_node.product_type, 16))
 		manufacturer_id = str(int(my_node.manufacturer_id, 16))
 		globalId = manufacturer_id+'|'+product_type+'|'+product_id
+		logging.debug("Searching refresh for : " + globalId)
 		if globalId in globals.REFRESH_MAPPING:
 			globalCommand = str(cc_id)+'|'+str(instance_id)+'|'+str(index)
+			logging.debug("Found refresh for : " + globalId + " searching for " + globalCommand)
 			if globalCommand in globals.REFRESH_MAPPING[globalId]:
 				for value_id in globals.network.nodes[node_id].get_values(class_id=cc_id):
 					if globals.network.nodes[node_id].values[value_id].instance == instance_id and globals.network.nodes[node_id].values[value_id].index == index:
-						logging.debug("Refresh "+str(node_id)+" on class "+str(cc_id)+" instance "+str(instance_id)+" index "+str(index)+ " " +str(globals.REFRESH_MAPPING[globalId][globalCommand]['number']) + " times in "+str(globals.REFRESH_MAPPING[globalId][globalCommand]['sleep'] + " seconds"))
-						for i in range(1,globals.REFRESH_MAPPING[globalId][globalCommand]['number']):
+						logging.debug("Refresh node "+str(node_id)+" on class "+str(cc_id)+" instance "+str(instance_id)+" index "+str(index)+ " " +str(globals.REFRESH_MAPPING[globalId][globalCommand]['number']) + " times in "+str(globals.REFRESH_MAPPING[globalId][globalCommand]['sleep']) + " seconds")
+						for i in range(0,globals.REFRESH_MAPPING[globalId][globalCommand]['number']):
 							time.sleep(globals.REFRESH_MAPPING[globalId][globalCommand]['sleep'])
+							logging.debug("Performing refresh for node : "+str(node_id))
 							globals.network.nodes[node_id].values[value_id].refresh()
+							if 'other' in globals.REFRESH_MAPPING[globalId][globalCommand]:
+								other = globals.REFRESH_MAPPING[globalId][globalCommand]['other']
+								list = other.split('|')
+								for value_id in globals.network.nodes[node_id].get_values(class_id=int(list[0])):
+									if globals.network.nodes[node_id].values[value_id].instance == int(list[1]) and globals.network.nodes[node_id].values[value_id].index == int(list[2]):
+										logging.debug("Refresh node "+str(node_id)+" on class "+str(list[0])+" instance "+str(list[1])+" index "+str(list[2]))
+										globals.network.nodes[node_id].values[value_id].refresh()
 		return
-	except:
-		logging.debug("Error in refresh")
+	except Exception as e:
+		logging.debug("Ignoring refresh for node : " + str(node_id))
+		logging.debug(str(e))
 		pass
