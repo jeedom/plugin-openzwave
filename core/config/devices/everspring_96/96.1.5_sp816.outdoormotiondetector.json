@@ -1,0 +1,47 @@
+{
+    "name": "SP816 Motion Detector", 
+    "type": "Mouvement", 
+    "remark": "", 
+    "imglink": "everspring.sp816", 
+    "configuration": {
+        "battery_type": "3x1.5V AAA"
+    }, 
+    "commands": [
+    	{
+            "name": "Présence", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 32, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "PRESENCE"
+            }, 
+            "unite": ""
+        },
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}
