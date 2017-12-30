@@ -2035,14 +2035,13 @@ Example: Pour lancer un ping sur le noeud id 2
 URL =
 http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices\[2\].TestNode()
 
-Changelog 
-=========
+# Changelog
 
 Changelog détaillé :
 <https://github.com/jeedom/plugin-openzwave/commits/stable>
 
-2017-08-xx 
-==========
+2017-08-xx
+
 
 -   New Features
 
@@ -2103,8 +2102,7 @@ Changelog détaillé :
     -   Correction des assistants de "Reprendre de.." et "Appliquer
         sur…​" dans l’onglet paramètres.
 
-2017-06-20 
-==========
+2017-06-20
 
 -   New Features
 
@@ -2136,8 +2134,7 @@ Changelog détaillé :
 
     -   Modifier un paramètre sur un module sans configuration définie.
 
-2017-06-13 
-==========
+2017-06-13
 
 -   New Features
 
@@ -2151,8 +2148,7 @@ Changelog détaillé :
 
     -   N/A
 
-2017-05-31 
-==========
+2017-05-31
 
 -   New Features
 
@@ -2167,8 +2163,7 @@ Changelog détaillé :
     -   Correction de l’assignation des valeurs au format RAW des codes
         pour lecteur RFid.
 
-2017-05-23 
-==========
+2017-05-23
 
 -   New Features
 
@@ -2232,8 +2227,7 @@ Changelog détaillé :
     -   Rafraîchissement de l’ensemble des instances suite à un
         broadcast de la CC Switch ALL.
 
-2016-08-26 
-==========
+2016-08-26
 
 -   New Features
 
@@ -2253,8 +2247,7 @@ Changelog détaillé :
     -   Perte des cases-à-cocher dans l’onglet Commandes de la
         page équipement.
 
-2016-08-17 
-==========
+2016-08-17
 
 -   New Features
 
@@ -2279,8 +2272,7 @@ Changelog détaillé :
 
     -   Installation des dépendances en boucle (problème coté github).
 
-2016-07-11 
-==========
+2016-07-11
 
 -   New Features
 
@@ -2365,8 +2357,7 @@ Changelog détaillé :
     -   Ne plus assumer la date du jour sur l’état des piles si pas reçu
         de rapport de l’équipement.
 
-2016-05-30 
-==========
+2016-05-30
 
 -   New Features
 
@@ -2422,8 +2413,7 @@ Changelog détaillé :
     -   Correction de l’appel asynchrone. (error: \[Errno 32\]
         Broken pipe)
 
-2016-05-04 
-==========
+2016-05-04
 
 -   New Features
 
@@ -2523,8 +2513,7 @@ Changelog détaillé :
 
     -   Correction de la sauvegarde du fichier zwcfg.
 
-2016-03-01 
-==========
+2016-03-01
 
 -   New Features
 
@@ -2560,8 +2549,7 @@ Changelog détaillé :
 
     -   Correction de l’installation.
 
-2016-02-12 
-==========
+2016-02-12
 
 -   Improvements/Enhancements
 
@@ -2574,8 +2562,7 @@ Changelog détaillé :
     -   Correction d’un bug qui recréer les commandes lors de la mise
         à jour.
 
-2016.02.09 
-==========
+2016.02.09
 
 -   New Features
 
