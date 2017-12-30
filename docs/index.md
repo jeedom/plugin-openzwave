@@ -134,12 +134,12 @@ d’un message.
 
 Propriétés des appareils Z-Wave 
 -------------------------------
-|                     |          Voisins         |                        Route                       |                                                   Fonctions possibles                                                  |
-|---------------------|:------------------------:|:--------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------:|
-| Contrôleur          | Connaît tous les voisins | A accès à la table de routage complète             | Peut communiquer avec tous les appareils dans le réseau, si une voie existe                                            |
-| Esclave             | Connaît tous les voisins | N’a pas d’information sur la table de routage      | Ne peut répondre au nœud qu’il a reçu le message. Par conséquent, ne peut pas envoyer des messages non sollicités      |
-| Esclaves de routage | Connaît tous ses voisins | A la connaissance partielle de la table de routage | Peut répondre au nœud qu’il a reçu le message et peut envoyer des messages non sollicités à un certain nombre de nœuds |
 
+|  | Voisins | Route | Fonctions possibles |
+|---------------------|:------------------------:|:--------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------:|
+| Contrôleur | Connaît tous les voisins | A accès à la table de routage complète | Peut communiquer avec tous les appareils dans le réseau, si une voie existe |
+| Esclave | Connaît tous les voisins | N’a pas d’information sur la table de routage | Ne peut répondre au nœud qu’il a reçu le message. Par conséquent, ne peut pas envoyer des messages non sollicités |
+| Esclaves de routage | Connaît tous ses voisins | A la connaissance partielle de la table de routage | Peut répondre au nœud qu’il a reçu le message et peut envoyer des messages non sollicités à un certain nombre de nœuds |
 
 En résumé:
 
