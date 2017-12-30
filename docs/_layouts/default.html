@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "fr-FR" }}">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    {% seo %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" type="text/css" href="{{ '/assets/css/toc.css?v=' | append: site.github.build_revision | relative_url }}" />
+    <link rel="stylesheet" type="text/css" href="{{ '/assets/css/styleJeedom-' | append: site.design | append: '.css?v=' | append: site.github.build_revision | relative_url }}" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="{{ '/js/jquery.toc.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+    <script src="{{ '/js/custom.jeedom.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+	 <script src="{{ '/js/jquery.inview.min.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+    <script type="text/javascript">
+	    $(function() {
+
+		/*** Fonction Toc plugin jquery qui crée un menu a partir du contenu de la page ***/
+		$('#main_content').toc({
+		  renderIn:'#menu-sommaire',
+		  contentsText: '{{ page.key_do_not_edit_label.key_do_not_edit_titreMenu }}',
+		  hideText: '{{ page.key_do_not_edit_label.key_do_not_edit_btnMasquer }}',
+		  showText: '{{ page.key_do_not_edit_label.key_do_not_edit_btnAffiche }}'
+		});
+
+		/*** Fonction qui personnalise le comportement des effets pour jeedom ***/
+		$('#main_content').customJS({
+			traduction: JSON.parse('{{ page.key_do_not_edit_label }}'.replace(/=>/g,':'))	
+		});    
+
+	    });
+    </script>
+
+  </head>
+  <body data-before="{{ page.key_do_not_edit_label.key_do_not_edit_messageHeadMobile }}">
+    <section class="page-header">
+	<img id="logo_jeedom" src="{{ site.github.url }}/assets/logo_white.png"></img>
+      	<h1 id="nom-plugin" class="project-name">{{ site.github.project_title }}</h1>
+      	{% if site.nameLogo %}		
+			<img id="logo_plugin" class="hide_mobile" 
+			 src="{{ "https://raw.githubusercontent.com/" | append: site.github.owner_name | append: "/" | append: site.github.repository_name | append: "/master/plugin_info/" | append: site.nameLogo}}"></img>
+		{% endif %}
+      	<div id="blocLangs">
+	{% if site.langs.size >= 2 %}
+	  {% for lang in site.langs %}
+	    <a href="index{% if lang != "fr_FR" %}-{{ lang }}{% endif %}.html" 
+	       class="btn {% if lang == page.key_do_not_edit_lang %}langActive{% endif %}" data-lang="{{ lang }}">{{ lang }}</a>
+	  {% endfor %}
+	{% endif %}
+	</div>
+    </section>
+    <section id="main">
+        <nav id="menu-sommaire" ></nav>
+        <section id="main_content" class="main-content">
+          {{ content }}
+          <footer class="site-footer">
+            <div class="site-footer-credits">Documentation pour Jeedom : {{ site.github.project_title }}.</div>
+	    <div class="site-footer-credits">Dépot de : {{ site.github.owner_name }}.</div>
+	    <div class="site-footer-credits">Url du dépot : <a href="{{ site.github.repository_url }}">{{ site.github.repository_url }}</a>.</div>	  
+            <div class="site-footer-credits">Thème version : {{ site.themeVersion }}.</div>
+  	    <div class="site-footer-credits">Date de conversion : {{ site.dateConversion }}.</div>
+	  {% comment %}   
+		  <div class="site-footer-credits">Test : {{ site.github.url }}.</div> 
+	 {% endcomment %}
+	</footer>
+        </section>
+    </section>
+    {% if site.google_analytics %}
+      <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', '{{ site.google_analytics }}', 'auto');
+        ga('send', 'pageview');
+      </script>
+    {% endif %}
+  </body>
+</html>
