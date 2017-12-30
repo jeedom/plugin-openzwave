@@ -135,16 +135,15 @@ d’un message.
 Propriétés des appareils Z-Wave 
 -------------------------------
 
-+--------------------+--------------------+--------------------+--------------------+
 |                    | Voisins            | Route              | Fonctions          |
 |                    |                    |                    | possibles          |
-+====================+====================+====================+====================+
+|--------------------|:------------------:|-------------------:|:------------------:|
 | Contrôleur         | Connaît tous les   | A accès à la table | Peut communiquer   |
 |                    | voisins            | de routage         | avec tous les      |
 |                    |                    | complète           | appareils dans le  |
 |                    |                    |                    | réseau, si une     |
 |                    |                    |                    | voie existe        |
-+--------------------+--------------------+--------------------+--------------------+
+|--------------------|:------------------:|-------------------:|:------------------:|
 | Esclave            | Connaît tous les   | N’a pas            | Ne peut répondre   |
 |                    | voisins            | d’information sur  | au nœud qu’il a    |
 |                    |                    | la table de        | reçu le message.   |
@@ -152,7 +151,7 @@ Propriétés des appareils Z-Wave
 |                    |                    |                    | peut pas envoyer   |
 |                    |                    |                    | des messages non   |
 |                    |                    |                    | sollicités         |
-+--------------------+--------------------+--------------------+--------------------+
+|--------------------|:------------------:|-------------------:|:------------------:|
 | Esclaves de        | Connaît tous ses   | A la connaissance  | Peut répondre au   |
 | routage            | voisins            | partielle de la    | nœud qu’il a reçu  |
 |                    |                    | table de routage   | le message et peut |
@@ -161,7 +160,7 @@ Propriétés des appareils Z-Wave
 |                    |                    |                    | sollicités à un    |
 |                    |                    |                    | certain nombre de  |
 |                    |                    |                    | nœuds              |
-+--------------------+--------------------+--------------------+--------------------+
+
 
 En résumé:
 
