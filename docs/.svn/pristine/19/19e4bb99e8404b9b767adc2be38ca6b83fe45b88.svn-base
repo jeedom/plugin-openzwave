@@ -1,0 +1,26 @@
+theme: jekyll-theme-cayman
+couleursPersoActif: true
+couleursDefaut: 
+  body-background-color: '041453'
+  body-color: 'A7C2FF'
+  head-background-color: '133176'
+  head-color: '79b0f6'
+  hx-color: '457CDF'
+  menu-background-color: '080E49'
+  menu-title-color: '4F71C2'
+  menu-color: 'a9cfff'
+couleursPerso:
+  body-background-color: 'ffffff'
+  body-color: '2E5519'
+  head-background-color: '96C927'
+  head-color: 'f1ffe7'
+  hx-color: '82BA1B'
+  menu-background-color: 'EDEDED'
+  menu-title-color: '82BA1B'
+  menu-color: '000000'
+nameLogo: false
+themeVersion: 1
+design: 1
+langs: [fr_FR,en_US]
+dateConversion: 2017-12-25-4h00
+

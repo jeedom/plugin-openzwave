@@ -1,0 +1,195 @@
+---
+---
+{% if site.couleursPersoActif %}
+   {% assign couleursCustom = site.couleursPerso %}
+{% else %}
+	   {% assign couleursCustom = site.couleursDefaut %}
+{% endif %}
+
+/*
+*
+*** Personnalisations pour la doc jeedom ***
+*
+* Posissionnement général des éléments
+*
+*/
+
+/*** header ***/
+#logo_plugin {
+  max-height: 100px;
+  display: inline-block;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  float: right;
+}
+
+#logo_jeedom{
+  position: relative;
+}
+
+.header-min .btn {
+  display: none;
+}
+
+/* Style des éléments quant le header est plus petit*/
+.header-min {
+  height: 80px;
+  position: fixed !important;
+  width: 100%;
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.header-min #logo_jeedom, .header-min #nom-plugin{
+  display: inline-block;
+}
+
+.header-min #nom-plugin{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  -moz-transform: translate(-50%, 0%) !important;
+  -webkit-transform: translate(-50%, -25%);
+}
+
+
+/*** Main ***/
+
+
+.contenu-main-min{
+  padding: 220px 5px 40px 5px !important;
+}
+
+/* Ajuste le possitionement du contenu par rapport au sommaire*/
+#main_content{
+	position: relative;
+	left: 20%;
+	width: 80%;
+	min-width: 75%;
+	margin: 0;
+	padding: 40px 5px;	
+}
+
+
+/***
+*
+* Style du menu toc
+*
+***/
+#toc, .toc, .mw-warning {
+    border: 0 none;
+}
+
+/*masque le bouton cacher/afficher*/
+#toc .toctoggle, .toc .toctoggle {
+    display:none;
+}
+
+/* Fixe la position du menu sommaire et le met en flottant*/
+#menu-sommaire{
+	position: absolute;
+	float: left;
+	width: 20%;
+}
+
+.menu-header-min{
+   position: fixed !important;
+   margin-top: 80px;
+   transition: all 0.3s ease;
+}
+
+
+/***
+*
+* Animation
+*
+***/
+
+/* Animation du logo jeedom */
+.header-min #logo_jeedom{
+  position: absolute;
+  left: 15%;
+  transform: translate(-50%, 0%);
+  top: 10%;
+    animation-name: animLogoJeedomBas;
+    animation-duration: 2s;
+}
+
+@keyframes animLogoJeedomBas {
+    0%   { left:50%; top:-70%;}
+    100% { left:15%; top:10%;}
+}
+
+.animLogoJeedomHaut{
+    animation-name: animLogoJeedomHaut;
+    animation-duration: 2s;
+}
+
+@keyframes animLogoJeedomHaut {
+    0%   { left:-40%; top:65%;}
+    100% { left:0%; top:0%;}
+}
+
+
+/***
+*
+* Spécifique aux media 
+*
+***/
+
+@media (min-width: 640px){
+	/*Masque les liens de retour au sommaire pour la version ordinateur*/
+	a.linkToTop {
+	    display: none;
+	}
+}
+
+@media (max-width: 640px){
+	
+/*Affiche les liens de retours au sommaire en version mobile
+	
+	/* place le menu sommaire en haut de page*/
+	#menu-sommaire{
+		position: relative;
+		float: none;
+		width: 100%;
+	}
+
+	/* Ajuste le possitionement du contenu par rapport au sommaire*/
+	#main_content{
+		position: relative;
+		left: 0px;
+		width: 100%;
+		margin: 0;
+		padding: 40px 10px;	
+	}
+	
+	/* ajustement de la largeur du menu sommaire */
+	table#toc{
+		width: 100%;	
+	}
+	
+	#toc .toctoggle, .toc .toctoggle {
+		display:inline;
+	}
+}
+
+@media screen and (max-height: 800px) {
+  .project-name {
+    font-size: 2rem !important;
+  }
+  .page-header {
+    padding : 0; 
+  }
+  .page-header a {
+     font-size: 0.7rem !important;
+   }
+  #main, #main_content {
+      font-size: 1rem !important;
+  }
+  .header-min #nom-plugin{
+        transform: translate(-50%, 25%);
+        -webkit-transform: translate(-50%, 25%); 
+ }
+}
