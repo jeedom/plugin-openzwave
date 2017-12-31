@@ -34,6 +34,7 @@
 body{
  background-color: #{{ couleursCustom.body-background-color }};
  color: #{{ couleursCustom.body-color }};
+ line-height: 1.2;
 }
 
 .main-content h1,.main-content h2,.main-content h3,.main-content h4,.main-content h5,.main-content h6 {
