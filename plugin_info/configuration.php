@@ -43,7 +43,7 @@ if (!isConnect('admin')) {
 				<input type="checkbox" class="configKey" data-l1key="suppress_refresh" checked/>
 			</div>
 		</div>
-		<div class="form-group expertModeVisible">
+		<div class="form-group">
 			<label class="col-sm-4 control-label">{{Cycle (s)}}</label>
 			<div class="col-sm-2">
 				<input class="configKey form-control" data-l1key="cycle" />
