@@ -11,7 +11,7 @@
             "isVisible": 1,
             "isHistorized": 0,
             "configuration": {
-                "class": 37,
+                "class": 48,
                 "value": "",
                 "index": 0,
                 "instance": 1
@@ -34,7 +34,7 @@
             "isHistorized": 0,
             "configuration": {
                 "class": 37,
-                "value": "type=setvalue&value=255",
+                "value": "type=setvalue&value=1",
                 "index": 0,
                 "instance": 1
             },
