@@ -199,7 +199,7 @@
 				Default setting: 0
 			</Help>
 		</Value>
-		<Value type="short" genre="config" instance="1" index="66" label="Temperature offset" min="0" max="65535" value="0">
+		<Value type="int" genre="config" instance="1" index="66" label="Temperature offset" min="0" max="65535" value="0">
 			<Help>
 				The value to be added to the actual temperature, measured by the sensor (temperature compensation).
 				Available settings: 0 - 100 (0 to 100C) or 64536 - 65535 (-100 to -0.10C)
