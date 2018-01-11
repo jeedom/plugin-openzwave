@@ -110,6 +110,10 @@
     "recommended": {
         "params": [
             {
+                "index": 4, 
+                "value": 0
+            },
+            {
                 "index": 5, 
                 "value": 8
             }, 
@@ -120,6 +124,10 @@
             {
                 "index": 7, 
                 "value": 20
+            }, 
+            {
+                "index": 11, 
+                "value": 0
             }
         ], 
         "wakeup": 14400, 
