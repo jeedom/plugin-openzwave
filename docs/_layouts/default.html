@@ -106,7 +106,10 @@
       renderIn : "#div_summary",
       highlightOnScroll: true,
       highlightOffset : 100,
-      selectors : 'h1,h2'
+      selectors : 'h1,h2',
+      onHighlight : function(el) {
+        console.log(el)
+      }
     });
    }
    $('#toctitle').html('<h2 style="padding-left:5px !important;">'+titlePlugin+'</h2>');
