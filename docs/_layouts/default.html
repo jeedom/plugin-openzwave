@@ -130,15 +130,14 @@
   $('#div_content h1, #div_content h2').on('inview',function(event, isInView){
     nbrChapitre = $('a.active').length;
     idAncre = $(this).attr('id');
+    $('.toc .a.active').removeClass('active');
     if(isInView){
       $('a[href="#'+ idAncre +'"]').addClass('active');
       if(idChapitre != null){
         $('a[href="#'+ idChapitre +'"]').removeClass('active');
         idChapitre = null;
       }
-    }else if (nbrChapitre > 1){
-      $('a[href="#'+ idAncre +'"]').removeClass('active');
-    }else{
+    }else if (nbrChapitre <= 1){
       idChapitre = idAncre;
     }
   });
