@@ -125,11 +125,20 @@
   }
 });  
 });
+  var idChapitre = null, nbrChapitre = 0, idAncre = null;
   $('#div_content h1, #div_content h2').on('inview',function(event, isInView){
-    $('.toc a.active').removeClass('active');
+    nbrChapitre = $('a.active').length;
+    idAncre = $(this).attr('id');
     if(isInView){
-      idAncre = $(this).attr('id');
       $('a[href="#'+ idAncre +'"]').addClass('active');
+      if(idChapitre != null){
+        $('a[href="#'+ idChapitre +'"]').removeClass('active');
+        idChapitre = null;
+      }
+    }else if (nbrChapitre > 1){
+      $('a[href="#'+ idAncre +'"]').removeClass('active');
+    }else{
+      idChapitre = idAncre;
     }
   });
 </script>
