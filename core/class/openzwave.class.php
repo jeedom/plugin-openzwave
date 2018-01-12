@@ -353,6 +353,20 @@ class openzwave extends eqLogic {
 		}
 		sleep(1);
 	}
+	
+	public static function syncconfOpenzwave($_background = true) {
+		log::remove('openzwave_syncconf');
+		log::add('openzwave_syncconf', 'info', 'Arrêt du démon en cours');
+		self::deamon_stop();
+		log::add('openzwave_syncconf', 'info', 'Arrêt du démon fait');
+		$cmd = system::getCmdSudo() .' /bin/bash ' . dirname(__FILE__) . '/../../resources/syncconf.sh >> ' . log::getPathToLog('openzwave_syncconf') . ' 2>&1';
+		if ($_background) {
+			$cmd .= ' &';
+		}
+		log::add('openzwave_syncconf', 'info', $cmd);
+		shell_exec($cmd);
+		self::deamon_start();
+	}
 
 	/*     * *********************Methode d'instance************************* */
 

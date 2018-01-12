@@ -30,6 +30,11 @@ try {
 		openzwave::syncEqLogicWithOpenZwave();
 		ajax::success();
 	}
+	
+	if (init('action') == 'syncconfOpenzwave') {
+		openzwave::syncconfOpenzwave(false);
+		ajax::success();
+	}
 
 	if (init('action') == 'restartDeamon') {
 		$cron = cron::byClassAndFunction('zwave', 'pull');
