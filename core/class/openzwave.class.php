@@ -554,9 +554,9 @@ class openzwave extends eqLogic {
 										} else {
 											$cmd_info->setName('Info ' . $cmd_name);
 										}
-										$cmd_info->setConfiguration('instanceId', $instanceID);
+										$cmd_info->setConfiguration('instance', $instanceID);
 										$cmd_info->setConfiguration('class', $ccId);
-										$cmd_info->setConfiguration('value', 'data[' . $index . '].val');
+										$cmd_info->setConfiguration('index', $index);
 										switch ($data['type']) {
 											case 'bool':
 												$cmd_info->setSubType('binary');
@@ -582,14 +582,15 @@ class openzwave extends eqLogic {
 												$cmd->setSubType('other');
 												$cmd->setType('action');
 												$cmd->setEqLogic_id($this->getId());
-												$cmd->setConfiguration('instanceId', $instanceID);
+												$cmd->setConfiguration('instance', $instanceID);
 												$cmd->setConfiguration('class', $ccId);
+												$cmd->setConfiguration('index', $index);
 												if ($data['typeZW'] == 'Button') {
 													$cmd->setName($cmd_name);
-													$cmd->setConfiguration('value', 'data[' . $index . '].PressButton()');
+													$cmd->setConfiguration('value', 'type=buttonaction&action=press');
 												} else {
 													$cmd->setName($cmd_name . ' On');
-													$cmd->setConfiguration('value', 'data[' . $index . '].Set(255)');
+													$cmd->setConfiguration('value', 'type=setvalue&value=255');
 												}
 												if (is_object($cmd_info)) {
 													$cmd->setValue($cmd_info->getId());
@@ -605,15 +606,16 @@ class openzwave extends eqLogic {
 												$cmd->setSubType('other');
 												$cmd->setType('action');
 												$cmd->setEqLogic_id($this->getId());
-												$cmd->setConfiguration('instanceId', $instanceID);
+												$cmd->setConfiguration('instance', $instanceID);
 												$cmd->setConfiguration('class', $ccId);
+												$cmd->setConfiguration('index', $index);
 												if ($data['typeZW'] == 'Button') {
 													$cmd->setName($cmd_name . ' Stop');
 													$cmd->setIsVisible(0);
-													$cmd->setConfiguration('value', 'data[' . $index . '].ReleaseButton()');
+													$cmd->setConfiguration('value', 'type=buttonaction&action=release');
 												} else {
 													$cmd->setName($cmd_name . ' Off');
-													$cmd->setConfiguration('value', 'data[' . $index . '].Set(0)');
+													$cmd->setConfiguration('value', 'type=setvalue&value=0');
 												}
 												if (is_object($cmd_info)) {
 													$cmd->setValue($cmd_info->getId());
@@ -629,9 +631,10 @@ class openzwave extends eqLogic {
 												$cmd->setType('action');
 												$cmd->setEqLogic_id($this->getId());
 												$cmd->setName($cmd_name);
-												$cmd->setConfiguration('instanceId', $instanceID);
+												$cmd->setConfiguration('instance', $instanceID);
 												$cmd->setConfiguration('class', $ccId);
-												$cmd->setConfiguration('value', 'data[' . $index . '].Set(#slider#)');
+												$cmd->setConfiguration('index', $index);
+												$cmd->setConfiguration('value', 'type=setvalue&value=#slider#');
 												$cmd->setSubType('slider');
 												if (is_object($cmd_info)) {
 													$cmd->setValue($cmd_info->getId());
@@ -645,9 +648,10 @@ class openzwave extends eqLogic {
 												$cmd->setType('action');
 												$cmd->setEqLogic_id($this->getId());
 												$cmd->setName($cmd_name);
-												$cmd->setConfiguration('instanceId', $instanceID);
+												$cmd->setConfiguration('instance', $instanceID);
 												$cmd->setConfiguration('class', $ccId);
-												$cmd->setConfiguration('value', 'data[' . $index . '].Set(#slider#)');
+												$cmd->setConfiguration('index', $index);
+												$cmd->setConfiguration('value', 'type=setvalue&value=#slider#');
 												$cmd->setSubType('slider');
 												if (is_object($cmd_info)) {
 													$cmd->setValue($cmd_info->getId());
@@ -665,9 +669,10 @@ class openzwave extends eqLogic {
 													$cmd->setType('action');
 													$cmd->setEqLogic_id($this->getId());
 													$cmd->setName($cmd_name . ' ' . $value);
-													$cmd->setConfiguration('instanceId', $instanceID);
+													$cmd->setConfiguration('instance', $instanceID);
 													$cmd->setConfiguration('class', $ccId);
-													$cmd->setConfiguration('value', 'data[' . $index . '].Set(' . $value . ')');
+													$cmd->setConfiguration('index', $index);
+													$cmd->setConfiguration('value', 'type=setvalue&value=' . $value);
 													$cmd->setSubType('other');
 													$cmd->save();
 												}
