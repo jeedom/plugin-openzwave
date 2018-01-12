@@ -81,3 +81,6 @@ nav ul a,nav {
 #side-nav a{
 	line-height: 24px !important;
 }
+.toc a.active{
+	 font-weight: bold;
+}
