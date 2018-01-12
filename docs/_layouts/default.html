@@ -130,7 +130,7 @@
   $('#div_content h1, #div_content h2').on('inview',function(event, isInView){
     nbrChapitre = $('a.active').length;
     idAncre = $(this).attr('id');
-    $('.toc .a.active').removeClass('active');
+    $('.toc a.active').removeClass('active');
     if(isInView){
       $('a[href="#'+ idAncre +'"]').addClass('active');
       if(idChapitre != null){
