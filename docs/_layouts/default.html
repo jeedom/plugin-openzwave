@@ -64,6 +64,7 @@
 </div>
 <script type="text/javascript" src="assets/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.inview.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.toc.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
@@ -104,12 +105,7 @@
      $('#div_main').removeClass('container');
      $('#div_content').toc({
       renderIn : "#div_summary",
-      highlightOnScroll: true,
-      highlightOffset : 100,
-      selectors : 'h1,h2',
-      onHighlight : function(el) {
-        console.log(el)
-      }
+      selectors : 'h1,h2'
     });
    }
    $('#toctitle').html('<h2 style="padding-left:5px !important;">'+titlePlugin+'</h2>');
@@ -129,6 +125,26 @@
   }
 });  
 });
+
+  var idChapitre = null, nbrChapitre = 0, idAncre = null;
+  $('#div_content h1, #div_content h2').on('inview',function(event, isInView){
+    console.log('---------------');
+    nbrChapitre = $('a.active').length;
+    console.log(nbrChapitre);
+    idAncre = $(this).attr('id');
+    console.log(idAncre);
+    if(isInView){
+      $('a[href="#'+ idAncre +'"]').addClass('active');
+      if(idChapitre != null){
+        $('a[href="#'+ idChapitre +'"]').removeClass('active');
+        idChapitre = null;
+      }
+    }else if (nbrChapitre > 1){
+      $('a[href="#'+ idAncre +'"]').removeClass('active');
+    }else{
+      idChapitre = idAncre;
+    }
+  });
 </script>
 </body>
 </html>
