@@ -1,7 +1,6 @@
 ---
 langs: [fr_FR,en_US,de_DE,es_ES] 
 baseurl: "/"
-home_bgfile: bg.jpg
 sass:
   sass_dir: assets/css
   style: compressed
