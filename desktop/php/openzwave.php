@@ -295,7 +295,10 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
                     <span class="eqLogicAttr" data-l1key="configuration" data-l2key="product_name"></span>
                     <span class="eqLogicAttr" data-l1key="configuration" data-l2key="conf_version" title="{{Version de la configuration}}"></span>
                 </span>
+            <img src="core/img/no_image.gif" data-original=".jpg" id="img_device" class="img-responsive" style="max-height : 120px;"/>
             </div>
+			
+               
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">{{Paramètres}}</label>
@@ -306,9 +309,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
                 <a class="btn btn-warning" id="bt_deviceRecommended" title="{{Appliquer le jeu de configuration recommandée par l'équipe Jeedom}}" style="display:none;"><i class="fa fa-thumbs-up"></i> {{Configuration recommandée}}</a>
             </div>
         </div>
-        <center>
-            <img src="core/img/no_image.gif" data-original=".jpg" id="img_device" class="img-responsive" style="max-height : 250px;"/>
-        </center>
+        
     </fieldset>
 </form>
 </div>
