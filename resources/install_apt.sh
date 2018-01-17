@@ -65,32 +65,18 @@ echo 20 > ${PROGRESS_FILE}
 sudo apt-get update
 echo 30 > ${PROGRESS_FILE}
 echo "Installation des dependances"
-apt_install mercurial git python-pip python-dev python-pyudev python-setuptools python-louie python-sphinx make build-essential libudev-dev g++ gcc python-lxml unzip libjpeg-dev python-serial python-requests
+apt_install git python-pip python-dev python-pyudev python-setuptools python-louie make build-essential libudev-dev g++ gcc python-lxml unzip libjpeg-dev python-serial python-requests
 echo 40 > ${PROGRESS_FILE}
 # Python
 echo "Installation des dependances Python"
-pip_install sphinxcontrib-blockdiag
-echo 41 > ${PROGRESS_FILE}
-pip_install sphinxcontrib-actdiag
-echo 42 > ${PROGRESS_FILE}
-pip_install sphinxcontrib-nwdiag
-echo 43 > ${PROGRESS_FILE}
-pip_install sphinxcontrib-seqdiag
-echo 44 > ${PROGRESS_FILE}
 pip_install urwid
 echo 45 > ${PROGRESS_FILE}
 pip_install louie
 echo 46 > ${PROGRESS_FILE}
-pip_install flask
-echo 47 > ${PROGRESS_FILE}
-pip_install flask-restful
-echo 48 > ${PROGRESS_FILE}
-pip_install flask-httpauth
-echo 49 > ${PROGRESS_FILE}
 pip_install six
-echo 50 > ${PROGRESS_FILE}
+echo 47 > ${PROGRESS_FILE}
 pip_install tornado
-echo 51 > ${PROGRESS_FILE}
+echo 48 > ${PROGRESS_FILE}
 
 sudo mkdir /opt
 if [ -d /opt/python-openzwave ]; then
