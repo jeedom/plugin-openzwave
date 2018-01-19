@@ -295,7 +295,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
                     <span class="eqLogicAttr" data-l1key="configuration" data-l2key="product_name"></span>
                     <span class="eqLogicAttr" data-l1key="configuration" data-l2key="conf_version" title="{{Version de la configuration}}"></span>
                 </span>
-            <img src="core/img/no_image.gif" data-original=".jpg" id="img_device" class="img-responsive" style="max-height : 120px;"/>
+            <img src="core/img/no_image.gif" data-original=".jpg" id="img_device" class="img-responsive" style="max-height : 120px;margin-top: 10px"/>
             </div>
 			
                
