@@ -19,6 +19,7 @@ Changelog détaillé : https://github.com/jeedom/plugin-openzwave/commits/stable
 ** Correction du bug de la perte du consigne pending  sur les vannes thermostatiques (va avec le point 2 des améliorations)
 ** Réduction de la taille des images pour limiter au plus la taille du plugin (environ 500 images)
 ** Suppression de dépendances plus utilisées tel que Mercurial Sphinx etc...
+** Suppression de la purge des configurations avant update (évite d'avoir des icones Zwave en lieu et place des images en cas de mises a jours non aboutis pour timeout ou autre)
 
 
 == 2017-08-xx
