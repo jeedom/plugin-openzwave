@@ -16,11 +16,11 @@ def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 			globals.network.nodes[_node_id].values[value_id].data = value
 			if globals.network.nodes[_node_id].values[value_id].genre == 'System':
 				value_utils.mark_pending_change(globals.network.nodes[_node_id].values[value_id], value)
-			thread.start_new_thread( refresh_value, (_node_id,_instance_id,_cc_id,_index))
+			thread.start_new_thread( refresh_value, (_node_id,_instance_id,_cc_id,_index, _value))
 			return True
 	raise Exception('Value not found')
 	
-def refresh_value(node_id,instance_id,cc_id,index):
+def refresh_value(node_id,instance_id,cc_id,index,value):
 	try:
 		if node_id not in globals.network.nodes or node_id in globals.not_supported_nodes:
 			return
@@ -37,6 +37,11 @@ def refresh_value(node_id,instance_id,cc_id,index):
 				for value_id in globals.network.nodes[node_id].get_values(class_id=cc_id):
 					if globals.network.nodes[node_id].values[value_id].instance == instance_id and globals.network.nodes[node_id].values[value_id].index == index:
 						logging.debug("Refresh node "+str(node_id)+" on class "+str(cc_id)+" instance "+str(instance_id)+" index "+str(index)+ " " +str(globals.REFRESH_MAPPING[globalId][globalCommand]['number']) + " times in "+str(globals.REFRESH_MAPPING[globalId][globalCommand]['sleep']) + " seconds")
+						if 'onlyset' in globals.REFRESH_MAPPING[globalId][globalCommand]:
+							if globals.REFRESH_MAPPING[globalId][globalCommand]['onlyset'] == 1:
+								logging.debug("Setting back value for "+str(node_id)+" on class "+str(cc_id)+" instance "+str(instance_id)+" index "+str(index)+ " with value " + str(value))
+								node_utils.save_node_value_event(node_id,cc_id, index, value, instance_id)
+								continue
 						for i in range(0,globals.REFRESH_MAPPING[globalId][globalCommand]['number']):
 							time.sleep(globals.REFRESH_MAPPING[globalId][globalCommand]['sleep'])
 							logging.debug("Performing refresh for node : "+str(node_id))
