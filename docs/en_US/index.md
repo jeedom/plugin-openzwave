@@ -2626,3 +2626,4 @@ Changelog détaillé :
     -   Correction du ping sur les nœuds en Timeout lors du
         test sanitaire.
 
+
