@@ -1,10 +1,3 @@
----
-key_do_not_edit_lang: fr
-key_do_not_edit_label:
-    key_do_not_edit_titreMenu: Sommaire
-    key_do_not_edit_btnAffiche: Déplier
-    key_do_not_edit_btnMasquer: Cacher
----
 Description 
 ===========
 
