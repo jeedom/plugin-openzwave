@@ -1,9 +1,0 @@
-== Backups
-
-The backup area allows you to manage the backups of your network's topology. It is your zwcfgxxx.xml file, containing the latest known state of the network ; it is a kind  of cache. From this screen you can :  
-
-* Start a backup (one is done each time each time the network is restarted and during critical operations). The last 12 backups are kept.
-* Restore a backup (by selecting it in the list just above)
-* Delete a backup
-
-image:../images/backup01.png[]

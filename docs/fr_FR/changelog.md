@@ -1,9 +1,33 @@
-# Changelog
-
 Changelog détaillé :
 <https://github.com/jeedom/plugin-openzwave/commits/stable>
 
+17-01-2018 / 19-01-2018
+===
+
+-   Nouveautés
+
+    -   Retour de la possibilité de synchroniser les confs sans mettre à jour le plugin
+
+    -   Améliorations
+
+    -   Rajout de la possibilité en interne de declencher des refreshs sur certaines valeurs spécifiques et modules spécifiques (utilisé dans les confs jeedom)
+
+    -   Refonte complète de la fonction permettant de simuler une valeur sur une autre commande pour éviter de la mettre pour un ensemble de module mais spécifiquement (interne Jeedom)
+
+-   Bug fixes
+
+    -   Correction d’un bug qui faisait que les confs auto générés étaient à l’ancien format et donc inutilisable
+
+    -   Correction du bug de la perte du consigne pending sur les vannes thermostatiques (va avec le point 2 des améliorations)
+
+    -   Réduction de la taille des images pour limiter au plus la taille du plugin (environ 500 images)
+
+    -   Suppression de dépendances plus utilisées tel que Mercurial Sphinx etc…​
+
+    -   Suppression de la purge des configurations avant update (évite d’avoir des icones Zwave en lieu et place des images en cas de mises a jours non aboutis pour timeout ou autre)
+
 2017-08-xx
+===
 
 
 -   New Features
@@ -66,6 +90,7 @@ Changelog détaillé :
         sur…​" dans l’onglet paramètres.
 
 2017-06-20
+===
 
 -   New Features
 
@@ -98,6 +123,7 @@ Changelog détaillé :
     -   Modifier un paramètre sur un module sans configuration définie.
 
 2017-06-13
+===
 
 -   New Features
 
@@ -112,6 +138,7 @@ Changelog détaillé :
     -   N/A
 
 2017-05-31
+===
 
 -   New Features
 
@@ -127,6 +154,7 @@ Changelog détaillé :
         pour lecteur RFid.
 
 2017-05-23
+===
 
 -   New Features
 
@@ -191,6 +219,7 @@ Changelog détaillé :
         broadcast de la CC Switch ALL.
 
 2016-08-26
+===
 
 -   New Features
 
@@ -211,6 +240,7 @@ Changelog détaillé :
         page équipement.
 
 2016-08-17
+===
 
 -   New Features
 
@@ -236,6 +266,7 @@ Changelog détaillé :
     -   Installation des dépendances en boucle (problème coté github).
 
 2016-07-11
+===
 
 -   New Features
 
@@ -321,6 +352,7 @@ Changelog détaillé :
         de rapport de l’équipement.
 
 2016-05-30
+===
 
 -   New Features
 
@@ -377,6 +409,7 @@ Changelog détaillé :
         Broken pipe)
 
 2016-05-04
+===
 
 -   New Features
 
@@ -477,6 +510,7 @@ Changelog détaillé :
     -   Correction de la sauvegarde du fichier zwcfg.
 
 2016-03-01
+===
 
 -   New Features
 
@@ -513,6 +547,7 @@ Changelog détaillé :
     -   Correction de l’installation.
 
 2016-02-12
+===
 
 -   Improvements/Enhancements
 
@@ -526,6 +561,7 @@ Changelog détaillé :
         à jour.
 
 2016.02.09
+===
 
 -   New Features
 
