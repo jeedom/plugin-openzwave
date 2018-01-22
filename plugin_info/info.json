@@ -10,6 +10,6 @@
 	"hasDependency" : true,
 	"hasOwnDeamon" : true,
 	"maxDependancyInstallTime" : 45,
-	"changelog" : "https://github.com/jeedom/plugin-openzwave/blob/stable/doc/#language#/changelog.asciidoc",
-	"documentation" : "https://github.com/jeedom/plugin-openzwave/blob/stable/doc/#language#/index.asciidoc"
+	"changelog" : "https://jeedom.github.io/plugin-openzwave/#language#/changelog",
+	"documentation" : "https://jeedom.github.io/plugin-openzwave/#language#/"
 }
