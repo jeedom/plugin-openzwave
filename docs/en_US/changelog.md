@@ -463,7 +463,7 @@ Changelog détaillé :
 
     -   Modification du système d’association directe.
 
-    -   Mise à jour de la documentation
+    -   Updated documentation
 
     -   Possibilité de lancer la régénération de la détection du nœud
         pour l’ensemble des modules identiques (marque et modèle).

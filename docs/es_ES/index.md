@@ -374,7 +374,7 @@ quelques équipements) :
 Général 
 -------
 
-Vous retrouvez ici toute la configuration de votre équipement :
+Aquí encontrará toda la configuración de su dispositivo:
 
 ![appliance04](../images/appliance04.png)
 

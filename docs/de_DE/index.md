@@ -33,7 +33,7 @@ Distances à respecter avec les autres sources de signaux sans fil
 Les récepteurs radio doivent être positionnés à une distance minimum de
 50 cm des autres sources radioélectriques.
 
-Exemples de sources radioélectriques:
+Beispiele für Funkquellen:
 
 -   Ordinateurs
 
@@ -374,7 +374,7 @@ quelques équipements) :
 Général 
 -------
 
-Vous retrouvez ici toute la configuration de votre équipement :
+Hier finden sie die ganze Konfiguration Ihrer Geräte:
 
 ![appliance04](../images/appliance04.png)
 
@@ -598,7 +598,7 @@ C’est ici que vous retrouverez toutes les informations sur votre module
 
 ![node01](../images/node01.png)
 
-La fenêtre possède plusieurs onglets :
+Das Fenster besteht aus mehreren Registerkarten :
 
 Résumé 
 ------
@@ -892,7 +892,7 @@ faire les inclusions en mode **Sécurisé**.
 Si toutefois, un module ne peut être inclus en mode sécurisé, veuillez
 l’inclure en mode **Non sécurisé**.
 
-Une fois en mode inclusion : Jeedom vous le signale.
+Einmal im Inklusions Modus : Wird Sie Jeedom informieren.
 
 \[TIP\] Un module 'non sécurisé' peut commander des modules 'non
 sécurisés'. Un module 'non sécurisé' ne peut pas commander un module
@@ -1015,7 +1015,7 @@ Réseaux Z-Wave
 
 ![network01](../images/network01.png)
 
-Vous retrouvez ici des informations générales sur votre réseau Z-Wave.
+Hier finden Sie allgemeine Informationen über das Z-Wave-Netzwerk.
 
 ![network02](../images/network02.png)
 
@@ -1136,7 +1136,7 @@ Graphique du réseau
 Cet onglet vous donnera une représentation graphique des différents
 liens entre les nœuds.
 
-Explication la légende des couleurs :
+Erläuterung der Farb-Legende :
 
 -   **Noir** : Le contrôleur principal, en général représenté
     comme Jeedom.
@@ -1184,7 +1184,7 @@ contiennent les nœuds de destination. Se référer à la légende pour
 comprendre les couleurs de cellule qui indiquent les liens entre deux
 nœuds.
 
-Explication la légende des couleurs :
+Erläuterung der Farb-Legende :
 
 -   **Vert** : Communication directe avec le contrôleur, idéal.
 

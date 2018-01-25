@@ -102,7 +102,7 @@
         "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ?": "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ?",
         "Téléchargement des configurations": "Téléchargement des configurations",
         "Démon sur l'esclave": "Demone sul secondari",
-        "Cycle (s)": "Cycle (s)"
+        "Cycle (s)": "Ciclo (s)"
     },
     "plugins/openzwave/desktop/modal/health.php": {
         "Demande envoyée": "Query inviata",
@@ -175,7 +175,7 @@
         "Version de la librairie Python-OpenZwave :": "Versione librerie Python-OpenZwave",
         "Reçu": "Reçu",
         "Détails": "Dettagl",
-        "Erreur": "Erreur",
+        "Erreur": "errore",
         "Légende": "Etichetta",
         "Communication directe": "Comunicazione diretta",
         "Virtuellement associé au contrôleur primaire": "Virtuellement associé au contrôleur primaire",
@@ -576,7 +576,7 @@
         "Arrêter l\\'inclusion": "Ferma inclusione",
         "Arrêter l\\'exclusion": "Ferma Esclusione",
         "Annuler": "Cancella",
-        "Démarrer": "Démarrer",
+        "Démarrer": "Avvio",
         "Configuration module Z-Wave": "Impostazione modulo Z-Wave",
         "Arbre Z-Wave de l'équipement": "Albero dispositivi Z-Wave",
         "Réseaux zwave": "Rete Z-Wave",
@@ -602,7 +602,7 @@
         "Mode exclusion": "Modalità inclusione",
         "Mode inclusion": "Modalità inclusione",
         "Un périphérique vient d\\'être inclu/exclu. Veuillez réactualiser la page": "Un dispositivo è stato incluso/escluso. Si prega di ricaricare la pagina.",
-        "Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes": "Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes",
+        "Etes-vous sûr de vouloir récréer toutes les commandes ? Cela va supprimer les commandes existantes": "Sei sicuro di voler ricreare tutti i controlli? Questo eliminerà gli ordini esistenti",
         "Opération réalisée avec succès": "Processo eseguito con successo",
         "Icône": "Icona",
         "La valeur de la commande vaut par défaut la commande": "Il valore del comando predefinito al comando",
