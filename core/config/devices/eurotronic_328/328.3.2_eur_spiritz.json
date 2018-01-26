@@ -227,7 +227,7 @@
             }, 
             "subtype": "numeric", 
             "display": {
-                "generic_type": "LIGHT_STATE"
+                "generic_type": "DONT"
             }, 
             "unite": "%"
         }, 
@@ -248,7 +248,7 @@
             "value": "Valve", 
             "subtype": "slider", 
             "display": {
-               "generic_type": "LIGHT_SLIDER"
+               "generic_type": "DONT"
             }, 
             "unite": "°C"
         }, 
@@ -271,6 +271,41 @@
                 "generic_type": "BATTERY"
             }, 
             "unite": "%"
+        },
+
+        {
+            "name": "dummy_state", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 134, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_STATE"
+            }
+        },
+
+        {
+            "name": "dummy_state_name", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 134, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_STATE_NAME"
+            }
         }
+
     ]
 }
