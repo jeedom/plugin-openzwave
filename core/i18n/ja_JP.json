@@ -65,7 +65,12 @@
         "Arbre Z-Wave": "Z-Waveの木",
         "Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage": "私たちは、それがバッテリである場合、モジュールを覚ますか、設定を確認する必要があります",
         "Index": "指数",
-        "Impossible de contacter le serveur Z-wave": "Z-Waveのサーバーに接続できません"
+        "Impossible de contacter le serveur Z-wave": "Z-Waveのサーバーに接続できません",
+        "Rechercher": "検索",
+        "Recharger configuration": "Recharger configuration",
+        "Instance": "Instance",
+        "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode",
+        "Arrêter exclusion": "Arrêter exclusion"
     },
     "plugins/openzwave/core/php/jeeZwave.php": {
         "Le réseaux Z-Wave est en cours de démarrage sur le serveur ": "Z-Waveのネットワークは、サーバ上で起動されています",
@@ -76,7 +81,8 @@
         "Inclusion en cours...": "継続的なインクルージョン...",
         "Un périphérique Z-Wave est en cours d'exclusion. Logical ID : ": "Z-Waveのデバイスが除外されています。論理ID：",
         "Le réseaux Z-Wave est en erreur sur le serveur ": "Z-Waveのネットワークサーバーのエラーです",
-        "Le réseau Z-Wave est en cours de démarrage sur le serveur": "Z-Waveのネットワークは、サーバ上で起動されています"
+        "Le réseau Z-Wave est en cours de démarrage sur le serveur": "Z-Waveのネットワークは、サーバ上で起動されています",
+        "Nouveau module Z-Wave détecté. Début de l'intégration. Pause de ": "Nouveau module Z-Wave détecté. Début de l'intégration. Pause de"
     },
     "plugins/openzwave/plugin_info/configuration.php": {
         "Général": "コモン",
@@ -243,7 +249,8 @@
         "Nombre de messages retransmis :": "ブロードキャストメッセージの数：",
         "Nombre de messages reçus avec statut de routage occupé :": "忙しいルーティングステータスで受信したメッセージの数：",
         "Contrôleur principal": "PDC",
-        "Contrôleur Primaire": "プライマリコントローラ"
+        "Contrôleur Primaire": "プライマリコントローラ",
+        "Recevoir Configuration": "Recevoir Configuration"
     },
     "plugins/openzwave/desktop/js/network.js": {
         "Echec": "失敗しました。",
@@ -358,7 +365,8 @@
         "Mise à jour des route au le contrôleur": "更新ドライブコントローラ",
         "Demandez la mise à jour de l'itinéraire de retour vers le contrôleur.": "コントローラへの復帰ルートの更新を確認して下さい。",
         "Mise à jour de la route de retour au contrôleur": "コントローラに戻す方法を更新",
-        "Demandez la mise à jour de la route de retour au contrôleur.": "コントローラ裏道の更新を確認して下さい。"
+        "Demandez la mise à jour de la route de retour au contrôleur.": "コントローラ裏道の更新を確認して下さい。",
+        "Prochain réveil (prévu): ": "Prochain réveil (prévu):"
     },
     "plugins/openzwave/desktop/js/nodes.js": {
         "Aucun paramètre prédefini trouvé pour ce noeud": "このノードが見つかりません事前定義されたパラメータ",
@@ -617,7 +625,14 @@
         "Tester": "テスト",
         "Action réalisée avec succès": "アクションが正常に完了",
         "Inclusion": "算入",
-        "Vous êtes en mode exclusion": "あなたはファッションを除いています"
+        "Vous êtes en mode exclusion": "あなたはファッションを除いています",
+        "Recharge configuration": "Recharge configuration",
+        "Recharger la configuration": "Recharger la configuration",
+        "Sélectionner le mode de rechargement de la configuration ?": "Sélectionner le mode de rechargement de la configuration ?",
+        "Sans recréer les commandes mais en créeant les manquantes": "Sans recréer les commandes mais en créeant les manquantes",
+        "En recréant les commandes": "En recréant les commandes",
+        "Attention, \"en recréant les commandes\" va supprimer les commandes existantes.": "Attention, \"en recréant les commandes\" va supprimer les commandes existantes.",
+        "Commande": "オーダー"
     },
     "plugins/openzwave/plugin_info/info.json": {
         "Plugin permettant la gestion du protocol Z-Wave": "Z-Waveのプロトコル管理のためのプラグイン"

@@ -65,7 +65,12 @@
         "Arbre Z-Wave": "Z-Wave Tree",
         "Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage": "Мы должны проснуться модуль, если он находится на батарее или проверьте настройки",
         "Index": "индекс",
-        "Impossible de contacter le serveur Z-wave": "Не удалось связаться с сервером Z-Wave"
+        "Impossible de contacter le serveur Z-wave": "Не удалось связаться с сервером Z-Wave",
+        "Rechercher": "поиск",
+        "Recharger configuration": "Recharger configuration",
+        "Instance": "Instance",
+        "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode",
+        "Arrêter exclusion": "Arrêter exclusion"
     },
     "plugins/openzwave/core/php/jeeZwave.php": {
         "Le réseaux Z-Wave est en cours de démarrage sur le serveur ": "Сеть Z-Wave в настоящее время запущена на сервере",
@@ -76,7 +81,8 @@
         "Inclusion en cours...": "Постоянное включение ...",
         "Un périphérique Z-Wave est en cours d'exclusion. Logical ID : ": "Устройство Z-Wave в настоящее время исключены. Логический ID:",
         "Le réseaux Z-Wave est en erreur sur le serveur ": "Сети Z-Wave является ошибка сервера",
-        "Le réseau Z-Wave est en cours de démarrage sur le serveur": "Сеть Z-Wave в настоящее время запущена на сервере"
+        "Le réseau Z-Wave est en cours de démarrage sur le serveur": "Сеть Z-Wave в настоящее время запущена на сервере",
+        "Nouveau module Z-Wave détecté. Début de l'intégration. Pause de ": "Nouveau module Z-Wave détecté. Début de l'intégration. Pause de"
     },
     "plugins/openzwave/plugin_info/configuration.php": {
         "Général": "Главная",
@@ -243,7 +249,8 @@
         "Nombre de messages retransmis :": "Количество широковещательных сообщений:",
         "Nombre de messages reçus avec statut de routage occupé :": "Количество сообщений, полученных со статусом занят маршрутизации:",
         "Contrôleur principal": "PDC",
-        "Contrôleur Primaire": "Первичный контроллер"
+        "Contrôleur Primaire": "Первичный контроллер",
+        "Recevoir Configuration": "Recevoir Configuration"
     },
     "plugins/openzwave/desktop/js/network.js": {
         "Echec": "Не удалось",
@@ -358,7 +365,8 @@
         "Mise à jour des route au le contrôleur": "Обновление контроллера привода",
         "Demandez la mise à jour de l'itinéraire de retour vers le contrôleur.": "Спросите обновление обратного маршрута к контроллеру.",
         "Mise à jour de la route de retour au contrôleur": "Обновление пути обратно к контроллеру",
-        "Demandez la mise à jour de la route de retour au contrôleur.": "Спросите обновление контроллера обратно дороги."
+        "Demandez la mise à jour de la route de retour au contrôleur.": "Спросите обновление контроллера обратно дороги.",
+        "Prochain réveil (prévu): ": "Prochain réveil (prévu):"
     },
     "plugins/openzwave/desktop/js/nodes.js": {
         "Aucun paramètre prédefini trouvé pour ce noeud": "Нет предопределенных параметров, найденные для этого узла",
@@ -617,7 +625,14 @@
         "Tester": "Тест",
         "Action réalisée avec succès": "Действие успешно завершено",
         "Inclusion": "Интеграция",
-        "Vous êtes en mode exclusion": "Вы исключаете моды"
+        "Vous êtes en mode exclusion": "Вы исключаете моды",
+        "Recharge configuration": "Recharge configuration",
+        "Recharger la configuration": "Recharger la configuration",
+        "Sélectionner le mode de rechargement de la configuration ?": "Sélectionner le mode de rechargement de la configuration ?",
+        "Sans recréer les commandes mais en créeant les manquantes": "Sans recréer les commandes mais en créeant les manquantes",
+        "En recréant les commandes": "En recréant les commandes",
+        "Attention, \"en recréant les commandes\" va supprimer les commandes existantes.": "Attention, \"en recréant les commandes\" va supprimer les commandes existantes.",
+        "Commande": "Команда"
     },
     "plugins/openzwave/plugin_info/info.json": {
         "Plugin permettant la gestion du protocol Z-Wave": "Плагин для управления протокола Z-Wave"

@@ -65,7 +65,12 @@
         "Arbre Z-Wave": "Z-Wave Árvore",
         "Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage": "Devemos acordar o módulo se ele está na bateria ou verificar as definições",
         "Index": "índice",
-        "Impossible de contacter le serveur Z-wave": "Não foi possível contactar o servidor Z-Wave"
+        "Impossible de contacter le serveur Z-wave": "Não foi possível contactar o servidor Z-Wave",
+        "Rechercher": "pesquisa",
+        "Recharger configuration": "Recharger configuration",
+        "Instance": "Instance",
+        "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode",
+        "Arrêter exclusion": "Arrêter exclusion"
     },
     "plugins/openzwave/core/php/jeeZwave.php": {
         "Le réseaux Z-Wave est en cours de démarrage sur le serveur ": "A rede Z-Wave está sendo iniciado no servidor",
@@ -76,7 +81,8 @@
         "Inclusion en cours...": "Inclusão em curso ...",
         "Un périphérique Z-Wave est en cours d'exclusion. Logical ID : ": "Um dispositivo de Z-onda está a ser excluídos. Lógico ID:",
         "Le réseaux Z-Wave est en erreur sur le serveur ": "As redes Z-Wave é erro do servidor",
-        "Le réseau Z-Wave est en cours de démarrage sur le serveur": "A rede Z-Wave está sendo iniciado no servidor"
+        "Le réseau Z-Wave est en cours de démarrage sur le serveur": "A rede Z-Wave está sendo iniciado no servidor",
+        "Nouveau module Z-Wave détecté. Début de l'intégration. Pause de ": "Nouveau module Z-Wave détecté. Début de l'intégration. Pause de"
     },
     "plugins/openzwave/plugin_info/configuration.php": {
         "Général": "Geral",
@@ -243,7 +249,8 @@
         "Nombre de messages retransmis :": "Número de mensagens de transmissão:",
         "Nombre de messages reçus avec statut de routage occupé :": "Número de mensagens recebidas com status de roteamento ocupado:",
         "Contrôleur principal": "PDC",
-        "Contrôleur Primaire": "controlador primário"
+        "Contrôleur Primaire": "controlador primário",
+        "Recevoir Configuration": "Recevoir Configuration"
     },
     "plugins/openzwave/desktop/js/network.js": {
         "Echec": "fracassado",
@@ -358,7 +365,8 @@
         "Mise à jour des route au le contrôleur": "controlador da unidade de atualizar",
         "Demandez la mise à jour de l'itinéraire de retour vers le contrôleur.": "Pergunte a atualização da rota de retorno ao controlador.",
         "Mise à jour de la route de retour au contrôleur": "Atualizando o caminho de volta para o controlador",
-        "Demandez la mise à jour de la route de retour au contrôleur.": "Pergunte a atualização da estrada controlador de volta."
+        "Demandez la mise à jour de la route de retour au contrôleur.": "Pergunte a atualização da estrada controlador de volta.",
+        "Prochain réveil (prévu): ": "Prochain réveil (prévu):"
     },
     "plugins/openzwave/desktop/js/nodes.js": {
         "Aucun paramètre prédefini trouvé pour ce noeud": "Não há parâmetros predefinidos encontrados para este nó",
@@ -617,7 +625,14 @@
         "Tester": "teste",
         "Action réalisée avec succès": "Ação concluída com êxito",
         "Inclusion": "inclusão",
-        "Vous êtes en mode exclusion": "Você está excluindo moda"
+        "Vous êtes en mode exclusion": "Você está excluindo moda",
+        "Recharge configuration": "Recharge configuration",
+        "Recharger la configuration": "Recharger la configuration",
+        "Sélectionner le mode de rechargement de la configuration ?": "Sélectionner le mode de rechargement de la configuration ?",
+        "Sans recréer les commandes mais en créeant les manquantes": "Sans recréer les commandes mais en créeant les manquantes",
+        "En recréant les commandes": "En recréant les commandes",
+        "Attention, \"en recréant les commandes\" va supprimer les commandes existantes.": "Attention, \"en recréant les commandes\" va supprimer les commandes existantes.",
+        "Commande": "ordem"
     },
     "plugins/openzwave/plugin_info/info.json": {
         "Plugin permettant la gestion du protocol Z-Wave": "Plug-in para gestão protocolo Z-Wave"

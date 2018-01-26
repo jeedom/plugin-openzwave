@@ -65,7 +65,12 @@
         "Arbre Z-Wave": "Z-Wave Pohon",
         "Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage": "Kita harus bangun modul jika pada baterai atau memeriksa pengaturan",
         "Index": "indeks",
-        "Impossible de contacter le serveur Z-wave": "Tidak dapat menghubungi server Z-Wave"
+        "Impossible de contacter le serveur Z-wave": "Tidak dapat menghubungi server Z-Wave",
+        "Rechercher": "pencarian",
+        "Recharger configuration": "Recharger configuration",
+        "Instance": "Instance",
+        "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode",
+        "Arrêter exclusion": "Arrêter exclusion"
     },
     "plugins/openzwave/core/php/jeeZwave.php": {
         "Le réseaux Z-Wave est en cours de démarrage sur le serveur ": "Jaringan Z-Wave sedang dimulai di server",
@@ -76,7 +81,8 @@
         "Inclusion en cours...": "Sedang berlangsung Inklusi ...",
         "Un périphérique Z-Wave est en cours d'exclusion. Logical ID : ": "Perangkat Z-Wave sedang dikecualikan. Logis ID:",
         "Le réseaux Z-Wave est en erreur sur le serveur ": "Jaringan Z-Wave adalah kesalahan server",
-        "Le réseau Z-Wave est en cours de démarrage sur le serveur": "Jaringan Z-Wave sedang dimulai di server"
+        "Le réseau Z-Wave est en cours de démarrage sur le serveur": "Jaringan Z-Wave sedang dimulai di server",
+        "Nouveau module Z-Wave détecté. Début de l'intégration. Pause de ": "Nouveau module Z-Wave détecté. Début de l'intégration. Pause de"
     },
     "plugins/openzwave/plugin_info/configuration.php": {
         "Général": "Umum",
@@ -243,7 +249,8 @@
         "Nombre de messages retransmis :": "Jumlah pesan broadcast:",
         "Nombre de messages reçus avec statut de routage occupé :": "Jumlah pesan yang diterima dengan Status routing yang sibuk:",
         "Contrôleur principal": "PDC",
-        "Contrôleur Primaire": "kontroler utama"
+        "Contrôleur Primaire": "kontroler utama",
+        "Recevoir Configuration": "Recevoir Configuration"
     },
     "plugins/openzwave/desktop/js/network.js": {
         "Echec": "gagal",
@@ -358,7 +365,8 @@
         "Mise à jour des route au le contrôleur": "Memperbarui drive controller",
         "Demandez la mise à jour de l'itinéraire de retour vers le contrôleur.": "Meminta update dari rute kembali ke controller.",
         "Mise à jour de la route de retour au contrôleur": "Memperbarui perjalanan kembali ke controller",
-        "Demandez la mise à jour de la route de retour au contrôleur.": "Meminta update dari controller kembali jalan."
+        "Demandez la mise à jour de la route de retour au contrôleur.": "Meminta update dari controller kembali jalan.",
+        "Prochain réveil (prévu): ": "Prochain réveil (prévu):"
     },
     "plugins/openzwave/desktop/js/nodes.js": {
         "Aucun paramètre prédefini trouvé pour ce noeud": "Tidak ada parameter yang telah ditetapkan ditemukan untuk node ini",
@@ -617,7 +625,14 @@
         "Tester": "Coba",
         "Action réalisée avec succès": "Aksi berhasil menyelesaikan",
         "Inclusion": "Penyertaan",
-        "Vous êtes en mode exclusion": "Anda tidak termasuk busana"
+        "Vous êtes en mode exclusion": "Anda tidak termasuk busana",
+        "Recharge configuration": "Recharge configuration",
+        "Recharger la configuration": "Recharger la configuration",
+        "Sélectionner le mode de rechargement de la configuration ?": "Sélectionner le mode de rechargement de la configuration ?",
+        "Sans recréer les commandes mais en créeant les manquantes": "Sans recréer les commandes mais en créeant les manquantes",
+        "En recréant les commandes": "En recréant les commandes",
+        "Attention, \"en recréant les commandes\" va supprimer les commandes existantes.": "Attention, \"en recréant les commandes\" va supprimer les commandes existantes.",
+        "Commande": "pesanan"
     },
     "plugins/openzwave/plugin_info/info.json": {
         "Plugin permettant la gestion du protocol Z-Wave": "Plugin untuk manajemen protokol Z-Wave"

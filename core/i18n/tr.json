@@ -65,7 +65,12 @@
         "Arbre Z-Wave": "Z-Wave ağaç",
         "Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage": "Pille çalışıyorsa modülü uyandırmak veya ayarı kontrol etmek gereklidir",
         "Index": "Endeks",
-        "Impossible de contacter le serveur Z-wave": "Z-wave sunucusuna ulaşmak imkansız"
+        "Impossible de contacter le serveur Z-wave": "Z-wave sunucusuna ulaşmak imkansız",
+        "Rechercher": "Arayın",
+        "Recharger configuration": "Recharger configuration",
+        "Instance": "Makam",
+        "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode",
+        "Arrêter exclusion": "Dışlama durdur"
     },
     "plugins/openzwave/core/php/jeeZwave.php": {
         "Le réseaux Z-Wave est en cours de démarrage sur le serveur ": "Z-wave ağı sunucuda başlatma aşamasında ",
@@ -76,7 +81,8 @@
         "Inclusion en cours...": "Içerlenme sürüyor...",
         "Un périphérique Z-Wave est en cours d'exclusion. Logical ID : ": "Bir ZWave cihazı hariç tutuluyor. Mantiksal ID",
         "Le réseaux Z-Wave est en erreur sur le serveur ": "Z-Wave ağı sunucuda hatada",
-        "Le réseau Z-Wave est en cours de démarrage sur le serveur": "Z-Wave ağı sunucuda başlatılıyor"
+        "Le réseau Z-Wave est en cours de démarrage sur le serveur": "Z-Wave ağı sunucuda başlatılıyor",
+        "Nouveau module Z-Wave détecté. Début de l'intégration. Pause de ": "Nouveau module Z-Wave détecté. Début de l'intégration. Pause de"
     },
     "plugins/openzwave/plugin_info/configuration.php": {
         "Général": "Genel",
@@ -243,7 +249,8 @@
         "Nombre de messages retransmis :": "Tekrar gönderilen mesaj sayısı :",
         "Nombre de messages reçus avec statut de routage occupé :": "Meşgul yönlendirme durumu ile alınan mesaj sayısı:",
         "Contrôleur principal": "Ana kontrolör",
-        "Contrôleur Primaire": "Birincil Denetleyici"
+        "Contrôleur Primaire": "Birincil Denetleyici",
+        "Recevoir Configuration": "Recevoir Configuration"
     },
     "plugins/openzwave/desktop/js/network.js": {
         "Echec": "Başarısız",
@@ -358,7 +365,8 @@
         "Mise à jour des route au le contrôleur": "Denetleyiciye güzergah güncelleme",
         "Demandez la mise à jour de l'itinéraire de retour vers le contrôleur.": "kontrolöre geri dönüş yolunun güncellemesini sor.",
         "Mise à jour de la route de retour au contrôleur": "kontrolöre geri yolunu Güncellenmesi",
-        "Demandez la mise à jour de la route de retour au contrôleur.": "Kontrolör geri Yolun güncellemesini sor."
+        "Demandez la mise à jour de la route de retour au contrôleur.": "Kontrolör geri Yolun güncellemesini sor.",
+        "Prochain réveil (prévu): ": "Prochain réveil (prévu):"
     },
     "plugins/openzwave/desktop/js/nodes.js": {
         "Aucun paramètre prédefini trouvé pour ce noeud": "Bu düğüm için önceden tanımlanmış parametreler bulunamadı",
@@ -617,7 +625,14 @@
         "Tester": "Dene",
         "Action réalisée avec succès": "İşlem başarıyla gerçeklesti",
         "Inclusion": "içerme ",
-        "Vous êtes en mode exclusion": "Dışlama modundasınız"
+        "Vous êtes en mode exclusion": "Dışlama modundasınız",
+        "Recharge configuration": "Recharge configuration",
+        "Recharger la configuration": "Recharger la configuration",
+        "Sélectionner le mode de rechargement de la configuration ?": "Sélectionner le mode de rechargement de la configuration ?",
+        "Sans recréer les commandes mais en créeant les manquantes": "Sans recréer les commandes mais en créeant les manquantes",
+        "En recréant les commandes": "En recréant les commandes",
+        "Attention, \"en recréant les commandes\" va supprimer les commandes existantes.": "Attention, \"en recréant les commandes\" va supprimer les commandes existantes.",
+        "Commande": "Komuta"
     },
     "plugins/openzwave/plugin_info/info.json": {
         "Plugin permettant la gestion du protocol Z-Wave": "Z-Wave protokol yönetimi için eklenti"
