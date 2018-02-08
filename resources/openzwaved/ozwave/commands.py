@@ -6,6 +6,8 @@ import time
 def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 	logging.info("Send command to node "+str(_node_id)+" on class "+str(_cc_id)+" instance "+str(_instance_id)+" index "+str(_index)+" value "+str(_value))
 	utils.check_node_exist(_node_id)
+	if len(_value) == 0:
+		raise Exception('No value passed')
 	if _cc_id == globals.COMMAND_CLASS_NO_OPERATION:
 		return node_utils.test_node(_node_id, 1)
 	if _cc_id == globals.COMMAND_CLASS_ASSOCIATION :
