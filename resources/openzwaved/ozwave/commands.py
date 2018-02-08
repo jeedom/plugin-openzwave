@@ -12,6 +12,8 @@ def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 		return node_utils.test_node(_node_id, 1)
 	if _cc_id == globals.COMMAND_CLASS_ASSOCIATION :
 		return
+	if _cc_id in [globals.COMMAND_CLASS_SWITCH_MULTILEVEL]:
+		_value = round(float(_value)) 
 	for value_id in globals.network.nodes[_node_id].get_values(class_id=_cc_id, genre='All', type='All', readonly=False, writeonly='All'):
 		if globals.network.nodes[_node_id].values[value_id].instance == _instance_id and (_index is None or globals.network.nodes[_node_id].values[value_id].index == _index):
 			value = globals.network.nodes[_node_id].values[value_id].check_data(_value)
