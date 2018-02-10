@@ -1,9 +1,8 @@
 {
-    "name": "12344 In-Wall Smart Dimmer",
+    "name": "LSM-15",
     "type": "Micromodule", 
     "comlink": "", 
-    "remark": "", 
-    "imglink": "ge.12344",
+    "remark": "",
     "commands": [
         {
             "name": "Intensité", 
