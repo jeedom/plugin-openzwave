@@ -152,7 +152,7 @@ En résumé:
     le contrôleur a prédéfini « L’esclave est toujours un esclave, mais
     sur autorisation, il peut parler »
 
-Configuration du plugin 
+configuración del plugin
 =======================
 
 Après le téléchargement du plugin, il vous suffit de l’activer et de le
