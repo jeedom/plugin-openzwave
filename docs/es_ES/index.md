@@ -422,7 +422,7 @@ Aquí encontrará toda la configuración de su dispositivo:
 > équipement supprimé qui est toujours rattaché à son contrôleur sera
 > automatiquement recréé suite à la synchronisation.
 
-Commandes 
+comandos
 ---------
 
 Ci-dessous vous retrouvez la liste des commandes :
@@ -473,7 +473,7 @@ Ci-dessous vous retrouvez la liste des commandes :
 
 -   Min/Max : bornes de la donnée (peuvent être vides).
 
--   Configuration avancée (petites roues crantées) : permet d’afficher
+-   Configuración avanzada (pequeñas ruedas dentadas): Muestra
     la configuration avancée de la commande (méthode
     d’historisation, widget…​).
 

@@ -421,7 +421,7 @@ You can find here the full configuration of your device :
 > équipement supprimé qui est toujours rattaché à son contrôleur sera
 > automatiquement recréé suite à la synchronisation.
 
-Commandes 
+Orders
 ---------
 
 Here below you can fond the list of commands :
@@ -472,7 +472,7 @@ Here below you can fond the list of commands :
 
 -   Min/Max : bornes de la donnée (peuvent être vides).
 
--   Configuration avancée (petites roues crantées) : permet d’afficher
+-   Advanced configuration (small wheels): displays
     la configuration avancée de la commande (méthode
     d’historisation, widget…​).
 
