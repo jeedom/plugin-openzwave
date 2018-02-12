@@ -346,7 +346,7 @@ Paneau Mobile
 Permet d’afficher ou non le panel mobile lors que vous utiliser
 l’application sur un téléphone.
 
-Configuration des équipements 
+Configuración del dispositivo
 =============================
 
 La configuration des équipements Z-Wave est accessible à partir du menu
@@ -383,8 +383,8 @@ Aquí encontrará toda la configuración de su dispositivo:
 -   **Objet parent** : indique l’objet parent auquel
     appartient l’équipement.
 
--   **Catégorie** : les catégories de l’équipement (il peut appartenir à
-    plusieurs catégories).
+-   ** ** Categoría: categorías de equipos (que pueden pertenecer a
+    la mayoría de categorías).
 
 -   **Activer** : permet de rendre votre équipement actif.
 
