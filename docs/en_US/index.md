@@ -345,7 +345,7 @@ Paneau Mobile
 Permet d’afficher ou non le panel mobile lors que vous utiliser
 l’application sur un téléphone.
 
-Configuration des équipements 
+Equipment configuration
 =============================
 
 La configuration des équipements Z-Wave est accessible à partir du menu
@@ -382,8 +382,8 @@ You can find here the full configuration of your device :
 -   **Objet parent** : indique l’objet parent auquel
     appartient l’équipement.
 
--   **Catégorie** : les catégories de l’équipement (il peut appartenir à
-    plusieurs catégories).
+-   **Category**: categories of equipment (it may belong to
+    several categories).
 
 -   **Activer** : permet de rendre votre équipement actif.
 
@@ -421,7 +421,7 @@ You can find here the full configuration of your device :
 > équipement supprimé qui est toujours rattaché à son contrôleur sera
 > automatiquement recréé suite à la synchronisation.
 
-Commandes 
+Orders
 ---------
 
 Here below you can fond the list of commands :
@@ -472,7 +472,7 @@ Here below you can fond the list of commands :
 
 -   Min/Max : bornes de la donnée (peuvent être vides).
 
--   Configuration avancée (petites roues crantées) : permet d’afficher
+-   Advanced configuration (small wheels): displays
     la configuration avancée de la commande (méthode
     d’historisation, widget…​).
 

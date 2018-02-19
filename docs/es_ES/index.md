@@ -152,7 +152,7 @@ En résumé:
     le contrôleur a prédéfini « L’esclave est toujours un esclave, mais
     sur autorisation, il peut parler »
 
-Configuration du plugin 
+configuración del plugin
 =======================
 
 Après le téléchargement du plugin, il vous suffit de l’activer et de le
@@ -346,7 +346,7 @@ Paneau Mobile
 Permet d’afficher ou non le panel mobile lors que vous utiliser
 l’application sur un téléphone.
 
-Configuration des équipements 
+Configuración del dispositivo
 =============================
 
 La configuration des équipements Z-Wave est accessible à partir du menu
@@ -383,8 +383,8 @@ Aquí encontrará toda la configuración de su dispositivo:
 -   **Objet parent** : indique l’objet parent auquel
     appartient l’équipement.
 
--   **Catégorie** : les catégories de l’équipement (il peut appartenir à
-    plusieurs catégories).
+-   ** ** Categoría: categorías de equipos (que pueden pertenecer a
+    la mayoría de categorías).
 
 -   **Activer** : permet de rendre votre équipement actif.
 
@@ -422,7 +422,7 @@ Aquí encontrará toda la configuración de su dispositivo:
 > équipement supprimé qui est toujours rattaché à son contrôleur sera
 > automatiquement recréé suite à la synchronisation.
 
-Commandes 
+comandos
 ---------
 
 Ci-dessous vous retrouvez la liste des commandes :
@@ -473,7 +473,7 @@ Ci-dessous vous retrouvez la liste des commandes :
 
 -   Min/Max : bornes de la donnée (peuvent être vides).
 
--   Configuration avancée (petites roues crantées) : permet d’afficher
+-   Configuración avanzada (pequeñas ruedas dentadas): Muestra
     la configuration avancée de la commande (méthode
     d’historisation, widget…​).
 
