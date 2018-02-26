@@ -1,0 +1,56 @@
+{
+    "name": "Door Sensor", 
+    "type": "Ouverture", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "zipato.nas-ds01z", 
+    "configuration": {
+        "battery_type": "1x3V CR14250"
+    }, 
+    "commands": [
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 48, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "OPENING"
+            }, 
+            "template": {
+                "dashboard": "door", 
+                "mobile": "door"
+            }
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ], 
+    "recommended": {
+        "wakeup": 43200, 
+        "needswakeup": true
+    }
+}
