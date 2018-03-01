@@ -1,11 +1,11 @@
 {
     "name": "Vanne thermostatique Z-Wave+ Spirit", 
     "type": "Thermostat", 
-    "comlink": "3228-eurotronic-vanne-thermostatique-z-wave-spirit-4260012711011", 
+    "comlink": "3228-eurotronic-vanne-thermostatique-z-wave-spirit-4260012711301",
     "remark": "", 
     "imglink": "eurotronic.spiritz", 
     "configuration": {
-        "battery_type": "1x1.5V AA"
+        "battery_type": "2x1.5V AA"
     }, 
     "commands": [
         {
