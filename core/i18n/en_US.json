@@ -67,9 +67,9 @@
         "Index": "Index",
         "Impossible de contacter le serveur Z-wave": "Unable to contact the Z-Wave server",
         "Rechercher": "Search",
-        "Recharger configuration": "Recharger configuration",
+        "Recharger configuration": "Reload configuration",
         "Instance": "Instance",
-        "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode": "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode",
+        "Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d'exclusion pour sortir de ce mode": "You are in exclusion mode. Click the exclude button again to exit this mode",
         "Arrêter exclusion": "Stop exclusion"
     },
     "plugins/openzwave/core/php/jeeZwave.php": {
@@ -82,7 +82,7 @@
         "Un périphérique Z-Wave est en cours d'exclusion. Logical ID : ": "A Z-Wave device is being excluded. Logical ID :",
         "Le réseaux Z-Wave est en erreur sur le serveur ": "Error in Z-Wave networks on server",
         "Le réseau Z-Wave est en cours de démarrage sur le serveur": "The Z-Wave network is being started on the server",
-        "Nouveau module Z-Wave détecté. Début de l'intégration. Pause de ": "Nouveau module Z-Wave détecté. Début de l'intégration. Pause de"
+        "Nouveau module Z-Wave détecté. Début de l'intégration. Pause de ": "New Z-Wave module detected. Beginning of the integration. Pause of"
     },
     "plugins/openzwave/plugin_info/configuration.php": {
         "Général": "Main",
@@ -250,7 +250,7 @@
         "Nombre de messages reçus avec statut de routage occupé :": "Number of messages received with busy routing status :",
         "Contrôleur principal": "Main controller",
         "Contrôleur Primaire": "Primary controller",
-        "Recevoir Configuration": "Recevoir Configuration"
+        "Recevoir Configuration": "Receive Configuration"
     },
     "plugins/openzwave/desktop/js/network.js": {
         "Echec": "Fail",
@@ -366,7 +366,7 @@
         "Demandez la mise à jour de l'itinéraire de retour vers le contrôleur.": "Request update the route back to the controller.",
         "Mise à jour de la route de retour au contrôleur": "Assign a network return route to a device.",
         "Demandez la mise à jour de la route de retour au contrôleur.": "Request to update the controller to route back.",
-        "Prochain réveil (prévu): ": "Prochain réveil (prévu):"
+        "Prochain réveil (prévu): ": "Next wake-up (planned):"
     },
     "plugins/openzwave/desktop/js/nodes.js": {
         "Aucun paramètre prédefini trouvé pour ce noeud": "No predefined parameters found for this node",
@@ -626,12 +626,12 @@
         "Action réalisée avec succès": "Action successful",
         "Inclusion": "Inclusion",
         "Vous êtes en mode exclusion": "You are in exclusion mode",
-        "Recharge configuration": "Recharge configuration",
-        "Recharger la configuration": "Recharger la configuration",
-        "Sélectionner le mode de rechargement de la configuration ?": "Sélectionner le mode de rechargement de la configuration ?",
-        "Sans recréer les commandes mais en créeant les manquantes": "Sans recréer les commandes mais en créeant les manquantes",
-        "En recréant les commandes": "En recréant les commandes",
-        "Attention, \"en recréant les commandes\" va supprimer les commandes existantes.": "Attention, \"en recréant les commandes\" va supprimer les commandes existantes.",
+        "Recharge configuration": "Configuration reload",
+        "Recharger la configuration": "Reload the configuration",
+        "Sélectionner le mode de rechargement de la configuration ?": "Select the reload configuration mode ?",
+        "Sans recréer les commandes mais en créeant les manquantes": "Without recreating the commands but creating the missing",
+        "En recréant les commandes": "By recreating the commands",
+        "Attention, \"en recréant les commandes\" va supprimer les commandes existantes.": "Careful, \"recreating the commands\" will delete existing commands.",
         "Commande": "Command"
     },
     "plugins/openzwave/plugin_info/info.json": {
