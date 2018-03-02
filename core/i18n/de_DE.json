@@ -90,7 +90,7 @@
         "Soigner le réseau automatiquement 2 fois par semaine": "Das Netz automatisch 2 Mal pro Woche pflegen",
         "Mettre à jour la configuration des modules automatiquement": "Automatisches Update der Modul Konfiguration",
         "Appliquer le jeu de configuration recommandée à l'inclusion": "Den Konfigurations Datensatz anwenden, der bei der Inclusion empfohlen wurde",
-        "Désactiver l'actualisation en arrière-plan des variateurs": "Die Wechselrichter Aktualisierung, im Hintergrund, deaktivieren ",
+        "Désactiver l'actualisation en arrière-plan des variateurs": "Die Hintergrundaktualisierung der Steuerung, deaktivieren ",
         "Activer les tests sanitaires": "Gesundheitstests aktivieren",
         "Gestion avancée": "Erweiterte Verwaltung",
         "Options avancées": "Erweiterte Optionen",
