@@ -17,8 +17,7 @@
   </CommandClass>
   
   <!-- COMMAND_CLASS_BASIC -->
-        <CommandClass id="32" setasreport="true"/>
-  <!-- Association Groups -->
+	<CommandClass id="32" setasreport="true" ignoremapping="true"/>
   <CommandClass id="133">
     <Associations num_groups="4">
       <Group index="1" max_associations="5" label="Lifeline" />
