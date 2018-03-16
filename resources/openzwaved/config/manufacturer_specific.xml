@@ -620,6 +620,7 @@
 		<Product type="0200" id="0006" name="HKZW-MS01 Multisensor" config="hank/hkzw-ms01.xml"/>
 		<Product type="0200" id="0008" name="HKZW-DWS01 Door/Window Sensor" config="hank/hkzw-dws01.xml"/>
 		<Product type="0201" id="0008" name="HKZW-DWS01 Door/Window Sensor" config="hank/hkzw-dws01.xml"/>
+		<Product type="0201" id="0009" name="HKZW-SCN01 Scene Controller" config="hank/scenecontroller1.xml"/>
 		<Product type="0200" id="0009" name="HKZW-SCN01 Scene Controller" config="hank/scenecontroller1.xml"/>
 		<Product type="0200" id="000b" name="HKZW-SCN04 Scene Controller" config="hank/scenecontroller4.xml"/>
 		<Product type="0100" id="0004" name="HKZW-RGB01 RGB bulb" config="hank/hkzw-rgb01.xml"/>
@@ -1268,6 +1269,7 @@
 		<Product type="0002" id="0002" name="RGBW LED Bulb" config="zipato/RGBBulb.xml" />
 		<Product type="0002" id="0003" name="Bulb 2" config="zipato/RGBBulb2.xml"/>
 		<Product type="0002" id="000c" name="PST02-A 4 in 1 Multi-Sensor" config="philio/pst02.xml"/>
+		<Product type="0003" id="1082" name="Door/Window Detector" config="shenzen_neo/nas-ds01z.xml"/>
 		<Product type="0006" id="001a" name="PH-PAB01.eu Micromodule Energy Meter" config="philio/phpab01.xml"/>
 		<Product type="0004" id="000a" name="Indoor Siren" config="philio/pse02.xml"/>
 		<Product type="6131" id="4501" name="Zipato Mini Keypad" config="zipato/MiniKeypad.xml" />

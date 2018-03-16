@@ -1,10 +1,3 @@
----
-key_do_not_edit_lang: fr
-key_do_not_edit_label:
-    key_do_not_edit_titreMenu: Sommaire
-    key_do_not_edit_btnAffiche: Déplier
-    key_do_not_edit_btnMasquer: Cacher
----
 Description 
 ===========
 
@@ -40,7 +33,7 @@ Distances à respecter avec les autres sources de signaux sans fil
 Les récepteurs radio doivent être positionnés à une distance minimum de
 50 cm des autres sources radioélectriques.
 
-Exemples de sources radioélectriques:
+Examples of radio-electric sources :
 
 -   Ordinateurs
 
@@ -124,7 +117,7 @@ d’un message.
 
 > **Tip**
 >
-> Le **Graphique du réseau** ainsi que la **table de routage**
+> Le **Graphique du réseau**ainsi que la**table de routage**
 > permettent de visualiser la qualité de votre réseau.
 
 > **Tip**
@@ -141,7 +134,7 @@ Propriétés des appareils Z-Wave
 | Esclave | Connaît tous les voisins | N’a pas d’information sur la table de routage | Ne peut répondre au nœud qu’il a reçu le message. Par conséquent, ne peut pas envoyer des messages non sollicités |
 | Esclaves de routage | Connaît tous ses voisins | A la connaissance partielle de la table de routage | Peut répondre au nœud qu’il a reçu le message et peut envoyer des messages non sollicités à un certain nombre de nœuds |
 
-En résumé:
+In summary :
 
 -   Chaque appareil Z -Wave peut recevoir et accuser réception de
     messages
@@ -159,8 +152,7 @@ En résumé:
     le contrôleur a prédéfini « L’esclave est toujours un esclave, mais
     sur autorisation, il peut parler »
 
-Configuration du plugin 
-=======================
+== Plugin configuration
 
 Après le téléchargement du plugin, il vous suffit de l’activer et de le
 configurer.
@@ -239,7 +231,7 @@ le contenu.
 Sélectionner le niveau puis sauvegarder, le démon sera alors relancé
 avec les instructions et traces sélectionnées.
 
-Le niveau **Debug** ou **Info** peuvent être utiles pour comprendre
+Le niveau **Debug**ou**Info** peuvent être utiles pour comprendre
 pourquoi le démon plante ou ne remonte pas une valeur.
 
 > **Important**
@@ -247,7 +239,7 @@ pourquoi le démon plante ou ne remonte pas une valeur.
 > En mode **Debug** le démon est très verbeux, il est recommandé
 > d’utiliser ce mode seulement si vous devez diagnostiquer un problème
 > particulier. Il n’est pas recommandé de laisser tourner le démon en
-> **Debug** en permanence, si on utilise une **SD-Card**. Une fois le
+> **Debug**en permanence, si on utilise une**SD-Card**. Une fois le
 > debug terminé, il ne faut pas oublier de retourner sur un niveau moins
 > élevé comme le niveau **Error** qui ne remonte que d’éventuelles
 > erreurs.
@@ -353,7 +345,7 @@ Paneau Mobile
 Permet d’afficher ou non le panel mobile lors que vous utiliser
 l’application sur un téléphone.
 
-Configuration des équipements 
+Equipment configuration
 =============================
 
 La configuration des équipements Z-Wave est accessible à partir du menu
@@ -375,13 +367,13 @@ quelques équipements) :
 > **Tip**
 >
 > Les boutons sur la ligne tout en haut **Synchroniser**,
-> **Réseau-Zwave** et **Santé**, sont visibles seulement si vous êtes en
+> **Réseau-Zwave**et**Santé**, sont visibles seulement si vous êtes en
 > mode **Expert**. ![appliance03](../images/appliance03.png)
 
 Général 
 -------
 
-Vous retrouvez ici toute la configuration de votre équipement :
+You can find here the full configuration of your device :
 
 ![appliance04](../images/appliance04.png)
 
@@ -390,8 +382,8 @@ Vous retrouvez ici toute la configuration de votre équipement :
 -   **Objet parent** : indique l’objet parent auquel
     appartient l’équipement.
 
--   **Catégorie** : les catégories de l’équipement (il peut appartenir à
-    plusieurs catégories).
+-   **Category**: categories of equipment (it may belong to
+    several categories).
 
 -   **Activer** : permet de rendre votre équipement actif.
 
@@ -429,10 +421,10 @@ Vous retrouvez ici toute la configuration de votre équipement :
 > équipement supprimé qui est toujours rattaché à son contrôleur sera
 > automatiquement recréé suite à la synchronisation.
 
-Commandes 
+Orders
 ---------
 
-Ci-dessous vous retrouvez la liste des commandes :
+Here below you can fond the list of commands :
 
 ![appliance05](../images/appliance05.png)
 
@@ -480,7 +472,7 @@ Ci-dessous vous retrouvez la liste des commandes :
 
 -   Min/Max : bornes de la donnée (peuvent être vides).
 
--   Configuration avancée (petites roues crantées) : permet d’afficher
+-   Advanced configuration (small wheels): displays
     la configuration avancée de la commande (méthode
     d’historisation, widget…​).
 
@@ -513,7 +505,7 @@ la situation.
 Jeux de Commandes 
 -----------------
 
-Certains modules possèdent plusieurs jeux de commandes préconfigurées
+Some modules have multiple pre-configured command sets
 
 ![appliance06](../images/appliance06.png)
 
@@ -576,7 +568,7 @@ configurations recommandées.
 
 L’assistant active les différents éléments de configurations.
 
-Une confirmation du bon déroulement sera affichée sous forme de bandeau
+A confirmation of the correct flow will be displayed as a ribbon.
 
 ![appliance10](../images/appliance10.png)
 
@@ -605,7 +597,7 @@ C’est ici que vous retrouverez toutes les informations sur votre module
 
 ![node01](../images/node01.png)
 
-La fenêtre possède plusieurs onglets :
+The screen has different tabs :
 
 Résumé 
 ------
@@ -670,7 +662,7 @@ Lorsqu’un paramètre est modifié, la ligne correspondante passe en jaune,
 ![node04](../images/node04.png) le paramètre est en attente d’être
 appliqué.
 
-Si le module accepte le paramètre, la ligne redevient transparente.
+If the module accepts the parameter, its line becomes transparent.
 
 Si toutefois le module refuse la valeur, la ligne passera alors en rouge
 avec la valeur appliquée retournée par le module.
@@ -782,7 +774,7 @@ quelle instance on souhaite créer l’association
 Systèmes 
 --------
 
-Onglet regroupant les paramètres systèmes du module.
+Tab grouping the system parameters of the module.
 
 ![node10](../images/node10.png)
 
@@ -798,7 +790,7 @@ Onglet regroupant les paramètres systèmes du module.
 
 > **Tip**
 >
-> Les modules **Interrupteur** et **Variateur** peuvent implémenter une
+> Les modules **Interrupteur**et**Variateur** peuvent implémenter une
 > Classe de commande spéciale appelée **SwitchAll** 0x27. Vous pouvez en
 > modifier ici le comportement. Selon le module, plusieurs options sont
 > à disposition. La commande **SwitchAll On/OFF** peut être lancée via
@@ -861,7 +853,7 @@ Z-Wave.
 Statistiques 
 ------------
 
-Cet onglet donne quelques statistiques de communication avec le nœud.
+This tab displays communication statistics with the node. 
 
 ![node15](../images/node15.png)
 
@@ -899,7 +891,7 @@ faire les inclusions en mode **Sécurisé**.
 Si toutefois, un module ne peut être inclus en mode sécurisé, veuillez
 l’inclure en mode **Non sécurisé**.
 
-Une fois en mode inclusion : Jeedom vous le signale.
+When inclusion mode started, Jeedom lets you know.
 
 \[TIP\] Un module 'non sécurisé' peut commander des modules 'non
 sécurisés'. Un module 'non sécurisé' ne peut pas commander un module
@@ -1022,7 +1014,7 @@ Réseaux Z-Wave
 
 ![network01](../images/network01.png)
 
-Vous retrouvez ici des informations générales sur votre réseau Z-Wave.
+You will find here general information on your Z-Wave network.
 
 ![network02](../images/network02.png)
 
@@ -1094,7 +1086,7 @@ secondaire.
 
 **Système**
 
-Affiche diverses informations système.
+Displays miscellaneous system information.
 
 -   Information sur le port USB utilisé.
 
@@ -1143,7 +1135,7 @@ Graphique du réseau
 Cet onglet vous donnera une représentation graphique des différents
 liens entre les nœuds.
 
-Explication la légende des couleurs :
+Color codes :
 
 -   **Noir** : Le contrôleur principal, en général représenté
     comme Jeedom.
@@ -1191,7 +1183,7 @@ contiennent les nœuds de destination. Se référer à la légende pour
 comprendre les couleurs de cellule qui indiquent les liens entre deux
 nœuds.
 
-Explication la légende des couleurs :
+Color codes :
 
 -   **Vert** : Communication directe avec le contrôleur, idéal.
 
@@ -1229,7 +1221,7 @@ Cette fenêtre résume l’état de votre réseau Z-Wave :
 
 ![health02](../images/health02.png)
 
-Vous avez ici :
+You have here :
 
 -   **Module** : le nom de votre module, un clic dessus vous permet d’y
     accéder directement.
@@ -1283,7 +1275,7 @@ Vous avez ici :
 > Les équipements désactivés seront affichés mais aucune information de
 > diagnostic ne sera présente.
 
-Le nom du module peut-être suivit par une ou deux images:
+The name of the module can be followed by one or two images :
 
 ![health04](../images/health04.png) Modules supportant la
 COMMAND\_CLASS\_ZWAVE\_PLUS\_INFO
@@ -1413,7 +1405,7 @@ Etape de l’interview d’un module après le démarrage du démon.
 Notification 
 ------------
 
-Détails des notifications envoyées par les modules
+Details of the notifications sent by the modules.
 
 -   **Completed** Action terminée avec succès.
 
@@ -1498,7 +1490,7 @@ Lancer la Regénération de la détection du nœud depuis l’onglet Actions
 du module.
 
 Si vous avez plusieurs modules dans ce cas de figure, lancer **Regénérer
-la détection de nœuds inconnues** depuis l’écran **Réseau ZWave** onglet
+la détection de nœuds inconnues**depuis l’écran**Réseau ZWave** onglet
 **Actions**.
 
 Mon module est présumé mort par le controleur Dead 
@@ -1536,7 +1528,7 @@ La Commande Classe Switch All est en général supportée sur les
 interrupteurs et les variateurs. Son comportement est configurable sur
 chaque module qui la supporte.
 
-On peut donc soit:
+One can either :
 
 -   Désactiver la Commande Classe Switch All.
 
@@ -1559,7 +1551,7 @@ Mon module n a pas de commande Scene ou Bouton
 
 Vous pouvez ajouter la commande dans l’écran de "mapping" des commandes.
 
-Il s’agit d’une commande **Info** en CC **0x2b** Instance **0** commande
+Il s’agit d’une commande **Info**en CC**0x2b**Instance**0** commande
 **data\[0\].val**
 
 Le mode scène doit être activé dans les paramètres du module. Voir la
@@ -1576,8 +1568,8 @@ dans l’écran de mapping d’un équipement.
 
 ![troubleshooting06](../images/troubleshooting06.png)
 
-Il s’agit d’une commande **Action** choisir la **CC** souhaitée pour une
-**Instance** donnée avec la commande **data\[0\].ForceRefresh()**
+Il s’agit d’une commande **Action**choisir la**CC** souhaitée pour une
+**Instance**donnée avec la commande**data\[0\].ForceRefresh()**
 
 L’ensemble des index de l’instance pour cette commande Classe sera mise
 à jour. Les nœuds sur piles attendront leur prochain réveil avant
@@ -1599,7 +1591,7 @@ Transferer les modules sur un nouveau controleur
 Pour différentes raisons, vous pouvez être amené à devoir transférer
 l’ensemble de vos modules sur un nouveau contrôleur principal.
 
-Vous décidez de passer du **raZberry** à un **Z-Stick Gen5** ou parce
+Vous décidez de passer du **raZberry**à un**Z-Stick Gen5** ou parce
 que, vous devez effectuer un **Reset** complet du contrôleur principal.
 
 Voici différentes étapes pour y arriver sans perdre vos scénarios,
@@ -1653,7 +1645,7 @@ Remplacer un module defaillant
 Comment refaire l’inclusion d’un module défaillant sans perdre vos
 scénarios, widgets et historiques de valeur
 
-Si le module est présumé "Dead" :
+If the module is presumed "Dead" :
 
 -   Noter (copie écran) vos valeurs de paramètres, elles seront perdues
     suite à l’inclusion.
@@ -1696,7 +1688,7 @@ Si vous avez perdu toute communication avec un module sur pile et que
 vous souhaitez l’exclure du réseau, il est possible que l’exclusion
 n’aboutisse pas ou que le nœud reste présent dans votre réseau.
 
-Un assistant automatique de nœud fantôme est disponible.
+A ghost module automatic wizard is available.
 
 -   Aller sur l’onglet actions du module à supprimer.
 
@@ -1827,7 +1819,7 @@ réessayer dans quelques minutes"
 Si toutefois après plusieurs minutes (plus de 10 minutes), vous avez
 toujours ce message, ce n’est plus normal.
 
-Il faut essayer les différentes étapes:
+You have to then try the following steps :
 
 -   S’assurer que les voyants de l’écran santé Jeedom soient au vert.
 
@@ -1846,7 +1838,7 @@ Il faut essayer les différentes étapes:
 -   Regarder la **Console** du plugin ZWave, afin de voir si une erreur
     n’est pas remontée.
 
--   Lancer le Demon en **Debug** regarder à nouveau la **Console** et
+-   Lancer le Demon en **Debug**regarder à nouveau la**Console** et
     les logs du plugin.
 
 -   Redémarrer complètement Jeedom.
@@ -1855,13 +1847,13 @@ Il faut essayer les différentes étapes:
     Razberry sont souvent confondus avec les EnOcean (erreur lors de
     la commande).
 
-Il faut maintenant débuter les tests hardwares:
+* Then proceed to hardware testing :
 
 -   Le Razberry est bien branché au port GPIO.
 
 -   L’alimentation USB est suffisante.
 
-Si le problème persiste toujours, il faut réinitialiser le contrôleur:
+If you still have a problem, you have to reset the controller.
 
 -   Arrêter complément votre Jeedom via le menu d’arrêt dans le
     profil utilisateur.
@@ -1883,9 +1875,9 @@ Il est possible que la queue de messages du contrôleur soit remplie.
 Voir l’écran Réseau Z-Wave si le nombre de messages en attente ne fait
 qu’augmenter.
 
-Il faut dans ce cas relancer le Demon Z-Wave.
+If so, you have to restart the Z-Wave daemon.
 
-Si le problème persiste, il faut réinitialiser le contrôleur:
+If this keeps happening, you have to reset the controller.
 
 -   Arrêter complément votre Jeedom via le menu d’arrêt dans le
     profil utilisateur.
@@ -1905,7 +1897,7 @@ dépendances. Il faut consulter le log de mise à jour des dépendances
 afin de déterminer quelle est exactement l’erreur. De façon générale,
 l’erreur se trouve à la fin du log dans les quelque dernières lignes.
 
-Voici les possibles problèmes ainsi que leurs possibles résolutions:
+Here is a list of some errors and their possible remediations :
 
 -   could not install mercurial – abort
 
@@ -1958,7 +1950,7 @@ start mysql
 > **Tip**
 >
 > Si vous etes toujours sous nginx, il faudra remplacer **apache2** par
-> **nginx** dans les commandes **stop** / **start**. Le fichier log
+> **nginx**dans les commandes**stop**/**start**. Le fichier log
 > openzwave\_update sera dans le dossier:
 > /usr/share/nginx/www/jeedom/log .
 
@@ -1968,15 +1960,15 @@ Utilisation de la carte Razberry sur un Raspberry Pi 3
 Pour utiliser un contrôleur Razberry sur un Raspberry Pi 3, le
 contrôleur Bluetooth interne du Raspberry doit être désactivé.
 
-Ajouter cette ligne:
+add this line :
 
     dtoverlay=pi3-miniuart-bt
 
-À la fin du fichier:
+at the end of the file :
 
     /boot/config.txt
 
-Puis redémarrer votre Raspberry.
+and restart the RPI3
 
 API HTTP 
 ========
@@ -1988,7 +1980,7 @@ HTTP.
 Il vous est possible d’exploiter l’ensemble des méthodes exposées par le
 serveur REST du démon Z-Wave.
 
-La syntaxe pour appeler les routes est sous cette forme:
+The syntax to invoke routes is as follows :
 
 URL =
 [http://token:\#APIKEY\#@\#IP\_JEEDOM\#:\#PORTDEMON\#/\#ROUTE\#](http://token:#APIKEY#@#IP_JEEDOM#:#PORTDEMON#/#ROUTE#)
@@ -2445,7 +2437,7 @@ Changelog détaillé :
 
     -   Modification du système d’association directe.
 
-    -   Mise à jour de la documentation
+    -   Updated documentation
 
     -   Possibilité de lancer la régénération de la détection du nœud
         pour l’ensemble des modules identiques (marque et modèle).
