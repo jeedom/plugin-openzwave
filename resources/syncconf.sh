@@ -10,7 +10,7 @@ echo "Déplacement dans le répertoire de travail"
 cd /tmp
 echo "Récupération des sources (cette étape peut durer quelques minutes)"
 rm -rf /tmp/plugin-openzwave > /dev/null 2>&1
-sudo git clone --depth=1 https://github.com/jeedom/plugin-openzwave.git 
+sudo git clone -b beta --depth=1 https://github.com/jeedom/plugin-openzwave.git 
 if [ $? -ne 0 ]; then
     echo "Unable to fetch Jeedom git.Please check your internet connexion and github access"
     exit 1
