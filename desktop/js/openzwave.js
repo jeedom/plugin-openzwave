@@ -135,7 +135,7 @@ function printEqLogic(_eqLogic) {
     if ($('.li_eqLogic.active').attr('data-eqlogic_id') != '') {
         $('#img_device').attr("src", $('.eqLogicDisplayCard[data-eqLogic_id=' + $('.li_eqLogic.active').attr('data-eqlogic_id') + '] img').attr('src'));
     } else {
-        $('#img_device').attr("src", 'plugins/openzwave/doc/images/openzwave_icon.png');
+        $('#img_device').attr("src", 'plugins/openzwave/plugin_info/openzwave_icon.png');
     }
     if ($('.li_eqLogic.active').attr('data-assistant') != '') {
         $('#bt_deviceAssistant').show();
