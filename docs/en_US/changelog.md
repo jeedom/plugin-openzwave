@@ -1,6 +1,11 @@
 Changelog détaillé :
 <https://github.com/jeedom/plugin-openzwave/commits/master>
 
+17-03-2018
+===
+
+- Changement de la branche pour la récupération des confs lors du syncconf (suite a changement de l'organisation des githubs)
+
 17-01-2018 / 19-01-2018
 ===
 
@@ -463,7 +468,7 @@ Changelog détaillé :
 
     -   Modification du système d’association directe.
 
-    -   Mise à jour de la documentation
+    -   Updated documentation
 
     -   Possibilité de lancer la régénération de la détection du nœud
         pour l’ensemble des modules identiques (marque et modèle).

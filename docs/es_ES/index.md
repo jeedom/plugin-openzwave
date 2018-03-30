@@ -117,7 +117,7 @@ d’un message.
 
 > **Tip**
 >
-> Le **Graphique du réseau** ainsi que la **table de routage**
+> Le **Graphique du réseau**ainsi que la**table de routage**
 > permettent de visualiser la qualité de votre réseau.
 
 > **Tip**
@@ -152,7 +152,7 @@ En résumé:
     le contrôleur a prédéfini « L’esclave est toujours un esclave, mais
     sur autorisation, il peut parler »
 
-Configuration du plugin 
+configuración del plugin
 =======================
 
 Après le téléchargement du plugin, il vous suffit de l’activer et de le
@@ -232,7 +232,7 @@ le contenu.
 Sélectionner le niveau puis sauvegarder, le démon sera alors relancé
 avec les instructions et traces sélectionnées.
 
-Le niveau **Debug** ou **Info** peuvent être utiles pour comprendre
+Le niveau **Debug**ou**Info** peuvent être utiles pour comprendre
 pourquoi le démon plante ou ne remonte pas une valeur.
 
 > **Important**
@@ -240,7 +240,7 @@ pourquoi le démon plante ou ne remonte pas une valeur.
 > En mode **Debug** le démon est très verbeux, il est recommandé
 > d’utiliser ce mode seulement si vous devez diagnostiquer un problème
 > particulier. Il n’est pas recommandé de laisser tourner le démon en
-> **Debug** en permanence, si on utilise une **SD-Card**. Une fois le
+> **Debug**en permanence, si on utilise une**SD-Card**. Une fois le
 > debug terminé, il ne faut pas oublier de retourner sur un niveau moins
 > élevé comme le niveau **Error** qui ne remonte que d’éventuelles
 > erreurs.
@@ -346,7 +346,7 @@ Paneau Mobile
 Permet d’afficher ou non le panel mobile lors que vous utiliser
 l’application sur un téléphone.
 
-Configuration des équipements 
+Configuración del dispositivo
 =============================
 
 La configuration des équipements Z-Wave est accessible à partir du menu
@@ -368,13 +368,13 @@ quelques équipements) :
 > **Tip**
 >
 > Les boutons sur la ligne tout en haut **Synchroniser**,
-> **Réseau-Zwave** et **Santé**, sont visibles seulement si vous êtes en
+> **Réseau-Zwave**et**Santé**, sont visibles seulement si vous êtes en
 > mode **Expert**. ![appliance03](../images/appliance03.png)
 
 Général 
 -------
 
-Vous retrouvez ici toute la configuration de votre équipement :
+Aquí encontrará toda la configuración de su dispositivo:
 
 ![appliance04](../images/appliance04.png)
 
@@ -383,8 +383,8 @@ Vous retrouvez ici toute la configuration de votre équipement :
 -   **Objet parent** : indique l’objet parent auquel
     appartient l’équipement.
 
--   **Catégorie** : les catégories de l’équipement (il peut appartenir à
-    plusieurs catégories).
+-   ** ** Categoría: categorías de equipos (que pueden pertenecer a
+    la mayoría de categorías).
 
 -   **Activer** : permet de rendre votre équipement actif.
 
@@ -422,7 +422,7 @@ Vous retrouvez ici toute la configuration de votre équipement :
 > équipement supprimé qui est toujours rattaché à son contrôleur sera
 > automatiquement recréé suite à la synchronisation.
 
-Commandes 
+comandos
 ---------
 
 Ci-dessous vous retrouvez la liste des commandes :
@@ -473,7 +473,7 @@ Ci-dessous vous retrouvez la liste des commandes :
 
 -   Min/Max : bornes de la donnée (peuvent être vides).
 
--   Configuration avancée (petites roues crantées) : permet d’afficher
+-   Configuración avanzada (pequeñas ruedas dentadas): Muestra
     la configuration avancée de la commande (méthode
     d’historisation, widget…​).
 
@@ -791,7 +791,7 @@ Onglet regroupant les paramètres systèmes du module.
 
 > **Tip**
 >
-> Les modules **Interrupteur** et **Variateur** peuvent implémenter une
+> Les modules **Interrupteur**et**Variateur** peuvent implémenter une
 > Classe de commande spéciale appelée **SwitchAll** 0x27. Vous pouvez en
 > modifier ici le comportement. Selon le module, plusieurs options sont
 > à disposition. La commande **SwitchAll On/OFF** peut être lancée via
@@ -1491,7 +1491,7 @@ Lancer la Regénération de la détection du nœud depuis l’onglet Actions
 du module.
 
 Si vous avez plusieurs modules dans ce cas de figure, lancer **Regénérer
-la détection de nœuds inconnues** depuis l’écran **Réseau ZWave** onglet
+la détection de nœuds inconnues**depuis l’écran**Réseau ZWave** onglet
 **Actions**.
 
 Mon module est présumé mort par le controleur Dead 
@@ -1552,7 +1552,7 @@ Mon module n a pas de commande Scene ou Bouton
 
 Vous pouvez ajouter la commande dans l’écran de "mapping" des commandes.
 
-Il s’agit d’une commande **Info** en CC **0x2b** Instance **0** commande
+Il s’agit d’une commande **Info**en CC**0x2b**Instance**0** commande
 **data\[0\].val**
 
 Le mode scène doit être activé dans les paramètres du module. Voir la
@@ -1569,8 +1569,8 @@ dans l’écran de mapping d’un équipement.
 
 ![troubleshooting06](../images/troubleshooting06.png)
 
-Il s’agit d’une commande **Action** choisir la **CC** souhaitée pour une
-**Instance** donnée avec la commande **data\[0\].ForceRefresh()**
+Il s’agit d’une commande **Action**choisir la**CC** souhaitée pour une
+**Instance**donnée avec la commande**data\[0\].ForceRefresh()**
 
 L’ensemble des index de l’instance pour cette commande Classe sera mise
 à jour. Les nœuds sur piles attendront leur prochain réveil avant
@@ -1592,7 +1592,7 @@ Transferer les modules sur un nouveau controleur
 Pour différentes raisons, vous pouvez être amené à devoir transférer
 l’ensemble de vos modules sur un nouveau contrôleur principal.
 
-Vous décidez de passer du **raZberry** à un **Z-Stick Gen5** ou parce
+Vous décidez de passer du **raZberry**à un**Z-Stick Gen5** ou parce
 que, vous devez effectuer un **Reset** complet du contrôleur principal.
 
 Voici différentes étapes pour y arriver sans perdre vos scénarios,
@@ -1839,7 +1839,7 @@ Il faut essayer les différentes étapes:
 -   Regarder la **Console** du plugin ZWave, afin de voir si une erreur
     n’est pas remontée.
 
--   Lancer le Demon en **Debug** regarder à nouveau la **Console** et
+-   Lancer le Demon en **Debug**regarder à nouveau la**Console** et
     les logs du plugin.
 
 -   Redémarrer complètement Jeedom.
@@ -1951,7 +1951,7 @@ start mysql
 > **Tip**
 >
 > Si vous etes toujours sous nginx, il faudra remplacer **apache2** par
-> **nginx** dans les commandes **stop** / **start**. Le fichier log
+> **nginx**dans les commandes**stop**/**start**. Le fichier log
 > openzwave\_update sera dans le dossier:
 > /usr/share/nginx/www/jeedom/log .
 

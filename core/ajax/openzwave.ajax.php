@@ -116,6 +116,6 @@ try {
 	throw new Exception('Aucune methode correspondante');
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayException($e), $e->getCode());
 }
-?>
+

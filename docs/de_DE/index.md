@@ -1,293 +1,283 @@
-Description 
+Beschreibung
 ===========
 
-Ce plugin permet l’exploitation de modules Z-Wave par l’intermédiaire de
-la librairie OpenZwave.
+Dieses Plugin ermöglicht die Nutzung von Z-Wave Modulen über
+die OpenZwave-Bibliothek.
 
-Introduction 
+Einleitung
 ============
 
-Z-Wave communique en utilisant une technologie radio de faible puissance
-dans la bande de fréquence de 868,42 MHz. Il est spécifiquement conçu
-pour les applications de domotique. Le protocole radio Z-Wave est
-optimisé pour des échanges à faible bande passante (entre 9 et 40
-kbit/s) entre des appareils sur pile ou alimentés sur secteur.
+Z-Wave kommuniziert mit Low-Power-Funktechnologie im 868,42 MHz
+Frequenzband. Es wurde speziell für Anwendungen in der Hausautomation
+entwickelt. Das Z-Wave-Funkprotokoll ist für den Austausch mit niedriger
+Bandbreite (zwischen 9 und 40 kbit / s) zwischen batteriebetriebenen und
+netzbetriebenen Geräten optimiert.
 
-Z-Wave fonctionne dans la gamme de fréquences sous-gigahertz, selon les
-régions (868 MHz en Europe, 908 MHz aux US, et d’autres fréquences
-suivant les bandes ISM des régions). La portée théorique est d’environ
-30 mètres en intérieur et 100 mètres en extérieur. Le réseau Z-Wave
-utilise la technologie du maillage (mesh) pour augmenter la portée et la
-fiabilité. Z-Wave est conçu pour être facilement intégré dans les
-produits électroniques de basse consommation, y compris les appareils à
-piles tels que les télécommandes, les détecteurs de fumée et capteurs de
-sécurité.
+Z-Wave arbeitet im unteren Gigahertz-Frequenzbereich, abhängig von der
+Region (868 MHz in Europa, 908 MHz in den USA und andere Frequenzen in
+den ISM-Bändern von Regionen). Die theoretische Reichweite beträgt ca. 30
+Meter im Innenbereich und 100 Meter im Freien. Das Z-Wave-Netzwerk nutzt
+Vermaschte-Technologie (Mesh), um die Reichweite und Zuverlässigkeit zu
+erhöhen. Z-Wave ist so konzipiert, dass es leicht in elektronische Produkte
+mit geringer Leistungsaufnahme integriert werden kann, darunter
+batteriebetriebene Geräte wie Fernbedienungen, Rauchmelder und
+Sicherheitssensoren.
 
-Le Z-Wave+, apporte certaines améliorations dont une meilleure portée et
-améliore la durée de vie des batteries entre autres. La
-rétrocompatibilité est totale avec le Z-Wave.
+Das Z-Wave+ bringt einige Verbesserungen, einschließlich einer besseren Reichweite und verbessert unter anderem die Lebensdauer der Batterien.  Z-Wave ist voll Abwärtskompatibel.
 
-Distances à respecter avec les autres sources de signaux sans fil 
+Entfernungen zu anderen Funksignalquellen beachten
 -----------------------------------------------------------------
 
-Les récepteurs radio doivent être positionnés à une distance minimum de
-50 cm des autres sources radioélectriques.
+Die Funkempfängern müssen in einem Mindestabstand von 50 cm von
+anderen Funkquellen positioniert werden.
 
-Exemples de sources radioélectriques:
+Beispiele für Funkquellen :
 
--   Ordinateurs
+-   Computer
 
--   Les appareils à micro-ondes
+-   Mikrowellen-Geräte
 
--   Les transformateurs électroniques
+-   Elektronische Transformatoren
 
--   équipements audio et de matériel vidéo
+-   Audio- und Videogeräte
 
--   Les dispositifs de pré-accouplement pour lampes fluorescentes
+-   Vorschaltgerät von Leuchtstofflampen
 
 > **Tip**
 >
-> Si vous disposez un contrôleur USB (Z-Stick), il est recommandé de
-> l’éloigner de la box à l’aide d’une simple rallonge USB de 1M par
-> exemple.
+> Wenn Sie einen USB-Controller (Z-Stick) haben, wird empfohlen, ihn zum
+> Beispiel mit einer einfachen USB-Verlängerung von 1m, von der Box zu
+> entfernen.
 
-La distance entre d’autres émetteurs sans fil tels que les téléphones
-sans fil ou transmissions radio audio doit être d’au moins 3 mètres. Les
-sources de radio suivantes doivent être prises en compte :
+Die Entfernung zwischen anderen drahtlosen Sendern wie schnurlosen Telefonen oder Audio-Radio-Übertragungen muss mindestens 3 Meter betragen. Folgende Radioquellen sollten berücksichtigt werden :
 
--   Perturbations par commutateur de moteurs électriques
+-   Störungen durch Schalten von Elektromotoren
 
--   Interférences par des appareils électriques défectueux
+-   Störungen durch defekte Elektrogeräte
 
--   Les perturbations par les appareils HF de soudage
+-   Störungen durch HF-Schweißgeräte
 
--   dispositifs de traitement médical
+-   medizinische Behandlungsgeräte
 
-Epaisseur efficace des murs 
+Effektive  Wandstärke
 ---------------------------
 
-Les emplacements des modules doivent être choisis de telle manière que
-la ligne de connexion directe ne fonctionne que sur une très courte
-distance au travers de la matière (un mur), afin d’éviter au maximum les
-atténuations.
+Die Standorte der Module müssen so gewählt werden, dass die direkte
+Verbindungslinie nur eine sehr kurze Strecke durch das Material (einer
+Wand) führt, um die Dämpfung so weit wie möglich zu vermeiden.
 
 ![introduction01](../images/introduction01.png)
 
-Les parties métalliques du bâtiment ou des meubles peuvent bloquer les
-ondes électromagnétiques.
+Metallteile des Gebäudes oder Möbel können elektromagnetische Wellen
+blockieren.
 
-Maillage et Routage 
+Vernetzung und Routing
 -------------------
 
-Les nœuds Z-Wave sur secteur peuvent transmettre et répéter les messages
-qui ne sont pas à portée directe du contrôleur. Ce qui permet une plus
-grande flexibilité de communication, même si il n’y a pas de connexion
-sans fil directe ou si une connexion est temporairement indisponible, à
-cause d’un changement dans la pièce ou le bâtiment.
+Z-Wave-Netzknoten können Meldungen übertragen und wiederholen, die
+nicht im direkten Bereich des Reglers liegen. Dies ermöglicht eine größere
+Kommunikationsflexibilität, selbst wenn keine direkte drahtlose Verbindung
+besteht oder wenn eine Verbindung aufgrund einer Änderung im Raum oder
+Gebäude vorübergehend nicht verfügbar ist.
 
 ![introduction02](../images/introduction02.png)
 
-Le contrôleur **Id 1** peut communiquer directement avec les nœuds 2, 3
-et 4. Le nœud 6 est en dehors de sa portée radio, cependant, il se
-trouve dans la zone de couverture radio du nœud 2. Par conséquent, le
-contrôleur peut communiquer avec le nœud 6 via le nœud 2. De cette
-façon, le chemin du contrôleur via le nœud 2 vers le nœud 6, est appelé
-route. Dans le cas où la communication directe entre le nœud 1 et le
-nœud 2 est bloquée, il y a encore une autre option pour communiquer avec
-le nœud 6, en utilisant le nœud 3 comme un autre répéteur du signal.
+Der Controller **ID1** kann direkt mit den Knoten 2, 3 und 4 kommunizieren.
+Der Knoten 6 befindet sich außerhalb seiner Funkreichweite, jedoch
+befindet er sich im Funkabdeckungsbereich des Knotens 2. Daher kann der
+Controller mit ihm kommunizieren, Knoten 6 über Knoten 2. Auf diese Weise
+wird der Weg der Steuerung von Knoten 2 zu Knoten 6 als Route bezeichnet.
+In dem Fall, in dem die direkte Kommunikation zwischen dem Knoten 1 und
+dem Knoten 2 blockiert ist, gibt es noch eine andere Möglichkeit, mit dem
+Knoten 6 zu kommunizieren, wobei der Knoten 3 als alternativer Verstärker
+des Signals verwendet wird.
 
-Il devient évident que plus l’on possède de nœuds secteur, plus les
-options de routage augmentent , et plus la stabilité du réseau augmente.
-Le protocole Z-Wave est capable de router les messages par
-l’intermédiaire d’un maximum de quatre nœuds de répétition. C’est un
-compromis entre la taille du réseau, la stabilité et la durée maximale
-d’un message.
-
-> **Tip**
->
-> Il est fortement recommandé en début d’installation d’avoir un ratio
-> entre nœuds secteur et nœud sur piles de 2/3, afin d’avoir un bon
-> maillage réseau. Privilégier des micromodules aux smart-plugs. Les
-> micros modules seront à un emplacement définitif et ne seront pas
-> débranchés, ils ont aussi en général une meilleure portée. Un bon
-> départ est l’éclairage des zones communes. Il permettra de bien
-> répartir les modules secteurs à des endroits stratégiques dans votre
-> domicile. Par la suite vous pourrez ajouter autant de modules sur pile
-> que souhaité, si vos routes de base sont bonnes.
+Es wird deutlich, dass je mehr Knoten wir haben, desto höher die Routing
+Optionen und desto größer die Stabilität des Netzwerks. Das Z-Wave
+Protokoll ist in der Lage, Nachrichten über bis zu vier Wiederholungsknoten
+zu leiten. Es ist ein Kompromiss zwischen der Größe des Netzwerks, der
+Stabilität und der maximalen Dauer einer Nachricht.
 
 > **Tip**
 >
-> Le **Graphique du réseau** ainsi que la **table de routage**
-> permettent de visualiser la qualité de votre réseau.
+> Es wird dringend empfohlen, zu Beginn der Installation ein Verhältnis 2/3
+> zwischen Netzbetriebene Knoten und Batteriebetriebene Knoten zu haben,
+> um ein gutes Netz zu erhalten. Bevorzugt Micromodule als Smart-Plugs.
+> Die Mikro-Module sind an einem festen Ort und werden nicht getrennt, sie
+> haben auch eine bessere Reichweite. Ein guter Anfang ist die Beleuchtung
+> der Gemeinschaftsräume. Es wird Ihnen helfen, die Netzbetriebenen
+> Module an strategischen Orten in Ihrem Zuhause zu verteilen.
+> Anschließend können Sie beliebig viele Batterie-Module hinzufügen, wenn
+> Ihre Basisrouten gut sind.
 
 > **Tip**
 >
-> Il existe des modules répéteur pour combler des zones où aucun module
-> secteur n’a d’utilité.
+> Mit dem **Netzwerkdiagramm**und der**Routingtabelle** können Sie die
+> Qualität Ihres Netzwerks visualisieren.
 
-Propriétés des appareils Z-Wave 
+> **Tip**
+>
+> Es gibt Repeater-Module für Bereiche, in denen kein Netzbetriebenes
+> Modul benötigt wird.
+
+Eigenschaften von Z-Wave-Geräten
 -------------------------------
 
-|  | Voisins | Route | Fonctions possibles |
+|  | Nachbarn | Route | Mögliche Funktionen |
 |---------------------|:------------------------:|:--------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------:|
-| Contrôleur | Connaît tous les voisins | A accès à la table de routage complète | Peut communiquer avec tous les appareils dans le réseau, si une voie existe |
-| Esclave | Connaît tous les voisins | N’a pas d’information sur la table de routage | Ne peut répondre au nœud qu’il a reçu le message. Par conséquent, ne peut pas envoyer des messages non sollicités |
-| Esclaves de routage | Connaît tous ses voisins | A la connaissance partielle de la table de routage | Peut répondre au nœud qu’il a reçu le message et peut envoyer des messages non sollicités à un certain nombre de nœuds |
+| Controller | Kennt alle Nachbarn | Hat Zugriff auf die komplette Routing-Tabelle | Kann mit allen Geräten im Netzwerk kommunizieren, wenn ein Pfad existiert |
+| Slave | Kennt alle Nachbarn | Hat keine Informationen über die Routing-Tabelle | Kann dem Knoten, der die Nachricht erhalten hat, nicht antworten. Daher können keine unerwünschten Nachrichten gesendet werden |
+| Slave-Routing | Kennt alle seine Nachbarn | Kennt teilweise die Routing-Tabelle | Kann auf den Knoten antworten, der die Nachricht empfangen hat, und kann nicht angeforderte Nachrichten an eine Anzahl von Knoten senden |
 
-En résumé:
+Zusammenfassend lässt sich sagen :
 
--   Chaque appareil Z -Wave peut recevoir et accuser réception de
-    messages
+-   Jedes Z-Wave-Gerät empfängt und bestätigt den Eingang der Nachricht
+    Nachricht
 
--   Les contrôleurs peuvent envoyer des messages à tous les nœuds du
-    réseau, sollicités ou non « Le maître peut parler quand il veut et à
-    qui il veut »
+-   Controller können Nachrichten an alle Knoten des Netzwerks senden, 
+    angefordert oder nicht « Der Master kann sprechen, wann er will und 
+    wem er will »
 
--   Les esclaves ne peuvent pas envoyer des messages non sollicités,
-    mais seulement une réponse aux demandes «L’esclave ne parle que si
-    on le lui demande »
+-   Slaves können keine beliebigen Nachrichten senden, 
+    sondern nur eine Antwort auf Anfragen «Der Slave spricht nur, wenn er 
+    gefragt wird »
 
--   Les esclaves de routage peuvent répondre à des demandes et ils sont
-    autorisés à envoyer des messages non sollicités à certains nœuds que
-    le contrôleur a prédéfini « L’esclave est toujours un esclave, mais
-    sur autorisation, il peut parler »
+-   Routing-Slaves können auf Anfragen reagieren aber sie dürfen nicht 
+    angeforderten Nachrichten an bestimmte Knoten senden, die die Steuerung 
+    vorgegeben hat « der Slave ist immer ein Slave, aber mit Erlaubnis
+    kann er sprechen »
 
-Configuration du plugin 
+Plugin-Konfiguration
 =======================
 
-Après le téléchargement du plugin, il vous suffit de l’activer et de le
-configurer.
+Nachdem Sie das Plugin heruntergeladen haben, müssen Sie es nur noch
+aktivieren und konfigurieren.
 
 ![configuration01](../images/configuration01.png)
 
-Une fois activé, le démon devrait se lancer. Le plugin est préconfiguré
-avec des valeurs par défaut ; vous n’avez normalement plus rien à faire.
-Cependant vous pouvez modifier la configuration.
+Sobald Sie aktiviert haben, sollte der Daemon starten. Das Plugin ist mit
+Standardwerten vorkonfiguriert ; Sie haben normalerweise nichts zu tun. Sie
+können jedoch die Konfiguration ändern.
 
-Dépendances 
+Abhängigkeiten
 -----------
 
-Cette partie permet de valider et d’installer les dépendances requises
-au bon fonctionnement du plugin Zwave (aussi bien en local qu’en
-déporté, ici en local) ![configuration02](../images/configuration02.png)
+Dieser Teil erlaubt es, die Abhängigkeiten zu überprüfen und zu installieren,
+die für das korrekte Funktionieren des Zwave-Plugins erforderlich sind (lokal
+und remote, hier lokal) ![configuration02](../images/configuration02.png)
 
--   Un Statut **OK** confirme que les dépendances sont satisfaites.
+-   Der Status **OK** bestätigt, dass die Abhängigkeiten erfüllt sind.
 
--   Si le statut est **NOK**, il faudra réinstaller les dépendances à
-    l’aide du bouton ![configuration03](../images/configuration03.png)
-
-> **Tip**
->
-> La mise à jour des dépendances peut prendre plus de 20 minutes selon
-> votre matériel. La progression est affichée en temps réel et un log
-> **Openzwave\_update** est accessible.
-
-> **Important**
->
-> La mise à jour des dépendances est normalement à effectuer seulement
-> si le Statut est **NOK**, mais il est toutefois possible, pour régler
-> certains problèmes, d’être appelé à refaire l’installation des
-> dépendances.
+-   Wenn der Status **NOK** ist, müssen Sie die Abhängigkeiten über die 
+    Schaltfläche neu installieren ![configuration03](../images/configuration03.png)
 
 > **Tip**
 >
-> Si vous êtes en mode déporté, les dépendances du démon local peuvent
-> être NOK, c’est tout à fait normal.
+> Das Aktualisieren der Abhängigkeiten kann je nach Hardware mehr als 20
+> Minuten dauern. Der Fortschritt wird in Echtzeit angezeigt und ein
+> **Openzwave_Update** Protokoll ist verfügbar.
 
-Démon 
+> **Wichtig**
+>
+> Die Aktualisierung der Abhängigkeiten ist normalerweise nur
+> durchzuführen, wenn der Status **NOK** ist, aber es ist möglich, wenn sie
+> dazu aufgefordert werden, die Installation der Abhängigkeit zu
+> wiederholen um einige Probleme zu beheben.
+
+> **Tip**
+>
+> Wenn Sie sich im Remote-Modus befinden, können die Abhängigkeiten
+> des lokalen Daemon NOK sein, das ist normal.
+
+Dämon
 -----
 
-Cette partie permet de valider l’état actuel du ou des démons et de
-configurer la gestion automatique de ceux-ci.
-![configuration04](../images/configuration04.png) Le démon local et
-l’ensemble des démons déportés seront affichés avec leurs différentes
-informations
+Dieser Abschnitt ermöglicht den aktuellen Zustand des Dämonen zu
+überprüfen und die automatische Verwaltung von diesem zu konfigurieren.
+![configuration04](../images/configuration04.png) Der lokale Daemon und alle externen Dämonen werden mit ihren unterschiedlichen Informationen angezeigt.
 
--   Le **Statut** indique que le démon est actuellement en fonction.
+-   Der **Status** zeigt an, dass der Dämon gerade ausgeführt wird.
 
--   La **Configuration** indique si la configuration du démon
-    est valide.
+-   Die **Konfiguration** zeigt an, ob die Konfiguration des Daemon
+    gültig ist.
 
--   Le bouton **(Re)Démarrer** permet de forcer le redémarrage du
-    plugin, en mode normal ou de le lancer une première fois.
+-   Die Schaltfläche **(Neu)Start** ermöglicht es, den Neustart des Plugins im
+    normalen Modus zu erzwingen oder einmalig zu starten.
 
--   Le bouton **Arrête**, visible seulement si la gestion automatique
-    est désactivée, force l’arrêt du démon.
+-   Die Schaltfläche **Stopp**, die nur sichtbar ist, wenn die automatische
+    Verwaltung deaktiviert ist, zwingt den Daemon zum Stoppen.
 
--   La **Gestion automatique** permet à Jeedom de lancer automatiquement
-    le démon au démarrage de Jeedom, ainsi que de le relancer en cas
-    de problème.
+-   Durch die **Automatische Verwaltung** kann Jeedom den Dämon beim
+    Starten von Jeedom automatisch starten und bei einem Problem
+    neu starten.
 
--   Le **Dernier lancement** est comme son nom l’indique la date du
-    dernier lancement connue du demon.
+-   Der **Letzte Start** ist, wie es sein Name sagt, das Datum des letzten 
+    bekannten Start des Dämon.
 
-Log 
+Protokoll
 ---
 
-Cette partie permet de choisir le niveau de log ainsi que d’en consulter
-le contenu.
+Dieser Abschnitt ermöglicht es, die Ebene des Protokolls zu wählen und dessen Inhalt durchzulesen.
 
 ![configuration05](../images/configuration05.png)
 
-Sélectionner le niveau puis sauvegarder, le démon sera alors relancé
-avec les instructions et traces sélectionnées.
+Wählen Sie die Ebene und speichern Sie dann, der Dämon wird dann mit den ausgewählten Instruktionen und Spuren neugestartet.
 
-Le niveau **Debug** ou **Info** peuvent être utiles pour comprendre
-pourquoi le démon plante ou ne remonte pas une valeur.
+Die **Debug-**oder**Info-**Ebene kann hilfreich sein, um zu verstehen, warum der Daemon abstürzt oder keinen Wert aufruft.
 
-> **Important**
+> **Wichtig**
 >
-> En mode **Debug** le démon est très verbeux, il est recommandé
-> d’utiliser ce mode seulement si vous devez diagnostiquer un problème
-> particulier. Il n’est pas recommandé de laisser tourner le démon en
-> **Debug** en permanence, si on utilise une **SD-Card**. Une fois le
-> debug terminé, il ne faut pas oublier de retourner sur un niveau moins
-> élevé comme le niveau **Error** qui ne remonte que d’éventuelles
-> erreurs.
+> Im **Debug-Modus** ist der Dämon sehr ausführlich. Es wird empfohlen,
+> diesen Modus nur zu verwenden, wenn Sie ein bestimmtes Problem
+> diagnostizieren müssen. Es wird nicht empfohlen, den Dämon dauerhaft
+> **Debuggen**zu lassen, wenn Sie eine**SD-Karte** verwenden. Sobald
+> das Debugging abgeschlossen ist, vergessen Sie nicht, auf eine niedrigere
+> Ebene wie die **Fehler** Ebene zurückzugehen, die nur mögliche Fehler
+> speichert.
 
-Configuration 
+Konfiguration
 -------------
 
-Cette partie permet de configurer les paramètres généraux du plugin
+Dieser Abschnitt ermöglicht die Konfiguration der allgemeinen Plugin Parameter
 ![configuration06](../images/configuration06.png)
 
--   **Général** :
+-   **Allgemein** :
 
-    -   **Supprimer automatiquement les périphériques exclus** :
-        L’option Oui, permet de supprimer les périphériques exclus du
-        réseau Z-Wave. L’option Non, permet de conserver les équipements
-        dans Jeedom même s’ils ont été exclus du réseau. L’équipement
-        devra être alors supprimé manuellement ou réutilisé en lui
-        assignant un nouvel ID Z-Wave si on exécute une migration du
-        contrôleur principal.
+    -   **Die ausgeschlossenen Peripheriegeräte automatisch beseitigen** :
+        Mit der Option Ja, können Sie Geräte entfernen, die vom Z-Wave-Netzwerk 
+        ausgeschlossen sind. Die Option Nein erlaubt es, die Geräte in Jeedom zu 
+        behalten, auch wenn sie aus dem Netzwerk ausgeschlossen wurden. 
+        Das Gerät muss manuell entfernt oder wiederhergestellt werden,
+        indem eine neue Z-Wave-ID vom primär Kontroller
+        zugewiesen wird.
 
-    -   **Appliquer le jeu de configuration recommandé à l’inclusion** :
-        option pour appliquer directement à l’inclusion le jeu de
-        configuration recommandé par l’équipe Jeedom (conseillée)
+    -   **Den Konfigurations Datensatz anwenden, der bei der Inclusion empfohlen wurde** :
+        Option, um das vom Jeedom-Team empfohlene Konfigurationspaket 
+        direkt auf die Inclusion anzuwenden (empfohlen)
 
-    -   **Désactiver l’actualisation en arrière-plan des variateurs** :
-        Ne pas demander de rafraichissement des variateurs
-        en arrière-plan.
+    -   **Die Hintergrundaktualisierung der Steuerung, deaktivieren** :
+        Keine Anforderung der Aktualisierung der Dimmer im
+        Hintergrund.
 
     -   **Cycle (s)** : permet de définir la fréquence des remontées
         à jeedom.
 
-    -   **Port clé Z-Wave** : le port USB sur lequel votre interface
-        Z-Wave est connectée. Si vous utilisez le Razberry, vous avez,
-        en fonction de votre architecture (RPI ou Jeedomboard) les 2
-        possibilités à la fin de la liste.
+    -   **Z-Wave Port Schlüssel** : der USB-Port, an dem Ihre Z-Wave-Schnittstelle 
+        angeschlossen ist. Wenn Sie Razberry benutzen, haben Sie, 
+        Ihrer Architektur (RPI oder Jeedomboard) entsprechend, die 2 
+        Möglichkeiten am Ende der Liste.
 
-    -   **Port du Serveur** (modification dangereuse, doit avoir la même
-        valeur sur tous les Jeedoms déportés Z-Wave) : permet de
-        modifier le port de communication interne du démon.
+    -   **Server-Port** (Änderungen sind gefährlich, muss auf allen externen
+        Jeedom Z-Wave den gleichen Wert haben) : ermöglicht es, 
+        den internen Kommunikationsport des Dämon zu modifizieren.
 
-    -   **Backups** : permet de gérer les backups du fichier de
-        topologie réseaux (voir plus bas)
+    -   **Sicherungskopien** : ermöglicht das Verwalten der Sicherungskopie der 
+        Netzwerk-Topologie-Datei (siehe unten)
 
-    -   **Config modules** : permet de récupérer, manuellement, les
-        fichiers de configurations OpenZWave avec les paramètres des
-        modules ainsi que la définition des commandes de modules pour
-        leurs utilisations.
+    -   **Modulkonfigurationen** : erlaubt es, manuell die OpenZWave-
+        Konfigurationsdateien mit den Parametern der Module 
+        sowie der Definition der Modulbefehle für ihre 
+        Verwendung abzurufen.
 
         > **Tip**
         >
@@ -305,25 +295,23 @@ Cette partie permet de configurer les paramètres généraux du plugin
         > configuration vient d’être appliquée, vous pouvez manuellement
         > lancer la récupération des configurations de modules.
 
-Une fois les configurations récupérées, il faudra selon les changements
-apportés:
+Sobald die Konfigurationen wiederhergestellt sind, wird es entsprechend den vorgenommenen Änderungen notwendig sein :
 
--   Pour un nouveau module sans configuration ni commande : exclure et
-    ré-inclure le module.
+-   Für ein neues Modul ohne Konfiguration oder Befehl : exkludieren Sie das 
+    Modul und inkludieren Sie es erneut ein.
 
--   Pour un module pour lequel seuls les paramètres ont été mis à jour :
-    lancer la régénération de la détection du nœud, via l’onglet Actions
-    du module (le plugin doit redémarrer).
+-   Für ein Modul, für das nur die Parameter aktualisiert wurden : 
+    Starten Sie die Regeneration der Knotenerkennung über die Registerkarte 
+    Aktionen des Moduls (das Plugin muss neu gestartet werden).
 
--   Pour un module dont le « mapping » de commandes a été corrigé : la
-    loupe sur les commandes, voir plus bas.
+-   Für ein Modul, dessen « Zuordnung » von Befehlen korrigiert wurde :
+    die Lupe auf Befehl, siehe unten.
 
     > **Tip**
     >
     > Dans le doute, exclure et ré-inclure le module est recommandé.
 
-N’oubliez pas de ![configuration08](../images/configuration08.png) si
-vous effectuez une modification.
+Vergessen Sie nicht, zu ![configuration08](../images/configuration08.png), wenn Sie eine Änderung vornehmen.
 
 > **Important**
 >
@@ -338,15 +326,15 @@ vous effectuez une modification.
 > La sélection du Port clé Z-Wave en mode de détection automatique,
 > **Auto**, ne fonctionne que pour les dongles USB.
 
-Paneau Mobile 
+Mobil Panel
 -------------
 
 ![configuration09](../images/configuration09.png)
 
-Permet d’afficher ou non le panel mobile lors que vous utiliser
-l’application sur un téléphone.
+Ermöglicht Ihnen, das mobile Panel bei der Verwendung anzuzeigen oder nicht
+die Anwendung auf einem Telefon.
 
-Configuration des équipements 
+Gerätekonfiguration
 =============================
 
 La configuration des équipements Z-Wave est accessible à partir du menu
@@ -368,13 +356,13 @@ quelques équipements) :
 > **Tip**
 >
 > Les boutons sur la ligne tout en haut **Synchroniser**,
-> **Réseau-Zwave** et **Santé**, sont visibles seulement si vous êtes en
+> **Réseau-Zwave**et**Santé**, sont visibles seulement si vous êtes en
 > mode **Expert**. ![appliance03](../images/appliance03.png)
 
 Général 
 -------
 
-Vous retrouvez ici toute la configuration de votre équipement :
+Sie werden hier alle die Konfiguration Ihrer Geräte finden:
 
 ![appliance04](../images/appliance04.png)
 
@@ -383,8 +371,8 @@ Vous retrouvez ici toute la configuration de votre équipement :
 -   **Objet parent** : indique l’objet parent auquel
     appartient l’équipement.
 
--   **Catégorie** : les catégories de l’équipement (il peut appartenir à
-    plusieurs catégories).
+-   ** ** Kategorie: Gerätekategorien (es kann gehören
+    mehrere Kategorien).
 
 -   **Activer** : permet de rendre votre équipement actif.
 
@@ -422,7 +410,7 @@ Vous retrouvez ici toute la configuration de votre équipement :
 > équipement supprimé qui est toujours rattaché à son contrôleur sera
 > automatiquement recréé suite à la synchronisation.
 
-Commandes 
+Befehle
 ---------
 
 Ci-dessous vous retrouvez la liste des commandes :
@@ -473,7 +461,7 @@ Ci-dessous vous retrouvez la liste des commandes :
 
 -   Min/Max : bornes de la donnée (peuvent être vides).
 
--   Configuration avancée (petites roues crantées) : permet d’afficher
+-   Advanced Configuration (kleine Zahnräder): Zeigt
     la configuration avancée de la commande (méthode
     d’historisation, widget…​).
 
@@ -791,7 +779,7 @@ Onglet regroupant les paramètres systèmes du module.
 
 > **Tip**
 >
-> Les modules **Interrupteur** et **Variateur** peuvent implémenter une
+> Les modules **Interrupteur**et**Variateur** peuvent implémenter une
 > Classe de commande spéciale appelée **SwitchAll** 0x27. Vous pouvez en
 > modifier ici le comportement. Selon le module, plusieurs options sont
 > à disposition. La commande **SwitchAll On/OFF** peut être lancée via
@@ -1491,7 +1479,7 @@ Lancer la Regénération de la détection du nœud depuis l’onglet Actions
 du module.
 
 Si vous avez plusieurs modules dans ce cas de figure, lancer **Regénérer
-la détection de nœuds inconnues** depuis l’écran **Réseau ZWave** onglet
+la détection de nœuds inconnues**depuis l’écran**Réseau ZWave** onglet
 **Actions**.
 
 Mon module est présumé mort par le controleur Dead 
@@ -1552,7 +1540,7 @@ Mon module n a pas de commande Scene ou Bouton
 
 Vous pouvez ajouter la commande dans l’écran de "mapping" des commandes.
 
-Il s’agit d’une commande **Info** en CC **0x2b** Instance **0** commande
+Il s’agit d’une commande **Info**en CC**0x2b**Instance**0** commande
 **data\[0\].val**
 
 Le mode scène doit être activé dans les paramètres du module. Voir la
@@ -1569,8 +1557,8 @@ dans l’écran de mapping d’un équipement.
 
 ![troubleshooting06](../images/troubleshooting06.png)
 
-Il s’agit d’une commande **Action** choisir la **CC** souhaitée pour une
-**Instance** donnée avec la commande **data\[0\].ForceRefresh()**
+Il s’agit d’une commande **Action**choisir la**CC** souhaitée pour une
+**Instance**donnée avec la commande**data\[0\].ForceRefresh()**
 
 L’ensemble des index de l’instance pour cette commande Classe sera mise
 à jour. Les nœuds sur piles attendront leur prochain réveil avant
@@ -1592,7 +1580,7 @@ Transferer les modules sur un nouveau controleur
 Pour différentes raisons, vous pouvez être amené à devoir transférer
 l’ensemble de vos modules sur un nouveau contrôleur principal.
 
-Vous décidez de passer du **raZberry** à un **Z-Stick Gen5** ou parce
+Vous décidez de passer du **raZberry**à un**Z-Stick Gen5** ou parce
 que, vous devez effectuer un **Reset** complet du contrôleur principal.
 
 Voici différentes étapes pour y arriver sans perdre vos scénarios,
@@ -1839,7 +1827,7 @@ Il faut essayer les différentes étapes:
 -   Regarder la **Console** du plugin ZWave, afin de voir si une erreur
     n’est pas remontée.
 
--   Lancer le Demon en **Debug** regarder à nouveau la **Console** et
+-   Lancer le Demon en **Debug**regarder à nouveau la**Console** et
     les logs du plugin.
 
 -   Redémarrer complètement Jeedom.
@@ -1951,7 +1939,7 @@ start mysql
 > **Tip**
 >
 > Si vous etes toujours sous nginx, il faudra remplacer **apache2** par
-> **nginx** dans les commandes **stop** / **start**. Le fichier log
+> **nginx**dans les commandes**stop**/**start**. Le fichier log
 > openzwave\_update sera dans le dossier:
 > /usr/share/nginx/www/jeedom/log .
 

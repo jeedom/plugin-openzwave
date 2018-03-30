@@ -6,10 +6,14 @@ import time
 def send_command_zwave(_node_id, _cc_id, _instance_id, _index, _value):
 	logging.info("Send command to node "+str(_node_id)+" on class "+str(_cc_id)+" instance "+str(_instance_id)+" index "+str(_index)+" value "+str(_value))
 	utils.check_node_exist(_node_id)
+	if len(_value) == 0:
+		raise Exception('No value passed')
 	if _cc_id == globals.COMMAND_CLASS_NO_OPERATION:
 		return node_utils.test_node(_node_id, 1)
 	if _cc_id == globals.COMMAND_CLASS_ASSOCIATION :
 		return
+	if _cc_id in [globals.COMMAND_CLASS_SWITCH_MULTILEVEL]:
+		_value = round(float(_value)) 
 	for value_id in globals.network.nodes[_node_id].get_values(class_id=_cc_id, genre='All', type='All', readonly=False, writeonly='All'):
 		if globals.network.nodes[_node_id].values[value_id].instance == _instance_id and (_index is None or globals.network.nodes[_node_id].values[value_id].index == _index):
 			value = globals.network.nodes[_node_id].values[value_id].check_data(_value)
@@ -38,10 +42,11 @@ def refresh_value(node_id,instance_id,cc_id,index,value):
 					if globals.network.nodes[node_id].values[value_id].instance == instance_id and globals.network.nodes[node_id].values[value_id].index == index:
 						logging.debug("Refresh node "+str(node_id)+" on class "+str(cc_id)+" instance "+str(instance_id)+" index "+str(index)+ " " +str(globals.REFRESH_MAPPING[globalId][globalCommand]['number']) + " times in "+str(globals.REFRESH_MAPPING[globalId][globalCommand]['sleep']) + " seconds")
 						if 'onlyset' in globals.REFRESH_MAPPING[globalId][globalCommand]:
-							if globals.REFRESH_MAPPING[globalId][globalCommand]['onlyset'] == 1:
-								logging.debug("Setting back value for "+str(node_id)+" on class "+str(cc_id)+" instance "+str(instance_id)+" index "+str(index)+ " with value " + str(value))
-								node_utils.save_node_value_event(node_id,cc_id, index, value, instance_id)
-								continue
+							commandTorefresh = globals.REFRESH_MAPPING[globalId][globalCommand]['onlyset']
+							commandTorefreshArray = commandTorefresh.split('|')
+							logging.debug("Setting back value for "+str(node_id)+" on class "+str(commandTorefreshArray[0])+" instance "+str(commandTorefreshArray[1])+" index "+str(commandTorefreshArray[2])+ " with value " + str(value))
+							node_utils.save_node_value_event(node_id,commandTorefreshArray[0], commandTorefreshArray[2], value, commandTorefreshArray[1])
+							continue
 						for i in range(0,globals.REFRESH_MAPPING[globalId][globalCommand]['number']):
 							time.sleep(globals.REFRESH_MAPPING[globalId][globalCommand]['sleep'])
 							logging.debug("Performing refresh for node : "+str(node_id))
