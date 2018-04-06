@@ -1215,6 +1215,7 @@
 		<Product type="0101" id="0103" name="TZ68 On/Off Switch Socket" config="wenzhou/tz68.xml"/>
 		<Product type="0102" id="1020" name="TZ66D Dual Wall Switch" config="wenzhou/tz66d.xml"/>
 		<Product type="0202" id="0611" name="TZ67 Wall Plug Dimmer" config="wenzhou/tz67.xml"/>
+		<Product type="0311" id="0304" name="TZ74 two channel switch" config="wenzhou/tz74.xml"/>
 		<Product type="0311" id="0305" name="TZ79 Power meter Relay Switch" config="wenzhou/tz79.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0149" name="wiDom">
