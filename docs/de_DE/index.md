@@ -422,7 +422,7 @@ Ci-dessous vous retrouvez la liste des commandes :
 > En fonction des types et sous-types, certaines options peuvent être
 > absentes.
 
--   le nom affiché sur le dashboard
+-   Der Name, der auf dem Armaturenbrett angezeigt wird
 
 -   icône : dans le cas d’une action permet de choisir une icône à
     afficher sur le dashboard au lieu du texte
@@ -462,7 +462,7 @@ Ci-dessous vous retrouvez la liste des commandes :
 -   Min/Max : bornes de la donnée (peuvent être vides).
 
 -   Advanced Configuration (kleine Zahnräder): Zeigt
-    la configuration avancée de la commande (méthode
+    Konfiguration des Befehls anzuzeigen (Methode der
     d’historisation, widget…​).
 
 -   Tester : permet de tester la commande.
