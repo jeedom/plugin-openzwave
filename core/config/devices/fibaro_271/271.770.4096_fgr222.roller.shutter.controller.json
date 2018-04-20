@@ -286,7 +286,7 @@
         }, 
         "2": {
             "name": "Protection RF (protection radio)", 
-            "help": "Lorsque cette fonction est activée, le module  ne réponds plus au commandes de positionnement logiciel. Cependant, il est toujours possible de paramétrer le modules et de récupérer les différentes valeurs remonté (Energie, Consommation, postion)", 
+            "help": "Lorsque cette fonction est activée, le module  ne réponds plus au commandes de positionnement logiciel. Cependant, il est toujours possible de paramétrer le modules et de récupérer les différentes valeurs remonté (Energie, Consommation, position)", 
             "list": {
                 "No protection. Roller Shutter responds to command frames": "Pas de protection. Les volets roulants répondent aux commandes logiciel", 
                 "RF Protection active. Roller Shutter does not respond to the Z-Wave control frames": "Protection RF activée. Les commandes logiciels nes répondent pas.", 
