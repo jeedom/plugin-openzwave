@@ -82,7 +82,7 @@
             "unite": "%"
         }, 
         {
-            "name": "Bounton2", 
+            "name": "Bouton2", 
             "type": "info", 
             "isVisible": 0, 
             "isHistorized": 0, 
