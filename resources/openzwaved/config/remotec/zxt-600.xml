@@ -3,7 +3,7 @@
 
 	<!-- This thermostat's setpoint descriptions are 0 based, not 1 -->
 	<!-- COMMAND_CLASS_THERMOSTAT_SETPOINT get is not supported -->
-	<CommandClass id="67" base="0" getsupported="false"/>
+	<CommandClass id="67" base="0"/>
 
 	<!-- The thermostat does not properly report its operating modes -->
 	<CommandClass id="64" name="COMMAND_CLASS_THERMOSTAT_MODE" version="1" request_flags="4" create_vars="true">
