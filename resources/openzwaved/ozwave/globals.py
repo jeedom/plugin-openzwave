@@ -103,7 +103,7 @@ assumeAwake = False
 disabled_nodes = []
 cycle = 0.3
 socket_host = '127.0.0.1'
-
+socket_host_inet6 = '::1'
 # default_poll_interval = 1800000  # 30 minutes
 default_poll_interval = 300000  # 5 minutes
 maximum_poll_intensity = 1

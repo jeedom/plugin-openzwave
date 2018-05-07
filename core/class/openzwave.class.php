@@ -27,9 +27,9 @@ class openzwave extends eqLogic {
 
 	public static function callOpenzwave($_url) {
 		if (strpos($_url, '?') !== false) {
-			$url = 'http://127.0.0.1:' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim($_url, '/') . '&apikey=' . jeedom::getApiKey('openzwave');
+			$url = 'http://localhost:' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim($_url, '/') . '&apikey=' . jeedom::getApiKey('openzwave');
 		} else {
-			$url = 'http://127.0.0.1:' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim($_url, '/') . '?apikey=' . jeedom::getApiKey('openzwave');
+			$url = 'http://localhost:' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim($_url, '/') . '?apikey=' . jeedom::getApiKey('openzwave');
 		}
 		$ch = curl_init();
 		curl_setopt_array($ch, array(
@@ -277,7 +277,7 @@ class openzwave extends eqLogic {
 		if ($port != 'auto') {
 			$port = jeedom::getUsbMapping($port);
 		}
-		$callback = network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/openzwave/core/php/jeeZwave.php';
+		$callback = network::getNetworkAccess('internal', 'proto:localhost:port:comp') . '/plugins/openzwave/core/php/jeeZwave.php';
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
 		$openzwave_path = dirname(__FILE__) . '/../../resources';
 		$config_path = dirname(__FILE__) . '/../../resources/openzwaved/config';

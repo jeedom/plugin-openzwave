@@ -4,18 +4,20 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # Jeedom is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 import sys
 import argparse
 import os
+import socket
 from ozwave import globals,server_utils,rest_server
+
 try:
 	from tornado.httpserver import HTTPServer
 	from tornado.ioloop import IOLoop
@@ -27,6 +29,21 @@ except Exception as e:
 if not os.path.exists('/tmp/python-openzwave-eggs'):
 	os.makedirs('/tmp/python-openzwave-eggs')
 os.environ['PYTHON_EGG_CACHE'] = '/tmp/python-openzwave-eggs'
+
+def has_ipv6(host):
+	""" Returns True if the system can bind an IPv6 address. """
+	sock = None
+	ipv6 = False
+	if socket.has_ipv6:
+		try:
+			sock = socket.socket(socket.AF_INET6)
+			sock.bind((host, 0))
+			ipv6 = True
+	except Exception:
+		pass
+	if sock:
+		sock.close()
+	return ipv6
 
 parser = argparse.ArgumentParser(description='Ozw Daemon for Jeedom plugin')
 parser.add_argument("--device", help="Device", type=str)
@@ -72,6 +89,8 @@ if __name__ == '__main__':
 	try:
 		http_server = HTTPServer(globals.app)
 		http_server.listen(globals.port_server, address=globals.socket_host)
+		if has_ipv6(globals.socket_host_inet6):
+			http_server.listen(globals.port_server, address=globals.socket_host_inet6)
 		IOLoop.instance().start()
 	except Exception, ex:
 		print "Fatal Error: %s" % str(ex)
