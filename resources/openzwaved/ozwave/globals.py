@@ -10,6 +10,7 @@ REFRESH_MAPPING = {'2|3|32784': {'67|1|1' : {'onlyset' : '67|11|1','sleep' :1 , 
 					'2|32773|32769': {'67|1|1' : {'onlyset' : '67|11|1','sleep' :1 , 'number' :1 , 'com' : 'lc13 vanne setvalue setpoint sans attendre reveil' }},\
 					'271|2304|4096': {'51|1|0' : {'sleep' :5 , 'number' :3 , 'other' : '38|1|0'},'38|1|0' : {'sleep' :5 , 'number' :3 , 'other' : '51|1|0'}},\
 					'271|4865|4096': {'64|1|0' : {'sleep' :5 , 'number' :1},'67|1|1' : {'sleep' :5 , 'number' :1}},\
+					'526|19522|12596': {'38|1|0' : {'sleep' :2 , 'number' :3}},\
 					}
 
 
