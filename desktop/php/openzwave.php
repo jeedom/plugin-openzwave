@@ -67,7 +67,7 @@ switch ($networkState) {
 			'message' => __('Le réseau Z-Wave est en cours de démarrage sur le serveur', __FILE__),
 		));
 		break;
-	case 5: # STATE_AWAKED = 7
+	case 7: # STATE_AWAKED = 7
 		event::add('jeedom::alert', array(
 			'level' => 'danger',
 			'page' => 'openzwave',
