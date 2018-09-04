@@ -132,8 +132,8 @@ $("#table_cmd").sortable({
 });
 
 function printEqLogic(_eqLogic) {
-    if ($('.li_eqLogic.active').attr('data-eqlogic_id') != '') {
-        $('#img_device').attr("src", $('.eqLogicDisplayCard[data-eqLogic_id=' + $('.li_eqLogic.active').attr('data-eqlogic_id') + '] img').attr('src'));
+    if (_eqLogic.id != '') {
+        $('#img_device').attr("src", $('.eqLogicDisplayCard[data-eqLogic_id=' + _eqLogic.id + '] img').attr('src'));
     } else {
         $('#img_device').attr("src", 'plugins/openzwave/plugin_info/openzwave_icon.png');
     }
