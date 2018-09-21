@@ -59,6 +59,13 @@ enum SoundSwitchCmd
 	SoundSwitch_Play_Get = 0x09,
 	SoundSwitch_Play_Report = 0x0A
 };
+
+enum SoundSwitch_ValueID_Index
+{
+    SoundSwitch_ToneCount                         = 0x00,
+    SoundSwitch_PlaySound                         = 0x08,
+
+};
 //-----------------------------------------------------------------------------
 // <SoundSwitch::SoundSwitch>
 // Constructor
@@ -180,16 +187,12 @@ bool SoundSwitch::HandleMsg
 {
 	if (SoundSwitch_ToneNum_Report == (SoundSwitchCmd)_data[0])
 	{
-		/* Create a Number of ValueID's based on the m_scenecount variable
-		 * We prefer what the Config File specifies rather than what is returned by
-		 * the Device...
-		 */
 		int tonecount = _data[1];
 		if (m_tonecount == 0)
 		{
 			m_tonecount = tonecount;
 		}
-		if ( ValueInt* value = static_cast<ValueInt*>( GetValue( _instance, 0x00)))
+		if ( ValueInt* value = static_cast<ValueInt*>( GetValue( _instance, SoundSwitch_ToneCount)))
 		{
 			value->OnValueRefreshed(m_tonecount);
 			value->Release();
@@ -197,7 +200,6 @@ bool SoundSwitch::HandleMsg
 			Log::Write( LogLevel_Warning, GetNodeId(), "Can't find ValueID for ToneCount");
 		}
 	}
-
 	return false;
 }
 
@@ -248,7 +250,7 @@ void SoundSwitch::CreateVars
 {
 	if( Node* node = GetNodeUnsafe() )
 	{
-		node->CreateValueInt( ValueID::ValueGenre_User, GetCommandClassId(), _instance, 0x00, "Tone Count", "", true, false, 0, 0 );
-		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, 0x08, "Play Tone", "", false, false, 0, 0 );
+		node->CreateValueInt( ValueID::ValueGenre_User, GetCommandClassId(), _instance, SoundSwitch_ToneCount, "Tone Count", "", true, false, 0, 0 );
+		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, SoundSwitch_PlaySound, "Play Tone", "", false, false, 0, 0 );
 	}
 }
