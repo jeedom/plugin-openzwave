@@ -410,6 +410,7 @@
 		<Product type="0009" id="0001" name="TSE03 Door Bell" config="everspring/tse03.xml"/>
 		<Product type="000b" id="0001" name="ST812 Flood Detector" config="everspring/st812.xml"/>
 		<Product type="000c" id="0001" name="SE812 Siren" config="everspring/se812.xml"/>
+		<Product type="000c" id="0003" name="SE813 Indoor voice siren" config="everspring/se813.xml"/>
 		<Product type="000d" id="0001" name="SF812 Smoke Alarm" config="everspring/sf812.xml"/>
 		<Product type="0010" id="0001" name="HAC01 In-wall Remote Module" config="everspring/hac01.xml"/>
 		<Product type="0011" id="0001" name="HAN01 In-wall Switch Module"/>

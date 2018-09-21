@@ -70,6 +70,7 @@ using namespace OpenZWave;
 #include "command_classes/SensorAlarm.h"
 #include "command_classes/SensorBinary.h"
 #include "command_classes/SensorMultilevel.h"
+#include "command_classes/SoundSwitch.h"
 #include "command_classes/SwitchAll.h"
 #include "command_classes/SwitchBinary.h"
 #include "command_classes/SwitchMultilevel.h"
@@ -223,6 +224,7 @@ void CommandClasses::RegisterCommandClasses
 	cc.Register( SensorAlarm::StaticGetCommandClassId(), SensorAlarm::StaticGetCommandClassName(), SensorAlarm::Create );
 	cc.Register( SensorBinary::StaticGetCommandClassId(), SensorBinary::StaticGetCommandClassName(), SensorBinary::Create );
 	cc.Register( SensorMultilevel::StaticGetCommandClassId(), SensorMultilevel::StaticGetCommandClassName(), SensorMultilevel::Create );
+	cc.Register( SoundSwitch::StaticGetCommandClassId(), SoundSwitch::StaticGetCommandClassName(), SoundSwitch::Create );
 	cc.Register( SwitchAll::StaticGetCommandClassId(), SwitchAll::StaticGetCommandClassName(), SwitchAll::Create );
 	cc.Register( SwitchBinary::StaticGetCommandClassId(), SwitchBinary::StaticGetCommandClassName(), SwitchBinary::Create );
 	cc.Register( SwitchMultilevel::StaticGetCommandClassId(), SwitchMultilevel::StaticGetCommandClassName(), SwitchMultilevel::Create );
