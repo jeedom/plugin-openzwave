@@ -249,7 +249,7 @@ bool Alarm::HandleMsg
 				value->OnValueRefreshed( _data[6] );
 				value->Release();
 			}
-			if (_data[1] == 0)
+			if (_data[5] == 6)
 			{
 				if( (value = static_cast<ValueByte*>( GetValue( _instance, 99 ) )) )
 				{
