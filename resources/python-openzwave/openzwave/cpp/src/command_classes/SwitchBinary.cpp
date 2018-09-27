@@ -163,21 +163,27 @@ void SwitchBinary::SetValueBasic
 	// stays in sync with it. We must be careful mapping the uint8 BASIC value
 	// into a class specific value.
 	// When the device wakes up, the real requested value will be retrieved.
-	RequestValue( 0, 0, _instance, Driver::MsgQueue_Send );
-	if( Node* node = GetNodeUnsafe() )
-	{
-		if( WakeUp* wakeUp = static_cast<WakeUp*>( node->GetCommandClass( WakeUp::StaticGetCommandClassId() ) ) )
-		{
-			if( !wakeUp->IsAwake() )
-			{
-				if( ValueBool* value = static_cast<ValueBool*>( GetValue( _instance, 0 ) ) )
+	if( ValueBool* value = static_cast<ValueBool*>( GetValue( _instance, 0 ) ) )
 				{
 					value->OnValueRefreshed( _value != 0 );
 					value->Release();
 				}
-			}
-		}
-	}
+	Log::Write( LogLevel_Info, GetNodeId(), "SwitchBinary::Set by basic report (will anyway do a get just after) - Setting node %d to %s on instance %d", GetNodeId(), _value ? "On" : "Off", _instance );
+	RequestValue( 0, 0, _instance, Driver::MsgQueue_Send );//request after setting so if the device really responds the value will be in sync MCO HACK i guess as MCO always respond A NO_OP to a get (but anyway the basic set received was in sync)
+	//if( Node* node = GetNodeUnsafe() )
+	//{
+	//	if( WakeUp* wakeUp = static_cast<WakeUp*>( node->GetCommandClass( WakeUp::StaticGetCommandClassId() ) ) )
+	//	{
+	//		if( !wakeUp->IsAwake() )
+	//		{
+	//			if( ValueBool* value = static_cast<ValueBool*>( GetValue( _instance, 0 ) ) )
+	//			{
+	//				value->OnValueRefreshed( _value != 0 );
+	//				value->Release();
+	//			}
+	//		}
+	//	}
+	//}
 }
 
 //-----------------------------------------------------------------------------

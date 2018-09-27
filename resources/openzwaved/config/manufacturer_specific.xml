@@ -394,7 +394,6 @@
 	<Manufacturer id="0060" name="Everspring">
 		<Product type="0001" id="0001" name="HSP02 Motion Detector" config="everspring/hsp02.xml"/>
 		<Product type="0001" id="0002" name="SP814 Motion Detector" config="everspring/sp814.xml"/>
-		<Product type="0001" id="0004" name="SP815 Pet Immune Pir Motion Detector" config="everspring/sp815.xml"/>
 		<Product type="0001" id="0005" name="SP816 Outdoor Motion Detector" config="everspring/sp816.xml"/>
 		<Product type="0002" id="0001" name="SM103 Door/Window Sensor" config="everspring/sm103.xml"/>
 		<Product type="0003" id="0001" name="AD142 Plug-in Dimmer Module"/>
@@ -516,7 +515,6 @@
 		<Product type="0b00" id="2001" name="FGFS101 Flood Sensor" config="fibaro/fgfs101.xml" />
 		<Product type="0b00" id="9e00" name="FGFS101 Flood Sensor" config="fibaro/fgfs101.xml" />
 		<Product type="0b01" id="1002" name="FGFS101 Zwave+ Flood Sensor" config="fibaro/fgfs101zw5.xml" />
-		<Product type="0b01" id="1003" name="FGFS101 Zwave+ Flood Sensor" config="fibaro/fgfs101zw5.xml" />
 		<Product type="0b01" id="2002" name="FGFS101 Zwave+ Flood Sensor" config="fibaro/fgfs101zw5.xml" />
 		<Product type="0900" id="1000" name="FGRGBWM441 RGBW Controller" config="fibaro/fgrgbwm441.xml" />
 		<Product type="0900" id="2000" name="FGRGBWM441 RGBW Controller" config="fibaro/fgrgbwm441.xml"/>
@@ -532,7 +530,6 @@
 		<Product type="1001" id="2000" name="FGKF601 Keyfob" config="fibaro/fgkf601.xml" />
 		<Product type="1201" id="1000" name="FGSD001 CO Sensor" config="fibaro/fgcd001.xml" />
 		<Product type="1301" id="1000" name="FGT001 Heat Controller" config="fibaro/fgt001.xml"/>
-		<Product type="1801" id="1000" name="FGWPG111 UK Wall Plug" config="fibaro/fgwpg111.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0138" name="First Alert">
 		<Product type="0001" id="0002" name="ZCombo Smoke and Carbon Monoxide Detector"  config="firstalert/zcombo.xml"/>
@@ -906,7 +903,6 @@
 		<!-- US-market products start with type prefix "01" -->
 		<!-- AU-market products start with type prefix "02" -->
 		<!-- CN-market products start with type prefix "1D" -->
-		<Product type="0002" id="0082" name="WallMote Quad" config="aeotec/zw130.xml"/>		
 		<Product type="0102" id="0064" name="FT100 MultiSensor 6" config="oomi/ft100.xml" />
 		<Product type="0202" id="0064" name="FT100 MultiSensor 6" config="oomi/ft100.xml" />
 		<Product type="1D02" id="0064" name="FT100 MultiSensor 6" config="oomi/ft100.xml" />		
@@ -1284,7 +1280,6 @@
 		<Product type="0002" id="0003" name="Bulb 2" config="zipato/RGBBulb2.xml"/>
 		<Product type="0002" id="000c" name="PST02-A 4 in 1 Multi-Sensor" config="philio/pst02.xml"/>
 		<Product type="0003" id="1082" name="Door/Window Detector" config="shenzen_neo/nas-ds01z.xml"/>
-		<Product type="0003" id="1089" name="Zipato Multi sensor NE NAS PD01ZT" config="shenzen_neo/nas-pd01zt"/>
 		<Product type="0006" id="001a" name="PH-PAB01.eu Micromodule Energy Meter" config="philio/phpab01.xml"/>
 		<Product type="0004" id="000a" name="Indoor Siren" config="philio/pse02.xml"/>
 		<Product type="6131" id="4501" name="Zipato Mini Keypad" config="zipato/MiniKeypad.xml" />

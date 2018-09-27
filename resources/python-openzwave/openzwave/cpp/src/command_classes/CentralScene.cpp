@@ -110,7 +110,7 @@ CommandClass( _homeId, _nodeId ),
 m_scenecount(0)
 {
     SetStaticRequest( StaticRequest_Values );
-	Log::Write(LogLevel_Info, GetNodeId(), "CentralScene - Created %d", HasStaticRequest( StaticRequest_Values ));
+	Log::Write(LogLevel_Info, GetNodeId(), "Central Scene - Created %d", HasStaticRequest( StaticRequest_Values ));
 }
 
 

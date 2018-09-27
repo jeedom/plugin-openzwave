@@ -1,134 +1,17 @@
-import utils,network_utils,controller_utils,node_utils
-#Various mappings
-REFRESH_MAPPING = {'2|3|32784': {'67|1|1' : {'onlyset' : '67|11|1','sleep' :1 , 'number' :1 , 'com' : 'lc13 vanne setvalue setpoint sans attendre reveil' }},\
-					'2|5|3': {'67|1|1' : {'onlyset' : '67|11|1','sleep' :1 , 'number' :1 , 'com' : 'lc13 vanne setvalue setpoint sans attendre reveil' }},\
-					'2|5|4': {'67|1|1' : {'onlyset' : '67|11|1','sleep' :1 , 'number' :1 , 'com' : 'lc13 vanne setvalue setpoint sans attendre reveil' }},\
-					'2|5|373': {'67|1|1' : {'onlyset' : '67|11|1','sleep' :1 , 'number' :1 , 'com' : 'devolo vanne setvalue setpoint sans attendre reveil' }},\
-					'2|100|1': {'67|1|1' : {'onlyset' : '67|11|1','sleep' :1 , 'number' :1 , 'com' : 'lc13 vanne setvalue setpoint sans attendre reveil' }},\
-					'2|277|40976': {'67|1|1' : {'onlyset' : '67|11|1','sleep' :1 , 'number' :1 , 'com' : 'lc13 vanne setvalue setpoint sans attendre reveil' }},\
-					'2|32773|1': {'67|1|1' : {'onlyset' : '67|11|1','sleep' :1 , 'number' :1 , 'com' : 'lc13 vanne setvalue setpoint sans attendre reveil' }},\
-					'2|32773|32769': {'67|1|1' : {'onlyset' : '67|11|1','sleep' :1 , 'number' :1 , 'com' : 'lc13 vanne setvalue setpoint sans attendre reveil' }},\
-					'271|2304|4096': {'51|1|0' : {'sleep' :5 , 'number' :3 , 'other' : '38|1|0'},'38|1|0' : {'sleep' :5 , 'number' :3 , 'other' : '51|1|0'}},\
-					'271|4865|4096': {'64|1|0' : {'sleep' :5 , 'number' :1},'67|1|1' : {'sleep' :5 , 'number' :1}},\
-					'526|19522|12596': {'38|1|0' : {'sleep' :2 , 'number' :3}},\
-					}
+"""
+This file is part of Plugin openzwave for jeedom project
+Plugin openzwave for jeedom is free software: you can redistribute it and/or modify it under the terms of the GNU
+General Public License as published by the Free Software Foundation, either version 3 of the License,
+or (at your option) any later version.
+Plugin openzwave for jeedom is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+You should have received a copy of the GNU General Public License along with Plugin openzwave for jeedom.
+If not, see http://www.gnu.org/licenses.
+"""
 
 
-CONVERSION = {'Int': 'int',\
-	'Decimal': 'float',\
-	'Bool':'bool',\
-	'Byte':'int',\
-	'Short':'int',\
-	'Button':'bool',\
-	'Raw':'binary',\
-	40 : 'error',\
-	20 : 'debug',\
-	10 : 'info',\
-	'None': 0,\
-	'ProtocolInfo': 1,\
-	'Probe': 2,\
-	'WakeUp': 3,\
-	'ManufacturerSpecific1': 4,\
-	'NodeInfo': 5,\
-	'NodePlusInfo': 5,\
-	'SecurityReport': 6,\
-	'ManufacturerSpecific2': 7,\
-	'Versions': 8,\
-	'Instances': 9,\
-	'Static': 10,\
-	'CacheLoad': 11,\
-	'Associations': 12,\
-	'Neighbors': 13,\
-	'Session': 14,\
-	'Dynamic': 15,\
-	'Configuration': 16,\
-	'Complete': 17,\
-	}
-
-NETWORK_REST_MAPPING = {'start' : network_utils.start_network,\
-	'stop' : network_utils.graceful_stop_network, \
-	'writeZWConfig' : utils.write_config,\
-	'manualBackup' : network_utils.manual_backup,\
-	'getStatus': network_utils.get_status,\
-	'getHealth' : network_utils.get_health,\
-	'getNodesList' : network_utils.get_nodes_list,\
-	'getZWConfig' : network_utils.get_oz_config,\
-	'getOZBackups' : network_utils.get_oz_backups,\
-	'getNeighbours' : network_utils.get_neighbours,\
-	}
-
-NODE_REST_MAPPING = {'all' : node_utils.get_all_info,\
-	'getNodeStatistics' : node_utils.get_statistics, \
-	'getPendingChanges' : node_utils.get_pending_changes,\
-	'getHealth' : node_utils.get_health,\
-	'requestNodeNeighbourUpdate': node_utils.request_neighbour_update,\
-	'removeFailedNode': node_utils.remove_failed,\
-	'healNode': node_utils.heal,\
-	'replaceFailedNode': node_utils.replace_failed,\
-	'sendNodeInformation': node_utils.send_information,\
-	'hasNodeFailed': node_utils.has_failed,\
-	'testNode': node_utils.test,\
-	'refreshAllValues': node_utils.refresh_all_values,\
-	'removeGhostNode': node_utils.ghost_killer,\
-	'requestNodeDynamic': node_utils.refresh_dynamic,\
-	'refreshNodeInfo': node_utils.refresh_info,\
-	'assignReturnRoute': node_utils.assign_return_route,\
-	}
-
-CONTROLLER_REST_MAPPING = {'hardReset' : controller_utils.hard_reset,\
-	'receiveConfiguration' : controller_utils.receive_configuration, \
-	'transferPrimaryRole' : controller_utils.transfer_primary_role,\
-	'createNewPrimary' : controller_utils.create_new_primary,\
-	'testNetwork' : controller_utils.test_network,\
-	'serialAPISoftReset': controller_utils.serial_api_soft_reset,\
-	'healNetwork': controller_utils.heal_network,\
-	'cancelCommand': controller_utils.cancel_command,\
-	'writeZWConfig' : utils.write_config,\
-	'removeUnknownsDevices' : controller_utils.remove_unknowns_devices_openzwave_config,\
-	}
-
-#Various message
-MSG_CHECK_DEPENDENCY = 'The dependency of openzwave plugin are not installed. Please check the plugin openzwave configuration page for instructions'
-
-#Init Daemon
-device = "auto"
-# noinspection PyRedeclaration
-log_level = "error"
-port_server = 8083
-config_folder = None
-data_folder = None
-pidfile = '/tmp/openzwaved.pid'
-apikey = ''
-callback = ''
-assumeAwake = False
-disabled_nodes = []
-cycle = 0.3
-socket_host = '127.0.0.1'
-
-# default_poll_interval = 1800000  # 30 minutes
-default_poll_interval = 300000  # 5 minutes
-maximum_poll_intensity = 1
-controller_state = -1
-maximum_number_notifications = 25
-ghost_removal_delay = 15.0
-not_supported_nodes = [0, 255]
-network = None
-network_information = None
-ghost_node_id = None
-pending_configurations = {}
-pending_associations = {}
-node_notifications = {}
-dispatcher_is_connect = False
-network_is_running = False
-files_manager = None
-
-#Daemon Globals
-know_sticks = [{'idVendor': '0658', 'idProduct': '0200', 'name': 'Sigma Designs, Inc'},{'idVendor': '10c4', 'idProduct': 'ea60', 'name': 'Cygnal Integrated Products, Inc. CP210x UART Bridge'}]
-jeedom_com = ''
-options = ''
-app = ''
-
-#some constants
+# General purpose Command Class identifiers
 COMMAND_CLASS_ALARM = 113 # 0x71
 # COMMAND_CLASS_ANTITHEFT = 93 # 0x5D
 # COMMAND_CLASS_APPLICATION_CAPABILITY = 87 # 0x57
@@ -149,7 +32,7 @@ COMMAND_CLASS_GROUPING_NAME = 123 # 0x7B [DEPRECATED]
 COMMAND_CLASS_HAIL = 130 # 0x82 [DEPRECATED]
 COMMAND_CLASS_INDICATOR = 135 # 0x87
 # COMMAND_CLASS_IP_ASSOCIATION = 92 # 0x5C
-COMMAND_CLASS_IP_CONFIGURATION = 154 # 0x9A
+COMMAND_CLASS_IP_CONFIGURATION = 154 # 0x9A 
 COMMAND_CLASS_LANGUAGE = 137 # 0x89
 # COMMAND_CLASS_MAILBOX = 105 # 0x69
 COMMAND_CLASS_MANUFACTURER_PROPRIETARY = 145 # 0x91
@@ -167,8 +50,8 @@ COMMAND_CLASS_NODE_NAMING = 119 # 0x77
 COMMAND_CLASS_NON_INTEROPERABLE = 240 # 0xF0
 # COMMAND_CLASS_NOTIFICATION = 113 # 0x71
 COMMAND_CLASS_PROPRIETARY = 136 # 0x88 [DEPRECATED]
-COMMAND_CLASS_REMOTE_ASSOCIATION_ACTIVATE = 124 # 0x7C
-COMMAND_CLASS_REMOTE_ASSOCIATION = 125 # 0x7D
+COMMAND_CLASS_REMOTE_ASSOCIATION_ACTIVATE = 124 # 0x7C 
+COMMAND_CLASS_REMOTE_ASSOCIATION = 125 # 0x7D 
 # COMMAND_CLASS_SCHEDULE = 83 # 0x53
 COMMAND_CLASS_SCREEN_ATTRIBUTES = 147 # 0x93
 COMMAND_CLASS_SCREEN_MD = 146 # 0x92
@@ -196,7 +79,7 @@ COMMAND_CLASS_SWITCH_ALL = 39 # 0x27
 COMMAND_CLASS_BARRIER_OPERATOR = 102 # 0x66
 COMMAND_CLASS_BASIC = 32 # 0x20
 # COMMAND_CLASS_BASIC_TARIFF_INFO = 54 # 0x36
-COMMAND_CLASS_BASIC_WINDOW_COVERING = 80 # 0x50
+COMMAND_CLASS_BASIC_WINDOW_COVERING = 80 # 0x50 
 COMMAND_CLASS_SENSOR_BINARY = 48 # 0x30 [DEPRECATED]
 COMMAND_CLASS_SWITCH_BINARY = 37 # 0x25
 COMMAND_CLASS_SWITCH_TOGGLE_BINARY = 40 # 0x28 [DEPRECATED]
@@ -219,7 +102,7 @@ COMMAND_CLASS_METER = 50 #0x32
 COMMAND_CLASS_METER_TBL_CONFIG = 60 #0x3C
 COMMAND_CLASS_METER_TBL_MONITOR = 61 #0x3D
 COMMAND_CLASS_METER_TBL_PUSH = 62 #0x3E
-COMMAND_CLASS_MTP_WINDOW_COVERING = 81 #0x51
+COMMAND_CLASS_MTP_WINDOW_COVERING = 81 #0x51 
 COMMAND_CLASS_SENSOR_MULTILEVEL = 49 #0x31
 COMMAND_CLASS_SWITCH_MULTILEVEL = 38 #0x26
 COMMAND_CLASS_SWITCH_TOGGLE_MULTILEVEL = 41 #0x29 [DEPRECATED]
@@ -234,7 +117,7 @@ COMMAND_CLASS_SCENE_ACTIVATION = 43 #0x2B
 COMMAND_CLASS_SCENE_ACTUATOR_CONF = 44 #0x2C
 COMMAND_CLASS_SCENE_CONTROLLER_CONF = 45 #0x2D
 COMMAND_CLASS_SCHEDULE_ENTRY_LOCK = 78 #0x4E [DEPRECATED]
-COMMAND_CLASS_SENSOR_CONFIGURATION  = 158 #0x9E
+COMMAND_CLASS_SENSOR_CONFIGURATION  = 158 #0x9E 
 COMMAND_CLASS_SIMPLE_AV_CONTROL = 148 #0x94
 # COMMAND_CLASS_TARIFF_TBL_CONFIG = 74 #0x4A
 # COMMAND_CLASS_TARIFF_TBL_MONITOR = 75 #0x4B
