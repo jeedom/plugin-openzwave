@@ -113,6 +113,19 @@
                 "instance": 1
             }, 
             "subtype": "other"
+        },
+	{
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "numeric"
         }
         ]	
 }
