@@ -223,7 +223,6 @@ bool Alarm::HandleMsg
 			Log::Write( LogLevel_Info, GetNodeId(), "Received Alarm report: type=%d, level=%d, sensorSrcID=%d, type:%s event:%d, status=%d",
 							_data[1], _data[2], _data[3], alarm_type.c_str(), _data[6], _data[4] );
 		}
-
 		ValueByte* value;
 		if( (value = static_cast<ValueByte*>( GetValue( _instance, AlarmIndex_Type ) )) )
 		{
@@ -249,6 +248,14 @@ bool Alarm::HandleMsg
 			{
 				value->OnValueRefreshed( _data[6] );
 				value->Release();
+			}
+			if (_data[1] == 0)
+			{
+				if( (value = static_cast<ValueByte*>( GetValue( _instance, 99 ) )) )
+				{
+					value->OnValueRefreshed( _data[8] );
+					value->Release();
+				}
 			}
 		}
 
@@ -278,6 +285,10 @@ bool Alarm::HandleMsg
 						{
 							node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, index+3, c_alarmTypeName[index], "", true, false, 0, 0 );
 							Log::Write( LogLevel_Info, GetNodeId(), "    Added alarm type: %s", c_alarmTypeName[index] );
+							if (index == 6)
+							{
+								node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, 0x99, "Memory Code User", "", true, false, 0, 0 );
+							}
 						} else {
 							Log::Write( LogLevel_Info, GetNodeId(), "    Unknown alarm type: %d", index );
 						}
