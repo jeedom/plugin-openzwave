@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product xmlns='http://code.google.com/p/open-zwave/'>
+	<CommandClass id="112">    
+    <Value type="list" genre="config" instance="1" index="2" label="Saving state before power failure" size="1" value="1">
+      <Help>Switch state saved or not when power down</Help>
+      <Item label="Disabled" value="0"/>
+      <Item label="Enabled" value="1"/>
+    </Value>
+	<Value type="list" genre="config" instance="1" index="3" label="All On All Off" size="1" value="1">
+      <Help>All On All Off forbid or allow</Help>
+      <Item label="Forbid ON and Off" value="0"/>
+      <Item label="Only Forbid On" value="1"/>
+      <Item label="Only Forbid Off" value="2"/>
+      <Item label="Allow ON and Off" value="255"/>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="4" label="Led BackLight" min="0" max="10" units="" value="10">
+      <Help>Led BackLight 0 led disabled 1-10 (brightness)</Help>
+    </Value>
+	<Value type="list" genre="config" instance="1" index="4" label="Led Backlight" size="1" value="1">
+      <Help>Led BackLight 0 led disabled 1-10 (brightness)</Help>
+      <Item label="Led disabled" value="0"/>
+      <Item label="Only Forbid On" value="1"/>
+      <Item label="Only Forbid Off" value="2"/>
+      <Item label="Allow ON and Off" value="255"/>
+    </Value>	
+  </CommandClass>
+  <!-- Basic set as report -->
+  <CommandClass id="32" setasreport="true"/>
+	
+  <!-- Map endpoints to instances -->
+  <CommandClass id="96" mapping="endpoints" />
+    
+  <!-- Association Groups -->  
+  <CommandClass id="133">
+    <Associations num_groups="5">
+      <Group index="1" max_associations="1" label="Lifeline"/>
+      <Group index="2" max_associations="5" label="Button1" />
+      <Group index="3" max_associations="5" label="Button2" />
+      <Group index="4" max_associations="5" label="Button3" />
+	  <Group index="5" max_associations="5" label="Button4"/>
+    </Associations>
+  </CommandClass>
+</Product>
