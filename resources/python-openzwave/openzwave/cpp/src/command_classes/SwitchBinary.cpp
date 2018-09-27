@@ -168,8 +168,8 @@ void SwitchBinary::SetValueBasic
 					value->OnValueRefreshed( _value != 0 );
 					value->Release();
 				}
-	Log::Write( LogLevel_Info, GetNodeId(), "SwitchBinary::Set by basic report (will anyway do a get just after) - Setting node %d to %s on instance %d", GetNodeId(), _value ? "On" : "Off", _instance );
-	RequestValue( 0, 0, _instance, Driver::MsgQueue_Send );//request after setting so if the device really responds the value will be in sync MCO HACK i guess as MCO always respond A NO_OP to a get (but anyway the basic set received was in sync)
+	Log::Write( LogLevel_Info, GetNodeId(), "SwitchBinary::Set by basic report - Setting node %d to %s on instance %d", GetNodeId(), _value ? "On" : "Off", _instance );
+	//RequestValue( 0, 0, _instance, Driver::MsgQueue_Send );do not request as it locks some devices for some minutes the basic set is enough to know the real state
 	//if( Node* node = GetNodeUnsafe() )
 	//{
 	//	if( WakeUp* wakeUp = static_cast<WakeUp*>( node->GetCommandClass( WakeUp::StaticGetCommandClassId() ) ) )
