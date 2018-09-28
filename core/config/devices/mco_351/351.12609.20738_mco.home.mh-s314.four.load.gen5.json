@@ -228,7 +228,7 @@
                 "index": 0, 
                 "instance": 4
             }, 
-            "value": "Etat4", 
+            "value": "Etat 4", 
             "subtype": "other", 
             "display": {
                 "generic_type": "LIGHT_OFF"
