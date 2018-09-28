@@ -3164,7 +3164,10 @@ void Driver::HandleRemoveNodeFromNetworkRequest
 			}
 			else
 			{
-				Log::Write( LogLevel_Warning, "Remove Node Failed - NodeID 0 Returned");
+				Log::Write( LogLevel_Warning, "Remove Node Was not in the Network - NodeID 0 Returned");
+				Notification* notification = new Notification( Notification::Type_NodeRemoved );
+				notification->SetHomeAndNodeIds( m_homeId, 0 );
+				QueueNotification( notification );
 				state = ControllerState_Failed;
 			}
 			break;

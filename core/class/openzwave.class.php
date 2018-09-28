@@ -338,7 +338,7 @@ class openzwave extends eqLogic {
 		$deamon_info = self::deamon_info();
 		if ($deamon_info['state'] == 'ok') {
 			try {
-				self::callOpenzwave('/network?action=stop&type=action', 30000);
+				self::callOpenzwave('/network?action=stop&type=action');
 			} catch (Exception $e) {
 
 			}

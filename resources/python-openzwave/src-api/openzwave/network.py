@@ -1246,6 +1246,10 @@ class ZWaveNetwork(ZWaveObject):
                 dispatcher.send(self.SIGNAL_NODE_REMOVED, \
                     **{'network': self, 'node': node})
                 self._handle_node(node)
+            elif args['nodeId'] == 0:
+                dispatcher.send(self.SIGNAL_NODE_REMOVED, \
+                    **{'network': self, 'node': args['nodeId']})
+                self._semaphore_nodes.release
         finally:
             self._semaphore_nodes.release()
 

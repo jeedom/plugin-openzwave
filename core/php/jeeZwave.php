@@ -53,11 +53,19 @@ if (isset($results['controller'])) {
 		);
 	}
 	if (isset($results['controller']['excluded']) && $delta >15) {
-		event::add('jeedom::alert', array(
+		if ($results['controller']['excluded']['value'] == 999) {
+			event::add('jeedom::alert', array(
 			'level' => 'warning',
 			'page' => 'openzwave',
-			'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
+			'message' => __('Un périphérique Z-Wave qui ne fait pas parti du réseau est en cours d\'exclusion', __FILE__),
 		));
+		} else {
+			event::add('jeedom::alert', array(
+				'level' => 'warning',
+				'page' => 'openzwave',
+				'message' => __('Un périphérique Z-Wave est en cours d\'exclusion. Logical ID : ', __FILE__) . $results['controller']['excluded']['value'],
+			));
+		}
 		sleep(2);
 		openzwave::syncEqLogicWithOpenZwave($results['controller']['excluded']['value'], 1);
 	}
