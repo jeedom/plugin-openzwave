@@ -29,7 +29,7 @@
 
   <meta name="viewport" content="width=device-width">
   
-  <title>OpenZWave/simple_module.xml at master · InovelliUSA/OpenZWave</title>
+  <title>OpenZWave/nzw36.xml at master · InovelliUSA/OpenZWave</title>
     <meta name="description" content="Location for Inovelli open-zwave configuration files - InovelliUSA/OpenZWave">
     <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
   <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
@@ -39,10 +39,10 @@
     <meta property="og:image" content="https://avatars1.githubusercontent.com/u/37669481?s=400&amp;v=4" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="InovelliUSA/OpenZWave" /><meta property="og:url" content="https://github.com/InovelliUSA/OpenZWave" /><meta property="og:description" content="Location for Inovelli open-zwave configuration files - InovelliUSA/OpenZWave" />
 
   <link rel="assets" href="https://assets-cdn.github.com/">
-  <link rel="web-socket" href="wss://live.github.com/_sockets/VjI6MzIzNTc4NDU4OmEyNzllYjljMjQyZmIxOWM0ZWJjODdkMjk0YWE4NzNmMzE5NzI1N2M3OWExMGMwOTMzNGQ1MTEwMWMzODhjNDY=--c046447035399dc2f1366bf0a504c554327738c1">
+  <link rel="web-socket" href="wss://live.github.com/_sockets/VjI6MzIzNTc4NDU4OmM1OWRkNDU3ZDUxNTY2ZjllMTFmZTJiMDhkMmVlZTUzMDU5ZGUyNWZiOWExZjdmZWQ1YWZmMjM1MWRmN2FjNWQ=--a10a6cfaf68cf05482b9105f4ecf5b308859aea9">
   <meta name="pjax-timeout" content="1000">
   <link rel="sudo-modal" href="/sessions/sudo_modal">
-  <meta name="request-id" content="39A3:139A:4130F43:5410DCE:5BB61B05" data-pjax-transient>
+  <meta name="request-id" content="39A3:139A:4130B40:5410607:5BB61AF0" data-pjax-transient>
 
 
   
@@ -53,7 +53,7 @@
     <meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
     <meta name="google-site-verification" content="GXs5KoUUkNCoaAZn7wPN-t01Pywp9M3sEjnt_3_ZWPc">
 
-  <meta name="octolytics-host" content="collector.githubapp.com" /><meta name="octolytics-app-id" content="github" /><meta name="octolytics-event-url" content="https://collector.githubapp.com/github-external/browser_event" /><meta name="octolytics-dimension-request_id" content="39A3:139A:4130F43:5410DCE:5BB61B05" /><meta name="octolytics-dimension-region_edge" content="iad" /><meta name="octolytics-dimension-region_render" content="iad" /><meta name="octolytics-actor-id" content="13416516" /><meta name="octolytics-actor-login" content="ticed35" /><meta name="octolytics-actor-hash" content="c238e868a6ed3c5de67d451af3216d5ab743ed820e2472d66c0c4576926c2668" />
+  <meta name="octolytics-host" content="collector.githubapp.com" /><meta name="octolytics-app-id" content="github" /><meta name="octolytics-event-url" content="https://collector.githubapp.com/github-external/browser_event" /><meta name="octolytics-dimension-request_id" content="39A3:139A:4130B40:5410607:5BB61AF0" /><meta name="octolytics-dimension-region_edge" content="iad" /><meta name="octolytics-dimension-region_render" content="iad" /><meta name="octolytics-actor-id" content="13416516" /><meta name="octolytics-actor-login" content="ticed35" /><meta name="octolytics-actor-hash" content="c238e868a6ed3c5de67d451af3216d5ab743ed820e2472d66c0c4576926c2668" />
 <meta name="analytics-location" content="/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show" data-pjax-transient="true" />
 
 
@@ -72,7 +72,7 @@
     <meta name="user-login" content="ticed35">
 
       <meta name="expected-hostname" content="github.com">
-    <meta name="js-proxy-site-detection-payload" content="MjU1ZGJlMDdiMDM5YjgyZjRhMjJiYjVlOGFlMjIxMGVlZTBjMDI1NjM1MWQzMGUzYjAxMWMxNTQ5NjE4NTVkMXx7InJlbW90ZV9hZGRyZXNzIjoiODAuMTIuMTAyLjE0OCIsInJlcXVlc3RfaWQiOiIzOUEzOjEzOUE6NDEzMEY0Mzo1NDEwRENFOjVCQjYxQjA1IiwidGltZXN0YW1wIjoxNTM4NjYxMTI5LCJob3N0IjoiZ2l0aHViLmNvbSJ9">
+    <meta name="js-proxy-site-detection-payload" content="MGJhMDg1MWE0OTU2NDE3ZjFjZDE0Y2JiMzIyMWM1MjcxMTc5YjlkODc3ZmQwZDVkOGI4NjRiNzdlZDNiYzJmMXx7InJlbW90ZV9hZGRyZXNzIjoiODAuMTIuMTAyLjE0OCIsInJlcXVlc3RfaWQiOiIzOUEzOjEzOUE6NDEzMEI0MDo1NDEwNjA3OjVCQjYxQUYwIiwidGltZXN0YW1wIjoxNTM4NjYxMTA5LCJob3N0IjoiZ2l0aHViLmNvbSJ9">
 
     <meta name="enabled-features" content="DASHBOARD_V2_LAYOUT,DASHBOARD_V2_LAYOUT_OPT_IN,EXPLORE_DISCOVER_REPOSITORIES,UNIVERSE_BANNER,MARKETPLACE_PLAN_RESTRICTION_EDITOR,MARKETPLACE_RETARGETING,COLLAPSE_REPEATED_COMMENTS">
 
@@ -88,7 +88,7 @@
   <meta name="octolytics-dimension-user_id" content="37669481" /><meta name="octolytics-dimension-user_login" content="InovelliUSA" /><meta name="octolytics-dimension-repository_id" content="131743092" /><meta name="octolytics-dimension-repository_nwo" content="InovelliUSA/OpenZWave" /><meta name="octolytics-dimension-repository_public" content="true" /><meta name="octolytics-dimension-repository_is_fork" content="false" /><meta name="octolytics-dimension-repository_network_root_id" content="131743092" /><meta name="octolytics-dimension-repository_network_root_nwo" content="InovelliUSA/OpenZWave" /><meta name="octolytics-dimension-repository_explore_github_marketplace_ci_cta_shown" content="false" />
 
 
-    <link rel="canonical" href="https://github.com/InovelliUSA/OpenZWave/blob/master/config/inovelli/simple_module.xml" data-pjax-transient>
+    <link rel="canonical" href="https://github.com/InovelliUSA/OpenZWave/blob/master/config/inovelli/nzw36.xml" data-pjax-transient>
 
 
   <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
@@ -157,7 +157,7 @@
           autocapitalize="off"
           aria-autocomplete="list"
           aria-controls="jump-to-results"
-          data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations#csrf-token=3RCNTixKYipeWxLAiIiNc1zzswY34+XVnuRd6u9ootPUiCf/PSGHcRURqwH9yZYOReujhVxGYPG8HYwWk6ok9g=="
+          data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations#csrf-token=wHLfveI/hVjiihEHVHc3U57lXaw3Ko4QJ3Ze6G8bex/J6nUM81RgA6nAqMYhNiwuh/1NL1yPCzQFj48UE9n9Og=="
           spellcheck="false"
           autocomplete="off"
           >
@@ -310,7 +310,7 @@
           <li><a role="menuitem" class="dropdown-item" href="https://help.github.com" data-ga-click="Header, go to help, text:help">Help</a></li>
           <li><a role="menuitem" class="dropdown-item" href="/settings/profile" data-ga-click="Header, go to settings, icon:settings">Settings</a></li>
           <li>
-            <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="logout-form" action="/logout" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="AllhlDRWJejG15jGZCFvPhupSrF6K8GltgUdXb36uoL7kZNiCkwHBnxuom9RQcmSaqC6+SEcQEom+QkvHKUhjA==" />
+            <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="logout-form" action="/logout" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="mDQA/9ejfZQn3s0Kr9P++YN/G1OTnSDxUCX8co/kIm9h/PIJ6blfep1n96Oas1hV8nbrG8iqoR7A2egALru5YQ==" />
               <button type="submit" class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout" role="menuitem">
                 Sign out
               </button>
@@ -323,7 +323,7 @@
 
 
 
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="sr-only right-0" action="/logout" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="SjvrsNVAU4ae0IZ8tK99SsPUOwTXWCPiATjAgZFNtCWz8xlG61pxaCRpvNWBz9vmst3LTIxvog2RxNTzMBIvKw==" />
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="sr-only right-0" action="/logout" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="u4JMjHKw16EC8d4JWaY0ZdkK46Mrl3UduO8ggcrPrftCSr56TKr1T7hI5KBsxpLJqAMT63Cg9PIoEzTza5A29Q==" />
           <button type="submit" class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout">
             Sign out
           </button>
@@ -362,7 +362,7 @@
 
       <ul class="pagehead-actions">
   <li>
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form data-remote="true" class="js-social-form js-social-container" action="/notifications/subscribe" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="jtfDRK6D+BnEyDHxNuhcvXU/7HTaEkYsjYJj2bJq98yj0AIEuAUiRFFV/YMJL/TqrDdzZadoHjs4ZAiWsWeNHg==" />      <input type="hidden" name="repository_id" id="repository_id" value="131743092" class="form-control" />
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form data-remote="true" class="js-social-form js-social-container" action="/notifications/subscribe" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="zkef7pCrp7x6qotCRWxrSHFdkuc8QwLfh4j8sdUzTyTjQF6uhi194e83RzB6q8MfqFUN9kE5Wsgybpf+1j419g==" />      <input type="hidden" name="repository_id" id="repository_id" value="131743092" class="form-control" />
 
       <details class="details-reset details-overlay select-menu float-left">
         <summary class="btn btn-sm btn-with-count select-menu-button" data-ga-click="Repository, click Watch settings, action:blob#show">
@@ -425,7 +425,7 @@
   <li>
     
   <div class="js-toggler-container js-social-container starring-container ">
-    <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="starred js-social-form" action="/InovelliUSA/OpenZWave/unstar" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="Sz1z74E/UwnsP0IZEfxbubM2yeoq6UPYRrxPdBydddiLJ0JiVST35uDjduWjVM0ZjO1d/tvY+1pqGPZWZCYMEw==" />
+    <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="starred js-social-form" action="/InovelliUSA/OpenZWave/unstar" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="NimcNi4Hyo+v5oJGQOJ3aMZl16UVO6rmG4JWm+oW+F72M627+hxuYKM6trrySuHI+b5DseQKEmQ3Ju+5kq2BlQ==" />
       <input type="hidden" name="context" value="repository"></input>
       <button
         type="submit"
@@ -440,7 +440,7 @@
           0
         </a>
 </form>
-    <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="unstarred js-social-form" action="/InovelliUSA/OpenZWave/star" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="znxrMyCiC+S+CJX4bmD6IBidarkL54uI2rqVEH32r1p1xFK2m4//gLWlhi+BCU5g0VFfsexktgYOdCbIYO0JDw==" />
+    <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="unstarred js-social-form" action="/InovelliUSA/OpenZWave/star" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="zQvzvg+zf9VHtbA+hJUH1IjAB4KAicCx69o3EN0cFfN2s8o7tJ6LsUwYo+lr/LOUQQwyimcK/T8/FITIwAezpg==" />
       <input type="hidden" name="context" value="repository"></input>
       <button
         type="submit"
@@ -556,9 +556,9 @@
     
 
   
-    <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/InovelliUSA/OpenZWave/blob/8aa2d6088a6088af0df13da34b7504144099b091/config/inovelli/simple_module.xml">Permalink</a>
+    <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/InovelliUSA/OpenZWave/blob/8aa2d6088a6088af0df13da34b7504144099b091/config/inovelli/nzw36.xml">Permalink</a>
 
-    <!-- blob contrib key: blob_contributors:v21:8a03833b6553e7505d8cb606cd85f8bc -->
+    <!-- blob contrib key: blob_contributors:v21:dee132d7f0ce51c72396416631d80f9b -->
 
     
 
@@ -602,7 +602,7 @@
 
 
             <a class="select-menu-item js-navigation-item js-navigation-open selected"
-               href="/InovelliUSA/OpenZWave/blob/master/config/inovelli/simple_module.xml"
+               href="/InovelliUSA/OpenZWave/blob/master/config/inovelli/nzw36.xml"
                data-name="master"
                data-skip-pjax="true"
                rel="nofollow">
@@ -641,12 +641,12 @@
         </clipboard-copy>
       </div>
       <div id="blob-path" class="breadcrumb">
-        <span class="repo-root js-repo-root"><span class="js-path-segment"><a data-pjax="true" href="/InovelliUSA/OpenZWave"><span>OpenZWave</span></a></span></span><span class="separator">/</span><span class="js-path-segment"><a data-pjax="true" href="/InovelliUSA/OpenZWave/tree/master/config"><span>config</span></a></span><span class="separator">/</span><span class="js-path-segment"><a data-pjax="true" href="/InovelliUSA/OpenZWave/tree/master/config/inovelli"><span>inovelli</span></a></span><span class="separator">/</span><strong class="final-path">simple_module.xml</strong>
+        <span class="repo-root js-repo-root"><span class="js-path-segment"><a data-pjax="true" href="/InovelliUSA/OpenZWave"><span>OpenZWave</span></a></span></span><span class="separator">/</span><span class="js-path-segment"><a data-pjax="true" href="/InovelliUSA/OpenZWave/tree/master/config"><span>config</span></a></span><span class="separator">/</span><span class="js-path-segment"><a data-pjax="true" href="/InovelliUSA/OpenZWave/tree/master/config/inovelli"><span>inovelli</span></a></span><span class="separator">/</span><strong class="final-path">nzw36.xml</strong>
       </div>
     </div>
 
 
-    <include-fragment src="/InovelliUSA/OpenZWave/contributors/master/config/inovelli/simple_module.xml" class="commit-tease commit-loader">
+    <include-fragment src="/InovelliUSA/OpenZWave/contributors/master/config/inovelli/nzw36.xml" class="commit-tease commit-loader">
       <div>
         Fetching contributors&hellip;
       </div>
@@ -663,25 +663,25 @@
   <div class="file-actions">
 
     <div class="BtnGroup">
-      <a id="raw-url" class="btn btn-sm BtnGroup-item" href="/InovelliUSA/OpenZWave/raw/master/config/inovelli/simple_module.xml">Raw</a>
-        <a class="btn btn-sm js-update-url-with-hash BtnGroup-item" data-hotkey="b" href="/InovelliUSA/OpenZWave/blame/master/config/inovelli/simple_module.xml">Blame</a>
-      <a rel="nofollow" class="btn btn-sm BtnGroup-item" href="/InovelliUSA/OpenZWave/commits/master/config/inovelli/simple_module.xml">History</a>
+      <a id="raw-url" class="btn btn-sm BtnGroup-item" href="/InovelliUSA/OpenZWave/raw/master/config/inovelli/nzw36.xml">Raw</a>
+        <a class="btn btn-sm js-update-url-with-hash BtnGroup-item" data-hotkey="b" href="/InovelliUSA/OpenZWave/blame/master/config/inovelli/nzw36.xml">Blame</a>
+      <a rel="nofollow" class="btn btn-sm BtnGroup-item" href="/InovelliUSA/OpenZWave/commits/master/config/inovelli/nzw36.xml">History</a>
     </div>
 
         <a class="btn-octicon tooltipped tooltipped-nw"
-           href="x-github-client://openRepo/https://github.com/InovelliUSA/OpenZWave?branch=master&amp;filepath=config%2Finovelli%2Fsimple_module.xml"
+           href="x-github-client://openRepo/https://github.com/InovelliUSA/OpenZWave?branch=master&amp;filepath=config%2Finovelli%2Fnzw36.xml"
            aria-label="Open this file in GitHub Desktop"
            data-ga-click="Repository, open with desktop, type:windows">
             <svg class="octicon octicon-device-desktop" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M15 2H1c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h5.34c-.25.61-.86 1.39-2.34 2h8c-1.48-.61-2.09-1.39-2.34-2H15c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 9H1V3h14v8z"/></svg>
         </a>
 
-          <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="inline-form js-update-url-with-hash" action="/InovelliUSA/OpenZWave/edit/master/config/inovelli/simple_module.xml" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="pZqHVdW/u6eRpBlDHyX/D68h61uH4GObA8XzX3EkqQtAwnGNIBGPzd0QYK2yikl41wf+K4oQvCAbUHrV/mELNQ==" />
+          <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="inline-form js-update-url-with-hash" action="/InovelliUSA/OpenZWave/edit/master/config/inovelli/nzw36.xml" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="QkAXzb0moKx2xX1SwVgOkvzldJrCjF4cnnjPmBS9IF45NTM/kJ39lP5SQ34xlFs/q/Y/CHxhPprjkiy2z9cXOQ==" />
             <button class="btn-octicon tooltipped tooltipped-nw" type="submit"
               aria-label="Fork this project and edit the file" data-hotkey="e" data-disable-with>
               <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/></svg>
             </button>
 </form>
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="inline-form" action="/InovelliUSA/OpenZWave/delete/master/config/inovelli/simple_module.xml" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="AzQ5Sq1gp2NKjqI9GybIHWIIW7bCwdNHg9ZsEoOZTrNxxu329xbSsspwKX0qg77wma15LPv7RzQlrbS+KuWjuQ==" />
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="inline-form" action="/InovelliUSA/OpenZWave/delete/master/config/inovelli/nzw36.xml" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="1LGdA8sXbTQ3FmPgiUzujOGm+poMei41OHFkX0QjzOeDMrjc+0DXvnePEjynAiGWgqqS8u5/Ae5hL+E5q0Mn3Q==" />
           <button class="btn-octicon btn-octicon-danger tooltipped tooltipped-nw" type="submit"
             aria-label="Fork this project and delete the file" data-disable-with>
             <svg class="octicon octicon-trashcan" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z"/></svg>
@@ -689,9 +689,9 @@
 </form>  </div>
 
   <div class="file-info">
-      13 lines (12 sloc)
+      25 lines (22 sloc)
       <span class="file-info-divider"></span>
-    377 Bytes
+    1.1 KB
   </div>
 </div>
 
@@ -705,7 +705,7 @@
       </tr>
       <tr>
         <td id="L2" class="blob-num js-line-number" data-line-number="2"></td>
-        <td id="LC2" class="blob-code blob-code-inner js-file-line">&lt;<span class="pl-ent">Product</span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">&#39;</span>http://code.google.com/p/open-zwave/<span class="pl-pds">&#39;</span></span>&gt;</td>
+        <td id="LC2" class="blob-code blob-code-inner js-file-line">&lt;<span class="pl-ent">Product</span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>http://code.google.com/p/open-zwave/<span class="pl-pds">&quot;</span></span>&gt;</td>
       </tr>
       <tr>
         <td id="L3" class="blob-num js-line-number" data-line-number="3"></td>
@@ -717,35 +717,85 @@
       </tr>
       <tr>
         <td id="L5" class="blob-num js-line-number" data-line-number="5"></td>
-        <td id="LC5" class="blob-code blob-code-inner js-file-line">  &lt;/<span class="pl-ent">CommandClass</span>&gt;</td>
+        <td id="LC5" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Value</span> <span class="pl-e">genre</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>config<span class="pl-pds">&quot;</span></span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LED Indicator Control<span class="pl-pds">&quot;</span></span> <span class="pl-e">units</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">size</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>255<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>list<span class="pl-pds">&quot;</span></span>&gt;</td>
       </tr>
       <tr>
         <td id="L6" class="blob-num js-line-number" data-line-number="6"></td>
-        <td id="LC6" class="blob-code blob-code-inner js-file-line">  <span class="pl-c"><span class="pl-c">&lt;!--</span> Association Groups <span class="pl-c">--&gt;</span></span></td>
+        <td id="LC6" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Help</span>&gt;Choose if you want the LED indicator to turn on when switch is on or off or disable completely.&lt;/<span class="pl-ent">Help</span>&gt;</td>
       </tr>
       <tr>
         <td id="L7" class="blob-num js-line-number" data-line-number="7"></td>
-        <td id="LC7" class="blob-code blob-code-inner js-file-line">  &lt;<span class="pl-ent">CommandClass</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>133<span class="pl-pds">&quot;</span></span>&gt;</td>
+        <td id="LC7" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LED on when switch is off<span class="pl-pds">&quot;</span></span>/&gt;</td>
       </tr>
       <tr>
         <td id="L8" class="blob-num js-line-number" data-line-number="8"></td>
-        <td id="LC8" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Associations</span> <span class="pl-e">num_groups</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span>&gt;</td>
+        <td id="LC8" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LED on when switch is on<span class="pl-pds">&quot;</span></span>/&gt;</td>
       </tr>
       <tr>
         <td id="L9" class="blob-num js-line-number" data-line-number="9"></td>
-        <td id="LC9" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Group</span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">max_associations</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>5<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Lifeline<span class="pl-pds">&quot;</span></span> /&gt;</td>
+        <td id="LC9" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LED is disabled<span class="pl-pds">&quot;</span></span>/&gt;</td>
       </tr>
       <tr>
         <td id="L10" class="blob-num js-line-number" data-line-number="10"></td>
-        <td id="LC10" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Associations</span>&gt;</td>
+        <td id="LC10" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Value</span>&gt;</td>
       </tr>
       <tr>
         <td id="L11" class="blob-num js-line-number" data-line-number="11"></td>
-        <td id="LC11" class="blob-code blob-code-inner js-file-line">  &lt;/<span class="pl-ent">CommandClass</span>&gt;</td>
+        <td id="LC11" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Value</span> <span class="pl-e">genre</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>config<span class="pl-pds">&quot;</span></span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Automatically turn switch off after interval<span class="pl-pds">&quot;</span></span> <span class="pl-e">units</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>seconds<span class="pl-pds">&quot;</span></span> <span class="pl-e">size</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2<span class="pl-pds">&quot;</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>32767<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>short<span class="pl-pds">&quot;</span></span>&gt;</td>
       </tr>
       <tr>
         <td id="L12" class="blob-num js-line-number" data-line-number="12"></td>
-        <td id="LC12" class="blob-code blob-code-inner js-file-line">&lt;/<span class="pl-ent">Product</span>&gt;</td>
+        <td id="LC12" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Help</span>&gt;Automatically turn the switch off after this many seconds. 0 is disabled&lt;/<span class="pl-ent">Help</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="LC13" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Value</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="LC14" class="blob-code blob-code-inner js-file-line">  &lt;/<span class="pl-ent">CommandClass</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="LC15" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="LC16" class="blob-code blob-code-inner js-file-line">  <span class="pl-c"><span class="pl-c">&lt;!--</span> Association Groups <span class="pl-c">--&gt;</span></span></td>
+      </tr>
+      <tr>
+        <td id="L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="LC17" class="blob-code blob-code-inner js-file-line">  &lt;<span class="pl-ent">CommandClass</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>133<span class="pl-pds">&quot;</span></span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="LC18" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Associations</span> <span class="pl-e">num_groups</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2<span class="pl-pds">&quot;</span></span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="LC19" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Group</span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Lifeline<span class="pl-pds">&quot;</span></span> <span class="pl-e">max_associations</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>5<span class="pl-pds">&quot;</span></span> /&gt;</td>
+      </tr>
+      <tr>
+        <td id="L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="LC20" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Group</span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Basic_Set<span class="pl-pds">&quot;</span></span> <span class="pl-e">max_associations</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>5<span class="pl-pds">&quot;</span></span> /&gt;</td>
+      </tr>
+      <tr>
+        <td id="L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="LC21" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Associations</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="LC22" class="blob-code blob-code-inner js-file-line">  &lt;/<span class="pl-ent">CommandClass</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="LC23" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="LC24" class="blob-code blob-code-inner js-file-line">&lt;/<span class="pl-ent">Product</span>&gt;</td>
       </tr>
 </table>
 
@@ -757,7 +807,7 @@
       <ul class="BlobToolbar-dropdown dropdown-menu dropdown-menu-se mt-2">
         <li><clipboard-copy role="menuitem" class="dropdown-item" id="js-copy-lines" style="cursor:pointer;" data-original-text="Copy lines">Copy lines</clipboard-copy></li>
         <li><clipboard-copy role="menuitem" class="dropdown-item" id="js-copy-permalink" style="cursor:pointer;" data-original-text="Copy link">Copy link</clipboard-copy></li>
-        <li><a class="dropdown-item js-update-url-with-hash" id="js-view-git-blame" role="menuitem" href="/InovelliUSA/OpenZWave/blame/8aa2d6088a6088af0df13da34b7504144099b091/config/inovelli/simple_module.xml">View git blame</a></li>
+        <li><a class="dropdown-item js-update-url-with-hash" id="js-view-git-blame" role="menuitem" href="/InovelliUSA/OpenZWave/blame/8aa2d6088a6088af0df13da34b7504144099b091/config/inovelli/nzw36.xml">View git blame</a></li>
           <li><a class="dropdown-item" id="js-new-issue" role="menuitem" href="/InovelliUSA/OpenZWave/issues/new">Open new issue</a></li>
       </ul>
     </details-menu>
@@ -792,7 +842,7 @@
 <div class="footer container-lg px-3" role="contentinfo">
   <div class="position-relative d-flex flex-justify-between pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
     <ul class="list-style-none d-flex flex-wrap ">
-      <li class="mr-3">&copy; 2018 <span title="0.33473s from unicorn-d87675d9f-fmv8b">GitHub</span>, Inc.</li>
+      <li class="mr-3">&copy; 2018 <span title="0.21449s from unicorn-6cd7448cc5-89gsb">GitHub</span>, Inc.</li>
         <li class="mr-3"><a data-ga-click="Footer, go to terms, text:terms" href="https://github.com/site/terms">Terms</a></li>
         <li class="mr-3"><a data-ga-click="Footer, go to privacy, text:privacy" href="https://github.com/site/privacy">Privacy</a></li>
         <li class="mr-3"><a href="https://help.github.com/articles/github-security/" data-ga-click="Footer, go to security, text:security">Security</a></li>

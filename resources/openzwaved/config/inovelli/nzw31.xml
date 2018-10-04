@@ -29,7 +29,7 @@
 
   <meta name="viewport" content="width=device-width">
   
-  <title>OpenZWave/simple_module.xml at master · InovelliUSA/OpenZWave</title>
+  <title>OpenZWave/nzw31.xml at master · InovelliUSA/OpenZWave</title>
     <meta name="description" content="Location for Inovelli open-zwave configuration files - InovelliUSA/OpenZWave">
     <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
   <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
@@ -39,10 +39,10 @@
     <meta property="og:image" content="https://avatars1.githubusercontent.com/u/37669481?s=400&amp;v=4" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="InovelliUSA/OpenZWave" /><meta property="og:url" content="https://github.com/InovelliUSA/OpenZWave" /><meta property="og:description" content="Location for Inovelli open-zwave configuration files - InovelliUSA/OpenZWave" />
 
   <link rel="assets" href="https://assets-cdn.github.com/">
-  <link rel="web-socket" href="wss://live.github.com/_sockets/VjI6MzIzNTc4NDU4OmEyNzllYjljMjQyZmIxOWM0ZWJjODdkMjk0YWE4NzNmMzE5NzI1N2M3OWExMGMwOTMzNGQ1MTEwMWMzODhjNDY=--c046447035399dc2f1366bf0a504c554327738c1">
+  <link rel="web-socket" href="wss://live.github.com/_sockets/VjI6MzIzNTc4NDU4OjI0YjRiNzI1NzVlODVjMmZmMjA3ZTA0OWI2NzY0OWEyODJhZWE1ODJjZDJmMDcwMzE1ZjkwYmRiZmMwZTVkZTM=--d8d6107ddb0222d77a2d557a5457b5f5b423661f">
   <meta name="pjax-timeout" content="1000">
   <link rel="sudo-modal" href="/sessions/sudo_modal">
-  <meta name="request-id" content="39A3:139A:4130F43:5410DCE:5BB61B05" data-pjax-transient>
+  <meta name="request-id" content="39A3:139A:4130A54:54104C8:5BB61AEC" data-pjax-transient>
 
 
   
@@ -53,7 +53,7 @@
     <meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
     <meta name="google-site-verification" content="GXs5KoUUkNCoaAZn7wPN-t01Pywp9M3sEjnt_3_ZWPc">
 
-  <meta name="octolytics-host" content="collector.githubapp.com" /><meta name="octolytics-app-id" content="github" /><meta name="octolytics-event-url" content="https://collector.githubapp.com/github-external/browser_event" /><meta name="octolytics-dimension-request_id" content="39A3:139A:4130F43:5410DCE:5BB61B05" /><meta name="octolytics-dimension-region_edge" content="iad" /><meta name="octolytics-dimension-region_render" content="iad" /><meta name="octolytics-actor-id" content="13416516" /><meta name="octolytics-actor-login" content="ticed35" /><meta name="octolytics-actor-hash" content="c238e868a6ed3c5de67d451af3216d5ab743ed820e2472d66c0c4576926c2668" />
+  <meta name="octolytics-host" content="collector.githubapp.com" /><meta name="octolytics-app-id" content="github" /><meta name="octolytics-event-url" content="https://collector.githubapp.com/github-external/browser_event" /><meta name="octolytics-dimension-request_id" content="39A3:139A:4130A54:54104C8:5BB61AEC" /><meta name="octolytics-dimension-region_edge" content="iad" /><meta name="octolytics-dimension-region_render" content="iad" /><meta name="octolytics-actor-id" content="13416516" /><meta name="octolytics-actor-login" content="ticed35" /><meta name="octolytics-actor-hash" content="c238e868a6ed3c5de67d451af3216d5ab743ed820e2472d66c0c4576926c2668" />
 <meta name="analytics-location" content="/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show" data-pjax-transient="true" />
 
 
@@ -72,7 +72,7 @@
     <meta name="user-login" content="ticed35">
 
       <meta name="expected-hostname" content="github.com">
-    <meta name="js-proxy-site-detection-payload" content="MjU1ZGJlMDdiMDM5YjgyZjRhMjJiYjVlOGFlMjIxMGVlZTBjMDI1NjM1MWQzMGUzYjAxMWMxNTQ5NjE4NTVkMXx7InJlbW90ZV9hZGRyZXNzIjoiODAuMTIuMTAyLjE0OCIsInJlcXVlc3RfaWQiOiIzOUEzOjEzOUE6NDEzMEY0Mzo1NDEwRENFOjVCQjYxQjA1IiwidGltZXN0YW1wIjoxNTM4NjYxMTI5LCJob3N0IjoiZ2l0aHViLmNvbSJ9">
+    <meta name="js-proxy-site-detection-payload" content="M2I5MWQ1ZWRlMThlMzE1ZmNlMzJlNGNmMGFmODJiZGM0ZDNhZWZlOTI0MGJiYmRhZDhhODM2OTgxYTNjNTNhMXx7InJlbW90ZV9hZGRyZXNzIjoiODAuMTIuMTAyLjE0OCIsInJlcXVlc3RfaWQiOiIzOUEzOjEzOUE6NDEzMEE1NDo1NDEwNEM4OjVCQjYxQUVDIiwidGltZXN0YW1wIjoxNTM4NjYxMTA0LCJob3N0IjoiZ2l0aHViLmNvbSJ9">
 
     <meta name="enabled-features" content="DASHBOARD_V2_LAYOUT,DASHBOARD_V2_LAYOUT_OPT_IN,EXPLORE_DISCOVER_REPOSITORIES,UNIVERSE_BANNER,MARKETPLACE_PLAN_RESTRICTION_EDITOR,MARKETPLACE_RETARGETING,COLLAPSE_REPEATED_COMMENTS">
 
@@ -88,7 +88,7 @@
   <meta name="octolytics-dimension-user_id" content="37669481" /><meta name="octolytics-dimension-user_login" content="InovelliUSA" /><meta name="octolytics-dimension-repository_id" content="131743092" /><meta name="octolytics-dimension-repository_nwo" content="InovelliUSA/OpenZWave" /><meta name="octolytics-dimension-repository_public" content="true" /><meta name="octolytics-dimension-repository_is_fork" content="false" /><meta name="octolytics-dimension-repository_network_root_id" content="131743092" /><meta name="octolytics-dimension-repository_network_root_nwo" content="InovelliUSA/OpenZWave" /><meta name="octolytics-dimension-repository_explore_github_marketplace_ci_cta_shown" content="false" />
 
 
-    <link rel="canonical" href="https://github.com/InovelliUSA/OpenZWave/blob/master/config/inovelli/simple_module.xml" data-pjax-transient>
+    <link rel="canonical" href="https://github.com/InovelliUSA/OpenZWave/blob/master/config/inovelli/nzw31.xml" data-pjax-transient>
 
 
   <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
@@ -157,7 +157,7 @@
           autocapitalize="off"
           aria-autocomplete="list"
           aria-controls="jump-to-results"
-          data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations#csrf-token=3RCNTixKYipeWxLAiIiNc1zzswY34+XVnuRd6u9ootPUiCf/PSGHcRURqwH9yZYOReujhVxGYPG8HYwWk6ok9g=="
+          data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations#csrf-token=V1S6UXVXwoN6WNEitFUhM3Xa3p2vhMl0X2FAlHid4J1ezBDgZDwn2DESaOPBFDpObMLOHsQhTFB9mJFoBF9muA=="
           spellcheck="false"
           autocomplete="off"
           >
@@ -310,7 +310,7 @@
           <li><a role="menuitem" class="dropdown-item" href="https://help.github.com" data-ga-click="Header, go to help, text:help">Help</a></li>
           <li><a role="menuitem" class="dropdown-item" href="/settings/profile" data-ga-click="Header, go to settings, icon:settings">Settings</a></li>
           <li>
-            <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="logout-form" action="/logout" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="AllhlDRWJejG15jGZCFvPhupSrF6K8GltgUdXb36uoL7kZNiCkwHBnxuom9RQcmSaqC6+SEcQEom+QkvHKUhjA==" />
+            <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="logout-form" action="/logout" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="2axsA0RsRzLmy/6mMedJwTpdkgc2SCYRVPVzddowWfQgZJ71enZl3FxyxA8Eh+9tS1RiT21/p/7ECWcHe2/C+g==" />
               <button type="submit" class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout" role="menuitem">
                 Sign out
               </button>
@@ -323,7 +323,7 @@
 
 
 
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="sr-only right-0" action="/logout" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="SjvrsNVAU4ae0IZ8tK99SsPUOwTXWCPiATjAgZFNtCWz8xlG61pxaCRpvNWBz9vmst3LTIxvog2RxNTzMBIvKw==" />
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="sr-only right-0" action="/logout" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="eh5BzpC9MHgXLjD+NKTPvRKTXPXp5p+Jv/F9HkqTA36D1rM4rqcSlq2XClcBxGkRY5qsvbLRHmYvDWls68yYcA==" />
           <button type="submit" class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout">
             Sign out
           </button>
@@ -362,7 +362,7 @@
 
       <ul class="pagehead-actions">
   <li>
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form data-remote="true" class="js-social-form js-social-container" action="/notifications/subscribe" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="jtfDRK6D+BnEyDHxNuhcvXU/7HTaEkYsjYJj2bJq98yj0AIEuAUiRFFV/YMJL/TqrDdzZadoHjs4ZAiWsWeNHg==" />      <input type="hidden" name="repository_id" id="repository_id" value="131743092" class="form-control" />
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form data-remote="true" class="js-social-form js-social-container" action="/notifications/subscribe" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="5TZqnBNkEckkGSrg4KHU48W8pCbO/k5JUiC1ed49f37IMavcBeLLlLGE5pLfZny0HLQ7N7OEFl7nxt423TAFrA==" />      <input type="hidden" name="repository_id" id="repository_id" value="131743092" class="form-control" />
 
       <details class="details-reset details-overlay select-menu float-left">
         <summary class="btn btn-sm btn-with-count select-menu-button" data-ga-click="Repository, click Watch settings, action:blob#show">
@@ -425,7 +425,7 @@
   <li>
     
   <div class="js-toggler-container js-social-container starring-container ">
-    <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="starred js-social-form" action="/InovelliUSA/OpenZWave/unstar" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="Sz1z74E/UwnsP0IZEfxbubM2yeoq6UPYRrxPdBydddiLJ0JiVST35uDjduWjVM0ZjO1d/tvY+1pqGPZWZCYMEw==" />
+    <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="starred js-social-form" action="/InovelliUSA/OpenZWave/unstar" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="l1DgtmzBJNyUQBKTgLu/VFKSAvhQdJaaawvXc89gz31XStE7uNqAM5icJm8yEyn0bUmW7KFFLhhHr25Rt9u2tg==" />
       <input type="hidden" name="context" value="repository"></input>
       <button
         type="submit"
@@ -440,7 +440,7 @@
           0
         </a>
 </form>
-    <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="unstarred js-social-form" action="/InovelliUSA/OpenZWave/star" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="znxrMyCiC+S+CJX4bmD6IBidarkL54uI2rqVEH32r1p1xFK2m4//gLWlhi+BCU5g0VFfsexktgYOdCbIYO0JDw==" />
+    <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="unstarred js-social-form" action="/InovelliUSA/OpenZWave/star" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="kMMJB+me41bvK58RaxKwl9Y3POAHr2hcjYu8CczcXK4rezCCUrMXMuSGjMaEewTXH/sJ6OAsVdJZRQ/R0cf6+w==" />
       <input type="hidden" name="context" value="repository"></input>
       <button
         type="submit"
@@ -556,9 +556,9 @@
     
 
   
-    <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/InovelliUSA/OpenZWave/blob/8aa2d6088a6088af0df13da34b7504144099b091/config/inovelli/simple_module.xml">Permalink</a>
+    <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/InovelliUSA/OpenZWave/blob/8aa2d6088a6088af0df13da34b7504144099b091/config/inovelli/nzw31.xml">Permalink</a>
 
-    <!-- blob contrib key: blob_contributors:v21:8a03833b6553e7505d8cb606cd85f8bc -->
+    <!-- blob contrib key: blob_contributors:v21:a285679f48066968a5525004bca013b2 -->
 
     
 
@@ -602,7 +602,7 @@
 
 
             <a class="select-menu-item js-navigation-item js-navigation-open selected"
-               href="/InovelliUSA/OpenZWave/blob/master/config/inovelli/simple_module.xml"
+               href="/InovelliUSA/OpenZWave/blob/master/config/inovelli/nzw31.xml"
                data-name="master"
                data-skip-pjax="true"
                rel="nofollow">
@@ -641,12 +641,12 @@
         </clipboard-copy>
       </div>
       <div id="blob-path" class="breadcrumb">
-        <span class="repo-root js-repo-root"><span class="js-path-segment"><a data-pjax="true" href="/InovelliUSA/OpenZWave"><span>OpenZWave</span></a></span></span><span class="separator">/</span><span class="js-path-segment"><a data-pjax="true" href="/InovelliUSA/OpenZWave/tree/master/config"><span>config</span></a></span><span class="separator">/</span><span class="js-path-segment"><a data-pjax="true" href="/InovelliUSA/OpenZWave/tree/master/config/inovelli"><span>inovelli</span></a></span><span class="separator">/</span><strong class="final-path">simple_module.xml</strong>
+        <span class="repo-root js-repo-root"><span class="js-path-segment"><a data-pjax="true" href="/InovelliUSA/OpenZWave"><span>OpenZWave</span></a></span></span><span class="separator">/</span><span class="js-path-segment"><a data-pjax="true" href="/InovelliUSA/OpenZWave/tree/master/config"><span>config</span></a></span><span class="separator">/</span><span class="js-path-segment"><a data-pjax="true" href="/InovelliUSA/OpenZWave/tree/master/config/inovelli"><span>inovelli</span></a></span><span class="separator">/</span><strong class="final-path">nzw31.xml</strong>
       </div>
     </div>
 
 
-    <include-fragment src="/InovelliUSA/OpenZWave/contributors/master/config/inovelli/simple_module.xml" class="commit-tease commit-loader">
+    <include-fragment src="/InovelliUSA/OpenZWave/contributors/master/config/inovelli/nzw31.xml" class="commit-tease commit-loader">
       <div>
         Fetching contributors&hellip;
       </div>
@@ -663,25 +663,25 @@
   <div class="file-actions">
 
     <div class="BtnGroup">
-      <a id="raw-url" class="btn btn-sm BtnGroup-item" href="/InovelliUSA/OpenZWave/raw/master/config/inovelli/simple_module.xml">Raw</a>
-        <a class="btn btn-sm js-update-url-with-hash BtnGroup-item" data-hotkey="b" href="/InovelliUSA/OpenZWave/blame/master/config/inovelli/simple_module.xml">Blame</a>
-      <a rel="nofollow" class="btn btn-sm BtnGroup-item" href="/InovelliUSA/OpenZWave/commits/master/config/inovelli/simple_module.xml">History</a>
+      <a id="raw-url" class="btn btn-sm BtnGroup-item" href="/InovelliUSA/OpenZWave/raw/master/config/inovelli/nzw31.xml">Raw</a>
+        <a class="btn btn-sm js-update-url-with-hash BtnGroup-item" data-hotkey="b" href="/InovelliUSA/OpenZWave/blame/master/config/inovelli/nzw31.xml">Blame</a>
+      <a rel="nofollow" class="btn btn-sm BtnGroup-item" href="/InovelliUSA/OpenZWave/commits/master/config/inovelli/nzw31.xml">History</a>
     </div>
 
         <a class="btn-octicon tooltipped tooltipped-nw"
-           href="x-github-client://openRepo/https://github.com/InovelliUSA/OpenZWave?branch=master&amp;filepath=config%2Finovelli%2Fsimple_module.xml"
+           href="x-github-client://openRepo/https://github.com/InovelliUSA/OpenZWave?branch=master&amp;filepath=config%2Finovelli%2Fnzw31.xml"
            aria-label="Open this file in GitHub Desktop"
            data-ga-click="Repository, open with desktop, type:windows">
             <svg class="octicon octicon-device-desktop" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M15 2H1c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h5.34c-.25.61-.86 1.39-2.34 2h8c-1.48-.61-2.09-1.39-2.34-2H15c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 9H1V3h14v8z"/></svg>
         </a>
 
-          <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="inline-form js-update-url-with-hash" action="/InovelliUSA/OpenZWave/edit/master/config/inovelli/simple_module.xml" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="pZqHVdW/u6eRpBlDHyX/D68h61uH4GObA8XzX3EkqQtAwnGNIBGPzd0QYK2yikl41wf+K4oQvCAbUHrV/mELNQ==" />
+          <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="inline-form js-update-url-with-hash" action="/InovelliUSA/OpenZWave/edit/master/config/inovelli/nzw31.xml" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="yT9MqpfJmr0Zff+lBuRJSHzflI1g7XpB16FQSbO602kSLZJ+ghL3QzYqGBtzsprfO+WflXfLqWTRPN+6S6RrSw==" />
             <button class="btn-octicon tooltipped tooltipped-nw" type="submit"
               aria-label="Fork this project and edit the file" data-hotkey="e" data-disable-with>
               <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/></svg>
             </button>
 </form>
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="inline-form" action="/InovelliUSA/OpenZWave/delete/master/config/inovelli/simple_module.xml" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="AzQ5Sq1gp2NKjqI9GybIHWIIW7bCwdNHg9ZsEoOZTrNxxu329xbSsspwKX0qg77wma15LPv7RzQlrbS+KuWjuQ==" />
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="inline-form" action="/InovelliUSA/OpenZWave/delete/master/config/inovelli/nzw31.xml" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="tggZm4IyVd80Wnw7beJBPxPywbTAgLfMto/SITkP4Q2ODc67AK9O70WMtrBTkbpcvbmDUJwOTikPnAdxX8TTwg==" />
           <button class="btn-octicon btn-octicon-danger tooltipped tooltipped-nw" type="submit"
             aria-label="Fork this project and delete the file" data-disable-with>
             <svg class="octicon octicon-trashcan" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z"/></svg>
@@ -689,9 +689,9 @@
 </form>  </div>
 
   <div class="file-info">
-      13 lines (12 sloc)
+      75 lines (72 sloc)
       <span class="file-info-divider"></span>
-    377 Bytes
+    4.65 KB
   </div>
 </div>
 
@@ -705,7 +705,7 @@
       </tr>
       <tr>
         <td id="L2" class="blob-num js-line-number" data-line-number="2"></td>
-        <td id="LC2" class="blob-code blob-code-inner js-file-line">&lt;<span class="pl-ent">Product</span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">&#39;</span>http://code.google.com/p/open-zwave/<span class="pl-pds">&#39;</span></span>&gt;</td>
+        <td id="LC2" class="blob-code blob-code-inner js-file-line">&lt;<span class="pl-ent">Product</span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>http://code.google.com/p/open-zwave/<span class="pl-pds">&quot;</span></span>&gt;</td>
       </tr>
       <tr>
         <td id="L3" class="blob-num js-line-number" data-line-number="3"></td>
@@ -717,35 +717,285 @@
       </tr>
       <tr>
         <td id="L5" class="blob-num js-line-number" data-line-number="5"></td>
-        <td id="LC5" class="blob-code blob-code-inner js-file-line">  &lt;/<span class="pl-ent">CommandClass</span>&gt;</td>
+        <td id="LC5" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Value</span> <span class="pl-e">genre</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>config<span class="pl-pds">&quot;</span></span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Dimming/Brightening Step Level<span class="pl-pds">&quot;</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>99<span class="pl-pds">&quot;</span></span> <span class="pl-e">units</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>%<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>3<span class="pl-pds">&quot;</span></span> <span class="pl-e">size</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>byte<span class="pl-pds">&quot;</span></span>&gt;</td>
       </tr>
       <tr>
         <td id="L6" class="blob-num js-line-number" data-line-number="6"></td>
-        <td id="LC6" class="blob-code blob-code-inner js-file-line">  <span class="pl-c"><span class="pl-c">&lt;!--</span> Association Groups <span class="pl-c">--&gt;</span></span></td>
+        <td id="LC6" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Help</span>&gt;Each step of the dimming process will increase or decrease the brightness by this percentage. Increasing this will make the transition time quicker.&lt;/<span class="pl-ent">Help</span>&gt;</td>
       </tr>
       <tr>
         <td id="L7" class="blob-num js-line-number" data-line-number="7"></td>
-        <td id="LC7" class="blob-code blob-code-inner js-file-line">  &lt;<span class="pl-ent">CommandClass</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>133<span class="pl-pds">&quot;</span></span>&gt;</td>
+        <td id="LC7" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Value</span>&gt;</td>
       </tr>
       <tr>
         <td id="L8" class="blob-num js-line-number" data-line-number="8"></td>
-        <td id="LC8" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Associations</span> <span class="pl-e">num_groups</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span>&gt;</td>
+        <td id="LC8" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Value</span> <span class="pl-e">genre</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>config<span class="pl-pds">&quot;</span></span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Minimum Dimming Level<span class="pl-pds">&quot;</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>99<span class="pl-pds">&quot;</span></span> <span class="pl-e">units</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>%<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">size</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>byte<span class="pl-pds">&quot;</span></span>&gt;</td>
       </tr>
       <tr>
         <td id="L9" class="blob-num js-line-number" data-line-number="9"></td>
-        <td id="LC9" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Group</span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">max_associations</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>5<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Lifeline<span class="pl-pds">&quot;</span></span> /&gt;</td>
+        <td id="LC9" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Help</span>&gt;This is the minimum value to which the switch will dim. Useful for CFL or LED lights that otherwise won&#39;t come on or come on but flicker/buzz.&lt;/<span class="pl-ent">Help</span>&gt;</td>
       </tr>
       <tr>
         <td id="L10" class="blob-num js-line-number" data-line-number="10"></td>
-        <td id="LC10" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Associations</span>&gt;</td>
+        <td id="LC10" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Value</span>&gt;</td>
       </tr>
       <tr>
         <td id="L11" class="blob-num js-line-number" data-line-number="11"></td>
-        <td id="LC11" class="blob-code blob-code-inner js-file-line">  &lt;/<span class="pl-ent">CommandClass</span>&gt;</td>
+        <td id="LC11" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Value</span> <span class="pl-e">genre</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>config<span class="pl-pds">&quot;</span></span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>3<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LED Indicator Control<span class="pl-pds">&quot;</span></span> <span class="pl-e">units</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">size</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>255<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>list<span class="pl-pds">&quot;</span></span>&gt;</td>
       </tr>
       <tr>
         <td id="L12" class="blob-num js-line-number" data-line-number="12"></td>
-        <td id="LC12" class="blob-code blob-code-inner js-file-line">&lt;/<span class="pl-ent">Product</span>&gt;</td>
+        <td id="LC12" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Help</span>&gt;Choose if you want the LED indicator to turn on when switch is on or off or disable completely.&lt;/<span class="pl-ent">Help</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="LC13" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LED on when switch is off<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="LC14" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LED on when switch is on<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="LC15" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LED is disabled<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="LC16" class="blob-code blob-code-inner js-file-line">	  &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>3<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LED is always on<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="LC17" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Value</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="LC18" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Value</span> <span class="pl-e">genre</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>config<span class="pl-pds">&quot;</span></span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>4<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Orientation<span class="pl-pds">&quot;</span></span> <span class="pl-e">units</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">size</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>255<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>list<span class="pl-pds">&quot;</span></span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="LC19" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Help</span>&gt;Controls the on/off orientation of the rocker switch&lt;/<span class="pl-ent">Help</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="LC20" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Normal<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="LC21" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Inverted<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="LC22" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Value</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="LC23" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Value</span> <span class="pl-e">genre</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>config<span class="pl-pds">&quot;</span></span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>5<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Automatically turn switch off after interval<span class="pl-pds">&quot;</span></span> <span class="pl-e">units</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>seconds<span class="pl-pds">&quot;</span></span> <span class="pl-e">size</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2<span class="pl-pds">&quot;</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>32767<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>short<span class="pl-pds">&quot;</span></span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="LC24" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Help</span>&gt;Automatically turn the switch off after this many seconds. 0 is disabled, or up to 32767 seconds&lt;/<span class="pl-ent">Help</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L25" class="blob-num js-line-number" data-line-number="25"></td>
+        <td id="LC25" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Value</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L26" class="blob-num js-line-number" data-line-number="26"></td>
+        <td id="LC26" class="blob-code blob-code-inner js-file-line">	&lt;<span class="pl-ent">Value</span> <span class="pl-e">genre</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>config<span class="pl-pds">&quot;</span></span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>6<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Association Group 3 Behavior<span class="pl-pds">&quot;</span></span> <span class="pl-e">units</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">size</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>255<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>list<span class="pl-pds">&quot;</span></span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L27" class="blob-num js-line-number" data-line-number="27"></td>
+        <td id="LC27" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Help</span>&gt;Change how devices respond when associated in group 3&lt;/<span class="pl-ent">Help</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L28" class="blob-num js-line-number" data-line-number="28"></td>
+        <td id="LC28" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Dim up/down<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L29" class="blob-num js-line-number" data-line-number="29"></td>
+        <td id="LC29" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Keep in sync<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L30" class="blob-num js-line-number" data-line-number="30"></td>
+        <td id="LC30" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Value</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L31" class="blob-num js-line-number" data-line-number="31"></td>
+        <td id="LC31" class="blob-code blob-code-inner js-file-line">	&lt;<span class="pl-ent">Value</span> <span class="pl-e">genre</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>config<span class="pl-pds">&quot;</span></span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>7<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Association Group 3 Configuration<span class="pl-pds">&quot;</span></span> <span class="pl-e">units</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">size</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>255<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>list<span class="pl-pds">&quot;</span></span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L32" class="blob-num js-line-number" data-line-number="32"></td>
+        <td id="LC32" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Help</span>&gt;Send association group 3 commands on these types of actions&lt;/<span class="pl-ent">Help</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L33" class="blob-num js-line-number" data-line-number="33"></td>
+        <td id="LC33" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>none<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L34" class="blob-num js-line-number" data-line-number="34"></td>
+        <td id="LC34" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>local<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L35" class="blob-num js-line-number" data-line-number="35"></td>
+        <td id="LC35" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>3way<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L36" class="blob-num js-line-number" data-line-number="36"></td>
+        <td id="LC36" class="blob-code blob-code-inner js-file-line">	  &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>3<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>3way <span class="pl-c1">&amp;amp;</span> local<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L37" class="blob-num js-line-number" data-line-number="37"></td>
+        <td id="LC37" class="blob-code blob-code-inner js-file-line">	  &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>4<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>z-wave hub<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L38" class="blob-num js-line-number" data-line-number="38"></td>
+        <td id="LC38" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>5<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>z-wave hub <span class="pl-c1">&amp;amp;</span> local<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L39" class="blob-num js-line-number" data-line-number="39"></td>
+        <td id="LC39" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>6<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>z-wave hub <span class="pl-c1">&amp;amp;</span> 3-way<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L40" class="blob-num js-line-number" data-line-number="40"></td>
+        <td id="LC40" class="blob-code blob-code-inner js-file-line">	  &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>7<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>z-wave hub <span class="pl-c1">&amp;amp;</span> local <span class="pl-c1">&amp;amp;</span> 3way<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L41" class="blob-num js-line-number" data-line-number="41"></td>
+        <td id="LC41" class="blob-code blob-code-inner js-file-line">	  &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>8<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>timer<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L42" class="blob-num js-line-number" data-line-number="42"></td>
+        <td id="LC42" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>9<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>timer <span class="pl-c1">&amp;amp;</span> local<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L43" class="blob-num js-line-number" data-line-number="43"></td>
+        <td id="LC43" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>10<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>timer <span class="pl-c1">&amp;amp;</span> 3-way<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L44" class="blob-num js-line-number" data-line-number="44"></td>
+        <td id="LC44" class="blob-code blob-code-inner js-file-line">	  &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>11<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>timer <span class="pl-c1">&amp;amp;</span> 3-way <span class="pl-c1">&amp;amp;</span> local<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L45" class="blob-num js-line-number" data-line-number="45"></td>
+        <td id="LC45" class="blob-code blob-code-inner js-file-line">	  &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>12<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>timer <span class="pl-c1">&amp;amp;</span> z-wave hub<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L46" class="blob-num js-line-number" data-line-number="46"></td>
+        <td id="LC46" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>13<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>timer <span class="pl-c1">&amp;amp;</span> z-wave hub <span class="pl-c1">&amp;amp;</span> local<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L47" class="blob-num js-line-number" data-line-number="47"></td>
+        <td id="LC47" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>14<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>timer <span class="pl-c1">&amp;amp;</span> z-wave hub <span class="pl-c1">&amp;amp;</span> 3-way<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L48" class="blob-num js-line-number" data-line-number="48"></td>
+        <td id="LC48" class="blob-code blob-code-inner js-file-line">	  &lt;<span class="pl-ent">Item</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>15<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>all<span class="pl-pds">&quot;</span></span>/&gt;</td>
+      </tr>
+      <tr>
+        <td id="L49" class="blob-num js-line-number" data-line-number="49"></td>
+        <td id="LC49" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Value</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L50" class="blob-num js-line-number" data-line-number="50"></td>
+        <td id="LC50" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Value</span> <span class="pl-e">genre</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>config<span class="pl-pds">&quot;</span></span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>8<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Default value when turned on at switch<span class="pl-pds">&quot;</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>99<span class="pl-pds">&quot;</span></span> <span class="pl-e">size</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>byte<span class="pl-pds">&quot;</span></span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L51" class="blob-num js-line-number" data-line-number="51"></td>
+        <td id="LC51" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Help</span>&gt;Default brightness when switch is turned on locally.  0 is previous. Firmware 1.02+&quot;&lt;/<span class="pl-ent">Help</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L52" class="blob-num js-line-number" data-line-number="52"></td>
+        <td id="LC52" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Value</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L53" class="blob-num js-line-number" data-line-number="53"></td>
+        <td id="LC53" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Value</span> <span class="pl-e">genre</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>config<span class="pl-pds">&quot;</span></span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>9<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Default value when turned on via zwave<span class="pl-pds">&quot;</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>99<span class="pl-pds">&quot;</span></span> <span class="pl-e">size</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>byte<span class="pl-pds">&quot;</span></span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L54" class="blob-num js-line-number" data-line-number="54"></td>
+        <td id="LC54" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Help</span>&gt;Default brightness when switch is turned on via zwave.  0 is previous.  Firmware 1.02+&quot;&lt;/<span class="pl-ent">Help</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L55" class="blob-num js-line-number" data-line-number="55"></td>
+        <td id="LC55" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Value</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L56" class="blob-num js-line-number" data-line-number="56"></td>
+        <td id="LC56" class="blob-code blob-code-inner js-file-line">  &lt;/<span class="pl-ent">CommandClass</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L57" class="blob-num js-line-number" data-line-number="57"></td>
+        <td id="LC57" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="L58" class="blob-num js-line-number" data-line-number="58"></td>
+        <td id="LC58" class="blob-code blob-code-inner js-file-line">  <span class="pl-c"><span class="pl-c">&lt;!--</span> Association Groups <span class="pl-c">--&gt;</span></span></td>
+      </tr>
+      <tr>
+        <td id="L59" class="blob-num js-line-number" data-line-number="59"></td>
+        <td id="LC59" class="blob-code blob-code-inner js-file-line">  &lt;<span class="pl-ent">CommandClass</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>133<span class="pl-pds">&quot;</span></span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L60" class="blob-num js-line-number" data-line-number="60"></td>
+        <td id="LC60" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Associations</span> <span class="pl-e">num_groups</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>3<span class="pl-pds">&quot;</span></span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L61" class="blob-num js-line-number" data-line-number="61"></td>
+        <td id="LC61" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Group</span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Lifeline<span class="pl-pds">&quot;</span></span> <span class="pl-e">max_associations</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>5<span class="pl-pds">&quot;</span></span> /&gt;</td>
+      </tr>
+      <tr>
+        <td id="L62" class="blob-num js-line-number" data-line-number="62"></td>
+        <td id="LC62" class="blob-code blob-code-inner js-file-line">	  &lt;<span class="pl-ent">Group</span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Basic_Set<span class="pl-pds">&quot;</span></span> <span class="pl-e">max_associations</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>5<span class="pl-pds">&quot;</span></span> /&gt;</td>
+      </tr>
+      <tr>
+        <td id="L63" class="blob-num js-line-number" data-line-number="63"></td>
+        <td id="LC63" class="blob-code blob-code-inner js-file-line">	  &lt;<span class="pl-ent">Group</span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>3<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Switch_Multilevel_Set<span class="pl-pds">&quot;</span></span> <span class="pl-e">max_associations</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>5<span class="pl-pds">&quot;</span></span> /&gt;</td>
+      </tr>
+      <tr>
+        <td id="L64" class="blob-num js-line-number" data-line-number="64"></td>
+        <td id="LC64" class="blob-code blob-code-inner js-file-line">    &lt;/<span class="pl-ent">Associations</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L65" class="blob-num js-line-number" data-line-number="65"></td>
+        <td id="LC65" class="blob-code blob-code-inner js-file-line">  &lt;/<span class="pl-ent">CommandClass</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L66" class="blob-num js-line-number" data-line-number="66"></td>
+        <td id="LC66" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">&lt;!--</span> Central Scene Reports <span class="pl-c">--&gt;</span></span></td>
+      </tr>
+      <tr>
+        <td id="L67" class="blob-num js-line-number" data-line-number="67"></td>
+        <td id="LC67" class="blob-code blob-code-inner js-file-line">  &lt;<span class="pl-ent">CommandClass</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>91<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>COMMAND_CLASS_CENTRAL_SCENE<span class="pl-pds">&quot;</span></span> <span class="pl-e">version</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">request_flags</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>4<span class="pl-pds">&quot;</span></span> <span class="pl-e">scenecount</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L68" class="blob-num js-line-number" data-line-number="68"></td>
+        <td id="LC68" class="blob-code blob-code-inner js-file-line">    &lt;<span class="pl-ent">Instance</span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> /&gt;</td>
+      </tr>
+      <tr>
+        <td id="L69" class="blob-num js-line-number" data-line-number="69"></td>
+        <td id="LC69" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Value</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>int<span class="pl-pds">&quot;</span></span> <span class="pl-e">genre</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>system<span class="pl-pds">&quot;</span></span> <span class="pl-e">instance</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Scene Count<span class="pl-pds">&quot;</span></span> <span class="pl-e">units</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">read_only</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span> <span class="pl-e">write_only</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>false<span class="pl-pds">&quot;</span></span> <span class="pl-e">verify_changes</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>false<span class="pl-pds">&quot;</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>-2147483648<span class="pl-pds">&quot;</span></span> <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2147483647<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2<span class="pl-pds">&quot;</span></span> /&gt;</td>
+      </tr>
+      <tr>
+        <td id="L70" class="blob-num js-line-number" data-line-number="70"></td>
+        <td id="LC70" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Value</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>int<span class="pl-pds">&quot;</span></span> <span class="pl-e">genre</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>user<span class="pl-pds">&quot;</span></span> <span class="pl-e">instance</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Top Button Scene<span class="pl-pds">&quot;</span></span> <span class="pl-e">units</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">read_only</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>false<span class="pl-pds">&quot;</span></span> <span class="pl-e">write_only</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>false<span class="pl-pds">&quot;</span></span> <span class="pl-e">verify_changes</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>false<span class="pl-pds">&quot;</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>-2147483648<span class="pl-pds">&quot;</span></span> <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2147483647<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> /&gt;</td>
+      </tr>
+      <tr>
+        <td id="L71" class="blob-num js-line-number" data-line-number="71"></td>
+        <td id="LC71" class="blob-code blob-code-inner js-file-line">      &lt;<span class="pl-ent">Value</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>int<span class="pl-pds">&quot;</span></span> <span class="pl-e">genre</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>user<span class="pl-pds">&quot;</span></span> <span class="pl-e">instance</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">index</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2<span class="pl-pds">&quot;</span></span> <span class="pl-e">label</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Bottom Button Scene<span class="pl-pds">&quot;</span></span> <span class="pl-e">units</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">read_only</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>false<span class="pl-pds">&quot;</span></span> <span class="pl-e">write_only</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>false<span class="pl-pds">&quot;</span></span> <span class="pl-e">verify_changes</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>false<span class="pl-pds">&quot;</span></span> <span class="pl-e">min</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>-2147483648<span class="pl-pds">&quot;</span></span> <span class="pl-e">max</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2147483647<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> /&gt;</td>
+      </tr>
+      <tr>
+        <td id="L72" class="blob-num js-line-number" data-line-number="72"></td>
+        <td id="LC72" class="blob-code blob-code-inner js-file-line">  &lt;/<span class="pl-ent">CommandClass</span>&gt;</td>
+      </tr>
+      <tr>
+        <td id="L73" class="blob-num js-line-number" data-line-number="73"></td>
+        <td id="LC73" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="L74" class="blob-num js-line-number" data-line-number="74"></td>
+        <td id="LC74" class="blob-code blob-code-inner js-file-line">&lt;/<span class="pl-ent">Product</span>&gt;</td>
       </tr>
 </table>
 
@@ -757,7 +1007,7 @@
       <ul class="BlobToolbar-dropdown dropdown-menu dropdown-menu-se mt-2">
         <li><clipboard-copy role="menuitem" class="dropdown-item" id="js-copy-lines" style="cursor:pointer;" data-original-text="Copy lines">Copy lines</clipboard-copy></li>
         <li><clipboard-copy role="menuitem" class="dropdown-item" id="js-copy-permalink" style="cursor:pointer;" data-original-text="Copy link">Copy link</clipboard-copy></li>
-        <li><a class="dropdown-item js-update-url-with-hash" id="js-view-git-blame" role="menuitem" href="/InovelliUSA/OpenZWave/blame/8aa2d6088a6088af0df13da34b7504144099b091/config/inovelli/simple_module.xml">View git blame</a></li>
+        <li><a class="dropdown-item js-update-url-with-hash" id="js-view-git-blame" role="menuitem" href="/InovelliUSA/OpenZWave/blame/8aa2d6088a6088af0df13da34b7504144099b091/config/inovelli/nzw31.xml">View git blame</a></li>
           <li><a class="dropdown-item" id="js-new-issue" role="menuitem" href="/InovelliUSA/OpenZWave/issues/new">Open new issue</a></li>
       </ul>
     </details-menu>
@@ -792,7 +1042,7 @@
 <div class="footer container-lg px-3" role="contentinfo">
   <div class="position-relative d-flex flex-justify-between pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
     <ul class="list-style-none d-flex flex-wrap ">
-      <li class="mr-3">&copy; 2018 <span title="0.33473s from unicorn-d87675d9f-fmv8b">GitHub</span>, Inc.</li>
+      <li class="mr-3">&copy; 2018 <span title="0.25443s from unicorn-d87675d9f-7j455">GitHub</span>, Inc.</li>
         <li class="mr-3"><a data-ga-click="Footer, go to terms, text:terms" href="https://github.com/site/terms">Terms</a></li>
         <li class="mr-3"><a data-ga-click="Footer, go to privacy, text:privacy" href="https://github.com/site/privacy">Privacy</a></li>
         <li class="mr-3"><a href="https://help.github.com/articles/github-security/" data-ga-click="Footer, go to security, text:security">Security</a></li>
