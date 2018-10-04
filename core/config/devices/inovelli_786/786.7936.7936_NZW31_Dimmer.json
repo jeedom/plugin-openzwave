@@ -1,0 +1,145 @@
+{
+    "name": "NZW31 Dimmer", 
+    "type": "Interrupteur", 
+    "comlink": "2683-inovelli-interrupteur-variateur-z-wave", 
+    "remark": "Inclusion : Taper 6x sur le bouton haut dans les 2 secondes.", 
+    "imglink": "NZW31_Dimmer", 
+    "commands": [
+        {
+            "name": "Intensité", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 255
+            }, 
+            "value": "Etat", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "LIGHT_SLIDER"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=buttonaction&action=press", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "value": "Etat", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=buttonaction&action=press", 
+                "index": 2, 
+                "instance": 1
+            }, 
+            "value": "Etat", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }
+        }, 
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }, 
+            "unite": "%"
+        }, 
+        {
+            "name": "Scene ID", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 91, 
+                "value": "", 
+                "index": 128, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }
+        },
+		{
+            "name": "Scene Name", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 91, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }
+        }
+    ], 
+    "configuration": {
+        "1": {
+            "name": "Vitesse de transition", 
+            "help": "Options pour ce paramètre 1-99 (0x01-0x63). Valeur par défaut 3."
+        }, 
+        "2": {
+            "name": "Niveau minimum d’éclairage", 
+            "help": "Options pour ce paramètre 0-99 (0x01-0x63). Valeur par défaut 0."
+        }, 
+        "4": {
+            "name": "Inverser les boutons", 
+            "help": "Options pour ce paramètre 00 (Haut = On, Bas = Off) - 01 (Haut = Off, Bas = On). Valeur par défaut 00"
+        }, 
+        "5": {
+            "name": "Arrêt automatique", 
+            "help": "Options pour ce paramètre 0000-32768 (0x00-0x8000). Valeur par défaut 00"
+        }
+    }
+}
