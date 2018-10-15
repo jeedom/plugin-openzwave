@@ -62,7 +62,7 @@ NODE_REST_MAPPING = {'all' : node_utils.get_all_info,\
 	'getNodeStatistics' : node_utils.get_statistics, \
 	'getPendingChanges' : node_utils.get_pending_changes,\
 	'getHealth' : node_utils.get_health,\
-	'requestNodeNeighbourUpdate': node_utils.request_neighbour_update,\
+	'requestNodeNeighboursUpdate': node_utils.request_neighbour_update,\
 	'removeFailedNode': node_utils.remove_failed,\
 	'healNode': node_utils.heal,\
 	'replaceFailedNode': node_utils.replace_failed,\
