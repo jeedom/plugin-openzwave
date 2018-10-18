@@ -153,8 +153,8 @@ class jeedom_utils():
           'warning': logging.WARNING,
           'error': logging.ERROR,
           'critical': logging.CRITICAL,
-          'none': logging.NOTSET}
-		return LEVELS.get(level, logging.NOTSET)
+          'none': logging.CRITICAL}
+		return LEVELS.get(level, logging.CRITICAL)
 
 	@staticmethod
 	def set_log_level(level = 'error'):
