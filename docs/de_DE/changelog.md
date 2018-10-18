@@ -57,7 +57,7 @@ Changelog détaillé :
 
     -   Récupération du dernier niveau des piles au démarrage du démon.
 
--   Bug Fixes
+-   Fehlerbehebungen
 
     -   Correction de la migration de l’info Batterie.
 
@@ -106,7 +106,7 @@ Changelog détaillé :
     -   Ajout l’ensemble des configurations de modules au
         nouveau format.
 
--   Bug Fixes
+-   Fehlerbehebungen
 
     -   Ne pas tester si un nodeId existe lors de la suppression
         d’un association.
@@ -138,7 +138,7 @@ Changelog détaillé :
 
     -   Ajout de configuration de module Fibaro US
 
--   Bug Fixes
+-   Fehlerbehebungen
 
     -   N/A
 
@@ -153,7 +153,7 @@ Changelog détaillé :
 
     -   N/A
 
--   Bug Fixes
+-   Fehlerbehebungen
 
     -   Correction de l’assignation des valeurs au format RAW des codes
         pour lecteur RFid.
@@ -218,7 +218,7 @@ Changelog détaillé :
     -   Le niveau des piles est directement envoyé à l’écran de pile sur
         réception de rapport du niveau.
 
--   Bug Fixes
+-   Fehlerbehebungen
 
     -   Rafraîchissement de l’ensemble des instances suite à un
         broadcast de la CC Switch ALL.
@@ -236,7 +236,7 @@ Changelog détaillé :
 
     -   Activer le mode d’inclusion en non-sécurisé par défaut.
 
--   Bug Fixes
+-   Fehlerbehebungen
 
     -   Test des informations constructeur dans l’écran de santé ne
         remonte plus des NOK.
@@ -260,7 +260,7 @@ Changelog détaillé :
 
     -   Refonte de l’écran équipements avec onglets.
 
--   Bug Fixes
+-   Fehlerbehebungen
 
     -   Problème d’affichage de certains modules sur la table de routage
         et Graph réseau.
@@ -341,7 +341,7 @@ Changelog détaillé :
 
     -   Mise à jour de la documentation du plugin.
 
--   Bug Fixes
+-   Fehlerbehebungen
 
     -   Correction de possible problèmes lors de la mise à jour des
         configurations de modules.
@@ -404,7 +404,7 @@ Changelog détaillé :
     -   Correction de l’orthographe de la documentation, merci
         @Juan-Pedro aka: kiko.
 
--   Bug Fixes
+-   Fehlerbehebungen
 
     -   Correction orthographe.
 
@@ -498,7 +498,7 @@ Changelog détaillé :
     -   Forcer une actualisation de l’état des interrupteurs et dimer
         suite à l’envoi d’une commande switch all.
 
--   Bug Fixes
+-   Fehlerbehebungen
 
     -   Correction de la découverte des groupes d’associations.
 
@@ -543,7 +543,7 @@ Changelog détaillé :
 
     -   Mise à jour de la documentation.
 
--   Bug Fixes
+-   Fehlerbehebungen
 
     -   Documentation Corrections orthographiques et grammaticales.
 
@@ -558,7 +558,7 @@ Changelog détaillé :
 
     -   Pas d’alerte de nœud mort si celui-ci est désactivé.
 
--   Bug Fixes
+-   Fehlerbehebungen
 
     -   Correction fil pilote Fibaro retour d’état.
 
@@ -638,7 +638,7 @@ Changelog détaillé :
 
     -   Amélioration des warning sur les thermostats sur piles.
 
--   Bug Fixes
+-   Fehlerbehebungen
 
     -   Température convertie en Celsius retourne l’unité C à la place
         de F.
