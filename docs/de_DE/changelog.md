@@ -1,5 +1,4 @@
-Changelog détaillé :
-<https://github.com/jeedom/plugin-openzwave/commits/master>
+- Correction d'un bug si le niveau de log est sur aucun
 
 17-03-2018
 ===
