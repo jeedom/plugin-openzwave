@@ -6,11 +6,6 @@ HEZWTHERM-FL2
 	<CommandClass id="67" name="COMMAND_CLASS_THERMOSTAT_SETPOINT" version="1" request_flags="4" create_vars="true" base="0">
 		<Instance index="1"/>
 		<Value type="decimal" genre="user" instance="1" index="1" label="Heating" units="C" read_only="false" write_only="false" min="0" max="0" value="20"/>
-		<Value type="decimal" genre="user" instance="1" index="11" label="Energy Heat" units="C" read_only="false" write_only="false" min="0" max="0" value="16"/>
-		<Value type="decimal" genre="user" instance="1" index="10" label="Energy Heat 2" units="C" read_only="false" write_only="false" min="0" max="0" value="16"/>
-		<Value type="decimal" genre="user" instance="1" index="8" label="Energy Heat 3" units="C" read_only="false" write_only="false" min="0" max="0" value="16"/>
-		<Value type="decimal" genre="user" instance="1" index="13" label="Energy Heat 4" units="C" read_only="false" write_only="false" min="0" max="0" value="16"/>
-		<Value type="decimal" genre="user" instance="1" index="0" label="Energy Heat 5" units="C" read_only="false" write_only="false" min="0" max="0" value="16"/>
 	</CommandClass>
 	<CommandClass id="64" name="COMMAND_CLASS_THERMOSTAT_MODE" version="1" request_flags="4"  >
 		<Instance index="1" />
