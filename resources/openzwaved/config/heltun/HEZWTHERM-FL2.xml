@@ -12,7 +12,7 @@ HEZWTHERM-FL2
 		<Value type="list" genre="user" instance="1" index="0" label="Mode" units="" read_only="false" write_only="false" min="0" max="0"   size="1">
 			<Item label="Off" value="0" />
 			<Item label="Comfort" value="1" />
-			<Item label="Dry flor" value="8" />
+			<Item label="Dry floor" value="8" />
 			<Item label="Auto" value="10" />
 			<Item label="Heat Econ" value="11" />
 			<Item label="Vacation" value="13" />
