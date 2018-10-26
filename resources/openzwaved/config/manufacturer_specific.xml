@@ -645,6 +645,9 @@
 		<Product type="8007" id="1000" name="Temperature Humidity Sensor HS1HT-Z" config="heiman/HS1HT-Z.xml"/>
 		<Product type="8008" id="1000" name="Smart Plug HS2SK-Z" config="heiman/HS2SK-Z.xml"/>
 	</Manufacturer>
+	<Manufacturer id="0344" name="Heltun">
+		<Product type="0003" id="0001" name="Heltun HE-ZW-THERM-FL2" config="heltun/HEZWTHERM-FL2.xml"/>
+	</Manufacturer>
 	<Manufacturer id="0017" name="HiTech Automation">
 	</Manufacturer>
 	<Manufacturer id="005b" name="HAI">
