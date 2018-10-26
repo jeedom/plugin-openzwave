@@ -3,7 +3,11 @@
 HEZWTHERM-FL2
 -->
 <Product xmlns='http://code.google.com/p/open-zwave/'>
-	<CommandClass id="67" base="0"/>
+	<CommandClass id="67" name="COMMAND_CLASS_THERMOSTAT_SETPOINT" version="1" request_flags="4" create_vars="true" base="0">
+		<Instance index="1"/>
+		<Value type="decimal" genre="user" instance="1" index="1" label="Heating" units="C" read_only="false" write_only="false" min="0" max="0" value="20"/>
+		<Value type="decimal" genre="user" instance="1" index="11" label="Energy Heat" units="C" read_only="false" write_only="false" min="0" max="0" value="16"/>
+	</CommandClass>
     <!-- Association Groups -->
     <CommandClass id="133">
         <Associations num_groups="2">
