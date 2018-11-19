@@ -409,6 +409,7 @@
 		<Product type="0001" id="0004" name="SP815 Pet Immune Pir Motion Detector" config="everspring/sp815.xml"/>
 		<Product type="0001" id="0005" name="SP816 Outdoor Motion Detector" config="everspring/sp816.xml"/>
 		<Product type="0002" id="0001" name="SM103 Door/Window Sensor" config="everspring/sm103.xml"/>
+		<Product type="0002" id="0003" name="SM810-1 Door/Window Sensor" config="everspring/sm810.xml"/>
 		<Product type="0003" id="0001" name="AD142 Plug-in Dimmer Module"/>
 		<Product type="0003" id="0003" name="AD147 Plug-in Dimmer Module" config="everspring/ad147.xml"/>
 		<Product type="0003" id="0002" name="AD146 In wall Dimmer Module" config="everspring/ad146.xml"/>
