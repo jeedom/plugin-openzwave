@@ -277,6 +277,7 @@ DISTFILES =	.gitignore \
 	config/sensative/strips.xml \
 	config/shenzen_neo/nas-ds01z.xml \
 	config/shenzen_neo/nas-pd01z.xml \
+	config/shenzen_neo/nas-pd01zt.xml \
 	config/shenzen_neo/nas-wr01z.xml \
 	config/shenzen_neo/nas-ws02z.xml \
 	config/stelpro/stzw402.xml \

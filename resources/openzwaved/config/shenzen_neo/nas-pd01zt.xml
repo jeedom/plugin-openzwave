@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Product xmlns='http://code.google.com/p/open-zwave/'>
   <!--
-  Coolcam NAS-PD01ZE Motion Sensor (PIR)
+  Coolcam NAS-PD01ZT Motion Sensor (PIR)
   http://products.z-wavealliance.org/ProductManual/File?folder=&filename=Manuals/1920/Motion%20Detector%20User%20Guide%20EU%20V3.3.pdf
   -->
   <!-- Configuration Parameters -->
@@ -74,6 +74,12 @@
       <Item label="Disable" value="0" />
       <Item label="Enable" value="1" />
      </Value>
+	 
+	<Value type="short" genre="config" instance="1" index="99" label="Ambient Light Intensity Calibration" value="1000" min="1" max="65536" size="2">
+      <Help>This Parameter defines the calibrated scale for ambient light intensity. Because the method and position that the sensor is mounted, and the cover of sensor will bring measurement error, user can get more real light intensity by this parameter setting. User should run the steps as blows for calibrating
+        Available Settings: 1 ~ 65536.
+      </Help>
+    </Value>
  
   </CommandClass>
   <!-- Association Groups -->
