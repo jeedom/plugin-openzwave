@@ -22,17 +22,17 @@ Tech manual: https://www.eurotronic.org/fileadmin/user_upload/eurotronic.org/Pro
                 Manufacturer Specific: Direct valve control mode. The valve opening percentage can be controlled using the switch multilevel command class.
             </Help>
             <Item label="Off" value="0" />
-            <Item label="Heat" value="1" />
-            <Item label="Heat Eco" value="11" />
-            <Item label="Full Power" value="15" />
-            <Item label="Manufacturer Specific" value="31" />
+            <Item label="Chauffage" value="1" />
+            <Item label="Eco" value="11" />
+            <Item label="Pleine Puissance" value="15" />
+            <Item label="Manuel" value="31" />
         </Value>
         <SupportedModes>
             <Mode index="0" label="Off" />
-            <Mode index="1" label="Heat" />
-            <Mode index="11" label="Heat Eco" />
-            <Mode index="15" label="Full Power" />
-            <Mode index="31" label="Manufacturer Specific" />
+            <Mode index="1" label="Chauffage" />
+            <Mode index="11" label="Eco" />
+            <Mode index="15" label="Pleine Puissance" />
+            <Mode index="31" label="Manuel" />
         </SupportedModes>
     </CommandClass>
 
