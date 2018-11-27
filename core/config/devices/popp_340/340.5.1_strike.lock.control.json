@@ -1,0 +1,53 @@
+{
+    "name": "Strike Lock Control", 
+    "type": "Gache", 
+    "remark": "",
+	"battery_type": "1x3V CR2032", 
+    "commands": [
+        {
+            "name": "On/Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 98, 
+                "value": "type=setvalue&value=Unsecure", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "other"
+        }, 
+		{
+            "name": "On/Off (timeout)", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 98, 
+                "value": "type=setvalue&value=Unsecured+with+Timeout", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "other"
+        },
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}
