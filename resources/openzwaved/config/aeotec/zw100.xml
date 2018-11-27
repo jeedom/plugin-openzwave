@@ -4,13 +4,21 @@ Aeotec ZW100 MultiSensor 6
 https://aeotec.freshdesk.com/helpdesk/attachments/6028954764
 V1.10 + V1.11 (12/14/2017)
 -->
-<Product xmlns='http://code.google.com/p/open-zwave/'>
-	<!-- Configuration Parameters -->
+<Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="14">
+	<MetaData>
+		<MetaDataItem name="OzwInfoPage">http://www.openzwave.com/device-database/0086:0064:0002</MetaDataItem>
+		<MetaDataItem name="ZWProductPage">http://products.z-wavealliance.org/products/1812</MetaDataItem>
+		<MetaDataItem name="ProductPic">https://products.z-wavealliance.org/ProductImages/Index?productName=ZC10-16065113</MetaDataItem>
+		<MetaDataItem name="ProductManual">https://aeotec.freshdesk.com/support/solutions/folders/6000149641</MetaDataItem>
+		<MetaDataItem name="ProductPage">http://aeotec.com/z-wave-sensor</MetaDataItem>
+	</MetaData>
 	<CommandClass id="112">
 		<Value type="list" index="2" genre="config" label="Wake up 10 minutes on Power On" min="0" max="1" value="0" size="1">
 			<Help>Enable/Disable waking up for 10 minutes when re-power on (battery mode) the MultiSensor</Help>
 			<Item label="Disable" value="0" />
 			<Item label="Enable" value="1" />
+			<Item label="Disable-fr" value="0" lang="fr"/>
+			<Item label="Enable-Fr" value="1" lang="fr"/>
 		</Value>
 		<Value type="short" index="3" genre="config" label="On time" units="seconds" min="10" max="3600" value="240">
 			<Help>Duration that the motion sensor must observe no motion before it will return to the no-motion state.
@@ -89,25 +97,63 @@ V1.10 + V1.11 (12/14/2017)
 			<Item label="Disabled" value="0" />
 			<Item label="Enabled" value="1" />
 		</Value>
-		<Value type="byte" index="48" genre="config" label="Enable/disable to send a report on Threshold" units="" min="0" max="255" value="0" >
+		<Value type="bitset" index="48" genre="config" label="Enable/disable to send a report on Threshold" units="" bitmask="255" size="1" value="0" >
 			<Help>
 			Enable/disable to send a report when the measurement is more than the upper limit value or less than the lower limit value.
-			Bit mask = 0, disable.
-			Bit mask = 1, enable.
-			Bit 0 = temperature.
-			Bit 1 = humidity.
-			Bit 2 = luminance.
-			Bit 3 = ultraviolet.
-			The above bit masks are used to enable/disable to send out a report when the measurement is less than the lower limit value.
-			The below bit masks are used to enable/disable to send out a report when the measurement is more than the upper limit value.
-			Bit 4 = temperature.
-			Bit 5 = humidity.
-			Bit 6 = luminance.
-			Bit 7 = ultraviolet.
 			Note: 
 			If USB power, the Sensor will check the limit every 10 seconds. If battery power, the Sensor will check the limit when it is waken up. 
 			</Help>
-		</Value>
+			<Help lang="fr">French Help</Help>
+			<Label lang="fr">Enable/disable to send a report on Threshold-fr</Label>
+			<BitSet id="1">
+				<Label>Lower Temperature</Label>
+				<Label lang="fr">Lower Temperature-fr</Label>
+				<Help>Lower Temperature Threshold</Help>
+				<Help lang="fr">Lower Temperature Threshold-fr</Help>
+			</BitSet>
+			<BitSet id="2">
+				<Label>Lower Humidity</Label>
+				<Label lang="fr">Lower Humidity-fr</Label>
+				<Help>Lower Humdity Threshold</Help>
+				<Help lang="fr">Lower Humdity Threshold-fr</Help>
+			</BitSet>
+			<BitSet id="3">
+				<Label>Lower Luminance</Label>
+				<Label lang="fr">Lower Luminance-fr</Label>
+				<Help>Lower Luminance Threshold</Help>
+				<Help lang="fr">Lower Luminance Threshold</Help>
+			</BitSet>
+			<BitSet id="4">
+				<Label>Lower Ultraviolet</Label>
+				<Label lang="fr">Lower Ultraviolet-fr</Label>
+				<Help>Lower Ultraviolet Threshold</Help>
+				<Help lang="fr">Lower Ultraviolet Threshold-fr</Help>
+			</BitSet>
+			<BitSet id="5">
+				<Label>Upper Temperature</Label>
+				<Label lang="fr">Upper Temperature-fr</Label>
+				<Help>Upper Temerature Threshold</Help>
+				<Help lang="fr">Upper Temerature Threshold-fr</Help>
+			</BitSet>
+			<BitSet id="6">
+				<Label>Upper Humidity</Label>
+				<Label lang="fr">Upper Humidity-fr</Label>
+				<Help>Upper Humdity Threshold</Help>
+				<Help lang="fr">Upper Humdity Threshold-fr</Help>
+			</BitSet>
+			<BitSet id="7">
+				<Label>Upper Luminance</Label>
+				<Label lang="fr">Upper Luminance-fr</Label>
+				<Help>Upper Luminance Threshold</Help>
+				<Help lang="fr">Upper Luminance Threshold-fr</Help>
+			</BitSet>
+			<BitSet id="8">
+				<Label>Upper Ultraviolet</Label>
+				<Label lang="fr">Upper Ultraviolet-fr</Label>
+				<Help>Upper Ultraviolet Threshold</Help>
+				<Help lang="fr">Upper Ultraviolet Threshold-fr</Help>
+			</BitSet>
+		</Value> 
 		<Value type="int" index="49" genre="config" label="Set the upper limit value of temperature sensor" value="71681" >
 			<Help>
 			When the measurement is more than this upper limit, which will trigger to sent out a sensor report.
@@ -251,7 +297,7 @@ V1.10 + V1.11 (12/14/2017)
 		<Value type="button" index="100" genre="config" label="Reset Params 101-103 to Default" write_only="true" affects="101,102,103">
 			<Help>Reset The Reporting Group Configuration (101 to 103) to default</Help>
 		</Value>
-		<Value type="int" index="101" genre="config" label="Group 1 Reports" value="241">
+		<Value type="bitset" index="101" genre="config" label="Group 1 Reports" bitmask="241" size="4" value="241">
 			<Help>Which reports need to send automatically in timing intervals for group 1.
 				Bitmask:
 				10000000 - 128 - Luminance
@@ -260,8 +306,30 @@ V1.10 + V1.11 (12/14/2017)
 				00010000 - 16 - Ultraviolet
 				00000001 - 1 - Battery
 				10100000 - 160 - Luminance and Temperature (32+128)
-				11110001 - 241 - All (1+16+32+64+128)</Help>
+				11110001 - 241 - All (1+16+32+64+128)
+			</Help>
+			<BitSet id="1">
+				<Label>Battery</Label>
+				<Help>Send Battery Report</Help>
+			</BitSet>
+			<BitSet id="5">
+				<Label>Ultraviolet</Label>
+				<Help>Send Ultraviolet Report</Help>
+			</BitSet>
+			<BitSet id="6">
+				<Label>Temperature</Label>
+				<Help>Send Temperature Report</Help>
+			</BitSet>
+			<BitSet id="7">
+				<Label>Humidity</Label>
+				<Help>Send Humidity Report</Help>
+			</BitSet>
+			<BitSet id="8">
+				<Label>Luminance</Label>
+				<Help>Send Luminance Report</Help>
+			</BitSet>
 		</Value>
+		
 		<Value type="int" index="102" genre="config" label="Group 2 Reports" value="0">
 			<Help>Which reports need to send automatically in timing intervals for group 2.
 				Bitmask:

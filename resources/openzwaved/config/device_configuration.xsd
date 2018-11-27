@@ -1,16 +1,18 @@
 <?xml version='1.0'?>
 <xs:schema
   xmlns:xs='http://www.w3.org/2001/XMLSchema'
-  targetNamespace='http://code.google.com/p/open-zwave/'
-  xmlns:Product='http://code.google.com/p/open-zwave/'
+  targetNamespace='https://github.com/OpenZWave/open-zwave'
+  xmlns:Product='https://github.com/OpenZWave/open-zwave'
   elementFormDefault='qualified'>
 
  <xs:element name='Product'>
   <xs:complexType>
    <xs:sequence>
     <xs:element ref='Product:Protocol' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='Product:MetaData' minOccurs='0' maxOccurs='1'/>
     <xs:element ref='Product:CommandClass' minOccurs='0' maxOccurs='unbounded'/>
    </xs:sequence>
+   <xs:attribute name='Revision' type='xs:integer' use='required'/>
   </xs:complexType>
  </xs:element>
 
@@ -67,6 +69,7 @@
    <xs:attribute name='base' type='xs:string' use='optional'/>
    <xs:attribute name='override_precision' type='xs:string' use='optional'/>
    <xs:attribute name='scenecount' type='xs:string' use='optional'/>
+   <xs:attribute name='typeInterpretation' type='xs:string' use='optional'/>
    <xs:attribute name='create_vars' use='optional'>
     <xs:simpleType>
      <xs:restriction base='xs:string'>
@@ -132,12 +135,14 @@
      </xs:restriction>
     </xs:simpleType>
    </xs:attribute>
+   <xs:attribute name='delay_no_more_info' type='xs:string' use='optional'/>
    <xs:attribute name='version' type='xs:string' use='optional'/>
    <xs:attribute name='request_flags' type='xs:string' use='optional'/>
    <xs:attribute name='endpoints' type='xs:string' use='optional'/>
    <xs:attribute name='mapping' type='xs:string' use='optional'/>
    <xs:attribute name='ignoreUnsolicitedMultiChnCapReport' type='xs:string' use='optional'/>
    <xs:attribute name='codes' type='xs:string' use='optional'/>
+   <xs:attribute name='colorchannels' type='xs:string' use='optional'/>
   </xs:complexType>
  </xs:element>
 
@@ -234,8 +239,10 @@
  <xs:element name='Value'>
   <xs:complexType>
    <xs:sequence>
-    <xs:element ref='Product:Help' minOccurs='0' maxOccurs='1'/>
+    <xs:element ref='Product:Help' minOccurs='0' maxOccurs='unbounded'/>
+    <xs:element ref='Product:Label' minOccurs='0' maxOccurs='unbounded'/>
     <xs:element ref='Product:Item' minOccurs='0' maxOccurs='unbounded'/>
+    <xs:element ref="Product:BitSet" minOccurs='0' maxOccurs='unbounded'/>
    </xs:sequence>
    <xs:attribute name='type' use='required'>
      <xs:simpleType>
@@ -250,6 +257,7 @@
 	 <xs:enumeration value='string'/>
 	 <xs:enumeration value='button'/>
 	 <xs:enumeration value='raw'/>
+	 <xs:enumeration value='bitset'/>
        </xs:restriction>
      </xs:simpleType>
    </xs:attribute>
@@ -270,7 +278,9 @@
    <xs:attribute name='units' type='xs:string' use='optional'/>
    <xs:attribute name='min' type='xs:string' use='optional'/>
    <xs:attribute name='max' type='xs:string' use='optional'/>
+   <xs:attribute name='vindex' type='xs:string' use='optional'/>
    <xs:attribute name='value' type='xs:string' use='optional'/>
+   <xs:attribute name='bitmask' type='xs:string' use='optional'/>
    <xs:attribute name='length' type='xs:string' use='optional'/>
    <xs:attribute name='read_only' use='optional'>
     <xs:simpleType>
@@ -303,13 +313,32 @@
 
  <xs:element name='Help'>
   <xs:complexType mixed='true'>
+    <xs:attribute name="lang" type="xs:string" use='optional'/>
   </xs:complexType>
  </xs:element>
+
+ <xs:element name='Label'>
+  <xs:complexType mixed='true'>
+    <xs:attribute name="lang" type="xs:string" use='optional'/>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='BitSet'>
+  <xs:complexType mixed='true'>
+   <xs:sequence>
+      <xs:element ref='Product:Label' minOccurs='0' maxOccurs='unbounded'/>
+      <xs:element ref='Product:Help' minOccurs='0' maxOccurs='unbounded'/>
+   </xs:sequence>
+   <xs:attribute name='id' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+ 
 
  <xs:element name='Item'>
   <xs:complexType>
    <xs:attribute name='label' type='xs:string' use='required'/>
    <xs:attribute name='value' type='xs:string' use='required'/>
+   <xs:attribute name='lang' type='xs:string' use='optional'/>
   </xs:complexType>
  </xs:element>
 
@@ -341,4 +370,20 @@
    <xs:attribute name='id' type='xs:string' use='required'/>
   </xs:complexType>
  </xs:element>
+
+ <xs:element name='MetaData'>
+  <xs:complexType>
+   <xs:sequence>
+    <xs:element ref='Product:MetaDataItem' maxOccurs='unbounded'/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+
+ <xs:element name='MetaDataItem'>
+  <xs:complexType mixed='true'> 
+   <xs:attribute name='name' type='xs:string' use='required'/>
+  </xs:complexType>
+ </xs:element>
+
+
 </xs:schema>
