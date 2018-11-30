@@ -74,6 +74,11 @@
       <Item label="Disable" value="0" />
       <Item label="Enable" value="1" />
      </Value>
+	 <Value type="short" genre="config" instance="1" index="99" label="Ambient Light Intensity Calibration" value="1000" min="1" max="65536" size="2">
+      <Help>This Parameter defines the calibrated scale for ambient light intensity. Because the method and position that the sensor is mounted, and the cover of sensor will bring measurement error, user can get more real light intensity by this parameter setting. User should run the steps as blows for calibrating
+        Available Settings: 1 ~ 65536.
+      </Help>
+    </Value>
  
   </CommandClass>
   <!-- Association Groups -->
