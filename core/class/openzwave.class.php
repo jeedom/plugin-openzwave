@@ -44,7 +44,7 @@ class openzwave extends eqLogic {
 			throw new Exception(__('Echec de la requête http : ', __FILE__) . $url . ' Curl error : ' . $curl_error, 404);
 		}
 		curl_close($ch);
-		return (is_json($result)) ? json_decode($result, true) : $result;
+		return is_json($result, $result);
 	}
 
 	public static function syncEqLogicWithOpenZwave($_logical_id = null, $_exclusion = 0) {
@@ -355,13 +355,13 @@ class openzwave extends eqLogic {
 		}
 		sleep(1);
 	}
-	
+
 	public static function syncconfOpenzwave($_background = true) {
 		log::remove('openzwave_syncconf');
 		log::add('openzwave_syncconf', 'info', 'Arrêt du démon en cours');
 		self::deamon_stop();
 		log::add('openzwave_syncconf', 'info', 'Arrêt du démon fait');
-		$cmd = system::getCmdSudo() .' /bin/bash ' . dirname(__FILE__) . '/../../resources/syncconf.sh >> ' . log::getPathToLog('openzwave_syncconf') . ' 2>&1';
+		$cmd = system::getCmdSudo() . ' /bin/bash ' . dirname(__FILE__) . '/../../resources/syncconf.sh >> ' . log::getPathToLog('openzwave_syncconf') . ' 2>&1';
 		if ($_background) {
 			$cmd .= ' &';
 		}
@@ -376,11 +376,7 @@ class openzwave extends eqLogic {
 		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
 			return;
 		}
-		$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath());
-		if (!is_json($content)) {
-			return;
-		}
-		$device = json_decode($content, true);
+		$device = json_decode(is_json(file_get_contents(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath()), array()), true);
 		if (!is_array($device) || !isset($device['commands'])) {
 			return true;
 		}
@@ -449,11 +445,7 @@ class openzwave extends eqLogic {
 		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
 			return;
 		}
-		$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath());
-		if (!is_json($content)) {
-			return;
-		}
-		$device = json_decode($content, true);
+		$device = json_decode(is_json(file_get_contents(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath()), array()), true);
 		if (!is_array($device) || !isset($device['recommended'])) {
 			return true;
 		}
@@ -482,7 +474,7 @@ class openzwave extends eqLogic {
 				if (isset($value['index'])) {
 					$indexpolling = $value['index'];
 				}
-                openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&instance_id=' . $instancepolling . '&cc_id=' . $value['class'] . '&index=' . $indexpolling . '&type=setPolling&frequency=1');
+				openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&instance_id=' . $instancepolling . '&cc_id=' . $value['class'] . '&index=' . $indexpolling . '&type=setPolling&frequency=1');
 			}
 		}
 		if (isset($device['recommended']['needswakeup']) && $device['recommended']['needswakeup'] == true) {
@@ -604,7 +596,7 @@ class openzwave extends eqLogic {
 												if ($data['typeZW'] == 'Button') {
 													$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name);
 												} else {
-													$cmd = cmd::byEqLogicIdCmdName($this->getId(),$cmd_name . ' On');
+													$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name . ' On');
 												}
 												if (!is_object($cmd)) {
 													$cmd = new openzwaveCmd();
@@ -634,7 +626,7 @@ class openzwave extends eqLogic {
 												if ($data['typeZW'] == 'Button') {
 													$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name . ' Stop');
 												} else {
-													$cmd = cmd::byEqLogicIdCmdName($this->getId(),$cmd_name . ' Off');
+													$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name . ' Off');
 												}
 												if (!is_object($cmd)) {
 													$cmd = new openzwaveCmd();
