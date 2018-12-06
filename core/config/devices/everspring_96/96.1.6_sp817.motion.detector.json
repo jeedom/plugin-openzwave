@@ -1,0 +1,51 @@
+{
+    "name": "SP817 Motion Detector", 
+    "type": "Multicapteurs",  
+    "remark": "",
+    "configuration": {
+        "battery_type": "1x3V CR2"
+    }, 
+    "commands": [
+        {
+            "name": "Présence", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 32, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+				"invertBinary": "1",
+                "generic_type": "PRESENCE"
+            },
+            "template": {
+                "dashboard": "presence", 
+                "mobile": "presence"
+            },
+            "unite": ""
+        },
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}

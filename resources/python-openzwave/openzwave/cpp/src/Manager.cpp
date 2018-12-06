@@ -2525,6 +2525,7 @@ bool Manager::SetValue
 				if( ValueBool* value = static_cast<ValueBool*>( driver->GetValue( _id ) ) )
 				{
 					res = value->Set( _value );
+					value->OnValueRefreshed(_value);
 					value->Release();
 				} else {
 					OZW_ERROR(OZWException::OZWEXCEPTION_INVALID_VALUEID, "Invalid ValueID passed to SetValue");
@@ -2560,6 +2561,7 @@ bool Manager::SetValue
 				if( ValueByte* value = static_cast<ValueByte*>( driver->GetValue( _id ) ) )
 				{
 					res = value->Set( _value );
+					value->OnValueRefreshed(_value);
 					value->Release();
 				} else {
 					OZW_ERROR(OZWException::OZWEXCEPTION_INVALID_VALUEID, "Invalid ValueID passed to SetValue");
@@ -2615,6 +2617,7 @@ bool Manager::SetValue
 
 					// now set the value
 					res = value->Set( str );
+					value->OnValueRefreshed(str);
 					value->Release();
 				} else {
 					OZW_ERROR(OZWException::OZWEXCEPTION_INVALID_VALUEID, "Invalid ValueID passed to SetValue");
@@ -2650,6 +2653,7 @@ bool Manager::SetValue
 				if( ValueInt* value = static_cast<ValueInt*>( driver->GetValue( _id ) ) )
 				{
 					res = value->Set( _value );
+					value->OnValueRefreshed(_value);
 					value->Release();
 				} else {
 					OZW_ERROR(OZWException::OZWEXCEPTION_INVALID_VALUEID, "Invalid ValueID passed to SetValue");
@@ -2721,6 +2725,7 @@ bool Manager::SetValue
 				if( ValueShort* value = static_cast<ValueShort*>( driver->GetValue( _id ) ) )
 				{
 					res = value->Set( _value );
+					value->OnValueRefreshed(_value);
 					value->Release();
 				} else {
 					OZW_ERROR(OZWException::OZWEXCEPTION_INVALID_VALUEID, "Invalid ValueID passed to SetValue");
@@ -2797,10 +2802,12 @@ bool Manager::SetValue
 						if( !strcasecmp( "true", _value.c_str() ) )
 						{
 							res = value->Set( true );
+							value->OnValueRefreshed(true);
 						}
 						else if( !strcasecmp( "false", _value.c_str() ) )
 						{
 							res = value->Set( false );
+							value->OnValueRefreshed(false);
 						}
 						value->Release();
 					} else {
@@ -2816,6 +2823,7 @@ bool Manager::SetValue
 						if( val < 256 )
 						{
 							res = value->Set( (uint8)val );
+							value->OnValueRefreshed((uint8)val);
 						}
 						value->Release();
 					} else {
@@ -2828,6 +2836,7 @@ bool Manager::SetValue
 					if( ValueDecimal* value = static_cast<ValueDecimal*>( driver->GetValue( _id ) ) )
 					{
 						res = value->Set( _value );
+						value->OnValueRefreshed(_value);
 						value->Release();
 					} else {
 						OZW_ERROR(OZWException::OZWEXCEPTION_INVALID_VALUEID, "Invalid ValueID passed to SetValue");
@@ -2840,6 +2849,7 @@ bool Manager::SetValue
 					{
 						int32 val = atoi( _value.c_str() );
 						res = value->Set( val );
+						value->OnValueRefreshed(val);
 						value->Release();
 					} else {
 						OZW_ERROR(OZWException::OZWEXCEPTION_INVALID_VALUEID, "Invalid ValueID passed to SetValue");
@@ -2865,6 +2875,7 @@ bool Manager::SetValue
 						if( ( val < 32768 ) && ( val >= -32768 ) )
 						{
 							res = value->Set( (int16)val );
+							value->OnValueRefreshed((int16)val);
 						}
 						value->Release();
 					} else {
@@ -2877,6 +2888,7 @@ bool Manager::SetValue
 					if( ValueString* value = static_cast<ValueString*>( driver->GetValue( _id ) ) )
 					{
 						res = value->Set( _value );
+						value->OnValueRefreshed(_value);
 						value->Release();
 					} else {
 						OZW_ERROR(OZWException::OZWEXCEPTION_INVALID_VALUEID, "Invalid ValueID passed to SetValue");

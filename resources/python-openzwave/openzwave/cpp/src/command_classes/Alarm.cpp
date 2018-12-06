@@ -320,7 +320,6 @@ bool Alarm::SetValue
 		case AlarmIndex_Notification:
 		{
 			ValueByte const* value = static_cast<ValueByte const*>(&_value);
-			ValueByte* valueObj = static_cast<ValueByte*>( GetValue( instance, AlarmIndex_Notification ) );
 			Log::Write( LogLevel_Info, GetNodeId(), "AlarmNotification::Set - Setting node %d to %d", GetNodeId(), value->GetValue());
 			Msg* msg = new Msg( "AlarmNotification_Set", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true );
 			msg->SetInstance( this, instance );
@@ -381,8 +380,6 @@ bool Alarm::SetValue
 				msg->Append( 0x00 );
 				msg->Append( GetDriver()->GetTransmitOptions() );
 				GetDriver()->SendMsg( msg, Driver::MsgQueue_Send );
-				valueObj->OnValueRefreshed(value->GetValue());
-				valueObj->Release();
 				return true;
 				break;
 		}
@@ -403,7 +400,7 @@ void Alarm::CreateVars
 	{
 		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, AlarmIndex_Type, "Alarm Type", "", true, false, 0, 0 );
 		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, AlarmIndex_Level, "Alarm Level", "", true, false, 0, 0 );
-		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, AlarmIndex_Notification, "Alarm Notification", "", false, false, 0, 0 );
+		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, AlarmIndex_Notification, "Alarm Notification", "", false, true, 0, 0 );
 	}
 }
 

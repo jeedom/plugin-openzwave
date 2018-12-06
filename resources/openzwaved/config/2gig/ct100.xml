@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Product xmlns='http://code.google.com/p/open-zwave/'>
+<Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="2" >
   <!--
 	Radio Thermostat Company of America CT100 Plus Thermostat manual available at:
 	https://products.z-wavealliance.org/ProductManual/File?folder=&filename=Manuals/1798/CT100_Plus_UserGuide_20160504.pdf

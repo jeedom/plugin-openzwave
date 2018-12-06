@@ -374,7 +374,7 @@ bool Value::Set
                     if( !IsWriteOnly() )
                     {
                         // queue a "RequestValue" message to update the value
-                        cc->RequestValue( 0, m_id.GetIndex(), m_id.GetInstance(), Driver::MsgQueue_Send );
+                        cc->RequestValue( 0, m_id.GetIndex(), m_id.GetInstance(), Driver::MsgQueue_Refresh);
                     }
                     else
                     {

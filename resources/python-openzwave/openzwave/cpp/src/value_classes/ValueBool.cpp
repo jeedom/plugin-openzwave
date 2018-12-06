@@ -129,10 +129,8 @@ bool ValueBool::Set
 
 	// Set the value in the device.
 	bool ret = ((Value*)tempValue)->Set();
-
 	// clean up the temporary value
 	delete tempValue;
-
 	return ret;
 }
 
