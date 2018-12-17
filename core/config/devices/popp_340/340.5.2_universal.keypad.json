@@ -35,30 +35,12 @@
         "class": 113,
         "value": "",
         "index": 10,
-        "instance": 1,
-        "returnStateTime": 1,
-        "returnStateValue": 0
+        "instance": 1
       },
       "subtype": "binary",
       "display": {
         "invertBinary": "1",
         "generic_type": "SABOTAGE"
-      }
-    },
-    {
-      "name": "Code",
-      "type": "info",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "configuration": {
-        "class": 99,
-        "value": "",
-        "index": 0,
-        "instance": 1
-      },
-      "subtype": "string",
-      "display": {
-        "generic_type": "GENERIC"
       }
     },
     {
