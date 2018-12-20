@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="5">
+  <!-- Configuration -->
+  <CommandClass id="112">
+    <Value type="list" genre="config" instance="1" index="20" label="Switch type" value="2" size="1">
+      <Help>This parameter defines as what type the device should treat the switch connected to the S1 and S2 terminals.
+This parameter is not relevant in gate operating modes (parameter 151 set to 3 or 4). In this case switch always works as a momentary and has to be connected to S1 terminal.</Help>
+      <Item label="momentary switches" value="0" />
+      <Item label="toggle switches" value="1" />
+      <Item label="single, momentary switch (the switch should be connected to S1 terminal)" value="2" />      
+    </Value>
+	
+    <Value type="list" genre="config" instance="1" index="24" label="Inputs orientation" value="0" size="1">
+      <Help>This parameter allows reversing the operation of switches connected to S1 and S2 without changing the wiring.</Help>
+      <Item label="default (S1 – 1st channel, S2 – 2nd channel)" value="0" />
+      <Item label="reversed (S1 – 2nd channel, S2 – 1st channel)" value="1" /> 
+    </Value>
+
+	<Value type="list" genre="config" instance="1" index="25" label="Outputs orientation" value="0" size="1">
+      <Help>This parameter allows reversing the operation of Q1 and Q2 without changing the wiring (in case of invalid motor connection) to ensure proper operation.</Help>
+      <Item label="default (Q1 – 1st channel, Q2 – 2nd channel)" value="0" />
+      <Item label="reversed (Q1 – 2nd channel, Q2 – 1st channel)" value="1" /> 
+    </Value>
+    
+    <Value type="list" genre="config" instance="1" index="40" label="S1 switch - scenes sent" value="0" size="1">
+      <Help>This parameter determines which actions result in sending scene IDs assigned to them.</Help>
+      <Item label="Key pressed 1 time" value="0" />
+      <Item label="Key pressed 2 times" value="1" /> 
+      <Item label="Key pressed 3 times" value="2" /> 
+      <Item label="Key hold down and key released" value="3" /> 
+    </Value>
+    
+    <Value type="list" genre="config" instance="1" index="41" label="S2 switch - scenes sent" value="0" size="1">
+      <Help>This parameter determines which actions result in sending scene IDs assigned to them.</Help>
+      <Item label="Key pressed 1 time" value="0" />
+      <Item label="Key pressed 2 times" value="1" /> 
+      <Item label="Key pressed 3 times" value="2" /> 
+      <Item label="Key hold down and key released" value="3" /> 
+    </Value>
+
+	<Value type="list" genre="config" instance="1" index="60" label="Measuring power consumed by the device itself" value="0" size="1">
+      <Help>This parameter determines whether the power metering should include the amount of active power consumed by the device itself.</Help>
+      <Item label="function inactive" value="0" />
+      <Item label="function active" value="1" /> 
+    </Value>
+   
+    
+    <Value type="short" genre="config" instance="1" index="61" label="Power reports - on change" value="15" size="2" min="0" max="500">
+      <Help>This parameter determines the minimum change in consumed power that will result in sending new power report to the main controller.
+For loads under 50W, the parameter is not relevant and reports are sent every 5W change.
+Power reports are sent no often than every 30 seconds. (0 – reports are disabled1-500 or (1-500%) – change in power)</Help>
+    </Value>
+    
+    <Value type="short" genre="config" instance="1" index="62" label="Power reports - periodic" value="3600" size="2" min="0" max="32400">
+      <Help>This parameter determines in what time intervals the periodic power reports are sent to the main controller. Periodic reports do not depend on power change (parameter 61). (0 – periodic reports are disabled or 30-32400 (30-32400s) – report interval)</Help>
+    </Value>
+    
+    <Value type="short" genre="config" instance="1" index="65" label="Energy reports - on change" value="10" size="2" min="0" max="500">
+      <Help>This parameter determines the minimum change in consumed energy that will result in sending new energy report to the main controller. (0 – reports are disabled or 1-500 (0.01 – 5 kWh) – change in energy)</Help>
+    </Value>
+    
+    <Value type="short" genre="config" instance="1" index="66" label="Energy reports - periodic" value="3600" size="2" min="0" max="32400">
+      <Help>This parameter determines in what time intervals the periodic energy reports are sent to the main controller. Periodic reports do not depend on energy change (parameter 65). (0 – periodic reports are disabled or 30-32400 (30-32400s) – report interval)</Help>
+    </Value>
+    
+    <Value type="short" genre="config" instance="1" index="66" label="Energy reports - periodic" value="3600" size="2" min="0" max="32400">
+      <Help>This parameter determines in what time intervals the periodic energy reports are sent to the main controller. Periodic reports do not depend on energy change (parameter 65). (0 – periodic reports are disabled or 30-32400 (30-32400s) – report interval)</Help>
+    </Value>
+
+	<Value type="list" genre="config" instance="1" index="150" label="Force calibration" value="0" size="1">
+      <Help>By setting this parameter to 2 the device enters the calibration mode. The parameter relevant only if the device is set to work in positioning mode (parameter 151 set to 1, 2 or 4).</Help>
+      <Item label="device is not calibrated" value="0" />
+      <Item label="device is calibrated" value="1" /> 
+      <Item label="force device calibration" value="2" />
+    </Value>
+    
+    <Value type="list" genre="config" instance="1" index="151" label="Operating mode" value="1" size="1">
+      <Help>This parameter allows adjusting operation according to the connected device.</Help>
+      <Item label="roller blind (with positioning)" value="1" />
+      <Item label="Venetian blind (with positioning)" value="2" /> 
+      <Item label="gate (without positioning)" value="3" />
+      <Item label="gate (with positioning)" value="4" />
+      <Item label="roller blind with built-in driver" value="5" />
+      <Item label="roller blind with built-in driver (impulse)" value="6" />
+    </Value>
+
+	<Value type="short" genre="config" instance="1" index="152" label="Venetian blind - time of full turn of the slats" value="150" size="4" min="0" max="90000">
+      <Help>For Venetian blinds (parameter 151 set to 2) the parameter determines time of full turn cycle of the slats.
+For gates (parameter 151 set to 3 or 4) the parameter determines time after which open gate will start closing automatically (if set to 0, gate will not close).
+The parameter is irrelevant for other modes. (0-90000 (0 – 900s, every 0.01s) – time of turn)</Help>
+    </Value>
+
+	<Value type="list" genre="config" instance="1" index="153" label="Set slats back to previous position" value="150" size="4">
+      <Help>For Venetian blinds (parameter 151 set to 2) the parameter determines slats positioning in various situations.
+The parameter is irrelevant for other modes.</Help>
+		 <Item label="slats return to previously set position only in case of the main controller operation." value="0" />
+		 <Item label="slats return to previously set position in case of the main controller operation, momentary switch operation, or when the limit switch is reached." value="1" /> 
+		 <Item label="slats return to previously set position in case of the main controller operation, momentary switch operation, when the limit switch is reached or after receiving the Switch Multilevel Stop control frame" value="2" />
+    </Value>
+	
+	<Value type="short" genre="config" instance="1" index="154" label="Delay motor stop after reaching end switch" value="10" size="2" min="0" max="600">
+      <Help>For blinds (parameter 151 set to 1, 2, 5 or 6) the parameter determines the time after which the motor will be stopped after end switch contacts are closed.
+For gates (parameter 151 set to 3 or 4) the parameter determines the time after which the gate will start closing automatically if S2 contacts are opened (if set to 0, gate will not close). (0-600 (0 – 60s) – time)</Help>
+    </Value>
+    
+    <Value type="short" genre="config" instance="1" index="155" label="Motor operation detection" value="10" size="2" min="0" max="255">
+      <Help>Power threshold to be interpreted as reaching a limit switch. (0 – reaching a limit switch will not be detected or 1-255 (1-255W) – report interval)</Help>
+    </Value>
+
+	<Value type="short" genre="config" instance="1" index="156" label="Time of up movement" value="6000" size="4" min="0" max="90000">
+      <Help>This parameter determines the time needed for roller blinds to reach the top.
+For modes with positioning value is set automatically during calibration, otherwise, it must be set manually. (1-90000 (0.01 – 900.00s, every 0.01s) – movement time)</Help>
+    </Value>
+
+	<Value type="short" genre="config" instance="1" index="157" label="Time of down movement" value="6000" size="4" min="0" max="90000">
+      <Help>This parameter determines time needed for roller blinds to reach the bottom.
+For modes with positioning value is set automatically during calibration, otherwise, it must be set manually. (1-90000 (0.01 – 900.00s, every 0.01s) – movement time)</Help>
+    </Value>
+
+  </CommandClass>
+  <!--
+  <CommandClass id="96" mapping="endpoints" />
+  -->
+  <!-- Association Groups -->
+  <CommandClass id="133">
+    <Associations num_groups="3">
+    	<Group index="1" max_associations="1" label="Lifeline" auto="true"/>
+		<Group index="2" max_associations="5" label="Roller Shutter"/>
+		<Group index="3" max_associations="5" label="Slats"  />
+    </Associations>
+  </CommandClass>
+  <!-- Manufacturer Proprietary, sent when configuring "Fibaro Command Class" -->
+  <CommandClass id="145">
+    <Value genre="user" type="byte" instance="1" index="0" label="Venetian Blind slat position" value="0" min="0" max="100" units="%" />
+    <Value genre="user" type="byte" instance="1" index="1" label="Venetian blind tilt position" value="0" min="0" max="100" units="%" />
+  </CommandClass>
+</Product>
