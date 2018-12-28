@@ -137,7 +137,7 @@ if [ -e /dev/ttyAMA0 ];  then
 fi
 
 RPI_BOARD_REVISION=`grep Revision /proc/cpuinfo | cut -d: -f2 | tr -d " "`
-if [[ $RPI_BOARD_REVISION ==  "a02082" || $RPI_BOARD_REVISION == "a22082" ]]
+if [[ $RPI_BOARD_REVISION ==  "a02082" || $RPI_BOARD_REVISION == "a22082" || $RPI_BOARD_REVISION == "a020d3" ]]
 then
    systemctl disable hciuart
    if [[ ! `grep "dtoverlay=pi3-miniuart-bt" /boot/config.txt` ]]
