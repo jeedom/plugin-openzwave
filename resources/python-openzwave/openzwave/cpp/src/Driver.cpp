@@ -126,6 +126,7 @@ static char const* c_sendQueueNames[] =
 		"Controller",
 		"WakeUp",
 		"Send",
+		"Refresh",
 		"Query",
 		"Poll"
 };
