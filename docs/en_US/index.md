@@ -152,7 +152,7 @@ In summary :
     le contrôleur a prédéfini « L’esclave est toujours un esclave, mais
     sur autorisation, il peut parler »
 
-Configuration du plugin
+Plugin configuration
 =======================
 
 Après le téléchargement du plugin, il vous suffit de l’activer et de le
@@ -388,7 +388,7 @@ You can find here the full configuration of your device :
 
 -   **Activer** : permet de rendre votre équipement actif.
 
--   **Visible** : le rend visible sur le dashboard.
+-   **Visible**: makes it visible on the dashboard.
 
 -   **Node ID** : ID du module sur le réseau Z-Wave. Ceci peut être
     utile si, par exemple, vous voulez remplacer un module défaillant.
