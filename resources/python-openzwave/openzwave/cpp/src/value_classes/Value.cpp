@@ -371,12 +371,7 @@ bool Value::Set
 				res = cc->SetValue( *this );
 				if( res )
                 {
-                    if( !IsWriteOnly() )
-                    {
-                        // queue a "RequestValue" message to update the value
-                        cc->RequestValue( 0, m_id.GetIndex(), m_id.GetInstance(), Driver::MsgQueue_Refresh);
-                    }
-                    else
+                    if(IsWriteOnly() )
                     {
                         // There is a "bug" here in that write only values
                         // never send a notification about the value changing.
