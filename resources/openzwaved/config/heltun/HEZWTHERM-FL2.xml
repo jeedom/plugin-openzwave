@@ -16,6 +16,7 @@ HEZWTHERM-FL2
 			<Item label="Auto" value="10" />
 			<Item label="Heat Econ" value="11" />
 			<Item label="Vacation" value="13" />
+			<Item label="Comfort" value="15" />
 		</Value>
 		<SupportedModes>
 			<Mode index="0" label="Off" />
@@ -24,6 +25,7 @@ HEZWTHERM-FL2
 			<Mode index="10" label="Auto" />
 			<Mode index="11" label="Heat Econ" />
 			<Mode index="13" label="Vacation" />
+			<Mode index="15" label="Comfort" />
 		</SupportedModes>
 	</CommandClass>
 	<CommandClass id="112" name="COMMAND_CLASS_CONFIGURATION" version="1" request_flags="4"  >

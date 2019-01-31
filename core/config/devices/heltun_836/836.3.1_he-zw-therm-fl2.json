@@ -112,7 +112,7 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 64, 
-                "value": "type=setvalue&value=Dry Floor", 
+                "value": "type=setvalue&value=Dry floor", 
                 "index": 0, 
                 "instance": 1
             }, 
