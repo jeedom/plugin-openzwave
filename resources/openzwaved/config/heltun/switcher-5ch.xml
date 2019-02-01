@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product xmlns='http://code.google.com/p/open-zwave/'>
+   <!-- Configuration -->
+  <CommandClass id="112">
+    <Value type="list" genre="config" instance="1" index="1" label="Backlight 1 control source" size="1" value="1">
+      <Help>Buttons backlight control source</Help>
+      <Item label="Backlight Disabled" value="0" />
+      <Item label="Controlled by touch button" value="1" />
+      <Item label="Control by associated device" value="2" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="2" label="Backlight 2 control source" size="1" value="1">
+      <Help>Buttons backlight control source</Help>
+      <Item label="Backlight Disabled" value="0" />
+      <Item label="Controlled by touch button" value="1" />
+      <Item label="Control by associated device" value="2" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="3" label="Backlight 3 control source" size="1" value="1">
+      <Help>Buttons backlight control source</Help>
+      <Item label="Backlight Disabled" value="0" />
+      <Item label="Controlled by touch button" value="1" />
+      <Item label="Control by associated device" value="2" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="4" label="Backlight 4 control source" size="1" value="1">
+      <Help>Buttons backlight control source</Help>
+      <Item label="Backlight Disabled" value="0" />
+      <Item label="Controlled by touch button" value="1" />
+      <Item label="Control by associated device" value="2" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="5" label="Backlight 5 control source" size="1" value="1">
+      <Help>Buttons backlight control source</Help>
+      <Item label="Backlight Disabled" value="0" />
+      <Item label="Controlled by touch button" value="1" />
+      <Item label="Control by associated device" value="2" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="6" label="Relay 1 control source" size="1" value="1">
+      <Help>Touch button number for relay control</Help>
+      <Item label="Controlled by associated device" value="0" />
+      <Item label="Controlled by touch button n1" value="1" />
+      <Item label="Controlled by touch button n2" value="2" />
+      <Item label="Controlled by touch button n3" value="3" />
+      <Item label="Controlled by touch button n4" value="4" />
+      <Item label="Controlled by touch button n5" value="5" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="7" label="Relay 2 control source" size="1" value="2">
+      <Help>Touch button number for relay control</Help>
+      <Item label="Controlled by associated device" value="0" />
+      <Item label="Controlled by touch button n1" value="1" />
+      <Item label="Controlled by touch button n2" value="2" />
+      <Item label="Controlled by touch button n3" value="3" />
+      <Item label="Controlled by touch button n4" value="4" />
+      <Item label="Controlled by touch button n5" value="5" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="8" label="Relay 3 control source" size="1" value="3">
+      <Help>Touch button number for relay control</Help>
+      <Item label="Controlled by associated device" value="0" />
+      <Item label="Controlled by touch button n1" value="1" />
+      <Item label="Controlled by touch button n2" value="2" />
+      <Item label="Controlled by touch button n3" value="3" />
+      <Item label="Controlled by touch button n4" value="4" />
+      <Item label="Controlled by touch button n5" value="5" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="9" label="Relay 4 control source" size="1" value="4">
+      <Help>Touch button number for relay control</Help>
+      <Item label="Controlled by associated device" value="0" />
+      <Item label="Controlled by touch button n1" value="1" />
+      <Item label="Controlled by touch button n2" value="2" />
+      <Item label="Controlled by touch button n3" value="3" />
+      <Item label="Controlled by touch button n4" value="4" />
+      <Item label="Controlled by touch button n5" value="5" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="10" label="Relay 5 control source" size="1" value="5">
+      <Help>Touch button number for relay control</Help>
+      <Item label="Controlled by associated device" value="0" />
+      <Item label="Controlled by touch button n1" value="1" />
+      <Item label="Controlled by touch button n2" value="2" />
+      <Item label="Controlled by touch button n3" value="3" />
+      <Item label="Controlled by touch button n4" value="4" />
+      <Item label="Controlled by touch button n5" value="5" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="11" label="Click Control Mode for button 1" size="1" value="1">
+      <Help>Click Control Mode for button</Help>
+      <Item label="Disabled" value="0" />
+      <Item label="Inversion/Toggle regarding button state" value="1" />
+      <Item label="Inversion/Toggle regarding backlight state" value="2" />
+      <Item label="On only" value="3" />
+      <Item label="Off only" value="4" />
+      <Item label="Timer Mode on->off" value="5" />
+      <Item label="Timer Mode off->on" value="6" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="12" label="Click Control Mode for button 2" size="1" value="1">
+      <Help>Click Control Mode for button</Help>
+      <Item label="Disabled" value="0" />
+      <Item label="Inversion/Toggle regarding button state" value="1" />
+      <Item label="Inversion/Toggle regarding backlight state" value="2" />
+      <Item label="On only" value="3" />
+      <Item label="Off only" value="4" />
+      <Item label="Timer Mode on->off" value="5" />
+      <Item label="Timer Mode off->on" value="6" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="13" label="Click Control Mode for button 3" size="1" value="1">
+      <Help>Click Control Mode for button</Help>
+      <Item label="Disabled" value="0" />
+      <Item label="Inversion/Toggle regarding button state" value="1" />
+      <Item label="Inversion/Toggle regarding backlight state" value="2" />
+      <Item label="On only" value="3" />
+      <Item label="Off only" value="4" />
+      <Item label="Timer Mode on->off" value="5" />
+      <Item label="Timer Mode off->on" value="6" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="14" label="Click Control Mode for button 4" size="1" value="1">
+      <Help>Click Control Mode for button</Help>
+      <Item label="Disabled" value="0" />
+      <Item label="Inversion/Toggle regarding button state" value="1" />
+      <Item label="Inversion/Toggle regarding backlight state" value="2" />
+      <Item label="On only" value="3" />
+      <Item label="Off only" value="4" />
+      <Item label="Timer Mode on->off" value="5" />
+      <Item label="Timer Mode off->on" value="6" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="15" label="Click Control Mode for button 5" size="1" value="1">
+      <Help>Click Control Mode for button</Help>
+      <Item label="Disabled" value="0" />
+      <Item label="Inversion/Toggle regarding button state" value="1" />
+      <Item label="Inversion/Toggle regarding backlight state" value="2" />
+      <Item label="On only" value="3" />
+      <Item label="Off only" value="4" />
+      <Item label="Timer Mode on->off" value="5" />
+      <Item label="Timer Mode off->on" value="6" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="16" label="Hold Control Mode for button 1" size="1" value="1">
+      <Help>Hold Control Mode for button</Help>
+      <Item label="Disabled" value="0" />
+      <Item label="Like Click" value="1" />
+      <Item label="Held on release off" value="2" />
+      <Item label="Held off release on" value="3" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="17" label="Hold Control Mode for button 2" size="1" value="1">
+      <Help>Hold Control Mode for button</Help>
+      <Item label="Disabled" value="0" />
+      <Item label="Like Click" value="1" />
+      <Item label="Held on release off" value="2" />
+      <Item label="Held off release on" value="3" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="18" label="Hold Control Mode for button 3" size="1" value="1">
+      <Help>Hold Control Mode for button</Help>
+      <Item label="Disabled" value="0" />
+      <Item label="Like Click" value="1" />
+      <Item label="Held on release off" value="2" />
+      <Item label="Held off release on" value="3" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="19" label="Hold Control Mode for button 4" size="1" value="1">
+      <Help>Hold Control Mode for button</Help>
+      <Item label="Disabled" value="0" />
+      <Item label="Like Click" value="1" />
+      <Item label="Held on release off" value="2" />
+      <Item label="Held off release on" value="3" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="20" label="Hold Control Mode for button 5" size="1" value="1">
+      <Help>Hold Control Mode for button</Help>
+      <Item label="Disabled" value="0" />
+      <Item label="Like Click" value="1" />
+      <Item label="Held on release off" value="2" />
+      <Item label="Held off release on" value="3" />
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="21" label="Relay 1 timer duration" min="1" max ="240" value="1">
+      <Help>Relay timer duration</Help>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="22" label="Relay 2 timer duration" min="1" max ="240" value="1">
+      <Help>Relay timer duration</Help>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="23" label="Relay 3 timer duration" min="1" max ="240" value="1">
+      <Help>Relay timer duration</Help>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="24" label="Relay 4 timer duration" min="1" max ="240" value="1">
+      <Help>Relay timer duration</Help>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="25" label="Relay 5 timer duration" min="1" max ="240" value="1">
+      <Help>Relay timer duration</Help>
+    </Value>
+	<Value type="short" genre="config" instance="1" index="26" label="Power Of The relay 1 load in W" min="0" max="5000" units="W" value="0">
+      <Help>Power Of The relay</Help>
+    </Value>
+	<Value type="short" genre="config" instance="1" index="27" label="Power Of The relay 2 load in W" min="0" max="5000" units="W" value="0">
+      <Help>Power Of The relay</Help>
+    </Value>
+	<Value type="short" genre="config" instance="1" index="28" label="Power Of The relay 3 load in W" min="0" max="5000" units="W" value="0">
+      <Help>Power Of The relay</Help>
+    </Value>
+	<Value type="short" genre="config" instance="1" index="29" label="Power Of The relay 4 load in W" min="0" max="5000" units="W" value="0">
+      <Help>Power Of The relay</Help>
+    </Value>
+	<Value type="short" genre="config" instance="1" index="30" label="Power Of The relay 5 load in W" min="0" max="5000" units="W" value="0">
+      <Help>Power Of The relay</Help>
+    </Value>
+	<Value type="list" genre="config" instance="1" index="31" label="Red Colour Brightness" size="1" value="0">
+      <Help>Red Colour Brightness</Help>
+      <Item label="Auto" value="0" />
+      <Item label="Min" value="1" />
+      <Item label="Medium" value="2" />
+      <Item label="Max" value="3" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="32" label="Blue Colour Brightness" size="1" value="0">
+      <Help>Blue Colour Brightness</Help>
+      <Item label="Auto" value="0" />
+      <Item label="Min" value="1" />
+      <Item label="Medium" value="2" />
+      <Item label="Max" value="3" />
+    </Value>
+	<Value type="short" genre="config" instance="1" index="33" label="Red auto brightness level 1 max lumen" min="0" max="5000" units="lm" value="30">
+      <Help>Red auto brightness level 1 max lumen</Help>
+    </Value>
+	<Value type="short" genre="config" instance="1" index="34" label="Red auto brightness level 2 max lumen" min="0" max="5000" units="lm" value="200">
+      <Help>Red auto brightness level 2 max lumen</Help>
+    </Value>
+	<Value type="short" genre="config" instance="1" index="35" label="Blue auto brightness level 1 max lumen" min="0" max="5000" units="lm" value="30">
+      <Help>Blue auto brightness level 1 max lumen</Help>
+    </Value>
+	<Value type="short" genre="config" instance="1" index="36" label="Blue auto brightness level 2 max lumen" min="0" max="5000" units="lm" value="200">
+      <Help>Blue auto brightness level 2 max lumen</Help>
+    </Value>
+	<Value type="list" genre="config" instance="1" index="37" label="Activate state backlight colour" size="1" value="1">
+      <Help>Activate state backlight colour</Help>
+      <Item label="red active blue inactive" value="0" />
+      <Item label="blue active red incative" value="1" />
+    </Value>
+	<Value type="short" genre="config" instance="1" index="38" label="Temperature Calibration" min="-95" max="95" units="" value="0">
+      <Help>Temperature Calibration</Help>
+    </Value>
+	<Value type="short" genre="config" instance="1" index="39" label="Temperature difference to send" min="1" max="10" units="" value="2">
+      <Help>Value x10</Help>
+    </Value>
+	<Value type="short" genre="config" instance="1" index="40" label="Touch Button sensitivity" min="10" max="60" units="" value="20">
+      <Help>10 higher 60</Help>
+    </Value>
+	<Value type="list" genre="config" instance="1" index="41" label="Gateway" size="1" value="0">
+      <Help>Must be 1 for jeedom and fibaro</Help>
+      <Item label="Normal" value="0" />
+      <Item label="Jeedom/Fibaro" value="1" />
+    </Value>
+  </CommandClass>
+	
+  <!-- Map endpoints to instances -->
+  <CommandClass id="96" mapping="endpoints" />
+    
+  <!-- Association Groups -->  
+  <CommandClass id="133">
+    <Associations num_groups="5">
+      <Group index="1" max_associations="1" label="Lifeline"/>
+      <Group index="2" max_associations="5" label="Touch Button 1 Basic" />
+      <Group index="3" max_associations="5" label="Touch Button 1 Multilevel" />
+      <Group index="4" max_associations="5" label="Touch Button 2 Basic" />
+      <Group index="5" max_associations="5" label="Touch Button 2 Multilevel" />
+      <Group index="6" max_associations="5" label="Touch Button 3 Basic" />
+      <Group index="7" max_associations="5" label="Touch Button 3 Multilevel" />
+      <Group index="8" max_associations="5" label="Touch Button 4 Basic" />
+      <Group index="9" max_associations="5" label="Touch Button 4 Multilevel" />
+      <Group index="10" max_associations="5" label="Touch Button 5 Basic" />
+      <Group index="11" max_associations="5" label="Touch Button 5 Multilevel" />
+      <Group index="12" max_associations="5" label="Backlight 1 Basic" />
+	  <Group index="13" max_associations="5" label="Backlight 2 Basic"/>
+      <Group index="14" max_associations="5" label="Backlight 3 Basic" />
+      <Group index="15" max_associations="5" label="Backlight 4 Basic" />
+      <Group index="16" max_associations="5" label="Backlight 5 Basic" />
+	  <Group index="17" max_associations="5" label="Relay 1 basic"/>
+      <Group index="18" max_associations="5" label="Relay 2 basic" />
+      <Group index="19" max_associations="5" label="Relay 3 basic" />
+      <Group index="20" max_associations="5" label="Relay 4 basic" />
+	  <Group index="21" max_associations="5" label="Relay 5 basic"/>
+    </Associations>
+  </CommandClass>
+</Product>

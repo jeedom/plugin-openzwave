@@ -104,7 +104,7 @@ bool SwitchBinary::HandleMsg
 	uint32 const _instance	// = 1
 )
 {
-	if (SwitchBinaryCmd_Report == (SwitchBinaryCmd)_data[0])
+	if ((SwitchBinaryCmd_Report == (SwitchBinaryCmd)_data[0]) || (SwitchBinaryCmd_Set == (SwitchBinaryCmd)_data[0]))//some multichannel encap devices send set and no report
 	{
 		Log::Write( LogLevel_Info, GetNodeId(), "Received SwitchBinary report from node %d: level=%s", GetNodeId(), _data[1] ? "On" : "Off" );
 
