@@ -369,5 +369,13 @@
                 "mobile": "light"
             }
         }
-    ]
+    ], 
+    "recommended": {
+        "params": [
+            {
+                "index": 41, 
+                "value": 1
+            }
+        ]
+    }
 }
