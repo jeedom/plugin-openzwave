@@ -1,5 +1,6 @@
 04-02-2019
 ===
+- CETTE MAJ NECESSITE DE RECOMPILER LES DEPENDANCES
 - Correction d'un bug sur les multiinstances des thermostats
 - Création d'un niveau de queue dépriorisé sur les actions pour les refreshs
 - Rajout de nombreuses confs (pour rappel le bouton récupérer les confs est utile pour etre a jour sans mettre a jour le plugin)
@@ -14,6 +15,7 @@
 - Rajout des codes sur la CC alarme pour clavier Zipato pour le moment
 - Correction de la philio en mode sécurisée qui lors des sonneries générait un timeout de 10 secondes (il faut surement regenerer la detection de la sirene ou la reinclure)
 - Correction d'un bug si le niveau de log est sur aucun
+- CETTE MAJ NECESSITE DE RECOMPILER LES DEPENDANCES
 
 17-03-2018
 ===
