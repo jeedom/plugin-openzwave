@@ -1,3 +1,18 @@
+04-02-2019
+===
+- Correction d'un bug sur les multiinstances des thermostats
+- Création d'un niveau de queue dépriorisé sur les actions pour les refreshs
+- Rajout de nombreuses confs (pour rappel le bouton récupérer les confs est utile pour etre a jour sans mettre a jour le plugin)
+- Amélioration de la gestion des multichannels encapsulés
+- Rajout de la CC manufacturer specific
+- Mise en place simple de la CC Soundswitch
+- Correction de l'inclusion Multiples des devices&lt
+- Amélioration de la CC Switch Binary
+- La saisie de parametre manuel est toujours possible
+- Amélioration de la queue
+- Préparation pour rajout nouvelles CCs (notification notamment)
+- Rajout des codes sur la CC alarme pour clavier Zipato pour le moment
+- Correction de la philio en mode sécurisée qui lors des sonneries générait un timeout de 10 secondes (il faut surement regenerer la detection de la sirene ou la reinclure)
 - Correction d'un bug si le niveau de log est sur aucun
 
 17-03-2018
