@@ -126,6 +126,7 @@ static char const* c_sendQueueNames[] =
 		"Controller",
 		"WakeUp",
 		"Send",
+		"Refresh",
 		"Query",
 		"Poll"
 };
@@ -3164,7 +3165,10 @@ void Driver::HandleRemoveNodeFromNetworkRequest
 			}
 			else
 			{
-				Log::Write( LogLevel_Warning, "Remove Node Failed - NodeID 0 Returned");
+				Log::Write( LogLevel_Warning, "Remove Node Was not in the Network - NodeID 0 Returned");
+				Notification* notification = new Notification( Notification::Type_NodeRemoved );
+				notification->SetHomeAndNodeIds( m_homeId, 0 );
+				QueueNotification( notification );
 				state = ControllerState_Failed;
 			}
 			break;
@@ -3895,6 +3899,11 @@ void Driver::CommonAddNodeStatusRequestHandler
 			{
 				m_currentControllerCommand->m_controllerAdded = true;
 				m_currentControllerCommand->m_controllerCommandNode = _data[4];
+				/* make sure we dont overrun our buffer. Its ok to truncate */
+				uint8 length = _data[5];
+				if (length > 254) length = 254;
+				memcpy(&m_currentControllerCommand->m_controllerDeviceProtocolInfo, &_data[6], length);
+				m_currentControllerCommand->m_controllerDeviceProtocolInfoLength = length;
 			}
 //			AddNodeStop( _funcId );
 			break;

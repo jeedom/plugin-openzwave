@@ -350,7 +350,8 @@ jeedom.openzwave.node.setParam(setParamOptions);
  $("#tab-parameters").off("click").on("click", function () {
     if (!node_selected.instances[1].commandClasses[112]) {
         $("#parameters").html('<br><div><b>{{Aucun paramètre prédefini trouvé pour ce noeud}}</b></div><br>');
-        $("#parameters").append('<div class="row"><label class="col-lg-2">{{Paramètre :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">{{Valeur :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">{{Taile :}}</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><a id="sendparamperso" class="btn btn-primary">{{Envoyer le paramètre}}</a></div></div>');
+        $("#parameters").append('<div class="row"><label class="col-lg-2">{{Paramètre (manuel) :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">{{Valeur :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">{{Taile :}}</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><a id="sendparamperso" class="btn btn-primary">{{Envoyer le paramètre}}</a></div></div>');        
+    }
         $("#sendparamperso").off("click").on("click", function () {
             jeedom.openzwave.node.setParam({
                 node_id : node_id,
@@ -365,7 +366,6 @@ jeedom.openzwave.node.setParam(setParamOptions);
                }
            });  
         });
-    }
 });
 
  $("body").off("click", ".deleteGroup").on("click", ".deleteGroup", function (e) {

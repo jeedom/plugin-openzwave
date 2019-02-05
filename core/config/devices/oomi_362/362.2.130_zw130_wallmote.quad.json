@@ -1,0 +1,124 @@
+{
+    "name": "WallMote Quad (ZW130)", 
+    "type": "Télécommande", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "aeotec.zw130", 
+    "configuration": {
+        "battery_type": "Batterie"
+    }, 
+    "commands": [
+        {
+            "name": "Scene", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 91, 
+                "value": "", 
+                "index": 128, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "", 
+            "template": {
+                "dashboard": "badge", 
+                "mobile": "badge"
+            }
+        }, 
+        {
+            "name": "SceneID", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 91, 
+                "value": "", 
+                "index": 2, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "", 
+            "template": {
+                "dashboard": "badge", 
+                "mobile": "badge"
+            }
+        }, 
+        {
+            "name": "SceneAttribute", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 91, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "", 
+            "template": {
+                "dashboard": "badge", 
+                "mobile": "badge"
+            }
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        },
+        {
+            "name": "Power management",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 113,
+                "value": "",
+                "index": 11,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 15
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "BATTERY_CHARGING"
+            }
+        }
+    ], 
+    "recommended": {
+        "params": [
+            {
+                "index": 1, 
+                "value": "Disable"
+            }
+        ], 
+        "needswakeup": true
+    }
+}

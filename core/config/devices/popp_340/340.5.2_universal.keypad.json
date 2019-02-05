@@ -1,0 +1,66 @@
+{
+  "name": "Universal Keypad",
+  "type": "Clavier",
+  "comlink": "",
+  "remark": "",
+  "imglink": "popp.keypad",
+  "commands": [
+    {
+      "name": "Scene",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 91,
+        "value": "",
+        "index": 2,
+        "instance": 1,
+        "repeatEventManagement": "always"
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "GENERIC"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
+      }
+    },
+    {
+      "name": "Sabotage",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 113,
+        "value": "",
+        "index": 10,
+        "instance": 1
+      },
+      "subtype": "binary",
+      "display": {
+        "invertBinary": "1",
+        "generic_type": "SABOTAGE"
+      }
+    },
+    {
+      "name": "Batterie",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 128,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "BATTERY"
+      },
+      "unite": "%"
+    }
+  ]
+}

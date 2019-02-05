@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- EVERSPRING SE818 SIREN -->
+<Product xmlns='http://code.google.com/p/open-zwave/'>
+	<CommandClass id="112">
+    <Value type="short" index="1" genre="config" label="Siren alarm period " units="seconds" min="10" max="600" value="180">
+      <Help>
+	10-600 seconds
+      </Help>
+    </Value>
+    <Value type="short" index="2" genre="config" label="Temperature and Humidity Auto Report period setting" units="minutes" min="1" max="1440" value="30">
+      <Help>
+	Temperature and Humidity Auto Report period setting
+      </Help>
+    </Value>
+  </CommandClass>
+	<CommandClass id="133">
+		<Associations num_groups="1">
+			<Group index="1" max_associations="5" label="Lifeline" />
+		</Associations>
+	</CommandClass>
+</Product>

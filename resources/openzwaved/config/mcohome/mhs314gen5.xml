@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product xmlns='http://code.google.com/p/open-zwave/'>
+	<CommandClass id="112">    
+    <Value type="list" genre="config" instance="1" index="2" label="Saving state before power failure" size="1" value="1">
+      <Help>Switch state saved or not when power down</Help>
+      <Item label="Disabled" value="0"/>
+      <Item label="Enabled" value="1"/>
+    </Value>
+	<Value type="list" genre="config" instance="1" index="3" label="All On All Off" size="1" value="1">
+      <Help>All On All Off forbid or allow</Help>
+      <Item label="Forbid ON and Off" value="0"/>
+      <Item label="Only Forbid On" value="1"/>
+      <Item label="Only Forbid Off" value="2"/>
+      <Item label="Allow ON and Off" value="255"/>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="4" label="Led BackLight" min="0" max="10" units="" value="10">
+      <Help>Led BackLight 0 led disabled 1-10 (brightness)</Help>
+    </Value>
+	<Value type="list" genre="config" instance="1" index="5" label="Key Mode" size="1" value="0">
+      <Help></Help>
+      <Item label="Single click to switch on/off status" value="0"/>
+      <Item label="Key default as off state. auto turn off" value="1"/>
+      <Item label="Key default as on state. auto turn on" value="2"/>
+      <Item label="Hold >3s then key is on, and off once released" value="3"/>
+      <Item label="Single click to toogle + hold >3s then key is on and off once released" value="4"/>
+    </Value>	
+	<Value type="byte" genre="config" instance="1" index="6" label="Key on duration" min="0" max="65535" units="s" value="0">
+      <Help>This function works for corridor or stairwell situation</Help>
+    </Value>
+	<Value type="list" genre="config" instance="1" index="8" label="Basic CC integration setting" size="1" value="0">
+      <Help>see Manual</Help>
+      <Item label="Mode 0" value="0"/>
+      <Item label="Mode 1" value="1"/>
+      <Item label="Mode 2" value="2"/>
+      <Item label="Mode 3" value="3"/>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="10" label="Scene respond" min="0" max="256" units="" value="0">
+      <Help></Help>
+    </Value>
+	<Value type="list" genre="config" instance="1" index="11" label="Key1 Scene Activate Mode Setting" size="1" value="0">
+      <Help></Help>
+      <Item label="Scene activate function disabled" value="0"/>
+      <Item label="One click key1 always activate scene ID 1 no matter what the status of Key 1 is" value="1"/>
+      <Item label="One click key1, only activate scene ID 1 when key1's relay output is open" value="2"/>
+      <Item label="One click key1, only activate scene ID 1 when key1's relay output is close" value="3"/>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="12" label="Key1 Activate Scene ID" min="0" max="255" units="" value="1">
+      <Help></Help>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="13" label="Key1 Activate Scene duration" min="0" max="255" units="s" value="0">
+      <Help></Help>
+    </Value>
+	<Value type="list" genre="config" instance="1" index="14" label="Key2 Scene Activate Mode Setting" size="1" value="0">
+      <Help></Help>
+      <Item label="Scene activate function disabled" value="0"/>
+      <Item label="One click key2 always activate scene ID 1 no matter what the status of Key 2 is" value="1"/>
+      <Item label="One click key2, only activate scene ID 1 when key2's relay output is open" value="2"/>
+      <Item label="One click key2, only activate scene ID 1 when key2's relay output is close" value="3"/>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="15" label="Key2 Activate Scene ID" min="0" max="255" units="" value="1">
+      <Help></Help>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="16" label="Key2 Activate Scene duration" min="0" max="255" units="s" value="0">
+      <Help></Help>
+    </Value>
+	<Value type="list" genre="config" instance="1" index="17" label="Key3 Scene Activate Mode Setting" size="1" value="0">
+      <Help></Help>
+      <Item label="Scene activate function disabled" value="0"/>
+      <Item label="One click key3 always activate scene ID 1 no matter what the status of Key 3 is" value="1"/>
+      <Item label="One click key3, only activate scene ID 1 when key3's relay output is open" value="2"/>
+      <Item label="One click key3, only activate scene ID 1 when key3's relay output is close" value="3"/>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="18" label="Key3 Activate Scene ID" min="0" max="255" units="" value="1">
+      <Help></Help>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="19" label="Key3 Activate Scene duration" min="0" max="255" units="s" value="0">
+      <Help></Help>
+    </Value>
+	<Value type="list" genre="config" instance="1" index="20" label="Key4 Scene Activate Mode Setting" size="1" value="0">
+      <Help></Help>
+      <Item label="Scene activate function disabled" value="0"/>
+      <Item label="One click key4 always activate scene ID 1 no matter what the status of Key 4 is" value="1"/>
+      <Item label="One click key4, only activate scene ID 1 when key4's relay output is open" value="2"/>
+      <Item label="One click key4, only activate scene ID 1 when key4's relay output is close" value="3"/>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="21" label="Key4 Activate Scene ID" min="0" max="255" units="" value="1">
+      <Help></Help>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="22" label="Key4 Activate Scene duration" min="0" max="255" units="s" value="0">
+      <Help></Help>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="255" label="Factory reset" min="0" max="55" units="" value="0">
+      <Help>value 55 to reset</Help>
+    </Value>
+  </CommandClass>
+  <!-- Basic set as report -->
+  <CommandClass id="32" setasreport="true"/>
+	
+  <!-- Map endpoints to instances -->
+  <CommandClass id="96" mapping="endpoints" />
+    
+  <!-- Association Groups -->  
+  <CommandClass id="133">
+    <Associations num_groups="5">
+      <Group index="1" max_associations="1" label="Lifeline"/>
+      <Group index="2" max_associations="5" label="Button1" />
+      <Group index="3" max_associations="5" label="Button2" />
+      <Group index="4" max_associations="5" label="Button3" />
+	  <Group index="5" max_associations="5" label="Button4"/>
+    </Associations>
+  </CommandClass>
+</Product>

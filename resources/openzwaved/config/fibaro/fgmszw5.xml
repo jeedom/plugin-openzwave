@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<Product xmlns='http://code.google.com/p/open-zwave/'>
+<Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="2">
 	<!--
 	Fibaro Motion Sensor FGMS-001-ZW5
 	http://manuals.fibaro.com/content/manuals/en/FGMS-001/FGMS-001-EN-T-v2.0.pdf
@@ -199,7 +199,7 @@
 				Default setting: 0
 			</Help>
 		</Value>
-		<Value type="int" genre="config" instance="1" index="66" label="Temperature offset" min="0" max="65535" value="0">
+		<Value type="short" genre="config" instance="1" index="66" label="Temperature offset" min="0" max="65535" value="0">
 			<Help>
 				The value to be added to the actual temperature, measured by the sensor (temperature compensation).
 				Available settings: 0 - 100 (0 to 100C) or 64536 - 65535 (-100 to -0.10C)

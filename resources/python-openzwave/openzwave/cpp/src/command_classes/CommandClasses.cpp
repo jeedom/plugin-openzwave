@@ -54,6 +54,7 @@ using namespace OpenZWave;
 #include "command_classes/Indicator.h"
 #include "command_classes/Language.h"
 #include "command_classes/Lock.h"
+#include "command_classes/ManufacturerProprietary.h"
 #include "command_classes/ManufacturerSpecific.h"
 #include "command_classes/Meter.h"
 #include "command_classes/MeterPulse.h"
@@ -70,6 +71,7 @@ using namespace OpenZWave;
 #include "command_classes/SensorAlarm.h"
 #include "command_classes/SensorBinary.h"
 #include "command_classes/SensorMultilevel.h"
+#include "command_classes/SoundSwitch.h"
 #include "command_classes/SwitchAll.h"
 #include "command_classes/SwitchBinary.h"
 #include "command_classes/SwitchMultilevel.h"
@@ -207,6 +209,7 @@ void CommandClasses::RegisterCommandClasses
 	cc.Register( Indicator::StaticGetCommandClassId(), Indicator::StaticGetCommandClassName(), Indicator::Create );
 	cc.Register( Language::StaticGetCommandClassId(), Language::StaticGetCommandClassName(), Language::Create );
 	cc.Register( Lock::StaticGetCommandClassId(), Lock::StaticGetCommandClassName(), Lock::Create );
+	cc.Register( ManufacturerProprietary::StaticGetCommandClassId(), ManufacturerProprietary::StaticGetCommandClassName(), ManufacturerProprietary::Create );
 	cc.Register( ManufacturerSpecific::StaticGetCommandClassId(), ManufacturerSpecific::StaticGetCommandClassName(), ManufacturerSpecific::Create );
 	cc.Register( Meter::StaticGetCommandClassId(), Meter::StaticGetCommandClassName(), Meter::Create );
 	cc.Register( MeterPulse::StaticGetCommandClassId(), MeterPulse::StaticGetCommandClassName(), MeterPulse::Create );
@@ -223,6 +226,7 @@ void CommandClasses::RegisterCommandClasses
 	cc.Register( SensorAlarm::StaticGetCommandClassId(), SensorAlarm::StaticGetCommandClassName(), SensorAlarm::Create );
 	cc.Register( SensorBinary::StaticGetCommandClassId(), SensorBinary::StaticGetCommandClassName(), SensorBinary::Create );
 	cc.Register( SensorMultilevel::StaticGetCommandClassId(), SensorMultilevel::StaticGetCommandClassName(), SensorMultilevel::Create );
+	cc.Register( SoundSwitch::StaticGetCommandClassId(), SoundSwitch::StaticGetCommandClassName(), SoundSwitch::Create );
 	cc.Register( SwitchAll::StaticGetCommandClassId(), SwitchAll::StaticGetCommandClassName(), SwitchAll::Create );
 	cc.Register( SwitchBinary::StaticGetCommandClassId(), SwitchBinary::StaticGetCommandClassName(), SwitchBinary::Create );
 	cc.Register( SwitchMultilevel::StaticGetCommandClassId(), SwitchMultilevel::StaticGetCommandClassName(), SwitchMultilevel::Create );

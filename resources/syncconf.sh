@@ -27,6 +27,9 @@ if [ -d  ${BASEDIR}/../core/config/devices ]; then
 	echo "Copie des nouvelles configurations Openzwave"
 	cd /tmp/plugin-openzwave/resources/openzwaved/config
 	sudo mv * ${BASEDIR}/../resources/openzwaved/config/
+	cd /tmp/plugin-openzwave/resources/openzwaved/ozwave
+	sudo rm -f ${BASEDIR}/../resources/openzwaved/ozwave/globals.py
+	sudo mv globals.py ${BASEDIR}/../resources/openzwaved/ozwave/
 	echo "Nettoyage du répertoire de travail"
 	sudo rm -R /tmp/plugin-openzwave
 	sudo chown -R www-data:www-data ${BASEDIR}/../resources/openzwaved/config/

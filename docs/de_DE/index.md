@@ -1,10 +1,10 @@
-Beschreibung
+Description
 ===========
 
 Dieses Plugin ermöglicht die Nutzung von Z-Wave Modulen über
 die OpenZwave-Bibliothek.
 
-Einleitung
+Introduction
 ============
 
 Z-Wave kommuniziert mit Low-Power-Funktechnologie im 868,42 MHz
@@ -25,7 +25,7 @@ Sicherheitssensoren.
 
 Das Z-Wave+ bringt einige Verbesserungen, einschließlich einer besseren Reichweite und verbessert unter anderem die Lebensdauer der Batterien.  Z-Wave ist voll Abwärtskompatibel.
 
-Entfernungen zu anderen Funksignalquellen beachten
+Distances à respecter avec les autres sources de signaux sans fil
 -----------------------------------------------------------------
 
 Die Funkempfängern müssen in einem Mindestabstand von 50 cm von
@@ -59,7 +59,7 @@ Die Entfernung zwischen anderen drahtlosen Sendern wie schnurlosen Telefonen ode
 
 -   medizinische Behandlungsgeräte
 
-Effektive  Wandstärke
+Epaisseur efficace des murs
 ---------------------------
 
 Die Standorte der Module müssen so gewählt werden, dass die direkte
@@ -71,7 +71,7 @@ Wand) führt, um die Dämpfung so weit wie möglich zu vermeiden.
 Metallteile des Gebäudes oder Möbel können elektromagnetische Wellen
 blockieren.
 
-Vernetzung und Routing
+Maillage et Routage
 -------------------
 
 Z-Wave-Netzknoten können Meldungen übertragen und wiederholen, die
@@ -120,7 +120,7 @@ Stabilität und der maximalen Dauer einer Nachricht.
 > Es gibt Repeater-Module für Bereiche, in denen kein Netzbetriebenes
 > Modul benötigt wird.
 
-Eigenschaften von Z-Wave-Geräten
+Propriétés des appareils Z-Wave
 -------------------------------
 
 |  | Nachbarn | Route | Mögliche Funktionen |
@@ -147,7 +147,7 @@ Zusammenfassend lässt sich sagen :
     vorgegeben hat « der Slave ist immer ein Slave, aber mit Erlaubnis
     kann er sprechen »
 
-Plugin-Konfiguration
+Configuration du plugin
 =======================
 
 Nachdem Sie das Plugin heruntergeladen haben, müssen Sie es nur noch
@@ -159,7 +159,7 @@ Sobald Sie aktiviert haben, sollte der Daemon starten. Das Plugin ist mit
 Standardwerten vorkonfiguriert ; Sie haben normalerweise nichts zu tun. Sie
 können jedoch die Konfiguration ändern.
 
-Abhängigkeiten
+Dépendances
 -----------
 
 Dieser Teil erlaubt es, die Abhängigkeiten zu überprüfen und zu installieren,
@@ -189,7 +189,7 @@ und remote, hier lokal) ![configuration02](../images/configuration02.png)
 > Wenn Sie sich im Remote-Modus befinden, können die Abhängigkeiten
 > des lokalen Daemon NOK sein, das ist normal.
 
-Dämon
+Démon
 -----
 
 Dieser Abschnitt ermöglicht den aktuellen Zustand des Dämonen zu
@@ -214,7 +214,7 @@ Dieser Abschnitt ermöglicht den aktuellen Zustand des Dämonen zu
 -   Der **Letzte Start** ist, wie es sein Name sagt, das Datum des letzten 
     bekannten Start des Dämon.
 
-Protokoll
+Log
 ---
 
 Dieser Abschnitt ermöglicht es, die Ebene des Protokolls zu wählen und dessen Inhalt durchzulesen.
@@ -235,7 +235,7 @@ Die **Debug-**oder**Info-**Ebene kann hilfreich sein, um zu verstehen, warum der
 > Ebene wie die **Fehler** Ebene zurückzugehen, die nur mögliche Fehler
 > speichert.
 
-Konfiguration
+Configuration
 -------------
 
 Dieser Abschnitt ermöglicht die Konfiguration der allgemeinen Plugin Parameter
@@ -326,7 +326,7 @@ Vergessen Sie nicht, zu ![configuration08](../images/configuration08.png), wenn 
 > La sélection du Port clé Z-Wave en mode de détection automatique,
 > **Auto**, ne fonctionne que pour les dongles USB.
 
-Mobil Panel
+Paneau Mobile
 -------------
 
 ![configuration09](../images/configuration09.png)
@@ -334,7 +334,7 @@ Mobil Panel
 Ermöglicht Ihnen, das mobile Panel bei der Verwendung anzuzeigen oder nicht
 die Anwendung auf einem Telefon.
 
-Gerätekonfiguration
+Configuration des équipements
 =============================
 
 La configuration des équipements Z-Wave est accessible à partir du menu
@@ -359,7 +359,7 @@ quelques équipements) :
 > **Réseau-Zwave**et**Santé**, sont visibles seulement si vous êtes en
 > mode **Expert**. ![appliance03](../images/appliance03.png)
 
-Général 
+Général
 -------
 
 Sie werden hier alle die Konfiguration Ihrer Geräte finden:
@@ -410,7 +410,7 @@ Sie werden hier alle die Konfiguration Ihrer Geräte finden:
 > équipement supprimé qui est toujours rattaché à son contrôleur sera
 > automatiquement recréé suite à la synchronisation.
 
-Befehle
+Commandes
 ---------
 
 Ci-dessous vous retrouvez la liste des commandes :
@@ -422,7 +422,7 @@ Ci-dessous vous retrouvez la liste des commandes :
 > En fonction des types et sous-types, certaines options peuvent être
 > absentes.
 
--   le nom affiché sur le dashboard
+-   Der Name, der auf dem Armaturenbrett angezeigt wird
 
 -   icône : dans le cas d’une action permet de choisir une icône à
     afficher sur le dashboard au lieu du texte
@@ -462,7 +462,7 @@ Ci-dessous vous retrouvez la liste des commandes :
 -   Min/Max : bornes de la donnée (peuvent être vides).
 
 -   Advanced Configuration (kleine Zahnräder): Zeigt
-    la configuration avancée de la commande (méthode
+    Konfiguration des Befehls anzuzeigen (Methode der
     d’historisation, widget…​).
 
 -   Tester : permet de tester la commande.
@@ -491,7 +491,7 @@ la situation.
 > étaient utilisées dans des scénarios, vous devrez alors corriger vos
 > scénarios aux autres endroits où les commandes étaient exploitées.
 
-Jeux de Commandes 
+Jeux de Commandes
 -----------------
 
 Certains modules possèdent plusieurs jeux de commandes préconfigurées
@@ -506,7 +506,7 @@ permet.
 > Vous devez effectuer la loupe pour appliquer le nouveau jeux de
 > commandes.
 
-Documentation et Assistant 
+Documentation et Assistant
 --------------------------
 
 Pour un certain nombre de modules, une aide spécifique pour la mise en
@@ -523,7 +523,7 @@ de faciliter l’application de certains paramètres ou fonctionnements.
 Le bouton **Assistant** permet d’accéder à l’écran assistant spécifique
 du module.
 
-Configuration recommandée 
+Configuration recommandée
 -------------------------
 
 ![appliance08](../images/appliance08.png)
@@ -579,7 +579,7 @@ réveil.
 > configuration recommandé lors de l’inclusion de nouveau module, voir
 > la section Configuration du plugin pour plus de détails.
 
-Configuration des modules 
+Configuration des modules
 =========================
 
 C’est ici que vous retrouverez toutes les informations sur votre module
@@ -588,7 +588,7 @@ C’est ici que vous retrouverez toutes les informations sur votre module
 
 La fenêtre possède plusieurs onglets :
 
-Résumé 
+Résumé
 ------
 
 Fournit un résumé complet de votre nœud avec différentes informations
@@ -603,7 +603,7 @@ si le nœud est en attente d’information ou la liste des nœuds voisins.
 > erreur, l’alerte est dans une majorité des cas, une simple
 > recommandation.
 
-Valeurs 
+Valeurs
 -------
 
 ![node02](../images/node02.png)
@@ -638,7 +638,7 @@ Le « mapping » des commandes est entièrement basé sur ces informations.
 > rafraichissement manuel sur le plus petit index de l’instance de la
 > commande classe. Répéter pour chaque instance si nécessaire.
 
-Paramètres 
+Paramètres
 ----------
 
 ![node03](../images/node03.png)
@@ -694,7 +694,7 @@ assistant manuel vous permet d’appliquer des paramètres au module.
 ![node17](../images/node17.png) Veillez vous référer à la documentation
 du fabricant pour connaitre la définition de l’index, valeur et taille.
 
-Associations 
+Associations
 ------------
 
 C’est ici que se retrouve la gestion des groupes d’association de votre
@@ -760,7 +760,7 @@ quelle instance on souhaite créer l’association
 > principale afin de bien fonctionner. Pour cette raison, le contrôleur
 > est présent avec et sans l’instance 0.
 
-Systèmes 
+Systèmes
 --------
 
 Onglet regroupant les paramètres systèmes du module.
@@ -785,7 +785,7 @@ Onglet regroupant les paramètres systèmes du module.
 > à disposition. La commande **SwitchAll On/OFF** peut être lancée via
 > votre module contrôleur principal.
 
-Actions 
+Actions
 -------
 
 Permet d’effectuer certaines actions sur le module.
@@ -839,7 +839,7 @@ Z-Wave.
 >
 > Seul les modules sur pile peuvent être supprimés via cette assistant.
 
-Statistiques 
+Statistiques
 ------------
 
 Cet onglet donne quelques statistiques de communication avec le nœud.
@@ -849,12 +849,12 @@ Cet onglet donne quelques statistiques de communication avec le nœud.
 Peut être intéressant en cas de modules qui sont présumés morts par le
 contrôleur "Dead".
 
-inclusion / exclusion 
+inclusion / exclusion
 =====================
 
 A sa sortie d’usine, un module ne fait partie d’aucun réseau Z-Wave.
 
-Mode inclusion 
+Mode inclusion
 --------------
 
 Le module doit se joindre à un réseau Z-Wave existant pour communiquer
@@ -937,7 +937,7 @@ Si vous re cliquez sur le bouton, vous sortez du mode inclusion.
 > l’action soigner le réseau, afin de demander à tous les modules de
 > rafraichir l’ensemble des voisins.
 
-Mode exclusion 
+Mode exclusion
 --------------
 
 ![addremove04](../images/addremove04.png)
@@ -966,7 +966,7 @@ Si vous re cliquez sur le bouton, vous sortez du mode exclusion.
 > lequel il a été préalablement inclus. D’où le fait qu’on recommande
 > d’exécuter une exclusion avant chaque inclusion.
 
-Synchroniser 
+Synchroniser
 ------------
 
 ![addremove06](../images/addremove06.png)
@@ -998,7 +998,7 @@ fonctionnel.
 Le bouton Synchroniser n’est visible qu’en mode expert :
 ![addremove07](../images/addremove07.png)
 
-Réseaux Z-Wave 
+Réseaux Z-Wave
 ==============
 
 ![network01](../images/network01.png)
@@ -1007,7 +1007,7 @@ Vous retrouvez ici des informations générales sur votre réseau Z-Wave.
 
 ![network02](../images/network02.png)
 
-Résumé 
+Résumé
 ------
 
 Le premier onglet vous donne le résumé de base de votre réseau Z-Wave,
@@ -1083,7 +1083,7 @@ Affiche diverses informations système.
 
 -   Version de la librairie Python-OpenZwave
 
-Actions 
+Actions
 -------
 
 ![network05](../images/network05.png)
@@ -1108,7 +1108,7 @@ réseau Z-Wave. Chaque action est accompagnée d’une description sommaire.
 > Si une action ne peut être lancée, elle sera désactivée jusqu’au
 > moment où elle pourra être à nouveau exécutée.
 
-Statistiques 
+Statistiques
 ------------
 
 ![network06](../images/network06.png)
@@ -1116,7 +1116,7 @@ Statistiques
 Vous retrouvez ici les statistiques générales sur l’ensemble de votre
 réseau Z-Wave.
 
-Graphique du réseau 
+Graphique du réseau
 -------------------
 
 ![network07](../images/network07.png)
@@ -1154,7 +1154,7 @@ La principale différence entre les trois types de nœuds est leur
 connaissance de la table de routage du réseau et par la suite leur
 capacité à envoyer des messages au réseau:
 
-Table de routage 
+Table de routage
 ----------------
 
 Chaque nœud est en mesure de déterminer quels autres nœuds sont en
@@ -1201,7 +1201,7 @@ Explication la légende des couleurs :
 > ou pour l’ensemble du réseau à l’aide des boutons disponibles dans la
 > table de routage.
 
-Santé 
+Santé
 =====
 
 ![health01](../images/health01.png)
@@ -1336,7 +1336,7 @@ COMMAND\_CLASS\_SECURITY et non sécurisé.
 > du/des modules, pour essayer les suggestions de solution proposées.
 > (voir section Dépannage et diagnostique, plus bas)
 
-Statut de l’interview 
+Statut de l’interview
 ---------------------
 
 Etape de l’interview d’un module après le démarrage du démon.
@@ -1391,7 +1391,7 @@ Etape de l’interview d’un module après le démarrage du démon.
 
 -   **Complete** Le processus de l’interview est terminé pour ce noeud.
 
-Notification 
+Notification
 ------------
 
 Détails des notifications envoyées par les modules
@@ -1411,7 +1411,7 @@ Détails des notifications envoyées par les modules
 
 -   **Alive** Signaler quand un nœud est relancé.
 
-Backups 
+Backups
 =======
 
 La partie backup va vous permettre de gérer les backups de la topologie
@@ -1430,7 +1430,7 @@ réseau. A partir de cet écran vous pourrez :
 
 ![backup01](../images/backup01.png)
 
-Mettre à jour OpenZWave 
+Mettre à jour OpenZWave
 =======================
 
 Suite à une mise à jour du plugin Z-Wave il est possible que Jeedom vous
@@ -1461,16 +1461,16 @@ effectuée au bout de 5 minutes.
 > complèterait pas, veillez consulter le log **Openzwave\_update** qui
 > devrait vous informer sur le problème.
 
-Liste des modules compatible 
+Liste des modules compatible
 ============================
 
 Vous trouverez la liste des modules compatibles
 [ici](https://jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-equipement.compatible.html)
 
-Depannage et diagnostic 
+Depannage et diagnostic
 =======================
 
-Mon module n’est pas détecté ou ne remonte pas ses identifiants produit et type 
+Mon module n’est pas détecté ou ne remonte pas ses identifiants produit et type
 -------------------------------------------------------------------------------
 
 ![troubleshooting01](../images/troubleshooting01.png)
@@ -1482,7 +1482,7 @@ Si vous avez plusieurs modules dans ce cas de figure, lancer **Regénérer
 la détection de nœuds inconnues**depuis l’écran**Réseau ZWave** onglet
 **Actions**.
 
-Mon module est présumé mort par le controleur Dead 
+Mon module est présumé mort par le controleur Dead
 --------------------------------------------------
 
 ![troubleshooting02](../images/troubleshooting02.png)
@@ -1500,7 +1500,7 @@ via onglet **Actions**, le contrôleur déclenche l’inclusion puis vous
 devez procéder à l’inclusion sur le module. L’id de l’ancien module sera
 conservé ainsi que ses commandes.
 
-Comment utiliser la commande SwitchAll 
+Comment utiliser la commande SwitchAll
 --------------------------------------
 
 ![troubleshooting03](../images/troubleshooting03.png)
@@ -1533,7 +1533,7 @@ Il faut donc bien prendre le temps de passer en revue l’ensemble de ses
 interrupteurs/variateurs avant de mettre en place un scénario si vous ne
 pilotez pas que des lumières.
 
-Mon module n a pas de commande Scene ou Bouton 
+Mon module n a pas de commande Scene ou Bouton
 ----------------------------------------------
 
 ![troubleshooting05](../images/troubleshooting05.png)
@@ -1546,7 +1546,7 @@ Il s’agit d’une commande **Info**en CC**0x2b**Instance**0** commande
 Le mode scène doit être activé dans les paramètres du module. Voir la
 documentation de votre module pour plus de détails.
 
-Forcer le rafraichissement de valeurs 
+Forcer le rafraichissement de valeurs
 -------------------------------------
 
 Il est possible de forcer à la demande le rafraîchissement des valeurs
@@ -1574,7 +1574,7 @@ http://token:\#APIKEY\#@ip\_jeedom:8083/ZWaveAPI/Run/devicesnode\_id.instances\[
 L’accès a l’api REST ayant changé, voir les détails
 [içi](./restapi.asciidoc).
 
-Transferer les modules sur un nouveau controleur 
+Transferer les modules sur un nouveau controleur
 ------------------------------------------------
 
 Pour différentes raisons, vous pouvez être amené à devoir transférer
@@ -1628,7 +1628,7 @@ widgets et historiques de valeur:
 -   13\) Vérifier que tous les modules sont bien nommés dans l’écran de
     santé Z-Wave. Lancer la Synchronisation si ce n’est pas le cas.
 
-Remplacer un module defaillant 
+Remplacer un module defaillant
 ------------------------------
 
 Comment refaire l’inclusion d’un module défaillant sans perdre vos
@@ -1670,7 +1670,7 @@ Si le module n’est pas présumé "Dead" mais est toujours accessible:
 
 -   Remettre vos paramètres spécifiques.
 
-Suppression de noeud fantome 
+Suppression de noeud fantome
 ----------------------------
 
 Si vous avez perdu toute communication avec un module sur pile et que
@@ -1706,7 +1706,7 @@ Un assistant automatique de nœud fantôme est disponible.
 
 Cet assistant est disponible seulement pour les modules sur piles.
 
-Actions post inclusion 
+Actions post inclusion
 ----------------------
 
 On recommande d’effectuer l’inclusion à moins 1M du contrôleur
@@ -1750,7 +1750,7 @@ L’option de soigner le réseau 2x par semaine permet de faire ce
 processus sans action de votre part, elle est utile lors de la mise en
 place de nouveaux modules et ou lorsqu’on les déplace.
 
-Pas de remontee état de la pile 
+Pas de remontee état de la pile
 -------------------------------
 
 Les modules Z-Wave n’envoient que très rarement l’état de leur pile au
@@ -1791,7 +1791,7 @@ moins 24h avant l’obtention d’une valeur dans l’écran Batteries.
 > en service, puis ne plus bouger durant des semaines pour se vider
 > rapidement une fois passé les 20%.
 
-Controleur est en cours d initialisation 
+Controleur est en cours d initialisation
 ----------------------------------------
 
 Lorsque vous démarrez le démon Z-Wave, si vous essayez de lancer
@@ -1854,7 +1854,7 @@ Si le problème persiste toujours, il faut réinitialiser le contrôleur:
 
 -   Re brancher le tout et essayer à nouveau.
 
-Le controleur ne répond plus 
+Le controleur ne répond plus
 ----------------------------
 
 Plus aucune commande n’est transmise aux modules mais les retours
@@ -1878,7 +1878,7 @@ Si le problème persiste, il faut réinitialiser le contrôleur:
 
 -   Re brancher le tout et essayer à nouveau.
 
-Erreur lors des dependances 
+Erreur lors des dependances
 ---------------------------
 
 Plusieurs erreurs peuvent survenir lors de la mise à jour des
@@ -1943,7 +1943,7 @@ start mysql
 > openzwave\_update sera dans le dossier:
 > /usr/share/nginx/www/jeedom/log .
 
-Utilisation de la carte Razberry sur un Raspberry Pi 3 
+Utilisation de la carte Razberry sur un Raspberry Pi 3
 ------------------------------------------------------
 
 Pour utiliser un contrôleur Razberry sur un Raspberry Pi 3, le
@@ -1959,7 +1959,7 @@ Ajouter cette ligne:
 
 Puis redémarrer votre Raspberry.
 
-API HTTP 
+API HTTP
 ========
 
 Le plugin Z-Wave met à disposition des développeurs et des utilisateurs
@@ -1994,617 +1994,8 @@ Example: Pour lancer un ping sur le noeud id 2
 URL =
 http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices\[2\].TestNode()
 
-# Changelog
-
-Changelog détaillé :
-<https://github.com/jeedom/plugin-openzwave/commits/stable>
-
-2017-08-xx
-
-
--   New Features
-
-    -   Possibilité de rafraichir les commandes d’un équipement sans
-        supprimer les existantes.
-
-    -   Possibilité de créer une commande information sur les valeurs de
-        l’onglet Système.
-
--   Improvements/Enhancements
-
-    -   Prise en charge de nouveaux modules, définitions ozw
-        et commandes.
-
-    -   Possibilité de sélectionner l’association par défaut
-        (sans instance) sur les modules supportant les
-        associations multi-instances.
-
-    -   Vérification de la validité des groupes d’associations à la fin
-        de l’interview.
-
-    -   Récupération du dernier niveau des piles au démarrage du démon.
-
--   Bug Fixes
-
-    -   Correction de la migration de l’info Batterie.
-
-    -   Correction de la remontée de l’info Batterie dans
-        l’écran Equipements.
-
-    -   Restauration du type de piles dans les configurations
-        de modules.
-
-    -   Correction des actions sur les valeurs de type bouton dans
-        l’écran du module.
-
-    -   Correction de la récupération des traductions de paramètres.
-
-    -   Correction erreur vide sur modification de valeurs de type RAW
-        (code RFid).
-
-    -   Correction de l’affichage des valeurs en attente
-        d’être appliqué.
-
-    -   Suppression de la notification du changement de valeur avant
-        qu’elle ne soit appliquée.
-
-    -   Ne plus afficher le cadenas dans l’écran du module si le module
-        ne supporte pas la Classe de Commande Sécurité.
-
-    -   Application du rafraichissement manuel dans les
-        paramètres recommandés.
-
-    -   Assistant de gestion des badges pour les lecteurs RFID.
-
-    -   Correction de l’assistant de détection de modules inconnus.
-
-    -   Correction des assistants de "Reprendre de.." et "Appliquer
-        sur…​" dans l’onglet paramètres.
-
-2017-06-20
-
--   New Features
-
-    -   N/A
-
--   Improvements/Enhancements
-
-    -   Ajout l’ensemble des configurations de modules au
-        nouveau format.
-
--   Bug Fixes
-
-    -   Ne pas tester si un nodeId existe lors de la suppression
-        d’un association.
-
-    -   Restauration de la notification de consigne en attente sur
-        les thermostats.
-
-    -   Envoi de la Scène Activation en instance 1.
-
-    -   Ne plus afficher le cadenas dans l’écran de santé sur les
-        modules ne supportant pas la Classe de Commande Securité.
-
-    -   Répétition de valeur sur les télécommandes avant la fin de
-        l’interview (kyefob, minimote).
-
-    -   Modifier un paramètre de type liste par valeur via une
-        commande Action.
-
-    -   Modifier un paramètre sur un module sans configuration définie.
-
-2017-06-13
-
--   New Features
-
-    -   N/A
-
--   Improvements/Enhancements
-
-    -   Ajout de configuration de module Fibaro US
-
--   Bug Fixes
-
-    -   N/A
-
-2017-05-31
-
--   New Features
-
-    -   N/A
-
--   Improvements/Enhancements
-
-    -   N/A
-
--   Bug Fixes
-
-    -   Correction de l’assignation des valeurs au format RAW des codes
-        pour lecteur RFid.
-
-2017-05-23
-
--   New Features
-
-    -   Suppression du mode maître / esclave. Remplacé par le plugin
-        jeedom link.
-
-    -   Utilisation d’une clé API privée au plugin ZWave.
-
-    -   Nouveau format des fichiers de configuration dans le mapping de
-        commande avec jeedom.
-
-    -   Conversion automatique des commandes existantes au nouveau
-        format lors de l’installation du plugin.
-
-    -   Ajout du support de la Classe de Commande Central Scene.
-
-    -   Ajout du support de la Classe de Commande Barrier Operator.
-
--   Improvements/Enhancements
-
-    -   Refonte complète du serveur REST utilisation de TORNADO.
-
-        -   Modification de l’ensemble des routes existantes, les
-            scripts devront être adaptés si utilisation de l’API ZWave.
-
-        -   Renforcement de la sécurité, seul des appels sont écouté sur
-            le serveur REST.
-
-        -   Utilisation de la clé API ZWave requise pour lancer des
-            requêtes REST.
-
-    -   Désactivation (temporaire) des tests sanitaires.
-
-    -   Désactivation (temporaire) du moteur de mise à jour des
-        configurations de modules.
-
-    -   Désactivation de la fonction Soigner le réseau automatiquement
-        deux fois par semaine (diminution des échanges avec
-        le contrôleur).
-
-    -   Optimisations du code de la bibliothèque openzwave.
-
-        -   Fibaro FGK101 n’a plus à compléter l’interview pour annoncer
-            un changement d’état.
-
-        -   La commande bouton relâcher (Stop d’un volet) ne force plus
-            la mise à jour de l’ensemble des valeurs du module
-            (diminution de la file de messages).
-
-        -   Possibilité de notifier des valeurs dans la Classe de
-            Commande Alarm (sélection de la sonnerie sur les sirènes)
-
-    -   Plus de demande journalière du niveau des piles (moins de
-        messages, économie sur les piles).
-
-    -   Le niveau des piles est directement envoyé à l’écran de pile sur
-        réception de rapport du niveau.
-
--   Bug Fixes
-
-    -   Rafraîchissement de l’ensemble des instances suite à un
-        broadcast de la CC Switch ALL.
-
-2016-08-26
-
--   New Features
-
-    -   Aucune
-
--   Improvements/Enhancements
-
-    -   Détection du RPI3 dans la mise à jour des dépendances.
-
-    -   Activer le mode d’inclusion en non-sécurisé par défaut.
-
--   Bug Fixes
-
-    -   Test des informations constructeur dans l’écran de santé ne
-        remonte plus des NOK.
-
-    -   Perte des cases-à-cocher dans l’onglet Commandes de la
-        page équipement.
-
-2016-08-17
-
--   New Features
-
-    -   Relance du demon si détection du contrôleur en timeout lors de
-        l’initialisation du contrôleur.
-
--   Improvements/Enhancements
-
-    -   Mise à jour de la librairie OpenZWave 1.4.2088.
-
-    -   Correction de l’orthographe.
-
-    -   Refonte de l’écran équipements avec onglets.
-
--   Bug Fixes
-
-    -   Problème d’affichage de certains modules sur la table de routage
-        et Graph réseau.
-
-    -   Modules Vision Secure qui ne retournent pas en veille
-        durant l’interview.
-
-    -   Installation des dépendances en boucle (problème coté github).
-
-2016-07-11
-
--   New Features
-
-    -   Prise en charge de la restauration du dernier niveau connue sur
-        les dimmer.
-
-    -   Distinction des modules FLiRS dans l’écran de santé.
-
-    -   Ajout de la demande de mise à jour des routes de retour
-        au contrôleur.
-
-    -   Assistant pour appliquer les paramètres de configuration d’un
-        module à plusieurs autres modules.
-
-    -   Identification du Zwave+ des modules supportant
-        la COMMAND\_CLASS\_ZWAVE\_PLUS\_INFO.
-
-    -   Affichage de l’état de sécurité des modules supportant
-        la COMMAND\_CLASS\_SECURITY.
-
-    -   Ajout de la possibilité de sélectionner l’instance 0 du
-        contrôleur pour les associations multi-instances.
-
-    -   Sécurisation de l’ensemble des appels au serveur REST.
-
-    -   Détection automatique du dongle, dans la page de configuration
-        du plugin.
-
-    -   Dialogue d’inclusion avec le choix du mode d’inclusion pour
-        simplifier l’inclusion sécurisée.
-
-    -   Prise en compte des équipements désactivés au sein du
-        moteur Z-Wave.
-
-        -   Affichage grisé dans l’écran de santé sans analyse sur
-            le nœud.
-
-        -   Masquée dans la Table réseau et Graphique réseau.
-
-        -   Nœuds désactivés, excluent des tests sanitaires.
-
--   Improvements/Enhancements
-
-    -   Optimisation des contrôles sanitaires.
-
-    -   Optimisation du graphique réseau.
-
-    -   Amélioration de la détection du contrôleur principal pour le
-        test des groupes.
-
-    -   Mise à jour de la librairie OpenZWave 1.4.296.
-
-    -   Optimisation du rafraichissement en arrière-plan des variateurs.
-
-    -   Optimisation du rafraichissement en arrière-plan pour
-        les moteurs.
-
-    -   Adaptation pour la version Jeedom core 2.3
-
-    -   Ecran de santé, modification de nom de colonne et avertissement
-        en cas de non communication avec un module.
-
-    -   Optimisation du serveur REST.
-
-    -   Correction de l’orthographe des écrans, merci @Juan-Pedro
-        aka: kiko.
-
-    -   Mise à jour de la documentation du plugin.
-
--   Bug Fixes
-
-    -   Correction de possible problèmes lors de la mise à jour des
-        configurations de modules.
-
-    -   Graphique réseau, calcul des sauts sur l’id du contrôleur
-        principal et non assumer l’ID 1.
-
-    -   Gestion du bouton ajouter une association groupe.
-
-    -   Affichage des valeurs False dans l’onglet Configuration.
-
-    -   Ne plus assumer la date du jour sur l’état des piles si pas reçu
-        de rapport de l’équipement.
-
-2016-05-30
-
--   New Features
-
-    -   Ajout d’une option pour activer/désactiver les contrôles
-        sanitaires sur l’ensemble des modules.
-
-    -   Ajout d’un onglet Notifications pour visualiser les dernières 25
-        notifications du contrôleur.
-
-    -   Ajout d’une route pour récupérer la santé d’un noeud.
-        ip\_jeedom:8083/ZWaveAPI/Run/devices\[node\_id\].GetHealth()
-
-    -   Ajout d’une route pour récupérer la dernière notification
-        d’un noeud.
-        ip\_jeedom:8083/ZWaveAPI/Run/devices\[node\_id\].GetLastNotification()
-
--   Improvements/Enhancements
-
-    -   Permettre la sélection des modules FLiRS lors des
-        associations directes.
-
-    -   Permettre la sélection de toutes les instances des modules lors
-        des associations directes.
-
-    -   Mise à jour du wrapper python OpenZWave en version 0.3.0.
-
-    -   Mise à jour de la librairie OpenZWave 1.4.248.
-
-    -   Ne pas afficher d’avertissement de wakeup expiré pour les
-        modules sur piles alimentées par secteur.
-
-    -   Validation qu’un module est identique au niveau ids pour
-        permettre la copie des paramètres.
-
-    -   Simplification de l’assistant de copie des paramètres.
-
-    -   Masquer des valeurs de l’onglet système qui n’ont pas lieu
-        d’être affichées.
-
-    -   Affichage de la description des capacités du contrôleur.
-
-    -   Mise à jour de la documentation.
-
-    -   Correction de l’orthographe de la documentation, merci
-        @Juan-Pedro aka: kiko.
-
--   Bug Fixes
-
-    -   Correction orthographe.
-
-    -   Correction de l’inclusion en mode sécurisé.
-
-    -   Correction de l’appel asynchrone. (error: \[Errno 32\]
-        Broken pipe)
-
-2016-05-04
-
--   New Features
-
-    -   Ajout d’option pour désactiver l’actualisation en arrière-plan
-        des variateurs.
-
-    -   Affichage des associations avec qui un module est en association
-        (find usage).
-
-    -   Ajout du support de la CC MULTI\_INSTANCE\_ASSOCIATION.
-
-    -   Ajout d’une notification info lors de l’application de
-        Set\_Point afin de pourvoir exploiter la consigne demandée sous
-        forme de cmd info.
-
-    -   Ajout d’un assistant de configuration recommandée.
-
-    -   Ajout d’option pour activer/désactiver l’assistant de
-        configuration recommandée lors de l’inclusion de
-        nouveaux modules.
-
-    -   Ajout d’option pour activer/désactiver la mise à jour des
-        configurations des modules chaque nuit.
-
-    -   Ajout d’une route pour gérer les multi instances associations.
-
-    -   Ajout des Query Stage manquants.
-
-    -   Ajout de la validation de la sélection du Dongle USB au
-        démarrage du démon.
-
-    -   Ajout de la validation et test du callback au démarrage
-        du démon.
-
-    -   Ajout d’une option pour désactiver la mise à jour automatique
-        des config de module.
-
-    -   Ajout d’une route pour modifier à l’exécution les traces de log
-        du serveur REST. Note: aucun effect sur le niveau OpenZWave.
-        <http://ip_jeedom:8083/ZWaveAPI/Run/ChangeLogLevel(level>) level
-        ⇒ 40:Error, 20: Debug 10 Info
-
--   Improvements/Enhancements
-
-    -   Mise à jour du wrapper python OpenZWave en version 0.3.0b9.
-
-    -   Mise en évidence des groupes d’associations qui sont en attente
-        d’être appliqués.
-
-    -   Mise à jour de la librairie OpenZWave 1.4.167.
-
-    -   Modification du système d’association directe.
-
-    -   Mise à jour de la documentation
-
-    -   Possibilité de lancer la régénération de la détection du nœud
-        pour l’ensemble des modules identiques (marque et modèle).
-
-    -   Affichage dans l’écran de santé si des éléments de configuration
-        ne sont pas appliqués.
-
-    -   Affichage dans l’écran d’équipement si des éléments de
-        configuration ne sont pas appliqués.
-
-    -   Affichage dans l’écran de santé si un module sur piles ne s’est
-        jamais réveillé.
-
-    -   Affichage dans l’écran de santé si un module sur piles a dépassé
-        le temps du réveil prévu.
-
-    -   Ajout de traces lors d’erreur de notifications.
-
-    -   Meilleure remontée de l’état des piles.
-
-    -   Conformité du résumé / santé pour les thermostats sur piles.
-
-    -   Meilleur détection de modules sur piles.
-
-    -   Optimisation du mode Debug pour le serveur REST.
-
-    -   Forcer une actualisation de l’état des interrupteurs et dimer
-        suite à l’envoi d’une commande switch all.
-
--   Bug Fixes
-
-    -   Correction de la découverte des groupes d’associations.
-
-    -   Correction de l’erreur "Exception KeyError: (91,) in
-        'libopenzwave.notif\_callback' ignored".
-
-    -   Correction de la sélection de la documentation de module pour
-        les modules avec plusieurs profils.
-
-    -   Gestion des boutons action du module.
-
-    -   Correction de description de nom générique de class.
-
-    -   Correction de la sauvegarde du fichier zwcfg.
-
-2016-03-01
-
--   New Features
-
-    -   Ajout du bouton Configuration via l’écran de gestion
-        des équipements.
-
-    -   Ajout des nouveaux états de l’interview de module.
-
-    -   Modification de libellés dans les UI.
-
--   Improvements/Enhancements
-
-    -   Meilleur gestion des boutons Actions de modules.
-
-    -   Documentation Ajout de sections.
-
-    -   Optimisation du mécanisme de détection d’état du démon.
-
-    -   Mécanisme de protestation lors de la récupération de la
-        description des paramètres s’il contient des caractères
-        non valides.
-
-    -   Ne plus remonter les informations de l’état de la pile sur un
-        module branché sur secteur.
-
-    -   Mise à jour de la documentation.
-
--   Bug Fixes
-
-    -   Documentation Corrections orthographiques et grammaticales.
-
-    -   Validation du contenu du fichier zwcfg avant de l’appliquer.
-
-    -   Correction de l’installation.
-
-2016-02-12
-
--   Improvements/Enhancements
-
-    -   Pas d’alerte de nœud mort si celui-ci est désactivé.
-
--   Bug Fixes
-
-    -   Correction fil pilote Fibaro retour d’état.
-
-    -   Correction d’un bug qui recréer les commandes lors de la mise
-        à jour.
-
-2016.02.09
-
--   New Features
-
-    -   Ajout du push notification en case de node\_event, permet la
-        mise en place d’une cmd info en CC 0x20 pour récupérer des
-        événement sur les nodes.
-
-    -   Ajout de la route ForceRefresh
-        http://ip\_jeedom:8083/ZWaveAPI/Run/devices&lt;int:node\_id&gt;.instances\[&lt;int:instance\_id&gt;\].commandClasses\[&lt;cc\_id&gt;\].data\[&lt;int:index&gt;\].ForceRefresh()
-        pouvant être utilisée dans les commandes.
-
-    -   Ajout du route SwitchAll
-        http://ip\_jeedom:8083/ZWaveAPI/Run/devices&lt;int:node\_id&gt;.instances\[1\].commandClasses\[0xF0\].SwitchAll(&lt;int:state&gt;)
-        disponible via le contrôleur principal.
-
-    -   Ajout de la route ToggleSwitch
-        http://ip\_jeedom:8083/ZWaveAPI/Run/devices&lt;int:node\_id&gt;.instances\[&lt;int:instance\_id&gt;\].commandClasses\[&lt;cc\_id&gt;\].data\[&lt;int:index&gt;\].ToggleSwitch()
-        pouvant être utilisée dans les commandes.
-
-    -   Ajout d’une push notification en cas de noeud présumé mort.
-
-    -   Ajout de la commande “refresh all parameters” dans
-        l’onglet Paramètres.
-
-    -   Ajout de l’information du paramètre en attente d’être appliqué.
-
-    -   Ajout de notification réseau.
-
-    -   Ajout d’une légende dans le graphe réseau.
-
-    -   Ajout de la fonction soigner réseau via la table de routage.
-
-    -   Suppression automatique de nœud fantôme en un seul click.
-
-    -   Gestion des actions sur nœud selon l’état du noeud et le type.
-
-    -   Gestion des actions réseau selon l’état du réseau.
-
-    -   Mise à jour de la configuration de module automatique toutes
-        les nuits.
-
--   Improvements/Enhancements
-
-    -   Refactoring complet du code du serveur REST, optimisation de
-        vitesse de démarrage, lisibilité, respect de convention
-        de nommage.
-
-    -   Mise à l’équerre des logs.
-
-    -   Simplification de la gestion du refresh manuel 5min avec
-        possibilité d’appliquer sur les nœuds sur piles.
-
-    -   Mise à jour de la librairie OpenZWave en 1.4
-
-    -   Modification du test sanitaire pour réanimer les nœuds présumés
-        morts plus facilement sans actions utilisateurs.
-
-    -   Utilisation de couleurs vives de la table de routage et du
-        graphe réseau.
-
-    -   Uniformisation des couleurs de la table de routage et du
-        graphe réseau.
-
-    -   Optimisation des informations de la page de santé Z-Wave selon
-        l’état de l’interview.
-
-    -   Meilleur gestion des paramètres en lecture seule ou en écriture
-        seule dans l’onglet Paramètres.
-
-    -   Amélioration des warning sur les thermostats sur piles.
-
--   Bug Fixes
-
-    -   Température convertie en Celsius retourne l’unité C à la place
-        de F.
-
-    -   Correction du rafraîchissement des valeurs au démarrage.
-
-    -   Correction du Refresh par valeur dans l’onglet Valeurs.
-
-    -   Correction des noms génériques des modules.
-
-    -   Correction du ping sur les nœuds en Timeout lors du
-        test sanitaire.
-
-
+# FAQ
+
+> **J'ai l'erreur "Not enough space in stream buffer"**
+>
+> Malheureusement cette erreur est materiel nous ne pouvons rien y faire, nous cherchons pour le moment comment forcer un redemarrage du démon en cas de cette erreur (mais souvent il faut en plus débrancher la clef pendant 5min pour que ca reparte)

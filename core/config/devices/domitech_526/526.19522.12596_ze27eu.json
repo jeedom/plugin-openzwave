@@ -35,11 +35,9 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 38, 
-                "value": "type=setvalue&value=255", 
+                "value": "type=setvalue&value=99", 
                 "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "value": "Etat", 
             "subtype": "other", 
@@ -56,9 +54,7 @@
                 "class": 38, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
+                "instance": 1
             }, 
             "value": "Etat", 
             "subtype": "other", 
@@ -77,7 +73,7 @@
                 "index": 0, 
                 "instance": 1, 
                 "minValue": 0, 
-                "maxValue": 100
+                "maxValue": 99
             }, 
             "subtype": "numeric", 
             "display": {

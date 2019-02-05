@@ -104,7 +104,7 @@ bool SwitchBinary::HandleMsg
 	uint32 const _instance	// = 1
 )
 {
-	if (SwitchBinaryCmd_Report == (SwitchBinaryCmd)_data[0])
+	if ((SwitchBinaryCmd_Report == (SwitchBinaryCmd)_data[0]) || (SwitchBinaryCmd_Set == (SwitchBinaryCmd)_data[0]))//some multichannel encap devices send set and no report
 	{
 		Log::Write( LogLevel_Info, GetNodeId(), "Received SwitchBinary report from node %d: level=%s", GetNodeId(), _data[1] ? "On" : "Off" );
 
@@ -131,7 +131,6 @@ bool SwitchBinary::SetValue
 	if( ValueID::ValueType_Bool == _value.GetID().GetType() )
 	{
 		ValueBool const* value = static_cast<ValueBool const*>(&_value);
-
 		Log::Write( LogLevel_Info, GetNodeId(), "SwitchBinary::Set - Setting node %d to %s", GetNodeId(), value->GetValue() ? "On" : "Off" );
 		Msg* msg = new Msg( "SwitchBinaryCmd_Set", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true );
 		msg->SetInstance( this, _value.GetID().GetInstance() );
@@ -158,26 +157,12 @@ void SwitchBinary::SetValueBasic
 	uint8 const _value
 )
 {
-	// Send a request for new value to synchronize it with the BASIC set/report.
-	// In case the device is sleeping, we set the value anyway so the BASIC set/report
-	// stays in sync with it. We must be careful mapping the uint8 BASIC value
-	// into a class specific value.
-	// When the device wakes up, the real requested value will be retrieved.
-	RequestValue( 0, 0, _instance, Driver::MsgQueue_Send );
-	if( Node* node = GetNodeUnsafe() )
-	{
-		if( WakeUp* wakeUp = static_cast<WakeUp*>( node->GetCommandClass( WakeUp::StaticGetCommandClassId() ) ) )
-		{
-			if( !wakeUp->IsAwake() )
-			{
-				if( ValueBool* value = static_cast<ValueBool*>( GetValue( _instance, 0 ) ) )
+	if( ValueBool* value = static_cast<ValueBool*>( GetValue( _instance, 0 ) ) )
 				{
 					value->OnValueRefreshed( _value != 0 );
 					value->Release();
 				}
-			}
-		}
-	}
+	Log::Write( LogLevel_Info, GetNodeId(), "SwitchBinary::Set by basic report - Setting node %d to %s on instance %d", GetNodeId(), _value ? "On" : "Off", _instance );
 }
 
 //-----------------------------------------------------------------------------

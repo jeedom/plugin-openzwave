@@ -31,6 +31,11 @@ def node_added(network, node):
 		save_node_event(node.node_id, "added")
 
 def node_removed(network, node):
+	if node == 0:
+		logging.info('A node has been removed but was not from the network')
+		if network.state >= globals.network.STATE_AWAKED:
+			save_node_event(999, "removed")
+		return
 	logging.info('A node has been removed from OpenZWave list id:[%s] model:[%s].' % (node.node_id, node.product_name,))
 	if node.node_id in globals.not_supported_nodes:
 		return

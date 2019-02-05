@@ -521,6 +521,8 @@ DISTFILES =	.gitignore \
 	cpp/src/command_classes/SensorBinary.h \
 	cpp/src/command_classes/SensorMultilevel.cpp \
 	cpp/src/command_classes/SensorMultilevel.h \
+	cpp/src/command_classes/SoundSwitch.cpp \
+	cpp/src/command_classes/SoundSwitch.h \
 	cpp/src/command_classes/SwitchAll.cpp \
 	cpp/src/command_classes/SwitchAll.h \
 	cpp/src/command_classes/SwitchBinary.cpp \

@@ -202,6 +202,7 @@ sendVarToJs('node_id', init('id'));
                                 </tr>
                                 <tbody class="parameters"></tbody>
                             </table>
+							<div class="row"><label class="col-lg-2">{{Paramètre (manuel) :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="paramidperso"></div><label class="col-lg-1">{{Valeur :}} </label><div class="col-lg-1"><input type="text" class="form-control" id="newvalueperso"></div><label class="col-lg-1">{{Taile :}}</label><div class="col-lg-1"><input type="text" class="form-control" id="sizeperso"></div> <div class="col-lg-2"><a id="sendparamperso" class="btn btn-primary">{{Envoyer le paramètre}}</a></div></div>
                         </div>
                     </div>
                     <div class="tab-pane" id="groups">

@@ -1,11 +1,6 @@
-.DS_Store
+nbproject/
 test.php
 core/config/common.config.php
-sftp-config.json
-
-.idea/*
-
-plugin-openzwave.iml
+plugins
+.remote-sync.json
 .project
-.pydevproject
-*.pyc

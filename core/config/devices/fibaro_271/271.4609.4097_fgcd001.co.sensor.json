@@ -1,0 +1,98 @@
+{
+	"name": "FGCD-001 CO Sensor",
+	"doc": "",
+	"type": "Fumée",
+	"imglink": "fibaro.fgcd001",
+	"configuration": {
+		"battery_type": "1x3V CR123A",
+		"conf_version": 1
+	},
+	"commands": [{
+		"name": "CO",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 1,
+		"configuration": {
+			"class": 156, 
+            "value": "", 
+            "index": 2, 
+            "instance": 1
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "DONT"
+		},
+		"template": {
+			"dashboard": "feu",
+			"mobile": "feu"
+		}
+	},
+	{
+		"name": "Chaleur",
+		"type": "info",
+		"subtype": "binary",
+		"isVisible": 0,
+		"configuration": {
+			"class": 156, 
+            "value": "", 
+            "index": 4, 
+            "instance": 1
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "DONT"
+		},
+		"template": {
+			"dashboard": "feu",
+			"mobile": "feu"
+		}
+	},
+	{
+		"name": "Sabotage",
+		"type": "info",
+		"subtype": "binary",
+		"configuration": {
+			"class": 156, 
+            "value": "", 
+            "index": 0, 
+            "instance": 1
+		},
+		"display": {
+			"invertBinary": "1",
+			"generic_type": "SABOTAGE"
+		}
+	},
+	{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "°C",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"display": {
+			"generic_type": "TEMPERATURE"
+		},
+		"configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": 128, 
+            "value": "", 
+            "index": 0, 
+            "instance": 1
+		}
+	}]
+}

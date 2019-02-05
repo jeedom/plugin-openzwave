@@ -223,7 +223,6 @@ bool Alarm::HandleMsg
 			Log::Write( LogLevel_Info, GetNodeId(), "Received Alarm report: type=%d, level=%d, sensorSrcID=%d, type:%s event:%d, status=%d",
 							_data[1], _data[2], _data[3], alarm_type.c_str(), _data[6], _data[4] );
 		}
-
 		ValueByte* value;
 		if( (value = static_cast<ValueByte*>( GetValue( _instance, AlarmIndex_Type ) )) )
 		{
@@ -249,6 +248,14 @@ bool Alarm::HandleMsg
 			{
 				value->OnValueRefreshed( _data[6] );
 				value->Release();
+			}
+			if (_data[5] == 6)
+			{
+				if( (value = static_cast<ValueByte*>( GetValue( _instance, 0x99 ) )) )
+				{
+					value->OnValueRefreshed( _data[8] );
+					value->Release();
+				}
 			}
 		}
 
@@ -278,6 +285,10 @@ bool Alarm::HandleMsg
 						{
 							node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, index+3, c_alarmTypeName[index], "", true, false, 0, 0 );
 							Log::Write( LogLevel_Info, GetNodeId(), "    Added alarm type: %s", c_alarmTypeName[index] );
+							if (index == 6)
+							{
+								node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, 0x99, "Memory Code User", "", true, false, 0, 0 );
+							}
 						} else {
 							Log::Write( LogLevel_Info, GetNodeId(), "    Unknown alarm type: %d", index );
 						}
@@ -309,7 +320,6 @@ bool Alarm::SetValue
 		case AlarmIndex_Notification:
 		{
 			ValueByte const* value = static_cast<ValueByte const*>(&_value);
-			ValueByte* valueObj = static_cast<ValueByte*>( GetValue( instance, AlarmIndex_Notification ) );
 			Log::Write( LogLevel_Info, GetNodeId(), "AlarmNotification::Set - Setting node %d to %d", GetNodeId(), value->GetValue());
 			Msg* msg = new Msg( "AlarmNotification_Set", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true );
 			msg->SetInstance( this, instance );
@@ -370,8 +380,6 @@ bool Alarm::SetValue
 				msg->Append( 0x00 );
 				msg->Append( GetDriver()->GetTransmitOptions() );
 				GetDriver()->SendMsg( msg, Driver::MsgQueue_Send );
-				valueObj->OnValueRefreshed(value->GetValue());
-				valueObj->Release();
 				return true;
 				break;
 		}
@@ -392,7 +400,7 @@ void Alarm::CreateVars
 	{
 		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, AlarmIndex_Type, "Alarm Type", "", true, false, 0, 0 );
 		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, AlarmIndex_Level, "Alarm Level", "", true, false, 0, 0 );
-		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, AlarmIndex_Notification, "Alarm Notification", "", false, false, 0, 0 );
+		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, AlarmIndex_Notification, "Alarm Notification", "", false, true, 0, 0 );
 	}
 }
 

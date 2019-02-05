@@ -197,6 +197,7 @@ bool Basic::HandleMsg
 		Log::Write( LogLevel_Info, GetNodeId(), "Received Basic report from node %d: level=%d", GetNodeId(), _data[1] );
 		if( !m_ignoreMapping && m_mapping != 0 )
 		{
+			Log::Write(LogLevel_Info, GetNodeId(), "Updating Mapping Class for Node %d : class %d  instance %d level =%d",GetNodeId(),m_mapping,_instance,_data[1]);
 			UpdateMappedClass( _instance, m_mapping, _data[1] );
 		}
 		else if( ValueByte* value = static_cast<ValueByte*>( GetValue( _instance, 0 ) ) )
