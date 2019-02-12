@@ -1,0 +1,52 @@
+{
+    "name": "Smoke Detector MT02651",
+    "type": "Fumée",
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "devolo.mt02651",
+    "configuration": {
+        "battery_type": "1x3V CR123A"
+    }, 
+    "commands": [
+        {
+            "name": "Fumées",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 113,
+                "value": "",
+                "index": 1,
+                "instance": 1
+            },
+            "subtype": "binary",
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "SMOKE"
+            },
+            "template": {
+                "dashboard": "feu",
+                "mobile": "feu"
+            }
+        },
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}
