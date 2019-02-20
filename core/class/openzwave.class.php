@@ -1,30 +1,30 @@
 <?php
 
 /* This file is part of Plugin openzwave for jeedom.
- *
- * Plugin openzwave for jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Plugin openzwave for jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Plugin openzwave for jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Plugin openzwave for jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Plugin openzwave for jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Plugin openzwave for jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* * ***************************Includes********************************* */
 
 class openzwave extends eqLogic {
 	/*     * *************************Attributs****************************** */
-
+	
 	public static $_excludeOnSendPlugin = array('openzwave.log');
-
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	public static function callOpenzwave($_url) {
 		if (strpos($_url, '?') !== false) {
 			$url = 'http://127.0.0.1:' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim($_url, '/') . '&apikey=' . jeedom::getApiKey('openzwave');
@@ -46,7 +46,7 @@ class openzwave extends eqLogic {
 		curl_close($ch);
 		return is_json($result, $result);
 	}
-
+	
 	public static function syncEqLogicWithOpenZwave($_logical_id = null, $_exclusion = 0) {
 		try {
 			$controlerState = self::callOpenzwave('/network?type=info&info=getStatus');
@@ -111,7 +111,7 @@ class openzwave extends eqLogic {
 			));
 			$result = $result['result'];
 			if (!is_object($eqLogic)) {
-				$eqLogic = new eqLogic();
+				$eqLogic = new openzwave();
 			}
 			$eqLogic->setEqType_name('openzwave');
 			$eqLogic->setIsEnable(1);
@@ -140,7 +140,7 @@ class openzwave extends eqLogic {
 			));
 			return;
 		}
-
+		
 		$results = self::callOpenzwave('/network?type=info&info=getNodesList');
 		$findDevice = array();
 		$include_device = '';
@@ -159,7 +159,7 @@ class openzwave extends eqLogic {
 			}
 			$eqLogic = self::byLogicalId($nodeId, 'openzwave');
 			if (!is_object($eqLogic)) {
-				$eqLogic = new eqLogic();
+				$eqLogic = new openzwave();
 				$eqLogic->setEqType_name('openzwave');
 				$eqLogic->setIsEnable(1);
 				$eqLogic->setLogicalId($nodeId);
@@ -203,10 +203,10 @@ class openzwave extends eqLogic {
 			'message' => '',
 		));
 	}
-
+	
 	/*     * ********************************************************************** */
 	/*     * ***********************OPENZWAVE MANAGEMENT*************************** */
-
+	
 	public static function dependancy_info() {
 		$return = array();
 		$return['log'] = 'openzwave_update';
@@ -217,13 +217,13 @@ class openzwave extends eqLogic {
 		}
 		return $return;
 	}
-
+	
 	public static function dependancy_install() {
 		config::save('currentOzwVersion', config::byKey('openzwave_version', 'openzwave'), 'openzwave');
 		log::remove(__CLASS__ . '_update');
 		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('openzwave') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
 	}
-
+	
 	public static function getVersion($_module = 'openzwave') {
 		if ($_module == 'openzwave') {
 			if (!file_exists('/opt/python-openzwave/openzwave/version')) {
@@ -236,14 +236,14 @@ class openzwave extends eqLogic {
 			return $version;
 		}
 	}
-
+	
 	public static function compilationOk() {
 		if (shell_exec('ls /usr/local/lib/python2.*/dist-packages/openzwave*.egg/libopenzwave.so 2>/dev/null | wc -l') == 0) {
 			return false;
 		}
 		return true;
 	}
-
+	
 	public static function deamon_info() {
 		$return = array();
 		$return['state'] = 'nok';
@@ -268,7 +268,7 @@ class openzwave extends eqLogic {
 		}
 		return $return;
 	}
-
+	
 	public static function deamon_start($_debug = false) {
 		self::deamon_stop();
 		$deamon_info = self::deamon_info();
@@ -287,7 +287,7 @@ class openzwave extends eqLogic {
 		if (!file_exists($data_path)) {
 			exec('mkdir ' . $data_path . ' && chmod 775 -R ' . $data_path . ' && chown -R www-data:www-data ' . $data_path);
 		}
-
+		
 		$suppressRefresh = 0;
 		if (config::byKey('suppress_refresh', 'openzwave') == 1) {
 			$suppressRefresh = 1;
@@ -299,7 +299,7 @@ class openzwave extends eqLogic {
 			}
 		}
 		$disabledNodes = trim($disabledNodes, ',');
-
+		
 		$cmd = '/usr/bin/python ' . $openzwave_path . '/openzwaved/openzwaved.py ';
 		$cmd .= ' --device ' . $port;
 		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('openzwave'));
@@ -314,7 +314,7 @@ class openzwave extends eqLogic {
 		if ($disabledNodes != '') {
 			$cmd .= ' --disabledNodes ' . $disabledNodes;
 		}
-
+		
 		log::add('openzwave', 'info', 'Lancement démon openzwave : ' . $cmd);
 		exec($cmd . ' >> ' . log::getPathToLog('openzwave') . ' 2>&1 &');
 		$i = 0;
@@ -333,14 +333,14 @@ class openzwave extends eqLogic {
 		message::removeAll('openzwave', 'unableStartDeamon');
 		log::add('openzwave', 'info', 'Démon openzwave lancé');
 	}
-
+	
 	public static function deamon_stop() {
 		$deamon_info = self::deamon_info();
 		if ($deamon_info['state'] == 'ok') {
 			try {
 				self::callOpenzwave('/network?action=stop&type=action');
 			} catch (Exception $e) {
-
+				
 			}
 		}
 		$pid_file = jeedom::getTmpFolder('openzwave') . '/deamon.pid';
@@ -355,7 +355,7 @@ class openzwave extends eqLogic {
 		}
 		sleep(1);
 	}
-
+	
 	public static function syncconfOpenzwave($_background = true) {
 		log::remove('openzwave_syncconf');
 		log::add('openzwave_syncconf', 'info', 'Arrêt du démon en cours');
@@ -369,9 +369,9 @@ class openzwave extends eqLogic {
 		shell_exec($cmd);
 		self::deamon_start();
 	}
-
+	
 	/*     * *********************Methode d'instance************************* */
-
+	
 	public function loadCmdFromConf($_update = false) {
 		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
 			return;
@@ -391,7 +391,7 @@ class openzwave extends eqLogic {
 			'message' => '',
 		));
 	}
-
+	
 	public function postSave() {
 		try {
 			$replace = array('/' => '');
@@ -407,10 +407,10 @@ class openzwave extends eqLogic {
 			$humanName = urlencode(trim($name));
 			self::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&type=setDeviceName&location=' . $humanLocation . '&name=' . $humanName . '&is_enable=' . $this->getIsEnable());
 		} catch (Exception $e) {
-
+			
 		}
 	}
-
+	
 	public function getConfFilePath($_all = false) {
 		if ($_all) {
 			$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
@@ -437,7 +437,7 @@ class openzwave extends eqLogic {
 		}
 		return false;
 	}
-
+	
 	public function applyRecommended() {
 		if (!$this->getIsEnable()) {
 			return;
@@ -482,7 +482,7 @@ class openzwave extends eqLogic {
 		}
 		return;
 	}
-
+	
 	public function getImgFilePath() {
 		$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
 		$files = ls(dirname(__FILE__) . '/../config/devices', $id . '_*.{jpg,png}', false, array('files', 'quiet'));
@@ -496,11 +496,11 @@ class openzwave extends eqLogic {
 		}
 		return false;
 	}
-
+	
 	public function getImage() {
 		return 'plugins/openzwave/core/config/devices/' . $this->getImgFilePath();
 	}
-
+	
 	public function getAssistantFilePath() {
 		$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
 		$files = ls(dirname(__FILE__) . '/../config/devices', $id . '_*.php', false, array('files', 'quiet'));
@@ -514,7 +514,7 @@ class openzwave extends eqLogic {
 		}
 		return false;
 	}
-
+	
 	public function createCommand($_update = false, $_data = null) {
 		$return = array();
 		if (!is_numeric($this->getLogicalId())) {
@@ -574,146 +574,146 @@ class openzwave extends eqLogic {
 										$cmd_info->setConfiguration('index', $index);
 										switch ($data['type']) {
 											case 'bool':
-												$cmd_info->setSubType('binary');
-												break;
+											$cmd_info->setSubType('binary');
+											break;
 											case 'int':
-												$cmd_info->setSubType('numeric');
-												$cmd_info->setIsHistorized(1);
-												break;
+											$cmd_info->setSubType('numeric');
+											$cmd_info->setIsHistorized(1);
+											break;
 											case 'float':
-												$cmd_info->setSubType('numeric');
-												$cmd_info->setIsHistorized(1);
-												break;
+											$cmd_info->setSubType('numeric');
+											$cmd_info->setIsHistorized(1);
+											break;
 											default:
-												$cmd_info->setSubType('string');
-												break;
+											$cmd_info->setSubType('string');
+											break;
 										}
 										$cmd_info->save();
 									}
 									if (!$data['read_only']) {
 										switch ($data['type']) {
 											case 'bool':
-												if ($data['typeZW'] == 'Button') {
-													$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name);
-												} else {
-													$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name . ' On');
-												}
-												if (!is_object($cmd)) {
-													$cmd = new openzwaveCmd();
-												}
-												$cmd->setSubType('other');
-												$cmd->setType('action');
-												$cmd->setEqLogic_id($this->getId());
-												$cmd->setConfiguration('instance', $instanceID);
-												$cmd->setConfiguration('class', $ccId);
-												$cmd->setConfiguration('index', $index);
-												if ($data['typeZW'] == 'Button') {
-													$cmd->setName($cmd_name);
-													$cmd->setConfiguration('value', 'type=buttonaction&action=press');
-												} else {
-													$cmd->setName($cmd_name . ' On');
-													$cmd->setConfiguration('value', 'type=setvalue&value=255');
-												}
-												if (is_object($cmd_info)) {
-													$cmd->setValue($cmd_info->getId());
-													$cmd->setTemplate('dashboard', 'light');
-													$cmd->setTemplate('mobile', 'light');
-													$cmd_info->setIsVisible(0);
-													$cmd_info->save();
-
-												}
-												$cmd->save();
-												if ($data['typeZW'] == 'Button') {
-													$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name . ' Stop');
-												} else {
-													$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name . ' Off');
-												}
-												if (!is_object($cmd)) {
-													$cmd = new openzwaveCmd();
-												}
-												$cmd->setSubType('other');
-												$cmd->setType('action');
-												$cmd->setEqLogic_id($this->getId());
-												$cmd->setConfiguration('instance', $instanceID);
-												$cmd->setConfiguration('class', $ccId);
-												$cmd->setConfiguration('index', $index);
-												if ($data['typeZW'] == 'Button') {
-													$cmd->setName($cmd_name . ' Stop');
-													$cmd->setIsVisible(0);
-													$cmd->setConfiguration('value', 'type=buttonaction&action=release');
-												} else {
-													$cmd->setName($cmd_name . ' Off');
-													$cmd->setConfiguration('value', 'type=setvalue&value=0');
-												}
-												if (is_object($cmd_info)) {
-													$cmd->setValue($cmd_info->getId());
-													$cmd->setTemplate('dashboard', 'light');
-													$cmd->setTemplate('mobile', 'light');
-													$cmd_info->setIsVisible(0);
-													$cmd_info->save();
-												}
-												$cmd->save();
-												break;
+											if ($data['typeZW'] == 'Button') {
+												$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name);
+											} else {
+												$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name . ' On');
+											}
+											if (!is_object($cmd)) {
+												$cmd = new openzwaveCmd();
+											}
+											$cmd->setSubType('other');
+											$cmd->setType('action');
+											$cmd->setEqLogic_id($this->getId());
+											$cmd->setConfiguration('instance', $instanceID);
+											$cmd->setConfiguration('class', $ccId);
+											$cmd->setConfiguration('index', $index);
+											if ($data['typeZW'] == 'Button') {
+												$cmd->setName($cmd_name);
+												$cmd->setConfiguration('value', 'type=buttonaction&action=press');
+											} else {
+												$cmd->setName($cmd_name . ' On');
+												$cmd->setConfiguration('value', 'type=setvalue&value=255');
+											}
+											if (is_object($cmd_info)) {
+												$cmd->setValue($cmd_info->getId());
+												$cmd->setTemplate('dashboard', 'light');
+												$cmd->setTemplate('mobile', 'light');
+												$cmd_info->setIsVisible(0);
+												$cmd_info->save();
+												
+											}
+											$cmd->save();
+											if ($data['typeZW'] == 'Button') {
+												$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name . ' Stop');
+											} else {
+												$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name . ' Off');
+											}
+											if (!is_object($cmd)) {
+												$cmd = new openzwaveCmd();
+											}
+											$cmd->setSubType('other');
+											$cmd->setType('action');
+											$cmd->setEqLogic_id($this->getId());
+											$cmd->setConfiguration('instance', $instanceID);
+											$cmd->setConfiguration('class', $ccId);
+											$cmd->setConfiguration('index', $index);
+											if ($data['typeZW'] == 'Button') {
+												$cmd->setName($cmd_name . ' Stop');
+												$cmd->setIsVisible(0);
+												$cmd->setConfiguration('value', 'type=buttonaction&action=release');
+											} else {
+												$cmd->setName($cmd_name . ' Off');
+												$cmd->setConfiguration('value', 'type=setvalue&value=0');
+											}
+											if (is_object($cmd_info)) {
+												$cmd->setValue($cmd_info->getId());
+												$cmd->setTemplate('dashboard', 'light');
+												$cmd->setTemplate('mobile', 'light');
+												$cmd_info->setIsVisible(0);
+												$cmd_info->save();
+											}
+											$cmd->save();
+											break;
 											case 'int':
-												$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name);
-												if (!is_object($cmd)) {
-													$cmd = new openzwaveCmd();
-												}
-												$cmd->setType('action');
-												$cmd->setEqLogic_id($this->getId());
-												$cmd->setName($cmd_name);
-												$cmd->setConfiguration('instance', $instanceID);
-												$cmd->setConfiguration('class', $ccId);
-												$cmd->setConfiguration('index', $index);
-												$cmd->setConfiguration('value', 'type=setvalue&value=#slider#');
-												$cmd->setSubType('slider');
-												if (is_object($cmd_info)) {
-													$cmd->setValue($cmd_info->getId());
-													$cmd_info->setIsVisible(0);
-													$cmd_info->save();
-												}
-												$cmd->save();
-												break;
+											$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name);
+											if (!is_object($cmd)) {
+												$cmd = new openzwaveCmd();
+											}
+											$cmd->setType('action');
+											$cmd->setEqLogic_id($this->getId());
+											$cmd->setName($cmd_name);
+											$cmd->setConfiguration('instance', $instanceID);
+											$cmd->setConfiguration('class', $ccId);
+											$cmd->setConfiguration('index', $index);
+											$cmd->setConfiguration('value', 'type=setvalue&value=#slider#');
+											$cmd->setSubType('slider');
+											if (is_object($cmd_info)) {
+												$cmd->setValue($cmd_info->getId());
+												$cmd_info->setIsVisible(0);
+												$cmd_info->save();
+											}
+											$cmd->save();
+											break;
 											case 'float':
-												$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name);
+											$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name);
+											if (!is_object($cmd)) {
+												$cmd = new openzwaveCmd();
+											}
+											$cmd->setType('action');
+											$cmd->setEqLogic_id($this->getId());
+											$cmd->setName($cmd_name);
+											$cmd->setConfiguration('instance', $instanceID);
+											$cmd->setConfiguration('class', $ccId);
+											$cmd->setConfiguration('index', $index);
+											$cmd->setConfiguration('value', 'type=setvalue&value=#slider#');
+											$cmd->setSubType('slider');
+											if (is_object($cmd_info)) {
+												$cmd->setValue($cmd_info->getId());
+												$cmd_info->setIsVisible(0);
+												$cmd_info->save();
+											}
+											$cmd->save();
+											break;
+											case 'List':
+											foreach (explode(';', $data['data_items']) as $value) {
+												if (strpos($value, 'Unknown') !== false || strpos($cmd_name, 'Unused') !== false) {
+													continue;
+												}
+												$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name . ' ' . $value);
 												if (!is_object($cmd)) {
 													$cmd = new openzwaveCmd();
 												}
 												$cmd->setType('action');
 												$cmd->setEqLogic_id($this->getId());
-												$cmd->setName($cmd_name);
+												$cmd->setName($cmd_name . ' ' . $value);
 												$cmd->setConfiguration('instance', $instanceID);
 												$cmd->setConfiguration('class', $ccId);
 												$cmd->setConfiguration('index', $index);
-												$cmd->setConfiguration('value', 'type=setvalue&value=#slider#');
-												$cmd->setSubType('slider');
-												if (is_object($cmd_info)) {
-													$cmd->setValue($cmd_info->getId());
-													$cmd_info->setIsVisible(0);
-													$cmd_info->save();
-												}
+												$cmd->setConfiguration('value', 'type=setvalue&value=' . $value);
+												$cmd->setSubType('other');
 												$cmd->save();
-												break;
-											case 'List':
-												foreach (explode(';', $data['data_items']) as $value) {
-													if (strpos($value, 'Unknown') !== false || strpos($cmd_name, 'Unused') !== false) {
-														continue;
-													}
-													$cmd = cmd::byEqLogicIdCmdName($this->getId(), $cmd_name . ' ' . $value);
-													if (!is_object($cmd)) {
-														$cmd = new openzwaveCmd();
-													}
-													$cmd->setType('action');
-													$cmd->setEqLogic_id($this->getId());
-													$cmd->setName($cmd_name . ' ' . $value);
-													$cmd->setConfiguration('instance', $instanceID);
-													$cmd->setConfiguration('class', $ccId);
-													$cmd->setConfiguration('index', $index);
-													$cmd->setConfiguration('value', 'type=setvalue&value=' . $value);
-													$cmd->setSubType('other');
-													$cmd->save();
-												}
-												break;
+											}
+											break;
 										}
 									}
 								}
@@ -729,14 +729,14 @@ class openzwave extends eqLogic {
 			'message' => '',
 		));
 	}
-
+	
 }
 
 class openzwaveCmd extends cmd {
 	/*     * ***********************Methode static*************************** */
-
+	
 	/*     * *********************Methode d'instance************************* */
-
+	
 	public function preSave() {
 		if ($this->getConfiguration('instance') === '') {
 			$this->setConfiguration('instance', '1');
@@ -749,7 +749,7 @@ class openzwaveCmd extends cmd {
 		}
 		$this->setLogicalId($this->getConfiguration('instance') . '.' . $this->getConfiguration('class') . '.' . $this->getConfiguration('index'));
 	}
-
+	
 	public function execute($_options = array()) {
 		if ($this->getType() != 'action') {
 			return;
@@ -758,17 +758,17 @@ class openzwaveCmd extends cmd {
 		$request = '/node?node_id=' . $this->getEqLogic()->getLogicalId();
 		switch ($this->getSubType()) {
 			case 'slider':
-				$value = str_replace('#slider#', $_options['slider'], $value);
-				break;
+			$value = str_replace('#slider#', $_options['slider'], $value);
+			break;
 			case 'color':
-				if ($value == '#color#') {
-					$value = str_replace('#color#', str_replace('#', '', $_options['color']), $value);
-					return $this->setRGBColor($value);
-				}
-				if (strlen($_options['color']) == 7) {
-					$_options['color'] .= '0000';
-				}
-				$value = str_replace('#color#', str_replace('#', '%23', $_options['color']), $value);
+			if ($value == '#color#') {
+				$value = str_replace('#color#', str_replace('#', '', $_options['color']), $value);
+				return $this->setRGBColor($value);
+			}
+			if (strlen($_options['color']) == 7) {
+				$_options['color'] .= '0000';
+			}
+			$value = str_replace('#color#', str_replace('#', '%23', $_options['color']), $value);
 		}
 		$request .= '&instance_id=' . $this->getConfiguration('instance', 1);
 		$request .= '&cc_id=' . $this->getConfiguration('class');
@@ -776,5 +776,5 @@ class openzwaveCmd extends cmd {
 		$request .= '&' . str_replace(' ', '%20', $value);
 		openzwave::callOpenzwave($request);
 	}
-
+	
 }
