@@ -571,6 +571,9 @@
 		<Product type="1301" id="1000" name="FGT001 Heat Controller" config="fibaro/fgt001.xml"/>
 		<Product type="1701" id="2000" name="FGWPG111 US Wall Plug" config="fibaro/fgwpg111.xml"/>
 		<Product type="1801" id="1000" name="FGWPG111 UK Wall Plug" config="fibaro/fgwpg111.xml"/>
+		<Product type="1b01" id="1000" name="FGWDSEU-221 Walli Switch" config="fibaro/fgwdseu221.xml" />
+		<Product type="1d01" id="1000" name="FGWREU-111 Walli Roller Shutter" config="fibaro/fgwreu111.xml" />
+		<Product type="1f01" id="1000" name="FGWOF011 Walli Outlet Type F" config="fibaro/fgwof011.xml" />
 	</Manufacturer>
 	<Manufacturer id="0138" name="First Alert">
 		<Product type="0001" id="0002" name="ZCombo Smoke and Carbon Monoxide Detector"  config="firstalert/zcombo.xml"/>
