@@ -22,20 +22,12 @@ This parameter is not relevant in gate operating modes (parameter 151 set to 3 o
       <Item label="reversed (Q1 – 2nd channel, Q2 – 1st channel)" value="1" /> 
     </Value>
     
-    <Value type="list" genre="config" instance="1" index="40" label="S1 switch - scenes sent" value="0" size="1">
-      <Help>This parameter determines which actions result in sending scene IDs assigned to them.</Help>
-      <Item label="Key pressed 1 time" value="0" />
-      <Item label="Key pressed 2 times" value="1" /> 
-      <Item label="Key pressed 3 times" value="2" /> 
-      <Item label="Key hold down and key released" value="3" /> 
+    <Value type="byte" genre="config" instance="1" index="40" label="S1 switch - scenes sent" value="0" size="1">
+      <Help>This parameter determines which actions result in sending scene IDs assigned to them. Key pressed 1 time : 0; Key pressed 2 times : 1 ; Key pressed 3 times : 2; Key hold down and key released : 3 </Help>
     </Value>
     
-    <Value type="list" genre="config" instance="1" index="41" label="S2 switch - scenes sent" value="0" size="1">
-      <Help>This parameter determines which actions result in sending scene IDs assigned to them.</Help>
-      <Item label="Key pressed 1 time" value="0" />
-      <Item label="Key pressed 2 times" value="1" /> 
-      <Item label="Key pressed 3 times" value="2" /> 
-      <Item label="Key hold down and key released" value="3" /> 
+    <Value type="byte" genre="config" instance="1" index="41" label="S2 switch - scenes sent" value="0" size="1">
+       <Help>This parameter determines which actions result in sending scene IDs assigned to them. Key pressed 1 time : 0; Key pressed 2 times : 1 ; Key pressed 3 times : 2; Key hold down and key released : 3 </Help>
     </Value>
 
 	<Value type="list" genre="config" instance="1" index="60" label="Measuring power consumed by the device itself" value="0" size="1">
