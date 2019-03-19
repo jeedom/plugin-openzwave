@@ -23,7 +23,7 @@ produits électroniques de basse consommation, y compris les appareils à
 piles tels que les télécommandes, les détecteurs de fumée et capteurs de
 sécurité.
 
-Le Z-Wave+, apporte certaines améliorations dont une meilleure portée et
+Le Z-Wave+ apporte certaines améliorations dont une meilleure portée et
 améliore la durée de vie des batteries entre autres. La
 rétrocompatibilité est totale avec le Z-Wave.
 
@@ -106,13 +106,13 @@ d’un message.
 > **Tip**
 >
 > Il est fortement recommandé en début d’installation d’avoir un ratio
-> entre nœuds secteur et nœud sur piles de 2/3, afin d’avoir un bon
+> entre nœuds secteur et nœuds sur piles de 2/3, afin d’avoir un bon
 > maillage réseau. Privilégier des micromodules aux smart-plugs. Les
 > micros modules seront à un emplacement définitif et ne seront pas
 > débranchés, ils ont aussi en général une meilleure portée. Un bon
 > départ est l’éclairage des zones communes. Il permettra de bien
 > répartir les modules secteurs à des endroits stratégiques dans votre
-> domicile. Par la suite vous pourrez ajouter autant de modules sur pile
+> domicile. Par la suite, vous pourrez ajouter autant de modules sur pile
 > que souhaité, si vos routes de base sont bonnes.
 
 > **Tip**
@@ -136,7 +136,7 @@ Propriétés des appareils Z-Wave
 
 En résumé:
 
--   Chaque appareil Z -Wave peut recevoir et accuser réception de
+-   Chaque appareil Z-Wave peut recevoir et accuser réception de
     messages
 
 -   Les contrôleurs peuvent envoyer des messages à tous les nœuds du
@@ -219,7 +219,7 @@ informations
     de problème.
 
 -   Le **Dernier lancement** est comme son nom l’indique la date du
-    dernier lancement connue du demon.
+    dernier lancement connue du démon.
 
 Log
 ---
@@ -270,11 +270,11 @@ Cette partie permet de configurer les paramètres généraux du plugin
         en arrière-plan.
 
     -   **Cycle (s)** : permet de définir la fréquence des remontées
-        à jeedom.
+        à Jeedom.
 
     -   **Port clé Z-Wave** : le port USB sur lequel votre interface
         Z-Wave est connectée. Si vous utilisez le Razberry, vous avez,
-        en fonction de votre architecture (RPI ou Jeedomboard) les 2
+        en fonction de votre architecture (RPI ou Jeedomboard), les 2
         possibilités à la fin de la liste.
 
     -   **Port du Serveur** (modification dangereuse, doit avoir la même
@@ -312,7 +312,7 @@ apportés:
     ré-inclure le module.
 
 -   Pour un module pour lequel seuls les paramètres ont été mis à jour :
-    lancer la régénération de la détection du nœud, via l’onglet Actions
+    lancer la regénération de la détection du nœud, via l’onglet Actions
     du module (le plugin doit redémarrer).
 
 -   Pour un module dont le « mapping » de commandes a été corrigé : la
@@ -329,8 +329,8 @@ vous effectuez une modification.
 >
 > Si vous utilisez Ubuntu : Pour que le démon fonctionne, il faut
 > absolument avoir ubuntu 15.04 (les versions inférieures ont un bug et
-> le démon n’arrive pas à se lancer). Attention si vous faites une mise
-> à jour à partir de 14.04 il faut une fois en 15.04 relancer
+> le démon n’arrive pas à se lancer). Attention, si vous faites une mise
+> à jour à partir de 14.04, il faut une fois en 15.04 relancer
 > l’installation des dépendances.
 
 > **Important**
@@ -343,7 +343,7 @@ Paneau Mobile
 
 ![configuration09](../images/configuration09.png)
 
-Permet d’afficher ou non le panel mobile lors que vous utiliser
+Permet d’afficher ou non le panel mobile lorsque vous utilisez
 l’application sur un téléphone.
 
 Configuration des équipements
@@ -407,13 +407,13 @@ Vous retrouvez ici toute la configuration de votre équipement :
     module
 
 -   **Assistant** : disponible uniquement sur certains modules, il vous
-    aide à configurer le module (cas sur le zipato keyboard par exemple)
+    aide à configurer le module (cas sur le Zipato Keyboard par exemple)
 
 -   **Documentation** : ce bouton vous permet d’ouvrir directement la
     documentation Jeedom concernant ce module.
 
--   **Supprimer** : Permet de supprimer un équipement ainsi que tous ces
-    commandes rattaché sans l’exclure du réseau Z-Wave.
+-   **Supprimer** : Permet de supprimer un équipement ainsi que toutes ses
+    commandes rattachées sans l’exclure du réseau Z-Wave.
 
 > **Important**
 >
@@ -425,7 +425,7 @@ Vous retrouvez ici toute la configuration de votre équipement :
 Commandes
 ---------
 
-Ci-dessous vous retrouvez la liste des commandes :
+Ci-dessous, vous retrouvez la liste des commandes :
 
 ![appliance05](../images/appliance05.png)
 
@@ -441,7 +441,7 @@ Ci-dessous vous retrouvez la liste des commandes :
 
 -   valeur de la commande : dans le cas d’une commande type action, sa
     valeur peut être liée à une commande de type info, c’est ici que
-    cela se configure. Exemple pour une lampe l’intensité est liée à son
+    cela se configure. Exemple pour une lampe, l’intensité est liée à son
     état, cela permet au widget d’avoir l’état réel de la lampe.
 
 -   le type et le sous-type.
@@ -460,7 +460,7 @@ Ci-dessous vous retrouvez la liste des commandes :
     le cas d’un détecteur de présence qui n’émet que lors d’une
     détection de présence, il est utile de mettre par exemple 0 en
     valeur et 4 en durée, pour que 4 min après une détection de
-    mouvement (et si ensuite, il n’y en a pas eu de nouvelles) Jeedom
+    mouvement (et si ensuite, il n’y en a pas eu de nouvelles), Jeedom
     remette la valeur de l’information à 0 (plus de mouvement détecté).
 
 -   Historiser : permet d’historiser la donnée.
@@ -494,7 +494,7 @@ Ci-dessous vous retrouvez la liste des commandes :
 La **loupe**, disponible dans l’onglet général, permet de recréer
 l’ensemble des commandes pour le module en cours.
 ![appliance13](../images/appliance13.png) Si aucune commande n’est
-présente ou si les commandes sont erronées la loupe devrait remédier à
+présente ou si les commandes sont erronées, la loupe devrait remédier à
 la situation.
 
 > **Important**
@@ -567,7 +567,7 @@ configurations recommandées.
 
 ![appliance09](../images/appliance09.png)
 
-L’assistant active les différents éléments de configurations.
+L’assistant active les différents éléments de configuration.
 
 Une confirmation du bon déroulement sera affichée sous forme de bandeau
 
@@ -579,7 +579,7 @@ Une confirmation du bon déroulement sera affichée sous forme de bandeau
 > configuration.
 
 La page de l’équipement vous informe si des éléments n’ont pas encore
-été activés sur le module. Veuillez-vous référer à la documentation du
+été activés sur le module. Veuillez vous référer à la documentation du
 module pour le réveiller manuellement ou attendre le prochain cycle de
 réveil.
 
@@ -609,7 +609,7 @@ si le nœud est en attente d’information ou la liste des nœuds voisins.
 
 > **Tip**
 >
-> Sur cet onglet il est possible d’avoir des alertes en cas de détection
+> Sur cet onglet, il est possible d’avoir des alertes en cas de détection
 > possible d’un souci de configuration, Jeedom vous indiquera la marche
 > à suivre pour corriger. Il ne faut pas confondre une alerte avec une
 > erreur, l’alerte est dans une majorité des cas, une simple
@@ -634,7 +634,7 @@ Le « mapping » des commandes est entièrement basé sur ces informations.
 > **Tip**
 >
 > Il est possible d’avoir plus de commandes ici que sur Jeedom, c’est
-> tout à fait normal. Dans Jeedom les commandes ont été présélectionnées
+> tout à fait normal. Dans Jeedom, les commandes ont été présélectionnées
 > pour vous.
 
 > **Important**
@@ -683,7 +683,7 @@ afin de bien paramétrer vos nouveaux modules.
 
 > **Tip**
 >
-> La commande **Reprendre de…​** vous permet reprendre la configuration
+> La commande **Reprendre de…​** vous permet de reprendre la configuration
 > d’un autre module identique, sur le module en cours.
 
 ![node06](../images/node06.png)
@@ -701,7 +701,7 @@ afin de bien paramétrer vos nouveaux modules.
 > La commande **Actualiser les paramètres** force le module à actualiser
 > les paramètres sauvegardés dans le module.
 
-Si aucun fichier de configuration est définie pour le module, un
+Si aucun fichier de configuration est défini pour le module, un
 assistant manuel vous permet d’appliquer des paramètres au module.
 ![node17](../images/node17.png) Veillez vous référer à la documentation
 du fabricant pour connaitre la définition de l’index, valeur et taille.
@@ -709,7 +709,7 @@ du fabricant pour connaitre la définition de l’index, valeur et taille.
 Associations
 ------------
 
-C’est ici que se retrouve la gestion des groupes d’association de votre
+C’est ici que se retrouve la gestion des groupes d’associations de votre
 module.
 
 ![node07](../images/node07.png)
@@ -720,12 +720,12 @@ contrôle et un autre module est appelée association.
 
 Afin de contrôler un autre module, le module de commande a besoin de
 maintenir une liste des appareils qui recevront le contrôle des
-commandes. Ces listes sont appelées groupes d’association et elles sont
+commandes. Ces listes sont appelées groupes d’associations et elles sont
 toujours liées à certains événements (par exemple le bouton pressé, les
 déclencheurs de capteurs, …​ ).
 
 Dans le cas où un événement se produit, tous les périphériques
-enregistrés dans le groupe d’association concerné recevront une commande
+enregistrés dans le groupe d’associations concerné recevront une commande
 Basic.
 
 > **Tip**
@@ -735,7 +735,7 @@ Basic.
 
 > **Tip**
 >
-> La majorité des modules ont un groupe d’association qui est réservé
+> La majorité des modules ont un groupe d’associations qui est réservé
 > pour le contrôleur principal, il est utilisé pour remonter les
 > informations au contrôleur. Il se nomme en général : **Report** ou
 > **LifeLine**.
@@ -760,7 +760,7 @@ groupes d’associations seront affichés.
 
 **Associations multi-instances**
 
-certain module supporte une commande classe multi-instance associations.
+certains modules supportent une commande classe multi-instance associations.
 Lorsqu’un module supporte cette CC, il est possible de spécifier avec
 quelle instance on souhaite créer l’association
 
@@ -769,7 +769,7 @@ quelle instance on souhaite créer l’association
 > **Important**
 >
 > Certains modules doivent être associés à l’instance 0 du contrôleur
-> principale afin de bien fonctionner. Pour cette raison, le contrôleur
+> principal afin de bien fonctionner. Pour cette raison, le contrôleur
 > est présent avec et sans l’instance 0.
 
 Systèmes
@@ -786,7 +786,7 @@ Onglet regroupant les paramètres systèmes du module.
 > compromis entre le temps maximal de vie de la batterie et les réponses
 > souhaitées du dispositif. Pour maximiser la durée de vie de vos
 > modules, adapter la valeur Wakeup Interval par exemple à 14400
-> secondes (4h), voir encore plus élevé selon les modules et leur usage.
+> secondes (4h), voire encore plus élevé selon les modules et leur usage.
 > ![node11](../images/node11.png)
 
 > **Tip**
@@ -817,17 +817,17 @@ s’il est présumé mort par le contrôleur.
 
 > **Tip**
 >
-> La **Régénération de la détection du noeud** permet de détecter le
+> La **Regénération de la détection du noeud** permet de détecter le
 > module pour reprendre les derniers jeux de paramètres. Cette action
-> est requise lorsqu’on vous informe qu’une mise a jour de paramètres et
-> ou de comportement du module est requit pour le bon fonctionnement. La
-> Régénération de la détection du noeud implique un redémarrage du
+> est requise lorsqu’on vous informe qu’une mise à jour de paramètres et
+> ou de comportement du module est requise pour le bon fonctionnement. La
+> Regénération de la détection du noeud implique un redémarrage du
 > réseau, l’assistant l’effectue automatiquement.
 
 > **Tip**
 >
 > Si vous avez plusieurs modules identiques dont il est requis
-> d’exécuter la **Régénération de la détection du noeud**, il est
+> d’exécuter la **Regénération de la détection du noeud**, il est
 > possible de la lancer une fois pour tous les modules identiques.
 
 ![node13](../images/node13.png)
@@ -849,7 +849,7 @@ Z-Wave.
 
 > **Important**
 >
-> Seul les modules sur pile peuvent être supprimés via cette assistant.
+> Seuls les modules sur pile peuvent être supprimés via cette assistant.
 
 Statistiques
 ------------
@@ -923,7 +923,7 @@ Si vous re cliquez sur le bouton, vous sortez du mode inclusion.
 > **Important**
 >
 > Lors d’une inclusion, il est conseillé que le module soit à proximité
-> du contrôleur principal, soit à moins d’un mètre de votre jeedom.
+> du contrôleur principal, soit à moins d’un mètre de votre Jeedom.
 
 > **Tip**
 >
@@ -1050,7 +1050,7 @@ Un ensemble d’informations sur l’état actuel du réseau, à savoir :
     ou **Ready**.
 
 -   Queue sortante, indique le nombre de messages en queue dans le
-    contrôleur en attente d’être envoyé. Cette valeur est généralement
+    contrôleur en attente d’être envoyés. Cette valeur est généralement
     élevée durant le démarrage du réseau lorsque l’état est encore en
     **Driver Initialised**.
 
@@ -1065,7 +1065,7 @@ messages. Celui-ci va rapidement retourner à 0.
 > **Topology Loaded**, c’est-à-dire que l’ensemble des nœuds secteurs
 > ont complété leurs interviews. Selon le nombre de modules, la
 > répartition pile/secteur, le choix du dongle USB et le PC sur lequel
-> tourne le plugin Z-Wave, le réseau va atteindre cette état entre une
+> tourne le plugin Z-Wave, le réseau va atteindre cet état entre une
 > et cinq minutes.
 
 Un réseau **Ready**, signifie que tous les nœuds secteur et sur pile ont
@@ -1136,7 +1136,7 @@ Graphique du réseau
 Cet onglet vous donnera une représentation graphique des différents
 liens entre les nœuds.
 
-Explication la légende des couleurs :
+Explication de la légende des couleurs :
 
 -   **Noir** : Le contrôleur principal, en général représenté
     comme Jeedom.
@@ -1146,18 +1146,18 @@ Explication la légende des couleurs :
 -   **Blue** : Pour les contrôleurs, comme les télécommandes, ils sont
     associés au contrôleur primaire, mais n’ont pas de voisin.
 
--   **Jaune** : Toute les routes ont plus d’un saut avant d’arriver
+-   **Jaune** : Toutes les routes ont plus d’un saut avant d’arriver
     au contrôleur.
 
--   **Gris** : L’interview n’est pas encore complété, les liens seront
-    réellement connus une fois l’interview complété.
+-   **Gris** : L’interview n’est pas encore complétée, les liens seront
+    réellement connus une fois l’interview complétée.
 
--   **Rouge** : présumé mort, ou sans voisin, ne participe pas/plus au
+-   **Rouge** : présumé mort, ou sans voisins, ne participe pas/plus au
     maillage du réseau.
 
 > **Tip**
 >
-> Seul les équipements actifs seront affichés dans le graphique réseau.
+> Seuls les équipements actifs seront affichés dans le graphique réseau.
 
 Le réseau Z-Wave est constitué de trois différents types de nœuds avec
 trois fonctions principales.
@@ -1184,7 +1184,7 @@ contiennent les nœuds de destination. Se référer à la légende pour
 comprendre les couleurs de cellule qui indiquent les liens entre deux
 nœuds.
 
-Explication la légende des couleurs :
+Explication de la légende des couleurs :
 
 -   **Vert** : Communication directe avec le contrôleur, idéal.
 
@@ -1192,15 +1192,15 @@ Explication la légende des couleurs :
 
 -   **Jaune** : Moins de 2 routes avec un saut.
 
--   **Gris** : L’interview n’est pas encore complété, sera réellement
-    mis à jour une fois l’interview complété.
+-   **Gris** : L’interview n’est pas encore complétée, sera réellement
+    mis à jour une fois l’interview complétée.
 
 -   **Orange** : Toutes les routes ont plus d’un saut. Peut engendrer
     des latences.
 
 > **Tip**
 >
-> Seul les équipements actifs seront affichés dans le graphique réseau.
+> Seuls les équipements actifs seront affichés dans le graphique réseau.
 
 > **Important**
 >
@@ -1233,7 +1233,7 @@ Vous avez ici :
     contrôleur
 
 -   **Groupe** : indique si la configuration des groupes est ok
-    (contrôleur au moins dans un groupe). Si vous n’avez rien c’est que
+    (contrôleur au moins dans un groupe). Si vous n’avez rien, c’est que
     le module ne supporte pas la notion de groupe, c’est normal
 
 -   **Constructeur** : indique si la récupération des informations
@@ -1276,7 +1276,7 @@ Vous avez ici :
 > Les équipements désactivés seront affichés mais aucune information de
 > diagnostic ne sera présente.
 
-Le nom du module peut-être suivit par une ou deux images:
+Le nom du module peut-être suivi par une ou deux images:
 
 ![health04](../images/health04.png) Modules supportant la
 COMMAND\_CLASS\_ZWAVE\_PLUS\_INFO
@@ -1310,7 +1310,7 @@ COMMAND\_CLASS\_SECURITY et non sécurisé.
 > **Tip**
 >
 > La Temporisation et le %OK sur des nœuds sur piles avant la complétion
-> de leur interview n’est pas significative. En effet le nœud ne va pas
+> de leur interview n’est pas significative. En effet, le nœud ne va pas
 > répondre aux interrogations du contrôleur du fait qu’il est en sommeil
 > profond.
 
@@ -1335,17 +1335,17 @@ COMMAND\_CLASS\_SECURITY et non sécurisé.
 
 > **Tip**
 >
-> Si sur votre table de routage et/ou sur l’écran de santé Z-Wave vous
+> Si sur votre table de routage et/ou sur l’écran de santé Z-Wave, vous
 > avez un ou des modules nommés avec leurs **nom générique**, la
 > synchronisation permettra de remédier à cette situation.
 
 > **Tip**
 >
-> Si sur votre table de routage et/ou sur l’écran de santé Z-Wave vous
+> Si sur votre table de routage et/ou sur l’écran de santé Z-Wave, vous
 > avez un ou des modules nommés **Unknown**, cela signifie que
 > l’interview du module n’a pas été complétée avec succès. Vous avez
 > probablement un **NOK** dans la colonne constructeur. Ouvrir le détail
-> du/des modules, pour essayer les suggestions de solution proposées.
+> du/des modules, pour essayer les suggestions de solutions proposées.
 > (voir section Dépannage et diagnostique, plus bas)
 
 Statut de l’interview
@@ -1370,7 +1370,7 @@ Etape de l’interview d’un module après le démarrage du démon.
 -   **NodeInfo** Récupérer les infos sur la prise en charge des classes
     de commandes supportées.
 
--   **NodePlusInfo** Récupérer les infos ZWave+ sur la prise en charge
+-   **NodePlusInfo** Récupérer les infos Z-Wave+ sur la prise en charge
     des classes de commandes supportées.
 
 -   **SecurityReport** Récupérer la liste des classes de commande qui
@@ -1429,7 +1429,7 @@ Backups
 La partie backup va vous permettre de gérer les backups de la topologie
 de votre réseau. C’est votre fichier zwcfgxxx.xml, il constitue le
 dernier état connu de votre réseau, c’est une forme de cache de votre
-réseau. A partir de cet écran vous pourrez :
+réseau. A partir de cet écran, vous pourrez :
 
 -   Lancer un backup (un backup est fait à chaque arrêt relance du
     réseau et pendant les opérations critiques). Les 12 derniers backups
@@ -1445,7 +1445,7 @@ réseau. A partir de cet écran vous pourrez :
 Mettre à jour OpenZWave
 =======================
 
-Suite à une mise à jour du plugin Z-Wave il est possible que Jeedom vous
+Suite à une mise à jour du plugin Z-Wave, il est possible que Jeedom vous
 demande de mettre à jour les dépendances Z-Wave. Un NOK au niveau des
 dépendances sera affiché:
 
@@ -1461,7 +1461,7 @@ plugin considère qu’elle sont **NOK**. Cette validation est effectuée au
 bout de 5 minutes.
 
 La durée de cette opération peut varier en fonction de votre système
-(jusqu’à plus de 1h sur raspberry pi)
+(jusqu’à plus de 1h sur Raspberry Pi)
 
 Une fois la mise à jour des dépendances complétée, le démon se relancera
 automatiquement à la validation de Jeedom. Cette validation est
@@ -1470,7 +1470,7 @@ effectuée au bout de 5 minutes.
 > **Tip**
 >
 > Dans l’éventualité où la mise à jour des dépendances ne se
-> complèterait pas, veillez consulter le log **Openzwave\_update** qui
+> complèterait pas, veuillez consulter le log **Openzwave\_update** qui
 > devrait vous informer sur le problème.
 
 Liste des modules compatible
@@ -1479,7 +1479,7 @@ Liste des modules compatible
 Vous trouverez la liste des modules compatibles
 [ici](https://jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-equipement.compatible.html)
 
-Depannage et diagnostic
+Dépannage et diagnostic
 =======================
 
 Mon module n’est pas détecté ou ne remonte pas ses identifiants produit et type
@@ -1564,7 +1564,7 @@ Forcer le rafraichissement de valeurs
 Il est possible de forcer à la demande le rafraîchissement des valeurs
 d’une instance pour une commande classe spécifique.
 
-Il est possible de faire via une requête http ou de créer une commande
+Il est possible de le faire via une requête http ou de créer une commande
 dans l’écran de mapping d’un équipement.
 
 ![troubleshooting06](../images/troubleshooting06.png)
@@ -1613,7 +1613,7 @@ widgets et historiques de valeur:
 -   4b) Pour un nouveau contrôleur, stopper Jeedom, débrancher l’ancien
     contrôleur et brancher le nouveau. Démarrer Jeedom.
 
--   5\) Pour chaque équipements Z-Wave, modifier l’ID ZWave à **0**.
+-   5\) Pour chaque équipements Z-Wave, modifier l’ID Z-Wave à **0**.
 
 -   6\) Ouvrir 2 pages du plugin Z-Wave dans des onglets différents.
 
@@ -1629,8 +1629,8 @@ widgets et historiques de valeur:
 -   10\) Retourner sur l’onglet de l’ancien module (1er onglet) puis coller
     le nouvel ID à la place de l’ancien ID.
 
--   11\) Les paramètres ZWave ont été perdus lors de l’exclusion/inclusion,
-    pensez à remettre vos paramètres spécifiques si vous n’utilisez les
+-   11\) Les paramètres Z-Wave ont été perdus lors de l’exclusion/inclusion,
+    pensez à remettre vos paramètres spécifiques si vous n’utilisez pas les
     valeurs par défaut.
 
 -   11\) Répéter les étapes 7 à 11 pour chaque module à transférer.
@@ -1661,7 +1661,7 @@ Si le module est présumé "Dead" :
 
 Si le module n’est pas présumé "Dead" mais est toujours accessible:
 
--   Dans la configuration ZWave, décocher l’option "Supprimer
+-   Dans la configuration Z-Wave, décocher l’option "Supprimer
     automatiquement les périphériques exclus".
 
 -   Noter (copie écran) vos valeurs de paramètres, elles seront perdues
@@ -1671,7 +1671,7 @@ Si le module n’est pas présumé "Dead" mais est toujours accessible:
 
 -   Aller sur la page de configuration du module défaillant.
 
--   Ouvrir la page du plugin ZWave dans un nouvel onglet.
+-   Ouvrir la page du plugin Z-Wave dans un nouvel onglet.
 
 -   Faire l’inclusion du module.
 
@@ -1721,7 +1721,7 @@ Cet assistant est disponible seulement pour les modules sur piles.
 Actions post inclusion
 ----------------------
 
-On recommande d’effectuer l’inclusion à moins 1M du contrôleur
+On recommande d’effectuer l’inclusion à moins de 1M du contrôleur
 principal, or ce ne sera pas la position finale de votre nouveau module.
 Voici quelques bonnes pratiques à faire suite à l’inclusion d’un nouveau
 module dans votre réseau.
@@ -1779,14 +1779,14 @@ cache.
 
 Toutes les nuits, le plugin Z-Wave demande à chaque module de rafraichir
 la valeur Battery. Au prochain réveil, le module envoie la valeur à
-Jeedom pour être ajouté au cache. Donc il faut en général attendre au
+Jeedom pour être ajoutée au cache. Donc il faut en général attendre au
 moins 24h avant l’obtention d’une valeur dans l’écran Batteries.
 
 > **Tip**
 >
 > Il est bien entendu possible de rafraichir manuellement la valeur
 > Battery via l’onglet Valeurs du module puis, soit attendre le prochain
-> réveil ou encore de réveiller manuellement le module pour obtenir une
+> réveil ou encore réveiller manuellement le module pour obtenir une
 > remontée immédiate. Le cycle de réveil (Wake-up Interval) du module
 > est défini dans l’onglet Système du module. Pour optimiser la vie de
 > vos piles, il est recommandé d’espacer au maximum ce délai. Pour 4h,
@@ -1822,21 +1822,21 @@ toujours ce message, ce n’est plus normal.
 
 Il faut essayer les différentes étapes:
 
--   S’assurer que les voyants de l’écran santé Jeedom soient au vert.
+-   S’assurer que les voyants de l’écran santé Jeedom sont au vert.
 
 -   S’assurer que la configuration du plugin est en ordre.
 
 -   S’assurer que vous avez bien sélectionné le bon port de la
-    clé ZWave.
+    clé Z-Wave.
 
 -   S’assurer que votre configuration Réseau Jeedom est juste.
-    (Attention si vous avez fait un Restore d’une installation DIY vers
+    (Attention, si vous avez fait un Restore d’une installation DIY vers
     image officielle, le suffixe /jeedom ne doit pas y figurer)
 
 -   Regarder le log du plugin afin de voir si une erreur n’est
     pas remontée.
 
--   Regarder la **Console** du plugin ZWave, afin de voir si une erreur
+-   Regarder la **Console** du plugin Z-Wave, afin de voir si une erreur
     n’est pas remontée.
 
 -   Lancer le Demon en **Debug** regarder à nouveau la **Console** et
@@ -1896,7 +1896,7 @@ Erreur lors des dependances
 Plusieurs erreurs peuvent survenir lors de la mise à jour des
 dépendances. Il faut consulter le log de mise à jour des dépendances
 afin de déterminer quelle est exactement l’erreur. De façon générale,
-l’erreur se trouve à la fin du log dans les quelque dernières lignes.
+l’erreur se trouve à la fin du log dans les quelques dernières lignes.
 
 Voici les possibles problèmes ainsi que leurs possibles résolutions:
 
@@ -1910,7 +1910,7 @@ ssh:
 
 -   Les dépendances semblent bloquées sur 75%
 
-A 75% c’est le début de la compilation de la librairie openzwave ainsi
+A 75%, c’est le début de la compilation de la librairie openzwave ainsi
 que du wrapper python openzwave. Cette étape est très longue, on peut
 toutefois consulter la progression via la vue du log de mise à jour. Il
 faut donc être simplement patient.
@@ -1928,7 +1928,7 @@ faut donc être simplement patient.
 Cette erreur peut survenir suite à un manque de mémoire RAM durant la
 compilation.
 
-Depuis l’UI jeedom, lancez la compilation des dépendances.
+Depuis l’UI Jeedom, lancez la compilation des dépendances.
 
 Une fois lancée, en ssh, arrêtez ces processus (consommateurs en
 mémoire) :
@@ -1943,7 +1943,7 @@ fichier log openzwave\_update.
     tail -f /var/www/html/log/openzwave_update
 
 Lorsque la compilation est terminée et sans erreur, relancez les
-services que vous avez arrêté
+services que vous avez arrêtés
 
 sudo systemctl start cron sudo systemctl start apache2 sudo systemctl
 start mysql
@@ -2010,4 +2010,4 @@ http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices\[2\].TestNod
 
 > **J'ai l'erreur "Not enough space in stream buffer"**
 >
-> Malheureusement cette erreur est matériel, nous ne pouvons rien y faire et cherchons pour le moment comment forcer un redémarrage du démon dans le cas de cette erreur (mais souvent il faut en plus débrancher la clef pendant 5min pour que ca reparte)
+> Malheureusement cette erreur est matériel, nous ne pouvons rien y faire et cherchons pour le moment comment forcer un redémarrage du démon dans le cas de cette erreur (mais souvent il faut en plus débrancher la clef pendant 5min pour que ça reparte)
