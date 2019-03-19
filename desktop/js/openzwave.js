@@ -281,7 +281,7 @@ $('body').off('zwave::controller.data.controllerState').on('zwave::controller.da
     $('.changeIncludeState.card[data-mode=1]').css('background-color', '#8000FF');
     $('.changeIncludeState.card[data-mode=1] span center').text('{{Arrêter l\'inclusion}}');
     $('.changeIncludeState[data-mode=1]').attr('data-state', 0);
-    $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Arrêter l\'inclusion}}');
+    $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fas fa-sign-in-alt fa-rotate-90"></i> {{Arrêter l\'inclusion}}');
     $('#div_inclusionAlert').showAlert({
       message: '{{Vous êtes en mode inclusion}} ' + '. {{Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode. Pour inclure un module veuillez appuyer sur son bouton d\'inclusion (une ou plusieurs fois comme décrit dans la documentation du module).}}',
       level: 'warning'
@@ -291,7 +291,7 @@ $('body').off('zwave::controller.data.controllerState').on('zwave::controller.da
     $('.changeIncludeState.card[data-mode=0]').css('background-color', '#8000FF');
     $('.changeIncludeState.card[data-mode=0] span center').text('{{Arrêter l\'exclusion}}');
     $('.changeIncludeState[data-mode=0]').attr('data-state', 0);
-    $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fa fa-sign-out fa-rotate-90"></i> {{Arrêter l\'exclusion}}');
+    $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fas fa-sign-out-alt fa-rotate-90"></i> {{Arrêter l\'exclusion}}');
     $('#div_inclusionAlert').showAlert({
       message: '{{Vous êtes en mode exclusion}} ' + '. {{Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode. Pour exclure un module veuillez appuyer sur son bouton d\'inclusion (une ou plusieurs fois comme décrit dans la documentation du module).}}',
       level: 'warning'
@@ -299,8 +299,8 @@ $('body').off('zwave::controller.data.controllerState').on('zwave::controller.da
   } else {
     $('.changeIncludeState.card[data-mode=0]').css('background-color', '#ffffff');
     $('.changeIncludeState.card[data-mode=1]').css('background-color', '#ffffff');
-    $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Mode exclusion}}');
-    $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fa fa-sign-in fa-rotate-90"></i> {{Mode inclusion}}');
+    $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fas fa-sign-in-alt fa-rotate-90"></i> {{Mode exclusion}}');
+    $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fas fa-sign-in-alt fa-rotate-90"></i> {{Mode inclusion}}');
     $('.changeIncludeState.card[data-mode=1] span center').text('{{Mode inclusion}}');
     $('.changeIncludeState.card[data-mode=0] span center').text('{{Mode exclusion}}');
     $('.changeIncludeState[data-mode=1]').attr('data-state', 1);

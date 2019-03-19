@@ -58,7 +58,7 @@ sendVarToJs('node_id', init('id'));
         </h3>
         <div id="content">
             <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-                <li id="tab-summary" class="active"><a href="#summary" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Résumé}}</a></li>
+                <li id="tab-summary" class="active"><a href="#summary" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Résumé}}</a></li>
                 <li id="tab-values"><a href="#values" data-toggle="tab"><i class="fa fa-tag"></i> {{Valeurs}}</a></li>
                 <li id="tab-parameters"><a href="#parameters" data-toggle="tab"><i class="fas fa-wrench"></i> {{Paramètres}}</a></li>
                 <li id="tab-groups"><a href="#groups" data-toggle="tab"><i class="fa fa-users"></i> {{Associations}}</a></li>
@@ -177,12 +177,12 @@ sendVarToJs('node_id', init('id'));
                                     <th>{{Aide}}
                                         <div class="btn-group pull-right">
                                             <a id="refreshParams" class="btn btn-info btn-sm refreshParams">
-                                                <i class="fa fa-refresh"></i> {{Actualiser les paramètres}}
+                                                <i class="fas fa-sync-alt"></i> {{Actualiser les paramètres}}
                                             </a>
                                         </div>
                                         <div class="btn-group pull-right">
                                             <a id="copyToParams" class="btn btn-info btn-sm copyToParams">
-                                                <i class="fa fa-copy"></i> {{Appliquer sur...}}
+                                                <i class="fas fa-copy"></i> {{Appliquer sur...}}
                                             </a>
                                         </div>
                                         <div class="btn-group pull-right">
@@ -253,11 +253,11 @@ sendVarToJs('node_id', init('id'));
                     <div class="tab-pane" id="actions">
                         <table class="table table-striped">
                             <tr>
-                                <td><a data-action="requestNodeNeighboursUpdate" class="btn btn-primary node_action"><i class="fa fa-sitemap"></i> {{Mise à jour des nœuds voisins}}</a></td>
+                                <td><a data-action="requestNodeNeighboursUpdate" class="btn btn-primary node_action"><i class="fas fa-sitemap"></i> {{Mise à jour des nœuds voisins}}</a></td>
                                 <td>{{Force la mise à jour de la liste des nœuds voisins.}}</td>
                             </tr>
                             <tr>
-                                <td><a data-action="healNode" class="btn btn-success node_action"><i class="fa fa-medkit"></i> {{Soigner le nœud}}</a></td>
+                                <td><a data-action="healNode" class="btn btn-success node_action"><i class="fas fa-medkit"></i> {{Soigner le nœud}}</a></td>
                                 <td>{{Soigner le nœud au sein du réseau.}}</td>
                             </tr>
                             <tr>
@@ -269,11 +269,11 @@ sendVarToJs('node_id', init('id'));
                                 <td>{{Envoyer une série de message à un noeud pour le tester s'il répond.}}</td>
                             </tr>
                             <tr>
-                                <td><a data-action="refreshNodeValues" class="btn btn-success node_action"><i class="fa fa-refresh"></i> {{Rafraîchir les valeurs du nœud}}</a></td>
+                                <td><a data-action="refreshNodeValues" class="btn btn-success node_action"><i class="fas fa-sync-alt"></i> {{Rafraîchir les valeurs du nœud}}</a></td>
                                 <td>{{Demande l'actualisation de l'ensemble des valeurs du nœud.}}</td>
                             </tr>
                             <tr>
-                                <td><a data-action="requestNodeDynamic" class="btn btn-success node_action"><i class="fa fa-refresh"></i> {{Récupère les CC dynamiques}}</a></td>
+                                <td><a data-action="requestNodeDynamic" class="btn btn-success node_action"><i class="fas fa-sync-alt"></i> {{Récupère les CC dynamiques}}</a></td>
                                 <td>{{Récupère les données de commande classe dynamiques du nœud.}}</td>
                             </tr>
                             <tr>
@@ -297,7 +297,7 @@ sendVarToJs('node_id', init('id'));
                                 <td>{{Envoi une trame d'info au noeud (NIF).}}</td>
                             </tr>
                             <tr>
-                                <td><a id="regenerateNodeCfgFile" class="btn btn-warning node_action"><i class="fa fa-search"></i> {{Régénérer la détection du nœud}}</a></td>
+                                <td><a id="regenerateNodeCfgFile" class="btn btn-warning node_action"><i class="fas fa-search"></i> {{Régénérer la détection du nœud}}</a></td>
                                 <td>{{Supprime les informations du noeud dans le fichier de config afin qu'il soit à nouveau détecté.}}<br>{{(Attention : Relance le réseau)}}</td>
                             </tr>
                             <tr>

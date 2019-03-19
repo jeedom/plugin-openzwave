@@ -23,7 +23,7 @@ if (!isConnect('admin')) {
 ?>
 <form class="form-horizontal">
 	<fieldset>
-		<legend><i class="fa fa-list-alt"></i> {{Général}}</legend>
+		<legend><i class="fas fa-list-alt"></i> {{Général}}</legend>
 
 		<div class="form-group">
 			<label class="col-lg-4 control-label">{{Supprimer automatiquement les périphériques exclus}}</label>
@@ -73,7 +73,7 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 			<label class="col-lg-4 control-label">{{Options avancées}}</label>
 			<div class="col-lg-5">
 				<a class="btn btn-warning" id="bt_backupsZwave"><i class="fa fa-floppy-o"></i> {{Backups}}</a>
-				<a class="btn btn-warning" id="bt_syncconfigZwave"><i class="fa fa-refresh"></i> {{Configs modules}}</a>
+				<a class="btn btn-warning" id="bt_syncconfigZwave"><i class="fas fa-sync-alt"></i> {{Configs modules}}</a>
 			</div>
 		</div>
 	</fieldset>

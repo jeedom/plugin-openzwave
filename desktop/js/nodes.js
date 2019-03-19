@@ -813,7 +813,7 @@ function display_node_info(){
                     if (data.instances[instance].commandClasses[commandclass].data[index].write_only == false && first_index_polling) {
                         first_index_polling = false;
                         var polling = '<a style="position:relative;top:-1px;" class="btn btn-primary btn-xs editPolling cursor" data-index="' + index + '" data-polling="' + data.instances[instance].commandClasses[commandclass].data[index].poll_intensity + '" data-instance="' + instance + '" data-cc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-type="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-name="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-value="' + data.instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fas fa-wrench"></i></a> ';
-                        row.find("td[data-key=refresh]").html('<a class="btn btn-xs btn-primary forceRefresh" data-index="' + index + '" data-instance="' + instance + '" data-cc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-type="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-name="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-value="' + data.instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fa fa-refresh"></i></a>');
+                        row.find("td[data-key=refresh]").html('<a class="btn btn-xs btn-primary forceRefresh" data-index="' + index + '" data-instance="' + instance + '" data-cc="' + commandclass + '" data-valuedataitems="' + data.instances[instance].commandClasses[commandclass].data[index].data_items + '" data-type="' + data.instances[instance].commandClasses[commandclass].data[index].typeZW + '" data-name="' + data.instances[instance].commandClasses[commandclass].data[index].name + '" data-value="' + data.instances[instance].commandClasses[commandclass].data[index].val + '"><i class="fas fa-sync-alt"></i></a>');
                         if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 0) {
                             polling += '<span class="label label-success" style="font-size:1em;">{{Auto}}</span>';
                         } else if (data.instances[instance].commandClasses[commandclass].data[index].poll_intensity == 1) {
@@ -905,7 +905,7 @@ function show_groups(){
     var tr_groups = "";
     $("#groups").empty();
     $("#groups").append('<br/>');
-    $("#groups").append('<a class="btn btn-info btn-sm findUsage pull-right"><i class="fa fa-sitemap"></i> {{Associé à quels modules}}</a>');
+    $("#groups").append('<a class="btn btn-info btn-sm findUsage pull-right"><i class="fas fa-sitemap"></i> {{Associé à quels modules}}</a>');
     $("#groups").append('<br/><br/>');
     for (z in node_selected.groups) {
         if (!isNaN(z)) {

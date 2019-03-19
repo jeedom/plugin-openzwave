@@ -72,11 +72,11 @@ if (!isConnect('admin')) {
     <div class="container-fluid">
         <div id="content">
             <ul id="tabs_network" class="nav nav-tabs" data-tabs="tabs">
-                <li class="active"><a href="#summary_network" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Résumé}}</a></li>
+                <li class="active"><a href="#summary_network" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Résumé}}</a></li>
                 <li><a href="#actions_network" data-toggle="tab"><i class="fa fa-sliders"></i> {{Actions}}</a></li>
                 <li><a href="#statistics_network" data-toggle="tab"><i class="fa fa-bar-chart"></i> {{Statistiques}}</a></li>
                 <li id="tab_graph"><a href="#graph_network" data-toggle="tab"><i class="fa fa-picture-o"></i> {{Graphique du réseau}}</a></li>
-                <li id="tab_route"><a href="#route_network" data-toggle="tab"><i class="fa fa-table"></i> {{Table de routage}}</a></li>
+                <li id="tab_route"><a href="#route_network" data-toggle="tab"><i class="fas fa-table"></i> {{Table de routage}}</a></li>
             </ul>
             <div id="network-tab-content" class="tab-content">
                 <div class="tab-pane active" id="summary_network">
@@ -185,7 +185,7 @@ if (!isConnect('admin')) {
                             <td>{{Ajouter un nouveau module au réseau Z-Wave en mode sécurisé (peut ne pas marcher si le module ne le supporte pas bien).}}</td>
                         </tr>
                         <tr>
-                            <td><a id="removeDevice" class="btn btn-danger"><i class="fa fa-minus-circle"></i> {{Supprimer module (Exclusion)}}</a></td>
+                            <td><a id="removeDevice" class="btn btn-danger"><i class="fas fa-minus-circle"></i> {{Supprimer module (Exclusion)}}</a></td>
                             <td>{{Supprimer un module du réseau Z-Wave.}}</td>
                         </tr>
                         <tr>
@@ -197,7 +197,7 @@ if (!isConnect('admin')) {
                             <td>{{Envoie une série de messages sur le réseau pour le tester.}}</td>
                         </tr>
                         <tr>
-                            <td><a data-action="healNetwork" class="btn btn-success controller_action"><i class="fa fa-medkit"></i> {{Soigner le réseau}}</a></td>
+                            <td><a data-action="healNetwork" class="btn btn-success controller_action"><i class="fas fa-medkit"></i> {{Soigner le réseau}}</a></td>
                             <td>{{Soigner le réseau Z-Wave noeud par noeud.}}<br>{{Essaie de soigner tous les noeuds (un par un) en mettant à jour la liste des voisins et les routes optionnelles.}}</td>
                         </tr>
                         <tr>

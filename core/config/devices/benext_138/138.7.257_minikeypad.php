@@ -8,7 +8,7 @@ if (!isConnect()) {
     die();
 }
 ?>
-<legend>Mémoires du clavier <a class="btn btn-primary btn-xs pull-right" id="bt_refreshZipatoAssist"><i class="fa fa-refresh"></i></a></legend>
+<legend>Mémoires du clavier <a class="btn btn-primary btn-xs pull-right" id="bt_refreshZipatoAssist"><i class="fas fa-sync-alt"></i></a></legend>
 <div id="div_configureDeviceAlert"></div>
 <div class="alert alert-info">
     Info : <br/>
