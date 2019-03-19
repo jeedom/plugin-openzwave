@@ -152,14 +152,13 @@ sendVarTojs('eqLogic_human_name', $tags);
 			foreach ($eqLogics as $eqLogic) {
 				$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
 				echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-logical-id="' . $eqLogic->getLogicalId() . '" data-eqLogic_id="' . $eqLogic->getId() . '" >';
-				echo "<center>";
 				if ($eqLogic->getImgFilePath() !== false) {
 					echo '<img class="lazy" src="plugins/openzwave/core/config/devices/' . $eqLogic->getImgFilePath() . '"/>';
 				} else {
 					echo '<img src="' . $plugin->getPathImgIcon() . '"/>';
 				}
-				echo "</center>";
-				echo '<span class="name"><center>' . $eqLogic->getHumanName(true, true) . '</center></span>';
+				echo '<br/>';
+				echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
 				echo '</div>';
 			}
 			?>
