@@ -93,7 +93,7 @@ if (is_array($eqLogics)) {
 sendVarTojs('eqLogic_human_name', $tags);
 ?>
 <div class="row row-overflow">
-	<div class="col-xs-12 eqLogicThumbnailDisplay" style="padding-left: 25px;">
+	<div class="col-xs-12 eqLogicThumbnailDisplay">
 		<legend><i class="fa fa-cog"></i> {{Gestion}}</legend>
 		<div class="eqLogicThumbnailContainer">
 			<?php
@@ -128,7 +128,7 @@ sendVarTojs('eqLogic_human_name', $tags);
 				echo '</div>';
 			}
 			?>
-			<div class="cursor eqLogicAction" data-action="gotoPluginConf" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;">
+			<div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;">
 				<center>
 					<i class="fa fa-wrench" style="font-size : 6em;color:#767676;"></i>
 				</center>
@@ -154,26 +154,26 @@ sendVarTojs('eqLogic_human_name', $tags);
 			</div>
 		</div>
 		<legend><i class="fa fa-table"></i> {{Mes équipements Z-Wave}}</legend>
-		<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchEqlogic" />
+		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
 		<div class="eqLogicThumbnailContainer">
 			<?php
 			foreach ($eqLogics as $eqLogic) {
-				$opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+				$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
 				echo '<div class="eqLogicDisplayCard cursor" data-logical-id="' . $eqLogic->getLogicalId() . '" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 				echo "<center>";
 				if ($eqLogic->getImgFilePath() !== false) {
-					echo '<img class="lazy" src="plugins/openzwave/core/config/devices/' . $eqLogic->getImgFilePath() . '" height="105" width="95" />';
+					echo '<img class="lazy" src="plugins/openzwave/core/config/devices/' . $eqLogic->getImgFilePath() . '"/>';
 				} else {
-					echo '<img src="' . $plugin->getPathImgIcon() . '" height="105" width="95" />';
+					echo '<img src="' . $plugin->getPathImgIcon() . '"/>';
 				}
 				echo "</center>";
-				echo '<span class="name" style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $eqLogic->getHumanName(true, true) . '</center></span>';
+				echo '<span class="name"><center>' . $eqLogic->getHumanName(true, true) . '</center></span>';
 				echo '</div>';
 			}
 			?>
 		</div>
 	</div>
-	<div class="col-xs-12 eqLogic" style="padding-left: 25px;display: none;">
+	<div class="col-xs-12 eqLogic" style="display: none;">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<a class="btn btn-default eqLogicAction btn-sm roundedLeft" data-action="configure"><i class="fa fa-cogs"></i> {{Configuration avancée}}</a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
