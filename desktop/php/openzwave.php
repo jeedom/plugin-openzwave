@@ -94,66 +94,58 @@ sendVarTojs('eqLogic_human_name', $tags);
 ?>
 <div class="row row-overflow">
 	<div class="col-xs-12 eqLogicThumbnailDisplay">
-		<legend><i class="fa fa-cog"></i> {{Gestion}}</legend>
+		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="eqLogicThumbnailContainer">
 			<?php
 			if ($controllerMode == 1) {
 				echo '<div class="cursor changeIncludeState card success" data-mode="1" data-state="0"  >';
-				echo '<center>';
-				echo '<i class="fa fa-sign-in fa-rotate-90"></i>';
-				echo '</center>';
-				echo '<span><center>{{Arrêter inclusion}}</center></span>';
+				echo '<i class="fas fa-sign-in-alt fa-rotate-90"></i>';
+				echo '<br/>';
+				echo '<span>{{Arrêter inclusion}}</span>';
 				echo '</div>';
 			} else {
 				echo '<div class="cursor changeIncludeState card success" data-mode="1" data-state="1" >';
-				echo '<center>';
-				echo '<i class="fa fa-sign-in fa-rotate-90"></i>';
-				echo '</center>';
-				echo '<span><center>{{Mode inclusion}}</center></span>';
+				echo '<i class="fas fa-sign-in-alt fa-rotate-90"></i>';
+				echo '<br/>';
+				echo '<span>{{Mode inclusion}}</span>';
 				echo '</div>';
 			}
 			if ($controllerMode == 5) {
 				echo '<div class="cursor changeIncludeState card danger" data-mode="0" data-state="0"  >';
-				echo '<center>';
-				echo '<i class="fa fa-sign-out fa-rotate-90"></i>';
-				echo '</center>';
-				echo '<span><center>{{Arrêter exclusion}}</center></span>';
+				echo '<i class="fas fa-sign-out-alt fa-rotate-90"></i>';
+				echo '<br/>';
+				echo '<span>{{Arrêter exclusion}}</span>';
 				echo '</div>';
 			} else {
 				echo '<div class="cursor changeIncludeState card danger" data-mode="0" data-state="1" >';
-				echo '<center>';
-				echo '<i class="fa fa-sign-out fa-rotate-90"></i>';
-				echo '</center>';
-				echo '<span><center>{{Mode exclusion}}</center></span>';
+				echo '<i class="fas fa-sign-out-alt fa-rotate-90"></i>';
+				echo '<br/>';
+				echo '<span>{{Mode exclusion}}</span>';
 				echo '</div>';
 			}
 			?>
 			<div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf">
-				<center>
-					<i class="fas fa-wrench"></i>
-				</center>
-				<span><center>{{Configuration}}</center></span>
+				<i class="fas fa-wrench"></i>
+				<br/>
+				<span>{{Configuration}}</span>
 			</div>
 			<div class="cursor logoSecondary" id="bt_syncEqLogic">
-				<center>
-					<i class="fa fa-refresh"></i>
-				</center>
-				<span><center>{{Synchroniser}}</center></span>
+				<i class="fas fa-sync-alt"></i>
+				<br/>
+				<span>{{Synchroniser}}</span>
 			</div>
 			<div class="cursor logoSecondary" id="bt_zwaveNetwork">
-				<center>
-					<i class="fa fa-sitemap"></i>
-				</center>
-				<span><center>{{Réseau Zwave}}</center></span>
+				<i class="fas fa-sitemap"></i>
+				<br/>
+				<span>{{Réseau Zwave}}</span>
 			</div>
 			<div class="cursor logoSecondary" id="bt_zwaveHealth">
-				<center>
-					<i class="fa fa-medkit"></i>
-				</center>
+				<i class="fas fa-medkit"></i>
+				<br/>
 				<span><center>{{Santé}}</center></span>
 			</div>
 		</div>
-		<legend><i class="fa fa-table"></i> {{Mes équipements Z-Wave}}</legend>
+		<legend><i class="fas fa-table"></i> {{Mes équipements Z-Wave}}</legend>
 		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
 		<div class="eqLogicThumbnailContainer">
 			<?php
@@ -176,14 +168,14 @@ sendVarTojs('eqLogic_human_name', $tags);
 	<div class="col-xs-12 eqLogic" style="display: none;">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<a class="btn btn-default eqLogicAction btn-sm roundedLeft" data-action="configure"><i class="fa fa-cogs"></i> {{Configuration avancée}}</a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+				<a class="btn btn-default eqLogicAction btn-sm roundedLeft" data-action="configure"><i class="fas fa-cogs"></i> {{Configuration avancée}}</a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>
 		
 		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation"><a class="eqLogicAction cursor" aria-controls="home" role="tab" data-action="returnToThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
-			<li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Equipement}}</a></li>
-			<li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i> {{Commandes}}</a></li>
+			<li role="presentation"><a class="eqLogicAction cursor" aria-controls="home" role="tab" data-action="returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
+			<li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Equipement}}</a></li>
+			<li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Commandes}}</a></li>
 		</ul>
 		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 			<div role="tabpanel" class="tab-pane active" id="eqlogictab">
@@ -246,8 +238,8 @@ sendVarTojs('eqLogic_human_name', $tags);
 								<div class="form-group">
 									<label class="col-sm-2 control-label">{{Informations}}</label>
 									<div class="col-sm-8">
-										<a id="bt_autoDetectModule" class="btn btn-danger"><i class="fa fa-search"></i> {{Recharger configuration}}</a>
-										<a id="bt_displayZwaveData" class="btn btn-default"><i class="fa fa-tree"></i> {{Arbre Z-Wave}}</a>
+										<a id="bt_autoDetectModule" class="btn btn-danger"><i class="fas fa-search"></i> {{Recharger configuration}}</a>
+										<a id="bt_displayZwaveData" class="btn btn-default"><i class="fas fa-tree"></i> {{Arbre Z-Wave}}</a>
 										<span class="label label-warning isPending" style="font-size:0.6em;cursor:default;position:relative;top:-4px;left:20px;" title="{{Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage}}"></span>
 									</div>
 								</div>
@@ -273,9 +265,9 @@ sendVarTojs('eqLogic_human_name', $tags);
 									<label class="col-sm-2 control-label">{{Paramètres}}</label>
 									<div class="col-sm-10">
 										<a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fas fa-wrench"></i> {{Configuration}}</a>
-										<a class="btn btn-info" id="bt_deviceAssistant" title='{{Assistant de configuration spécifique}}' style="display:none;"><i class="fa fa-magic"></i> {{Assistant}}</a>
-										<a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank" style="display:none;"><i class="fa fa-book"></i>{{Documentation}} </a>
-										<a class="btn btn-warning" id="bt_deviceRecommended" title="{{Appliquer le jeu de configuration recommandée par l'équipe Jeedom}}" style="display:none;"><i class="fa fa-thumbs-up"></i> {{Configuration recommandée}}</a>
+										<a class="btn btn-info" id="bt_deviceAssistant" title='{{Assistant de configuration spécifique}}' style="display:none;"><i class="fas fa-magic"></i> {{Assistant}}</a>
+										<a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank" style="display:none;"><i class="fas fa-book"></i>{{Documentation}} </a>
+										<a class="btn btn-warning" id="bt_deviceRecommended" title="{{Appliquer le jeu de configuration recommandée par l'équipe Jeedom}}" style="display:none;"><i class="fas fa-thumbs-up"></i> {{Configuration recommandée}}</a>
 									</div>
 								</div>
 								
