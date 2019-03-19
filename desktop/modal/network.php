@@ -177,11 +177,11 @@ if (!isConnect('admin')) {
                 <div class="tab-pane" id="actions_network">
                     <table class="table">
                         <tr>
-                            <td><a class="btn btn-success bt_addDevice" data-secure="0"><i class="fa fa-plus-circle"></i> {{Ajouter module (inclusion)}}</a></td>
+                            <td><a class="btn btn-success bt_addDevice" data-secure="0"><i class="fas fa-plus-circle"></i> {{Ajouter module (inclusion)}}</a></td>
                             <td>{{Ajouter un nouveau module au réseau Z-Wave.}}</td>
                         </tr>
                         <tr>
-                            <td><a class="btn btn-warning bt_addDevice" data-secure="1"><i class="fa fa-plus-circle"></i> {{Ajouter module en mode sécurisé (inclusion)}}</a></td>
+                            <td><a class="btn btn-warning bt_addDevice" data-secure="1"><i class="fas fa-plus-circle"></i> {{Ajouter module en mode sécurisé (inclusion)}}</a></td>
                             <td>{{Ajouter un nouveau module au réseau Z-Wave en mode sécurisé (peut ne pas marcher si le module ne le supporte pas bien).}}</td>
                         </tr>
                         <tr>

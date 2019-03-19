@@ -60,7 +60,7 @@ sendVarToJs('node_id', init('id'));
             <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
                 <li id="tab-summary" class="active"><a href="#summary" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Résumé}}</a></li>
                 <li id="tab-values"><a href="#values" data-toggle="tab"><i class="fa fa-tag"></i> {{Valeurs}}</a></li>
-                <li id="tab-parameters"><a href="#parameters" data-toggle="tab"><i class="fa fa-wrench"></i> {{Paramètres}}</a></li>
+                <li id="tab-parameters"><a href="#parameters" data-toggle="tab"><i class="fas fa-wrench"></i> {{Paramètres}}</a></li>
                 <li id="tab-groups"><a href="#groups" data-toggle="tab"><i class="fa fa-users"></i> {{Associations}}</a></li>
                 <li id="tab-systems"><a href="#systems" data-toggle="tab"><i class="fa fa-cogs"></i> {{Systèmes}}</a></li>
                 <li id="tab-actions"><a href="#actions" data-toggle="tab"><i class="fa fa-sliders"></i> {{Actions}}</a></li>

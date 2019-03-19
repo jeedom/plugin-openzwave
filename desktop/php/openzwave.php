@@ -130,7 +130,7 @@ sendVarTojs('eqLogic_human_name', $tags);
 			?>
 			<div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf">
 				<center>
-					<i class="fa fa-wrench"></i>
+					<i class="fas fa-wrench"></i>
 				</center>
 				<span><center>{{Configuration}}</center></span>
 			</div>
@@ -272,7 +272,7 @@ sendVarTojs('eqLogic_human_name', $tags);
 								<div class="form-group">
 									<label class="col-sm-2 control-label">{{Paramètres}}</label>
 									<div class="col-sm-10">
-										<a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fa fa-wrench"></i> {{Configuration}}</a>
+										<a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fas fa-wrench"></i> {{Configuration}}</a>
 										<a class="btn btn-info" id="bt_deviceAssistant" title='{{Assistant de configuration spécifique}}' style="display:none;"><i class="fa fa-magic"></i> {{Assistant}}</a>
 										<a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank" style="display:none;"><i class="fa fa-book"></i>{{Documentation}} </a>
 										<a class="btn btn-warning" id="bt_deviceRecommended" title="{{Appliquer le jeu de configuration recommandée par l'équipe Jeedom}}" style="display:none;"><i class="fa fa-thumbs-up"></i> {{Configuration recommandée}}</a>
@@ -286,7 +286,7 @@ sendVarTojs('eqLogic_human_name', $tags);
 				
 			</div>
 			<div role="tabpanel" class="tab-pane" id="commandtab">
-				<a class="btn btn-success btn-sm cmdAction pull-right" data-action="add" style="margin-top:5px;"> <i class="fa fa-plus-circle"></i> {{Commandes}}</a>
+				<a class="btn btn-success btn-sm cmdAction pull-right" data-action="add" style="margin-top:5px;"> <i class="fas fa-plus-circle"></i> {{Commandes}}</a>
 				<br/><br/>
 				<table id="table_cmd" class="table table-bordered table-condensed">
 					<thead>
