@@ -113,7 +113,7 @@
         }
         message += '<br><ul class="fa-ul">';
         $.each(val, function (key2, val2) {
-            message += '<li><i class="fa fa-arrow-right btn-success" aria-hidden="true"></i>  ' + val2.label + ' (' + val2.index + ')</li>';
+            message += '<li><i class="fas fa-arrow-right btn-success" aria-hidden="true"></i>  ' + val2.label + ' (' + val2.index + ')</li>';
         });
         message += '</ul></p></li>';
     });
@@ -667,7 +667,7 @@ function display_node_info(){
         if (nodeIsFailed) {
             warningMessage += "<li>{{Le contrôleur pense que ce noeud est en échec, essayez }} " +
             "<a data-action='hasNodeFailed' class='btn btn-xs btn-primary  node_action'><i class='fa fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</a> {{ou}}" +
-            "<a data-action='testNode' class='btn btn-info  node_action'><i class='fa fa-check-square-o'></i> {{Tester le nœud}}</a> {{pour essayer de corriger.}}</li>"
+            "<a data-action='testNode' class='btn btn-info  node_action'><i class='fas fa-check-square-o'></i> {{Tester le nœud}}</a> {{pour essayer de corriger.}}</li>"
         }
         if (data.data.genericType.value == 1) {
             data.data.can_wake_up.value = true;

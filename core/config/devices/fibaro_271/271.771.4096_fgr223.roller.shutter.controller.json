@@ -19,7 +19,7 @@
             }, 
             "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-arrow-up\"></i>", 
+                "icon": "<i class=\"fas fa-arrow-up\"></i>", 
                 "generic_type": "FLAP_UP"
             }
         }, 
@@ -38,7 +38,7 @@
             }, 
             "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-arrow-down\"></i>", 
+                "icon": "<i class=\"fas fa-arrow-down\"></i>", 
                 "generic_type": "FLAP_DOWN"
             }
         }, 
@@ -215,7 +215,7 @@
             }, 
             "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-minus\"></i>", 
+                "icon": "<i class=\"fas fa-minus\"></i>", 
                 "generic_type": "DONT"
             }
         }, 

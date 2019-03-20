@@ -189,11 +189,11 @@ if (!isConnect('admin')) {
 							<td>{{Supprimer un module du réseau Z-Wave.}}</td>
 						</tr>
 						<tr>
-							<td><a data-action="cancelCommand" class="btn btn-warning controller_action"><i class="fa fa-times"></i> {{Annuler commande}}</a></td>
+							<td><a data-action="cancelCommand" class="btn btn-warning controller_action"><i class="fas fa-times"></i> {{Annuler commande}}</a></td>
 							<td>{{Annule toutes les commandes en cours sur le contrôleur.}}</td>
 						</tr>
 						<tr>
-							<td><a data-action="testNetwork" class="btn btn-primary controller_action"><i class="fa fa-check-square-o"></i> {{Test du réseau}}</a></td>
+							<td><a data-action="testNetwork" class="btn btn-primary controller_action"><i class="fas fa-check-square-o"></i> {{Test du réseau}}</a></td>
 							<td>{{Envoie une série de messages sur le réseau pour le tester.}}</td>
 						</tr>
 						<tr>
@@ -221,7 +221,7 @@ if (!isConnect('admin')) {
 							<td>{{Supprime les informations des noeuds inconnus dans le fichier de config afin qu'il soit régénéré.}}<br><i>{{(Attention : Relance du réseau)}}</i></td>
 						</tr>
 						<tr>
-							<td><a data-action="softReset" class="btn btn-warning controller_action"><i class="fa fa-times"></i>{{Redémarrage}}</a></td>
+							<td><a data-action="softReset" class="btn btn-warning controller_action"><i class="fas fa-times"></i>{{Redémarrage}}</a></td>
 							<td>{{Redémarre le contrôleur sans effacer les paramètres de sa configuration réseau.}}</td>
 						</tr>
 						<tr>

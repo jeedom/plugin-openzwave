@@ -129,7 +129,7 @@
       },
       "subtype": "other",
       "display": {
-        "icon": "<i class=\"fa fa-minus\"></i>",
+        "icon": "<i class=\"fas fa-minus\"></i>",
         "generic_type": "DONT"
       }
     },

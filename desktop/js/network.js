@@ -86,7 +86,7 @@
         }
         routingTable += '<tr><td style="width: 500px">' + name;
         if (node.data.isDead.value) {
-            routingTable += '  <i class="fa fa-exclamation-triangle fa-lg" style="color:red; text-align:right"  title="{{Présumé mort}}"></i>';
+            routingTable += '  <i class="fas fa-exclamation-triangle fa-lg" style="color:red; text-align:right"  title="{{Présumé mort}}"></i>';
         }
         routingTable += '</td><td style="width: 35px">' + nodeId + '</td>';
         $.each(devicesRouting, function (nnodeId, nnode) {

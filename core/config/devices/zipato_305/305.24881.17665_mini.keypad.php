@@ -41,10 +41,10 @@ if (!isConnect()) {
             echo '<td>';
             echo '<a class="btn btn-success pull-right btn-xs bt_ziptatoKeypadSaveNewCode" data-position="' . $i . '"><i class="fa fa-floppy-o"></i></a>';
             if (isset($data[$i]) && $data[$i]['val'] != '00000000000000000000') {
-                echo '<i class="fa fa-check"></i>';
-                echo '<a class="btn btn-danger pull-right btn-xs bt_ziptatoKeypadRemoveCode"  data-position="' . $i . '"><i class="fa fa-times"></i></a>';
+                echo '<i class="fas fa-check"></i>';
+                echo '<a class="btn btn-danger pull-right btn-xs bt_ziptatoKeypadRemoveCode"  data-position="' . $i . '"><i class="fas fa-times"></i></a>';
             } else {
-                echo '<i class="fa fa-times"></i>';
+                echo '<i class="fas fa-times"></i>';
             }
             echo '</td>';
         }

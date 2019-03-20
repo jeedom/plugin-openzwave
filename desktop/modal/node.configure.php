@@ -62,7 +62,7 @@ sendVarToJs('node_id', init('id'));
                 <li id="tab-values"><a href="#values" data-toggle="tab"><i class="fa fa-tag"></i> {{Valeurs}}</a></li>
                 <li id="tab-parameters"><a href="#parameters" data-toggle="tab"><i class="fas fa-wrench"></i> {{Paramètres}}</a></li>
                 <li id="tab-groups"><a href="#groups" data-toggle="tab"><i class="fa fa-users"></i> {{Associations}}</a></li>
-                <li id="tab-systems"><a href="#systems" data-toggle="tab"><i class="fa fa-cogs"></i> {{Systèmes}}</a></li>
+                <li id="tab-systems"><a href="#systems" data-toggle="tab"><i class="fas fa-cogs"></i> {{Systèmes}}</a></li>
                 <li id="tab-actions"><a href="#actions" data-toggle="tab"><i class="fa fa-sliders"></i> {{Actions}}</a></li>
                 <li id="tab-stats"><a href="#statistics" data-toggle="tab"><i class="fa fa-bar-chart"></i> {{Statistiques}}</a></li>
             </ul>
@@ -71,7 +71,7 @@ sendVarToJs('node_id', init('id'));
                     <br>
                     <div id="panel-danger" class="panel panel-warning template">
                         <div class="panel-heading">
-                            <h4 class="panel-title"><i class="fa fa-exclamation-triangle text-danger"></i> {{Attention}}</h4>
+                            <h4 class="panel-title"><i class="fas fa-exclamation-triangle text-danger"></i> {{Attention}}</h4>
                         </div>
                         <div class="panel-body">
                             <p><span class="zwaveNodeAttr" data-l1key="warning"></span></p>
@@ -265,7 +265,7 @@ sendVarToJs('node_id', init('id'));
                                 <td>{{Demandez la mise à jour de la route de retour au contrôleur.}}</td>
                             </tr>
                             <tr>
-                                <td><a data-action="testNode" class="btn btn-info node_action"><i class="fa fa-check-square-o"></i> {{Tester le nœud}}</a></td>
+                                <td><a data-action="testNode" class="btn btn-info node_action"><i class="fas fa-check-square-o"></i> {{Tester le nœud}}</a></td>
                                 <td>{{Envoyer une série de message à un noeud pour le tester s'il répond.}}</td>
                             </tr>
                             <tr>
@@ -285,7 +285,7 @@ sendVarToJs('node_id', init('id'));
                                 <td>{{Vérifie si le nœud est dans la liste des nœuds en erreur.}}</td>
                             </tr>
                             <tr>
-                                <td><a data-action="removeFailedNode" class="btn btn-danger node_action"><i class="fa fa-times"></i> {{Supprimer le nœud en échec}}</a></td>
+                                <td><a data-action="removeFailedNode" class="btn btn-danger node_action"><i class="fas fa-times"></i> {{Supprimer le nœud en échec}}</a></td>
                                 <td>{{Permet de supprimer un nœud marqué comme défaillant par le contrôleur.}}<br>{{Le nœud doit être en échec.}}</td>
                             </tr>
                             <tr>

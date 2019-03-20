@@ -770,7 +770,7 @@ Replace string with int for numeric value">Ensure action have status feedback an
       </tr>
       <tr>
         <td id="L21" class="blob-num js-line-number" data-line-number="21"></td>
-        <td id="LC21" class="blob-code blob-code-inner js-file-line">                <span class="pl-s"><span class="pl-pds">&quot;</span>icon<span class="pl-pds">&quot;</span></span>: <span class="pl-s"><span class="pl-pds">&quot;</span>&lt;i class=<span class="pl-cce">\&quot;</span>fa fa-arrow-up<span class="pl-cce">\&quot;</span>&gt;&lt;/i&gt;<span class="pl-pds">&quot;</span></span>, </td>
+        <td id="LC21" class="blob-code blob-code-inner js-file-line">                <span class="pl-s"><span class="pl-pds">&quot;</span>icon<span class="pl-pds">&quot;</span></span>: <span class="pl-s"><span class="pl-pds">&quot;</span>&lt;i class=<span class="pl-cce">\&quot;</span>fas fa-arrow-up<span class="pl-cce">\&quot;</span>&gt;&lt;/i&gt;<span class="pl-pds">&quot;</span></span>, </td>
       </tr>
       <tr>
         <td id="L22" class="blob-num js-line-number" data-line-number="22"></td>
@@ -838,7 +838,7 @@ Replace string with int for numeric value">Ensure action have status feedback an
       </tr>
       <tr>
         <td id="L38" class="blob-num js-line-number" data-line-number="38"></td>
-        <td id="LC38" class="blob-code blob-code-inner js-file-line">                <span class="pl-s"><span class="pl-pds">&quot;</span>icon<span class="pl-pds">&quot;</span></span>: <span class="pl-s"><span class="pl-pds">&quot;</span>&lt;i class=<span class="pl-cce">\&quot;</span>fa fa-arrow-down<span class="pl-cce">\&quot;</span>&gt;&lt;/i&gt;<span class="pl-pds">&quot;</span></span>, </td>
+        <td id="LC38" class="blob-code blob-code-inner js-file-line">                <span class="pl-s"><span class="pl-pds">&quot;</span>icon<span class="pl-pds">&quot;</span></span>: <span class="pl-s"><span class="pl-pds">&quot;</span>&lt;i class=<span class="pl-cce">\&quot;</span>fas fa-arrow-down<span class="pl-cce">\&quot;</span>&gt;&lt;/i&gt;<span class="pl-pds">&quot;</span></span>, </td>
       </tr>
       <tr>
         <td id="L39" class="blob-num js-line-number" data-line-number="39"></td>
