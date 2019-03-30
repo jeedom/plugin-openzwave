@@ -1,8 +1,8 @@
 Description
 ===========
 
-Ce plugin permet l’exploitation de modules Z-Wave par l’intermédiaire de
-la librairie OpenZwave.
+This plugin allows the exploitation of Z-Wave modules via
+the OpenZwave library.
 
 Introduction
 ============
@@ -35,11 +35,11 @@ Les récepteurs radio doivent être positionnés à une distance minimum de
 
 Examples of radio-electric sources :
 
--   Ordinateurs
+-   Computers
 
--   Les appareils à micro-ondes
+-   Microwave devices
 
--   Les transformateurs électroniques
+-   Electronic transformers
 
 -   équipements audio et de matériel vidéo
 
