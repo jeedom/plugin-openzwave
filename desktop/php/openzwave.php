@@ -284,8 +284,8 @@ sendVarTojs('eqLogic_human_name', $tags);
 						<tr>
 							<th style="width: 300px;">{{Nom}}</th>
 							<th style="width: 130px;">{{Type}}</th>
-							<th>{{Instance}}</th>
 							<th>{{Classe}}</th>
+							<th>{{Instance}}</th>
 							<th>{{Index}}</th>
 							<th>{{Commande}}</th>
 							<th style="width: 200px;">{{Paramètres}}</th>
