@@ -467,7 +467,7 @@ function addCmdToTable(_cmd) {
   tr += '<input class="cmdAttr form-control input-sm" data-l1key="unite" placeholder="Unité" title="{{Unité}}" style="margin-bottom:2px">';
   tr += '<span class="input-group">';
   tr += '<input class="tooltips cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="minValue" placeholder="{{Min}}" title="{{Min}}" style="margin-bottom:2px"><br> ';
-  tr += '<input class="tooltips cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="maxValue" placeholder="{{Max}}" title="{{Max}}" style="margin-bottom:2px">';
+
   tr += '</span>';
   tr += '</td>';
   tr += '<td style="width:125px">';
@@ -475,7 +475,9 @@ function addCmdToTable(_cmd) {
     tr += '<a class="btn btn-default btn-xs cmdAction" data-action="configure"><i class="fas fa-cogs"></i></a> ';
     tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}</a>';
   }
-  tr += ' <i class="fas fa-minus-circle cmdAction cursor" data-action="remove"></i></td>';
+  tr += ' <i class="fas fa-minus-circle cmdAction cursor" data-action="remove"></i>';
+  tr += '<input class="tooltips cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="maxValue" placeholder="{{Max}}" title="{{Max}}" style="margin-top:8px">';
+  tr += '</td>';
   tr += '</tr>';
   $('#table_cmd tbody').append(tr);
   var tr = $('#table_cmd tbody tr').last();
