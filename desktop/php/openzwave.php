@@ -289,7 +289,6 @@ sendVarTojs('eqLogic_human_name', $tags);
 							<th>{{Index}}</th>
 							<th>{{Commande}}</th>
 							<th style="width: 200px;">{{Paramètres}}</th>
-							<th style="width: 100px;">{{Options}}</th>
 							<th></th>
 						</tr>
 					</thead>
