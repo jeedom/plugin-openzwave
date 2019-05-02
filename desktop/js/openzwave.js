@@ -79,9 +79,9 @@ $('.changeIncludeState').on('click', function () {
       },
     }
   });
-  
-  
-  
+
+
+
 });
 
 $('body').delegate('.nodeConfiguration', 'click', function () {
@@ -406,7 +406,7 @@ $('#bt_autoDetectModule').on('click', function () {
       },
     }
   });
-  
+
 });
 
 function syncEqLogicWithOpenZwave() {
@@ -460,7 +460,7 @@ function addCmdToTable(_cmd) {
   tr += '</td>';
   tr += '<td>';
   tr += '<input class="tooltips cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="minValue" placeholder="{{Min}}" title="{{Min}}" style="width:30%;display:inline-block;">';
-  tr += '<input class="tooltips cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="maxValue" placeholder="{{Max}}" title="{{Max}}" style="width:30%;display:inline-block;">';
+  tr += ' <input class="tooltips cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="maxValue" placeholder="{{Max}}" title="{{Max}}" style="width:30%;display:inline-block;">';
   tr += '<input class="cmdAttr form-control input-sm" data-l1key="unite" placeholder="Unité" title="{{Unité}}" style="width:30%;display:inline-block;margin-left:2px;">';
   tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isVisible" checked/>{{Afficher}}</label></span> ';
   tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
