@@ -245,8 +245,7 @@ pourquoi le démon plante ou ne remonte pas une valeur.
 > élevé comme le niveau **Error** qui ne remonte que d’éventuelles
 > erreurs.
 
-Configuration
--------------
+Configuracion
 
 Cette partie permet de configurer les paramètres généraux du plugin
 ![configuration06](../images/configuration06.png)
