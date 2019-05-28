@@ -51,7 +51,7 @@
 ===
 
 
--   New Features
+-   Neue Eigenschaften
 
     -   Possibilité de rafraichir les commandes d’un équipement sans
         supprimer les existantes.
@@ -113,9 +113,9 @@
 2017-06-20
 ===
 
--   New Features
+-   Neue Eigenschaften
 
-    -   N/A
+    -   keine Änderung
 
 -   Improvements/Enhancements
 
@@ -146,7 +146,7 @@
 2017-06-13
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   N/A
 
@@ -156,18 +156,18 @@
 
 -   Fehlerbehebungen
 
-    -   N/A
+    -   keine Änderung
 
 2017-05-31
 ===
 
--   New Features
+-   Neue Eigenschaften
 
-    -   N/A
+    -   keine Änderung
 
 -   Improvements/Enhancements
 
-    -   N/A
+    -   keine Änderung
 
 -   Fehlerbehebungen
 
@@ -177,7 +177,7 @@
 2017-05-23
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Suppression du mode maître / esclave. Remplacé par le plugin
         jeedom link.
@@ -242,7 +242,7 @@
 2016-08-26
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Aucune
 
@@ -263,7 +263,7 @@
 2016-08-17
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Relance du demon si détection du contrôleur en timeout lors de
         l’initialisation du contrôleur.
@@ -289,7 +289,7 @@
 2016-07-11
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Prise en charge de la restauration du dernier niveau connue sur
         les dimmer.
@@ -375,7 +375,7 @@
 2016-05-30
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Ajout d’une option pour activer/désactiver les contrôles
         sanitaires sur l’ensemble des modules.
@@ -432,7 +432,7 @@
 2016-05-04
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Ajout d’option pour désactiver l’actualisation en arrière-plan
         des variateurs.
@@ -533,7 +533,7 @@
 2016-03-01
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Ajout du bouton Configuration via l’écran de gestion
         des équipements.
@@ -584,7 +584,7 @@
 2016.02.09
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Ajout du push notification en case de node\_event, permet la
         mise en place d’une cmd info en CC 0x20 pour récupérer des

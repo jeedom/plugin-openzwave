@@ -170,7 +170,7 @@ sendVarTojs('eqLogic_human_name', $tags);
 				<a class="btn btn-default eqLogicAction btn-sm roundedLeft" data-action="configure"><i class="fas fa-cogs"></i> {{Configuration avancée}}</a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>
-		
+
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="eqLogicAction cursor" aria-controls="home" role="tab" data-action="returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Equipement}}</a></li>
@@ -257,8 +257,8 @@ sendVarTojs('eqLogic_human_name', $tags);
 										</span>
 										<img src="core/img/no_image.gif" data-original=".jpg" id="img_device" class="img-responsive" style="max-height : 120px;margin-top: 10px"/>
 									</div>
-									
-									
+
+
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label">{{Paramètres}}</label>
@@ -269,12 +269,12 @@ sendVarTojs('eqLogic_human_name', $tags);
 										<a class="btn btn-warning" id="bt_deviceRecommended" title="{{Appliquer le jeu de configuration recommandée par l'équipe Jeedom}}" style="display:none;"><i class="fas fa-thumbs-up"></i> {{Configuration recommandée}}</a>
 									</div>
 								</div>
-								
+
 							</fieldset>
 						</form>
 					</div>
 				</div>
-				
+
 			</div>
 			<div role="tabpanel" class="tab-pane" id="commandtab">
 				<a class="btn btn-success btn-sm cmdAction pull-right" data-action="add" style="margin-top:5px;"> <i class="fas fa-plus-circle"></i> {{Commandes}}</a>
@@ -284,12 +284,11 @@ sendVarTojs('eqLogic_human_name', $tags);
 						<tr>
 							<th style="width: 300px;">{{Nom}}</th>
 							<th style="width: 130px;">{{Type}}</th>
-							<th>{{Instance}}</th>
-							<th>{{Classe}}</th>
-							<th>{{Index}}</th>
+							<th style="width: 65px;">{{Classe}}</th>
+							<th style="width: 65px;">{{Instance}}</th>
+							<th style="width: 65px;">{{Index}}</th>
 							<th>{{Commande}}</th>
-							<th style="width: 200px;">{{Paramètres}}</th>
-							<th style="width: 100px;">{{Options}}</th>
+							<th style="width: 250px;">{{Paramètres}}</th>
 							<th></th>
 						</tr>
 					</thead>

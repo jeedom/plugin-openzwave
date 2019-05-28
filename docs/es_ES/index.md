@@ -152,7 +152,7 @@ En résumé:
     le contrôleur a prédéfini « L’esclave est toujours un esclave, mais
     sur autorisation, il peut parler »
 
-Configuration du plugin
+Configuración de plugin
 =======================
 
 Après le téléchargement du plugin, il vous suffit de l’activer et de le
@@ -245,8 +245,7 @@ pourquoi le démon plante ou ne remonte pas une valeur.
 > élevé comme le niveau **Error** qui ne remonte que d’éventuelles
 > erreurs.
 
-Configuration
--------------
+Configuracion
 
 Cette partie permet de configurer les paramètres généraux du plugin
 ![configuration06](../images/configuration06.png)

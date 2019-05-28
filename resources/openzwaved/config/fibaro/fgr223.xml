@@ -99,12 +99,12 @@ For gates (parameter 151 set to 3 or 4) the parameter determines the time after 
       <Help>Power threshold to be interpreted as reaching a limit switch. (0 – reaching a limit switch will not be detected or 1-255 (1-255W) – report interval)</Help>
     </Value>
 
-	<Value type="short" genre="config" instance="1" index="156" label="Time of up movement" value="6000" size="4" min="0" max="90000">
+	<Value type="int" genre="config" instance="1" index="156" label="Time of up movement" value="6000" size="4" min="0" max="90000">
       <Help>This parameter determines the time needed for roller blinds to reach the top.
 For modes with positioning value is set automatically during calibration, otherwise, it must be set manually. (1-90000 (0.01 – 900.00s, every 0.01s) – movement time)</Help>
     </Value>
 
-	<Value type="short" genre="config" instance="1" index="157" label="Time of down movement" value="6000" size="4" min="0" max="90000">
+	<Value type="int" genre="config" instance="1" index="157" label="Time of down movement" value="6000" size="4" min="0" max="90000">
       <Help>This parameter determines time needed for roller blinds to reach the bottom.
 For modes with positioning value is set automatically during calibration, otherwise, it must be set manually. (1-90000 (0.01 – 900.00s, every 0.01s) – movement time)</Help>
     </Value>
