@@ -445,7 +445,7 @@ class openzwave extends eqLogic {
 		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
 			return;
 		}
-		$device = json_decode(is_json(file_get_contents(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath()), array()), true);
+		$device = is_json(file_get_contents(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath()), array());
 		if (!is_array($device) || !isset($device['recommended'])) {
 			return true;
 		}
