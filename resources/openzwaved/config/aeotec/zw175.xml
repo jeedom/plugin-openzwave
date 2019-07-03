@@ -1,7 +1,7 @@
 <Product Revision="1" xmlns="https://github.com/OpenZWave/open-zwave">
 
     <!-- ZW175 Smart Switch 7 -->
-    <Protocol refreshonnodeinfoframe="false"/>
+    <Protocol refreshonnodeinfoframe="true"/>
     <!-- Configuration Parameters -->
     <CommandClass id="112">
         <Value genre="config" index="4" label="Over-load protection" max="2415" min="0" size="2" type="short" units="" value="2415">
