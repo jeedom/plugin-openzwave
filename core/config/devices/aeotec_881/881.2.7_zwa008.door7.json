@@ -1,0 +1,143 @@
+{
+    "name": "Door/Window Sensor 7 (ZWA008)",
+    "type": "Ouverture",
+    "comlink": "",
+    "remark": "",
+    "imglink": "aeotec.zwa008",
+    "configuration": {
+        "battery_type": "2×1.5V AAA"
+    },
+    "commands": [
+        {
+            "name": "Etat",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 113,
+                "value": "",
+                "index": 9,
+                "instance": 1
+            },
+            "subtype": "binary",
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "OPENING"
+            },
+            "template": {
+                "dashboard": "door",
+                "mobile": "door"
+            }
+        },
+        {
+            "name": "Sabotage",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 113,
+                "value": "",
+                "index": 10,
+                "instance": 1,
+                "calculValueOffset": "#value#==3"
+            },
+            "subtype": "binary",
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "SABOTAGE"
+            }
+        },
+        {
+            "name": "Scene",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": 128,
+                "instance": 1,
+                "repeatEventManagement": "always"
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "unite": "",
+            "template": {
+                "dashboard": "badge",
+                "mobile": "badge"
+            }
+        },
+        {
+            "name": "SceneID",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": 2,
+                "instance": 1,
+                "repeatEventManagement": "always"
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "unite": "",
+            "template": {
+                "dashboard": "badge",
+                "mobile": "badge"
+            }
+        },
+        {
+            "name": "SceneAttribute",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": 1,
+                "instance": 1,
+                "repeatEventManagement": "always"
+            },
+            "subtype": "string",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "unite": "",
+            "template": {
+                "dashboard": "badge",
+                "mobile": "badge"
+            }
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": 0,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 100
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "unite": "%"
+        }
+    ],
+    "recommended": {
+        "params": [
+
+        ],
+        "wakeup": 14400,
+        "needswakeup": true
+    }
+}
