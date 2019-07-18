@@ -1197,6 +1197,14 @@
 	<Manufacturer id="0000" name="Sigma Designs">
 		<Product type="0001" id="0001" name="UZB Z-Wave USB Adapter"/>
 	</Manufacturer>
+	<Manufacturer id="0267" name="Simon">
+		<Product type="0009" id="0022" name="IO cover for socket Simon 100" config="simon/10002041-13X.xml"/>
+		<Product type="0001" id="0000" name="IO rocker for electronic switch Simon 100" config="simon/10002034-13X.xml"/>
+		<Product type="0001" id="00da" name="IO rocker for electronic switch Simon 100" config="simon/10002034-13X.xml"/>
+		<Product type="0001" id="0107" name="IO rocker for electronic switch Simon 100" config="simon/10002034-13X.xml"/>
+		<Product type="0001" id="0477" name="IO rocker for electronic switch Simon 100" config="simon/10002034-13X.xml"/>
+		<Product type="0004" id="0022" name="IO rocker for blinds switch Simon 100" config="simon/10002080-13X.xml"/>
+	</Manufacturer>
 	<Manufacturer id="0045" name="Sine Wireless">
 	</Manufacturer>
 	<Manufacturer id="0070" name="Smart Products">
