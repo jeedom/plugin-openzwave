@@ -14,10 +14,10 @@
 * along with Plugin openzwave for jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-$('#bt_syncEqLogic').off('clic').on('click', function () {
+$('#bt_syncEqLogic').off('click').on('click', function () {
   syncEqLogicWithOpenZwave();
 });
-$('.changeIncludeState').off('clic').on('click', function () {
+$('.changeIncludeState').off('click').on('click', function () {
   if($(this).attr('data-state') == 0){
     jeedom.openzwave.controller.action({
       action : 'cancelCommand',
@@ -89,17 +89,17 @@ $('body').delegate('.nodeConfiguration', 'click', function () {
   $('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=node.configure&id=' + $(this).attr('data-node-id')).dialog('open');
 });
 
-$('#bt_displayZwaveData').off('clic').on('click', function () {
+$('#bt_displayZwaveData').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Arbre Z-Wave de l'équipement}}"});
   $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=zwave.data&id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
 });
 
-$('#bt_zwaveNetwork').off('clic').on('click', function () {
+$('#bt_zwaveNetwork').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Réseaux zwave}}"});
   $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=network').dialog('open');
 });
 
-$('#bt_configureDevice').off('clic').on('click', function () {
+$('#bt_configureDevice').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Configuration du module}}"});
   $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=node.configure&id=' + $('.eqLogicAttr[data-l1key=logicalId]').value()).dialog('open');
 });
@@ -109,7 +109,7 @@ $('#bt_zwaveHealth').on('click', function () {
   $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=health').dialog('open');
 });
 
-$('#bt_zwaveBackup').off('clic').on('click', function () {
+$('#bt_zwaveBackup').off('click').on('click', function () {
   $('#md_modal2').dialog({title: "{{Sauvegardes}}"});
   $('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=backup').dialog('open');
 });
@@ -325,7 +325,7 @@ $('body').off('zwave::includeDevice').on('zwave::includeDevice', function (_even
   }
 });
 
-$('#bt_autoDetectModule').off('clic').on('click', function () {
+$('#bt_autoDetectModule').off('click').on('click', function () {
   var dialog_title = '{{Recharge configuration}}';
   var dialog_message = '<form class="form-horizontal onsubmit="return false;"> ';
   dialog_title = '{{Recharger la configuration}}';
