@@ -106,9 +106,9 @@
             "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 49, 
+                "class": 50, 
                 "value": "", 
-                "index": 4, 
+                "index": 8, 
                 "instance": 1
             }, 
             "subtype": "numeric", 
