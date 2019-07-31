@@ -3,7 +3,7 @@
     "type": "Micromodule", 
     "commands": [
         {
-            "name": "Etat entrée 1", 
+            "name": "Etat entrée 2", 
             "type": "info", 
             "isVisible": 1, 
             "isHistorized": 0, 
@@ -16,7 +16,7 @@
             "subtype": "binary"
         }, 
         {
-            "name": "Etat entrée 2", 
+            "name": "Etat entrée 1", 
             "type": "info", 
             "isVisible": 1, 
             "isHistorized": 0, 
