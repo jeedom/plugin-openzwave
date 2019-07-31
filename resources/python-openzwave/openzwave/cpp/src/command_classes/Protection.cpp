@@ -154,10 +154,11 @@ bool Protection::SetValue
 		Msg* msg = new Msg( "ProtectionCmd_Set", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true );
 		msg->SetInstance( this, _value.GetID().GetInstance() );
 		msg->Append( GetNodeId() );
-		msg->Append( 3 );
+		msg->Append( 4 );
 		msg->Append( GetCommandClassId() );
 		msg->Append( ProtectionCmd_Set );
 		msg->Append( (uint8)item->m_value );
+		msg->Append( 0 );
 		msg->Append( GetDriver()->GetTransmitOptions() );
 		GetDriver()->SendMsg( msg, Driver::MsgQueue_Send );
 		return true;
