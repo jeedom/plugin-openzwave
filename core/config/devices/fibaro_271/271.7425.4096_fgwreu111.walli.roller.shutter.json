@@ -179,7 +179,7 @@
         }, 
         {
             "name": "Scene", 
-            "type": "numeric", 
+            "type": "info", 
             "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
