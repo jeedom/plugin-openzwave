@@ -43,7 +43,7 @@ namespace OpenZWave
 		uint8 m_nodeId;
 		uint8 m_instance;
 	} InstanceAssociation;
-	
+
 	/** \brief Manages a group of devices (various nodes associated with each other).
 	 */
 	class Group
@@ -61,7 +61,7 @@ namespace OpenZWave
 		~Group(){}
 
 		void WriteXML( TiXmlElement* _groupElement );
-		
+
 	//-----------------------------------------------------------------------------
 	// Association methods	(COMMAND_CLASS_ASSOCIATION)
 	//-----------------------------------------------------------------------------
@@ -101,7 +101,6 @@ namespace OpenZWave
 			~AssociationCommand();
 
 		private:
-			uint8	m_length;
 			uint8*	m_data;
 		};
 
