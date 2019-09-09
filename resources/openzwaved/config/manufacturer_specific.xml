@@ -481,6 +481,7 @@
 		<Product type="0501" id="1002" name="FGBS001 Universal Binary Sensor" config="fibaro/fgbs001.xml" />
 		<Product type="0501" id="3002" name="FGBS001 Universal Binary Sensor" config="fibaro/fgbs001.xml" />
 		<Product type="0501" id="4002" name="FGBS001 Universal Binary Sensor" config="fibaro/fgbs001.xml" />
+		<Product type="0502" id="1000" name="FGBS002 Smart Implant" config="fibaro/fgbs222.xml" />
 		<Product type="0100" id="0104" name="FGD211 Universal Dimmer 500W" config="fibaro/fgd211.xml" />
 		<Product type="0100" id="0106" name="FGD211 Universal Dimmer 500W" config="fibaro/fgd211.xml" />
 		<Product type="0100" id="0107" name="FGD211 Universal Dimmer 500W" config="fibaro/fgd211.xml" />
@@ -571,6 +572,9 @@
 		<Product type="1301" id="1000" name="FGT001 Heat Controller" config="fibaro/fgt001.xml"/>
 		<Product type="1701" id="2000" name="FGWPG111 US Wall Plug" config="fibaro/fgwpg111.xml"/>
 		<Product type="1801" id="1000" name="FGWPG111 UK Wall Plug" config="fibaro/fgwpg111.xml"/>
+		<Product type="1b01" id="1000" name="FGWDSEU-221 Walli Switch" config="fibaro/fgwdseu221.xml" />
+		<Product type="1d01" id="1000" name="FGWREU-111 Walli Roller Shutter" config="fibaro/fgwreu111.xml" />
+		<Product type="1f01" id="1000" name="FGWOF011 Walli Outlet Type F" config="fibaro/fgwof011.xml" />
 	</Manufacturer>
 	<Manufacturer id="0138" name="First Alert">
 		<Product type="0001" id="0002" name="ZCombo Smoke and Carbon Monoxide Detector"  config="firstalert/zcombo.xml"/>
@@ -911,6 +915,7 @@
 		<Product type="3102" id="0202" name="MH-S312 Two-load" config="mcohome/mhs312.xml"/>
 		<Product type="4121" id="1302" name="MH-S312 Two-load GEN5" config="mcohome/mhs312.xml"/>
 		<Product type="3102" id="0204" name="MH-S314 Four-load" config="mcohome/mhs314.xml"/>
+		<Product type="3141" id="1302" name="MH-S314 Four-load GEN5" config="mcohome/mhs314gen5.xml"/>
 		<Product type="3141" id="5102" name="MH-S314 Four-load GEN5" config="mcohome/mhs314gen5.xml"/>
 		<Product type="4102" id="0201" name="MH-S411 One-load" config="mcohome/mhs411.xml"/>
 		<Product type="4102" id="0202" name="MH-S412 Two-load" config="mcohome/mhs412.xml"/>
@@ -918,7 +923,11 @@
 		<Product type="0801" id="3102" name="MH8-FC-EU Thermostat" config="mcohome/mh8fceu.xml"/>
 		<Product type="0802" id="3102" name="MH8-FC4-EU Thermostat" config="mcohome/mh8fceu.xml"/>
 		<Product type="0801" id="5102" name="MH8-FC-EU Thermostat GEN5" config="mcohome/mh8fceu.xml"/>
-		<Product type="0905" id="0201 " name="MH9-CO2-WD CO2 Monitor" config="mcohome/mh9co2.xml"/>
+		<Product type="0905" id="0201" name="MH9-CO2-WD CO2 Monitor" config="mcohome/mh9co2.xml"/>
+    		<Product type="0701" id="5102" name="MH7H Water/Electrical Heating Thermostat" config="mcohome/mh7h.xml"/>
+		<Product type="0702" id="5102" name="MH7H Water/Electrical Heating Thermostat" config="mcohome/mh7h.xml"/>
+		<Product type="0712" id="5102" name="MH7H Water/Electrical Heating Thermostat" config="mcohome/mh7h.xml"/>
+		<Product type="0732" id="5102" name="MH7H Water/Electrical Heating Thermostat" config="mcohome/mh7h.xml"/>
 		<!--US-->
 		<Product type="5102" id="0103" name="Touch Panel Switch MH-S513" config="mcohome/mhs513.xml"/>
 	</Manufacturer>
@@ -953,6 +962,7 @@
 		<Product type="0003" id="1082" name="Door/Window Detector" config="shenzen_neo/nas-ds01z.xml"/>
 		<Product type="0003" id="0087" name="Power plug 12A" config="shenzen_neo/nas-wr01z.xml"/>
 		<Product type="0003" id="1087" name="Power plug 12A" config="shenzen_neo/nas-wr01z.xml"/>
+		<Product type="0200" id="1027" name="Power plug 12A" config="shenzen_neo/nas-wr01z.xml"/>
 		<Product type="0003" id="0083" name="Battery Powered PIR Sensor" config="shenzen_neo/nas-pd01z.xml"/>
 		<Product type="0003" id="1083" name="Battery Powered PIR Sensor" config="shenzen_neo/nas-pd01z.xml"/>
 		<Product type="0003" id="108d" name="Battery Powered PIR Sensor" config="shenzen_neo/nas-pd01z.xml"/>
@@ -1387,11 +1397,12 @@
 	</Manufacturer>
 	<Manufacturer id="0131" name="Zipato">
 		<Product type="0001" id="0012" name="Micro Module Switch Double PAN04" config="zipato/pan04.xml" />
+		<Product type="0001" id="0015" name="PAN08-1 In Wall Roller Shutter Controller" config="philio/pan08.xml"/>
 		<Product type="0002" id="0002" name="RGBW LED Bulb" config="zipato/RGBBulb.xml" />
 		<Product type="0002" id="0003" name="Bulb 2" config="zipato/RGBBulb2.xml"/>
 		<Product type="0002" id="000c" name="PST02-A 4 in 1 Multi-Sensor" config="philio/pst02.xml"/>
 		<Product type="0003" id="1082" name="Door/Window Detector" config="shenzen_neo/nas-ds01z.xml"/>
-		<Product type="0003" id="1089" name="Zipato Multi sensor NE NAS PD01ZT" config="shenzen_neo/nas-pd01zt"/>
+		<Product type="0003" id="1089" name="Zipato Multi sensor NE NAS PD01ZT" config="shenzen_neo/nas-pd01zt.xml"/>
 		<Product type="0004" id="000a" name="Indoor Siren" config="philio/pse02.xml"/>
 		<Product type="0005" id="0031" name="PH-PAD02.eu Smart Dimmer Socket E27" config="philio/pad02.xml"/>
 		<Product type="0006" id="001a" name="PH-PAB01.eu Micromodule Energy Meter" config="philio/phpab01.xml"/>

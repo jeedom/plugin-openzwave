@@ -152,7 +152,7 @@ En résumé:
     le contrôleur a prédéfini « L’esclave est toujours un esclave, mais
     sur autorisation, il peut parler »
 
-Configuration du plugin
+Configuración de plugin
 =======================
 
 Après le téléchargement du plugin, il vous suffit de l’activer et de le
@@ -245,8 +245,7 @@ pourquoi le démon plante ou ne remonte pas une valeur.
 > élevé comme le niveau **Error** qui ne remonte que d’éventuelles
 > erreurs.
 
-Configuration
--------------
+Configuracion
 
 Cette partie permet de configurer les paramètres généraux du plugin
 ![configuration06](../images/configuration06.png)
@@ -1950,7 +1949,7 @@ start mysql
 
 > **Tip**
 >
-> Si vous etes toujours sous nginx, il faudra remplacer **apache2** par
+> Si vous êtes toujours sous nginx, il faudra remplacer **apache2** par
 > **nginx**dans les commandes**stop**/**start**. Le fichier log
 > openzwave\_update sera dans le dossier:
 > /usr/share/nginx/www/jeedom/log .
@@ -2010,4 +2009,4 @@ http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices\[2\].TestNod
 
 > **J'ai l'erreur "Not enough space in stream buffer"**
 >
-> Malheureusement cette erreur est materiel nous ne pouvons rien y faire, nous cherchons pour le moment comment forcer un redemarrage du démon en cas de cette erreur (mais souvent il faut en plus débrancher la clef pendant 5min pour que ca reparte)
+> Malheureusement cette erreur est matériel, nous ne pouvons rien y faire et cherchons pour le moment comment forcer un redémarrage du démon dans le cas de cette erreur (mais souvent il faut en plus débrancher la clef pendant 5min pour que ca reparte)

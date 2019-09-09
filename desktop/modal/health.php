@@ -20,7 +20,7 @@ if (!isConnect('admin')) {
 }
 ?>
 <span class='pull-right'>
-    <a class="btn btn-default pull-right" id="bt_refreshHealth"><i class="fa fa-refresh"></i> {{Rafraichir}}</a>
+    <a class="btn btn-default pull-right" id="bt_refreshHealth"><i class="fas fa-sync-alt"></i> {{Rafraichir}}</a>
     <a class="btn btn-primary pull-right" id="bt_pingAllDevice"><i class="fa fa-eye"></i> {{Ping de tous}}</a>
 </span>
 <br/><br/>

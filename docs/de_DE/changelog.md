@@ -1,4 +1,21 @@
+04-02-2019
+===
+- CETTE MAJ NECESSITE DE RECOMPILER LES DEPENDANCES (RELANCER)
+- Correction d'un bug sur les multiinstances des thermostats
+- Création d'un niveau de queue dépriorisé sur les actions pour les refreshs
+- Rajout de nombreuses confs (pour rappel le bouton récupérer les confs est utile pour être à jour sans mettre à jour le plugin)
+- Amélioration de la gestion des multichannels encapsulés
+- Rajout de la CC manufacturer specific
+- Mise en place simple de la CC Soundswitch
+- Correction de l'inclusion Multiples des devices&lt
+- Amélioration de la CC Switch Binary
+- La saisie de paramétre manuel est toujours possible
+- Amélioration de la queue
+- Préparation pour rajout nouvelles CCs (notification notamment)
+- Rajout des codes sur la CC alarme pour clavier Zipato pour le moment
+- Correction de la philio en mode sécurisée qui lors des sonneries générait un timeout de 10 secondes (il faut surement regénerer la détection de la sirène ou la ré-inclure)
 - Correction d'un bug si le niveau de log est sur aucun
+- CETTE MAJ NECESSITE DE RECOMPILER LES DEPENDANCES
 
 17-03-2018
 ===
@@ -34,7 +51,7 @@
 ===
 
 
--   New Features
+-   Neue Eigenschaften
 
     -   Possibilité de rafraichir les commandes d’un équipement sans
         supprimer les existantes.
@@ -96,9 +113,9 @@
 2017-06-20
 ===
 
--   New Features
+-   Neue Eigenschaften
 
-    -   N/A
+    -   keine Änderung
 
 -   Improvements/Enhancements
 
@@ -129,7 +146,7 @@
 2017-06-13
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   N/A
 
@@ -139,18 +156,18 @@
 
 -   Fehlerbehebungen
 
-    -   N/A
+    -   keine Änderung
 
 2017-05-31
 ===
 
--   New Features
+-   Neue Eigenschaften
 
-    -   N/A
+    -   keine Änderung
 
 -   Improvements/Enhancements
 
-    -   N/A
+    -   keine Änderung
 
 -   Fehlerbehebungen
 
@@ -160,7 +177,7 @@
 2017-05-23
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Suppression du mode maître / esclave. Remplacé par le plugin
         jeedom link.
@@ -225,7 +242,7 @@
 2016-08-26
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Aucune
 
@@ -246,7 +263,7 @@
 2016-08-17
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Relance du demon si détection du contrôleur en timeout lors de
         l’initialisation du contrôleur.
@@ -272,7 +289,7 @@
 2016-07-11
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Prise en charge de la restauration du dernier niveau connue sur
         les dimmer.
@@ -358,7 +375,7 @@
 2016-05-30
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Ajout d’une option pour activer/désactiver les contrôles
         sanitaires sur l’ensemble des modules.
@@ -415,7 +432,7 @@
 2016-05-04
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Ajout d’option pour désactiver l’actualisation en arrière-plan
         des variateurs.
@@ -516,7 +533,7 @@
 2016-03-01
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Ajout du bouton Configuration via l’écran de gestion
         des équipements.
@@ -567,7 +584,7 @@
 2016.02.09
 ===
 
--   New Features
+-   Neue Eigenschaften
 
     -   Ajout du push notification en case de node\_event, permet la
         mise en place d’une cmd info en CC 0x20 pour récupérer des

@@ -13,11 +13,10 @@
             "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 113, 
+                "class": 48, 
                 "value": "", 
-                "index": 10, 
-                "instance": 1, 
-                "calculValueOffset": "#value#==8"
+                "index": 0, 
+                "instance": 1
             }, 
             "subtype": "binary", 
             "display": {
@@ -35,11 +34,10 @@
             "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 113, 
+                "class": 48, 
                 "value": "", 
-                "index": 9, 
-                "instance": 1, 
-                "calculValueOffset": "#value#==22"
+                "index": 1, 
+                "instance": 1
             }, 
             "subtype": "binary", 
             "display": {
@@ -93,10 +91,12 @@
             "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 113, 
+                "class": 48, 
                 "value": "", 
-                "index": 10, 
-                "instance": 1
+                "index": 2, 
+                "instance": 1,
+                "returnStateTime": 1, 
+                "returnStateValue": 0
             }, 
             "subtype": "binary", 
             "display": {
@@ -127,5 +127,15 @@
             }, 
             "unite": "%"
         }
-    ]
+    ],
+	"recommended": {
+        "params": [
+            {
+                "index": 7, 
+                "value": 22
+            }
+        ], 
+        "wakeup": 7200, 
+        "needswakeup": true
+    }
 }

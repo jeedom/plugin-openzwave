@@ -11,21 +11,21 @@ HEZWTHERM-FL2
 		<Instance index="1" />
 		<Value type="list" genre="user" instance="1" index="0" label="Mode" units="" read_only="false" write_only="false" min="0" max="0"   size="1">
 			<Item label="Off" value="0" />
-			<Item label="Comfort" value="1" />
 			<Item label="Dry floor" value="8" />
 			<Item label="Auto" value="10" />
 			<Item label="Heat Econ" value="11" />
 			<Item label="Vacation" value="13" />
-			<Item label="Comfort " value="15" />
+			<Item label="Unknown" value="14"/>
+			<Item label="Comfort" value="15" />
 		</Value>
 		<SupportedModes>
 			<Mode index="0" label="Off" />
-			<Mode index="1" label="Comfort" />
 			<Mode index="8" label="Dry floor" />
 			<Mode index="10" label="Auto" />
 			<Mode index="11" label="Heat Econ" />
 			<Mode index="13" label="Vacation" />
-			<Mode index="15" label="Comfort " />
+			<Mode index="14" label="Unknown" />
+			<Mode index="15" label="Comfort" />
 		</SupportedModes>
 	</CommandClass>
 	<CommandClass id="112" name="COMMAND_CLASS_CONFIGURATION" version="1" request_flags="4"  >

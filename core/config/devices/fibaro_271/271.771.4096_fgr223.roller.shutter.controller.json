@@ -19,7 +19,7 @@
             }, 
             "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-arrow-up\"></i>", 
+                "icon": "<i class=\"fas fa-arrow-up\"></i>", 
                 "generic_type": "FLAP_UP"
             }
         }, 
@@ -38,7 +38,7 @@
             }, 
             "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-arrow-down\"></i>", 
+                "icon": "<i class=\"fas fa-arrow-down\"></i>", 
                 "generic_type": "FLAP_DOWN"
             }
         }, 
@@ -106,9 +106,9 @@
             "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 49, 
+                "class": 50, 
                 "value": "", 
-                "index": 4, 
+                "index": 8, 
                 "instance": 1
             }, 
             "subtype": "numeric", 
@@ -215,7 +215,7 @@
             }, 
             "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-minus\"></i>", 
+                "icon": "<i class=\"fas fa-minus\"></i>", 
                 "generic_type": "DONT"
             }
         }, 
@@ -242,24 +242,24 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 112, 
-                "value": "type=setconfig&value=1&size=1", 
-                "index": 29, 
+                "value": "type=setconfig&value=2&size=1", 
+                "index": 150, 
                 "instance": 1
             }, 
             "subtype": "other", 
             "display": {
                 "generic_type": "DONT"
             }
-        }, 
+        },
         {
             "name": "Scene", 
             "type": "info", 
             "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 43, 
+                "class": 91, 
                 "value": "", 
-                "index": 0, 
+                "index": 128, 
                 "instance": 1, 
                 "repeatEventManagement": "always"
             }, 

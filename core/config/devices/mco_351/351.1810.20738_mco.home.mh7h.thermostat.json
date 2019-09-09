@@ -1,0 +1,306 @@
+{
+    "name": "Thermostat MH7H-WH/EH", 
+    "type": "Thermostat", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "", 
+    "commands": [
+        {
+            "name": "Temperature", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_TEMPERATURE"
+            }, 
+            "unite": "°C"
+        },
+        {
+            "name": "Humidity", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 5, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "HUMIDITY"
+            }, 
+            "unite": "%"
+        }, 
+        {
+            "name": "Status", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 66, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_STATE"
+            }, 
+            "unite": ""
+        },
+        {
+            "name": "Status_Name", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 66, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_STATE_NAME"
+            }, 
+            "unite": ""
+        },
+        {
+            "name": "Mode", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_MODE"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "name": "Heat", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Heat", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Mode",
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Heat Econ", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Heat Econ", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Mode",
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Off", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Mode",
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Away", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Away", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Mode",
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+	{
+            "name": "Heat Setpoint", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 1, 
+                "instance": 1, 
+                "minValue": 5, 
+                "maxValue": 30
+            }, 
+            "template": {
+                "dashboard": "button", 
+                "mobile": "button"
+            },
+            "value": "Heat Setpoint Info", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Heat Setpoint Info", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1, 
+                "minValue": 5, 
+                "maxValue": 30
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Heat Econ Setpoint", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 11, 
+                "instance": 1, 
+                "minValue": 5, 
+                "maxValue": 30
+            }, 
+            "template": {
+                "dashboard": "button", 
+                "mobile": "button"
+            },
+            "value": "Heat Econ Setpoint Info", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }, 
+            "unite": "°C"
+        },         
+	{
+            "name": "Heat Econ Setpoint Info", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "", 
+                "index": 11, 
+                "instance": 1, 
+                "minValue": 5, 
+                "maxValue": 30
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+	{
+            "name": "Time", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 139, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": ""
+            }, 
+            "unite": ""
+        },           
+        {
+            "name": "Set Time", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 139, 
+                "value": "type=buttonaction&action=press", 
+                "index": 2, 
+                "instance": 1
+            }, 
+            "value": "Mode",
+            "subtype": "other", 
+            "display": {
+                "generic_type": ""
+            }, 
+            "unite": ""
+        },
+        {
+            "name": "Get Time", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 139, 
+                "value": "type=buttonaction&action=press", 
+                "index": 3, 
+                "instance": 1
+            }, 
+            "value": "Mode",
+            "subtype": "other", 
+            "display": {
+                "generic_type": ""
+            }, 
+            "unite": ""
+        }
+
+    ]
+}

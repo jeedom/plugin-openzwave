@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="1">
+    <!--
+    Fibaro FGWOF011 Walli Outlet Type F
+    -->
+
+    <!-- Configuration -->
+    <CommandClass id="112">
+    
+        <Value type="list" genre="config" instance="1" index="1" label="Remember device state" value="1" size="1">
+            <Help>This parameter determines how the device will react in the event of power supply failure (e.g. power outage).</Help>
+            <Item label="Remains switched off after restoring power" value="0"/>
+            <Item label="Restores remembered state after restoring power" value="1"/>
+        </Value>
+        
+        <Value type="short" genre="config" instance="1" index="2" label="Overload safety switch" value="0" min="0" max="36800" size="4">
+            <Help>This function allows to turn off the controlled device in case of exceeding the defined power. Controlled device can be turned back on via button or sending a control frame. 0 – function disabled / 10-36800 (1.0-3680.0W, step 0.1W) – power threshold
+            </Help>
+        </Value>
+        
+         <Value type="short" genre="config" instance="1" index="10" label="LED frame – power limit" value="36800" min="500" max="36800" size="4">
+            <Help>This parameter determines maximum active power. Exceeding it results in the LED frame flashing violet. Function is active only when parameter 11 is set to 8 or 9. / 500-36800 (50.0-3680.0W, step 0.1W) – power threshold</Help>
+        </Value>
+
+        <Value type="list" genre="config" instance="1" index="11" label="LED frame – colour when ON" value="8" min="0" max="9" size="1">
+            <Help></Help>
+            <Item label="LED disabled" value="0"/>
+            <Item label="White" value="1"/>
+            <Item label="Red" value="2"/>
+            <Item label="Green" value="3"/>
+            <Item label="Blue" value="4"/>
+            <Item label="Yellow" value="5"/>
+            <Item label="Cyan" value="6"/>
+            <Item label="Magenta" value="7"/>
+            <Item label="Colour changes smoothly depending on mea- sured power" value="8"/>
+            <Item label="Colour changes in steps depending on mea- sured power" value="9"/>
+        </Value>
+        
+        <Value type="list" genre="config" instance="1" index="12" label="LED frame – colour when OFF" value="0" min="0" max="8" size="1">
+            <Help></Help>
+            <Item label="LED disabled" value="0"/>
+            <Item label="White" value="1"/>
+            <Item label="Red" value="2"/>
+            <Item label="Green" value="3"/>
+            <Item label="Blue" value="4"/>
+            <Item label="Yellow" value="5"/>
+            <Item label="Cyan" value="6"/>
+            <Item label="Magenta" value="7"/>
+        </Value>
+        
+         <Value type="short" genre="config" instance="1" index="13" label="LED frame – brightness" value="100" min="0" max="102" size="1">
+            <Help>This parameter allows to choose mode of 1st input (IN1). Change it depending on connected device. / 0 – LED disabled / 1-100 (1-100% brightness) / 101 – brightness directly proportional to mea- sured power / 102 – brightness inversely proportional to mea- sured power</Help>
+        </Value>
+        
+        <Value type="long" genre="config" instance="1" index="30" label="Alarm configuration - 1st slot" value="0" size="4">
+            <Help>This parameter determines to which alarm frames and how the device should react. The parameters consist of 4 bytes, three most significant bytes are set according to the official Z-Wave protocol specification. 1B [MSB] – Notification Type 2B - Notification Value
+3B - Event/State Parameters 4B [LSB] – action:
+0x00 – no action, 0xX1 – turn ON, 0xX2 – turn OFF, 0xX3 – turn ON/OFF continuously, 0x0X – no action on LED frame, 0x1X – LED frame blinks red, 0x2X – LED frame blinks green, 0x4X – LED frame blinks blue, 0x8X – disable LED frame, 0xFX – LED frame LAPD signal (red-white-blue)</Help>
+        </Value>
+        
+         <Value type="long" genre="config" instance="1" index="31" label="Alarm configuration - 2nd slot" value="0" size="4">
+            <Help>This parameter determines to which alarm frames and how the device should react. The parameters consist of 4 bytes, three most significant bytes are set according to the official Z-Wave protocol specification. 1B [MSB] – Notification Type 2B - Notification Value
+3B - Event/State Parameters 4B [LSB] – action:
+0x00 – no action, 0xX1 – turn ON, 0xX2 – turn OFF, 0xX3 – turn ON/OFF continuously, 0x0X – no action on LED frame, 0x1X – LED frame blinks red, 0x2X – LED frame blinks green, 0x4X – LED frame blinks blue, 0x8X – disable LED frame, 0xFX – LED frame LAPD signal (red-white-blue)</Help>
+        </Value>
+        
+        <Value type="long" genre="config" instance="1" index="32" label="Alarm configuration - 3th slot" value="0" size="4">
+            <Help>This parameter determines to which alarm frames and how the device should react. The parameters consist of 4 bytes, three most significant bytes are set according to the official Z-Wave protocol specification. 1B [MSB] – Notification Type 2B - Notification Value
+3B - Event/State Parameters 4B [LSB] – action:
+0x00 – no action, 0xX1 – turn ON, 0xX2 – turn OFF, 0xX3 – turn ON/OFF continuously, 0x0X – no action on LED frame, 0x1X – LED frame blinks red, 0x2X – LED frame blinks green, 0x4X – LED frame blinks blue, 0x8X – disable LED frame, 0xFX – LED frame LAPD signal (red-white-blue)</Help>
+        </Value>
+        
+         <Value type="long" genre="config" instance="1" index="33" label="Alarm configuration - 4th slot" value="0" size="4">
+            <Help>This parameter determines to which alarm frames and how the device should react. The parameters consist of 4 bytes, three most significant bytes are set according to the official Z-Wave protocol specification. 1B [MSB] – Notification Type 2B - Notification Value
+3B - Event/State Parameters 4B [LSB] – action:
+0x00 – no action, 0xX1 – turn ON, 0xX2 – turn OFF, 0xX3 – turn ON/OFF continuously, 0x0X – no action on LED frame, 0x1X – LED frame blinks red, 0x2X – LED frame blinks green, 0x4X – LED frame blinks blue, 0x8X – disable LED frame, 0xFX – LED frame LAPD signal (red-white-blue)</Help>
+        </Value>
+        
+        <Value type="long" genre="config" instance="1" index="34" label="Alarm configuration - 5th slot" value="0" size="4">
+            <Help>This parameter determines to which alarm frames and how the device should react. The parameters consist of 4 bytes, three most significant bytes are set according to the official Z-Wave protocol specification. 1B [MSB] – Notification Type 2B - Notification Value
+3B - Event/State Parameters 4B [LSB] – action:
+0x00 – no action, 0xX1 – turn ON, 0xX2 – turn OFF, 0xX3 – turn ON/OFF continuously, 0x0X – no action on LED frame, 0x1X – LED frame blinks red, 0x2X – LED frame blinks green, 0x4X – LED frame blinks blue, 0x8X – disable LED frame, 0xFX – LED frame LAPD signal (red-white-blue)</Help>
+        </Value>
+        
+        <Value type="short" genre="config" instance="1" index="35" label="Alarm configuration – duration" value="100" min="0" max="32400" size="2">
+            <Help>This parameter defines duration of alarm sequence. When time set in this parameter elapses, alarm is cancelled, LED frame and relay restore normal operation, but do not recover state from before the alarm. 0 – infinite / - 1-32400 (1s-9h, 1s step) – duration</Help>
+        </Value>
+        
+        <Value type="list" genre="config" instance="1" index="45" label="Associations – 2nd group" value="3" min="1" max="3" size="1">
+            <Help></Help>
+            <Item label="Power exceeds UP threshold" value="1"/>
+            <Item label="Power drops below DOWN threshold" value="2"/>
+            <Item label="Power exceeds UP threshold or drops below DOWN threshold" value="3"/>
+        </Value>
+        
+        <Value type="short" genre="config" instance="1" index="46" label="Associations – UP threshold" value="500" min="100" max="3680" size="4">
+            <Help>This parameter determines upper power threshold for 2nd association group (paramter 45). Exceeding it will result in sending value set in parameter 47.
+Cannot be lower than DOWN threshold (parameter 48). 100-36800 (10-3680W, 0.1W step) – power threshold</Help>
+        </Value>
+        
+        <Value type="short" genre="config" instance="1" index="47" label="Associations – UP threshold frame value" value="255" min="0" max="255" size="2">
+            <Help>This parameter defines value sent to devices in 2nd association group when power exceeds UP threshold set in parameter 46 (us- ing Basic Command Class). 0 – turn OFF 1-99 – set level 255 – turn ON</Help>
+        </Value>
+        
+        <Value type="short" genre="config" instance="1" index="48" label="Associations – DOWN threshold" value="300" min="0" max="3670" size="4">
+            <Help>This parameter determines lower power threshold for 2nd association group (paramter 45). Exceeding it will result in sending value set in parameter 49. / 0-36700 (0-3670W, 0.1W step) – power threshold</Help>
+        </Value>
+        
+        <Value type="short" genre="config" instance="1" index="49" label="Associations – DOWN threshold frame value" value="0" min="0" max="255" size="2">
+            <Help>This parameter defines value sent to devices in 2nd association group when power drops below DOWN threshold set in parameter 48 (using Basic Command Class). / 0 – turn OFF 1-99 – set level 255 – turn ON</Help>
+        </Value>
+        
+         <Value type="list" genre="config" instance="1" index="60" label="Power reports – include self-consumption" value="0" size="1">
+            <Help>This parameter determines whether the power measurements should include power consumed by the device itself.</Help>
+            <Item label="Self-consumption not included" value="0"/>
+            <Item label="Self-consumption included" value="1"/>
+        </Value>
+        
+        <Value type="short" genre="config" instance="1" index="61" label="Power reports – on change" value="15" min="0" max="500" size="2">
+            <Help>This parameter defines minimal change (from the last reported) in measured power that results in sending new report. For loads under 50W the parameter is irrelevant, report are sent every 5W change. / 0 - reporting on change disabled , 1-500 (1-500%, 1% step) – minimal change</Help>
+        </Value>
+        
+        <Value type="short" genre="config" instance="1" index="62" label="Power reports – periodic" value="3600" min="0" max="32400" size="2">
+            <Help>This parameter defines reporting interval for measured power. Periodic reports are independent from changes in value (parameter 61). / 0 – periodic reports disabled, 30-32400 (30s-9h, 1s step) – time interval</Help>
+        </Value>
+        
+        <Value type="short" genre="config" instance="1" index="65" label="Energy reports – on change" value="10" min="0" max="500" size="2">
+            <Help>This parameter defines minimal change (from the last reported) in measured energy that results in sending new report. / 0 - reporting on change disabled , 1-500 (0.01-5kWh, 0.01kWh step) – minimal change</Help>
+        </Value>
+        
+        <Value type="short" genre="config" instance="1" index="66" label="Energy reports – periodic" value="3600" min="0" max="32400" size="2">
+            <Help>This parameter defines reporting interval for measured energy. Periodic reports are independent from changes in value (parameter 66). / 0 – periodic reports disabled , 30-32400 (30s-9h, 1s step) – time interval</Help>
+        </Value>
+
+
+    </CommandClass>
+
+    <!-- Association Groups -->
+    <CommandClass id="133">
+        <Associations num_groups="3">
+            <Group index="1" max_associations="1" label="Lifeline"/>
+            <Group index="2" max_associations="5" label="Power"/>
+        </Associations>
+    </CommandClass>
+
+</Product>

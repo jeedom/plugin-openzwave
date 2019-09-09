@@ -34,6 +34,7 @@
 #include "platform/Log.h"
 
 #include "value_classes/ValueByte.h"
+#include "value_classes/ValueRaw.h"
 
 using namespace OpenZWave;
 
@@ -256,6 +257,20 @@ bool Alarm::HandleMsg
 					value->OnValueRefreshed( _data[8] );
 					value->Release();
 				}
+                if( ValueRaw* value = static_cast<ValueRaw*>( GetValue( _instance, 0x98 ) ) )
+				{
+				   uint8 data[_data[7]];
+                   int8 size =  _data[7];	
+                   if (size > 0) {
+						memcpy( data, &_data[8], size );
+					} else {
+						size = 1;
+						data[0] = 0;
+					}
+                  
+                  	value->OnValueRefreshed( data, size );
+					value->Release();
+				}
 			}
 		}
 
@@ -287,7 +302,10 @@ bool Alarm::HandleMsg
 							Log::Write( LogLevel_Info, GetNodeId(), "    Added alarm type: %s", c_alarmTypeName[index] );
 							if (index == 6)
 							{
+                              	uint8 data[10];
+								memset( data, 0, 10 );
 								node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, 0x99, "Memory Code User", "", true, false, 0, 0 );
+                                node->CreateValueRaw( ValueID::ValueGenre_User, GetCommandClassId(), _instance, 0x98, "Raw Code User", "", true, false, data, 10, 0 );
 							}
 						} else {
 							Log::Write( LogLevel_Info, GetNodeId(), "    Unknown alarm type: %d", index );
@@ -403,4 +421,3 @@ void Alarm::CreateVars
 		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, AlarmIndex_Notification, "Alarm Notification", "", false, true, 0, 0 );
 	}
 }
-

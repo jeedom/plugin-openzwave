@@ -1,8 +1,8 @@
 Description
 ===========
 
-Ce plugin permet l’exploitation de modules Z-Wave par l’intermédiaire de
-la librairie OpenZwave.
+This plugin allows the exploitation of Z-Wave modules via
+the OpenZwave library.
 
 Introduction
 ============
@@ -35,11 +35,11 @@ Les récepteurs radio doivent être positionnés à une distance minimum de
 
 Examples of radio-electric sources :
 
--   Ordinateurs
+-   Computers
 
--   Les appareils à micro-ondes
+-   Microwave devices
 
--   Les transformateurs électroniques
+-   Electronic transformers
 
 -   équipements audio et de matériel vidéo
 
@@ -1950,7 +1950,7 @@ start mysql
 
 > **Tip**
 >
-> Si vous etes toujours sous nginx, il faudra remplacer **apache2** par
+> Si vous êtes toujours sous nginx, il faudra remplacer **apache2** par
 > **nginx**dans les commandes**stop**/**start**. Le fichier log
 > openzwave\_update sera dans le dossier:
 > /usr/share/nginx/www/jeedom/log .
@@ -2010,4 +2010,4 @@ http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices\[2\].TestNod
 
 > **J'ai l'erreur "Not enough space in stream buffer"**
 >
-> Malheureusement cette erreur est materiel nous ne pouvons rien y faire, nous cherchons pour le moment comment forcer un redemarrage du démon en cas de cette erreur (mais souvent il faut en plus débrancher la clef pendant 5min pour que ca reparte)
+> Malheureusement cette erreur est matériel, nous ne pouvons rien y faire et cherchons pour le moment comment forcer un redémarrage du démon dans le cas de cette erreur (mais souvent il faut en plus débrancher la clef pendant 5min pour que ca reparte)

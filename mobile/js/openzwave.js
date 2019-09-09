@@ -21,17 +21,17 @@
         $('.changeIncludeState[data-mode=1]').removeClass('ui-btn-a').addClass('ui-btn-b');
         $('.changeIncludeState[data-mode=1]').attr('data-state', 0);
         $('#div_inclusionAlert').html('{{Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode}}');
-        $('.changeIncludeState[data-mode=1]').html('<i class="fa fa-sign-in fa-rotate-90" style="font-size: 6em;"></i><br/>{{Stop inclusion}}');
+        $('.changeIncludeState[data-mode=1]').html('<i class="fas fa-sign-in-alt fa-rotate-90" style="font-size: 6em;"></i><br/>{{Stop inclusion}}');
     }else if (_options.state == 5) {
         $('.changeIncludeState[data-mode=0]').removeClass('ui-btn-a').addClass('ui-btn-b');
         $('.changeIncludeState[data-mode=0]').attr('data-state', 0);
         $('#div_inclusionAlert').html('{{Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}');
-        $('.changeIncludeState[data-mode=0]').html('<i class="fa fa-sign-out fa-rotate-90" style="font-size: 6em;"></i><br/>{{Stop exclusion}}');
+        $('.changeIncludeState[data-mode=0]').html('<i class="fas fa-sign-out-alt fa-rotate-90" style="font-size: 6em;"></i><br/>{{Stop exclusion}}');
     }else{
         $('.changeIncludeState').removeClass('ui-btn-b').addClass('ui-btn-a');
         $('#div_inclusionAlert').html('{{Aucun mode actif}}');
-        $('.changeIncludeState[data-mode=0]').html('<i class="fa fa-sign-out fa-rotate-90" style="font-size: 6em;"></i><br/>{{Exclusion}}');
-        $('.changeIncludeState[data-mode=1]').html('<i class="fa fa-sign-in fa-rotate-90" style="font-size: 6em;"></i><br/>{{Inclusion}}');
+        $('.changeIncludeState[data-mode=0]').html('<i class="fas fa-sign-out-alt fa-rotate-90" style="font-size: 6em;"></i><br/>{{Exclusion}}');
+        $('.changeIncludeState[data-mode=1]').html('<i class="fas fa-sign-in-alt fa-rotate-90" style="font-size: 6em;"></i><br/>{{Inclusion}}');
         $('.changeIncludeState[data-mode=1]').attr('data-state', 1);
     }
 });
@@ -124,13 +124,13 @@ jeedom.openzwave.network.info({
             $('#div_inclusionAlert').html('{{Vous êtes en mode inclusion. Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode}}');
             $('.changeIncludeState[data-mode=1]').removeClass('ui-btn-a').addClass('ui-btn-b');
             $('.changeIncludeState[data-mode=1]').attr('data-state', 0);
-            $('.changeIncludeState[data-mode=1]').html('<i class="fa fa-sign-in fa-rotate-90" style="font-size: 6em;"></i><br/>{{Stop inclusion}}');
+            $('.changeIncludeState[data-mode=1]').html('<i class="fas fa-sign-in-alt fa-rotate-90" style="font-size: 6em;"></i><br/>{{Stop inclusion}}');
         }
         if (networkState == "5") {
             $('#div_inclusionAlert').html('{{Vous êtes en mode exclusion. Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode}}');
             $('.changeIncludeState[data-mode=0]').removeClass('ui-btn-a').addClass('ui-btn-b');
             $('.changeIncludeState[data-mode=0]').attr('data-state', 0);
-            $('.changeIncludeState[data-mode=0]').html('<i class="fa fa-sign-out fa-rotate-90" style="font-size: 6em;"></i><br/>{{Stop exclusion}}');
+            $('.changeIncludeState[data-mode=0]').html('<i class="fas fa-sign-out-alt fa-rotate-90" style="font-size: 6em;"></i><br/>{{Stop exclusion}}');
         }
     }
 });

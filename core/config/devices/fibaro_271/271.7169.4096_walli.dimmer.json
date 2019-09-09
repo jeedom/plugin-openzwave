@@ -1,0 +1,478 @@
+{
+    "name": "Walli Dimmer",
+    "type": "Micromodule",
+    "commands": [
+        {
+            "name": "Intensité",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=#slider#",
+                "index": 0,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 99
+            },
+            "value": "Etat",
+            "subtype": "slider",
+            "display": {
+                "generic_type": "LIGHT_SLIDER"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "On",
+            "type": "action",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=99",
+                "index": 0,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 99
+            },
+            "subtype": "other",
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }
+        },
+        {
+            "name": "Off",
+            "type": "action",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 38,
+                "value": "type=setvalue&value=0",
+                "index": 0,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 99
+            },
+            "subtype": "other",
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }
+        },
+        {
+            "name": "Etat",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 38,
+                "value": "",
+                "index": 0,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 100
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            },
+            "unite": "%"
+        },
+        {
+            "name": "Puissance",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "index": 8,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 250
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "unite": "W"
+        },
+        {
+            "name": "Consommation",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "index": 0,
+                "instance": 1,
+                "minValue": 0
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "template": {
+                "dashboard": "tile"
+            },
+            "unite": "kWh"
+        },
+        {
+            "name": "Scene",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": 128,
+                "instance": 1,
+                "repeatEventManagement": "always"
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        }
+    ],
+    "configuration": {
+        "1": {
+            "name": "Niveau minimum d’éclairage",
+            "help": "Options pour ce paramètre 1-98. Valeur par défaut 2. NOTE :  Ce paramètre est configuré automatiquement par le FGD212 lors de la calibration, si besoin, vous pouvez le changer manuellement après la calibration."
+        },
+        "2": {
+            "name": "Niveau maximum d’éclairage",
+            "help": "Options pour ce paramètre 2-99. Valeur par défaut 99. NOTE :  Ce paramètre est configuré automatiquement par le FGD212 lors de la calibration, si besoin, vous pouvez le changer manuellement après la calibration."
+        },
+        "3": {
+            "name": "Puissance minimale durant le «préchauffage» des lampes «fluo-compactes»",
+            "help": "Options pour ce paramètre 1-99. Valeur par défaut 99. NOTE :  Ce paramètre est configuré automatiquement par le FGD212 lors de la calibration, si besoin, vous pouvez le changer manuellement après la calibration."
+        },
+        "4": {
+            "name": "Temps de «préchauffage» des lampes «fluo-compactes»",
+            "help": "Options pour ce paramètre 0~255 = 0 à 25,5s. Valeur par défaut 0. NOTE :  Ce paramètre est configuré automatiquement par le FGD212 lors de la calibration, si besoin, vous pouvez le changer manuellement après la calibration."
+        },
+        "5": {
+            "name": "Pourcentage de variation à chaque palier en variation automatique",
+            "help": "Options pour ce paramètre 1-99. Valeur par défaut 1."
+        },
+        "6": {
+            "name": "Durée entre deux paliers en variation automatique",
+            "help": "Options pour ce paramètre 0~255 = 0 à 25,5s. Valeur par défaut 1."
+        },
+        "7": {
+            "name": "Pourcentage de variation à chaque palier en variation manuelle",
+            "help": "Options pour ce paramètre 1-99. Valeur par défaut 1."
+        },
+        "8": {
+            "name": "Durée entre deux paliers en variation manuelle",
+            "help": "Options pour ce paramètre 0~255 = 0 à 25,5s. Valeur par défaut 1."
+        },
+        "9": {
+            "name": "Etat de l’éclairage après une coupure de courant",
+            "help": "Options pour ce paramètre 1-255 (10ms - 2.5s). Valeur par défaut 1",
+            "list": {
+                "State NOT saved at power failure, all outputs are set to OFF upon power restore": "Etats non sauvé lors de la coupure de courant, toutes les sorties seront à OFF lors de la remise du courant",
+                "State saved at power failure, all outputs are set to previous state upon power restore": "Etats sauvé lors de la coupure de courant, toute les sorties seront à l'état précedent lors de la remise du courant"
+            }
+        },
+        "10": {
+            "name": "Extinction automatique (fonction minuteur)",
+            "help": "Options pour ce paramètre 1~32767 en secondes = 1s à 9,1h. Valeur par défaut 0 (minuteur désactivé)."
+        },
+        "11": {
+            "name": "Activation/Désactivation des fonctions ALL ON / ALL OFF",
+            "help": "Activation/Désactivation des fonctions ALL ON / ALL OFF. Valeur par défaut 255",
+            "list": {
+                "ALL ON active / ALL OFF active": "ALL ON actif / ALL OFF actif",
+                "ALL ON disabled/ ALL OFF disabled": "ALL ON inactif / ALL OFF inactif",
+                "ALL ON disabled/ ALL OFF active": "ALL ON inactif / ALL OFF actif",
+                "ALL ON active / ALL OFF disabled": "ALL ON actif / ALL OFF inactif"
+            }
+        },
+        "13": {
+            "name": "Exécuter l’auto-calibration du variateur",
+            "help": "Ce paramètre permet d'exécuter une calibration du FGD212",
+            "list": {
+                "idle": "Désactivé",
+                "Start auto-calibration of the load without Fibaro Bypass": "Demande une nouvelle calibration sans bypass Fibaro FGB-002",
+                "Start auto-calibration of the load with Fibaro Bypass": "Demande une nouvelle calibration avec bypass Fibaro FGB-002"
+            }
+        },
+        "14": {
+            "name": "Etat de l’autocalibration",
+            "help": "Ce paramètre détermine le mode de fonctionnement du FGD212 (Automatique/Manuel)",
+            "list": {
+                "calibration procedure not performed or Dimmer operates on manual settings": "L’autocalibration n’a pas encore été effectuée ou des paramètres ont été modifié manuellement.",
+                "Dimmer operates on auto-calibration settings": "L’autocalibration a été effectuée et les paramètres ont été configurés automatiquement."
+            }
+        },
+        "15": {
+            "name": "Détection d’ampoule «grillée»",
+            "help": "Différence de consommation par rapport à la consommation mesurée pendant l’autocalibration. Cela permet théoriquement de détecter une ampoule grillée sur un circuit. Le paramètre 58 doit aussi être à «0» et le paramètre 30 être correctement configuré. Options pour ce paramètre 1-99. Valeur par défaut 30. 0 fonction désactivée"
+        },
+        "16": {
+            "name": "Délai de confirmation d’anomalie",
+            "help": "Durée de baisse (ou hausse) de consommation avant de considérer une anomalie (ampoule grillée ou sur-puissance). Voir le paramètre 15 pour la détection d’ampoule grillée ou et le 39 pour la détection de sur-puissance. Options pour ce paramètre en seconde 1-255. Valeur par défaut 5"
+        },
+        "19": {
+            "name": "Niveau de variation à l’allumage depuis le bouton S1",
+            "help": "Si ce paramètre est activé, l'appuie sur le bouton S1 positionnera toujours l'éclairage au même niveau. Options pour ce paramètre 0-99. Valeur par défaut 0 (désactivé)."
+        },
+        "20": {
+            "name": "Type d’interrupteur utilisé sur le commutateur.",
+            "help": "Configuration du type d’interrupteur. Valeur par défaut 0",
+            "list": {
+                "Mono-stable input (button)": "Interrupteur type poussoir (monostable)",
+                "Bi-stable input (switch)": "Interrupteur à 2 positions (bistable)",
+                "Role blind switch (UP / DOWN) - two switch keys operate the Dimmer": "Bouton volets roulants (UP/DOWN)"
+            }
+        },
+        "21": {
+            "name": "Valeurs envoyées aux modules associés lors de l'allumage via le bouton relié à S1",
+            "help": "Le Fibaro FGD212 peut être associé à 5 autres modules ON/OFF et/ou 5 modules variateurs. Ce paramètre permet de spécifier le type d’ordre envoyé lors d’un appui sur le bouton relié à S1.",
+            "list": {
+                "0xFF value is sent, which will set associated devices to their last saved state.": "ON (0xFF) - Les modules associés se positionne dans le dernier état sauvé.",
+                "Current Dimmer state is sent, which will synchronize brightness level of associated devices (other Dimmers for example).": "Niveau de variation actuel du variateur FGD212 (fonctionnement synchronisé)."
+            }
+        },
+        "22": {
+            "name": "Ordre envoyé lors du changement de position d’un commutateur bistable relié à l’entrée S1",
+            "help": "",
+            "list": {
+                "Device changes status on switch status change": "Le changement de position envoie un changement d’état",
+                "Device status is synchronized with switch status": "Le fonctionnement est synchronisé sur la position du bouton."
+            }
+        },
+        "23": {
+            "name": "Fonction «double clic» = 100%",
+            "help": "Permet d’augmente la variation à 100% en effectuant un double appui très rapide sur le bouton relié à S1. Cette fonction n’est possible qu’avec un bouton poussoir impulsionnel monostable.",
+            "list": {
+                "Disable double click": "Double Click désactivé",
+                "Enable double click": "Double Click activé"
+            }
+        },
+        "24": {
+            "name": "Type d’ordres envoyés aux modules associés aux groupes 2 et 3 (bouton S1)",
+            "help": "Permet de spécifier quels ordres le module enverra ou non en fonction du type d’appui effectués sur le bouton relié à S1. Par défaut, une valeur à 0 signifie que tous les ordres sont activés. Il suffit ensuite d’additionner les valeurs correspondant aux ordres que l’on souhaite désactiver. \n ex pour ne pas envoyer le changement de variation (valeur 4) ni les doubles clics (valeur 8), envoyer12. \n 0  Tous les ordres sont envoyés. \n 1  Ne pas envoyer d’ordre lorsque le FGD212 est allumé par un simple appui sur S1 \n 2  Ne pas envoyer d’ordre lorsque le FGD212 est éteint par un simple appui sur S1 \n 4  Ne pas envoyer d’ordre lorsque une variation est envoyée au FGD212 lors d’un appui long sur S1 \n 8  Ne pas envoyer d’ordre lorsqu’un double click est effectué sur le bouton relié à S1 \n 16 Lors d’un double clic sur le bouton relié à S1, envoyer un ordre «ON» (0xFF)."
+        },
+        "25": {
+            "name": "Type d’ordres envoyés aux modules associés aux groupes 4 et 5 (bouton S2)",
+            "help": "Permet de spécifier quels ordres le module enverra ou non en fonction du type d’appui effectués sur le bouton relié à S2. Par défaut, une valeur à 0 signifie que tous les ordres sont activés. Il suffit ensuite d’additionner les valeurs correspondant aux ordres que l’on souhaite désactiver.\n ex pour ne pas envoyer le changement de variation (valeur 4) ni les doubles clics (valeur 8), envoyer12. \n 0  Tous les ordres sont envoyés. \n 1  Ne pas envoyer d’ordre lorsque le FGD212 est allumé par un simple appui sur S2 \n 2  Ne pas envoyer d’ordre lorsque le FGD212 est éteint par un simple appui sur S2 \n 4  Ne pas envoyer d’ordre lorsque une variation est envoyée au FGD212 lors d’un appui long sur S2 \n 8  Ne pas envoyer d’ordre lorsqu’un double click est effectué sur le bouton relié à S2 16 Lors d’un double clic sur le bouton relié à S2, envoyer un ordre «ON» (0xFF)."
+        },
+        "26": {
+            "name": "Interrupteur 3 voies",
+            "help": "Le bouton N°2 permet de controller le variateur. La fonction est désactivé sir le paramètre 20 est 2(roller blind switch)",
+            "list": {
+                "3-way switch function for S2 disabled": "Fonctionnement normal.",
+                "3-way switch function for S2 enabled": "Mode va-et-vient activé. Un inverseur bi-stable «va-et-vient» doit être relié sur chacune des deux entrées S1 et S2."
+            }
+        },
+        "27": {
+            "name": "Activation des communications cryptées",
+            "help": "Permet d’activer ou désactiver les communications cryptées avec les modules «Z-Wave Plus» associés aux groupes 2 à 5. La valeur à envoyer est l’addition des valeurs pour chaque groupe. Ex si vous voulez activer des communications cryptées pour les groupes 4 et 5 mais pas pour les 2 et 3, vous devez envoyer la valeur 4+8 = 12. \n 0  Les communications avec les groupes 1 à 5 sont non-cryptées. \n 1  Activation du cryptage pour le groupe 2 \n 2  Activation du cryptage pour le groupe 3 \n 4  Activation du cryptage pour le groupe 4 \n 8  Activation du cryptage pour le groupe 5 \n Valeur par défaut 15"
+        },
+        "28": {
+            "name": "Ajout de fonctionnalités dans les scènes",
+            "help": "Le module offre la possibilité d'envoyer des commandes compatibles avec une commande d’activation de scène. L'information est transmise aux périphériques affectées au groupe d'association n°3. Les contrôleurs comme le Home Center 2 sont capables d'interpréter ces commandes afin d’activer des scènes, pour lesquelles un identifiant spécifique de scène spécifique a été attribué. L'utilisateur peut étendre la fonctionnalité du bouton relié aux entrées S1 et S2 en distinguant les actions des touches connectées à ces entrées. Par exemple: double-cliquer activerait la scène bonsoir et triple clic pourrait activer la scène Matin",
+            "list": {
+                "Functionality deactivated": "Fonctionnalité désactivée",
+                "Functionality activated": "Fonctionnalité activée"
+            }
+        },
+        "29": {
+            "name": "Inversion des boutons S1 et S2",
+            "help": "",
+            "list": {
+                "standard mode": "Mode Standart",
+                "S1 operates as S2, S2 operates as S1": "Les entrée S1 et S2 sont inversés"
+            }
+        },
+        "30": {
+            "name": "Forçage du type de découpage de la fonction variateur",
+            "help": "L'autocalibration positionnera se paramètre à 2",
+            "list": {
+                "forced leading edge control": "Force le mode leading edge",
+                "forced trailing edge control": "Force le mode trailing edge",
+                "control mode selected automatically (based on auto-calibration)": "Automatiquement choisi lors de l’autocalibration"
+            }
+        },
+        "31": {
+            "name": "Type de découpage détecté lors de l’autocalibration",
+            "help": "Paramètre en lecture seule"
+        },
+        "32": {
+            "name": "Désactivation de la fonction variateur (mode ON/OFF).",
+            "help": "Ce paramètre est normalement configuré automatiquement lors de l’autocalibration.",
+            "list": {
+                "on/off mode disabled (dimming is possible)": "Variation activée.",
+                "on/off mode enabled (dimming is not possible)": "Variation désactivée (ON/OFF uniquement).",
+                "mode selected automatically": "Mode sélectionné automatiquement suivant le résultat de l’autocalibration."
+            }
+        },
+        "33": {
+            "name": "Compatibilité de l’ampoule avec les variateurs (ampoule «dimmable») détectée lors de l’autocalibrage.",
+            "help": "Paramètre en lecture seule, ne peut pas être modifié.",
+            "list": {
+                "Load recognized as dimmable": "Ampoule détectée comme compatible variateur («dimmable»)",
+                "Load recognized as non-dimmable": "Ampoule détectée comme non compatible variateur («non dimmable»)"
+            }
+        },
+        "34": {
+            "name": "Fonction d’allumage progressif.",
+            "help": "Durée de l’allumage progressif de l’éclairage (recommandé pour les ampoules à filament / halogènes) ou pour votre confort visuel.",
+            "list": {
+                "no soft-start": "Allumage instantané",
+                "short soft-start (0.1s)": "Allumage progressif en 0,1s",
+                "long soft-start (0.5s)": "Allumage progressif en 0,5s"
+            }
+        },
+        "35": {
+            "name": "Auto-calibration à la mise sous tension.",
+            "help": "Ce paramètre permet de spécifier quand et si l'autocalibration doit automatiquement se déclencher.",
+            "list": {
+                "No auto-calibration of the load after power on": "Pas de calibration automatique à mise sous tension.",
+                "Auto-calibration performed after first power on": "Calibration automatique à la première mise sous tension.",
+                "Auto-calibration performed after each power on": "Calibration automatique à chaque mise sous tension.",
+                "Auto-calibration performed after first power on or after each LOAD ERROR alarm (no load, load failure, burnt out bulb)": "Calibration automatique à la première mise sous tension et après chaque anomalie détectée (pas d’ampoule, ampoule grillée, sur-tension, sur-intensité, etc.)",
+                "Auto-calibration performed after each power on or after each LOAD ERROR alarm (no load, load failure, burnt out bulb),": "Calibration automatique à chaque mise sous tension et après chaque anomalie détectée (pas d’ampoule, ampoule grillée, sur-tension, sur-intensité, etc.)"
+            }
+        },
+        "37": {
+            "name": "Comportement après détection d’une sur-tension ou d’une sur-intensité",
+            "help": "",
+            "list": {
+                "device permanently disabled until re-enabling by comand or external switch": "Extinction de l’éclairage avec possibilité de le rallumer via l’interrupteur ou commande par Z-Wave.",
+                "three atempts to turn on the load": "3 nouvelles tentatives d’allumer l’éclairage."
+            }
+        },
+        "39": {
+            "name": "Protection contre les sur-puissances.",
+            "help": "En plus de la limitation basée sur la puissance apparente et fixée à 350 Watts, il est possible de fixer une limite en Watts au dessus de laquelle l’éclairage est automatiquement éteint. Options pour ce paramètre 1~350 Watts. Valeur par défaut 250."
+        },
+        "40": {
+            "name": "Réaction en cas d’alarme générale",
+            "help": "Réaction en cas d’alarme générale. Valeur par défaut 3",
+            "list": {
+                "No reaction - no response to alarm frames": "Le dispositif ne répond pas aux données d'alarme",
+                "ALARM DIMMER ON - device turn ON upon receipt of alarm frame": "Le dispositif se met en marche après la détection d'une alarme",
+                "ALARM DIMMER OFF - device will turn OFF upon receipt of alarm frame": "L'appareil s'éteint après la détection d'une alarme",
+                "ALARM FLASHING - device will turn ON and OFF periodically": "Le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
+            }
+        },
+        "41": {
+            "name": "Réaction en cas d’alarme inondation",
+            "help": "Réaction en cas d’alarme inondation. Valeur par défaut 3",
+            "list": {
+                "No reaction - no response to alarm frames": "Le dispositif ne répond pas aux données d'alarme",
+                "ALARM DIMMER ON - device turn ON upon receipt of alarm frame": "Le dispositif se met en marche après la détection d'une alarme",
+                "ALARM DIMMER OFF - device will turn OFF upon receipt of alarm frame": "L'appareil s'éteint après la détection d'une alarme",
+                "ALARM FLASHING - device will turn ON and OFF periodically": "Le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
+            }
+        },
+        "42": {
+            "name": "Réaction en cas d’alarme de fumée, CO ou CO2",
+            "help": "Réaction en cas d’alarme de fumée, CO ou CO2. Valeur par défaut 3",
+            "list": {
+                "No reaction - no response to alarm frames": "Le dispositif ne répond pas aux données d'alarme",
+                "ALARM DIMMER ON - device turn ON upon receipt of alarm frame": "Le dispositif se met en marche après la détection d'une alarme",
+                "ALARM DIMMER OFF - device will turn OFF upon receipt of alarm frame": "L'appareil s'éteint après la détection d'une alarme",
+                "ALARM FLASHING - device will turn ON and OFF periodically": "Le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
+            }
+        },
+        "43": {
+            "name": "Réaction en cas d’alarme de température",
+            "help": "Réaction en cas d’alarme de température. Valeur par défaut 3",
+            "list": {
+                "No reaction - no response to alarm frames": "Le dispositif ne répond pas aux données d'alarme",
+                "ALARM DIMMER ON - device turn ON upon receipt of alarm frame": "Le dispositif se met en marche après la détection d'une alarme",
+                "ALARM DIMMER OFF - device will turn OFF upon receipt of alarm frame": "L'appareil s'éteint après la détection d'une alarme",
+                "ALARM FLASHING - device will turn ON and OFF periodically": "Le dispositif change périodiquement son statut vers l’inverse, quand il détecte une alarme et ce pendant 10 min"
+            }
+        },
+        "44": {
+            "name": "Retour automatique à l’état normal après déclenchement d’une alarme",
+            "help": "Délai avant lequel le FGD212 reprendra son état normal après déclenchement d’une alarme.Options pour ce paramètre 1~32767 en secondes = 1s à 9,1h. Valeur par défaut 600s."
+        },
+        "45": {
+            "name": "Alarme de sur-puissance.",
+            "help": "Alarme de sur-puissance (puissance maximale du variateur dépassée).",
+            "list": {
+                "No reaction": "Pas d’action",
+                "Send an alarm frame": "Envoie une alarme au contrôleur Z-Wave."
+            }
+        },
+        "46": {
+            "name": "Alarme de charge.",
+            "help": "Alarme de charge (ampoule grillée, pas d’ampoule, ampoule défectueuse, etc.)",
+            "list": {
+                "No reaction": "Pas d’action",
+                "Send an alarm frame": "Envoie une alarme au contrôleur Z-Wave."
+            }
+        },
+        "47": {
+            "name": "Alarme de sur-intensité.",
+            "help": "Alarme de sur-intensité (court-circuit, ampoule défectueuse).",
+            "list": {
+                "No reaction": "Pas d’action",
+                "Send an alarm frame": "Envoie une alarme au contrôleur Z-Wave."
+            }
+        },
+        "48": {
+            "name": "Alarme de sur-tension.",
+            "help": "Alarme de sur-tension.",
+            "list": {
+                "No reaction": "Pas d’action",
+                "Send an alarm frame": "Envoie une alarme au contrôleur Z-Wave."
+            }
+        },
+        "49": {
+            "name": "Alarme de sur-température ou tension trop basse.",
+            "help": "Alarme de sur-température ou tension trop basse.",
+            "list": {
+                "No reaction": "Pas d’action",
+                "Send an alarm frame": "Envoie une alarme au contrôleur Z-Wave."
+            }
+        },
+        "50": {
+            "name": "Pourcentage de variation déclenchant la transmission de la puissance active consommée.",
+            "help": "Options pour ce paramètre 0-100. 0 : Pas de transmission Valeur par défaut 10."
+        },
+        "52": {
+            "name": "Envoi périodique de la puissance active consommée et de la consommation cumulée.",
+            "help": "Options pour ce paramètre 0~32767 en secondes = 1s à 9,1h. 0 : Pas de transmission. Valeur par défaut 3600."
+        },
+        "53": {
+            "name": "Envoi de la consommation cumulée.",
+            "help": "Augmentation de consommation cumulée déclenchant l’envoi de cette information au contrôleur domotique. Options pour ce paramètre 1-255. 0 : Pas de transmission Valeur par défaut 10."
+        },
+        "54": {
+            "name": "Mesure de consommation propre du module.",
+            "help": "",
+            "list": {
+                "Self-measurement inactive": "Le module n’ajoute pas sa propre consommation aux mesures.",
+                "Self-measurement active": "Le module ajoute sa propre consommation aux mesures."
+            }
+        },
+        "58": {
+            "name": "Méthode de calcul de la puissance active consommée.",
+            "help": "Ce paramètre peut être réglé à 1 ou 2 avec des câblages en 2 fils (sans neutre) avec des charges non résistives (autres que ampoule à filament / halogène sans transformateur).",
+            "list": {
+                "power measurement based on the standard algorithm": "Puissance mesurée calculée suivant l'algorithme standard",
+                "approximation based on the calibration data": "Approximation basée sur les données recueillies durant la calibration",
+                "approximation based on the control angle": "Approximation suivant l’angle du contrôle de charge."
+            }
+        },
+        "59": {
+            "name": "Puissance approximative à 100% de variation",
+            "help": "Permet de définir la puissance nominale de la charge et ainsi calculer une approximation de la puissance consommée. Utile uniquement avec un réglage du paramètre 58 à une valeur différente de 0."
+        }
+    }
+}

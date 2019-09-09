@@ -1,0 +1,237 @@
+{
+    "name": "Walli Switch FGWDSEU-221",
+    "type": "Micromodule",
+    "commands": [
+        {
+            "name": "On 1",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "index": 0,
+                "instance": 1
+            },
+            "value": "Etat 1",
+            "subtype": "other",
+            "display": {
+                "generic_type": "LIGHT_ON"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Off 1",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "index": 0,
+                "instance": 1
+            },
+            "value": "Etat 1",
+            "subtype": "other",
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Etat 1",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "index": 0,
+                "instance": 1
+            },
+            "subtype": "binary",
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }
+        },
+        {
+            "name": "Puissance 1",
+            "type": "info",
+            "isVisible": "1",
+            "isHistorized": "1",
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "index": 8,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 2500
+            },
+            "subtype": "numeric",
+            "display": {
+                "invertBinary": "0",
+                "generic_type": "POWER"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "unite": "W"
+        },
+        {
+            "name": "Consommation 1",
+            "type": "info",
+            "isVisible": "1",
+            "isHistorized": "0",
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "index": 0,
+                "instance": 1,
+                "minValue": 0
+            },
+            "subtype": "numeric",
+            "display": {
+                "invertBinary": "0",
+                "generic_type": "CONSUMPTION"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            },
+            "unite": "kWh"
+        },
+        {
+            "name": "On 2 ",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "index": 0,
+                "instance": 2
+            },
+            "value": "Etat 2",
+            "subtype": "other",
+            "display": {
+                "generic_type": "LIGHT_ON"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Off 2 ",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "index": 0,
+                "instance": 2
+            },
+            "value": "Etat 2",
+            "subtype": "other",
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            },
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Etat 2",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 37,
+                "value": "",
+                "index": 0,
+                "instance": 2
+            },
+            "subtype": "binary",
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }
+        },
+        {
+            "name": "Puissance 2",
+            "type": "info",
+            "isVisible": "1",
+            "isHistorized": "1",
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "index": 8,
+                "instance": 2,
+                "minValue": 0,
+                "maxValue": 2500
+            },
+            "subtype": "numeric",
+            "display": {
+                "invertBinary": "0",
+                "generic_type": "POWER"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "unite": "W"
+        },
+        {
+            "name": "Consommation 2",
+            "type": "info",
+            "isVisible": "1",
+            "isHistorized": "0",
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "index": 0,
+                "instance": 2,
+                "minValue": 0
+            },
+            "subtype": "numeric",
+            "display": {
+                "invertBinary": "0",
+                "generic_type": "CONSUMPTION"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            },
+            "unite": "kWh"
+        },
+        {
+            "name": "Scene",
+            "type": "numeric",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": 128,
+                "instance": 1,
+                "repeatEventManagement": "always"
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        }
+    ]
+}
