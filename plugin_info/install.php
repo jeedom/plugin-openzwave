@@ -23,7 +23,6 @@ function openzwave_install() {
 }
 
 function openzwave_update() {
-	message::add('openzwave', 'Cette mise à jour nécessite de relancer les dépendances même si elles apparaissent vertes');
 	if (config::byKey('api::openzwave::mode') == '') {
 		config::save('api::openzwave::mode', 'localhost');
 	}
