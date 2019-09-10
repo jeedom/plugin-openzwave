@@ -1,3 +1,7 @@
+09-09-2019
+- Adaptation des dépendances pour Debian10 Buster
+- Modification permettant de séparer les sorties sur les smart implant (cette fonction nécessite une recompilation des dépendances)
+
 04-02-2019
 ===
 - CETTE MAJ NECESSITE DE RECOMPILER LES DEPENDANCES (RELANCER)
