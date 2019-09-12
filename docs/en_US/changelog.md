@@ -1,4 +1,8 @@
-09-09-2019
+# 10-09-2019
+
+- Correction d'un soucis d'affichage de la table de routage
+
+# 09-09-2019
 - Adaptation des dépendances pour Debian10 Buster
 - Modification permettant de séparer les sorties sur les smart implant (cette fonction nécessite une recompilation des dépendances)
 
@@ -671,5 +675,3 @@
 
     -   Correction du ping sur les nœuds en Timeout lors du
         test sanitaire.
-
-
