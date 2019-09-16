@@ -1,0 +1,140 @@
+{
+    "name": "RS LED D2",
+    "type": "Multicapteurs",
+    "comlink": "",
+    "remark": "", 
+    "imglink": "steinel.rsledd2",
+    "commands": [
+        {
+            "name": "Présence",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 113,
+                "value": "",
+                "index": 10,
+                "instance": 1,
+                "calculValueOffset": "#value#==8"
+            },
+            "subtype": "binary",
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "PRESENCE"
+            },
+            "template": {
+                "dashboard": "presence",
+                "mobile": "presence"
+            }
+        },
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }
+        }, 
+        {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Etat", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }, 
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Etat", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }, 
+            "template": {
+                "dashboard": "light",
+                "mobile": "light"
+            }
+        },
+        {
+            "name": "Luminosité",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "index": 3,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 40000
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "BRIGHTNESS"
+            },
+            "unite": "Lux"
+        },
+        {
+            "name": "Auto",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 112,
+                "value": "type=setconfig&value=1&size=1",
+                "index": 9,
+                "instance": 1
+            },
+            "subtype": "other",
+            "display": {
+                "generic_type": "DONT"
+            }
+        },
+        {
+            "name": "Manual",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 112,
+                "value": "type=setconfig&value=3&size=1",
+                "index": 9,
+                "instance": 1
+            },
+            "subtype": "other",
+            "display": {
+                "generic_type": "DONT"
+            }
+        }
+    ]
+}
