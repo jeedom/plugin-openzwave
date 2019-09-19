@@ -1,7 +1,32 @@
 {
-    "name": "Walli Dimmer",
-    "type": "Micromodule",
+    "name": "L 810 LED iHF",
+    "type": "Multicapteurs",
+    "comlink": "",
+    "remark": "", 
+    "imglink": "steinel.l810ledihf",
     "commands": [
+        {
+            "name": "Présence",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 113,
+                "value": "",
+                "index": 10,
+                "instance": 1,
+                "calculValueOffset": "#value#==8"
+            },
+            "subtype": "binary",
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "PRESENCE"
+            },
+            "template": {
+                "dashboard": "presence",
+                "mobile": "presence"
+            }
+        },
         {
             "name": "Intensité",
             "type": "action",
@@ -32,12 +57,13 @@
             "isHistorized": 0,
             "configuration": {
                 "class": 38,
-                "value": "type=setvalue&value=99",
+                "value": "type=setvalue&value=255",
                 "index": 0,
                 "instance": 1,
                 "minValue": 0,
                 "maxValue": 99
             },
+            "value": "Etat",
             "subtype": "other",
             "display": {
                 "generic_type": "LIGHT_ON"
@@ -56,6 +82,7 @@
                 "minValue": 0,
                 "maxValue": 99
             },
+            "value": "Etat",
             "subtype": "other",
             "display": {
                 "generic_type": "LIGHT_OFF"
@@ -72,7 +99,7 @@
                 "index": 0,
                 "instance": 1,
                 "minValue": 0,
-                "maxValue": 100
+                "maxValue": 99
             },
             "subtype": "numeric",
             "display": {
@@ -81,64 +108,54 @@
             "unite": "%"
         },
         {
-            "name": "Puissance",
+            "name": "Luminosité",
             "type": "info",
-            "isVisible": 0,
+            "isVisible": 1,
             "isHistorized": 1,
             "configuration": {
-                "class": 50,
+                "class": 49,
                 "value": "",
-                "index": 8,
+                "index": 3,
                 "instance": 1,
                 "minValue": 0,
-                "maxValue": 250
+                "maxValue": 40000
             },
             "subtype": "numeric",
             "display": {
-                "generic_type": "POWER"
+                "generic_type": "BRIGHTNESS"
             },
-            "unite": "W"
+            "unite": "Lux"
         },
         {
-            "name": "Consommation",
-            "type": "info",
-            "isVisible": 0,
+            "name": "Auto",
+            "type": "action",
+            "isVisible": 1,
             "isHistorized": 0,
             "configuration": {
-                "class": 50,
-                "value": "",
-                "index": 0,
-                "instance": 1,
-                "minValue": 0
+                "class": 112,
+                "value": "type=setconfig&value=1&size=1",
+                "index": 9,
+                "instance": 1
             },
-            "subtype": "numeric",
-            "display": {
-                "generic_type": "CONSUMPTION"
-            },
-            "template": {
-                "dashboard": "tile"
-            },
-            "unite": "kWh"
-        },
-        {
-            "name": "Scene",
-            "type": "info",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "configuration": {
-                "class": 91,
-                "value": "",
-                "index": 128,
-                "instance": 1,
-                "repeatEventManagement": "always"
-            },
-            "subtype": "numeric",
+            "subtype": "other",
             "display": {
                 "generic_type": "DONT"
+            }
+        },
+        {
+            "name": "Manual",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 112,
+                "value": "type=setconfig&value=3&size=1",
+                "index": 9,
+                "instance": 1
             },
-            "template": {
-                "dashboard": "tile",
-                "mobile": "tile"
+            "subtype": "other",
+            "display": {
+                "generic_type": "DONT"
             }
         }
     ]

@@ -137,7 +137,7 @@ function printEqLogic(_eqLogic) {
   } else {
     $('#img_device').attr("src", 'plugins/openzwave/plugin_info/openzwave_icon.png');
   }
-  if ($('.li_eqLogic.active').attr('data-assistant') != '') {
+  if ($('.eqLogicDisplayCard.active').attr('data-assistant') != '') {
     $('#bt_deviceAssistant').show();
     $('#bt_deviceAssistant').off().on('click', function () {
       $('#md_modal').dialog({title: "{{Assistant de configuration}}"});
@@ -373,7 +373,7 @@ $('#bt_autoDetectModule').off('click').on('click', function () {
                       return;
                     }
                     $('#div_alert').showAlert({message: '{{Opération réalisée avec succès}}', level: 'success'});
-                    $('.li_eqLogic[data-eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value() + ']').click();
+                    $('.eqLogicDisplayCard[data-eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value() + ']').click();
                   }
                 });
               }
@@ -398,7 +398,7 @@ $('#bt_autoDetectModule').off('click').on('click', function () {
                   return;
                 }
                 $('#div_alert').showAlert({message: '{{Opération réalisée avec succès}}', level: 'success'});
-                $('.li_eqLogic[data-eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value() + ']').click();
+                $('.eqLogicDisplayCard[data-eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value() + ']').click();
               }
             });
           }

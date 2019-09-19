@@ -298,7 +298,7 @@ class openzwave extends eqLogic {
 		}
 		$disabledNodes = '';
 		foreach (self::byType('openzwave') as $eqLogic) {
-			if (!$eqLogic->getIsEnable()) {
+			if (!$eqLogic->getIsEnable() && is_numeric($eqLogic->getLogicalId())) {
 				$disabledNodes .= $eqLogic->getLogicalId() . ',';
 			}
 		}
@@ -339,25 +339,31 @@ class openzwave extends eqLogic {
 	}
 	
 	public static function deamon_stop() {
-		$deamon_info = self::deamon_info();
-		if ($deamon_info['state'] == 'ok') {
-			try {
-				self::callOpenzwave('/network?action=stop&type=action');
-			} catch (Exception $e) {
-				
+		config::save('deamonAutoMode',0, 'openzwave');
+		try {
+			$deamon_info = self::deamon_info();
+			if ($deamon_info['state'] == 'ok') {
+				try {
+					self::callOpenzwave('/network?action=stop&type=action');
+				} catch (Exception $e) {
+					
+				}
 			}
+			$pid_file = jeedom::getTmpFolder('openzwave') . '/deamon.pid';
+			if (file_exists($pid_file)) {
+				$pid = intval(trim(file_get_contents($pid_file)));
+				system::kill($pid);
+			}
+			system::kill('openzwaved.py');
+			$port = config::byKey('port', 'openzwave');
+			if ($port != 'auto') {
+				system::fuserk(jeedom::getUsbMapping($port));
+			}
+			sleep(1);
+		} catch (\Exception $e) {
+			
 		}
-		$pid_file = jeedom::getTmpFolder('openzwave') . '/deamon.pid';
-		if (file_exists($pid_file)) {
-			$pid = intval(trim(file_get_contents($pid_file)));
-			system::kill($pid);
-		}
-		system::kill('openzwaved.py');
-		$port = config::byKey('port', 'openzwave');
-		if ($port != 'auto') {
-			system::fuserk(jeedom::getUsbMapping($port));
-		}
-		sleep(1);
+		config::save('deamonAutoMode',1, 'openzwave');
 	}
 	
 	public static function syncconfOpenzwave($_background = true) {
@@ -761,6 +767,9 @@ class openzwaveCmd extends cmd {
 		$value = $this->getConfiguration('value');
 		$request = '/node?node_id=' . $this->getEqLogic()->getLogicalId();
 		switch ($this->getSubType()) {
+			case 'message':
+			$value = str_replace('#message#', $_options['message'], $value);
+			break;
 			case 'slider':
 			$value = str_replace('#slider#', $_options['slider'], $value);
 			break;
