@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="1">
     <!-- https://products.z-wavealliance.org/products/2290/ -->
+    <!-- Map endpoints to instances -->
+    <CommandClass id="96" mapping="endpoints" />
     <!-- Configuration Parameters -->
     <CommandClass id="112">
         <Value genre="config" instance="1" index="1" type="short" label="Duration of light after motion detection" units="seconds" size="2" min="5" max="900" value="180">

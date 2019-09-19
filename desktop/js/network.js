@@ -84,7 +84,7 @@ $("#tab_route").off("click").on("click", function () {
           routingTableHeader += '<th title="' + node.data.product_name.valuee + '" >' + nodeId + '</th>';
           var name = '<span class="nodeConfiguration cursor" data-node-id="' + nodeId + '">' + node.data.product_name.value + '</span>';
         }
-        routingTable += '<tr><td style="width: 500px">' + name;
+        routingTable += '<tr><td style="min-width: 300px">' + name;
         if (node.data.isDead.value) {
           routingTable += '  <i class="fas fa-exclamation-triangle fa-lg" style="color:red; text-align:right"  title="{{Présumé mort}}"></i>';
         }
