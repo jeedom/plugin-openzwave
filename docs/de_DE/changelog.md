@@ -1,3 +1,7 @@
+# 19-09-2019
+
+- Correction de bug d'affichage
+
 # 10-09-2019
 
 - Correction d'un soucis d'affichage de la table de routage
