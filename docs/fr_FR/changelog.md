@@ -1,3 +1,5 @@
+- Correction d'un bug lors de l'arret du démon
+
 # 19-09-2019
 
 - Correction de bug d'affichage
