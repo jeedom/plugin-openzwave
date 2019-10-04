@@ -339,7 +339,6 @@ class openzwave extends eqLogic {
 	}
 	
 	public static function deamon_stop() {
-		config::save('deamonAutoMode',0, 'openzwave');
 		try {
 			$deamon_info = self::deamon_info();
 			if ($deamon_info['state'] == 'ok') {
@@ -363,7 +362,6 @@ class openzwave extends eqLogic {
 		} catch (\Exception $e) {
 			
 		}
-		config::save('deamonAutoMode',1, 'openzwave');
 	}
 	
 	public static function syncconfOpenzwave($_background = true) {
