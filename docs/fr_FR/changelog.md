@@ -1,3 +1,9 @@
+# 07/10/2019
+
+- Correction d'un bug lors de l'arret du démon
+- Correction de bugs
+- CETTE MAJ NECESSITE DE RECOMPILER LES DEPENDANCES (RELANCER)
+
 # 19-09-2019
 
 - Correction de bug d'affichage

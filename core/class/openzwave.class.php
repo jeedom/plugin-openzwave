@@ -25,7 +25,7 @@ class openzwave extends eqLogic {
 	
 	/*     * ***********************Methode static*************************** */
 	
-	public static function callOpenzwave($_url) {
+	public static function callOpenzwave($_url,$_timeout = null) {
 		if (strpos($_url, '?') !== false) {
 			$url = 'http://127.0.0.1:' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim($_url, '/') . '&apikey=' . jeedom::getApiKey('openzwave');
 		} else {
@@ -37,6 +37,9 @@ class openzwave extends eqLogic {
 			CURLOPT_HEADER => false,
 			CURLOPT_RETURNTRANSFER => true,
 		));
+		if($_timeout !== null){
+			curl_setopt($ch, CURLOPT_TIMEOUT, $_timeout);
+		}
 		$result = curl_exec($ch);
 		if (curl_errno($ch)) {
 			$curl_error = curl_error($ch);
@@ -339,12 +342,11 @@ class openzwave extends eqLogic {
 	}
 	
 	public static function deamon_stop() {
-		config::save('deamonAutoMode',0, 'openzwave');
 		try {
 			$deamon_info = self::deamon_info();
 			if ($deamon_info['state'] == 'ok') {
 				try {
-					self::callOpenzwave('/network?action=stop&type=action');
+					self::callOpenzwave('/network?action=stop&type=action',30);
 				} catch (Exception $e) {
 					
 				}
@@ -363,7 +365,6 @@ class openzwave extends eqLogic {
 		} catch (\Exception $e) {
 			
 		}
-		config::save('deamonAutoMode',1, 'openzwave');
 	}
 	
 	public static function syncconfOpenzwave($_background = true) {
