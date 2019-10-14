@@ -38,6 +38,7 @@ parser.add_argument("--pid", help="Value to write", type=str)
 parser.add_argument("--callback", help="Value to write", type=str)
 parser.add_argument("--apikey", help="Value to write", type=str)
 parser.add_argument("--suppressRefresh", help="Value to write", type=str)
+parser.add_argument("--networkKey", help="ZWave Network Key", type=str)
 parser.add_argument("--disabledNodes", help="Value to write", type=str)
 parser.add_argument("--cycle", help="Cycle to send event", type=str)
 args = parser.parse_args()
@@ -62,6 +63,8 @@ if args.cycle:
 	globals.cycle = float(args.cycle)
 if args.suppressRefresh:
 	globals.suppress_refresh = args.suppressRefresh
+if args.suppressRefresh:
+	globals.networkKey = args.networkKey
 if args.disabledNodes:
 	if args.disabledNodes != '':
 		globals.disabled_nodes = [int(disabled_node_id) for disabled_node_id in args.disabledNodes.split(',')]

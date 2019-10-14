@@ -21,7 +21,7 @@ def init_manager():
 	globals.options.set_suppress_value_refresh(False)
 	globals.options.set_driver_max_attempts(5)
 	globals.options.addOptionBool("AssumeAwake", globals.assumeAwake)
-	globals.options.addOptionString("NetworkKey", "0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10", True)
+	globals.options.addOptionString("NetworkKey", globals.NetworkKey, True)
 	globals.options.set_security_strategy('SUPPORTED')
 	globals.options.addOptionBool('EnforceSecureReception', False)
 	globals.options.addOptionBool('RefreshAllUserCodes', False)

@@ -317,6 +317,7 @@ class openzwave extends eqLogic {
 		$cmd .= ' --apikey ' . jeedom::getApiKey('openzwave');
 		$cmd .= ' --suppressRefresh ' . $suppressRefresh;
 		$cmd .= ' --cycle ' . config::byKey('cycle', 'openzwave');
+		$cmd .= ' --networkKey ' . config::byKey('networkKey', 'openzwave');
 		$cmd .= ' --pid ' . jeedom::getTmpFolder('openzwave') . '/deamon.pid';
 		if ($disabledNodes != '') {
 			$cmd .= ' --disabledNodes ' . $disabledNodes;
