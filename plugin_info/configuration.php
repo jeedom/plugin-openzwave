@@ -50,6 +50,12 @@ if (!isConnect('admin')) {
 			</div>
 		</div>
 		<div class="form-group">
+			<label class="col-sm-4 control-label">{{Network Key}}</label>
+			<div class="col-sm-6">
+				<input class="configKey form-control" data-l1key="networkKey" />
+			</div>
+		</div>
+		<div class="form-group">
 			<label class="col-sm-4 control-label">{{Port clé Z-Wave}}</label>
 			<div class="col-sm-2">
 				<select class="configKey form-control" data-l1key="port">
