@@ -86,6 +86,7 @@
         {
             "name": "On dernière valeur", 
             "type": "action", 
+            "subtype": "other", 
             "isVisible": 0, 
             "isHistorized": 0, 
             "configuration": {
