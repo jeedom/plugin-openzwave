@@ -7,10 +7,10 @@
     ZMNKID4 869,0 MHz
     ZMNKID5 916,0 MHz
     -->
-  <CommandClass id="67">
-    <Compatibility>
-      <Base>0</Base>
-    </Compatibility>
+ <CommandClass id="67" name="COMMAND_CLASS_THERMOSTAT_SETPOINT" version="1" request_flags="4" create_vars="true" base="0">
+		<Instance index="1"/>
+		<Value type="decimal" genre="user" instance="1" index="1" label="Heating" units="C" read_only="false" write_only="false" min="0" max="0" value="30"/>
+	</CommandClass>
   </CommandClass>
   <!-- Configuration  -->
   <CommandClass id="112">
