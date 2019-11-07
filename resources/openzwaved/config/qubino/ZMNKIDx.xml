@@ -11,7 +11,6 @@
 		<Instance index="1"/>
 		<Value type="decimal" genre="user" instance="1" index="1" label="Heating" units="C" read_only="false" write_only="false" min="0" max="0" value="30"/>
 	</CommandClass>
-  </CommandClass>
   <!-- Configuration  -->
   <CommandClass id="112">
     <Value genre="config" index="1" instance="1" label="Input I1 switch type" max="255" min="0" size="1" type="list" value="1">
