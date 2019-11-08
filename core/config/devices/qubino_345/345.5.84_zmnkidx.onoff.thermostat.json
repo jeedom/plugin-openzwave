@@ -89,6 +89,21 @@
                 "generic_type": "THERMOSTAT_SETPOINT"
             }, 
             "unite": "°C"
+        },
+		{
+            "name": "Etat de fonctionnement", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 66, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 5, 
+                "maxValue": 30
+            }, 
+            "subtype": "string"
         }, 
         {
             "name": "Consigne", 
