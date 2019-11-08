@@ -128,7 +128,7 @@
         {
             "name": "Input2", 
             "type": "info", 
-            "isVisible": 1, 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
                 "class": 48, 
@@ -144,7 +144,7 @@
         {
             "name": "Input3", 
             "type": "info", 
-            "isVisible": 1, 
+            "isVisible": 0, 
             "isHistorized": 1, 
             "configuration": {
                 "class": 48, 
