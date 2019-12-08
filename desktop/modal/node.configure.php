@@ -265,7 +265,7 @@ sendVarToJs('node_id', init('id'));
 								<td>{{Demandez la mise à jour de la route de retour au contrôleur.}}</td>
 							</tr>
 							<tr>
-								<td><a data-action="testNode" class="btn btn-info node_action"><i class="fas fa-check-square-o"></i> {{Tester le nœud}}</a></td>
+								<td><a data-action="testNode" class="btn btn-info node_action"><i class="fas fa-check-square"></i> {{Tester le nœud}}</a></td>
 								<td>{{Envoyer une série de message à un noeud pour le tester s'il répond.}}</td>
 							</tr>
 							<tr>
