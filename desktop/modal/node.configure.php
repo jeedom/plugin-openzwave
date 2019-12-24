@@ -261,7 +261,7 @@ sendVarToJs('node_id', init('id'));
 								<td>{{Soigner le nœud au sein du réseau.}}</td>
 							</tr>
 							<tr>
-								<td><a data-action="assignReturnRoute" class="btn btn-success node_action"><i class="fa fa-road""></i> {{Mise à jour de la route de retour au contrôleur}}</a></td>
+								<td><a data-action="assignReturnRoute" class="btn btn-success node_action"><i class="fas fa-road"></i> {{Mise à jour de la route de retour au contrôleur}}</a></td>
 								<td>{{Demandez la mise à jour de la route de retour au contrôleur.}}</td>
 							</tr>
 							<tr>
@@ -365,6 +365,5 @@ sendVarToJs('node_id', init('id'));
 				</div>
 			</div>
 		</div>
-	</div>
+</div>
 	<?php include_file('desktop', 'nodes', 'js', 'openzwave');?>
-	
