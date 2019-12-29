@@ -4,7 +4,7 @@ Product website: https://aeotec.com/z-wave-home-automation/thermostat-radiator-v
 --><Product Revision="1" xmlns="https://github.com/OpenZWave/open-zwave">
     <!-- Multilevel switch for setting valve opening -->
     <CommandClass id="38">
-        <Value genre="user" index="0" instance="1" label="Valve Opening" max="100" min="0" type="byte" units="%" value="0" read_only="true"/>
+        <Value genre="user" index="0" instance="1" label="Valve Opening" max="100" min="0" type="byte" units="%" value="0" />
     </CommandClass>
     <!-- Thermostat mode -->
     <CommandClass id="64">
