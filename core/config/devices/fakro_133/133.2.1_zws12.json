@@ -906,7 +906,7 @@ Replace string with int for numeric value">Ensure action have status feedback an
       </tr>
       <tr>
         <td id="L55" class="blob-num js-line-number" data-line-number="55"></td>
-        <td id="LC55" class="blob-code blob-code-inner js-file-line">                <span class="pl-s"><span class="pl-pds">&quot;</span>icon<span class="pl-pds">&quot;</span></span>: <span class="pl-s"><span class="pl-pds">&quot;</span>&lt;i class=<span class="pl-cce">\&quot;</span>fa fa-stop<span class="pl-cce">\&quot;</span>&gt;&lt;/i&gt;<span class="pl-pds">&quot;</span></span>, </td>
+        <td id="LC55" class="blob-code blob-code-inner js-file-line">                <span class="pl-s"><span class="pl-pds">&quot;</span>icon<span class="pl-pds">&quot;</span></span>: <span class="pl-s"><span class="pl-pds">&quot;</span>&lt;i class=<span class="pl-cce">\&quot;</span>fas fa-stop<span class="pl-cce">\&quot;</span>&gt;&lt;/i&gt;<span class="pl-pds">&quot;</span></span>, </td>
       </tr>
       <tr>
         <td id="L56" class="blob-num js-line-number" data-line-number="56"></td>

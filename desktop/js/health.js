@@ -152,7 +152,7 @@ function display_health_info(){
         if (nodes[node_id].data.isEnable.value) {
           if (query_stage != '' && query_stage != 'Probe'){
             if (nodes[node_id].data.isListening.value) {
-              tbody += '<span class="label label-primary" style="font-size : 1em;" title="{{Secteur}}"><i class="fa fa-plug"></i></span>';
+              tbody += '<span class="label label-primary" style="font-size : 1em;" title="{{Secteur}}"><i class="fas fa-plug"></i></span>';
             } else {
               if (nodes[node_id].data.battery_level != undefined && nodes[node_id].data.battery_level.value != null) {
                 var updateTime = '';
