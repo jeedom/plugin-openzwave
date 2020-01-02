@@ -23,7 +23,7 @@ sendVarToJs('battery_danger',config::byKey('battery::danger'));
 ?>
 <span class='pull-right'>
 	<a class="btn btn-default pull-right" id="bt_refreshHealth"><i class="fas fa-sync-alt"></i> {{Rafraichir}}</a>
-	<a class="btn btn-primary pull-right" id="bt_pingAllDevice"><i class="fa fa-eye"></i> {{Ping de tous}}</a>
+	<a class="btn btn-primary pull-right" id="bt_pingAllDevice"><i class="fas fa-eye"></i> {{Ping de tous}}</a>
 </span>
 <br/><br/>
 <div id='div_networkHealthAlert' style="display: none;"></div>

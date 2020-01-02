@@ -41,7 +41,7 @@
             "value": "Etat", 
             "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-power-off\"></i>", 
+                "icon": "<i class=\"fas fa-power-off\"></i>", 
                 "generic_type": "HEATING_OFF"
             }
         }, 
