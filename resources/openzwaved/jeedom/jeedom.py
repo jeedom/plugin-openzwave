@@ -86,7 +86,7 @@ class jeedom_com():
 			self.resend_changes.start() 
 		
 	def add_changes(self,key,value):
-		if abs(self.lastTimer - float(time.time())) > self.cycle:
+		if self.resend_changes != '' and abs(self.lastTimer - float(time.time())) > self.cycle:
 			logging.debug('Issue with the async timer reseting')
 			self.resend_changes.cancel()
 			self.send_changes_async()
