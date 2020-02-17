@@ -64,6 +64,12 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 			</div>
 		</div>
 		<div class="form-group">
+			<label class="col-sm-4 control-label">{{Désactiver la gestion des processus USB (socat)}}</label>
+			<div class="col-sm-2">
+				<input type="checkbox" class="configKey" data-l1key="socat"/>
+			</div>
+		</div>
+		<div class="form-group">
 			<label class="col-sm-4 control-label">{{Port du Serveur (laisser vide par défault)}}</label>
 			<div class="col-sm-2">
 				<input class="configKey form-control" data-l1key="port_server" placeholder="8083" />

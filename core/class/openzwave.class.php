@@ -358,7 +358,8 @@ class openzwave extends eqLogic {
 			}
 			system::kill('openzwaved.py');
 			$port = config::byKey('port', 'openzwave');
-			if ($port != 'auto') {
+			$socat = config::byKey('socat', 'openzwave');
+			if ($port != 'auto' && $socat == 0) {
 				system::fuserk(jeedom::getUsbMapping($port));
 			}
 			sleep(1);

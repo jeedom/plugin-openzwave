@@ -99,6 +99,7 @@
         "Configs modules": "Configs modules",
         "Démon local": "Démon local",
         "Port clé Z-Wave": "Port clé Z-Wave",
+        "Désactiver la gestion des processus USB (socat)": "Désactiver la gestion des processus USB (socat)",
         "Aucun": "Aucun",
         "Auto": "Auto",
         "Port du Serveur (laisser vide par défault)": "Port du Serveur (laisser vide par défault)",
