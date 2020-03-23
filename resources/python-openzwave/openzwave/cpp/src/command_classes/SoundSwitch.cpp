@@ -187,22 +187,30 @@ bool SoundSwitch::HandleMsg
 		uint32 const _instance	// = 1
 )
 {
-	if (SoundSwitch_ToneNum_Report == (SoundSwitchCmd)_data[0])
+	if (SoundSwitch_ToneNum_Report == (SoundSwitchCmd) _data[0])
 	{
-		int toneCount = _data[1];
-		if (m_toneCount == 0)
-		{
-			m_toneCount = toneCount;
-		}
-		if ( ValueInt* value = static_cast<ValueInt*>( GetValue( _instance, SoundSwitch_ToneCount)))
+		m_toneCount = _data[1];
+		Log::Write(LogLevel_Info, GetNodeId(), "Received SoundSwitch Tone Count report: %d", m_toneCount);
+		if (ValueByte* value = static_cast<ValueByte*>(GetValue(_instance, SoundSwitch_ToneCount)))
 		{
 			value->OnValueRefreshed(m_toneCount);
 			value->Release();
-		} else {
-			Log::Write( LogLevel_Warning, GetNodeId(), "Can't find ValueID for ToneCount");
+		}
+		for (int i = 1; i <= m_toneCount; i++)
+		{
+			Msg* msg = new Msg("SoundSwitch_ToneInfo_Get", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true, true, FUNC_ID_APPLICATION_COMMAND_HANDLER, GetCommandClassId());
+			msg->SetInstance(this, _instance);
+			msg->Append(GetNodeId());
+			msg->Append(3);
+			msg->Append(GetCommandClassId());
+			msg->Append(SoundSwitch_ToneInfo_Get);
+			msg->Append(i);
+			msg->Append(GetDriver()->GetTransmitOptions());
+			GetDriver()->SendMsg(msg, Driver::MsgQueue_Send);
 		}
 		return true;
-	} if (SoundSwitch_ToneInfo_Report == (SoundSwitchCmd) _data[0])
+	}
+	if (SoundSwitch_ToneInfo_Report == (SoundSwitchCmd) _data[0])
 		{
 			uint8 index = _data[1];
 			uint16 duration = (_data[2] << 8) + _data[3];
@@ -237,7 +245,7 @@ bool SoundSwitch::HandleMsg
 				if (Node* node = GetNodeUnsafe())
 				{
 					node->CreateValueList(ValueID::ValueGenre_User, GetCommandClassId(), _instance,  SoundSwitch_Tones, "Tones", "", false, false, m_toneCount, items, 0, 0);
-					node->CreateValueList(ValueID::ValueGenre_Config, GetCommandClassId(), _instance, SoundSwitch_Default_Tone, "Default Tone", "", false, false, m_toneCount, items, 0, 0);
+					node->CreateValueList(ValueID::ValueGenre_User, GetCommandClassId(), _instance, SoundSwitch_Default_Tone, "Default Tone", "", false, false, m_toneCount, items, 0, 0);
 				}
 				/* after we got the list of Tones, Get the Configuration */
 				Msg* msg = new Msg("SoundSwitchCmd_Tones_Config_Get", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true, true, FUNC_ID_APPLICATION_COMMAND_HANDLER, GetCommandClassId());
@@ -297,22 +305,23 @@ bool SoundSwitch::SetValue
 
 	switch( _value.GetID().GetIndex() )
 	{
-		case SoundSwitch_Play_Set:
+		case SoundSwitch_Tones:
 		{
-			ValueByte const* value = static_cast<ValueByte const*>(&_value);
-			ValueByte* valueObj = static_cast<ValueByte*>( GetValue( instance, SoundSwitch_Play_Set ) );
-			Log::Write( LogLevel_Info, GetNodeId(), "Play sound::Set - Setting node %d to %d", GetNodeId(), value->GetValue());
-			Msg* msg = new Msg( "SoundPlay_Set", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true );
-			msg->SetInstance( this, instance );
-			msg->Append( GetNodeId() );
-			msg->Append( 3 );
-			msg->Append( GetCommandClassId() );
-			msg->Append( SoundSwitch_Play_Set );
-			msg->Append( value->GetValue() );
-			msg->Append( GetDriver()->GetTransmitOptions() );
-			GetDriver()->SendMsg( msg, Driver::MsgQueue_Send );
-			valueObj->OnValueRefreshed(value->GetValue());
-			valueObj->Release();
+			if (ValueList const* value = static_cast<ValueList const*>(&_value))
+			{
+				ValueList::Item const *item = value->GetItem();
+				if (item == NULL)
+					return false;
+				Msg* msg = new Msg("SoundSwitch_Play_Set", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true, true, FUNC_ID_APPLICATION_COMMAND_HANDLER, GetCommandClassId());
+				msg->SetInstance(this, instance);
+				msg->Append(GetNodeId());
+				msg->Append(3);
+				msg->Append(GetCommandClassId());
+				msg->Append(SoundSwitch_Play_Set);
+				msg->Append(item->m_value);
+				msg->Append(GetDriver()->GetTransmitOptions());
+				GetDriver()->SendMsg(msg, Driver::MsgQueue_Send);
+			}
 			return true;
 			break;
 		}
@@ -380,8 +389,7 @@ void SoundSwitch::CreateVars
 {
 	if( Node* node = GetNodeUnsafe() )
 	{
-		node->CreateValueInt( ValueID::ValueGenre_Config, GetCommandClassId(), _instance, SoundSwitch_ToneCount, "Tone Count", "", true, false, 0, 0 );
-		node->CreateValueByte( ValueID::ValueGenre_User, GetCommandClassId(), _instance, SoundSwitch_PlaySound, "Play Tone", "", false, false, 0, 0 );
+		node->CreateValueInt( ValueID::ValueGenre_User, GetCommandClassId(), _instance, SoundSwitch_ToneCount, "Tone Count", "", true, false, 0, 0 );
 		node->CreateValueByte(ValueID::ValueGenre_User, GetCommandClassId(), _instance, SoundSwitch_Volume, "Volume", "", false, false, 100, 0);
 	}
 }
