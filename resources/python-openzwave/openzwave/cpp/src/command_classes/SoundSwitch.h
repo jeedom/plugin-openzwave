@@ -38,6 +38,12 @@ namespace OpenZWave
 	 */
 	class SoundSwitch: public CommandClass
 	{
+		private:
+					struct SoundSwitchToneInfo
+					{
+							uint16 duration;
+							string name;
+					};
 	public:
 		static CommandClass* Create( uint32 const _homeId, uint8 const _nodeId ){ return new SoundSwitch( _homeId, _nodeId ); }
 		virtual ~SoundSwitch(){}
@@ -59,7 +65,8 @@ namespace OpenZWave
 		virtual void CreateVars( uint8 const _instance );
 	private:
 		SoundSwitch( uint32 const _homeId, uint8 const _nodeId );
-		int32 m_tonecount;
+		uint8 m_toneCount;
+		std::map<uint8, SoundSwitchToneInfo> m_toneInfo;
 	};
 
 } // namespace OpenZWave
