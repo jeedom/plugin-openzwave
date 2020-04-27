@@ -29,7 +29,7 @@
         "Port du Serveur (laisser vide par défault)": "Server Port (leave empty by default)",
         "Options avancées": "Advanced options",
         "Backups": "Backups",
-        "Configs modules": "Configs modules",
+        "Configs modules": "Config modules",
         "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ? Ceci relancera le plugin OpenZwave.": "Are you sure you want to download the latest module configurations? This will relaunch the OpenZwave plugin.",
         "Téléchargement des configurations": "Download configurations"
     },
@@ -498,7 +498,7 @@
         "Mode exclusion": "Exclusion mode",
         "Mode inclusion": "Inclusion mode",
         "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "A device has just been included \/ excluded. Please refresh the page",
-        "Recharge configuration": "Recharge configuration",
+        "Recharge configuration": "Reload configuration",
         "Recharger la configuration": "Reload configuration",
         "Sélectionner le mode de rechargement de la configuration ?": "Select the configuration reload mode?",
         "Sans recréer les commandes mais en créeant les manquantes": "Without recreating the orders but creating the missing ones",

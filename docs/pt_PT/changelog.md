@@ -1,7 +1,7 @@
 # 
 
 - 
-- Fehlerbehebungen
+- 
 - 
 
 # 
@@ -133,7 +133,7 @@
 
 -   
 
-    -   N / A.
+    -   
 
 -   
 
@@ -157,7 +157,7 @@
         .
 
     -   
-        Aktionsbefehl.
+        .
 
     -   .
 
@@ -166,7 +166,7 @@
 
 -   
 
-    -   N / A.
+    -   
 
 -   
 
@@ -174,18 +174,18 @@
 
 -   
 
-    -   N / A.
+    -   
 
 
 ===
 
 -   
 
-    -   N / A.
+    -   
 
 -   
 
-    -   N / A.
+    -   
 
 -   
 
@@ -262,7 +262,7 @@
 
 -   
 
-    -   Keine
+    -   Não
 
 -   
 
@@ -332,7 +332,7 @@
     -   .
 
     -   
-        Plugin.
+        .
 
     -   
         .
@@ -433,7 +433,7 @@
 
     -   .
 
-    -   Aktualisierung der Dokumentation.
+    -   .
 
     -   
         @Juan-Pedro : .
@@ -487,7 +487,7 @@
         .
 
     -   
-        . Notiz: .
+        . : .
         <http://ip_jeedom:8083/ZWaveAPI/Run/ChangeLogLevel(level>) level
         :: 
 
@@ -502,7 +502,7 @@
 
     -   .
 
-    -   Aktualisierung der Dokumentation
+    -   
 
     -   
         .
@@ -575,7 +575,7 @@
     -   
         .
 
-    -   Aktualisierung der Dokumentation.
+    -   .
 
 -   
 
@@ -597,7 +597,7 @@
     -   .
 
     -   
-        auf dem neuesten Stand.
+        .
 
 
 ===
