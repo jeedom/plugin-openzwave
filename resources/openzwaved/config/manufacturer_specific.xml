@@ -1227,6 +1227,15 @@
 		<Product type="0001" id="1a73" name="XLED HOME 2" config="steinel/xled-home-2.xml"/>
                 <Product type="0001" id="1a75" name="L810 LED iHF" config="steinel/l810-led-ihf.xml"/>
 	</Manufacturer>
+	<Manufacturer id="0330" name="Sunricher">
+		<Product type="0003" id="a10d" name="Touch Panel Wall Controller - ZSC-01D" config="sunricher/srzv9001t4dimeu.xml"/>
+		<Product type="0300" id="a305" name="Wall Controller - SR-ZV9001" config="sunricher/srzv9001k8.xml"/>
+		<Product type="0300" id="a306" name="Wall Controller - G2" config="sunricher/g2.xml"/>
+		<Product type="0300" id="a310" name="Wall Controller - SR-ZV9001-4" config="sunricher/srzv9001k4.xml"/>
+		<Product type="0200" id="d005" name="Dimmer ZV-9101" config="sunricher/zv9101.xml"/>
+		<Product type="0200" id="d00c" name="Dimmer ZV9040" config="sunricher/srzv9101sachpeu.xml"/>
+		<Product type="0300" id="a107" name="Z-Wave Wall Controller - SR-ZV9003T4-RGBW-EU" config="sunricher/srzv9003t4rgbweu.xml"/>
+  </Manufacturer>
 	<Manufacturer id="0166" name="Swiid">
 		<Product type="0100" id="0100" name="SwiidInter" config="swiid/swiidinter.xml"/>
 		<Product type="2007" id="0706" name="SwiidPlug" config="swiid/swiidplug.xml"/>
