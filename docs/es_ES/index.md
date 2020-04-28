@@ -4,7 +4,7 @@ Descripción
 
 .
 
-
+Introduccion
 ============
 
 
@@ -140,7 +140,7 @@ Seguridad.
     Mensajes
 
 -   
-    réseau, sollicités o non « El maître peut porler quand il veut y à
+    réseau, solelquítés o non « El maître peut porler quand il veut y à
      »
 
 -   ,
@@ -169,12 +169,12 @@ Dependencias
 
 
 
- ![Configuración02](../ /images/ /Configuración02.png)
+ !
 
 -    **Bueno** .
 
 -    **NBueno**, 
-     ![Configuración03](../ /images/ /Configuración03.png)
+     !
 
 > **Punta**
 >
@@ -208,7 +208,7 @@ Informaciónrmación
 -   El **Configuración** 
     .
 
--   El botón **(Re)Iniciar** 
+-   El botón **(Re)Inaquíar** 
     .
 
 -   El botón **Dyenido**, 
@@ -272,7 +272,7 @@ Configuración
     -   **Ciclo (s)** : 
         .
 
-    -   **Puerto de lelve ** : 
+    -   **Puerto de lelve Onda Z** : 
         . ,
         
         .
@@ -322,7 +322,7 @@ Configuración
     >
     > .
 
- ![Configuración08](../ /images/ /Configuración08.png) si
+ !
 .
 
 > **Importante**
@@ -369,7 +369,7 @@ Plugin :
 >
 >  **Sincronizar**,
 > **** y **Salud**, 
-> modo **Experto**. ![appliance03](../ /images/ /appliance03.png)
+> modo **Experto**. !
 
 Principal
 -------
@@ -401,7 +401,7 @@ Aquí encontrarás toda el configuración de tu epo :
     . 
     
 
--   **** : .
+-   **Hacer** : .
 
 -   **Configuración** : 
     Modulo
@@ -418,7 +418,7 @@ Aquí encontrarás toda el configuración de tu epo :
 > **Importante**
 >
 > 
-> . ![appliance11](../ /images/ /appliance11.png) Un
+> . !
 > 
 > .
 
@@ -645,7 +645,7 @@ El « mapping »  Comandos es entièrement basé sur ces Informaciónrmación.
 > Refrescante. 
 > 
 > .
-> ![node16](../ /images/ /node16.png) L'ensemble  valeurs (index) de
+> !
 > 
 > 
 > . .
@@ -787,11 +787,11 @@ Sistemas
 > . 
 > 
 > .
-> ![node11](../ /images/ /node11.png)
+> !
 
 > **Punta**
 >
->  **** y **** 
+>  **Interruptor** y **Dimmer** 
 >  **** . 
 > . 
 > .  **** 
@@ -813,7 +813,7 @@ Acciones
 > 
 > . . Els acciones
 > 
-> .
+> Onda Z.
 
 > **Punta**
 >
@@ -845,7 +845,7 @@ Acciones
 
 
 
-.
+Onda Z.
 
 > **Importante**
 >
@@ -993,7 +993,7 @@ activado.
 
 
 
-.
+funcional.
 
 > **Punta**
 >
@@ -1353,7 +1353,7 @@ Salud
 
 .
 
--   **** Inicialización del proceso de búsqueda de nodos..
+-   **** Inaquíalización del proceso de búsqueda de nodos..
 
 -   **** 
     
@@ -1361,7 +1361,7 @@ Salud
 
 -   **** .
 
--   **** 
+-   **Despertador** 
     .
 
 -   **** 
@@ -1379,7 +1379,7 @@ Salud
 -   **** 
     .
 
--   **** Recuperar información de el versión.
+-   **Versiones** Recuperar información de el versión.
 
 -   **** 
     de encargo.
@@ -1477,7 +1477,7 @@ Copias de seguridad
 ============================
 
 
-[ici](https:/ // /jeedom.fr/ /doc/ /documentation/ /zwave-Modulos/ /fr_FR/ /doc-zwave-Modulos-epement.compatible.html)
+[aquí](https:/ // /jeedom.fr/ /doc/ /documentation/ /zwave-Modulos/ /fr_FR/ /doc-zwave-Modulos-epement.compatible.html)
 
 
 =======================
@@ -1584,7 +1584,7 @@ al día.
 http:/ // /token:\#APIKEY\#@ip\_jeedom:8083/ /ZWaveAPI/ /Run/ /devicesnode\_id.instances\[instance\_id\].commandCelsses\[cc\_id\].data\[index\].ForceRefresh()
 
 
-[içi](./ /resapi.asciidoc).
+[aquí](./ /resapi.asciidoc).
 
 
 ------------------------------------------------
@@ -1923,7 +1923,7 @@ Mensaje:
         :..
         error: 
         :266: 
-        : *** [build] Error 1
+        hacer: *** 
 
 
 .
@@ -1999,7 +1999,7 @@ URL =
 -   .
 
 
-[github](https:/ // /github.com/ /jeedom/ /Plugin-openzwave) Plugin .
+[Github](https:/ // /Github.com/ /jeedom/ /Plugin-openzwave) Plugin Onda Z.
 
 : 
 

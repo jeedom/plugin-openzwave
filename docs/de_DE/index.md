@@ -4,7 +4,7 @@ Beschreibung
 
 .
 
-
+Einführung
 ============
 
 
@@ -140,7 +140,7 @@ Sicherheit.
     Nachricht
 
 -   
-    réseau, sollicités oder non « Die maître peut Vonler quand il veut und à
+    réseau, sollhiertés oder non « Die maître peut Vonler quand il veut und à
      »
 
 -   ,
@@ -169,12 +169,12 @@ Nebengebäude
 
 
 
- ![Konfiguration02](../.images/.Konfiguration02.png)
+ !
 
 -    **OK** .
 
 -    ****, 
-     ![Konfiguration03](../.images/.Konfiguration03.png)
+     !
 
 > **Spitze**
 >
@@ -218,7 +218,7 @@ Information
     
     .
 
--   Die **Lundzter Start** 
+-   Die **Diundzter Start** 
     .
 
 Log
@@ -322,7 +322,7 @@ Konfiguration
     >
     > .
 
- ![Konfiguration08](../.images/.Konfiguration08.png) si
+ !
 .
 
 > **Wichtig**
@@ -369,7 +369,7 @@ Plugin :
 >
 >  **Synchronize**,
 > **** und **Gesundheit**, 
-> Modus **Experte**. ![appliance03](../.images/.appliance03.png)
+> Modus **Experte**. !
 
 Allgemein
 -------
@@ -401,7 +401,7 @@ Hier finden Sie die gesamte Konfiguration Ihrer Geräte :
     . 
     
 
--   **** : .
+-   **Machen Sie** : .
 
 -   **Konfiguration** : 
     Modul
@@ -418,7 +418,7 @@ Hier finden Sie die gesamte Konfiguration Ihrer Geräte :
 > **Wichtig**
 >
 > 
-> . ![appliance11](../.images/.appliance11.png) Un
+> . !
 > 
 > .
 
@@ -645,7 +645,7 @@ Die « mapping »  Befehle ist entièrement basé sur ces Information.
 > Erfrischend. 
 > 
 > .
-> ![node16](../.images/.node16.png) L'ensemble  valeurs (index) de
+> !
 > 
 > 
 > . .
@@ -787,11 +787,11 @@ Systeme
 > . 
 > 
 > .
-> ![node11](../.images/.node11.png)
+> !
 
 > **Spitze**
 >
->  **** und **** 
+>  **Wechseln** und **Dimmer** 
 >  **** . 
 > . 
 > .  **** 
@@ -993,7 +993,7 @@ aktiviert.
 
 
 
-.
+funktional.
 
 > **Spitze**
 >
@@ -1188,7 +1188,7 @@ Direkte Kommunikation. .
 
 -   **Grün** : .
 
--   **** : Mindistens 2 n mit einem Sprung.
+-   **** : Mintens 2 n mit einem Sprung.
 
 -   **Gelb** : Weniger als 2 n mit einem Sprung.
 
@@ -1259,7 +1259,7 @@ Gesundheit
 
 -   **Zeitverzögerung** : .
 
--   **Lundzte Benachrichtigung** : 
+-   **Diundzte Benachrichtigung** : 
     
     .
 
@@ -1361,7 +1361,7 @@ Gesundheit
 
 -   **** .
 
--   **** 
+-   **Aufwachen** 
     .
 
 -   **** 
@@ -1379,7 +1379,7 @@ Gesundheit
 -   **** 
     .
 
--   **** informationen abrufen.
+-   **Versionen** Versioneninformationen abrufen.
 
 -   **** 
     der Ordnung.
@@ -1477,7 +1477,7 @@ Benachrichtigung
 ============================
 
 
-[ici](https:/./.jeedom.fr/.doc/.documentation/.zwave-Moduls/.fr_FR/.doc-zwave-Moduls-epement.compatible.html)
+[hier](https:/./.jeedom.fr/.doc/.documentation/.zwave-Moduls/.fr_FR/.doc-zwave-Moduls-epement.compatible.html)
 
 
 =======================
@@ -1584,7 +1584,7 @@ auf dem neuisten Stand.
 http:/./.token:\#APIKEY\#@ip\_jeedom:8083/.ZWaveAPI/.Run/.devicesnode\_id.instances\[instance\_id\].commandCdiesses\[cc\_id\].data\[index\].ForceRefresh()
 
 
-[içi](./.ristapi.asciidoc).
+[hier](./.ristapi.asciidoc).
 
 
 ------------------------------------------------
@@ -1923,7 +1923,7 @@ Nachricht:
         :..
         Fehler: 
         :266: 
-        : *** [build] Fehler 1
+        machen: *** 
 
 
 .
@@ -1999,7 +1999,7 @@ URLs =
 -   .
 
 
-[github](https:/./.github.com/.jeedom/.Plugin-openzwave) Plugin .
+[Github](https:/./.Github.com/.jeedom/.Plugin-openzwave) Plugin .
 
 : 
 

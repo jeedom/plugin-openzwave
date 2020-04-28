@@ -520,7 +520,7 @@
         "Tester": "Teste"
     },
     "plugins\/openzwave\/core\/php\/jeeZwave.php": {
-        "Vous n\\'etes pas autorisé à effectuer cette action": "",
+        "Vous n\\'etes pas autorisé à effectuer cette action": "Não está autorizado a executar esta ação",
         "Un périphérique Z-Wave qui ne fait pas parti du réseau est en cours d\\'exclusion": "",
         "Un périphérique Z-Wave est en cours d\\'exclusion. Logical ID : ": "",
         "Nouveau module Z-Wave détecté. Début de l\\'intégration. Pause de ": "",

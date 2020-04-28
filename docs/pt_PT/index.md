@@ -140,7 +140,7 @@ Segurança.
     Mensagens
 
 -   
-    réseau, sollicités  non « O maître peut porler quand il veut e à
+    réseau, solquités  non « O maître peut porler quand il veut e à
      »
 
 -   ,
@@ -169,12 +169,12 @@ Dependências
 
 
 
- ![Configuração02](..imagesConfiguração02.png)
+ !
 
 -    **Ok** .
 
 -    ****, 
-     ![Configuração03](..imagesConfiguração03.png)
+     !
 
 > ****
 >
@@ -208,7 +208,7 @@ Informaçõesrmação
 -    **Configuração** 
     .
 
--    **(Re) iniciar** 
+-    **(Re) inaquiar** 
     .
 
 -    **Preso**, 
@@ -322,7 +322,7 @@ Configuração
     >
     > .
 
- ![Configuração08](..imagesConfiguração08.png) si
+ !
 .
 
 > ****
@@ -369,7 +369,7 @@ Configuração
 >
 >  **Sincronizar**,
 > **** e **Saúde**, 
-> modo ****. ![appliance03](..imagesappliance03.png)
+> modo ****. !
 
 Geral
 -------
@@ -418,7 +418,7 @@ Geral
 > ****
 >
 > 
-> . ![appliance11](..imagesappliance11.png) Un
+> . !
 > 
 > .
 
@@ -463,7 +463,7 @@ Comandos
     
     .
 
--   Historicizar : .
+-   Historaquizar : .
 
 -   Dispy : .
 
@@ -541,7 +541,7 @@ Comandos
 ![appliance08](..imagesappliance08.png)
 
 
-.
+Jeedom.
 
 > ****
 >
@@ -645,7 +645,7 @@ O « mapping »  Comandos é entièrement basé sur ces Informaçõesrmação.
 > . 
 > 
 > .
-> ![node16](..imagesnode16.png) L'ensemble  valeurs (index) de
+> !
 > 
 > 
 > . .
@@ -787,7 +787,7 @@ módulo.
 > . 
 > 
 > .
-> ![node11](..imagesnode11.png)
+> !
 
 > ****
 >
@@ -1477,7 +1477,7 @@ Saúde
 ============================
 
 
-[ici](https:jeedom.frdocdocumentationzwave-módulosfr_FRdoc-zwave-módulos-epement.compatible.html)
+[aqui](https:jeedom.frdocdocumentationzwave-módulosfr_FRdoc-zwave-módulos-epement.compatible.html)
 
 
 =======================
@@ -1584,7 +1584,7 @@ Saúde
 http:token:\#APIKEY\#@ip\_jeedom:8083ZWaveAPIRundevicesnode\_id.instances\[instance\_id\].commandCsses\[cc\_id\].data\[index\].ForceRefresh()
 
 
-[içi](.réapi.asciidoc).
+[a](.réapi.asciidoc).
 
 
 ------------------------------------------------
@@ -1923,7 +1923,7 @@ Mensagem:
         :..
         Erro: 
         :266: 
-        : *** [build] Erro 1
+        : *** 
 
 
 .
@@ -1999,7 +1999,7 @@ URL  =
 -   .
 
 
-[github](https:github.comjeedom-openzwave)  .
+[](https:.comjeedom-openzwave)  .
 
 : 
 

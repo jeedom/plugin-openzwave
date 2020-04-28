@@ -94,7 +94,7 @@
         "Valeur": "Wert",
         "Classe": "Klasse",
         "Instance": "Instanz",
-        "Index": "",
+        "Index": "Index",
         "Type": "Typ",
         "Rafraichissement": "Erfrischend",
         "Forcer la mise à jour": "Update erzwingen",
@@ -305,7 +305,7 @@
         "Nom": "Name",
         "Classe": "Klasse",
         "Instance": "Instanz",
-        "Index": "",
+        "Index": "Index",
         "Commande": "Befehl"
     },
     "plugins\/openzwave\/desktop\/js\/network.js": {

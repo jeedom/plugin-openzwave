@@ -49,7 +49,7 @@ Security.
 >
 > 
 > 
-> Example.
+> .
 
 
 
@@ -140,7 +140,7 @@ Security.
     Posts
 
 -   
-    réseau, sollicités or non « The maître peut byler quand il veut and à
+    réseau, sollherandés or non « The maître peut byler quand il veut and à
      »
 
 -   ,
@@ -169,12 +169,12 @@ Dependencies
 
 
 
- ![Sandup02](../images/Sandup02.png)
+ !
 
 -    **Okay** .
 
 -    **NOk**, 
-     ![Sandup03](../images/Sandup03.png)
+     !
 
 > **Tip**
 >
@@ -322,7 +322,7 @@ Sandup
     >
     > .
 
- ![Sandup08](../images/Sandup08.png) si
+ !
 .
 
 > **Important**
@@ -369,7 +369,7 @@ Plugin :
 >
 >  **Synchronize**,
 > **** and **Health**, 
-> fashion ****. ![appliance03](../images/appliance03.png)
+> fashion **Expert**. !
 
 Main
 -------
@@ -401,7 +401,7 @@ Here yor find all the Sandup of yorr epment :
     . 
     
 
--   **** : .
+-   **Mark** : .
 
 -   **Sandup** : 
     Module
@@ -418,7 +418,7 @@ Here yor find all the Sandup of yorr epment :
 > **Important**
 >
 > 
-> . ![appliance11](../images/appliance11.png) Un
+> . !
 > 
 > .
 
@@ -456,7 +456,7 @@ Commands
 
 -   "Status feedback value "and" Duration before status feedback" : allows
     to indicate to Jeedom that after a change in the information
-    value must randurn to Y, X min after the change.  : IN
+    value must randurn to Y, X min after the change. Example : IN
     the case of a presence dandector which emits only during a
     presence dandection, it is useful to sand for example 0
     
@@ -645,7 +645,7 @@ The « mapping »  Commands East entièrement basé sur ces Information.
 > Refreshing. 
 > 
 > .
-> ![node16](../images/node16.png) L'ensemble  valeurs (index) de
+> !
 > 
 > 
 > . .
@@ -787,11 +787,11 @@ Systems
 > . 
 > 
 > .
-> ![node11](../images/node11.png)
+> !
 
 > **Tip**
 >
->  **** and **** 
+>  **Light switch** and **Dimmer** 
 >  **** . 
 > . 
 > .  **** 
@@ -993,7 +993,7 @@ activated.
 
 
 
-.
+functional.
 
 > **Tip**
 >
@@ -1477,7 +1477,7 @@ Backups
 ============================
 
 
-[ici](https://jeedom.fr/doc/documentation/zwave-Modules/fr_FR/doc-zwave-Modules-epement.compatible.html)
+[here](https://jeedom.fr/doc/documentation/zwave-Modules/fr_FR/doc-zwave-Modules-epement.compatible.html)
 
 
 =======================
@@ -1584,7 +1584,7 @@ up to date.
 http://token:\#APIKEY\#@ip\_jeedom:8083/ZWaveAPI/Run/devicesnode\_id.instances\[instance\_id\].commandCthesses\[cc\_id\].data\[index\].ForceRefresh()
 
 
-[içi](./rEastapi.asciidoc).
+[here](./rEastapi.asciidoc).
 
 
 ------------------------------------------------
@@ -1903,7 +1903,7 @@ Message:
 -   
 
 
-:
+SSH:
 
     
     
@@ -1923,7 +1923,7 @@ Message:
         :..
         error: 
         :266: 
-        : *** [build] Error 1
+        : *** 
 
 
 .
@@ -1999,7 +1999,7 @@ URLs =
 -   .
 
 
-[github](https://github.com/jeedom/Plugin-openzwave) Plugin .
+[Github](https://Github.com/jeedom/Plugin-openzwave) Plugin .
 
 : 
 
