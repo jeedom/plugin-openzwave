@@ -1,15 +1,15 @@
 {
-	"id" : "openzwave",
-	"name" : "Z-Wave",
-	"description" : "Plugin permettant la gestion du protocol Z-Wave",
-	"licence" : "AGPL",
-	"author" : "tmartinez - nechry - sarakha63 - loic",
-	"require" : "3.2.12",
-	"category" : "automation protocol",
-	"mobile" : "openzwave",
-	"hasDependency" : true,
-	"hasOwnDeamon" : true,
-	"maxDependancyInstallTime" : 45,
-	"changelog" : "https://jeedom.github.io/plugin-openzwave/#language#/changelog",
-	"documentation" : "https://jeedom.github.io/plugin-openzwave/#language#/"
+    "id": "openzwave",
+    "name": "Z-Wave",
+    "description": "Plugin permettant la gestion du protocol Z-Wave",
+    "licence": "AGPL",
+    "author": "tmartinez - nechry - sarakha63 - loic",
+    "require": "3.2.12",
+    "category": "automation protocol",
+    "mobile": "openzwave",
+    "hasDependency": true,
+    "hasOwnDeamon": true,
+    "maxDependancyInstallTime": 45,
+    "changelog": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/openzwave\/changelog",
+    "documentation": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/openzwave\/"
 }
