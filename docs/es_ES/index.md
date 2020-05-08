@@ -1,2013 +1,2013 @@
 Description
 ===========
 
-Ce plugin permet l’exploitation de modules Z-Wave par l’intermédiaire de
-la librairie OpenZwave.
+Este complemento permite el explotación de módulos Onda Z a través de
+el biblioteca OpenZwave.
 
 Introduction
 ============
 
-Z-Wave communique en utilisant une technologie radio de faible puissance
-dans la bande de fréquence de 868,42 MHz. Il est spécifiquement conçu
-pour les applications de domotique. Le protocole radio Z-Wave est
-optimisé pour des échanges à faible bande passante (entre 9 et 40
-kbit/s) entre des appareils sur pile ou alimentés sur secteur.
+Onda Z se comunica utilizando tecnología de radio de baja potencia
+en el banda de frecuencia de 868.42 MHz. Está específicamente diseñado
+para aplicaciones de domótica. El protocolo de radio Onda Z es
+optimizado para intercambios de bajo ancho de banda (entre 9 y 40
+kbit / / s) entre dispositivos alimentados por batería o por red.
 
-Z-Wave fonctionne dans la gamme de fréquences sous-gigahertz, selon les
-régions (868 MHz en Europe, 908 MHz aux US, et d’autres fréquences
-suivant les bandes ISM des régions). La portée théorique est d’environ
-30 mètres en intérieur et 100 mètres en extérieur. Le réseau Z-Wave
-utilise la technologie du maillage (mesh) pour augmenter la portée et la
-fiabilité. Z-Wave est conçu pour être facilement intégré dans les
-produits électroniques de basse consommation, y compris les appareils à
-piles tels que les télécommandes, les détecteurs de fumée et capteurs de
-sécurité.
+Onda Z opera en el rango de frecuencia de sub gigahercios, dependiendo de
+regiones (868 MHz en Europa, 908 MHz en los EE. UU. y otras frecuencias
+según las bandas ISM de las regiones). El rango teórico es aproximadamente
+30 metros en interiores y 100 metros en exteriores. El red Z-Wave
+utiliza tecnología de malel para aumentar el alcance y
+fiabilidad Onda Z está diseñado para integrarse fácilmente en
+productos electrónicos de bajo consumo, incluidos
+baterías como controles remotos, detectores de humo y
+Seguridad.
 
-Le Z-Wave+, apporte certaines améliorations dont une meilleure portée et
-améliore la durée de vie des batteries entre autres. La
-rétrocompatibilité est totale avec le Z-Wave.
+El Onda Z +, trae ciertas mejoras que incluyen un mejor rango y
+mejora el duración de el batería, entre otras cosas. El
+Compatibilidad total con el Onda Z.
 
-Distances à respecter avec les autres sources de signaux sans fil
+Distancias a respetar con otras fuentes de señal inalámbrica
 -----------------------------------------------------------------
 
-Les récepteurs radio doivent être positionnés à une distance minimum de
-50 cm des autres sources radioélectriques.
+Los receptores de radio deben colocarse a una distancia mínima de
+50 cm de otras fuentes de radio.
 
-Exemples de sources radioélectriques:
+Ejemplos de fuentes de radio.:
 
 -   Ordinateurs
 
--   Les appareils à micro-ondes
+-   Aparatos de microondas
 
--   Les transformateurs électroniques
+-   Transformadores electrónicos
 
--   équipements audio et de matériel vidéo
+-   equipo de audio y video
 
--   Les dispositifs de pré-accouplement pour lampes fluorescentes
+-   Dispositivos de preenganche para lámparas fluorescentes
 
 > **Tip**
 >
-> Si vous disposez un contrôleur USB (Z-Stick), il est recommandé de
-> l’éloigner de la box à l’aide d’une simple rallonge USB de 1M par
-> exemple.
+> Si tiene un controlador USB (Z-Stick), se recomienda
+> quítelo de el caja usando un simple cable de extensión USB de 1M por
+> Ejemplo.
 
-La distance entre d’autres émetteurs sans fil tels que les téléphones
-sans fil ou transmissions radio audio doit être d’au moins 3 mètres. Les
-sources de radio suivantes doivent être prises en compte :
+El distancia entre otros transmisores inalámbricos como teléfonos
+Las transmisiones de audio inalámbricas o de radio deben ser de al menos 3 metros. El
+Se deben considerar las siguientes fuentes de radio :
 
--   Perturbations par commutateur de moteurs électriques
+-   Interferencia por interruptor de motores eléctricos.
 
--   Interférences par des appareils électriques défectueux
+-   Interferencia de dispositivos eléctricos defectuosos.
 
--   Les perturbations par les appareils HF de soudage
+-   Interferencia de equipos de soldadura HF
 
--   dispositifs de traitement médical
+-   dispositivos de tratamiento médico
 
-Epaisseur efficace des murs
+Espesor de pared efectivo
 ---------------------------
 
-Les emplacements des modules doivent être choisis de telle manière que
-la ligne de connexion directe ne fonctionne que sur une très courte
-distance au travers de la matière (un mur), afin d’éviter au maximum les
-atténuations.
+Las ubicaciones de los módulos deben elegirse de tal manera que
+el línea de conexión directa solo funciona en un tiempo muy corto
+distancia a través del material (una pared), para evitar tanto como sea posible
+mitigaciones.
 
-![introduction01](../images/introduction01.png)
+![introduction01](../ /images/ /introduction01.png)
 
-Les parties métalliques du bâtiment ou des meubles peuvent bloquer les
-ondes électromagnétiques.
+Las partes metálicas del edificio o los muebles pueden bloquear
+ondas electromagneticas.
 
-Maillage et Routage
+Malel y Enrutamiento
 -------------------
 
-Les nœuds Z-Wave sur secteur peuvent transmettre et répéter les messages
-qui ne sont pas à portée directe du contrôleur. Ce qui permet une plus
-grande flexibilité de communication, même si il n’y a pas de connexion
-sans fil directe ou si une connexion est temporairement indisponible, à
-cause d’un changement dans la pièce ou le bâtiment.
+Los nodos principales de Onda Z pueden transmitir y repetir mensajes
+que no están dentro del alcance directo del controlador. Esto permite un más
+Gran flexibilidad de comunicación, incluso Si no hay conexión.
+inalámbrico directo o Si una conexión no está disponible temporalmente, para
+debido a un cambio en el habitación o el edificio.
 
-![introduction02](../images/introduction02.png)
+![introduction02](../ /images/ /introduction02.png)
 
-Le contrôleur **Id 1** peut communiquer directement avec les nœuds 2, 3
-et 4. Le nœud 6 est en dehors de sa portée radio, cependant, il se
-trouve dans la zone de couverture radio du nœud 2. Par conséquent, le
-contrôleur peut communiquer avec le nœud 6 via le nœud 2. De cette
-façon, le chemin du contrôleur via le nœud 2 vers le nœud 6, est appelé
-route. Dans le cas où la communication directe entre le nœud 1 et le
-nœud 2 est bloquée, il y a encore une autre option pour communiquer avec
-le nœud 6, en utilisant le nœud 3 comme un autre répéteur du signal.
+El controlador **Id 1** puede comunicarse directamente con los nodos 2, 3
+y 4. Nodo 6 está fuera de su alcance de radio, sin embargo, es
+encontrado en el área de cobertura de radio del nodo 2. Por lo tanto, el
+el controlador puede comunicarse con el nodo 6 a través del nodo 2. De esta
+manera, el ruta desde el controlador a través del nodo 2 al nodo 6, se llama
+camino En el caso donde el comunicación directa entre el nodo 1 y el
+el nodo 2 está bloqueado, hay otra opción para comunicarse con
+nodo 6, usando el nodo 3 como otro repetidor de señal.
 
-Il devient évident que plus l’on possède de nœuds secteur, plus les
-options de routage augmentent , et plus la stabilité du réseau augmente.
-Le protocole Z-Wave est capable de router les messages par
-l’intermédiaire d’un maximum de quatre nœuds de répétition. C’est un
-compromis entre la taille du réseau, la stabilité et la durée maximale
-d’un message.
-
-> **Tip**
->
-> Il est fortement recommandé en début d’installation d’avoir un ratio
-> entre nœuds secteur et nœud sur piles de 2/3, afin d’avoir un bon
-> maillage réseau. Privilégier des micromodules aux smart-plugs. Les
-> micros modules seront à un emplacement définitif et ne seront pas
-> débranchés, ils ont aussi en général une meilleure portée. Un bon
-> départ est l’éclairage des zones communes. Il permettra de bien
-> répartir les modules secteurs à des endroits stratégiques dans votre
-> domicile. Par la suite vous pourrez ajouter autant de modules sur pile
-> que souhaité, si vos routes de base sont bonnes.
+Es obvio que cuantos más nodos de sector tenga, más
+las opciones de enrutamiento aumentan y aumenta el estabilidad de el red.
+El protocolo Onda Z es capaz de enrutar mensajes por
+a través de un máximo de cuatro nodos repetidos. Es un
+compensación entre tamaño de red, estabilidad y duración máxima
+de un mensaje.
 
 > **Tip**
 >
-> Le **Graphique du réseau**ainsi que la**table de routage**
-> permettent de visualiser la qualité de votre réseau.
+> Se recomienda encarecidamente al inicio de el instalación tener una relación
+> entre nodos sectoriales y nodo con 2/ /3 baterías, para tener una buena
+> malel de red. Favorezca los micromódulos sobre los enchufes inteligentes. El
+> los micro módulos estarán en una ubicación final y no serán
+> desconectados, generalmente también tienen un mejor alcance. Una bueno
+> el salida es el iluminación de las áreas comunes. Va a ayudar bien
+> distribuya los módulos del sector en ubicaciones estratégicas en su
+> casa. Luego puede agregar tantos módulos en el pila
+> Si lo desea, Si sus rutas básicas son buenas.
 
 > **Tip**
 >
-> Il existe des modules répéteur pour combler des zones où aucun module
-> secteur n’a d’utilité.
+> El **Gráfico de red** así como el **Tabel de enrutamiento**
+> le permite ver el calidad de su red.
 
-Propriétés des appareils Z-Wave
+> **Tip**
+>
+> Hay módulos repetidores para llenar áreas donde no hay módulo
+> sector no tiene uso.
+
+Propiedadesde de los dispositivos Z-Wave
 -------------------------------
 
-|  | Voisins | Route | Fonctions possibles |
+|  | Vecinos | Camino | Posibles funciones |
 |---------------------|:------------------------:|:--------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------:|
-| Contrôleur | Connaît tous les voisins | A accès à la table de routage complète | Peut communiquer avec tous les appareils dans le réseau, si une voie existe |
-| Esclave | Connaît tous les voisins | N’a pas d’information sur la table de routage | Ne peut répondre au nœud qu’il a reçu le message. Par conséquent, ne peut pas envoyer des messages non sollicités |
-| Esclaves de routage | Connaît tous ses voisins | A la connaissance partielle de la table de routage | Peut répondre au nœud qu’il a reçu le message et peut envoyer des messages non sollicités à un certain nombre de nœuds |
+| Controlador | Conoce a todos los vecinos | Tiene acceso a el tabel de enrutamiento completa | Puede comunicarse con todos los dispositivos en el red, Si existe un canal |
+| Esclavo | Conoce a todos los vecinos | No tiene información sobre el tabel de enrutamiento | No se puede responder al nodo que recibió el mensaje.. Por lo tanto, no se pueden enviar mensajes no solicitados. |
+| Esclavos enrutamiento | Conoce a todos sus vecinos | Con conocimiento parcial de el tabel de enrutamiento. | Puede responder al nodo desde el que recibió el mensaje y puede enviar mensajes no solicitados a varios nodos |
 
-En résumé:
+En resumen:
 
--   Chaque appareil Z -Wave peut recevoir et accuser réception de
+-   Cada dispositivo Onda Z puede recibir y acusar recibo de
     messages
 
--   Les contrôleurs peuvent envoyer des messages à tous les nœuds du
-    réseau, sollicités ou non « Le maître peut parler quand il veut et à
-    qui il veut »
+-   Los controladores pueden enviar mensajes a todos los nodos en el
+    réseau, sollicités o non « El maître peut parler quand il veut y à
+    a quien quiere »
 
--   Les esclaves ne peuvent pas envoyer des messages non sollicités,
-    mais seulement une réponse aux demandes «L’esclave ne parle que si
-    on le lui demande »
+-   Los esclavos no pueden enviar mensajes no solicitados,
+    mais seulement une réponse aux demandesde «L'esclave ne parle que si
+    le preguntamos »
 
--   Les esclaves de routage peuvent répondre à des demandes et ils sont
-    autorisés à envoyer des messages non sollicités à certains nœuds que
-    le contrôleur a prédéfini « L’esclave est toujours un esclave, mais
-    sur autorisation, il peut parler »
+-   Los esclavos enrutados pueden responder a las solicitudesde y son
+    permitido enviar mensajes no solicitados a ciertos nodos que
+    le Controlador a prédéfini « L'esclave es toujours un esclave, mais
+    con autorización, él puede hablar »
 
-Configuration du plugin
+Configuración del plugin
 =======================
 
-Après le téléchargement du plugin, il vous suffit de l’activer et de le
+Después de descargar el complemento, solo necesita activarlo y
 configurer.
 
-![configuration01](../images/configuration01.png)
+![Configuración01](../ /images/ /configuration01.png)
 
-Une fois activé, le démon devrait se lancer. Le plugin est préconfiguré
-avec des valeurs par défaut ; vous n’avez normalement plus rien à faire.
-Cependant vous pouvez modifier la configuration.
+Una vez activado, el demonio debería lanzar. El complemento está preconfigurado
+con valores predeterminados; normalmente no tienes nada más que hacer.
+Sin embargo, puedesde cambiar el configuración.
 
-Dépendances
+Dependencias
 -----------
 
-Cette partie permet de valider et d’installer les dépendances requises
-au bon fonctionnement du plugin Zwave (aussi bien en local qu’en
-déporté, ici en local) ![configuration02](../images/configuration02.png)
+Esta parte le permite validar e instalar las dependencias requeridas
+El correcto funcionamiento del complemento Zwave (tanto local como
+deportado, aquí localmente) ![configuración02](../ /images/ /configuration02.png)
 
--   Un Statut **OK** confirme que les dépendances sont satisfaites.
+-   Una estatuto **OK** confirma que se cumplen las dependencias.
 
--   Si le statut est **NOK**, il faudra réinstaller les dépendances à
-    l’aide du bouton ![configuration03](../images/configuration03.png)
+-   Si el estado es **NOK**, las dependencias deberán ser reinstaladas
+    usando el botón ![configuración03](../ /images/ /configuration03.png)
 
 > **Tip**
 >
-> La mise à jour des dépendances peut prendre plus de 20 minutes selon
-> votre matériel. La progression est affichée en temps réel et un log
-> **Openzwave\_update** est accessible.
+> El actualización de dependencias puede demorar más de 20 minutos dependiendo de
+> tu material. El progreso se muestra en tiempo real y un registro
+> **Openzwave\_update** es accesible.
 
 > **Important**
 >
-> La mise à jour des dépendances est normalement à effectuer seulement
-> si le Statut est **NOK**, mais il est toutefois possible, pour régler
-> certains problèmes, d’être appelé à refaire l’installation des
-> dépendances.
+> El actualización de dependencias normalmente solo se debe hacer
+> Si el estatuto es **NOK**, pero es posible, sin embargo, ajustar
+> ciertos problemas, para ser llamados a rehacer el instalación de
+> Dependencias.
 
 > **Tip**
 >
-> Si vous êtes en mode déporté, les dépendances du démon local peuvent
-> être NOK, c’est tout à fait normal.
+> Si está en modo remoto, las dependencias del daemon local pueden
+> ser NOK, es completamente normal.
 
-Démon
+Demonio
 -----
 
-Cette partie permet de valider l’état actuel du ou des démons et de
-configurer la gestion automatique de ceux-ci.
-![configuration04](../images/configuration04.png) Le démon local et
-l’ensemble des démons déportés seront affichés avec leurs différentes
+Esta parte le permite validar el estado actual de los demonios y
+configurar el gestión automática de estos.
+![Configuración04](../ /images/ /configuration04.png) El démon local et
+todos los demonios deportados se mostrarán con sus diferentes
 informations
 
--   Le **Statut** indique que le démon est actuellement en fonction.
+-   El **Statut** indica que el demonio se está ejecutando actualmente.
 
--   La **Configuration** indique si la configuration du démon
-    est valide.
+-   El **Configuration** indica Si el configuración del demonio
+    es valido.
 
--   Le bouton **(Re)Démarrer** permet de forcer le redémarrage du
-    plugin, en mode normal ou de le lancer une première fois.
+-   El botón **(Re)Iniciar** permite forzar el reinicio de la
+    plugin, en modo normal o iniciarlo el primera vez.
 
--   Le bouton **Arrête**, visible seulement si la gestion automatique
-    est désactivée, force l’arrêt du démon.
+-   El botón **Detenido**, visible solo Si el gestión automática
+    está desactivado, obliga al demonio a detenerse.
 
--   La **Gestion automatique** permet à Jeedom de lancer automatiquement
-    le démon au démarrage de Jeedom, ainsi que de le relancer en cas
-    de problème.
+-   El **Gestión automática** permite que Jeedom se inicie automáticamente
+    el demonio cuando se inicia Jeedom, así como reiniciarlo en caso de que
+    de problema.
 
--   Le **Dernier lancement** est comme son nom l’indique la date du
-    dernier lancement connue du demon.
+-   El **Última ejecución** es como su nombre indica el fecha de
+    último lanzamiento conocido del demonio.
 
 Log
 ---
 
-Cette partie permet de choisir le niveau de log ainsi que d’en consulter
-le contenu.
+Esta parte le permite elegir el nivel de registro, así como consultarlo.
+el contenido.
 
-![configuration05](../images/configuration05.png)
+![Configuración05](../ /images/ /configuration05.png)
 
-Sélectionner le niveau puis sauvegarder, le démon sera alors relancé
-avec les instructions et traces sélectionnées.
+Seleccione el nivel y luego guarde, el demonio se reiniciará
+con instrucciones y huellas seleccionadas.
 
-Le niveau **Debug**ou**Info** peuvent être utiles pour comprendre
-pourquoi le démon plante ou ne remonte pas une valeur.
+El nivel **Debug** o **Info** puede ser útil para entender
+por qué el demonio planta o no aumenta un valor.
 
 > **Important**
 >
-> En mode **Debug** le démon est très verbeux, il est recommandé
-> d’utiliser ce mode seulement si vous devez diagnostiquer un problème
-> particulier. Il n’est pas recommandé de laisser tourner le démon en
-> **Debug**en permanence, si on utilise une**SD-Card**. Une fois le
-> debug terminé, il ne faut pas oublier de retourner sur un niveau moins
-> élevé comme le niveau **Error** qui ne remonte que d’éventuelles
-> erreurs.
+> En modo **Debug** el demonio es muy detallado, se recomienda
+> use este modo solo Si necesita diagnosticar un problema
+> particular. No se recomienda dejar que el demonio corra mientras
+> **Debug** permanentemente, Si usamos un **SD-Card**. Una vez que
+> depurar, no te olvidesde de volver a un nivel inferior
+> tan alto como el nivel **Error** que solo vuelve a lo posible
+> errores.
 
 Configuration
 -------------
 
-Cette partie permet de configurer les paramètres généraux du plugin
-![configuration06](../images/configuration06.png)
+Esta parte le permite configurar los parámetros generales del complemento
+![Configuración06](../ /images/ /configuration06.png)
 
--   **Général** :
+-   **Principal** :
 
-    -   **Supprimer automatiquement les périphériques exclus** :
-        L’option Oui, permet de supprimer les périphériques exclus du
-        réseau Z-Wave. L’option Non, permet de conserver les équipements
-        dans Jeedom même s’ils ont été exclus du réseau. L’équipement
-        devra être alors supprimé manuellement ou réutilisé en lui
-        assignant un nouvel ID Z-Wave si on exécute une migration du
-        contrôleur principal.
+    -   **Eliminar automáticamente los dispositivos excluidos** :
+        El opción Sí le permite eliminar los dispositivos excluidos del
+        Red Onda Z. El opción No le permite conservar el equipo.
+        en Jeedom incluso Si han sido excluidos de el red. El equipo
+        tendrá que ser eliminado manualmente o reutilizado en él
+        asignar una nueva Identificación de Onda Z Si está migrando el
+        controlador principal.
 
-    -   **Appliquer le jeu de configuration recommandé à l’inclusion** :
-        option pour appliquer directement à l’inclusion le jeu de
-        configuration recommandé par l’équipe Jeedom (conseillée)
+    -   **Aplicar el conjunto de configuración recomendado para su inclusión.** :
+        opción de aplicar el conjunto de
+        configuración recomendada por el equipo de Jeedom (recomendado)
 
-    -   **Désactiver l’actualisation en arrière-plan des variateurs** :
-        Ne pas demander de rafraichissement des variateurs
-        en arrière-plan.
+    -   **Desactivar el actualización en segundo plano de las unidades** :
+        No solicite una actualización de las unidades
+        en el fondo.
 
-    -   **Cycle (s)** : permet de définir la fréquence des remontées
-        à jeedom.
+    -   **Ciclo (s)** : permite definir el frecuencia de los ascensores
+        en Jeedom.
 
-    -   **Port clé Z-Wave** : le port USB sur lequel votre interface
-        Z-Wave est connectée. Si vous utilisez le Razberry, vous avez,
-        en fonction de votre architecture (RPI ou Jeedomboard) les 2
-        possibilités à la fin de la liste.
+    -   **Puerto de llave Z-Wave** : el puerto USB en el que su interfaz
+        Onda Z está conectado. Si usa el Razberry, tiene,
+        dependiendo de su arquitectura (RPI o Jeedomboard) el 2
+        posibilidadesde al final de el lista.
 
-    -   **Port du Serveur** (modification dangereuse, doit avoir la même
-        valeur sur tous les Jeedoms déportés Z-Wave) : permet de
-        modifier le port de communication interne du démon.
+    -   **Puerto del servidor** (modificación peligrosa, debe tener el mismo
+        valor en todos los Jeedoms remotos Z-Wave) : permite
+        modificar el puerto de comunicación interna del demonio.
 
-    -   **Backups** : permet de gérer les backups du fichier de
-        topologie réseaux (voir plus bas)
+    -   **Backups** : le permite administrar copias de seguridad del archivo
+        topología de red (ver más abajo)
 
-    -   **Config modules** : permet de récupérer, manuellement, les
-        fichiers de configurations OpenZWave avec les paramètres des
-        modules ainsi que la définition des commandes de modules pour
-        leurs utilisations.
-
-        > **Tip**
-        >
-        > La récupération des configurations de module s’effectue
-        > automatiquement chaque nuit.
+    -   **Módulos de configuración** : permite recuperar, manualmente,
+        Archivos de configuración de OpenZWave con parámetros para
+        módulos, así como definir comandos de módulo para
+        sus usos.
 
         > **Tip**
         >
-        > Le redémarrage du démon suite à la mise à jour des
-        > configurations de module est inutile.
+        > Se recuperan las configuraciones de los módulos.
+        > automáticamente todas las noches.
+
+        > **Tip**
+        >
+        > Reiniciar el demonio después de actualizar el
+        > las configuraciones del módulo son innecesarias.
 
         > **Important**
         >
-        > Si vous avez un module non reconnu et qu’une mise à jour de
-        > configuration vient d’être appliquée, vous pouvez manuellement
-        > lancer la récupération des configurations de modules.
+        > Si tiene un módulo no reconocido y una actualización de
+        > el configuración se acaba de aplicar, puede manualmente
+        > comenzar a recuperar configuraciones de módulos.
 
-Une fois les configurations récupérées, il faudra selon les changements
-apportés:
+Una vez recuperadas las configuraciones, tomará de acuerdo con los cambios
+traído:
 
--   Pour un nouveau module sans configuration ni commande : exclure et
-    ré-inclure le module.
+-   Para un nuevo módulo sin configuración o control : excluir y
+    vuelva a incluir el módulo.
 
--   Pour un module pour lequel seuls les paramètres ont été mis à jour :
-    lancer la régénération de la détection du nœud, via l’onglet Actions
-    du module (le plugin doit redémarrer).
+-   Para un módulo para el que solo se han actualizado los parámetros :
+    iniciar el regeneración de el detección de nodos, a través de el pestaña Acciones
+    del módulo (el complemento debe reiniciarse).
 
--   Pour un module dont le « mapping » de commandes a été corrigé : la
-    loupe sur les commandes, voir plus bas.
+-   Pour un Modulo dont le « mapping » de encargos a été corrigé : la
+    lupa en los controles, ver abajo.
 
     > **Tip**
     >
-    > Dans le doute, exclure et ré-inclure le module est recommandé.
+    > En caso de duda, se recomienda excluir y volver a incluir el módulo..
 
-N’oubliez pas de ![configuration08](../images/configuration08.png) si
-vous effectuez une modification.
-
-> **Important**
->
-> Si vous utilisez Ubuntu : Pour que le démon fonctionne, il faut
-> absolument avoir ubuntu 15.04 (les versions inférieures ont un bug et
-> le démon n’arrive pas à se lancer). Attention si vous faites une mise
-> à jour à partir de 14.04 il faut une fois en 15.04 relancer
-> l’installation des dépendances.
+No te olvidesde de ![configuración08](../ /images/ /configuration08.png) si
+haces un cambio.
 
 > **Important**
 >
-> La sélection du Port clé Z-Wave en mode de détection automatique,
-> **Auto**, ne fonctionne que pour les dongles USB.
+> Si estás usando Ubuntu : Para que el demonio funcione, debes
+> absolutamente tiene ubuntu 15.04 (las versiones inferiores tienen un error y
+> el demonio no puede comenzar). Ten cuidado Si haces una apuesta
+> actualizado desde 14.04 toma una vez en 15.04 relanzamiento
+> instalación de dependencias.
 
-Paneau Mobile
+> **Important**
+>
+> Selección del puerto clave Onda Z en modo de detección automática,
+> **Auto**, solo funciona para dongles USB.
+
+Panel móvil
 -------------
 
-![configuration09](../images/configuration09.png)
+![Configuración09](../ /images/ /configuration09.png)
 
-Permet d’afficher ou non le panel mobile lors que vous utiliser
-l’application sur un téléphone.
+Permite mostrar o no el panel móvil cuando usa
+el aplicación en un teléfono.
 
-Configuration des équipements
+Configuración del equipo
 =============================
 
-La configuration des équipements Z-Wave est accessible à partir du menu
-plugin :
+Se puede acceder a el configuración del equipo Onda Z desde el menú
+Plugin :
 
-![appliance01](../images/appliance01.png)
+![appliance01](../ /images/ /appliance01.png)
 
-Ci-dessous un exemple d’une page du plugin Z-Wave (présentée avec
-quelques équipements) :
+A continuación se muestra un ejemplo de una página de complemento de Onda Z (presentada con
+algunos equipos) :
 
-![appliance02](../images/appliance02.png)
-
-> **Tip**
->
-> Comme à beaucoup d’endroits sur Jeedom, placer la souris tout à gauche
-> permet de faire apparaître un menu d’accès rapide (vous pouvez, à
-> partir de votre profil, le laisser toujours visible).
+![appliance02](../ /images/ /appliance02.png)
 
 > **Tip**
 >
-> Les boutons sur la ligne tout en haut **Synchroniser**,
-> **Réseau-Zwave**et**Santé**, sont visibles seulement si vous êtes en
-> mode **Expert**. ![appliance03](../images/appliance03.png)
+> Como en muchos lugares de Jeedom, coloca el mouse en el extremo izquierdo
+> muestra un menú de acceso rápido (puede, en
+> desde tu perfil, siempre déjalo visible).
 
-Général
+> **Tip**
+>
+> Los botones en el linea superior **Synchroniser**,
+> **Red Zwave** y **Santé**, son visibles solo Si estás en
+> modo **Expert**. ![aparato03](../ /images/ /appliance03.png)
+
+Principal
 -------
 
-Aquí encontrará toda la configuración de su dispositivo:
+Aquí encontrarás toda el configuración de tu equipo :
 
-![appliance04](../images/appliance04.png)
+![appliance04](../ /images/ /appliance04.png)
 
--   **Nom de l’équipement** : nom de votre module Z-Wave.
+-   **Nombre del equipo** : nombre de su módulo Onda Z.
 
--   **Objet parent** : indique l’objet parent auquel
-    appartient l’équipement.
+-   **Objeto padre** : indica el objeto padre al que
+    pertenece equipo.
 
--   ** ** Categoría: categorías de equipos (que pueden pertenecer a
-    la mayoría de categorías).
+-   **Categoría** : categorías de equipos (puede pertenecer a
+    categorías múltiples).
 
--   **Activer** : permet de rendre votre équipement actif.
+-   **Activer** : activa su equipo.
 
--   **Visible** : le rend visible sur le dashboard.
+-   **Visible** : lo hace visible en el tablero.
 
--   **Node ID** : ID du module sur le réseau Z-Wave. Ceci peut être
-    utile si, par exemple, vous voulez remplacer un module défaillant.
-    Il suffit d’inclure le nouveau module, de récupérer son ID, et le
-    mettre à la place de l’ID de l’ancien module et enfin de supprimer
-    le nouveau module.
+-   **Identificación de nodo** : Identificación del módulo en el red Onda Z. Esto puede ser
+    útil si, por ejemplo, desea reemplazar un módulo defectuoso.
+    Simplemente incluya el nuevo módulo, obtenga su Identificación y el
+    poner en lugar de el Identificación del módulo anterior y finalmente eliminar
+    el nuevo módulo.
 
--   **Module** : ce champ n’apparaît que s’il existe différents types de
-    configuration pour votre module (cas pour les modules pouvant faire
-    fils pilotes par exemple). Il vous permet de choisir la
-    configuration à utiliser ou de la modifier par la suite
+-   **Module** : este campo solo aparece Si hay diferentes tipos de
+    configuración para su módulo (caso para módulos que pueden hacer
+    cables piloto por ejemplo). Te permite elegir el
+    configuración para usarlo o modificarlo más tarde
 
--   **Marque** : fabricant de votre module Z-Wave.
+-   **Marque** : fabricante de su módulo Onda Z.
 
--   **Configuration** : fenêtre de configuration des paramètres du
+-   **Configuration** : ventana para configurar los parámetros de la
     module
 
--   **Assistant** : disponible uniquement sur certains modules, il vous
-    aide à configurer le module (cas sur le zipato keyboard par exemple)
+-   **Assistant** : solo disponible en ciertos módulos, usted
+    ayuda a configurar el módulo (caso en el teclado zipato por ejemplo)
 
--   **Documentation** : ce bouton vous permet d’ouvrir directement la
-    documentation Jeedom concernant ce module.
+-   **Documentation** : Este botón le permite abrir directamente el
+    Documentación de Jeedom sobre este módulo.
 
--   **Supprimer** : Permet de supprimer un équipement ainsi que tous ces
-    commandes rattaché sans l’exclure du réseau Z-Wave.
+-   **Supprimer** : El permite eliminar un elemento del equipo y todos estos
+    comandos adjuntos sin excluirlo de el red Onda Z.
 
 > **Important**
 >
-> La suppression d’un équipement n’engendre pas une exclusion du module
-> sur le contrôleur. ![appliance11](../images/appliance11.png) Un
-> équipement supprimé qui est toujours rattaché à son contrôleur sera
-> automatiquement recréé suite à la synchronisation.
+> Eliminar un equipo no da como resultado el exclusión del módulo
+> en el controlador. ![aparato11](../ /images/ /appliance11.png) Un
+> el equipo eliminado que todavía está conectado a su controlador
+> recreado automáticamente después de el sincronización.
 
 Commandes
 ---------
 
-Ci-dessous vous retrouvez la liste des commandes :
+A continuación encontrará el lista de pedidos. :
 
-![appliance05](../images/appliance05.png)
+![appliance05](../ /images/ /appliance05.png)
 
 > **Tip**
 >
-> En fonction des types et sous-types, certaines options peuvent être
-> absentes.
+> Dependiendo de los tipos y subtipos, algunas opciones pueden ser
+> ausente.
 
--   le nom affiché sur le dashboard
+-   el nombre que se muestra en el tablero
 
--   icône : dans le cas d’une action permet de choisir une icône à
-    afficher sur le dashboard au lieu du texte
+-   Icono : en el caso de una acción le permite elegir un icono para
+    mostrar en el tablero en lugar de texto
 
--   valeur de la commande : dans le cas d’une commande type action, sa
-    valeur peut être liée à une commande de type info, c’est ici que
-    cela se configure. Exemple pour une lampe l’intensité est liée à son
-    état, cela permet au widget d’avoir l’état réel de la lampe.
+-   Valor del pedido : en el caso de un comando de tipo acción, su
+    el valor se puede vincular a un comando de tipo de información, aquí es donde
+    esta configurado. Ejemplo para una lámpara, el intensidad está vinculada a su
+    estado, esto permite que el widgy tenga el estado real de el lámpara.
 
--   le type et le sous-type.
+-   tipo y subtipo.
 
--   l’instance de cette commande Z-Wave (réservée aux experts).
+-   el instancia de este comando Onda Z (reservado para expertos).
 
--   la classe de la commande Z-Wave (réservée aux experts).
+-   el clase del control Onda Z (reservado para expertos).
 
--   l’index de la valeur (réservée aux experts).
+-   el índice de valor (reservado para expertos).
 
--   la commande en elle-même (réservée aux experts).
+-   el pedido en sí (reservado para expertos).
 
--   "Valeur de retour d’état" et "Durée avant retour d’état" : permet
-    d’indiquer à Jeedom qu’après un changement sur l’information sa
-    valeur doit revenir à Y, X min après le changement. Exemple : dans
-    le cas d’un détecteur de présence qui n’émet que lors d’une
-    détection de présence, il est utile de mettre par exemple 0 en
-    valeur et 4 en durée, pour que 4 min après une détection de
-    mouvement (et si ensuite, il n’y en a pas eu de nouvelles) Jeedom
-    remette la valeur de l’information à 0 (plus de mouvement détecté).
+-   "Valor de retroalimentación de estado "y" Duración antes de el retroalimentación de estado" : permet
+    para indicarle a Jeedom que después de un cambio en el información
+    el valor debe volver a Y, X min después del cambio. Ejemplo : dans
+    el caso de un detector de presencia que emite solo durante un
+    detección de presencia, es útEl esablecer por ejemplo 0
+    valor y 4 en duración, de modo que 4 minutos después de una detección de
+    movimiento (y Si no hubiera nuevos) Jeedom
+    restablece el valor de el información a 0 (no se detecta más movimiento).
 
--   Historiser : permet d’historiser la donnée.
+-   Guardar historial : permite historizar los datos.
 
--   Afficher : permet d’afficher la donnée sur le dashboard.
+-   Mostrar : permite mostrar los datos en el tablero.
 
--   Inverser : permet d’inverser l’état pour les types binaires.
+-   Invertir : permite invertir el estado para tipos binarios.
 
--   Unité : unité de la donnée (peut être vide).
+-   Unidad : unidad de datos (puede estar vacía).
 
--   Min/Max : bornes de la donnée (peuvent être vides).
+-   Min / / max : límites de datos (pueden estar vacíos).
 
--   Configuración avanzada (pequeñas ruedas dentadas): Muestra
-    la configuration avancée de la commande (méthode
-    d’historisation, widget…​).
+-   Configuración avanzada (ruedas con muescas pequeñas) : Muestra
+    El configuración avanzada del comando (método
+    historia, widgy ...).
 
--   Tester : permet de tester la commande.
+-   Probar : Se usa para probar el comando.
 
--   Supprimer (signe -) : permet de supprimer la commande.
-
-> **Important**
->
-> Le bouton **Tester** dans le cas d’une commande de type Info, ne va
-> pas interroger le module directement mais la valeur disponible dans le
-> cache de Jeedom. Le test retournera la bonne valeur seulement si le
-> module en question a transmis une nouvelle valeur correspondant à la
-> définition de la commande. Il est alors tout à fait normal de ne pas
-> obtenir de résultat suite à la création d’une nouvelle commande Info,
-> spécialement sur un module sur pile qui notifie rarement Jeedom.
-
-La **loupe**, disponible dans l’onglet général, permet de recréer
-l’ensemble des commandes pour le module en cours.
-![appliance13](../images/appliance13.png) Si aucune commande n’est
-présente ou si les commandes sont erronées la loupe devrait remédier à
-la situation.
+-   Eliminar (firmar -) : permite eliminar el comando.
 
 > **Important**
 >
-> La **loupe** va supprimer les commandes existantes. Si les commandes
-> étaient utilisées dans des scénarios, vous devrez alors corriger vos
-> scénarios aux autres endroits où les commandes étaient exploitées.
+> El botón **Tester** en el caso de un comando de tipo Información, no
+> no consultar el módulo directamente sino el valor disponible en el
+> jeedom Cubierta. El prueba devolverá el valor correcto solo Si el
+> El módulo en cuestión ha transmitido un nuevo valor correspondiente al
+> definición del comando. Entonces es completamente normal no
+> obtener resultados después de el creación de un nuevo comando de información,
+> especialmente en un módulo de batería que rara vez notifica a Jeedom.
 
-Jeux de Commandes
+El **loupe**, disponible en el pestaña general, le permite recrear
+todos los comandos para el módulo actual.
+![appliance13](../ /images/ /appliance13.png) Si aucune Comando n'est
+presente o Si los comandos son incorrectos, el lupa debe remediar
+el situación.
+
+> **Important**
+>
+> El **loupe** borrará los pedidos existentes. Si las órdenes
+> fueron utilizados en escenarios, deberá corregir su
+> escenarios en otros lugares donde se operaban los controles.
+
+Juegos de comando
 -----------------
 
-Certains modules possèdent plusieurs jeux de commandes préconfigurées
+Algunos módulos tienen varios conjuntos de comandos preconfigurados
 
-![appliance06](../images/appliance06.png)
+![appliance06](../ /images/ /appliance06.png)
 
-Vous pouvez les sélectionner via les choix possibles, si le module le
+Puede seleccionarlos a través de las posibles opciones, Si el módulo
 permet.
 
 > **Important**
 >
-> Vous devez effectuer la loupe pour appliquer le nouveau jeux de
-> commandes.
+> Debe llevar el lupa para aplicar los nuevos conjuntos de
+> Comandos.
 
-Documentation et Assistant
+Documentación y Asistente
 --------------------------
 
-Pour un certain nombre de modules, une aide spécifique pour la mise en
-place ainsi que des recommandations de paramètres sont disponibles.
+Para un cierto número de módulos, ayuda específica para configurar
+lugar, así como recomendaciones de parámetros están disponibles.
 
-![appliance07](../images/appliance07.png)
+![appliance07](../ /images/ /appliance07.png)
 
-Le bouton **Documentation** permet d’accéder à la documentation
-spécifique du module pour Jeedom.
+El botón **Documentation** proporciona acceso a el documentación
+módulo específico para Jeedom.
 
-Des modules particuliers disposent aussi d’un assistant spécifique afin
-de faciliter l’application de certains paramètres ou fonctionnements.
+Los módulos especiales también tienen un asistente específico para
+para facilitar el aplicación de ciertos parámetros u operaciones.
 
-Le bouton **Assistant** permet d’accéder à l’écran assistant spécifique
-du module.
+El botón **Assistant** permite el acceso a el pantalel de asistente específica
+del módulo.
 
-Configuration recommandée
+Configuración recomendada
 -------------------------
 
-![appliance08](../images/appliance08.png)
+![appliance08](../ /images/ /appliance08.png)
 
-Permet d’appliquer un jeu de configuration recommandée par l’équipe
+El permite aplicar un conjunto de configuración recomendado por el equipo
 Jeedom.
 
 > **Tip**
 >
-> Lors de leur inclusion, les modules ont les paramètres par défaut du
-> constructeur et certaines fonctions ne sont pas activées par défaut.
+> Cuando se incluyen, los módulos tienen el configuración predeterminada de
+> fabricante y algunas funciones no están activadas por defecto.
 
-Les éléments suivants, selon le cas, seront appliqués pour simplifier
-l’utilisation du module.
+Lo siguiente, según corresponda, se aplicará para simplificar
+usando el módulo.
 
--   **Paramètres** permettant la mise en service rapide de l’ensemble
-    des fonctionnalités du module.
+-   **Configuraciones** permitiendo una rápida puesta en marcha de el asamblea
+    funcionalidad del módulo.
 
--   **Groupes d’association** requis au bon fonctionnement.
+-   **Grupos de asociaciones** requerido para una operación adecuada.
 
--   **Intervalle de réveil**, pour les modules sur pile.
+-   **Intervalo de despertador**, para módulos con batería.
 
--   Activation du **rafraîchissement manuel** pour les modules ne
-    remontant pas d’eux-mêmes leurs changements d’états.
+-   Activación de **actualización manual** para módulos hacer
+    no volviendo por sí mismos sus cambios de estado.
 
-Pour appliquer le jeu de configuration recommandé, cliquer sur le bouton
-: **Configuration recommandée**, puis confirmer l’application des
-configurations recommandées.
+Para aplicar el conjunto de configuración recomendado, haga clic en el botón
+: **Configuración recomendada**, luego confirme el aplicación de
+configuraciones recomendadas.
 
-![appliance09](../images/appliance09.png)
+![appliance09](../ /images/ /appliance09.png)
 
-L’assistant active les différents éléments de configurations.
+El asistente activa los diversos elementos de configuración..
 
-Une confirmation du bon déroulement sera affichée sous forme de bandeau
+Se mostrará una confirmación del buen progreso en forma de banner.
 
-![appliance10](../images/appliance10.png)
+![appliance10](../ /images/ /appliance10.png)
 
 > **Important**
 >
-> Les modules sur piles doivent être réveillés pour appliquer le jeu de
-> configuration.
+> Los módulos de batería se deben activar para aplicar el conjunto de
+> Configuración.
 
-La page de l’équipement vous informe si des éléments n’ont pas encore
-été activés sur le module. Veuillez-vous référer à la documentation du
-module pour le réveiller manuellement ou attendre le prochain cycle de
-réveil.
+El página del equipo le informa Si los artículos aún no han sido
+sido activado en el módulo. Consulte el documentación de la
+módulo para activarlo manualmente o esperar el próximo ciclo de
+despertar.
 
-![appliance11](../images/appliance11.png)
+![aparato11](../ /images/ /appliance11.png)
 
 > **Tip**
 >
-> Il est possible d’activer automatiquement l’application du jeu de
-> configuration recommandé lors de l’inclusion de nouveau module, voir
-> la section Configuration du plugin pour plus de détails.
+> Es posible activar automáticamente el aplicación del juego.
+> configuración recomendada cuando se incluye un nuevo módulo, ver
+> el sección de configuración del complemento para más detalles.
 
-Configuration des modules
+Configuracion de modulos
 =========================
 
-C’est ici que vous retrouverez toutes les informations sur votre module
+Aquí es donde encontrará toda el información sobre su módulo.
 
-![node01](../images/node01.png)
+![node01](../ /images/ /node01.png)
 
-La fenêtre possède plusieurs onglets :
+El ventana tiene varias pestañas. :
 
-Résumé
+Resumen
 ------
 
-Fournit un résumé complet de votre nœud avec différentes informations
-sur celui-ci, comme par exemple l’état des demandes qui permet de savoir
-si le nœud est en attente d’information ou la liste des nœuds voisins.
+Proporciona un resumen completo de su nodo con información variada
+en este caso, por ejemplo, el estado de las solicitudesde que permite conocer
+Si el nodo está esperando información o el lista de nodos vecinos.
 
 > **Tip**
 >
-> Sur cet onglet il est possible d’avoir des alertes en cas de détection
-> possible d’un souci de configuration, Jeedom vous indiquera la marche
-> à suivre pour corriger. Il ne faut pas confondre une alerte avec une
-> erreur, l’alerte est dans une majorité des cas, une simple
-> recommandation.
+> En esta pestaña es posible tener alertas en caso de detección
+> posible por un problema de configuración, Jeedom indicará el marcha
+> seguir para corregir. No confunda una alerta con un
+> error, el alerta es en el mayoría de los casos un simple
+> recomendación.
 
 Valeurs
 -------
 
-![node02](../images/node02.png)
+![node02](../ /images/ /node02.png)
 
-Vous retrouvez ici toutes les commandes et états possibles sur votre
-module. Ils sont ordonnés par instance et classe de commande puis index.
-Le « mapping » des commandes est entièrement basé sur ces informations.
-
-> **Tip**
->
-> Forcer la mise à jour d’une valeur. Les modules sur pile vont
-> rafraichir une valeur seulement au prochain cycle de réveil. Il est
-> toutefois possible de réveiller à la main un module, voir la
-> documentation du module.
+Aquí encontrará todos los comandos y estados posibles en su
+módulo Se ordenan por instancia y clase de comando y luego indexan.
+El « mapping » desde Comandos es entièrement basé sur ces Información.
 
 > **Tip**
 >
-> Il est possible d’avoir plus de commandes ici que sur Jeedom, c’est
-> tout à fait normal. Dans Jeedom les commandes ont été présélectionnées
-> pour vous.
+> Forzar actualización de un valor. Los módulos de batería
+> actualizar un valor solo en el siguiente ciclo de activación. El es
+> sin embargo, es posible reactivar manualmente un módulo, consulte el
+> Documentación del módulo.
+
+> **Tip**
+>
+> Es posible tener más pedidos aquí que en Jeedom, es
+> completamente normal. En Jeedom las órdenes han sido preseleccionadas
+> para usted.
 
 > **Important**
 >
-> Certains modules n’envoient pas automatiquement leurs états, il faut
-> dans ce cas activer le rafraichissement manuel à 5 minutes sur la ou
-> les valeurs souhaitées. Il est recommandé de laisser en automatique le
-> rafraichissement. Abuser du rafraichissement manuel peut impacter
-> fortement les performances du réseau Z-Wave, utilisez seulement pour
-> les valeurs recommandées dans la documentation spécifique Jeedom.
-> ![node16](../images/node16.png) L’ensemble des valeurs (index) de
-> l’instance d’une commande classe sera remonté, en activant le
-> rafraichissement manuel sur le plus petit index de l’instance de la
-> commande classe. Répéter pour chaque instance si nécessaire.
+> Algunos módulos no envían automáticamente sus estados, es necesario
+> en este caso active el actualización manual a los 5 minutos en el
+> valores deseados. Se recomienda dejar automáticamente el
+> Refrescante. El abuso del refresco manual puede afectar
+> fuertemente el rendimiento de el red Z-Wave, use solo para
+> los valores recomendados en el documentación específica de Jeedom.
+> ![nodo16](../ /images/ /node16.png) El conjunto de valores (índice) de
+> el instancia de un comando de clase se volverá a montar, activando el
+> actualización manual en el índice más pequeño de el instancia de la
+> comando de clase. Repita para cada instancia Si es necesario.
 
-Paramètres
+Configuraciones
 ----------
 
-![node03](../images/node03.png)
+![node03](../ /images/ /node03.png)
 
-Vous retrouvez ici toutes les possibilités de configuration des
-paramètres de votre module ainsi que la possibilité de copier la
-configuration d’un autre nœud déjà en place.
+Aquí encontrará todas las posibilidadesde de configuración para
+parámetros de su módulo, así como el capacidad de copiar el
+configuración de otro nodo ya en su lugar.
 
-Lorsqu’un paramètre est modifié, la ligne correspondante passe en jaune,
-![node04](../images/node04.png) le paramètre est en attente d’être
+Cuando se modifica un parámetro, el línea correspondiente se vuelve amarilla,
+![node04](../ /images/ /node04.png) le paramètre es en attente d'être
 appliqué.
 
-Si le module accepte le paramètre, la ligne redevient transparente.
+Si el módulo acepta el parámetro, el línea vuelve a ser transparente.
 
-Si toutefois le module refuse la valeur, la ligne passera alors en rouge
-avec la valeur appliquée retournée par le module.
-![node05](../images/node05.png)
+Sin embargo, Si el módulo rechaza el valor, el línea se volverá roja
+con el valor aplicado devuelto por el módulo.
+![node05](../ /images/ /node05.png)
 
-A l’inclusion, un nouveau module est détecté avec les paramètres par
-défaut du constructeur. Sur certains modules, des fonctionnalités ne
-seront pas actives sans modifier un ou plusieurs paramètres.
-Référez-vous à la documentation du constructeur et à nos recommandations
-afin de bien paramétrer vos nouveaux modules.
-
-> **Tip**
->
-> Les modules sur pile vont appliquer les changements de paramètres
-> seulement au prochain cycle de réveil. Il est toutefois possible de
-> réveiller à la main un module, voir la documentation du module.
+En el inclusión, se detecta un nuevo módulo con los parámetros por
+defecto del fabricante. En algunos módulos, el funcionalidad no
+no estará activo sin modificar uno o más parámetros.
+Consulte el documentación del fabricante y nuestras recomendaciones.
+para configurar correctamente sus nuevos módulos.
 
 > **Tip**
 >
-> La commande **Reprendre de…​** vous permet reprendre la configuration
-> d’un autre module identique, sur le module en cours.
-
-![node06](../images/node06.png)
-
-> **Tip**
->
-> La commande **Appliquer sur…​** vous permet d’appliquer la
-> configuration actuelle du module sur un ou plusieurs modules
-> identiques.
-
-![node18](../images/node18.png)
+> Los módulos en el piel aplicarán los cambios de parámetros.
+> solo en el próximo ciclo de despertador. Sin embargo, es posible
+> activar manualmente un módulo, ver documentación del módulo.
 
 > **Tip**
 >
-> La commande **Actualiser les paramètres** force le module à actualiser
-> les paramètres sauvegardés dans le module.
+> El orden **Reanudar desde ...** le permite reanudar el configuración
+> desde otro módulo idéntico, en el módulo actual.
 
-Si aucun fichier de configuration est définie pour le module, un
-assistant manuel vous permet d’appliquer des paramètres au module.
-![node17](../images/node17.png) Veillez vous référer à la documentation
-du fabricant pour connaitre la définition de l’index, valeur et taille.
+![node06](../ /images/ /node06.png)
+
+> **Tip**
+>
+> El orden **Aplicar en ...** le permite aplicar el
+> configuración actual del módulo en uno o más módulos
+> idéntico.
+
+![node18](../ /images/ /node18.png)
+
+> **Tip**
+>
+> El orden **Actualizar configuraciones** obligar al módulo a actualizar
+> los parámetros guardados en el módulo.
+
+Si no se define un archivo de configuración para el módulo, un
+el asistente manual le permite aplicar parámetros al módulo.
+![node17](../ /images/ /node17.png) Veillez vous référer à el documentation
+del fabricante para conocer el definición del índice, valor y tamaño.
 
 Associations
 ------------
 
-C’est ici que se retrouve la gestion des groupes d’association de votre
+Aquí es donde encuentra el gestión de los grupos de asociación de su
 module.
 
-![node07](../images/node07.png)
+![node07](../ /images/ /node07.png)
 
-Les modules Z-Wave peuvent contrôler d’autres modules Z-Wave, sans
-passer par le contrôleur ni Jeedom. La relation entre un module de
-contrôle et un autre module est appelée association.
+Los módulos Onda Z pueden controlar otros módulos Z-Wave, sin
+no pasar por el controlador Jeedom. El relación entre un módulo de
+control y otro módulo se llama asociación.
 
-Afin de contrôler un autre module, le module de commande a besoin de
-maintenir une liste des appareils qui recevront le contrôle des
-commandes. Ces listes sont appelées groupes d’association et elles sont
-toujours liées à certains événements (par exemple le bouton pressé, les
-déclencheurs de capteurs, …​ ).
+Para controlar otro módulo, el módulo de control necesita
+mantener una lista de dispositivos que recibirán el control de
+ordenes. Estas listas se denominan grupos de asociación y son
+siempre vinculado a ciertos eventos (por ejemplo, el botón presionado, el
+activadores del sensor, etc.).
 
-Dans le cas où un événement se produit, tous les périphériques
-enregistrés dans le groupe d’association concerné recevront une commande
+En caso de que ocurra un evento, todos los dispositivos
+registrado en el grupo de asociación correspondiente recibirá un pedido
 Basic.
 
 > **Tip**
 >
-> Voir la documentation du module, pour comprendre les différents
-> groupes d’associations possibles et leur comportement.
+> Consulte el documentación del módulo para comprender las diferentes
+> posibles grupos de asociación y su comportamiento.
 
 > **Tip**
 >
-> La majorité des modules ont un groupe d’association qui est réservé
-> pour le contrôleur principal, il est utilisé pour remonter les
-> informations au contrôleur. Il se nomme en général : **Report** ou
+> El mayoría de los módulos tienen un grupo de asociación reservado
+> para el controlador principal, se utiliza para volver a montar el
+> información al controlador. Generalmente se llama : **Report** ou
 > **LifeLine**.
 
 > **Tip**
 >
-> Il est possible que votre module ne possède aucun groupe.
+> Su módulo puede no tener ningún grupo.
 
 > **Tip**
 >
-> La modification des groupes d’associations d’un module sur pile sera
-> appliquée au prochain cycle de réveil. Il est toutefois possible de
-> réveiller à la main un module, voir la documentation du module.
+> El modificación de los grupos de asociación de un módulo en el piel será
+> aplicado al siguiente ciclo de despertador. Sin embargo, es posible
+> activar manualmente un módulo, ver documentación del módulo.
 
-Pour connaitre avec quels autres modules le module en cours est associé,
-il suffit de cliquer sur le menu **Associé à quels modules**
+Para saber con qué otros módulos está asociado el módulo actual,
+solo haz clic en el menú **Asociado con qué módulos**
 
-![node08](../images/node08.png)
+![node08](../ /images/ /node08.png)
 
-L’ensemble des modules utilisant le module en cours ainsi que le nom des
-groupes d’associations seront affichés.
+Todos los módulos que utilizan el módulo actual, así como los nombres de los
+se mostrarán grupos de asociación.
 
-**Associations multi-instances**
+**Asociaciones de instancias múltiples**
 
-certain module supporte une commande classe multi-instance associations.
-Lorsqu’un module supporte cette CC, il est possible de spécifier avec
-quelle instance on souhaite créer l’association
+algunos módulos admiten un comando de clase de asociaciones de varias instancias.
+Cuando un módulo admite este CC, es posible especificar con
+en qué cuerpo queremos crear el asociación
 
-![node09](../images/node09.png)
+![node09](../ /images/ /node09.png)
 
 > **Important**
 >
-> Certains modules doivent être associés à l’instance 0 du contrôleur
-> principale afin de bien fonctionner. Pour cette raison, le contrôleur
-> est présent avec et sans l’instance 0.
+> Ciertos módulos deben estar asociados con el instancia 0 del controlador
+> principal para funcionar bien. Por esta razón, el controlador
+> está presente con y sin instancia 0.
 
-Systèmes
+Sistemas
 --------
 
-Onglet regroupant les paramètres systèmes du module.
+Pestaña que agrupa los parámetros del sistema del módulo.
 
-![node10](../images/node10.png)
-
-> **Tip**
->
-> Les modules sur piles se réveillent à des cycles réguliers, appelés
-> intervalles de réveil (Wakeup Interval). L’intervalle de réveil est un
-> compromis entre le temps maximal de vie de la batterie et les réponses
-> souhaitées du dispositif. Pour maximiser la durée de vie de vos
-> modules, adapter la valeur Wakeup Interval par exemple à 14400
-> secondes (4h), voir encore plus élevé selon les modules et leur usage.
-> ![node11](../images/node11.png)
+![node10](../ /images/ /node10.png)
 
 > **Tip**
 >
-> Les modules **Interrupteur**et**Variateur** peuvent implémenter une
-> Classe de commande spéciale appelée **SwitchAll** 0x27. Vous pouvez en
-> modifier ici le comportement. Selon le module, plusieurs options sont
-> à disposition. La commande **SwitchAll On/OFF** peut être lancée via
-> votre module contrôleur principal.
+> Los módulos de batería se activan a ciclos regulares, llamados
+> Intervalo de activación. El intervalo de activación es un
+> compensación entre el duración máxima de el batería y las respuestas
+> deseado desde el dispositivo. Para maximizar el vida de tu
+> módulos, adapte el valor del intervalo de activación, por ejemplo, a 14400
+> segundos (4h), ver aún más alto dependiendo de los módulos y su uso.
+> ![nodo11](../ /images/ /node11.png)
+
+> **Tip**
+>
+> Los módulos **Interrupteur** y **Variateur** puede implementar un
+> Clase de orden especial llamada **SwitchAll** 0x27. Usted puede
+> cambiar el comportamiento aquí. Dependiendo del módulo, hay varias opciones
+> disponible. El orden **Encender / / apagar todo** se puede iniciar a través de
+> su módulo controlador principal.
 
 Actions
 -------
 
-Permet d’effectuer certaines actions sur le module.
+El permite realizar ciertas acciones en el módulo.
 
-![node12](../images/node12.png)
+![node12](../ /images/ /node12.png)
 
-Certaines actions seront actives selon le type de module et ses
-possibilités ou encore selon l’état actuel du module comme par exemple
-s’il est présumé mort par le contrôleur.
+Ciertas acciones estarán activas dependiendo del tipo de módulo y su
+posibilidadesde o de acuerdo con el estado actual del módulo, como por ejemplo
+Si se supone muerto por el controlador.
 
 > **Important**
 >
-> Il ne faut pas utiliser les actions sur un module si on ne sait pas ce
-> que l’on fait. Certaines actions sont irréversibles. Les actions
-> peuvent aider à la résolution de problèmes avec un ou des modules
-> Z-Wave.
+> No use acciones en un módulo Si no sabe qué
+> que hacemos. Algunas acciones son irreversibles.. Las acciones
+> puede ayudar a resolver problemas con uno o más módulos
+> Onda Z.
 
 > **Tip**
 >
-> La **Régénération de la détection du noeud** permet de détecter le
-> module pour reprendre les derniers jeux de paramètres. Cette action
-> est requise lorsqu’on vous informe qu’une mise a jour de paramètres et
-> ou de comportement du module est requit pour le bon fonctionnement. La
-> Régénération de la détection du noeud implique un redémarrage du
-> réseau, l’assistant l’effectue automatiquement.
+> El **Regeneración de detección de nodos** puede detectar el
+> módulo para recuperar el último conjunto de parámetros. Esta acción
+> se requiere cuando se le informa que una actualización de parámetros y
+> o se requiere un comportamiento del módulo para una operación adecuada. El
+> El regeneración de el detección de nodos implica un reinicio de la
+> red, el asistente lo realiza automáticamente.
 
 > **Tip**
 >
-> Si vous avez plusieurs modules identiques dont il est requis
-> d’exécuter la **Régénération de la détection du noeud**, il est
-> possible de la lancer une fois pour tous les modules identiques.
+> Si tiene varios módulos idénticos de los cuales es necesario
+> para ejecutar el **Regeneración de detección de nodos**, El es
+> posible lanzarlo una vez para todos los módulos idénticos.
 
-![node13](../images/node13.png)
+![node13](../ /images/ /node13.png)
 
 > **Tip**
 >
-> Si un module sur pile n’est plus joignable et que vous souhaitez
-> l’exclure, que l’exclusion ne s’effectue pas, vous pouvez lancer
-> **Supprimer le noeud fantôme** Un assistant effectuera différentes
-> actions afin de supprimer le module dit fantôme. Cette action implique
-> de redémarrer le réseau et peut prendre plusieurs minutes avant d’être
-> complétée.
+> Si ya no se puede acceder a un módulo de batería y desea
+> excluirlo, que el exclusión no tiene lugar, puede iniciar
+> **Eliminar nodo fantasma** Una asistente realizará diferentes
+> acciones para eliminar el llamado módulo fantasma. Esta acción implica
+> reinicie el red y puede demorar varios minutos
+> completado.
 
-![node14](../images/node14.png)
+![node14](../ /images/ /node14.png)
 
-Une fois lancé, il est recommandé de fermer l’écran de configuration du
-module et de surveiller la suppression du module via l’écran de santé
+Una vez iniciado, se recomienda cerrar el pantalel de configuración del
+módulo y supervisar el eliminación del módulo a través de el pantalel de estado
 Z-Wave.
 
 > **Important**
 >
-> Seul les modules sur pile peuvent être supprimés via cette assistant.
+> Solo los módulos con batería se pueden eliminar a través de este asistente.
 
 Statistiques
 ------------
 
-Cet onglet donne quelques statistiques de communication avec le nœud.
+Esta pestaña proporciona algunas estadísticas de comunicación con el nodo.
 
-![node15](../images/node15.png)
+![node15](../ /images/ /node15.png)
 
-Peut être intéressant en cas de modules qui sont présumés morts par le
-contrôleur "Dead".
+Puede ser de interés en el caso de módulos que se presumen muertos por el
+controlador "muerto".
 
-inclusion / exclusion
+inclusión / / exclusión
 =====================
 
-A sa sortie d’usine, un module ne fait partie d’aucun réseau Z-Wave.
+Cuando sale de fábrica, un módulo no pertenece a ninguna red Onda Z.
 
-Mode inclusion
+Modo de inclusión
 --------------
 
-Le module doit se joindre à un réseau Z-Wave existant pour communiquer
-avec les autres modules de ce réseau. Ce processus est appelé
-**Inclusion**. Les périphériques peuvent également sortir d’un réseau.
-Ce processus est appelé **Exclusion**. Les deux processus sont initiés
-par le contrôleur principal du réseau Z-Wave.
+El módulo debe unirse a una red Onda Z existente para comunicarse
+con los otros módulos de esta red. Este proceso se llama
+**Inclusion**. Los dispositivos también pueden salir de una red.
+Este proceso se llama **Exclusion**. Ambos procesos se inician
+por el controlador principal de el red Onda Z.
 
-![addremove01](../images/addremove01.png)
+![addremove01](../ /images/ /addremove01.png)
 
-Ce bouton vous permet de passer en mode inclusion pour ajouter un module
-à votre réseau Z-Wave.
+Este botón le permite cambiar al modo de inclusión para agregar un módulo
+a su red Onda Z.
 
-Vous pouvez choisir le mode d’inclusion après avoir cliqué le bouton
+Puede elegir el modo de inclusión después de hacer clic en el botón
 **Inclusion**.
 
-![addremove02](../images/addremove02.png)
+![addremove02](../ /images/ /addremove02.png)
 
-Depuis l’apparition du Z-Wave+, il est possible de sécuriser les
-échanges entre le contrôleur et les noeuds. Il est donc recommandé de
-faire les inclusions en mode **Sécurisé**.
+Desde el aparición del Onda Z +, es posible asegurar el
+intercambios entre el controlador y los nodos. Por lo tanto, se recomienda
+hacer inclusiones en modo **Seguro**.
 
-Si toutefois, un module ne peut être inclus en mode sécurisé, veuillez
-l’inclure en mode **Non sécurisé**.
+Sin embargo, Si no se puede incluir un módulo en modo seguro, por favor
+incluirlo en modo **No es seguro**.
 
-Une fois en mode inclusion : Jeedom vous le signale.
+Una vez en modo de inclusión : Jeedom te dice.
 
-\[TIP\] Un module 'non sécurisé' peut commander des modules 'non
-sécurisés'. Un module 'non sécurisé' ne peut pas commander un module
-'sécurisé'. Un module 'sécurisé' pourra commander des modules 'non
-sécurisés' sous réserve que l’émetteur le supporte.
+\ [CONSEJO \] Una módulo 'no seguro' puede ordenar módulos 'no
+seguro '. Una módulo 'no seguro' no puede ordenar un módulo
+'seguro '. Una módulo 'seguro' puede ordenar módulos 'no
+seguro 'siempre que el transmisor lo soporte.
 
-![addremove03](../images/addremove03.png)
+![addremove03](../ /images/ /addremove03.png)
 
-Une fois l’assistant lancé, il faut en faire de même sur votre module
-(se référer à la documentation de celui-ci pour le passer en mode
+Una vez que se inicia el asistente, debe hacer lo mismo en su módulo
+(consulte su documentación para cambiarlo al modo
 inclusion).
 
 > **Tip**
 >
-> Tant que vous n’avez pas le bandeau, vous n’êtes pas en mode
-> inclusion.
+> Hasta que tenga el diadema, no está en modo
+> inclusión.
 
-Si vous re cliquez sur le bouton, vous sortez du mode inclusion.
+Si vuelve a hacer clic en el botón, sale del modo de inclusión.
 
 > **Tip**
 >
-> Il est recommandé, avant l’inclusion d’un nouveau module qui serait
-> "nouveau" sur le marché, de lancer la commande **Config modules** via
-> l’écran de configuration du plugin. Cette action va récupérer
-> l’ensemble des dernières versions des fichiers de configurations
-> openzwave ainsi que le mapping de commandes Jeedom.
+> Se recomienda, antes de el inclusión de un nuevo módulo que sería
+> "nuevo "en el mercado, para lanzar el pedido **Módulos de configuración** via
+> pantalel de configuración del complemento. Esta acción se recuperará
+> todas las últimas versiones de los archivos de configuración
+> Openzwave y el mapeo del comando Jeedom.
 
 > **Important**
 >
-> Lors d’une inclusion, il est conseillé que le module soit à proximité
-> du contrôleur principal, soit à moins d’un mètre de votre jeedom.
+> Durante una inclusión, se aconseja que el módulo esté cerca
+> desde el controlador principal, a menos de un metro de tu libertad.
 
 > **Tip**
 >
-> Certains modules requièrent obligatoirement une inclusion en mode
-> **sécurisé**, par exemple pour les serrures de porte.
+> Algunos módulos requieren una inclusión en modo
+> **Seguro**, por ejemplo para cerraduras.
 
 > **Tip**
 >
-> A noter que l’interface mobile vous donne aussi accès à l’inclusion,
-> le panel mobile doit avoir été activé.
+> Tenga en cuenta que el interfaz móvil también le da acceso a el inclusión,
+> el panel móvil debe haber sido activado.
 
 > **Tip**
 >
-> Si le module appartient déjà à un réseau, suivez le processus
-> d’exclusion avant de l’inclure dans votre réseau. Sinon l’inclusion de
-> ce module va échouer. Il est d’ailleurs recommandé d’exécuter une
-> exclusion avant l’inclusion, même si le produit est neuf, sorti du
+> Si el módulo ya pertenece a una red, siga el proceso
+> exclusión antes de incluirlo en su red. De lo contrario, el inclusión de
+> este módulo fallará. También se recomienda realizar un
+> exclusión antes de el inclusión, incluso Si el producto es nuevo, fuera de
 > carton.
 
 > **Tip**
 >
-> Une fois le module à son emplacement définitif, il faut lancer
-> l’action soigner le réseau, afin de demander à tous les modules de
-> rafraichir l’ensemble des voisins.
+> Una vez que el módulo esté en su ubicación final, debe iniciar
+> el acción se encarga de el red, para poder consultar todos los módulos de
+> refrescar a todos los vecinos.
 
-Mode exclusion
+Modo de exclusión
 --------------
 
-![addremove04](../images/addremove04.png)
+![addremove04](../ /images/ /addremove04.png)
 
-Ce bouton vous permet de passer en mode exclusion, cela pour retirer un
-module de votre réseau Z-Wave, il faut en faire de même avec votre
-module (se référer à la documentation de celui-ci pour le passer en mode
+Este botón le permite ingresar al modo de exclusión, esto para eliminar un
+módulo de su red Z-Wave, debe hacer lo mismo con su
+módulo (consulte su documentación para cambiarlo al modo
 exclusion).
 
-![addremove05](../images/addremove05.png)
+![addremove05](../ /images/ /addremove05.png)
 
 > **Tip**
 >
-> Tant que vous n’avez pas le bandeau, vous n’êtes pas en mode
-> exclusion.
+> Hasta que tenga el diadema, no está en modo
+> Exclusión.
 
-Si vous re cliquez sur le bouton, vous sortez du mode exclusion.
-
-> **Tip**
->
-> A noter que l’interface mobile vous donne aussi accès à l’exclusion.
+Si vuelve a hacer clic en el botón, saldrá del modo de exclusión.
 
 > **Tip**
 >
-> Un module n’a pas besoin d’être exclu par le même contrôleur sur
-> lequel il a été préalablement inclus. D’où le fait qu’on recommande
-> d’exécuter une exclusion avant chaque inclusion.
+> Tenga en cuenta que el interfaz móvil también le da acceso a el exclusión.
+
+> **Tip**
+>
+> Una módulo no necesita ser excluido por el mismo controlador en
+> que fue incluido previamente. De ahí el hecho de que recomendamos
+> ejecutar una exclusión antes de cada inclusión.
 
 Synchroniser
 ------------
 
-![addremove06](../images/addremove06.png)
+![addremove06](../ /images/ /addremove06.png)
 
-Bouton permettant de synchroniser les modules du réseau Z-Wave avec les
-équipements Jeedom. Les modules sont associés au contrôleur principal,
-les équipements dans Jeedom sont créés automatiquement lors de leur
-inclusion. Ils sont aussi supprimés automatiquement lors de l’exclusion,
-si l’option **Supprimer automatiquement les périphériques exclus** est
-activée.
+Botón para sincronizar los módulos de el red Onda Z con el
+Equipo de Jeedom. Los módulos están asociados con el controlador principal.,
+el equipo en Jeedom se crea automáticamente cuando es
+inclusión. También se eliminan automáticamente cuando se excluyen.,
+Si el opción **Eliminar automáticamente los dispositivos excluidos** est
+activado.
 
-Si vous avez inclus des modules sans Jeedom (requiert un dongle avec
-pile comme le Aeon-labs Z-Stick GEN5), une synchronisation sera
-nécessaire suite au branchement de la clé, une fois le démon démarré et
+Si ha incluido módulos sin Jeedom (requiere un dongle con
+batería como el Aeon-labs Z-Stick GEN5), el sincronización será
+necesario después de enchufar el llave, una vez que el demonio ha comenzado y
 fonctionnel.
 
 > **Tip**
 >
-> Si vous n’avez pas l’image ou que Jeedom n’a pas reconnu votre module,
-> ce bouton peut permettre de corriger (sous réserve que l’interview du
-> module soit complète).
+> Si no tiene el imagen o Jeedom no ha reconocido su módulo,
+> este botón se puede usar para corregir (siempre que el entrevista con el
+> módulo está completo).
 
 > **Tip**
 >
-> Si sur votre table de routage et/ou sur l’écran de santé Z-Wave, vous
-> avez un ou des modules nommés avec leur **nom générique**, la
-> synchronisation permettra de remédier à cette situation.
+> Si en su tabel de enrutamiento y / / o en el pantalel de estado de Z-Wave, usted
+> tener uno o más módulos nombrados con sus **nombre genérico**, la
+> el sincronización remediará esta situación.
 
-Le bouton Synchroniser n’est visible qu’en mode expert :
-![addremove07](../images/addremove07.png)
+El botón Sincronizar solo es visible en modo experto :
+![addremove07](../ /images/ /addremove07.png)
 
-Réseaux Z-Wave
+Redesde Z-Wave
 ==============
 
-![network01](../images/network01.png)
+![network01](../ /images/ /network01.png)
 
-Vous retrouvez ici des informations générales sur votre réseau Z-Wave.
+Aquí encontrará información general sobre su red Onda Z.
 
-![network02](../images/network02.png)
+![network02](../ /images/ /network02.png)
 
-Résumé
+Resumen
 ------
 
-Le premier onglet vous donne le résumé de base de votre réseau Z-Wave,
-vous retrouvez notamment l’état du réseau Z-Wave ainsi que le nombre
-d’éléments dans la file d’attente.
+El primera pestaña le brinda el resumen básico de su red Z-Wave,
+En particular, encontrará el estado de el red Onda Z y el número
+artículos en el cola.
 
 **Informations**
 
--   Donne des informations générales sur le réseau, la date de
-    démarrage, le temps requis pour l’obtention du réseau dans un état
-    dit fonctionnel.
+-   Proporciona información general sobre el red, el fecha de
+    inicio, el tiempo requerido para obtener el red en un estado
+    dice funcional.
 
--   Le nombre de nœuds total du réseau ainsi que le nombre qui dorment
-    dans le moment.
+-   El número total de nodos en el red, así como el número que duerme
+    en el momento.
 
--   L’intervalle des demandes est associé au rafraichissement manuel. Il
-    est prédéfini dans le moteur Z-Wave à 5 minutes.
+-   El intervalo de solicitud está asociado con el actualización manual. Él
+    está preestablecido en el motor Onda Z a los 5 minutos.
 
--   Les voisins du contrôleur.
+-   Los vecinos del controlador..
 
 **Etat**
 
-![network03](../images/network03.png)
+![network03](../ /images/ /network03.png)
 
-Un ensemble d’informations sur l’état actuel du réseau, à savoir :
+Una conjunto de información sobre el estado actual de el red, a saber :
 
--   Etat actuel, peut-être **Driver Initialised**, **Topology loaded**
-    ou **Ready**.
+-   Estado actual, tal vez **Conductor inicializado**, **Topología cargada**
+    o **Ready**.
 
--   Queue sortante, indique le nombre de messages en queue dans le
-    contrôleur en attente d’être envoyé. Cette valeur est généralement
-    élevée durant le démarrage du réseau lorsque l’état est encore en
-    **Driver Initialised**.
+-   Coel saliente, indica el número de mensajes en coel en el
+    controlador esperando ser enviado. Este valor es generalmente
+    alto durante el inicio de el red cuando el estado todavía está en
+    **Conductor inicializado**.
 
-Une fois que le réseau a au minimum atteint **Topology loaded**, des
-mécanismes internes au serveur Z-Wave vont forcer des mises à jour de
-valeurs, il est alors tout-à-fait normal de voir monter le nombre de
-messages. Celui-ci va rapidement retourner à 0.
-
-> **Tip**
->
-> Le réseau est dit fonctionnel au moment où il atteint le statut
-> **Topology Loaded**, c’est-à-dire que l’ensemble des nœuds secteurs
-> ont complété leurs interviews. Selon le nombre de modules, la
-> répartition pile/secteur, le choix du dongle USB et le PC sur lequel
-> tourne le plugin Z-Wave, le réseau va atteindre cette état entre une
-> et cinq minutes.
-
-Un réseau **Ready**, signifie que tous les nœuds secteur et sur pile ont
-complété leur interview.
+Una vez que el red ha alcanzado al menos **Topología cargada**, des
+los mecanismos internos del servidor Onda Z forzarán actualizaciones a
+valores, entonces es completamente normal ver el número de
+mensajes Esto volverá rápidamente a 0.
 
 > **Tip**
 >
-> Selon les modules dont vous disposez, il est possible que le réseau
-> n’atteigne jamais de lui-même le statut **Ready**. Les télécommandes,
-> par exemple, ne se réveillent pas d’elles-mêmes et ne compléteront
-> jamais leur interview. Dans ce genre de cas, le réseau est tout-à-fait
-> opérationnel et même si les télécommandes n’ont pas complété leur
-> interview, elles assurent leurs fonctionnalités au sein du réseau.
+> Se dice que el red es funcional cuando alcanza el estado
+> **Topología cargada**, es decir que el conjunto de nodos sectoriales
+> han completado sus entrevistas. Dependiendo del número de módulos, el
+> distribución de batería / / sector, el elección del dongle USB y el PC en el que
+> activa el complemento Z-Wave, el red alcanzará este estado entre un
+> y cinco minutos.
 
-**Capacités**
+Una red **Ready**, significa que todos los nodos de sector y piel tienen
+completaron su entrevista.
 
-Permet de savoir si le contrôleur est un contrôleur principal ou
+> **Tip**
+>
+> Dependiendo de los módulos que tenga, es posible que el red
+> nunca alcanza el estado por sí mismo **Ready**. Los controles remotos,
+> por ejemplo, no se despierte solo y no complementará
+> nunca su entrevista. En este tipo de casos, el red está completamente
+> operacional e incluso Si los controles remotos no han completado su
+> entrevista, aseguran su funcionalidad dentro de el red.
+
+**Capacidades**
+
+Se utiliza para averiguar Si el controlador es un controlador principal o
 secondaire.
 
-**Système**
+**Sistema**
 
-Affiche diverses informations système.
+Muestra diversa información del sistema.
 
--   Information sur le port USB utilisé.
+-   Información sobre el puerto USB utilizado.
 
--   Version de la librairie OpenZwave
+-   Versión de el biblioteca OpenZwave
 
--   Version de la librairie Python-OpenZwave
+-   Versión de el biblioteca Python-OpenZwave
 
 Actions
 -------
 
-![network05](../images/network05.png)
+![network05](../ /images/ /network05.png)
 
-Vous retrouvez ici toutes les actions possibles sur l’ensemble de votre
-réseau Z-Wave. Chaque action est accompagnée d’une description sommaire.
-
-> **Important**
->
-> Certaines actions sont vraiment risquées voire irréversibles, l’équipe
-> Jeedom ne pourra être tenue responsable en cas de mauvaise
-> manipulation.
+Aquí encontrará todas las acciones posibles para todos sus
+Red Onda Z. Cada acción va acompañada de una breve descripción..
 
 > **Important**
 >
-> Certains modules requièrent une inclusion en mode sécurisé, par
-> exemple pour les serrures de porte. L’inclusion sécurisée doit être
-> lancée via l’action de cet écran.
+> Algunas acciones son realmente arriesgadas o incluso irreversibles, el equipo
+> Jeedom no se hace responsable en caso de mal
+> manipulación.
+
+> **Important**
+>
+> Algunos módulos requieren inclusión en modo seguro, por
+> ejemplo para cerraduras de puertas. El inclusión segura debe ser
+> lanzado a través de el acción de esta pantalla.
 
 > **Tip**
 >
-> Si une action ne peut être lancée, elle sera désactivée jusqu’au
-> moment où elle pourra être à nouveau exécutée.
+> Si no se puede iniciar una acción, se desactivará hasta
+> cuando se puede ejecutar de nuevo.
 
 Statistiques
 ------------
 
-![network06](../images/network06.png)
+![network06](../ /images/ /network06.png)
 
-Vous retrouvez ici les statistiques générales sur l’ensemble de votre
-réseau Z-Wave.
+Aquí encontrará estadísticas generales para todos sus
+Red Onda Z.
 
-Graphique du réseau
+Gráfico de red
 -------------------
 
-![network07](../images/network07.png)
+![network07](../ /images/ /network07.png)
 
-Cet onglet vous donnera une représentation graphique des différents
-liens entre les nœuds.
+Esta pestaña le dará una representación gráfica de los diferentes
+enlaces entre nodos.
 
-Explication la légende des couleurs :
+Explicación de el leyenda del color. :
 
--   **Noir** : Le contrôleur principal, en général représenté
-    comme Jeedom.
+-   **Noir** : El controlador principal, generalmente representado
+    como Jeedom.
 
--   **Vert** : Communication directe avec le contrôleur, idéal.
+-   **Vert** : Comunicación directa con el controlador, ideal.
 
--   **Blue** : Pour les contrôleurs, comme les télécommandes, ils sont
-    associés au contrôleur primaire, mais n’ont pas de voisin.
+-   **Blue** : Para los controladores, como los controles remotos, son
+    asociado con el controlador primario, pero no tiene vecino.
 
--   **Jaune** : Toute les routes ont plus d’un saut avant d’arriver
-    au contrôleur.
+-   **Jaune** : Todos los caminos tienen más de un salto antes de llegar.
+    al controlador.
 
--   **Gris** : L’interview n’est pas encore complété, les liens seront
-    réellement connus une fois l’interview complété.
+-   **Gris** : El entrevista aún no se ha completado, los enlaces serán
+    realmente conocido una vez que se completa el entrevista.
 
--   **Rouge** : présumé mort, ou sans voisin, ne participe pas/plus au
-    maillage du réseau.
+-   **Rouge** : presuntamente muerto, o sin vecino, no participa / / ya no participa en
+    malel de red.
 
 > **Tip**
 >
-> Seul les équipements actifs seront affichés dans le graphique réseau.
+> Solo el equipo activo se mostrará en el gráfico de red.
 
-Le réseau Z-Wave est constitué de trois différents types de nœuds avec
-trois fonctions principales.
+El red Onda Z consta de tres tipos diferentes de nodos con
+tres funciones principales.
 
-La principale différence entre les trois types de nœuds est leur
-connaissance de la table de routage du réseau et par la suite leur
-capacité à envoyer des messages au réseau:
+El principal diferencia entre los tres tipos de nodos es su
+conocimiento de el tabel de enrutamiento de el red y de allí en adelante
+capacidad de enviar mensajes a el red:
 
-Table de routage
+Tabel de enrutamiento
 ----------------
 
-Chaque nœud est en mesure de déterminer quels autres nœuds sont en
-communication directe. Ces nœuds sont appelés voisins. Au cours de
-l’inclusion et/ou plus tard sur demande, le nœud est en mesure
-d’informer le contrôleur de la liste de voisins. Grâce à ces
-informations, le contrôleur est capable de construire une table qui a
-toutes les informations sur les routes possibles de communication dans
-un réseau.
+Cada nodo puede determinar qué otros nodos están en
+Comunicación directa. Estos nodos se llaman vecinos. A lo largo de
+inclusión y / / o posterior solicitud, el nodo puede
+informar al controlador de el lista de vecinos. Gracias a estos
+información, el controlador puede construir una tabel que tiene
+toda el información sobre posibles vías de comunicación en
+una red.
 
-![network08](../images/network08.png)
+![network08](../ /images/ /network08.png)
 
-Les lignes du tableau contiennent les nœuds de source et les colonnes
-contiennent les nœuds de destination. Se référer à la légende pour
-comprendre les couleurs de cellule qui indiquent les liens entre deux
-nœuds.
+Las filas de el tabel contienen los nodos de origen y las columnas.
+contener nodos de destino. Consulte el leyenda para
+entender los colores de las celdas que indican los enlaces entre dos
+nudos.
 
-Explication la légende des couleurs :
+Explicación de el leyenda del color. :
 
--   **Vert** : Communication directe avec le contrôleur, idéal.
+-   **Vert** : Comunicación directa con el controlador, ideal.
 
--   **Blue** : Au moins 2 routes avec un saut.
+-   **Blue** : Al menos 2 rutas con un salto.
 
--   **Jaune** : Moins de 2 routes avec un saut.
+-   **Jaune** : Menos de 2 rutas con un salto.
 
--   **Gris** : L’interview n’est pas encore complété, sera réellement
-    mis à jour une fois l’interview complété.
+-   **Gris** : El entrevista aún no se ha completado, en realidad será
+    actualizado después de completar el entrevista.
 
--   **Orange** : Toutes les routes ont plus d’un saut. Peut engendrer
-    des latences.
+-   **Orange** : Todos los caminos tienen más de un salto.. Puede causar
+    latencias.
 
 > **Tip**
 >
-> Seul les équipements actifs seront affichés dans le graphique réseau.
+> Solo el equipo activo se mostrará en el gráfico de red.
 
 > **Important**
 >
-> Un module présumé mort, ne participe pas/plus au maillage du réseau.
-> Il sera marqué ici d’un point d’exclamation rouge dans un triangle.
+> Una módulo presunto muerto, no participa / / ya no participa en el red de el red.
+> Se marcará aquí con un signo de exclamación rojo en un triángulo..
 
 > **Tip**
 >
-> Vous pouvez lancer manuellement la mise à jour des voisins, par module
-> ou pour l’ensemble du réseau à l’aide des boutons disponibles dans la
-> table de routage.
+> Puede iniciar manualmente el actualización de vecinos, por módulo
+> o para toda el red utilizando los botones disponibles en el
+> Tabel de enrutamiento.
 
 Santé
 =====
 
-![health01](../images/health01.png)
+![health01](../ /images/ /health01.png)
 
-Cette fenêtre résume l’état de votre réseau Z-Wave :
+Esta ventana resume el estado de su red Onda Z :
 
-![health02](../images/health02.png)
+![health02](../ /images/ /health02.png)
 
-Vous avez ici :
+Tienes aquien :
 
--   **Module** : le nom de votre module, un clic dessus vous permet d’y
-    accéder directement.
+-   **Module** : el nombre de su módulo, un clic en él le permite
+    acceder directamente.
 
--   **ID** : ID de votre module sur le réseau Z-Wave.
+-   **ID** : Identificación de su módulo en el red Onda Z.
 
--   **Notification** : dernier type d’échange entre le module et le
-    contrôleur
+-   **Notification** : último tipo de intercambio entre el módulo y el
+    Controlador
 
--   **Groupe** : indique si la configuration des groupes est ok
-    (contrôleur au moins dans un groupe). Si vous n’avez rien c’est que
-    le module ne supporte pas la notion de groupe, c’est normal
+-   **Groupe** : indica Si el configuración del grupo está bien
+    (controlador al menos en un grupo). Si no tienes nada es porque
+    el módulo no admite el noción de grupo, esto es normal
 
--   **Constructeur** : indique si la récupération des informations
-    d’identification du module est ok
+-   **Constructeur** : indica Si se está recuperando información
+    el identificación del módulo está bien
 
--   **Voisin** : indique si la liste des voisins a bien été récupérée
+-   **Voisin** : indica Si se ha recuperado el lista de vecinos
 
--   **Statut** : Indique le statut de l’interview (query stage) du
+-   **Statut** : Indica el estado de el entrevista (etapa de consulta) del
     module
 
--   **Batterie** : niveau de batterie du module (un fiche secteur
-    indique que le module est alimenté au secteur).
+-   **Batterie** : nivel de batería del módulo (un enchufe de red
+    indica que el módulo se alimenta de el red eléctrica).
 
--   **Wakeup time** : pour les modules sur batterie, il donne la
-    fréquence en secondes des instants où le module se
-    réveille automatiquement.
+-   **Hora de despertarse** : para módulos de batería, da la
+    frecuencia en segundos de los instantes cuando el módulo
+    despertarse automáticamente.
 
--   **Paquet total** : affiche le nombre total de paquets reçus ou
-    envoyés avec succès au module.
+-   **Paquete total** : muestra el número total de paquetes recibidos o
+    enviado con éxito al módulo.
 
--   **%OK** : affiche le pourcentage de paquets envoyés/reçus
-    avec succès.
+-   **%OK** : muestra el porcentaje de paquetes enviados / / recibidos
+    con éxito.
 
--   **Temporisation** : affiche le délai moyen d’envoi de paquet en ms.
+-   **Temporisation** : muestra el retraso promedio de envío de paquetes en ms.
 
--   **Dernière notification** : Date de dernière notification reçue du
-    module ainsi que l’heure du prochain réveil prévue, pour les modules
-    qui dorment.
+-   **Última notificación** : Fecha de el última notificación recibida de
+    módulo y el próxima hora de activación programada para módulos
+    quien duerme.
 
-    -   Elle permet en plus d’informer si le noeud ne s’est pas encore
-        réveillé une fois depuis le lancement du démon.
+    -   También permite informar Si el nodo aún no está
+        desperté una vez desde el lanzamiento del demonio.
 
-    -   Et indique si un noeud ne s’est pas réveillé comme prévu.
+    -   E indica Si un nodo no se ha despertado como se esperaba.
 
--   **Ping** : Permet d’envoyer une série de messages au module pour
-    tester son bon fonctionnement.
+-   **Ping** : Enviar una serie de mensajes al módulo a
+    probar su correcto funcionamiento.
 
 > **Important**
 >
-> Les équipements désactivés seront affichés mais aucune information de
-> diagnostic ne sera présente.
+> Se mostrará el equipo deshabilitado pero no habrá información de
+> el diagnóstico solo estará presente.
 
-Le nom du module peut-être suivit par une ou deux images:
+El nombre del módulo puede ir seguido de una o dos imágenes.:
 
-![health04](../images/health04.png) Modules supportant la
-COMMAND\_CLASS\_ZWAVE\_PLUS\_INFO
+![health04](../ /images/ /health04.png) Modules supportant la
+MANDO\_CLASE\_ZWAVE\_PLUS\_INFO
 
-![health05](../images/health05.png) Modules supportant la
-COMMAND\_CLASS\_SECURITY et securisé.
+![health05](../ /images/ /health05.png) Modules supportant la
+MANDO\_CLASE\_SEGURIDAD y seguridad.
 
-![health06](../images/health06.png) Modules supportant la
-COMMAND\_CLASS\_SECURITY et non sécurisé.
+![health06](../ /images/ /health06.png) Modules supportant la
+MANDO\_CLASE\_SEGURIDAD y no seguro.
 
-![health07](../images/health07.png) Module FLiRS, routeurs esclaves
-(modules à piles) à écoute fréquente.
-
-> **Tip**
->
-> La commande Ping peut être utilisée si le module est présumé mort
-> "DEATH" afin de confirmer si c’est réellement le cas.
+![health07](../ /images/ /health07.png) Modulo FLiRS, routeurs esclaves
+(módulos de batería) con escucha frecuente.
 
 > **Tip**
 >
-> Les modules qui dorment répondront seulement au Ping lors de leur
-> prochain réveil.
+> El comando De ping se puede usar Si se presume que el módulo está muerto
+> "MUERTE "para confirmar Si este es realmente el caso.
 
 > **Tip**
 >
-> La notification Timeout ne signifie pas nécessairement un problème
-> avec le module. Lancer un Ping et dans la majorité des cas le module
-> répondra par une Notification **NoOperation** qui confirme un retour
-> fructueux du Ping.
+> Los módulos dormidos solo responderán a De ping cuando
+> siguiente despertar.
 
 > **Tip**
 >
-> La Temporisation et le %OK sur des nœuds sur piles avant la complétion
-> de leur interview n’est pas significative. En effet le nœud ne va pas
-> répondre aux interrogations du contrôleur du fait qu’il est en sommeil
-> profond.
+> El notificación de tiempo de espera no necesariamente significa un problema
+> con el módulo. De ping y en el mayoría de los casos el módulo
+> responderá con una notificación **NoOperation** que confirma un regreso
+> De ping fructífero.
 
 > **Tip**
 >
-> Le serveur Z-Wave s’occupe automatiquement de lancer des tests sur les
-> modules en Timeout au bout de 15 minutes
+> Tiempo de espera y% Bueno en los nodos con baterías antes de el finalización
+> de su entrevista no es significativa. De hecho, el nudo no se va
+> responder las preguntas del controlador sobre el hecho de que está dormido
+> profundo.
 
 > **Tip**
 >
-> Le serveur Z-Wave essaie automatiquement de remonter les modules
-> présumés morts.
+> El servidor Onda Z se encarga automáticamente de iniciar pruebas en el
+> Módulos de tiempo de espera después de 15 minutos
 
 > **Tip**
 >
-> Une alerte sera envoyée à Jeedom si le module est présumé mort. Vous
-> pouvez activer une notification pour en être informé le plus
-> rapidement possible. Voir la configuration des Messages dans l’écran
-> de Configuration de Jeedom.
-
-![health03](../images/health03.png)
+> El servidor Onda Z intenta automáticamente remontar módulos
+> presunto muerto.
 
 > **Tip**
 >
-> Si sur votre table de routage et/ou sur l’écran de santé Z-Wave vous
-> avez un ou des modules nommés avec leurs **nom générique**, la
-> synchronisation permettra de remédier à cette situation.
+> Se enviará una alerta a Jeedom Si se presume que el módulo está muerto. Vosotras
+> puede activar una notificación para estar más informado
+> posible rápidamente. Vea el configuración de Mensajes en el pantalla
+> Configuración de Jeedom.
+
+![health03](../ /images/ /health03.png)
 
 > **Tip**
 >
-> Si sur votre table de routage et/ou sur l’écran de santé Z-Wave vous
-> avez un ou des modules nommés **Unknown**, cela signifie que
-> l’interview du module n’a pas été complétée avec succès. Vous avez
-> probablement un **NOK** dans la colonne constructeur. Ouvrir le détail
-> du/des modules, pour essayer les suggestions de solution proposées.
-> (voir section Dépannage et diagnostique, plus bas)
+> Si en su tabel de enrutamiento y / / o en el pantalel de estado de Onda Z usted
+> tener uno o más módulos nombrados con sus **nombre genérico**, la
+> el sincronización remediará esta situación.
 
-Statut de l’interview
+> **Tip**
+>
+> Si en su tabel de enrutamiento y / / o en el pantalel de estado de Onda Z usted
+> tener uno o más módulos llamados **Unknown**, eso significa que
+> el entrevista del módulo no se completó con éxito. Teneis
+> probablemente un **NOK** en el columna del constructor. Abre el detalle
+> del módulo (s), para probar las soluciones sugeridas.
+> (Consulte el sección Solución de problemas y diagnóstico, a continuación)
+
+Estado de el entrevista
 ---------------------
 
-Etape de l’interview d’un module après le démarrage du démon.
+Paso de entrevistar un módulo después de iniciar el demonio.
 
--   **None** Initialisation du processus de recherche de noeud.
+-   **None** Inicialización del proceso de búsqueda de nodos..
 
--   **ProtocolInfo** Récupérer des informations de protocole, si ce
-    noeud est en écoute (listener), sa vitesse maximale et ses classes
-    de périphériques.
+-   **ProtocolInfo** Recupere el información del protocolo, Si esto
+    nodo está escuchando (oyente), su velocidad máxima y sus clases
+    de periféricos.
 
--   **Probe** Ping le module pour voir s’il est réveillé.
+-   **Probe** Haga ping al módulo para ver Si está despierto.
 
--   **WakeUp** Démarrer le processus de réveil, s’il s’agit d’un
-    noeud endormi.
+-   **WakeUp** Inicie el proceso de activación, Si es un
+    nudo durmiente.
 
--   **ManufacturerSpecific1** Récupérer le nom du fabricant et de
-    produits ids si ProtocolInfo le permet.
+-   **ManufacturerSpecific1** Recupere el nombre del fabricante y
+    productos ids Si ProtocolInformación lo permite.
 
--   **NodeInfo** Récupérer les infos sur la prise en charge des classes
-    de commandes supportées.
+-   **NodeInfo** Recuperar información sobre el gestión de clases.
+    comandos soportados.
 
--   **NodePlusInfo** Récupérer les infos ZWave+ sur la prise en charge
-    des classes de commandes supportées.
+-   **NodePlusInfo** Recupere información de ZWave + sobre soporte
+    clases de comando compatibles.
 
--   **SecurityReport** Récupérer la liste des classes de commande qui
-    nécessitent de la sécurité.
+-   **SecurityReport** Recupere el lista de clases de orden que
+    requieren seguridad.
 
--   **ManufacturerSpecific2** Récupérer le nom du fabricant et les
-    identifiants de produits.
+-   **ManufacturerSpecific2** Recupere el nombre del fabricante y el
+    identificadores de producto.
 
--   **Versions** Récupérer des informations de version.
+-   **Versions** Recuperar información de el versión.
 
--   **Instances** Récupérer des informations multi-instances de classe
-    de commande.
+-   **Instances** Recuperar información de clase de varias instancias
+    de encargo.
 
--   **Static** Récupérer des informations statiques (ne change pas).
+-   **Static** Recuperar información estática (no cambia).
 
--   **CacheLoad** Ping le module lors du redémarrage avec config cache
-    de l’appareil.
+-   **CacheLoad** Haga ping al módulo durante el reinicio con el caché de configuración
+    del dispositivo.
 
--   **Associations** Récupérer des informations sur les associations.
+-   **Associations** Recuperar información sobre asociaciones.
 
--   **Neighbors** Récupérer la liste des noeuds voisins.
+-   **Neighbors** Recuperar el lista de nodos vecinos..
 
--   **Session** Récupérer des informations de session (change rarement).
+-   **Session** Recuperar información de el sesión (rara vez cambia).
 
--   **Dynamic** Récupérer des informations dynamiques
-    (change fréquemment).
+-   **Dynamic** Recuperar información dinámica
+    (cambia con frecuencia).
 
--   **Configuration** Récupérer des informations de paramètres de
-    configurations (seulement fait sur demande).
+-   **Configuration** Recuperar información de parámetros de
+    configuraciones (solo bajo pedido).
 
--   **Complete** Le processus de l’interview est terminé pour ce noeud.
+-   **Complete** El proceso de entrevista ha finalizado para este nodo..
 
 Notification
 ------------
 
-Détails des notifications envoyées par les modules
+Detalles de notificaciones enviadas por módulos
 
--   **Completed** Action terminée avec succès.
+-   **Completed** Acción completada con éxito.
 
--   **Timeout** Rapport de délai rapporté lors de l’envoi d’un message.
+-   **Timeout** Informe de retraso informado al enviar un mensaje.
 
--   **NoOperation** Rapport sur un test du noeud (Ping), que le message
-    a été envoyé avec succès.
+-   **NoOperation** Informe sobre una prueba de nodo (Ping), que el mensaje
+    ha sido enviado con éxito.
 
--   **Awake** Signaler quand un noeud vient de se réveiller
+-   **Awake** Informar cuando un nodo acaba de despertarse
 
--   **Sleep** Signaler quand un noeud s’est endormi.
+-   **Sleep** Informar cuando un nodo se ha quedado dormido.
 
--   **Dead** Signaler quand un nœud est présumé mort.
+-   **Dead** Informe cuando un nodo se presume muerto.
 
--   **Alive** Signaler quand un nœud est relancé.
+-   **Alive** Informar cuando se relanza un nodo.
 
 Backups
 =======
 
-La partie backup va vous permettre de gérer les backups de la topologie
-de votre réseau. C’est votre fichier zwcfgxxx.xml, il constitue le
-dernier état connu de votre réseau, c’est une forme de cache de votre
-réseau. A partir de cet écran vous pourrez :
+El parte de respaldo le permitirá administrar los respaldos de el topología.
+de tu red. Este es su archivo zwcfgxxx.xml, es el
+último estado conocido de su red, es una forma de caché de su
+red Desde esta pantalel puedesde :
 
--   Lancer un backup (un backup est fait à chaque arrêt relance du
-    réseau et pendant les opérations critiques). Les 12 derniers backups
-    sont conservés
+-   Inicie una copia de seguridad (se realiza una copia de seguridad en cada parada reiniciando el
+    red y durante operaciones críticas). Las últimas 12 copias de seguridad
+    se mantienen
 
--   Restaurer un backup (en le sélectionnant dans la liste
-    juste au-dessus)
+-   Restaurar una copia de seguridad (seleccionándoel de el lista
+    justo arriba)
 
--   Supprimer un backup
+-   Eliminar una copia de seguridad
 
-![backup01](../images/backup01.png)
+![backup01](../ /images/ /backup01.png)
 
-Mettre à jour OpenZWave
+Actualizar OpenZWave
 =======================
 
-Suite à une mise à jour du plugin Z-Wave il est possible que Jeedom vous
-demande de mettre à jour les dépendances Z-Wave. Un NOK au niveau des
-dépendances sera affiché:
+Después de una actualización del complemento Z-Wave, es posible que Jeedom
+Solicite actualizar las dependencias de Onda Z. Una NBueno a nivel de
+se mostrarán las dependencias:
 
-![update01](../images/update01.png)
-
-> **Tip**
->
-> Une mise à jour des dépendances n’est pas à faire à chaque mise à jour
-> du plugin.
-
-Jeedom devrait lancer de lui même la mise à jour des dépendances si le
-plugin considère qu’elle sont **NOK**. Cette validation est effectuée au
-bout de 5 minutes.
-
-La durée de cette opération peut varier en fonction de votre système
-(jusqu’à plus de 1h sur raspberry pi)
-
-Une fois la mise à jour des dépendances complétée, le démon se relancera
-automatiquement à la validation de Jeedom. Cette validation est
-effectuée au bout de 5 minutes.
+![update01](../ /images/ /update01.png)
 
 > **Tip**
 >
-> Dans l’éventualité où la mise à jour des dépendances ne se
-> complèterait pas, veillez consulter le log **Openzwave\_update** qui
-> devrait vous informer sur le problème.
+> No se debe hacer una actualización de las dependencias con cada actualización
+> Plugin.
 
-Liste des modules compatible
+Jeedom debería lanzar el actualización de dependencia por sí solo Si el
+el complemento considera que son **NOK**. Esta validación se lleva a cabo en
+después de 5 minutos.
+
+El duración de esta operación puede variar según su sistema
+(hasta más de 1 hora con frambuesa pi)
+
+Una vez que se complete el actualización de dependencias, el demonio se reiniciará
+automáticamente tras el validación de Jeedom. Esta validación es
+hecho después de 5 minutos.
+
+> **Tip**
+>
+> En el caso de que no ocurra el actualización de dependencias
+> no completo, por favor consulte el registro **Openzwave\_update** qui
+> debería informarle sobre el problema.
+
+Lista de módulos compatibles.
 ============================
 
-Vous trouverez la liste des modules compatibles
-[ici](https://jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-equipement.compatible.html)
+Encontrará el lista de módulos compatibles.
+[aquí](https:/ // /jeedom.fr/ /doc/ /documentation/ /zwave-modules/ /fr_FR/ /doc-zwave-modules-equipement.compatible.html)
 
-Depannage et diagnostic
+Solución de problemas y diagnóstico
 =======================
 
-Mon module n’est pas détecté ou ne remonte pas ses identifiants produit et type
+Mi módulo no se detecta o no proporciona sus identificadores de producto y tipo
 -------------------------------------------------------------------------------
 
-![troubleshooting01](../images/troubleshooting01.png)
+![troubleshooting01](../ /images/ /troubleshooting01.png)
 
-Lancer la Regénération de la détection du nœud depuis l’onglet Actions
-du module.
+Inicie el regeneración de el detección de nodos desde el pestaña Acciones
+del módulo.
 
-Si vous avez plusieurs modules dans ce cas de figure, lancer **Regénérer
-la détection de nœuds inconnues**depuis l’écran**Réseau ZWave** onglet
+Si tiene varios módulos en este escenario, inicie **Actualizar
+detección de nodos desconocidos** desde el pantalel **Red Zwave** onglet
 **Actions**.
 
-Mon module est présumé mort par le controleur Dead
+Mi módulo se presume muerto por el controlador Dead
 --------------------------------------------------
 
-![troubleshooting02](../images/troubleshooting02.png)
+![troubleshooting02](../ /images/ /troubleshooting02.png)
 
-Si le module est toujours branché et joignable, suivre les solutions
-proposées dans l’écran du module.
+Si el módulo todavía está enchufado y accesible, siga las soluciones
+propuesto en el pantalel del módulo.
 
-Si le module a été décommissionné ou est réellement défectueux, vous
-pouvez l’exclure du réseau en utilisant **supprimer le nœud en erreur**
-via onglet **Actions**.
+Si el módulo ha sido cancelado o está realmente defectuoso, usted
+puede excluirlo de el red usando **eliminar el nodo por error**
+a través de el pestaña **Actions**.
 
-Si le module est parti en réparation et un nouveau module de
-remplacement a été livré, vous pouvez lancer **Remplacer nœud en échec**
-via onglet **Actions**, le contrôleur déclenche l’inclusion puis vous
-devez procéder à l’inclusion sur le module. L’id de l’ancien module sera
-conservé ainsi que ses commandes.
+Si el módulo ha sido reparado y un nuevo módulo
+se ha entregado el reemplazo que puede lanzar **Reemplazar nodo fallido**
+a través de el pestaña **Actions**, el controlador activa el inclusión, entonces usted
+debe proceder con el inclusión en el módulo. El identificación del antiguo módulo será
+cumplió tan bien como sus órdenes.
 
-Comment utiliser la commande SwitchAll
+Cómo usar el comando SwitchAll
 --------------------------------------
 
-![troubleshooting03](../images/troubleshooting03.png)
+![troubleshooting03](../ /images/ /troubleshooting03.png)
 
-Elle est disponible via votre nœud contrôleur. Votre contrôleur devrait
-avoir les commandes Switch All On et Switch All Off.
+Está disponible a través de su nodo controlador. Su controlador debe
+tener los comandos de Encender todo y Apagar todo.
 
-Si votre contrôleur n’apparaît pas dans votre liste de module, lancez la
+Si su controlador no aparece en su lista de módulos, inicie el
 synchronisation.
 
-![troubleshooting04](../images/troubleshooting04.png)
+![troubleshooting04](../ /images/ /troubleshooting04.png)
 
-La Commande Classe Switch All est en général supportée sur les
-interrupteurs et les variateurs. Son comportement est configurable sur
-chaque module qui la supporte.
+El comando Switch All Class generalmente se admite en
+interruptores y atenuadores. Su comportamiento es configurable en
+cada módulo que lo soporta.
 
-On peut donc soit:
+Entonces podemos:
 
--   Désactiver la Commande Classe Switch All.
+-   Desactivar el comando Cambiar todas las clases.
 
--   Activer pour le On et le Off.
+-   Activar para encendido y apagado.
 
--   Activer le On seulement.
+-   Activar solo en.
 
--   Activer le Off seulement.
+-   Activar solo apagado.
 
-Le choix d’options dépend d’un constructeur à l’autre.
+El elección de las opciones depende del fabricante..
 
-Il faut donc bien prendre le temps de passer en revue l’ensemble de ses
-interrupteurs/variateurs avant de mettre en place un scénario si vous ne
-pilotez pas que des lumières.
+Por lo tanto, debe tomarse el tiempo para revisar todos sus
+interruptores / / atenuadores antes de configurar un escenario Si no
+no solo luces piloto.
 
-Mon module n a pas de commande Scene ou Bouton
+Mi módulo no tiene un comando de escena o botón
 ----------------------------------------------
 
-![troubleshooting05](../images/troubleshooting05.png)
+![troubleshooting05](../ /images/ /troubleshooting05.png)
 
-Vous pouvez ajouter la commande dans l’écran de "mapping" des commandes.
+Puede agregar el comando en el pantalel de asignación de comandos.
 
-Il s’agit d’une commande **Info**en CC**0x2b**Instance**0** commande
-**data\[0\].val**
+Esta es una orden **Info** en CC **0x2b** Instancia **0** commande
+**datos \ [0 \]. val**
 
-Le mode scène doit être activé dans les paramètres du module. Voir la
-documentation de votre module pour plus de détails.
+El modo de escena debe activarse en el configuración del módulo. Ver la
+documentación de su módulo para más detalles.
 
-Forcer le rafraichissement de valeurs
+Forzar valores de actualización
 -------------------------------------
 
-Il est possible de forcer à la demande le rafraîchissement des valeurs
-d’une instance pour une commande classe spécifique.
+Es posible forzar a petición el actualización de los valores
+una instancia para un comando de clase específico.
 
-Il est possible de faire via une requête http ou de créer une commande
-dans l’écran de mapping d’un équipement.
+Es posible hacerlo a través de una solicitud http o crear un pedido
+en el pantalel de mapeo de equipos.
 
-![troubleshooting06](../images/troubleshooting06.png)
+![troubleshooting06](../ /images/ /troubleshooting06.png)
 
-Il s’agit d’une commande **Action**choisir la**CC** souhaitée pour une
-**Instance**donnée avec la commande**data\[0\].ForceRefresh()**
+Esta es una orden **Action** elige el **CC** deseado para un
+**Instance** dado con el comando **datos \ [0 \]. ForceRefresh ()**
 
-L’ensemble des index de l’instance pour cette commande Classe sera mise
-à jour. Les nœuds sur piles attendront leur prochain réveil avant
-d’effectuer la mise à jour de leur valeur.
+Se colocarán todos los índices de instancia para este comando de clase
+al día. Los nudos en las baterías esperarán su próximo despertar antes de
+actualizar su valor.
 
-Vous pouvez aussi utiliser par script en lançant une requête http au
-serveur REST Z-Wave.
+También puede usar por script emitiendo una solicitud http para
+Servidor REST Onda Z.
 
-Remplacer ip\_jeedom, node\_id, instance\_id, cc\_id et index
+Reemplace ip\_jeedom, node\_id, instancia\_id, cc\_id e index
 
-http://token:\#APIKEY\#@ip\_jeedom:8083/ZWaveAPI/Run/devicesnode\_id.instances\[instance\_id\].commandClasses\[cc\_id\].data\[index\].ForceRefresh()
+http:/ // /token:\#APIKEY\#@ip\_jeedom:8083/ /ZWaveAPI/ /Run/ /devicesnode\_id.instances\[instance\_id\].commandClasses\[cc\_id\].data\[index\].ForceRefresh()
 
-L’accès a l’api REST ayant changé, voir les détails
-[içi](./restapi.asciidoc).
+El acceso a el API REST ha cambiado, ver detalles
+[aquí](./ /restapi.asciidoc).
 
-Transferer les modules sur un nouveau controleur
+Transfiera los módulos a un nuevo controlador
 ------------------------------------------------
 
-Pour différentes raisons, vous pouvez être amené à devoir transférer
-l’ensemble de vos modules sur un nouveau contrôleur principal.
+Por diferentes razones, puede que tenga que transferir
+todos sus módulos en un nuevo controlador principal.
 
-Vous décidez de passer du **raZberry**à un**Z-Stick Gen5** ou parce
-que, vous devez effectuer un **Reset** complet du contrôleur principal.
+Decidesde irte de **raZberry** un **Z-Stick Gen5** o porque
+eso, tienes que realizar un **Reset** completo del controlador principal.
 
-Voici différentes étapes pour y arriver sans perdre vos scénarios,
-widgets et historiques de valeur:
+Aquí hay diferentes pasos para llegar sin perder sus escenarios.,
+widgets de valor e historia:
 
--   1\) Faire un backup Jeedom.
+-   1 \) Hacer una copia de seguridad de Jeedom.
 
--   2\) Pensez à noter (copie écran) vos valeurs de paramètres pour chaque
-    module, ils seront perdus suite à l’exclusion.
+-   2 \) Recuerde anotar (captura de pantalla) los valores de sus parámetros para cada
+    módulo, se perderán debido a el exclusión.
 
--   3\) Dans la configuration Z-Wave, décocher l’option "Supprimer
-    automatiquement les périphériques exclus" et sauvegarder. Le
-    réseau redémarre.
+-   3 \) En el configuración de Z-Wave, desmarque "Eliminar
+    excluye automáticamente los dispositivos "y realiza una copia de seguridad.
+    reinicios de red.
 
--   4a) Dans le cas d’un **Reset**, Faire le Reset du contrôleur
-    principal et redémarrer le plugin.
+-   4a) En el caso de un **Reset**, Restablecer el controlador
+    principal y reinicie el complemento.
 
--   4b) Pour un nouveau contrôleur, stopper Jeedom, débrancher l’ancien
-    contrôleur et brancher le nouveau. Démarrer Jeedom.
+-   4b) Para un nuevo controlador, detenga Jeedom, desconecte el viejo
+    controlador y enchufe el nuevo. Inicie Jeedom.
 
--   5\) Pour chaque équipements Z-Wave, modifier l’ID ZWave à **0**.
+-   5 \) Para cada dispositivo Z-Wave, cambie el Identificación de ZWave a **0**.
 
--   6\) Ouvrir 2 pages du plugin Z-Wave dans des onglets différents.
+-   6 \) Abra 2 páginas del complemento Onda Z en diferentes pestañas.
 
--   7\) (Via le premier onglet) Aller sur la page de configuration d’un
-    module que vous désirez inclure au nouveau contrôleur.
+-   7 \) (a través de el primera pestaña) Vaya a el página de configuración de un
+    módulo que desea incluir en el nuevo controlador.
 
--   8\) (Via deuxième onglet) Faire une exclusion puis une inclusion
-    du module. Un nouvel équipement sera créé.
+-   8 \) (a través de el segunda pestaña) Excluir e incluir
+    del módulo. Se crearán nuevos equipos..
 
--   9\) Copier l’ID Z-Wave du nouvel équipement, puis supprimer
-    cet équipement.
+-   9 \) Copie el Identificación de Onda Z del nuevo equipo, luego elimine
+    este equipo.
 
--   10\) Retourner sur l’onglet de l’ancien module (1er onglet) puis coller
-    le nouvel ID à la place de l’ancien ID.
+-   10 \) Regrese a el pestaña del módulo anterior (primera pestaña) y luego pegue
+    el nueva identificación en lugar de el identificación anterior.
 
--   11\) Les paramètres ZWave ont été perdus lors de l’exclusion/inclusion,
-    pensez à remettre vos paramètres spécifiques si vous n’utilisez les
-    valeurs par défaut.
+-   11 \) Los parámetros ZWave se perdieron durante el exclusión / / inclusión,
+    recuerde restablecer su configuración específica Si no está utilizando el
+    valores por defecto.
 
--   11\) Répéter les étapes 7 à 11 pour chaque module à transférer.
+-   11 \) Repita los pasos 7 a 11 para cada módulo a transferir.
 
--   12\) A la fin, vous ne devriez plus avoir d’équipement en ID 0.
+-   12 \) Al final, ya no debería tener equipo en Identificación 0.
 
--   13\) Vérifier que tous les modules sont bien nommés dans l’écran de
-    santé Z-Wave. Lancer la Synchronisation si ce n’est pas le cas.
+-   13 \) Verifique que todos los módulos estén correctamente nombrados en el pantalel de
+    salud Onda Z. Inicie el sincronización Si este no es el caso.
 
-Remplacer un module defaillant
+Reemplace un módulo defectuoso
 ------------------------------
 
-Comment refaire l’inclusion d’un module défaillant sans perdre vos
-scénarios, widgets et historiques de valeur
+Cómo rehacer el inclusión de un módulo defectuoso sin perder su
+escenarios de valor, widgets e historia
 
-Si le module est présumé "Dead" :
+Si se supone que el módulo está "Muerto" :
 
--   Noter (copie écran) vos valeurs de paramètres, elles seront perdues
-    suite à l’inclusion.
+-   Tenga en cuenta (captura de pantalla) los valores de sus parámetros, se perderán
+    siguiente inclusión.
 
--   Aller sur l’onglet actions du module et lancez la commande
-    "Remplacer noeud en échec".
+-   Vaya a el pestaña de acciones del módulo y ejecute el comando
+    "Reemplazar nodo fallido".
 
--   Le contrôleur est en mode inclusion, procéder à l’inclusion selon la
-    documentation du module.
+-   El controlador está en modo de inclusión, proceda con el inclusión de acuerdo con
+    Documentación del módulo.
 
--   Remettre vos paramètres spécifiques.
+-   Restablece tus parámetros específicos.
 
-Si le module n’est pas présumé "Dead" mais est toujours accessible:
+Si no se presume que el módulo está "Muerto" pero aún está accesible:
 
--   Dans la configuration ZWave, décocher l’option "Supprimer
-    automatiquement les périphériques exclus".
+-   En el configuración de ZWave, desmarque "Eliminar
+    dispositivos excluidos automáticamente".
 
--   Noter (copie écran) vos valeurs de paramètres, elles seront perdues
-    suite à l’inclusion.
+-   Tenga en cuenta (captura de pantalla) los valores de sus parámetros, se perderán
+    siguiente inclusión.
 
--   Exclure le module défaillant.
+-   Excluir el módulo defectuoso..
 
--   Aller sur la page de configuration du module défaillant.
+-   Vaya a el página de configuración del módulo defectuoso..
 
--   Ouvrir la page du plugin ZWave dans un nouvel onglet.
+-   Abra el página del complemento ZWave en una pestaña nueva.
 
--   Faire l’inclusion du module.
+-   Incluir el módulo.
 
--   Copier l’ID du nouveau module, puis supprimer cet équipement.
+-   Copie el Identificación del nuevo módulo, luego elimine este equipo.
 
--   Retourner sur l’onglet de l’ancien module puis coller le nouvel ID à
-    la place de l’ancien ID.
+-   Regrese a el pestaña del módulo anterior y luego pegue el nueva Identificación en
+    el lugar de el identificación anterior.
 
--   Remettre vos paramètres spécifiques.
+-   Restablece tus parámetros específicos.
 
-Suppression de noeud fantome
+Eliminación del nodo fantasma
 ----------------------------
 
-Si vous avez perdu toute communication avec un module sur pile et que
-vous souhaitez l’exclure du réseau, il est possible que l’exclusion
-n’aboutisse pas ou que le nœud reste présent dans votre réseau.
+Si ha perdido toda comunicación con un módulo alimentado por batería y
+desea excluirlo de el red, es posible que el exclusión
+no tiene éxito o el nodo permanece presente en su red.
 
-Un assistant automatique de nœud fantôme est disponible.
+El asistente automático de nodo fantasma está disponible.
 
--   Aller sur l’onglet actions du module à supprimer.
+-   Vaya a el pestaña de acciones del módulo para eliminar.
 
--   Il aura probablement un statut **CacheLoad**.
+-   Probablemente tendrá un estado **CacheLoad**.
 
--   Lancer la commande **Supprimer nœud fantôme**.
+-   Comando de inicio **Eliminar nodo fantasma**.
 
--   Le réseau Z-Wave s’arrête. L’assistant automatique modifie le
-    fichier **zwcfg** pour supprimer la CC WakeUp du module. Le
-    réseau redémarre.
+-   El red Onda Z se detiene. El asistente automático modifica el
+    Expediente **zwcfg** para eliminar el CC Despertador del módulo. El
+    reinicios de red.
 
--   Fermer l’écran du module.
+-   Cerrar el pantalel del módulo.
 
--   Ouvrir l’écran de Santé Z-Wave.
+-   Abra el pantalel Onda Z Health.
 
--   Attendre que le cycle de démarrage soit complété (topology loaded).
+-   Espere a que se complete el ciclo de inicio (topología cargada).
 
--   Le module sera normalement marqué comme étant présumé mort (Dead).
+-   El módulo normalmente se marcará como presunto muerto.
 
--   La minute suivante, vous devriez voir le nœud disparaître de l’écran
-    de santé.
+-   Al minuto siguiente, verá que el nodo desaparece de el pantalla.
+    de salud.
 
--   Si dans la configuration Z-Wave, vous avez décoché l’option
-    "Supprimer automatiquement les périphériques exclus", il vous faudra
-    supprimer manuellement l’équipement correspondant.
+-   Si en el configuración de Z-Wave, ha desmarcado el opción
+    "Eliminar automáticamente los dispositivos excluidos ", deberá
+    eliminar manualmente el equipo correspondiente.
 
-Cet assistant est disponible seulement pour les modules sur piles.
+Este asistente solo está disponible para módulos de batería.
 
-Actions post inclusion
+Acciones posteriores a el inclusión
 ----------------------
 
-On recommande d’effectuer l’inclusion à moins 1M du contrôleur
-principal, or ce ne sera pas la position finale de votre nouveau module.
-Voici quelques bonnes pratiques à faire suite à l’inclusion d’un nouveau
-module dans votre réseau.
+Se recomienda realizar el inclusión al menos a 1M del controlador
+principal, pero no será el posición final de su nuevo módulo.
+Aquí hay algunas buenas prácticas a seguir luego de el inclusión de un nuevo
+módulo en su red.
 
-Une fois l’inclusion terminée, il faut appliquer un certain nombre de
-paramètres à notre nouveau module afin d’en tirer le maximum. Rappel,
-les modules, suite à l’inclusion, ont les paramètres par défaut du
-constructeur. Profitez d’être à côté du contrôleur et de l’interface
-Jeedom pour bien paramétrer votre nouveau module. Il sera aussi plus
-simple de réveiller le module pour voir l’effet immédiat du changement.
-Certains modules ont une documentation spécifique Jeedom afin de vous
-aider avec les différents paramètres ainsi que des valeurs recommandées.
+Una vez que se completa el inclusión, una serie de
+parámetros de nuestro nuevo módulo para aprovecharlo al máximo. Recordatorio,
+Los módulos, después de el inclusión, tienen el configuración predeterminada de
+constructor Disfruta estar al lado del controlador y el interfaz
+Jeedom para configurar correctamente su nuevo módulo. También será más
+simple para activar el módulo para ver el efecto inmediato del cambio.
+Algunos módulos tienen documentación específica de Jeedom para usted
+ayuda con diferentes parámetros y valores recomendados.
 
-Testez votre module, validez les remontées d’informations, retour d’état
-et actions possibles dans le cas d’un actuateur.
+Pruebe su módulo, valide los comentarios de información, los comentarios de estado
+y posibles acciones en el caso de un actuador.
 
-Lors de l’interview, votre nouveau module a recherché ses voisins.
-Toutefois, les modules de votre réseau ne connaissent pas encore votre
-nouveau module.
+Durante el entrevista, su nuevo módulo buscó a sus vecinos..
+Sin embargo, los módulos en su red aún no conocen su
+nuevo módulo.
 
-Déplacez votre module à son emplacement définitif. Lancez la mise à jour
-de ses voisins et réveillez-le encore une fois.
+Mueva su módulo a su ubicación final. Comience el actualización
+de sus vecinos y despertarlo nuevamente.
 
-![troubleshooting07](../images/troubleshooting07.png)
+![troubleshooting07](../ /images/ /troubleshooting07.png)
 
-On constate qu’il voit un certain nombre de voisins mais que les
-voisins, eux, ne le voient pas.
+Vemos que ve un cierto número de vecinos pero que el
+los vecinos no lo ven.
 
-Pour remédier à cette situation, il faut lancer l’action soigner le
-réseau, afin de demander à tous les modules de retrouver leurs voisins.
+Para remediar esta situación, se deben tomar medidas para tratar el
+red, para pedir a todos los módulos que encuentren a sus vecinos.
 
-Cette action peut prendre 24 heures avant d’être terminée, vos modules
-sur pile effectueront l’action seulement à leur prochain réveil.
+Esta acción puede tomar 24 horas antes de terminar, sus módulos
+con batería realizará el acción solo el próxima vez que se despierten.
 
-![troubleshooting08](../images/troubleshooting08.png)
+![troubleshooting08](../ /images/ /troubleshooting08.png)
 
-L’option de soigner le réseau 2x par semaine permet de faire ce
-processus sans action de votre part, elle est utile lors de la mise en
-place de nouveaux modules et ou lorsqu’on les déplace.
+El opción de tratar el red dos veces por semana le permite hacer esto
+proceso sin acción de su parte, es útil al configurar
+coloca nuevos módulos y / / o cuando se mueven.
 
-Pas de remontee état de la pile
+No hay comentarios de el condición de el batería
 -------------------------------
 
-Les modules Z-Wave n’envoient que très rarement l’état de leur pile au
-contrôleur. Certains vont le faire à l’inclusion puis seulement lorsque
-celle-ci atteint 20% ou une autre valeur de seuil critique.
+Los módulos Onda Z rara vez envían el estado de su batería al
+controlador Algunos lo harán en el inclusión solo cuando
+esto alcanza el 20% u otro valor umbral crítico.
 
-Pour vous aider à mieux suivre l’état de vos piles, l’écran Batteries
-sous le menu Analyse vous donne une vue d’ensemble de l’état de vos
-piles. Un mécanisme de notification de piles faibles est aussi
+Para ayudarlo a controlar mejor el estado de sus baterías, el pantalel Baterías
+en el menú Análisis le da una visión general del estado de su
+baterías Una mecanismo de notificación de batería baja también es
 disponible.
 
-La valeur remontée de l’écran Piles est la dernière connue dans le
+El valor devuelto desde el pantalel Baterías es el último conocido en el
 cache.
 
-Toutes les nuits, le plugin Z-Wave demande à chaque module de rafraichir
-la valeur Battery. Au prochain réveil, le module envoie la valeur à
-Jeedom pour être ajouté au cache. Donc il faut en général attendre au
-moins 24h avant l’obtention d’une valeur dans l’écran Batteries.
+Todas las noches, el complemento Onda Z le pide a cada módulo que se actualice
+Valor de el batería. El próxima vez que se despierte, el módulo envía el valor a
+Jeedom para ser agregado al caché. Por lo general, tienes que esperar hasta
+al menos 24 horas antes de obtener un valor en el pantalel Baterías.
 
 > **Tip**
 >
-> Il est bien entendu possible de rafraichir manuellement la valeur
-> Battery via l’onglet Valeurs du module puis, soit attendre le prochain
-> réveil ou encore de réveiller manuellement le module pour obtenir une
-> remontée immédiate. Le cycle de réveil (Wake-up Interval) du module
-> est défini dans l’onglet Système du module. Pour optimiser la vie de
-> vos piles, il est recommandé d’espacer au maximum ce délai. Pour 4h,
-> il faudrait appliquer 14400, 12h 43200. Certains modules doivent
-> écouter régulièrement des messages du contrôleur comme les
-> Thermostats. Dans ce cas, il faut penser à 15min soit 900. Chaque
-> module est différent, il n’y a donc pas de règle exacte, c’est au cas
-> par cas et selon l’expérience.
+> Por supuesto, es posible actualizar manualmente el valor
+> Batería a través de el pestaña Valores del módulo y luego espere el siguiente
+> alarma o despertar manualmente el módulo para obtener un
+> recuperación inmediata. El intervalo de activación del módulo
+> se define en el pestaña Sistema del módulo. Para optimizar el vida de
+> sus baterías, se recomienda espaciar este retraso tanto como sea posible. Por 4h,
+> aplicar 14400, 12h 43200. Algunos módulos deben
+> escuche regularmente mensajes del controlador como
+> Termostatos. En este caso, es necesario pensar en 15 min o 900. Cada
+> el módulo es diferente, por lo que no existe una regel exacta, este es el caso
+> por caso y por experiencia.
 
 > **Tip**
 >
-> La décharge d’une pile n’est pas linéaire, certains modules vont
-> montrer un grosse perte en pourcentage dans les premiers jours de mise
-> en service, puis ne plus bouger durant des semaines pour se vider
-> rapidement une fois passé les 20%.
+> El descarga de una batería no es lineal, algunos módulos lo harán
+> mostrar un gran porcentaje de pérdida en los primeros días de apuesta
+> en servicio, luego no se mueva durante semanas para vaciar
+> rápidamente una vez pasado el 20%.
 
-Controleur est en cours d initialisation
+El controlador se está inicializando
 ----------------------------------------
 
-Lorsque vous démarrez le démon Z-Wave, si vous essayez de lancer
-immédiatement une inclusion/exclusion, vous risquez d’obtenir ce
-message: \* "Le contrôleur est en cours d’initialisation, veuillez
-réessayer dans quelques minutes"
+Cuando inicias el demonio Z-Wave, Si intentas iniciar
+inmediatamente una inclusión / / exclusión, corre el riesgo de obtener esto
+message: \* "El controlador se está inicializando, por favor
+intente nuevamente en unos minutos"
 
 > **Tip**
 >
-> Suite au démarrage du démon, le contrôleur passe sur l’ensemble des
-> modules afin de refaire leur interview. Ce comportement est
-> tout-à-fait normal en OpenZWave.
+> Después de que se inicia el demonio, el controlador cambia a todos los
+> módulos para repetir su entrevista. Este comportamiento es
+> completamente normal en OpenZWave.
 
-Si toutefois après plusieurs minutes (plus de 10 minutes), vous avez
-toujours ce message, ce n’est plus normal.
+Sin embargo, Si después de varios minutos (más de 10 minutos), tiene
+Todavía este mensaje, ya no es normal.
 
-Il faut essayer les différentes étapes:
+Tienes que probar los diferentes pasos:
 
--   S’assurer que les voyants de l’écran santé Jeedom soient au vert.
+-   Asegúrese de que las luces de el pantalel de salud Jeedom sean verdes.
 
--   S’assurer que la configuration du plugin est en ordre.
+-   Asegúrese de que el configuración del complemento esté en orden.
 
--   S’assurer que vous avez bien sélectionné le bon port de la
-    clé ZWave.
+-   Asegúrese de haber seleccionado el puerto correcto para
+    Tecel ZWave.
 
--   S’assurer que votre configuration Réseau Jeedom est juste.
-    (Attention si vous avez fait un Restore d’une installation DIY vers
-    image officielle, le suffixe /jeedom ne doit pas y figurer)
+-   Asegúrese de que el configuración de su red Jeedom sea correcta.
+    (Atención Si ha realizado una restauración desde una instalación de bricolaje a
+    imagen oficial, el sufijo / / libertad no debe incluirse)
 
--   Regarder le log du plugin afin de voir si une erreur n’est
-    pas remontée.
+-   Mire el registro del complemento para ver Si hay un error
+    no arriba.
 
--   Regarder la **Console** du plugin ZWave, afin de voir si une erreur
-    n’est pas remontée.
+-   Mira el **Console** Complemento ZWave, para ver Si hay un error
+    no subió.
 
--   Lancer le Demon en **Debug**regarder à nouveau la**Console** et
-    les logs du plugin.
+-   Lanzar el demonio por **Debug** mira de nuevo a el **Console** et
+    registros de complementos.
 
--   Redémarrer complètement Jeedom.
+-   Reiniciar completamente Jeedom.
 
--   Il faut s’assurer que vous avez bien un contrôleur Z-Wave, les
-    Razberry sont souvent confondus avec les EnOcean (erreur lors de
-    la commande).
+-   Asegúrese de tener un controlador Z-Wave, el
+    Razberry a menudo se confunde con EnOcean (error durante
+    el orden).
 
-Il faut maintenant débuter les tests hardwares:
+Ahora debemos comenzar las pruebas de hardware:
 
--   Le Razberry est bien branché au port GPIO.
+-   El Razberry está bien conectado al puerto GPIO.
 
--   L’alimentation USB est suffisante.
+-   El alimentación USB es suficiente.
 
-Si le problème persiste toujours, il faut réinitialiser le contrôleur:
+Si el problema persiste, reinicie el controlador:
 
--   Arrêter complément votre Jeedom via le menu d’arrêt dans le
-    profil utilisateur.
+-   Detenga completamente su Jeedom a través del menú de detención en el
+    perfil de usuario.
 
--   Débrancher l’alimentation.
+-   Desconecta el poder.
 
--   Retirer le dongle USB ou le Razberry selon le cas, environ
-    5 minutes.
+-   Retire el dongle USB o Razberry según corresponda, aproximadamente
+    5 minutos.
 
--   Re brancher le tout et essayer à nouveau.
+-   Vuelva a conectar todo e intente nuevamente.
 
-Le controleur ne répond plus
+El controlador ya no responde.
 ----------------------------
 
-Plus aucune commande n’est transmise aux modules mais les retours
-d’états sont remontés vers Jeedom.
+No se transmiten más pedidos a los módulos, pero regresa
+de estados subieron hacia Jeedom.
 
-Il est possible que la queue de messages du contrôleur soit remplie.
-Voir l’écran Réseau Z-Wave si le nombre de messages en attente ne fait
-qu’augmenter.
+El coel de mensajes del controlador puede estar llena.
+Vea el pantalel de el red Onda Z Si el número de mensajes pendientes no
+qu'augmenter.
 
-Il faut dans ce cas relancer le Demon Z-Wave.
+En este caso, debe reiniciar el Demon Onda Z.
 
-Si le problème persiste, il faut réinitialiser le contrôleur:
+Si el problema persiste, debe reiniciar el controlador:
 
--   Arrêter complément votre Jeedom via le menu d’arrêt dans le
-    profil utilisateur.
+-   Detenga completamente su Jeedom a través del menú de detención en el
+    perfil de usuario.
 
--   Débrancher l’alimentation.
+-   Desconecta el poder.
 
--   Retirer le dongle USB ou le Razberry selon le cas, environ
-    5 minutes.
+-   Retire el dongle USB o Razberry según corresponda, aproximadamente
+    5 minutos.
 
--   Re brancher le tout et essayer à nouveau.
+-   Vuelva a conectar todo e intente nuevamente.
 
-Erreur lors des dependances
+Error durante dependencias
 ---------------------------
 
-Plusieurs erreurs peuvent survenir lors de la mise à jour des
-dépendances. Il faut consulter le log de mise à jour des dépendances
-afin de déterminer quelle est exactement l’erreur. De façon générale,
-l’erreur se trouve à la fin du log dans les quelque dernières lignes.
+Pueden ocurrir varios errores al actualizar
+dependencias Debe consultar el registro de actualización de dependencias.
+para determinar cuál es exactamente el error. De manera general,
+el error está al final del registro en las últimas líneas.
 
-Voici les possibles problèmes ainsi que leurs possibles résolutions:
+Aquí están los posibles problemas y sus posibles soluciones.:
 
--   could not install mercurial – abort
+-   no se pudo instalar mercurial - abortar
 
-Le package mercurial ne veut pas s’installer, pour corriger lancer en
+El paquete mercurial no desea instalar, para corregir el inicio en
 ssh:
 
-    sudo rm /var/lib/dpkg/info/$mercurial* -f
-    sudo apt-get install mercurial
+    sudo rm / / var / / lib / / dpkg / / info / / $ mercurial * -f
+    sudo apt-gy install mercurial
 
--   Les dépendances semblent bloquées sur 75%
+-   Las adicciones parecen bloqueadas en un 75%
 
-A 75% c’est le début de la compilation de la librairie openzwave ainsi
-que du wrapper python openzwave. Cette étape est très longue, on peut
-toutefois consulter la progression via la vue du log de mise à jour. Il
-faut donc être simplement patient.
+Con un 75%, este es el comienzo de el compilación de el biblioteca openzwave también
+envoltura de pitón openzwave. Este paso es muy largo, podemos
+sin embargo, consulte el progreso a través de el vista de registro de actualización. Él
+así que sé paciente.
 
--   Erreur lors de la compilation de la librairie openzwave
+-   Error al compilar el biblioteca openzwave
 
-        arm-linux-gnueabihf-gcc: internal compiler error: Killed (program cc1plus)
-        Please submit a full bug report,
-        with preprocessed source if appropriate.
-        See <file:///usr/share/doc/gcc-4.9/README.Bugs> for instructions.
-        error: command 'arm-linux-gnueabihf-gcc' failed with exit status 4
-        Makefile:266: recipe for target 'build' failed
+        arm-linux-gnueabihf-gcc: error interno del compilador: Asesinado (programa cc1plus)
+        Por favor envíe un informe de error completo,
+        con fuente preprocesada Si corresponde.
+        Ver <file:/ // // /usr/ /share/ /doc/ /gcc-4.9/ /README.Errores> para instrucciones.
+        error: el comando 'arm-linux-gnueabihf-gcc' falló con el estado de salida 4
+        Makefile:266: el receta para el 'compilación' objetivo falló
         make: *** [build] Error 1
 
-Cette erreur peut survenir suite à un manque de mémoire RAM durant la
+Este error puede ocurrir debido a el falta de memoria RAM durante el
 compilation.
 
-Depuis l’UI jeedom, lancez la compilation des dépendances.
+Desde el interfaz de usuario de Jeedom, inicie el compilación de dependencias.
 
-Une fois lancée, en ssh, arrêtez ces processus (consommateurs en
-mémoire) :
+Una vez lanzado, en ssh, detenga estos procesos (los consumidores en
+memoria) :
 
-    sudo systemctl stop cron
-    sudo systemctl stop apache2
-    sudo systemctl stop mysql
+    sudo systemctl Detener cron
+    sudo systemctl Detener apache2
+    sudo systemctl Detener mysql
 
-Pour suivre l’avancement de la compilation, on fait un tail sur le
-fichier log openzwave\_update.
+Para seguir el progreso de el compilación, adaptamos el
+archivo de registro de openzwave\_update.
 
-    tail -f /var/www/html/log/openzwave_update
+    tail -f / / var / / www / / html / / log / / openzwave_update
 
-Lorsque la compilation est terminée et sans erreur, relancez les
-services que vous avez arrêté
+Cuando el compilación esté completa y sin error, reinicie el
+servicios que detuvo
 
-sudo systemctl start cron sudo systemctl start apache2 sudo systemctl
-start mysql
+sudo systemctl comienzo cron sudo systemctl comienzo apache2 sudo systemctl
+iniciar mysql
 
 > **Tip**
 >
-> Si vous êtes toujours sous nginx, il faudra remplacer **apache2** par
-> **nginx**dans les commandes**stop**/**start**. Le fichier log
-> openzwave\_update sera dans le dossier:
-> /usr/share/nginx/www/jeedom/log .
+> Si todavía está en nginx, deberá reemplazar **apache2** par
+> **nginx** en pedidos **stop** / / **start**. El archivo de registro
+> openzwave\_update estará en el carpeta:
+> / / usr / / share / / Nginx / / www / / jeedom / / log .
 
-Utilisation de la carte Razberry sur un Raspberry Pi 3
+Usando el tarjeta Razberry en una Raspberry Pi 3
 ------------------------------------------------------
 
-Pour utiliser un contrôleur Razberry sur un Raspberry Pi 3, le
-contrôleur Bluetooth interne du Raspberry doit être désactivé.
+Para usar un controlador Razberry en una Raspberry Pi 3, el
+El controlador Bluetooth interno de Raspberry debe estar deshabilitado.
 
-Ajouter cette ligne:
+Agrega esta línea:
 
-    dtoverlay=pi3-miniuart-bt
+    dtoverlay = pi3-miniuart-bt
 
-À la fin du fichier:
+Al final del archivo:
 
-    /boot/config.txt
+    / /boot/ /config.txt
 
-Puis redémarrer votre Raspberry.
+Luego reinicie su Frambuesa.
 
 API HTTP
 ========
 
-Le plugin Z-Wave met à disposition des développeurs et des utilisateurs
-une API complète afin de pouvoir opérer le réseau Z-Wave via requête
+El complemento Onda Z proporciona desarrolladores y usuarios
+Una API completa para operar el red Onda Z mediante solicitud
 HTTP.
 
-Il vous est possible d’exploiter l’ensemble des méthodes exposées par le
-serveur REST du démon Z-Wave.
+Puede utilizar todos los métodos expuestos por el
+Servidor REST del demonio Onda Z.
 
-La syntaxe pour appeler les routes est sous cette forme:
-
-URL =
-[http://token:\#APIKEY\#@\#IP\_JEEDOM\#:\#PORTDEMON\#/\#ROUTE\#](http://token:#APIKEY#@#IP_JEEDOM#:#PORTDEMON#/#ROUTE#)
-
--   \#API\_KEY\# correspond à votre clé API, propre à
-    votre installation. Pour la trouver, il faut aller dans le menu «
-    Général », puis « Administration » et « Configuration », en activant
-    le mode Expert, vous verrez alors une ligne Clef API.
-
--   \#IP\_JEEDOM\# correspond à votre url d’accès à Jeedom.
-
--   \#PORTDEMON\# correspond au numéro de port spécifié dans la page de
-    configuration du plugin Z-Wave, par défaut: 8083.
-
--   \#ROUTE\# correspond à la route sur le serveur REST a exécuter.
-
-Pour connaitre l’ensemble des routes, veuillez vous référer
-[github](https://github.com/jeedom/plugin-openzwave) du plugin Z-Wave.
-
-Example: Pour lancer un ping sur le noeud id 2
+El sintaxis para llamar a las rutas es de esta forma:
 
 URL =
-http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices\[2\].TestNode()
+[http:/ // /token:\#APIKEY\#@\#IP\_JEEDOM\#:\#PORTDEMON\#/ /\#ROUTE\#](http:/ // /token:#APIKEY#@#IP_JEEDOM#:#PORTDEMON#/ /#ROUTE#)
+
+-   \#API\_KEY \# corresponde a su clave API, específica de
+    su instalación. Para encontrarlo, ve al menú «
+    Principal », puis « Administration » y « Configuración », en activant
+    Modo experto, verá una línea de clave API.
+
+-   \#IP\_JEEDOM \# corresponde a su URL de acceso de Jeedom.
+
+-   \#PORTDEMON \# corresponde al número de puerto especificado en el página
+    configuración del complemento Z-Wave, por defecto: 8083.
+
+-   \#ROUTE \# corresponde a el ruta en el servidor REST que se ejecutará.
+
+Para conocer todas las rutas, consulte
+[Github](https:/ // /github.com/ /jeedom/ /plugin-openzwave) del complemento Onda Z.
+
+Example: Para hacer ping al id del nodo 2
+
+URL =
+http:/ // /token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ /ZWaveAPI/ /Run/ /devices\[2\].TestNode()
 
 # FAQ
 
-> **J'ai l'erreur "Not enough space in stream buffer"**
+> **Me sale el error "No hay suficiente espacio en el búfer de flujo"**
 >
-> Malheureusement cette erreur est matériel, nous ne pouvons rien y faire et cherchons pour le moment comment forcer un redémarrage du démon dans le cas de cette erreur (mais souvent il faut en plus débrancher la clef pendant 5min pour que ca reparte)
+> Desafortunadamente, este error es hardware, no hay nada que podamos hacer y estamos buscando por el momento cómo forzar un reinicio del demonio en el caso de este error (pero a menudo también es necesario desconectar el clave durante 5 minutos para que vuelva a comenzar)

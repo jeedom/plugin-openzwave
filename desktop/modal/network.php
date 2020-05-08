@@ -73,8 +73,8 @@ if (!isConnect('admin')) {
 		<div id="content">
 			<ul id="tabs_network" class="nav nav-tabs" data-tabs="tabs">
 				<li class="active"><a href="#summary_network" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Résumé}}</a></li>
-				<li><a href="#actions_network" data-toggle="tab"><i class="fa fa-sliders"></i> {{Actions}}</a></li>
-				<li><a href="#statistics_network" data-toggle="tab"><i class="fa fa-bar-chart"></i> {{Statistiques}}</a></li>
+				<li><a href="#actions_network" data-toggle="tab"><i class="fas fa-sliders-h"></i> {{Actions}}</a></li>
+				<li><a href="#statistics_network" data-toggle="tab"><i class="far fa-chart-bar"></i> {{Statistiques}}</a></li>
 				<li id="tab_graph"><a href="#graph_network" data-toggle="tab"><i class="far fa-image"></i> {{Graphique du réseau}}</a></li>
 				<li id="tab_route"><a href="#route_network" data-toggle="tab"><i class="fas fa-table"></i> {{Table de routage}}</a></li>
 			</ul>
@@ -115,27 +115,27 @@ if (!isConnect('admin')) {
 						<thead><tr><th colspan="2">{{Légende}}</th></tr></thead>
 						<tbody>
 							<tr>
-								<td class="node-primary-controller-color" style="width: 35px"><i class="fa fa-square fa-2x"></i></td>
+								<td class="node-primary-controller-color" style="width: 35px"><i class="fas fa-square fa-2x"></i></td>
 								<td>{{Contrôleur Primaire}}</td>
 							</tr>
 							<tr>
-								<td class="node-direct-link-color" style="width: 35px"><i class="fa fa-square fa-2x"></i></td>
+								<td class="node-direct-link-color" style="width: 35px"><i class="fas fa-square fa-2x"></i></td>
 								<td>{{Communication directe}}</td>
 							</tr>
 							<tr>
-								<td class="node-remote-control-color"><i class="fa fa-square fa-2x"></i></td>
+								<td class="node-remote-control-color"><i class="fas fa-square fa-2x"></i></td>
 								<td>{{Virtuellement associé au contrôleur primaire}}</td>
 							</tr>
 							<tr>
-								<td class="node-more-of-one-up-color"><i class="fa fa-square fa-2x"></i></td>
+								<td class="node-more-of-one-up-color"><i class="fas fa-square fa-2x"></i></td>
 								<td>{{Toutes les routes ont plus d'un saut}}</td>
 							</tr>
 							<tr>
-								<td class="node-interview-not-completed-color"><i class="fa fa-square fa-2x"></i></td>
+								<td class="node-interview-not-completed-color"><i class="fas fa-square fa-2x"></i></td>
 								<td>{{Interview non completé}}</td>
 							</tr>
 							<tr>
-								<td class="node-no-neighbourhood-color"><i class="fa fa-square fa-2x"></i></td>
+								<td class="node-no-neighbourhood-color"><i class="fas fa-square fa-2x"></i></td>
 								<td>{{Présumé mort ou Pas de voisin}}</td>
 							</tr>
 						</tbody>
@@ -152,23 +152,23 @@ if (!isConnect('admin')) {
 								<td colspan="2">{{Nombre de [routes directes / avec 1 saut / 2 sauts]}}</td>
 							</tr>
 							<tr>
-								<td class="node-direct-link-color" style="width: 35px"><i class="fa fa-square fa-2x"></i></td>
+								<td class="node-direct-link-color" style="width: 35px"><i class="fas fa-square fa-2x"></i></td>
 								<td>{{Communication directe}}</td>
 							</tr>
 							<tr>
-								<td class="node-remote-control-color"><i class="fa fa-square fa-2x"></i></td>
+								<td class="node-remote-control-color"><i class="fas fa-square fa-2x"></i></td>
 								<td>{{Au moins 2 routes avec un saut}}</td>
 							</tr>
 							<tr>
-								<td class="node-more-of-one-up-color"><i class="fa fa-square fa-2x"></i></td>
+								<td class="node-more-of-one-up-color"><i class="fas fa-square fa-2x"></i></td>
 								<td>{{Moins de 2 routes avec un saut}}</td>
 							</tr>
 							<tr>
-								<td class="node-more-of-two-up-color"><i class="fa fa-square fa-2x"></i></td>
+								<td class="node-more-of-two-up-color"><i class="fas fa-square fa-2x"></i></td>
 								<td>{{Toutes les routes ont plus d'un saut}}</td>
 							</tr>
 							<tr>
-								<td class="node-interview-not-completed-color"><i class="fa fa-square fa-2x"></i></td>
+								<td class="node-interview-not-completed-color"><i class="fas fa-square fa-2x"></i></td>
 								<td>{{Interview non completé}}</td>
 							</tr>
 						</tbody>
@@ -193,7 +193,7 @@ if (!isConnect('admin')) {
 							<td>{{Annule toutes les commandes en cours sur le contrôleur.}}</td>
 						</tr>
 						<tr>
-							<td><a data-action="testNetwork" class="btn btn-primary controller_action"><i class="fas fa-check-square-o"></i> {{Test du réseau}}</a></td>
+							<td><a data-action="testNetwork" class="btn btn-primary controller_action"><i class="fas fa-check-square"></i> {{Test du réseau}}</a></td>
 							<td>{{Envoie une série de messages sur le réseau pour le tester.}}</td>
 						</tr>
 						<tr>
@@ -201,31 +201,31 @@ if (!isConnect('admin')) {
 							<td>{{Soigner le réseau Z-Wave noeud par noeud.}}<br>{{Essaie de soigner tous les noeuds (un par un) en mettant à jour la liste des voisins et les routes optionnelles.}}</td>
 						</tr>
 						<tr>
-							<td><a data-action="createNewPrimary" class="btn btn-danger controller_action"><i class="fa fa-file"></i> {{Créer un nouveau noeud primaire}}</a></td>
+							<td><a data-action="createNewPrimary" class="btn btn-danger controller_action"><i class="fas fa-file"></i> {{Créer un nouveau noeud primaire}}</a></td>
 							<td>{{Mettez le contrôleur cible en mode de réception de configuration.}}<br>{{Le contrôleur cible doit être moins de 2m du contrôleur primaire. Nécessite SUC.}}</td>
 						</tr>
 						<tr>
-							<td><a data-action="receiveConfiguration" class="btn btn-danger controller_action"><i class="fa fa-file"></i> {{Recevoir Configuration}}</a></td>
+							<td><a data-action="receiveConfiguration" class="btn btn-danger controller_action"><i class="fas fa-file"></i> {{Recevoir Configuration}}</a></td>
 							<td>{{Transfert de la configuration réseau à partir d'un autre contrôleur.}}<br><i>{{Approcher l'autre contrôleur à moins de 2m du contrôleur primaire .}}</i></td>
 						</tr>
 						<tr>
-							<td><a data-action="transferPrimaryRole" class="btn btn-primary controller_action"><i class="fa fa-external-link"></i> {{Transférer le rôle primaire}}</a></td>
+							<td><a data-action="transferPrimaryRole" class="btn btn-primary controller_action"><i class="fas fa-external-link-alt"></i> {{Transférer le rôle primaire}}</a></td>
 							<td>{{Changer de contrôleur primaire. Le contrôleur primaire existant devient contrôleur secondaire.}}<br><i>{{Approcher l'autre contrôleur à moins de 2m du contrôleur primaire.}}</i></td>
 						</tr>
 						<tr>
-							<td><a data-action="writeZWConfig" class="btn btn-info controller_action"><i class="fa fa-pencil"></i> {{Ecrire le fichier de configuration}}</a></td>
+							<td><a data-action="writeZWConfig" class="btn btn-info controller_action"><i class="fas fa-pencil-alt"></i> {{Ecrire le fichier de configuration}}</a></td>
 							<td>{{Ecrit le fichier de configuration OpenZwave.}}</td>
 						</tr>
 						<tr>
-							<td><a data-action="removeUnknownsDevices" class="btn btn-info controller_action"><i class="fa fa-repeat"></i> {{Régénérer la détection des noeuds inconnus}}</a></td>
+							<td><a data-action="removeUnknownsDevices" class="btn btn-info controller_action"><i class="fas fa-pencil-alt"></i> {{Régénérer la détection des noeuds inconnus}}</a></td>
 							<td>{{Supprime les informations des noeuds inconnus dans le fichier de config afin qu'il soit régénéré.}}<br><i>{{(Attention : Relance du réseau)}}</i></td>
 						</tr>
 						<tr>
-							<td><a data-action="softReset" class="btn btn-warning controller_action"><i class="fas fa-times"></i>{{Redémarrage}}</a></td>
+							<td><a data-action="softReset" class="btn btn-warning controller_action"><i class="fas fa-times"></i> {{Redémarrage}}</a></td>
 							<td>{{Redémarre le contrôleur sans effacer les paramètres de sa configuration réseau.}}</td>
 						</tr>
 						<tr>
-							<td><a data-action="hardReset" class="btn btn-danger controller_action"><i class="fa fa-eraser"></i>{{Remise à zéro}}</a></td>
+							<td><a data-action="hardReset" class="btn btn-danger controller_action"><i class="fas fa-eraser"></i> {{Remise à zéro}}</a></td>
 							<td>{{Remise à zéro du contrôleur.}} <b>{{Remet à zéro un contrôleur et efface ses paramètres de configuration réseau.}}</b><br>{{Le contrôleur devient un contrôleur primaire, prêt pour ajouter de nouveaux modules à un nouveau réseau.}}</td>
 						</tr>
 					</table>
@@ -317,6 +317,5 @@ if (!isConnect('admin')) {
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 <?php include_file('desktop', 'network', 'js', 'openzwave');?>

@@ -28,7 +28,7 @@ if (!isConnect('admin')) {
         <div class="form-group">
             <label class="col-sm-4 col-xs-6 control-label">{{Créer une sauvegarde}}</label>
             <div class="col-sm-4 col-xs-6">
-                <a class="btn btn-success" id="bt_createBackup"><i class="fa fa-floppy-o"></i> {{Lancer}}</a>
+                <a class="btn btn-success" id="bt_createBackup"><i class="fas fa-check-circle"></i> {{Lancer}}</a>
             </div>
         </div>
         <div class="form-group">
@@ -40,10 +40,10 @@ if (!isConnect('admin')) {
         <div class="form-group">
             <label class="col-sm-4 col-xs-6 control-label">{{Restaurer/Supprimer la sauvegarde}}</label>
             <div class="col-sm-4 col-xs-6">
-                <a class="btn btn-warning" id="bt_restoreBackup"><i class="fa fa-refresh fa-spin"
+                <a class="btn btn-warning" id="bt_restoreBackup"><i class="fas fa-sync fa-spin"
                     style="display : none;"></i> <i
-                    class="fa fa-file"></i> {{Restaurer}}</a>
-                    <a class="btn btn-danger" id="bt_removeBackup"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>
+                    class="fas fa-file"></i> {{Restaurer}}</a>
+                    <a class="btn btn-danger" id="bt_removeBackup"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
                 </div>
             </div>
         </fieldset>

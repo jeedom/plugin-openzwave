@@ -97,7 +97,7 @@
             }, 
             "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-stop\"></i>", 
+                "icon": "<i class=\"fas fa-stop\"></i>", 
                 "generic_type": "FLAP_STOP"
             }
         }

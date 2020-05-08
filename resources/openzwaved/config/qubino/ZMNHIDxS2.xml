@@ -122,6 +122,17 @@ ref: http://qubino.com/download/1061/
                 Default value 50 (5.0 C).
             </Help>
         </Value>
+	<Value genre="config" index="59" instance="1" label="Thermostat mode" max="1" min="0" size="1" type="list"
+               value="0">
+            <Help>
+                This parameter determines how the device will operate if it will operate in the heating mode or in the
+                cooling mode.
+                The range of the hysteresis will remain the same, only operation will change from heating to cooling and
+                vice versa
+            </Help>
+            <Item label="Heat" value="0"/>
+            <Item label="Cool" value="1"/>
+        </Value>    
         <Value type="short" genre="config" instance="1" index="60" label="Too low temperature limit" size="2" min="1" max="1150" value="50">
             <Help>
                 Default value 50 (Minimum Temperature alarm is 5.0C)

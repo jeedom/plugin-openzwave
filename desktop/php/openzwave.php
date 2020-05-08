@@ -151,7 +151,7 @@ sendVarTojs('eqLogic_human_name', $tags);
 			<?php
 			foreach ($eqLogics as $eqLogic) {
 				$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
-				echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-logical-id="' . $eqLogic->getLogicalId() . '" data-eqLogic_id="' . $eqLogic->getId() . '" >';
+				echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-logical-id="' . $eqLogic->getLogicalId() . '" data-eqLogic_id="' . $eqLogic->getId() . '" data-assistant="' . $eqLogic->getAssistantFilePath() . '">';
 				if ($eqLogic->getImgFilePath() !== false) {
 					echo '<img class="lazy" src="plugins/openzwave/core/config/devices/' . $eqLogic->getImgFilePath() . '"/>';
 				} else {
@@ -284,12 +284,11 @@ sendVarTojs('eqLogic_human_name', $tags);
 						<tr>
 							<th style="width: 300px;">{{Nom}}</th>
 							<th style="width: 130px;">{{Type}}</th>
-							<th>{{Instance}}</th>
-							<th>{{Classe}}</th>
-							<th>{{Index}}</th>
+							<th style="width: 65px;">{{Classe}}</th>
+							<th style="width: 65px;">{{Instance}}</th>
+							<th style="width: 65px;">{{Index}}</th>
 							<th>{{Commande}}</th>
-							<th style="width: 200px;">{{Paramètres}}</th>
-							<th style="width: 100px;">{{Options}}</th>
+							<th style="width: 250px;">{{Paramètres}}</th>
 							<th></th>
 						</tr>
 					</thead>

@@ -25,7 +25,7 @@ class openzwave extends eqLogic {
 	
 	/*     * ***********************Methode static*************************** */
 	
-	public static function callOpenzwave($_url) {
+	public static function callOpenzwave($_url,$_timeout = null) {
 		if (strpos($_url, '?') !== false) {
 			$url = 'http://127.0.0.1:' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim($_url, '/') . '&apikey=' . jeedom::getApiKey('openzwave');
 		} else {
@@ -37,6 +37,9 @@ class openzwave extends eqLogic {
 			CURLOPT_HEADER => false,
 			CURLOPT_RETURNTRANSFER => true,
 		));
+		if($_timeout !== null){
+			curl_setopt($ch, CURLOPT_TIMEOUT, $_timeout);
+		}
 		$result = curl_exec($ch);
 		if (curl_errno($ch)) {
 			$curl_error = curl_error($ch);
@@ -189,10 +192,14 @@ class openzwave extends eqLogic {
 				$eqLogic->save();
 			}
 		}
-		if (config::byKey('autoRemoveExcludeDevice', 'openzwave') == 1) {
-			foreach (self::byType('openzwave') as $eqLogic) {
-				if (!isset($findDevice[$eqLogic->getLogicalId()])) {
+		
+		foreach (self::byType('openzwave') as $eqLogic) {
+			if (!isset($findDevice[$eqLogic->getLogicalId()])) {
+				if (config::byKey('autoRemoveExcludeDevice', 'openzwave') == 1) {
 					$eqLogic->remove();
+				}else{
+					$eqLogic->setLogicalId('');
+					$eqLogic->save();
 				}
 			}
 		}
@@ -294,7 +301,7 @@ class openzwave extends eqLogic {
 		}
 		$disabledNodes = '';
 		foreach (self::byType('openzwave') as $eqLogic) {
-			if (!$eqLogic->getIsEnable()) {
+			if (!$eqLogic->getIsEnable() && is_numeric($eqLogic->getLogicalId())) {
 				$disabledNodes .= $eqLogic->getLogicalId() . ',';
 			}
 		}
@@ -335,25 +342,29 @@ class openzwave extends eqLogic {
 	}
 	
 	public static function deamon_stop() {
-		$deamon_info = self::deamon_info();
-		if ($deamon_info['state'] == 'ok') {
-			try {
-				self::callOpenzwave('/network?action=stop&type=action');
-			} catch (Exception $e) {
-				
+		try {
+			$deamon_info = self::deamon_info();
+			if ($deamon_info['state'] == 'ok') {
+				try {
+					self::callOpenzwave('/network?action=stop&type=action',30);
+				} catch (Exception $e) {
+					
+				}
 			}
+			$pid_file = jeedom::getTmpFolder('openzwave') . '/deamon.pid';
+			if (file_exists($pid_file)) {
+				$pid = intval(trim(file_get_contents($pid_file)));
+				system::kill($pid);
+			}
+			system::kill('openzwaved.py');
+			$port = config::byKey('port', 'openzwave');
+			if ($port != 'auto') {
+				system::fuserk(jeedom::getUsbMapping($port));
+			}
+			sleep(1);
+		} catch (\Exception $e) {
+			
 		}
-		$pid_file = jeedom::getTmpFolder('openzwave') . '/deamon.pid';
-		if (file_exists($pid_file)) {
-			$pid = intval(trim(file_get_contents($pid_file)));
-			system::kill($pid);
-		}
-		system::kill('openzwaved.py');
-		$port = config::byKey('port', 'openzwave');
-		if ($port != 'auto') {
-			system::fuserk(jeedom::getUsbMapping($port));
-		}
-		sleep(1);
 	}
 	
 	public static function syncconfOpenzwave($_background = true) {
@@ -445,7 +456,7 @@ class openzwave extends eqLogic {
 		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath())) {
 			return;
 		}
-		$device = json_decode(is_json(file_get_contents(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath()), array()), true);
+		$device = is_json(file_get_contents(dirname(__FILE__) . '/../config/devices/' . $this->getConfFilePath()), array());
 		if (!is_array($device) || !isset($device['recommended'])) {
 			return true;
 		}
@@ -757,6 +768,9 @@ class openzwaveCmd extends cmd {
 		$value = $this->getConfiguration('value');
 		$request = '/node?node_id=' . $this->getEqLogic()->getLogicalId();
 		switch ($this->getSubType()) {
+			case 'message':
+			$value = str_replace('#message#', $_options['message'], $value);
+			break;
 			case 'slider':
 			$value = str_replace('#slider#', $_options['slider'], $value);
 			break;
@@ -766,7 +780,11 @@ class openzwaveCmd extends cmd {
 				return $this->setRGBColor($value);
 			}
 			if (strlen($_options['color']) == 7) {
-				$_options['color'] .= '0000';
+				if ( $this->getEqLogic()->getConfiguration('manufacturer_id') . $this->getEqLogic()->getConfiguration('product_type') . $this->getEqLogic()->getConfiguration('product_id') == '27123064096') {
+					$_options['color'] .= '00';
+				} else {
+					$_options['color'] .= '0000';
+				}
 			}
 			$value = str_replace('#color#', str_replace('#', '%23', $_options['color']), $value);
 		}
