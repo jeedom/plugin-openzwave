@@ -7,11 +7,7 @@ la librairie OpenZwave.
 Introduction
 ============
 
-Z-Wave communique en utilisant une technologie radio de faible puissance
-dans la bande de fréquence de 868,42 MHz. Il est spécifiquement conçu
-pour les applications de domotique. Le protocole radio Z-Wave est
-optimisé pour des échanges à faible bande passante (entre 9 et 40
-kbit/s) entre des appareils sur pile ou alimentés sur secteur.
+Z-Wave communique en utilisant une technologie radio de faible puissance dans la bande de fréquence de 868,42 MHz. Il est spécifiquement conçu pour les applications de domotique. Le protocole radio Z-Wave est optimisé pour des échanges à faible bande passante (entre 9 et 40 kbit/s) entre des appareils sur pile ou alimentés sur secteur.
 
 Z-Wave fonctionne dans la gamme de fréquences sous-gigahertz, selon les
 régions (868 MHz en Europe, 908 MHz aux US, et d’autres fréquences
@@ -56,11 +52,8 @@ sans fil ou transmissions radio audio doit être d’au moins 3 mètres. Les
 sources de radio suivantes doivent être prises en compte :
 
 -   Perturbations par commutateur de moteurs électriques
-
 -   Interférences par des appareils électriques défectueux
-
 -   Les perturbations par les appareils HF de soudage
-
 -   dispositifs de traitement médical
 
 Epaisseur efficace des murs
@@ -435,25 +428,17 @@ Ci-dessous vous retrouvez la liste des commandes :
 > absentes.
 
 -   le nom affiché sur le dashboard
-
 -   icône : dans le cas d’une action permet de choisir une icône à
     afficher sur le dashboard au lieu du texte
-
 -   valeur de la commande : dans le cas d’une commande type action, sa
     valeur peut être liée à une commande de type info, c’est ici que
     cela se configure. Exemple pour une lampe l’intensité est liée à son
     état, cela permet au widget d’avoir l’état réel de la lampe.
-
 -   le type et le sous-type.
-
 -   l’instance de cette commande Z-Wave (réservée aux experts).
-
 -   la classe de la commande Z-Wave (réservée aux experts).
-
 -   l’index de la valeur (réservée aux experts).
-
 -   la commande en elle-même (réservée aux experts).
-
 -   "Valeur de retour d’état" et "Durée avant retour d’état" : permet
     d’indiquer à Jeedom qu’après un changement sur l’information sa
     valeur doit revenir à Y, X min après le changement. Exemple : dans
@@ -464,21 +449,13 @@ Ci-dessous vous retrouvez la liste des commandes :
     remette la valeur de l’information à 0 (plus de mouvement détecté).
 
 -   Historiser : permet d’historiser la donnée.
-
 -   Afficher : permet d’afficher la donnée sur le dashboard.
-
 -   Inverser : permet d’inverser l’état pour les types binaires.
-
 -   Unité : unité de la donnée (peut être vide).
-
 -   Min/Max : bornes de la donnée (peuvent être vides).
-
--   Configuration avancée (petites roues crantées) : permet d’afficher
-    la configuration avancée de la commande (méthode
-    d’historisation, widget…​).
+-   Configuration avancée (petites roues crantées) : permet d’afficher la configuration avancée de la commande (méthode d’historisation, widget…​).
 
 -   Tester : permet de tester la commande.
-
 -   Supprimer (signe -) : permet de supprimer la commande.
 
 > **Important**
@@ -1905,8 +1882,10 @@ Voici les possibles problèmes ainsi que leurs possibles résolutions:
 Le package mercurial ne veut pas s’installer, pour corriger lancer en
 ssh:
 
+````
     sudo rm /var/lib/dpkg/info/$mercurial* -f
     sudo apt-get install mercurial
+````
 
 -   Les dépendances semblent bloquées sur 75%
 
@@ -1917,6 +1896,7 @@ faut donc être simplement patient.
 
 -   Erreur lors de la compilation de la librairie openzwave
 
+````
         arm-linux-gnueabihf-gcc: internal compiler error: Killed (program cc1plus)
         Please submit a full bug report,
         with preprocessed source if appropriate.
@@ -1924,6 +1904,7 @@ faut donc être simplement patient.
         error: command 'arm-linux-gnueabihf-gcc' failed with exit status 4
         Makefile:266: recipe for target 'build' failed
         make: *** [build] Error 1
+````
 
 Cette erreur peut survenir suite à un manque de mémoire RAM durant la
 compilation.
@@ -1933,27 +1914,24 @@ Depuis l’UI jeedom, lancez la compilation des dépendances.
 Une fois lancée, en ssh, arrêtez ces processus (consommateurs en
 mémoire) :
 
+````
     sudo systemctl stop cron
     sudo systemctl stop apache2
-    sudo systemctl stop mysql
+    sudo systemctl stop mysql.
+````
 
 Pour suivre l’avancement de la compilation, on fait un tail sur le
 fichier log openzwave\_update.
 
+````
     tail -f /var/www/html/log/openzwave_update
+````
 
 Lorsque la compilation est terminée et sans erreur, relancez les
 services que vous avez arrêté
 
 sudo systemctl start cron sudo systemctl start apache2 sudo systemctl
 start mysql
-
-> **Tip**
->
-> Si vous êtes toujours sous nginx, il faudra remplacer **apache2** par
-> **nginx** dans les commandes **stop** / **start**. Le fichier log
-> openzwave\_update sera dans le dossier:
-> /usr/share/nginx/www/jeedom/log .
 
 Utilisation de la carte Razberry sur un Raspberry Pi 3
 ------------------------------------------------------
@@ -1963,11 +1941,15 @@ contrôleur Bluetooth interne du Raspberry doit être désactivé.
 
 Ajouter cette ligne:
 
+````
     dtoverlay=pi3-miniuart-bt
+````
 
 À la fin du fichier:
 
+````
     /boot/config.txt
+````
 
 Puis redémarrer votre Raspberry.
 
