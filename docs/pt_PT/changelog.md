@@ -91,7 +91,7 @@
 
     -   Recuperação do último nível das baterias quando o daemon inicia.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Correção da migração das informações da bateria.
 
@@ -140,7 +140,7 @@
     -   Adicione todas as configurações do módulo ao
         novo formato.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Não teste se um nodeId existe durante a exclusão
         de uma associação.
@@ -172,7 +172,7 @@
 
     -   Adição da configuração do módulo Fibaro US
 
--   Fixed Bug
+-   Fixed bug
 
     -   N / A
 
@@ -187,7 +187,7 @@
 
     -   N / A
 
--   Fixed Bug
+-   Fixed bug
 
     -   Correção da atribuição de valores no formato RAW de códigos
         para leitor RFid.
@@ -252,7 +252,7 @@
     -   O nível da bateria é enviado diretamente para a tela da bateria no
         relatório de nível de recebimento.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Atualização de todas as instâncias após um
         Transmissão CC ALL ALL.
@@ -270,7 +270,7 @@
 
     -   Ativar o modo de inclusão não seguro padrão.
 
--   Fixed Bug
+-   Fixed bug
 
     -   As informações do fabricante do teste na tela de integridade não
         não mais NOK.
@@ -294,7 +294,7 @@
 
     -   Redesign da tela do equipamento com abas.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Problema ao exibir determinados módulos na tabela de roteamento
         e gráfico de rede.
@@ -375,7 +375,7 @@
 
     -   Atualizando a documentação do plug-in.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Correção de possíveis problemas ao atualizar
         configurações do módulo.
@@ -438,7 +438,7 @@
     -   Correção da ortografia da documentação, obrigado
         @Juan-Pedro aka: kiko.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Correção ortográfica.
 
@@ -532,7 +532,7 @@
     -   Forçar uma atualização do estado do comutador e um dímero
         após o envio de um comando switch all.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Corrigida descoberta de grupos de associação.
 
@@ -577,7 +577,7 @@
 
     -   Atualização da documentação.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Ortografia e correções gramaticais.
 
@@ -592,7 +592,7 @@
 
     -   Nenhum alerta de nó morto se estiver desativado.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Correção do retorno do status do fio piloto Fibaro.
 
@@ -672,7 +672,7 @@
 
     -   Aviso aprimorado nos termostatos da bateria.
 
--   Fixed Bug
+-   Fixed bug
 
     -   A temperatura convertida em Celsius retorna a unidade C
         de F.

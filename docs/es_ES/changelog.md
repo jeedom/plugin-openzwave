@@ -91,7 +91,7 @@
 
     -   Recuperación del último nivel de las baterías cuando comienza el demonio..
 
--   Bug corregido
+-   Error corregido
 
     -   Corrección de la migración de la información de la batería..
 
@@ -140,7 +140,7 @@
     -   Agregue todas las configuraciones de módulos a
         nuevo formato.
 
--   Bug corregido
+-   Error corregido
 
     -   No pruebe si existe un nodeId durante la eliminación
         de una asociación.
@@ -172,7 +172,7 @@
 
     -   Adición de la configuración del módulo Fibaro US
 
--   Bug corregido
+-   Error corregido
 
     -   N / A
 
@@ -187,7 +187,7 @@
 
     -   N / A
 
--   Bug corregido
+-   Error corregido
 
     -   Corrección de la asignación de valores en formato RAW de códigos
         para lector RFid.
@@ -252,7 +252,7 @@
     -   El nivel de la batería se envía directamente a la pantalla de la batería en
         informe de nivel de recepción.
 
--   Bug corregido
+-   Error corregido
 
     -   Actualización de todas las instancias después de un
         CC Switch ALL broadcast.
@@ -270,7 +270,7 @@
 
     -   Active el modo de inclusión no seguro predeterminado.
 
--   Bug corregido
+-   Error corregido
 
     -   Prueba la información del fabricante en la pantalla de estado
         no más NOK.
@@ -294,7 +294,7 @@
 
     -   Rediseño de la pantalla del equipo con pestañas..
 
--   Bug corregido
+-   Error corregido
 
     -   Problema al mostrar ciertos módulos en la tabla de enrutamiento
         y gráfico de red.
@@ -375,7 +375,7 @@
 
     -   Actualización de la documentación del complemento.
 
--   Bug corregido
+-   Error corregido
 
     -   Corrección de posibles problemas al actualizar
         configuraciones de módulos.
@@ -438,7 +438,7 @@
     -   Corrección de la ortografía de la documentación, gracias.
         @Juan-Pedro aka: kiko.
 
--   Bug corregido
+-   Error corregido
 
     -   Corrección ortográfica.
 
@@ -532,7 +532,7 @@
     -   Forzar una actualización del estado del interruptor y el dímero
         después del envío de un comando switch all.
 
--   Bug corregido
+-   Error corregido
 
     -   Descubrimiento fijo de grupos de asociación.
 
@@ -577,7 +577,7 @@
 
     -   Actualización de la documentación.
 
--   Bug corregido
+-   Error corregido
 
     -   Documentación Ortografía y correcciones gramaticales.
 
@@ -592,7 +592,7 @@
 
     -   No hay alerta de nodo muerto si está deshabilitado.
 
--   Bug corregido
+-   Error corregido
 
     -   Corrección del retorno del estado del cable piloto de Fibaro.
 
@@ -672,7 +672,7 @@
 
     -   Advertencia mejorada en termostatos de batería.
 
--   Bug corregido
+-   Error corregido
 
     -   La temperatura convertida a Celsius devuelve la unidad C en su lugar
         de F.

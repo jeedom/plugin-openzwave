@@ -7,11 +7,7 @@ a biblioteca do OpenZwave.
 Introduction
 ============
 
-O Z-Wave se comunica usando a tecnologia de rádio de baixa potência
-na faixa de frequências de 868,42 MHz. É projetado especificamente
-para aplicativos de automação residencial. O protocolo de rádio Z-Wave é
-otimizado para trocas de baixa largura de banda (entre 9 e 40
-kbit / s) entre dispositivos alimentados por bateria onde por rede elétrica.
+O Z-Wave se comunica usando a tecnologia de rádio de baixa potência na faixa de frequência de 868,42 MHz. Foi projetado especificamente para aplicações de automação residencial. O protocolo de rádio Z-Wave é otimizado para trocas de baixa largura de banda (entre 9 e 40 kbit / s) entre dispositivos com bateria ou alimentados por rede elétrica.
 
 O Z-Wave opera na faixa de frequência sub-gigahertz, dependendo da
 regiões (868 MHz na Europa, 908 MHz nos EUA e outras frequências
@@ -52,15 +48,12 @@ Exemplos de fontes de rádio:
 > Exemplo.
 
 A distância entre outros transmissores sem fio, como telefones
-As transmissões de áudio sem fio onde rádio devem ter pelo menos 3 metros. O
+As transmissões de áudio sem fio ou rádio devem ter pelo menos 3 metros. O
 as seguintes fontes de rádio devem ser consideradas :
 
 -   Interferência por interruptor de motores elétricos
-
 -   Interferência de dispositivos elétricos defeituosos
-
 -   Interferência do equipamento de solda HF
-
 -   dispositivos de tratamento médico
 
 Espessura eficaz da parede
@@ -73,7 +66,7 @@ mitigações.
 
 ![introduction01](../images/introduction01.png)
 
-Peças de metal do edifício onde móveis podem bloquear
+Peças de metal do edifício ou móveis podem bloquear
 ondas eletromagnéticas.
 
 Malha e roteamento
@@ -82,8 +75,8 @@ Malha e roteamento
 Os nós Z-Wave principais podem transmitir e repetir mensagens
 que não estão dentro do alcance direto do controlador. Isso permite uma
 grande flexibilidade de comunicação, mesmo se não houver conexão
-sem fio direto onde se uma conexão estiver temporariamente indisponível, para
-por causa de uma mudança na sao onde no prédio.
+sem fio direto ou se uma conexão estiver temporariamente indisponível, para
+por causa de uma mudança na sala ou no prédio.
 
 ![introduction02](../images/introduction02.png)
 
@@ -117,7 +110,7 @@ de uma mensagem.
 
 > **Tip**
 >
-> O **Gráfico de rede** bem como o **Tabeo de roteamento**
+> O **Gráfico de rede** bem como o **Tabela de roteamento**
 > permitem visualizar a qualidade da sua rede.
 
 > **Tip**
@@ -125,14 +118,14 @@ de uma mensagem.
 > Existem módulos repetidores para preencher áreas onde nenhum módulo
 > setor não tem utilidade.
 
-Propriedade dos dispositivos Z-Wave
+Propriedades dos dispositivos Z-Wave
 -------------------------------
 
 |  | Vizinhos | Estrada | Funções possíveis |
 |---------------------|:------------------------:|:--------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------:|
-| Controlador | Conhece todos os vizinhos | Tem acesso à tabeo de roteamento completa | Pode se comunicar com todos os dispositivos da rede, se houver um canal |
-| Escravo | Conhece todos os vizinhos | Não possui informações na tabeo de roteamento | Não é possível responder ao nó que recebeu a mensagem. Portanto, não é possível enviar mensagens não solicitadas |
-| Escravos de roteamento | Conhece todos os seus vizinhos | Com conhecimento parcial da tabeo de roteamento | Pode responder ao nó do qual recebeu a mensagem e pode enviar mensagens não solicitadas para vários nós |
+| Controlador | Conhece todos os vizinhos | Tem acesso à tabela de roteamento completa | Pode se comunicar com todos os dispositivos da rede, se houver um canal |
+| Escravo | Conhece todos os vizinhos | Não possui informações na tabela de roteamento | Não é possível responder ao nó que recebeu a mensagem. Portanto, não é possível enviar mensagens não solicitadas |
+| Escravos de roteamento | Conhece todos os seus vizinhos | Com conhecimento parcial da tabela de roteamento | Pode responder ao nó do qual recebeu a mensagem e pode enviar mensagens não solicitadas para vários nós |
 
 Em resumo:
 
@@ -169,12 +162,12 @@ Dependências
 
 Esta parte permite validar e instalar as dependências necessárias
 o bom funcionamento do plug-in Zwave (localmente e
-deportados, aquem localmente) ![Configuração02](../images/configuration02.png)
+deportados, aqui localmente) ![configuration02](../images/configuration02.png)
 
 -   Estatuto **OK** confirma que as dependências foram atendidas.
 
 -   Se o status for **NOK**, dependências terão que ser reinstaladas
-    usando o botão ![Configuração03](../images/configuration03.png)
+    usando o botão ![configuration03](../images/configuration03.png)
 
 > **Tip**
 >
@@ -185,7 +178,7 @@ deportados, aquem localmente) ![Configuração02](../images/configuration02.png)
 > **Important**
 >
 > A atualização de dependências normalmente deve ser feita apenas
-> se o Estatuto for **NOK**, mas, no entanto, é possível ajustar
+> Se o status for **NOK**, mas, no entanto, é possível ajustar
 > certos problemas, a serem solicitados a refazer a instalação do
 > Dependências.
 
@@ -209,7 +202,7 @@ informations
     é válido.
 
 -   O botão **(Re) iniciar** permite forçar o reinício do
-    plugin, no modo normal onde inicie-o peo primeira vez.
+    plugin, no modo normal ou inicie-o pela primeira vez.
 
 -   O botão **Preso**, visível apenas se o gerenciamento automático
     está desativado, força o demônio a parar.
@@ -233,7 +226,7 @@ Selecione o nível e salve; o daemon será reiniciado
 com instruções e rastreios selecionados.
 
 O nível **Debug** onde **Info** pode ser útil para entender
-por que o demônio planta onde não aumenta um valor.
+por que o demônio planta ou não aumenta um valor.
 
 > **Important**
 >
@@ -257,13 +250,13 @@ Esta parte permite que você configure os parâmetros gerais do plugin
         A opção Sim permite excluir os dispositivos excluídos do
         Rede Z-Wave. A opção Não permite manter o equipamento
         no Jeedom, mesmo que tenham sido excluídos da rede. O equipamento
-        terá que ser excluído onde reutilizado manualmente nele
+        terá que ser excluído ou reutilizado manualmente nele
         atribuindo um novo ID do Z-Wave se você estiver migrando o
         controlador de chumbo.
 
     -   **Aplique o conjunto de configurações recomendado para inclusão** :
         opção para aplicar o conjunto de
-        configuração recomendada peo equipe Jeedom (recomendado)
+        configuração recomendada pela equipe Jeedom (recomendado)
 
     -   **Desativar a atualização em segundo plano das unidades** :
         Não solicite uma atualização das unidades
@@ -274,8 +267,8 @@ Esta parte permite que você configure os parâmetros gerais do plugin
 
     -   **Porta de chave Z-Wave** : a porta USB na qual sua interface
         O Z-Wave está conectado. Se você usa o Razberry, você tem,
-        dependendo da sua arquitetura (RPI onde Jeedomboard), os 2
-        possibilidade no final da lista.
+        dependendo da sua arquitetura (RPI ou Jeedomboard), os 2
+        possibilidades no final da lista.
 
     -   **Porta do servidor** (modificação perigosa, deve ter o mesmo
         valor em todos os Jeedoms remotos Z-Wave) : deixa
@@ -302,13 +295,13 @@ Esta parte permite que você configure os parâmetros gerais do plugin
         > **Important**
         >
         > Se você possui um módulo não reconhecido e uma atualização do
-        > configuração acabonde de ser aplicada, você pode manualmente
+        > configuração acabou de ser aplicada, você pode manualmente
         > comece a recuperar as configurações do módulo.
 
 Uma vez recuperadas as configurações, serão necessárias de acordo com as alterações
 trouxe:
 
--   Para um novo módulo sem configuração onde controle : excluir e
+-   Para um novo módulo sem configuração ou controle : excluir e
     inclua novamente o módulo.
 
 -   Para um módulo para o qual apenas os parâmetros foram atualizados :
@@ -322,7 +315,7 @@ trouxe:
     >
     > Em caso de dúvida, é recomendável excluir e incluir novamente o módulo.
 
-Não esqueça de ![Configuração08](../images/configuration08.png) si
+Não esqueça de ![configuration08](../images/configuration08.png) si
 você faz uma mudança.
 
 > **Important**
@@ -343,7 +336,7 @@ Painel Móvel
 
 ![Configuração09](../images/configuration09.png)
 
-Permite exibir onde não o painel móvel quando você usa
+Permite exibir ou não o painel móvel quando você usa
 o aplicativo em um telefone.
 
 Configuração do equipamento
@@ -374,7 +367,7 @@ alguns equipamentos) :
 Geral
 -------
 
-Aquem você encontra toda a configuração do seu equipamento :
+Aqui você encontra toda a configuração do seu equipamento :
 
 ![appliance04](../images/appliance04.png)
 
@@ -399,11 +392,11 @@ Aquem você encontra toda a configuração do seu equipamento :
 -   **Module** : esse campo só aparece se houver diferentes tipos de
     configuração para o seu módulo (caso de módulos que podem fazer
     fios piloto, por exemplo). Permite escolher o
-    configuração para usá-lo onde modificá-lo posteriormente
+    configuração para usá-lo ou modificá-lo posteriormente
 
 -   **Marque** : fabricante do seu módulo Z-Wave.
 
--   **Configuration** : janeo para configurar os parâmetros do
+-   **Configuration** : janela para configurar os parâmetros do
     module
 
 -   **Assistant** : disponível apenas em determinados módulos, você
@@ -435,25 +428,17 @@ Abaixo você encontra a lista de pedidos :
 > ausente.
 
 -   o nome exibido no painel
-
 -   ícone : no caso de uma ação, você pode escolher um ícone para
     exibir no painel em vez de texto
-
 -   Valor do pedido : no caso de um comando do tipo ação, sua
-    pode ser vinculado a um comando de tipo de informação, é aquem que
+    pode ser vinculado a um comando de tipo de informação, é aqui que
     está configurado. Exemplo para uma lâmpada, a intensidade está ligada à sua
-    estado, isso permite que o widge tenha o estado real da lâmpada.
-
+    estado, isso permite que o widget tenha o estado real da lâmpada.
 -   tipo e subtipo.
-
 -   a instância deste comando Z-Wave (reservada para especialistas).
-
 -   a classe do controle Z-Wave (reservada a especialistas).
-
 -   o índice de valor (reservado para especialistas).
-
 -   o próprio pedido (reservado para especialistas).
-
 -   "Valor do feedback do status "e" Duração antes do feedback do status" : permet
     para indicar a Jeedom que após uma alteração nas informações
     O valor deve retornar para Y, X min após a alteração. Exemplo : dans
@@ -464,28 +449,20 @@ Abaixo você encontra a lista de pedidos :
     redefine o valor da informação para 0 (não é mais detectado movimento).
 
 -   Historicizar : permite historiar os dados.
-
 -   Display : permite exibir os dados no painel.
-
 -   Inverter : permite inverter o estado para tipos binários.
-
 -   Unidade : unidade de dados (pode estar vazia).
-
 -   Min / max : limites de dados (podem estar vazios).
-
--   Configuração avançada (pequenas rodas dentadas) : permite exibir
-    a configuração avançada do comando (método
-    história, widge ...).
+-   Configuração avançada (pequenas rodas dentadas) : exibe a configuração avançada do comando (método de registro, widget etc.).
 
 -   Teste : permite testar o comando.
-
 -   Excluir (assinar -) : permite excluir o comando.
 
 > **Important**
 >
 > O botão **Tester** no caso de um comando do tipo Info, não
 > não consultar o módulo diretamente, mas o valor disponível no
-> Cobertura jeedom. O teste retornará o valor correto somente se o
+> cache jeedom. O teste retornará o valor correto somente se o
 > módulo em questão transmitiu um novo valor correspondente ao
 > definição do comando. É então completamente normal não
 > obter resultados após a criação de um novo comando Info,
@@ -494,7 +471,7 @@ Abaixo você encontra a lista de pedidos :
 O **loupe**, disponível na guia geral, permite recriar
 todos os comandos para o módulo atual.
 ![appliance13](../images/appliance13.png) Si aucune Ordem n'est
-presente onde se os comandos estiverem incorretos, a lupa deve remediar
+presente ou se os comandos estiverem incorretos, a lupa deve remediar
 a situação.
 
 > **Important**
@@ -530,9 +507,9 @@ O botão **Documentation** fornece acesso à documentação
 módulo específico para Jeedom.
 
 Módulos especiais também têm um assistente específico para
-para facilitar a aplicação de certos parâmetros onde operações.
+para facilitar a aplicação de certos parâmetros ou operações.
 
-O botão **Assistant** permite acesso à teo específica do assistente
+O botão **Assistant** permite acesso à tela específica do assistente
 do módulo.
 
 Configuração recomendada
@@ -540,7 +517,7 @@ Configuração recomendada
 
 ![appliance08](../images/appliance08.png)
 
-Permite aplicar um conjunto de configurações recomendado peo equipe
+Permite aplicar um conjunto de configurações recomendado pela equipe
 Jeedom.
 
 > **Tip**
@@ -559,7 +536,7 @@ usando o módulo.
 -   **Intervalo de despertar**, para módulos com bateria.
 
 -   Ativação de **atualização manual** para módulos
-    não voltando por SE mesmas suas mudanças de estados.
+    não voltando por si mesmas suas mudanças de estados.
 
 Para aplicar o conjunto de configurações recomendado, clique no botão
 : **Configuração recomendada**, depois confirme a aplicação de
@@ -580,7 +557,7 @@ Uma confirmação do bom andamento será exibida na forma de um banner
 
 A página de equipamento informa se os itens ainda não foram
 foi ativado no módulo. Por favor, consulte a documentação do
-para ativá-lo manualmente onde aguardar o próximo ciclo de
+para ativá-lo manualmente ou aguardar o próximo ciclo de
 despertar.
 
 ![appliance11](../images/appliance11.png)
@@ -594,18 +571,18 @@ despertar.
 Configuração de módulos
 =========================
 
-É aquem que você encontrará todas as informações sobre seu módulo
+É aqui que você encontrará todas as informações sobre seu módulo
 
 ![node01](../images/node01.png)
 
-A janeo possui várias guias :
+A janela possui várias guias :
 
 Resumo
 ------
 
 Fornece um resumo completo do seu nó com várias informações
 neste, como por exemplo o estado dos pedidos que permite conhecer
-se o nó estiver aguardando informações onde a lista de nós vizinhos.
+se o nó estiver aguardando informações ou a lista de nós vizinhos.
 
 > **Tip**
 >
@@ -620,7 +597,7 @@ Valeurs
 
 ![node02](../images/node02.png)
 
-Aquem você encontrará todos os comandos e estados possíveis em seu
+Aqui você encontrará todos os comandos e estados possíveis em seu
 módulo. Eles são ordenados por instância e classe de comando e indexam.
 O « mapping » de Comandos é entièrement basé sur ces Informação.
 
@@ -633,7 +610,7 @@ O « mapping » de Comandos é entièrement basé sur ces Informação.
 
 > **Tip**
 >
-> É possível ter mais pedidos aquem do que no Jeedom, é
+> É possível ter mais pedidos aqui do que no Jeedom, é
 > completamente normal. Em Jeedom, os pedidos foram pré-selecionados
 > para você.
 
@@ -655,7 +632,7 @@ Configurações
 
 ![node03](../images/node03.png)
 
-Aquem você encontrará todas as possibilidade de configuração para
+Aqui você encontrará todas as possibilidades de configuração para
 parâmetros do seu módulo, bem como a capacidade de copiar o
 configuração de outro nó já em vigor.
 
@@ -671,7 +648,7 @@ com o valor aplicado retornado pelo módulo.
 
 Na inclusão, um novo módulo é detectado com os parâmetros por
 defeito do fabricante. Em alguns módulos, a funcionalidade não
-não estará ativo sem modificar um onde mais parâmetros.
+não estará ativo sem modificar um ou mais parâmetros.
 Consulte a documentação do fabricante e nossas recomendações
 para configurar corretamente seus novos módulos.
 
@@ -691,7 +668,7 @@ para configurar corretamente seus novos módulos.
 > **Tip**
 >
 > A ordem **Aplicar em ...** permite aplicar o
-> configuração atual do módulo em um onde mais módulos
+> configuração atual do módulo em um ou mais módulos
 > idêntico.
 
 ![node18](../images/node18.png)
@@ -709,7 +686,7 @@ do fabricante para saber a definição do índice, valor e tamanho.
 Associations
 ------------
 
-É aquem que você encontra a administração dos grupos de associação de seu
+É aqui que você encontra a administração dos grupos de associação de seu
 module.
 
 ![node07](../images/node07.png)
@@ -805,14 +782,14 @@ Permite que você execute determinadas ações no módulo.
 ![node12](../images/node12.png)
 
 Certas ações estarão ativas, dependendo do tipo de módulo e seu
-possibilidade onde de acordo com o estado atual do módulo, como por exemplo
+possibilidades ou de acordo com o estado atual do módulo, como por exemplo
 se presumido morto pelo controlador.
 
 > **Important**
 >
 > Não use ações em um módulo se você não souber o que
 > que fazemos. Algumas ações são irreversíveis. Acções
-> pode ajudar a resolver problemas com um onde mais módulos
+> pode ajudar a resolver problemas com um ou mais módulos
 > Z-Wave.
 
 > **Tip**
@@ -820,7 +797,7 @@ se presumido morto pelo controlador.
 > O **Regeneração da detecção de nó** pode detectar o
 > módulo para recuperar o último conjunto de parâmetros. Esta ação
 > é necessário quando você é informado de que uma atualização de parâmetro e
-> onde o comportamento do módulo é necessário para a operação adequada. O
+> ou o comportamento do módulo é necessário para a operação adequada. O
 > A regeneração da detecção do nó implica uma reinicialização do
 > rede, o assistente executa automaticamente.
 
@@ -843,8 +820,8 @@ se presumido morto pelo controlador.
 
 ![node14](../images/node14.png)
 
-Depois de iniciado, é recomendável fechar a teo de configuração do
-módulo e monitore a remoção do módulo através da teo de integridade
+Depois de iniciado, é recomendável fechar a tela de configuração do
+módulo e monitore a remoção do módulo através da tela de integridade
 Z-Wave.
 
 > **Important**
@@ -916,7 +893,7 @@ Se você clicar no botão novamente, sair do modo de inclusão.
 >
 > Recomenda-se, antes da inclusão de um novo módulo que seria
 > "novo "no mercado, para lançar o pedido **Módulos de configuração** via
-> teo de configuração do plugin. Esta ação irá recuperar
+> tela de configuração do plugin. Esta ação irá recuperar
 > todas as versões mais recentes dos arquivos de configuração
 > mapeamento de comandos openzwave e Jeedom.
 
@@ -997,25 +974,25 @@ fonctionnel.
 
 > **Tip**
 >
-> Se você não possui a imagem onde o Jeedom não reconheceu seu módulo,
+> Se você não possui a imagem ou o Jeedom não reconheceu seu módulo,
 > este botão pode ser usado para corrigir (desde que a entrevista com o
 > módulo está completo).
 
 > **Tip**
 >
-> Se na sua tabeo de roteamento e / onde na teo de integridade do Z-Wave, você
-> ter um onde mais módulos nomeados com seus **nome genérico**, la
+> Se na sua tabela de roteamento e / ou na tela de integridade do Z-Wave, você
+> ter um ou mais módulos nomeados com seus **nome genérico**, la
 > sincronização remediará esta situação.
 
 O botão Sincronizar é visível apenas no modo especialista :
 ![addremove07](../images/addremove07.png)
 
-Rede Z-Wave
+Redes Z-Wave
 ==============
 
 ![network01](../images/network01.png)
 
-Aquem você encontrará informações gerais sobre sua rede Z-Wave.
+Aqui você encontrará informações gerais sobre sua rede Z-Wave.
 
 ![network02](../images/network02.png)
 
@@ -1074,7 +1051,7 @@ completaram sua entrevista.
 > **Tip**
 >
 > Dependendo dos módulos que você possui, é possível que a rede
-> nunca alcança status por SE só **Ready**. Os controles remotos,
+> nunca alcança status por si só **Ready**. Os controles remotos,
 > por exemplo, não acorde por conta própria e não irá complementar
 > nunca a entrevista deles. Nesse tipo de caso, a rede é completamente
 > operacional e mesmo que os controles remotos não tenham completado sua
@@ -1100,12 +1077,12 @@ Actions
 
 ![network05](../images/network05.png)
 
-Aquem você encontrará todas as ações possíveis para todos os seus
+Aqui você encontrará todas as ações possíveis para todos os seus
 Rede Z-Wave. Cada ação é acompanhada de uma breve descrição.
 
 > **Important**
 >
-> Algumas ações são realmente arriscadas onde até irreversíveis, a equipe
+> Algumas ações são realmente arriscadas ou até irreversíveis, a equipe
 > A Jeedom não pode ser responsabilizada em caso de má
 > manipulação.
 
@@ -1117,7 +1094,7 @@ Rede Z-Wave. Cada ação é acompanhada de uma breve descrição.
 
 > **Tip**
 >
-> Se uma ação não puder ser iniciada, eo será desativada até
+> Se uma ação não puder ser iniciada, ela será desativada até
 > quando pode ser executado novamente.
 
 Statistiques
@@ -1125,7 +1102,7 @@ Statistiques
 
 ![network06](../images/network06.png)
 
-Aquem você encontrará estatísticas gerais de todos os seus
+Aqui você encontrará estatísticas gerais de todos os seus
 Rede Z-Wave.
 
 Gráfico de rede
@@ -1152,7 +1129,7 @@ Explicação da legenda da cor :
 -   **Gris** : A entrevista ainda não está concluída, os links serão
     realmente conhecido quando a entrevista é concluída.
 
--   **Rouge** : presumidamente morto, onde sem vizinho, não participa / não mais
+-   **Rouge** : presumidamente morto, ou sem vizinho, não participa / não mais
     malha de rede.
 
 > **Tip**
@@ -1163,23 +1140,23 @@ A rede Z-Wave consiste em três tipos diferentes de nós com
 três funções principais.
 
 A principal diferença entre os três tipos de nós é sua
-conhecimento da tabeo de roteamento de rede e, posteriormente, sua
+conhecimento da tabela de roteamento de rede e, posteriormente, sua
 capacidade de enviar mensagens para a rede:
 
-Tabeo de roteamento
+Tabela de roteamento
 ----------------
 
 Cada nó é capaz de determinar em quais outros nós estão.
 Comunicação direta. Esses nós são chamados vizinhos. Durante
-inclusão e / onde posteriormente, mediante solicitação, o nó pode
+inclusão e / ou posteriormente, mediante solicitação, o nó pode
 para informar o controlador da lista de vizinhos. Graças a estes
-informações, o controlador é capaz de criar uma tabeo que possui
+informações, o controlador é capaz de criar uma tabela que possui
 todas as informações sobre possíveis vias de comunicação em
-uma rede.
+Uma rede.
 
 ![network08](../images/network08.png)
 
-As linhas da tabeo contêm os nós de origem e as colunas
+As linhas da tabela contêm os nós de origem e as colunas
 conter nós de destino. Consulte a legenda para
 entender as cores das células que indicam os links entre dois
 nós.
@@ -1205,24 +1182,24 @@ Explicação da legenda da cor :
 > **Important**
 >
 > Um módulo supostamente morto, não participa / não mais da rede da rede.
-> Será marcado aquem com um ponto de exclamação vermelho em um triângulo.
+> Será marcado aqui com um ponto de exclamação vermelho em um triângulo.
 
 > **Tip**
 >
 > Você pode iniciar manualmente a atualização do vizinho, por módulo
-> onde para toda a rede usando os botões disponíveis no
-> Tabeo de roteamento.
+> ou para toda a rede usando os botões disponíveis no
+> Tabela de roteamento.
 
 Santé
 =====
 
 ![health01](../images/health01.png)
 
-Esta janeo resume o status da sua rede Z-Wave :
+Esta janela resume o status da sua rede Z-Wave :
 
 ![health02](../images/health02.png)
 
-Você tem aquem :
+Você tem aqui :
 
 -   **Module** : o nome do seu módulo, um clique nele permite que você
     acessar diretamente.
@@ -1245,7 +1222,7 @@ Você tem aquem :
     module
 
 -   **Batterie** : nível da bateria do módulo (um plugue
-    indica que o módulo é alimentado peo rede elétrica).
+    indica que o módulo é alimentado pela rede elétrica).
 
 -   **Hora de acordar** : para módulos de bateria, fornece a
     frequência em segundos dos instantes em que o módulo
@@ -1266,7 +1243,7 @@ Você tem aquem :
     -   Também permite informar se o nó ainda não está
         acordei uma vez desde o lançamento do demônio.
 
-    -   E indica se um nó não acordonde como esperado.
+    -   E indica se um nó não acordou como esperado.
 
 -   **Ping** : Envie uma série de mensagens para o módulo para
     testar seu bom funcionamento.
@@ -1276,7 +1253,7 @@ Você tem aquem :
 > O equipamento desativado será exibido, mas nenhuma informação do
 > o diagnóstico estará presente apenas.
 
-O nome do módulo pode ser seguido por uma onde duas imagens:
+O nome do módulo pode ser seguido por uma ou duas imagens:
 
 ![health04](../images/health04.png) Modules supportant la
 COMANDO\_CLASS\_ZWAVE\_PLUS\_INFO
@@ -1309,7 +1286,7 @@ COMMAND\_CLASS\_SECURITY e não seguro.
 
 > **Tip**
 >
-> Tempo limite e% Ok nos nós das baterias antes da conclusão
+> Tempo limite e% OK nos nós das baterias antes da conclusão
 > da entrevista não é significativa. Na verdade, o nó não vai
 > responda às perguntas do controlador sobre o fato de ele estar dormindo
 > profundo.
@@ -1335,14 +1312,14 @@ COMMAND\_CLASS\_SECURITY e não seguro.
 
 > **Tip**
 >
-> Se na sua mesa de roteamento e / onde na teo de integridade do Z-Wave você
-> ter um onde mais módulos nomeados com seus **nome genérico**, la
+> Se na sua mesa de roteamento e / ou na tela de integridade do Z-Wave você
+> ter um ou mais módulos nomeados com seus **nome genérico**, la
 > sincronização remediará esta situação.
 
 > **Tip**
 >
-> Se na sua mesa de roteamento e / onde na teo de integridade do Z-Wave você
-> tem um onde mais módulos nomeados **Unknown**, isso significa
+> Se na sua mesa de roteamento e / ou na tela de integridade do Z-Wave você
+> tem um ou mais módulos nomeados **Unknown**, isso significa
 > a entrevista do módulo não foi concluída com êxito. Você tem
 > provavelmente um **NOK** na coluna do construtor. Abra os detalhes
 > do (s) módulo (s), para experimentar as soluções sugeridas.
@@ -1365,7 +1342,7 @@ Etapa de entrevistar um módulo após iniciar o daemon.
     nó de dormir.
 
 -   **ManufacturerSpecific1** Recupere o nome do fabricante e
-    identifica produtos se ProtocolInformações permitir.
+    identifica produtos se ProtocolInfo permitir.
 
 -   **NodeInfo** Recuperar informações sobre gerenciamento de classes
     comandos suportados.
@@ -1386,7 +1363,7 @@ Etapa de entrevistar um módulo após iniciar o daemon.
 
 -   **Static** Recuperar informações estáticas (não muda).
 
--   **CacheLoad** Efetue ping no módulo durante a reinicialização com o Cobertura de configuração
+-   **CacheLoad** Efetue ping no módulo durante a reinicialização com o cache de configuração
     do dispositivo.
 
 -   **Associations** Recuperar informações sobre associações.
@@ -1415,7 +1392,7 @@ Detalhes das notificações enviadas pelos módulos
 -   **NoOperation** Relate em um teste de nó (Ping) que a mensagem
     foi enviado com sucesso.
 
--   **Awake** Relatar quando um nó acabonde de acordar
+-   **Awake** Relatar quando um nó acabou de acordar
 
 -   **Sleep** Relatar quando um nó adormeceu.
 
@@ -1428,8 +1405,8 @@ Backups
 
 A parte de backup permitirá gerenciar os backups da topologia
 da sua rede. Este é o seu arquivo zwcfgxxx.xml, é o
-último estado conhecido da sua rede, é uma forma de Cobertura do seu
-rede. Nesta teo você pode :
+último estado conhecido da sua rede, é uma forma de cache do seu
+rede. Nesta tela você pode :
 
 -   Inicie um backup (um backup é feito a cada parada de reiniciar o
     rede e durante operações críticas). Os últimos 12 backups
@@ -1446,7 +1423,7 @@ Atualizar o OpenZWave
 =======================
 
 Após uma atualização do plugin Z-Wave, é possível que o Jeedom
-solicitação para atualizar dependências do Z-Wave. Um NOk ao nível de
+solicitação para atualizar dependências do Z-Wave. Um NOK ao nível de
 dependências serão exibidas:
 
 ![update01](../images/update01.png)
@@ -1477,12 +1454,12 @@ Lista de módulos compatíveis
 ============================
 
 Você encontrará a lista de módulos compatíveis
-[aquem](https://jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-equipement.compatible.html)
+[aqui](https://doc.jeedom.com/pt_PT/zwave/equipement.compatible)
 
 Solução de problemas e diagnóstico
 =======================
 
-Meu módulo não foi detectado onde não fornece seus identificadores de produto e tipo
+Meu módulo não foi detectado ou não fornece seus identificadores de produto e tipo
 -------------------------------------------------------------------------------
 
 ![troubleshooting01](../images/troubleshooting01.png)
@@ -1491,7 +1468,7 @@ Inicie a regeneração da detecção de nó na guia Ações
 do módulo.
 
 Se você tiver vários módulos nesse cenário, inicie **Regenerar
-detecção de nós desconhecidos** da teo **Rede Zwave** onglet
+detecção de nós desconhecidos** da tela **Rede Zwave** onglet
 **Actions**.
 
 Meu módulo é considerado morto pelo controlador Dead
@@ -1500,9 +1477,9 @@ Meu módulo é considerado morto pelo controlador Dead
 ![troubleshooting02](../images/troubleshooting02.png)
 
 Se o módulo ainda estiver conectado e acessível, siga as soluções
-proposto na teo do módulo.
+proposto na tela do módulo.
 
-Se o módulo foi cancelado onde está com defeito, você pode
+Se o módulo foi cancelado ou está com defeito, você pode
 pode excluí-lo da rede usando **excluir o nó com erro**
 via guia **Actions**.
 
@@ -1545,12 +1522,12 @@ Então você tem que reservar um tempo para revisar todas as suas
 interruptores / dimmers antes de configurar um cenário, se você não
 não apenas luzes piloto.
 
-Meu módulo não possui um comando Cena onde Botão
+Meu módulo não possui um comando Cena ou Botão
 ----------------------------------------------
 
 ![troubleshooting05](../images/troubleshooting05.png)
 
-Você pode adicionar o comando na teo de mapeamento de comandos.
+Você pode adicionar o comando na tela de mapeamento de comandos.
 
 Esta é uma ordem **Info** no CC **0x2b** Instância **0** commande
 **dados \ [0 \]. val**
@@ -1564,8 +1541,8 @@ Forçar valores de atualização
 É possível forçar, mediante solicitação, a atualização dos valores
 uma instância para um comando de classe específico.
 
-É possível fazer isso através de uma solicitação http onde criar um pedido
-na teo de mapeamento de equipamentos.
+É possível fazer isso através de uma solicitação http ou criar um pedido
+na tela de mapeamento de equipamentos.
 
 ![troubleshooting06](../images/troubleshooting06.png)
 
@@ -1584,7 +1561,7 @@ Substitua ip\_jeedom, node\_id, instance\_id, cc\_id e index
 http://token:\#APIKEY\#@ip\_jeedom:8083/ZWaveAPI/Run/devicesnode\_id.instances\[instance\_id\].commandClasses\[cc\_id\].data\[index\].ForceRefresh()
 
 O acesso à API REST foi alterado, veja detalhes
-[aquem](./restapi.asciidoc).
+[aqui](./restapi.asciidoc).
 
 Transfira os módulos para um novo controlador
 ------------------------------------------------
@@ -1592,10 +1569,10 @@ Transfira os módulos para um novo controlador
 Por razões diferentes, pode ser necessário transferir
 todos os seus módulos em um novo controlador principal.
 
-Você decide ir de **raZberry** para um **Z-Stick Gen5** onde porque
+Você decide ir de **raZberry** para um **Z-Stick Gen5** ou porque
 você tem que fazer uma **Reset** completo do controlador principal.
 
-Aquem estão diferentes etapas para chegar lá sem perder seus cenários,
+Aqui estão diferentes etapas para chegar lá sem perder seus cenários,
 widgets de valor e histórico:
 
 -   1 \) Faça um backup do Jeedom.
@@ -1637,7 +1614,7 @@ widgets de valor e histórico:
 
 -   12 \) No final, você não deve mais ter equipamentos no ID 0.
 
--   13 \) Verifique se todos os módulos estão nomeados corretamente na teo de
+-   13 \) Verifique se todos os módulos estão nomeados corretamente na tela de
     saúde Z-Wave. Inicie a sincronização se não for esse o caso.
 
 Substitua um módulo defeituoso
@@ -1651,7 +1628,7 @@ Se o módulo for considerado "inoperante"" :
 -   Observe (captura de tela) seus valores de parâmetro, eles serão perdidos
     após inclusão.
 
--   Vá para a guia Estoque do módulo e ative o comando
+-   Vá para a guia Actions do módulo e ative o comando
     "Substituir nó com falha".
 
 -   O controlador está no modo de inclusão, prossiga com a inclusão de acordo com o
@@ -1687,11 +1664,11 @@ Remoção do nó fantasma
 
 Se você perdeu toda a comunicação com um módulo alimentado por bateria e
 você deseja excluí-lo da rede, é possível que a exclusão
-não é bem-sucedido onde o nó permanece presente na sua rede.
+não é bem-sucedido ou o nó permanece presente na sua rede.
 
 O assistente automático de nó fantasma está disponível.
 
--   Vá para a guia Estoque do módulo para excluir.
+-   Vá para a guia Actions do módulo para excluir.
 
 -   Ele provavelmente terá um status **CacheLoad**.
 
@@ -1701,9 +1678,9 @@ O assistente automático de nó fantasma está disponível.
     Ficheiro **zwcfg** para remover o CC WakeUp do módulo. O
     reinicializações de rede.
 
--   Feche a teo do módulo.
+-   Feche a tela do módulo.
 
--   Abra a teo Z-Wave Health.
+-   Abra a tela Z-Wave Health.
 
 -   Aguarde o ciclo de inicialização ser concluído (topologia carregada).
 
@@ -1712,7 +1689,7 @@ O assistente automático de nó fantasma está disponível.
 -   No próximo minuto, você verá o nó desaparecer da tela
     saúde.
 
--   Se na configuração do Z-Wave, você desmarconde a opção
+-   Se na configuração do Z-Wave, você desmarcou a opção
     "Remover automaticamente dispositivos excluídos ", você precisará
     excluir manualmente o equipamento correspondente.
 
@@ -1723,7 +1700,7 @@ Ações pós-inclusão
 
 Recomenda-se realizar a inclusão de pelo menos 1M do controlador
 principal, mas não será a posição final do seu novo módulo.
-Aquem estão algumas boas práticas a seguir após a inclusão de um novo
+Aqui estão algumas boas práticas a seguir após a inclusão de um novo
 módulo na sua rede.
 
 Depois que a inclusão é concluída, vários
@@ -1738,7 +1715,7 @@ ajuda com diferentes parâmetros, bem como com os valores recomendados.
 Teste seu módulo, valide feedback de informações, feedback de status
 e possíveis ações no caso de um atuador.
 
-Durante a entrevista, seu novo módulo procuronde seus vizinhos.
+Durante a entrevista, seu novo módulo procurou seus vizinhos.
 No entanto, os módulos da sua rede ainda não conhecem seu
 novo módulo.
 
@@ -1760,39 +1737,39 @@ na bateria executará a ação somente na próxima vez que acordarem.
 
 A opção de tratar a rede duas vezes por semana permite fazer isso
 processo sem ação de sua parte, é útil ao configurar
-coloca novos módulos e onde quando são movidos.
+coloca novos módulos e ou quando são movidos.
 
 Sem feedback da condição da bateria
 -------------------------------
 
 Os módulos Z-Wave raramente enviam o status da bateria para o
 controlador. Alguns o farão na inclusão somente quando
-isso atinge 20% onde outro valor limite crítico.
+isso atinge 20% ou outro valor limite crítico.
 
-Para ajudá-lo a monitorar melhor o status de suas baterias, a teo Baterias
+Para ajudá-lo a monitorar melhor o status de suas baterias, a tela Baterias
 no menu Análise, fornece uma visão geral do status do seu
 pilhas. Um mecanismo de notificação de bateria fraca também é
 disponible.
 
-O valor retornado da teo Baterias é o último conhecido no
+O valor retornado da tela Baterias é o último conhecido no
 cache.
 
 Todas as noites, o plug-in Z-Wave solicita que cada módulo atualize
 Valor da bateria. Na próxima vez que você acordar, o módulo envia o valor para
-Jeedom a ser adicionado ao Cobertura. Então você geralmente tem que esperar até
-pelo menos 24 horas antes de obter um valor na teo Baterias.
+Jeedom a ser adicionado ao cache. Então você geralmente tem que esperar até
+pelo menos 24 horas antes de obter um valor na tela Baterias.
 
 > **Tip**
 >
 > É claro que é possível atualizar manualmente o valor
 > Bateria através da guia Valores do módulo e aguarde o próximo
-> alarme onde ativar manualmente o módulo para obter
+> alarme ou ativar manualmente o módulo para obter
 > recuperação imediata. O intervalo de ativação do módulo
 > é definido na guia Sistema do módulo. Para otimizar a vida de
 > baterias, recomenda-se espaçar esse atraso o máximo possível. Por 4h,
 > aplicar 14400, 12h 43200. Alguns módulos devem
 > ouça regularmente mensagens do controlador, como
-> Termostatos. Nesse caso, é necessário pensar em 15 min onde 900. Cada
+> Termostatos. Nesse caso, é necessário pensar em 15 min ou 900. Cada
 > módulo é diferente, então não existe uma regra exata, este é o caso
 > por caso e por experiência.
 
@@ -1822,12 +1799,12 @@ ainda esta mensagem, não é mais normal.
 
 Você precisa tentar as diferentes etapas:
 
--   Verifique se as luzes da teo de integridade do Jeedom estão verdes.
+-   Verifique se as luzes da tela de integridade do Jeedom estão verdes.
 
 -   Verifique se a configuração do plug-in está em ordem.
 
--   Verifique se você seleciononde a porta correta para o
-    Teco ZWave.
+-   Verifique se você selecionou a porta correta para o
+    Tecla ZWave.
 
 -   Verifique se a configuração da sua rede Jeedom está correta.
     (Atenção, se você fez uma Restauração de uma instalação DIY para
@@ -1861,7 +1838,7 @@ Se o problema persistir, reinicie o controlador:
 
 -   Desconecte a energia.
 
--   Remova o dongle USB onde o Razberry, conforme apropriado, aproximadamente
+-   Remova o dongle USB ou o Razberry, conforme apropriado, aproximadamente
     5 minutos.
 
 -   Reconecte tudo e tente novamente.
@@ -1872,8 +1849,8 @@ O controlador não responde mais
 Não há mais pedidos transmitidos para os módulos, mas retorna
 dos estados subiram em direção a Jeedom.
 
-A fio de mensagens do controlador pode estar cheia.
-Consulte a teo Z-Wave Network se o número de mensagens pendentes não
+A fila de mensagens do controlador pode estar cheia.
+Consulte a tela Z-Wave Network se o número de mensagens pendentes não
 qu'augmenter.
 
 Nesse caso, você deve reiniciar o Demon Z-Wave.
@@ -1885,7 +1862,7 @@ Se o problema persistir, você deve redefinir o controlador:
 
 -   Desconecte a energia.
 
--   Remova o dongle USB onde o Razberry, conforme apropriado, aproximadamente
+-   Remova o dongle USB ou o Razberry, conforme apropriado, aproximadamente
     5 minutos.
 
 -   Reconecte tudo e tente novamente.
@@ -1898,15 +1875,17 @@ dependências. Você deve consultar o log de atualização de dependência
 para determinar qual é exatamente o erro. Geralmente,
 o erro está no final do log nas últimas linhas.
 
-Aquem estão os possíveis problemas e suas possíveis soluções:
+Aqui estão os possíveis problemas e suas possíveis soluções:
 
 -   não foi possível instalar o mercurial - abortar
 
 O pacote mercurial não deseja instalar, para corrigir o lançamento no
 ssh:
 
-    sudo rm / var / lib / dpkg / info / $ mercurial * -f
+````
+    sudo rm /var/lib/dpkg/info/$mercurial* -f
     sudo apt-ge install mercurial
+````
 
 -   Vícios parecem bloqueados em 75%
 
@@ -1917,13 +1896,15 @@ então seja paciente.
 
 -   Erro ao compilar a biblioteca openzwave
 
-        arm-linux-gnueabihf-gcc: erro interno do compilador: Morto (programa cc1plus)
-        Envie um relatório completo de erros,
-        com fonte pré-processada, se apropriado.
-        Veja <file:///usr/share/doc/gcc-4.9/README.Bugs> para obter instruções.
-        error: comando 'arm-linux-gnueabihf-gcc' falhonde com status de saída 4
-        Makefile:266: receita para o destino 'build' falhou
+````
+        arm-linux-gnueabihf-gcc: internal compiler error: Killed (program cc1plus)
+        Please submit a full bug report,
+        with preprocessed source if appropriate.
+        See <file:///usr/share/doc/gcc-4.9/README.Bugs> for instructions.
+        error: command 'arm-linux-gnueabihf-gcc' failed with exit status 4
+        Makefile:266: recipe for targe 'build' failed
         make: *** [build] Erro 1
+````
 
 Este erro pode ocorrer devido à falta de memória RAM durante o
 compilation.
@@ -1933,27 +1914,24 @@ Na interface do usuário jeedom, inicie a compilação de dependências.
 Uma vez iniciado, no ssh, interrompa esses processos (consumidores em
 memória) :
 
-    sudo systemctl Pare cron
-    sudo systemctl Pare apache2
-    sudo systemctl para o mysql
+````
+    sudo systemctl stop cron
+    sudo systemctl stop apache2
+    sudo systemctl stop mysql.
+````
 
 Para acompanhar o andamento da compilação, adaptamos o
 arquivo de log openzwave\_update.
 
-    tail -f / var / www / html / log / openzwave_update
+````
+    tail -f /var/www/html/log/openzwave_update
+````
 
 Quando a compilação estiver concluída e sem erros, reinicie o
 serviços que você parou
 
-sudo systemctl Começo cron sudo systemctl Começo apache2 sudo systemctl
+sudo systemctl start cron sudo systemctl start apache2 sudo systemctl
 inicie o mysql
-
-> **Tip**
->
-> Se você ainda estiver no nginx, precisará substituir **apache2** par
-> **nginx** em pedidos **stop** / **start**. O arquivo de log
-> openzwave\_update estará na pasta:
-> / usr / share / nginx / www / jeedom / log .
 
 Usando o cartão Razberry em um Raspberry Pi 3
 ------------------------------------------------------
@@ -1963,11 +1941,15 @@ O controlador Bluetooth interno do Raspberry deve estar desativado.
 
 Adicione esta linha:
 
-    dtoverlay = pi3-miniuart-bt
+````
+    dtoverlay=pi3-miniuart-bt
+````
 
 No final do arquivo:
 
+````
     /boot/config.txt
+````
 
 Em seguida, reinicie o seu Raspberry.
 
@@ -1984,19 +1966,19 @@ Servidor REST do daemon Z-Wave.
 A sintaxe para chamar rotas está neste formato:
 
 URL  =
-[http://token:\#APIKEY\#@\#IP\_JEEDOM\#:\#PORTDEMON\#/\#ROUTE\#](http://token:#APIKEY#@#IP_JEEDOM#:#PORTDEMON#/#ROUTE#)
+[http://token:\#APIKEY\#@\#IP\_JEEDOM\#:\#PORTDEMON\#/ \#ROUTE\#](http://token:#APIKEY#@#IP_JEEDOM#:#PORTDEMON#/#ROUTE#)
 
--   \#API\_KEY \# corresponde à sua chave de API, específica para
+-   \#API\_KEY\# corresponde à sua chave de API, específica para
     sua instalação. Para encontrá-lo, vá ao menu «
     Geral », puis « Administration » e « Configuração », en activant
     No modo Expert, você verá uma linha de API Key.
 
--   \#IP\_JEEDOM \# corresponde ao seu URL  de acesso Jeedom.
+-   \#IP\_JEEDOM\# corresponde ao seu URL de acesso Jeedom.
 
--   \#PORTDEMON \# corresponde ao número da porta especificado na página
+-   \#PORTDEMON\# corresponde ao número da porta especificado na página de
     configuração do plug-in Z-Wave, por padrão: 8083.
 
--   \#ROUTE \# corresponde à rota no servidor REST a ser executado.
+-   \#ROUTE\# corresponde à rota no servidor REST para executar.
 
 Para conhecer todas as rotas, consulte
 [github](https://github.com/jeedom/plugin-openzwave) do plugin Z-Wave.
@@ -2010,4 +1992,4 @@ http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices\[2\].TestNod
 
 > **Recebo o erro "Não há espaço suficiente no buffer do fluxo"**
 >
-> Infelizmente esse erro é de hardware, não há nada que possamos fazer e estamos procurando, no momento, como forçar a reinicialização do daemon no caso desse erro (mas muitas vezes também é necessário desconectar a chave por 5 minutos para que eo reinicie)
+> Infelizmente esse erro é de hardware, não há nada que possamos fazer e estamos procurando, no momento, como forçar a reinicialização do daemon no caso desse erro (mas muitas vezes também é necessário desconectar a chave por 5 minutos para que ela reinicie)

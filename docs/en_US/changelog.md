@@ -91,7 +91,7 @@
 
     -   Recovery of the last level of the batteries when the daemon starts.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Correction of the migration of the Battery info.
 
@@ -140,7 +140,7 @@
     -   Add all the module configurations to the
         new format.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Do not test if a nodeId exists during the deletion
         of an association.
@@ -172,7 +172,7 @@
 
     -   Addition of Fibaro US module configuration
 
--   Fixed Bug
+-   Fixed bug
 
     -   N / A
 
@@ -187,7 +187,7 @@
 
     -   N / A
 
--   Fixed Bug
+-   Fixed bug
 
     -   Correction of the assignment of values in RAW format of codes
         for RFid reader.
@@ -252,7 +252,7 @@
     -   The battery level is sent directly to the battery screen on
         receiving level report.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Refreshing of all instances following a
         CC Switch ALL broadcast.
@@ -270,7 +270,7 @@
 
     -   Activate the default non-secure inclusion mode.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Test manufacturer information in the health screen does
         no more NOK.
@@ -294,7 +294,7 @@
 
     -   Redesign of the equipment screen with tabs.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Problem displaying certain modules on the routing table
         and Network Graph.
@@ -375,7 +375,7 @@
 
     -   Updating the plugin documentation.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Correction of possible problems when updating
         module configurations.
@@ -438,7 +438,7 @@
     -   Correction of the spelling of the documentation, thank you
         @Juan-Pedro aka: kiko.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Spelling correction.
 
@@ -532,7 +532,7 @@
     -   Force a switch state update and dimer
         following the sending of a switch all command.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Fixed discovery of association groups.
 
@@ -577,7 +577,7 @@
 
     -   Documentation update.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Documentation Spelling and grammatical corrections.
 
@@ -592,7 +592,7 @@
 
     -   No dead node alert if it is disabled.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Correction of Fibaro pilot wire return of status.
 
@@ -672,7 +672,7 @@
 
     -   Improved warning on battery thermostats.
 
--   Fixed Bug
+-   Fixed bug
 
     -   Temperature converted to Celsius returns unit C instead
         from F.
