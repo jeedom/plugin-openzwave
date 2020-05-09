@@ -1454,7 +1454,7 @@ Liste des modules compatible
 ============================
 
 Vous trouverez la liste des modules compatibles
-[ici](https://jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-equipement.compatible.html)
+[ici](https://doc.jeedom.com/fr_FR/zwave/equipement.compatible)
 
 Depannage et diagnostic
 =======================
