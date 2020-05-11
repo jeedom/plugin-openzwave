@@ -1,6 +1,6 @@
->**IMPORTANT**
+>**Wichtig**
 >
->Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt.
+>Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt
 
 # 10/07/2019
 
@@ -35,7 +35,7 @@
 - Schwanzverbesserung
 - Vorbereitung zum Hinzufügen neuer CCs (insbesondere Benachrichtigung)
 - Hinzufügen von Codes zum CC-Alarm für die Zipato-Tastatur für den Moment
-- Korrektur des Philios im sicheren Modus, der während der Klingeltöne eine Zeitüberschreitung von 10 Sekunden verursachte (es ist sicherlich notwendig, die Erkennung der Sirene neu zu generieren oder sie wieder einzuschließen).
+- Korrektur des Philios im sicheren Modus, der während der Klingeltöne eine Zeitüberschreitung von 10 Sekunden verursachte (es ist sicherlich notwendig, die Erkennung der Sirene neu zu generieren oder sie wieder einzuschließen)
 - Korrektur eines Fehlers, wenn die Protokollstufe keine ist
 - DIESES UPDATE MUSS DIE ABHÄNGIGKEITEN ERNEUERN
 
@@ -65,9 +65,9 @@
 
     -   Reduzierung der Größe der Bilder, um die Größe des Plugins so weit wie möglich zu begrenzen (ca. 500 Bilder)
 
-    -   Entfernen von mehr verwendeten Abhängigkeiten wie Mercurial Sphinx usw.
+    -   Entfernen von mehr verwendeten Abhängigkeiten wie Mercurial Sphinx usw
 
-    -   Unterdrückung der Bereinigung der Konfigurationen vor der Aktualisierung (vermeidet, dass Zwave-Symbole anstelle der Bilder verwendet werden, wenn die Aktualisierung wegen Zeitüberschreitung oder aus anderen Gründen nicht erfolgreich ist).
+    -   Unterdrückung der Bereinigung der Konfigurationen vor der Aktualisierung (vermeidet, dass Zwave-Symbole anstelle der Bilder verwendet werden, wenn die Aktualisierung wegen Zeitüberschreitung oder aus anderen Gründen nicht erfolgreich ist)
 
 2017-08-xx
 ===
@@ -137,7 +137,7 @@
 
 -   Neue Funktionen
 
-    -   N / A.
+    -   N / A
 
 -   Verbesserungen / Verbesserungen
 
@@ -170,7 +170,7 @@
 
 -   Neue Funktionen
 
-    -   N / A.
+    -   N / A
 
 -   Verbesserungen / Verbesserungen
 
@@ -178,18 +178,18 @@
 
 -   Fehler behoben
 
-    -   N / A.
+    -   N / A
 
 2017-05-31
 ===
 
 -   Neue Funktionen
 
-    -   N / A.
+    -   N / A
 
 -   Verbesserungen / Verbesserungen
 
-    -   N / A.
+    -   N / A
 
 -   Fehler behoben
 
@@ -679,7 +679,7 @@
 -   Fehler behoben
 
     -   Die in Celsius umgerechnete Temperatur gibt stattdessen Einheit C zurück
-        von F..
+        von F.
 
     -   Korrektur der Aktualisierung von Werten beim Start.
 

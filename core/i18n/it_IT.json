@@ -458,7 +458,7 @@
         "Etes-vous sûr de vouloir créer un backup ? Une fois lancée cette opération ne peut être annulée.": "",
         "Action réalisée avec succès": "",
         "Etes-vous sûr de vouloir supprimer le backup suivant ": "",
-        "Une fois lancée cette opération ne peut être annulée.": "Una volta lanciata, questa operazione non può essere annullata.",
+        "Une fois lancée cette opération ne peut être annulée.": "Una volta lanciata, questa operazione non può essere annullata",
         "Etes-vous sûr de vouloir restaurer Openzwave avec ": "",
         "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave.": "",
         "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": ""
@@ -497,7 +497,7 @@
         "Cliquez à nouveau sur le bouton d\\'exclusion pour sortir de ce mode. Pour exclure un module veuillez appuyer sur son bouton d\\'inclusion (une ou plusieurs fois comme décrit dans la documentation du module).": "",
         "Mode exclusion": "",
         "Mode inclusion": "Modalità inclusione",
-        "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Un dispositivo è stato incluso\/escluso. Si prega di ricaricare la pagina.",
+        "Un périphérique vient d\\'être inclu\/exclu. Veuillez réactualiser la page": "Un dispositivo è stato incluso\/escluso. Si prega di ricaricare la pagina",
         "Recharge configuration": "",
         "Recharger la configuration": "",
         "Sélectionner le mode de rechargement de la configuration ?": "",

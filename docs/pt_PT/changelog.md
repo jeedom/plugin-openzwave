@@ -1,6 +1,6 @@
->**IMPORTANT**
+>**IMPORTANTE**
 >
->Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto.
+>Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto
 
 # 07/07/2019
 
@@ -65,7 +65,7 @@
 
     -   Redução do tamanho das imagens para limitar ao máximo o tamanho do plug-in (aproximadamente 500 imagens)
 
-    -   Remoção de dependências mais usadas, como Mercurial Sphinx etc.
+    -   Remoção de dependências mais usadas, como Mercurial Sphinx etc
 
     -   Supressão da eliminação das configurações antes da atualização (evita que os ícones do Zwave substituam as imagens no caso de atualizações sem êxito por tempo limite ou outro)
 
