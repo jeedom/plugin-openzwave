@@ -167,7 +167,7 @@ function printEqLogic(_eqLogic) {
         $('.eqLogicAttr[data-l1key=configuration][data-l2key=product_name]').value(data.result.name);
       }
       if (isset(data.result.documentation) && data.result.documentation != '') {
-        $('#bt_deviceDocumentation').attr('href', data.result.doc);
+        $('#bt_deviceDocumentation').attr('href', data.result.documentation);
         $('#bt_deviceDocumentation').show();
       } else {
         $('#bt_deviceDocumentation').hide();
