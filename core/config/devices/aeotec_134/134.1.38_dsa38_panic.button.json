@@ -1,7 +1,7 @@
 {
   "name": "Panic Button (DSA38)",
   "type": "Télécommande",
-  "documentation":"https://doc.jeedom.com/#language#/zwave/aeotec.panic_button_-_Telecommande",
+  "documentation":"https:\/\/doc.jeedom.com\/#language#\/zwave\/aeotec.panic_button_-_Telecommande",
   "comlink": "278-aeon-labs-telecommande-z-wave-porte-cles-1-bouton",
   "remark": "",
   "imglink": "aeotec.panicbutton",

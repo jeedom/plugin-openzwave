@@ -1,7 +1,7 @@
 {
   "name": "Minimote (DSA03202)",
   "type": "Télécommande",
-  "documentation":"https://doc.jeedom.com/#language#/zwave/aeotec.minimote_-_Telecommande",
+  "documentation":"https:\/\/doc.jeedom.com\/#language#\/zwave\/aeotec.minimote_-_Telecommande",
   "comlink": "291-aeon-labs-telecommande-z-wave-blanche-1220000010253",
   "remark": "",
   "imglink": "aeotec.minimote",
