@@ -1,133 +1,105 @@
 {
-  "name": "FGSD-002 Smoke Sensor CE",
-  "type": "Fumée",
-  "documentation":"https:\/\/doc.jeedom.com\/#language#\/zwave\/fibaro.fgsd102_-_Fumees", 
-  "comlink": "2751-fibaro-detecteur-de-fumee-z-wave-plus-fgsd-002-5902020528265",
-  "remark": "",
-  "imglink": "fibaro.fgsd102",
-  "configuration": {
-    "battery_type": "1x3V CR123A"
-  },
-  "commands": [
-    {
-      "name": "Fumées",
-      "type": "info",
-      "isVisible": 1,
-      "isHistorized": 0,
-      "configuration": {
-        "class": 156,
-        "value": "",
-        "index": 1,
-        "instance": 1
-      },
-      "subtype": "binary",
-      "display": {
-        "invertBinary": "1",
-        "generic_type": "SMOKE"
-      },
-      "template": {
-        "dashboard": "feu",
-        "mobile": "feu"
-      }
-    },
-    {
-      "name": "Chaleur",
-      "type": "info",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "configuration": {
-        "class": 156,
-        "value": "",
-        "index": 4,
-        "instance": 1,
-        "returnStateTime": 1,
-        "returnStateValue": 0
-      },
-      "subtype": "binary",
-      "display": {
-        "invertBinary": "1",
-        "generic_type": "DONT"
-      },
-      "template": {
-        "dashboard": "feu",
-        "mobile": "feu"
-      }
-    },
-    {
-      "name": "Sabotage",
-      "type": "info",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "configuration": {
-        "class": 156,
-        "value": "",
-        "index": 0,
-        "instance": 1
-      },
-      "subtype": "binary",
-      "display": {
-        "invertBinary": "1",
-        "generic_type": "SABOTAGE"
-      },
-      "template": {
-        "dashboard": "alert",
-        "mobile": "alert"
-      }
-    },
-    {
-      "name": "Température",
-      "type": "info",
-      "isVisible": 1,
-      "isHistorized": 1,
-      "configuration": {
-        "class": 49,
-        "value": "",
-        "index": 1,
-        "instance": 1
-      },
-      "subtype": "numeric",
-      "display": {
-        "generic_type": "TEMPERATURE"
-      },
-      "unite": "°C"
-    },
-    {
-      "name": "Alerte Test",
-      "type": "info",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "configuration": {
-        "class": 113,
-        "value": "",
-        "index": 1,
-        "instance": 1,
-        "returnStateTime": 1,
-        "returnStateValue": 0
-      },
-      "subtype": "binary",
-      "display": {
-        "invertBinary": "1",
-        "generic_type": "DONT"
-      }
-    },
-    {
-      "name": "Batterie",
-      "type": "info",
-      "isVisible": 0,
-      "isHistorized": 0,
-      "configuration": {
-        "class": 128,
-        "value": "",
-        "index": 0,
-        "instance": 1,
-        "minValue": 0,
-        "maxValue": 100
-      },
-      "subtype": "numeric",
-      "display": {
-        "generic_type": "BATTERY"
-      },
-      "unite": "%"
-    }
-  ]
+    "name": "FGSD-002 Smoke Sensor CE", 
+    "type": "Fumée", 
+    "comlink": "2751-fibaro-detecteur-de-fumee-z-wave-plus-fgsd-002-5902020528265", 
+    "remark": "", 
+    "imglink": "fibaro.fgsd102", 
+    "configuration": {
+        "battery_type": "1x3V CR123A"
+    }, 
+    "commands": [
+        {
+            "name": "Fumées", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 156, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SMOKE"
+            }
+        }, 
+        {
+            "name": "Chaleur", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 156, 
+                "value": "", 
+                "index": 4, 
+                "instance": 1, 
+                "returnStateTime": 1, 
+                "returnStateValue": 0
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Sabotage", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 156, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SABOTAGE"
+            }, 
+            "template": {
+                "dashboard": "alert", 
+                "mobile": "alert"
+            }
+        }, 
+        {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        },
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
 }
