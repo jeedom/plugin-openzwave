@@ -166,8 +166,8 @@ function printEqLogic(_eqLogic) {
       if (isset(data.result.name)) {
         $('.eqLogicAttr[data-l1key=configuration][data-l2key=product_name]').value(data.result.name);
       }
-      if (isset(data.result.doc) && data.result.doc != '') {
-        $('#bt_deviceDocumentation').attr('href', 'https://www.jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-' + data.result.doc + '.html');
+      if (isset(data.result.documentation) && data.result.documentation != '') {
+        $('#bt_deviceDocumentation').attr('href', data.result.doc);
         $('#bt_deviceDocumentation').show();
       } else {
         $('#bt_deviceDocumentation').hide();
