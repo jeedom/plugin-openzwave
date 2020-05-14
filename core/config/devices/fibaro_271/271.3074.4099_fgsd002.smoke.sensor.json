@@ -53,7 +53,9 @@
                 "class": 156, 
                 "value": "", 
                 "index": 0, 
-                "instance": 1
+                "instance": 1,
+                "returnStateTime": 1, 
+                "returnStateValue": 0
             }, 
             "subtype": "binary", 
             "display": {
