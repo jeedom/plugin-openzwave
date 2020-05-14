@@ -1,52 +1,53 @@
 {
-    "name": "Panic Button (DSA38)", 
-    "type": "Télécommande", 
-    "comlink": "278-aeon-labs-telecommande-z-wave-porte-cles-1-bouton", 
-    "remark": "", 
-    "imglink": "aeotec.panicbutton", 
-    "configuration": {
-        "battery_type": "1x3V CR2450"
-    }, 
-    "commands": [
-        {
-            "name": "Scene", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 43, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "repeatEventManagement": "always"
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "template": {
-                "dashboard": "tile", 
-                "mobile": "tile"
-            }
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }
-    ]
+  "name": "Panic Button (DSA38)",
+  "type": "Télécommande",
+  "documentation":"https://doc.jeedom.com/#language#/zwave/aeotec.panic_button_-_Telecommande",
+  "comlink": "278-aeon-labs-telecommande-z-wave-porte-cles-1-bouton",
+  "remark": "",
+  "imglink": "aeotec.panicbutton",
+  "configuration": {
+    "battery_type": "1x3V CR2450"
+  },
+  "commands": [
+    {
+      "name": "Scene",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 43,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "repeatEventManagement": "always"
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "template": {
+        "dashboard": "tile",
+        "mobile": "tile"
+      }
+    },
+    {
+      "name": "Batterie",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 128,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "BATTERY"
+      },
+      "unite": "%"
+    }
+  ]
 }
