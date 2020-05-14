@@ -23,10 +23,6 @@
             "display": {
                 "invertBinary": "1", 
                 "generic_type": "SMOKE"
-            }, 
-            "template": {
-                "dashboard": "feu", 
-                "mobile": "feu"
             }
         }, 
         {
@@ -46,10 +42,6 @@
             "display": {
                 "invertBinary": "1", 
                 "generic_type": "DONT"
-            }, 
-            "template": {
-                "dashboard": "feu", 
-                "mobile": "feu"
             }
         }, 
         {
@@ -89,26 +81,7 @@
                 "generic_type": "TEMPERATURE"
             }, 
             "unite": "°C"
-        }, 
-        {
-            "name": "Alerte Test", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 113, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1, 
-                "returnStateTime": 1, 
-                "returnStateValue": 0
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "invertBinary": "1", 
-                "generic_type": "DONT"
-            }
-        }, 
+        },
         {
             "name": "Batterie", 
             "type": "info", 
