@@ -1,113 +1,114 @@
 {
-    "name": "Mini Keypad RFID", 
-    "type": "Clavier RFID", 
-    "comlink": "2470-zipato-clavier-a-code-et-rfid-z-wave-3858890730579", 
-    "remark": "Le badge utilisé ne remonte pas.", 
-    "imglink": "zipato.minikeypad", 
-    "configuration": {
-        "1": {
-            "name": "Reset", 
-            "help": "Remise à zéro de tous les paramètres du clavier"
-        }, 
-        "2": {
-            "name": "Durée d'annulation", 
-            "help": "Durée pour passer un badge ou rentrer un code. 0 veut dire désactivé, 255 veut dire infini"
-        }, 
-        "3": {
-            "name": "Retour par bip", 
-            "help": "Retour par bip. Accusé réception"
-        }, 
-        "4": {
-            "name": "Nombre de bips par seconde", 
-            "help": "Nombre de bips par seconde. Si option 3 activée."
-        }, 
-        "5": {
-            "name": "Mode", 
-            "help": "Mode de fonctionnement.", 
-            "list": {
-                "Mode 1: Normal operating mode.": "Mode 1 : Normal", 
-                "Mode 3: Z-Wave chip is always on to request e.g. version or manufacturer id.": "Mode 3 : Toujours réveillé"
-            }
-        }, 
-        "battery_type": "2x1.5V AA"
-    }, 
-    "commands": [
-        {
-            "name": "Action", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 113, 
-                "value": "", 
-                "index": 9, 
-                "instance": 1, 
-                "repeatEventManagement": "always", 
-                "minValue": 0, 
-                "maxValue": 255
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "GENERIC"
-            }, 
-            "template": {
-                "dashboard": "Rfid_HomeAway_fr", 
-                "mobile": "Rfid_HomeAway_fr"
-            }
-        }, 
-        {
-            "name": "Sabotage", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 113, 
-                "value": "", 
-                "index": 10, 
-                "instance": 1, 
-                "returnStateTime": 1, 
-                "returnStateValue": 0
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "invertBinary": "1", 
-                "generic_type": "SABOTAGE"
-            }
-        }, 
-        {
-            "name": "Code", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 99, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "string", 
-            "display": {
-                "generic_type": "GENERIC"
-            }
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }
-    ]
+  "name": "Mini Keypad RFID",
+  "type": "Clavier RFID",
+  "documentation":"https:\/\/doc.jeedom.com\/#language#\/zwave\/zipato.minikeypad_-_Clavier_Rfid",
+  "comlink": "2470-zipato-clavier-a-code-et-rfid-z-wave-3858890730579",
+  "remark": "Le badge utilisé ne remonte pas.",
+  "imglink": "zipato.minikeypad",
+  "configuration": {
+    "1": {
+      "name": "Reset",
+      "help": "Remise à zéro de tous les paramètres du clavier"
+    },
+    "2": {
+      "name": "Durée d'annulation",
+      "help": "Durée pour passer un badge ou rentrer un code. 0 veut dire désactivé, 255 veut dire infini"
+    },
+    "3": {
+      "name": "Retour par bip",
+      "help": "Retour par bip. Accusé réception"
+    },
+    "4": {
+      "name": "Nombre de bips par seconde",
+      "help": "Nombre de bips par seconde. Si option 3 activée."
+    },
+    "5": {
+      "name": "Mode",
+      "help": "Mode de fonctionnement.",
+      "list": {
+        "Mode 1: Normal operating mode.": "Mode 1 : Normal",
+        "Mode 3: Z-Wave chip is always on to request e.g. version or manufacturer id.": "Mode 3 : Toujours réveillé"
+      }
+    },
+    "battery_type": "2x1.5V AA"
+  },
+  "commands": [
+    {
+      "name": "Action",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 113,
+        "value": "",
+        "index": 9,
+        "instance": 1,
+        "repeatEventManagement": "always",
+        "minValue": 0,
+        "maxValue": 255
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "GENERIC"
+      },
+      "template": {
+        "dashboard": "Rfid_HomeAway_fr",
+        "mobile": "Rfid_HomeAway_fr"
+      }
+    },
+    {
+      "name": "Sabotage",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 113,
+        "value": "",
+        "index": 10,
+        "instance": 1,
+        "returnStateTime": 1,
+        "returnStateValue": 0
+      },
+      "subtype": "binary",
+      "display": {
+        "invertBinary": "1",
+        "generic_type": "SABOTAGE"
+      }
+    },
+    {
+      "name": "Code",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 99,
+        "value": "",
+        "index": 0,
+        "instance": 1
+      },
+      "subtype": "string",
+      "display": {
+        "generic_type": "GENERIC"
+      }
+    },
+    {
+      "name": "Batterie",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 128,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "BATTERY"
+      },
+      "unite": "%"
+    }
+  ]
 }
