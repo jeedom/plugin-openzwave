@@ -2,7 +2,7 @@
 
 Este complemento permite la explotación de módulos Z-Wave a través de la biblioteca OpenZwave.
 
-# Introduction
+# Introduccion
 
 Z-Wave se comunica utilizando tecnología de radio de baja potencia en la banda de frecuencia de 868.42 MHz. Está específicamente diseñado para aplicaciones de domótica. El protocolo de radio Z-Wave está optimizado para intercambios de bajo ancho de banda (entre 9 y 40 kbit / s) entre dispositivos con batería o alimentados por la red eléctrica.
 
@@ -78,7 +78,7 @@ En resumen:
 -   Les esclaves ne peuvent pas envoyer des messages non sollicités, mais seulement une réponse aux demandes «L'esclave ne parle que si on le lui demande »
 -   Les esclaves de routage peuvent répondre à des demandes y ils sont autorisés à envoyer des messages non sollicités à certains nœuds que le contrôleur a prédéfini « L'esclave est toujours un esclave, mais sur autorisation, il peut parler »
 
-# Configuración del plugin
+# Configuración du plugin
 
 Después de descargar el complemento, solo necesita activarlo y configurarlo.
 
@@ -116,7 +116,7 @@ Esta parte le permite validar el estado actual de los demonios y configurar la g
 -   El **Gestión automática** permite a Jeedom iniciar automáticamente el demonio cuando se inicia Jeedom, así como reiniciarlo en caso de un problema.
 -   El **Última ejecución** es como su nombre indica la fecha del último lanzamiento conocido del demonio.
 
-## Log
+## Registro
 
 Esta parte le permite elegir el nivel de registro y consultar su contenido.
 
@@ -130,7 +130,7 @@ El nivel **Depurar** o **Información** puede ser útil para entender por qué e
 >
 > En modo **Depurar** el demonio es muy detallado, se recomienda usar este modo solo si tiene que diagnosticar un problema en particular. No se recomienda dejar que el demonio corra mientras **Depurar** permanentemente, si usamos un **Tarjeta SD**. Una vez finalizada la depuración, no olvide volver a un nivel inferior como el nivel **Error** que solo vuelve a posibles errores.
 
-## Configuration
+## Configuración
 
 Esta parte le permite configurar los parámetros generales del complemento ![configuración06](../images/configuration06.png)
 
@@ -183,7 +183,7 @@ No te olvides de ![configuración08](../images/configuration08.png) si haces un 
 
 Le permite mostrar o no el panel móvil cuando usa la aplicación en un teléfono.
 
-# Configuración del equipo
+# Configuración des équipements
 
 Se puede acceder a la configuración del equipo Z-Wave desde el menú de complementos :
 
@@ -225,7 +225,7 @@ Aquí encontrarás toda la configuración de tu equipo :
 >
 > Eliminar el equipo no conduce a la exclusión del módulo del controlador. ![aparato11](../images/appliance11.png) El equipo eliminado que todavía está conectado a su controlador se recreará automáticamente después de la sincronización.
 
-## Commandes
+## Comandos
 
 A continuación encontrará la lista de pedidos :
 
@@ -280,7 +280,7 @@ Puede seleccionarlos a través de las posibles opciones, si el módulo lo permit
 >
 > Debe ampliar para aplicar los nuevos conjuntos de comandos.
 
-## Documentación y Asistente
+## Documentación y Assistant
 
 Para un cierto número de módulos, hay disponible ayuda específica para la instalación, así como recomendaciones de parámetros.
 
@@ -292,7 +292,7 @@ Los módulos particulares también tienen un asistente específico para facilita
 
 El botón **Asistente** da acceso a la pantalla auxiliar específica del módulo.
 
-## Configuración recomendada
+## Configuración recommandée
 
 ![appliance08](../images/appliance08.png)
 
@@ -331,7 +331,7 @@ La página del equipo le informa si los elementos aún no se han activado en el 
 >
 > Es posible activar automáticamente la aplicación del conjunto de configuración recomendado cuando se incluye un nuevo módulo; consulte la sección Configuración del complemento para obtener más detalles.
 
-# Configuracion de modulos
+# Configuración des modules
 
 Aquí es donde encontrará toda la información sobre su módulo
 
@@ -347,7 +347,7 @@ Proporciona un resumen completo de su nodo con información variada sobre él, c
 >
 > En esta pestaña es posible recibir alertas en caso de posible detección de un problema de configuración, Jeedom le indicará el procedimiento a seguir para corregir. No confunda una alerta con un error, la alerta es en la mayoría de los casos una recomendación simple.
 
-## Valeurs
+## Valores
 
 ![node02](../images/node02.png)
 
@@ -459,7 +459,7 @@ Pestaña que agrupa los parámetros del sistema del módulo.
 >
 > Los módulos **Interruptor** y **Dimmer** puede implementar una clase de comando especial llamada **SwitchAll** 0x27. Puedes cambiar el comportamiento aquí. Dependiendo del módulo, hay varias opciones disponibles. El orden **SwitchAll On/OFF** se puede iniciar a través de su módulo controlador principal.
 
-## Actions
+## Acciones
 
 Le permite realizar ciertas acciones en el módulo.
 
@@ -493,7 +493,7 @@ Una vez iniciado, se recomienda cerrar la pantalla de configuración del módulo
 >
 > Solo los módulos con batería se pueden eliminar a través de este asistente.
 
-## Statistiques
+## Estadísticas
 
 Esta pestaña proporciona algunas estadísticas de comunicación con el nodo.
 
@@ -501,7 +501,7 @@ Esta pestaña proporciona algunas estadísticas de comunicación con el nodo.
 
 Puede ser interesante en el caso de módulos que el controlador presume muertos".
 
-# Inclusión / exclusión
+# Inclusión / Exclusion
 
 Cuando sale de fábrica, un módulo no pertenece a ninguna red Z-Wave.
 
@@ -584,7 +584,7 @@ Si vuelve a hacer clic en el botón, saldrá del modo de exclusión.
 >
 > Un módulo no necesita ser excluido por el mismo controlador en el que se incluyó anteriormente. De ahí el hecho de que se recomienda ejecutar una exclusión antes de cada inclusión.
 
-## Synchroniser
+## Sincronizar
 
 ![addremove06](../images/addremove06.png)
 
@@ -655,7 +655,7 @@ Muestra diversa información del sistema.
 -   Versión de la biblioteca OpenZwave
 -   Versión de la biblioteca Python-OpenZwave
 
-## Actions
+## Acciones
 
 ![network05](../images/network05.png)
 
@@ -673,7 +673,7 @@ Aquí encontrará todas las acciones posibles para toda su red Z-Wave. Cada acci
 >
 > Si no se puede iniciar una acción, se desactivará hasta que se pueda volver a ejecutar.
 
-## Statistiques
+## Estadísticas
 
 ![network06](../images/network06.png)
 
@@ -730,7 +730,7 @@ Explicación de la leyenda del color :
 >
 > Puede iniciar manualmente la actualización de vecino, por módulo o para toda la red utilizando los botones disponibles en la tabla de enrutamiento.
 
-# Santé
+# Salud
 
 ![health01](../images/health01.png)
 
@@ -809,7 +809,7 @@ El nombre del módulo puede ir seguido de una o dos imágenes:
 >
 > Si en su tabla de enrutamiento y / o en la pantalla de estado de Z-Wave tiene uno o más módulos llamados **Desconocido**, Esto significa que la entrevista del módulo no se ha completado con éxito. Probablemente tengas un **NOK** en la columna del constructor. Abra los detalles de los módulos para probar las soluciones sugeridas (consulte la sección Solución de problemas y diagnósticos, a continuación).
 
-## Estado de la entrevista
+## Estado de l'interview
 
 Paso de entrevistar un módulo después de iniciar el demonio.
 
@@ -833,7 +833,7 @@ Paso de entrevistar un módulo después de iniciar el demonio.
 -   **Configuración** Recuperar información de parámetros de configuración (solo se realiza bajo pedido).
 -   **Completa** El proceso de entrevista ha finalizado para este nodo.
 
-## Notification
+## Notificación
 
 Detalles de notificaciones enviadas por módulos
 
@@ -845,7 +845,7 @@ Detalles de notificaciones enviadas por módulos
 -   **Muerto** Informe cuando un nodo se presume muerto.
 -   **Vivo** Informar cuando se relanza un nodo.
 
-# Backups
+# Copias de seguridad
 
 La parte de respaldo le permitirá administrar los respaldos de su topología de red. Este es su archivo zwcfgxxx.xml, constituye el último estado conocido de su red, es una forma de caché de su red. Desde esta pantalla puedes :
 
@@ -1017,7 +1017,7 @@ El asistente automático de nodo fantasma está disponible.
 
 Este asistente solo está disponible para módulos de batería.
 
-## Acciones posteriores a la inclusión
+## Acciones post inclusion
 
 Se recomienda realizar la inclusión al menos a 1M del controlador principal, o esta no será la posición final de su nuevo módulo. Estas son algunas buenas prácticas a seguir luego de la inclusión de un nuevo módulo en su red.
 
@@ -1093,7 +1093,7 @@ Si el problema persiste, reinicie el controlador:
 -   Retire el dongle USB o Razberry según corresponda, aproximadamente 5 minutos.
 -   Vuelva a conectar todo e intente nuevamente.
 
-## El controlador ya no responde
+## El controleur ne répond plus
 
 No se transmiten más pedidos a los módulos, pero las devoluciones de estado se envían de vuelta a Jeedom.
 
@@ -1204,7 +1204,7 @@ Example: Para hacer ping al id del nodo 2
 
 URL = ``http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices\[2\].TestNode()``
 
-# FAQ
+# Preguntas frecuentes
 
 > **Me sale el error "No hay suficiente espacio en el búfer de flujo"**
 >

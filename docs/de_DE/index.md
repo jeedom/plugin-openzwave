@@ -2,7 +2,7 @@
 
 Dieses Plugin ermöglicht die Nutzung von Z-Wave-Modulen über die OpenZwave-Bibliothek.
 
-# Introduction
+# Einführung
 
 Z-Wave kommuniziert mit Low-Power-Funktechnologie im Frequenzband 868,42 MHz. Es wurde speziell für Hausautomationsanwendungen entwickelt. Das Z-Wave-Funkprotokoll ist für den Austausch mit geringer Bandbreite (zwischen 9 und 40 kbit / s) zwischen Geräten mit Batterie oder Netzstrom optimiert.
 
@@ -78,7 +78,7 @@ Zusammenfassend::
 -   Les esclaves ne peuvent pas envoyer des messages non sollicités, mais seulement une réponse aux demandes «L'esclave ne parle que si on le lui demande »
 -   Les esclaves de routage peuvent répondre à des demandes und ils sont autorisés à envoyer des messages non sollicités à certains nœuds que le contrôleur a prédéfini « L'esclave est toujours un esclave, mais sur autorisation, il peut parler »
 
-# Plugin Konfiguration
+# Konfiguration du plugin
 
 Nach dem Herunterladen des Plugins müssen Sie es nur noch aktivieren und konfigurieren.
 
@@ -130,7 +130,7 @@ Das Level **Debuggen** oder **Info** kann nützlich sein, um zu verstehen, warum
 >
 > Im Modus **Debuggen** Der Dämon ist sehr ausführlich. Es wird empfohlen, diesen Modus nur zu verwenden, wenn Sie ein bestimmtes Problem diagnostizieren müssen. Es wird nicht empfohlen, den Dämon laufen zu lassen **Debuggen** dauerhaft, wenn wir eine verwenden **SD-Karte**. Vergessen Sie nach dem Debug nicht, zu einer niedrigeren Ebene wie der Ebene zurückzukehren **Fehler** das geht nur auf mögliche fehler zurück.
 
-## Configuration
+## Konfiguration
 
 In diesem Teil können Sie die allgemeinen Parameter des Plugins konfigurieren ![Konfiguration06](../images/configuration06.png)
 
@@ -183,7 +183,7 @@ Vergiss es nicht ![Konfiguration08](../images/configuration08.png) wenn Sie eine
 
 Ermöglicht das Anzeigen oder Nicht-Anzeigen des mobilen Panels, wenn Sie die Anwendung auf einem Telefon verwenden.
 
-# Gerätekonfiguration
+# Konfiguration des équipements
 
 Auf die Konfiguration der Z-Wave-Geräte kann über das Plugin-Menü zugegriffen werden :
 
@@ -225,7 +225,7 @@ Hier finden Sie die gesamte Konfiguration Ihrer Geräte :
 >
 > Das Löschen von Geräten führt nicht zum Ausschluss des Moduls von der Steuerung. ![Gerät11](../images/appliance11.png) Gelöschte Geräte, die noch an den Controller angeschlossen sind, werden nach der Synchronisierung automatisch neu erstellt.
 
-## Commandes
+## Befehle
 
 Nachfolgend finden Sie die Liste der Bestellungen :
 
@@ -280,7 +280,7 @@ Sie können sie über die möglichen Auswahlmöglichkeiten auswählen, sofern da
 >
 > Sie müssen vergrößern, um die neuen Befehlssätze anzuwenden.
 
-## Dokumentation und Assistent
+## Dokumentation und Assistant
 
 Für eine bestimmte Anzahl von Modulen stehen eine spezifische Hilfe für die Installation sowie Empfehlungen zu Parametern zur Verfügung.
 
@@ -292,7 +292,7 @@ Bestimmte Module haben auch einen speziellen Assistenten, um die Anwendung besti
 
 Die Schaltfläche **Assistent** Ermöglicht den Zugriff auf den spezifischen Assistentenbildschirm des Moduls.
 
-## Empfohlene Konfiguration
+## Konfiguration recommandée
 
 ![appliance08](../images/appliance08.png)
 
@@ -331,7 +331,7 @@ Auf der Ausrüstungsseite werden Sie informiert, wenn auf dem Modul noch keine E
 >
 > Es ist möglich, die Anwendung des empfohlenen Konfigurationssatzes automatisch zu aktivieren, wenn ein neues Modul hinzugefügt wird. Weitere Informationen finden Sie im Abschnitt Plugin-Konfiguration.
 
-# Konfiguration von Modulen
+# Konfiguration des modules
 
 Hier finden Sie alle Informationen zu Ihrem Modul
 
@@ -347,7 +347,7 @@ Bietet eine vollständige Zusammenfassung Ihres Knotens mit verschiedenen Inform
 >
 > Auf dieser Registerkarte können Warnungen angezeigt werden, falls ein Konfigurationsproblem erkannt wird. Jeedom teilt Ihnen die Vorgehensweise zur Behebung mit. Verwechseln Sie eine Warnung nicht mit einem Fehler. Die Warnung ist in den meisten Fällen eine einfache Empfehlung.
 
-## Valeurs
+## Werte
 
 ![node02](../images/node02.png)
 
@@ -459,7 +459,7 @@ Registerkarte, die die Systemparameter des Moduls gruppiert.
 >
 > Die Module **Wechseln** und **Dimmer** kann eine spezielle Befehlsklasse mit dem Namen implementieren **SwitchAll** 0x27. Hier können Sie das Verhalten ändern. Je nach Modul stehen verschiedene Optionen zur Verfügung. Die Bestellung **SwitchAll On/OFF** kann über Ihr Hauptsteuerungsmodul gestartet werden.
 
-## Actions
+## Lager
 
 Ermöglicht das Ausführen bestimmter Aktionen für das Modul.
 
@@ -493,7 +493,7 @@ Nach dem Start wird empfohlen, den Modulkonfigurationsbildschirm zu schließen u
 >
 > Über diesen Assistenten können nur Module mit Batterie gelöscht werden.
 
-## Statistiques
+## Statistiken
 
 Diese Registerkarte enthält einige Kommunikationsstatistiken mit dem Knoten.
 
@@ -501,7 +501,7 @@ Diese Registerkarte enthält einige Kommunikationsstatistiken mit dem Knoten.
 
 Kann bei Modulen interessant sein, die vom Controller als tot angenommen werden "Dead".
 
-# Einschluss / Ausschluss
+# Aufnahme / Exclusion
 
 Wenn ein Modul das Werk verlässt, gehört es keinem Z-Wave-Netzwerk an.
 
@@ -584,7 +584,7 @@ Wenn Sie erneut auf die Schaltfläche klicken, wird der Ausschlussmodus beendet.
 >
 > Ein Modul muss nicht von demselben Controller ausgeschlossen werden, auf dem es zuvor enthalten war. Daher wird empfohlen, vor jedem Einschluss einen Ausschluss auszuführen.
 
-## Synchroniser
+## Synchronize
 
 ![addremove06](../images/addremove06.png)
 
@@ -655,7 +655,7 @@ Zeigt verschiedene Systeminformationen an.
 -   OpenZwave-Bibliotheksversion
 -   Version der Python-OpenZwave-Bibliothek
 
-## Actions
+## Lager
 
 ![network05](../images/network05.png)
 
@@ -673,7 +673,7 @@ Hier finden Sie alle möglichen Aktionen für Ihr gesamtes Z-Wave-Netzwerk. Jede
 >
 > Wenn eine Aktion nicht gestartet werden kann, wird sie deaktiviert, bis sie erneut ausgeführt werden kann.
 
-## Statistiques
+## Statistiken
 
 ![network06](../images/network06.png)
 
@@ -730,7 +730,7 @@ Erklärung der Farblegende :
 >
 > Sie können die Nachbaraktualisierung manuell, nach Modul oder für das gesamte Netzwerk über die in der Routing-Tabelle verfügbaren Schaltflächen starten.
 
-# Santé
+# Gesundheit
 
 ![health01](../images/health01.png)
 
@@ -809,7 +809,7 @@ Dem Namen des Moduls können ein oder zwei Bilder folgen:
 >
 > Wenn Sie in Ihrer Routing-Tabelle und / oder auf dem Z-Wave-Integritätsbildschirm ein oder mehrere Module benannt haben **Unbekannt**, Dies bedeutet, dass das Modulinterview nicht erfolgreich abgeschlossen wurde. Sie haben wahrscheinlich eine **NOK** in der Konstruktorspalte. Öffnen Sie die Details der Module, um die vorgeschlagenen Lösungen auszuprobieren (siehe Abschnitt Fehlerbehebung und Diagnose unten).
 
-## Interviewstatus
+## Status de l'interview
 
 Schritt des Interviewens eines Moduls nach dem Starten des Daemons.
 
@@ -833,7 +833,7 @@ Schritt des Interviewens eines Moduls nach dem Starten des Daemons.
 -   **Konfiguration** Informationen zu Konfigurationsparametern abrufen (nur auf Anfrage).
 -   **Vollständig** Der Interviewprozess für diesen Knoten ist abgeschlossen.
 
-## Notification
+## Benachrichtigung
 
 Details zu Benachrichtigungen, die von Modulen gesendet werden
 
@@ -1017,7 +1017,7 @@ Der automatische Ghost Node-Assistent ist verfügbar.
 
 Dieser Assistent ist nur für Batteriemodule verfügbar.
 
-## Aktionen nach der Aufnahme
+## Lager post inclusion
 
 Es wird empfohlen, den Einschluss mindestens 1 m vom Hauptcontroller entfernt durchzuführen, da dies sonst nicht die endgültige Position Ihres neuen Moduls ist. Nach der Aufnahme eines neuen Moduls in Ihr Netzwerk sollten Sie einige bewährte Methoden befolgen.
 
@@ -1093,7 +1093,7 @@ Wenn das Problem weiterhin besteht, setzen Sie den Controller zurück:
 -   Entfernen Sie den USB-Dongle oder Razberry nach Bedarf ca. 5 Minuten.
 -   Verbinden Sie alles erneut und versuchen Sie es erneut.
 
-## Der Controller antwortet nicht mehr
+## Die controleur ne répond plus
 
 Es werden keine Bestellungen mehr an die Module gesendet, aber Statusrückgaben werden an Jeedom zurückgesendet.
 
@@ -1204,7 +1204,7 @@ Example: So pingen Sie die Knoten-ID 2
 
 URLs = ``http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices\.[2\.].TestNode()``
 
-# FAQ
+# Faq
 
 > **Ich erhalte die Fehlermeldung "Nicht genügend Speicherplatz im Stream-Puffer"**
 >

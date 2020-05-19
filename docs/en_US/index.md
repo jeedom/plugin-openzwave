@@ -78,7 +78,7 @@ In summary:
 -   Les esclaves ne peuvent pas envoyer des messages non sollicités, mais seulement une réponse aux demandes «L'esclave ne parle que si on le lui demande »
 -   Les esclaves de routage peuvent répondre à des demandes and ils sont autorisés à envoyer des messages non sollicités à certains nœuds que le contrôleur a prédéfini « L'esclave est toujours un esclave, mais sur autorisation, il peut parler »
 
-# Plugin configuration
+# Setup du plugin
 
 After downloading the plugin, you just need to activate and configure it.
 
@@ -130,7 +130,7 @@ Level **Debug** or **Info** can be useful to understand why the demon plants or 
 >
 > In mode **Debug** the demon is very verbose, it is recommended to use this mode only if you have to diagnose a particular problem. It is not recommended to let the demon run while **Debug** permanently, if we use a **SD-Card**. Once the debug is over, don't forget to return to a lower level like the level **Error** which only goes back to possible errors.
 
-## Configuration
+## Setup
 
 This part allows you to configure the general parameters of the plugin ![configuration06](../images/configuration06.png)
 
@@ -183,7 +183,7 @@ Do not forget to ![configuration08](../images/configuration08.png) if you make a
 
 Allows you to display or not the mobile panel when you use the application on a phone.
 
-# Equipment configuration
+# Setup des équipements
 
 Z-Wave equipment configuration is accessible from the plugin menu :
 
@@ -225,7 +225,7 @@ Here you find all the configuration of your equipment :
 >
 > Deleting equipment does not lead to exclusion of the module from the controller. ![appliance11](../images/appliance11.png) Deleted equipment that is still attached to its controller will be automatically recreated following synchronization.
 
-## Commandes
+## Commands
 
 Below you find the list of orders :
 
@@ -292,7 +292,7 @@ Particular modules also have a specific assistant to facilitate the application 
 
 The button **Assistant** gives access to the specific assistant screen of the module.
 
-## Recommended configuration
+## Setup recommandée
 
 ![appliance08](../images/appliance08.png)
 
@@ -331,7 +331,7 @@ The equipment page informs you if elements have not yet been activated on the mo
 >
 > It is possible to automatically activate the application of the recommended configuration set when including a new module, see the Plugin configuration section for more details.
 
-# Configuration of modules
+# Setup des modules
 
 This is where you will find all the information about your module
 
@@ -347,7 +347,7 @@ Provides a complete summary of your node with various information on it, such as
 >
 > On this tab it is possible to have alerts in case of possible detection of a configuration problem, Jeedom will tell you the procedure to follow to correct. Do not confuse an alert with an error, the alert is in most cases a simple recommendation.
 
-## Valeurs
+## Values
 
 ![node02](../images/node02.png)
 
@@ -493,7 +493,7 @@ Once launched, it is recommended to close the module configuration screen and mo
 >
 > Only modules on battery can be deleted via this wizard.
 
-## Statistiques
+## Statistics
 
 This tab gives some communication statistics with the node.
 
@@ -501,7 +501,7 @@ This tab gives some communication statistics with the node.
 
 Can be interesting in case of modules which are presumed dead by the controller "Dead".
 
-# Inclusion / exclusion
+# Inclusion / Exclusion
 
 When it leaves the factory, a module does not belong to any Z-Wave network.
 
@@ -584,7 +584,7 @@ If you click on the button again, you will exit exclusion mode.
 >
 > A module does not need to be excluded by the same controller on which it was previously included. Hence the fact that it is recommended to execute an exclusion before each inclusion.
 
-## Synchroniser
+## Synchronize
 
 ![addremove06](../images/addremove06.png)
 
@@ -673,7 +673,7 @@ Here you will find all the possible actions for your entire Z-Wave network. Each
 >
 > If an action cannot be launched, it will be deactivated until it can be executed again.
 
-## Statistiques
+## Statistics
 
 ![network06](../images/network06.png)
 
@@ -730,7 +730,7 @@ Explanation of the color legend :
 >
 > You can manually start the neighbor update, by module or for the whole network using the buttons available in the routing table.
 
-# Santé
+# Health
 
 ![health01](../images/health01.png)
 
@@ -809,7 +809,7 @@ The name of the module can be followed by one or two images:
 >
 > If on your routing table and / or on the Z-Wave health screen you have one or more modules named **Unknown**, this means that the module interview has not been successfully completed. You probably have a **NOk** in the constructor column. Open the details of the module (s), to try out the suggested solutions (see section Troubleshooting and diagnostics, below).
 
-## Interview status
+## Status de l'interview
 
 Step of interviewing a module after starting the daemon.
 
@@ -1017,7 +1017,7 @@ Automatic ghost node assistant is available.
 
 This wizard is only available for battery modules.
 
-## Post-inclusion actions
+## Actions post inclusion
 
 It is recommended to perform the inclusion at least 1M from the main controller, or this will not be the final position of your new module. Here are some good practices to follow following the inclusion of a new module in your network.
 
@@ -1093,7 +1093,7 @@ If the problem still persists, reset the controller:
 -   Remove the USB dongle or Razberry as appropriate, about 5 minutes.
 -   Re connect everything and try again.
 
-## The controller no longer responds
+## The controleur ne répond plus
 
 No more orders are transmitted to the modules, but status returns are sent back to Jeedom.
 
@@ -1204,7 +1204,7 @@ Example: To ping the node id 2
 
 URLs = ``http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices\[2\].TestNode()``
 
-# FAQ
+# Faq
 
 > **I get the error "Not enough space in stream buffer"**
 >
