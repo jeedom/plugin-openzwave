@@ -8,7 +8,7 @@
 
 - Fixed a bug when stopping the daemon
 - Bugfix
-- THIS UPDATE NEEDS TO RECOMPILE THE DEPENDENCIES (RESTART)
+- THIS UPDATE NEEDS TO RECOMPILE THE DEPENDENCIES (RELAUNCH)
 
 # 19-09-2019
 
@@ -24,10 +24,10 @@
 
 04-02-2019
 ===
-- THIS UPDATE NEEDS TO RECOMPILE THE DEPENDENCIES (RESTART)
+- THIS UPDATE NEEDS TO RECOMPILE THE DEPENDENCIES (RELAUNCH)
 - Correction of a bug on multi-instances of thermostats
 - Creation of a queue level deprecated on actions for refreshes
-- Addition of many configurations (as a reminder, the button to recover configurations is useful to be up to date without updating the plugin)
+- Addition of many confs (to recall the button to recover confs is useful to be up to date without updating the plugin)
 - Improved management of encapsulated multichannels
 - Addition of CC manufacturer specific
 - Simple installation of the CC Soundswitch
@@ -57,7 +57,7 @@
 
     -   Addition of the internal possibility of triggering refreshes on certain specific values and specific modules (used in jeedom confs)
 
-    -   Complete redesign of the function allowing to simulate a value on another command to avoid putting it for a set of modules but specifically (Jeedom internal)
+    -   Complete redesign of the function allowing to simulate a value on another command to avoid putting it for a set of modules but specifically (internal Jeedom)
 
 -   Fixed bug
 
@@ -238,7 +238,7 @@
 
     -   Deactivation of the Heal Network function automatically
         twice a week (decrease in exchanges with
-        the controller).
+        The controller).
 
     -   Openzwave library code optimizations.
 
@@ -247,7 +247,7 @@
 
         -   The release button command (Stop of a shutter) no longer forces
             updating all the module values
-            (decrease in the message queue).
+            (decrease in message queue).
 
         -   Possibility to notify values in the Class of
             Alarm command (ringtone selection on sirens)
@@ -308,7 +308,7 @@
     -   Vision Secure modules that do not return to standby
         during the interview.
 
-    -   Installation of dependencies in loop (github side problem).
+    -   Installation of dependencies in a loop (github side problem).
 
 2016-07-11
 ===
@@ -408,11 +408,11 @@
         controller notifications.
 
     -   Adding a route to recover the health of a node.
-        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetHealth ()
+        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetHealth()
 
     -   Adding a route to retrieve the last notification
         of a knot.
-        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetLastNotification ()
+        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetLastNotification()
 
 -   Improvements / Enhancements
 

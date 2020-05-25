@@ -8,7 +8,7 @@
 
 - Se corrigió un error al detener al demonio
 - Correcciones de errores
-- ESTA ACTUALIZACIÓN DEBE RECOMENDAR LAS DEPENDENCIAS (REINICIAR)
+- ESTA ACTUALIZACIÓN NECESITA RECOMPENSAR LAS DEPENDENCIAS (REANUDO)
 
 # 2019-09-19
 
@@ -24,10 +24,10 @@
 
 2019-02-04
 ===
-- ESTA ACTUALIZACIÓN DEBE RECOMENDAR LAS DEPENDENCIAS (REINICIAR)
+- ESTA ACTUALIZACIÓN NECESITA RECOMPENSAR LAS DEPENDENCIAS (REANUDO)
 - Corrección de un error en múltiples instancias de termostatos
 - Creación de un nivel de cola en desuso en acciones para actualizaciones
-- Adición de muchas confs (como recordatorio, el botón para recuperar confs es útil para estar actualizado sin actualizar el complemento)
+- Adición de muchas confs (para recuperar el botón para recuperar confs es útil estar actualizado sin actualizar el complemento)
 - Gestión mejorada de canales multicanal encapsulados
 - Adición de CC específico del fabricante
 - Instalación simple del interruptor de sonido CC
@@ -57,7 +57,7 @@
 
     -   Adición de la posibilidad interna de activar actualizaciones en ciertos valores específicos y módulos específicos (utilizados en confesiones de libertad)
 
-    -   Rediseño completo de la función que permite simular un valor en otro comando para evitar ponerlo en un conjunto de módulos pero específicamente (Jeedom internal)
+    -   Rediseño completo de la función que permite simular un valor en otro comando para evitar ponerlo en un conjunto de módulos pero específicamente (Jeedom interno)
 
 -   Error corregido
 
@@ -69,7 +69,7 @@
 
     -   Eliminación de dependencias más utilizadas, como Mercurial Sphinx, etc
 
-    -   Supresión de la purga de las configuraciones antes de la actualización (evita tener iconos Zwave en lugar de las imágenes en caso de actualizaciones fallidas por tiempo de espera u otro)
+    -   Supresión de la purga de las configuraciones antes de la actualización (evita tener iconos de Zwave en lugar de las imágenes en caso de actualizaciones fallidas por tiempo de espera u otro)
 
 2017-08-xx
 ===
@@ -238,7 +238,7 @@
 
     -   Desactivación automática de la función Heal Network
         dos veces por semana (disminución en intercambios con
-        el controlador).
+        El controlador).
 
     -   Optimizaciones de código de biblioteca Openzwave.
 
@@ -253,7 +253,7 @@
             Comando de alarma (selección de tono de llamada en sirenas)
 
     -   Más demanda diaria de nivel de batería (menos de
-        mensajes, ahorro de baterías).
+        mensajes, ahorrando en baterías).
 
     -   El nivel de la batería se envía directamente a la pantalla de la batería en
         informe de nivel de recepción.
@@ -308,7 +308,7 @@
     -   Módulos Vision Secure que no vuelven al modo de espera
         durante la entrevista.
 
-    -   Instalación de dependencias en bucle (problema del lado de github).
+    -   Instalación de dependencias en un bucle (problema del lado de github).
 
 2016-07-11
 ===
@@ -408,11 +408,11 @@
         notificaciones del controlador.
 
     -   Agregar una ruta para recuperar la salud de un nodo.
-        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetHealth ()
+        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetHealth()
 
     -   Agregar una ruta para recuperar la última notificación
         de un nudo.
-        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetLastNotification ()
+        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetLastNotification()
 
 -   Mejoras / Mejoras
 
@@ -451,7 +451,7 @@
     -   Se corrigió la inclusión en modo seguro.
 
     -   Corrección de llamada asincrónica. (error: \ [Errno 32 \]
-        Tubo roto)
+        Tuberia rota)
 
 2016-05-04
 ===

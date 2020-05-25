@@ -2,7 +2,7 @@
 
 Este complemento permite la explotación de módulos Z-Wave a través de la biblioteca OpenZwave.
 
-# Introduccion
+# Introduction
 
 Z-Wave se comunica utilizando tecnología de radio de baja potencia en la banda de frecuencia de 868.42 MHz. Está específicamente diseñado para aplicaciones de domótica. El protocolo de radio Z-Wave está optimizado para intercambios de bajo ancho de banda (entre 9 y 40 kbit / s) entre dispositivos con batería o alimentados por la red eléctrica.
 
@@ -78,7 +78,7 @@ En resumen:
 -   Les esclaves ne peuvent pas envoyer des messages non sollicités, mais seulement une réponse aux demandes «L'esclave ne parle que si on le lui demande »
 -   Les esclaves de routage peuvent répondre à des demandes y ils sont autorisés à envoyer des messages non sollicités à certains nœuds que le contrôleur a prédéfini « L'esclave est toujours un esclave, mais sur autorisation, il peut parler »
 
-# Configuración du plugin
+# Configuración del plugin
 
 Después de descargar el complemento, solo necesita activarlo y configurarlo.
 
@@ -88,7 +88,7 @@ Una vez activado, el demonio debería lanzar. El complemento está preconfigurad
 
 ## Dependencias
 
-Esta parte le permite validar e instalar las dependencias necesarias para el correcto funcionamiento del complemento Zwave (tanto local como remotamente, aquí localmente) ![configuración02](../images/configuration02.png)
+Esta parte le permite validar e instalar las dependencias requeridas para el correcto funcionamiento del complemento Zwave (tanto local como remotamente, aquí localmente) ![configuración02](../images/configuration02.png)
 
 -   Un estatuto **Bueno** confirma que se cumplen las dependencias.
 -   Si el estado es **NOK**, las dependencias deberán reinstalarse con el botón ![configuración03](../images/configuration03.png)
@@ -111,12 +111,12 @@ Esta parte le permite validar el estado actual de los demonios y configurar la g
 
 -   El **Estado** indica que el demonio se está ejecutando actualmente.
 -   El **Configuración** indica si la configuración del daemon es válida.
--   El botón **(Re)Iniciar** permite forzar el reinicio del complemento, en modo normal o iniciarlo por primera vez.
+-   El botón **(Para reiniciar** permite forzar el reinicio del complemento, en modo normal o iniciarlo por primera vez.
 -   El botón **Detenido**, visible solo si la gestión automática está desactivada, obliga al demonio a detenerse.
 -   El **Gestión automática** permite a Jeedom iniciar automáticamente el demonio cuando se inicia Jeedom, así como reiniciarlo en caso de un problema.
 -   El **Última ejecución** es como su nombre indica la fecha del último lanzamiento conocido del demonio.
 
-## Registro
+## Log
 
 Esta parte le permite elegir el nivel de registro y consultar su contenido.
 
@@ -130,19 +130,19 @@ El nivel **Depurar** o **Información** puede ser útil para entender por qué e
 >
 > En modo **Depurar** el demonio es muy detallado, se recomienda usar este modo solo si tiene que diagnosticar un problema en particular. No se recomienda dejar que el demonio corra mientras **Depurar** permanentemente, si usamos un **Tarjeta SD**. Una vez finalizada la depuración, no olvide volver a un nivel inferior como el nivel **Error** que solo vuelve a posibles errores.
 
-## Configuración
+## Configuration
 
 Esta parte le permite configurar los parámetros generales del complemento ![configuración06](../images/configuration06.png)
 
 -   **Principal** :
-    -   **Borrar automatiquement les périphériques exclus** :La opción Sí le permite eliminar dispositivos excluidos de la red Z-Wave. La opción No le permite mantener el equipo en Jeedom incluso si ha sido excluido de la red. El equipo
+    -   **Eliminar automáticamente los dispositivos excluidos** :La opción Sí le permite eliminar dispositivos excluidos de la red Z-Wave. La opción No le permite mantener el equipo en Jeedom incluso si ha sido excluido de la red. El equipo
         luego tendrá que eliminarse manualmente o reutilizarse asignándole una nueva ID de Z-Wave si está migrando desde el controlador principal.
     -   **Aplicar el conjunto de configuración recomendado para su inclusión** : opción de aplicar directamente el conjunto de configuración recomendado por el equipo de Jeedom para su inclusión (recomendado)
     -   **Desactivar la actualización en segundo plano de las unidades** : No solicite la actualización de unidades en segundo plano.
-    -   **Ciclo (s)** : permite definir la frecuencia de los ascensores a la libertad.
+    -   **Ciclo (s))** : permite definir la frecuencia de los ascensores a la libertad.
     -   **Puerto de llave Z-Wave** : el puerto USB en el que está conectada su interfaz Z-Wave. Si usa Razberry, tiene, dependiendo de su arquitectura (RPI o Jeedomboard), las 2 posibilidades al final de la lista.
     -   **Puerto del servidor** (modificación peligrosa, debe tener el mismo valor en todos los Jeedoms remotos Z-Wave) : permite modificar el puerto de comunicación interna del demonio.
-    -   **Copias de seguridad** : le permite administrar copias de seguridad del archivo de topología de red (ver más abajo)
+    -   **Copias de seguridad** : le permite administrar copias de seguridad del archivo de topología de red (consulte a continuación)
     -   **Módulos de configuración** : permite recuperar, manualmente, los archivos de configuración de OpenZWave con los parámetros de los módulos, así como la definición de los comandos de los módulos para sus usos.
 
         > **Punta**
@@ -183,7 +183,7 @@ No te olvides de ![configuración08](../images/configuration08.png) si haces un 
 
 Le permite mostrar o no el panel móvil cuando usa la aplicación en un teléfono.
 
-# Configuración des équipements
+# Configuración del equipo
 
 Se puede acceder a la configuración del equipo Z-Wave desde el menú de complementos :
 
@@ -195,7 +195,7 @@ Debajo de un ejemplo de una página de plugin Z-Wave (presentada con algunos equ
 
 > **Punta**
 >
-> Como en muchos lugares de Jeedom, colocar el mouse en el extremo izquierdo permite que aparezca un menú de acceso rápido (puede, desde su perfil, dejarlo siempre visible).
+> Como en muchos lugares de Jeedom, colocar el mouse en el extremo izquierdo permite que aparezca un menú de acceso rápido (desde su perfil, siempre puede dejarlo visible).
 
 > **Punta**
 >
@@ -225,7 +225,7 @@ Aquí encontrarás toda la configuración de tu equipo :
 >
 > Eliminar el equipo no conduce a la exclusión del módulo del controlador. ![aparato11](../images/appliance11.png) El equipo eliminado que todavía está conectado a su controlador se recreará automáticamente después de la sincronización.
 
-## Comandos
+## Commandes
 
 A continuación encontrará la lista de pedidos :
 
@@ -247,13 +247,13 @@ A continuación encontrará la lista de pedidos :
 -   la clase del control Z-Wave (reservado para expertos).
 -   el índice de valor (reservado para expertos).
 -   el pedido en sí (reservado para expertos).
--   "Valor de retroalimentación de estado "y" Duración antes de la retroalimentación de estado" : permite indicar a Jeedom que después de un cambio en la información, su valor debe volver a Y, X min después del cambio. Ejemplo : en el caso de un detector de presencia que emite solo durante una detección de presencia, es útil establecer, por ejemplo, 0 en valor y 4 en duración, de modo que 4 minutos después de una detección de movimiento (y si entonces , no hubo nuevos) Jeedom restablece el valor de la información a 0 (se detecta más movimiento).
+-   "Valor de retroalimentación de estado "y" Duración antes de la retroalimentación de estado" : permite indicar a Jeedom que después de un cambio en la información, su valor debe volver a Y, X min después del cambio. Ejemplo : en el caso de un detector de presencia que emite solo durante una detección de presencia, es útil establecer, por ejemplo, 0 en valor y 4 en duración, de modo que 4 minutos después de una detección de movimiento (y si entonces , no hubo nuevos) Jeedom restablece el valor de la información a 0 (no se detecta más movimiento).
 -   Guardar historial : permite historizar los datos.
 -   Mostrar : permite mostrar los datos en el tablero.
 -   Invertir : permite invertir el estado para tipos binarios.
 -   Unidad : unidad de datos (puede estar vacía).
 -   Min / max : límites de datos (pueden estar vacíos).
--   Configuración avanzada (ruedas con muescas pequeñas) : muestra la configuración avanzada del comando (método de registro, widget, etc.).
+-   Configuración avanzada (ruedas pequeñas con muescas) : muestra la configuración avanzada del comando (método de registro, widget, etc.)).
 
 -   Probar : Se usa para probar el comando.
 -   Eliminar (firmar -) : permite eliminar el comando.
@@ -280,7 +280,7 @@ Puede seleccionarlos a través de las posibles opciones, si el módulo lo permit
 >
 > Debe ampliar para aplicar los nuevos conjuntos de comandos.
 
-## Documentación y Assistant
+## Documentación y Asistente
 
 Para un cierto número de módulos, hay disponible ayuda específica para la instalación, así como recomendaciones de parámetros.
 
@@ -292,7 +292,7 @@ Los módulos particulares también tienen un asistente específico para facilita
 
 El botón **Asistente** da acceso a la pantalla auxiliar específica del módulo.
 
-## Configuración recommandée
+## Configuración recomendada
 
 ![appliance08](../images/appliance08.png)
 
@@ -305,11 +305,11 @@ Aplicar un conjunto de configuración recomendado por el equipo de Jeedom.
 Los siguientes elementos, según corresponda, se aplicarán para simplificar el uso del módulo.
 
 -   **Configuraciones** permitiendo una rápida puesta en marcha de todas las funcionalidades del módulo.
--   **Grupos d'association** requerido para una operación adecuada.
+-   **Grupos de asociaciones** requerido para una operación adecuada.
 -   **Intervalo de despertador**, para módulos con batería.
 -   Activación de **actualización manual** para módulos que no suben solos, su estado cambia.
 
-Para aplicar el conjunto de configuración recomendado, haga clic en el botón : **Configuración recommandée**, luego confirme la aplicación de las configuraciones recomendadas.
+Para aplicar el conjunto de configuración recomendado, haga clic en el botón : **Configuración recomendada**, luego confirme la aplicación de las configuraciones recomendadas.
 
 ![appliance09](../images/appliance09.png)
 
@@ -331,7 +331,7 @@ La página del equipo le informa si los elementos aún no se han activado en el 
 >
 > Es posible activar automáticamente la aplicación del conjunto de configuración recomendado cuando se incluye un nuevo módulo; consulte la sección Configuración del complemento para obtener más detalles.
 
-# Configuración des modules
+# Configuracion de modulos
 
 Aquí es donde encontrará toda la información sobre su módulo
 
@@ -347,7 +347,7 @@ Proporciona un resumen completo de su nodo con información variada sobre él, c
 >
 > En esta pestaña es posible recibir alertas en caso de posible detección de un problema de configuración, Jeedom le indicará el procedimiento a seguir para corregir. No confunda una alerta con un error, la alerta es en la mayoría de los casos una recomendación simple.
 
-## Valores
+## Valeurs
 
 ![node02](../images/node02.png)
 
@@ -409,7 +409,7 @@ Aquí es donde se encuentra la administración de los grupos de asociación de s
 
 Los módulos Z-Wave pueden controlar otros módulos Z-Wave, sin pasar por el controlador o Jeedom. La relación entre un módulo de control y otro módulo se llama asociación.
 
-Para controlar otro módulo, el módulo de comando necesita mantener una lista de dispositivos que recibirán control de comando. Estas listas se denominan grupos de asociación y siempre están vinculadas a ciertos eventos (por ejemplo, el botón presionado, los activadores del sensor, etc.).
+Para controlar otro módulo, el módulo de comando necesita mantener una lista de dispositivos que recibirán control de comando. Estas listas se denominan grupos de asociación y siempre están vinculadas a ciertos eventos (por ejemplo, el botón presionado, los activadores del sensor, etc ).
 
 En el caso de que ocurra un evento, todos los dispositivos registrados en el grupo de asociación en cuestión recibirán un comando básico.
 
@@ -435,7 +435,7 @@ Para saber con qué otros módulos está asociado el módulo actual, simplemente
 
 Se mostrarán todos los módulos que utilizan el módulo actual, así como el nombre de los grupos de asociación.
 
-**Asociaciones multi-instances**
+**Asociaciones de instancias múltiples**
 
 Algunos módulos admiten un comando de clase de asociaciones de varias instancias. Cuando un módulo admite este CC, es posible especificar con qué instancia se desea crear la asociación
 
@@ -453,13 +453,13 @@ Pestaña que agrupa los parámetros del sistema del módulo.
 
 > **Punta**
 >
-> Los módulos de batería se activan a ciclos regulares, llamado intervalo de activación. El intervalo de activación es un compromiso entre la duración máxima de la batería y las respuestas deseadas del dispositivo. Para maximizar la vida útil de sus módulos, adapte el valor del intervalo de activación, por ejemplo, a 14,400 segundos (4h), vea incluso más alto dependiendo de los módulos y su uso. ![nodo11](../images/node11.png)
+> Los módulos de batería se activan a ciclos regulares, llamado intervalo de activación). El intervalo de activación es un compromiso entre la duración máxima de la batería y las respuestas deseadas del dispositivo. Para maximizar la vida útil de sus módulos, adapte el valor del intervalo de activación, por ejemplo, a 14,400 segundos (4h), vea incluso más alto dependiendo de los módulos y su uso. ![nodo11](../images/node11.png)
 
 > **Punta**
 >
-> Los módulos **Interruptor** y **Dimmer** puede implementar una clase de comando especial llamada **SwitchAll** 0x27. Puedes cambiar el comportamiento aquí. Dependiendo del módulo, hay varias opciones disponibles. El orden **SwitchAll On/OFF** se puede iniciar a través de su módulo controlador principal.
+> Los módulos **Interruptor** y **Dimmer** puede implementar una clase de comando especial llamada **SwitchAll** 0x27. Puedes cambiar el comportamiento aquí. Dependiendo del módulo, hay varias opciones disponibles. El orden **Encender / apagar todo** se puede iniciar a través de su módulo controlador principal.
 
-## Acciones
+## Actions
 
 Le permite realizar ciertas acciones en el módulo.
 
@@ -483,7 +483,7 @@ Ciertas acciones estarán activas de acuerdo con el tipo de módulo y sus posibi
 
 > **Punta**
 >
-> Si ya no se puede acceder a un módulo en una pila y desea excluirlo, y la exclusión no tiene lugar, puede iniciar **Borrar le noeud fantôme** Un asistente realizará varias acciones para eliminar el llamado módulo fantasma. Esta acción implica reiniciar la red y puede tardar varios minutos en completarse.
+> Si ya no se puede acceder a un módulo en una pila y desea excluirlo, y la exclusión no tiene lugar, puede iniciar **Eliminar nodo fantasma** Un asistente realizará varias acciones para eliminar el llamado módulo fantasma. Esta acción implica reiniciar la red y puede tardar varios minutos en completarse.
 
 ![node14](../images/node14.png)
 
@@ -493,7 +493,7 @@ Una vez iniciado, se recomienda cerrar la pantalla de configuración del módulo
 >
 > Solo los módulos con batería se pueden eliminar a través de este asistente.
 
-## Estadísticas
+## Statistiques
 
 Esta pestaña proporciona algunas estadísticas de comunicación con el nodo.
 
@@ -501,7 +501,7 @@ Esta pestaña proporciona algunas estadísticas de comunicación con el nodo.
 
 Puede ser interesante en el caso de módulos que el controlador presume muertos".
 
-# Inclusión / Exclusion
+# Inclusión / exclusión
 
 Cuando sale de fábrica, un módulo no pertenece a ninguna red Z-Wave.
 
@@ -584,11 +584,11 @@ Si vuelve a hacer clic en el botón, saldrá del modo de exclusión.
 >
 > Un módulo no necesita ser excluido por el mismo controlador en el que se incluyó anteriormente. De ahí el hecho de que se recomienda ejecutar una exclusión antes de cada inclusión.
 
-## Sincronizar
+## Synchroniser
 
 ![addremove06](../images/addremove06.png)
 
-Botón que permite la sincronización de los módulos de red Z-Wave con el equipo Jeedom. Los módulos están asociados con el controlador principal, los dispositivos en Jeedom se crean automáticamente cuando se incluyen. También se eliminan automáticamente cuando se excluyen, si la opción **Borrar automatiquement les périphériques exclus** está activado.
+Botón que permite la sincronización de los módulos de red Z-Wave con el equipo Jeedom. Los módulos están asociados con el controlador principal, los dispositivos en Jeedom se crean automáticamente cuando se incluyen. También se eliminan automáticamente cuando se excluyen, si la opción **Eliminar automáticamente los dispositivos excluidos** está activado.
 
 Si ha incluido módulos sin Jeedom (requiere un dongle de batería como el Aeon-labs Z-Stick GEN5), la sincronización será necesaria después de conectar la llave, una vez que el demonio haya comenzado y esté operativo.
 
@@ -655,7 +655,7 @@ Muestra diversa información del sistema.
 -   Versión de la biblioteca OpenZwave
 -   Versión de la biblioteca Python-OpenZwave
 
-## Acciones
+## Actions
 
 ![network05](../images/network05.png)
 
@@ -673,7 +673,7 @@ Aquí encontrará todas las acciones posibles para toda su red Z-Wave. Cada acci
 >
 > Si no se puede iniciar una acción, se desactivará hasta que se pueda volver a ejecutar.
 
-## Estadísticas
+## Statistiques
 
 ![network06](../images/network06.png)
 
@@ -730,7 +730,7 @@ Explicación de la leyenda del color :
 >
 > Puede iniciar manualmente la actualización de vecino, por módulo o para toda la red utilizando los botones disponibles en la tabla de enrutamiento.
 
-# Salud
+# Santé
 
 ![health01](../images/health01.png)
 
@@ -747,7 +747,7 @@ Tienes aqui :
 -   **Fabricante** : indica si la recuperación de la información de identificación del módulo está bien
 -   **Vecino** : indica si se ha recuperado la lista de vecinos
 -   **Estado** : Indica el estado de la entrevista del módulo (etapa de consulta)
--   **Batería** : nivel de batería del módulo (un enchufe de red indica que el módulo recibe alimentación de la red).
+-   **Batería** : nivel de batería del módulo (un enchufe de red indica que el módulo recibe alimentación de la red)).
 -   **Hora de despertarse** : para módulos con batería, proporciona la frecuencia en segundos de los instantes cuando el módulo se activa automáticamente.
 -   **Paquete total** : muestra el número total de paquetes recibidos o enviados con éxito al módulo.
 -   **% Ok** : muestra el porcentaje de paquetes enviados / recibidos con éxito.
@@ -807,9 +807,9 @@ El nombre del módulo puede ir seguido de una o dos imágenes:
 
 > **Punta**
 >
-> Si en su tabla de enrutamiento y / o en la pantalla de estado de Z-Wave tiene uno o más módulos llamados **Desconocido**, Esto significa que la entrevista del módulo no se ha completado con éxito. Probablemente tengas un **NOK** en la columna del constructor. Abra los detalles de los módulos para probar las soluciones sugeridas (consulte la sección Solución de problemas y diagnósticos, a continuación).
+> Si en su tabla de enrutamiento y / o en la pantalla de estado de Z-Wave tiene uno o más módulos llamados **Desconocido**, Esto significa que la entrevista del módulo no se ha completado con éxito. Probablemente tengas un **NOK** en la columna del constructor. Abra los detalles de los módulos para probar las soluciones sugeridas (consulte la sección Solución de problemas y diagnósticos, a continuación)).
 
-## Estado de l'interview
+## Estado de la entrevista
 
 Paso de entrevistar un módulo después de iniciar el demonio.
 
@@ -833,7 +833,7 @@ Paso de entrevistar un módulo después de iniciar el demonio.
 -   **Configuración** Recuperar información de parámetros de configuración (solo se realiza bajo pedido).
 -   **Completa** El proceso de entrevista ha finalizado para este nodo.
 
-## Notificación
+## Notification
 
 Detalles de notificaciones enviadas por módulos
 
@@ -845,12 +845,12 @@ Detalles de notificaciones enviadas por módulos
 -   **Muerto** Informe cuando un nodo se presume muerto.
 -   **Vivo** Informar cuando se relanza un nodo.
 
-# Copias de seguridad
+# Backups
 
 La parte de respaldo le permitirá administrar los respaldos de su topología de red. Este es su archivo zwcfgxxx.xml, constituye el último estado conocido de su red, es una forma de caché de su red. Desde esta pantalla puedes :
 
--   Iniciar una copia de seguridad (se realiza una copia de seguridad en cada reinicio de la red y durante las operaciones críticas). Las últimas 12 copias de seguridad se mantienen
--   Restaurar una copia de seguridad (seleccionándola de la lista justo arriba)
+-   Iniciar una copia de seguridad (se realiza una copia de seguridad en cada reinicio de la red y durante operaciones críticas). Las últimas 12 copias de seguridad se mantienen
+-   Restaurar una copia de seguridad (seleccionándola de la lista justo arriba))
 -   Eliminar una copia de seguridad
 
 ![backup01](../images/backup01.png)
@@ -867,7 +867,7 @@ Después de una actualización del complemento Z-Wave, es posible que Jeedom le 
 
 Jeedom debería lanzar la actualización de dependencia por sí mismo si el complemento considera que son **NOK**. Esta validación se lleva a cabo después de 5 minutos.
 
-La duración de esta operación puede variar según su sistema (hasta más de 1 hora con raspberry pi)
+La duración de esta operación puede variar dependiendo de su sistema (hasta más de 1 hora en raspberry pi)
 
 Una vez que se completa la actualización de las dependencias, el demonio se reiniciará automáticamente al validar Jeedom. Esta validación se lleva a cabo después de 5 minutos.
 
@@ -942,7 +942,7 @@ Es posible hacerlo a través de una solicitud http o crear un pedido en la panta
 
 ![troubleshooting06](../images/troubleshooting06.png)
 
-Esta es una orden **Acción** elige el **CC** deseado para un **Instancia** dado con el comando **datos \ [0 \]. ForceRefresh ()**
+Esta es una orden **Acción** elige el **CC** deseado para un **Instancia** dado con el comando **data \ [0 \]. ForceRefresh()**
 
 Todos los índices de instancia para este comando de Clase se actualizarán. Los nodos de las baterías esperarán su próximo despertar antes de llevar a cabo la actualización de su valor.
 
@@ -1006,18 +1006,18 @@ El asistente automático de nodo fantasma está disponible.
 
 -   Vaya a la pestaña de acciones del módulo para eliminar.
 -   Probablemente tendrá un estado **CacheLoad**.
--   Comando de inicio **Borrar nœud fantôme**.
+-   Comando de inicio **Eliminar nodo fantasma**.
 -   La red Z-Wave se detiene. El asistente automático modifica el archivo **zwcfg** eliminar CC WakeUp del módulo. Reinicios de red.
 -   Cerrar la pantalla del módulo.
 -   Abra la pantalla Z-Wave Health.
 -   Espere a que se complete el ciclo de inicio (topología cargada).
--   El módulo normalmente se marcará como presunto muerto.
+-   El módulo normalmente se marcará como presunto muerto (muerto).
 -   Al minuto siguiente, debería ver que el nodo desaparece de la pantalla de estado.
 -   Si en la configuración de Z-Wave, ha desmarcado la opción "Eliminar automáticamente los dispositivos excluidos", deberá eliminar manualmente el equipo correspondiente.
 
 Este asistente solo está disponible para módulos de batería.
 
-## Acciones post inclusion
+## Acciones posteriores a la inclusión
 
 Se recomienda realizar la inclusión al menos a 1M del controlador principal, o esta no será la posición final de su nuevo módulo. Estas son algunas buenas prácticas a seguir luego de la inclusión de un nuevo módulo en su red.
 
@@ -1079,7 +1079,7 @@ Tienes que probar los diferentes pasos:
 -   Mira el **Consola** Complemento ZWave, para ver si no se ha informado un error.
 -   Lanzar el demonio por **Depurar** mira de nuevo a la **Consola** y registros de complementos.
 -   Reiniciar completamente Jeedom.
--   Asegúrese de tener un controlador Z-Wave, Razberry a menudo se confunde con EnOcean (error al realizar el pedido).
+-   Asegúrese de tener un controlador Z-Wave, el Razberry a menudo se confunde con el EnOcean (error al ordenar).
 
 Ahora debemos comenzar las pruebas de hardware:
 
@@ -1093,7 +1093,7 @@ Si el problema persiste, reinicie el controlador:
 -   Retire el dongle USB o Razberry según corresponda, aproximadamente 5 minutos.
 -   Vuelva a conectar todo e intente nuevamente.
 
-## El controleur ne répond plus
+## El controlador ya no responde
 
 No se transmiten más pedidos a los módulos, pero las devoluciones de estado se envían de vuelta a Jeedom.
 
@@ -1204,8 +1204,8 @@ Example: Para hacer ping al id del nodo 2
 
 URL = ``http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices\[2\].TestNode()``
 
-# Preguntas frecuentes
+# FAQ
 
 > **Me sale el error "No hay suficiente espacio en el búfer de flujo"**
 >
-> Desafortunadamente, este error es hardware, no hay nada que podamos hacer y estamos buscando por el momento cómo forzar un reinicio del demonio en el caso de este error (pero a menudo también es necesario desconectar la clave durante 5 minutos para que vuelva a comenzar)
+> Desafortunadamente, este error es hardware, no hay nada que podamos hacer al respecto y estamos buscando por el momento cómo forzar un reinicio del demonio en caso de este error (pero a menudo también es necesario desconectar la clave durante 5 minutos para que vuelva a comenzar))
