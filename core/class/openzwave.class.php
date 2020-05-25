@@ -770,11 +770,14 @@ class openzwaveCmd extends cmd {
 		$request = '/node?node_id=' . $this->getEqLogic()->getLogicalId();
 		switch ($this->getSubType()) {
 			case 'message':
-			$value = str_replace('#message#', $_options['message'], $value);
-			break;
+				$value = str_replace('#message#', $_options['message'], $value);
+				break;
 			case 'slider':
-			$value = str_replace('#slider#', $_options['slider'], $value);
-			break;
+				$value = str_replace('#slider#', $_options['slider'], $value);
+				break;
+			case 'select':
+				$value = str_replace('#select#', $_options['select'], $value);
+				break;
 			case 'color':
 			if ($value == '#color#') {
 				$value = str_replace('#color#', str_replace('#', '', $_options['color']), $value);
