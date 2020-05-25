@@ -26,6 +26,7 @@
         "Port clé Z-Wave": "Z-Wave key port",
         "Aucun": "None",
         "Auto": "Auto",
+        "Désactiver la gestion des processus USB (socat)": "Disable USB process management (socat)",
         "Port du Serveur (laisser vide par défault)": "Server Port (leave empty by default)",
         "Options avancées": "Advanced options",
         "Backups": "Backups",
