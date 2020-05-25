@@ -166,8 +166,8 @@ function printEqLogic(_eqLogic) {
       if (isset(data.result.name)) {
         $('.eqLogicAttr[data-l1key=configuration][data-l2key=product_name]').value(data.result.name);
       }
-      if (isset(data.result.doc) && data.result.doc != '') {
-        $('#bt_deviceDocumentation').attr('href', 'https://www.jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-' + data.result.doc + '.html');
+      if (isset(data.result.documentation) && data.result.documentation != '') {
+        $('#bt_deviceDocumentation').attr('href', data.result.documentation);
         $('#bt_deviceDocumentation').show();
       } else {
         $('#bt_deviceDocumentation').hide();
@@ -436,7 +436,7 @@ function addCmdToTable(_cmd) {
   }
   var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
   tr += '<td>';
-  tr += '<a class="cmdAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>';
+  tr += '<a class="cmdAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>';
   tr += '<span class="cmdAttr" data-l1key="display" data-l2key="icon" style="margin-left:10px;"></span>';
   tr += '<input class="cmdAttr form-control input-sm" data-l1key="name" style="margin-left:10px; margin-bottom:2px; width:185px; float:right">';
   tr += '<select class="cmdAttr form-control input-sm" data-l1key="value" style="display : none;" title="{{La valeur de la commande vaut par défaut la commande}}">';
@@ -469,7 +469,7 @@ function addCmdToTable(_cmd) {
   tr += '<td style="width:125px">';
   if (is_numeric(_cmd.id)) {
     tr += '<a class="btn btn-default btn-xs cmdAction" data-action="configure"><i class="fas fa-cogs"></i></a> ';
-    tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}</a>';
+    tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fas fa-rss"></i> {{Tester}}</a>';
   }
   tr += ' <i class="fas fa-minus-circle cmdAction cursor" data-action="remove"></i></td>';
   tr += '</tr>';

@@ -1,72 +1,73 @@
 {
-    "name": "PSR04 Smart Color Button", 
-    "type": "Interrupteur", 
-    "comlink": "3207-philio-interrupteurtelecommande-mural-z-wave-4713698571542", 
-    "remark": "", 
-    "imglink": "philio.psr04", 
-    "configuration": {
-        "1": {
-            "name": "Niveau Off Minimum", 
-            "help": "Permet de définir la borne minimum (côté gauche)"
-        }, 
-        "2": {
-            "name": "Niveau On Maximum", 
-            "help": "Permet de définir la borne maximum (côté droit)"
-        }, 
-        "10": {
-            "name": "Rapport de niveau de batterie", 
-            "help": "L'intervalle de temps d'un rapport de niveau de batterie (0 désactivé, valeur max 127)"
-        }, 
-        "25": {
-            "name": "Fonction custom", 
-            "help": "Bit 0 : Fonctionnement du dimmer. (0 envoie la valeur après fin de rotation, 1 envoie la valeur après avoir appuyé sur le bouton après la rotation). Bit 1 : Buzzer en mode timer (0 : activé, 1: désactivé)"
-        }, 
-        "26": {
-            "name": "Envoie de scène sur appui bouton central", 
-            "help": "Envoie de scène sur appui bouton central", 
-            "list": {
-                "Enabled": "Activé", 
-                "Disabled": "Désactivé"
-            }
-        }, 
-        "battery_type": "Batterie"
-    }, 
-    "commands": [
-        {
-            "name": "Etat", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 32, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "calculValueOffset": "(#value#==255) ? 99 :  ((#value#==1) ? 0 : #value#)", 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "unite": "%"
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }
-        }
-    ]
+  "name": "PSR04 Smart Color Button",
+  "type": "Interrupteur",
+  "documentation":"https:\/\/doc.jeedom.com\/#language#\/zwave\/philio.psr04_-_Smart_Color_Button", 
+  "comlink": "3207-philio-interrupteurtelecommande-mural-z-wave-4713698571542",
+  "remark": "",
+  "imglink": "philio.psr04",
+  "configuration": {
+    "1": {
+      "name": "Niveau Off Minimum",
+      "help": "Permet de définir la borne minimum (côté gauche)"
+    },
+    "2": {
+      "name": "Niveau On Maximum",
+      "help": "Permet de définir la borne maximum (côté droit)"
+    },
+    "10": {
+      "name": "Rapport de niveau de batterie",
+      "help": "L'intervalle de temps d'un rapport de niveau de batterie (0 désactivé, valeur max 127)"
+    },
+    "25": {
+      "name": "Fonction custom",
+      "help": "Bit 0 : Fonctionnement du dimmer. (0 envoie la valeur après fin de rotation, 1 envoie la valeur après avoir appuyé sur le bouton après la rotation). Bit 1 : Buzzer en mode timer (0 : activé, 1: désactivé)"
+    },
+    "26": {
+      "name": "Envoie de scène sur appui bouton central",
+      "help": "Envoie de scène sur appui bouton central",
+      "list": {
+        "Enabled": "Activé",
+        "Disabled": "Désactivé"
+      }
+    },
+    "battery_type": "Batterie"
+  },
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 32,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "calculValueOffset": "(#value#==255) ? 99 :  ((#value#==1) ? 0 : #value#)",
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "unite": "%"
+    },
+    {
+      "name": "Batterie",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 128,
+        "value": "",
+        "index": 0,
+        "instance": 1
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "BATTERY"
+      }
+    }
+  ]
 }

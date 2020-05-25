@@ -114,7 +114,7 @@ $("#tab_route").off("click").on("click", function () {
           }else{
             rtClass = 'node-more-of-two-up-color';
           }
-          routingTable += '<td class=' + rtClass + ' style="width: 35px"><i class="fa fa-square fa-2x" title="' + routeHops + '"></i></td>';
+          routingTable += '<td class=' + rtClass + ' style="width: 35px"><i class="fas fa-square fa-2x" title="' + routeHops + '"></i></td>';
         });
         routingTable += '</td><td><button type="button" id="requestNodeNeighboursUpdate" data-nodeid="' + nodeId + '" class="btn btn-xs btn-primary requestNodeNeighboursUpdate" title="{{Mise à jour des noeuds voisins}}"><i class="fas fa-sync-alt"></i></button></td></tr>';
       });
@@ -374,22 +374,22 @@ function network_load_info(){
       data.awakedDelay = (data.awakedDelay != null) ?  'opérationnel en ' + data.awakedDelay + ' secondes':'';
       switch (data.state) {
         case 0:
-        data.state = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
+        data.state = "<i class='fas fa-exclamation-circle rediconcolor'></i>";
         break;
         case 1:
-        data.state = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
+        data.state = "<i class='fas fa-exclamation-circle rediconcolor'></i>";
         break;
         case 3:
-        data.state = "<i class='fa fa-exclamation-circle rediconcolor'></i>";
+        data.state = "<i class='fas fa-exclamation-circle rediconcolor'></i>";
         break;
         case 5:
-        data.state = "<i class='fa fa-circle yellowiconcolor'></i>";
+        data.state = "<i class='fas fa-circle yellowiconcolor'></i>";
         break;
         case 7:
-        data.state = "<i class='fa fa-bullseye greeniconcolor'></i>";
+        data.state = "<i class='fas fa-bullseye greeniconcolor'></i>";
         break;
         case 10:
-        data.state = "<i class='fa fa-circle greeniconcolor'></i>";
+        data.state = "<i class='fas fa-circle greeniconcolor'></i>";
         break;
       }
       data.node_capabilities = '';
@@ -410,13 +410,13 @@ function network_load_info(){
       }
       data.outgoingSendQueue = parseInt(data.outgoingSendQueue, 0);
       if (data.outgoingSendQueue == 0) {
-        data.outgoingSendQueueDescription = "<i class='fa fa-circle fa-lg greeniconcolor'></i>";
+        data.outgoingSendQueueDescription = "<i class='fas fa-circle fa-lg greeniconcolor'></i>";
       }else if (data.outgoingSendQueue <= 5) {
-        data.outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg greeniconcolor'></i>";
+        data.outgoingSendQueueDescription = "<i class='fas fa-spinner fa-spin fa-lg greeniconcolor'></i>";
       }else if (data.outgoingSendQueue <= 15) {
-        data.outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg yellowiconcolor'></i>";
+        data.outgoingSendQueueDescription = "<i class='fas fa-spinner fa-spin fa-lg yellowiconcolor'></i>";
       }else {
-        data.outgoingSendQueueDescription = "<i class='fa fa-spinner fa-spin fa-lg rediconcolor'></i>";
+        data.outgoingSendQueueDescription = "<i class='fas fa-spinner fa-spin fa-lg rediconcolor'></i>";
       }
       $('#div_templateNetwork').setValues(data, '.zwaveNetworkAttr');
       if($('#div_templateNetwork').html() != undefined && $('#div_templateNetwork').is(':visible')){

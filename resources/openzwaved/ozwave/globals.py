@@ -17,6 +17,8 @@ REFRESH_MAPPING = {'2|3|32784': {'67|1|1' : {'onlyset' : '67|11|1','sleep' :1 , 
 					'271|7425|4096': {'38|1|0' : {'sleep' :5 , 'number' :4},'38|1|1' : {'sleep' :5 , 'number' :4, 'other':'38|1|0'},'38|1|2' : {'sleep' :5 , 'number' :4, 'other':'38|1|0'}},\
 					'271|7169|4096': {'38|1|0' : {'sleep' :3 , 'number' :3},'38|1|1' : {'sleep' :3 , 'number' :3, 'other':'38|1|0'},'38|1|2' : {'sleep' :3 , 'number' :3, 'other':'38|1|0'}},\
 					'271|2306|4096': {'51|1|0' : {'sleep' :5 , 'number' :3 , 'other' : '38|1|0'},'38|1|0' : {'sleep' :5 , 'number' :3 , 'other' : '51|1|0'}},\
+					'816|512|53253': {'38|1|0' : {'sleep' :3 , 'number' :3 , 'com' : 'sunricher dimmer'},'38|1|1' : {'sleep' :3 , 'number' :3, 'other':'38|1|0'},'38|1|2' : {'sleep' :3 , 'number' :3, 'other':'38|1|0'}},\
+					'816|512|53260': {'38|1|0' : {'sleep' :3 , 'number' :3 , 'com' : 'sunricher dimmer'},'38|1|1' : {'sleep' :3 , 'number' :3, 'other':'38|1|0'},'38|1|2' : {'sleep' :3 , 'number' :3, 'other':'38|1|0'}},\
 					}
 
 

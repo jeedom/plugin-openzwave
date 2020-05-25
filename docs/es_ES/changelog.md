@@ -1,687 +1,693 @@
-# 07/10/2019
+# Registro de cambios Z-Wave
 
-- Correction d'un bug lors de l'arret du démon
-- Corrección de errores
-- CETTE MAJ NECESSITE DE RECOMPILER LES DEPENDANCES (RELANCER)
+>**Importante**
+>
+>Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto
 
-# 19-09-2019
+# 10/07/2019
 
-- Correction de bug d'affichage
+- Se corrigió un error al detener al demonio
+- Correcciones de errores
+- ESTA ACTUALIZACIÓN NECESITA RECOMPENSAR LAS DEPENDENCIAS (REANUDO)
 
-# 10-09-2019
+# 2019-09-19
 
-- Correction d'un soucis d'affichage de la table de routage
+- Mostrar corrección de errores
+
+# 09-10-2019
+
+- Se corrigió un problema con la visualización de la tabla de enrutamiento
 
 # 09-09-2019
-- Adaptation des dépendances pour Debian10 Buster
-- Modification permettant de séparer les sorties sur les smart implant (cette fonction nécessite une recompilation des dépendances)
+- Adaptación de dependencias para Debian10 Buster
+- Modificación que permite separar las salidas en implantes inteligentes (esta función requiere una recopilación de dependencias)
 
-04-02-2019
+2019-02-04
 ===
-- CETTE MAJ NECESSITE DE RECOMPILER LES DEPENDANCES (RELANCER)
-- Correction d'un bug sur les multiinstances des thermostats
-- Création d'un niveau de queue dépriorisé sur les actions pour les refreshs
-- Rajout de nombreuses confs (pour rappel le bouton récupérer les confs est utile pour être à jour sans mettre à jour le plugin)
-- Amélioration de la gestion des multichannels encapsulés
-- Rajout de la CC manufacturer specific
-- Mise en place simple de la CC Soundswitch
-- Correction de l'inclusion Multiples des devices&lt
-- Amélioration de la CC Switch Binary
-- La saisie de paramétre manuel est toujours possible
-- Amélioration de la queue
-- Préparation pour rajout nouvelles CCs (notification notamment)
-- Rajout des codes sur la CC alarme pour clavier Zipato pour le moment
-- Correction de la philio en mode sécurisée qui lors des sonneries générait un timeout de 10 secondes (il faut surement regénerer la détection de la sirène ou la ré-inclure)
-- Correction d'un bug si le niveau de log est sur aucun
-- CETTE MAJ NECESSITE DE RECOMPILER LES DEPENDANCES
+- ESTA ACTUALIZACIÓN NECESITA RECOMPENSAR LAS DEPENDENCIAS (REANUDO)
+- Corrección de un error en múltiples instancias de termostatos
+- Creación de un nivel de cola en desuso en acciones para actualizaciones
+- Adición de muchas confs (para recuperar el botón para recuperar confs es útil estar actualizado sin actualizar el complemento)
+- Gestión mejorada de canales multicanal encapsulados
+- Adición de CC específico del fabricante
+- Instalación simple del interruptor de sonido CC
+- Arreglo para la inclusión múltiple de dispositivos <
+- Binario CC Switch mejorado
+- Introducir parámetros manuales siempre es posible
+- Mejora de cola
+- Preparación para agregar nuevos CC (notificación en particular)
+- Adición de códigos en la alarma CC para el teclado Zipato por el momento
+- Corrección del philio en modo seguro que durante los tonos de llamada generó un tiempo de espera de 10 segundos (seguramente es necesario regenerar la detección de la sirena o volver a incluirla)
+- Corrección de un error si el nivel de registro es ninguno
+- ESTA ACTUALIZACIÓN NECESITA RECOMPILAR LAS DEPENDENCIAS
 
-17-03-2018
-===
-
-- Changement de la branche pour la récupération des confs lors du syncconf (suite a changement de l'organisation des githubs)
-
-17-01-2018 / 19-01-2018
+2018-03-17
 ===
 
--   Nouveautés
+- Cambio de rama para recuperación de confs durante syncconf (luego de un cambio en la organización de githubs)
 
-    -   Retour de la possibilité de synchroniser les confs sans mettre à jour le plugin
+2018-01-17 / 2018-01-19
+===
 
-    -   Améliorations
+-   Nuevas llegadas
 
-    -   Rajout de la possibilité en interne de declencher des refreshs sur certaines valeurs spécifiques et modules spécifiques (utilisé dans les confs jeedom)
+    -   Retorno de la posibilidad de sincronizar confs sin actualizar el complemento
 
-    -   Refonte complète de la fonction permettant de simuler une valeur sur une autre commande pour éviter de la mettre pour un ensemble de module mais spécifiquement (interne Jeedom)
+    -   Mejoras
 
--   Bug fixes
+    -   Adición de la posibilidad interna de activar actualizaciones en ciertos valores específicos y módulos específicos (utilizados en confesiones de libertad)
 
-    -   Correction d’un bug qui faisait que les confs auto générés étaient à l’ancien format et donc inutilisable
+    -   Rediseño completo de la función que permite simular un valor en otro comando para evitar ponerlo en un conjunto de módulos pero específicamente (Jeedom interno)
 
-    -   Correction du bug de la perte du consigne pending sur les vannes thermostatiques (va avec le point 2 des améliorations)
+-   Error corregido
 
-    -   Réduction de la taille des images pour limiter au plus la taille du plugin (environ 500 images)
+    -   Se corrigió un error que causaba que las configuraciones generadas automáticamente estuvieran en el formato anterior y, por lo tanto, no se pudieran usar
 
-    -   Suppression de dépendances plus utilisées tel que Mercurial Sphinx etc…​
+    -   Corrección del error de la pérdida del punto de ajuste pendiente en las válvulas termostáticas (va con el punto 2 de las mejoras)
 
-    -   Suppression de la purge des configurations avant update (évite d’avoir des icones Zwave en lieu et place des images en cas de mises a jours non aboutis pour timeout ou autre)
+    -   Reducción del tamaño de las imágenes para limitar el tamaño del complemento tanto como sea posible (aproximadamente 500 imágenes)
+
+    -   Eliminación de dependencias más utilizadas, como Mercurial Sphinx, etc
+
+    -   Supresión de la purga de las configuraciones antes de la actualización (evita tener iconos de Zwave en lugar de las imágenes en caso de actualizaciones fallidas por tiempo de espera u otro)
 
 2017-08-xx
 ===
 
 
--   New Features
+-   Nuevas características
 
-    -   Possibilité de rafraichir les commandes d’un équipement sans
-        supprimer les existantes.
+    -   Posibilidad de actualizar pedidos de equipos sin
+        eliminar los existentes.
 
-    -   Possibilité de créer une commande information sur les valeurs de
-        l’onglet Système.
+    -   Posibilidad de crear un comando de información sobre los valores de
+        Pestaña Sistema.
 
--   Improvements/Enhancements
+-   Mejoras / Mejoras
 
-    -   Prise en charge de nouveaux modules, définitions ozw
-        et commandes.
+    -   Soporte para nuevos módulos, definiciones de ozw
+        y pedidos.
 
-    -   Possibilité de sélectionner l’association par défaut
-        (sans instance) sur les modules supportant les
-        associations multi-instances.
+    -   Posibilidad de seleccionar la asociación predeterminada
+        (sin instancia) en los módulos que admiten
+        asociaciones de instancias múltiples.
 
-    -   Vérification de la validité des groupes d’associations à la fin
-        de l’interview.
+    -   Verificación de la validez de los grupos de asociación al final
+        de la entrevista.
 
-    -   Récupération du dernier niveau des piles au démarrage du démon.
+    -   Recuperación del último nivel de las baterías cuando comienza el demonio.
 
--   Bug Fixes
+-   Error corregido
 
-    -   Correction de la migration de l’info Batterie.
+    -   Corrección de la migración de la información de la batería.
 
-    -   Correction de la remontée de l’info Batterie dans
-        l’écran Equipements.
+    -   Corrección de la retroalimentación de información de la batería en
+        la pantalla del equipo.
 
-    -   Restauration du type de piles dans les configurations
-        de modules.
+    -   Restauración del tipo de batería en configuraciones
+        de módulos.
 
-    -   Correction des actions sur les valeurs de type bouton dans
-        l’écran du module.
+    -   Corrección de acciones en valores de tipo de botón en
+        pantalla del módulo.
 
-    -   Correction de la récupération des traductions de paramètres.
+    -   Corrección de la recuperación de las traducciones de parámetros.
 
-    -   Correction erreur vide sur modification de valeurs de type RAW
-        (code RFid).
+    -   Corrección de error vacío en la modificación de valores de tipo RAW
+        (Código RFid).
 
-    -   Correction de l’affichage des valeurs en attente
-        d’être appliqué.
+    -   Visualización fija de valores pendientes
+        para ser aplicado.
 
-    -   Suppression de la notification du changement de valeur avant
-        qu’elle ne soit appliquée.
+    -   Supresión de notificación de cambio de valor antes
+        que no se aplica.
 
-    -   Ne plus afficher le cadenas dans l’écran du module si le module
-        ne supporte pas la Classe de Commande Sécurité.
+    -   Ya no muestra el candado en la pantalla del módulo si el módulo
+        no es compatible con la clase de comando de seguridad.
 
-    -   Application du rafraichissement manuel dans les
-        paramètres recommandés.
+    -   Aplicación de actualización manual en
+        ajustes recomendados.
 
-    -   Assistant de gestion des badges pour les lecteurs RFID.
+    -   Asistente de gestión de credenciales para lectores RFID.
 
-    -   Correction de l’assistant de détection de modules inconnus.
+    -   Corrección del asistente de detección de módulos desconocidos.
 
-    -   Correction des assistants de "Reprendre de.." et "Appliquer
-        sur…​" dans l’onglet paramètres.
+    -   Corrección de los asistentes de "Reanudar desde ..." y "Aplicar
+        en ... "en la pestaña de configuración.
 
 2017-06-20
 ===
 
--   New Features
+-   Nuevas características
 
-    -   N/A
+    -   N / A
 
--   Improvements/Enhancements
+-   Mejoras / Mejoras
 
-    -   Ajout l’ensemble des configurations de modules au
-        nouveau format.
+    -   Agregue todas las configuraciones de módulos a
+        nuevo formato.
 
--   Bug Fixes
+-   Error corregido
 
-    -   Ne pas tester si un nodeId existe lors de la suppression
-        d’un association.
+    -   No pruebe si existe un nodeId durante la eliminación
+        de una asociación.
 
-    -   Restauration de la notification de consigne en attente sur
-        les thermostats.
+    -   Restaurar la notificación de depósito pendiente en
+        termostatos.
 
-    -   Envoi de la Scène Activation en instance 1.
+    -   Envío Pendiente Activación Escena 1.
 
-    -   Ne plus afficher le cadenas dans l’écran de santé sur les
-        modules ne supportant pas la Classe de Commande Securité.
+    -   Ya no se muestra el candado en la pantalla de salud en
+        módulos que no admiten la clase de comando de seguridad.
 
-    -   Répétition de valeur sur les télécommandes avant la fin de
-        l’interview (kyefob, minimote).
+    -   Repetición de valor en los controles remotos antes del final de
+        la entrevista (kyefob, minimote).
 
-    -   Modifier un paramètre de type liste par valeur via une
-        commande Action.
+    -   Modificar un parámetro de la lista de tipos por valor mediante un
+        Comando de acción.
 
-    -   Modifier un paramètre sur un module sans configuration définie.
+    -   Modificar un parámetro en un módulo sin configuración definida.
 
 2017-06-13
 ===
 
--   New Features
+-   Nuevas características
 
-    -   N/A
+    -   N / A
 
--   Improvements/Enhancements
+-   Mejoras / Mejoras
 
-    -   Ajout de configuration de module Fibaro US
+    -   Adición de la configuración del módulo Fibaro US
 
--   Bug Fixes
+-   Error corregido
 
-    -   N/A
+    -   N / A
 
 2017-05-31
 ===
 
--   New Features
+-   Nuevas características
 
-    -   N/A
+    -   N / A
 
--   Improvements/Enhancements
+-   Mejoras / Mejoras
 
-    -   N/A
+    -   N / A
 
--   Bug Fixes
+-   Error corregido
 
-    -   Correction de l’assignation des valeurs au format RAW des codes
-        pour lecteur RFid.
+    -   Corrección de la asignación de valores en formato RAW de códigos
+        para lector RFid.
 
 2017-05-23
 ===
 
--   New Features
+-   Nuevas características
 
-    -   Suppression du mode maître / esclave. Remplacé par le plugin
-        jeedom link.
+    -   Eliminación del modo maestro / esclavo. Reemplazado por plugin
+        Enlace de libertad.
 
-    -   Utilisation d’une clé API privée au plugin ZWave.
+    -   Uso de una clave API privada para el complemento ZWave.
 
-    -   Nouveau format des fichiers de configuration dans le mapping de
-        commande avec jeedom.
+    -   Nuevo formato de los archivos de configuración en el mapeo de
+        orden con libertad.
 
-    -   Conversion automatique des commandes existantes au nouveau
-        format lors de l’installation du plugin.
+    -   Conversión automática de pedidos existentes a nuevos
+        formato al instalar el complemento.
 
-    -   Ajout du support de la Classe de Commande Central Scene.
+    -   Se agregó soporte para la clase de comando de escena central.
 
-    -   Ajout du support de la Classe de Commande Barrier Operator.
+    -   Se agregó soporte para la clase de comando de operador de barrera.
 
--   Improvements/Enhancements
+-   Mejoras / Mejoras
 
-    -   Refonte complète du serveur REST utilisation de TORNADO.
+    -   Revisión completa del servidor REST usando TORNADO.
 
-        -   Modification de l’ensemble des routes existantes, les
-            scripts devront être adaptés si utilisation de l’API ZWave.
+        -   Modificación de todos los caminos existentes,
+            los scripts deberán adaptarse si se utiliza la API de ZWave.
 
-        -   Renforcement de la sécurité, seul des appels sont écouté sur
-            le serveur REST.
+        -   Refuerzo de la seguridad, solo se escuchan llamadas en
+            el servidor REST.
 
-        -   Utilisation de la clé API ZWave requise pour lancer des
-            requêtes REST.
+        -   Usar la clave API ZWave requerida para iniciar
+            Solicitudes REST.
 
-    -   Désactivation (temporaire) des tests sanitaires.
+    -   Inhabilitar pruebas de salud (temporales).
 
-    -   Désactivation (temporaire) du moteur de mise à jour des
-        configurations de modules.
+    -   Desactivación (temporal) del motor de actualización
+        configuraciones de módulos.
 
-    -   Désactivation de la fonction Soigner le réseau automatiquement
-        deux fois par semaine (diminution des échanges avec
-        le contrôleur).
+    -   Desactivación automática de la función Heal Network
+        dos veces por semana (disminución en intercambios con
+        El controlador).
 
-    -   Optimisations du code de la bibliothèque openzwave.
+    -   Optimizaciones de código de biblioteca Openzwave.
 
-        -   Fibaro FGK101 n’a plus à compléter l’interview pour annoncer
-            un changement d’état.
+        -   Fibaro FGK101 ya no tiene que completar la entrevista para anunciar
+            un cambio de estado.
 
-        -   La commande bouton relâcher (Stop d’un volet) ne force plus
-            la mise à jour de l’ensemble des valeurs du module
-            (diminution de la file de messages).
+        -   El comando del botón de liberación (detener un obturador) ya no fuerza
+            actualizar todos los valores del módulo
+            (disminución en la cola de mensajes).
 
-        -   Possibilité de notifier des valeurs dans la Classe de
-            Commande Alarm (sélection de la sonnerie sur les sirènes)
+        -   Posibilidad de notificar valores en la Clase de
+            Comando de alarma (selección de tono de llamada en sirenas)
 
-    -   Plus de demande journalière du niveau des piles (moins de
-        messages, économie sur les piles).
+    -   Más demanda diaria de nivel de batería (menos de
+        mensajes, ahorrando en baterías).
 
-    -   Le niveau des piles est directement envoyé à l’écran de pile sur
-        réception de rapport du niveau.
+    -   El nivel de la batería se envía directamente a la pantalla de la batería en
+        informe de nivel de recepción.
 
--   Bug Fixes
+-   Error corregido
 
-    -   Rafraîchissement de l’ensemble des instances suite à un
-        broadcast de la CC Switch ALL.
+    -   Actualización de todas las instancias después de un
+        CC Switch ALL broadcast.
 
 2016-08-26
 ===
 
--   New Features
+-   Nuevas características
 
     -   Aucune
 
--   Improvements/Enhancements
+-   Mejoras / Mejoras
 
-    -   Détection du RPI3 dans la mise à jour des dépendances.
+    -   Detección de RPI3 en actualización de dependencia.
 
-    -   Activer le mode d’inclusion en non-sécurisé par défaut.
+    -   Active el modo de inclusión no seguro predeterminado.
 
--   Bug Fixes
+-   Error corregido
 
-    -   Test des informations constructeur dans l’écran de santé ne
-        remonte plus des NOK.
+    -   Prueba la información del fabricante en la pantalla de estado
+        no más NOK.
 
-    -   Perte des cases-à-cocher dans l’onglet Commandes de la
-        page équipement.
+    -   Pérdida de casillas de verificación en la pestaña Comandos de la
+        página de equipos.
 
 2016-08-17
 ===
 
--   New Features
+-   Nuevas características
 
-    -   Relance du demon si détection du contrôleur en timeout lors de
-        l’initialisation du contrôleur.
+    -   Relanzamiento del demonio si la detección del controlador en tiempo de espera durante
+        inicialización del controlador.
 
--   Improvements/Enhancements
+-   Mejoras / Mejoras
 
-    -   Mise à jour de la librairie OpenZWave 1.4.2088.
+    -   Actualización de la biblioteca OpenZWave 1.4.2088.
 
-    -   Correction de l’orthographe.
+    -   Corrección ortográfica.
 
-    -   Refonte de l’écran équipements avec onglets.
+    -   Rediseño de la pantalla del equipo con pestañas.
 
--   Bug Fixes
+-   Error corregido
 
-    -   Problème d’affichage de certains modules sur la table de routage
-        et Graph réseau.
+    -   Problema al mostrar ciertos módulos en la tabla de enrutamiento
+        y gráfico de red.
 
-    -   Modules Vision Secure qui ne retournent pas en veille
-        durant l’interview.
+    -   Módulos Vision Secure que no vuelven al modo de espera
+        durante la entrevista.
 
-    -   Installation des dépendances en boucle (problème coté github).
+    -   Instalación de dependencias en un bucle (problema del lado de github).
 
 2016-07-11
 ===
 
--   New Features
+-   Nuevas características
 
-    -   Prise en charge de la restauration du dernier niveau connue sur
-        les dimmer.
+    -   Soporte para la restauración del último nivel conocido en
+        atenuarlos.
 
-    -   Distinction des modules FLiRS dans l’écran de santé.
+    -   Distinción de módulos FLiRS en la pantalla de salud.
 
-    -   Ajout de la demande de mise à jour des routes de retour
-        au contrôleur.
+    -   Solicitud agregada para actualizar las rutas de regreso
+        al controlador.
 
-    -   Assistant pour appliquer les paramètres de configuration d’un
-        module à plusieurs autres modules.
+    -   Asistente para aplicar los parámetros de configuración de un
+        módulo a varios otros módulos.
 
-    -   Identification du Zwave+ des modules supportant
-        la COMMAND\_CLASS\_ZWAVE\_PLUS\_INFO.
+    -   Identificación de los módulos de soporte Zwave +
+        MANDO\_CLASE\_ZWAVE\_PLUS\_INFO.
 
-    -   Affichage de l’état de sécurité des modules supportant
-        la COMMAND\_CLASS\_SECURITY.
+    -   Visualización del estado de seguridad de los módulos que admiten
+        MANDO\_CLASE\_SEGURIDAD.
 
-    -   Ajout de la possibilité de sélectionner l’instance 0 du
-        contrôleur pour les associations multi-instances.
+    -   Adición de la posibilidad de seleccionar la instancia 0 del
+        controlador para asociaciones de instancias múltiples.
 
-    -   Sécurisation de l’ensemble des appels au serveur REST.
+    -   Asegurar todas las llamadas al servidor REST.
 
-    -   Détection automatique du dongle, dans la page de configuration
-        du plugin.
+    -   Detección automática de dongle, en la página de configuración
+        plugin.
 
-    -   Dialogue d’inclusion avec le choix du mode d’inclusion pour
-        simplifier l’inclusion sécurisée.
+    -   Diálogo de inclusión con opción de modo de inclusión para
+        simplificar la inclusión segura.
 
-    -   Prise en compte des équipements désactivés au sein du
-        moteur Z-Wave.
+    -   Teniendo en cuenta los equipos desactivados dentro del
+        Motor de onda Z.
 
-        -   Affichage grisé dans l’écran de santé sans analyse sur
-            le nœud.
+        -   Pantalla gris en la pantalla de estado sin análisis en
+            nodo.
 
-        -   Masquée dans la Table réseau et Graphique réseau.
+        -   Oculto en la tabla de red y el gráfico de red.
 
-        -   Nœuds désactivés, excluent des tests sanitaires.
+        -   Nodos deshabilitados, excluir pruebas de salud.
 
--   Improvements/Enhancements
+-   Mejoras / Mejoras
 
-    -   Optimisation des contrôles sanitaires.
+    -   Optimización de controles sanitarios.
 
-    -   Optimisation du graphique réseau.
+    -   Red de optimización de gráficos.
 
-    -   Amélioration de la détection du contrôleur principal pour le
-        test des groupes.
+    -   Detección mejorada del controlador principal para
+        prueba grupal.
 
-    -   Mise à jour de la librairie OpenZWave 1.4.296.
+    -   Actualización a la biblioteca OpenZWave 1.4.296.
 
-    -   Optimisation du rafraichissement en arrière-plan des variateurs.
+    -   Optimización de la refrigeración de fondo de las unidades.
 
-    -   Optimisation du rafraichissement en arrière-plan pour
-        les moteurs.
+    -   Actualización de fondo optimizada para
+        los motores.
 
-    -   Adaptation pour la version Jeedom core 2.3
+    -   Adaptación para Jeedom core 2.3
 
-    -   Ecran de santé, modification de nom de colonne et avertissement
-        en cas de non communication avec un module.
+    -   Pantalla de estado, modificación del nombre de columna y advertencia
+        en caso de no comunicación con un módulo.
 
-    -   Optimisation du serveur REST.
+    -   Optimización del servidor REST.
 
-    -   Correction de l’orthographe des écrans, merci @Juan-Pedro
+    -   Corrección de la ortografía de las pantallas, gracias @ Juan-Pedro
         aka: kiko.
 
-    -   Mise à jour de la documentation du plugin.
+    -   Actualización de la documentación del complemento.
 
--   Bug Fixes
+-   Error corregido
 
-    -   Correction de possible problèmes lors de la mise à jour des
-        configurations de modules.
+    -   Corrección de posibles problemas al actualizar
+        configuraciones de módulos.
 
-    -   Graphique réseau, calcul des sauts sur l’id du contrôleur
-        principal et non assumer l’ID 1.
+    -   Gráfico de red, cálculo de saltos en la identificación del controlador
+        principal y no asumir ID 1.
 
-    -   Gestion du bouton ajouter une association groupe.
+    -   Gestión del botón agregar una asociación grupal.
 
-    -   Affichage des valeurs False dans l’onglet Configuration.
+    -   Visualización de valores falsos en la pestaña Configuración.
 
-    -   Ne plus assumer la date du jour sur l’état des piles si pas reçu
-        de rapport de l’équipement.
+    -   Ya no asume la fecha actual del estado de las baterías si no se recibe
+        informe de equipo.
 
 2016-05-30
 ===
 
--   New Features
+-   Nuevas características
 
-    -   Ajout d’une option pour activer/désactiver les contrôles
-        sanitaires sur l’ensemble des modules.
+    -   Opción agregada para habilitar / deshabilitar controles
+        sanitario en todos los módulos.
 
-    -   Ajout d’un onglet Notifications pour visualiser les dernières 25
-        notifications du contrôleur.
+    -   Agregar una pestaña de Notificaciones para ver los últimos 25
+        notificaciones del controlador.
 
-    -   Ajout d’une route pour récupérer la santé d’un noeud.
-        ip\_jeedom:8083/ZWaveAPI/Run/devices\[node\_id\].GetHealth()
+    -   Agregar una ruta para recuperar la salud de un nodo.
+        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetHealth()
 
-    -   Ajout d’une route pour récupérer la dernière notification
-        d’un noeud.
-        ip\_jeedom:8083/ZWaveAPI/Run/devices\[node\_id\].GetLastNotification()
+    -   Agregar una ruta para recuperar la última notificación
+        de un nudo.
+        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetLastNotification()
 
--   Improvements/Enhancements
+-   Mejoras / Mejoras
 
-    -   Permettre la sélection des modules FLiRS lors des
-        associations directes.
+    -   Permitir la selección de módulos FLiRS durante
+        asociaciones directas.
 
-    -   Permettre la sélection de toutes les instances des modules lors
-        des associations directes.
+    -   Permitir la selección de todas las instancias de módulos durante
+        asociaciones directas.
 
-    -   Mise à jour du wrapper python OpenZWave en version 0.3.0.
+    -   Actualización del contenedor Python de OpenZWave a la versión 0.3.0.
 
-    -   Mise à jour de la librairie OpenZWave 1.4.248.
+    -   Actualización de la biblioteca OpenZWave 1.4.248.
 
-    -   Ne pas afficher d’avertissement de wakeup expiré pour les
-        modules sur piles alimentées par secteur.
+    -   No muestre una advertencia de activación caducada para
+        módulos alimentados por batería.
 
-    -   Validation qu’un module est identique au niveau ids pour
-        permettre la copie des paramètres.
+    -   Validación de que un módulo es idéntico a nivel de ID para
+        permitir la copia de parámetros.
 
-    -   Simplification de l’assistant de copie des paramètres.
+    -   Simplificación del asistente para copiar parámetros.
 
-    -   Masquer des valeurs de l’onglet système qui n’ont pas lieu
-        d’être affichées.
+    -   Ocultar valores de pestaña del sistema no existentes
+        para ser exhibido.
 
-    -   Affichage de la description des capacités du contrôleur.
+    -   Visualización de la descripción de las capacidades del controlador.
 
-    -   Mise à jour de la documentation.
+    -   Actualización de la documentación.
 
-    -   Correction de l’orthographe de la documentation, merci
+    -   Corrección de la ortografía de la documentación, gracias
         @Juan-Pedro aka: kiko.
 
--   Bug Fixes
+-   Error corregido
 
-    -   Correction orthographe.
+    -   Corrección ortográfica.
 
-    -   Correction de l’inclusion en mode sécurisé.
+    -   Se corrigió la inclusión en modo seguro.
 
-    -   Correction de l’appel asynchrone. (error: \[Errno 32\]
-        Broken pipe)
+    -   Corrección de llamada asincrónica. (error: \ [Errno 32 \]
+        Tuberia rota)
 
 2016-05-04
 ===
 
--   New Features
+-   Nuevas características
 
-    -   Ajout d’option pour désactiver l’actualisation en arrière-plan
-        des variateurs.
+    -   Opción agregada para desactivar la actualización de fondo
+        atenuadores.
 
-    -   Affichage des associations avec qui un module est en association
-        (find usage).
+    -   Visualización de asociaciones con las que está asociado un módulo
+        (encontrar uso).
 
-    -   Ajout du support de la CC MULTI\_INSTANCE\_ASSOCIATION.
+    -   Soporte agregado para CC MULTI\_INSTANCE\_ASSOCIATION.
 
-    -   Ajout d’une notification info lors de l’application de
-        Set\_Point afin de pourvoir exploiter la consigne demandée sous
-        forme de cmd info.
+    -   Agregar una notificación de información al aplicar
+        Establezca\_Point para utilizar el punto de ajuste solicitado en
+        formulario de información de cmd.
 
-    -   Ajout d’un assistant de configuration recommandée.
+    -   Agregar un asistente de configuración recomendado.
 
-    -   Ajout d’option pour activer/désactiver l’assistant de
-        configuration recommandée lors de l’inclusion de
-        nouveaux modules.
+    -   Agregar opción para activar / desactivar el asistente
+        configuración recomendada cuando se incluye
+        nuevos módulos.
 
-    -   Ajout d’option pour activer/désactiver la mise à jour des
-        configurations des modules chaque nuit.
+    -   Agregar opción para activar / desactivar la actualización de
+        configuraciones de módulos cada noche.
 
-    -   Ajout d’une route pour gérer les multi instances associations.
+    -   Adición de una ruta para gestionar múltiples instancias de asociación.
 
-    -   Ajout des Query Stage manquants.
+    -   Agregar etapa de consulta faltante.
 
-    -   Ajout de la validation de la sélection du Dongle USB au
-        démarrage du démon.
+    -   Se agregó validación de la selección del Dongle USB al
+        comenzando el demonio.
 
-    -   Ajout de la validation et test du callback au démarrage
-        du démon.
+    -   Adición de validación y prueba de devolución de llamada al inicio
+        del demonio.
 
-    -   Ajout d’une option pour désactiver la mise à jour automatique
-        des config de module.
+    -   Opción agregada para desactivar la actualización automática
+        configuración del módulo.
 
-    -   Ajout d’une route pour modifier à l’exécution les traces de log
-        du serveur REST. Note: aucun effect sur le niveau OpenZWave.
+    -   Agregar una ruta para modificar los seguimientos de registro en tiempo de ejecución
+        el servidor REST. Note: sin efecto en el nivel OpenZWave.
         <http://ip_jeedom:8083/ZWaveAPI/Run/ChangeLogLevel(level>) level
-        ⇒ 40:Error, 20: Debug 10 Info
+        ⇒ 40:Error 20: Información de depuración 10
 
--   Improvements/Enhancements
+-   Mejoras / Mejoras
 
-    -   Mise à jour du wrapper python OpenZWave en version 0.3.0b9.
+    -   Actualización del contenedor Python OpenZWave a la versión 0.3.0b9.
 
-    -   Mise en évidence des groupes d’associations qui sont en attente
-        d’être appliqués.
+    -   Destacando grupos de asociaciones pendientes
+        para ser aplicado.
 
-    -   Mise à jour de la librairie OpenZWave 1.4.167.
+    -   Actualización a la biblioteca OpenZWave 1.4.167.
 
-    -   Modification du système d’association directe.
+    -   Modificación del sistema de asociación directa.
 
-    -   Mise à jour de la documentation
+    -   Actualización de la documentación
 
-    -   Possibilité de lancer la régénération de la détection du nœud
-        pour l’ensemble des modules identiques (marque et modèle).
+    -   Capacidad para comenzar la regeneración de la detección de nodos
+        para todos los módulos idénticos (marca y modelo).
 
-    -   Affichage dans l’écran de santé si des éléments de configuration
-        ne sont pas appliqués.
+    -   Mostrar en la pantalla de estado si hay elementos de configuración
+        no se aplican.
 
-    -   Affichage dans l’écran d’équipement si des éléments de
-        configuration ne sont pas appliqués.
+    -   Mostrar en la pantalla del equipo si elementos de
+        la configuración no se aplica.
 
-    -   Affichage dans l’écran de santé si un module sur piles ne s’est
-        jamais réveillé.
+    -   Mostrar en la pantalla de estado si un módulo de batería no tiene
+        nunca desperté.
 
-    -   Affichage dans l’écran de santé si un module sur piles a dépassé
-        le temps du réveil prévu.
+    -   Mostrar en la pantalla de estado si un módulo de batería ha excedido
+        la hora de despertar esperada.
 
-    -   Ajout de traces lors d’erreur de notifications.
+    -   Agregar trazas en caso de error de notificación.
 
-    -   Meilleure remontée de l’état des piles.
+    -   Mejor recuperación del estado de la batería.
 
-    -   Conformité du résumé / santé pour les thermostats sur piles.
+    -   Resumen / cumplimiento de la salud para termostatos de batería.
 
-    -   Meilleur détection de modules sur piles.
+    -   Mejor detección de módulos en baterías.
 
-    -   Optimisation du mode Debug pour le serveur REST.
+    -   Optimización del modo de depuración para el servidor REST.
 
-    -   Forcer une actualisation de l’état des interrupteurs et dimer
-        suite à l’envoi d’une commande switch all.
+    -   Forzar una actualización del estado del interruptor y el dímero
+        después del envío de un comando switch all.
 
--   Bug Fixes
+-   Error corregido
 
-    -   Correction de la découverte des groupes d’associations.
+    -   Descubrimiento fijo de grupos de asociación.
 
-    -   Correction de l’erreur "Exception KeyError: (91,) in
-        'libopenzwave.notif\_callback' ignored".
+    -   Corrección del error "Exception KeyError: (91,) en
+        'libopenzwave.notif\_callback 'ignorado".
 
-    -   Correction de la sélection de la documentation de module pour
-        les modules avec plusieurs profils.
+    -   Corrección de la selección de documentación del módulo para
+        módulos con múltiples perfiles.
 
-    -   Gestion des boutons action du module.
+    -   Gestión de los botones de acción del módulo.
 
-    -   Correction de description de nom générique de class.
+    -   Corrección de la descripción del nombre genérico de la clase.
 
-    -   Correction de la sauvegarde du fichier zwcfg.
+    -   Corrección de la copia de seguridad del archivo zwcfg.
 
 2016-03-01
 ===
 
--   New Features
+-   Nuevas características
 
-    -   Ajout du bouton Configuration via l’écran de gestion
-        des équipements.
+    -   Agregar el botón Configuración a través de la pantalla de administración
+        equipo.
 
-    -   Ajout des nouveaux états de l’interview de module.
+    -   Adición de nuevos estados de entrevista de módulo.
 
-    -   Modification de libellés dans les UI.
+    -   Edición de etiquetas en IU.
 
--   Improvements/Enhancements
+-   Mejoras / Mejoras
 
-    -   Meilleur gestion des boutons Actions de modules.
+    -   Mejor gestión de los botones de acciones del módulo.
 
-    -   Documentation Ajout de sections.
+    -   Agregar secciones de documentación.
 
-    -   Optimisation du mécanisme de détection d’état du démon.
+    -   Optimización del mecanismo de detección del estado del demonio.
 
-    -   Mécanisme de protestation lors de la récupération de la
-        description des paramètres s’il contient des caractères
-        non valides.
+    -   Mecanismo de protesta durante la recuperación de la
+        Descripción de los parámetros si contiene caracteres
+        no valido.
 
-    -   Ne plus remonter les informations de l’état de la pile sur un
-        module branché sur secteur.
+    -   Nunca regrese a la información del estado de la batería en un
+        módulo conectado a la red.
 
-    -   Mise à jour de la documentation.
+    -   Actualización de la documentación.
 
--   Bug Fixes
+-   Error corregido
 
-    -   Documentation Corrections orthographiques et grammaticales.
+    -   Documentación Ortografía y correcciones gramaticales.
 
-    -   Validation du contenu du fichier zwcfg avant de l’appliquer.
+    -   Validación del contenido del archivo zwcfg antes de aplicarlo.
 
-    -   Correction de l’installation.
+    -   Corrección de la instalación.
 
 2016-02-12
 ===
 
--   Improvements/Enhancements
+-   Mejoras / Mejoras
 
-    -   Pas d’alerte de nœud mort si celui-ci est désactivé.
+    -   No hay alerta de nodo muerto si está deshabilitado.
 
--   Bug Fixes
+-   Error corregido
 
-    -   Correction fil pilote Fibaro retour d’état.
+    -   Corrección del retorno del estado del cable piloto de Fibaro.
 
-    -   Correction d’un bug qui recréer les commandes lors de la mise
-        à jour.
+    -   Corrección de un error que recrea los comandos durante la configuración
+        al día.
 
 2016.02.09
 ===
 
--   New Features
+-   Nuevas características
 
-    -   Ajout du push notification en case de node\_event, permet la
-        mise en place d’une cmd info en CC 0x20 pour récupérer des
-        événement sur les nodes.
+    -   La adición de notificaciones push en el nodo\_event case, permite
+        implementación de una información de cmd en CC 0x20 para recuperar
+        evento en nodos.
 
-    -   Ajout de la route ForceRefresh
+    -   Ruta ForceRefresh agregada
         http://ip\_jeedom:8083/ZWaveAPI/Run/devices&lt;int:node\_id&gt;.instances\[&lt;int:instance\_id&gt;\].commandClasses\[&lt;cc\_id&gt;\].data\[&lt;int:index&gt;\].ForceRefresh()
-        pouvant être utilisée dans les commandes.
+        se puede usar en pedidos.
 
-    -   Ajout du route SwitchAll
+    -   Agregar la ruta SwitchAll
         http://ip\_jeedom:8083/ZWaveAPI/Run/devices&lt;int:node\_id&gt;.instances\[1\].commandClasses\[0xF0\].SwitchAll(&lt;int:state&gt;)
-        disponible via le contrôleur principal.
+        disponible a través del controlador principal.
 
-    -   Ajout de la route ToggleSwitch
+    -   Agregar la ruta ToggleSwitch
         http://ip\_jeedom:8083/ZWaveAPI/Run/devices&lt;int:node\_id&gt;.instances\[&lt;int:instance\_id&gt;\].commandClasses\[&lt;cc\_id&gt;\].data\[&lt;int:index&gt;\].ToggleSwitch()
-        pouvant être utilisée dans les commandes.
+        se puede usar en pedidos.
 
-    -   Ajout d’une push notification en cas de noeud présumé mort.
+    -   Adición de una notificación push en caso de presunto nodo muerto.
 
     -   Ajout de la commande “refresh all parameters” dans
-        l’onglet Paramètres.
+        la pestaña Configuración.
 
-    -   Ajout de l’information du paramètre en attente d’être appliqué.
+    -   Adición de la información del parámetro a la espera de ser aplicada.
 
-    -   Ajout de notification réseau.
+    -   Agregar notificación de red.
 
-    -   Ajout d’une légende dans le graphe réseau.
+    -   Adición de una leyenda en el gráfico de red.
 
-    -   Ajout de la fonction soigner réseau via la table de routage.
+    -   Adición de la función de cuidado de red a través de la tabla de enrutamiento.
 
-    -   Suppression automatique de nœud fantôme en un seul click.
+    -   Eliminación automática de nodos fantasma con solo un clic.
 
-    -   Gestion des actions sur nœud selon l’état du noeud et le type.
+    -   Gestión de acciones en nodo según el estado del nodo y el tipo.
 
-    -   Gestion des actions réseau selon l’état du réseau.
+    -   Gestión de acciones de red según el estado de la red.
 
-    -   Mise à jour de la configuration de module automatique toutes
-        les nuits.
+    -   Actualización de la configuración automática del módulo todo
+        las noches.
 
--   Improvements/Enhancements
+-   Mejoras / Mejoras
 
-    -   Refactoring complet du code du serveur REST, optimisation de
-        vitesse de démarrage, lisibilité, respect de convention
-        de nommage.
+    -   Refactorización completa del código del servidor REST, optimización de
+        velocidad de inicio, legibilidad, cumplimiento de la convención
+        nombrando.
 
-    -   Mise à l’équerre des logs.
+    -   Troncos cuadrados.
 
-    -   Simplification de la gestion du refresh manuel 5min avec
-        possibilité d’appliquer sur les nœuds sur piles.
+    -   Simplificación de la gestión de actualización manual de 5 minutos con
+        posibilidad de aplicar en nodos con baterías.
 
-    -   Mise à jour de la librairie OpenZWave en 1.4
+    -   Actualización de la biblioteca OpenZWave en 1.4
 
-    -   Modification du test sanitaire pour réanimer les nœuds présumés
-        morts plus facilement sans actions utilisateurs.
+    -   Modificación de la prueba de salud para revivir los presuntos nodos
+        muerto más fácilmente sin las acciones del usuario.
 
-    -   Utilisation de couleurs vives de la table de routage et du
-        graphe réseau.
+    -   Uso de colores brillantes en la tabla de enrutamiento y
+        gráfico de red.
 
-    -   Uniformisation des couleurs de la table de routage et du
-        graphe réseau.
+    -   Estandarización de los colores de la tabla de enrutamiento y el
+        gráfico de red.
 
-    -   Optimisation des informations de la page de santé Z-Wave selon
-        l’état de l’interview.
+    -   Optimización de la información en la página de salud Z-Wave de acuerdo con
+        el estado de la entrevista.
 
-    -   Meilleur gestion des paramètres en lecture seule ou en écriture
-        seule dans l’onglet Paramètres.
+    -   Mejor gestión de los parámetros de solo lectura o escritura
+        solo en la pestaña Configuración.
 
-    -   Amélioration des warning sur les thermostats sur piles.
+    -   Advertencia mejorada en termostatos de batería.
 
--   Bug Fixes
+-   Error corregido
 
-    -   Température convertie en Celsius retourne l’unité C à la place
+    -   La temperatura convertida a Celsius devuelve la unidad C en su lugar
         de F.
 
-    -   Correction du rafraîchissement des valeurs au démarrage.
+    -   Corrección de la actualización de valores al inicio.
 
-    -   Correction du Refresh par valeur dans l’onglet Valeurs.
+    -   Corrección de la actualización por valor en la pestaña Valores.
 
-    -   Correction des noms génériques des modules.
+    -   Corrección de nombres genéricos de módulos.
 
-    -   Correction du ping sur les nœuds en Timeout lors du
-        test sanitaire.
+    -   Corrección del ping en los nodos en Timeout durante el
+        prueba de salud.

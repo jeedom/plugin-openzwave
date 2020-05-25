@@ -1,102 +1,103 @@
 {
-    "name": "SIR 321 RF Countdown Timer", 
-    "type": "Timer", 
-    "comlink": "3216-secure-minuterie-manuelle-3060120-minutes-z-wave-5015914083563", 
-    "remark": "", 
-    "imglink": "horstmann.sir321", 
-    "configuration": {
-        "1": {
-            "name": "Mode Fail Safe", 
-            "help": "Active ou désactive la fonction Fails Safe", 
-            "list": {
-                "Enabled": "Fonction active", 
-                "Disabled": "Fonction désactivée"
-            }
-        }, 
-        "2": {
-            "name": "Echelle de température", 
-            "help": "Celcius/Farenheit"
-        }, 
-        "3": {
-            "name": "Intervalle de temps pour un rapport", 
-            "help": "Durée en secondes pour un rapport de température"
-        }, 
-        "4": {
-            "name": "Variation de température pour un rapport", 
-            "help": "Différence de température pour déclencher une remontée (10-->1)"
-        }, 
-        "5": {
-            "name": "Température de Cutt Off", 
-            "help": "Température de sécurité au delà de laquelle le switch sera coupée"
-        }
-    }, 
-    "commands": [
-        {
-            "name": "Etat", 
-            "type": "info", 
-            "isVisible": "0", 
-            "isHistorized": "0", 
-            "configuration": {
-                "class": 37, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "On", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "Off", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "Température", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 49, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "TEMPERATURE"
-            }, 
-            "unite": "°C"
-        }
-    ]
+  "name": "SIR 321 RF Countdown Timer",
+  "type": "Timer",
+  "documentation":"https:\/\/doc.jeedom.com\/#language#\/zwave\/secure.sir321_-_Timer",
+  "comlink": "3216-secure-minuterie-manuelle-3060120-minutes-z-wave-5015914083563",
+  "remark": "",
+  "imglink": "horstmann.sir321",
+  "configuration": {
+    "1": {
+      "name": "Mode Fail Safe",
+      "help": "Active ou désactive la fonction Fails Safe",
+      "list": {
+        "Enabled": "Fonction active",
+        "Disabled": "Fonction désactivée"
+      }
+    },
+    "2": {
+      "name": "Echelle de température",
+      "help": "Celcius/Farenheit"
+    },
+    "3": {
+      "name": "Intervalle de temps pour un rapport",
+      "help": "Durée en secondes pour un rapport de température"
+    },
+    "4": {
+      "name": "Variation de température pour un rapport",
+      "help": "Différence de température pour déclencher une remontée (10-->1)"
+    },
+    "5": {
+      "name": "Température de Cutt Off",
+      "help": "Température de sécurité au delà de laquelle le switch sera coupée"
+    }
+  },
+  "commands": [
+    {
+      "name": "Etat",
+      "type": "info",
+      "isVisible": "0",
+      "isHistorized": "0",
+      "configuration": {
+        "class": 37,
+        "value": "",
+        "index": 0,
+        "instance": 1
+      },
+      "subtype": "binary",
+      "display": {
+        "generic_type": "DONT"
+      }
+    },
+    {
+      "name": "On",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 37,
+        "value": "type=setvalue&value=255",
+        "index": 0,
+        "instance": 1
+      },
+      "value": "Etat",
+      "subtype": "other",
+      "display": {
+        "generic_type": "DONT"
+      }
+    },
+    {
+      "name": "Off",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 37,
+        "value": "type=setvalue&value=0",
+        "index": 0,
+        "instance": 1
+      },
+      "value": "Etat",
+      "subtype": "other",
+      "display": {
+        "generic_type": "DONT"
+      }
+    },
+    {
+      "name": "Température",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 49,
+        "value": "",
+        "index": 1,
+        "instance": 1
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "TEMPERATURE"
+      },
+      "unite": "°C"
+    }
+  ]
 }

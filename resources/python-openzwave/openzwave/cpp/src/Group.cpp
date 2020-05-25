@@ -47,7 +47,7 @@ using namespace OpenZWave;
 // Constructor
 //-----------------------------------------------------------------------------
 Group::Group
-( 
+(
 	uint32 const _homeId,
 	uint8 const _nodeId,
 	uint8 const _groupIdx,
@@ -120,7 +120,7 @@ Group::Group
 	{
 		m_multiInstance = !strcmp( str, "true" );
 	}
-		
+
 	// Read the associations for this group
 	TiXmlElement const* associationElement = _groupElement->FirstChildElement();
 	while( associationElement )
@@ -128,7 +128,7 @@ Group::Group
 		char const* elementName = associationElement->Value();
 		if( elementName && !strcmp( elementName, "Node" ) )
 		{
-			
+
 			if( associationElement->QueryIntAttribute( "id", &intVal ) == TIXML_SUCCESS )
 			{
 				InstanceAssociation association;
@@ -212,11 +212,11 @@ void Group::WriteXML
 	{
 		_groupElement->SetAttribute( "multiInstance", m_multiInstance ? "true" : "false" );
 	}
-	
+
 	for( map<InstanceAssociation,AssociationCommandVec,classcomp>::iterator it = m_associations.begin(); it != m_associations.end(); ++it )
 	{
 		TiXmlElement* associationElement = new TiXmlElement( "Node" );
-		
+
 		snprintf( str, 16, "%d", it->first.m_nodeId );
 		associationElement->SetAttribute( "id", str );
 		if (it->first.m_instance != 0)
@@ -277,7 +277,7 @@ void Group::AddAssociation
 			else
 			{
 				Log::Write( LogLevel_Info, m_nodeId, "No supported Association CC found" );
-			} 
+			}
 		}
 	}
 }
@@ -301,7 +301,7 @@ void Group::RemoveAssociation
 			{
 				cc->Remove( m_groupIdx, _nodeId, _instance );
 				cc->QueryGroup( m_groupIdx, 0 );
-			} 
+			}
 			else if( Association* cc = static_cast<Association*>( node->GetCommandClass( Association::StaticGetCommandClassId() ) ) )
 			{
 					cc->Remove( m_groupIdx, _nodeId );
@@ -310,7 +310,7 @@ void Group::RemoveAssociation
 			else
 			{
 				Log::Write( LogLevel_Info, m_nodeId, "No supported Association CC found" );
-			}	
+			}
 		}
 	}
 }
@@ -330,7 +330,7 @@ void Group::OnGroupChanged
 	{
 		InstanceAssociation association;
 		association.m_nodeId	= _associations[i];
-		association.m_instance  = 0x00;								
+		association.m_instance  = 0x00;
 		instanceAssociations.push_back( association );
 	}
 	OnGroupChanged(instanceAssociations);
@@ -348,7 +348,7 @@ void Group::OnGroupChanged
 {
 	bool notify = false;
 
-	// If the number of associations is different, we'll save 
+	// If the number of associations is different, we'll save
 	// ourselves some work and clear the old set now.
 	if( _associations.size() != m_associations.size() )
 	{
@@ -364,7 +364,7 @@ void Group::OnGroupChanged
 		}
 	}
 
-	// Add the new associations. 
+	// Add the new associations.
 	uint8 oldSize = (uint8)m_associations.size();
 
 	uint8 i;
@@ -376,7 +376,7 @@ void Group::OnGroupChanged
 	if( (!notify) && ( oldSize != m_associations.size() ) )
 	{
 		// The number of nodes in the original and new groups is the same, but
-		// the number of associations has grown. There must be different nodes 
+		// the number of associations has grown. There must be different nodes
 		// in the original and new sets of nodes in the group.  The easiest way
 		// to sort this out is to clear the associations and add the new nodes again.
 		m_associations.clear();
@@ -408,7 +408,7 @@ void Group::OnGroupChanged
 		Notification* notification = new Notification( Notification::Type_Group );
 		notification->SetHomeAndNodeIds( m_homeId, m_nodeId );
 		notification->SetGroupIdx( m_groupIdx );
-		Manager::Get()->GetDriver( m_homeId )->QueueNotification( notification ); 
+		Manager::Get()->GetDriver( m_homeId )->QueueNotification( notification );
 		// Update routes on remote node if necessary
 		bool update = false;
 		Options::Get()->GetOptionAsBool( "PerformReturnRoutes", &update );
@@ -426,8 +426,8 @@ void Group::OnGroupChanged
 // Get a list of associations for this group
 //-----------------------------------------------------------------------------
 uint32 Group::GetAssociations
-( 
-	uint8** o_associations 
+(
+	uint8** o_associations
 )
 {
 	size_t numNodes = m_associations.size();
@@ -441,7 +441,7 @@ uint32 Group::GetAssociations
 	uint32 i = 0;
 	for( map<InstanceAssociation,AssociationCommandVec,classcomp>::iterator it = m_associations.begin(); it != m_associations.end(); ++it )
 	{
-		if ( it->first.m_instance == 0x00) 
+		if ( it->first.m_instance == 0x00)
 		{
 			associations[i++] = it->first.m_nodeId;
 		}
@@ -456,8 +456,8 @@ uint32 Group::GetAssociations
 // Get a list of associations for this group
 //-----------------------------------------------------------------------------
 uint32 Group::GetAssociations
-( 
-	InstanceAssociation** o_associations 
+(
+	InstanceAssociation** o_associations
 )
 {
 	size_t numNodes = m_associations.size();
@@ -487,11 +487,11 @@ uint32 Group::GetAssociations
 // Clear all the commands for the specified node
 //-----------------------------------------------------------------------------
 bool Group::ClearCommands
-( 
+(
 	uint8 const _nodeId,
 	uint8 const _instance
 )
-{	
+{
 	for( map<InstanceAssociation,AssociationCommandVec,classcomp>::iterator it = m_associations.begin(); it != m_associations.end(); ++it )
 	{
 		if( (it->first.m_nodeId == _nodeId) && (it->first.m_instance == _instance) )
@@ -524,7 +524,7 @@ bool Group::AddCommand
 			return true;
 		}
 	}
-	
+
 	return false;
 }
 
@@ -536,8 +536,7 @@ Group::AssociationCommand::AssociationCommand
 (
 	uint8 const _length,
 	uint8 const* _data
-):
-	m_length( _length )
+)
 {
 	m_data = new uint8[_length];
 	memcpy( m_data, _data, _length );

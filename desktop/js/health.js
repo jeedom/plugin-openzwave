@@ -75,16 +75,16 @@ function display_health_info(){
         tbody += '<td>';
         if (nodes[node_id].data.isSecured.enabled) {
           if (nodes[node_id].data.isSecured.value) {
-            tbody += '  <span title="{{Sécurisé}}"><i class="fa fa-lock text-success" aria-hidden="true"></i></span> ';
+            tbody += '  <span title="{{Sécurisé}}"><i class="fas fa-lock text-success" aria-hidden="true"></i></span> ';
           } else {
-            tbody += '  <span title="{{Non sécurisé}}"><i class="fa fa-unlock  text-success" aria-hidden="true"></i></span> ';
+            tbody += '  <span title="{{Non sécurisé}}"><i class="fas fa-unlock  text-success" aria-hidden="true"></i></span> ';
           }
         }
         if (nodes[node_id].data.isZwavePlus.value) {
-          tbody += ' <span title="{{ZWAVE PLUS}}"><i class="fa fa-plus-circle text-info" aria-hidden="true"></i></span> ';
+          tbody += ' <span title="{{ZWAVE PLUS}}"><i class="fas fa-plus-circle text-info" aria-hidden="true"></i></span> ';
         }
         if (nodes[node_id].data.isFrequentListening.value) {
-          tbody += ' <span title="{{FLiRS}}"><i class="fa fa-assistive-listening-systems " aria-hidden="true"></i></span> ';
+          tbody += ' <span title="{{FLiRS}}"><i class="fal fa-assistive-listening-systems " aria-hidden="true"></i></span> ';
         }
         tbody += '</td>';
         tbody += '<td>';
@@ -152,7 +152,7 @@ function display_health_info(){
         if (nodes[node_id].data.isEnable.value) {
           if (query_stage != '' && query_stage != 'Probe'){
             if (nodes[node_id].data.isListening.value) {
-              tbody += '<span class="label label-primary" style="font-size : 1em;" title="{{Secteur}}"><i class="fa fa-plug"></i></span>';
+              tbody += '<span class="label label-primary" style="font-size : 1em;" title="{{Secteur}}"><i class="fas fa-plug"></i></span>';
             } else {
               if (nodes[node_id].data.battery_level != undefined && nodes[node_id].data.battery_level.value != null) {
                 var updateTime = '';
@@ -235,19 +235,19 @@ function display_health_info(){
               if (now > nodes[node_id].data.wakeup_interval.next_wakeup) {
                 tbody += ' <i class="fas fa-arrow-right text-danger"></i><span class="label label-warning" style="font-size : 1em;" title="{{Le noeud ne s\'est pas réveillé comme prévue}}"> ' + jeedom.openzwave.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup) + ' </span>';
               }else {
-                tbody += ' <i class="fas fa-arrow-right"></i><br> ' + jeedom.openzwave.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup) + ' <i class="fa fa-clock-o"></i>';
+                tbody += ' <i class="fas fa-arrow-right"></i><br> ' + jeedom.openzwave.timestampConverter(nodes[node_id].data.wakeup_interval.next_wakeup) + ' <i class="far fa-clock"></i>';
               }
             }
           } else if (nodes[node_id].data.isListening.value == false && nodes[node_id].data.last_notification == undefined && nodes[node_id].data.wakeup_interval != undefined && nodes[node_id].data.wakeup_interval.value != null && nodes[node_id].data.lastReceived != undefined && nodes[node_id].data.lastReceived.updateTime != null) {
             if (now > nodes[node_id].data.lastReceived.updateTime + nodes[node_id].data.wakeup_interval.value && nodes[node_id].data.wakeup_interval.value >0) {
-              tbody += '<span class="label label" style="font-size : 1.5em;" title="{{Le noeud ne s\'est pas encore réveillé une fois depuis le lancement du démon}}"><i class="fa fa-exclamation-circle text-danger"></i></span>';
+              tbody += '<span class="label label" style="font-size : 1.5em;" title="{{Le noeud ne s\'est pas encore réveillé une fois depuis le lancement du démon}}"><i class="fas fa-exclamation-circle text-danger"></i></span>';
             }
           }
         }
         tbody += '</td>';
         tbody += '<td>';
         if (nodes[node_id].data.isEnable.value) {
-          tbody += '<a class="btn btn-info btn-xs bt_pingDevice" data-id="' + node_id + '"><i class="fa fa-eye"></i> {{Ping}}</a>';
+          tbody += '<a class="btn btn-info btn-xs bt_pingDevice" data-id="' + node_id + '"><i class="fas fa-eye"></i> {{Ping}}</a>';
         }
         tbody += '</td>';
         tbody += '</tr>';

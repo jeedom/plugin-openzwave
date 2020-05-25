@@ -1,0 +1,176 @@
+{
+    "name": "ZMNHQDX Luxy Smart Light", 
+    "type": "Micromodule", 
+    "comlink": "", 
+    "imglink": "qubino.zmnhqdx", 
+    "commands": [
+        {
+            "name": "Intensité", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "value": "Etat", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "LIGHT_SLIDER"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "value": "Etat", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 99
+            }, 
+            "value": "Etat", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }
+        }, 
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 38, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }, 
+            "unite": "%"
+        },
+		{
+            "name": "Couleur", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 51, 
+                "value": "type=setvalue&value=#color#", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Etat couleur", 
+            "subtype": "color", 
+            "display": {
+                "generic_type": "LIGHT_SET_COLOR"
+            }
+        }, 
+        {
+            "name": "Etat couleur", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 51, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "LIGHT_COLOR"
+            }, 
+            "unite": ""
+        },
+        {
+            "name": "Jouer son",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 121,
+                "value": "type=setvalue&value=Buzzer (36000 sec)",
+                "index": 1,
+                "instance": 1
+            },
+            "subtype": "other"
+        },
+        {
+            "name": "Arrêter son",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 121,
+                "value": "type=setvalue&value=Inactive",
+                "index": 1,
+                "instance": 1
+            },
+            "subtype": "other"
+        },
+        {
+            "name": "Volume Etat",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 121,
+                "index": 2,
+                "instance": 1
+            },
+            "subtype": "numeric"
+        },
+        {
+            "name": "Volume", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 121, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 2, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "value": "Volume Etat", 
+            "subtype": "slider" 
+        }
+    ]
+}

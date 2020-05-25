@@ -39,7 +39,7 @@ if (!isConnect()) {
         $data = $data['result']['instances'][1]['commandClasses'][99]['data'];
         for ($i = 1; $i < 11; $i++) {
             echo '<td>';
-            echo '<a class="btn btn-success pull-right btn-xs bt_ziptatoKeypadSaveNewCode" data-position="' . $i . '"><i class="fa fa-floppy-o"></i></a>';
+            echo '<a class="btn btn-success pull-right btn-xs bt_ziptatoKeypadSaveNewCode" data-position="' . $i . '"><i class="fas fa-check-circle"></i></a>';
             if (isset($data[$i]) && $data[$i]['val'] != '00000000000000000000') {
                 echo '<i class="fas fa-check"></i>';
                 echo '<a class="btn btn-danger pull-right btn-xs bt_ziptatoKeypadRemoveCode"  data-position="' . $i . '"><i class="fas fa-times"></i></a>';
