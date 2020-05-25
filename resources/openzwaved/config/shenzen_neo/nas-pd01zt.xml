@@ -33,7 +33,7 @@
       <Help>This parameter can be enabled or disabled the PIR detector detecting function.
       </Help>
       <Item label="Disable" value="0" />
-      <Item label="Enable" value="1" />
+      <Item label="Enable" value="255" />
      </Value>
     
     <Value type="short" genre="config" instance="1" index="5" label="Ambient Illumination Lux Level" units="lux" value="100" min="0" max="1000" size="2">
@@ -65,17 +65,28 @@
       <Item label="Enable" value="1" />
      </Value>
     
-    <Value type="byte" genre="config" instance="1" index="9" label="Ambient illumination Lux Level Report" units="lux" value="100" min="0" max="255" size="1">
+    <Value type="byte" genre="config" instance="1" index="9" label="Ambient Illumination Lux Level Report" units="lux" value="100" min="0" max="255" size="1">
       <Help>This parameter defines by how much Lux Level must change, in lux, to be reported to the main controller.</Help>
     </Value>
 	
-    <Value type="list" genre="config" instance="1" index="10" label="Led Blink Enable" value="1" size="1">
-      <Help>This parameter can enabled or disable the PIR led blinking function. </Help>
+	<Value type="byte" genre="config" instance="1" index="10" label="Ambient Temperature Differential Level Report" units="0.1°C" value="100" min="0" max="127" size="5">
+      <Help>This parameter is configured the value that differential between current measured and previous report value. If the differential value larger than the settings, device will report this measured temperature value to nodes associated in lifeline.</Help>
+    </Value>
+	
+    <Value type="list" genre="config" instance="1" index="11" label="Led Blink Enable" value="1" size="1">
+      <Help>This parameter can enabled or disable the PIR led blinking function.</Help>
       <Item label="Disable" value="0" />
       <Item label="Enable" value="1" />
-     </Value>
-	 <Value type="short" genre="config" instance="1" index="99" label="Ambient Light Intensity Calibration" value="1000" min="1" max="65536" size="2">
-      <Help>This Parameter defines the calibrated scale for ambient light intensity. Because the method and position that the sensor is mounted, and the cover of sensor will bring measurement error, user can get more real light intensity by this parameter setting. User should run the steps as blows for calibrating
+    </Value>
+	
+    <Value type="list" genre="config" instance="1" index="12" label="Motion Event Report One Time Enable" value="1" size="1">
+       <Help>The motion detected event can be sent multiple times/only once until device report motion cleared event.</Help>
+       <Item label="multiple times" value="0" />
+       <Item label="only once" value="1" />
+    </Value>
+	
+	<Value type="short" genre="config" instance="1" index="99" label="Ambient Light Intensity Calibration" value="1000" min="1" max="65536" size="2">
+      <Help>This parameter defines the calibrated scale for ambient light intensity. Because the method and position that the sensor is mounted, and the cover of sensor will bring measurement error, user can get more real light intensity by this parameter setting. User should run the steps as blows for calibrating
         Available Settings: 1 ~ 65536.
       </Help>
     </Value>
