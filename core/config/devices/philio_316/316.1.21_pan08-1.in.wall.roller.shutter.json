@@ -97,7 +97,7 @@
             }, 
             "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-refresh\"></i>", 
+                "icon": "<i class=\"fas fa-sync\"></i>", 
                 "generic_type": "DONT"
             }
         }, 
@@ -116,7 +116,7 @@
             }, 
             "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-stop\"></i>", 
+                "icon": "<i class=\"fas fa-stop\"></i>", 
                 "generic_type": "FLAP_STOP"
             }
         }, 
@@ -135,7 +135,7 @@
             }, 
             "subtype": "other", 
             "display": {
-                "icon": "<i class=\"fa fa-stop\"></i>", 
+                "icon": "<i class=\"fas fa-stop\"></i>", 
                 "generic_type": "DONT"
             }
         }, 

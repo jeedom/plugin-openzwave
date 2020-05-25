@@ -1,83 +1,84 @@
 {
-    "name": "PST02-C Door/Window 3in1 sensor", 
-    "type": "Multicapteurs", 
-    "comlink": "2606-zipato-detecteur-z-wave-3-en-1-ouverture-luminosite-temperature-3858890730371", 
-    "remark": "Vendu aussi sous la marque Zipato", 
-    "imglink": "philio.pst02c", 
-    "configuration": {
-        "battery_type": "1x3V CR123A"
-    }, 
-    "commands": [
-        {
-            "name": "Ouverture", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 48, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "invertBinary": "1", 
-                "generic_type": "OPENING"
-            }, 
-            "template": {
-                "dashboard": "door", 
-                "mobile": "door"
-            }
-        }, 
-        {
-            "name": "Température", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 49, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "TEMPERATURE"
-            }
-        }, 
-        {
-            "name": "Luminosité", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 49, 
-                "value": "", 
-                "index": 3, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BRIGHTNESS"
-            }
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }
-        }
-    ]
+  "name": "PST02-C Door/Window 3in1 sensor",
+  "type": "Multicapteurs",
+  "documentation":"https:\/\/doc.jeedom.com\/#language#\/zwave\/philio.pst02c_-_3_en_1_Ouverture",
+  "comlink": "2606-zipato-detecteur-z-wave-3-en-1-ouverture-luminosite-temperature-3858890730371",
+  "remark": "Vendu aussi sous la marque Zipato",
+  "imglink": "philio.pst02c",
+  "configuration": {
+    "battery_type": "1x3V CR123A"
+  },
+  "commands": [
+    {
+      "name": "Ouverture",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 48,
+        "value": "",
+        "index": 0,
+        "instance": 1
+      },
+      "subtype": "binary",
+      "display": {
+        "invertBinary": "1",
+        "generic_type": "OPENING"
+      },
+      "template": {
+        "dashboard": "door",
+        "mobile": "door"
+      }
+    },
+    {
+      "name": "Température",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 49,
+        "value": "",
+        "index": 1,
+        "instance": 1
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "TEMPERATURE"
+      }
+    },
+    {
+      "name": "Luminosité",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 49,
+        "value": "",
+        "index": 3,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "BRIGHTNESS"
+      }
+    },
+    {
+      "name": "Batterie",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 128,
+        "value": "",
+        "index": 0,
+        "instance": 1
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "BATTERY"
+      }
+    }
+  ]
 }

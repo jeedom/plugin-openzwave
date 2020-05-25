@@ -35,8 +35,9 @@ def value_refreshed(network, node, value):
 def save_value(node, value, last_update):
 	logging.debug('A node value has been updated. nodeId:%s value:%s' % (node.node_id, value.label))
 	if node.node_id in globals.network.nodes:
-		if globals.network.nodes[node.node_id].last_update > last_update:
+		if globals.network.nodes[node.node_id].last_update > last_update and (last_update > globals.network.nodes[node.node_id].last_update-60):
 			logging.warning('Timing Error. nodeLastUpdate:%s Last_update:%s' % (str(globals.network.nodes[node.node_id].last_update), str(last_update)))
+			globals.network.nodes[node.node_id].last_update = last_update
 			return
 		globals.network.nodes[node.node_id].last_update = last_update
 		value.last_update = last_update

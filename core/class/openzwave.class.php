@@ -780,7 +780,11 @@ class openzwaveCmd extends cmd {
 				return $this->setRGBColor($value);
 			}
 			if (strlen($_options['color']) == 7) {
-				$_options['color'] .= '0000';
+				if ( $this->getEqLogic()->getConfiguration('manufacturer_id') . $this->getEqLogic()->getConfiguration('product_type') . $this->getEqLogic()->getConfiguration('product_id') == '27123064096') {
+					$_options['color'] .= '00';
+				} else {
+					$_options['color'] .= '0000';
+				}
 			}
 			$value = str_replace('#color#', str_replace('#', '%23', $_options['color']), $value);
 		}

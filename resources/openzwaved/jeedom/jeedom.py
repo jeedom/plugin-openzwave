@@ -41,6 +41,8 @@ class jeedom_com():
 		self.cycle = cycle
 		self.retry = retry
 		self.changes = {}
+		self.lastTimer = float(time.time())
+		self.resend_changes = ''
 		if cycle > 0 :
 			self.send_changes_async()
 		logging.debug('Init request module v%s' % (str(requests.__version__),))
@@ -48,8 +50,9 @@ class jeedom_com():
 	def send_changes_async(self):
 		try:
 			if len(self.changes) == 0:
-				resend_changes = threading.Timer(self.cycle, self.send_changes_async)
-				resend_changes.start() 
+				self.resend_changes = threading.Timer(self.cycle, self.send_changes_async)
+				self.lastTimer = float(time.time())
+				self.resend_changes.start() 
 				return
 			start_time = datetime.datetime.now()
 			changes = self.changes
@@ -73,14 +76,20 @@ class jeedom_com():
 				timer_duration = 0.1
 			if timer_duration > self.cycle:
 				timer_duration = self.cycle
-			resend_changes = threading.Timer(timer_duration, self.send_changes_async)
-			resend_changes.start() 
+			self.resend_changes = threading.Timer(timer_duration, self.send_changes_async)
+			self.lastTimer = float(time.time())
+			self.resend_changes.start() 
 		except Exception as error:
 			logging.error('Critical error on  send_changes_async %s' % (str(error),))
-			resend_changes = threading.Timer(self.cycle, self.send_changes_async)
-			resend_changes.start() 
+			self.resend_changes = threading.Timer(self.cycle, self.send_changes_async)
+			self.lastTimer = float(time.time())
+			self.resend_changes.start() 
 		
 	def add_changes(self,key,value):
+		if self.resend_changes != '' and abs(self.lastTimer - float(time.time())) > self.cycle:
+			logging.debug('Issue with the async timer reseting')
+			self.resend_changes.cancel()
+			self.send_changes_async()
 		if key.find('::') != -1:
 			tmp_changes = {}
 			changes = value

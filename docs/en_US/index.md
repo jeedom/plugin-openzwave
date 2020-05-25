@@ -1,2013 +1,1211 @@
-Description
-===========
+# OpenZWave plugin
 
-This plugin allows the exploitation of Z-Wave modules via
-the OpenZwave library.
+This plugin allows the exploitation of Z-Wave modules through the OpenZwave library.
 
-Introduction
-============
+# Introduction
 
-Z-Wave communique en utilisant une technologie radio de faible puissance
-dans la bande de fréquence de 868,42 MHz. Il est spécifiquement conçu
-pour les applications de domotique. Le protocole radio Z-Wave est
-optimisé pour des échanges à faible bande passante (entre 9 et 40
-kbit/s) entre des appareils sur pile ou alimentés sur secteur.
+Z-Wave communicates using low power radio technology in the 868.42 MHz frequency band. It is specifically designed for home automation applications. The Z-Wave radio protocol is optimized for low bandwidth exchanges (between 9 and 40 kbit / s) between devices on battery or powered by mains.
 
-Z-Wave fonctionne dans la gamme de fréquences sous-gigahertz, selon les
-régions (868 MHz en Europe, 908 MHz aux US, et d’autres fréquences
-suivant les bandes ISM des régions). La portée théorique est d’environ
-30 mètres en intérieur et 100 mètres en extérieur. Le réseau Z-Wave
-utilise la technologie du maillage (mesh) pour augmenter la portée et la
-fiabilité. Z-Wave est conçu pour être facilement intégré dans les
-produits électroniques de basse consommation, y compris les appareils à
-piles tels que les télécommandes, les détecteurs de fumée et capteurs de
-sécurité.
+Z-Wave operates in the sub-gigahertz frequency range, according to the regions (868 MHz in Europe, 908 MHz in the US, and other frequencies according to the ISM bands of the regions). The theoretical range is around 30 meters indoors and 100 meters outdoors. Z-Wave network uses mesh technology to increase range and reliability. Z-Wave is designed to be easily integrated into low-power electronic products, including battery-powered devices such as remote controls, smoke detectors and security sensors.
 
-Le Z-Wave+, apporte certaines améliorations dont une meilleure portée et
-améliore la durée de vie des batteries entre autres. La
-rétrocompatibilité est totale avec le Z-Wave.
+The Z-Wave +, brings certain improvements including a better range and improves the life of the batteries among others. Full backward compatibility with the Z-Wave.
 
-Distances à respecter avec les autres sources de signaux sans fil
------------------------------------------------------------------
+## Distances to be Respected with Other Wireless Signal Sources
 
-Les récepteurs radio doivent être positionnés à une distance minimum de
-50 cm des autres sources radioélectriques.
+Radio receivers must be positioned at a minimum distance of 50 cm from other radio sources.
 
-Examples of radio-electric sources :
+Examples of radio sources:
 
--   Computers
-
--   Microwave devices
-
+-   Ordinateurs
+-   Microwave appliances
 -   Electronic transformers
-
--   équipements audio et de matériel vidéo
-
--   Les dispositifs de pré-accouplement pour lampes fluorescentes
+-   audio and video equipment
+-   Pre-coupling devices for fluorescent lamps
 
 > **Tip**
 >
-> Si vous disposez un contrôleur USB (Z-Stick), il est recommandé de
-> l’éloigner de la box à l’aide d’une simple rallonge USB de 1M par
-> exemple.
+> If you have a USB controller (Z-Stick), it is recommended to move it away from the box using a simple USB extension cable of 1M for example.
 
-La distance entre d’autres émetteurs sans fil tels que les téléphones
-sans fil ou transmissions radio audio doit être d’au moins 3 mètres. Les
-sources de radio suivantes doivent être prises en compte :
+The distance between other wireless transmitters such as cordless phones or radio audio transmissions should be at least 3 meters. The following radio sources should be considered :
 
--   Perturbations par commutateur de moteurs électriques
+-   Interference by switch of electric motors
+-   Interference from defective electrical devices
+-   Interference from HF welding equipment
+-   medical treatment devices
 
--   Interférences par des appareils électriques défectueux
+## Effective wall thickness
 
--   Les perturbations par les appareils HF de soudage
-
--   dispositifs de traitement médical
-
-Epaisseur efficace des murs
----------------------------
-
-Les emplacements des modules doivent être choisis de telle manière que
-la ligne de connexion directe ne fonctionne que sur une très courte
-distance au travers de la matière (un mur), afin d’éviter au maximum les
-atténuations.
+The locations of the modules must be chosen in such a way that the direct connection line works only for a very short distance through the material (a wall), in order to avoid attenuations as much as possible.
 
 ![introduction01](../images/introduction01.png)
 
-Les parties métalliques du bâtiment ou des meubles peuvent bloquer les
-ondes électromagnétiques.
+Metal parts of the building or furniture can block electromagnetic waves.
 
-Maillage et Routage
--------------------
+## Meshing and Routing
 
-Les nœuds Z-Wave sur secteur peuvent transmettre et répéter les messages
-qui ne sont pas à portée directe du contrôleur. Ce qui permet une plus
-grande flexibilité de communication, même si il n’y a pas de connexion
-sans fil directe ou si une connexion est temporairement indisponible, à
-cause d’un changement dans la pièce ou le bâtiment.
+Mains Z-Wave nodes can transmit and repeat messages that are not within direct range of the controller. This allows greater flexibility of communication, even if there is no direct wireless connection or if a connection is temporarily unavailable, due to a change in the room or building.
 
 ![introduction02](../images/introduction02.png)
 
-Le contrôleur **Id 1** peut communiquer directement avec les nœuds 2, 3
-et 4. Le nœud 6 est en dehors de sa portée radio, cependant, il se
-trouve dans la zone de couverture radio du nœud 2. Par conséquent, le
-contrôleur peut communiquer avec le nœud 6 via le nœud 2. De cette
-façon, le chemin du contrôleur via le nœud 2 vers le nœud 6, est appelé
-route. Dans le cas où la communication directe entre le nœud 1 et le
-nœud 2 est bloquée, il y a encore une autre option pour communiquer avec
-le nœud 6, en utilisant le nœud 3 comme un autre répéteur du signal.
+The controller **Id 1** can communicate directly with nodes 2, 3 and 4. Node 6 is outside of its radio range, however, it is in the radio coverage area of node 2. Therefore, the controller can communicate with node 6 via node 2. In this way, the path of the controller via node 2 to node 6, is called route. In case direct communication between node 1 and node 2 is blocked, there is yet another option to communicate with node 6, using node 3 as another signal repeater.
 
-Il devient évident que plus l’on possède de nœuds secteur, plus les
-options de routage augmentent , et plus la stabilité du réseau augmente.
-Le protocole Z-Wave est capable de router les messages par
-l’intermédiaire d’un maximum de quatre nœuds de répétition. C’est un
-compromis entre la taille du réseau, la stabilité et la durée maximale
-d’un message.
+It becomes obvious that the more sector nodes you have, the more the routing options increase, and the more the network stability increases. Z-Wave protocol is capable of routing messages through up to four repeat nodes. It is a compromise between the size of the network, the stability and the maximum duration of a message.
 
 > **Tip**
 >
-> Il est fortement recommandé en début d’installation d’avoir un ratio
-> entre nœuds secteur et nœud sur piles de 2/3, afin d’avoir un bon
-> maillage réseau. Privilégier des micromodules aux smart-plugs. Les
-> micros modules seront à un emplacement définitif et ne seront pas
-> débranchés, ils ont aussi en général une meilleure portée. Un bon
-> départ est l’éclairage des zones communes. Il permettra de bien
-> répartir les modules secteurs à des endroits stratégiques dans votre
-> domicile. Par la suite vous pourrez ajouter autant de modules sur pile
-> que souhaité, si vos routes de base sont bonnes.
+> It is strongly recommended at the start of installation to have a ratio between sector nodes and node on batteries of 2/3, in order to have a good network mesh. Favor micromodules over smart plugs. The micro modules will be in a final location and will not be disconnected, they also generally have a better range. A good start is the lighting of common areas. It will allow you to properly distribute the sector modules at strategic locations in your home. Then you can add as many modules on the stack as desired, if your basic routes are good.
 
 > **Tip**
 >
-> Le **Graphique du réseau**ainsi que la**table de routage**
-> permettent de visualiser la qualité de votre réseau.
+> The **Network graph** as well as **Routing table** allow you to view the quality of your network.
 
 > **Tip**
 >
-> Il existe des modules répéteur pour combler des zones où aucun module
-> secteur n’a d’utilité.
+> There are repeater modules to fill areas where no sector module is useful.
 
-Propriétés des appareils Z-Wave
--------------------------------
+## Properties of Z-Wave devices
 
-|  | Voisins | Route | Fonctions possibles |
+|  | Neighbors | Road | Possible functions |
 |---------------------|:------------------------:|:--------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------:|
-| Contrôleur | Connaît tous les voisins | A accès à la table de routage complète | Peut communiquer avec tous les appareils dans le réseau, si une voie existe |
-| Esclave | Connaît tous les voisins | N’a pas d’information sur la table de routage | Ne peut répondre au nœud qu’il a reçu le message. Par conséquent, ne peut pas envoyer des messages non sollicités |
-| Esclaves de routage | Connaît tous ses voisins | A la connaissance partielle de la table de routage | Peut répondre au nœud qu’il a reçu le message et peut envoyer des messages non sollicités à un certain nombre de nœuds |
+| Controller | Knows all the neighbors | Has access to the complete routing table | Can communicate with all devices in the network, if a channel exists |
+| Slave | Knows all the neighbors | Has no information on the routing table | Cannot reply to the node it received the message. Therefore, cannot send unsolicited messages |
+| Routing slaves | Knows all its neighbors | With partial knowledge of the routing table | Can reply to the node it received the message from and can send unsolicited messages to a number of nodes |
 
-In summary :
+In summary:
 
--   Chaque appareil Z -Wave peut recevoir et accuser réception de
-    messages
+-   Each Z-Wave device can receive and acknowledge messages
+-   Les contrôleurs peuvent envoyer des messages à tous les nœuds du réseau, sollicités or non « The maître peut parler quand il veut and à qui il veut »
+-   Les esclaves ne peuvent pas envoyer des messages non sollicités, mais seulement une réponse aux demandes «L'esclave ne parle que si on le lui demande »
+-   Les esclaves de routage peuvent répondre à des demandes and ils sont autorisés à envoyer des messages non sollicités à certains nœuds que le contrôleur a prédéfini « L'esclave est toujours un esclave, mais sur autorisation, il peut parler »
 
--   Les contrôleurs peuvent envoyer des messages à tous les nœuds du
-    réseau, sollicités ou non « Le maître peut parler quand il veut et à
-    qui il veut »
+# Plugin configuration
 
--   Les esclaves ne peuvent pas envoyer des messages non sollicités,
-    mais seulement une réponse aux demandes «L’esclave ne parle que si
-    on le lui demande »
-
--   Les esclaves de routage peuvent répondre à des demandes et ils sont
-    autorisés à envoyer des messages non sollicités à certains nœuds que
-    le contrôleur a prédéfini « L’esclave est toujours un esclave, mais
-    sur autorisation, il peut parler »
-
-Plugin configuration
-=======================
-
-Après le téléchargement du plugin, il vous suffit de l’activer et de le
-configurer.
+After downloading the plugin, you just need to activate and configure it.
 
 ![configuration01](../images/configuration01.png)
 
-Une fois activé, le démon devrait se lancer. Le plugin est préconfiguré
-avec des valeurs par défaut ; vous n’avez normalement plus rien à faire.
-Cependant vous pouvez modifier la configuration.
+Once activated, the demon should launch. The plugin is preconfigured with default values; you normally have nothing more to do. However you can change the configuration.
 
-Dépendances
------------
+## Dependencies
 
-Cette partie permet de valider et d’installer les dépendances requises
-au bon fonctionnement du plugin Zwave (aussi bien en local qu’en
-déporté, ici en local) ![configuration02](../images/configuration02.png)
+This part allows you to validate and install the dependencies required for the proper functioning of the Zwave plugin (both locally and remotely, here locally) ![configuration02](../images/configuration02.png)
 
--   Un Statut **OK** confirme que les dépendances sont satisfaites.
-
--   Si le statut est **NOK**, il faudra réinstaller les dépendances à
-    l’aide du bouton ![configuration03](../images/configuration03.png)
+-   A status **Okay** confirms dependencies are met.
+-   If the status is **NOk**, dependencies will have to be reinstalled using the button ![configuration03](../images/configuration03.png)
 
 > **Tip**
 >
-> La mise à jour des dépendances peut prendre plus de 20 minutes selon
-> votre matériel. La progression est affichée en temps réel et un log
-> **Openzwave\_update** est accessible.
+> Updating dependencies can take more than 20 minutes depending on your hardware. Progress is displayed in real time and a log **Openzwave\_update** is accessible.
 
 > **Important**
 >
-> La mise à jour des dépendances est normalement à effectuer seulement
-> si le Statut est **NOK**, mais il est toutefois possible, pour régler
-> certains problèmes, d’être appelé à refaire l’installation des
-> dépendances.
+> Updating dependencies is normally to be performed only if the Status is **NOk**, but it is however possible, to solve certain problems, to be called to redo the installation of dependencies.
 
 > **Tip**
 >
-> Si vous êtes en mode déporté, les dépendances du démon local peuvent
-> être NOK, c’est tout à fait normal.
+> If you are in remote mode, the dependencies of the local daemon can be NOK, this is completely normal.
 
-Démon
------
+## Daemon
 
-Cette partie permet de valider l’état actuel du ou des démons et de
-configurer la gestion automatique de ceux-ci.
-![configuration04](../images/configuration04.png) Le démon local et
-l’ensemble des démons déportés seront affichés avec leurs différentes
-informations
+This part allows you to validate the current state of the daemon (s) and to configure the automatic management of these. ![configuration04](../images/configuration04.png) The local demon and all the deported demons will be displayed with their different information
 
--   Le **Statut** indique que le démon est actuellement en fonction.
+-   The **Status** indicates that the demon is currently running.
+-   The **Setup** indicates if the configuration of the daemon is valid.
+-   The button **(To restart** allows to force the restart of the plugin, in normal mode or to launch it for the first time.
+-   The button **Stopped**, visible only if automatic management is disabled, forces the demon to stop.
+-   The **Automatic management** allows Jeedom to automatically launch the daemon when Jeedom starts, as well as to restart it in the event of a problem.
+-   The **Last launch** is as its name indicates the date of the last known launch of the demon.
 
--   La **Configuration** indique si la configuration du démon
-    est valide.
+## Log
 
--   Le bouton **(Re)Démarrer** permet de forcer le redémarrage du
-    plugin, en mode normal ou de le lancer une première fois.
-
--   Le bouton **Arrête**, visible seulement si la gestion automatique
-    est désactivée, force l’arrêt du démon.
-
--   La **Gestion automatique** permet à Jeedom de lancer automatiquement
-    le démon au démarrage de Jeedom, ainsi que de le relancer en cas
-    de problème.
-
--   Le **Dernier lancement** est comme son nom l’indique la date du
-    dernier lancement connue du demon.
-
-Log
----
-
-Cette partie permet de choisir le niveau de log ainsi que d’en consulter
-le contenu.
+This part allows you to choose the log level as well as to consult its content.
 
 ![configuration05](../images/configuration05.png)
 
-Sélectionner le niveau puis sauvegarder, le démon sera alors relancé
-avec les instructions et traces sélectionnées.
+Select the level then save, the daemon will then be restarted with the instructions and traces selected.
 
-Le niveau **Debug**ou**Info** peuvent être utiles pour comprendre
-pourquoi le démon plante ou ne remonte pas une valeur.
+Level **Debug** or **Info** can be useful to understand why the demon plants or does not go up a value.
 
 > **Important**
 >
-> En mode **Debug** le démon est très verbeux, il est recommandé
-> d’utiliser ce mode seulement si vous devez diagnostiquer un problème
-> particulier. Il n’est pas recommandé de laisser tourner le démon en
-> **Debug**en permanence, si on utilise une**SD-Card**. Une fois le
-> debug terminé, il ne faut pas oublier de retourner sur un niveau moins
-> élevé comme le niveau **Error** qui ne remonte que d’éventuelles
-> erreurs.
+> In mode **Debug** the demon is very verbose, it is recommended to use this mode only if you have to diagnose a particular problem. It is not recommended to let the demon run while **Debug** permanently, if we use a **SD-Card**. Once the debug is over, don't forget to return to a lower level like the level **Error** which only goes back to possible errors.
 
-Configuration
--------------
+## Configuration
 
-Cette partie permet de configurer les paramètres généraux du plugin
-![configuration06](../images/configuration06.png)
+This part allows you to configure the general parameters of the plugin ![configuration06](../images/configuration06.png)
 
--   **Général** :
-
-    -   **Supprimer automatiquement les périphériques exclus** :
-        L’option Oui, permet de supprimer les périphériques exclus du
-        réseau Z-Wave. L’option Non, permet de conserver les équipements
-        dans Jeedom même s’ils ont été exclus du réseau. L’équipement
-        devra être alors supprimé manuellement ou réutilisé en lui
-        assignant un nouvel ID Z-Wave si on exécute une migration du
-        contrôleur principal.
-
-    -   **Appliquer le jeu de configuration recommandé à l’inclusion** :
-        option pour appliquer directement à l’inclusion le jeu de
-        configuration recommandé par l’équipe Jeedom (conseillée)
-
-    -   **Désactiver l’actualisation en arrière-plan des variateurs** :
-        Ne pas demander de rafraichissement des variateurs
-        en arrière-plan.
-
-    -   **Cycle (s)** : permet de définir la fréquence des remontées
-        à jeedom.
-
-    -   **Port clé Z-Wave** : le port USB sur lequel votre interface
-        Z-Wave est connectée. Si vous utilisez le Razberry, vous avez,
-        en fonction de votre architecture (RPI ou Jeedomboard) les 2
-        possibilités à la fin de la liste.
-
-    -   **Port du Serveur** (modification dangereuse, doit avoir la même
-        valeur sur tous les Jeedoms déportés Z-Wave) : permet de
-        modifier le port de communication interne du démon.
-
-    -   **Backups** : permet de gérer les backups du fichier de
-        topologie réseaux (voir plus bas)
-
-    -   **Config modules** : permet de récupérer, manuellement, les
-        fichiers de configurations OpenZWave avec les paramètres des
-        modules ainsi que la définition des commandes de modules pour
-        leurs utilisations.
+-   **Main** :
+    -   **Automatically delete excluded devices** :The Yes option allows you to delete devices excluded from the Z-Wave network. The No option allows you to keep the equipment in Jeedom even if it has been excluded from the network. The equipment
+        will then have to be deleted manually or reused by assigning it a new Z-Wave ID if you are migrating from the main controller.
+    -   **Apply the recommended configuration set for inclusion** : option to directly apply the configuration set recommended by the Jeedom team for inclusion (recommended)
+    -   **Deactivate the background update of the drives** : Do not ask for refreshment of drives in the background.
+    -   **Cycle (s)** : allows to define the frequency of lifts to jeedom.
+    -   **Z-Wave key port** : the USB port on which your Z-Wave interface is connected. If you use the Razberry, you have, depending on your architecture (RPI or Jeedomboard) the 2 possibilities at the end of the list.
+    -   **Server Port** (dangerous modification, must have the same value on all Z-Wave remote Jeedoms) : allows to modify the internal communication port of the daemon.
+    -   **Backups** : allows you to manage backups of the network topology file (see below)
+    -   **Config modules** : allows to recover, manually, the OpenZWave configuration files with the parameters of the modules as well as the definition of the commands of modules for their uses.
 
         > **Tip**
         >
-        > La récupération des configurations de module s’effectue
-        > automatiquement chaque nuit.
+        > Module configurations are retrieved automatically every night.
 
         > **Tip**
         >
-        > Le redémarrage du démon suite à la mise à jour des
-        > configurations de module est inutile.
+        > Restarting the daemon after updating module configurations is useless.
 
         > **Important**
         >
-        > Si vous avez un module non reconnu et qu’une mise à jour de
-        > configuration vient d’être appliquée, vous pouvez manuellement
-        > lancer la récupération des configurations de modules.
+        > If you have an unrecognized module and a configuration update has just been applied, you can manually start the recovery of module configurations.
 
-Une fois les configurations récupérées, il faudra selon les changements
-apportés:
+Once the configurations have been retrieved, depending on the changes made:
 
--   Pour un nouveau module sans configuration ni commande : exclure et
-    ré-inclure le module.
-
--   Pour un module pour lequel seuls les paramètres ont été mis à jour :
-    lancer la régénération de la détection du nœud, via l’onglet Actions
-    du module (le plugin doit redémarrer).
-
--   Pour un module dont le « mapping » de commandes a été corrigé : la
-    loupe sur les commandes, voir plus bas.
+-   For a new module without configuration or control : exclude and re-include the module.
+-   For a module for which only the parameters have been updated : start the regeneration of the node detection, via the Actions tab of the module (the plugin must restart).
+-   Pour un module dont le « mapping » de commandes a été corrigé : the magnifying glass on the controls, see below.
 
     > **Tip**
     >
-    > Dans le doute, exclure et ré-inclure le module est recommandé.
+    > If in doubt, exclude and re-include the module is recommended.
 
-N’oubliez pas de ![configuration08](../images/configuration08.png) si
-vous effectuez une modification.
-
-> **Important**
->
-> Si vous utilisez Ubuntu : Pour que le démon fonctionne, il faut
-> absolument avoir ubuntu 15.04 (les versions inférieures ont un bug et
-> le démon n’arrive pas à se lancer). Attention si vous faites une mise
-> à jour à partir de 14.04 il faut une fois en 15.04 relancer
-> l’installation des dépendances.
+Do not forget to ![configuration08](../images/configuration08.png) if you make a change.
 
 > **Important**
 >
-> La sélection du Port clé Z-Wave en mode de détection automatique,
-> **Auto**, ne fonctionne que pour les dongles USB.
+> If you are using Ubuntu : For the daemon to work, you must have ubuntu 15.04 (lower versions have a bug and the daemon cannot start). Be careful if you update from 14.04 it takes once in 15.04 restart the installation of dependencies.
 
-Paneau Mobile
--------------
+> **Important**
+>
+> Selecting the Z-Wave Key Port in automatic detection mode, **Auto**, only works for USB dongles.
+
+## Mobile Panel
 
 ![configuration09](../images/configuration09.png)
 
-Permet d’afficher ou non le panel mobile lors que vous utiliser
-l’application sur un téléphone.
+Allows you to display or not the mobile panel when you use the application on a phone.
 
-Configuration des équipements
-=============================
+# Equipment configuration
 
-La configuration des équipements Z-Wave est accessible à partir du menu
-plugin :
+Z-Wave equipment configuration is accessible from the plugin menu :
 
 ![appliance01](../images/appliance01.png)
 
-Ci-dessous un exemple d’une page du plugin Z-Wave (présentée avec
-quelques équipements) :
+Below an example of a Z-Wave plugin page (presented with some equipment) :
 
 ![appliance02](../images/appliance02.png)
 
 > **Tip**
 >
-> Comme à beaucoup d’endroits sur Jeedom, placer la souris tout à gauche
-> permet de faire apparaître un menu d’accès rapide (vous pouvez, à
-> partir de votre profil, le laisser toujours visible).
+> As in many places on Jeedom, placing the mouse on the far left allows a quick access menu to appear (you can, from your profile, always leave it visible).
 
 > **Tip**
 >
-> Les boutons sur la ligne tout en haut **Synchroniser**,
-> **Réseau-Zwave**et**Santé**, sont visibles seulement si vous êtes en
-> mode **Expert**. ![appliance03](../images/appliance03.png)
+> The buttons on the top line **Synchronize**, **Zwave Network** and **Health**, are visible only if you are in mode **Expert**. ![appliance03](../images/appliance03.png)
 
-Général
--------
+## Main
 
-You can find here the full configuration of your device :
+Here you find all the configuration of your equipment :
 
 ![appliance04](../images/appliance04.png)
 
--   **Nom de l’équipement** : nom de votre module Z-Wave.
+-   **Name of equipment** : name of your Z-Wave module.
+-   **Parent object** : indicates the parent object to which the equipment belongs.
+-   **Category** : equipment categories (it can belong to several categories).
+-   **Activate** : makes your equipment active.
+-   **Visible** : makes it visible on the dashboard.
+-   **Node ID** : Module ID on the Z-Wave network. This can be useful if, for example, you want to replace a faulty module. Just include the new module, retrieve its ID, and put it in place of the ID of the old module and finally delete the new module.
+-   **Module** : this field only appears if there are different types of configuration for your module (case for modules that can make pilot wires for example). It allows you to choose the configuration to use or modify it later
 
--   **Objet parent** : indique l’objet parent auquel
-    appartient l’équipement.
-
--   **Category**: categories of equipment (it may belong to
-    several categories).
-
--   **Activer** : permet de rendre votre équipement actif.
-
--   **Visible**: makes it visible on the dashboard.
-
--   **Node ID** : ID du module sur le réseau Z-Wave. Ceci peut être
-    utile si, par exemple, vous voulez remplacer un module défaillant.
-    Il suffit d’inclure le nouveau module, de récupérer son ID, et le
-    mettre à la place de l’ID de l’ancien module et enfin de supprimer
-    le nouveau module.
-
--   **Module** : ce champ n’apparaît que s’il existe différents types de
-    configuration pour votre module (cas pour les modules pouvant faire
-    fils pilotes par exemple). Il vous permet de choisir la
-    configuration à utiliser ou de la modifier par la suite
-
--   **Marque** : fabricant de votre module Z-Wave.
-
--   **Configuration** : fenêtre de configuration des paramètres du
-    module
-
--   **Assistant** : disponible uniquement sur certains modules, il vous
-    aide à configurer le module (cas sur le zipato keyboard par exemple)
-
--   **Documentation** : ce bouton vous permet d’ouvrir directement la
-    documentation Jeedom concernant ce module.
-
--   **Supprimer** : Permet de supprimer un équipement ainsi que tous ces
-    commandes rattaché sans l’exclure du réseau Z-Wave.
+-   **Mark** : manufacturer of your Z-Wave module.
+-   **Setup** : module settings configuration window
+-   **Assistant** : only available on certain modules, it helps you configure the module (case on the zipato keyboard for example)
+-   **Documentation** : this button allows you to directly open the Jeedom documentation concerning this module.
+-   **Delete** : Allows you to delete an item of equipment and all of these attached commands without excluding it from the Z-Wave network.
 
 > **Important**
 >
-> La suppression d’un équipement n’engendre pas une exclusion du module
-> sur le contrôleur. ![appliance11](../images/appliance11.png) Un
-> équipement supprimé qui est toujours rattaché à son contrôleur sera
-> automatiquement recréé suite à la synchronisation.
+> Deleting equipment does not lead to exclusion of the module from the controller. ![appliance11](../images/appliance11.png) Deleted equipment that is still attached to its controller will be automatically recreated following synchronization.
 
-Commandes
----------
+## Commandes
 
-Here below you can fond the list of commands :
+Below you find the list of orders :
 
 ![appliance05](../images/appliance05.png)
 
 > **Tip**
 >
-> En fonction des types et sous-types, certaines options peuvent être
-> absentes.
+> Depending on the types and subtypes, some options may be missing.
 
--   le nom affiché sur le dashboard
+-   the name displayed on the dashboard
+-   Icon : in the case of an action allows you to choose an icon to
+    display on dashboard instead of text
+-   Order value : in the case of an action type command, its
+    value can be linked to an info type command, this is where
+    it is configured. Example for a lamp the intensity is linked to its
+    state, this allows the widget to have the actual state of the lamp.
+-   type and subtype.
+-   the instance of this Z-Wave command (reserved for experts).
+-   the class of the Z-Wave control (reserved for experts).
+-   the value index (reserved for experts).
+-   the order itself (reserved for experts).
+-   "Status feedback value "and" Duration before status feedback" : allows to indicate to Jeedom that after a change on the information its value must return to Y, X min after the change. Example : in the case of a presence detector which emits only during a presence detection, it is useful to set for example 0 in value and 4 in duration, so that 4 min after a motion detection (and if then , there were no new ones) Jeedom resets the value of the information to 0 (no more movement detected).
+-   Historize : allows to historize the data.
+-   Pin up : allows to display the data on the dashboard.
+-   Invert : allows to invert the state for binary types.
+-   Unit : data unit (can be empty).
+-   Min / max : data bounds (may be empty).
+-   Advanced configuration (small notched wheels) : displays the advanced configuration of the command (logging method, widget, etc.)).
 
--   icône : dans le cas d’une action permet de choisir une icône à
-    afficher sur le dashboard au lieu du texte
-
--   valeur de la commande : dans le cas d’une commande type action, sa
-    valeur peut être liée à une commande de type info, c’est ici que
-    cela se configure. Exemple pour une lampe l’intensité est liée à son
-    état, cela permet au widget d’avoir l’état réel de la lampe.
-
--   le type et le sous-type.
-
--   l’instance de cette commande Z-Wave (réservée aux experts).
-
--   la classe de la commande Z-Wave (réservée aux experts).
-
--   l’index de la valeur (réservée aux experts).
-
--   la commande en elle-même (réservée aux experts).
-
--   "Valeur de retour d’état" et "Durée avant retour d’état" : permet
-    d’indiquer à Jeedom qu’après un changement sur l’information sa
-    valeur doit revenir à Y, X min après le changement. Exemple : dans
-    le cas d’un détecteur de présence qui n’émet que lors d’une
-    détection de présence, il est utile de mettre par exemple 0 en
-    valeur et 4 en durée, pour que 4 min après une détection de
-    mouvement (et si ensuite, il n’y en a pas eu de nouvelles) Jeedom
-    remette la valeur de l’information à 0 (plus de mouvement détecté).
-
--   Historiser : permet d’historiser la donnée.
-
--   Afficher : permet d’afficher la donnée sur le dashboard.
-
--   Inverser : permet d’inverser l’état pour les types binaires.
-
--   Unité : unité de la donnée (peut être vide).
-
--   Min/Max : bornes de la donnée (peuvent être vides).
-
--   Advanced configuration (small wheels): displays
-    la configuration avancée de la commande (méthode
-    d’historisation, widget…​).
-
--   Tester : permet de tester la commande.
-
--   Supprimer (signe -) : permet de supprimer la commande.
+-   Test : Used to test the command.
+-   Delete (sign -) : allows to delete the command.
 
 > **Important**
 >
-> Le bouton **Tester** dans le cas d’une commande de type Info, ne va
-> pas interroger le module directement mais la valeur disponible dans le
-> cache de Jeedom. Le test retournera la bonne valeur seulement si le
-> module en question a transmis une nouvelle valeur correspondant à la
-> définition de la commande. Il est alors tout à fait normal de ne pas
-> obtenir de résultat suite à la création d’une nouvelle commande Info,
-> spécialement sur un module sur pile qui notifie rarement Jeedom.
+> The button **Test** in the case of an Info type command, will not query the module directly but the value available in the Jeedom cache. The test will return the correct value only if the module in question has transmitted a new value corresponding to the definition of the command. It is therefore completely normal not to obtain a result following the creation of a new Info command, especially on a battery-powered module which rarely notifies Jeedom.
 
-La **loupe**, disponible dans l’onglet général, permet de recréer
-l’ensemble des commandes pour le module en cours.
-![appliance13](../images/appliance13.png) Si aucune commande n’est
-présente ou si les commandes sont erronées la loupe devrait remédier à
-la situation.
+The **magnifying glass**, available in the general tab, allows you to recreate all the commands for the current module. ![appliance13](../images/appliance13.png) If no command is present or if the commands are wrong the magnifying glass should remedy the situation.
 
 > **Important**
 >
-> La **loupe** va supprimer les commandes existantes. Si les commandes
-> étaient utilisées dans des scénarios, vous devrez alors corriger vos
-> scénarios aux autres endroits où les commandes étaient exploitées.
+> The **magnifying glass** will delete existing orders. If the commands were used in scenarios, you will then have to correct your scenarios in the other places where the commands were used.
 
-Jeux de Commandes
------------------
+## Command Games
 
-Some modules have multiple pre-configured command sets
+Some modules have several preconfigured command sets
 
 ![appliance06](../images/appliance06.png)
 
-Vous pouvez les sélectionner via les choix possibles, si le module le
-permet.
+You can select them via the possible choices, if the module allows it.
 
 > **Important**
 >
-> Vous devez effectuer la loupe pour appliquer le nouveau jeux de
-> commandes.
+> You must magnify to apply the new command sets.
 
-Documentation et Assistant
---------------------------
+## Documentation and Assistant
 
-Pour un certain nombre de modules, une aide spécifique pour la mise en
-place ainsi que des recommandations de paramètres sont disponibles.
+For a certain number of modules, specific help for the installation as well as recommendations of parameters are available.
 
 ![appliance07](../images/appliance07.png)
 
-Le bouton **Documentation** permet d’accéder à la documentation
-spécifique du module pour Jeedom.
+The button **Documentation** provides access to specific module documentation for Jeedom.
 
-Des modules particuliers disposent aussi d’un assistant spécifique afin
-de faciliter l’application de certains paramètres ou fonctionnements.
+Particular modules also have a specific assistant to facilitate the application of certain parameters or operations.
 
-Le bouton **Assistant** permet d’accéder à l’écran assistant spécifique
-du module.
+The button **Assistant** gives access to the specific assistant screen of the module.
 
-Configuration recommandée
--------------------------
+## Recommended configuration
 
 ![appliance08](../images/appliance08.png)
 
-Permet d’appliquer un jeu de configuration recommandée par l’équipe
-Jeedom.
+Apply a configuration set recommended by the Jeedom team.
 
 > **Tip**
 >
-> Lors de leur inclusion, les modules ont les paramètres par défaut du
-> constructeur et certaines fonctions ne sont pas activées par défaut.
+> When included, the modules have the manufacturer's default parameters and certain functions are not activated by default.
 
-Les éléments suivants, selon le cas, seront appliqués pour simplifier
-l’utilisation du module.
+The following elements, as applicable, will be applied to simplify the use of the module.
 
--   **Paramètres** permettant la mise en service rapide de l’ensemble
-    des fonctionnalités du module.
+-   **Settings** allowing rapid commissioning of all module functionalities.
+-   **Association groups** required for proper operation.
+-   **Wake up interval**, for modules on battery.
+-   Activation of **manual refresh** for modules that do not go up by themselves, their state changes.
 
--   **Groupes d’association** requis au bon fonctionnement.
-
--   **Intervalle de réveil**, pour les modules sur pile.
-
--   Activation du **rafraîchissement manuel** pour les modules ne
-    remontant pas d’eux-mêmes leurs changements d’états.
-
-Pour appliquer le jeu de configuration recommandé, cliquer sur le bouton
-: **Configuration recommandée**, puis confirmer l’application des
-configurations recommandées.
+To apply the recommended configuration set, click on the button : **Recommended configuration**, then confirm the application of the recommended configurations.
 
 ![appliance09](../images/appliance09.png)
 
-L’assistant active les différents éléments de configurations.
+The assistant activates the various configuration elements.
 
-A confirmation of the correct flow will be displayed as a ribbon.
+A confirmation of the good progress will be displayed in the form of a banner
 
 ![appliance10](../images/appliance10.png)
 
 > **Important**
 >
-> Les modules sur piles doivent être réveillés pour appliquer le jeu de
-> configuration.
+> Battery modules must be awakened to apply the configuration set.
 
-La page de l’équipement vous informe si des éléments n’ont pas encore
-été activés sur le module. Veuillez-vous référer à la documentation du
-module pour le réveiller manuellement ou attendre le prochain cycle de
-réveil.
+The equipment page informs you if elements have not yet been activated on the module. Please refer to the module documentation to wake it up manually or wait for the next wake up cycle.
 
 ![appliance11](../images/appliance11.png)
 
 > **Tip**
 >
-> Il est possible d’activer automatiquement l’application du jeu de
-> configuration recommandé lors de l’inclusion de nouveau module, voir
-> la section Configuration du plugin pour plus de détails.
+> It is possible to automatically activate the application of the recommended configuration set when including a new module, see the Plugin configuration section for more details.
 
-Configuration des modules
-=========================
+# Configuration of modules
 
-C’est ici que vous retrouverez toutes les informations sur votre module
+This is where you will find all the information about your module
 
 ![node01](../images/node01.png)
 
-The screen has different tabs :
+The window has several tabs :
 
-Résumé
-------
+## Summary
 
-Fournit un résumé complet de votre nœud avec différentes informations
-sur celui-ci, comme par exemple l’état des demandes qui permet de savoir
-si le nœud est en attente d’information ou la liste des nœuds voisins.
+Provides a complete summary of your node with various information on it, such as the status of requests which lets you know if the node is waiting for information or the list of neighboring nodes.
 
 > **Tip**
 >
-> Sur cet onglet il est possible d’avoir des alertes en cas de détection
-> possible d’un souci de configuration, Jeedom vous indiquera la marche
-> à suivre pour corriger. Il ne faut pas confondre une alerte avec une
-> erreur, l’alerte est dans une majorité des cas, une simple
-> recommandation.
+> On this tab it is possible to have alerts in case of possible detection of a configuration problem, Jeedom will tell you the procedure to follow to correct. Do not confuse an alert with an error, the alert is in most cases a simple recommendation.
 
-Valeurs
--------
+## Valeurs
 
 ![node02](../images/node02.png)
 
-Vous retrouvez ici toutes les commandes et états possibles sur votre
-module. Ils sont ordonnés par instance et classe de commande puis index.
-Le « mapping » des commandes est entièrement basé sur ces informations.
+You will find here all the possible commands and states on your module. They are ordered by instance and command class then index. The « mapping » des commandes est entièrement basé sur ces informations.
 
 > **Tip**
 >
-> Forcer la mise à jour d’une valeur. Les modules sur pile vont
-> rafraichir une valeur seulement au prochain cycle de réveil. Il est
-> toutefois possible de réveiller à la main un module, voir la
-> documentation du module.
+> Force update of a value. The modules on battery will refresh a value only at the next wake-up cycle. It is however possible to manually wake up a module, see the module documentation.
 
 > **Tip**
 >
-> Il est possible d’avoir plus de commandes ici que sur Jeedom, c’est
-> tout à fait normal. Dans Jeedom les commandes ont été présélectionnées
-> pour vous.
+> It is possible to have more orders here than on Jeedom, this is completely normal. In Jeedom the orders have been preselected for you.
 
 > **Important**
 >
-> Certains modules n’envoient pas automatiquement leurs états, il faut
-> dans ce cas activer le rafraichissement manuel à 5 minutes sur la ou
-> les valeurs souhaitées. Il est recommandé de laisser en automatique le
-> rafraichissement. Abuser du rafraichissement manuel peut impacter
-> fortement les performances du réseau Z-Wave, utilisez seulement pour
-> les valeurs recommandées dans la documentation spécifique Jeedom.
-> ![node16](../images/node16.png) L’ensemble des valeurs (index) de
-> l’instance d’une commande classe sera remonté, en activant le
-> rafraichissement manuel sur le plus petit index de l’instance de la
-> commande classe. Répéter pour chaque instance si nécessaire.
+> Some modules do not automatically send their states, in this case it is necessary to activate the manual refresh at 5 minutes on the desired value (s). It is recommended to automatically leave the refresh. Abuse of manual refresh can strongly impact the performance of the Z-Wave network, use only for the values recommended in the specific Jeedom documentation. ![node16](../images/node16.png) The set of values (index) of the instance of a class command will be reassembled, activating manual refresh on the smallest index of the instance of the class command. Repeat for each instance if necessary.
 
-Paramètres
-----------
+## Settings
 
 ![node03](../images/node03.png)
 
-Vous retrouvez ici toutes les possibilités de configuration des
-paramètres de votre module ainsi que la possibilité de copier la
-configuration d’un autre nœud déjà en place.
+Here you will find all the possibilities for configuring the parameters of your module as well as the possibility of copying the configuration from another node already in place.
 
-Lorsqu’un paramètre est modifié, la ligne correspondante passe en jaune,
-![node04](../images/node04.png) le paramètre est en attente d’être
-appliqué.
+When a parameter is modified, the corresponding line turns yellow, ![node04](../images/node04.png) the setting is waiting to be applied.
 
-If the module accepts the parameter, its line becomes transparent.
+If the module accepts the parameter, the line becomes transparent again.
 
-Si toutefois le module refuse la valeur, la ligne passera alors en rouge
-avec la valeur appliquée retournée par le module.
-![node05](../images/node05.png)
+If however the module refuses the value, the line will then turn red with the applied value returned by the module. ![node05](../images/node05.png)
 
-A l’inclusion, un nouveau module est détecté avec les paramètres par
-défaut du constructeur. Sur certains modules, des fonctionnalités ne
-seront pas actives sans modifier un ou plusieurs paramètres.
-Référez-vous à la documentation du constructeur et à nos recommandations
-afin de bien paramétrer vos nouveaux modules.
+On inclusion, a new module is detected with the manufacturer's default settings. On some modules, functionalities will not be active without modifying one or more parameters. Refer to the manufacturer's documentation and our recommendations in order to properly configure your new modules.
 
 > **Tip**
 >
-> Les modules sur pile vont appliquer les changements de paramètres
-> seulement au prochain cycle de réveil. Il est toutefois possible de
-> réveiller à la main un module, voir la documentation du module.
+> Battery modules will apply parameter changes only to the next wake-up cycle. It is however possible to manually wake up a module, see the module documentation.
 
 > **Tip**
 >
-> La commande **Reprendre de…​** vous permet reprendre la configuration
-> d’un autre module identique, sur le module en cours.
+> The command **Resume from** allows you to resume the configuration of another identical module, on the current module.
 
 ![node06](../images/node06.png)
 
 > **Tip**
 >
-> La commande **Appliquer sur…​** vous permet d’appliquer la
-> configuration actuelle du module sur un ou plusieurs modules
-> identiques.
+> The command **Apply on** allows you to apply the current module configuration to one or more identical modules.
 
 ![node18](../images/node18.png)
 
 > **Tip**
 >
-> La commande **Actualiser les paramètres** force le module à actualiser
-> les paramètres sauvegardés dans le module.
+> The command **Update settings** forces the module to update the parameters saved in the module.
 
-Si aucun fichier de configuration est définie pour le module, un
-assistant manuel vous permet d’appliquer des paramètres au module.
-![node17](../images/node17.png) Veillez vous référer à la documentation
-du fabricant pour connaitre la définition de l’index, valeur et taille.
+If no configuration file is defined for the module, a manual wizard allows you to apply parameters to the module. ![node17](../images/node17.png) Please refer to the manufacturer's documentation for the definition of the index, value and size.
 
-Associations
-------------
+##Associations
 
-C’est ici que se retrouve la gestion des groupes d’association de votre
-module.
+This is where you find the management of the association groups of your module.
 
 ![node07](../images/node07.png)
 
-Les modules Z-Wave peuvent contrôler d’autres modules Z-Wave, sans
-passer par le contrôleur ni Jeedom. La relation entre un module de
-contrôle et un autre module est appelée association.
+Z-Wave modules can control other Z-Wave modules, without going through the controller or Jeedom. The relationship between a control module and another module is called association.
 
-Afin de contrôler un autre module, le module de commande a besoin de
-maintenir une liste des appareils qui recevront le contrôle des
-commandes. Ces listes sont appelées groupes d’association et elles sont
-toujours liées à certains événements (par exemple le bouton pressé, les
-déclencheurs de capteurs, …​ ).
+In order to control another module, the command module needs to maintain a list of devices that will receive command control. These lists are called association groups and they are always linked to certain events (for example the button pressed, sensor triggers, etc ).
 
-Dans le cas où un événement se produit, tous les périphériques
-enregistrés dans le groupe d’association concerné recevront une commande
-Basic.
+In the event that an event occurs, all devices registered in the association group concerned will receive a Basic command.
 
 > **Tip**
 >
-> Voir la documentation du module, pour comprendre les différents
-> groupes d’associations possibles et leur comportement.
+> See the documentation of the module, to understand the different groups of possible associations and their behavior.
 
 > **Tip**
 >
-> La majorité des modules ont un groupe d’association qui est réservé
-> pour le contrôleur principal, il est utilisé pour remonter les
-> informations au contrôleur. Il se nomme en général : **Report** ou
-> **LifeLine**.
+> The majority of modules have an association group which is reserved for the main controller, it is used to send information to the controller. It is generally called : **Report** or **LifeLine**.
 
 > **Tip**
 >
-> Il est possible que votre module ne possède aucun groupe.
+> Your module may not have any groups.
 
 > **Tip**
 >
-> La modification des groupes d’associations d’un module sur pile sera
-> appliquée au prochain cycle de réveil. Il est toutefois possible de
-> réveiller à la main un module, voir la documentation du module.
+> The modification of the association groups of a battery module will be applied to the next wake-up cycle. It is however possible to manually wake up a module, see the module documentation.
 
-Pour connaitre avec quels autres modules le module en cours est associé,
-il suffit de cliquer sur le menu **Associé à quels modules**
+To know with which other modules the current module is associated, just click on the menu **Associated with which modules**
 
 ![node08](../images/node08.png)
 
-L’ensemble des modules utilisant le module en cours ainsi que le nom des
-groupes d’associations seront affichés.
+All the modules using the current module as well as the name of the association groups will be displayed.
 
-**Associations multi-instances**
+**Multi-instance associations**
 
-certain module supporte une commande classe multi-instance associations.
-Lorsqu’un module supporte cette CC, il est possible de spécifier avec
-quelle instance on souhaite créer l’association
+Some module supports a multi-instance associations class command. When a module supports this CC, it is possible to specify with which instance one wishes to create the association
 
 ![node09](../images/node09.png)
 
 > **Important**
 >
-> Certains modules doivent être associés à l’instance 0 du contrôleur
-> principale afin de bien fonctionner. Pour cette raison, le contrôleur
-> est présent avec et sans l’instance 0.
+> Some modules must be associated with instance 0 of the main controller in order to function properly. For this reason, the controller is present with and without the instance 0.
 
-Systèmes
---------
+## Systems
 
-Tab grouping the system parameters of the module.
+Tab grouping the module's system parameters.
 
 ![node10](../images/node10.png)
 
 > **Tip**
 >
-> Les modules sur piles se réveillent à des cycles réguliers, appelés
-> intervalles de réveil (Wakeup Interval). L’intervalle de réveil est un
-> compromis entre le temps maximal de vie de la batterie et les réponses
-> souhaitées du dispositif. Pour maximiser la durée de vie de vos
-> modules, adapter la valeur Wakeup Interval par exemple à 14400
-> secondes (4h), voir encore plus élevé selon les modules et leur usage.
-> ![node11](../images/node11.png)
+> Battery modules wake up at regular cycles, called Wakeup Interval). Wake-up interval is a compromise between maximum battery life and desired device responses. To maximize the life of your modules, adapt the Wakeup Interval value for example to 14,400 seconds (4h), see even higher depending on the modules and their use. ![node11](../images/node11.png)
 
 > **Tip**
 >
-> Les modules **Interrupteur**et**Variateur** peuvent implémenter une
-> Classe de commande spéciale appelée **SwitchAll** 0x27. Vous pouvez en
-> modifier ici le comportement. Selon le module, plusieurs options sont
-> à disposition. La commande **SwitchAll On/OFF** peut être lancée via
-> votre module contrôleur principal.
+> Modules **Light switch** and **Dimmer** can implement a special Command Class called **SwitchAll** 0x27. You can change the behavior here. Depending on the module, several options are available. The command **SwitchAll On / OFF** can be launched via your main controller module.
 
-Actions
--------
+## Actions
 
-Permet d’effectuer certaines actions sur le module.
+Allows you to perform certain actions on the module.
 
 ![node12](../images/node12.png)
 
-Certaines actions seront actives selon le type de module et ses
-possibilités ou encore selon l’état actuel du module comme par exemple
-s’il est présumé mort par le contrôleur.
+Certain actions will be active according to the type of module and its possibilities or according to the current state of the module such as if it is presumed dead by the controller.
 
 > **Important**
 >
-> Il ne faut pas utiliser les actions sur un module si on ne sait pas ce
-> que l’on fait. Certaines actions sont irréversibles. Les actions
-> peuvent aider à la résolution de problèmes avec un ou des modules
-> Z-Wave.
+> Do not use actions on a module if you do not know what you are doing. Some actions are irreversible. Actions can help solve problems with one or more Z-Wave modules.
 
 > **Tip**
 >
-> La **Régénération de la détection du noeud** permet de détecter le
-> module pour reprendre les derniers jeux de paramètres. Cette action
-> est requise lorsqu’on vous informe qu’une mise a jour de paramètres et
-> ou de comportement du module est requit pour le bon fonctionnement. La
-> Régénération de la détection du noeud implique un redémarrage du
-> réseau, l’assistant l’effectue automatiquement.
+> The **Regeneration of node detection** allows to detect the module to accept the last sets of parameters. This action is required when you are informed that an update of parameters and or behavior of the module is required for proper functioning. The regeneration of the detection of the node implies a restart of the network, the assistant carries out it automatically.
 
 > **Tip**
 >
-> Si vous avez plusieurs modules identiques dont il est requis
-> d’exécuter la **Régénération de la détection du noeud**, il est
-> possible de la lancer une fois pour tous les modules identiques.
+> If you have several identical modules which are required to run the **Regeneration of node detection**, it is possible to launch it once for all identical modules.
 
 ![node13](../images/node13.png)
 
 > **Tip**
 >
-> Si un module sur pile n’est plus joignable et que vous souhaitez
-> l’exclure, que l’exclusion ne s’effectue pas, vous pouvez lancer
-> **Supprimer le noeud fantôme** Un assistant effectuera différentes
-> actions afin de supprimer le module dit fantôme. Cette action implique
-> de redémarrer le réseau et peut prendre plusieurs minutes avant d’être
-> complétée.
+> If a module on a stack is no longer reachable and you want to exclude it, and the exclusion does not take place, you can launch **Remove ghost node** An assistant will perform various actions to remove the so-called ghost module. This action involves restarting the network and may take several minutes to complete.
 
 ![node14](../images/node14.png)
 
-Une fois lancé, il est recommandé de fermer l’écran de configuration du
-module et de surveiller la suppression du module via l’écran de santé
-Z-Wave.
+Once launched, it is recommended to close the module configuration screen and monitor the deletion of the module via the Z-Wave health screen.
 
 > **Important**
 >
-> Seul les modules sur pile peuvent être supprimés via cette assistant.
+> Only modules on battery can be deleted via this wizard.
 
-Statistiques
-------------
+## Statistiques
 
-This tab displays communication statistics with the node. 
+This tab gives some communication statistics with the node.
 
 ![node15](../images/node15.png)
 
-Peut être intéressant en cas de modules qui sont présumés morts par le
-contrôleur "Dead".
+Can be interesting in case of modules which are presumed dead by the controller "Dead".
 
-inclusion / exclusion
-=====================
+# Inclusion / exclusion
 
-A sa sortie d’usine, un module ne fait partie d’aucun réseau Z-Wave.
+When it leaves the factory, a module does not belong to any Z-Wave network.
 
-Mode inclusion
---------------
+## Inclusion mode
 
-Le module doit se joindre à un réseau Z-Wave existant pour communiquer
-avec les autres modules de ce réseau. Ce processus est appelé
-**Inclusion**. Les périphériques peuvent également sortir d’un réseau.
-Ce processus est appelé **Exclusion**. Les deux processus sont initiés
-par le contrôleur principal du réseau Z-Wave.
+The module must join an existing Z-Wave network to communicate with the other modules of this network. This process is called **Inclusion**. Devices can also leave a network. This process is called **Exclusion**. Both processes are initiated by the main controller of the Z-Wave network.
 
 ![addremove01](../images/addremove01.png)
 
-Ce bouton vous permet de passer en mode inclusion pour ajouter un module
-à votre réseau Z-Wave.
+This button allows you to switch to inclusion mode to add a module to your Z-Wave network.
 
-Vous pouvez choisir le mode d’inclusion après avoir cliqué le bouton
+You can choose the inclusion mode after clicking the button
 **Inclusion**.
 
 ![addremove02](../images/addremove02.png)
 
-Depuis l’apparition du Z-Wave+, il est possible de sécuriser les
-échanges entre le contrôleur et les noeuds. Il est donc recommandé de
-faire les inclusions en mode **Sécurisé**.
+Since the appearance of the Z-Wave +, it is possible to secure exchanges between the controller and the nodes. It is therefore recommended to do the inclusions in mode **Secured**.
 
-Si toutefois, un module ne peut être inclus en mode sécurisé, veuillez
-l’inclure en mode **Non sécurisé**.
+If however, a module cannot be included in secure mode, please include it in secure mode **Insecure**.
 
-When inclusion mode started, Jeedom lets you know.
+Once in inclusion mode : Jeedom tells you.
 
-\[TIP\] Un module 'non sécurisé' peut commander des modules 'non
-sécurisés'. Un module 'non sécurisé' ne peut pas commander un module
-'sécurisé'. Un module 'sécurisé' pourra commander des modules 'non
-sécurisés' sous réserve que l’émetteur le supporte.
+>**Tip**
+>
+>An 'unsecured' module can order 'insecure' modules'. A 'non-secure' module cannot order a 'secure' module'. A 'secure' module can order 'non-secure' modules provided that the transmitter supports it.
 
 ![addremove03](../images/addremove03.png)
 
-Une fois l’assistant lancé, il faut en faire de même sur votre module
-(se référer à la documentation de celui-ci pour le passer en mode
-inclusion).
+Once the wizard is launched, you must do the same on your module (refer to its documentation to switch it to inclusion mode).
 
 > **Tip**
 >
-> Tant que vous n’avez pas le bandeau, vous n’êtes pas en mode
-> inclusion.
+> As long as you do not have the banner, you are not in inclusion mode.
 
-Si vous re cliquez sur le bouton, vous sortez du mode inclusion.
+If you click on the button again, you exit the inclusion mode.
 
 > **Tip**
 >
-> Il est recommandé, avant l’inclusion d’un nouveau module qui serait
-> "nouveau" sur le marché, de lancer la commande **Config modules** via
-> l’écran de configuration du plugin. Cette action va récupérer
-> l’ensemble des dernières versions des fichiers de configurations
-> openzwave ainsi que le mapping de commandes Jeedom.
+> It is recommended, before the inclusion of a new module that would be "new" on the market, to launch the order **Config modules** via the plugin configuration screen. This action will recover all the latest versions of the openzwave configuration files as well as the Jeedom command mapping.
 
 > **Important**
 >
-> Lors d’une inclusion, il est conseillé que le module soit à proximité
-> du contrôleur principal, soit à moins d’un mètre de votre jeedom.
+> During an inclusion, it is advised that the module is near the main controller, or less than one meter from your jeedom.
 
 > **Tip**
 >
-> Certains modules requièrent obligatoirement une inclusion en mode
-> **sécurisé**, par exemple pour les serrures de porte.
+> Some modules require an inclusion in mode **Secured**, for example for door locks.
 
 > **Tip**
 >
-> A noter que l’interface mobile vous donne aussi accès à l’inclusion,
-> le panel mobile doit avoir été activé.
+> Note that the mobile interface also gives you access to inclusion, the mobile panel must have been activated.
 
 > **Tip**
 >
-> Si le module appartient déjà à un réseau, suivez le processus
-> d’exclusion avant de l’inclure dans votre réseau. Sinon l’inclusion de
-> ce module va échouer. Il est d’ailleurs recommandé d’exécuter une
-> exclusion avant l’inclusion, même si le produit est neuf, sorti du
-> carton.
+> If the module already belongs to a network, follow the exclusion process before including it in your network. Otherwise the inclusion of this module will fail. It is also recommended to execute an exclusion before inclusion, even if the product is new, out of the box.
 
 > **Tip**
 >
-> Une fois le module à son emplacement définitif, il faut lancer
-> l’action soigner le réseau, afin de demander à tous les modules de
-> rafraichir l’ensemble des voisins.
+> Once the module in its final location, it is necessary to launch the action to take care of the network, in order to ask all the modules to refresh all the neighbors.
 
-Mode exclusion
---------------
+## Exclusion mode
 
 ![addremove04](../images/addremove04.png)
 
-Ce bouton vous permet de passer en mode exclusion, cela pour retirer un
-module de votre réseau Z-Wave, il faut en faire de même avec votre
-module (se référer à la documentation de celui-ci pour le passer en mode
-exclusion).
+This button allows you to switch to exclusion mode, to remove a module from your Z-Wave network, you must do the same with your module (refer to its documentation to switch it to exclusion mode).
 
 ![addremove05](../images/addremove05.png)
 
 > **Tip**
 >
-> Tant que vous n’avez pas le bandeau, vous n’êtes pas en mode
-> exclusion.
+> As long as you do not have the banner, you are not in exclusion mode.
 
-Si vous re cliquez sur le bouton, vous sortez du mode exclusion.
-
-> **Tip**
->
-> A noter que l’interface mobile vous donne aussi accès à l’exclusion.
+If you click on the button again, you will exit exclusion mode.
 
 > **Tip**
 >
-> Un module n’a pas besoin d’être exclu par le même contrôleur sur
-> lequel il a été préalablement inclus. D’où le fait qu’on recommande
-> d’exécuter une exclusion avant chaque inclusion.
+> Note that the mobile interface also gives you access to the exclusion.
 
-Synchroniser
-------------
+> **Tip**
+>
+> A module does not need to be excluded by the same controller on which it was previously included. Hence the fact that it is recommended to execute an exclusion before each inclusion.
+
+## Synchroniser
 
 ![addremove06](../images/addremove06.png)
 
-Bouton permettant de synchroniser les modules du réseau Z-Wave avec les
-équipements Jeedom. Les modules sont associés au contrôleur principal,
-les équipements dans Jeedom sont créés automatiquement lors de leur
-inclusion. Ils sont aussi supprimés automatiquement lors de l’exclusion,
-si l’option **Supprimer automatiquement les périphériques exclus** est
-activée.
+Button allowing synchronization of the Z-Wave network modules with Jeedom equipment. The modules are associated with the main controller, the devices in Jeedom are created automatically when they are included. They are also automatically deleted when excluded, if the option **Automatically delete excluded devices** is activated.
 
-Si vous avez inclus des modules sans Jeedom (requiert un dongle avec
-pile comme le Aeon-labs Z-Stick GEN5), une synchronisation sera
-nécessaire suite au branchement de la clé, une fois le démon démarré et
-fonctionnel.
+If you have included modules without Jeedom (requires a battery dongle like the Aeon-labs Z-Stick GEN5), synchronization will be necessary after plugging in the key, once the daemon has started and is operational.
 
 > **Tip**
 >
-> Si vous n’avez pas l’image ou que Jeedom n’a pas reconnu votre module,
-> ce bouton peut permettre de corriger (sous réserve que l’interview du
-> module soit complète).
+> If you do not have the image or Jeedom has not recognized your module, this button can be used to correct (provided that the module interview is complete).
 
 > **Tip**
 >
-> Si sur votre table de routage et/ou sur l’écran de santé Z-Wave, vous
-> avez un ou des modules nommés avec leur **nom générique**, la
-> synchronisation permettra de remédier à cette situation.
+> If on your routing table and / or on the Z-Wave health screen, you have one or more modules named with their **generic name**, synchronization will remedy this situation.
 
-Le bouton Synchroniser n’est visible qu’en mode expert :
+The Synchronize button is only visible in expert mode :
 ![addremove07](../images/addremove07.png)
 
-Réseaux Z-Wave
-==============
+# Z-Wave networks
 
 ![network01](../images/network01.png)
 
-You will find here general information on your Z-Wave network.
+Here you will find general information about your Z-Wave network.
 
 ![network02](../images/network02.png)
 
-Résumé
-------
+## Summary
 
-Le premier onglet vous donne le résumé de base de votre réseau Z-Wave,
-vous retrouvez notamment l’état du réseau Z-Wave ainsi que le nombre
-d’éléments dans la file d’attente.
+The first tab gives you the basic summary of your Z-Wave network, you will find in particular the status of the Z-Wave network as well as the number of elements in the queue.
 
-**Informations**
+**Information**
 
--   Donne des informations générales sur le réseau, la date de
-    démarrage, le temps requis pour l’obtention du réseau dans un état
-    dit fonctionnel.
+-   Gives general information on the network, the start date, the time required to obtain the network in a so-called functional state.
+-   The total number of nodes in the network as well as the number that are sleeping in the moment.
+-   Request interval is associated with manual refresh. It is preset in the Z-Wave engine at 5 minutes.
+-   The neighbors of the controller.
 
--   Le nombre de nœuds total du réseau ainsi que le nombre qui dorment
-    dans le moment.
-
--   L’intervalle des demandes est associé au rafraichissement manuel. Il
-    est prédéfini dans le moteur Z-Wave à 5 minutes.
-
--   Les voisins du contrôleur.
-
-**Etat**
+**State**
 
 ![network03](../images/network03.png)
 
-Un ensemble d’informations sur l’état actuel du réseau, à savoir :
+A set of information on the current state of the network, namely :
 
--   Etat actuel, peut-être **Driver Initialised**, **Topology loaded**
-    ou **Ready**.
+-   Current state, maybe **Driver Initialized**, **Topology loaded** or **Ready**.
+-   Outgoing queue, indicates the number of messages queued in the controller waiting to be sent. This value is generally high during network startup when the status is still in **Driver Initialized**.
 
--   Queue sortante, indique le nombre de messages en queue dans le
-    contrôleur en attente d’être envoyé. Cette valeur est généralement
-    élevée durant le démarrage du réseau lorsque l’état est encore en
-    **Driver Initialised**.
-
-Une fois que le réseau a au minimum atteint **Topology loaded**, des
-mécanismes internes au serveur Z-Wave vont forcer des mises à jour de
-valeurs, il est alors tout-à-fait normal de voir monter le nombre de
-messages. Celui-ci va rapidement retourner à 0.
+Once the network has at least reached **Topology loaded**, internal mechanisms of the Z-Wave server will force updates of values, it is therefore completely normal to see the number of messages rise. This will quickly return to 0.
 
 > **Tip**
 >
-> Le réseau est dit fonctionnel au moment où il atteint le statut
-> **Topology Loaded**, c’est-à-dire que l’ensemble des nœuds secteurs
-> ont complété leurs interviews. Selon le nombre de modules, la
-> répartition pile/secteur, le choix du dongle USB et le PC sur lequel
-> tourne le plugin Z-Wave, le réseau va atteindre cette état entre une
-> et cinq minutes.
+> The network is said to be functional when it reaches the status **Topology loaded**, that is to say that all the sector nodes have completed their interviews. Depending on the number of modules, the battery / sector distribution, the choice of the USB dongle and the PC on which the Z-Wave plugin is running, the network will reach this state between one and five minutes.
 
-Un réseau **Ready**, signifie que tous les nœuds secteur et sur pile ont
-complété leur interview.
+A network **Ready**, means that all sector and battery nodes have completed their interview.
 
 > **Tip**
 >
-> Selon les modules dont vous disposez, il est possible que le réseau
-> n’atteigne jamais de lui-même le statut **Ready**. Les télécommandes,
-> par exemple, ne se réveillent pas d’elles-mêmes et ne compléteront
-> jamais leur interview. Dans ce genre de cas, le réseau est tout-à-fait
-> opérationnel et même si les télécommandes n’ont pas complété leur
-> interview, elles assurent leurs fonctionnalités au sein du réseau.
+> Depending on the modules you have, the network may never reach status by itself **Ready**. Remote controls, for example, don't wake up on their own and will never complete their interview. In this kind of case, the network is fully operational and even if the remote controls have not completed their interview, they ensure their functionality within the network.
 
-**Capacités**
+**Capacities**
 
-Permet de savoir si le contrôleur est un contrôleur principal ou
-secondaire.
+Used to find out whether the controller is a primary or secondary controller.
 
-**Système**
+**System**
 
-Displays miscellaneous system information.
+Displays various system information.
 
--   Information sur le port USB utilisé.
+-   Information on the USB port used.
+-   OpenZwave library version
+-   Version of the Python-OpenZwave library
 
--   Version de la librairie OpenZwave
-
--   Version de la librairie Python-OpenZwave
-
-Actions
--------
+## Actions
 
 ![network05](../images/network05.png)
 
-Vous retrouvez ici toutes les actions possibles sur l’ensemble de votre
-réseau Z-Wave. Chaque action est accompagnée d’une description sommaire.
+Here you will find all the possible actions for your entire Z-Wave network. Each action is accompanied by a brief description.
 
 > **Important**
 >
-> Certaines actions sont vraiment risquées voire irréversibles, l’équipe
-> Jeedom ne pourra être tenue responsable en cas de mauvaise
-> manipulation.
+> Certain actions are really risky or even irreversible, the Jeedom team cannot be held responsible in the event of improper handling.
 
 > **Important**
 >
-> Certains modules requièrent une inclusion en mode sécurisé, par
-> exemple pour les serrures de porte. L’inclusion sécurisée doit être
-> lancée via l’action de cet écran.
+> Some modules require inclusion in secure mode, for example for door locks. Secure inclusion must be launched via the action on this screen.
 
 > **Tip**
 >
-> Si une action ne peut être lancée, elle sera désactivée jusqu’au
-> moment où elle pourra être à nouveau exécutée.
+> If an action cannot be launched, it will be deactivated until it can be executed again.
 
-Statistiques
-------------
+## Statistiques
 
 ![network06](../images/network06.png)
 
-Vous retrouvez ici les statistiques générales sur l’ensemble de votre
-réseau Z-Wave.
+Here you will find general statistics for your entire Z-Wave network.
 
-Graphique du réseau
--------------------
+## Network graph
 
 ![network07](../images/network07.png)
 
-Cet onglet vous donnera une représentation graphique des différents
-liens entre les nœuds.
+This tab will give you a graphic representation of the different links between the nodes.
 
-Color codes :
+Explanation of the color legend :
 
--   **Noir** : Le contrôleur principal, en général représenté
-    comme Jeedom.
-
--   **Vert** : Communication directe avec le contrôleur, idéal.
-
--   **Blue** : Pour les contrôleurs, comme les télécommandes, ils sont
-    associés au contrôleur primaire, mais n’ont pas de voisin.
-
--   **Jaune** : Toute les routes ont plus d’un saut avant d’arriver
-    au contrôleur.
-
--   **Gris** : L’interview n’est pas encore complété, les liens seront
-    réellement connus une fois l’interview complété.
-
--   **Rouge** : présumé mort, ou sans voisin, ne participe pas/plus au
-    maillage du réseau.
+-   **Black** : The main controller, generally represented as Jeedom.
+-   **Green** : Direct communication with the controller, ideal.
+-   **Blue** : For controllers, like remote controls, they are associated with the primary controller, but have no neighbor.
+-   **Yellow** : All roads have more than one jump before arriving at the controller.
+-   **Grey** : The interview is not yet completed, the links will be really known once the interview is completed.
+-   **Red** : presumed dead, or without a neighbor, does not participate / no longer in the networking of the network.
 
 > **Tip**
 >
-> Seul les équipements actifs seront affichés dans le graphique réseau.
+> Only active equipment will be displayed in the network graph.
 
-Le réseau Z-Wave est constitué de trois différents types de nœuds avec
-trois fonctions principales.
+The Z-Wave network consists of three different types of nodes with three main functions.
 
-La principale différence entre les trois types de nœuds est leur
-connaissance de la table de routage du réseau et par la suite leur
-capacité à envoyer des messages au réseau:
+The main difference between the three types of nodes is their knowledge of the network routing table and subsequently their ability to send messages to the network.
 
-Table de routage
-----------------
+## Routing table
 
-Chaque nœud est en mesure de déterminer quels autres nœuds sont en
-communication directe. Ces nœuds sont appelés voisins. Au cours de
-l’inclusion et/ou plus tard sur demande, le nœud est en mesure
-d’informer le contrôleur de la liste de voisins. Grâce à ces
-informations, le contrôleur est capable de construire une table qui a
-toutes les informations sur les routes possibles de communication dans
-un réseau.
+Each node is able to determine which other nodes are in direct communication. These nodes are called neighbors. During the inclusion and / or later on request, the node is able to inform the controller of the list of neighbors. Thanks to this information, the controller is able to build a table that has all the information on the possible communication routes in a network.
 
 ![network08](../images/network08.png)
 
-Les lignes du tableau contiennent les nœuds de source et les colonnes
-contiennent les nœuds de destination. Se référer à la légende pour
-comprendre les couleurs de cellule qui indiquent les liens entre deux
-nœuds.
+The rows of the table contain the source nodes and the columns contain the destination nodes. Refer to the legend to understand the cell colors that indicate the links between two nodes.
 
-Color codes :
+Explanation of the color legend :
 
--   **Vert** : Communication directe avec le contrôleur, idéal.
-
--   **Blue** : Au moins 2 routes avec un saut.
-
--   **Jaune** : Moins de 2 routes avec un saut.
-
--   **Gris** : L’interview n’est pas encore complété, sera réellement
-    mis à jour une fois l’interview complété.
-
--   **Orange** : Toutes les routes ont plus d’un saut. Peut engendrer
-    des latences.
+-   **Green** : Direct communication with the controller, ideal.
+-   **Blue** : At least 2 routes with a jump.
+-   **Yellow** : Less than 2 routes with a jump.
+-   **Grey** : The interview is not yet completed, will actually be updated once the interview is completed.
+-   **Orange** : All roads have more than one jump. May cause latencies.
 
 > **Tip**
 >
-> Seul les équipements actifs seront affichés dans le graphique réseau.
+> Only active equipment will be displayed in the network graph.
 
 > **Important**
 >
-> Un module présumé mort, ne participe pas/plus au maillage du réseau.
-> Il sera marqué ici d’un point d’exclamation rouge dans un triangle.
+> A module presumed dead, does not participate / no longer in the networking of the network. It will be marked here with a red exclamation point in a triangle.
 
 > **Tip**
 >
-> Vous pouvez lancer manuellement la mise à jour des voisins, par module
-> ou pour l’ensemble du réseau à l’aide des boutons disponibles dans la
-> table de routage.
+> You can manually start the neighbor update, by module or for the whole network using the buttons available in the routing table.
 
-Santé
-=====
+# Santé
 
 ![health01](../images/health01.png)
 
-Cette fenêtre résume l’état de votre réseau Z-Wave :
+This window summarizes the status of your Z-Wave network :
 
 ![health02](../images/health02.png)
 
 You have here :
 
--   **Module** : le nom de votre module, un clic dessus vous permet d’y
-    accéder directement.
-
--   **ID** : ID de votre module sur le réseau Z-Wave.
-
--   **Notification** : dernier type d’échange entre le module et le
-    contrôleur
-
--   **Groupe** : indique si la configuration des groupes est ok
-    (contrôleur au moins dans un groupe). Si vous n’avez rien c’est que
-    le module ne supporte pas la notion de groupe, c’est normal
-
--   **Constructeur** : indique si la récupération des informations
-    d’identification du module est ok
-
--   **Voisin** : indique si la liste des voisins a bien été récupérée
-
--   **Statut** : Indique le statut de l’interview (query stage) du
-    module
-
--   **Batterie** : niveau de batterie du module (un fiche secteur
-    indique que le module est alimenté au secteur).
-
--   **Wakeup time** : pour les modules sur batterie, il donne la
-    fréquence en secondes des instants où le module se
-    réveille automatiquement.
-
--   **Paquet total** : affiche le nombre total de paquets reçus ou
-    envoyés avec succès au module.
-
--   **%OK** : affiche le pourcentage de paquets envoyés/reçus
-    avec succès.
-
--   **Temporisation** : affiche le délai moyen d’envoi de paquet en ms.
-
--   **Dernière notification** : Date de dernière notification reçue du
-    module ainsi que l’heure du prochain réveil prévue, pour les modules
-    qui dorment.
-
-    -   Elle permet en plus d’informer si le noeud ne s’est pas encore
-        réveillé une fois depuis le lancement du démon.
-
-    -   Et indique si un noeud ne s’est pas réveillé comme prévu.
-
--   **Ping** : Permet d’envoyer une série de messages au module pour
-    tester son bon fonctionnement.
+-   **Module** : the name of your module, click on it to access it directly.
+-   **Id** : ID of your module on the Z-Wave network.
+-   **Notification** : last type of exchange between the module and the controller
+-   **Group** : indicates if the group configuration is ok (controller at least in a group). If you have nothing it is that the module does not support the notion of group, it is normal
+-   **Manufacturer** : indicates whether the recovery of module identification information is ok
+-   **Neighbour** : indicates if the list of neighbors has been retrieved
+-   **Status** : Indicates the status of the module's interview (query stage)
+-   **Drums** : battery level of the module (a mains plug indicates that the module is powered from the mains).
+-   **Wakeup time** : for modules on battery, it gives the frequency in seconds of the instants when the module wakes up automatically.
+-   **Total package** : displays the total number of packets successfully received or sent to the module.
+-   **%OK** : displays the percentage of packets sent / received successfully.
+-   **Time delay** : displays the average packet sending delay in ms.
+-   **Last notification** : Date of last notification received from the module and the time of the next wakeup scheduled, for modules that sleep.
+    -   It also allows to inform if the node has not woken up once since the launch of the daemon.
+    -   And indicates if a node has not woken up as expected.
+-   **Ping** : Allows you to send a series of messages to the module to test its proper functioning.
 
 > **Important**
 >
-> Les équipements désactivés seront affichés mais aucune information de
-> diagnostic ne sera présente.
+> Disabled equipment will be displayed but no diagnostic information will be present.
 
-The name of the module can be followed by one or two images :
+The name of the module can be followed by one or two images:
 
-![health04](../images/health04.png) Modules supportant la
-COMMAND\_CLASS\_ZWAVE\_PLUS\_INFO
+![health04](../images/health04.png) Modules supportant la COMMAND\_CLASS\_ZWAVE\_PLUS\_INFO
 
-![health05](../images/health05.png) Modules supportant la
-COMMAND\_CLASS\_SECURITY et securisé.
+![health05](../images/health05.png) Modules supportant la COMMAND\_CLASS\_SECURITY and securisé.
 
-![health06](../images/health06.png) Modules supportant la
-COMMAND\_CLASS\_SECURITY et non sécurisé.
+![health06](../images/health06.png) Modules supportant la COMMAND\_CLASS\_SECURITY and non Secured.
 
-![health07](../images/health07.png) Module FLiRS, routeurs esclaves
-(modules à piles) à écoute fréquente.
+![health07](../images/health07.png) Module FLiRS, routeurs esclaves (modules à piles) à écoute fréquente.
 
 > **Tip**
 >
-> La commande Ping peut être utilisée si le module est présumé mort
-> "DEATH" afin de confirmer si c’est réellement le cas.
+> The Ping command can be used if the module is presumed dead "DEATH" in order to confirm if this is really the case.
 
 > **Tip**
 >
-> Les modules qui dorment répondront seulement au Ping lors de leur
-> prochain réveil.
+> Sleeping modules will only respond to Ping the next time they wake up.
 
 > **Tip**
 >
-> La notification Timeout ne signifie pas nécessairement un problème
-> avec le module. Lancer un Ping et dans la majorité des cas le module
-> répondra par une Notification **NoOperation** qui confirme un retour
-> fructueux du Ping.
+> Timeout notification does not necessarily mean a problem with the module. Launch a Ping and in most cases the module will respond with a Notification **NoOperation** which confirms a fruitful return from ping.
 
 > **Tip**
 >
-> La Temporisation et le %OK sur des nœuds sur piles avant la complétion
-> de leur interview n’est pas significative. En effet le nœud ne va pas
-> répondre aux interrogations du contrôleur du fait qu’il est en sommeil
-> profond.
+> The Delay and% OK on nodes on batteries before the completion of their interview is not significant. Indeed the node will not respond to the controller's interrogations of the fact that it is in deep sleep.
 
 > **Tip**
 >
-> Le serveur Z-Wave s’occupe automatiquement de lancer des tests sur les
-> modules en Timeout au bout de 15 minutes
+> The Z-Wave server automatically takes care of launching tests on the modules in Timeout after 15 minutes
 
 > **Tip**
 >
-> Le serveur Z-Wave essaie automatiquement de remonter les modules
-> présumés morts.
+> The Z-Wave server automatically tries to reassemble the modules that are presumed dead.
 
 > **Tip**
 >
-> Une alerte sera envoyée à Jeedom si le module est présumé mort. Vous
-> pouvez activer une notification pour en être informé le plus
-> rapidement possible. Voir la configuration des Messages dans l’écran
-> de Configuration de Jeedom.
+> An alert will be sent to Jeedom if the module is presumed dead. You can activate a notification to be informed as soon as possible. See the Message configuration in the Jeedom Configuration screen.
 
 ![health03](../images/health03.png)
 
 > **Tip**
 >
-> Si sur votre table de routage et/ou sur l’écran de santé Z-Wave vous
-> avez un ou des modules nommés avec leurs **nom générique**, la
-> synchronisation permettra de remédier à cette situation.
+> If on your routing table and / or on the Z-Wave health screen you have one or more modules named with their **generic name**, synchronization will remedy this situation.
 
 > **Tip**
 >
-> Si sur votre table de routage et/ou sur l’écran de santé Z-Wave vous
-> avez un ou des modules nommés **Unknown**, cela signifie que
-> l’interview du module n’a pas été complétée avec succès. Vous avez
-> probablement un **NOK** dans la colonne constructeur. Ouvrir le détail
-> du/des modules, pour essayer les suggestions de solution proposées.
-> (voir section Dépannage et diagnostique, plus bas)
+> If on your routing table and / or on the Z-Wave health screen you have one or more modules named **Unknown**, this means that the module interview has not been successfully completed. You probably have a **NOk** in the constructor column. Open the details of the module (s), to try the suggested solutions (see section Troubleshooting and diagnostics, below).
 
-Statut de l’interview
----------------------
+## Interview status
 
-Etape de l’interview d’un module après le démarrage du démon.
+Step of interviewing a module after starting the daemon.
 
--   **None** Initialisation du processus de recherche de noeud.
+-   **None** Initialization of the node search process.
+-   **ProtocolInfo** Retrieve protocol information, if this node is listening (listener), its maximum speed and its device classes.
+-   **Probe** Ping the module to see if it is awake.
+-   **Wakeup** Start the wake-up process, if it is a sleeping node.
+-   **ManufacturerSpecific1** Retrieve the name of the manufacturer and product ids if ProtocolInfo allows it.
+-   **NodeInfo** Retrieve information on the support of supported command classes.
+-   **NodePlusInfo** Retrieve ZWave + info on support for supported command classes.
+-   **SecurityReport** Retrieve the list of order classes that require security.
+-   **ManufacturerSpecific2** Retrieve the name of the manufacturer and the product identifiers.
+-   **Versions** Retrieve version information.
+-   **Instances** Retrieve multi-instance command class information.
+-   **Static** Retrieve static information (does not change).
+-   **CacheLoad** Ping the module during reboot with config cache of the device.
+-   **Associations** Retrieve information on associations.
+-   **Neighbors** Retrieve the list of neighboring nodes.
+-   **Session** Retrieve session information (rarely changes).
+-   **Dynamic** Retrieve dynamic information (changes frequently).
+-   **Setup** Retrieve configuration parameter information (only made on request).
+-   **Complete** The interview process is finished for this node.
 
--   **ProtocolInfo** Récupérer des informations de protocole, si ce
-    noeud est en écoute (listener), sa vitesse maximale et ses classes
-    de périphériques.
+## Notification
 
--   **Probe** Ping le module pour voir s’il est réveillé.
+Details of notifications sent by modules
 
--   **WakeUp** Démarrer le processus de réveil, s’il s’agit d’un
-    noeud endormi.
+-   **Completed** Action successfully completed.
+-   **Timeout** Delay report reported when sending a message.
+-   **NoOperation** Report on a test of the node (Ping), that the message was sent successfully.
+-   **Awake** Report when a node has just woken up
+-   **Sleep** Report when a node has fallen asleep.
+-   **Dead** Report when a node is presumed dead.
+-   **Alive** Report when a node is relaunched.
 
--   **ManufacturerSpecific1** Récupérer le nom du fabricant et de
-    produits ids si ProtocolInfo le permet.
+# Backups
 
--   **NodeInfo** Récupérer les infos sur la prise en charge des classes
-    de commandes supportées.
+The backup part will allow you to manage the backups of your network topology. This is your zwcfgxxx file.xml, it constitutes the last known state of your network, it is a form of cache of your network. From this screen you can :
 
--   **NodePlusInfo** Récupérer les infos ZWave+ sur la prise en charge
-    des classes de commandes supportées.
-
--   **SecurityReport** Récupérer la liste des classes de commande qui
-    nécessitent de la sécurité.
-
--   **ManufacturerSpecific2** Récupérer le nom du fabricant et les
-    identifiants de produits.
-
--   **Versions** Récupérer des informations de version.
-
--   **Instances** Récupérer des informations multi-instances de classe
-    de commande.
-
--   **Static** Récupérer des informations statiques (ne change pas).
-
--   **CacheLoad** Ping le module lors du redémarrage avec config cache
-    de l’appareil.
-
--   **Associations** Récupérer des informations sur les associations.
-
--   **Neighbors** Récupérer la liste des noeuds voisins.
-
--   **Session** Récupérer des informations de session (change rarement).
-
--   **Dynamic** Récupérer des informations dynamiques
-    (change fréquemment).
-
--   **Configuration** Récupérer des informations de paramètres de
-    configurations (seulement fait sur demande).
-
--   **Complete** Le processus de l’interview est terminé pour ce noeud.
-
-Notification
-------------
-
-Details of the notifications sent by the modules.
-
--   **Completed** Action terminée avec succès.
-
--   **Timeout** Rapport de délai rapporté lors de l’envoi d’un message.
-
--   **NoOperation** Rapport sur un test du noeud (Ping), que le message
-    a été envoyé avec succès.
-
--   **Awake** Signaler quand un noeud vient de se réveiller
-
--   **Sleep** Signaler quand un noeud s’est endormi.
-
--   **Dead** Signaler quand un nœud est présumé mort.
-
--   **Alive** Signaler quand un nœud est relancé.
-
-Backups
-=======
-
-La partie backup va vous permettre de gérer les backups de la topologie
-de votre réseau. C’est votre fichier zwcfgxxx.xml, il constitue le
-dernier état connu de votre réseau, c’est une forme de cache de votre
-réseau. A partir de cet écran vous pourrez :
-
--   Lancer un backup (un backup est fait à chaque arrêt relance du
-    réseau et pendant les opérations critiques). Les 12 derniers backups
-    sont conservés
-
--   Restaurer un backup (en le sélectionnant dans la liste
-    juste au-dessus)
-
--   Supprimer un backup
+-   Start a backup (a backup is made at each restart of the network and during critical operations). The last 12 backups are kept
+-   Restore a backup (by selecting it from the list just above)
+-   Delete a backup
 
 ![backup01](../images/backup01.png)
 
-Mettre à jour OpenZWave
-=======================
+# Update OpenZWave
 
-Suite à une mise à jour du plugin Z-Wave il est possible que Jeedom vous
-demande de mettre à jour les dépendances Z-Wave. Un NOK au niveau des
-dépendances sera affiché:
+Following an update of the Z-Wave plugin it is possible that Jeedom asks you to update the Z-Wave dependencies. A dependency NOK will be displayed:
 
 ![update01](../images/update01.png)
 
 > **Tip**
 >
-> Une mise à jour des dépendances n’est pas à faire à chaque mise à jour
-> du plugin.
+> An update of the dependencies is not to be done with each update of the plugin.
 
-Jeedom devrait lancer de lui même la mise à jour des dépendances si le
-plugin considère qu’elle sont **NOK**. Cette validation est effectuée au
-bout de 5 minutes.
+Jeedom should launch the dependency update by itself if the plugin considers that they are **NOk**. This validation is carried out after 5 minutes.
 
-La durée de cette opération peut varier en fonction de votre système
-(jusqu’à plus de 1h sur raspberry pi)
+The duration of this operation can vary depending on your system (up to more than 1 hour on raspberry pi)
 
-Une fois la mise à jour des dépendances complétée, le démon se relancera
-automatiquement à la validation de Jeedom. Cette validation est
-effectuée au bout de 5 minutes.
+Once the update of dependencies is completed, the daemon will restart automatically upon validation of Jeedom. This validation is carried out after 5 minutes.
 
 > **Tip**
 >
-> Dans l’éventualité où la mise à jour des dépendances ne se
-> complèterait pas, veillez consulter le log **Openzwave\_update** qui
-> devrait vous informer sur le problème.
+> In the event that the updating of the dependencies does not complete, please consult the log **Openzwave\_update** who should inform you about the problem.
 
-Liste des modules compatible
-============================
+# List of compatible modules
 
-Vous trouverez la liste des modules compatibles
-[ici](https://jeedom.fr/doc/documentation/zwave-modules/fr_FR/doc-zwave-modules-equipement.compatible.html)
+You will find the list of compatible modules
+[here](https://doc.jeedom.com/en_US/zwave/equipement.compatible)
 
-Depannage et diagnostic
-=======================
+# Troubleshooting and diagnosis
 
-Mon module n’est pas détecté ou ne remonte pas ses identifiants produit et type
--------------------------------------------------------------------------------
+## My module is not detected or does not provide its product and type identifiers
 
 ![troubleshooting01](../images/troubleshooting01.png)
 
-Lancer la Regénération de la détection du nœud depuis l’onglet Actions
-du module.
+Start the Regeneration of the node detection from the Actions tab of the module.
 
-Si vous avez plusieurs modules dans ce cas de figure, lancer **Regénérer
-la détection de nœuds inconnues**depuis l’écran**Réseau ZWave** onglet
-**Actions**.
+If you have several modules in this scenario, launch **Regenerate the detection of unknown nodes** from the screen **Zwave network** tab **Actions**.
 
-Mon module est présumé mort par le controleur Dead
---------------------------------------------------
+## My module is presumed dead by the Dead controller
 
 ![troubleshooting02](../images/troubleshooting02.png)
 
-Si le module est toujours branché et joignable, suivre les solutions
-proposées dans l’écran du module.
+If the module is still connected and reachable, follow the solutions proposed in the module screen.
 
-Si le module a été décommissionné ou est réellement défectueux, vous
-pouvez l’exclure du réseau en utilisant **supprimer le nœud en erreur**
-via onglet **Actions**.
+If the module has been canceled or is really defective, you can exclude it from the network using **delete the node in error** via tab **Actions**.
 
-Si le module est parti en réparation et un nouveau module de
-remplacement a été livré, vous pouvez lancer **Remplacer nœud en échec**
-via onglet **Actions**, le contrôleur déclenche l’inclusion puis vous
-devez procéder à l’inclusion sur le module. L’id de l’ancien module sera
-conservé ainsi que ses commandes.
+If the module has been repaired and a new replacement module has been delivered, you can launch **Replace failed node** via tab **Actions**, the controller triggers the inclusion then you must proceed with the inclusion on the module. The id of the old module will be kept as well as its commands.
 
-Comment utiliser la commande SwitchAll
---------------------------------------
+## How to use the SwitchAll command
 
 ![troubleshooting03](../images/troubleshooting03.png)
 
-Elle est disponible via votre nœud contrôleur. Votre contrôleur devrait
-avoir les commandes Switch All On et Switch All Off.
+It is available via your controller node. Your controller should have Switch All On and Switch All Off commands.
 
-Si votre contrôleur n’apparaît pas dans votre liste de module, lancez la
-synchronisation.
+If your controller does not appear in your module list, start synchronization.
 
 ![troubleshooting04](../images/troubleshooting04.png)
 
-La Commande Classe Switch All est en général supportée sur les
-interrupteurs et les variateurs. Son comportement est configurable sur
-chaque module qui la supporte.
+Class Switch All Command is generally supported on switches and drives. Its behavior is configurable on each module that supports it.
 
-One can either :
+So we can either:
 
--   Désactiver la Commande Classe Switch All.
+-   Deactivate the Switch All Class Command.
+-   Activate for On and Off.
+-   Activate On only.
+-   Activate Off only.
 
--   Activer pour le On et le Off.
+The choice of options depends on the manufacturer.
 
--   Activer le On seulement.
+You must therefore take the time to review all of its switches / dimmers before setting up a scenario if you do not control only lights.
 
--   Activer le Off seulement.
-
-Le choix d’options dépend d’un constructeur à l’autre.
-
-Il faut donc bien prendre le temps de passer en revue l’ensemble de ses
-interrupteurs/variateurs avant de mettre en place un scénario si vous ne
-pilotez pas que des lumières.
-
-Mon module n a pas de commande Scene ou Bouton
-----------------------------------------------
+## My module does not have a Scene or Button command
 
 ![troubleshooting05](../images/troubleshooting05.png)
 
-Vous pouvez ajouter la commande dans l’écran de "mapping" des commandes.
+You can add the command in the command mapping screen.
 
-Il s’agit d’une commande **Info**en CC**0x2b**Instance**0** commande
-**data\[0\].val**
+This is an order **Info** in CC **0x2b** Instance **0** commande
+**data \ [0 \]. val**
 
-Le mode scène doit être activé dans les paramètres du module. Voir la
-documentation de votre module pour plus de détails.
+Scene mode must be activated in module settings. See the documentation for your module for more details.
 
-Forcer le rafraichissement de valeurs
--------------------------------------
+## Force refresh values
 
-Il est possible de forcer à la demande le rafraîchissement des valeurs
-d’une instance pour une commande classe spécifique.
+It is possible to force the request to refresh the values of an instance for a specific class command.
 
-Il est possible de faire via une requête http ou de créer une commande
-dans l’écran de mapping d’un équipement.
+It is possible to do via an http request or create an order in the equipment mapping screen.
 
 ![troubleshooting06](../images/troubleshooting06.png)
 
-Il s’agit d’une commande **Action**choisir la**CC** souhaitée pour une
-**Instance**donnée avec la commande**data\[0\].ForceRefresh()**
+This is an order **Action** choose the **CC** desired for a **Instance** given with the command **data \ [0 \]. ForceRefresh()**
 
-L’ensemble des index de l’instance pour cette commande Classe sera mise
-à jour. Les nœuds sur piles attendront leur prochain réveil avant
-d’effectuer la mise à jour de leur valeur.
+All the instance indexes for this Class command will be updated. The nodes on batteries will await their next awakening before carrying out the update of their value.
 
-Vous pouvez aussi utiliser par script en lançant une requête http au
-serveur REST Z-Wave.
+You can also use by script by sending an http request to the Z-Wave REST server.
+Replace ip\_jeedom, node\_id, instance\_id, cc\_id and index
 
-Remplacer ip\_jeedom, node\_id, instance\_id, cc\_id et index
+``http://token:\#APIKEY\#@ip\_jeedom:8083/ZWaveAPI/Run/devicesnode\_id.instances\[instance\_id\].commandClasses\[cc\_id\].data\[index\].ForceRefresh()``
 
-http://token:\#APIKEY\#@ip\_jeedom:8083/ZWaveAPI/Run/devicesnode\_id.instances\[instance\_id\].commandClasses\[cc\_id\].data\[index\].ForceRefresh()
+## Transfer the modules to a new controller
 
-L’accès a l’api REST ayant changé, voir les détails
-[içi](./restapi.asciidoc).
+For different reasons, you may have to transfer all of your modules to a new main controller.
 
-Transferer les modules sur un nouveau controleur
-------------------------------------------------
+You decide to go from **raZberry** has a **Z-Stick Gen5** or because, you have to perform a **Reset** complete of main controller.
 
-Pour différentes raisons, vous pouvez être amené à devoir transférer
-l’ensemble de vos modules sur un nouveau contrôleur principal.
+Here are different steps to get there without losing your valuable scenarios, widgets and history:
 
-Vous décidez de passer du **raZberry**à un**Z-Stick Gen5** ou parce
-que, vous devez effectuer un **Reset** complet du contrôleur principal.
+-   1 \) Make a Jeedom backup.
+-   2 \) Remember to write down (screenshot) your parameter values for each module, they will be lost following exclusion.
+-   3 \) In the Z-Wave configuration, uncheck the option "Automatically delete excluded devices" and save. Network reboots.
+-   4a) In the case of a **Reset**, Reset the main controller and restart the plugin.
+-   4b) For a new controller, stop Jeedom, disconnect the old controller and connect the new one. Start Jeedom.
+-   5 \) For each Z-Wave device, change the ZWave ID to **0**.
+-   6 \) Open 2 pages of the Z-Wave plugin in different tabs.
+-   7 \) (Via the first tab) Go to the configuration page of a module that you wish to include in the new controller.
+-   8 \) (Via second tab) Exclude and then include the module. New equipment will be created.
+-   9 \) Copy the Z-Wave ID of the new device, then delete this device.
+-   10 \) Return to the tab of the old module (1st tab) then paste the new ID in place of the old ID.
+-   11 \) The ZWave parameters were lost during the exclusion / inclusion, remember to reset your specific parameters if you do not use the default values.
+-   11 \) Repeat steps 7 to 11 for each module to be transferred.
+-   12 \) At the end, you should no longer have equipment in ID 0.
+-   13 \) Check that all modules are correctly named in the Z-Wave health screen. Start Synchronization if this is not the case.
 
-Voici différentes étapes pour y arriver sans perdre vos scénarios,
-widgets et historiques de valeur:
+## Replace a faulty module
 
--   1\) Faire un backup Jeedom.
+How to redo the inclusion of a failing module without losing your value scenarios, widgets and histories
 
--   2\) Pensez à noter (copie écran) vos valeurs de paramètres pour chaque
-    module, ils seront perdus suite à l’exclusion.
+If the module is assumed to be "Dead" :
 
--   3\) Dans la configuration Z-Wave, décocher l’option "Supprimer
-    automatiquement les périphériques exclus" et sauvegarder. Le
-    réseau redémarre.
+-   Note (screenshot) your parameter values, they will be lost following inclusion.
+-   Go to the actions tab of the module and launch the command "Replace failed node".
+-   The controller is in inclusion mode, proceed to inclusion according to the module documentation.
+-   Reset your specific parameters.
 
--   4a) Dans le cas d’un **Reset**, Faire le Reset du contrôleur
-    principal et redémarrer le plugin.
+If the module is not presumed to be "Dead" but is still accessible:
 
--   4b) Pour un nouveau contrôleur, stopper Jeedom, débrancher l’ancien
-    contrôleur et brancher le nouveau. Démarrer Jeedom.
+-   In the ZWave configuration, uncheck "Automatically remove excluded devices".
+-   Note (screenshot) your parameter values, they will be lost following inclusion.
+-   Exclude the faulty module.
+-   Go to the configuration page of the faulty module.
+-   Open the ZWave plugin page in a new tab.
+-   Include the module.
+-   Copy the ID of the new module, then delete this equipment.
+-   Return to the tab of the old module then paste the new ID in place of the old ID.
+-   Reset your specific parameters.
 
--   5\) Pour chaque équipements Z-Wave, modifier l’ID ZWave à **0**.
+## Ghost node removal
 
--   6\) Ouvrir 2 pages du plugin Z-Wave dans des onglets différents.
+If you have lost all communication with a battery-powered module and want to exclude it from the network, it is possible that the exclusion does not succeed or that the node remains present in your network.
 
--   7\) (Via le premier onglet) Aller sur la page de configuration d’un
-    module que vous désirez inclure au nouveau contrôleur.
+Automatic ghost node assistant is available.
 
--   8\) (Via deuxième onglet) Faire une exclusion puis une inclusion
-    du module. Un nouvel équipement sera créé.
+-   Go to the actions tab of the module to delete.
+-   He will probably have a status **CacheLoad**.
+-   Start command **Remove ghost node**.
+-   Z-Wave network stops. Automatic assistant modifies the file **zwcfg** to remove CC WakeUp from the module. Network reboots.
+-   Close the module screen.
+-   Open the Z-Wave Health screen.
+-   Wait for the start-up cycle to be completed (topology loaded).
+-   The module will normally be marked as presumed dead (Dead).
+-   The next minute, you should see the node disappear from the health screen.
+-   If in the Z-Wave configuration, you have unchecked the option "Automatically delete excluded devices", you will have to manually delete the corresponding equipment.
 
--   9\) Copier l’ID Z-Wave du nouvel équipement, puis supprimer
-    cet équipement.
+This wizard is only available for battery modules.
 
--   10\) Retourner sur l’onglet de l’ancien module (1er onglet) puis coller
-    le nouvel ID à la place de l’ancien ID.
+## Post-inclusion actions
 
--   11\) Les paramètres ZWave ont été perdus lors de l’exclusion/inclusion,
-    pensez à remettre vos paramètres spécifiques si vous n’utilisez les
-    valeurs par défaut.
+It is recommended to perform the inclusion at least 1M from the main controller, or this will not be the final position of your new module. Here are some good practices to follow following the inclusion of a new module in your network.
 
--   11\) Répéter les étapes 7 à 11 pour chaque module à transférer.
+Once the inclusion is complete, we must apply a certain number of parameters to our new module in order to get the most out of it. Reminder, the modules, following inclusion, have the manufacturer's default settings. Take advantage of being next to the Jeedom controller and interface to properly configure your new module. It will also be easier to wake up the module to see the immediate effect of the change. Some modules have specific Jeedom documentation to help you with the different parameters as well as recommended values.
 
--   12\) A la fin, vous ne devriez plus avoir d’équipement en ID 0.
+Test your module, confirm the feedback, status feedback and possible actions in the case of an actuator.
 
--   13\) Vérifier que tous les modules sont bien nommés dans l’écran de
-    santé Z-Wave. Lancer la Synchronisation si ce n’est pas le cas.
+During the interview, your new module looked for its neighbors. However, the modules in your network do not yet know your new module.
 
-Remplacer un module defaillant
-------------------------------
-
-Comment refaire l’inclusion d’un module défaillant sans perdre vos
-scénarios, widgets et historiques de valeur
-
-If the module is presumed "Dead" :
-
--   Noter (copie écran) vos valeurs de paramètres, elles seront perdues
-    suite à l’inclusion.
-
--   Aller sur l’onglet actions du module et lancez la commande
-    "Remplacer noeud en échec".
-
--   Le contrôleur est en mode inclusion, procéder à l’inclusion selon la
-    documentation du module.
-
--   Remettre vos paramètres spécifiques.
-
-Si le module n’est pas présumé "Dead" mais est toujours accessible:
-
--   Dans la configuration ZWave, décocher l’option "Supprimer
-    automatiquement les périphériques exclus".
-
--   Noter (copie écran) vos valeurs de paramètres, elles seront perdues
-    suite à l’inclusion.
-
--   Exclure le module défaillant.
-
--   Aller sur la page de configuration du module défaillant.
-
--   Ouvrir la page du plugin ZWave dans un nouvel onglet.
-
--   Faire l’inclusion du module.
-
--   Copier l’ID du nouveau module, puis supprimer cet équipement.
-
--   Retourner sur l’onglet de l’ancien module puis coller le nouvel ID à
-    la place de l’ancien ID.
-
--   Remettre vos paramètres spécifiques.
-
-Suppression de noeud fantome
-----------------------------
-
-Si vous avez perdu toute communication avec un module sur pile et que
-vous souhaitez l’exclure du réseau, il est possible que l’exclusion
-n’aboutisse pas ou que le nœud reste présent dans votre réseau.
-
-A ghost module automatic wizard is available.
-
--   Aller sur l’onglet actions du module à supprimer.
-
--   Il aura probablement un statut **CacheLoad**.
-
--   Lancer la commande **Supprimer nœud fantôme**.
-
--   Le réseau Z-Wave s’arrête. L’assistant automatique modifie le
-    fichier **zwcfg** pour supprimer la CC WakeUp du module. Le
-    réseau redémarre.
-
--   Fermer l’écran du module.
-
--   Ouvrir l’écran de Santé Z-Wave.
-
--   Attendre que le cycle de démarrage soit complété (topology loaded).
-
--   Le module sera normalement marqué comme étant présumé mort (Dead).
-
--   La minute suivante, vous devriez voir le nœud disparaître de l’écran
-    de santé.
-
--   Si dans la configuration Z-Wave, vous avez décoché l’option
-    "Supprimer automatiquement les périphériques exclus", il vous faudra
-    supprimer manuellement l’équipement correspondant.
-
-Cet assistant est disponible seulement pour les modules sur piles.
-
-Actions post inclusion
-----------------------
-
-On recommande d’effectuer l’inclusion à moins 1M du contrôleur
-principal, or ce ne sera pas la position finale de votre nouveau module.
-Voici quelques bonnes pratiques à faire suite à l’inclusion d’un nouveau
-module dans votre réseau.
-
-Une fois l’inclusion terminée, il faut appliquer un certain nombre de
-paramètres à notre nouveau module afin d’en tirer le maximum. Rappel,
-les modules, suite à l’inclusion, ont les paramètres par défaut du
-constructeur. Profitez d’être à côté du contrôleur et de l’interface
-Jeedom pour bien paramétrer votre nouveau module. Il sera aussi plus
-simple de réveiller le module pour voir l’effet immédiat du changement.
-Certains modules ont une documentation spécifique Jeedom afin de vous
-aider avec les différents paramètres ainsi que des valeurs recommandées.
-
-Testez votre module, validez les remontées d’informations, retour d’état
-et actions possibles dans le cas d’un actuateur.
-
-Lors de l’interview, votre nouveau module a recherché ses voisins.
-Toutefois, les modules de votre réseau ne connaissent pas encore votre
-nouveau module.
-
-Déplacez votre module à son emplacement définitif. Lancez la mise à jour
-de ses voisins et réveillez-le encore une fois.
+Move your module to its final location. Launch the update of its neighbors and wake it up again.
 
 ![troubleshooting07](../images/troubleshooting07.png)
 
-On constate qu’il voit un certain nombre de voisins mais que les
-voisins, eux, ne le voient pas.
+We see that he sees a certain number of neighbors but that the neighbors do not see him.
 
-Pour remédier à cette situation, il faut lancer l’action soigner le
-réseau, afin de demander à tous les modules de retrouver leurs voisins.
+To remedy this situation, it is necessary to launch the action to take care of the network, in order to ask all the modules to find their neighbors.
 
-Cette action peut prendre 24 heures avant d’être terminée, vos modules
-sur pile effectueront l’action seulement à leur prochain réveil.
+This action can take 24 hours before being completed, your battery modules will perform the action only the next time they wake up.
 
 ![troubleshooting08](../images/troubleshooting08.png)
 
-L’option de soigner le réseau 2x par semaine permet de faire ce
-processus sans action de votre part, elle est utile lors de la mise en
-place de nouveaux modules et ou lorsqu’on les déplace.
+The option to treat the network twice a week allows you to do this process without any action on your part, it is useful when installing new modules and or when moving them.
 
-Pas de remontee état de la pile
--------------------------------
+## No battery condition feedback
 
-Les modules Z-Wave n’envoient que très rarement l’état de leur pile au
-contrôleur. Certains vont le faire à l’inclusion puis seulement lorsque
-celle-ci atteint 20% ou une autre valeur de seuil critique.
+Z-Wave modules very rarely send their battery status to the controller. Some will do it at inclusion then only when it reaches 20% or another critical threshold value.
 
-Pour vous aider à mieux suivre l’état de vos piles, l’écran Batteries
-sous le menu Analyse vous donne une vue d’ensemble de l’état de vos
-piles. Un mécanisme de notification de piles faibles est aussi
-disponible.
+To help you better monitor the status of your batteries, the Batteries screen under the Analysis menu gives you an overview of the status of your batteries. A low battery notification mechanism is also available.
 
-La valeur remontée de l’écran Piles est la dernière connue dans le
-cache.
+The value returned from the Batteries screen is the last known in the cache.
 
-Toutes les nuits, le plugin Z-Wave demande à chaque module de rafraichir
-la valeur Battery. Au prochain réveil, le module envoie la valeur à
-Jeedom pour être ajouté au cache. Donc il faut en général attendre au
-moins 24h avant l’obtention d’une valeur dans l’écran Batteries.
+Every night, the Z-Wave plugin asks each module to refresh the Battery value. The next time you wake up, the module sends the value to Jeedom to be added to the cache. So you generally have to wait at least 24 hours before obtaining a value in the Batteries screen.
 
 > **Tip**
 >
-> Il est bien entendu possible de rafraichir manuellement la valeur
-> Battery via l’onglet Valeurs du module puis, soit attendre le prochain
-> réveil ou encore de réveiller manuellement le module pour obtenir une
-> remontée immédiate. Le cycle de réveil (Wake-up Interval) du module
-> est défini dans l’onglet Système du module. Pour optimiser la vie de
-> vos piles, il est recommandé d’espacer au maximum ce délai. Pour 4h,
-> il faudrait appliquer 14400, 12h 43200. Certains modules doivent
-> écouter régulièrement des messages du contrôleur comme les
-> Thermostats. Dans ce cas, il faut penser à 15min soit 900. Chaque
-> module est différent, il n’y a donc pas de règle exacte, c’est au cas
-> par cas et selon l’expérience.
+> It is of course possible to manually refresh the Battery value via the Values tab of the module, then either wait for the next wake-up or even manually wake the module to obtain an immediate rise. The Wake-up Interval of the module is defined in the System tab of the module. To optimize the life of your batteries, it is recommended to space this delay as long as possible. For 4h, apply 14400, 12h 43200. Certain modules must listen regularly to messages from the controller such as Thermostats. In this case, you have to think of 15 min, i.e. 900. Each module is different, so there is no exact rule, it is case by case and according to experience.
 
 > **Tip**
 >
-> La décharge d’une pile n’est pas linéaire, certains modules vont
-> montrer un grosse perte en pourcentage dans les premiers jours de mise
-> en service, puis ne plus bouger durant des semaines pour se vider
-> rapidement une fois passé les 20%.
+> The discharge of a battery is not linear, some modules will show a large percentage loss in the first days of commissioning, then do not move for weeks to empty quickly once past the 20%.
 
-Controleur est en cours d initialisation
-----------------------------------------
+## Controller is being initialized
 
-Lorsque vous démarrez le démon Z-Wave, si vous essayez de lancer
-immédiatement une inclusion/exclusion, vous risquez d’obtenir ce
-message: \* "Le contrôleur est en cours d’initialisation, veuillez
-réessayer dans quelques minutes"
+When you start the Z-Wave daemon, if you try to immediately start an inclusion / exclusion, you may get this message: \* "The controller is initializing, please try again in a few minutes"
 
 > **Tip**
 >
-> Suite au démarrage du démon, le contrôleur passe sur l’ensemble des
-> modules afin de refaire leur interview. Ce comportement est
-> tout-à-fait normal en OpenZWave.
+> Following the start of the daemon, the controller goes on all the modules in order to repeat their interview. This behavior is completely normal in OpenZWave.
 
-Si toutefois après plusieurs minutes (plus de 10 minutes), vous avez
-toujours ce message, ce n’est plus normal.
+If however after several minutes (more than 10 minutes), you still have this message, it is no longer normal.
 
-You have to then try the following steps :
+You have to try the different steps:
 
--   S’assurer que les voyants de l’écran santé Jeedom soient au vert.
+-   Make sure that the Jeedom health screen lights are green.
+-   Make sure the plugin configuration is in order.
+-   Make sure you have selected the correct port for the ZWave key.
+-   Make sure your Jeedom Network configuration is correct. (Attention if you have made a Restore of a DIY installation towards official image, the suffix / jeedom should not appear there)
+-   Look at the plugin log to see if an error has not been reported.
+-   Look the **Console** ZWave plugin, to see if an error has not been reported.
+-   Launch the Demon by **Debug** look again at the **Console** and plugin logs.
+-   Completely restart Jeedom.
+-   Make sure you have a Z-Wave controller, the Razberry are often confused with the EnOcean (error when ordering).
 
--   S’assurer que la configuration du plugin est en ordre.
+We must now start the hardware tests:
 
--   S’assurer que vous avez bien sélectionné le bon port de la
-    clé ZWave.
+-   The Razberry is well connected to the GPIO port.
+-   USB power is sufficient.
 
--   S’assurer que votre configuration Réseau Jeedom est juste.
-    (Attention si vous avez fait un Restore d’une installation DIY vers
-    image officielle, le suffixe /jeedom ne doit pas y figurer)
+If the problem still persists, reset the controller:
 
--   Regarder le log du plugin afin de voir si une erreur n’est
-    pas remontée.
+-   Completely stop your Jeedom via the stop menu in the user profile.
+-   Disconnect the power.
+-   Remove the USB dongle or Razberry as appropriate, about 5 minutes.
+-   Re connect everything and try again.
 
--   Regarder la **Console** du plugin ZWave, afin de voir si une erreur
-    n’est pas remontée.
+## The controller no longer responds
 
--   Lancer le Demon en **Debug**regarder à nouveau la**Console** et
-    les logs du plugin.
+No more orders are transmitted to the modules, but status returns are sent back to Jeedom.
 
--   Redémarrer complètement Jeedom.
+Controller message queue may be full. See the Z-Wave Network screen if the number of pending messages only increases.
 
--   Il faut s’assurer que vous avez bien un contrôleur Z-Wave, les
-    Razberry sont souvent confondus avec les EnOcean (erreur lors de
-    la commande).
+In this case you have to restart the Demon Z-Wave.
 
-* Then proceed to hardware testing :
+If the problem persists, you must reset the controller:
 
--   Le Razberry est bien branché au port GPIO.
+-   Completely stop your Jeedom via the stop menu in the user profile.
+-   Disconnect the power.
+-   Remove the USB dongle or Razberry as appropriate, about 5 minutes.
+-   Re connect everything and try again.
 
--   L’alimentation USB est suffisante.
+## Error during dependencies
 
-If you still have a problem, you have to reset the controller.
+Several errors can occur when updating dependencies. Check the dependency update log to determine what exactly is the error. Generally, the error is at the end of the log in the last few lines.
 
--   Arrêter complément votre Jeedom via le menu d’arrêt dans le
-    profil utilisateur.
+Here are the possible problems and their possible solutions:
 
--   Débrancher l’alimentation.
+-   could not install mercurial - abort
 
--   Retirer le dongle USB ou le Razberry selon le cas, environ
-    5 minutes.
+The mercurial package does not want to install, to correct launch in ssh:
 
--   Re brancher le tout et essayer à nouveau.
-
-Le controleur ne répond plus
-----------------------------
-
-Plus aucune commande n’est transmise aux modules mais les retours
-d’états sont remontés vers Jeedom.
-
-Il est possible que la queue de messages du contrôleur soit remplie.
-Voir l’écran Réseau Z-Wave si le nombre de messages en attente ne fait
-qu’augmenter.
-
-If so, you have to restart the Z-Wave daemon.
-
-If this keeps happening, you have to reset the controller.
-
--   Arrêter complément votre Jeedom via le menu d’arrêt dans le
-    profil utilisateur.
-
--   Débrancher l’alimentation.
-
--   Retirer le dongle USB ou le Razberry selon le cas, environ
-    5 minutes.
-
--   Re brancher le tout et essayer à nouveau.
-
-Erreur lors des dependances
----------------------------
-
-Plusieurs erreurs peuvent survenir lors de la mise à jour des
-dépendances. Il faut consulter le log de mise à jour des dépendances
-afin de déterminer quelle est exactement l’erreur. De façon générale,
-l’erreur se trouve à la fin du log dans les quelque dernières lignes.
-
-Here is a list of some errors and their possible remediations :
-
--   could not install mercurial – abort
-
-Le package mercurial ne veut pas s’installer, pour corriger lancer en
-ssh:
-
+````
     sudo rm /var/lib/dpkg/info/$mercurial* -f
-    sudo apt-get install mercurial
+    sudo apt-gand install mercurial
+````
 
--   Les dépendances semblent bloquées sur 75%
+-   Addictions seem blocked on 75%
 
-A 75% c’est le début de la compilation de la librairie openzwave ainsi
-que du wrapper python openzwave. Cette étape est très longue, on peut
-toutefois consulter la progression via la vue du log de mise à jour. Il
-faut donc être simplement patient.
+At 75% this is the start of the compilation of the openzwave library as well as the openzwave python wrapper. This step is very long, you can however view the progress via the update log view. So you just have to be patient.
 
--   Erreur lors de la compilation de la librairie openzwave
+-   Error when compiling the openzwave library
 
+````
         arm-linux-gnueabihf-gcc: internal compiler error: Killed (program cc1plus)
         Please submit a full bug report,
         with preprocessed source if appropriate.
         See <file:///usr/share/doc/gcc-4.9/README.Bugs> for instructions.
         error: command 'arm-linux-gnueabihf-gcc' failed with exit status 4
-        Makefile:266: recipe for target 'build' failed
+        Makefile:266: recipe for targand 'build' failed
         make: *** [build] Error 1
+````
 
-Cette erreur peut survenir suite à un manque de mémoire RAM durant la
-compilation.
+This error can occur due to a lack of RAM memory during compilation.
 
-Depuis l’UI jeedom, lancez la compilation des dépendances.
+From the jeedom UI, launch the compilation of dependencies.
 
-Une fois lancée, en ssh, arrêtez ces processus (consommateurs en
-mémoire) :
+Once launched, in ssh, stop these processes (consumers in memory) :
 
+````
     sudo systemctl stop cron
     sudo systemctl stop apache2
-    sudo systemctl stop mysql
+    sudo systemctl stop mysql.
+````
 
-Pour suivre l’avancement de la compilation, on fait un tail sur le
-fichier log openzwave\_update.
+To follow the progress of the compilation, we tail the log file openzwave\_update.
 
+````
     tail -f /var/www/html/log/openzwave_update
+````
 
-Lorsque la compilation est terminée et sans erreur, relancez les
-services que vous avez arrêté
+When the compilation is complete and without error, restart the services that you stopped
 
+````
 sudo systemctl start cron sudo systemctl start apache2 sudo systemctl
 start mysql
+````
 
-> **Tip**
->
-> Si vous êtes toujours sous nginx, il faudra remplacer **apache2** par
-> **nginx**dans les commandes**stop**/**start**. Le fichier log
-> openzwave\_update sera dans le dossier:
-> /usr/share/nginx/www/jeedom/log .
+## Using the Razberry card on a Raspberry Pi 3
 
-Utilisation de la carte Razberry sur un Raspberry Pi 3
-------------------------------------------------------
+To use a Razberry controller on a Raspberry Pi 3, the Raspberry's internal Bluetooth controller must be disabled.
 
-Pour utiliser un contrôleur Razberry sur un Raspberry Pi 3, le
-contrôleur Bluetooth interne du Raspberry doit être désactivé.
+Add this line:
 
-add this line :
-
+````
     dtoverlay=pi3-miniuart-bt
+````
 
-at the end of the file :
+At the end of the file:
 
+````
     /boot/config.txt
+````
 
-and restart the RPI3
+Then restart your Raspberry.
 
-API HTTP
-========
+# HTTP API
 
-Le plugin Z-Wave met à disposition des développeurs et des utilisateurs
-une API complète afin de pouvoir opérer le réseau Z-Wave via requête
-HTTP.
+The Z-Wave plugin provides developers and users with a complete API in order to be able to operate the Z-Wave network via HTTP request.
 
-Il vous est possible d’exploiter l’ensemble des méthodes exposées par le
-serveur REST du démon Z-Wave.
+You can use all of the methods exposed by the REST server of the Z-Wave daemon.
 
-The syntax to invoke routes is as follows :
+The syntax for calling routes is in this form:
 
-URL =
-[http://token:\#APIKEY\#@\#IP\_JEEDOM\#:\#PORTDEMON\#/\#ROUTE\#](http://token:#APIKEY#@#IP_JEEDOM#:#PORTDEMON#/#ROUTE#)
+URLs = ``http://token:\#APIKEY\#@\#IP\_JEEDOM\#:\#PORTDEMON\#/\#ROUTE\#``
 
--   \#API\_KEY\# correspond à votre clé API, propre à
-    votre installation. Pour la trouver, il faut aller dans le menu «
-    Général », puis « Administration » et « Configuration », en activant
-    le mode Expert, vous verrez alors une ligne Clef API.
+-   \#API\_KEY\# corresponds to your API key, specific to your installation. Pour la trouver, il faut aller dans le menu « Main », puis « Administration » and « Setup », en activant le mode Expert, vous verrez alors une ligne Clef API.
+-   \#IP\_JEEDOM\# corresponds to your Jeedom access url.
+-   \#PORTDEMON\# corresponds to the port number specified in the configuration page of the Z-Wave plugin, by default: 8083.
+-   \#ROUTE\# corresponds to the route on the REST server to execute.
 
--   \#IP\_JEEDOM\# correspond à votre url d’accès à Jeedom.
+To know all the routes, please refer
+[Github](https://github.com/jeedom/plugin-openzwave) of the Z-Wave plugin.
 
--   \#PORTDEMON\# correspond au numéro de port spécifié dans la page de
-    configuration du plugin Z-Wave, par défaut: 8083.
+Example: To ping the node id 2
 
--   \#ROUTE\# correspond à la route sur le serveur REST a exécuter.
-
-Pour connaitre l’ensemble des routes, veuillez vous référer
-[github](https://github.com/jeedom/plugin-openzwave) du plugin Z-Wave.
-
-Example: Pour lancer un ping sur le noeud id 2
-
-URL =
-http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices\[2\].TestNode()
+URLs = ``http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices\[2\].TestNode()``
 
 # FAQ
 
-> **J'ai l'erreur "Not enough space in stream buffer"**
+> **I get the error "Not enough space in stream buffer"**
 >
-> Malheureusement cette erreur est matériel, nous ne pouvons rien y faire et cherchons pour le moment comment forcer un redémarrage du démon dans le cas de cette erreur (mais souvent il faut en plus débrancher la clef pendant 5min pour que ca reparte)
+> Unfortunately this error is hardware, there is nothing we can do about it and we are looking for the moment how to force a restart of the daemon in the event of this error (but often it is also necessary to unplug the key for 5 min so that it starts again)

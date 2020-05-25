@@ -72,7 +72,7 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 			<div class="form-group">
 			<label class="col-lg-4 control-label">{{Options avancées}}</label>
 			<div class="col-lg-5">
-				<a class="btn btn-warning" id="bt_backupsZwave"><i class="fa fa-floppy-o"></i> {{Backups}}</a>
+				<a class="btn btn-warning" id="bt_backupsZwave"><i class="fas fa-save"></i> {{Backups}}</a>
 				<a class="btn btn-warning" id="bt_syncconfigZwave"><i class="fas fa-sync-alt"></i> {{Configs modules}}</a>
 			</div>
 		</div>

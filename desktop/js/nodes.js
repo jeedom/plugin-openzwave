@@ -623,7 +623,7 @@ function display_node_info(){
       if (queryStageIndex > 2) {
         if (data.data.isListening.value) {
           $("#div_nodeConfigure .node-sleep").removeClass("label-default");
-          $("#div_nodeConfigure .node-sleep").html('<i class="fa fa-plug text-success fa-lg"></i>');
+          $("#div_nodeConfigure .node-sleep").html('<i class="fas fa-plug text-success fa-lg"></i>');
           $("#div_nodeConfigure .node-battery-span").hide();
         }else {
           $("#div_nodeConfigure .node-sleep").removeClass("label-success").addClass("label-default");
@@ -666,7 +666,7 @@ function display_node_info(){
       }
       if (nodeIsFailed) {
         warningMessage += "<li>{{Le contrôleur pense que ce noeud est en échec, essayez }} " +
-        "<a data-action='hasNodeFailed' class='btn btn-xs btn-primary  node_action'><i class='fa fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</a> {{ou}}" +
+        "<a data-action='hasNodeFailed' class='btn btn-xs btn-primary  node_action'><i class='fas fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</a> {{ou}}" +
         "<a data-action='testNode' class='btn btn-info  node_action'><i class='fas fa-check-square-o'></i> {{Tester le nœud}}</a> {{pour essayer de corriger.}}</li>"
       }
       if (data.data.genericType.value == 1) {
@@ -695,9 +695,9 @@ function display_node_info(){
       }
       if (data.data.isSecured.enabled){
         if (data.data.isSecured.value) {
-          $("#div_nodeConfigure .node-isSecured").html("<i class='fa fa-lock' aria-hidden='true'></i>");
+          $("#div_nodeConfigure .node-isSecured").html("<i class='fas fa-lock' aria-hidden='true'></i>");
         }else {
-          $("#div_nodeConfigure .node-isSecured").html("<i class='fa fa-unlock' aria-hidden='true'></i>");
+          $("#div_nodeConfigure .node-isSecured").html("<i class='fas fa-unlock' aria-hidden='true'></i>");
         }
       }
       $("#div_nodeConfigure .node-neighbours").removeClass("label-danger").addClass("label-default");
@@ -708,7 +708,7 @@ function display_node_info(){
           $("#div_nodeConfigure .node-neighbours").html("...");
           var genericDeviceClass = parseInt(data.data.genericType.value, 0);
           if (genericDeviceClass != 1 && (genericDeviceClass != 8 || data.data.isListening.value)) {
-            warningMessage += "<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <a data-action='healNode' class='btn btn-success node_action'><i class='fa fa-medkit'></i> {{Soigner le noeud}}</a> {{ou}} <a data-action='requestNodeNeighboursUpdate' class='btn btn-primary node_action'><i class='fa fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</a> {{pour corriger.}}</li>";
+            warningMessage += "<li{{Liste des voisins non disponible}} <br/>{{Utilisez}} <a data-action='healNode' class='btn btn-success node_action'><i class='fas fa-medkit'></i> {{Soigner le noeud}}</a> {{ou}} <a data-action='requestNodeNeighboursUpdate' class='btn btn-primary node_action'><i class='fas fa-sitemap'></i> {{Mise à jour des noeuds voisins}}</a> {{pour corriger.}}</li>";
             $("#div_nodeConfigure .node-neighbours").removeClass("label-default").addClass("label-danger")
           }
         }
@@ -716,7 +716,7 @@ function display_node_info(){
         $("#div_nodeConfigure .node-neighbours").html("<i>{{La liste des noeuds voisin n'est pas encore disponible.}}</i>");
       }
       if (queryStageIndex > 7 && data.data.product_name.value == "") {
-        warningMessage += "<li>{{Les identifiants constructeur ne sont pas detectés.}}<br/>{{Utilisez}} <a data-action='refreshNodeInfo' class='btn btn-success node_action'><i class='fa fa-retweet'></i> {{Rafraîchir infos du noeud}}</a> {{pour corriger}}</li>";
+        warningMessage += "<li>{{Les identifiants constructeur ne sont pas detectés.}}<br/>{{Utilisez}} <a data-action='refreshNodeInfo' class='btn btn-success node_action'><i class='fas fa-retweet'></i> {{Rafraîchir infos du noeud}}</a> {{pour corriger}}</li>";
       }
       $("#div_nodeConfigure .panel-warning").hide();
       $("#div_nodeConfigure .zwaveNodeAttr[data-l1key=warning]").html("");
@@ -928,7 +928,7 @@ function show_groups(){
           var node_name = "UNDEFINED";
         }
         tr_groups += "<tr gid='" + id + "'><td>" + target_id + " : " + node_name + "</td><td align='right'>";
-        tr_groups += "<a class='btn btn-danger btn-sm deleteGroup' data-groupindex='" + z + "' data-nodeid='" + target_id + "' data-nodeinstance='" + node_instance + "'><i class='fa fa-trash-o'></i> {{Supprimer}}</a>"
+        tr_groups += "<a class='btn btn-danger btn-sm deleteGroup' data-groupindex='" + z + "' data-nodeid='" + target_id + "' data-nodeinstance='" + node_instance + "'><i class='fas fa-trash-o'></i> {{Supprimer}}</a>"
         tr_groups += "</td></tr>";
       }
       var newPanel = '<div class="panel panel-primary template"><div class="panel-heading"><div class="btn-group pull-right">';
@@ -937,7 +937,7 @@ function show_groups(){
       } else {
         newPanel += '<a id="addGroup" class="btn btn-info btn-sm addGroup" disabled data-groupindex="-1">';
       }
-      newPanel += '<i class="fa fa-plus"></i> {{Ajouter un noeud}}</a></div>';
+      newPanel += '<i class="fas fa-plus"></i> {{Ajouter un noeud}}</a></div>';
       var pending_state = node_selected.groups[z].pending;
       switch (pending_state) {
         case 1:
@@ -955,7 +955,7 @@ function show_groups(){
       newPanel += z + ' : ' + node_selected.groups[z].label + ' {{(nombre maximum d\'associations :}} ' + node_selected.groups[z].maximumAssociations + ')';
       switch (pending_state) {
         case 3:
-        newPanel += '  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>';
+        newPanel += '  <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>';
         break;
       }
       newPanel += '</h3></div><div class="panel-body"><table class="table">' + tr_groups + '</table></div></div>';

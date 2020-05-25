@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="2">
+
+  <!-- Basic Messages should map to the ColorControl Command Class I hope -->
+  <CommandClass id="32" setasreport="true"/>
+
+  <!-- COMMAND_CLASS_POWERLEVEL does not respond to requests -->
+  <CommandClass id="115" action="remove"/>
+
+  <!-- Fibaro Devices with firmware prior to 25.25 have a bug in the Report
+  message -->
+  <CommandClass id="51" coloridxbug="true" >
+	 <!--  The Fibaro doesn't report immediate color values, so we need to verify the value -->
+  	<Value type="string" genre="user" instance="1" index="0" label="Color" units="#RRGGBBWW" verify_changes="false" value="#00000000" />
+  </CommandClass>
+  <!-- Fibaro devices refuse to send a Report message when color changes are done.. so manually trigger a refresh -->
+  <CommandClass id="38">
+	<TriggerRefreshValue Genre="user" Index="0" Instance="1">
+    	<RefreshClassValue CommandClass="51" RequestFlags="0" Index="255" Instance="1" />
+    </TriggerRefreshValue>
+  	<TriggerRefreshValue Genre="user" Index="0" Instance="2">
+    	<RefreshClassValue CommandClass="51" RequestFlags="0" Index="255" Instance="1" />
+    </TriggerRefreshValue>
+    <TriggerRefreshValue Genre="user" Index="0" Instance="3">
+    	<RefreshClassValue CommandClass="51" RequestFlags="0" Index="255" Instance="1" />
+    </TriggerRefreshValue>
+    <TriggerRefreshValue Genre="user" Index="0" Instance="4">
+    	<RefreshClassValue CommandClass="51" RequestFlags="0" Index="255" Instance="1" />
+    </TriggerRefreshValue>
+    <TriggerRefreshValue Genre="user" Index="0" Instance="5">
+    	<RefreshClassValue CommandClass="51" RequestFlags="0" Index="255" Instance="1" />
+    </TriggerRefreshValue>
+    <TriggerRefreshValue Genre="user" Index="0" Instance="6">
+    	<RefreshClassValue CommandClass="51" RequestFlags="0" Index="255" Instance="1" />
+    </TriggerRefreshValue>
+  </CommandClass>
+
+  <!-- Configuration -->
+  <CommandClass id="112">
+    <Value type="list" genre="config" instance="1" index="1" label="Remember device status before the power failure" size="1" value="0">
+      <Help>This parameter determines how the device will react in the event of power supply failure</Help>
+      <Item label="Device remains switched of" value="0" />
+      <Item label="Device restores the state from before the power failure" value="1" />
+    </Value>
+    <Value type="list" genre="config" instance="1" index="20" label="Input 1 - operating mode" size="1" value="2">
+      <Help>This parameter allows to choose mode of 1st input</Help>
+      <Item label="Analog input without internal pull-up (Sensor Multilevel)" value="0" />
+      <Item label="Analog input with internal pull-up (Sensor Multilevel)" value="1" />
+      <Item label="Momentary switch (Central Scene)" value="2" />
+      <Item label=" Toggle switch: switch state on every input change (Central Scene)" value="3" />
+      <Item label="Toggle switch: contact closed – ON, contact opened – OFF (Central Scene)" value="4" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="21" label="Input 2 - operating mode" size="1" value="2">
+      <Help>This parameter allows to choose mode of 2nd input</Help>
+      <Item label="Analog input without internal pull-up (Sensor Multilevel)" value="0" />
+      <Item label="Analog input with internal pull-up (Sensor Multilevel)" value="1" />
+      <Item label="Momentary switch (Central Scene)" value="2" />
+      <Item label=" Toggle switch: switch state on every input change (Central Scene)" value="3" />
+      <Item label="Toggle switch: contact closed – ON, contact opened – OFF (Central Scene)" value="4" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="22" label="Input 3 - operating mode" size="1" value="2">
+      <Help>This parameter allows to choose mode of 3rd input</Help>
+      <Item label="Analog input without internal pull-up (Sensor Multilevel)" value="0" />
+      <Item label="Analog input with internal pull-up (Sensor Multilevel)" value="1" />
+      <Item label="Momentary switch (Central Scene)" value="2" />
+      <Item label=" Toggle switch: switch state on every input change (Central Scene)" value="3" />
+      <Item label="Toggle switch: contact closed – ON, contact opened – OFF (Central Scene)" value="4" />
+    </Value>
+	<Value type="list" genre="config" instance="1" index="23" label="Input 4 - operating mode" size="1" value="2">
+      <Help>This parameter allows to choose mode of 4th input</Help>
+      <Item label="Analog input without internal pull-up (Sensor Multilevel)" value="0" />
+      <Item label="Analog input with internal pull-up (Sensor Multilevel)" value="1" />
+      <Item label="Momentary switch (Central Scene)" value="2" />
+      <Item label=" Toggle switch: switch state on every input change (Central Scene)" value="3" />
+      <Item label="Toggle switch: contact closed – ON, contact opened – OFF (Central Scene)" value="4" />
+    </Value>
+	<Value genre="config" index="30" label="Alarm configuration - 1st slot" size="4" type="int" value="0">
+      <Help>
+        This parameter determines to which alarm frames and how the device should react.
+        The parameters consist of 4 bytes, three most significant bytes are set according to the official Z-Wave protocol specification.
+
+        1B [MSB] - Notification Type
+        2B - Notification Status
+        3B - Event/State Parameters
+        4B [LSB]
+      </Help>
+    </Value>
+	<Value genre="config" index="31" label="Alarm configuration - 2nd slot" size="4" type="int" value="0">
+      <Help>
+        This parameter determines to which alarm frames and how the device should react.
+        The parameters consist of 4 bytes, three most significant bytes are set according to the official Z-Wave protocol specification.
+
+        1B [MSB] - Notification Type
+        2B - Notification Status
+        3B - Event/State Parameters
+        4B [LSB]
+      </Help>
+    </Value>
+	<Value genre="config" index="32" label="Alarm configuration - 3rd slot" size="4" type="int" value="0">
+      <Help>
+        This parameter determines to which alarm frames and how the device should react.
+        The parameters consist of 4 bytes, three most significant bytes are set according to the official Z-Wave protocol specification.
+
+        1B [MSB] - Notification Type
+        2B - Notification Status
+        3B - Event/State Parameters
+        4B [LSB]
+      </Help>
+    </Value>
+	<Value genre="config" index="33" label="Alarm configuration - 4th slot" size="4" type="int" value="0">
+      <Help>
+        This parameter determines to which alarm frames and how the device should react.
+        The parameters consist of 4 bytes, three most significant bytes are set according to the official Z-Wave protocol specification.
+
+        1B [MSB] - Notification Type
+        2B - Notification Status
+        3B - Event/State Parameters
+        4B [LSB]
+      </Help>
+    </Value>
+	<Value genre="config" index="34" label="Alarm configuration - 5th slot" size="4" type="int" value="0">
+      <Help>
+        This parameter determines to which alarm frames and how the device should react.
+        The parameters consist of 4 bytes, three most significant bytes are set according to the official Z-Wave protocol specification.
+
+        1B [MSB] - Notification Type
+        2B - Notification Status
+        3B - Event/State Parameters
+        4B [LSB]
+      </Help>
+    </Value>
+	<Value genre="config" index="35" label="Alarm configuration – duration" size="2" type="short" value="600">
+      <Help>
+        This parameter defines duration of alarm sequence.
+        When time set in this parameter elapses, alarm is cancelled, LED frame and relay restore normal operation, but do not recover state from before the alarm.
+
+        0 – infinite
+        1-32400 (1s-9h, 1s step) – duration
+
+        Default value: 600 (10min)
+      </Help>
+    </Value>
+	 <Value genre="config" index="40" label="First button – scenes sent" size="1" type="byte" value="0">
+      <Help>
+        This parameter determines which actions result in sending scene IDs assigned to them.
+        Values can be combined (e.g. 1+2=3 means that scenes for single and double click are sent).
+        Enabling scenes for triple click disables entering the device in learn mode by triple clicking.
+
+        1 - Key pressed 1 time
+        2 - Key pressed 2 times
+        4 - Key pressed 3 times
+        8 - Key hold down and key released
+
+        Default value: 0 (no scenes)
+      </Help>
+    </Value>
+
+    <Value genre="config" index="41" label="Second button – scenes sent" size="1" type="byte" value="0">
+      <Help>
+        This parameter determines which actions result in sending scene IDs assigned to them.
+        Values can be combined (e.g. 1+2=3 means that scenes for single and double click are sent).
+        Enabling scenes for triple click disables entering the device in learn mode by triple clicking.
+
+        1 - Key pressed 1 time
+        2 - Key pressed 2 times
+        4 - Key pressed 3 times
+        8 - Key hold down and key released
+
+        Default value: 0 (no scenes)
+      </Help>
+    </Value>
+
+    <Value genre="config" index="42" label="Third button – scenes sent" size="1" type="byte" value="0">
+      <Help>
+        This parameter determines which actions result in sending scene IDs assigned to them.
+        Values can be combined (e.g. 1+2=3 means that scenes for single and double click are sent).
+        Enabling scenes for triple click disables entering the device in learn mode by triple clicking.
+
+        1 - Key pressed 1 time
+        2 - Key pressed 2 times
+        4 - Key pressed 3 times
+        8 - Key hold down and key released
+
+        Default value: 0 (no scenes)
+      </Help>
+    </Value>
+
+    <Value genre="config" index="43" label="Fourth button – scenes sent" size="1" type="byte" value="0">
+      <Help>
+        This parameter determines which actions result in sending scene IDs assigned to them.
+        Values can be combined (e.g. 1+2=3 means that scenes for single and double click are sent).
+        Enabling scenes for triple click disables entering the device in learn mode by triple clicking.
+
+        1 - Key pressed 1 time
+        2 - Key pressed 2 times
+        4 - Key pressed 3 times
+        8 - Key hold down and key released
+
+        Default value: 0 (no scenes)
+      </Help>
+    </Value>
+	
+	<Value genre="config" index="60" label="Power reports – include self-consumption" size="1" type="list" value="0">
+      <Help>This parameter determines whether the power measurements should include power consumed by the device itself.</Help>
+      <Item label="self-consumption not included" value="0"/>
+      <Item label="self-consumption included" value="1"/>
+    </Value>
+
+    <Value genre="config" index="61" label="Power reports – on change" max="500" min="0" size="2" type="short" units="%" value="15">
+      <Help>
+        This parameter defines minimal change (from the last reported) in measured power that results in sending new report.
+        For loads under 50W the parameter is irrelevant, report are sent every 5W change.
+
+        0 - reporting on change disabled
+        1-500 (1-500%, 1% step) – minimal change
+
+        Default value: 15 (15%)
+      </Help>
+    </Value>
+
+    <Value genre="config" index="62" label="Power reports - periodic" max="32400" min="0" size="2" type="short" units="second" value="3600">
+      <Help>
+        This parameter defines reporting interval for measured power.
+        Periodic reports are independent from changes in value (parameter 61).
+
+        0 – periodic reports disabled
+        30-32400 (30s-9h, 1s step) – time interval
+
+        Default value: 3600 (1h)
+      </Help>
+    </Value>
+	
+    <Value genre="config" index="63" label="Analog inputs reports and output change on input change" max="32400" min="0" size="2" type="short" units="V" value="5">
+      <Help>
+        This parameter defines minimal change (from the last reported) of
+        analog input voltage that results in sending new report and change
+        in the output value. Parameter is relevant only for analog inputs
+        (parameter 20, 21, 22 or 23 set to 0 or 1)
+      </Help>
+    </Value>
+	
+    <Value genre="config" index="64" label="Analog inputs reports - periodic" max="32400" min="0" size="2" type="short" units="V" value="0">
+      <Help>
+        This parameter defines reporting period of analog inputs value. 
+      </Help>
+    </Value>
+
+
+	 <Value genre="config" index="65" label="Energy reports – on change" max="500" min="0" size="2" type="short" units="kWh" value="10">
+      <Help>
+        This parameter defines minimal change (from the last reported) in measured energy that results in sending new report.
+
+        0 - reporting on change disabled
+        1-500 (0.01-5kWh, 0.01kWh step) – minimal change
+
+        Default value: 10 (0.1kWh)
+      </Help>
+    </Value>
+
+    <Value genre="config" index="66" label="Energy reports - periodic" max="32400" min="0" size="2" type="short" units="second" value="3600">
+      <Help>
+        This parameter defines reporting interval for measured energy.
+        Periodic reports are independent from changes in value (parameter 65).
+
+        0 – periodic reports disabled
+        30-32400 (30s-9h, 1s step) – time interval
+
+        Default value: 3600 (1h)
+      </Help>
+    </Value>
+    <Value type="list" genre="config" instance="1" index="150" label="Inputs - LED colour control mode" size="1" value="0">
+      <Help>This parameter determines how connected switches control LED strips.</Help>
+      <Item label="RGBW MODE" value="0" />
+      <Item label="HSB and White mode" value="1" />
+    </Value>
+	
+	<Value genre="config" index="151" label="Local control - transition time" max="32400" min="0" size="2" type="short" units="" value="3">
+      <Help>
+        This parameter determines time of smooth transition between 0%
+         and 100% when controlling with connected switches.
+      </Help>
+    </Value>
+	
+	<Value genre="config" index="152" label="Remote control - transition time" max="32400" min="0" size="2" type="short" units="" value="3">
+      <Help>
+        This parameter determines time of smooth transition between 0%
+         and 100% when controlling with remote.
+      </Help>
+    </Value>
+	
+	<Value genre="config" index="154" label="ON frame value for single click" size="4" type="int" value="4294967295">
+      <Help>
+        This parameter defines value sent to devices in association groups. 
+      </Help>
+    </Value>
+	
+	<Value genre="config" index="155" label="OFF frame value for single click" size="4" type="int" value="0">
+      <Help>
+        This parameter defines value sent to devices in association groups. 
+      </Help>
+    </Value>
+	
+	<Value genre="config" index="156" label="OFF frame value for double click" size="4" type="int" value="0">
+      <Help>
+        This parameter defines value sent to devices in association groups. 
+      </Help>
+    </Value>
+	
+	<Value genre="config" index="156" label="ON frame value for double click" size="4" type="int" value="0">
+      <Help>
+        This parameter defines value sent to devices in association groups. 
+      </Help>
+    </Value>
+	<Value type="list" genre="config" instance="1" index="157" label="Start programmed sequence" size="1" value="0">
+      <Help>Setting this parameter will start programmed sequence with selected number. User can define own sequences via controller. While the sequence is active, the menu is unavailable. </Help>
+      <Item label="Sequence inactive" value="0" />
+      <Item label="Fireplace sequence" value="6" />
+      <Item label="Storm sequence" value="7" />
+      <Item label="Rainbow sequence" value="8" />
+      <Item label="Aurora sequence" value="9" />
+      <Item label="Police (red-white-blue) sequence" value="10" />
+    </Value>
+	
+  </CommandClass>
+
+  <!-- Association Groups -->
+  <CommandClass id="133">
+    <Associations num_groups="5">
+      <Group index="1" max_associations="1" label="Lifeline" auto="true"/>
+      <Group index="2" max_associations="5" label="RGBW Sync"/>
+      <Group index="3" max_associations="5" label="On Off IN1"/>
+      <Group index="4" max_associations="5" label="Dimmer IN1"/>
+      <Group index="5" max_associations="5" label="On/Off IN2"/>
+      <Group index="6" max_associations="5" label="Dimmer IN2"/>
+      <Group index="7" max_associations="5" label="On/Off IN3"/>
+      <Group index="8" max_associations="5" label="Dimmer IN3"/>
+      <Group index="9" max_associations="5" label="On/Off IN4"/>
+      <Group index="10" max_associations="5" label="Dimmer IN4"/>
+    </Associations>
+  </CommandClass>
+
+  <!-- Remove COMMAND_CLASS_BASIC -->
+  <!-- <CommandClass id="32" action="remove" /> -->
+
+</Product>

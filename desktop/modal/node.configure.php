@@ -59,9 +59,9 @@ sendVarToJs('node_id', init('id'));
 		<div id="content">
 			<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
 				<li id="tab-summary" class="active"><a href="#summary" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Résumé}}</a></li>
-				<li id="tab-values"><a href="#values" data-toggle="tab"><i class="fa fa-tag"></i> {{Valeurs}}</a></li>
+				<li id="tab-values"><a href="#values" data-toggle="tab"><i class="fas fa-tag"></i> {{Valeurs}}</a></li>
 				<li id="tab-parameters"><a href="#parameters" data-toggle="tab"><i class="fas fa-wrench"></i> {{Paramètres}}</a></li>
-				<li id="tab-groups"><a href="#groups" data-toggle="tab"><i class="fa fa-users"></i> {{Associations}}</a></li>
+				<li id="tab-groups"><a href="#groups" data-toggle="tab"><i class="fas fa-users"></i> {{Associations}}</a></li>
 				<li id="tab-systems"><a href="#systems" data-toggle="tab"><i class="fas fa-cogs"></i> {{Systèmes}}</a></li>
 				<li id="tab-actions"><a href="#actions" data-toggle="tab"><i class="fas fa-sliders-h"></i> {{Actions}}</a></li>
 				<li id="tab-stats"><a href="#statistics" data-toggle="tab"><i class="fas fa-chart-bar"></i> {{Statistiques}}</a></li>
@@ -79,7 +79,7 @@ sendVarToJs('node_id', init('id'));
 					</div>
 					<div class="panel panel-primary template">
 						<div class="panel-heading">
-							<h4 class="panel-title"><i class="fa fa-info-circle"></i> {{Informations Noeud}}</h4>
+							<h4 class="panel-title"><i class="fas fa-info-circle"></i> {{Informations Noeud}}</h4>
 						</div>
 						<div class="panel-body">
 							<p>{{Objet parent :}} <b><span class="zwaveNodeAttr label label-default" data-l1key="location" data-l2key="value" style="font-size : 1em;"></span></b></p>
@@ -113,7 +113,7 @@ sendVarToJs('node_id', init('id'));
 						</div>
 						<div class="panel panel-primary template">
 							<div class="panel-heading">
-								<h4 class="panel-title"><i class="fa fa-info-circle"></i> {{Classe du module}}</h4>
+								<h4 class="panel-title"><i class="fas fa-info-circle"></i> {{Classe du module}}</h4>
 							</div>
 							<div class="panel-body">
 								{{Basique :}} <b><span class="zwaveNodeAttr label label-default" data-l1key="basicDeviceClassDescription"></span></b><br/>
@@ -123,7 +123,7 @@ sendVarToJs('node_id', init('id'));
 						</div>
 						<div class="panel panel-primary template">
 							<div class="panel-heading">
-								<h4 class="panel-title"><i class="fa fa-info-circle"></i> {{Informations Protocole}}
+								<h4 class="panel-title"><i class="fas fa-info-circle"></i> {{Informations Protocole}}
 								</h4>
 							</div>
 							<div class="panel-body">
@@ -187,7 +187,7 @@ sendVarToJs('node_id', init('id'));
 										</div>
 										<div class="btn-group pull-right">
 											<a id="copyParams" class="btn btn-info btn-sm copyParams">
-												<i class="fa fa-paste"></i> {{Reprendre de...}}
+												<i class="fas fa-paste"></i> {{Reprendre de...}}
 											</a>
 										</div>
 									</th>
@@ -206,7 +206,7 @@ sendVarToJs('node_id', init('id'));
 						</div>
 					</div>
 					<div class="tab-pane" id="groups">
-						<a id="addGroup" class="btn btn-primary addGroup"><i class="fa fa-plus"></i>
+						<a id="addGroup" class="btn btn-primary addGroup"><i class="fas fa-plus"></i>
 							{{Ajouter une association}}
 						</a>
 						<br>
@@ -261,7 +261,7 @@ sendVarToJs('node_id', init('id'));
 								<td>{{Soigner le nœud au sein du réseau.}}</td>
 							</tr>
 							<tr>
-								<td><a data-action="assignReturnRoute" class="btn btn-success node_action"><i class="fa fa-road""></i> {{Mise à jour de la route de retour au contrôleur}}</a></td>
+								<td><a data-action="assignReturnRoute" class="btn btn-success node_action"><i class="fas fa-road"></i> {{Mise à jour de la route de retour au contrôleur}}</a></td>
 								<td>{{Demandez la mise à jour de la route de retour au contrôleur.}}</td>
 							</tr>
 							<tr>
@@ -277,11 +277,11 @@ sendVarToJs('node_id', init('id'));
 								<td>{{Récupère les données de commande classe dynamiques du nœud.}}</td>
 							</tr>
 							<tr>
-								<td><a data-action="refreshNodeInfo" class="btn btn-success node_action"><i class="fa fa-retweet"></i> {{Rafraîchir infos du nœud}}</a></td>
+								<td><a data-action="refreshNodeInfo" class="btn btn-success node_action"><i class="fas fa-retweet"></i> {{Rafraîchir infos du nœud}}</a></td>
 								<td>{{Déclencher l'obtention des informations du nœud.}} <br>{{Les données du nœud sont obtenues du réseau Z-Wave de la même façon que s'il venait d'être ajouté.}}</td>
 							</tr>
 							<tr>
-								<td><a data-action="hasNodeFailed" class="btn btn-primary node_action"><i class="fa fa-heartbeat"></i> {{Nœud en échec ?}}</a></td>
+								<td><a data-action="hasNodeFailed" class="btn btn-primary node_action"><i class="fas fa-heartbeat"></i> {{Nœud en échec ?}}</a></td>
 								<td>{{Vérifie si le nœud est dans la liste des nœuds en erreur.}}</td>
 							</tr>
 							<tr>
@@ -289,11 +289,11 @@ sendVarToJs('node_id', init('id'));
 								<td>{{Permet de supprimer un nœud marqué comme défaillant par le contrôleur.}}<br>{{Le nœud doit être en échec.}}</td>
 							</tr>
 							<tr>
-								<td><a id="replaceFailedNode" class="btn btn-warning"><i class="fa fa-chain-broken"></i> {{Remplacer nœud en échec}}</a></td>
+								<td><a id="replaceFailedNode" class="btn btn-warning"><i class="fas fa-chain-broken"></i> {{Remplacer nœud en échec}}</a></td>
 								<td>{{Remplace un module en échec par un autre. Si le nœud n'est pas dans la liste des nœuds en échec sur le contrôleur, ou que le nœud répond, la commande va échouer.}}</td>
 							</tr>
 							<tr>
-								<td><a data-action="sendNodeInformation" class="btn btn-info node_action"><i class="fa fa-info-circle"></i> {{Envoi infos du nœud}}</a></td>
+								<td><a data-action="sendNodeInformation" class="btn btn-info node_action"><i class="fas fa-info-circle"></i> {{Envoi infos du nœud}}</a></td>
 								<td>{{Envoi une trame d'info au noeud (NIF).}}</td>
 							</tr>
 							<tr>
@@ -301,7 +301,7 @@ sendVarToJs('node_id', init('id'));
 								<td>{{Supprime les informations du noeud dans le fichier de config afin qu'il soit à nouveau détecté.}}<br>{{(Attention : Relance le réseau)}}</td>
 							</tr>
 							<tr>
-								<td><a data-action="removeGhostNode" class="btn btn-warning node_action"><i class="fa fa-bug"></i> {{Suppression automatique du nœud fantôme}}</a></td>
+								<td><a data-action="removeGhostNode" class="btn btn-warning node_action"><i class="fas fa-bug"></i> {{Suppression automatique du nœud fantôme}}</a></td>
 								<td>{{Permet de supprimer un nœud sur pile qui n'est plus accessible sur le réseau.}}<br>{{Le nœud sera automatiquement supprimé dans les 5 à 15 minutes suivant le redémarrage du réseau}}<br>{{(Attention : Relance le réseau)}}</td>
 							</tr>
 						</table>
@@ -365,6 +365,5 @@ sendVarToJs('node_id', init('id'));
 				</div>
 			</div>
 		</div>
-	</div>
+</div>
 	<?php include_file('desktop', 'nodes', 'js', 'openzwave');?>
-	

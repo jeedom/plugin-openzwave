@@ -1,102 +1,103 @@
 {
-    "name": "Danalock V2 BTZE", 
-    "type": "Serrure", 
-    "comlink": "3175-danalock-serrure-connectee-bluetooth-et-z-wave-modele-circulaire-5712560000264", 
-    "remark": "Inclusion en mode sécurisé", 
-    "imglink": "polycontrol.danalock", 
-    "configuration": {
-        "battery_type": "4x3V CR123A"
-    }, 
-    "commands": [
-        {
-            "name": "Statut", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 98, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "generic_type": "LOCK_STATE"
-            }, 
-            "template": {
-                "dashboard": "lock", 
-                "mobile": "lock"
-            }
-        }, 
-        {
-            "name": "Verrouillage", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 98, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Statut", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LOCK_CLOSE"
-            }
-        }, 
-        {
-            "name": "Déverrouillage", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 98, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Statut", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LOCK_OPEN"
-            }
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }, 
-        {
-            "name": "Actualiser la date et heure", 
-            "type": "action", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 139, 
-                "value": "type=buttonaction&action=press", 
-                "index": 3, 
-                "instance": 1
-            }, 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "unite": ""
-        }
-    ]
+  "name": "Danalock V2 BTZE",
+  "type": "Serrure",
+  "documentation":"https:\/\/doc.jeedom.com\/#language#\/zwave\/polycontrol.danalock-v2_-_Serrure",
+  "comlink": "3175-danalock-serrure-connectee-bluetooth-et-z-wave-modele-circulaire-5712560000264",
+  "remark": "Inclusion en mode sécurisé",
+  "imglink": "polycontrol.danalock",
+  "configuration": {
+    "battery_type": "4x3V CR123A"
+  },
+  "commands": [
+    {
+      "name": "Statut",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 98,
+        "value": "",
+        "index": 0,
+        "instance": 1
+      },
+      "subtype": "binary",
+      "display": {
+        "generic_type": "LOCK_STATE"
+      },
+      "template": {
+        "dashboard": "lock",
+        "mobile": "lock"
+      }
+    },
+    {
+      "name": "Verrouillage",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 98,
+        "value": "type=setvalue&value=255",
+        "index": 0,
+        "instance": 1
+      },
+      "value": "Statut",
+      "subtype": "other",
+      "display": {
+        "generic_type": "LOCK_CLOSE"
+      }
+    },
+    {
+      "name": "Déverrouillage",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 98,
+        "value": "type=setvalue&value=0",
+        "index": 0,
+        "instance": 1
+      },
+      "value": "Statut",
+      "subtype": "other",
+      "display": {
+        "generic_type": "LOCK_OPEN"
+      }
+    },
+    {
+      "name": "Batterie",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 128,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "BATTERY"
+      },
+      "unite": "%"
+    },
+    {
+      "name": "Actualiser la date et heure",
+      "type": "action",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 139,
+        "value": "type=buttonaction&action=press",
+        "index": 3,
+        "instance": 1
+      },
+      "subtype": "other",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "unite": ""
+    }
+  ]
 }

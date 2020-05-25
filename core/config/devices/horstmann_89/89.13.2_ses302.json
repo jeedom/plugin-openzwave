@@ -1,116 +1,117 @@
 {
-    "name": "SES 302 Temperature Sensor", 
-    "type": "Température", 
-    "comlink": "3211-secure-sonde-de-temperature-sur-piles-z-wave-5015914840081", 
-    "remark": "Module vendu sous la marque Secure", 
-    "imglink": "horstmann.ses302", 
-    "configuration": {
-        "battery_type": "2x1.5V AA"
-    }, 
-    "commands": [
-        {
-            "name": "Température", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 49, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "TEMPERATURE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Température 2", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 49, 
-                "value": "", 
-                "index": 1, 
-                "instance": 3
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "TEMPERATURE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Température 3", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 49, 
-                "value": "", 
-                "index": 1, 
-                "instance": 4
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "TEMPERATURE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Température 4", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 49, 
-                "value": "", 
-                "index": 1, 
-                "instance": 5
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "TEMPERATURE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Température 5", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 49, 
-                "value": "", 
-                "index": 1, 
-                "instance": 6
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "TEMPERATURE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }
-    ]
+  "name": "SES 302 Temperature Sensor",
+  "type": "Température", 
+  "documentation":"https:\/\/doc.jeedom.com\/#language#\/zwave\/secure.ses302_-_Temperature",
+  "comlink": "3211-secure-sonde-de-temperature-sur-piles-z-wave-5015914840081",
+  "remark": "Module vendu sous la marque Secure",
+  "imglink": "horstmann.ses302",
+  "configuration": {
+    "battery_type": "2x1.5V AA"
+  },
+  "commands": [
+    {
+      "name": "Température",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 49,
+        "value": "",
+        "index": 1,
+        "instance": 1
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "TEMPERATURE"
+      },
+      "unite": "°C"
+    },
+    {
+      "name": "Température 2",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 49,
+        "value": "",
+        "index": 1,
+        "instance": 3
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "TEMPERATURE"
+      },
+      "unite": "°C"
+    },
+    {
+      "name": "Température 3",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 49,
+        "value": "",
+        "index": 1,
+        "instance": 4
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "TEMPERATURE"
+      },
+      "unite": "°C"
+    },
+    {
+      "name": "Température 4",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 49,
+        "value": "",
+        "index": 1,
+        "instance": 5
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "TEMPERATURE"
+      },
+      "unite": "°C"
+    },
+    {
+      "name": "Température 5",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 49,
+        "value": "",
+        "index": 1,
+        "instance": 6
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "TEMPERATURE"
+      },
+      "unite": "°C"
+    },
+    {
+      "name": "Batterie",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 128,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "BATTERY"
+      },
+      "unite": "%"
+    }
+  ]
 }

@@ -193,6 +193,7 @@
 		<Product type="0002" id="0005" name="ZWA005 TriSensor" config="aeotec/zwa005.xml"/>
 		<Product type="0102" id="0005" name="ZWA005 TriSensor" config="aeotec/zwa005.xml"/>
 		<Product type="0002" id="0007" name="ZWA008 Door Window Sensor 7" config="aeotec/zwa008.xml"/>
+		<Product type="0002" id="0015" name="ZWA021 Radiator Thermostat" config="aeotec/zwa021.xml"/>
 		<Product type="0102" id="0007" name="ZWA008 Door Window Sensor 7" config="aeotec/zwa008.xml"/>
 		<Product type="0003" id="00a2" name="ZW162 Doorbell 6" config="aeotec/zw162.xml"/>
 		<Product type="0103" id="00a2" name="ZW162 Doorbell 6" config="aeotec/zw162.xml"/>
@@ -563,6 +564,7 @@
 		<Product type="0900" id="1000" name="FGRGBWM441 RGBW Controller" config="fibaro/fgrgbwm441.xml" />
 		<Product type="0900" id="2000" name="FGRGBWM441 RGBW Controller" config="fibaro/fgrgbwm441.xml"/>
 		<Product type="0900" id="4000" name="FGRGBWM441 RGBW Controller" config="fibaro/fgrgbwm441.xml" />
+		<Product type="0902" id="1000" name="FGRGBWM442 RGBW Controller" config="fibaro/fgrgbwm442.xml" />
 		<Product type="0c00" id="1000" name="FGSS101 Smoke Sensor" config="fibaro/fgss101.xml" />
 		<Product type="0c02" id="1002" name="FGSD002 Smoke Sensor" config="fibaro/fgsd002.xml" />
 		<Product type="0c02" id="1003" name="FGSD002 Smoke Sensor" config="fibaro/fgsd002.xml" />
@@ -578,6 +580,7 @@
 		<Product type="1701" id="2000" name="FGWPG111 US Wall Plug" config="fibaro/fgwpg111.xml"/>
 		<Product type="1801" id="1000" name="FGWPG111 UK Wall Plug" config="fibaro/fgwpg111.xml"/>
 		<Product type="1b01" id="1000" name="FGWDSEU-221 Walli Switch" config="fibaro/fgwdseu221.xml" />
+		<Product type="1a01" id="1000" name="FGWDSEU-221 Walli Switch" config="fibaro/fgwdseu221.xml" />
 		<Product type="1c01" id="1000" name="FGWDEU-111 Walli Dimmer" config="fibaro/fgwd111.xml" />
 		<Product type="1d01" id="1000" name="FGWREU-111 Walli Roller Shutter" config="fibaro/fgwreu111.xml" />
 		<Product type="1f01" id="1000" name="FGWOF011 Walli Outlet Type F" config="fibaro/fgwof011.xml" />
@@ -623,6 +626,7 @@
 	<Manufacturer id="0152" name="G.R.">
 		<Product type="0202" id="0511" name="GR105 Auto Valve" config="gr/gr105.xml"/>
 		<Product type="0003" id="0512" name="GR105n Auto Valve" config="gr/gr105n.xml"/>
+		<Product type="0004" id="0002" name="GR105 700 Auto Valve" config="gr/gr105n.xml"/>
 		<Product type="0500" id="0005" name="GRB3 Multichannel Switch" config="gr/grb3.xml"/>
 		<Product type="0500" id="0003" name="ZSE02 Motion Sensor"/>
 	</Manufacturer>
@@ -1127,6 +1131,7 @@
 		<Product type="0007" id="0053" name="ZMNHZDx Weather Station" config="qubino/ZMNHZDx.xml"/>
 		<Product type="0007" id="0054" name="ZMNHXDx 3-phase Smart Meter" config="qubino/ZMNHXDx.xml"/>
 		<Product type="0005" id="0054" name="ZMNKIDx OnOff Thermostat 2" config="qubino/ZMNKIDx.xml"/>
+		<Product type="0008" id="0051" name="ZMNHQDx LUXY Smart Light" config="qubino/ZMNHQDx.xml" />
 	</Manufacturer>
 	<Manufacturer id="0130" name="Quby">
 		<Product type="0001" id="0001" name="Energy Management System"/>
@@ -1223,6 +1228,15 @@
 		<Product type="0001" id="1a73" name="XLED HOME 2" config="steinel/xled-home-2.xml"/>
                 <Product type="0001" id="1a75" name="L810 LED iHF" config="steinel/l810-led-ihf.xml"/>
 	</Manufacturer>
+	<Manufacturer id="0330" name="Sunricher">
+		<Product type="0003" id="a10d" name="Touch Panel Wall Controller - ZSC-01D" config="sunricher/srzv9001t4dimeu.xml"/>
+		<Product type="0300" id="a305" name="Wall Controller - SR-ZV9001" config="sunricher/srzv9001k8.xml"/>
+		<Product type="0300" id="a306" name="Wall Controller - G2" config="sunricher/g2.xml"/>
+		<Product type="0300" id="a310" name="Wall Controller - SR-ZV9001-4" config="sunricher/srzv9001k4.xml"/>
+		<Product type="0200" id="d005" name="Dimmer ZV-9101" config="sunricher/zv9101.xml"/>
+		<Product type="0200" id="d00c" name="Dimmer ZV9040" config="sunricher/srzv9101sachpeu.xml"/>
+		<Product type="0300" id="a107" name="Z-Wave Wall Controller - SR-ZV9003T4-RGBW-EU" config="sunricher/srzv9003t4rgbweu.xml"/>
+  </Manufacturer>
 	<Manufacturer id="0166" name="Swiid">
 		<Product type="0100" id="0100" name="SwiidInter" config="swiid/swiidinter.xml"/>
 		<Product type="2007" id="0706" name="SwiidPlug" config="swiid/swiidplug.xml"/>
@@ -1412,6 +1426,7 @@
 		<Product type="0002" id="0003" name="Bulb 2" config="zipato/RGBBulb2.xml"/>
 		<Product type="0002" id="000c" name="PST02-A 4 in 1 Multi-Sensor" config="philio/pst02.xml"/>
 		<Product type="0003" id="1082" name="Door/Window Detector" config="shenzen_neo/nas-ds01z.xml"/>
+		<Product type="0003" id="1083" name="Siren Alarm" config="shenzen_neo/nas-ab01z.xml"/>
 		<Product type="0003" id="1089" name="Zipato Multi sensor NE NAS PD01ZT" config="shenzen_neo/nas-pd01zt.xml"/>
 		<Product type="0004" id="000a" name="Indoor Siren" config="philio/pse02.xml"/>
 		<Product type="0005" id="0031" name="PH-PAD02.eu Smart Dimmer Socket E27" config="philio/pad02.xml"/>

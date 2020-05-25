@@ -1,124 +1,125 @@
 {
-    "name": "ZW ESJ Duwi Blind Control", 
-    "type": "Volets", 
-    "comlink": "", 
-    "remark": "", 
-    "imglink": "duwi.05436", 
-    "commands": [
-        {
-            "name": "Monter", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=99", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "icon": "<i class=\"fas fa-arrow-up\"></i>", 
-                "generic_type": "FLAP_UP"
-            }
-        }, 
-        {
-            "name": "Descendre", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "icon": "<i class=\"fas fa-arrow-down\"></i>", 
-                "generic_type": "FLAP_DOWN"
-            }
-        }, 
-        {
-            "name": "Etat", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "FLAP_STATE"
-            }
-        }, 
-        {
-            "name": "Positionnement", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=#slider#", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "value": "Etat", 
-            "subtype": "slider", 
-            "display": {
-                "generic_type": "FLAP_SLIDER"
-            }, 
-            "template": {
-                "dashboard": "tooltip", 
-                "mobile": "tooltip"
-            }
-        }, 
-        {
-            "name": "Rafraichir", 
-            "type": "action", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=refreshData", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "icon": "<i class=\"fa fa-refresh\"></i>", 
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "name": "Stop", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=buttonaction&action=release", 
-                "index": 2, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "icon": "<i class=\"fa fa-stop\"></i>", 
-                "generic_type": "FLAP_STOP"
-            }
-        }
-    ]
+  "name": "ZW ESJ Duwi Blind Control",
+  "type": "Volets",
+  "documentation":"https:\/\/doc.jeedom.com\/#language#\/zwave\/duwi.05436_-_Volets",
+  "comlink": "",
+  "remark": "",
+  "imglink": "duwi.05436",
+  "commands": [
+    {
+      "name": "Monter",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 38,
+        "value": "type=setvalue&value=99",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 99
+      },
+      "subtype": "other",
+      "display": {
+        "icon": "<i class=\"fas fa-arrow-up\"></i>",
+        "generic_type": "FLAP_UP"
+      }
+    },
+    {
+      "name": "Descendre",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 38,
+        "value": "type=setvalue&value=0",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 99
+      },
+      "subtype": "other",
+      "display": {
+        "icon": "<i class=\"fas fa-arrow-down\"></i>",
+        "generic_type": "FLAP_DOWN"
+      }
+    },
+    {
+      "name": "Etat",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 38,
+        "value": "",
+        "index": 0,
+        "instance": 1
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "FLAP_STATE"
+      }
+    },
+    {
+      "name": "Positionnement",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 38,
+        "value": "type=setvalue&value=#slider#",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 99
+      },
+      "value": "Etat",
+      "subtype": "slider",
+      "display": {
+        "generic_type": "FLAP_SLIDER"
+      },
+      "template": {
+        "dashboard": "tooltip",
+        "mobile": "tooltip"
+      }
+    },
+    {
+      "name": "Rafraichir",
+      "type": "action",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 38,
+        "value": "type=refreshData",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 99
+      },
+      "subtype": "other",
+      "display": {
+        "icon": "<i class=\"fas fa-sync\"></i>",
+        "generic_type": "DONT"
+      }
+    },
+    {
+      "name": "Stop",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 38,
+        "value": "type=buttonaction&action=release",
+        "index": 2,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 99
+      },
+      "subtype": "other",
+      "display": {
+        "icon": "<i class=\"fas fa-stop\"></i>",
+        "generic_type": "FLAP_STOP"
+      }
+    }
+  ]
 }
