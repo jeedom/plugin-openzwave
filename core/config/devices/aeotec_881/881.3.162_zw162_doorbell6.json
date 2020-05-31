@@ -5,6 +5,112 @@
     "remark": "", 
     "imglink": "aeotec.zw162",
     "commands": [
+                {
+            "name": "Sonnette", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 32, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1,
+                "returnStateTime": 5, 
+                "returnStateValue": 0 
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SABOTAGE"
+            }, 
+            "template": {
+                "dashboard": "alert", 
+                "mobile": "alert"
+            }
+        },
+        {
+            "name": "Sonnette Volume Etat",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 121,
+                "index": 2,
+                "instance": 4
+            },
+            "subtype": "numeric"
+        },
+        {
+            "name": "Sonnette Volume", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 121, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 2, 
+                "instance": 4, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "value": "Sonnette Volume Etat", 
+            "subtype": "slider" 
+        },
         
+        {
+            "name": "Jouer son",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 121,
+                "value": "type=setvalue&value=#select#",
+                "index": 1,
+                "instance": 1,
+                "listValue": "01DING~1 (5 sec)|Ding Dong;02DING~1 (9 sec)|Ding Dong Tubular Bell;03TRAD~1 (11 sec)|Traditional Apartment Buzzer;04ELEC~1 (2 sec)|Electric Apartment Buzzer;05WEST~1 (13 sec)|Westminster Chimes;06CHIM~1 (7 sec)|Chimes;07CUCK~1 (31 sec)|Cuckoo;08TRAD~1 (6 sec)|Traditional Bell;09SMOK~1 (11 sec)|Smoke Alarm (Low);10SMOK~1 (6 sec)|Smoke Alarm (High);11FIRE~1 (35 sec)|Fire Evacuation Buzzer;12COSE~1 (5 sec)|CO Alarm;13KLAX~1 (38 sec)|Klaxon;14DEEP~1 (41 sec)|Klaxon (Deep);15WARN~1 (37 sec)|Warning Tone;16TORN~1 (46 sec)|Tornado Siren;17ALAR~1 (35 sec)|Alarm;18DEEP~1 (62 sec)|Deep Alarm Tone;19ALAR~1 (15 sec)|Alarm (Archangel tone);20ALAR~1 (7 sec)|Alarm (Shrill);21DIGI~1 (8 sec)|Digital Siren;22ALER~1 (64 sec)|Alert Series;23SHIP~1 (4 sec)|Security;24CLOC~1 (10 sec)|Clock Buzzer;25CHRI~1 (4 sec)|Christmas Tree;26GONG~1 (12 sec)|Gong;27SING~1 (1 sec)|Single Bell Ting;28TONA~1 (5 sec)|Tonal Pulse;29UPWA~1 (2 sec)|Upwards Tone;30DOOR~1 (27 sec)|Door Open"
+            },
+            "subtype": "select"
+        },
+        {
+            "name": "Arrêter son",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 121,
+                "value": "type=setvalue&value=Inactive",
+                "index": 1,
+                "instance": 1
+            },
+            "subtype": "other"
+        },
+        {
+            "name": "Volume Etat",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 121,
+                "index": 2,
+                "instance": 1
+            },
+            "subtype": "numeric"
+        },
+        {
+            "name": "Volume", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 121, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 2, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "value": "Volume Etat", 
+            "subtype": "slider" 
+        }
     ]
 }
