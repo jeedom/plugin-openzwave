@@ -2,6 +2,8 @@
 <Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="6">
     <!-- COMMAND_CLASS_SWITCH_MULTILEVEL. This class is in the list reported by the device, but it does not respond to requests -->
     <CommandClass id="38" getsupported="false"/>
+	
+    <CommandClass id="32" action="add" request_flags="5"/>
     <!-- Configuration -->
     <CommandClass id="112">
         <Value type="list" genre="config" instance="1" index="9" label="Saving state before power failure" value="1" size="1">
