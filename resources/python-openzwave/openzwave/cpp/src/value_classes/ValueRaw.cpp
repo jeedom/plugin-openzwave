@@ -58,8 +58,7 @@ ValueRaw::ValueRaw
 	Value( _homeId, _nodeId, _genre, _commandClassId, _instance, _index, ValueID::ValueType_Raw, _label, _units, _readOnly, _writeOnly, false, _pollIntensity ),
 	m_value( NULL ),
 	m_valueLength( _length ),
-	m_valueCheck ( NULL ),
-	m_newValue ( NULL )
+	m_valueCheck ( NULL )
 {
 	m_value = new uint8[_length];
 	memcpy( m_value, _value, _length );
@@ -73,10 +72,9 @@ ValueRaw::ValueRaw
 //-----------------------------------------------------------------------------
 ValueRaw::ValueRaw
 (
-): 
+):
         m_value( NULL ),
-        m_valueCheck ( NULL ),
-        m_newValue ( NULL )
+        m_valueCheck ( NULL )
 {
 	m_valueLength = 0;
 	m_min = 0;
@@ -101,7 +99,7 @@ string const ValueRaw::GetAsString
 	string str = "";
 	char bstr[10];
 
-	for( uint32 i=0; i<m_valueLength; ++i ) 
+	for( uint32 i=0; i<m_valueLength; ++i )
 	{
 		if( i )
 		{

@@ -135,7 +135,7 @@ Level **Debug** or **Info** can be useful to understand why the demon plants or 
 This part allows you to configure the general parameters of the plugin ![configuration06](../images/configuration06.png)
 
 -   **Main** :
-    -   **Delete automatiquement les périphériques exclus** :The Yes option allows you to delete devices excluded from the Z-Wave network. The No option allows you to keep the equipment in Jeedom even if it has been excluded from the network. The equipment
+    -   **Automatically delete excluded devices** :The Yes option allows you to delete devices excluded from the Z-Wave network. The No option allows you to keep the equipment in Jeedom even if it has been excluded from the network. The equipment
         will then have to be deleted manually or reused by assigning it a new Z-Wave ID if you are migrating from the main controller.
     -   **Apply the recommended configuration set for inclusion** : option to directly apply the configuration set recommended by the Jeedom team for inclusion (recommended)
     -   **Deactivate the background update of the drives** : Do not ask for refreshment of drives in the background.
@@ -247,13 +247,13 @@ Below you find the list of orders :
 -   the class of the Z-Wave control (reserved for experts).
 -   the value index (reserved for experts).
 -   the order itself (reserved for experts).
--   "Status feedback value "and" Duration before status feedback" : allows to indicate to Jeedom that after a change on the information its value must return to Y, X min after the change. Example : in the case of a presence detector which emits only during a presence detection, it is useful to set for example 0 in value and 4 in duration, so that 4 min after a motion detection (and if then , there were no new ones) Jeedom resets the value of the information to 0 (more movement detected).
+-   "Status feedback value "and" Duration before status feedback" : allows to indicate to Jeedom that after a change on the information its value must return to Y, X min after the change. Example : in the case of a presence detector which emits only during a presence detection, it is useful to set for example 0 in value and 4 in duration, so that 4 min after a motion detection (and if then , there were no new ones) Jeedom resets the value of the information to 0 (no more movement detected).
 -   Historize : allows to historize the data.
 -   Pin up : allows to display the data on the dashboard.
 -   Invert : allows to invert the state for binary types.
 -   Unit : data unit (can be empty).
 -   Min / max : data bounds (may be empty).
--   Advanced configuration (small notched wheels) : displays the advanced configuration of the command (logging method, widget, etc.).
+-   Advanced configuration (small notched wheels) : displays the advanced configuration of the command (logging method, widget, etc.)).
 
 -   Test : Used to test the command.
 -   Delete (sign -) : allows to delete the command.
@@ -305,11 +305,11 @@ Apply a configuration set recommended by the Jeedom team.
 The following elements, as applicable, will be applied to simplify the use of the module.
 
 -   **Settings** allowing rapid commissioning of all module functionalities.
--   **Groups d'association** required for proper operation.
+-   **Association groups** required for proper operation.
 -   **Wake up interval**, for modules on battery.
 -   Activation of **manual refresh** for modules that do not go up by themselves, their state changes.
 
-To apply the recommended configuration set, click on the button : **Setup recommandée**, then confirm the application of the recommended configurations.
+To apply the recommended configuration set, click on the button : **Recommended configuration**, then confirm the application of the recommended configurations.
 
 ![appliance09](../images/appliance09.png)
 
@@ -409,7 +409,7 @@ This is where you find the management of the association groups of your module.
 
 Z-Wave modules can control other Z-Wave modules, without going through the controller or Jeedom. The relationship between a control module and another module is called association.
 
-In order to control another module, the command module needs to maintain a list of devices that will receive command control. These lists are called association groups and they are always linked to certain events (for example the button pressed, sensor triggers, etc.).
+In order to control another module, the command module needs to maintain a list of devices that will receive command control. These lists are called association groups and they are always linked to certain events (for example the button pressed, sensor triggers, etc ).
 
 In the event that an event occurs, all devices registered in the association group concerned will receive a Basic command.
 
@@ -435,7 +435,7 @@ To know with which other modules the current module is associated, just click on
 
 All the modules using the current module as well as the name of the association groups will be displayed.
 
-**Associations multi-instances**
+**Multi-instance associations**
 
 Some module supports a multi-instance associations class command. When a module supports this CC, it is possible to specify with which instance one wishes to create the association
 
@@ -453,11 +453,11 @@ Tab grouping the module's system parameters.
 
 > **Tip**
 >
-> Battery modules wake up at regular cycles, called Wakeup Interval. Wake-up interval is a compromise between maximum battery life and desired device responses. To maximize the life of your modules, adapt the Wakeup Interval value for example to 14,400 seconds (4h), see even higher depending on the modules and their use. ![node11](../images/node11.png)
+> Battery modules wake up at regular cycles, called Wakeup Interval). Wake-up interval is a compromise between maximum battery life and desired device responses. To maximize the life of your modules, adapt the Wakeup Interval value for example to 14,400 seconds (4h), see even higher depending on the modules and their use. ![node11](../images/node11.png)
 
 > **Tip**
 >
-> Modules **Light switch** and **Dimmer** can implement a special Command Class called **SwitchAll** 0x27. You can change the behavior here. Depending on the module, several options are available. The command **SwitchAll On/OFF** can be launched via your main controller module.
+> Modules **Light switch** and **Dimmer** can implement a special Command Class called **SwitchAll** 0x27. You can change the behavior here. Depending on the module, several options are available. The command **SwitchAll On / OFF** can be launched via your main controller module.
 
 ## Actions
 
@@ -483,7 +483,7 @@ Certain actions will be active according to the type of module and its possibili
 
 > **Tip**
 >
-> If a module on a stack is no longer reachable and you want to exclude it, and the exclusion does not take place, you can launch **Delete le noeud fantôme** An assistant will perform various actions to remove the so-called ghost module. This action involves restarting the network and may take several minutes to complete.
+> If a module on a stack is no longer reachable and you want to exclude it, and the exclusion does not take place, you can launch **Remove ghost node** An assistant will perform various actions to remove the so-called ghost module. This action involves restarting the network and may take several minutes to complete.
 
 ![node14](../images/node14.png)
 
@@ -566,7 +566,7 @@ If you click on the button again, you exit the inclusion mode.
 
 ![addremove04](../images/addremove04.png)
 
-This button allows you to switch to exclusion mode, this to remove a module from your Z-Wave network, you must do the same with your module (refer to its documentation to switch it to exclusion mode).
+This button allows you to switch to exclusion mode, to remove a module from your Z-Wave network, you must do the same with your module (refer to its documentation to switch it to exclusion mode).
 
 ![addremove05](../images/addremove05.png)
 
@@ -588,7 +588,7 @@ If you click on the button again, you will exit exclusion mode.
 
 ![addremove06](../images/addremove06.png)
 
-Button allowing synchronization of the Z-Wave network modules with Jeedom equipment. The modules are associated with the main controller, the devices in Jeedom are created automatically when they are included. They are also automatically deleted when excluded, if the option **Delete automatiquement les périphériques exclus** is activated.
+Button allowing synchronization of the Z-Wave network modules with Jeedom equipment. The modules are associated with the main controller, the devices in Jeedom are created automatically when they are included. They are also automatically deleted when excluded, if the option **Automatically delete excluded devices** is activated.
 
 If you have included modules without Jeedom (requires a battery dongle like the Aeon-labs Z-Stick GEN5), synchronization will be necessary after plugging in the key, once the daemon has started and is operational.
 
@@ -807,7 +807,7 @@ The name of the module can be followed by one or two images:
 
 > **Tip**
 >
-> If on your routing table and / or on the Z-Wave health screen you have one or more modules named **Unknown**, this means that the module interview has not been successfully completed. You probably have a **NOk** in the constructor column. Open the details of the module (s), to try out the suggested solutions (see section Troubleshooting and diagnostics, below).
+> If on your routing table and / or on the Z-Wave health screen you have one or more modules named **Unknown**, this means that the module interview has not been successfully completed. You probably have a **NOk** in the constructor column. Open the details of the module (s), to try the suggested solutions (see section Troubleshooting and diagnostics, below).
 
 ## Interview status
 
@@ -942,7 +942,7 @@ It is possible to do via an http request or create an order in the equipment map
 
 ![troubleshooting06](../images/troubleshooting06.png)
 
-This is an order **Action** choose the **CC** desired for a **Instance** given with the command **data \ [0 \]. ForceRefresh ()**
+This is an order **Action** choose the **CC** desired for a **Instance** given with the command **data \ [0 \]. ForceRefresh()**
 
 All the instance indexes for this Class command will be updated. The nodes on batteries will await their next awakening before carrying out the update of their value.
 
@@ -1006,12 +1006,12 @@ Automatic ghost node assistant is available.
 
 -   Go to the actions tab of the module to delete.
 -   He will probably have a status **CacheLoad**.
--   Start command **Delete nœud fantôme**.
+-   Start command **Remove ghost node**.
 -   Z-Wave network stops. Automatic assistant modifies the file **zwcfg** to remove CC WakeUp from the module. Network reboots.
 -   Close the module screen.
 -   Open the Z-Wave Health screen.
 -   Wait for the start-up cycle to be completed (topology loaded).
--   The module will normally be marked as presumed dead.
+-   The module will normally be marked as presumed dead (Dead).
 -   The next minute, you should see the node disappear from the health screen.
 -   If in the Z-Wave configuration, you have unchecked the option "Automatically delete excluded devices", you will have to manually delete the corresponding equipment.
 
@@ -1208,4 +1208,4 @@ URLs = ``http://token:a1b2c3d4e5f6g7h8@192.168.0.1:8083/ZWaveAPI/Run/devices\[2\
 
 > **I get the error "Not enough space in stream buffer"**
 >
-> Unfortunately this error is hardware, there is nothing we can do and we are looking for the moment how to force a restart of the daemon in the case of this error (but often it is also necessary to unplug the key for 5 min so that it starts again)
+> Unfortunately this error is hardware, there is nothing we can do about it and we are looking for the moment how to force a restart of the daemon in the event of this error (but often it is also necessary to unplug the key for 5 min so that it starts again)

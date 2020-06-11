@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="3">
+  <!--
+  Shenzhen NEO Electronics (Neo-CoolCam) Smart Power Plug V2 0x200/
+  http://products.z-wavealliance.org/products/1783
+  -->
+  <!-- Configuration Parameters -->
+  <CommandClass id="112">
+      <Value type="list" genre="config" instance="1" index="1" label="Remember Relay ON/OFF status" value="0" size="1">
+      <Help>
+        Sets this configuration to '1', the device will save the current relay state, and after the device
+		is powered down and restarted, it will automatically recover to the relay state before
+		power-down.
+      </Help>
+      <Item label="Disable" value="0"/>
+      <Item label="Enable" value="1"/>
+    </Value>
+        <Value type="list" genre="config" instance="1" index="2" label="Button On/Off" value="1" size="1">
+      <Help>
+        This parameter defines the button on/off function is enabled or not on the top of the wall plug.
+        If enabled, users can turn on and off the wall plug by pressing the button on the top of the wall plug.
+        If disabled, the wall plug cannot be turned on and off by pressing the button.
+      </Help>
+      <Item label="Disable" value="0"/>
+      <Item label="Enable" value="1"/>
+    </Value>
+	    <Value type="list" genre="config" instance="1" index="3" label="Led Display" value="1" size="1">
+      <Help>
+        This parameter defines the LED indication Function ON/OFF.
+        If disabled, then LED indication Function will always be turn-off, while enabled means LED Function is on.
+      </Help>
+      <Item label="Disable" value="0"/>
+      <Item label="Enable" value="1"/>
+    </Value>
+	    <Value type="list" genre="config" instance="1" index="4" label="Configure Plug Time switch Function" value="1" size="1">
+      <Help>
+        This parameter defines the timer function Enable/Disable.
+        If disabled, then time switch function is not available.
+        The time period will be defined in parameter #5.
+        If enabled, and when turn the plug relay on, the timer in plug start run with time period defined in parameter #9 and the plug will turn the relay off.
+      </Help>
+      <Item label="Disable" value="0"/>
+      <Item label="Enable" value="1"/>
+    </Value>
+	    <Value type="short" genre="config" instance="1" index="5" label="Configure Time switch Period" units="minute" value="120" min="1" max="32768" size="2">
+      <Help>
+        This parameter defines the time period that plug time switch off. This parameter can be configured between 1 to 32768 (in minutes).
+        If Parameter #4 is enabled, and relay is turn-on, the relay will be turn-off after delay this parameter.
+      </Help>
+    </Value>
+	<Value type="list" genre="config" instance="1" index="6" label="Send Meter Report" value="1" size="1">
+      <Help>This parameter defines Disable/Enable meter report measure data to controller.</Help>
+      <Item label="Disable" value="0"/>
+      <Item label="Enable" value="1"/>
+    </Value>
+    <Value type="short" genre="config" instance="1" index="7" label="Meter Report Interval" units="second" value="300" min="30" max="32767" size="2">
+      <Help>
+		This parameter defines interval time (in seconds) that Meter report data to main controller.
+		This parameter is only valid when Parameter 6 is set as '1'.
+	  </Help>
+    </Value>
+    <Value type="byte" genre="config" instance="1" index="8" label="Configure maximum over-load current" units="Ampere" value="16" min="1" max="16" size="1">
+      <Help>
+        This configuration sets the maximum output current that the device can provide.
+		When the current consumed by the load is greater than the setting value, the device will automatically cut off the power of the load and send out alarm information. Unit: A (Ampere).
+		This value must be great than the alarm value defined in Parameter 10.
+      </Help>
+    </Value>
+    <Value type="byte" genre="config" instance="1" index="9" label="Current Differential Setting" units="0.01A" value="50" min="1" max="1600" size="2">
+      <Help>
+        This configuration sets the changed value of the load current (volatility).
+		When the differential between two measurements of current consumed by the load exceeds the value set by this configuration, the device will report the last measured results automatically to the controller.
+		The changed value = [Value] × 0.01A.
+      </Help>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="10" label="Configure maximum Alarm current" units="Ampere" value="13" min="1" max="15" size="1">
+      <Help>
+		This configuration sets the alarm value of the load current (volatility).
+		When the load current is large than this value, the led will be indicated with yellow.
+		Unit: A (Ampere).
+		This value must be less than the max. output value defined in Parameter 8.      </Help>
+    </Value>
+  </CommandClass>
+  <!-- Association Groups -->
+  <CommandClass id="133">
+    <Associations num_groups="3">
+      <Group index="1" max_associations="5" label="Lifeline"/>
+      <Group index="2" max_associations="5" label="Over-load current"/>
+      <Group index="3" max_associations="5" label="Send Notification"/>
+    </Associations>
+  </CommandClass>
+</Product>

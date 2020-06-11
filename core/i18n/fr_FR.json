@@ -26,6 +26,7 @@
         "Port clé Z-Wave": "Port clé Z-Wave",
         "Aucun": "Aucun",
         "Auto": "Auto",
+        "Désactiver la gestion des processus USB (socat)": "Désactiver la gestion des processus USB (socat)",
         "Port du Serveur (laisser vide par défault)": "Port du Serveur (laisser vide par défault)",
         "Options avancées": "Options avancées",
         "Backups": "Backups",
