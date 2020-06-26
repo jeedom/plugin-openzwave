@@ -247,7 +247,6 @@ sendVarToJs('node_id', init('id'));
 								<td data-key="updatetime"></td>
 							</tr>
 							<tbody class="system_variables"></tbody>
-							
 						</table>
 					</div>
 					<div class="tab-pane" id="actions">
@@ -265,7 +264,7 @@ sendVarToJs('node_id', init('id'));
 								<td>{{Demandez la mise à jour de la route de retour au contrôleur.}}</td>
 							</tr>
 							<tr>
-								<td><a data-action="testNode" class="btn btn-info node_action"><i class="fas fa-check-square-o"></i> {{Tester le nœud}}</a></td>
+								<td><a data-action="testNode" class="btn btn-info node_action"><i class="fas fa-check-square"></i> {{Tester le nœud}}</a></td>
 								<td>{{Envoyer une série de message à un noeud pour le tester s'il répond.}}</td>
 							</tr>
 							<tr>
@@ -366,4 +365,4 @@ sendVarToJs('node_id', init('id'));
 			</div>
 		</div>
 </div>
-	<?php include_file('desktop', 'nodes', 'js', 'openzwave');?>
+<?php include_file('desktop', 'nodes', 'js', 'openzwave');?>
