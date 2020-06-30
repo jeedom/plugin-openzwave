@@ -33,7 +33,7 @@
                 "index": 3, 
                 "instance": 1, 
                 "minValue": 0, 
-                "maxValue": 1000
+                "maxValue": 64000
             }, 
             "subtype": "numeric", 
             "display": {
