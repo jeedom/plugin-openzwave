@@ -119,48 +119,6 @@
                 "icon": "<i class=\"fas fa-stop\"></i>", 
                 "generic_type": "STOP"
             }
-        }, 
-        {
-            "TODO": "Test if it works",
-            "name": "Stop BSO", 
-            "type": "action", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=buttonaction&action=release", 
-                "index": 7, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "subtype": "other", 
-            "display": {
-                "icon": "<i class=\"fas fa-stop\"></i>", 
-                "generic_type": "DONT"
-            }
-        }, 
-        {
-            "TODO": "Test if it works",
-            "name": "Scene", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 43, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "repeatEventManagement": "always"
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "template": {
-                "dashboard": "tile", 
-                "mobile": "tile"
-            }
         }
     ]
 }
