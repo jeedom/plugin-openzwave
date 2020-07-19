@@ -1,0 +1,263 @@
+{
+    "name": "Coolcam Light Switch 3 CH", 
+    "type": "Interrupteur", 
+    "comlink": "", 
+    "remark": "", 
+    "imglink": "", 
+    "commands": [
+        {
+            "name": "On 1", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "value": "Etat 1", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "name": "Off 1", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "value": "Etat 1", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+		{
+            "name": "Refresh 1", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=refreshData", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "value": "", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": ""
+            }, 
+            "template": {
+                "dashboard": "", 
+                "mobile": ""
+            }
+        },
+        {
+            "name": "Etat 1", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }
+        }, 
+        {
+            "name": "On 2 ", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 3
+            }, 
+            "value": "Etat 2", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "name": "Off 2 ", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 3
+            }, 
+            "value": "Etat 2", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        },
+		{
+            "name": "Refresh 2", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=refreshData", 
+                "index": 0, 
+                "instance": 3
+            }, 
+            "value": "", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": ""
+            }, 
+            "template": {
+                "dashboard": "", 
+                "mobile": ""
+            }
+        },		
+        {
+            "name": "Etat 2", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 3
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }
+        },
+		{
+            "name": "On 3 ", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 4
+            }, 
+            "value": "Etat 3", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "name": "Off 3 ", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 4
+            }, 
+            "value": "Etat 3", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+		{
+            "name": "Refresh 3", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "type=refreshData", 
+                "index": 0, 
+                "instance": 4
+            }, 
+            "value": "", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": ""
+            }, 
+            "template": {
+                "dashboard": "", 
+                "mobile": ""
+            }
+        }, 
+        {
+            "name": "Etat 3", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 4
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }
+        },
+		    {
+            "name": "Trigger Main", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+ 
+               "generic_type": ""
+            }
+        }
+    ]
+}
