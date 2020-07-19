@@ -5,37 +5,89 @@
   -->
   <!-- Configuration Parameters -->
   <CommandClass id="112">
-    <Value type="list" genre="config" instance="1" index="1" label="Back light Enable" value="1" size="1">
-      <Help>This parameter defines the back light state of the touch button. The back light led would be on when Light Switch is powered on if the parameter is set to '1'. Otherwise the back light led would be off.</Help>
-      <Item label="Disable" value="0"/>
-      <Item label="Enable" value="1"/>
-    </Value>
-    <Value type="list" genre="config" instance="1" index="2" label="Relay On/Off indicate" value="1" size="1">
-      <Help>This parameter defines the relays state. The led will be turned on with pink color when the button is touched to tur on relay if this paramtere is set to '1'. Otherwise the ledstate is not changed.</Help>
-      <Item label="Disable" value="0"/>
-      <Item label="Enable" value="1"/>
-    </Value>
-    <Value type="list" genre="config" instance="1" index="3" label="Relay On/Off States Saved Enable" value="1" size="1">
-      <Help>This parameter defines the on/off status of relay needs to be saved. The status will be saved when relay status is changed if this parameter is set to '1'. Otherwise the relay stataus is not saved. The Light Switch will restore the relay On/Off  status when powered again.</Help>
-      <Item label="Disable" value="0"/>
-      <Item label="Enable" value="1"/>
-    </Value>
-    <Value type="list" genre="config" instance="1" index="4" label="Root Device Mapped Setting" min="0" max="3" value="0" size="1">
-      <Help>This parameter defines which endpoint is mapped to root device (Endpoint 0). 0 - No endpoint is mapped to root device. 1 - Endpoint 1 is mapped to root device. 2 - Endpoint 2 is mapped to root device. 3 - Both endpoint 1 and 2 are mapped to root device.</Help>
-      <Item label="No endpoint is mapped to root device" value="0"/>
-      <Item label="Endpoint 1 is mapped to root device" value="1"/>
-      <Item label="Endpoint 2 is mapped to root device" value="2"/>
-      <Item label="Endpoint 3 is mapped to root device" value="3"/>
-      <Item label="All three endpoints are mapped to root device" value="4"/>
-    </Value>
+    <Value type="list" genre="config" instance="1" index="1" label="Mémoire après Panne" value="1" size="1">
+    <Help>Définit si après coupure de courant, l'interrupteur doit revenir à son dernier état connu. Si oui paramètre à 1. Sinon pas de mémoire d'état.</Help>
+    <Item label="Désactiver la mémoire d'état" value="0"/>
+    <Item label="Activer la mémoire d'état" value="1"/>
+  </Value>
+  <Value type="list" genre="config" instance="1" index="2" label="Rétroéclairage" value="1" size="1">
+    <Help>Définit si le retroéclairage est actif ou non sans action (LED Bleue). Si oui paramètre à 1. Sinon la LED est éteinte.</Help>
+    <Item label="Désactiver le rétroéclairage" value="0"/>
+    <Item label="Activer le rétroéclairage" value="1"/>
+  </Value>
+  <Value type="list" genre="config" instance="1" index="3" label="Voyant d'activation" value="1" size="1">
+    <Help>Définit si le voyant devient rose lors de l'allumage. Si oui paramètre à 1. Sinon la LED est éteinte.</Help>
+    <Item label="Désactiver le voyant Rose" value="0"/>
+    <Item label="Activer le voyant Rose" value="1"/>
+  </Value>
+  <Value type="list" genre="config" instance="1" index="4" label="Roots EndPoint 0" value="0" size="1">
+    <Help>Permet de définir si le Root EndPoint 0 à une action sur un relai ou sur les trois relais. Si aucun Root, laisser à 0.</Help>
+    <Item label="Aucun Root du Endpoint 0." value="0"/>
+    <Item label="Root du Endpoint 0 sur le Relai 1" value="1"/>
+	<Item label="Root du Endpoint 0 sur le Relai 2" value="2"/>
+	<Item label="Root du Endpoint 0 sur le Relai 3" value="3"/>
+	<Item label="Root du Endpoint 0 sur les trois Relais" value="4"/>
+  </Value>
+  <Value type="list" genre="config" instance="1" index="5" label="Désactivation boutons" value="1" size="1">
+    <Help>Définit si l'appui sur les boutons active les relais internes. Si oui paramètre à 1. Sinon le relai n'est pas activé.</Help>
+    <Item label="Désactiver les relais" value="0"/>
+    <Item label="Activer les relais" value="1"/>
+  </Value>
+  <Value type="list" genre="config" instance="1" index="6" label="Activation du Timer" value="0" size="1">
+    <Help>Permet de définir un Timer (Minuterie) pour extinction après activation en définissant le temps dans le paramètre 6. Si Timer activé paramètre à 1. Sinon pas de Timer.</Help>
+    <Item label="Désactiver le relai" value="0"/>
+    <Item label="Activer le relai" value="1"/>
+  </Value>
+  <Value type="list" genre="config" instance="1" index="7" label="Temporisation du Timer du Relai 1" value="0" size="1">
+    <Help>Permet de définir le temps du Timer du Relai 1 si le Timer est activé dans le paramètre 5. Si oui indiquer le temps en minutes.</Help>
+	<Item label="0 minute" value="0"/>
+    <Item label="1 minute" value="1"/>
+    <Item label="2 minutes" value="2"/>
+	<Item label="3 minutes" value="3"/>
+	<Item label="4 minutes" value="4"/>
+	<Item label="5 minutes" value="5"/>
+	<Item label="10 minutes" value="10"/>
+	<Item label="15 minutes" value="15"/>
+	<Item label="20 minutes" value="20"/>
+	<Item label="30 minutes" value="30"/>
+	<Item label="60 minutes" value="60"/>
+  </Value>
+  <Value type="list" genre="config" instance="1" index="8" label="Temporisation du Timer du Relai 2" value="0" size="1">
+    <Help>Permet de définir le temps du Timer du Relai 2 si le Timer est activé dans le paramètre 5. Si oui indiquer le temps en minutes.</Help>
+    <Item label="0 minute" value="0"/>
+	<Item label="1 minute" value="1"/>
+    <Item label="2 minutes" value="2"/>
+	<Item label="3 minutes" value="3"/>
+	<Item label="4 minutes" value="4"/>
+	<Item label="5 minutes" value="5"/>
+	<Item label="10 minutes" value="10"/>
+	<Item label="15 minutes" value="15"/>
+	<Item label="20 minutes" value="20"/>
+	<Item label="30 minutes" value="30"/>
+	<Item label="60 minutes" value="60"/>
+  </Value>
+  <Value type="list" genre="config" instance="1" index="9" label="Temporisation du Timer du Relai 3" value="0" size="1">
+    <Help>Permet de définir le temps du Timer du Relai 3 si le Timer est activé dans le paramètre 5. Si oui indiquer le temps en minutes.</Help>
+    <Item label="0 minute" value="0"/>
+	<Item label="1 minute" value="1"/>
+    <Item label="2 minutes" value="2"/>
+	<Item label="3 minutes" value="3"/>
+	<Item label="4 minutes" value="4"/>
+	<Item label="5 minutes" value="5"/>
+	<Item label="10 minutes" value="10"/>
+	<Item label="15 minutes" value="15"/>
+	<Item label="20 minutes" value="20"/>
+	<Item label="30 minutes" value="30"/>
+	<Item label="60 minutes" value="60"/>
+  </Value>
   </CommandClass>
   <!-- Association Groups -->
   <CommandClass id="133">
-    <Associations num_groups="4">
+    <Associations num_groups="3">
       <Group index="1" max_associations="5" label="Lifeline"/>
       <Group index="2" max_associations="5" label="Sending Report Endpoint 1"/>
       <Group index="3" max_associations="5" label="Sending Report Endpoint 2"/>
       <Group index="4" max_associations="5" label="Sending Report Endpoint 3"/>
-	</Associations>
+    </Associations>
   </CommandClass>
 </Product>
