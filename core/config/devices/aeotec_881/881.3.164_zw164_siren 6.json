@@ -1,14 +1,14 @@
 {
-    "name": "Doorbell 6 (ZW162)",
+    "name": "Siren 6 (ZW164)",
     "type": "Sirène", 
     "comlink": "",
     "remark": "", 
-    "imglink": "aeotec.zw162",
+    "imglink": "aeotec.zw164",
     "commands": [
         {
             "name": "Sonnette",
             "type": "info",
-            "isVisible": 1,
+            "isVisible": 0,
             "isHistorized": 0,
             "configuration": {
                 "class": 32,
@@ -43,7 +43,7 @@
         {
             "name": "Sonnette Volume",
             "type": "action",
-            "isVisible": 1,
+            "isVisible": 0,
             "isHistorized": 0,
             "configuration": {
                 "class": 121,
