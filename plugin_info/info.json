@@ -11,5 +11,22 @@
     "hasOwnDeamon": true,
     "maxDependancyInstallTime": 45,
     "changelog": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/openzwave\/changelog",
-    "documentation": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/openzwave\/"
+    "documentation": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/openzwave\/",
+     "language": [
+        "fr_FR",
+        "en_US",
+        "de_DE",
+        "sp_SP",
+        "ru_RU",
+        "id_ID",
+        "it_IT"
+    ],
+    "compatibility": [
+        "Jeedomboard",
+        "Smart",
+        "RPI\/RPI2",
+        "Docker",
+        "DIY",
+        "v4"
+    ]
 }
