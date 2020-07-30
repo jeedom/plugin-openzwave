@@ -564,5 +564,8 @@
     "plugins\/openzwave\/core\/api\/openzwave.api.php": {
         "JSONRPC object not defined": "Objeto JSONRPC não definido",
         "Aucune demande": "Nenhum pedido"
+    },
+    "info.json": {
+        "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave": "Plug-in para controlar o equipamento ZWave através de uma chave ZWave compatível com openZwave"
     }
 }
