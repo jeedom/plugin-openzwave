@@ -26,6 +26,7 @@
         "Port clé Z-Wave": "",
         "Aucun": "Tak ada",
         "Auto": "",
+        "Désactiver la gestion des processus USB (socat)": "",
         "Port du Serveur (laisser vide par défault)": "",
         "Options avancées": "",
         "Backups": "",
@@ -509,7 +510,7 @@
         "Icône": "Icon",
         "La valeur de la commande vaut par défaut la commande": "",
         "Commande": "Pesanan",
-        "Valeur retour d\\'état": "Nilai kondisi kembali ",
+        "Valeur retour d\\'état": "Nilai kondisi kembali",
         "Durée avant retour d\\'état (min)": "Waktu untuk kembali kondisi (min)",
         "Min": "",
         "Max": "",
@@ -563,5 +564,8 @@
     "plugins\/openzwave\/core\/api\/openzwave.api.php": {
         "JSONRPC object not defined": "",
         "Aucune demande": ""
+    },
+    "info.json": {
+        "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave": ""
     }
 }

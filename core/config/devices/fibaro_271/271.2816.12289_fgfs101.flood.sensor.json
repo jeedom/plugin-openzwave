@@ -1,88 +1,89 @@
 {
-    "name": "FGFS-101 Flood Sensor", 
-    "type": "Fuite", 
-    "comlink": "2365-fibaro-detecteur-d-inondation-z-wave-fgfs-101-5902020528142", 
-    "remark": "", 
-    "imglink": "fibaro.fgfs101", 
-    "configuration": {
-        "battery_type": "1x3V CR123A"
-    }, 
-    "commands": [
-        {
-            "name": "Fuite", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 156, 
-                "value": "", 
-                "index": 5, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "invertBinary": "1", 
-                "generic_type": "FLOOD"
-            }, 
-            "template": {
-                "dashboard": "inondation", 
-                "mobile": "inondation"
-            }
-        }, 
-        {
-            "name": "Température", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
-            "configuration": {
-                "class": 49, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "TEMPERATURE"
-            }, 
-            "unite": "°C"
-        }, 
-        {
-            "name": "Sabotage", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 156, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "returnStateTime": "1", 
-                "returnStateValue": "0"
-            }, 
-            "subtype": "binary", 
-            "display": {
-                "invertBinary": "1", 
-                "generic_type": "SABOTAGE"
-            }
-        }, 
-        {
-            "name": "Batterie", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 128, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "BATTERY"
-            }, 
-            "unite": "%"
-        }
-    ]
+  "name": "FGFS-101 Flood Sensor",
+  "type": "Fuite",
+  "documentation":"https:\/\/doc.jeedom.com\/#language#\/zwave\/fibaro.fgfs101_-_FloodSensors",
+  "comlink": "2365-fibaro-detecteur-d-inondation-z-wave-fgfs-101-5902020528142",
+  "remark": "",
+  "imglink": "fibaro.fgfs101",
+  "configuration": {
+    "battery_type": "1x3V CR123A"
+  },
+  "commands": [
+    {
+      "name": "Fuite",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 156,
+        "value": "",
+        "index": 5,
+        "instance": 1
+      },
+      "subtype": "binary",
+      "display": {
+        "invertBinary": "1",
+        "generic_type": "FLOOD"
+      },
+      "template": {
+        "dashboard": "inondation",
+        "mobile": "inondation"
+      }
+    },
+    {
+      "name": "Température",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 49,
+        "value": "",
+        "index": 1,
+        "instance": 1
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "TEMPERATURE"
+      },
+      "unite": "°C"
+    },
+    {
+      "name": "Sabotage",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 156,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "returnStateTime": "1",
+        "returnStateValue": "0"
+      },
+      "subtype": "binary",
+      "display": {
+        "invertBinary": "1",
+        "generic_type": "SABOTAGE"
+      }
+    },
+    {
+      "name": "Batterie",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 128,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "BATTERY"
+      },
+      "unite": "%"
+    }
+  ]
 }

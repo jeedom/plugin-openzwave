@@ -1,89 +1,90 @@
 {
-    "name": "Miniplug Dimmer", 
-    "type": "Prise", 
-    "comlink": "2687-everspring-mini-prise-variateur-z-wave-plus-ad147-6-prise-francaise-3700946500370", 
-    "remark": "", 
-    "imglink": "everspring.AD147-6", 
-    "commands": [
-        {
-            "name": "Intensité", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=#slider#", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "value": "Etat", 
-            "subtype": "slider", 
-            "display": {
-                "generic_type": "LIGHT_SLIDER"
-            }, 
-            "template": {
-                "dashboard": "light", 
-                "mobile": "light"
-            }
-        }, 
-        {
-            "name": "On", 
-            "type": "action", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_ON"
-            }
-        }, 
-        {
-            "name": "Off", 
-            "type": "action", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 99
-            }, 
-            "value": "Etat", 
-            "subtype": "other", 
-            "display": {
-                "generic_type": "LIGHT_OFF"
-            }
-        }, 
-        {
-            "name": "Etat", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 38, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 100
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "LIGHT_STATE"
-            }, 
-            "unite": "%"
-        }
-    ]
+  "name": "Miniplug Dimmer",
+  "type": "Prise",
+  "documentation":"https:\/\/doc.jeedom.com\/#language#\/zwave\/everspring.AD147-6_-_Miniplug_Dimmer",
+  "comlink": "2687-everspring-mini-prise-variateur-z-wave-plus-ad147-6-prise-francaise-3700946500370",
+  "remark": "",
+  "imglink": "everspring.AD147-6",
+  "commands": [
+    {
+      "name": "Intensité",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 38,
+        "value": "type=setvalue&value=#slider#",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 99
+      },
+      "value": "Etat",
+      "subtype": "slider",
+      "display": {
+        "generic_type": "LIGHT_SLIDER"
+      },
+      "template": {
+        "dashboard": "light",
+        "mobile": "light"
+      }
+    },
+    {
+      "name": "On",
+      "type": "action",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 38,
+        "value": "type=setvalue&value=255",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 99
+      },
+      "value": "Etat",
+      "subtype": "other",
+      "display": {
+        "generic_type": "LIGHT_ON"
+      }
+    },
+    {
+      "name": "Off",
+      "type": "action",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 38,
+        "value": "type=setvalue&value=0",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 99
+      },
+      "value": "Etat",
+      "subtype": "other",
+      "display": {
+        "generic_type": "LIGHT_OFF"
+      }
+    },
+    {
+      "name": "Etat",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 38,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "LIGHT_STATE"
+      },
+      "unite": "%"
+    }
+  ]
 }

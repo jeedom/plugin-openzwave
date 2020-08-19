@@ -1,8 +1,14 @@
+# Registro de cambios Z-Wave
+
+>**Importante**
+>
+>Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto
+
 # 10/07/2019
 
 - Se corrigió un error al detener al demonio
 - Correcciones de errores
-- ESTA ACTUALIZACIÓN DEBE RECOMENDAR LAS DEPENDENCIAS (REINICIAR)
+- ESTA ACTUALIZACIÓN NECESITA RECOMPENSAR LAS DEPENDENCIAS (REANUDO)
 
 # 2019-09-19
 
@@ -18,10 +24,10 @@
 
 2019-02-04
 ===
-- ESTA ACTUALIZACIÓN DEBE RECOMENDAR LAS DEPENDENCIAS (REINICIAR)
+- ESTA ACTUALIZACIÓN NECESITA RECOMPENSAR LAS DEPENDENCIAS (REANUDO)
 - Corrección de un error en múltiples instancias de termostatos
 - Creación de un nivel de cola en desuso en acciones para actualizaciones
-- Adición de muchas confs (como recordatorio, el botón para recuperar confs es útil para estar actualizado sin actualizar el complemento)
+- Adición de muchas confs (para recuperar el botón para recuperar confs es útil estar actualizado sin actualizar el complemento)
 - Gestión mejorada de canales multicanal encapsulados
 - Adición de CC específico del fabricante
 - Instalación simple del interruptor de sonido CC
@@ -51,7 +57,7 @@
 
     -   Adición de la posibilidad interna de activar actualizaciones en ciertos valores específicos y módulos específicos (utilizados en confesiones de libertad)
 
-    -   Rediseño completo de la función que permite simular un valor en otro comando para evitar ponerlo en un conjunto de módulos pero específicamente (Jeedom internal)
+    -   Rediseño completo de la función que permite simular un valor en otro comando para evitar ponerlo en un conjunto de módulos pero específicamente (Jeedom interno)
 
 -   Error corregido
 
@@ -61,9 +67,9 @@
 
     -   Reducción del tamaño de las imágenes para limitar el tamaño del complemento tanto como sea posible (aproximadamente 500 imágenes)
 
-    -   Eliminación de dependencias más utilizadas, como Mercurial Sphinx, etc.
+    -   Eliminación de dependencias más utilizadas, como Mercurial Sphinx, etc
 
-    -   Supresión de la purga de las configuraciones antes de la actualización (evita tener iconos Zwave en lugar de las imágenes en caso de actualizaciones fallidas por tiempo de espera u otro)
+    -   Supresión de la purga de las configuraciones antes de la actualización (evita tener iconos de Zwave en lugar de las imágenes en caso de actualizaciones fallidas por tiempo de espera u otro)
 
 2017-08-xx
 ===
@@ -89,11 +95,11 @@
     -   Verificación de la validez de los grupos de asociación al final
         de la entrevista.
 
-    -   Recuperación del último nivel de las baterías cuando comienza el demonio..
+    -   Recuperación del último nivel de las baterías cuando comienza el demonio.
 
 -   Error corregido
 
-    -   Corrección de la migración de la información de la batería..
+    -   Corrección de la migración de la información de la batería.
 
     -   Corrección de la retroalimentación de información de la batería en
         la pantalla del equipo.
@@ -104,7 +110,7 @@
     -   Corrección de acciones en valores de tipo de botón en
         pantalla del módulo.
 
-    -   Corrección de la recuperación de las traducciones de parámetros..
+    -   Corrección de la recuperación de las traducciones de parámetros.
 
     -   Corrección de error vacío en la modificación de valores de tipo RAW
         (Código RFid).
@@ -123,7 +129,7 @@
 
     -   Asistente de gestión de credenciales para lectores RFID.
 
-    -   Corrección del asistente de detección de módulos desconocidos..
+    -   Corrección del asistente de detección de módulos desconocidos.
 
     -   Corrección de los asistentes de "Reanudar desde ..." y "Aplicar
         en ... "en la pestaña de configuración.
@@ -232,7 +238,7 @@
 
     -   Desactivación automática de la función Heal Network
         dos veces por semana (disminución en intercambios con
-        el controlador).
+        El controlador).
 
     -   Optimizaciones de código de biblioteca Openzwave.
 
@@ -247,7 +253,7 @@
             Comando de alarma (selección de tono de llamada en sirenas)
 
     -   Más demanda diaria de nivel de batería (menos de
-        mensajes, ahorro de baterías).
+        mensajes, ahorrando en baterías).
 
     -   El nivel de la batería se envía directamente a la pantalla de la batería en
         informe de nivel de recepción.
@@ -292,7 +298,7 @@
 
     -   Corrección ortográfica.
 
-    -   Rediseño de la pantalla del equipo con pestañas..
+    -   Rediseño de la pantalla del equipo con pestañas.
 
 -   Error corregido
 
@@ -302,7 +308,7 @@
     -   Módulos Vision Secure que no vuelven al modo de espera
         durante la entrevista.
 
-    -   Instalación de dependencias en bucle (problema del lado de github).
+    -   Instalación de dependencias en un bucle (problema del lado de github).
 
 2016-07-11
 ===
@@ -349,7 +355,7 @@
 
 -   Mejoras / Mejoras
 
-    -   Optimización de controles sanitarios..
+    -   Optimización de controles sanitarios.
 
     -   Red de optimización de gráficos.
 
@@ -358,7 +364,7 @@
 
     -   Actualización a la biblioteca OpenZWave 1.4.296.
 
-    -   Optimización de la refrigeración de fondo de las unidades..
+    -   Optimización de la refrigeración de fondo de las unidades.
 
     -   Actualización de fondo optimizada para
         los motores.
@@ -402,11 +408,11 @@
         notificaciones del controlador.
 
     -   Agregar una ruta para recuperar la salud de un nodo.
-        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetHealth ()
+        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetHealth()
 
     -   Agregar una ruta para recuperar la última notificación
         de un nudo.
-        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetLastNotification ()
+        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetLastNotification()
 
 -   Mejoras / Mejoras
 
@@ -426,16 +432,16 @@
     -   Validación de que un módulo es idéntico a nivel de ID para
         permitir la copia de parámetros.
 
-    -   Simplificación del asistente para copiar parámetros..
+    -   Simplificación del asistente para copiar parámetros.
 
     -   Ocultar valores de pestaña del sistema no existentes
         para ser exhibido.
 
-    -   Visualización de la descripción de las capacidades del controlador..
+    -   Visualización de la descripción de las capacidades del controlador.
 
     -   Actualización de la documentación.
 
-    -   Corrección de la ortografía de la documentación, gracias.
+    -   Corrección de la ortografía de la documentación, gracias
         @Juan-Pedro aka: kiko.
 
 -   Error corregido
@@ -445,7 +451,7 @@
     -   Se corrigió la inclusión en modo seguro.
 
     -   Corrección de llamada asincrónica. (error: \ [Errno 32 \]
-        Tubo roto)
+        Tuberia rota)
 
 2016-05-04
 ===
@@ -455,7 +461,7 @@
     -   Opción agregada para desactivar la actualización de fondo
         atenuadores.
 
-    -   Visualización de asociaciones con las que está asociado un módulo.
+    -   Visualización de asociaciones con las que está asociado un módulo
         (encontrar uso).
 
     -   Soporte agregado para CC MULTI\_INSTANCE\_ASSOCIATION.
@@ -500,7 +506,7 @@
 
     -   Actualización a la biblioteca OpenZWave 1.4.167.
 
-    -   Modificación del sistema de asociación directa..
+    -   Modificación del sistema de asociación directa.
 
     -   Actualización de la documentación
 
@@ -521,11 +527,11 @@
 
     -   Agregar trazas en caso de error de notificación.
 
-    -   Mejor recuperación del estado de la batería..
+    -   Mejor recuperación del estado de la batería.
 
     -   Resumen / cumplimiento de la salud para termostatos de batería.
 
-    -   Mejor detección de módulos en baterías..
+    -   Mejor detección de módulos en baterías.
 
     -   Optimización del modo de depuración para el servidor REST.
 
@@ -542,9 +548,9 @@
     -   Corrección de la selección de documentación del módulo para
         módulos con múltiples perfiles.
 
-    -   Gestión de los botones de acción del módulo..
+    -   Gestión de los botones de acción del módulo.
 
-    -   Corrección de la descripción del nombre genérico de la clase..
+    -   Corrección de la descripción del nombre genérico de la clase.
 
     -   Corrección de la copia de seguridad del archivo zwcfg.
 
@@ -562,11 +568,11 @@
 
 -   Mejoras / Mejoras
 
-    -   Mejor gestión de los botones de acciones del módulo..
+    -   Mejor gestión de los botones de acciones del módulo.
 
     -   Agregar secciones de documentación.
 
-    -   Optimización del mecanismo de detección del estado del demonio..
+    -   Optimización del mecanismo de detección del estado del demonio.
 
     -   Mecanismo de protesta durante la recuperación de la
         Descripción de los parámetros si contiene caracteres
@@ -596,7 +602,7 @@
 
     -   Corrección del retorno del estado del cable piloto de Fibaro.
 
-    -   Corrección de un error que recrea los comandos durante la configuración.
+    -   Corrección de un error que recrea los comandos durante la configuración
         al día.
 
 2016.02.09
@@ -629,7 +635,7 @@
 
     -   Agregar notificación de red.
 
-    -   Adición de una leyenda en el gráfico de red..
+    -   Adición de una leyenda en el gráfico de red.
 
     -   Adición de la función de cuidado de red a través de la tabla de enrutamiento.
 
@@ -637,7 +643,7 @@
 
     -   Gestión de acciones en nodo según el estado del nodo y el tipo.
 
-    -   Gestión de acciones de red según el estado de la red..
+    -   Gestión de acciones de red según el estado de la red.
 
     -   Actualización de la configuración automática del módulo todo
         las noches.
@@ -655,7 +661,7 @@
 
     -   Actualización de la biblioteca OpenZWave en 1.4
 
-    -   Modificación de la prueba de salud para revivir los presuntos nodos.
+    -   Modificación de la prueba de salud para revivir los presuntos nodos
         muerto más fácilmente sin las acciones del usuario.
 
     -   Uso de colores brillantes en la tabla de enrutamiento y
@@ -667,7 +673,7 @@
     -   Optimización de la información en la página de salud Z-Wave de acuerdo con
         el estado de la entrevista.
 
-    -   Mejor gestión de los parámetros de solo lectura o escritura.
+    -   Mejor gestión de los parámetros de solo lectura o escritura
         solo en la pestaña Configuración.
 
     -   Advertencia mejorada en termostatos de batería.
@@ -681,7 +687,7 @@
 
     -   Corrección de la actualización por valor en la pestaña Valores.
 
-    -   Corrección de nombres genéricos de módulos..
+    -   Corrección de nombres genéricos de módulos.
 
     -   Corrección del ping en los nodos en Timeout durante el
         prueba de salud.

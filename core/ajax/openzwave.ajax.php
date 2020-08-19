@@ -108,7 +108,7 @@ try {
 			if (!is_json($content)) {
 				ajax::success();
 			}
-			ajax::success(json_decode($content, true));
+			ajax::success(str_replace('#language#',config::byKey('language'),json_decode($content, true)));
 		}
 		ajax::success();
 	}

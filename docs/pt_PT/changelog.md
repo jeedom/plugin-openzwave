@@ -1,8 +1,14 @@
+# Lista de Mudanças Z-Wave
+
+>**IMPORTANTE**
+>
+>Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto
+
 # 07/07/2019
 
 - Corrigido um erro ao parar o daemon
 - Correções de bugs
-- ESTA ATUALIZAÇÃO PRECISA RECOMPILAR AS DEPENDÊNCIAS (REINICIAR)
+- ESTA ATUALIZAÇÃO PRECISA RECOMPILAR AS DEPENDÊNCIAS (RELACIONAR)
 
 # 2019-09-19
 
@@ -18,10 +24,10 @@
 
 2019-02-04
 ===
-- ESTA ATUALIZAÇÃO PRECISA RECOMPILAR AS DEPENDÊNCIAS (REINICIAR)
+- ESTA ATUALIZAÇÃO PRECISA RECOMPILAR AS DEPENDÊNCIAS (RELACIONAR)
 - Correção de um bug em várias instâncias de termostatos
 - Criação de um nível de fila descontinuado em ações para atualizações
-- Adição de muitas confs (como lembrete, o botão para recuperar confs é útil para estar atualizado sem atualizar o plugin)
+- Adição de muitos confs (recuperar o botão para recuperar confs é útil para estar atualizado sem atualizar o plugin)
 - Gerenciamento aprimorado de multicanais encapsulados
 - Adição de CC específico do fabricante
 - Instalação simples do CC Soundswitch
@@ -31,7 +37,7 @@
 - Realce da cauda
 - Preparação para adicionar novos CCs (notificação em particular)
 - Adição de códigos no alarme CC do teclado Zipato no momento
-- Correção do philio no modo seguro, que durante os toques gerou um tempo limite de 10 segundos (é certamente necessário regenerar a detecção da sirene ou incluí-la novamente)
+- Correção do philio no modo seguro, que durante os toques gerou um tempo limite de 10 segundos (é certamente necessário regenerar a detecção da sirene ou incluí-la novamente))
 - Correção de um erro se o nível de log for nenhum
 - ESTA ATUALIZAÇÃO PRECISA RECOMPENSAR AS DEPENDÊNCIAS
 
@@ -49,7 +55,7 @@
 
     -   Melhorias
 
-    -   Adição da possibilidade interna de acionar atualizações em determinados valores e módulos específicos (usados em jeedom confs)
+    -   Adição da possibilidade interna de acionar atualizações em determinados valores e módulos específicos (usado em jeedom confs)
 
     -   Redesign completo da função, permitindo simular um valor em outro comando para evitar colocá-lo em um conjunto de módulos, mas especificamente (Jeedom interno)
 
@@ -61,9 +67,9 @@
 
     -   Redução do tamanho das imagens para limitar ao máximo o tamanho do plug-in (aproximadamente 500 imagens)
 
-    -   Remoção de dependências mais usadas, como Mercurial Sphinx etc.
+    -   Remoção de dependências mais usadas, como Mercurial Sphinx etc
 
-    -   Supressão da eliminação das configurações antes da atualização (evita que os ícones do Zwave substituam as imagens no caso de atualizações sem êxito por tempo limite ou outro)
+    -   Supressão da eliminação da configuração antes da atualização (evita ter ícones Zwave em vez de imagens em caso de atualizações sem êxito por tempo limite ou outros)
 
 2017-08-xx
 ===
@@ -154,7 +160,7 @@
         módulos que não suportam a classe de comando de segurança.
 
     -   Repetição do valor nos controles remotos antes do final de
-        a entrevista (kyefob, minimote).
+        a entrevista (kyefob, minimize).
 
     -   Modifique um parâmetro da lista de tipos por valor através de um
         Comando de ação.
@@ -232,7 +238,7 @@
 
     -   Desativação da função Heal Network automaticamente
         duas vezes por semana (diminuição das trocas com
-        o controlador).
+        O controlador).
 
     -   Otimizações de código de biblioteca Openzwave.
 
@@ -247,7 +253,7 @@
             Comando de alarme (seleção de toque nas sirenes)
 
     -   Maior demanda diária por nível de bateria (menos de
-        mensagens, economizando baterias).
+        mensagens, economizando em baterias).
 
     -   O nível da bateria é enviado diretamente para a tela da bateria no
         relatório de nível de recebimento.
@@ -302,7 +308,7 @@
     -   Módulos Vision Secure que não retornam ao modo de espera
         durante a entrevista.
 
-    -   Instalação de dependências em loop (problema no lado do github).
+    -   Instalação de dependências em um loop (problema no lado do github).
 
 11/07/2016
 ===
@@ -402,11 +408,11 @@
         notificações do controlador.
 
     -   Adicionando uma rota para recuperar a integridade de um nó.
-        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetHealth ()
+        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetHealth()
 
     -   Adicionando uma rota para recuperar a última notificação
         de um nó.
-        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetLastNotification ()
+        ip\_jeedom:8083 / ZWaveAPI / Run / devices \ [node\_id \]. GetLastNotification()
 
 -   Melhorias / Aprimoramentos
 
@@ -445,7 +451,7 @@
     -   Inclusão corrigida no modo seguro.
 
     -   Correção de chamada assíncrona. (error: \ [Erro 32 \]
-        Tubo quebrado)
+        Cano quebrado)
 
 04/05/2016
 ===
@@ -536,7 +542,7 @@
 
     -   Corrigida descoberta de grupos de associação.
 
-    -   Correção do erro "Exceção KeyError: (91) em
+    -   Correção do erro "Exceção KeyError: (91)) em
         'libopenzwave.notif\_callback 'ignorado".
 
     -   Correção da seleção da documentação do módulo para

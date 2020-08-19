@@ -67,7 +67,7 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 112, 
-                "value": "type=setconfig&value=6&size=1", 
+                "value": "type=setconfig&value=Fireplace sequence&size=0", 
                 "index": 157, 
                 "instance": 1
             }, 
@@ -84,7 +84,7 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 112, 
-                "value": "type=setconfig&value=7&size=1", 
+                "value": "type=setconfig&value=Storm sequence&size=0", 
                 "index": 157, 
                 "instance": 1
             }, 
@@ -101,7 +101,7 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 112, 
-                "value": "type=setconfig&value=8&size=1", 
+                "value": "type=setconfig&value=Rainbow sequence&size=0", 
                 "index": 157, 
                 "instance": 1
             }, 
@@ -118,7 +118,7 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 112, 
-                "value": "type=setconfig&value=9&size=1", 
+                "value": "type=setconfig&value=Aurora sequence&size=0", 
                 "index": 157, 
                 "instance": 1
             }, 
@@ -135,13 +135,30 @@
             "isHistorized": 0, 
             "configuration": {
                 "class": 112, 
-                "value": "type=setconfig&value=10&size=1", 
+                "value": "type=setconfig&value=Police (red-white-blue) sequence&size=0", 
                 "index": 157, 
                 "instance": 1
             }, 
             "subtype": "other", 
             "display": {
                 "icon": "<i class=\"icon jeedom-alerte\"></i>", 
+                "generic_type": "DONT"
+            }
+        },
+        {
+            "name": "Stop effet", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 112, 
+                "value": "type=setconfig&value=Sequence inactive&size=0", 
+                "index": 157, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "icon": "<i class=\"fas fa-stop\"></i>", 
                 "generic_type": "DONT"
             }
         },

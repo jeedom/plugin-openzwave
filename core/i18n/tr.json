@@ -26,6 +26,7 @@
         "Port clé Z-Wave": "",
         "Aucun": "Hiçbir",
         "Auto": "Otomatik",
+        "Désactiver la gestion des processus USB (socat)": "",
         "Port du Serveur (laisser vide par défault)": "",
         "Options avancées": "",
         "Backups": "",
@@ -458,7 +459,7 @@
         "Etes-vous sûr de vouloir créer un backup ? Une fois lancée cette opération ne peut être annulée.": "",
         "Action réalisée avec succès": "",
         "Etes-vous sûr de vouloir supprimer le backup suivant ": "",
-        "Une fois lancée cette opération ne peut être annulée.": "Bu işlem başlandıktan sonra iptal edilemez.",
+        "Une fois lancée cette opération ne peut être annulée.": "Bu işlem başlandıktan sonra iptal edilemez",
         "Etes-vous sûr de vouloir restaurer Openzwave avec ": "",
         "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave.": "",
         "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": ""
@@ -563,5 +564,8 @@
     "plugins\/openzwave\/core\/api\/openzwave.api.php": {
         "JSONRPC object not defined": "",
         "Aucune demande": ""
+    },
+    "info.json": {
+        "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave": ""
     }
 }

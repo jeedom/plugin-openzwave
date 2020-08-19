@@ -1,8 +1,14 @@
+# Changelog Z-Wave
+
+>**Wichtig**
+>
+>Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt
+
 # 10/07/2019
 
 - Ein Fehler beim Stoppen des Daemons wurde behoben
 - Fehlerbehebungen
-- DIESES UPDATE MUSS DIE ABHÄNGIGKEITEN ERNEUERN (NEUSTART)
+- DIESES UPDATE MUSS DIE ABHÄNGIGKEITEN ERNEUERN (RELAUNCH))
 
 # 2019-09-19
 
@@ -18,10 +24,10 @@
 
 2019-02-04
 ===
-- DIESES UPDATE MUSS DIE ABHÄNGIGKEITEN ERNEUERN (NEUSTART)
+- DIESES UPDATE MUSS DIE ABHÄNGIGKEITEN ERNEUERN (RELAUNCH))
 - Behebung eines Fehlers bei mehreren Instanzen von Thermostaten
 - Das Erstellen einer Warteschlangenebene ist aufgrund von Aktionen für Aktualisierungen veraltet
-- Hinzufügen vieler Confs (zur Erinnerung: Die Schaltfläche zum Wiederherstellen von Confs ist nützlich, um auf dem neuesten Stand zu sein, ohne das Plugin zu aktualisieren.)
+- Das Hinzufügen vieler Confs (um die Schaltfläche zum Wiederherstellen von Confs aufzurufen, ist nützlich, um auf dem neuesten Stand zu sein, ohne das Plugin zu aktualisieren)
 - Verbesserte Verwaltung gekapselter Mehrkanäle
 - Zugabe von CC herstellerspezifisch
 - Einfache Installation des CC Soundswitch
@@ -31,7 +37,7 @@
 - Schwanzverbesserung
 - Vorbereitung zum Hinzufügen neuer CCs (insbesondere Benachrichtigung)
 - Hinzufügen von Codes zum CC-Alarm für die Zipato-Tastatur für den Moment
-- Korrektur des Philios im sicheren Modus, der während der Klingeltöne eine Zeitüberschreitung von 10 Sekunden verursachte (es ist sicherlich notwendig, die Erkennung der Sirene neu zu generieren oder sie wieder einzuschließen).
+- Korrektur des Philios im sicheren Modus, der während der Klingeltöne eine Zeitüberschreitung von 10 Sekunden erzeugte (es ist sicherlich notwendig, die Erkennung der Sirene neu zu generieren oder sie wieder einzuschließen)
 - Korrektur eines Fehlers, wenn die Protokollstufe keine ist
 - DIESES UPDATE MUSS DIE ABHÄNGIGKEITEN ERNEUERN
 
@@ -49,9 +55,9 @@
 
     -   Verbesserungen
 
-    -   Hinzufügung der internen Möglichkeit, Aktualisierungen für bestimmte Werte und bestimmte Module auszulösen (verwendet in jeedom confs)
+    -   Hinzufügen der internen Möglichkeit, Aktualisierungen für bestimmte Werte und bestimmte Module auszulösen (wird in jeedom confs verwendet)
 
-    -   Vollständige Neugestaltung der Funktion, die es ermöglicht, einen Wert für einen anderen Befehl zu simulieren, um zu vermeiden, dass er für eine Reihe von Modulen verwendet wird, jedoch speziell (Jeedom intern)
+    -   Vollständige Neugestaltung der Funktion, die es ermöglicht, einen Wert für einen anderen Befehl zu simulieren, um zu vermeiden, dass er für eine Reihe von Modulen verwendet wird, jedoch speziell (interne Jeedom))
 
 -   Fehler behoben
 
@@ -59,11 +65,11 @@
 
     -   Korrektur des Fehlers beim Verlust des anstehenden Sollwerts an den Thermostatventilen (geht mit Punkt 2 der Verbesserungen einher)
 
-    -   Reduzierung der Größe der Bilder, um die Größe des Plugins so weit wie möglich zu begrenzen (ca. 500 Bilder)
+    -   Reduzieren Sie die Größe der Bilder, um die Größe des Plugins so weit wie möglich zu begrenzen (ca. 500 Bilder))
 
-    -   Entfernen von mehr verwendeten Abhängigkeiten wie Mercurial Sphinx usw.
+    -   Entfernen von mehr verwendeten Abhängigkeiten wie Mercurial Sphinx usw
 
-    -   Unterdrückung der Bereinigung der Konfigurationen vor der Aktualisierung (vermeidet, dass Zwave-Symbole anstelle der Bilder verwendet werden, wenn die Aktualisierung wegen Zeitüberschreitung oder aus anderen Gründen nicht erfolgreich ist).
+    -   Unterdrückung der Konfigurationsbereinigung vor dem Update (vermeidet Zwave-Symbole anstelle von Bildern, falls Updates für Timeout oder andere nicht erfolgreich sind)
 
 2017-08-xx
 ===
@@ -83,7 +89,7 @@
         und Bestellungen.
 
     -   Möglichkeit zur Auswahl der Standardzuordnung
-        (ohne Instanz) auf den Modulen, die das unterstützen
+        (ohne Instanz) auf den Modulen, die die
         Assoziationen mit mehreren Instanzen.
 
     -   Überprüfung der Gültigkeit von Assoziationsgruppen am Ende
@@ -133,7 +139,7 @@
 
 -   Neue Funktionen
 
-    -   N / A.
+    -   N / A
 
 -   Verbesserungen / Verbesserungen
 
@@ -166,7 +172,7 @@
 
 -   Neue Funktionen
 
-    -   N / A.
+    -   N / A
 
 -   Verbesserungen / Verbesserungen
 
@@ -174,18 +180,18 @@
 
 -   Fehler behoben
 
-    -   N / A.
+    -   N / A
 
 2017-05-31
 ===
 
 -   Neue Funktionen
 
-    -   N / A.
+    -   N / A
 
 -   Verbesserungen / Verbesserungen
 
-    -   N / A.
+    -   N / A
 
 -   Fehler behoben
 
@@ -232,7 +238,7 @@
 
     -   Deaktivierung der Heal Network-Funktion automatisch
         zweimal pro Woche (Rückgang des Austauschs mit
-        der Controller).
+        Der Controller).
 
     -   Optimierungen des Openzwave-Bibliothekscodes.
 
@@ -302,7 +308,7 @@
     -   Vision Secure-Module, die nicht in den Standby-Modus zurückkehren
         während des Interviews.
 
-    -   Installation von Abhängigkeiten in der Schleife (Github-Problem).
+    -   Installation von Abhängigkeiten in einer Schleife (Github-seitiges Problem).
 
 2016-07-11
 ===
@@ -402,11 +408,11 @@
         Controller-Benachrichtigungen.
 
     -   Hinzufügen einer Route zur Wiederherstellung des Zustands eines Knotens.
-        ip\_jeedom:8083 / ZWaveAPI / Run / Geräte \ [Knoten\_id \]. GetHealth ()
+        ip\_jeedom:8083 / ZWaveAPI / Run / Geräte \ [Knoten\_id \]. GetHealth()
 
     -   Hinzufügen einer Route zum Abrufen der letzten Benachrichtigung
         eines Knotens.
-        ip\_jeedom:8083 / ZWaveAPI / Run / Geräte \ [Knoten\_id \]. GetLastNotification ()
+        ip\_jeedom:8083 / ZWaveAPI / Run / Geräte \ [Knoten\_id \]. GetLastNotification()
 
 -   Verbesserungen / Verbesserungen
 
@@ -675,7 +681,7 @@
 -   Fehler behoben
 
     -   Die in Celsius umgerechnete Temperatur gibt stattdessen Einheit C zurück
-        von F..
+        von F.
 
     -   Korrektur der Aktualisierung von Werten beim Start.
 

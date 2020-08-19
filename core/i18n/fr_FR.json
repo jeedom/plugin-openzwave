@@ -26,6 +26,7 @@
         "Port clé Z-Wave": "Port clé Z-Wave",
         "Aucun": "Aucun",
         "Auto": "Auto",
+        "Désactiver la gestion des processus USB (socat)": "Désactiver la gestion des processus USB (socat)",
         "Port du Serveur (laisser vide par défault)": "Port du Serveur (laisser vide par défault)",
         "Options avancées": "Options avancées",
         "Backups": "Backups",
@@ -563,5 +564,8 @@
     "plugins\/openzwave\/core\/api\/openzwave.api.php": {
         "JSONRPC object not defined": "JSONRPC object not defined",
         "Aucune demande": "Aucune demande"
+    },
+    "info.json": {
+        "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave": "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave"
     }
 }

@@ -1,15 +1,36 @@
 {
     "id": "openzwave",
     "name": "Z-Wave",
-    "description": "Plugin permettant la gestion du protocol Z-Wave",
+    "description": {
+        "fr_FR": "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave",
+        "en_US": "Plugin to control ZWave equipment via an openWave compatible ZWave key",
+        "es_ES": "Complemento para controlar el equipo ZWave a través de una tecla ZWave compatible con openWave",
+        "de_DE": "Plugin zur Steuerung von ZWave-Geräten über einen openWave-kompatiblen ZWave-Schlüssel",
+        "pt_PT": "Plug-in para controlar o equipamento ZWave através de uma chave ZWave compatível com openZwave"
+    },
     "licence": "AGPL",
-    "author": "tmartinez - nechry - sarakha63 - loic",
-    "require": "3.2.12",
+    "author": "Jeedom SAS",
+    "require": "3.3.0",
     "category": "automation protocol",
     "mobile": "openzwave",
     "hasDependency": true,
     "hasOwnDeamon": true,
     "maxDependancyInstallTime": 45,
     "changelog": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/openzwave\/changelog",
-    "documentation": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/openzwave\/"
+    "documentation": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/openzwave\/",
+    "language": [
+        "fr_FR",
+        "en_US",
+        "es_ES",
+        "de_DE",
+        "pt_PT"
+    ],
+    "compatibility": [
+        "Jeedomboard",
+        "Smart",
+        "RPI\/RPI2",
+        "Docker",
+        "DIY",
+        "v4"
+    ]
 }
