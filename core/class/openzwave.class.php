@@ -307,7 +307,7 @@ class openzwave extends eqLogic {
 		}
 		$disabledNodes = trim($disabledNodes, ',');
 		
-		$cmd = '/usr/bin/python ' . $openzwave_path . '/openzwaved/openzwaved.py ';
+		$cmd = system::getCmdSudo().'/usr/bin/python ' . $openzwave_path . '/openzwaved/openzwaved.py ';
 		$cmd .= ' --device ' . $port;
 		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('openzwave'));
 		$cmd .= ' --port ' . $port_server;
