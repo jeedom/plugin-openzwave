@@ -1,0 +1,317 @@
+{
+    "name": "Thermostat Z-TRM3", 
+    "type": "Thermostat", 
+    "comlink": "", 
+    "remark": "", 
+    "commands": [
+        {
+            "name": "Temperature", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_TEMPERATURE"
+            }, 
+            "unite": "°C"
+        },
+        {
+            "name": "Status", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 66, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_STATE"
+            }, 
+            "unite": ""
+        },
+        {
+            "name": "Status_Name", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 66, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_STATE_NAME"
+            }, 
+            "unite": ""
+        },
+        {
+            "name": "Mode", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_MODE"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "name": "Heat", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Heat", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Mode",
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Off", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Mode",
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Status 2", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 66, 
+                "value": "", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_STATE"
+            }, 
+            "unite": ""
+        },
+        {
+            "name": "Status_Name 2", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 66, 
+                "value": "", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_STATE_NAME"
+            }, 
+            "unite": ""
+        },
+        {
+            "name": "Mode 2", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_MODE"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "name": "Heat 2", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Heat", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "value": "Mode 2",
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Off 2", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Off", 
+                "index": 0, 
+                "instance": 2
+            }, 
+            "value": "Mode 2",
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }, 
+            "unite": "°C"
+        }, 
+	{
+            "name": "Heat Setpoint", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 1, 
+                "instance": 1, 
+                "minValue": 5, 
+                "maxValue": 30
+            }, 
+            "template": {
+                "dashboard": "button", 
+                "mobile": "button"
+            },
+            "value": "Heat Setpoint Info", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Heat Setpoint Info", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1, 
+                "minValue": 5, 
+                "maxValue": 30
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }, 
+            "unite": "°C"
+        },
+		{
+            "name": "Temperature 1", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 3
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_TEMPERATURE"
+            }, 
+            "unite": "°C"
+        },{
+            "name": "Temperature 2", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 4
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_TEMPERATURE"
+            }, 
+            "unite": "°C"
+        },
+    {
+      "name": "Consommation 1",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 50,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "CONSUMPTION"
+      },
+      "template": {
+        "dashboard": "tile"
+      },
+      "unite": "kWh"
+    },
+    {
+      "name": "Consommation 2",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 50,
+        "value": "",
+        "index": 0,
+        "instance": 2,
+        "minValue": 0
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "CONSUMPTION"
+      },
+      "template": {
+        "dashboard": "tile"
+      },
+      "unite": "kWh"
+    }
+    ]
+}

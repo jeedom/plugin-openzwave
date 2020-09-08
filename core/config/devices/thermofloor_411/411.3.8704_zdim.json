@@ -1,0 +1,191 @@
+{
+  "name": "Z-Dim",
+  "type": "Micromodule",
+  "commands": [
+    {
+      "name": "Intensité",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 38,
+        "value": "type=setvalue&value=#slider#",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 99
+      },
+      "value": "Etat",
+      "subtype": "slider",
+      "display": {
+        "generic_type": "LIGHT_SLIDER"
+      },
+      "template": {
+        "dashboard": "light",
+        "mobile": "light"
+      }
+    },
+    {
+      "name": "On",
+      "type": "action",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 38,
+        "value": "type=setvalue&value=255",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 99
+      },
+      "value": "Etat",
+      "subtype": "other",
+      "display": {
+        "generic_type": "LIGHT_ON"
+      }
+    },
+    {
+      "name": "Off",
+      "type": "action",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 38,
+        "value": "type=setvalue&value=0",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 99
+      },
+      "value": "Etat",
+      "subtype": "other",
+      "display": {
+        "generic_type": "LIGHT_OFF"
+      }
+    },
+    {
+      "name": "Etat",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 38,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "LIGHT_STATE"
+      },
+      "unite": "%"
+    },
+    {
+      "name": "Puissance",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 50,
+        "value": "",
+        "index": 8,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 250
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "POWER"
+      },
+      "unite": "W"
+    },
+    {
+      "name": "Consommation",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 50,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "CONSUMPTION"
+      },
+      "template": {
+        "dashboard": "tile"
+      },
+      "unite": "kWh"
+    },{
+            "name": "Scene", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 91, 
+                "value": "", 
+                "index": 128, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "", 
+            "template": {
+                "dashboard": "badge", 
+                "mobile": "badge"
+            }
+        }, 
+        {
+            "name": "SceneID", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 91, 
+                "value": "", 
+                "index": 2, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "", 
+            "template": {
+                "dashboard": "badge", 
+                "mobile": "badge"
+            }
+        }, 
+        {
+            "name": "SceneAttribute", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 91, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "", 
+            "template": {
+                "dashboard": "badge", 
+                "mobile": "badge"
+            }
+        }
+  ]
+}
