@@ -1,56 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-ZW162 Doorbell 6
+ZW164 Siren 6
 -->
 <Product xmlns="http://code.google.com/p/open-zwave/">
-  <!--
-  Aeotec Doorbell 6
-  https://aeotec.freshdesk.com/helpdesk/attachments/6073850754
-  -->
   <!-- Configuration Parameters -->
   <CommandClass id="112">
     <Value type="int" index="1" genre="config" label="Light Effect and Tone Play Mode for Browse" value="16777216">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value type="int" index="2" genre="config" label="Light Effect and Tone Effect for Tampering" value="16777217">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value type="int" index="3" genre="config" label="Light Effect and Tone Effect for Doorbell 1" value="33554433">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value type="int" index="4" genre="config" label="Light Effect and Tone Effect for Doorbell 2" value="33554433">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value type="int" index="5" genre="config" label="Light Effect and Tone Effect for Doorbell 3" value="33554433">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value type="int" index="6" genre="config" label="Light Effect and Tone Effect for Environment" value="67108864">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value type="int" index="7" genre="config" label="Light Effect and Tone Effect for Security" value="67108864">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value type="int" index="8" genre="config" label="Light Effect and Tone Effect for Endpoint Emergency" value="67108864">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value type="int" index="16" genre="config" label="Light Effect 1" value="2519864323">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value type="int" index="17" genre="config" label="Light Effect 2" value="1684275203">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value type="int" index="18" genre="config" label="Light Effect 3" value="4325635">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value type="int" index="19" genre="config" label="Light Effect 4" value="1107296259">
@@ -66,7 +62,7 @@ ZW162 Doorbell 6
       </Help>
     </Value>
     <Value type="int" index="22" genre="config" label="Light Effect 7" value="1107296257">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value type="list" genre="config" index="32" label="Basic Set to nodes in Group 2" size="1" value="3">
@@ -161,15 +157,15 @@ ZW162 Doorbell 6
       <Item label="#3x #2 and #1 Button had been paired" value="7"/>
     </Value>
     <Value type="int" index="52" genre="config" label="Get the information of #1 Button" read_only="true" value="0">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value type="int" index="53" genre="config" label="Get the information of #2 Button" read_only="true" value="0">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value type="int" index="54" genre="config" label="Get the information of #3 Button" read_only="true" value="0">
-      <Help>Please Refer to Engineering Specification - Aeotec Doorbell 6
+      <Help>Please Refer to Engineering Specification - Aeotec Siren 6
       </Help>
     </Value>
     <Value genre="config" index="96" label="Allow stopping chime with the action button" type="bool" value="0">

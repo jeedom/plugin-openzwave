@@ -1,0 +1,94 @@
+{
+    "name": "aerQ Temperature & Humidity (ZWA009)",
+    "type": "Multicapteurs", 
+    "remark": "", 
+    "configuration": {
+        "battery_type": "1x3V CR2477"
+    }, 
+    "commands": [
+        {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            },
+            "unite": "°C"
+        }, 
+        {
+            "name": "Point de rosé",
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 11,
+                "instance": 1
+            }, 
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            },
+            "unite": "°C"
+        },
+        {
+            "name": "Humidité",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "index": 5,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 100
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "HUMIDITY"
+            },
+            "template": {
+                "dashboard": "line",
+                "mobile": "line"
+            },
+            "unite": "%"
+        },
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}
