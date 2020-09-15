@@ -69,6 +69,8 @@ apt_install git python-pip python-dev python-pyudev python-setuptools python-lou
 echo 40 > ${PROGRESS_FILE}
 # Python
 echo "Installation des dependances Python"
+pip_install wheel
+echo 43 > ${PROGRESS_FILE}
 pip_install urwid
 echo 45 > ${PROGRESS_FILE}
 pip_install louie
