@@ -168,6 +168,25 @@
                 "generic_type": "THERMOSTAT_SETPOINT"
             }, 
             "unite": "°C"
+        },
+	{
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "NONE"
+            }, 
+            "unite": "%"
         }
     ]
 }
