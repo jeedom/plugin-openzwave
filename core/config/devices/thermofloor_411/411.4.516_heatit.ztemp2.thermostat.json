@@ -1,6 +1,7 @@
 {
     "name": "Thermostat Z-Temp2", 
-    "type": "Thermostat", 
+    "type": "Thermostat",
+    "manufacturer": "Heatit",
     "comlink": "", 
     "remark": "", 
     "imglink": "heatit.ztemp2", 
