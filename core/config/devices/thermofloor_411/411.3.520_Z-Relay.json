@@ -1,6 +1,7 @@
 {
     "name": "Z-Relay", 
     "type": "Rail-Din",
+    "manufacturer": "Heatit",
     "commands": [
         {
             "name": "On", 
