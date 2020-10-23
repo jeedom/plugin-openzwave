@@ -1,6 +1,7 @@
 {
     "name": "Z-Water", 
     "type": "Rail-Din",
+    "manufacturer": "Heatit",
     "commands": [
         {
             "name": "On 1", 
