@@ -1,6 +1,7 @@
 {
     "name": "Thermostat Z-TRM3", 
     "type": "Thermostat", 
+    "manufacturer": "Heatit",
     "comlink": "", 
     "remark": "", 
     "commands": [
