@@ -1,6 +1,7 @@
 {
   "name": "Z-Dim",
   "type": "Micromodule",
+  "manufacturer": "Heatit",
   "commands": [
     {
       "name": "Intensité",
