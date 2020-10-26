@@ -1,7 +1,13 @@
 {
-    "name": "Z-Relay", 
-    "type": "Rail-Din",
+    "name": "Z-Relay",
+    "ref": "4512554",
     "manufacturer": "Heatit",
+    "type": "Contacteur",
+    "reset": "Appuyer sur le bouton d'inclusion pendant au moins 10 secondes",
+    "pairing": "Appuyer une fois sur le bouton d'inclusion",
+    "remark": "",
+    "documentation": "https:\/\/www.heatit.com\/wp-content\/uploads\/2019\/12\/Manual_Heatit_Z-Relay_ENG.pdf",
+    "buylink": "https:\/\/www.domadoo.fr\/fr\/chauffage-clim\/5200-heatit-controls-module-relais-25a-z-wave-z-relay.html",
     "commands": [
         {
             "name": "On", 
