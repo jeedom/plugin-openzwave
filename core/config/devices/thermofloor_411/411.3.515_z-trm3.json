@@ -1,9 +1,13 @@
 {
-    "name": "Thermostat Z-TRM3", 
-    "type": "Thermostat", 
+    "name": "Thermostat Z-TRM3",
+    "ref": "5430599",
     "manufacturer": "Heatit",
-    "comlink": "", 
-    "remark": "", 
+    "type": "Thermostat",
+    "reset": "Appuyer sur les boutons Centre et Bas pendant 20 secondes",
+    "pairing": "1. Appuyer sur le bouton central pendant 10 secondes. L'écran séteint. 2. Appuyer sur le bouton bas 5 fois jusqu'à ce que Con s'affiche. 3. Lancer la procédure d'appairage en appuyant sur le bouton central pendant 2 secondes.", 
+    "remark": "",
+    "documentation": "https:\/\/www.thermo-floor.no\/media\/multicase\/documents\/_tfasdokumentasjon\/heatit%20controls\/heatit%20z-trm3\/manual_heatit_z-trm3_fw%204.0%20ver2020-b_eng.pdf",
+    "buylink": "https:\/\/www.domadoo.fr\/fr\/thermostats/5193-heatit-controls-thermostat-z-wave-pour-plancher-chauffant-electrique-16a-z-trm3-7071236015239.html",
     "commands": [
         {
             "name": "Temperature", 
