@@ -1,9 +1,13 @@
 {
-    "name": "Thermostat Z-Temp2", 
-    "type": "Thermostat",
+    "name": "Thermostat Z-Temp2",
+    "ref": "4512666",
     "manufacturer": "Heatit",
-    "comlink": "", 
-    "remark": "", 
+    "type": "Thermostat",
+    "reset": "",
+    "pairing": "Appuyer rapidement 3 fois sur le bouton d'inclusion situé à l'arrière du thermostat",
+    "remark": "Maintenir appuyé le bouton d'inclusion pendant 20 secondes",
+    "documentation": "https:\/\/www.heatit.com\/wp-content\/uploads\/2019/12\/Manual_Heatit_Z-Temp2_FW-1.1_Ver2020-B_ENG.pdf",
+    "buylink": "https:\/\/www.domadoo.fr\/fr\/thermostats\/5196-heatit-controls-thermostat-z-wave-sans-fil-z-temp2-7071236015307.html",
     "imglink": "heatit.ztemp2", 
     "commands": [
         {
