@@ -1,7 +1,13 @@
 {
   "name": "Z-Dim",
-  "type": "Micromodule",
+  "ref": "1444444",
   "manufacturer": "Heatit",
+  "type": "Variateur",
+  "reset": "Appuyer sur le bouton central pendant 20 secondes. L'éclairage connecté clignote une fois puis s'éteint",
+  "pairing": "Appuyer 6 fois rapidement sur le bouton central",
+  "remark": "",
+  "documentation": "https:\/\/www.thermo-floor.no\/media\/multicase\/documents\/_tfasdokumentasjon\/heatit%20controls\/heatit%20z-dim\/manual_heatit_z-dim_fw%201.0_ver2019-b_eng.pdf",
+  "buylink": "https:\/\/www.domadoo.fr\/fr\/eclairage/5293-heatit-controls-interrupteur-variateur-rotatif-z-wave-z-dim-7071236014003.html",
   "commands": [
     {
       "name": "Intensité",
