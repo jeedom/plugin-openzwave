@@ -1,7 +1,13 @@
 {
-    "name": "Z-Water", 
-    "type": "Rail-Din",
+    "name": "Z-Water",
+    "ref": "4512475",
     "manufacturer": "Heatit",
+    "type": "Rail-Din",
+    "reset": "Appuyer au moins 10 secondes sur le bouton situé dans le petit trou",
+    "pairing": "Appuyer une fois sur le boutonn d'inclusion du module",
+    "remark": "",
+    "documentation": "https:\/\/www.thermo-floor.no\/media\/multicase\/documents\/_tfasdokumentasjon\/heatit%20controls\/heatit%20z-water\/manual_heatit_z-water_analog%20inputs_fw%202.1_ver2019-a_eng.pdf",
+    "buylink": "https:\/\/www.domadoo.fr\/fr\/thermostats\/5199-heatit-controls-controleur-de-chauffage-hydronique-z-wave-10-sorties-z-water-7071236014065.html",
     "commands": [
         {
             "name": "On 1", 
