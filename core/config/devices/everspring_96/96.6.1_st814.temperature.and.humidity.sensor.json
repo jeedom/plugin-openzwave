@@ -1,8 +1,10 @@
 {
-    "name": "ST814", 
-    "type": "Multicapteurs", 
+    "name": "ST814",
+    "manufacturer": "Everspring",
+    "type": "Température,Humidité", 
     "comlink": "861-everspring-capteur-de-temperature-et-d-humidite-z-wave-st814-3700946500325", 
-    "remark": "", 
+    "remark": "",
+    "pairing": "3 clic sur le second bouton en partant de la gauche, en moins de 1,5 secondes",
     "imglink": "everspring.st814", 
     "configuration": {
         "1": {
