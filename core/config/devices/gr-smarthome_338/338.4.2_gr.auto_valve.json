@@ -1,9 +1,13 @@
 {
-    "name": "Vanne 1/4 de tour (GR-105)", 
+    "name": "Z-Wave Auto Valve 7G plus2",
+    "ref": "ZW101",
+    "manufacturer": "GR-Smarthome",
     "type": "Vanne", 
-    "comlink": "2958-gr-smarthome-motorisation-z-wave-pour-vanne-14-de-tour", 
-    "remark": "", 
-    "imglink": "gr.autovalve", 
+    "reset": "Maintenir appuyé le bouton rouge pendant 10 secondes",
+    "pairing": "Appuyer 1 seconde sur le bouton rouge",
+    "remark": "",
+    "documentation": "https:\/\/www.domadoo.fr\/fr\/index.php?controller=attachment&id_attachment=2355",
+    "buylink": "https:\/\/www.domadoo.fr\/fr\/peripheriques\/5238-gr-smarthome-motorisation-z-wave-700-pour-vanne-14-de-tour.html",
     "commands": [
         {
             "name": "Ouvrir", 
