@@ -1,6 +1,8 @@
 {
-    "name": "FGS-211 Simple Charge", 
-    "type": "Micromodule", 
+    "name": "Micromodule commutateur simple charge",
+    "ref": "FGS-211",
+    "manufacturer": "Fibaro",
+    "type": "Relais", 
     "comlink": "2862-fibaro-micromodule-commutateur-z-wave-fgs-212-5902020528272", 
     "remark": "Module remplacé par le FGS-212", 
     "imglink": "fibaro.fgs211", 
