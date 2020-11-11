@@ -84,7 +84,7 @@ function display_health_info(){
           tbody += ' <span title="{{ZWAVE PLUS}}"><i class="fas fa-plus-circle text-info" aria-hidden="true"></i></span> ';
         }
         if (nodes[node_id].data.isFrequentListening.value) {
-          tbody += ' <span title="{{FLiRS}}"><i class="fal fa-assistive-listening-systems " aria-hidden="true"></i></span> ';
+          tbody += ' <span title="{{FLiRS}}"><i class="fas fa-assistive-listening-systems " aria-hidden="true"></i></span> ';
         }
         tbody += '</td>';
         tbody += '<td>';
@@ -190,7 +190,7 @@ function display_health_info(){
             else{
               tbody += '--</span>';
             }
-            
+
           }
         }
         tbody += '</td>';
