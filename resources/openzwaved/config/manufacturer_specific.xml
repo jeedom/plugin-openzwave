@@ -1415,6 +1415,11 @@
 		<Product type="0012" id="0104" name="UBS104 Universal Relay Switch" config="widom/UBS104.xml"/>
 		<Product type="1214" id="0304" name="UME304 Energy Driven Switch" config="widom/UME304C_S.xml"/>
 		<Product type="1214" id="0504" name="WDS Universal Double Switch" config="widom/WDS.xml"/>
+		<Product type="1214" id="0900" name="DRY Smart Dry Contact Switch" config="widom/DRY.xml"/>
+		<Product type="1214" id="0B00" name="WDS2 Smart Double Switch" config="widom/WDS2.xml"/>
+		<Product type="1214" id="0700" name="WSP Smart Plug" config="widom/WSP.xml" />
+		<Product type="1214" id="0A00" name="WTED Smart TE Dimmer" config="widom/WTED.xml"/>
+		<Product type="1214"id="0800" name="UMS2 Smart Roller Shutter" config="widom/UMS2.xml"/>
 	</Manufacturer>
 	<Manufacturer id="004c" name="Woodward Labs">
 	</Manufacturer>
