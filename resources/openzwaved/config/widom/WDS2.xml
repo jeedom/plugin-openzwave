@@ -173,6 +173,7 @@
 " value="3"/>
     </Value>
   </CommandClass>
+   <CommandClass id="96" mapping="endpoints" />
   <!-- -->
   <!-- Association Groups -->
   <CommandClass id="133">
