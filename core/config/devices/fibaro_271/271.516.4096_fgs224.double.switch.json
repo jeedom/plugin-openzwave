@@ -107,7 +107,7 @@
             "isVisible": "1"
         }, 
         {
-            "name": "On 2 ", 
+            "name": "On 2",
             "type": "action", 
             "subtype": "other", 
             "isVisible": 1, 
@@ -118,7 +118,7 @@
             "configuration": {
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
-                "instance": 2, 
+                "instance": 3,
                 "index": 0
             }, 
             "template": {
@@ -127,7 +127,7 @@
             }
         }, 
         {
-            "name": "Off 2 ", 
+            "name": "Off 2",
             "type": "action", 
             "subtype": "other", 
             "isVisible": 1, 
@@ -138,7 +138,7 @@
             "configuration": {
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
-                "instance": 2, 
+                "instance": 3,
                 "index": 0
             }, 
             "template": {
@@ -157,7 +157,7 @@
             "configuration": {
                 "class": 37, 
                 "value": "", 
-                "instance": 2, 
+                "instance": 3,
                 "index": 0
             }
         }, 
@@ -172,7 +172,7 @@
                 "value": "", 
                 "maxValue": 2500, 
                 "minValue": 0, 
-                "instance": 2, 
+                "instance": 3,
                 "index": 8
             }, 
             "template": {
@@ -194,7 +194,7 @@
             "configuration": {
                 "class": 50, 
                 "value": "", 
-                "instance": 2, 
+                "instance": 3,
                 "index": 0
             }, 
             "template": {
