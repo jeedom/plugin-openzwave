@@ -395,7 +395,7 @@ class openzwave extends eqLogic {
 		if (isset($device['name']) && !$_update) {
 			$this->setName('[' . $this->getLogicalId() . ']' . $device['name']);
 		}
-		$this->import($device);
+		$this->import($device,true);
 		sleep(1);
 		event::add('jeedom::alert', array(
 			'level' => 'warning',
