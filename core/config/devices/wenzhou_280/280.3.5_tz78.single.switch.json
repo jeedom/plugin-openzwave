@@ -1,9 +1,9 @@
 {
-    "name": "WPMC Energy Driven Switch", 
+    "name": "TZ78 Simple charge", 
     "type": "Micromodule", 
-    "comlink": "3693-widom-micromodule-commutateur-z-wave-avec-pince-amperemetrique", 
+    "comlink": "", 
     "remark": "", 
-    "imglink": "widom.wpmc", 
+    "imglink": "wenzhou.tz78", 
     "commands": [
         {
             "name": "On", 
@@ -14,7 +14,7 @@
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
-                "instance": 1
+                "instance": 2
             }, 
             "value": "Etat", 
             "subtype": "other", 
@@ -35,7 +35,7 @@
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 1
+                "instance": 2
             }, 
             "value": "Etat", 
             "subtype": "other", 
@@ -56,59 +56,33 @@
                 "class": 37, 
                 "value": "", 
                 "index": 0, 
-                "instance": 1
+                "instance": 2
             }, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
             }
-        }, 
+        },
         {
-            "name": "Puissance", 
+            "name": "Scene", 
             "type": "info", 
-            "isVisible": "1", 
-            "isHistorized": "1", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
             "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 8, 
-                "instance": 1, 
-                "minValue": 0, 
-                "maxValue": 2500
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "invertBinary": "0", 
-                "generic_type": "POWER"
-            }, 
-            "template": {
-                "dashboard": "default", 
-                "mobile": "default"
-            }, 
-            "unite": "W"
-        }, 
-        {
-            "name": "Consommation", 
-            "type": "info", 
-            "isVisible": "1", 
-            "isHistorized": "0", 
-            "configuration": {
-                "class": 50, 
+                "class": 43, 
                 "value": "", 
                 "index": 0, 
                 "instance": 1, 
-                "minValue": 0
+                "repeatEventManagement": "always"
             }, 
             "subtype": "numeric", 
             "display": {
-                "invertBinary": "0", 
-                "generic_type": "CONSUMPTION"
+                "generic_type": "DONT"
             }, 
             "template": {
                 "dashboard": "tile", 
                 "mobile": "tile"
-            }, 
-            "unite": "kWh"
+            }
         }
     ]
 }
