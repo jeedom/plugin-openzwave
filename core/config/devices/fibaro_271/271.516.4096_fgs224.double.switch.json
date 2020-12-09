@@ -61,52 +61,6 @@
             }
         }, 
         {
-            "name": "Puissance 1", 
-            "type": "info", 
-            "subType": "numeric", 
-            "isHistorized": "1", 
-            "unite": "W", 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "maxValue": 2500, 
-                "minValue": 0, 
-                "instance": 1, 
-                "index": 8
-            }, 
-            "template": {
-                "dashboard": "default", 
-                "mobile": "default"
-            }, 
-            "display": {
-                "invertBinary": "0", 
-                "generic_type": "POWER"
-            }, 
-            "isVisible": "1"
-        }, 
-        {
-            "name": "Consommation 1", 
-            "type": "info", 
-            "subType": "numeric", 
-            "isHistorized": "0", 
-            "unite": "kWh", 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "instance": 1, 
-                "index": 0
-            }, 
-            "template": {
-                "dashboard": "tile", 
-                "mobile": "tile"
-            }, 
-            "display": {
-                "invertBinary": "0", 
-                "generic_type": "CONSUMPTION"
-            }, 
-            "isVisible": "1"
-        }, 
-        {
             "name": "On 2 ", 
             "type": "action", 
             "subtype": "other", 
@@ -118,7 +72,7 @@
             "configuration": {
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
-                "instance": 2, 
+                "instance": 3, 
                 "index": 0
             }, 
             "template": {
@@ -138,7 +92,7 @@
             "configuration": {
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
-                "instance": 2, 
+                "instance": 3, 
                 "index": 0
             }, 
             "template": {
@@ -157,76 +111,9 @@
             "configuration": {
                 "class": 37, 
                 "value": "", 
-                "instance": 2, 
+                "instance": 3, 
                 "index": 0
             }
-        }, 
-        {
-            "name": "Puissance 2", 
-            "type": "info", 
-            "subType": "numeric", 
-            "isHistorized": "1", 
-            "unite": "W", 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "maxValue": 2500, 
-                "minValue": 0, 
-                "instance": 2, 
-                "index": 8
-            }, 
-            "template": {
-                "dashboard": "default", 
-                "mobile": "default"
-            }, 
-            "display": {
-                "invertBinary": "0", 
-                "generic_type": "POWER"
-            }, 
-            "isVisible": "1"
-        }, 
-        {
-            "name": "Consommation 2", 
-            "type": "info", 
-            "subType": "numeric", 
-            "isHistorized": "0", 
-            "unite": "kWh", 
-            "configuration": {
-                "class": 50, 
-                "value": "", 
-                "instance": 2, 
-                "index": 0
-            }, 
-            "template": {
-                "dashboard": "tile", 
-                "mobile": "tile"
-            }, 
-            "display": {
-                "invertBinary": "0", 
-                "generic_type": "CONSUMPTION"
-            }, 
-            "isVisible": "1"
         }
-    ], 
-    "recommended": {
-        "groups": [
-            {
-                "index": 1, 
-                "value": "add"
-            }
-        ], 
-        "polling": [
-            {
-                "instanceId": "1", 
-                "index": 0, 
-                "class": "37"
-            }, 
-            {
-                "instanceId": "2",
-                "index": 0, 
-                "class": "50"
-            }
-        ], 
-        "needswakeup": false
-    }
+    ]
 }
