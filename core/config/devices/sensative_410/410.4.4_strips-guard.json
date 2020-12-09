@@ -1,0 +1,43 @@
+{
+    "name": "Strip Guard 700",
+    "ref": "",
+    "manufacturer": "Sensative",
+    "type": "Détecteur,Ouverture", 
+    "reset": "Positionner l'aimant près du bord arrondi du StripGuard, puis éloigner et rapprocher le 3 fois de suite de ce même bord. À la 3ème répétition, laisser l'aimant sur le bord arrondi pendant 10 secondes. La Led s'allume quelques secondes pour indiquer la réussite de l'opération",
+    "pairing": "Positionner l'aimant près du bord arrondi du StripGuard, puis éloigner et rapprocher le 3 fois de suite de ce même bord. La Led s'allume quelques secondes pour indiquer la réussite de l'opération",
+    "remark": "",
+    "documentation": "",
+    "buylink": "",
+    "commands": [
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 48, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "OPENING"
+            }, 
+            "template": {
+                "dashboard": "door", 
+                "mobile": "door"
+            }
+        }
+    ], 
+    "recommended": {
+        "params": [
+            {
+                "index": 1, 
+                "value": "Binary Sensor report"
+            }
+        ], 
+        "needswakeup": true
+    }
+}
