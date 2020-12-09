@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product xmlns='http://code.google.com/p/open-zwave/'>
+	<CommandClass id="112" name="COMMAND_CLASS_CONFIGURATION" version="1" request_flags="4"  >
+		<Value type="byte" genre="config" index="1" label="Device Type">
+			<Help>
+				This parameter is read only and indicates in which mode the device is included. 
+				The device can be included either in the Binary Switch mode or in the Thermostat mode.
+			</Help>
+		</Value>
+		<Value type="list" genre="config" index="2" label="Frequency Region" min="0" max="9" value="0"> 
+			<Help>
+				The HLS01 has Z-Wave 700 platform chip inside which allows to use the device in different Z-Wave frequencies. 
+				If there is a need to use the device in the frequency different from the factory default change the value of 
+				this parameter according to the frequency list.
+			</Help>
+			<Item label="EU (868.4 MHz, 869.85 MHz)" value="0" />
+			<Item label="US (908.4 MHz, 916.0 MHz)" value="1" />
+			<Item label="ANZ (919.8 MHz, 921.4 MHz)" value="2" />
+			<Item label="HK (919.8 MHz)" value="3" />
+			<Item label="IN (865.2 MHz)" value="4" />
+			<Item label="IL (916.0 MHz)" value="5" />
+			<Item label="RU (869.0 MHz)" value="6" />
+			<Item label="CH (868.4 MHz)" value="7" />
+			<Item label="JP (922.5 MHz, 923.9 MHz, 926.3 MHz)" value="8" />
+			<Item label="KR (920.9 MHz, 921.7 MHz, 923.1 MHz)" value="9" />
+		</Value>
+		<Value type="list" genre="config" index="3" label="Output NO/NC Mode" value="0">
+			<Help>
+				The device can operate in Normal Open (NO) mode and in Normal Close (NC) mode. If the Parameter value = 0, 
+				the device switch operates in NO mode and there is no voltage on output when the device is in OFF state. 
+				The output will be powered when device goes to ON state. If the Parameter value = 1, the output will be 
+				powered in OFF state and will be no voltage on output when the device is in ON state.
+				The factory default value is 0.
+			</Help>
+			<Item label="Normal Open (NO) mode" value="0" />
+			<Item label="Normal Close (NC) mode" value="1" />
+		</Value>
+		<Value type="list" genre="config" index="4" label="Time Correction by Gateway" value="1">
+			<Help>
+				If this Parameter value = 1 and the HE-HLS01 is connected to a Z-Wave gateway, the HE-HLS01 time and day will be periodically polled
+				and corrected from the gateway. To switch off auto-correction set the Parameter value to 0. The factory default value is 1.
+			</Help>
+			<Item label="Time auto-correction disabled" value="0" />
+			<Item label="Time auto-correction enabled" value="1" />
+		</Value>
+		<Value type="list" genre="config" index="5" label="Day of the Week" value="1">
+			<Help>
+				This Parameter allows manual adjustment of the day of the week in case the HE-HLS01 is not connected to any Z-Wave gateway
+				or auto-correction is disabled (Parameter 4 value is 0). The factory default value is 1.
+			</Help>
+			<Item label="Monday" value="1" />
+			<Item label="Tuesday" value="2" />
+			<Item label="Wednesday" value="3" />
+			<Item label="Thursday" value="4" />
+			<Item label="Friday" value="5" />
+			<Item label="Saturday" value="6" />
+			<Item label="Sunday" value="7" />
+		</Value>
+		<Value type="byte" genre="config" index="6" label="Clock Hours" min="0" max="23" value="0">
+			<Help>
+				Allows manually adjustment of hours for internal clock in case the HE-HLS01 is not connected to any Z-Wave gateway or 
+				the Parameter 04 (auto-correction) is set to 0. The value of this parameter can be set from 0 to 23.
+				The factory default value is 0.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="7" label="Clock Minutes" min="0" max="59" value="0">
+			<Help>
+				Allows manually adjustment of minutes for internal clock in case the HE-HLS01 is not connected to any Z-Wave gateway or 
+				the Parameter 04 (auto-correction) is set to 0. The value of this parameter can be set from 0 to 59. 
+				The factory default value is 0.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="8" label="External NTC Temperature Sensor Resistance" min="1" max="100" value="10">
+			<Help>
+				If the external NTC temperature sensor is used it is necessary to select the correct resistance value in Ohms (Ω) of 
+				the sensor. The selection range is 1 to 100 kiloOhms (kΩ). One 10kΩ NTC temperature sensor is included in the HE-HLS01 
+				package with a 3-meter connection wire. The factory default value is 10.
+			</Help>
+		</Value>
+		//Valeurs négatives ??
+		<Value type="byte" genre="config" index="9" label="Temperature Sensor Calibration" min="-100" max="100" value="0">
+			<Help>
+				This Parameter defines the offset value for external NTC temperature sensor. If the temperature sensor is not calibrated 
+				properly, manual calibration can be made by adjusting the values up to ±10.0°C or ±18°F. This value will be added or 
+				subtracted from the temperature sensor reading. The factory default value is 0.
+			</Help>
+		</Value>
+		<Value type="list" genre="config" index="10" label="Temperature Scale Mode" value="0">
+			<Help>
+				This parameter determines in which unit of measurement (degrees Celsius or Fahrenheit) the device will report the temperature, 
+				and also determines the scale that will be interpreted by the configuration parameters.
+				Factory default value is 0 (degrees Celsius).
+			</Help>
+			<Item label="Celsius" value="0" />
+			<Item label="Fahrenheit" value="1" />
+		</Value>
+		<Value type="byte" genre="config" index="11" label="Temperature Sensor Consecutive Report Interval" min="1" max="120" value="10">
+			<Help>
+				This Parameter defines the interval between consecutive reports of temperature sensor reading to the gateway. The value can be 
+				adjusted from 1 min to 120 min. The factory default value is 10.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="12" label="Temperature Sensor Report Threshold" min="1" max="100" value="5">
+			<Help>
+				This parameter determines the change in temperature level resulting in temperature sensors report being sent to the gateway.
+				In Celsius scale mode the value of this parameter should be x10, e.g. for 0.4°C use value 4. From 1 (0.1°C) to 100 (10°C) can
+				 be selected in Celsius scale mode and from 1 to 18 can be selected in Fahrenheit scale mode. Use the value 0 if there is a 
+				 need to stop sending the reports. The factory default value is 5 (0.5°) in °C scale and 1 in °F scale.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="13" label="Energy Consumption Meter Consecutive Report Interval" min="1" max="120" value="10">
+			<Help>
+				This Parameter defines the interval between consecutive reports of real time and cumulative energy consumption data to the gateway. 
+				The value can be adjusted from 1 min to 120 min. The factory default value is 10 min.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="14" label="Energy Consumption Meter Report Threshold" min="1" max="90" value="25">
+			<Help>
+				This parameter determines how much the cumulative or real time energy consumption data need to increase/reduce to be reported to 
+				the gateway. The value of this parameter is in % and from 1 to 90 can be selected. Use the value 0 if there is a need to stop 
+				sending the reports. The factory default value is 25.
+				Note: Energy consumption meter function is available only if the device is AC powered.
+			</Help>
+		</Value>
+		<Value type="list" genre="config" index="15" label="Device Failure Notifications" value="1">
+			<Help>
+				If the HLS01 does not work properly it sends “System Failure” notification to the gateway with the error code. 
+				The factory default value is 1 (the notification is enabled).
+			</Help>
+			<Item label="Disable “System Failure” notification" value="0" />
+			<Item label="Enable “System Failure” notification" value="1" />
+		</Value>
+		<Value type="byte" genre="config" index="16" label="Temperature Rise Notification" min="0" max="120" value="50">
+			<Help>
+				Use this parameter if you want to know about temperature rise before it reaches the critical value, defined in the “Overheat Protection” 
+				parameter. The device will send “Rapid Temperature Rise” notification to the gateway if the temperature sensor reading reaches the value 
+				defined in this parameter. The value can be set from 1 to 120 in °C scale mode or from 32 to 248 in °F scale mode. To disable the 
+				notification, set the value of this parameter to 0.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="17" label="Overheat Protection Notification" min="0" max="120" value="60">
+			<Help>
+				You can define the maximum limit of temperature, reaching which the device will automatically switch Off the load and send 
+				“Overheat Detected” notification to the gateway. The value of this parameter can be set from 1 to 120 in °C scale mode or from 
+				32 to 248 in °F scale mode. Use the value 0 if there is a need to disable this function.
+				The factory default value is 60 in °C scale and 140 in °F scale.
+			</Help>
+		</Value>
+		<Value type="list" genre="config" index="18" label="Over-Current Protection Notification" value="1">
+			<Help>
+				The maximum load for the device is 16A. If the connected load current exceeds 16A the device will automatically switch Off the output 
+				and send the “Over-Current Detected” notification to the gateway. To disable sending the notification, set the value of this Parameter to 0.
+				The factory default value is 1 (the notification is enabled).
+				Note: The protection works only if the device is AC powered.
+			</Help>
+			<Item label="“Over-Current Detected” notification disabled" value="0" />
+			<Item label="“Over-Current Detected” notification enabled" value="1" />
+		</Value>
+		<Value type="byte" genre="config" index="19" label="Over-Load Protection Notification" min="0" max="4000" value="3500">
+			<Help>
+				You can define the maximum power in Watt for connected load. The device will automatically switch off the output and send “Over-Load Detected” 
+				notification to the gateway if power consumed by the connected load exceeds this limit. The value of this parameter can be set from 100 to 4000 
+				in watts. Use the value 0 if there is a need to disable this function. The factory default value is 3500W.
+				Note: The protection works only if the device is AC powered.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="20" label="Over-Voltage Protection Notification" min="0" max="280" value="240">
+			<Help>
+			The device constantly monitors the voltage of your electricity network. You can define the maximum voltage of network exceeding which the device 
+			will automatically switch off the output and send “Over-Voltage Detected” notification to the gateway. The value of this parameter can be set 
+			from 120 to 280 in volts. Use the value 0 if there is a need to disable this function.
+			The factory default value is 240V.
+			Note: The protection works only if the device is AC powered.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="21" label="Voltage Drop Protection Notification" min="0" max="240" value="200">
+			<Help>
+				You can define the minimum voltage of your electricity network. If the voltage of the network drops determined level the device will automatically 
+				switch off the output and send “Voltage Drop Detected” notification to the gateway. The value of this parameter can be set from 80 to 240 in volts. 
+				Use the value 0 if there is a need to disable this function. The factory default value is 200V.
+				Note: The protection works only if the device is AC powered.
+			</Help>
+		</Value>
+		<Value type="list" genre="config" index="22" label="Sparks Protection Notification" value="1">
+			<Help>
+				If connected load fails it can create sparks that may cause a fire. The device constantly monitors the power consumption of connected load and can 
+				detect even a small surge in consumption and automatically switch off the output and send “Surge Detected” notification to the gateway.
+				The factory default value is 1 (the protection is enabled).
+				Note: The protection works only if the device is AC powered.
+			</Help>
+			<Item label="Disabling “Surge Detected” notification" value="0" />
+			<Item label="Enabling “Surge Detected” notification" value="1" />
+		</Value>
+		<Value type="list" genre="config" index="31" label="Load Error Notification" value="1">
+			<Help>
+				The device can send the “Load Error” notification to the gateway when the relay is On but there is
+				no power consumption (meaning possible problems with the heating system). 
+				The factory default value is 1 (the notification is enabled).
+				Note: The function works only if the device is AC powered.
+			</Help>
+			<Item label="Disable “Load Error” notification" value="0" />
+			<Item label="Enable “Load Error” notification" value="1" />
+		</Value>
+		<Value type="byte" genre="config" index="32" label="Temperature Hysteresis" min="2" max="100" value="5">
+			<Help>
+				This Parameter defines the hysteresis value for temperature control. The HE-HLS01 will stabilize the temperature 
+				with selected hysteresis. For example, if the SET POINT is set for 25°C and HYSTERESIS is set for 0.5°C the HE-HLS01 
+				will change the state to IDLE when the temperature reaches 25.0°C, but it will change the state to HEATING if the 
+				temperature drops lower than 24.5°C. The hysteresis can be changed from 0.2°C to 10.0°C range in Celsius mode, and 
+				from 1°F to 18.0°F in Fahrenheit mode. The factory default value is 0.5°C and 1°F.
+			</Help>
+		</Value>
+		<Value type="list" genre="config" index="33" label="Basic Set Action" value="1">
+			<Help>
+				This Parameter defines which Operating Mode the HE-HLS01 reverts to if the Basic Set command is received.
+				If the Basic Set command value is 0 (OFF state) the HE-HLS01 will go to Manual mode and switch Off the heating 
+				element (IDLE mode). If the Basic Set command value is 0xFF (ON state) the HE-HLS01 will change the Mode 
+				to the corresponding Parameter value. The factory default value is 1.
+			</Help>
+			<Item label="Heat Mode" value="1" />
+			<Item label="Auto Mode" value="2" />
+			<Item label="Dry Mode" value="3" />
+			<Item label="Energy Saving Mode" value="4" />
+			<Item label="Away Mode" value="5" />
+		</Value>
+		<Value type="list" genre="config" index="34" label="External Input Mode" value="0">
+			<Help>
+				Settings for external input. The factory default value is 0.
+			</Help>
+			<Item label="The input state changes will be ignored by the Thermostat logic." value="0" />
+			<Item label="The external input will operate in “Toggle Switch” mode" value="1" />
+			<Item label="The external input will operate in “Toggle Switch Reverse” mode" value="2" />
+			<Item label="The external input will operate in “Push Button (Momentary Switch)" value="3" />
+		</Value>
+		<Value type="list" genre="config" index="35" label="External Input Action" value="1">
+			<Help>
+				This Parameter allows selection of which Operating Mode the HE-HLS01 should revert to when the external input is shorted.
+				The factory default value is 1.
+			</Help>
+			<Item label="Heat Mode" value="1" />
+			<Item label="Auto Mode" value="2" />
+			<Item label="Dry Mode" value="3" />
+			<Item label="Energy Saving Mode" value="4" />
+			<Item label="Away Mode" value="5" />
+		</Value>
+		<Value type="byte" genre="config" index="36" label="Dry Mode Timeout" min="1" max="720" value="30">
+			<Help>
+				By choosing Dry Mode, the device will increase the temperature to the selected Set Point and keep it for the time specified 
+				in this parameter. A time range of 1 to 720 minutes (12 hours) can be set. As the Dry Time passes, the Thermostat will 
+				automatically change to the Mode set in the Parameter 37.
+				The factory default value is 30 minutes.
+			</Help>
+		</Value>
+		<Value type="list" genre="config" index="37" label="Mode to Switch After Dry Mode Operation Complete" min="10" max="370" value="200">
+			<Help>
+				This Parameter indicates the mode that will be set after Dry Time.
+				The factory default value is 1.
+			</Help>
+			<Item label="Heat Mode" value="1" />
+			<Item label="Auto Mode" value="2" />
+			<Item label="Dry Mode" value="3" />
+			<Item label="Energy Saving Mode" value="4" />
+			<Item label="Away Mode" value="5" />
+		</Value>
+		<Value type="byte" genre="config" index="38" label="Morning Schedule Time" min="0000" max="2359" value="0600">
+			<Help>
+				Use this Parameter to set the Morning time manually for the Temperature Schedule. The value of this Parameter has format HHMM,
+				e.g. for 08:00 use value 0800 (time without a colon). From 00:00 to 23:59 can be selected.
+				The factory default value is 0600.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="39" label="Day Schedule Time" min="0000" max="2359" value="0900">
+			<Help>
+				Use this Parameter to set the Day time manually for the Temperature Schedule. The value of this Parameter has format HHMM,
+				e.g. for 08:00 use value 0800 (time without a colon). From 00:00 to 23:59 can be selected.
+				The factory default value is 0900.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="40" label="Evening Schedule Time" min="0000" max="2359" value="1800">
+			<Help>
+				Use this Parameter to set the Evening time manually for the Temperature Schedule. The value of this Parameter has format HHMM,
+				e.g. for 08:00 use value 0800 (time without a colon). From 00:00 to 23:59 can be selected.
+				The factory default value is 1800.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="41" label="Night Schedule Time" min="0000" max="2359" value="2300">
+			<Help>
+				Use this Parameter to set the Night time manually for the Temperature Schedule. The value of this Parameter has format HHMM,
+				e.g. for 08:00 use value 0800 (time without a colon). From 00:00 to 23:59 can be selected.
+				The factory default value is 2300.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="42" label="Monday Morning temperature" min="10" max="1100" value="240">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 240.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="43" label="Monday Day temperature" min="10" max="1100" value="200">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 200.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="44" label="Monday Evening temperature" min="10" max="1100" value="230">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 230.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="45" label="Monday Night temperature" min="10" max="1100" value="180">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 180.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="46" label="Tuesday Morning temperature" min="10" max="1100" value="240">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 240.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="47" label="Tuesday Day temperature" min="10" max="1100" value="200">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 200.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="48" label="Tuesday Evening temperature" min="10" max="1100" value="230">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 230.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="49" label="Tuesday Night temperature" min="10" max="1100" value="180">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 180.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="50" label="Wednesday Morning temperature" min="10" max="1100" value="240">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 240.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="51" label="Wednesday Day temperature" min="10" max="1100" value="200">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 200.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="52" label="Wednesday Evening temperature" min="10" max="1100" value="230">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 230.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="53" label="Wednesday Night temperature" min="10" max="1100" value="180">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 180.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="54" label="Thursday Morning temperature" min="10" max="1100" value="240">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 240.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="55" label="Thursday Day temperature" min="10" max="1100" value="200">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 200.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="56" label="Thursday Evening temperature" min="10" max="1100" value="230">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 230.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="57" label="Thursday Night temperature" min="10" max="1100" value="180">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 180.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="58" label="Friday Morning temperature" min="10" max="1100" value="240">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 240.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="59" label="Friday Day temperature" min="10" max="1100" value="200">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 200.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="60" label="Friday Evening temperature" min="10" max="1100" value="230">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 230.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="61" label="Friday Night temperature" min="10" max="1100" value="180">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 180.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="62" label="Saturday Morning temperature" min="10" max="1100" value="240">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 240.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="63" label="Saturday Day temperature" min="10" max="1100" value="200">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 200.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="64" label="Saturday Evening temperature" min="10" max="1100" value="230">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 230.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="65" label="Saturday Night temperature" min="10" max="1100" value="180">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 180.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="66" label="Sunday Morning temperature" min="10" max="1100" value="240">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 240.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="67" label="Sunday Day temperature" min="10" max="1100" value="200">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 200.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="68" label="Sunday Evening temperature" min="10" max="1100" value="230">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 230.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="69" label="Sunday Night temperature" min="10" max="1100" value="180">
+			<Help>
+				Use this Parameter to set the temperature for each day Schedule manually. The value of this Parameter should be x10,
+				e.g. for 22.5°C set value 225. From 1°C (value 10) to 37°C (value 370) can be selected.
+				The factory default value is 180.
+			</Help>
+		</Value>
+	</CommandClass>
+<CommandClass id="67" name="COMMAND_CLASS_THERMOSTAT_SETPOINT" version="1" request_flags="4" create_vars="true" base="0">
+		<Instance index="1"/>
+		<Value type="decimal" genre="user" instance="1" index="1" label="Heat" units="C" read_only="false" write_only="false" min="0" max="0" value="20"/>
+		<Value type="decimal" genre="user" instance="1" index="8" label="Dry Air" units="C" read_only="false" write_only="false" min="0" max="0" value="20"/>
+		<Value type="decimal" genre="user" instance="1" index="11" label="Heat Econ" units="C" read_only="false" write_only="false" min="0" max="0" value="20"/>
+		<Value type="decimal" genre="user" instance="1" index="13" label="Away" units="C" read_only="false" write_only="false" min="0" max="0" value="20"/>
+		<Value type="decimal" genre="user" instance="1" index="10" label="Auto Changeover" units="C" read_only="false" write_only="false" min="0" max="0" value="20"/>
+	</CommandClass>
+	<CommandClass id="64">
+    <Instance index="1"/>
+    <Value genre="user" index="0" instance="1" label="Mode" max="0" min="0" read_only="false" size="1" type="list" units="" value="0" write_only="false">
+      <Item label="Off" value="0"/>
+      <Item label="Heat" value="1"/>
+      <Item label="Dry Air" value="8"/>
+      <Item label="Auto Changeover" value="10"/>
+      <Item label="Heat Econ" value="11"/>
+      <Item label="Away" value="13"/>
+    </Value>
+    <SupportedModes>
+      <Mode index="0" label="Off"/>
+      <Mode index="1" label="Heat"/>
+      <Mode index="8" label="Dry Air"/>
+      <Mode index="10" label="Auto Changeover"/>
+      <Mode index="11" label="Heat Econ"/>
+      <Mode index="13" label="Away"/>
+    </SupportedModes>
+	</CommandClass>
+<CommandClass id="133">
+        <Associations num_groups="2">
+            <Group index="1" max_associations="1" label="LifeLine"/>
+            <Group index="2" max_associations="5" label="Relay Basic Set"/>
+            <Group index="3" max_associations="5" label="S1 Basic Set"/>
+            <Group index="4" max_associations="5" label="Temperature Sensor"/>
+        </Associations>
+    </CommandClass>
+</Product>
+
