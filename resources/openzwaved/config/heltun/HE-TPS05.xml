@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product xmlns='http://code.google.com/p/open-zwave/'>
+	<CommandClass id="112" name="COMMAND_CLASS_CONFIGURATION" version="1" request_flags="4"  >
+		<Value type="list" genre="config" index="1" label="Time Correction by Controller" value="1">
+			<Help>
+				If this Parameter value = 1 and the HE-TPS05 is connected to a Z-Wave gateway, the HE-TPS05 time and day will be periodically polled
+				and corrected from the gateway. To switch off auto-correction set the Parameter value to 0. The factory default value is 1.
+			</Help>
+			<Item label="Time auto-correction disabled" value="0" />
+			<Item label="Time auto-correction enabled" value="1" />
+		</Value>
+		<Value type="list" genre="config" index="2" label="Week Day" value="1">
+			<Help>
+				This parameter allows manual adjustment of the day of the week in case the HE-TPS05 is not connected to any Z- Wave gateway, 
+				or Parameter 01 (auto-correction) is selected as 0. The factory default value is 1.
+			</Help>
+			<Item label="Monday" value="1" />
+			<Item label="Tuesday" value="2" />
+			<Item label="Wednesday" value="3" />
+			<Item label="Thursday" value="4" />
+			<Item label="Friday" value="5" />
+			<Item label="Saturday" value="6" />
+			<Item label="Sunday" value="7" />
+		</Value>
+		<Value type="byte" genre="config" index="3" label="Hour" min="00" max="23" value="00">
+			<Help>
+				This Parameter allows manual adjustment of Time: Hours in case the HE-TPS05 is not connected to any Z-Wave gateway, or 
+				Parameter 01 (auto-correction) is selected as 0. The factory-default value is 00.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="4" label="Minute" min="00" max="59" value="00">
+			<Help>
+				This Parameter allows manual adjustment of Time: Minutes in case the HE-TPS05 is not connected to any Z-Wave gateway, 
+				or Parameter 01 (auto-correction) is selected as 0. The factory-default value is 00.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="5" label="Energy Consumption Meter Consecutive Report Interval" min="1" max="120" value="10">
+			<Help>
+				This Parameter defines the interval between consecutive reports of real time and cumulative energy consumption data 
+				to the gateway. The value can be adjusted from 1 min. to 120 mins. The factory default value is 10 minutes.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="6" label="Sensors Consecutive Report Interval" min="1" max="120" value="10">
+			<Help>
+				This Parameter defines the interval between consecutive reports. The value can be adjusted from 1 min to 120 min.
+				The factory default value is 10 min.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="7" label="Air Temperature Sensors Report Threshold" min="0" max="100" value="2">
+			<Help>
+				This Parameter determines the change in temperature level (in °C) resulting in temperature sensor report being sent
+				to the gateway. The value of this Parameter should be x10, e.g. for 0.4°C use value 4. From 0.1°C (value 1)
+				to 10°C (value 100) can be selected. Use the value 0 if there is a need to stop sending the reports.
+				The factory default value is 2 (0.2°C).
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="8" label="Humidity Sensor Report Threshold" min="0" max="25" value="2">
+			<Help>
+				This Parameter determines the change in humidity level in % resulting in humidity sensors report being sent to the gateway.
+				From 1% to 25% can be selected. Use the value 0 if there is a need to stop sending the reports.
+				The factory default value is 2.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="9" label="Light Sensor Report Threshold" min="0" max="99" value="50">
+			<Help>
+				This Parameter determines the change in the ambient environment illuminance level resulting in a light sensors report
+				being sent to the gateway. From 10% to 99% can be selected. Use the value 0 if there is a need to stop sending the reports.
+				The factory default value is 50.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="10" label="Touch Buttons Sensitivity Threshold" min="1" max="10" value="6">
+			<Help>
+				This Parameter allows the device Touch Button Sensitivity Threshold to be adjusted from level 1 (low sensitivity)
+				to 10 (high sensitivity). The factory default value is 6.
+				Note: Setting the sensitivity too high can lead to false touch detection.
+				We recommend not changing this Parameter unless there is a special need to do so.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="11" label="Temperature Sensor Calibration" min="-100" max="100" value="0">
+			<Help>
+				This parameter defines the offset value for room air temperature. If the internal air temperature sensor is not correctly calibrated,
+				then manual calibration can be made by adjusting the values up to ±10°C. This value will be added or subtracted from the internal
+				air temperature sensor reading. Through the Z-Wave network the value of this Parameter should be x10, e.g. for 1.5°C set the value 15.
+				The factory default value is 0.
+			</Help>
+		</Value>
+		<Value type="list" genre="config" index="12" label="Active State Backlight Color" value="1">
+			<Help>
+				Choose the value “1” if you wish the backlight active state to be blue, and the inactive state to be red (default). 
+				Choose the value “0” if you wish the backlight active state to be red, and the inactive state to be blue. 
+				The factory default value is 1.
+			</Help>
+			<Item label="Active state is red, inactive state is blue" value="0" />
+			<Item label="Active state is blue, inactive state is red" value="1" />
+		</Value>
+		<Value type="list" genre="config" index="13" label="Backlight Auto-Brightness Control" value="0">
+			<Help>
+				The HE-TPS05 can adjust its backlight level automatically depending on the ambient room brightness. If the Parameter 
+				value = “0” Inactive Level brightness will be controlled manually and set to the level defined by Parameter 14.
+				If the Parameter value = “1” Inactive Level brightness will be controlled automatically depending on the room illumination.
+				The factory-default value is 1.				
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="14" label="Backlight Brightness (Manual Mode)" min="0" max="10" value="8">
+			<Help>
+				The Backlight Brightness Level Parameter will take effect when Parameter 13 is set to Manual Control (value = 0). 
+				The brightness may then be manually adjusted in Parameter 14 from 1 (lowest) to 10 (brightest).
+				The factory-default value is 8.
+			</Help>
+		</Value>
+		<Value type="list" genre="config" index="15" label="Button 1 Backlight Control Source" value="1">
+			<Help>
+				The factory default value is 1.
+				Note: If the backlight is disabled (the Parameter value is set to “0”), it is also impossible to control 
+				it from the gateway.
+			</Help>
+			<Item label="Backlight is disabled (both color LEDs are turned off)" value="0" />
+			<Item label="Backlight is controlled by touch button (reflects the button state)" value="1" />
+			<Item label="Backlight is controlled by gateway or associated device (the button state is ignored) " value="2" />
+		</Value>
+		<Value type="list" genre="config" index="16" label="Button 2 Backlight Control Source" value="1">
+			<Help>
+				The factory default value is 1.
+				Note: If the backlight is disabled (the Parameter value is set to “0”), it is also impossible to control 
+				it from the gateway.
+			</Help>
+			<Item label="Backlight is disabled (both color LEDs are turned off)" value="0" />
+			<Item label="Backlight is controlled by touch button (reflects the button state)" value="1" />
+			<Item label="Backlight is controlled by gateway or associated device (the button state is ignored) " value="2" />
+		</Value>
+		<Value type="list" genre="config" index="17" label="Button 3 Backlight Control Source" value="1">
+			<Help>
+				The factory default value is 1.
+				Note: If the backlight is disabled (the Parameter value is set to “0”), it is also impossible to control 
+				it from the gateway.
+			</Help>
+			<Item label="Backlight is disabled (both color LEDs are turned off)" value="0" />
+			<Item label="Backlight is controlled by touch button (reflects the button state)" value="1" />
+			<Item label="Backlight is controlled by gateway or associated device (the button state is ignored) " value="2" />
+		</Value>
+		<Value type="list" genre="config" index="18" label="Button 4 Backlight Control Source" value="1">
+			<Help>
+				The factory default value is 1.
+				Note: If the backlight is disabled (the Parameter value is set to “0”), it is also impossible to control 
+				it from the gateway.
+			</Help>
+			<Item label="Backlight is disabled (both color LEDs are turned off)" value="0" />
+			<Item label="Backlight is controlled by touch button (reflects the button state)" value="1" />
+			<Item label="Backlight is controlled by gateway or associated device (the button state is ignored) " value="2" />
+		</Value>
+		<Value type="list" genre="config" index="19" label="Button 5 Backlight Control Source" value="1">
+			<Help>
+				The factory default value is 1.
+				Note: If the backlight is disabled (the Parameter value is set to “0”), it is also impossible to control 
+				it from the gateway.
+			</Help>
+			<Item label="Backlight is disabled (both color LEDs are turned off)" value="0" />
+			<Item label="Backlight is controlled by touch button (reflects the button state)" value="1" />
+			<Item label="Backlight is controlled by gateway or associated device (the button state is ignored) " value="2" />
+		</Value>
+		<Value type="list" genre="config" index="20" label="Relay 1 Control Source" value="1">
+			<Help>
+				The factory default value is 1.
+			</Help>
+			<Item label="Controlled by gateway or associated device" value="0" />
+			<Item label="Controlled by touch button N1 (Top Left)" value="1" />
+			<Item label="Controlled by touch button N2 (Top Right)" value="2" />
+			<Item label="Controlled by touch button N3 (Bottom Left)" value="3" />
+			<Item label="Controlled by touch button N4 (Bottom Right)" value="4" />
+			<Item label="Controlled by touch button N5 (Center)" value="5" />
+		</Value>
+		<Value type="list" genre="config" index="21" label="Relay 2 Control Source" value="2">
+			<Help>
+				The factory default value is 2.
+			</Help>
+			<Item label="Controlled by gateway or associated device" value="0" />
+			<Item label="Controlled by touch button N1 (Top Left)" value="1" />
+			<Item label="Controlled by touch button N2 (Top Right)" value="2" />
+			<Item label="Controlled by touch button N3 (Bottom Left)" value="3" />
+			<Item label="Controlled by touch button N4 (Bottom Right)" value="4" />
+			<Item label="Controlled by touch button N5 (Center)" value="5" />
+		</Value>
+		<Value type="list" genre="config" index="22" label="Relay 3 Control Source" value="3">
+			<Help>
+				The factory default value is 3.
+			</Help>
+			<Item label="Controlled by gateway or associated device" value="0" />
+			<Item label="Controlled by touch button N1 (Top Left)" value="1" />
+			<Item label="Controlled by touch button N2 (Top Right)" value="2" />
+			<Item label="Controlled by touch button N3 (Bottom Left)" value="3" />
+			<Item label="Controlled by touch button N4 (Bottom Right)" value="4" />
+			<Item label="Controlled by touch button N5 (Center)" value="5" />
+		</Value>
+		<Value type="list" genre="config" index="23" label="Relay 4 Control Source" value="4">
+			<Help>
+				The factory default value is 4.
+			</Help>
+			<Item label="Controlled by gateway or associated device" value="0" />
+			<Item label="Controlled by touch button N1 (Top Left)" value="1" />
+			<Item label="Controlled by touch button N2 (Top Right)" value="2" />
+			<Item label="Controlled by touch button N3 (Bottom Left)" value="3" />
+			<Item label="Controlled by touch button N4 (Bottom Right)" value="4" />
+			<Item label="Controlled by touch button N5 (Center)" value="5" />
+		</Value>
+		<Value type="list" genre="config" index="24" label="Relay 5 Control Source" value="5">
+			<Help>
+				The factory default value is 5.
+			</Help>
+			<Item label="Controlled by gateway or associated device" value="0" />
+			<Item label="Controlled by touch button N1 (Top Left)" value="1" />
+			<Item label="Controlled by touch button N2 (Top Right)" value="2" />
+			<Item label="Controlled by touch button N3 (Bottom Left)" value="3" />
+			<Item label="Controlled by touch button N4 (Bottom Right)" value="4" />
+			<Item label="Controlled by touch button N5 (Center)" value="5" />
+		</Value>
+		<Value type="list" genre="config" index="25" label="Button 1 Hold (Long Press) Control Mode" value="1">
+			<Help>
+				The factory default value is 1.
+				Note: Regardless of this Parameter, the device will send scene notifications about the touch state 
+				(pressed, held, released) to the gateway.
+			</Help>
+			<Item label="Hold function is disabled" value="0" />
+			<Item label="Operate like click" value="1" />
+			<Item label="When the button is held the relay output state is ON, as soon as the button is released the relay output state changes to OFF (momentary switch)" value="2" />
+			<Item label="When the button is held the relay output state is OFF, as soon as the button is released the relay output state changes to ON (momentary switch)" value="3" />
+		</Value>
+		<Value type="list" genre="config" index="26" label="Button 2 Hold (Long Press) Control Mode" value="1">
+			<Help>
+				The factory default value is 1.
+				Note: Regardless of this Parameter, the device will send scene notifications about the touch state 
+				(pressed, held, released) to the gateway.
+			</Help>
+			<Item label="Hold function is disabled" value="0" />
+			<Item label="Operate like click" value="1" />
+			<Item label="When the button is held the relay output state is ON, as soon as the button is released the relay output state changes to OFF (momentary switch)" value="2" />
+			<Item label="When the button is held the relay output state is OFF, as soon as the button is released the relay output state changes to ON (momentary switch)" value="3" />
+		</Value>
+		<Value type="list" genre="config" index="27" label="Button 3 Hold (Long Press) Control Mode" value="1">
+			<Help>
+				The factory default value is 1.
+				Note: Regardless of this Parameter, the device will send scene notifications about the touch state 
+				(pressed, held, released) to the gateway.
+			</Help>
+			<Item label="Hold function is disabled" value="0" />
+			<Item label="Operate like click" value="1" />
+			<Item label="When the button is held the relay output state is ON, as soon as the button is released the relay output state changes to OFF (momentary switch)" value="2" />
+			<Item label="When the button is held the relay output state is OFF, as soon as the button is released the relay output state changes to ON (momentary switch)" value="3" />
+		</Value>
+		<Value type="list" genre="config" index="28" label="Button 4 Hold (Long Press) Control Mode" value="1">
+			<Help>
+				The factory default value is 1.
+				Note: Regardless of this Parameter, the device will send scene notifications about the touch state 
+				(pressed, held, released) to the gateway.
+			</Help>
+			<Item label="Hold function is disabled" value="0" />
+			<Item label="Operate like click" value="1" />
+			<Item label="When the button is held the relay output state is ON, as soon as the button is released the relay output state changes to OFF (momentary switch)" value="2" />
+			<Item label="When the button is held the relay output state is OFF, as soon as the button is released the relay output state changes to ON (momentary switch)" value="3" />
+			<Item label="When the button is held or released the relay output state will toggle its state (ON to OFF or OFF to ON)" value="4" />
+		</Value>
+		<Value type="list" genre="config" index="29" label="Button 5 Hold (Long Press) Control Mode" value="1">
+			<Help>
+				The factory default value is 1.
+				Note: Regardless of this Parameter, the device will send scene notifications about the touch state 
+				(pressed, held, released) to the gateway.
+			</Help>
+			<Item label="Hold function is disabled" value="0" />
+			<Item label="Operate like click" value="1" />
+			<Item label="When the button is held the relay output state is ON, as soon as the button is released the relay output state changes to OFF (momentary switch)" value="2" />
+			<Item label="When the button is held the relay output state is OFF, as soon as the button is released the relay output state changes to ON (momentary switch)" value="3" />
+			<Item label="When the button is held or released the relay output state will toggle its state (ON to OFF or OFF to ON)" value="4" />
+		</Value>
+		<Value type="list" genre="config" index="30" label="Button 1 Click (Short Press) Control Mode" value="1">
+			<Help>
+				The factory default value is 1.
+			</Help>
+			<Item label="Press function disabled" value="0" />
+			<Item label="Relay inverts state (toggles ON to OFF, OFF to ON) according to the relay state" value="1" />
+			<Item label="Relay inverts state (toggles ON to OFF, OFF to ON) according to the button backlight state" value="2" />
+			<Item label="Relay switches to ON state only" value="3" />
+			<Item label="Relay switches to OFF state only" value="4" />
+			<Item label="Timer: On>Off Mode" value="5" />
+			<Item label="Timer: OFF>ON Mode" value="6" />
+		</Value>
+		<Value type="list" genre="config" index="31" label="Button 2 Click (Short Press) Control Mode" value="1">
+			<Help>
+				The factory default value is 1.
+			</Help>
+			<Item label="Press function disabled" value="0" />
+			<Item label="Relay inverts state (toggles ON to OFF, OFF to ON) according to the relay state" value="1" />
+			<Item label="Relay inverts state (toggles ON to OFF, OFF to ON) according to the button backlight state" value="2" />
+			<Item label="Relay switches to ON state only" value="3" />
+			<Item label="Relay switches to OFF state only" value="4" />
+			<Item label="Timer: On>Off Mode" value="5" />
+			<Item label="Timer: OFF>ON Mode" value="6" />
+		</Value>
+		<Value type="list" genre="config" index="32" label="Button 3 Click (Short Press) Control Mode" value="1">
+			<Help>
+				The factory default value is 1.
+			</Help>
+			<Item label="Press function disabled" value="0" />
+			<Item label="Relay inverts state (toggles ON to OFF, OFF to ON) according to the relay state" value="1" />
+			<Item label="Relay inverts state (toggles ON to OFF, OFF to ON) according to the button backlight state" value="2" />
+			<Item label="Relay switches to ON state only" value="3" />
+			<Item label="Relay switches to OFF state only" value="4" />
+			<Item label="Timer: On>Off Mode" value="5" />
+			<Item label="Timer: OFF>ON Mode" value="6" />
+		</Value>
+		<Value type="list" genre="config" index="33" label="Button 4 Click (Short Press) Control Mode" value="1">
+			<Help>
+				The factory default value is 1.
+			</Help>
+			<Item label="Press function disabled" value="0" />
+			<Item label="Relay inverts state (toggles ON to OFF, OFF to ON) according to the relay state" value="1" />
+			<Item label="Relay inverts state (toggles ON to OFF, OFF to ON) according to the button backlight state" value="2" />
+			<Item label="Relay switches to ON state only" value="3" />
+			<Item label="Relay switches to OFF state only" value="4" />
+			<Item label="Timer: On>Off Mode" value="5" />
+			<Item label="Timer: OFF>ON Mode" value="6" />
+		</Value>
+		<Value type="list" genre="config" index="34" label="Button 5 Click (Short Press) Control Mode" value="1">
+			<Help>
+				The factory default value is 1.
+			</Help>
+			<Item label="Press function disabled" value="0" />
+			<Item label="Relay inverts state (toggles ON to OFF, OFF to ON) according to the relay state" value="1" />
+			<Item label="Relay inverts state (toggles ON to OFF, OFF to ON) according to the button backlight state" value="2" />
+			<Item label="Relay switches to ON state only" value="3" />
+			<Item label="Relay switches to OFF state only" value="4" />
+			<Item label="Timer: On>Off Mode" value="5" />
+			<Item label="Timer: OFF>ON Mode" value="6" />
+		</Value>
+		<Value type="byte" genre="config" index="35" label="Relay 1 Timer mode duration" min="0" max="43200" value="0">
+			<Help>
+				This Parameter specifies the duration in seconds for the Timer mode (values 5 or 6 in Parameter 30 respectively). 
+				Press the button and the relay output goes to ON/OFF for the specified time then changes back to OFF/ON. 
+				This function can be used to turn attached devices like door lock or security OFF for a short time. 
+				The time values can be configured from 0 sec to 43200 sec (12 hours). The factory default value is 0.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="36" label="Relay 2 Timer mode duration" min="0" max="43200" value="0">
+			<Help>
+				This Parameter specifies the duration in seconds for the Timer mode (values 5 or 6 in Parameter 31 respectively). 
+				Press the button and the relay output goes to ON/OFF for the specified time then changes back to OFF/ON. 
+				This function can be used to turn attached devices like door lock or security OFF for a short time. 
+				The time values can be configured from 0 sec to 43200 sec (12 hours). The factory default value is 0.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="37" label="Relay 3 Timer mode duration" min="0" max="43200" value="0">
+			<Help>
+				This Parameter specifies the duration in seconds for the Timer mode (values 5 or 6 in Parameter 32 respectively). 
+				Press the button and the relay output goes to ON/OFF for the specified time then changes back to OFF/ON. 
+				This function can be used to turn attached devices like door lock or security OFF for a short time. 
+				The time values can be configured from 0 sec to 43200 sec (12 hours). The factory default value is 0.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="38" label="Relay 4 Timer mode duration" min="0" max="43200" value="0">
+			<Help>
+				This Parameter specifies the duration in seconds for the Timer mode (values 5 or 6 in Parameter 33 respectively). 
+				Press the button and the relay output goes to ON/OFF for the specified time then changes back to OFF/ON. 
+				This function can be used to turn attached devices like door lock or security OFF for a short time. 
+				The time values can be configured from 0 sec to 43200 sec (12 hours). The factory default value is 0.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="39" label="Relay 4 Timer mode duration" min="0" max="43200" value="0">
+			<Help>
+				This Parameter specifies the duration in seconds for the Timer mode (values 5 or 6 in Parameter 34 respectively). 
+				Press the button and the relay output goes to ON/OFF for the specified time then changes back to OFF/ON. 
+				This function can be used to turn attached devices like door lock or security OFF for a short time. 
+				The time values can be configured from 0 sec to 43200 sec (12 hours). The factory default value is 0.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="40" label="Relay Inverse Mode Group 1" min="0" max="54" value="0">
+			<Help>
+				The values in this Parameter will specify the relay numbers that will operate in inverse mode. For this purpose, the value 
+				will be encoded as a 2-digit number “AB” where “A” is the number of the first relay, and “B” is number of the second relay. 
+				For example, if the parameter value is “35” or “53” it means the relays N3 and N5 will operate in inverse mode.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="41" label="Relay Inverse Mode Group 2" min="0" max="54" value="0">
+			<Help>
+				The values in this Parameter will specify the relay numbers that will operate in inverse mode. For this purpose, the value 
+				will be encoded as a 2-digit number “AB” where “A” is the number of the first relay, and “B” is number of the second relay. 
+				For example, if the parameter value is “35” or “53” it means the relays N3 and N5 will operate in inverse mode.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="42" label="Relay Control by Sensors 1" min="0" max="53112359" value="0">
+			<Help>
+				In these Parameters, the relay state changes depending on sensor threshold value. For these configurations, Parameter values 
+				are encoded as 8-digit numbers (ABCDEFGH):
+				A: Relay number (1 through 5)
+				B: Control Mode
+					0-Temperature Sensor, 
+					1-Humidity Sensor, 
+					2-Light Sensor, 
+					3-Time control
+				C: State change relative to value in EFGH Condition Value fields (see below)
+ 					0-Equal or lower than
+ 					1-Equal or higher than
+ 				D: State Change
+ 					0-Switch OFF 
+ 					1-Switch ON
+				EFGH: Condition Value
+				“Sensor Value” for Control modes 0, 1, and 2, or “Time” for Control mode 3.
+				If Temperature sensor has been chosen as a source in the control mode, the value should be x10, e.g. for 24.5°C use the value 0245.
+				If Time control has been chosen as a source in the control mode, the device logic will process values EFGH from 0 to 23:59 (in time measure), 
+				all other values will be ignored.
+				EF represents Hour (0 through 23), GH represents Minutes (0 through 59).
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="43" label="Relay Control by Sensors 2" min="0" max="53112359" value="0">
+			<Help>
+				In these Parameters, the relay state changes depending on sensor threshold value. For these configurations, Parameter values 
+				are encoded as 8-digit numbers (ABCDEFGH):
+				A: Relay number (1 through 5)
+				B: Control Mode
+					0-Temperature Sensor, 
+					1-Humidity Sensor, 
+					2-Light Sensor, 
+					3-Time control
+				C: State change relative to value in EFGH Condition Value fields (see below)
+ 					0-Equal or lower than
+ 					1-Equal or higher than
+ 				D: State Change
+ 					0-Switch OFF 
+ 					1-Switch ON
+				EFGH: Condition Value
+				“Sensor Value” for Control modes 0, 1, and 2, or “Time” for Control mode 3.
+				If Temperature sensor has been chosen as a source in the control mode, the value should be x10, e.g. for 24.5°C use the value 0245.
+				If Time control has been chosen as a source in the control mode, the device logic will process values EFGH from 0 to 23:59 (in time measure), 
+				all other values will be ignored.
+				EF represents Hour (0 through 23), GH represents Minutes (0 through 59).
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="44" label="Relay Control by Sensors 3" min="0" max="53112359" value="0">
+			<Help>
+				In these Parameters, the relay state changes depending on sensor threshold value. For these configurations, Parameter values 
+				are encoded as 8-digit numbers (ABCDEFGH):
+				A: Relay number (1 through 5)
+				B: Control Mode
+					0-Temperature Sensor, 
+					1-Humidity Sensor, 
+					2-Light Sensor, 
+					3-Time control
+				C: State change relative to value in EFGH Condition Value fields (see below)
+ 					0-Equal or lower than
+ 					1-Equal or higher than
+ 				D: State Change
+ 					0-Switch OFF 
+ 					1-Switch ON
+				EFGH: Condition Value
+				“Sensor Value” for Control modes 0, 1, and 2, or “Time” for Control mode 3.
+				If Temperature sensor has been chosen as a source in the control mode, the value should be x10, e.g. for 24.5°C use the value 0245.
+				If Time control has been chosen as a source in the control mode, the device logic will process values EFGH from 0 to 23:59 (in time measure), 
+				all other values will be ignored.
+				EF represents Hour (0 through 23), GH represents Minutes (0 through 59).
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="45" label="Relay Control by Sensors 4" min="0" max="53112359" value="0">
+			<Help>
+				In these Parameters, the relay state changes depending on sensor threshold value. For these configurations, Parameter values 
+				are encoded as 8-digit numbers (ABCDEFGH):
+				A: Relay number (1 through 5)
+				B: Control Mode
+					0-Temperature Sensor, 
+					1-Humidity Sensor, 
+					2-Light Sensor, 
+					3-Time control
+				C: State change relative to value in EFGH Condition Value fields (see below)
+ 					0-Equal or lower than
+ 					1-Equal or higher than
+ 				D: State Change
+ 					0-Switch OFF 
+ 					1-Switch ON
+				EFGH: Condition Value
+				“Sensor Value” for Control modes 0, 1, and 2, or “Time” for Control mode 3.
+				If Temperature sensor has been chosen as a source in the control mode, the value should be x10, e.g. for 24.5°C use the value 0245.
+				If Time control has been chosen as a source in the control mode, the device logic will process values EFGH from 0 to 23:59 (in time measure), 
+				all other values will be ignored.
+				EF represents Hour (0 through 23), GH represents Minutes (0 through 59).
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="46" label="Relay Control by Sensors 5" min="0" max="53112359" value="0">
+			<Help>
+				In these Parameters, the relay state changes depending on sensor threshold value. For these configurations, Parameter values 
+				are encoded as 8-digit numbers (ABCDEFGH):
+				A: Relay number (1 through 5)
+				B: Control Mode
+					0-Temperature Sensor, 
+					1-Humidity Sensor, 
+					2-Light Sensor, 
+					3-Time control
+				C: State change relative to value in EFGH Condition Value fields (see below)
+ 					0-Equal or lower than
+ 					1-Equal or higher than
+ 				D: State Change
+ 					0-Switch OFF 
+ 					1-Switch ON
+				EFGH: Condition Value
+				“Sensor Value” for Control modes 0, 1, and 2, or “Time” for Control mode 3.
+				If Temperature sensor has been chosen as a source in the control mode, the value should be x10, e.g. for 24.5°C use the value 0245.
+				If Time control has been chosen as a source in the control mode, the device logic will process values EFGH from 0 to 23:59 (in time measure), 
+				all other values will be ignored.
+				EF represents Hour (0 through 23), GH represents Minutes (0 through 59).
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="47" label="Relay Control by Sensors 6" min="0" max="53112359" value="0">
+			<Help>
+				In these Parameters, the relay state changes depending on sensor threshold value. For these configurations, Parameter values 
+				are encoded as 8-digit numbers (ABCDEFGH):
+				A: Relay number (1 through 5)
+				B: Control Mode
+					0-Temperature Sensor, 
+					1-Humidity Sensor, 
+					2-Light Sensor, 
+					3-Time control
+				C: State change relative to value in EFGH Condition Value fields (see below)
+ 					0-Equal or lower than
+ 					1-Equal or higher than
+ 				D: State Change
+ 					0-Switch OFF 
+ 					1-Switch ON
+				EFGH: Condition Value
+				“Sensor Value” for Control modes 0, 1, and 2, or “Time” for Control mode 3.
+				If Temperature sensor has been chosen as a source in the control mode, the value should be x10, e.g. for 24.5°C use the value 0245.
+				If Time control has been chosen as a source in the control mode, the device logic will process values EFGH from 0 to 23:59 (in time measure), 
+				all other values will be ignored.
+				EF represents Hour (0 through 23), GH represents Minutes (0 through 59).
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="48" label="Relay Control by Sensors 7" min="0" max="53112359" value="0">
+			<Help>
+				In these Parameters, the relay state changes depending on sensor threshold value. For these configurations, Parameter values 
+				are encoded as 8-digit numbers (ABCDEFGH):
+				A: Relay number (1 through 5)
+				B: Control Mode
+					0-Temperature Sensor, 
+					1-Humidity Sensor, 
+					2-Light Sensor, 
+					3-Time control
+				C: State change relative to value in EFGH Condition Value fields (see below)
+ 					0-Equal or lower than
+ 					1-Equal or higher than
+ 				D: State Change
+ 					0-Switch OFF 
+ 					1-Switch ON
+				EFGH: Condition Value
+				“Sensor Value” for Control modes 0, 1, and 2, or “Time” for Control mode 3.
+				If Temperature sensor has been chosen as a source in the control mode, the value should be x10, e.g. for 24.5°C use the value 0245.
+				If Time control has been chosen as a source in the control mode, the device logic will process values EFGH from 0 to 23:59 (in time measure), 
+				all other values will be ignored.
+				EF represents Hour (0 through 23), GH represents Minutes (0 through 59).
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="49" label="Relay Control by Sensors 8" min="0" max="53112359" value="0">
+			<Help>
+				In these Parameters, the relay state changes depending on sensor threshold value. For these configurations, Parameter values 
+				are encoded as 8-digit numbers (ABCDEFGH):
+				A: Relay number (1 through 5)
+				B: Control Mode
+					0-Temperature Sensor, 
+					1-Humidity Sensor, 
+					2-Light Sensor, 
+					3-Time control
+				C: State change relative to value in EFGH Condition Value fields (see below)
+ 					0-Equal or lower than
+ 					1-Equal or higher than
+ 				D: State Change
+ 					0-Switch OFF 
+ 					1-Switch ON
+				EFGH: Condition Value
+				“Sensor Value” for Control modes 0, 1, and 2, or “Time” for Control mode 3.
+				If Temperature sensor has been chosen as a source in the control mode, the value should be x10, e.g. for 24.5°C use the value 0245.
+				If Time control has been chosen as a source in the control mode, the device logic will process values EFGH from 0 to 23:59 (in time measure), 
+				all other values will be ignored.
+				EF represents Hour (0 through 23), GH represents Minutes (0 through 59).
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="50" label="Relay Control by Sensors 9" min="0" max="53112359" value="0">
+			<Help>
+				In these Parameters, the relay state changes depending on sensor threshold value. For these configurations, Parameter values 
+				are encoded as 8-digit numbers (ABCDEFGH):
+				A: Relay number (1 through 5)
+				B: Control Mode
+					0-Temperature Sensor, 
+					1-Humidity Sensor, 
+					2-Light Sensor, 
+					3-Time control
+				C: State change relative to value in EFGH Condition Value fields (see below)
+ 					0-Equal or lower than
+ 					1-Equal or higher than
+ 				D: State Change
+ 					0-Switch OFF 
+ 					1-Switch ON
+				EFGH: Condition Value
+				“Sensor Value” for Control modes 0, 1, and 2, or “Time” for Control mode 3.
+				If Temperature sensor has been chosen as a source in the control mode, the value should be x10, e.g. for 24.5°C use the value 0245.
+				If Time control has been chosen as a source in the control mode, the device logic will process values EFGH from 0 to 23:59 (in time measure), 
+				all other values will be ignored.
+				EF represents Hour (0 through 23), GH represents Minutes (0 through 59).
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="51" label="Relay Control by Sensors 10" min="0" max="53112359" value="0">
+			<Help>
+				In these Parameters, the relay state changes depending on sensor threshold value. For these configurations, Parameter values 
+				are encoded as 8-digit numbers (ABCDEFGH):
+				A: Relay number (1 through 5)
+				B: Control Mode
+					0-Temperature Sensor, 
+					1-Humidity Sensor, 
+					2-Light Sensor, 
+					3-Time control
+				C: State change relative to value in EFGH Condition Value fields (see below)
+ 					0-Equal or lower than
+ 					1-Equal or higher than
+ 				D: State Change
+ 					0-Switch OFF 
+ 					1-Switch ON
+				EFGH: Condition Value
+				“Sensor Value” for Control modes 0, 1, and 2, or “Time” for Control mode 3.
+				If Temperature sensor has been chosen as a source in the control mode, the value should be x10, e.g. for 24.5°C use the value 0245.
+				If Time control has been chosen as a source in the control mode, the device logic will process values EFGH from 0 to 23:59 (in time measure), 
+				all other values will be ignored.
+				EF represents Hour (0 through 23), GH represents Minutes (0 through 59).
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="52" label="Relay 1 Load Power in watt" min="0" max="1100" value="0">
+			<Help>
+				This Parameter is used to specify the load power that are connected to the device output. Using your connected device’s power 
+				consumption specification (see associated owner’s manual), set the load in Watts. The factory default value is 0. 
+				Note: The range from 0 to 1100 watt can be selected.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="53" label="Relay 2 Load Power in watt" min="0" max="1100" value="0">
+			<Help>
+				This Parameter is used to specify the load power that are connected to the device output. Using your connected device’s power 
+				consumption specification (see associated owner’s manual), set the load in Watts. The factory default value is 0. 
+				Note: The range from 0 to 1100 watt can be selected.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="54" label="Relay 3 Load Power in watt" min="0" max="1100" value="0">
+			<Help>
+				This Parameter is used to specify the load power that are connected to the device output. Using your connected device’s power 
+				consumption specification (see associated owner’s manual), set the load in Watts. The factory default value is 0. 
+				Note: The range from 0 to 1100 watt can be selected.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="55" label="Relay 4 Load Power in watt" min="0" max="1100" value="0">
+			<Help>
+				This Parameter is used to specify the load power that are connected to the device output. Using your connected device’s power 
+				consumption specification (see associated owner’s manual), set the load in Watts. The factory default value is 0. 
+				Note: The range from 0 to 1100 watt can be selected.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="56" label="Relay 5 Load Power in watt" min="0" max="1100" value="0">
+			<Help>
+				This Parameter is used to specify the load power that are connected to the device output. Using your connected device’s power 
+				consumption specification (see associated owner’s manual), set the load in Watts. The factory default value is 0. 
+				Note: The range from 0 to 1100 watt can be selected.
+			</Help>
+		</Value>
+		<Value type="list" genre="config" index="57" label="Association Mode for Touch Button 1" value="0">
+			<Help>
+				This Parameter is intended for use when Multilevel Switch Group Association (Groups 3) have been activated. It defines the 
+				logic of values changing if the touch button has been held for more than one second. This is useful option for controlling 
+				dimmers or roller shutter devices
+				The factory-default value is 0.
+			</Help>
+			<Item label="On each hold event, “UP (brighten)” and “DOWN (dim)” command will be alternately sent to associated devices" value="0" />
+			<Item label="On each hold event, the “UP (brighten)” command will be sent to associated devices" value="1" />
+			<Item label="On each hold event, the “DOWN (dim)” command will be sent to associated devices" value="2" />
+		</Value>
+		<Value type="list" genre="config" index="58" label="Association Mode for Touch Button 2" value="0">
+			<Help>
+				This Parameter is intended for use when Multilevel Switch Group Association (Groups 5) have been activated. It defines the 
+				logic of values changing if the touch button has been held for more than one second. This is useful option for controlling 
+				dimmers or roller shutter devices
+				The factory-default value is 0.
+			</Help>
+			<Item label="On each hold event, “UP (brighten)” and “DOWN (dim)” command will be alternately sent to associated devices" value="0" />
+			<Item label="On each hold event, the “UP (brighten)” command will be sent to associated devices" value="1" />
+			<Item label="On each hold event, the “DOWN (dim)” command will be sent to associated devices" value="2" />
+		</Value>
+		<Value type="list" genre="config" index="59" label="Association Mode for Touch Button 3" value="0">
+			<Help>
+				This Parameter is intended for use when Multilevel Switch Group Association (Groups 7) have been activated. It defines the 
+				logic of values changing if the touch button has been held for more than one second. This is useful option for controlling 
+				dimmers or roller shutter devices
+				The factory-default value is 0.
+			</Help>
+			<Item label="On each hold event, “UP (brighten)” and “DOWN (dim)” command will be alternately sent to associated devices" value="0" />
+			<Item label="On each hold event, the “UP (brighten)” command will be sent to associated devices" value="1" />
+			<Item label="On each hold event, the “DOWN (dim)” command will be sent to associated devices" value="2" />
+		</Value>
+		<Value type="list" genre="config" index="60" label="Association Mode for Touch Button 4" value="0">
+			<Help>
+				This Parameter is intended for use when Multilevel Switch Group Association (Groups 9) have been activated. It defines the 
+				logic of values changing if the touch button has been held for more than one second. This is useful option for controlling 
+				dimmers or roller shutter devices
+				The factory-default value is 0.
+			</Help>
+			<Item label="On each hold event, “UP (brighten)” and “DOWN (dim)” command will be alternately sent to associated devices" value="0" />
+			<Item label="On each hold event, the “UP (brighten)” command will be sent to associated devices" value="1" />
+			<Item label="On each hold event, the “DOWN (dim)” command will be sent to associated devices" value="2" />
+		</Value>
+		<Value type="list" genre="config" index="61" label="Association Mode for Touch Button 5" value="0">
+			<Help>
+				This Parameter is intended for use when Multilevel Switch Group Association (Groups 11) have been activated. It defines the 
+				logic of values changing if the touch button has been held for more than one second. This is useful option for controlling 
+				dimmers or roller shutter devices
+				The factory-default value is 0.
+			</Help>
+			<Item label="On each hold event, “UP (brighten)” and “DOWN (dim)” command will be alternately sent to associated devices" value="0" />
+			<Item label="On each hold event, the “UP (brighten)” command will be sent to associated devices" value="1" />
+			<Item label="On each hold event, the “DOWN (dim)” command will be sent to associated devices" value="2" />
+		</Value>
+		<Value type="list" genre="config" index="62" label="Frequency Region" min="0" max="9" value="0"> 
+			<Help>
+				The TPS04 has Z-Wave 700 platform chip inside which allows to use the device in different Z-Wave frequencies. 
+				If there is a need to use the device in the frequency different from the factory default change the value of 
+				this parameter according to the frequency list.
+			</Help>
+			<Item label="EU (868.4 MHz, 869.85 MHz)" value="0" />
+			<Item label="US (908.4 MHz, 916.0 MHz)" value="1" />
+			<Item label="ANZ (919.8 MHz, 921.4 MHz)" value="2" />
+			<Item label="HK (919.8 MHz)" value="3" />
+			<Item label="IN (865.2 MHz)" value="4" />
+			<Item label="IL (916.0 MHz)" value="5" />
+			<Item label="RU (869.0 MHz)" value="6" />
+			<Item label="CH (868.4 MHz)" value="7" />
+			<Item label="JP (922.5 MHz, 923.9 MHz, 926.3 MHz)" value="8" />
+			<Item label="KR (920.9 MHz, 921.7 MHz, 923.1 MHz)" value="9" />
+		</Value>
+		<Value type="list" genre="config" index="63" label="Relay 1 Output NO/NC Mode" value="0">
+			<Help>
+				This Parameter determines the type of load connected to the device relay output. The output type can be NO – normal open 
+				(no contact/voltage to switch the load OFF) or NC - normal close (output is contacted / there is a voltage to switch the 
+				load OFF).
+				The factory default value is 0 (NO mode).
+			</Help>
+			<Item label="NO – normal open mode" value="0" />
+			<Item label="NC - normal close mode" value="1" />
+		</Value>
+		<Value type="list" genre="config" index="64" label="Relay 2 Output NO/NC Mode" value="0">
+			<Help>
+				This Parameter determines the type of load connected to the device relay output. The output type can be NO – normal open 
+				(no contact/voltage to switch the load OFF) or NC - normal close (output is contacted / there is a voltage to switch the 
+				load OFF).
+				The factory default value is 0 (NO mode).
+			</Help>
+			<Item label="NO – normal open mode" value="0" />
+			<Item label="NC - normal close mode" value="1" />
+		</Value>
+		<Value type="list" genre="config" index="65" label="Relay 3 Output NO/NC Mode" value="0">
+			<Help>
+				This Parameter determines the type of load connected to the device relay output. The output type can be NO – normal open 
+				(no contact/voltage to switch the load OFF) or NC - normal close (output is contacted / there is a voltage to switch the 
+				load OFF).
+				The factory default value is 0 (NO mode).
+			</Help>
+			<Item label="NO – normal open mode" value="0" />
+			<Item label="NC - normal close mode" value="1" />
+		</Value>
+		<Value type="list" genre="config" index="66" label="Relay 4 Output NO/NC Mode" value="0">
+			<Help>
+				This Parameter determines the type of load connected to the device relay output. The output type can be NO – normal open 
+				(no contact/voltage to switch the load OFF) or NC - normal close (output is contacted / there is a voltage to switch the 
+				load OFF).
+				The factory default value is 0 (NO mode).
+			</Help>
+			<Item label="NO – normal open mode" value="0" />
+			<Item label="NC - normal close mode" value="1" />
+		</Value>
+		<Value type="list" genre="config" index="67" label="Relay 5 Output NO/NC Mode" value="0">
+			<Help>
+				This Parameter determines the type of load connected to the device relay output. The output type can be NO – normal open 
+				(no contact/voltage to switch the load OFF) or NC - normal close (output is contacted / there is a voltage to switch the 
+				load OFF).
+				The factory default value is 0 (NO mode).
+			</Help>
+			<Item label="NO – normal open mode" value="0" />
+			<Item label="NC - normal close mode" value="1" />
+		</Value>
+	</CommandClass>
+    <CommandClass id="37">
+		<TriggerRefreshValue Genre="user" Index="0" Instance="1">
+			<RefreshClassValue CommandClass="37" RequestFlags="0" Index="0" Instance="2" />
+			<RefreshClassValue CommandClass="37" RequestFlags="0" Index="0" Instance="3" />
+			<RefreshClassValue CommandClass="37" RequestFlags="0" Index="0" Instance="4" />
+			<RefreshClassValue CommandClass="37" RequestFlags="0" Index="0" Instance="5" />
+			<RefreshClassValue CommandClass="37" RequestFlags="0" Index="0" Instance="6" />
+		</TriggerRefreshValue>
+	</CommandClass>
+  <!-- Association Groups -->  
+  <CommandClass id="133">
+    <Associations num_groups="5">
+      <Group index="1" max_associations="1" label="Lifeline"/>
+      <Group index="2" max_associations="5" label="Touch Button 1 Basic" />
+      <Group index="3" max_associations="5" label="Touch Button 1 Multilevel" />
+      <Group index="4" max_associations="5" label="Touch Button 2 Basic" />
+      <Group index="5" max_associations="5" label="Touch Button 2 Multilevel" />
+      <Group index="6" max_associations="5" label="Touch Button 3 Basic" />
+      <Group index="7" max_associations="5" label="Touch Button 3 Multilevel" />
+      <Group index="8" max_associations="5" label="Touch Button 4 Basic" />
+      <Group index="9" max_associations="5" label="Touch Button 4 Multilevel" />
+      <Group index="10" max_associations="5" label="Touch Button 5 Basic" />
+      <Group index="11" max_associations="5" label="Touch Button 5 Multilevel" />
+      <Group index="12" max_associations="5" label="Backlight 1 Basic" />
+	  <Group index="13" max_associations="5" label="Backlight 2 Basic"/>
+      <Group index="14" max_associations="5" label="Backlight 3 Basic" />
+      <Group index="15" max_associations="5" label="Backlight 4 Basic" />
+      <Group index="16" max_associations="5" label="Backlight 5 Basic" />
+	  <Group index="17" max_associations="5" label="Relay 1 basic"/>
+      <Group index="18" max_associations="5" label="Relay 2 basic" />
+      <Group index="19" max_associations="5" label="Relay 3 basic" />
+      <Group index="20" max_associations="5" label="Relay 4 basic" />
+	  <Group index="21" max_associations="5" label="Relay 5 basic"/>
+    </Associations>
+  </CommandClass>
+</Product>

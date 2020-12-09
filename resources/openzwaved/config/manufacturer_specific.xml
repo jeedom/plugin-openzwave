@@ -731,6 +731,7 @@
 	<Manufacturer id="0344" name="Heltun">
 		<Product type="0003" id="0001" name="Heltun HE-ZW-THERM-FL2" config="heltun/HEZWTHERM-FL2.xml"/>
 		<Product type="0003" id="0003" name="Switcher 5 Channel" config="heltun/switcher-5ch.xml"/>
+		<Product type="0004" id="0003" name="TPS05" config="heltun/HE-TPS05.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0017" name="HiTech Automation">
 	</Manufacturer>
