@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product xmlns="http://code.google.com/p/open-zwave/">
+	
+
+  <!-- Configuration Parameters -->
+  <CommandClass id="112">
+
+    <Value genre="config" instance="1" index="1" value="0" label="State after power restored" units="" size="1" min="0" max="2" type="list">
+      <Help>Define state after power restored</Help>
+      <Item value="0" label="off"/>
+      <Item value="1" label="On"/>
+      <Item value="2" label="Return to level before power outage"/>
+    </Value>
+
+     <Value genre="config" instance="1" index="2" value="1" label="Notification when load status changes" units="" size="1" min="0" max="1" type="list">
+      <Help>Send or not notification when load status changes</Help>
+      <Item value="0" label="Disabled"/>
+      <Item value="1" label="Send Switch Multilevel Support"/>
+    </Value>
+
+     <Value genre="config" instance="1" index="3" value="5" label="Default dimming speed (s)" units="s" size="1" min="0" max="100" type="byte">
+      <Help>Setp up Default dimming speed in second, 0:Direct, 1:Fast .... 100:Slow. Range : 0:99</Help>
+    </Value>
+
+     <Value genre="config" instance="1" index="5" value="0" label="Enable or Disable pairing to an external network" units="" size="1" min="0" max="1" type="list">
+      <Help>Enable or Disable pairing to an external network</Help>
+      <Item value="0" label="Disable"/>
+      <Item value="1" label="Enable"/>
+    </Value>
+
+     <Value genre="config" instance="1" index="6" value="0" label="Set way of dimming" units="" size="1" min="0" max="1" type="list">
+      <Help>Enable or Disable pairing to an external network</Help>
+      <Item value="0" label="Linear dimming"/>
+      <Item value="1" label="Logarithmic dimming"/>
+    </Value>
+
+
+     <Value genre="config" instance="1" index="7" value="0" label="Default brightness" units="" size="1" min="0" max="99" type="byte">
+      <Help>Setting default brightness when the dimmer is turned on from off status. When the value is set to 0, 1 will be used. Range : 0-99</Help>
+    </Value>
+
+
+     <Value genre="config" instance="1" index="8" value="0" label="Delay before the load is turned off" units="" size="1" min="0" max="60" type="byte">
+      <Help>Delay before the load is turnd off in seconds. Range : 0-60</Help>
+    </Value>
+
+  </CommandClass>
+
+
+</Product>
