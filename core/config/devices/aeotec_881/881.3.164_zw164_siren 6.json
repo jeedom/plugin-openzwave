@@ -70,7 +70,6 @@
             },
             "subtype": "string"
         },
-
         {
             "name": "Jouer son",
             "type": "action",
