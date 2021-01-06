@@ -4,7 +4,7 @@
     "comlink": "", 
     "remark": "Module sans fonctionnalité hors mis le fait de relayer les infos du réseau", 
     "imglink": "aeotec.zw117",
-	commands": [
+	"commands": [
         {
             "name": "Etat Indicateur", 
             "type": "info", 
