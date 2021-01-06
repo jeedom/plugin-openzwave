@@ -180,6 +180,10 @@
 		<Product type="0003" id="008d" name="ZW141 Nano Shutter" config="aeotec/zw141.xml"/>
 		<Product type="0103" id="008d" name="ZW141 Nano Shutter" config="aeotec/zw141.xml"/>
 		<Product type="0203" id="008d" name="ZW141 Nano Shutter" config="aeotec/zw141.xml"/>
+		<Product config="aeotec/zw189.xml" id="00bd" name="ZW189 Range Extender 7" type="0004"/>
+		<Product config="aeotec/zw189.xml" id="00bd" name="ZW189 Range Extender 7" type="0104"/>
+		<Product config="aeotec/zw189.xml" id="00bd" name="ZW189 Range Extender 7" type="0204"/>
+		<Product config="aeotec/zw189.xml" id="00bd" name="ZW189 Range Extender 7" type="0404"/>
 	</Manufacturer>
 	<Manufacturer id="0371" name="Aeotec">
 		<Product type="0003" id="0001" name="ZWA001 LED Bulb 6 Multi-White" config="aeotec/zwa001.xml"/>
