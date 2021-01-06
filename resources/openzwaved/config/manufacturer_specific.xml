@@ -180,10 +180,6 @@
 		<Product type="0003" id="008d" name="ZW141 Nano Shutter" config="aeotec/zw141.xml"/>
 		<Product type="0103" id="008d" name="ZW141 Nano Shutter" config="aeotec/zw141.xml"/>
 		<Product type="0203" id="008d" name="ZW141 Nano Shutter" config="aeotec/zw141.xml"/>
-		<Product type="0004" id="00bd" name="ZW189 Range Extender 7" config="aeotec/zw189.xml"/>
-		<Product type="0104" id="00bd" name="ZW189 Range Extender 7" config="aeotec/zw189.xml"/>
-		<Product type="0204" id="00bd" name="ZW189 Range Extender 7" config="aeotec/zw189.xml"/>
-		<Product type="0404" id="00bd" name="ZW189 Range Extender 7" config="aeotec/zw189.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0371" name="Aeotec">
 		<Product type="0003" id="0001" name="ZWA001 LED Bulb 6 Multi-White" config="aeotec/zwa001.xml"/>
@@ -220,6 +216,10 @@
 		<Product type="0202" id="0013" name="ZWA019 Water Sensor 7 Pro" config="aeotec/zwa019.xml"/>
 		<Product type="0003" id="00af" name="ZW175 Smart Switch 7" config="aeotec/zw175.xml" />
 		<Product type="0003" id="008d" name="ZW141 Nano Shutter" config="aeotec/zw141.xml"/>
+		<Product type="0004" id="00bd" name="ZW189 Range Extender 7" config="aeotec/zw189.xml"/>
+		<Product type="0104" id="00bd" name="ZW189 Range Extender 7" config="aeotec/zw189.xml"/>
+		<Product type="0204" id="00bd" name="ZW189 Range Extender 7" config="aeotec/zw189.xml"/>
+		<Product type="0404" id="00bd" name="ZW189 Range Extender 7" config="aeotec/zw189.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0111" name="Airline Mechanical">
 		<Product type="8200" id="0200" name="ZDS-100"/>

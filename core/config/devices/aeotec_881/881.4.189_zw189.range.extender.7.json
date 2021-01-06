@@ -1,9 +1,9 @@
 {
-    "name": "Range Extender (ZW119)", 
+    "name": "Range Extender (ZW189)", 
     "type": "Répéteur", 
     "comlink": "", 
     "remark": "Module sans fonctionnalité hors mis le fait de relayer les infos du réseau", 
-    "imglink": "aeotec.zw117",
+    "imglink": "aeotec.zw189",
 	"commands": [
         {
             "name": "Etat Indicateur", 
