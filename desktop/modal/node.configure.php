@@ -288,7 +288,7 @@ sendVarToJs('node_id', init('id'));
 								<td>{{Permet de supprimer un nœud marqué comme défaillant par le contrôleur.}}<br>{{Le nœud doit être en échec.}}</td>
 							</tr>
 							<tr>
-								<td><a id="replaceFailedNode" class="btn btn-warning"><i class="fas fa-chain-broken"></i> {{Remplacer nœud en échec}}</a></td>
+								<td><a id="replaceFailedNode" class="btn btn-warning"><i class="fas fa-unlink"></i> {{Remplacer nœud en échec}}</a></td>
 								<td>{{Remplace un module en échec par un autre. Si le nœud n'est pas dans la liste des nœuds en échec sur le contrôleur, ou que le nœud répond, la commande va échouer.}}</td>
 							</tr>
 							<tr>

@@ -1,0 +1,193 @@
+{
+    "name": "Touch Panel Switch Solo",
+    "ref": "HE-TPS01",
+    "manufacturer": "Heltun",
+    "type": "Interrupteur", 
+    "reset": "Maintenir appuyé les deux boutons cachés du bas pendant 6 secondes.",
+    "pairing": "Maintenir appuyé les deux boutons cachés du haut pendant 3 secondes.",
+    "remark": "",
+    "documentation": "https:\/\/drive.google.com\/file\/d/1d0Q-FSZy3W0Qem59g_XpIkFB41OT8Erw\/view",
+    "buylink": "https:\/\/www.domadoo.fr\/fr\/interrupteurs\/5109-heltun-interrupteur-tactile-z-wave-700-solo-1-bouton.html",
+     "commands": [
+        {
+            "name": "Scene", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 91, 
+                "value": "", 
+                "index": 128, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "", 
+            "template": {
+                "dashboard": "badge", 
+                "mobile": "badge"
+            }
+        },
+        {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Luminosité", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 3, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 32000
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BRIGHTNESS"
+            }, 
+            "unite": "Lux"
+        }, 
+        {
+            "name": "Humidité", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 5, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric",
+            "unite": "%"
+        },
+        {
+            "name": "Puissance",
+            "type": "info",
+            "isVisible": "1",
+            "isHistorized": "1",
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "index": 8,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 2500
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "POWER"
+            },
+            "template": {
+                "dashboard": "default",
+                "mobile": "default"
+            },
+            "unite": "W"
+        },
+        {
+            "name": "Consommation",
+            "type": "info",
+            "isVisible": "1",
+            "isHistorized": "0",
+            "configuration": {
+                "class": 50,
+                "value": "",
+                "index": 0,
+                "instance": 1,
+                "minValue": 0
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "CONSUMPTION"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            },
+            "unite": "kWh"
+        }, 
+        {
+            "name": "Etat", 
+            "type": "info", 
+            "isVisible": "0", 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "LIGHT_STATE"
+            }
+        }, 
+        {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": "1", 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=255", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Etat", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_ON"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": "1", 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 37, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Etat", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "LIGHT_OFF"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }
+    ]
+}
+
+
+

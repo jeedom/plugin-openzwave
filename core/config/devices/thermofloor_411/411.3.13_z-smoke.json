@@ -1,0 +1,112 @@
+{
+    "name": "Z-Smoke Detector Battery",
+    "ref": "4512688",
+    "manufacturer": "Heatit",
+    "type": "Fumée,Mouvement,Température", 
+    "reset": "Maintenir appuyé le bouton pendant 20 secondes.",
+    "pairing": "Appuyer 3 fois rapidement sur le bouton.",
+    "remark": "",
+    "documentation": "",
+    "buylink": "https:\/\/www.domadoo.fr\/fr\/securite\/5203-heatit-controls-detecteur-de-fumee-multifonctions-z-wave-z-smoke-sur-batterie-7071236015215.html",
+    "commands": [
+	 {
+            "name": "Fumées", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 113, 
+                "value": "", 
+                "index": 4, 
+                "instance": 1,
+                "calculValueOffset": "#value#==2"
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SMOKE"
+            }, 
+            "template": {
+                "dashboard": "alert", 
+                "mobile": "alert"
+            }
+        },
+     {
+            "name": "Présence",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 113,
+                "value": "",
+                "index": 10,
+                "instance": 1,
+                "calculValueOffset": "#value#==8"
+            },
+            "subtype": "binary",
+            "display": {
+                "invertBinary": "1"
+            }, 
+            "template": {
+                "dashboard": "presence",
+                "mobile": "presence"
+            }
+        },
+    {
+      "name": "Température",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "configuration": {
+        "class": 49,
+        "value": "",
+        "index": 1,
+        "instance": 1
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "TEMPERATURE"
+      },
+      "unite": "°C"
+    },
+        {
+            "name": "Sabotage",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 113,
+                "value": "",
+                "index": 10,
+                "instance": 1,
+                "calculValueOffset": "#value#==3"
+            },
+            "subtype": "binary",
+            "display": {
+                "invertBinary": "1",
+                "generic_type": "SABOTAGE"
+            }
+        },
+    {
+      "name": "Batterie",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 128,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "BATTERY"
+      },
+      "unite": "%"
+    }
+  ]
+}
+
+

@@ -14,7 +14,7 @@
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
-                "instance": 1
+                "instance": 2
             }, 
             "value": "Etat 1", 
             "subtype": "other", 
@@ -35,7 +35,7 @@
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 1
+                "instance": 2
             }, 
             "value": "Etat 1", 
             "subtype": "other", 
@@ -56,7 +56,7 @@
                 "class": 37, 
                 "value": "", 
                 "index": 0, 
-                "instance": 1
+                "instance": 2
             }, 
             "subtype": "binary", 
             "display": {
@@ -155,7 +155,7 @@
                 "class": 37, 
                 "value": "type=setvalue&value=255", 
                 "index": 0, 
-                "instance": 2
+                "instance": 3
             }, 
             "value": "Etat 2", 
             "subtype": "other", 
@@ -176,7 +176,7 @@
                 "class": 37, 
                 "value": "type=setvalue&value=0", 
                 "index": 0, 
-                "instance": 2
+                "instance": 3
             }, 
             "value": "Etat 2", 
             "subtype": "other", 
@@ -197,79 +197,13 @@
                 "class": 37, 
                 "value": "", 
                 "index": 0, 
-                "instance": 2
+                "instance": 3
             }, 
             "subtype": "binary", 
             "display": {
                 "generic_type": "LIGHT_STATE"
             }
-        }, 
-        {
-            "name": "Scene", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 91, 
-                "value": "", 
-                "index": 128, 
-                "instance": 1, 
-                "repeatEventManagement": "always"
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "unite": "", 
-            "template": {
-                "dashboard": "badge", 
-                "mobile": "badge"
-            }
-        }, 
-        {
-            "name": "SceneID", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 91, 
-                "value": "", 
-                "index": 2, 
-                "instance": 1, 
-                "repeatEventManagement": "always"
-            }, 
-            "subtype": "numeric", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "unite": "", 
-            "template": {
-                "dashboard": "badge", 
-                "mobile": "badge"
-            }
-        }, 
-        {
-            "name": "SceneAttribute", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
-            "configuration": {
-                "class": 91, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1, 
-                "repeatEventManagement": "always"
-            }, 
-            "subtype": "string", 
-            "display": {
-                "generic_type": "DONT"
-            }, 
-            "unite": "", 
-            "template": {
-                "dashboard": "badge", 
-                "mobile": "badge"
-            }
-        }, 
+        },  
         {
             "name": "Puissance 2", 
             "type": "info", 

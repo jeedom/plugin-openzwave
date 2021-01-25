@@ -1,31 +1,31 @@
 {
-    "name": "Smart Smoke Sensor (HS1SA-Z)", 
-    "type": "Fumée", 
-    "comlink": "", 
-    "remark": "", 
-    "imglink": "heiman.hs1saz", 
+    "name": "Smart Smoke Sensor (HS1SA-Z)",
+    "type": "Fumée",
+    "comlink": "",
+    "remark": "",
+    "imglink": "heiman.hs1saz",
     "configuration": {
         "battery_type": "1x3V CR123A"
-    }, 
+    },
     "commands": [
         {
-            "name": "Fumées", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
+            "name": "Fumées",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 0,
             "configuration": {
-                "class": 48, 
-                "value": "", 
-                "index": 0, 
+                "class": 113,
+                "value": "",
+                "index": 4,
                 "instance": 1
-            }, 
-            "subtype": "binary", 
+            },
+            "subtype": "binary",
             "display": {
-                "invertBinary": "1", 
+                "invertBinary": "1",
                 "generic_type": "SMOKE"
-            }, 
+            },
             "template": {
-                "dashboard": "feu", 
+                "dashboard": "feu",
                 "mobile": "feu"
             }
         }

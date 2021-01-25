@@ -6,7 +6,12 @@
         "en_US": "Plugin to control ZWave equipment via an openWave compatible ZWave key",
         "es_ES": "Complemento para controlar el equipo ZWave a través de una tecla ZWave compatible con openWave",
         "de_DE": "Plugin zur Steuerung von ZWave-Geräten über einen openWave-kompatiblen ZWave-Schlüssel",
-        "pt_PT": "Plug-in para controlar o equipamento ZWave através de uma chave ZWave compatível com openZwave"
+        "pt_PT": "Plug-in para controlar o equipamento ZWave através de uma chave ZWave compatível com openZwave",
+        "ru_RU": "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave",
+        "id_ID": "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave",
+        "it_IT": "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave",
+        "ja_JP": "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave",
+        "tr": "Plugin pour contrôler les équipements ZWave via une clé ZWave compatible openZwave"
     },
     "licence": "AGPL",
     "author": "Jeedom SAS",
@@ -23,7 +28,12 @@
         "en_US",
         "es_ES",
         "de_DE",
-        "pt_PT"
+        "ru_RU",
+        "id_ID",
+        "it_IT",
+        "ja_JP",
+        "pt_PT",
+        "tr"
     ],
     "compatibility": [
         "Jeedomboard",

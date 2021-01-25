@@ -168,7 +168,7 @@ $("body").off("click", ".editValue").on("click", ".editValue", function (e) {
         jeedom.openzwave.node.set(valueApplyOption);
       }
     });
-    
+
   } else if ($(this).data('type') == "Button") {
     bootbox.prompt({
       title: title,
@@ -301,7 +301,7 @@ $("body").off("click", ".editParam").on("click", ".editParam", function (e) {
         });
       }
     });
-    
+
   } else if ($(this).data('paramtype') == "Bool") {
     bootbox.prompt({
       title: title,
@@ -579,10 +579,10 @@ function display_node_info(){
     success: function (data) {
       warningMessage = '';
       node_selected = data;
-      
+
       $("#div_nodeConfigure .node-id").html(selected_node_id);
       $("#div_nodeConfigure .node-name").html(data.data.name.value);
-      
+
       var nodeIsFailed = (data.data.isFailed) ? data.data.isFailed.value : false;
       data.data.lastReceived.updateTime = jeedom.openzwave.timestampConverter(data.data.lastReceived.updateTime);
       data.data.basicDeviceClassDescription = (isset(BASIC_CLASS_DESC[data.data.basicType.value])) ? BASIC_CLASS_DESC[parseInt(data.data.basicType.value, 0)] : '';
@@ -667,7 +667,7 @@ function display_node_info(){
       if (nodeIsFailed) {
         warningMessage += "<li>{{Le contrôleur pense que ce noeud est en échec, essayez }} " +
         "<a data-action='hasNodeFailed' class='btn btn-xs btn-primary  node_action'><i class='fas fa-heartbeat' aria-hidden='true'></i> {{Nœud en échec ?}}</a> {{ou}}" +
-        "<a data-action='testNode' class='btn btn-info  node_action'><i class='fas fa-check-square-o'></i> {{Tester le nœud}}</a> {{pour essayer de corriger.}}</li>"
+        "<a data-action='testNode' class='btn btn-info  node_action'><i class='fas fa-check-square'></i> {{Tester le nœud}}</a> {{pour essayer de corriger.}}</li>"
       }
       if (data.data.genericType.value == 1) {
         data.data.can_wake_up.value = true;
@@ -801,7 +801,7 @@ function display_node_info(){
               var boolValue = data.instances[instance].commandClasses[commandclass].data[index].val;
               if (data.instances[instance].commandClasses[commandclass].data[index].name != 'Exporting'){
                 value += (boolValue) ? '<span class="label label-success" style="font-size:1em;">{{ON}}</span>' : '<span class="label label-danger" style="font-size:1em;">{{OFF}}</span>';
-                
+
               }else{
                 value += (boolValue) ? '{{ON}}' :'{{OFF}}' ;
               }

@@ -1,0 +1,72 @@
+{
+    "name": "Range Extender (ZW189)", 
+    "type": "Répéteur", 
+    "comlink": "", 
+    "remark": "Module sans fonctionnalité hors mis le fait de relayer les infos du réseau", 
+    "imglink": "aeotec.zw189",
+	"commands": [
+        {
+            "name": "Etat Indicateur", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 135, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "ENERGY_STATE"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }, 
+            "unite": ""
+        }, 
+        {
+            "name": "On", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 135, 
+                "value": "type=setvalue&value=1", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Etat Indicateur", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "ENERGY_ON"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }, 
+        {
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 135, 
+                "value": "type=setvalue&value=0", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "value": "Etat Indicateur", 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "ENERGY_OFF"
+            }, 
+            "template": {
+                "dashboard": "light", 
+                "mobile": "light"
+            }
+        }
+    ]
+}

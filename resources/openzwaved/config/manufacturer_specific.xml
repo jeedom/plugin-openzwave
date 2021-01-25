@@ -216,6 +216,10 @@
 		<Product type="0202" id="0013" name="ZWA019 Water Sensor 7 Pro" config="aeotec/zwa019.xml"/>
 		<Product type="0003" id="00af" name="ZW175 Smart Switch 7" config="aeotec/zw175.xml" />
 		<Product type="0003" id="008d" name="ZW141 Nano Shutter" config="aeotec/zw141.xml"/>
+		<Product type="0004" id="00bd" name="ZW189 Range Extender 7" config="aeotec/zw189.xml"/>
+		<Product type="0104" id="00bd" name="ZW189 Range Extender 7" config="aeotec/zw189.xml"/>
+		<Product type="0204" id="00bd" name="ZW189 Range Extender 7" config="aeotec/zw189.xml"/>
+		<Product type="0404" id="00bd" name="ZW189 Range Extender 7" config="aeotec/zw189.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0111" name="Airline Mechanical">
 		<Product type="8200" id="0200" name="ZDS-100"/>
@@ -731,6 +735,12 @@
 	<Manufacturer id="0344" name="Heltun">
 		<Product type="0003" id="0001" name="Heltun HE-ZW-THERM-FL2" config="heltun/HEZWTHERM-FL2.xml"/>
 		<Product type="0003" id="0003" name="Switcher 5 Channel" config="heltun/switcher-5ch.xml"/>
+		<Product config="heltun/he-ht01.xml" id="0001" name="Heating Thermostat HE-HT01" type="0004"/>
+		<Product config="heltun/he-ft01.xml" id="0002" name="Fan Coil Thermostat HE-FT01" type="0004"/>
+		<Product type="0004" id="0003" name="TPS05" config="heltun/HE-TPS05.xml"/>
+		<Product type="0004" id="0007" name="TPS01" config="heltun/HE-TPS01.xml"/>
+		<Product type="0004" id="0009" name="RS01" config="heltun/HE-RS01.xml"/>
+		<Product type="0004" id="000a" name="HLS01" config="heltun/HE-HLS01.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0017" name="HiTech Automation">
 	</Manufacturer>
@@ -1223,6 +1233,7 @@
 	<Manufacturer id="019a" name="Sensative">
 		<Product type="0003" id="0003" name="Strips" config="sensative/strips.xml" />
 		<Product type="0003" id="000a" name="Strips Comfort" config="sensative/stripscomfort.xml" />
+		<Product type="0004" id="0004" name="Strips Guard" config="sensative/strips.xml" />
 	</Manufacturer>
 	<Manufacturer id="0044" name="Sequoia Tech">
 	</Manufacturer>
@@ -1298,6 +1309,7 @@
 		<Product config="thermofloor/heatit-zdim.xml" id="2200" name="Heatit ZDim" type="0003"/>
 		<Product config="thermofloor/heatit20a.xml" id="020a" name="Heatit Z-Water TF 20a" type="0003"/>
 		<Product config="thermofloor/heatit208.xml" id="0208" name="Heatit Z-Relay" type="0003"/>
+		<Product id="000d" name="Heatit Z-Smoke Battery" type="0003"/>
 	</Manufacturer>
 	<Manufacturer id="008b" name="Trane">
 		<Product type="5452" id="5431" name="Model TZEMT400AB32MAA" config="trane/TZEMT400AB32MAA.xml"/>

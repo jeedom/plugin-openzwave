@@ -1,0 +1,520 @@
+{
+    "name": "Fan Coil Thermostat",
+    "ref": "HE-FT01",
+    "manufacturer": "Heltun",
+    "type": "Thermostat", 
+    "reset": "Maintenir appuyé le bouton MODE pendant 6 secondes jusqu'à ce que ГEs s'affiche. Puis appuyer sur le bouton +.",
+    "pairing": "Appuyer sur le bouton CLIMATE (bouton central du bas) pendant 3 secondes, puis aller au Paramètre 2 - nEt. Appuyer ensuite sur le bouton +.",
+    "remark": "",
+    "documentation": "https:\/\/drive.google.com\/file\/d\/1a0yey6o1lbBcZTCmXG5zaz4wr4iaToFt\/view",
+    "buylink": "https:\/\/www.domadoo.fr\/fr\/chauffage-clim\/5182-heltun-thermostat-z-wave-700-pour-ventilo-convecteur.html",
+    "commands": [
+		{
+            "name": "Mode", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 64, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "THERMOSTAT_MODE"
+            }, 
+            "unite": ""
+        },
+		{
+            "name": "Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=OFF", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }
+        }, 
+        {
+            "name": "Heat", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=COM with Heating Climate Mode", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }
+        },  
+        {
+            "name": "Cool", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=COM with Cooling Climate Mode", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }
+        }, 
+        {
+            "name": "Auto", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=TIME", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }
+        }, 
+        {
+            "name": "Fan", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=Ventilation Climate Mode", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }
+        }, 
+        {
+            "name": "Auto Changeover", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=COM with Heating and Colling Climate Mode", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }
+        },
+        {
+            "name": "ENERGY HEAT", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=ECO with Heating Climate Mode", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }
+        },
+        {
+            "name": "ENERGY COOL", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 64, 
+                "value": "type=setvalue&value=ECO with Cooling Climate Mode", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_MODE"
+            }
+        },		
+        {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_TEMPERATURE"
+            }, 
+            "unite": "°C"
+        },
+        {
+            "name": "Luminosité", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 3, 
+                "instance": 1
+            }, 
+            "subtype": "numeric",
+            "unite": "lux"
+        }, 
+        {
+            "name": "Humidité", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 5, 
+                "instance": 1
+            }, 
+            "subtype": "numeric",
+            "unite": "%"
+        },
+        {
+            "name": "Puissance", 
+            "type": "info", 
+            "isVisible": "1", 
+            "isHistorized": "1", 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 8, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 2500
+            }, 
+            "subtype": "numeric", 
+            "display": { 
+                "generic_type": "POWER"
+            }, 
+            "template": {
+                "dashboard": "default", 
+                "mobile": "default"
+            }, 
+            "unite": "W"
+        }, 
+        {
+            "name": "Consommation", 
+            "type": "info", 
+            "isVisible": "1", 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 50, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0
+            }, 
+            "subtype": "numeric", 
+            "display": { 
+                "generic_type": "CONSUMPTION"
+            }, 
+            "template": {
+                "dashboard": "tile", 
+                "mobile": "tile"
+            }, 
+            "unite": "kWh"
+        },
+        {
+            "name": "Temp Heat", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 67, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }, 
+            "unite": "°C"
+        },
+		{
+            "name": "Consigne Heat", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 1, 
+                "instance": 1, 
+                "minValue": 10, 
+                "maxValue": 40
+            }, 
+            "value": "Temp Heat", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }
+        },
+        {
+            "name": "Temp Cool", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 67, 
+                "value": "", 
+                "index": 2, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }, 
+            "unite": "°C"
+        },
+		{
+            "name": "Consigne Cool", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 2, 
+                "instance": 1, 
+                "minValue": 10, 
+                "maxValue": 40
+            }, 
+            "value": "Temp Cool", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }
+        },
+        {
+            "name": "Temp Changeover", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 67, 
+                "value": "", 
+                "index": 10, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }, 
+            "unite": "°C"
+        },
+		{
+            "name": "Consigne Changeover", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 10, 
+                "instance": 1, 
+                "minValue": 10, 
+                "maxValue": 40
+            }, 
+            "value": "Temp Changeover", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }
+        },
+        {
+            "name": "Temp Eco Heat", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 67, 
+                "value": "", 
+                "index": 11, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }, 
+            "unite": "°C"
+        },
+		{
+            "name": "Consigne Eco Heat", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 11, 
+                "instance": 1, 
+                "minValue": 10, 
+                "maxValue": 40
+            }, 
+            "value": "Temp Eco Heat", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }
+        },
+        {
+            "name": "Temp Eco Cool", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 67, 
+                "value": "", 
+                "index": 12, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "THERMOSTAT_SETPOINT"
+            }, 
+            "unite": "°C"
+        },
+		{
+            "name": "Consigne Eco Cool", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 67, 
+                "value": "type=setvalue&value=#slider#", 
+                "index": 12, 
+                "instance": 1, 
+                "minValue": 10, 
+                "maxValue": 40
+            }, 
+            "value": "Temp Eco Cool", 
+            "subtype": "slider", 
+            "display": {
+                "generic_type": "THERMOSTAT_SET_SETPOINT"
+            }
+        },
+		{
+            "name": "Mode Fan", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": "0", 
+            "configuration": {
+                "class": 68, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "string",
+            "unite": ""
+        },
+		{
+            "name": "Fan Off", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 68, 
+                "value": "type=setvalue&value=OFF", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other"
+        },
+		{
+            "name": "Fan LOW", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 68, 
+                "value": "type=setvalue&value=On Low", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other"
+        },
+		{
+            "name": "Fan AUTO HIGH", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 68, 
+                "value": "type=setvalue&value=On Auto High", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other"
+        },
+		{
+            "name": "Fan HIGH", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 68, 
+                "value": "type=setvalue&value=On High", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other"
+        },
+		{
+            "name": "Fan AUTO MEDIUM", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 68, 
+                "value": "type=setvalue&value=On Auto Medium", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other"
+        },
+		{
+            "name": "Fan MEDIUM", 
+            "type": "action", 
+            "isVisible": 1, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 68, 
+                "value": "type=setvalue&value=On Medium", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "other"
+        }
+    ]
+}
