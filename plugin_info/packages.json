@@ -3,9 +3,6 @@
     "git" : {},
     "python-pip" : {},
     "python-dev" : {},
-    "python-pyudev" : {},
-    "python-louie" : {},
-    "python-setuptools" : {},
     "make" : {},
     "build-essential" : {},
     "libudev-dev" : {},
@@ -14,13 +11,15 @@
     "python-lxml" : {},
     "unzip" : {},
     "libjpeg-dev" : {},
-    "python-serial" : {},
-    "python-requests" : {}
   },
   "pip2":{
+    "pyudev" : {},
     "wheel" : {},
     "urwid" : {},
     "louie" : {},
+    "requests" : {},
+    "setuptools" : {},
+    "pyserial" : {},
     "six" : {},
     "tornado" : {}
   },
