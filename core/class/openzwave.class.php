@@ -382,6 +382,30 @@ class openzwave extends eqLogic {
 		self::deamon_start();
 	}
 	
+	public static function doNetbackup($_name,$_port) {
+		log::remove('openzwave_netbackup');
+		system::kill('backupnetwork.py');
+		log::add('openzwave_netbackup', 'debug', 'Arrêt du démon en cours');
+		self::deamon_stop();
+		sleep(5);
+		log::add('openzwave_netbackup', 'debug', 'Arrêt du démon fait');
+		$cmd = system::getCmdSudo() . ' python ' . dirname(__FILE__) . '/../../resources/backupnetwork.py --name "' .$_name . '" --port "' . $_port . '" >> ' . log::getPathToLog('openzwave_netbackup') . ' 2>&1 &';
+		log::add('openzwave_netbackup', 'debug', $cmd);
+		shell_exec($cmd);
+	}
+	
+	public static function doNetrestore($_name,$_port) {
+		log::remove('openzwave_netrestore');
+		system::kill('restorenetwork.py');
+		log::add('openzwave_netrestore', 'debug', 'Arrêt du démon en cours');
+		self::deamon_stop();
+		sleep(5);
+		log::add('openzwave_netrestore', 'debug', 'Arrêt du démon fait');
+		$cmd = system::getCmdSudo() . ' python ' . dirname(__FILE__) . '/../../resources/restorenetwork.py --name "' .$_name . '" --port "' . $_port . '" >> ' . log::getPathToLog('openzwave_netrestore') . ' 2>&1 &';
+		log::add('openzwave_netrestore', 'debug', $cmd);
+		shell_exec($cmd);
+	}
+	
 	/*     * *********************Methode d'instance************************* */
 	
 	public function loadCmdFromConf($_update = false) {

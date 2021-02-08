@@ -468,6 +468,88 @@
  	};
  	$.ajax(paramsAJAX);
  }
+ 
+ 
+ jeedom.openzwave.netbackup = function() {
+ };
+
+ jeedom.openzwave.netbackup.do = function (_params) {
+ 	var paramsRequired = ['name','port'];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/ajax/openzwave.ajax.php';
+ 	paramsAJAX.data = {
+ 		action: 'doNetbackup',
+		name : _params.name,
+		port : _params.port,
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
+
+ jeedom.openzwave.netbackup.delete = function (_params) {
+ 	var paramsRequired = ['backup'];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/ajax/openzwave.ajax.php';
+ 	paramsAJAX.data = {
+ 		action: 'deleteNetbackup',
+		backup : _params.backup,
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
+
+ jeedom.openzwave.netbackup.restore = function (_params) {
+ 	var paramsRequired = ['name','port'];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/ajax/openzwave.ajax.php';
+ 	paramsAJAX.data = {
+ 		action: 'doNetrestore',
+		name : _params.name,
+		port : _params.port,
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
+
+
+ jeedom.openzwave.netbackup.list = function (_params) {
+ 	var paramsRequired = [];
+ 	var paramsSpecifics = {};
+ 	try {
+ 		jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+ 	} catch (e) {
+ 		(_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+ 		return;
+ 	}
+ 	var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+ 	var paramsAJAX = jeedom.private.getParamsAJAX(params);
+ 	paramsAJAX.url = 'plugins/openzwave/core/ajax/openzwave.ajax.php';
+ 	paramsAJAX.data = {
+ 		action: 'listNetbackup'
+ 	};
+ 	$.ajax(paramsAJAX);
+ }
 
 
  /*************************network************************************************/

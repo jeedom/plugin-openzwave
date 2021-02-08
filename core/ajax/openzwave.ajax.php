@@ -24,10 +24,35 @@ try {
 		throw new Exception('401 Unauthorized');
 	}
 
-	ajax::init();
+	ajax::init(array('fileupload'));
 
 	if (init('action') == 'syncEqLogicWithOpenZwave') {
 		openzwave::syncEqLogicWithOpenZwave();
+		ajax::success();
+	}
+	
+	if (init('action') == 'doNetbackup') {
+		openzwave::doNetbackup(init('name'),init('port'));
+		ajax::success();
+	}
+	if (init('action') == 'doNetrestore') {
+		openzwave::doNetrestore(init('name'),init('port'));
+		ajax::success();
+	}
+	
+	if (init('action') == 'listNetbackup') {
+		$list = array();
+		foreach (ls(dirname(__FILE__) . '/../../data', '*.bin', false, array('files', 'quiet')) as $file) {
+			$list[] = array('folder'=>dirname(__FILE__) . '/../../data/'. $file,'name'=>$file);
+		}
+		ajax::success($list);
+	}
+	
+	if (init('action') == 'deleteNetbackup') {
+		$file = dirname(__FILE__) . '/../../data/'.init('backup');
+		if (file_exists($file)){
+			unlink($file);
+		}
 		ajax::success();
 	}
 	
@@ -109,6 +134,33 @@ try {
 				ajax::success();
 			}
 			ajax::success(str_replace('#language#',config::byKey('language'),json_decode($content, true)));
+		}
+		ajax::success();
+	}
+	
+	if (init('action') == 'fileupload') {
+		$uploaddir = dirname(__FILE__). '/../../data';
+		if (!file_exists($uploaddir)) {
+			mkdir($uploaddir);
+		}
+		if (!file_exists($uploaddir)) {
+			throw new Exception(__('Répertoire de téléversement non trouvé : ', __FILE__) . $uploaddir);
+		}
+		if (!isset($_FILES['file'])) {
+			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
+		}
+		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
+		if (!in_array($extension, array('.bin'))) {
+			throw new Exception('Extension du fichier non valide (autorisé .bin) : ' . $extension);
+		}
+		if (filesize($_FILES['file']['tmp_name']) > 500000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 500ko)', __FILE__));
+		}
+		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $_FILES['file']['name'])) {
+			throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
+		}
+		if (!file_exists($uploaddir . '/' . $_FILES['file']['name'])) {
+			throw new Exception(__('Impossible de téléverser le fichier (limite du serveur web ?)', __FILE__));
 		}
 		ajax::success();
 	}
