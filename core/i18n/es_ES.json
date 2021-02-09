@@ -23,8 +23,8 @@
         "Appliquer le jeu de configuration recommandée à l'inclusion": "Aplicar el conjunto de configuración recomendado a la inclusión",
         "Désactiver l'actualisation en arrière-plan des variateurs": "Desactivar la actualización en segundo plano de las unidades",
         "Cycle (s)": "Ciclo (s)",
-        "Port clé Z-Wave": "Puerto de llave Z-Wave",
-        "Aucun": "Ninguna",
+        "Port clé Z-Wave": "Puerto clave Z-Wave",
+        "Aucun": "No",
         "Auto": "Auto",
         "Désactiver la gestion des processus USB (socat)": "Deshabilitar la gestión de procesos USB (socat)",
         "Port du Serveur (laisser vide par défault)": "Puerto del servidor (dejar vacío por defecto)",
@@ -157,6 +157,21 @@
         "Nombre de messages envoyés en erreur :": "Número de mensajes enviados por error :",
         "Heure du dernier message envoyé :": "Hora del último mensaje enviado :"
     },
+    "plugins\/openzwave\/desktop\/modal\/backupnetwork.php": {
+        "Demande envoyée": "Solicitud enviada",
+        "Un backup réseau d'un contrôleur Zwave n'est pas une chose anodine. Soyez bien sûr du port et de l'ordre dans lequel vous faites les choses. Jeedom ne pourra être tenu responsable d'une perte de votre contrôleur. PAGE TOUJOURS EN CONSTRUCTION.": "Una copia de seguridad en red de un controlador Zwave no es trivial. Asegúrese del puerto y el orden en que hace las cosas. Jeedom no se hace responsable de la pérdida de su controlador. PÁGINA TODAVÍA EN CONSTRUCCIÓN",
+        "Sauvegardes": "Copias de seguridad",
+        "Nom du backup": "Nombre de la copia de seguridad",
+        "Port clé Z-Wave": "Puerto clave Z-Wave",
+        "Aucun": "No",
+        "Lancer une sauvegarde": "Iniciar una copia de seguridad",
+        "Sauvegardes disponibles": "Backups disponibles",
+        "Supprimer la sauvegarde": "Eliminar copia de seguridad",
+        "Restaurer la sauvegarde": "Restaurar copia de seguridad",
+        "Télécharger la sauvegarde": "Descarga la copia de seguridad",
+        "Ajouter une sauvegarde": "Agregar respaldo",
+        "Informations": "Información"
+    },
     "plugins\/openzwave\/desktop\/modal\/syncconf.openzwave.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Pause": "Pausa",
@@ -251,7 +266,7 @@
         "Demande envoyée": "Solicitud enviada",
         "Créer une sauvegarde": "Crea una copia de seguridad",
         "Lancer": "Iniciar",
-        "Sauvegardes disponibles": "Copias de seguridad disponibles",
+        "Sauvegardes disponibles": "Backups disponibles",
         "Restaurer\/Supprimer la sauvegarde": "Restaurar\/Eliminar copia de seguridad",
         "Restaurer": "Restaurar",
         "Supprimer": "Borrar"
@@ -283,7 +298,7 @@
         "Commandes": "Comandos",
         "Nom de l'équipement": "Nombre del dispositivo",
         "Objet parent": "Objeto padre",
-        "Aucun": "Ninguno",
+        "Aucun": "No",
         "Catégorie": "Categoría",
         "Activer": "Activar",
         "Visible": "Visible",
@@ -339,6 +354,18 @@
         "Le noeud ne s\\'est pas réveillé comme prévue": "El nodo no se despertó como se esperaba",
         "Le noeud ne s\\'est pas encore réveillé une fois depuis le lancement du démon": "El nodo no se ha despertado una vez desde el lanzamiento del demonio",
         "Ping": "Ping"
+    },
+    "plugins\/openzwave\/desktop\/js\/backupnetwork.js": {
+        "Etes-vous sûr de vouloir créer un backup du réseau ? Une fois lancée cette opération ne peut être annulée.": "¿Está seguro de que desea crear una copia de seguridad de la red? Una vez iniciada esta operación no se puede cancelar",
+        "Action réalisée avec succès": "Acción completada con éxito",
+        "Etes-vous sûr de vouloir supprimer le backup suivant ": "¿Está seguro de que desea eliminar la siguiente copia de seguridad?",
+        "Une fois lancée cette opération ne peut être annulée.": "Una vez iniciada esta operación no se puede cancelar",
+        "Etes-vous sûr de vouloir restaurer la clé avec ": "¿Está seguro de que desea restaurar la clave con",
+        "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave !!!! Attention cela écrasera tout réseau présent sur la clé <b>' + $('.zwavePort option:selected').text() +'<\/b> ": "Una vez iniciada, esta operación no se puede deshacer y reiniciará el motor OpenZwave. Tenga en cuenta que esto sobrescribirá cualquier red presente en la clave <b>'+ $ ('. Opción ZwavePort: seleccionada '). Text () +'<\/b>",
+        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Restauración exitosa. Reinicio de OpenZwave en curso",
+        "Fichier(s) ajouté(s) avec succès": "Archivo (s) agregado (s) exitosamente",
+        "Êtes-vous sûr de vouloir supprimer la sauvegarde": "¿Estás seguro de que deseas eliminar la copia de seguridad?",
+        "Sauvegarde supprimée avec succès": "Copia de seguridad eliminada correctamente"
     },
     "plugins\/openzwave\/desktop\/js\/nodes.js": {
         "Contrôleur": "Controlador",
@@ -459,10 +486,10 @@
         "Etes-vous sûr de vouloir créer un backup ? Une fois lancée cette opération ne peut être annulée.": "¿Seguro que quieres crear una copia de seguridad? Una vez iniciada, esta operación no se puede cancelar",
         "Action réalisée avec succès": "Acción completada con éxito",
         "Etes-vous sûr de vouloir supprimer le backup suivant ": "¿Está seguro de que desea eliminar la siguiente copia de seguridad?",
-        "Une fois lancée cette opération ne peut être annulée.": "Una vez iniciada, esta operación no se puede cancelar",
+        "Une fois lancée cette opération ne peut être annulée.": "Una vez iniciada esta operación no se puede cancelar",
         "Etes-vous sûr de vouloir restaurer Openzwave avec ": "¿Estás seguro de que quieres restaurar Openzwave con",
         "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave.": "Una vez iniciada, esta operación no se puede cancelar y reiniciará el motor OpenZwave",
-        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Restauración exitosa. Reinico de OpenZwave en progreso"
+        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Restauración exitosa. Reinicio de OpenZwave en curso"
     },
     "plugins\/openzwave\/desktop\/js\/openzwave.js": {
         "Action réalisée avec succès": "Acción completada con éxito",
@@ -547,7 +574,12 @@
         "Action réalisée avec succès": "Acción completada con éxito"
     },
     "plugins\/openzwave\/core\/ajax\/openzwave.ajax.php": {
-        "Zwave eqLogic non trouvé : ": "Zwave eqLogic no encontrado:"
+        "Zwave eqLogic non trouvé : ": "Zwave eqLogic no encontrado:",
+        "Répertoire de téléversement non trouvé : ": "No se encontró el directorio de carga:",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifique la configuración de PHP (límite de tamaño de publicación)",
+        "Le fichier est trop gros (maximum 500ko)": "El archivo es demasiado grande (máximo 500 kb)",
+        "Impossible de déplacer le fichier temporaire": "No se puede mover el archivo temporal",
+        "Impossible de téléverser le fichier (limite du serveur web ?)": "No se puede cargar el archivo (¿límite del servidor web?)"
     },
     "plugins\/openzwave\/core\/class\/openzwave.class.php": {
         "Echec de la requête http : ": "Solicitud HTTP fallida:",

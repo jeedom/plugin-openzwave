@@ -24,7 +24,7 @@
         "Désactiver l'actualisation en arrière-plan des variateurs": "Deaktivieren Sie die Hintergrundaktualisierung der Laufwerke",
         "Cycle (s)": "Zyklus (e)",
         "Port clé Z-Wave": "Z-Wave-Schlüsselanschluss",
-        "Aucun": "Ohne",
+        "Aucun": "Nein",
         "Auto": "Auto",
         "Désactiver la gestion des processus USB (socat)": "Deaktivieren Sie die USB-Prozessverwaltung (socat)",
         "Port du Serveur (laisser vide par défault)": "Server-Port (standardmäßig leer lassen)",
@@ -157,6 +157,21 @@
         "Nombre de messages envoyés en erreur :": "Anzahl der fehlerhaft gesendeten Nachrichten:",
         "Heure du dernier message envoyé :": "Zeitpunkt der letzten gesendeten Nachricht:"
     },
+    "plugins\/openzwave\/desktop\/modal\/backupnetwork.php": {
+        "Demande envoyée": "Anfrage gesendet",
+        "Un backup réseau d'un contrôleur Zwave n'est pas une chose anodine. Soyez bien sûr du port et de l'ordre dans lequel vous faites les choses. Jeedom ne pourra être tenu responsable d'une perte de votre contrôleur. PAGE TOUJOURS EN CONSTRUCTION.": "Eine Netzwerksicherung eines Zwave-Controllers ist nicht trivial. Achten Sie auf den Hafen und die Reihenfolge, in der Sie die Dinge tun. Jeedom kann nicht für den Verlust Ihres Controllers verantwortlich gemacht werden. SEITE NOCH IM BAU",
+        "Sauvegardes": "Backups",
+        "Nom du backup": "Sicherungsname",
+        "Port clé Z-Wave": "Z-Wave-Schlüsselanschluss",
+        "Aucun": "Nein",
+        "Lancer une sauvegarde": "Starten Sie ein Backup",
+        "Sauvegardes disponibles": "Backups verfügbar",
+        "Supprimer la sauvegarde": "Backup löschen",
+        "Restaurer la sauvegarde": "Backup wiederherstellen",
+        "Télécharger la sauvegarde": "Laden Sie das Backup herunter",
+        "Ajouter une sauvegarde": "Backup hinzufügen",
+        "Informations": "Information"
+    },
     "plugins\/openzwave\/desktop\/modal\/syncconf.openzwave.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Pause": "Pause",
@@ -251,7 +266,7 @@
         "Demande envoyée": "Anfrage gesendet",
         "Créer une sauvegarde": "Erstellen Sie ein Backup",
         "Lancer": "Start",
-        "Sauvegardes disponibles": "Verfügbare Backups",
+        "Sauvegardes disponibles": "Backups verfügbar",
         "Restaurer\/Supprimer la sauvegarde": "Backup wiederherstellen \/ löschen",
         "Restaurer": "Wiederherstellen",
         "Supprimer": "Löschen"
@@ -283,7 +298,7 @@
         "Commandes": "Befehle",
         "Nom de l'équipement": "Name der Ausrüstung",
         "Objet parent": "Übergeordnetes Objekt",
-        "Aucun": "Ohne",
+        "Aucun": "Nein",
         "Catégorie": "Kategorie",
         "Activer": "Aktivieren",
         "Visible": "Sichtbar",
@@ -339,6 +354,18 @@
         "Le noeud ne s\\'est pas réveillé comme prévue": "Der Knoten ist nicht wie erwartet aufgewacht",
         "Le noeud ne s\\'est pas encore réveillé une fois depuis le lancement du démon": "Der Knoten ist seit dem Start des Dämons kein einziges Mal aufgewacht",
         "Ping": "Klingeln"
+    },
+    "plugins\/openzwave\/desktop\/js\/backupnetwork.js": {
+        "Etes-vous sûr de vouloir créer un backup du réseau ? Une fois lancée cette opération ne peut être annulée.": "Möchten Sie wirklich eine Netzwerksicherung erstellen? Einmal gestartet, kann dieser Vorgang nicht abgebrochen werden",
+        "Action réalisée avec succès": "Aktion erfolgreich abgeschlossen",
+        "Etes-vous sûr de vouloir supprimer le backup suivant ": "Sind Sie sicher, dass Sie die folgende Sicherung löschen möchten?",
+        "Une fois lancée cette opération ne peut être annulée.": "Einmal gestartet, kann dieser Vorgang nicht abgebrochen werden",
+        "Etes-vous sûr de vouloir restaurer la clé avec ": "Sind Sie sicher, dass Sie den Schlüssel mit wiederherstellen möchten?",
+        "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave !!!! Attention cela écrasera tout réseau présent sur la clé <b>' + $('.zwavePort option:selected').text() +'<\/b> ": "Einmal gestartet, kann dieser Vorgang nicht mehr rückgängig gemacht werden und startet die OpenZwave-Engine neu !!!! Bitte beachten Sie, dass dadurch alle Netzwerke überschrieben werden, die auf dem Schlüssel <b>'+ $ ('. ZwavePort-Option: ausgewählt ') vorhanden sind. Text () +'<\/b>",
+        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Erfolgreiche Restaurierung. OpenZwave wird neu gestartet",
+        "Fichier(s) ajouté(s) avec succès": "Datei (en) erfolgreich hinzugefügt",
+        "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Sind Sie sicher, dass Sie die Sicherung löschen möchten?",
+        "Sauvegarde supprimée avec succès": "Backup erfolgreich gelöscht"
     },
     "plugins\/openzwave\/desktop\/js\/nodes.js": {
         "Contrôleur": "Controller",
@@ -459,10 +486,10 @@
         "Etes-vous sûr de vouloir créer un backup ? Une fois lancée cette opération ne peut être annulée.": "Möchten Sie wirklich ein Backup erstellen? Nach dem Start kann dieser Vorgang nicht abgebrochen werden",
         "Action réalisée avec succès": "Aktion erfolgreich abgeschlossen",
         "Etes-vous sûr de vouloir supprimer le backup suivant ": "Sind Sie sicher, dass Sie die folgende Sicherung löschen möchten?",
-        "Une fois lancée cette opération ne peut être annulée.": "Nach dem Start kann dieser Vorgang nicht abgebrochen werden",
+        "Une fois lancée cette opération ne peut être annulée.": "Einmal gestartet, kann dieser Vorgang nicht abgebrochen werden",
         "Etes-vous sûr de vouloir restaurer Openzwave avec ": "Sind Sie sicher, dass Sie Openzwave mit wiederherstellen möchten?",
         "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave.": "Nach dem Start kann dieser Vorgang nicht abgebrochen werden und startet die OpenZwave-Engine neu",
-        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Erfolgreiche Restaurierung. OpenZwave wird gerade neu gestartet"
+        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Erfolgreiche Restaurierung. OpenZwave wird neu gestartet"
     },
     "plugins\/openzwave\/desktop\/js\/openzwave.js": {
         "Action réalisée avec succès": "Aktion erfolgreich abgeschlossen",
@@ -479,7 +506,7 @@
         "Réseaux zwave": "Zwave-Netzwerke",
         "Configuration du module": "Konfiguration des Moduls",
         "Santé zwave": "Zwave Gesundheit",
-        "Sauvegardes": "Sicherungen",
+        "Sauvegardes": "Backups",
         "Assistant de configuration": "Konfigurationsassistent",
         "Configuration recommandée": "Empfohlene Konfiguration",
         "Voulez-vous appliquer le jeu de configuration recommandée par l\\'équipe Jeedom ?": "Möchten Sie den vom Jeedom-Team empfohlenen Konfigurationssatz anwenden?",
@@ -547,7 +574,12 @@
         "Action réalisée avec succès": "Aktion erfolgreich abgeschlossen"
     },
     "plugins\/openzwave\/core\/ajax\/openzwave.ajax.php": {
-        "Zwave eqLogic non trouvé : ": "Zwave eqLogic nicht gefunden:"
+        "Zwave eqLogic non trouvé : ": "Zwave eqLogic nicht gefunden:",
+        "Répertoire de téléversement non trouvé : ": "Upload-Verzeichnis nicht gefunden:",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Keine Dateien gefunden. Überprüfen Sie die PHP-Einstellung (Postgrößenbeschränkung)",
+        "Le fichier est trop gros (maximum 500ko)": "Die Datei ist zu groß (maximal 500 KB)",
+        "Impossible de déplacer le fichier temporaire": "Temporäre Datei kann nicht verschoben werden",
+        "Impossible de téléverser le fichier (limite du serveur web ?)": "Datei kann nicht hochgeladen werden (Webserver-Limit?)"
     },
     "plugins\/openzwave\/core\/class\/openzwave.class.php": {
         "Echec de la requête http : ": "Fehler bei der HTTP Abfrage :",

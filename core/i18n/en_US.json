@@ -24,7 +24,7 @@
         "Désactiver l'actualisation en arrière-plan des variateurs": "Deactivate the background update of the drives",
         "Cycle (s)": "Cycle (s)",
         "Port clé Z-Wave": "Z-Wave key port",
-        "Aucun": "None",
+        "Aucun": "No",
         "Auto": "Auto",
         "Désactiver la gestion des processus USB (socat)": "Disable USB process management (socat)",
         "Port du Serveur (laisser vide par défault)": "Server Port (leave empty by default)",
@@ -157,6 +157,21 @@
         "Nombre de messages envoyés en erreur :": "Number of messages sent in error:",
         "Heure du dernier message envoyé :": "Time of last message sent:"
     },
+    "plugins\/openzwave\/desktop\/modal\/backupnetwork.php": {
+        "Demande envoyée": "Request sent",
+        "Un backup réseau d'un contrôleur Zwave n'est pas une chose anodine. Soyez bien sûr du port et de l'ordre dans lequel vous faites les choses. Jeedom ne pourra être tenu responsable d'une perte de votre contrôleur. PAGE TOUJOURS EN CONSTRUCTION.": "A network backup of a Zwave controller is not trivial. Be sure of the port and the order in which you do things. Jeedom cannot be held responsible for the loss of your controller. PAGE STILL UNDER CONSTRUCTION",
+        "Sauvegardes": "Backups",
+        "Nom du backup": "Backup name",
+        "Port clé Z-Wave": "Z-Wave key port",
+        "Aucun": "No",
+        "Lancer une sauvegarde": "Start a backup",
+        "Sauvegardes disponibles": "Backups available",
+        "Supprimer la sauvegarde": "Delete backup",
+        "Restaurer la sauvegarde": "Restore backup",
+        "Télécharger la sauvegarde": "Download the backup",
+        "Ajouter une sauvegarde": "Add backup",
+        "Informations": "Information"
+    },
     "plugins\/openzwave\/desktop\/modal\/syncconf.openzwave.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Pause": "Pause",
@@ -251,7 +266,7 @@
         "Demande envoyée": "Request sent",
         "Créer une sauvegarde": "Create a backup",
         "Lancer": "Run",
-        "Sauvegardes disponibles": "Available backups",
+        "Sauvegardes disponibles": "Backups available",
         "Restaurer\/Supprimer la sauvegarde": "Restore \/ Delete backup",
         "Restaurer": "Restore",
         "Supprimer": "Delete"
@@ -283,7 +298,7 @@
         "Commandes": "Commands",
         "Nom de l'équipement": "Name of equipment",
         "Objet parent": "Parent object",
-        "Aucun": "None",
+        "Aucun": "No",
         "Catégorie": "Category",
         "Activer": "Activate",
         "Visible": "Visible",
@@ -339,6 +354,18 @@
         "Le noeud ne s\\'est pas réveillé comme prévue": "The node did not wake up as expected",
         "Le noeud ne s\\'est pas encore réveillé une fois depuis le lancement du démon": "The node has not woken up once since launching the daemon",
         "Ping": "Ping"
+    },
+    "plugins\/openzwave\/desktop\/js\/backupnetwork.js": {
+        "Etes-vous sûr de vouloir créer un backup du réseau ? Une fois lancée cette opération ne peut être annulée.": "Are you sure you want to create a network backup? Once started this operation cannot be canceled",
+        "Action réalisée avec succès": "Action successfully completed",
+        "Etes-vous sûr de vouloir supprimer le backup suivant ": "Are you sure you want to delete the following backup",
+        "Une fois lancée cette opération ne peut être annulée.": "Once started this operation cannot be canceled",
+        "Etes-vous sûr de vouloir restaurer la clé avec ": "Are you sure you want to restore the key with",
+        "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave !!!! Attention cela écrasera tout réseau présent sur la clé <b>' + $('.zwavePort option:selected').text() +'<\/b> ": "Once started this operation cannot be undone and will restart the OpenZwave engine !!!! Please note that this will overwrite any network present on the key <b>'+ $ ('. ZwavePort option: selected '). Text () +'<\/b>",
+        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Successful restoration. OpenZwave restart in progress",
+        "Fichier(s) ajouté(s) avec succès": "File (s) added successfully",
+        "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Are you sure you want to delete the backup",
+        "Sauvegarde supprimée avec succès": "Backup successfully deleted"
     },
     "plugins\/openzwave\/desktop\/js\/nodes.js": {
         "Contrôleur": "Controller",
@@ -459,10 +486,10 @@
         "Etes-vous sûr de vouloir créer un backup ? Une fois lancée cette opération ne peut être annulée.": "Are you sure you want to create a backup? Once launched, this operation cannot be canceled",
         "Action réalisée avec succès": "Action successfully completed",
         "Etes-vous sûr de vouloir supprimer le backup suivant ": "Are you sure you want to delete the following backup",
-        "Une fois lancée cette opération ne peut être annulée.": "Once launched, this operation cannot be canceled",
+        "Une fois lancée cette opération ne peut être annulée.": "Once started this operation cannot be canceled",
         "Etes-vous sûr de vouloir restaurer Openzwave avec ": "Are you sure you want to restore Openzwave with",
         "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave.": "Once started this operation cannot be canceled and will restart the OpenZwave engine",
-        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Successful restoration. OpenZwave restarting in progress"
+        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Successful restoration. OpenZwave restart in progress"
     },
     "plugins\/openzwave\/desktop\/js\/openzwave.js": {
         "Action réalisée avec succès": "Action successfully completed",
@@ -547,7 +574,12 @@
         "Action réalisée avec succès": "Action successfully completed"
     },
     "plugins\/openzwave\/core\/ajax\/openzwave.ajax.php": {
-        "Zwave eqLogic non trouvé : ": "Zwave eqLogic not found:"
+        "Zwave eqLogic non trouvé : ": "Zwave eqLogic not found:",
+        "Répertoire de téléversement non trouvé : ": "Upload directory not found:",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No files found. Check the PHP setting (post size limit)",
+        "Le fichier est trop gros (maximum 500ko)": "The file is too big (maximum 500kb)",
+        "Impossible de déplacer le fichier temporaire": "Cannot move temporary file",
+        "Impossible de téléverser le fichier (limite du serveur web ?)": "Unable to upload the file (web server limit?)"
     },
     "plugins\/openzwave\/core\/class\/openzwave.class.php": {
         "Echec de la requête http : ": "Http request failed:",

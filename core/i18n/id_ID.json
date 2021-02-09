@@ -157,6 +157,21 @@
         "Nombre de messages envoyés en erreur :": "Nombre de messages envoyés en erreur :",
         "Heure du dernier message envoyé :": "Heure du dernier message envoyé :"
     },
+    "plugins\/openzwave\/desktop\/modal\/backupnetwork.php": {
+        "Demande envoyée": "Demande envoyée",
+        "Un backup réseau d'un contrôleur Zwave n'est pas une chose anodine. Soyez bien sûr du port et de l'ordre dans lequel vous faites les choses. Jeedom ne pourra être tenu responsable d'une perte de votre contrôleur. PAGE TOUJOURS EN CONSTRUCTION.": "Un backup réseau d'un contrôleur Zwave n'est pas une chose anodine. Soyez bien sûr du port et de l'ordre dans lequel vous faites les choses. Jeedom ne pourra être tenu responsable d'une perte de votre contrôleur. PAGE TOUJOURS EN CONSTRUCTION",
+        "Sauvegardes": "Sauvegardes",
+        "Nom du backup": "Nom du backup",
+        "Port clé Z-Wave": "Port clé Z-Wave",
+        "Aucun": "Aucun",
+        "Lancer une sauvegarde": "Lancer une sauvegarde",
+        "Sauvegardes disponibles": "Sauvegardes disponibles",
+        "Supprimer la sauvegarde": "Supprimer la sauvegarde",
+        "Restaurer la sauvegarde": "Restaurer la sauvegarde",
+        "Télécharger la sauvegarde": "Télécharger la sauvegarde",
+        "Ajouter une sauvegarde": "Ajouter une sauvegarde",
+        "Informations": "Informations"
+    },
     "plugins\/openzwave\/desktop\/modal\/syncconf.openzwave.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Pause": "Berhenti Sebentar",
@@ -339,6 +354,18 @@
         "Le noeud ne s\\'est pas réveillé comme prévue": "Le noeud ne s\\'est pas réveillé comme prévue",
         "Le noeud ne s\\'est pas encore réveillé une fois depuis le lancement du démon": "Le noeud ne s\\'est pas encore réveillé une fois depuis le lancement du démon",
         "Ping": "Ping"
+    },
+    "plugins\/openzwave\/desktop\/js\/backupnetwork.js": {
+        "Etes-vous sûr de vouloir créer un backup du réseau ? Une fois lancée cette opération ne peut être annulée.": "Etes-vous sûr de vouloir créer un backup du réseau ? Une fois lancée cette opération ne peut être annulée",
+        "Action réalisée avec succès": "Action réalisée avec succès",
+        "Etes-vous sûr de vouloir supprimer le backup suivant ": "Etes-vous sûr de vouloir supprimer le backup suivant",
+        "Une fois lancée cette opération ne peut être annulée.": "Une fois lancée cette opération ne peut être annulée",
+        "Etes-vous sûr de vouloir restaurer la clé avec ": "Etes-vous sûr de vouloir restaurer la clé avec",
+        "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave !!!! Attention cela écrasera tout réseau présent sur la clé <b>' + $('.zwavePort option:selected').text() +'<\/b> ": "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave !!!! Attention cela écrasera tout réseau présent sur la clé <b>' + $('.zwavePort option:selected').text() +'<\/b>",
+        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Restauration réussie. Redémarrage d\\'OpenZwave en cours",
+        "Fichier(s) ajouté(s) avec succès": "Fichier(s) ajouté(s) avec succès",
+        "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Êtes-vous sûr de vouloir supprimer la sauvegarde",
+        "Sauvegarde supprimée avec succès": "Sauvegarde supprimée avec succès"
     },
     "plugins\/openzwave\/desktop\/js\/nodes.js": {
         "Contrôleur": "Contrôleur",
@@ -547,7 +574,12 @@
         "Action réalisée avec succès": "Action réalisée avec succès"
     },
     "plugins\/openzwave\/core\/ajax\/openzwave.ajax.php": {
-        "Zwave eqLogic non trouvé : ": "Zwave eqLogic non trouvé :"
+        "Zwave eqLogic non trouvé : ": "Zwave eqLogic non trouvé :",
+        "Répertoire de téléversement non trouvé : ": "Répertoire de téléversement non trouvé :",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)",
+        "Le fichier est trop gros (maximum 500ko)": "Le fichier est trop gros (maximum 500ko)",
+        "Impossible de déplacer le fichier temporaire": "Impossible de déplacer le fichier temporaire",
+        "Impossible de téléverser le fichier (limite du serveur web ?)": "Impossible de téléverser le fichier (limite du serveur web ?)"
     },
     "plugins\/openzwave\/core\/class\/openzwave.class.php": {
         "Echec de la requête http : ": "Echec de la requête HTTP :",
