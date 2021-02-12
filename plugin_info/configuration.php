@@ -78,7 +78,8 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 			<div class="form-group">
 			<label class="col-lg-4 control-label">{{Options avancées}}</label>
 			<div class="col-lg-5">
-				<a class="btn btn-warning" id="bt_backupsZwave"><i class="fas fa-save"></i> {{Backups}}</a>
+				<a class="btn btn-warning" id="bt_backupsZwave"><i class="fas fa-save"></i> {{Backups Openzwave}}</a>
+				<a class="btn btn-warning" id="bt_backupsNetwork"><i class="fas fa-random"></i> {{Backups Réseau}}</a>
 				<a class="btn btn-warning" id="bt_syncconfigZwave"><i class="fas fa-sync-alt"></i> {{Configs modules}}</a>
 			</div>
 		</div>
@@ -87,8 +88,12 @@ foreach (jeedom::getUsbMapping('', true) as $name => $value) {
 
 <script>
 	$('#bt_backupsZwave').on('click', function () {
-		$('#md_modal2').dialog({title: "{{Backups}}"});
+		$('#md_modal2').dialog({title: "{{Backups Openzwave}}"});
 		$('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=backup').dialog('open');
+	});
+	$('#bt_backupsNetwork').on('click', function () {
+		$('#md_modal2').dialog({title: "{{Backups Réseau}}"});
+		$('#md_modal2').load('index.php?v=d&plugin=openzwave&modal=backupnetwork').dialog('open');
 	});
 	$('#bt_syncconfigZwave').on('click',function(){
 		bootbox.confirm('{{Etes-vous sûr de vouloir télécharger les dernières configurations des modules ? Ceci relancera le plugin OpenZwave.}}', function (result) {
