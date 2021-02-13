@@ -29,7 +29,8 @@
         "Désactiver la gestion des processus USB (socat)": "Désactiver la gestion des processus USB (socat)",
         "Port du Serveur (laisser vide par défault)": "Port du Serveur (laisser vide par défault)",
         "Options avancées": "Options avancées",
-        "Backups": "Backups",
+        "Backups Openzwave": "Backups Openzwave",
+        "Backups Réseau": "Backups Réseau",
         "Configs modules": "Configs modules",
         "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ? Ceci relancera le plugin OpenZwave.": "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ? Ceci relancera le plugin OpenZwave.",
         "Téléchargement des configurations": "Téléchargement des configurations"

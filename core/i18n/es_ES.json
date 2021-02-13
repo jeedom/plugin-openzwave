@@ -23,13 +23,14 @@
         "Appliquer le jeu de configuration recommandée à l'inclusion": "Aplicar el conjunto de configuración recomendado a la inclusión",
         "Désactiver l'actualisation en arrière-plan des variateurs": "Desactivar la actualización en segundo plano de las unidades",
         "Cycle (s)": "Ciclo (s)",
-        "Port clé Z-Wave": "Puerto clave Z-Wave",
-        "Aucun": "No",
+        "Port clé Z-Wave": "Puerto de llave Z-Wave",
+        "Aucun": "Ninguna",
         "Auto": "Auto",
         "Désactiver la gestion des processus USB (socat)": "Deshabilitar la gestión de procesos USB (socat)",
         "Port du Serveur (laisser vide par défault)": "Puerto del servidor (dejar vacío por defecto)",
         "Options avancées": "Opciones avanzadas",
-        "Backups": "Copias de seguridad",
+        "Backups Openzwave": "Copias de seguridad de Openzwave",
+        "Backups Réseau": "Copias de seguridad de red",
         "Configs modules": "Módulos de configuración",
         "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ? Ceci relancera le plugin OpenZwave.": "¿Está seguro de que desea descargar las últimas configuraciones de módulos? Esto relanzará el complemento OpenZwave",
         "Téléchargement des configurations": "Descargar configuraciones"
@@ -266,7 +267,7 @@
         "Demande envoyée": "Solicitud enviada",
         "Créer une sauvegarde": "Crea una copia de seguridad",
         "Lancer": "Iniciar",
-        "Sauvegardes disponibles": "Backups disponibles",
+        "Sauvegardes disponibles": "Copias de seguridad disponibles",
         "Restaurer\/Supprimer la sauvegarde": "Restaurar\/Eliminar copia de seguridad",
         "Restaurer": "Restaurar",
         "Supprimer": "Borrar"
@@ -298,7 +299,7 @@
         "Commandes": "Comandos",
         "Nom de l'équipement": "Nombre del dispositivo",
         "Objet parent": "Objeto padre",
-        "Aucun": "No",
+        "Aucun": "Ninguno",
         "Catégorie": "Categoría",
         "Activer": "Activar",
         "Visible": "Visible",
@@ -486,10 +487,10 @@
         "Etes-vous sûr de vouloir créer un backup ? Une fois lancée cette opération ne peut être annulée.": "¿Seguro que quieres crear una copia de seguridad? Una vez iniciada, esta operación no se puede cancelar",
         "Action réalisée avec succès": "Acción completada con éxito",
         "Etes-vous sûr de vouloir supprimer le backup suivant ": "¿Está seguro de que desea eliminar la siguiente copia de seguridad?",
-        "Une fois lancée cette opération ne peut être annulée.": "Una vez iniciada esta operación no se puede cancelar",
+        "Une fois lancée cette opération ne peut être annulée.": "Una vez iniciada, esta operación no se puede cancelar",
         "Etes-vous sûr de vouloir restaurer Openzwave avec ": "¿Estás seguro de que quieres restaurar Openzwave con",
         "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave.": "Una vez iniciada, esta operación no se puede cancelar y reiniciará el motor OpenZwave",
-        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Restauración exitosa. Reinicio de OpenZwave en curso"
+        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Restauración exitosa. Reinico de OpenZwave en progreso"
     },
     "plugins\/openzwave\/desktop\/js\/openzwave.js": {
         "Action réalisée avec succès": "Acción completada con éxito",

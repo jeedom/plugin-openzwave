@@ -24,12 +24,13 @@
         "Désactiver l'actualisation en arrière-plan des variateurs": "Deactivate the background update of the drives",
         "Cycle (s)": "Cycle (s)",
         "Port clé Z-Wave": "Z-Wave key port",
-        "Aucun": "No",
+        "Aucun": "None",
         "Auto": "Auto",
         "Désactiver la gestion des processus USB (socat)": "Disable USB process management (socat)",
         "Port du Serveur (laisser vide par défault)": "Server Port (leave empty by default)",
         "Options avancées": "Advanced options",
-        "Backups": "Backups",
+        "Backups Openzwave": "Openzwave backups",
+        "Backups Réseau": "Network Backups",
         "Configs modules": "Config modules",
         "Etes-vous sûr de vouloir télécharger les dernières configurations des modules ? Ceci relancera le plugin OpenZwave.": "Are you sure you want to download the latest module configurations? This will relaunch the OpenZwave plugin",
         "Téléchargement des configurations": "Download configurations"
@@ -266,7 +267,7 @@
         "Demande envoyée": "Request sent",
         "Créer une sauvegarde": "Create a backup",
         "Lancer": "Run",
-        "Sauvegardes disponibles": "Backups available",
+        "Sauvegardes disponibles": "Available backups",
         "Restaurer\/Supprimer la sauvegarde": "Restore \/ Delete backup",
         "Restaurer": "Restore",
         "Supprimer": "Delete"
@@ -298,7 +299,7 @@
         "Commandes": "Commands",
         "Nom de l'équipement": "Name of equipment",
         "Objet parent": "Parent object",
-        "Aucun": "No",
+        "Aucun": "None",
         "Catégorie": "Category",
         "Activer": "Activate",
         "Visible": "Visible",
@@ -486,10 +487,10 @@
         "Etes-vous sûr de vouloir créer un backup ? Une fois lancée cette opération ne peut être annulée.": "Are you sure you want to create a backup? Once launched, this operation cannot be canceled",
         "Action réalisée avec succès": "Action successfully completed",
         "Etes-vous sûr de vouloir supprimer le backup suivant ": "Are you sure you want to delete the following backup",
-        "Une fois lancée cette opération ne peut être annulée.": "Once started this operation cannot be canceled",
+        "Une fois lancée cette opération ne peut être annulée.": "Once launched, this operation cannot be canceled",
         "Etes-vous sûr de vouloir restaurer Openzwave avec ": "Are you sure you want to restore Openzwave with",
         "Une fois lancée cette opération ne peut être annulée et redémarrera le moteur OpenZwave.": "Once started this operation cannot be canceled and will restart the OpenZwave engine",
-        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Successful restoration. OpenZwave restart in progress"
+        "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Successful restoration. OpenZwave restarting in progress"
     },
     "plugins\/openzwave\/desktop\/js\/openzwave.js": {
         "Action réalisée avec succès": "Action successfully completed",
