@@ -96,7 +96,7 @@
                 "index": 3,
                 "instance": 1,
                 "minValue": 0,
-                "maxValue": 40000
+                "maxValue": 2000
             },
             "subtype": "numeric",
             "display": {
