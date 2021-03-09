@@ -56,7 +56,14 @@ Use reset procedure only if the primary controller is missing or inoperable.
       <Item label="Restore remembered state of relays after restoring power, but for toggle switches (parameter 20/21 set to 1) set the same state as the current state of the switches" value="2"/>
     </Value>
     <Value genre="config" index="150" instance="1" label="First channel - operating mode" max="3" min="0" size="1" type="list" value="0">
-      <Help>This parameter allows to choose operating for channel controlled with Q/Q1 output. timed modes (value 1, 2 or 3), time is set parameter 154 and reaction to input is set with parameter 152.</Help>
+      <Help>This parameter allows to choose operating for channel controlled with Q/Q1 output. Timed modes (value 1, 2 or 3), time is set parameter 154 and reaction to input is set with parameter 152.</Help>
+      <Item label="Standard operation" value="0"/>
+      <Item label="Delay Off" value="1"/>
+      <Item label="Auto Off" value="2"/>
+      <Item label="Flashing" value="3"/>
+    </Value>
+    <Value genre="config" index="151" instance="1" label="Second channel - operating mode" max="3" min="0" size="1" type="list" value="0">
+      <Help>This parameter allows to choose operating for channel controlled with Q2 output. Timed modes (value 1, 2 or 3), time is set parameter 155 and reaction to input is set with parameter 153.</Help>
       <Item label="Standard operation" value="0"/>
       <Item label="Delay Off" value="1"/>
       <Item label="Auto Off" value="2"/>
@@ -125,12 +132,12 @@ Use reset procedure only if the primary controller is missing or inoperable.
       <Item label="Toggle switch (contact closed - On, contact opened - OFF)" value="1"/>
       <Item label="Toggle switch (device changes status when switch changes status)" value="2"/>
     </Value>
-    <Value genre="config" index="25" instance="1" label="Inputs orientation" max="1" min="0" size="1" type="list" value="0">
+    <Value genre="config" index="24" instance="1" label="Inputs orientation" max="1" min="0" size="1" type="list" value="0">
       <Help>This parameter allows reversing operation of S1 and S2 inputs changing the wiring. Use in case of incorrect wiring.</Help>
       <Item label="default (S1 - 1st channel, S2 - 2nd channel)" value="0"/>
       <Item label="reversed (S1 - 2nd channel, S2 - 1st channel)" value="1"/>
     </Value>
-    <Value genre="config" index="26" instance="1" label="Outputs orientation" max="1" min="0" size="1" type="list" value="0">
+    <Value genre="config" index="25" instance="1" label="Outputs orientation" max="1" min="0" size="1" type="list" value="0">
       <Help>This parameter allows reversing operation of Q1 and Q2 outputs changing the wiring. Use in case of incorrect wiring.</Help>
       <Item label="default (Q1 - 1st channel, Q2 - 2nd channel)" value="0"/>
       <Item label="reversed (Q1 - 2nd channel, Q2 - 1st channel)" value="1"/>
