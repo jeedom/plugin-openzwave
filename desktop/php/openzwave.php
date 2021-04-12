@@ -43,7 +43,7 @@ switch ($networkState) {
 	event::add('jeedom::alert', array(
 		'level' => 'danger',
 		'page' => 'openzwave',
-		'message' => __('Le réseau Z-Wave est arreté sur le serveur', __FILE__),
+		'message' => __('Le réseau Z-Wave est arrêté sur le serveur', __FILE__),
 	));
 	break;
 	case 1: # STATE_FAILED = 1
@@ -142,11 +142,16 @@ sendVarTojs('eqLogic_human_name', $tags);
 			<div class="cursor logoSecondary" id="bt_zwaveHealth">
 				<i class="fas fa-medkit"></i>
 				<br/>
-				<span><center>{{Santé}}</center></span>
+				<span>{{Santé}}</span>
 			</div>
 		</div>
-		<legend><i class="fas fa-table"></i> {{Mes équipements Z-Wave}}</legend>
-		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
+		<legend><i class="fas fa-broadcast-tower"></i> {{Mes équipements Z-Wave}}</legend>
+		<div class="input-group" style="margin:5px;">
+			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchEqlogic"/>
+			<div class="input-group-btn">
+				<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i></a>
+			</div>
+		</div>
 		<div class="eqLogicThumbnailContainer">
 			<?php
 			foreach ($eqLogics as $eqLogic) {
@@ -167,117 +172,114 @@ sendVarTojs('eqLogic_human_name', $tags);
 	<div class="col-xs-12 eqLogic" style="display: none;">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<a class="btn btn-default eqLogicAction btn-sm roundedLeft" data-action="configure"><i class="fas fa-cogs"></i> {{Configuration avancée}}</a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+				<a class="btn btn-default eqLogicAction btn-sm roundedLeft" data-action="configure"><i class="fas fa-cogs"></i> {{Configuration avancée}}
+				</a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+				</a><a class="btn btn-danger btn-sm eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>
-		
+
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="eqLogicAction cursor" aria-controls="home" role="tab" data-action="returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Equipement}}</a></li>
 			<li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Commandes}}</a></li>
 		</ul>
-		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="eqlogictab">
-				<br/>
-				<div class="row">
-					<div class="col-sm-7">
-						<form class="form-horizontal">
-							<fieldset>
-								<div class="form-group">
-									<label class="col-sm-4 control-label">{{Nom de l'équipement}}</label>
-									<div class="col-sm-6">
-										<input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;"/>
-										<input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}"/>
-									</div>
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="col-lg-6">
+							<legend><i class="fas fa-wrench"></i> {{Général}}</legend>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">{{Nom de l'équipement}}</label>
+								<div class="col-sm-7">
+									<input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;"/>
+									<input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}"/>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-4 control-label">{{Objet parent}}</label>
-									<div class="col-sm-6">
-										<select class="eqLogicAttr form-control" data-l1key="object_id">
-											<option value="">{{Aucun}}</option>
-											<?php
-											$options = '';
-											foreach ((jeeObject::buildTree(null, false)) as $object) {
-												$options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object->getConfiguration('parentNumber')) . $object->getName() . '</option>';
-											}
-											echo $options;
-											?>
-										</select>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-4 control-label">{{Catégorie}}</label>
-									<div class="col-sm-8">
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">{{Objet parent}}</label>
+								<div class="col-sm-7">
+									<select class="eqLogicAttr form-control" data-l1key="object_id">
+										<option value="">{{Aucun}}</option>
 										<?php
-										foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-											echo '<label class="checkbox-inline">';
-											echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
-											echo '</label>';
+										$options = '';
+										foreach ((jeeObject::buildTree(null, false)) as $object) {
+											$options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object->getConfiguration('parentNumber')) . $object->getName() . '</option>';
 										}
+										echo $options;
 										?>
-									</div>
+									</select>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-4 control-label"></label>
-									<div class="col-sm-8">
-										<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
-										<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
-									</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">{{Catégorie}}</label>
+								<div class="col-sm-7">
+									<?php
+									foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+										echo '<label class="checkbox-inline">';
+										echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
+										echo '</label>';
+									}
+									?>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-4 control-label">{{Node ID}}</label>
-									<div class="col-sm-2">
-										<input type="text" class="eqLogicAttr form-control" data-l1key="logicalId"/>
-									</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">{{Options}}</label>
+								<div class="col-sm-7">
+									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
+									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
 								</div>
-							</fieldset>
-						</form>
-					</div>
-					<div class="col-sm-5">
-						<form class="form-horizontal">
-							<fieldset>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">{{Informations}}</label>
-									<div class="col-sm-8">
-										<a id="bt_autoDetectModule" class="btn btn-danger"><i class="fas fa-search"></i> {{Recharger configuration}}</a>
-										<a id="bt_displayZwaveData" class="btn btn-default"><i class="fas fa-tree"></i> {{Arbre Z-Wave}}</a>
-										<span class="label label-warning isPending" style="font-size:0.6em;cursor:default;position:relative;top:-4px;left:20px;" title="{{Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage}}"></span>
-									</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">{{Identifiant du nœud Zwave}}</label>
+								<div class="col-sm-7">
+									<input type="text" class="eqLogicAttr form-control" data-l1key="logicalId"/>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">{{Type}}</label>
-									<div class="col-sm-8">
-										<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fileconf"></select>
-									</div>
+							</div>
+						</div>
+
+						<div class="col-lg-6">
+							<legend><i class="fas fa-info"></i> {{Informations}}</legend>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">{{Configuration}}</label>
+								<div class="col-sm-7">
+									<a id="bt_autoDetectModule" class="btn btn-danger"><i class="fas fa-search"></i> {{Recharger configuration}}</a>
+									<a id="bt_displayZwaveData" class="btn btn-default"><i class="fas fa-tree"></i> {{Arbre Z-Wave}}</a>
+									<span class="label label-warning isPending" style="font-size:0.6em;cursor:default;position:relative;top:-4px;left:20px;" title="{{Il faut réveiller le module s'il est sur batterie ou vérifier le paramétrage}}"></span>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">{{Modèle}}</label>
-									<div class="col-sm-10">
-										<span class="label label-default" style='font-size : 1em;'>
-											<span class="eqLogicAttr" data-l1key="configuration" data-l2key="product_name"></span>
-											<span class="eqLogicAttr" data-l1key="configuration" data-l2key="conf_version" title="{{Version de la configuration}}"></span>
-										</span>
-										<img src="core/img/no_image.gif" data-original=".jpg" id="img_device" class="img-responsive" style="max-height : 120px;margin-top: 10px"/>
-									</div>
-									
-									
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">{{Type}}</label>
+								<div class="col-sm-7">
+									<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="fileconf"></select>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">{{Paramètres}}</label>
-									<div class="col-sm-10">
-										<a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fas fa-wrench"></i> {{Configuration}}</a>
-										<a class="btn btn-info" id="bt_deviceAssistant" title='{{Assistant de configuration spécifique}}' style="display:none;"><i class="fas fa-magic"></i> {{Assistant}}</a>
-										<a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank" style="display:none;"><i class="fas fa-book"></i> {{Documentation}} </a>
-										<a class="btn btn-warning" id="bt_deviceRecommended" title="{{Appliquer le jeu de configuration recommandée par l'équipe Jeedom}}" style="display:none;"><i class="fas fa-thumbs-up"></i> {{Configuration recommandée}}</a>
-									</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">{{Modèle}}</label>
+								<div class="col-sm-7">
+									<span class="label label-info">
+										<span class="eqLogicAttr" data-l1key="configuration" data-l2key="product_name"></span>
+										<span class="eqLogicAttr" data-l1key="configuration" data-l2key="conf_version" title="{{Version de la configuration}}"></span>
+									</span>
+									<img src="core/img/no_image.gif" data-original=".jpg" id="img_device" class="img-responsive" style="max-height:120px;"/>
 								</div>
-								
-							</fieldset>
-						</form>
-					</div>
-				</div>
-				
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">{{Paramètres}}</label>
+								<div class="col-sm-7">
+									<a class="btn btn-primary" id="bt_configureDevice" title='{{Configurer}}'><i class="fas fa-wrench"></i> {{Configuration}}</a>
+									<a class="btn btn-info" id="bt_deviceAssistant" title='{{Assistant de configuration spécifique}}' style="display:none;"><i class="fas fa-magic"></i> {{Assistant}}</a>
+									<a class="btn btn-default" id="bt_deviceDocumentation" title='{{Documentation du module}}' target="_blank" style="display:none;"><i class="fas fa-book"></i> {{Documentation}} </a>
+									<a class="btn btn-warning" id="bt_deviceRecommended" title="{{Appliquer le jeu de configuration recommandé par l'équipe Jeedom}}" style="display:none;"><i class="fas fa-thumbs-up"></i> {{Configuration recommandée}}</a>
+								</div>
+							</div>
+
+						</div>
+					</fieldset>
+				</form>
+				<hr>
 			</div>
+
 			<div role="tabpanel" class="tab-pane" id="commandtab">
 				<a class="btn btn-success btn-sm cmdAction pull-right" data-action="add" style="margin-top:5px;"> <i class="fas fa-plus-circle"></i> {{Commandes}}</a>
 				<br/><br/>
