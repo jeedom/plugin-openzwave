@@ -82,8 +82,6 @@ In summary:
 
 After downloading the plugin, you just need to activate and configure it.
 
-![configuration01](../images/configuration01.png)
-
 Once activated, the demon should launch. The plugin is preconfigured with default values; you normally have nothing more to do. However you can change the configuration.
 
 ## Dependencies

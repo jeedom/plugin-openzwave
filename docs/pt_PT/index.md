@@ -82,8 +82,6 @@ Em resumo:
 
 Depois de baixar o plugin, você só precisa ativá-lo e configurá-lo.
 
-![configuration01](../images/configuration01.png)
-
 Uma vez ativado, o demônio deve lançar. O plug-in é pré-configurado com valores padrão; você normalmente não tem mais nada a fazer. No entanto, você pode alterar a configuração.
 
 ## Dependências

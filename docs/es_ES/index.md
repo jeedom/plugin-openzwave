@@ -82,8 +82,6 @@ En resumen:
 
 Después de descargar el complemento, solo necesita activarlo y configurarlo.
 
-![configuration01](../images/configuration01.png)
-
 Una vez activado, el demonio debería lanzar. El complemento está preconfigurado con valores predeterminados; normalmente no tienes nada más que hacer. Sin embargo, puedes cambiar la configuración.
 
 ## Dependencias
