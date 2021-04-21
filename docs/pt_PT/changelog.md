@@ -4,6 +4,10 @@
 >
 >Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto
 
+# 20/04/2021
+
+- Adição da função de backup e restauração da chave Zwave (GPIO ou USB)
+
 # 07/07/2019
 
 - Corrigido um erro ao parar o daemon

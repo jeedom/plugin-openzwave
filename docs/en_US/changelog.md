@@ -4,6 +4,10 @@
 >
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text
 
+# 04/20/2021
+
+- Addition of the Backup and Restore function of the Zwave key (GPIO or USB)
+
 # 07/10/2019
 
 - Fixed a bug when stopping the daemon

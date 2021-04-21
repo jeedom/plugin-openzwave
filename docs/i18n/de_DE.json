@@ -2,6 +2,8 @@
     "changelog.md": {
         "Changelog Z-Wave": "Changelog Z-Wave",
         "Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte": "Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt",
+        "20\/04\/2021": "20.04.2021",
+        "Ajout de la fonction Backup et Restore de la clé Zwave (GPIO ou USB": "Hinzufügen der Sicherungs- und Wiederherstellungsfunktion des Zwave-Schlüssels (GPIO oder USB)",
         "07\/10\/2019": "10\/07\/2019",
         "Correction d'un bug lors de l'arret du démon": "Ein Fehler beim Stoppen des Daemons wurde behoben",
         "Correction de bugs": "Fehlerbehebungen",

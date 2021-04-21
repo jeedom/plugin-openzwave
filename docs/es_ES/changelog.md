@@ -4,6 +4,10 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto
 
+# 20/04/2021
+
+- Adición de la función de copia de seguridad y restauración de la clave Zwave (GPIO o USB)
+
 # 10/07/2019
 
 - Se corrigió un error al detener al demonio
