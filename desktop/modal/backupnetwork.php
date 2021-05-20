@@ -51,7 +51,7 @@ if (!isConnect('admin')) {
 												<option value="none">{{Aucun}}</option>
 												<?php
 													foreach (jeedom::getUsbMapping('', true) as $name => $value) {
-															echo '<option value="' . $name . '">' . $name . ' (' . $value . ')</option>';
+															echo '<option value="' . $value . '">' . $name . ' (' . $value . ')</option>';
 													}
 												?>
 											</select>
