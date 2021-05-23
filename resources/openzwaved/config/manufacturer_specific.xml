@@ -607,6 +607,7 @@
 		<Product type="1c01" id="1000" name="FGWDEU-111 Walli Dimmer" config="fibaro/fgwd111.xml" />
 		<Product type="1d01" id="1000" name="FGWREU-111 Walli Roller Shutter" config="fibaro/fgwreu111.xml" />
 		<Product type="1f01" id="1000" name="FGWOF011 Walli Outlet Type F" config="fibaro/fgwof011.xml" />
+		<Product type="2301" id="1000" name="FGWCEU201 Walli Controler" config="fibaro/fgwceu201.xml" />
 	</Manufacturer>
 	<Manufacturer id="0138" name="First Alert">
 		<Product type="0001" id="0002" name="ZCombo Smoke and Carbon Monoxide Detector"  config="firstalert/zcombo.xml"/>
