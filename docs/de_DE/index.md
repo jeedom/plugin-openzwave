@@ -82,8 +82,6 @@ Zusammenfassend::
 
 Nach dem Herunterladen des Plugins müssen Sie es nur noch aktivieren und konfigurieren.
 
-![configuration01](../images/configuration01.png)
-
 Nach der Aktivierung sollte der Dämon starten. Das Plugin ist mit Standardwerten vorkonfiguriert. Sie haben normalerweise nichts mehr zu tun. Sie können jedoch die Konfiguration ändern.
 
 ## Nebengebäude

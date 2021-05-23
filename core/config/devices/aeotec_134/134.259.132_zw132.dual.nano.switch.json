@@ -1,430 +1,430 @@
 {
-    "name": "Dual Nano Switch (ZW132)", 
-    "type": "Micromodule", 
-    "comlink": "", 
-    "remark": "", 
-    "imglink": "aeotec.nanoswitch", 
+    "name": "Dual Nano Switch (ZW132)",
+    "type": "Micromodule",
+    "comlink": "",
+    "remark": "",
+    "imglink": "aeotec.nanoswitch",
     "commands": [
         {
-            "name": "On 1", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
+            "name": "On 1",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
             "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat 1", 
-            "subtype": "other", 
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "index": 0,
+                "instance": 2
+            },
+            "value": "Etat 1",
+            "subtype": "other",
             "display": {
                 "generic_type": "LIGHT_ON"
-            }, 
+            },
             "template": {
-                "dashboard": "light", 
+                "dashboard": "light",
                 "mobile": "light"
             }
-        }, 
+        },
         {
-            "name": "Off 1", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
+            "name": "Off 1",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
             "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "value": "Etat 1", 
-            "subtype": "other", 
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "index": 0,
+                "instance": 2
+            },
+            "value": "Etat 1",
+            "subtype": "other",
             "display": {
                 "generic_type": "LIGHT_OFF"
-            }, 
+            },
             "template": {
-                "dashboard": "light", 
+                "dashboard": "light",
                 "mobile": "light"
             }
-        }, 
+        },
         {
-            "name": "Etat 1", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            "name": "Etat 1",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
             "configuration": {
-                "class": 37, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
-            "subtype": "binary", 
+                "class": 37,
+                "value": "",
+                "index": 0,
+                "instance": 2
+            },
+            "subtype": "binary",
             "display": {
                 "generic_type": "LIGHT_STATE"
             }
-        }, 
+        },
         {
-            "name": "Puissance 1", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
+            "name": "Puissance 1",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
             "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 8, 
-                "instance": 1, 
-                "minValue": 0, 
+                "class": 50,
+                "value": "",
+                "index": 8,
+                "instance": 2,
+                "minValue": 0,
                 "maxValue": 2300
-            }, 
-            "subtype": "numeric", 
+            },
+            "subtype": "numeric",
             "display": {
                 "generic_type": "POWER"
-            }, 
+            },
             "unite": "W"
-        }, 
+        },
         {
-            "name": "Consommation 1", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            "name": "Consommation 1",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
             "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1, 
+                "class": 50,
+                "value": "",
+                "index": 0,
+                "instance": 2,
                 "minValue": 0
-            }, 
-            "subtype": "numeric", 
+            },
+            "subtype": "numeric",
             "display": {
                 "generic_type": "CONSUMPTION"
-            }, 
+            },
             "template": {
-                "dashboard": "tile", 
+                "dashboard": "tile",
                 "mobile": "tile"
-            }, 
+            },
             "unite": "kWh"
-        }, 
+        },
         {
-            "name": "Tension 1", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            "name": "Tension 1",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
             "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 16, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
+                "class": 50,
+                "value": "",
+                "index": 16,
+                "instance": 2
+            },
+            "subtype": "numeric",
             "display": {
                 "generic_type": "VOLTAGE"
-            }, 
+            },
             "template": {
-                "dashboard": "tile", 
+                "dashboard": "tile",
                 "mobile": "tile"
-            }, 
+            },
             "unite": "V"
-        }, 
+        },
         {
-            "name": "Intensité 1", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            "name": "Intensité 1",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
             "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 20, 
-                "instance": 1
-            }, 
-            "subtype": "numeric", 
+                "class": 50,
+                "value": "",
+                "index": 20,
+                "instance": 2
+            },
+            "subtype": "numeric",
             "display": {
                 "generic_type": "DONT"
-            }, 
+            },
             "template": {
-                "dashboard": "tile", 
+                "dashboard": "tile",
                 "mobile": "tile"
-            }, 
+            },
             "unite": "A"
-        }, 
+        },
         {
-            "name": "On 2 ", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
+            "name": "On 2 ",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
             "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=255", 
-                "index": 0, 
-                "instance": 2
-            }, 
-            "value": "Etat 2", 
-            "subtype": "other", 
+                "class": 37,
+                "value": "type=setvalue&value=255",
+                "index": 0,
+                "instance": 3
+            },
+            "value": "Etat 2",
+            "subtype": "other",
             "display": {
                 "generic_type": "LIGHT_ON"
-            }, 
+            },
             "template": {
-                "dashboard": "light", 
+                "dashboard": "light",
                 "mobile": "light"
             }
-        }, 
+        },
         {
-            "name": "Off 2 ", 
-            "type": "action", 
-            "isVisible": 1, 
-            "isHistorized": 0, 
+            "name": "Off 2 ",
+            "type": "action",
+            "isVisible": 1,
+            "isHistorized": 0,
             "configuration": {
-                "class": 37, 
-                "value": "type=setvalue&value=0", 
-                "index": 0, 
-                "instance": 2
-            }, 
-            "value": "Etat 2", 
-            "subtype": "other", 
+                "class": 37,
+                "value": "type=setvalue&value=0",
+                "index": 0,
+                "instance": 3
+            },
+            "value": "Etat 2",
+            "subtype": "other",
             "display": {
                 "generic_type": "LIGHT_OFF"
-            }, 
+            },
             "template": {
-                "dashboard": "light", 
+                "dashboard": "light",
                 "mobile": "light"
             }
-        }, 
+        },
         {
-            "name": "Etat 2", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            "name": "Etat 2",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
             "configuration": {
-                "class": 37, 
-                "value": "", 
-                "index": 0, 
-                "instance": 2
-            }, 
-            "subtype": "binary", 
+                "class": 37,
+                "value": "",
+                "index": 0,
+                "instance": 3
+            },
+            "subtype": "binary",
             "display": {
                 "generic_type": "LIGHT_STATE"
             }
-        }, 
+        },
         {
-            "name": "Scene", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            "name": "Scene",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
             "configuration": {
-                "class": 91, 
-                "value": "", 
-                "index": 128, 
-                "instance": 1, 
+                "class": 91,
+                "value": "",
+                "index": 128,
+                "instance": 1,
                 "repeatEventManagement": "always"
-            }, 
-            "subtype": "numeric", 
+            },
+            "subtype": "numeric",
             "display": {
                 "generic_type": "DONT"
-            }, 
-            "unite": "", 
+            },
+            "unite": "",
             "template": {
-                "dashboard": "badge", 
+                "dashboard": "badge",
                 "mobile": "badge"
             }
-        }, 
+        },
         {
-            "name": "SceneID", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            "name": "SceneID",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
             "configuration": {
-                "class": 91, 
-                "value": "", 
-                "index": 2, 
-                "instance": 1, 
+                "class": 91,
+                "value": "",
+                "index": 2,
+                "instance": 1,
                 "repeatEventManagement": "always"
-            }, 
-            "subtype": "numeric", 
+            },
+            "subtype": "numeric",
             "display": {
                 "generic_type": "DONT"
-            }, 
-            "unite": "", 
+            },
+            "unite": "",
             "template": {
-                "dashboard": "badge", 
+                "dashboard": "badge",
                 "mobile": "badge"
             }
-        }, 
+        },
         {
-            "name": "SceneAttribute", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            "name": "SceneAttribute",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
             "configuration": {
-                "class": 91, 
-                "value": "", 
-                "index": 1, 
-                "instance": 1, 
+                "class": 91,
+                "value": "",
+                "index": 1,
+                "instance": 1,
                 "repeatEventManagement": "always"
-            }, 
-            "subtype": "string", 
+            },
+            "subtype": "string",
             "display": {
                 "generic_type": "DONT"
-            }, 
-            "unite": "", 
+            },
+            "unite": "",
             "template": {
-                "dashboard": "badge", 
+                "dashboard": "badge",
                 "mobile": "badge"
             }
-        }, 
+        },
         {
-            "name": "Puissance 2", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
+            "name": "Puissance 2",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
             "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 8, 
-                "instance": 2, 
-                "minValue": 0, 
+                "class": 50,
+                "value": "",
+                "index": 8,
+                "instance": 3,
+                "minValue": 0,
                 "maxValue": 2300
-            }, 
-            "subtype": "numeric", 
+            },
+            "subtype": "numeric",
             "display": {
                 "generic_type": "POWER"
-            }, 
+            },
             "unite": "W"
-        }, 
+        },
         {
-            "name": "Consommation 2", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            "name": "Consommation 2",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
             "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 0, 
-                "instance": 2, 
+                "class": 50,
+                "value": "",
+                "index": 0,
+                "instance": 3,
                 "minValue": 0
-            }, 
-            "subtype": "numeric", 
+            },
+            "subtype": "numeric",
             "display": {
                 "generic_type": "CONSUMPTION"
-            }, 
+            },
             "template": {
-                "dashboard": "tile", 
+                "dashboard": "tile",
                 "mobile": "tile"
-            }, 
+            },
             "unite": "kWh"
-        }, 
+        },
         {
-            "name": "Tension 2", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            "name": "Tension 2",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
             "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 16, 
-                "instance": 2
-            }, 
-            "subtype": "numeric", 
+                "class": 50,
+                "value": "",
+                "index": 16,
+                "instance": 3
+            },
+            "subtype": "numeric",
             "display": {
                 "generic_type": "VOLTAGE"
-            }, 
+            },
             "template": {
-                "dashboard": "tile", 
+                "dashboard": "tile",
                 "mobile": "tile"
-            }, 
+            },
             "unite": "V"
-        }, 
+        },
         {
-            "name": "Intensité 2", 
-            "type": "info", 
-            "isVisible": 0, 
-            "isHistorized": 0, 
+            "name": "Intensité 2",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
             "configuration": {
-                "class": 50, 
-                "value": "", 
-                "index": 20, 
-                "instance": 2
-            }, 
-            "subtype": "numeric", 
+                "class": 50,
+                "value": "",
+                "index": 20,
+                "instance": 3
+            },
+            "subtype": "numeric",
             "display": {
                 "generic_type": "DONT"
-            }, 
+            },
             "template": {
-                "dashboard": "tile", 
+                "dashboard": "tile",
                 "mobile": "tile"
-            }, 
+            },
             "unite": "A"
-        }, 
+        },
         {
-            "name": "Surintensité", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
+            "name": "Surintensité",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
             "configuration": {
-                "class": 113, 
-                "value": "", 
-                "index": 12, 
-                "instance": 1, 
+                "class": 113,
+                "value": "",
+                "index": 12,
+                "instance": 1,
                 "calculValueOffset": "#value#==6"
-            }, 
-            "subtype": "binary", 
+            },
+            "subtype": "binary",
             "display": {
-                "invertBinary": "1", 
+                "invertBinary": "1",
                 "generic_type": "SABOTAGE"
-            }, 
+            },
             "template": {
-                "dashboard": "alert", 
+                "dashboard": "alert",
                 "mobile": "alert"
             }
-        }, 
+        },
         {
-            "name": "Surchauffe", 
-            "type": "info", 
-            "isVisible": 1, 
-            "isHistorized": 1, 
+            "name": "Surchauffe",
+            "type": "info",
+            "isVisible": 1,
+            "isHistorized": 1,
             "configuration": {
-                "class": 113, 
-                "value": "", 
-                "index": 4, 
-                "instance": 1, 
+                "class": 113,
+                "value": "",
+                "index": 4,
+                "instance": 1,
                 "calculValueOffset": "#value#==2"
-            }, 
-            "subtype": "binary", 
+            },
+            "subtype": "binary",
             "display": {
-                "invertBinary": "1", 
+                "invertBinary": "1",
                 "generic_type": "SABOTAGE"
-            }, 
+            },
             "template": {
-                "dashboard": "alert", 
+                "dashboard": "alert",
                 "mobile": "alert"
             }
         }
-    ], 
+    ],
     "recommended": {
         "params": [
             {
-                "index": 80, 
+                "index": 80,
                 "value": "Hail"
-            }, 
+            },
             {
-                "index": 90, 
+                "index": 90,
                 "value": "Enable"
-            }, 
+            },
             {
-                "index": 101, 
+                "index": 101,
                 "value": 6145
-            }, 
+            },
             {
-                "index": 102, 
+                "index": 102,
                 "value": 770
-            }, 
+            },
             {
-                "index": 103, 
+                "index": 103,
                 "value": 196612
-            }, 
+            },
             {
-                "index": 111, 
+                "index": 111,
                 "value": 120
             }
-        ], 
+        ],
         "needswakeup": false
     }
 }

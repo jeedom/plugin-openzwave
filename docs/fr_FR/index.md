@@ -82,8 +82,6 @@ En résumé:
 
 Après le téléchargement du plugin, il vous suffit de l’activer et de le configurer.
 
-![configuration01](../images/configuration01.png)
-
 Une fois activé, le démon devrait se lancer. Le plugin est préconfiguré avec des valeurs par défaut ; vous n’avez normalement plus rien à faire. Cependant vous pouvez modifier la configuration.
 
 ## Dépendances
