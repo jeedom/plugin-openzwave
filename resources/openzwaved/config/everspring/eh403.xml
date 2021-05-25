@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="1">
+    <!-- Everspring - EH403 - EH403 LED Floodlight with PIR -->
+    <!-- Configuration Parameters -->
+    <CommandClass id="112">
+      <Value type="short" index="1" genre="config" label="PIR Trigger Off period" units="Seconds" min="8" max="720" value="15">
+        <Help>
+          Period to send Trigger Off command after PIR is triggered. Before this period expires, the PIR will not be able to detect any subsequent motion. 8~720 seconds.
+        </Help>
+      </Value>
+      <Value type="short" index="2" genre="config" label="Lux sensor threshold" units="" min="30" max="200" value="50">
+        <Help>
+          Lux level to activate the PIR. When the lux level falls below this threshold and the PIR gets triggered. 30~200 seconds.
+        </Help>
+      </Value>
+      <Value type="short" index="3" genre="config" label="Lux autoreport time" units="Minutes" min="0" max="1440" value="0">
+        <Help>
+          Lux level report interval. 0 = Off. 0~1440 Minutes.
+        </Help>
+      </Value>      
+    </CommandClass>
+    <!-- Basic set as report -->
+    <CommandClass id="32" setasreport="true"/>
+    <!-- COMMAND_CLASS_ASSOCIATION. Groups -->
+    <CommandClass id="133">
+      <Associations num_groups="2">
+        <Group index="1" max_associations="1" label="Lifeline" />
+        <Group index="2" max_associations="4" label="PIR Control"/>
+      </Associations>
+    </CommandClass>
+</Product>
