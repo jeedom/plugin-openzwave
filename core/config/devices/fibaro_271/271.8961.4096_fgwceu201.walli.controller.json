@@ -1,0 +1,114 @@
+{
+    "name": "FGWCEU-201 Walli Controller",
+    "type": "Télécommande",
+    "comlink": "5534-fibaro-interrupteur-mural-sans-fil-z-wave-700-fibaro-walli-controller-5902701702076",
+    "remark": "",
+    "imglink": "fibaro.fgwceu201",
+    "configuration": {
+        "battery_type": "1x3.6V ER14250"
+    },
+    "commands": [
+        {
+            "name": "Scene",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": 128,
+                "instance": 1,
+                "repeatEventManagement": "always"
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "unite": "",
+            "template": {
+                "dashboard": "badge",
+                "mobile": "badge"
+            }
+        },
+        {
+            "name": "SceneID",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": 2,
+                "instance": 1,
+                "repeatEventManagement": "always"
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "unite": "",
+            "template": {
+                "dashboard": "badge",
+                "mobile": "badge"
+            }
+        },
+        {
+            "name": "SceneAttribute",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": 1,
+                "instance": 1,
+                "repeatEventManagement": "always"
+            },
+            "subtype": "string",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "unite": "",
+            "template": {
+                "dashboard": "badge",
+                "mobile": "badge"
+            }
+        },
+        {
+            "name": "Température",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 1,
+            "configuration": {
+                "class": 49,
+                "value": "",
+                "index": 1,
+                "instance": 1
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "TEMPERATURE"
+            },
+            "unite": "°C"
+        },
+        {
+            "name": "Batterie",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 128,
+                "value": "",
+                "index": 0,
+                "instance": 1,
+                "minValue": 0,
+                "maxValue": 100
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "BATTERY"
+            },
+            "unite": "%"
+        }
+    ]
+}
