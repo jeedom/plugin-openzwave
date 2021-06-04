@@ -522,7 +522,7 @@ class openzwave extends eqLogic {
 	public function getImgFilePath() {
 		$id = $this->getConfiguration('manufacturer_id') . '.' . $this->getConfiguration('product_type') . '.' . $this->getConfiguration('product_id');
 		foreach (ls(dirname(__FILE__) . '/../config/devices', '*_'.$this->getConfiguration('manufacturer_id'), false, array('folders', 'quiet')) as $folder) {
-			foreach (ls(dirname(__FILE__) . '/../config/devices/' . $folder, $id . '_*{.jpg,png}', false, array('files', 'quiet')) as $file) {
+			foreach (ls(dirname(__FILE__) . '/../config/devices/' . $folder, $id . '_*{jpg,png}', false, array('files', 'quiet')) as $file) {
 				return $folder . $file;
 			}
 		}
