@@ -499,6 +499,7 @@ class openzwave extends eqLogic {
 				} else if ($value['value'] == 'add1') {
 					openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&type=association&action=add&group=' . $value['index'] . '&target_id=1&instance_id=1');
 				}
+				sleep(3);
 			}
 		}
 		if (isset($device['recommended']['wakeup'])) {
