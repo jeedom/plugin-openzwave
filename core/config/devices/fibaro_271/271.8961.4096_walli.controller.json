@@ -1,0 +1,67 @@
+{
+    "name": "Walli Controller",
+    "ref": "FGWCEU-201-1",
+    "manufacturer": "Fibaro",
+    "type": "Contrôleur,Télécommande", 
+    "reset": "3 appuis rapides sur un des boutons, puis maintenir pendant 21 secondes, relâcher le bouton quand la LED devient jaune, puis appuyer à nouveau pour valider.",
+    "pairing": "Triple appui rapide sur un des deux boutons (En moins de 1,5 secondes).",
+    "remark": "",
+    "documentation": "https:\/\/manuals.fibaro.com\/walli-controller\/",
+    "buylink": "https:\/\/www.domadoo.fr\/fr\/peripheriques\/5534-fibaro-interrupteur-mural-sans-fil-z-wave-700-fibaro-walli-controller-5902701702076.html",
+    "commands": [
+        {
+            "name": "Scene",
+            "type": "info",
+            "isVisible": 0,
+            "isHistorized": 0,
+            "configuration": {
+                "class": 91,
+                "value": "",
+                "index": 128,
+                "instance": 1,
+                "repeatEventManagement": "always"
+            },
+            "subtype": "numeric",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "template": {
+                "dashboard": "tile",
+                "mobile": "tile"
+            }
+        },
+	{
+		"name": "Température",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "°C",
+		"isVisible": 1,
+		"isHistorized": 1,
+		"display": {
+			"generic_type": "TEMPERATURE"
+		},
+		"configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+		}
+	},
+	{
+		"name": "Batterie",
+		"type": "info",
+		"subtype": "numeric",
+		"unite": "%",
+		"isVisible": 0,
+		"display": {
+			"generic_type": "BATTERY"
+		},
+		"configuration": {
+			"class": 128, 
+            "value": "", 
+            "index": 0, 
+            "instance": 1
+		}
+	}
+    ]
+}

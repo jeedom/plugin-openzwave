@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="2">
+<CommandClass id="112" name="COMMAND_CLASS_CONFIGURATION" version="1" request_flags="4"  >
+		<Value type="byte" genre="config" index="13" label="LED frame – brightness" min="0" max="100" value="100">
+			<Help>
+				This parameter allows adjusting the LED frame brightness.
+				0 – LED disabled
+				1-100 (1-100% brightness)
+			</Help>
+		</Value>
+		<Value type="list" genre="config" index="20" label="Operation mode" value="0">
+			<Help>
+				This parameter defines the operation of the device. Choose the mode depending on the type of device you want to control remotely.
+			</Help>
+			<Item label="Scene controller mode" value="0" />
+			<Item label="Double button mode" value="1" />
+			<Item label="Single button mode" value="2" />
+			<Item label="Switch controller mode" value="3" />
+			<Item label="Dimmer / roller shutter controller mode" value="4" />
+			<Item label="Roller shutter controller mode (step-by-step)" value="5" />
+			<Item label="Venetian blinds controller mode (step-by-step)" value="6" />
+		</Value>
+		<Value type="list" genre="config" index="150" label="LED ring - first button" value="1">
+			<Help>
+				This parameter defines the colour of the first button indicator (upper part of the LED ring) for indications using Indicator CC.
+			</Help>
+			<Item label="LED disabled" value="0" />
+			<Item label="White" value="1" />
+			<Item label="Red" value="2" />
+			<Item label="Green" value="3" />
+			<Item label="Blue" value="4" />
+			<Item label="Yellow" value="5" />
+			<Item label="Cyan" value="6" />
+			<Item label="Magenta" value="7" />
+			<Item label="LAPD (blinking red-white-blue)" value="8" />
+		</Value>
+		<Value type="list" genre="config" index="151" label="LED ring – second button" value="1">
+			<Help>
+				This parameter defines the colour of the second button indicator (lower part of the LED ring) for indications using Indicator CC.
+			</Help>
+			<Item label="LED disabled" value="0" />
+			<Item label="White" value="1" />
+			<Item label="Red" value="2" />
+			<Item label="Green" value="3" />
+			<Item label="Blue" value="4" />
+			<Item label="Yellow" value="5" />
+			<Item label="Cyan" value="6" />
+			<Item label="Magenta" value="7" />
+			<Item label="LAPD (blinking red-white-blue)" value="8" />
+		</Value>
+		<Value type="byte" genre="config" index="152" label="1st button - double click value" min="0" max="255" value="99">
+			<Help>
+				This parameter defines value of Basic Set or Multilevel Set frame (depending on selected mode) sent to associated devices after double click. This parameter is not relevant for Scene Controller Mode.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="153" label="2nd button - double click value" min="0" max="255" value="99">
+			<Help>
+				This parameter defines value of Basic Set or Multilevel Set frame (depending on selected mode) sent to associated devices after double click. This parameter is not relevant for Scene Controller Mode.
+			</Help>
+		</Value>
+	</CommandClass>
+	 <CommandClass id="133">
+	  <Associations num_groups="5">
+		  <Group index="1" max_associations="1" label="Lifeline"/>
+		  <Group index="2" max_associations="5" label="On Off 1"/>
+		  <Group index="3" max_associations="5" label="Dimmer 1"/>
+		  <Group index="4" max_associations="5" label="On Off 2"/>
+		  <Group index="5" max_associations="5" label="Dimmer 2"/>
+		  <Group index="6" max_associations="5" label="Multi Device"/>
+		  <Group index="7" max_associations="5" label="Slats"/>
+	  </Associations>
+  </CommandClass>
+</Product>
