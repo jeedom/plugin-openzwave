@@ -496,6 +496,8 @@ class openzwave extends eqLogic {
 					openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&type=association&action=add&group=' . $value['index'] . '&target_id=1&instance_id=0');
 				} else if ($value['value'] == 'remove') {
 					openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&type=association&action=remove&group=' . $value['index'] . '&target_id=1&instance_id=0');
+				} else if ($value['value'] == 'add1') {
+					openzwave::callOpenzwave('/node?node_id=' . $this->getLogicalId() . '&type=association&action=add&group=' . $value['index'] . '&target_id=1&instance_id=1');
 				}
 			}
 		}
