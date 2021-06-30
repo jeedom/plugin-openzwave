@@ -1163,6 +1163,8 @@
 		<Product type="0007" id="0054" name="ZMNHXDx 3-phase Smart Meter" config="qubino/ZMNHXDx.xml"/>
 		<Product type="0005" id="0054" name="ZMNKIDx OnOff Thermostat 2" config="qubino/ZMNKIDx.xml"/>
 		<Product type="0008" id="0051" name="ZMNHQDx LUXY Smart Light" config="qubino/ZMNHQDx.xml" />
+		<Product type="0008" id="0052" name="ZMNKADx LUXY Smart Switch" config="qubino/ZMNKADx.xml"/>
+		<Product type="0006" id="0051" name="ZMNHMDx Smart leak protector" config="qubino/ZMNHMDx.xml" />
 	</Manufacturer>
 	<Manufacturer id="0130" name="Quby">
 		<Product type="0001" id="0001" name="Energy Management System"/>
