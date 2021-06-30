@@ -472,6 +472,7 @@
 		<Product type="0010" id="0001" name="HAC01 In-wall Remote Module" config="everspring/hac01.xml"/>
 		<Product type="0011" id="0001" name="HAN01 In-wall Switch Module"/>
 		<Product type="0011" id="0002" name="HAN02 In-wall Switch Module"/>
+		<Product type="0012" id="0001" name="EH403 LED Floodlight with PIR" config="everspring/eh403.xml"/>
 		<Product type="0101" id="0001" name="SP103 PIR Motion Sensor" config="everspring/sp103.xml"/>
 		<Product type="0104" id="0001" name="AN145 Lamp Screw In Module" config="everspring/an145.xml"/>
 		<Product type="0202" id="0001" name="SM103 Door/Window Sensor" config="everspring/sm103.xml"/>
