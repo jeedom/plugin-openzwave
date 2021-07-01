@@ -8,7 +8,7 @@
   <!-- WALLI CONTROLLER -->
   <!-- Configuration -->
   <CommandClass id="112">
-    <Value type="short" genre="config" instance="1" index="13" label="LED frame - brightness" value="100" units="%" min="0" max="100">
+    <Value type="byte" genre="config" instance="1" index="13" label="LED frame - brightness" value="100" units="%" min="0" max="100">
       <Help>This parameter allows to adjust the LED frame brightness. Default value: 100%</Help>
     </Value>
     
