@@ -13,18 +13,19 @@
 		"subtype": "binary",
 		"isVisible": 1,
 		"configuration": {
-			"class": 156, 
+			"class": 113, 
             "value": "", 
-            "index": 2, 
-            "instance": 1
+            "index": 5, 
+            "instance": 1,
+        "calculValueOffset": "#value#==3"
 		},
 		"display": {
 			"invertBinary": "1",
 			"generic_type": "DONT"
 		},
 		"template": {
-			"dashboard": "feu",
-			"mobile": "feu"
+			"dashboard": "alert",
+			"mobile": "alert"
 		}
 	},
 	{
@@ -33,18 +34,19 @@
 		"subtype": "binary",
 		"isVisible": 0,
 		"configuration": {
-			"class": 156, 
+			"class": 113, 
             "value": "", 
-            "index": 4, 
-            "instance": 1
+            "index": 7, 
+            "instance": 1,
+        "calculValueOffset": "#value#==3"
 		},
 		"display": {
 			"invertBinary": "1",
 			"generic_type": "DONT"
 		},
 		"template": {
-			"dashboard": "feu",
-			"mobile": "feu"
+			"dashboard": "alert",
+			"mobile": "alert"
 		}
 	},
 	{
@@ -52,10 +54,11 @@
 		"type": "info",
 		"subtype": "binary",
 		"configuration": {
-			"class": 156, 
+			"class": 113, 
             "value": "", 
-            "index": 0, 
-            "instance": 1
+            "index": 10, 
+            "instance": 1,
+        "calculValueOffset": "#value#==3"
 		},
 		"display": {
 			"invertBinary": "1",
@@ -94,5 +97,15 @@
             "index": 0, 
             "instance": 1
 		}
-	}]
+	}], 
+    "recommended": {
+        "params": [
+            {
+                "index": 2, 
+                "value": "All notifications enabled"
+            }
+        ], 
+        "wakeup": 21600, 
+        "needswakeup": true
+    }
 }
