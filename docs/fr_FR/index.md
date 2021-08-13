@@ -876,7 +876,7 @@ Une fois la mise à jour des dépendances complétée, le démon se relancera au
 # Liste des modules compatible
 
 Vous trouverez la liste des modules compatibles
-[ici](https://doc.jeedom.com/fr_FR/zwave/equipement.compatible)
+[ici](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=openzwave)
 
 # Dépannage et diagnostic
 
