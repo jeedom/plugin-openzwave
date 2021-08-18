@@ -33,7 +33,11 @@ function apt_install {
 }
 
 function pip_install {
-  sudo pip install "$@"
+  if [ $(cat /etc/debian_version) = '11.0' ]; then
+    sudo pip2 install "$@"
+  else
+    sudo pip install "$@"
+  fi
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
     rm ${PROGRESS_FILE}
@@ -64,8 +68,24 @@ sudo apt-get clean
 echo 20 > ${PROGRESS_FILE}
 sudo apt-get update
 echo 30 > ${PROGRESS_FILE}
-echo "Installation des dependances"
-apt_install git python-pip python-dev python-pyudev python-setuptools python-louie make build-essential libudev-dev g++ gcc python-lxml unzip libjpeg-dev python-serial python-requests
+
+if [ $(cat /etc/debian_version) = '11.0' ]; then
+  echo "Installation des dependances pour debian 11"
+  apt_install git make build-essential libudev-dev g++ gcc  unzip libjpeg-dev 
+  apt_install python2
+  wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+  python2 get-pip.py
+  pyudev 
+  pip_install setuptools 
+  pip_install louie 
+  pip_install serial 
+  pip_install requests 
+  pip_install lxml
+else
+  echo "Installation des dependances"
+  apt_install git python-pip python-dev python-pyudev python-setuptools python-louie make build-essential libudev-dev g++ gcc python-lxml unzip libjpeg-dev python-serial python-requests
+fi
+
 echo 40 > ${PROGRESS_FILE}
 # Python
 echo "Installation des dependances Python"
