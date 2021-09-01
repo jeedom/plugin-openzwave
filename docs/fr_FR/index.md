@@ -10,6 +10,10 @@ Z-Wave fonctionne dans la gamme de fréquences sous-gigahertz, selon les région
 
 Le Z-Wave+, apporte certaines améliorations dont une meilleure portée et améliore la durée de vie des batteries entre autres. La rétrocompatibilité est totale avec le Z-Wave.
 
+## Compatibilité
+
+Vous pouvez trouver [ici](https://compatibility.jeedom.com/index.php?v=d&p=home&plugin=openzwave) la liste des modules compatible avec le plugin
+
 ## Distances à respecter avec les autres sources de signaux sans fil
 
 Les récepteurs radio doivent être positionnés à une distance minimum de 50 cm des autres sources radioélectriques.
