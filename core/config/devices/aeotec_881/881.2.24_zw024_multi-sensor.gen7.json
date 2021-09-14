@@ -2,7 +2,7 @@
     "name": "MultiSensor Gen7 (ZW024)", 
     "ref": "ZWA024-C",
     "manufacturer": "Aeotec",
-    "type": "Capteur","Mouvement","Vibration","Température","Humidité,"Luminosité","UV", 
+    "type": "Capteur,Mouvement,Vibration,Température,Humidité,Luminosité,UV", 
     "reset": "S'assurer que le module soit sous tension. Appuyer sur le bouton et le maintenir 15 secondes. Lorsque le LED clignote en rouge, l'appareil entre en mode réinitialisation usine. La LED clignote lentement en bleu afin d'indiquer la réussite de la procédure.",
     "pairing": "Appuyer sur le bouton et le relâcher lorsque la LED s'allume en JAUNE. L'appareil entre en mode appairage. La LED clignote ensuite blanc/vert/blanc/vert pendant 2 sec pour indiquer la réussite de la procédure.",
     "remark": "",
