@@ -23,12 +23,20 @@ if (!isConnect('admin')) {
 <br/><br/>
 
 <div id='div_backupAlert' style="display: none;"></div>
-<div class="alert alert-danger">{{Un backup réseau d'un contrôleur Zwave n'est pas une chose anodine. Soyez bien sûr du port et de l'ordre dans lequel vous faites les choses. Jeedom ne pourra être tenu responsable d'une perte de votre contrôleur. PAGE TOUJOURS EN CONSTRUCTION.}}</div>
+<div class="alert alert-danger">{{Un backup réseau d'un contrôleur Zwave n'est pas une chose anodine. Soyez bien sûr du port et de l'ordre dans lequel vous faites les choses. Jeedom ne pourra être tenu responsable d'une perte de votre contrôleur. 
+								Smart : Odroid C2 (/dev/ttyS1) / Atlas : Jeedom Atlas (/dev/ttyS2) / Dongle : (/dev/ttyACM0).}}</div>
 				</div>
+<div id='div_backupProgress'>
+<?php
+if (config::byKey('backupInProgress', 'openzwave',0) ==1){
+	echo '<div class="alert alert-info">{{Un backup ou une restauration est en cours}}</div>';
+}
+?>
+</div>
 <form class="form-horizontal">
     <fieldset>
 	<div class="row">
-		<div class="col-lg-6 col-sm-12">
+		<div class="col-lg-12 col-sm-12">
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="panel panel-primary">
@@ -90,20 +98,6 @@ if (!isConnect('admin')) {
 									</div>
 								</fieldset>
 							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-6 col-sm-12">
-			<div class="row">
-				<div class="col-sm-12 panel-backupinfo">
-					<div class="panel panel-warning">
-						<div class="panel-heading">
-							<h3 class="panel-title"><i class="fas fa-info-circle"></i> {{Informations}}</h3>
-						</div>
-						<div class="panel-body">
-							<pre id="pre_backupInfo"></pre>
 						</div>
 					</div>
 				</div>

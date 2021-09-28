@@ -4,11 +4,13 @@ from binascii import unhexlify
 import time
 import argparse
 import os
+from datetime import datetime
 
 def ByteToHex( byteStr ):
 	return ''.join( [ "%02X " % ord( x ) for x in str(byteStr) ] ).strip()
 
 def getchecksum( packet ):
+	print ('packet is ' + str(packet))
 	checksum = 255
 	for el in unhexlify(packet):
 		checksum ^= ord(el)
@@ -31,7 +33,7 @@ def tosend(string):
 def sendack():
 	ser.write(unhexlify('06'))
 
-def toanalyse(type,needed='',data=''):
+def toanalyse(type,needed='',datao=''):
 	count = 0
 	while 1:
 		begin = ser.read()
@@ -58,9 +60,9 @@ def toanalyse(type,needed='',data=''):
 					return
 			else:
 				sendack()
-				tosend(data)
-				toanalyse(type,needed,data)
-		time.sleep(0.1)
+				tosend(datao)
+				toanalyse(type,needed,datao)
+		time.sleep(0.01)
 def toread():
 	while 1:
 		begin = ser.read()
@@ -77,7 +79,8 @@ ser = serial.Serial(
 	baudrate=115200,
 	bytesize=serial.EIGHTBITS,
 	parity=serial.PARITY_NONE,
-	stopbits=serial.STOPBITS_ONE
+	stopbits=serial.STOPBITS_ONE,
+	timeout=3
 )
 bin =''
 x=0
@@ -90,10 +93,11 @@ while x <131072:
 	result=toanalyse('data','01 2A','2a' + begin +'0040')
 	bin=bin+result
 	x = x+64
-st=time.time()
-file = "backupnetwork-"+str(st)+"-"+args.name+".bin"
+now = datetime.now()
+file = "backupnetwork-"+str(now).replace(' ','_').replace(':','_')+"-"+args.name+".bin"
 directory = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'data')
 file = open(os.path.join(directory,file),"w") 
 file.write(bin.replace(' ',''))
 file.close()
 ser.close()
+print('Finished')
