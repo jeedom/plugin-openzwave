@@ -4,7 +4,7 @@ Aeotec ZW024 MultiSensor Gen7
 -->
 <Product xmlns='http://code.google.com/p/open-zwave/'>
 	<CommandClass id="112" name="COMMAND_CLASS_CONFIGURATION" version="1" request_flags="4"  >
-		<Value type="list" genre="config" index="1" label="Beaming Enable/Disable" value="0">
+		<Value type="list" size="1" genre="config" index="1" label="Beaming Enable/Disable" value="0">
 			<Help>
 				Used to enable/disable beaming. If set to 1, FLiR commands will be supported and device type will be LSS. But the device must be re-included into the network to activate it.
 			</Help>
@@ -27,7 +27,7 @@ Aeotec ZW024 MultiSensor Gen7
 				0 - Disable. 1 is the minimum and 11 the maximum sensittivity.
 			</Help>
 		</Value>
-		<Value type="List" genre="config" index="5" label="Motion Report Type" value="2">
+		<Value type="list" size="1" genre="config" index="5" label="Motion Report Type" value="2">
 			<Help>
 				Set which commande class will be sent when motion sensor is triggered or detriggered.
 			</Help>
@@ -41,7 +41,7 @@ Aeotec ZW024 MultiSensor Gen7
 				Values possible between 0 - 255. 0 Disable Vibration, 1-254 Timeout set in minutes to reset vibration status, 255 Only send vibration triggered, does not timeout.
 			</Help>
 		</Value>
-		<Value type="list" genre="config" index="7" label="Vibration Intensity Reports" value="0">
+		<Value type="list" size="1" genre="config" index="7" label="Vibration Intensity Reports" value="0">
 			<Help>
 				Used to enable/disable vibration intensity reports. 
 			</Help>
@@ -56,7 +56,7 @@ Aeotec ZW024 MultiSensor Gen7
 				If wakeup no more information recevied, return to sleep mode immediatly.
 			</Help>
 		</Value>
-		<Value type="List" genre="config" index="10" label="Power Status" value="-">
+		<Value type="list" size="1" genre="config" index="10" label="Power Status" value="0">
 			<Help>
 				This value is Readonly. Used to report the power status (USB or Battery powered).
 				The device must be re-included in the network to change the role type.
@@ -64,7 +64,7 @@ Aeotec ZW024 MultiSensor Gen7
 			<Item label="When the battery powered, the device will act as RSS." value="0" />
 			<Item label="When USB cable insert, the device will act as AOS" value="1" />
 		</Value>
-		<Value type="List" genre="config" index="11" label="Motion Group Control (Group2)" value="300">
+		<Value type="list" size="1" genre="config" index="11" label="Motion Group Control (Group2)" value="300">
 			<Help>
 				Set control of other devies on group2 based on motion trigger.
 			</Help>
@@ -138,7 +138,7 @@ Aeotec ZW024 MultiSensor Gen7
 				Configure low battery report threshold, sends low battery report via notification and battery report when battery level drops under setting. Unit %.
 			</Help>
 		</Value>
-		<Value type="List" genre="config" index="40" label="Threshold Check Enable/Disable" value="0">
+		<Value type="list" size="1" genre="config" index="40" label="Threshold Check Enable/Disable" value="0">
 			<Help>
 				Enable/Disable threshold reporting, check time can be adjusted by Param45.
 			</Help>
@@ -172,14 +172,14 @@ Aeotec ZW024 MultiSensor Gen7
 				60~65535 - When Battery powered
 			</Help>
 		</Value>
-		<Value type="list" genre="config" index="46" label="Low Temperature Report" value="1">
+		<Value type="list" size="1" genre="config" index="46" label="Low Temperature Report" value="1">
 			<Help>
 				Enable/Disable alarm report for low temperature(inferior= -15 C) Multilevel CC temperature report will be sent to gateway
 			</Help>
 			<Item label="Disable" value="0" />
 			<Item label="Enable" value="1" />
 		</Value>
-		<Value type="list" genre="config" index="48" label="Sensor Limit Control" value="0">
+		<Value type="list" size="1" genre="config" index="48" label="Sensor Limit Control" value="0">
 			<Help>
 				This value is bit mask. Used to enable/disable measurement reports for various sensors that is more than the upper limit value or less than the lower limit value.
 			</Help>
@@ -254,21 +254,21 @@ Aeotec ZW024 MultiSensor Gen7
 				Set UV recover limit level. Refer to Param 51.
 			</Help>
 		</Value>
-		<Value type="list" genre="config" index="64" label="Temperature Scale" value="0">
+		<Value type="list" size="1" genre="config" index="64" label="Temperature Scale" value="0">
 			<Help>
 				Set the scale for temperature when reports.
 			</Help>
 			<Item label="Celsius" value="0" />
 			<Item label="Fahrenheit" value="1" />
 		</Value>
-		<Value type="list" genre="config" index="81" label="LED Activity" value="1">
+		<Value type="list" size="1" genre="config" index="81" label="LED Activity" value="1">
 			<Help>
 				Allow user to enable/disable LED activity of specific reports sent by sensor. Button press indicator is not affected by this.
 			</Help>
 			<Item label="Disable" value="0" />
 			<Item label="enable" value="1" />
 		</Value>
-		<Value type="list" genre="config" index="82" label="Motion Sensor Report Indicator" value="3">
+		<Value type="list" size="1" genre="config" index="82" label="Motion Sensor Report Indicator" value="3">
 			<Help>
 				If LED is enabled by Param81, allow user to change the report color of motion sensor.
 			</Help>
@@ -283,7 +283,7 @@ Aeotec ZW024 MultiSensor Gen7
 			<Item label="Yellow" value="8" />
 			<Item label="White" value="9" />
 		</Value>
-		<Value type="list" genre="config" index="83" label="Temperature Sensor Report Indicator" value="0">
+		<Value type="list" size="1" genre="config" index="83" label="Temperature Sensor Report Indicator" value="0">
 			<Help>
 				If LED is enabled by Param81, allow user to change the report color of temperature sensor.
 			</Help>
@@ -298,7 +298,7 @@ Aeotec ZW024 MultiSensor Gen7
 			<Item label="Yellow" value="8" />
 			<Item label="White" value="9" />
 		</Value>
-		<Value type="list" genre="config" index="84" label="Humidity Sensor Report Indicator" value="0">
+		<Value type="list" size="1" genre="config" index="84" label="Humidity Sensor Report Indicator" value="0">
 			<Help>
 				If LED is enabled by Param81, allow user to change the report color of humidity sensor.
 			</Help>
@@ -313,7 +313,7 @@ Aeotec ZW024 MultiSensor Gen7
 			<Item label="Yellow" value="8" />
 			<Item label="White" value="9" />
 		</Value>
-		<Value type="list" genre="config" index="85" label="Lux Sensor Report Indicator" value="0">
+		<Value type="list" size="1" genre="config" index="85" label="Lux Sensor Report Indicator" value="0">
 			<Help>
 				If LED is enabled by Param81, allow user to change the report color of Lux sensor.
 			</Help>
@@ -328,7 +328,7 @@ Aeotec ZW024 MultiSensor Gen7
 			<Item label="Yellow" value="8" />
 			<Item label="White" value="9" />
 		</Value>		
-		<Value type="list" genre="config" index="86" label="UV Sensor Report Indicator" value="0">
+		<Value type="list" size="1" genre="config" index="86" label="UV Sensor Report Indicator" value="0">
 			<Help>
 				If LED is enabled by Param81, allow user to change the report color of UV sensor.
 			</Help>
@@ -343,7 +343,7 @@ Aeotec ZW024 MultiSensor Gen7
 			<Item label="Yellow" value="8" />
 			<Item label="White" value="9" />
 		</Value>		
-		<Value type="list" genre="config" index="87" label="Vibration Sensor Report Indicator" value="2">
+		<Value type="list" size="1" genre="config" index="87" label="Vibration Sensor Report Indicator" value="2">
 			<Help>
 				If LED is enabled by Param81, allow user to change the report color of vibration sensor..
 			</Help>
@@ -358,7 +358,7 @@ Aeotec ZW024 MultiSensor Gen7
 			<Item label="Yellow" value="8" />
 			<Item label="White" value="9" />
 		</Value>
-		<Value type="list" genre="config" index="88" label="Battery Report Indicator" value="2">
+		<Value type="list" size="1" genre="config" index="88" label="Battery Report Indicator" value="2">
 			<Help>
 				If LED is enabled by Param81, allow user to change the report color of battery.
 			</Help>
@@ -373,7 +373,7 @@ Aeotec ZW024 MultiSensor Gen7
 			<Item label="Yellow" value="8" />
 			<Item label="White" value="9" />
 		</Value>
-		<Value type="list" genre="config" index="89" label="Wakeup Report Indicator" value="8">
+		<Value type="list" size="1" genre="config" index="89" label="Wakeup Report Indicator" value="8">
 			<Help>
 				If LED is enabled by Param81, allow user to change the report color of wakeup.
 			</Help>
@@ -388,7 +388,7 @@ Aeotec ZW024 MultiSensor Gen7
 			<Item label="Yellow" value="8" />
 			<Item label="White" value="9" />
 		</Value>
-		<Value type="list" genre="config" index="90" label="Communication Indicator" value="0">
+		<Value type="list" size="1" genre="config" index="90" label="Communication Indicator" value="0">
 			<Help>
 				If LED is enabled by Param81, allow user to change indicator color when receiving communication from gateway or other devices.
 			</Help>
