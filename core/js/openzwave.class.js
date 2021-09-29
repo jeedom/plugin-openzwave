@@ -490,6 +490,7 @@
 		name : _params.name,
 		port : _params.port,
  	};
+	paramsAJAX.global = false;
  	$.ajax(paramsAJAX);
  }
 
@@ -529,6 +530,7 @@
 		name : _params.name,
 		port : _params.port,
  	};
+	paramsAJAX.global = false;
  	$.ajax(paramsAJAX);
  }
 

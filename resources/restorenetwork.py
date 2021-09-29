@@ -56,7 +56,7 @@ def toanalyse(type,needed=''):
 			elif beginstr == '06':
 				if type=='ack':
 					print('received waiting ack ')
-					return
+					return 'none'
 		time.sleep(0.2)
 def toread():
 	while 1:
@@ -74,7 +74,8 @@ ser = serial.Serial(
 	baudrate=115200,
 	bytesize=serial.EIGHTBITS,
 	parity=serial.PARITY_NONE,
-	stopbits=serial.STOPBITS_ONE
+	stopbits=serial.STOPBITS_ONE,
+	timeout=3
 )
 
 file = open(args.name, "r")
@@ -89,8 +90,8 @@ while x <131072:
 	tosend('2b' + begin +'0040'+buffer[x*2:x*2+128])
 	toanalyse('ack')
 	result=toanalyse('data','01 2B')
-	print result
-	x = x+64
+	if result != 'none':
+		x = x+64
 #file = open("backup.bin","w") 
 #file.write(bin.replace(' ',''))
 #file.close()

@@ -121,4 +121,13 @@ $("#bt_removeBackup").on('click', function(event) {
 });
 }
 
+$('body').on('openzwave::backup', function (_event,_options) {
+	if (_options==1){
+		$('#div_backupProgress').empty().append('<div class="alert alert-info">{{Un backup ou une restauration est en cours}}</div>');
+	} else {
+		$('#div_backupProgress').empty().append('<div class="alert alert-info">{{Opération terminée}}</div>');
+		updateListBackup();
+	}
+});
+
 updateListBackup();

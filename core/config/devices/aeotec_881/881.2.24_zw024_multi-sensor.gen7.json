@@ -1,0 +1,179 @@
+{
+    "name": "MultiSensor Gen7 (ZW024)", 
+    "ref": "ZWA024-C",
+    "manufacturer": "Aeotec",
+    "type": "Capteur,Mouvement,Vibration,Température,Humidité,Luminosité,UV", 
+    "reset": "S'assurer que le module soit sous tension. Appuyer sur le bouton et le maintenir 15 secondes. Lorsque le LED clignote en rouge, l'appareil entre en mode réinitialisation usine. La LED clignote lentement en bleu afin d'indiquer la réussite de la procédure.",
+    "pairing": "Appuyer sur le bouton et le relâcher lorsque la LED s'allume en JAUNE. L'appareil entre en mode appairage. La LED clignote ensuite blanc/vert/blanc/vert pendant 2 sec pour indiquer la réussite de la procédure.",
+    "remark": "",
+    "documentation": "https://help.aeotec.com/helpdesk/attachments/6121529483",
+    "buylink": "",
+    "configuration": {
+        "battery_type": "4x1.5V AAA"
+    }, 
+    "commands": [
+        {
+            "name": "Présence", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 48, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "PRESENCE"
+            }, 
+            "template": {
+                "dashboard": "presence", 
+                "mobile": "presence"
+            }
+        }, 
+        {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Luminosité", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 3, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 1000
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BRIGHTNESS"
+            }, 
+            "unite": "Lux"
+        }, 
+        {
+            "name": "Humidité", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 5, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "HUMIDITY"
+            }, 
+            "unite": "%"
+        }, 
+        {
+            "name": "Ultra violet", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 27, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "unite": ""
+        }, 
+        {
+            "name": "Sabotage", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 113, 
+                "value": "", 
+                "index": 10, 
+                "instance": 1, 
+                "calculValueOffset": "#value#==3"
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "invertBinary": "1", 
+                "generic_type": "SABOTAGE"
+            }, 
+            "template": {
+                "dashboard": "alert", 
+                "mobile": "alert"
+            }
+        }, 
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ], 
+    "recommended": {
+        "params": [
+            {
+                "index": 4, 
+                "value": "Enabled"
+            }, 
+            {
+                "index": 5, 
+                "value": "Binary Sensor Report"
+            }, 
+            {
+                "index": 101, 
+                "value": 224
+            }, 
+            {
+                "index": 102, 
+                "value": 1
+            }, 
+            {
+                "index": 111, 
+                "value": 3600
+            }, 
+            {
+                "index": 112, 
+                "value": 28800
+            }
+        ], 
+        "wakeup": 14400, 
+        "needswakeup": true
+    }
+}

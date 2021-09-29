@@ -25,6 +25,14 @@ class openzwave extends eqLogic {
 	
 	/*     * ***********************Methode static*************************** */
 	
+	public static function cron() {
+		if (config::byKey('backupInProgress', 'openzwave',0) == 1 && (time()-config::byKey('backupInProgressSince', 'openzwave',0)) >180) {
+			system::kill('backupnetwork.py');
+			config::save('backupInProgress', 0, 'openzwave');
+			event::add('openzwave::backup',0);
+		}
+	}
+	
 	public static function callOpenzwave($_url,$_timeout = null) {
 		if (strpos($_url, '?') !== false) {
 			$url = 'http://127.0.0.1:' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim($_url, '/') . '&apikey=' . jeedom::getApiKey('openzwave');
@@ -286,6 +294,10 @@ class openzwave extends eqLogic {
 		if ($port != 'auto') {
 			$port = jeedom::getUsbMapping($port);
 		}
+		if (config::byKey('backupInProgress', 'openzwave',0) == 1 && (time()-config::byKey('backupInProgressSince', 'openzwave',0)) <180) {
+			log::add('openzwave', 'info', 'Backup ou restauration du réseau en cours depuis moins de 3 minutes, lancement du démon annulé -' . (time()- config::byKey('backupInProgressSince', 'openzwave',0)));
+			return false;
+		}
 		$callback = network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/openzwave/core/php/jeeZwave.php';
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
 		$openzwave_path = dirname(__FILE__) . '/../../resources';
@@ -385,16 +397,23 @@ class openzwave extends eqLogic {
 	public static function doNetbackup($_name,$_port) {
 		log::remove('openzwave_netbackup');
 		system::kill('backupnetwork.py');
-		log::add('openzwave_netbackup', 'debug', 'Arrêt du démon en cours');
+		event::add('openzwave::backup',1);
+		log::add('openzwave', 'debug', 'Arrêt du démon en cours');
 		self::deamon_stop();
 		sleep(5);
-		log::add('openzwave_netbackup', 'debug', 'Arrêt du démon fait');
-		$cmd = system::getCmdSudo() . ' python ' . dirname(__FILE__) . '/../../resources/backupnetwork.py --name "' .$_name . '" --port "' . $_port . '" >> ' . log::getPathToLog('openzwave_netbackup') . ' 2>&1 &';
-		log::add('openzwave_netbackup', 'debug', $cmd);
-		shell_exec($cmd);
+		log::add('openzwave', 'debug', 'Arrêt du démon fait');
+		$cmd = system::getCmdSudo() . ' python ' . dirname(__FILE__) . '/../../resources/backupnetwork.py --name "' .$_name . '" --port "' . $_port . '" >> ' . log::getPathToLog('openzwave_netbackup') . ' 2>&1';
+		log::add('openzwave', 'debug', $cmd);
+		config::save('backupInProgress', 1, 'openzwave');
+		config::save('backupInProgressSince', time(), 'openzwave');
+		exec($cmd);
+		log::add('openzwave', 'debug', 'Backup done');
+		config::save('backupInProgress', 0, 'openzwave');
+		event::add('openzwave::backup',0);
 	}
 	
 	public static function doNetrestore($_name,$_port) {
+		event::add('openzwave::backup',1);
 		log::remove('openzwave_netrestore');
 		system::kill('restorenetwork.py');
 		log::add('openzwave_netrestore', 'debug', 'Arrêt du démon en cours');
@@ -403,7 +422,10 @@ class openzwave extends eqLogic {
 		log::add('openzwave_netrestore', 'debug', 'Arrêt du démon fait');
 		$cmd = system::getCmdSudo() . ' python ' . dirname(__FILE__) . '/../../resources/restorenetwork.py --name "' .$_name . '" --port "' . $_port . '" >> ' . log::getPathToLog('openzwave_netrestore') . ' 2>&1 &';
 		log::add('openzwave_netrestore', 'debug', $cmd);
-		shell_exec($cmd);
+		exec($cmd);
+		log::add('openzwave', 'debug', 'Restore done');
+		config::save('backupInProgress', 0, 'openzwave');
+		event::add('openzwave::backup',0);
 	}
 	
 	/*     * *********************Methode d'instance************************* */

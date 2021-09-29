@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+Aeotec ZW024 MultiSensor Gen7
+-->
+<Product xmlns='http://code.google.com/p/open-zwave/'>
+	<CommandClass id="112" name="COMMAND_CLASS_CONFIGURATION" version="1" request_flags="4"  >
+		<Value type="list" size="1" genre="config" index="1" label="Beaming Enable/Disable" value="0">
+			<Help>
+				Used to enable/disable beaming. If set to 1, FLiR commands will be supported and device type will be LSS. But the device must be re-included into the network to activate it.
+			</Help>
+			<Item label="Disable" value="0" />
+			<Item label="Enable" value="1" />
+		</Value>
+		<Value type="short" size="2" genre="config" index="2" label="Motion Retrigger Time" min="0" max="3600" value="30">
+			<Help>
+				Presence re-detection time set in second to allow motion sensor to reset timeout of motion sensor. In this time, the motion sensor can not be triggered again. If this value reach zero, the timeout configuration value set by Param3 will be reset.
+				If value set to 0, retrigger is disable. Between 1-30 it is the delay in seconds. Between 30-3600 it is the timeout set in seconds.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="3" label="Motion Untrigger Time" min="30" max="3600" value="240">
+			<Help>
+				Timeout configuration set in second for motion se sensor to send no tigger status.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="4" label="Motion Sensitivity" min="0" max="11" value="11">
+			<Help>
+				0 - Disable. 1 is the minimum and 11 the maximum sensittivity.
+			</Help>
+		</Value>
+		<Value type="list" size="1" genre="config" index="5" label="Motion Report Type" value="2">
+			<Help>
+				Set which commande class will be sent when motion sensor is triggered or detriggered.
+			</Help>
+			<Item label="Sends Notification Report" value="0" />
+			<Item label="Sends Sensor Binary Report"  value="1" />
+			<Item label="Sends Notification and Sensor Binary Report"  value="2" />
+		</Value>
+		<Value type="byte" genre="config" index="6" label="Vibration Sensor" min="0" max="255" value="255">
+			<Help>
+				Used to enbale/disable vibration sensor. 
+				Values possible between 0 - 255. 0 Disable Vibration, 1-254 Timeout set in minutes to reset vibration status, 255 Only send vibration triggered, does not timeout.
+			</Help>
+		</Value>
+		<Value type="list" size="1" genre="config" index="7" label="Vibration Intensity Reports" value="0">
+			<Help>
+				Used to enable/disable vibration intensity reports. 
+			</Help>
+			<Item label="Enabled (Vibration intensity will be sen to gateway when triggered)" value="1" />
+			<Item label="Disabled (do not report" value="0" />
+		</Value>
+		<Value type="byte" genre="config" index="9" label="Wakeup CC Timeout" min="2" max="255" value="15">
+			<Help>
+				Timeout set in seconds after Wakeup CC is send out before go to sleep. 
+				If role type is RSS, The minimum value will be 10. 
+				If role type is LSS, the minimum value will be 2. 
+				If wakeup no more information recevied, return to sleep mode immediatly.
+			</Help>
+		</Value>
+		<Value type="list" size="1" genre="config" index="10" label="Power Status" value="0">
+			<Help>
+				This value is Readonly. Used to report the power status (USB or Battery powered).
+				The device must be re-included in the network to change the role type.
+			</Help>
+			<Item label="When the battery powered, the device will act as RSS." value="0" />
+			<Item label="When USB cable insert, the device will act as AOS" value="1" />
+		</Value>
+		<Value type="list" size="1" genre="config" index="11" label="Motion Group Control (Group2)" value="300">
+			<Help>
+				Set control of other devies on group2 based on motion trigger.
+			</Help>
+			<Item label="Send BASIC_SET (0xFF) when motion is triggered to associated device
+                         Send BASIC_SET (0x00) when motion is untriggered to associated device" value="0" />
+			<Item label="Send BASIC_SET (0x00) when motion is triggered
+                         Send BASIC_SET (0xFF) when motion is untriggered" value="1" />
+			<Item label="Send BASIC_SET (0xFF) when motion is triggered, Nothing when motion untriggered." value="2" />
+			<Item label="Send BASIC_SET (0x00) when motion is triggered, Nothing when motion untriggered." value="3" />
+			<Item label="Send BASIC_SET (0x00) when motion is untriggered, Nothing when motion triggered." value="4" />
+			<Item label="Send BASIC_SET (0xFF) when motion is untriggered, Nothing when motion triggered." value="5" />
+			<Item label="Send BASIC_SET (value is configured by parameter 12) when motion is triggered to associated devices.
+                         Send BASIC_SET (value is configured by parameter 12) when motion is untriggered." value="6" />
+		</Value>
+		<Value type="short" size="2" genre="config" index="12" label="Motion Group Value Setting" min="0" max="65535" value="65280">
+			<Help>
+				Set Basic Set value for Group2. The MSB will act as the basic set value when motion trigger. The LSB will act as the basic set value when motion untrigger. E.g. value=0x0A00, then BASIC_SET(0x0A) will be sent when motion trigger, 
+                BASIC_SET(0x00) will be sent when motion untrigger.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="13" label="Motion Group Control Requirement" min="0" max="30000" value="30000">
+			<Help>
+				Set threshold of Light Lux when devices associated in group2 should be triggered by motion. Associated device only receive BASIC_SET command when light inferior = (this value).
+			</Help>
+		</Value>
+				<Value type="byte" genre="config" index="14" label="Over Humidity Group Threshold (Group5)" min="0" max="100" value="60">
+			<Help>
+				Set threshold of humidity. If measured humidity >= (this value), send BASIC_SET (0xFF) to associated devices through group5. If measured humidity inferior (this value) send BASIC_SET (0x00) to associated devices through group5.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="15" label="Under Humidity Group Threshold (Group6)" min="0" max="100" value="40">
+			<Help>
+				Presence re-detection time set in second to allow motion sensor to reset timeout of motion sensor. In this time, the motion sensor can not be triggered again. If this value reach zero, the timeout configuration value set by Param3 will be reset.
+				If value set to 0, retrigger is disable. Between 1-30 it is the delay in seconds. Between 30-3600 it is the timeout set in seconds.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="16" label="Over Heat Group Threshold (Group3)" min="-400" max="850" value="239">
+			<Help>
+				Set threshold of temperature. Designed to control Air Conditioners or temperature controllers ON or OFF. If measured temperature superior= (this value, Scale is determined by Param64) send BASIC_SET (0xFF) to associated devices.
+				If measured temperature inferior (this value) send BASIC_SET (0x00) to associated devices. E.g. Value 239 means 23.9 C.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="17" label="Under Heat Group Threshold (Group4)" min="-400" max="850" value="155">
+			<Help>
+				Set threshold of temperature. Designed to control Air Conditioners or temperature controllers ON or OFF. If measured temperature inferior= (this value, Scale is determined by Param64) send BASIC_SET (0xFF) to associated devices.
+				If measured temperature > (this value) send BASIC_SET (0x00) to associated devices. E.g. Value 155 means 15.5 C.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="18" label="Over Light Group Threshold (Group7)" min="0" max="30000" value="2000">
+			<Help>
+				Set threshold of Light/Lux. If measured light/lux >= (this value) send BASIC_SET (0xFF) to associated devices. If measured light/lux inferior (this value) send BASIC_SET (0x00) to associated devices.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="19" label="Under Light Group Threshold (Group8)" min="0" max="30000" value="100">
+			<Help>
+				Set threshold of Light/Lux. If measured light/lux inferior= (this value) send BASIC_SET (0xFF) to associated devices. If measured light/lux superior (this value) send BASIC_SET (0x00) to associated devices.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="20" label="Over UV Group Threshold (Group9)" min="0" max="11" value="8">
+			<Help>
+				Set threshold of UV. If measured UV superior= (this value) send BASIC_SET (0xFF) to associated devices. If measured UV inferior (this value) send BASIC_SET (0x00) to associated devices.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="21" label="Under UV Group Threshold (Group10)" min="0" max="11" value="1">
+			<Help>
+				Set threshold of UV. If measured UV inferior= (this value) send BASIC_SET (0xFF) to associated devices. If measured UV superior (this value) send BASIC_SET (0x00 to associated devices.)
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="39" label="Low Battery Threshold" min="10" max="90" value="50">
+			<Help>
+				Configure low battery report threshold, sends low battery report via notification and battery report when battery level drops under setting. Unit %.
+			</Help>
+		</Value>
+		<Value type="list" size="1" genre="config" index="40" label="Threshold Check Enable/Disable" value="0">
+			<Help>
+				Enable/Disable threshold reporting, check time can be adjusted by Param45.
+			</Help>
+			<Item label="Disable all threshold reports" value="0" />
+			<Item label="Enable all threshold reports" value="1" />
+		</Value>
+		<Value type="byte" genre="config" index="41" label="Temperature Threshold" min="0" max="255" value="10">
+			<Help>
+				Threshold = (Value * 0.1) Scale is determined by Param64. 0 = disable.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="42" label="Humidity Threshold" min="0" max="50" value="5">
+			<Help>
+				Humidity range = 1% to 50%, 0 = disable.
+			</Help>
+					</Value>
+		<Value type="short" size="2" genre="config" index="43" label="Lux Threshold" min="0" max="10000" value="250">
+			<Help>
+				0 = disable.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="44" label="UV Threshold" min="0" max="11" value="1">
+			<Help>
+				0 = disable.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="45" label="Threshold Check Time" min="1" max="65535" value="240">
+			<Help>
+				Set threshold check time in seconds if threshold is enable via Param40.
+				1~65535 - When USB powered
+				60~65535 - When Battery powered
+			</Help>
+		</Value>
+		<Value type="list" size="1" genre="config" index="46" label="Low Temperature Report" value="1">
+			<Help>
+				Enable/Disable alarm report for low temperature(inferior= -15 C) Multilevel CC temperature report will be sent to gateway
+			</Help>
+			<Item label="Disable" value="0" />
+			<Item label="Enable" value="1" />
+		</Value>
+		<Value type="list" size="1" genre="config" index="48" label="Sensor Limit Control" value="0">
+			<Help>
+				This value is bit mask. Used to enable/disable measurement reports for various sensors that is more than the upper limit value or less than the lower limit value.
+			</Help>
+			<Item label="Disable" value="0" />
+			<Item label="Temperature upper level" value="1" />
+			<Item label="Humidity upper level" value="2" />
+			<Item label="Lux upper level" value="4" />
+			<Item label="UV upper level" value="8" />
+			<Item label="Temperature lower level" value="16" />
+			<Item label="Humidity lower level" value="32" />
+			<Item label="Lux lower level" value="64" />
+			<Item label="UV lower level" value="128" />
+		</Value>
+		<Value type="short" size="2" genre="config" index="49" label="Temperature Upper Limit" min="-400" max="1000" value="280">
+			<Help>
+				Set upper limit level for temperature set in scale of 0.1. Scale is determined by Param64. If (Current measurement) superior (Upper Limit), then report sensor.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="50" label="Temperature Lower Limit" min="-400" max="1000" value="0">
+			<Help>
+				Set lower limit level for temperature set in scale of 0.1. Scale is determined by Param64. If (Current Measurement) inferior (Lower limit), then report sensor.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="51" label="Temperature Recover Limit" min="1" max="255" value="20">
+			<Help>
+				Temperature recover limit set in scale of 0.1. Scale is determined by Param64. If (Current measurement) inferior= (upper limit - recover limit), then temperature report. 
+				If (Current measurement) superior= (lower limit + recover limit), then temperature report.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="52" label="Humidity Upper Limit" min="0" max="100" value="60">
+			<Help>
+				Set humidity upper limit level.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="53" label="Humidity Lower Limit" min="0" max="100" value="40">
+			<Help>
+				Set humidity lower limit level.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="54" label="Humidity Recover Limit" min="1" max="50" value="5">
+			<Help>
+				Set humidity recover limit level. Refer to Param 51.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="55" label="Lux Upper Limit" min="0" max="30000" value="1000">
+			<Help>
+				Set lux upper limit level.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="56" label="Lux Lower Limit" min="0" max="30000" value="100">
+			<Help>
+				Set lux lower limit level.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="57" label="Lux Recover Limit" min="1" max="255" value="100">
+			<Help>
+				Set lux recover limit level. Refer to Param 51.
+			</Help>
+					</Value>
+		<Value type="byte" genre="config" index="58" label="UV Upper Limit" min="1" max="11" value="8">
+			<Help>
+				Set UV upper limit level.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="59" label="UV Lower Limit" min="1" max="11" value="4">
+			<Help>
+				Set UV lower limit level.
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="60" label="UV Recover Limit" min="1" max="5" value="1">
+			<Help>
+				Set UV recover limit level. Refer to Param 51.
+			</Help>
+		</Value>
+		<Value type="list" size="1" genre="config" index="64" label="Temperature Scale" value="0">
+			<Help>
+				Set the scale for temperature when reports.
+			</Help>
+			<Item label="Celsius" value="0" />
+			<Item label="Fahrenheit" value="1" />
+		</Value>
+		<Value type="list" size="1" genre="config" index="81" label="LED Activity" value="1">
+			<Help>
+				Allow user to enable/disable LED activity of specific reports sent by sensor. Button press indicator is not affected by this.
+			</Help>
+			<Item label="Disable" value="0" />
+			<Item label="enable" value="1" />
+		</Value>
+		<Value type="list" size="1" genre="config" index="82" label="Motion Sensor Report Indicator" value="3">
+			<Help>
+				If LED is enabled by Param81, allow user to change the report color of motion sensor.
+			</Help>
+			<Item label="Disable" value="0" />
+			<Item label="Red" value="1" />
+			<Item label="Blue" value="2" />
+			<Item label="Green" value="3" />
+			<Item label="Pink" value="4" />
+			<Item label="Cyan" value="5" />
+			<Item label="Purple" value="6" />
+			<Item label="Orange" value="7" />
+			<Item label="Yellow" value="8" />
+			<Item label="White" value="9" />
+		</Value>
+		<Value type="list" size="1" genre="config" index="83" label="Temperature Sensor Report Indicator" value="0">
+			<Help>
+				If LED is enabled by Param81, allow user to change the report color of temperature sensor.
+			</Help>
+			<Item label="Disable" value="0" />
+			<Item label="Red" value="1" />
+			<Item label="Blue" value="2" />
+			<Item label="Green" value="3" />
+			<Item label="Pink" value="4" />
+			<Item label="Cyan" value="5" />
+			<Item label="Purple" value="6" />
+			<Item label="Orange" value="7" />
+			<Item label="Yellow" value="8" />
+			<Item label="White" value="9" />
+		</Value>
+		<Value type="list" size="1" genre="config" index="84" label="Humidity Sensor Report Indicator" value="0">
+			<Help>
+				If LED is enabled by Param81, allow user to change the report color of humidity sensor.
+			</Help>
+			<Item label="Disable" value="0" />
+			<Item label="Red" value="1" />
+			<Item label="Blue" value="2" />
+			<Item label="Green" value="3" />
+			<Item label="Pink" value="4" />
+			<Item label="Cyan" value="5" />
+			<Item label="Purple" value="6" />
+			<Item label="Orange" value="7" />
+			<Item label="Yellow" value="8" />
+			<Item label="White" value="9" />
+		</Value>
+		<Value type="list" size="1" genre="config" index="85" label="Lux Sensor Report Indicator" value="0">
+			<Help>
+				If LED is enabled by Param81, allow user to change the report color of Lux sensor.
+			</Help>
+			<Item label="Disable" value="0" />
+			<Item label="Red" value="1" />
+			<Item label="Blue" value="2" />
+			<Item label="Green" value="3" />
+			<Item label="Pink" value="4" />
+			<Item label="Cyan" value="5" />
+			<Item label="Purple" value="6" />
+			<Item label="Orange" value="7" />
+			<Item label="Yellow" value="8" />
+			<Item label="White" value="9" />
+		</Value>		
+		<Value type="list" size="1" genre="config" index="86" label="UV Sensor Report Indicator" value="0">
+			<Help>
+				If LED is enabled by Param81, allow user to change the report color of UV sensor.
+			</Help>
+			<Item label="Disable" value="0" />
+			<Item label="Red" value="1" />
+			<Item label="Blue" value="2" />
+			<Item label="Green" value="3" />
+			<Item label="Pink" value="4" />
+			<Item label="Cyan" value="5" />
+			<Item label="Purple" value="6" />
+			<Item label="Orange" value="7" />
+			<Item label="Yellow" value="8" />
+			<Item label="White" value="9" />
+		</Value>		
+		<Value type="list" size="1" genre="config" index="87" label="Vibration Sensor Report Indicator" value="2">
+			<Help>
+				If LED is enabled by Param81, allow user to change the report color of vibration sensor..
+			</Help>
+			<Item label="Disable" value="0" />
+			<Item label="Red" value="1" />
+			<Item label="Blue" value="2" />
+			<Item label="Green" value="3" />
+			<Item label="Pink" value="4" />
+			<Item label="Cyan" value="5" />
+			<Item label="Purple" value="6" />
+			<Item label="Orange" value="7" />
+			<Item label="Yellow" value="8" />
+			<Item label="White" value="9" />
+		</Value>
+		<Value type="list" size="1" genre="config" index="88" label="Battery Report Indicator" value="2">
+			<Help>
+				If LED is enabled by Param81, allow user to change the report color of battery.
+			</Help>
+			<Item label="Disable" value="0" />
+			<Item label="Red" value="1" />
+			<Item label="Blue" value="2" />
+			<Item label="Green" value="3" />
+			<Item label="Pink" value="4" />
+			<Item label="Cyan" value="5" />
+			<Item label="Purple" value="6" />
+			<Item label="Orange" value="7" />
+			<Item label="Yellow" value="8" />
+			<Item label="White" value="9" />
+		</Value>
+		<Value type="list" size="1" genre="config" index="89" label="Wakeup Report Indicator" value="8">
+			<Help>
+				If LED is enabled by Param81, allow user to change the report color of wakeup.
+			</Help>
+			<Item label="Disable" value="0" />
+			<Item label="Red" value="1" />
+			<Item label="Blue" value="2" />
+			<Item label="Green" value="3" />
+			<Item label="Pink" value="4" />
+			<Item label="Cyan" value="5" />
+			<Item label="Purple" value="6" />
+			<Item label="Orange" value="7" />
+			<Item label="Yellow" value="8" />
+			<Item label="White" value="9" />
+		</Value>
+		<Value type="list" size="1" genre="config" index="90" label="Communication Indicator" value="0">
+			<Help>
+				If LED is enabled by Param81, allow user to change indicator color when receiving communication from gateway or other devices.
+			</Help>
+			<Item label="Disable" value="0" />
+			<Item label="Red" value="1" />
+			<Item label="Blue" value="2" />
+			<Item label="Green" value="3" />
+			<Item label="Pink" value="4" />
+			<Item label="Cyan" value="5" />
+			<Item label="Purple" value="6" />
+			<Item label="Orange" value="7" />
+			<Item label="Yellow" value="8" />
+			<Item label="White" value="9" />
+		</Value>
+		<Value type="byte" genre="config" index="101" label="Automatic Report Checklist 1" min="0" max="241" value="241">
+			<Help>
+				Checklist 1 for automatic timed report. When the corresponding item is selected, it will be checked when timeout setting by Param111.
+				Default 241 = 1 + 16 + 32 + 64 + 128, means all enable.
+				Disabled value=0
+				Battery value=1
+				UV value="16
+				Temperature value=32
+				Humidity value=64
+				Lux value=128
+			</Help>
+			
+		</Value>
+		<Value type="byte" genre="config" index="102" label="Automatic Report Checklist 2" min="0" max="241" value="0">
+			<Help>
+				Checklist 2 for automatic timed report. When the corresponding item is selected, it will be checked when timeout setting by Param112.
+				Max value 241 = 1 + 16 + 32 + 64 + 128, means all enable.
+				Disabled value=0
+				Battery value=1
+				UV value="16
+				Temperature value=32
+				Humidity value=64
+				Lux value=128
+			</Help>
+		</Value>
+		<Value type="byte" genre="config" index="103" label="Automatic Report Checklist 3" min="0" max="241" value="0">
+			<Help>
+				Checklist 2 for automatic timed report. When the corresponding item is selected, it will be checked when timeout setting by Param113.
+				Max value 241 = 1 + 16 + 32 + 64 + 128, means all enable.
+				Disabled value=0
+				Battery value=1
+				UV value="16
+				Temperature value=32
+				Humidity value=64
+				Lux value=128
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="111" label="Automatic Checklist 1 Interval Time" min="30" max="65535" value="3600">
+			<Help>
+				Interval time set in seconds to check the checklist1’s items. Multilevel Sensor Report will be sent when timeout.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="112" label="Automatic Checklist 2 Interval Time" min="30" max="65535" value="3600">
+			<Help>
+				Interval time set in seconds to check the checklist2’s items. Multilevel Sensor Report will be sent when timeout.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="113" label="Automatic Checklist 3 Interval Time" min="30" max="65535" value="3600">
+			<Help>
+				Interval time set in seconds to check the checklist3’s items. Multilevel Sensor Report will be sent when timeout.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="201" label="Temperature Offset Value" min="-200" max="200" value="0">
+			<Help>
+				Can add or minus this setting value to calibrate temperature when checked. Scale is defined by Param64. e.g. Value 15 means 1.5C
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="202" label="Humidity Offset Value" min="-100" max="100" value="0">
+			<Help>
+				Can add or minus this setting value to calibrate humidity when checked. Unit: %.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="203" label="Lux Offset Value" min="-10000" max="10000" value="0">
+			<Help>
+				Can add or minus this setting value to calibrate Lux when checked.
+			</Help>
+		</Value>
+		<Value type="short" size="2" genre="config" index="204" label="UV Offset Value" min="-10" max="10" value="0">
+			<Help>
+				Can add or minus this setting value to calibrate UV when checked.
+			</Help>
+		</Value>
+	</CommandClass>
+	<CommandClass id="133">
+		<Associations num_groups="1">
+			<Group index="1" max_associations="5" label="LifeLine" />
+		</Associations>
+	</CommandClass>
+
+</Product>
+
