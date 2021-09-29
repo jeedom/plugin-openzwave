@@ -96,3 +96,4 @@ while x <131072:
 #file.write(bin.replace(' ',''))
 #file.close()
 ser.close()
+print('Finished')
