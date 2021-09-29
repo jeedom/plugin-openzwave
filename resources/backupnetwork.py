@@ -54,15 +54,15 @@ def toanalyse(type,needed='',datao=''):
 							sendack()
 							return datastr[6:-3]
 				sendack()
+				return 'none'
 			elif beginstr == '06':
 				if type=='ack':
 					print('received waiting ack ')
-					return
+					return 'none'
 			else:
 				sendack()
-				tosend(datao)
-				toanalyse(type,needed,datao)
-		time.sleep(0.01)
+				return 'none'
+		time.sleep(0.1)
 def toread():
 	while 1:
 		begin = ser.read()
@@ -91,8 +91,9 @@ while x <131072:
 	tosend('2a' + begin +'0040')
 	toanalyse('ack','','2a' + begin +'0040')
 	result=toanalyse('data','01 2A','2a' + begin +'0040')
-	bin=bin+result
-	x = x+64
+	if result != 'none':
+		bin=bin+result
+		x = x+64
 now = datetime.now()
 file = "backupnetwork-"+str(now).replace(' ','_').replace(':','_')+"-"+args.name+".bin"
 directory = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'data')
