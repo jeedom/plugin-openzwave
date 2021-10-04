@@ -114,7 +114,7 @@
                 "value": "", 
                 "index": 10, 
                 "instance": 1, 
-                "calculValueOffset": "#value#==3"
+                "calculValueOffset": "#value#!=0"
             }, 
             "subtype": "binary", 
             "display": {
