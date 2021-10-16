@@ -43,20 +43,25 @@ class jeedom_com():
 		self.changes = {}
 		self.lastTimer = float(time.time())
 		self.resend_changes = ''
+		self.mutex = threading.RLock()
 		if cycle > 0 :
 			self.send_changes_async()
 		logging.debug('Init request module v%s' % (str(requests.__version__),))
 
 	def send_changes_async(self):
 		try:
-			if len(self.changes) == 0:
-				self.resend_changes = threading.Timer(self.cycle, self.send_changes_async)
-				self.lastTimer = float(time.time())
-				self.resend_changes.start() 
-				return
-			start_time = datetime.datetime.now()
+			self.mutex.acquire()
 			changes = self.changes
 			self.changes = {}
+			try:
+				if len(changes) == 0:
+					self.resend_changes = threading.Timer(self.cycle, self.send_changes_async)
+					self.lastTimer = float(time.time())
+					self.resend_changes.start() 
+					return
+			finally:
+				self.mutex.release()
+			start_time = datetime.datetime.now()
 			logging.debug('Send to jeedom : '+str(changes))
 			i=0
 			while i < self.retry:
@@ -76,20 +81,32 @@ class jeedom_com():
 				timer_duration = 0.1
 			if timer_duration > self.cycle:
 				timer_duration = self.cycle
-			self.resend_changes = threading.Timer(timer_duration, self.send_changes_async)
-			self.lastTimer = float(time.time())
-			self.resend_changes.start() 
+			self.mutex.acquire()
+			try:
+				self.resend_changes = threading.Timer(timer_duration, self.send_changes_async)
+				self.lastTimer = float(time.time())
+				self.resend_changes.start() 
+			finally:
+				self.mutex.release()
 		except Exception as error:
 			logging.error('Critical error on  send_changes_async %s' % (str(error),))
-			self.resend_changes = threading.Timer(self.cycle, self.send_changes_async)
-			self.lastTimer = float(time.time())
-			self.resend_changes.start() 
+			self.mutex.acquire()
+			try:
+				self.resend_changes = threading.Timer(self.cycle, self.send_changes_async)
+				self.lastTimer = float(time.time())
+				self.resend_changes.start() 
+			finally:
+				self.mutex.release()
 		
 	def add_changes(self,key,value):
-		if self.resend_changes != '' and abs(self.lastTimer - float(time.time())) > self.cycle:
-			logging.debug('Issue with the async timer reseting')
-			self.resend_changes.cancel()
-			self.send_changes_async()
+		self.mutex.acquire()
+		try:
+			if self.resend_changes != '' and abs(self.lastTimer - float(time.time())) > self.cycle:
+				logging.debug('Issue with the async timer reseting')
+				self.resend_changes.cancel()
+				self.send_changes_async()
+		finally:
+			self.mutex.release()
 		if key.find('::') != -1:
 			tmp_changes = {}
 			changes = value
@@ -102,12 +119,20 @@ class jeedom_com():
 			if self.cycle <= 0:
 				self.send_change_immediate(changes)
 			else:
-				self.merge_dict(self.changes,changes)
+				self.mutex.acquire()
+				try:
+					self.merge_dict(self.changes,changes)
+				finally:
+					self.mutex.release()
 		else:
 			if self.cycle <= 0:
 				self.send_change_immediate({key:value})
 			else:
-				self.changes[key] = value
+				self.mutex.acquire()
+				try:
+					self.changes[key] = value
+				finally:
+					self.mutex.release()
 
 	def send_change_immediate(self,change):
 		thread.start_new_thread( self.thread_change, (change,))
@@ -125,7 +150,11 @@ class jeedom_com():
 			i = i + 1
 		
 	def set_change(self,changes):
-		self.changes = changes
+		self.mutex.acquire()
+		try:
+			self.changes = changes
+		finally:
+			self.mutex.release()
 
 	def get_change(self):
 		return self.changes
