@@ -30,6 +30,7 @@ os.environ['PYTHON_EGG_CACHE'] = '/tmp/python-openzwave-eggs'
 
 parser = argparse.ArgumentParser(description='Ozw Daemon for Jeedom plugin')
 parser.add_argument("--device", help="Device", type=str)
+parser.add_argument("--host", help="Host for OZW server", type=str)
 parser.add_argument("--port", help="Port for OZW server", type=str)
 parser.add_argument("--loglevel", help="Log Level for the daemon", type=str)
 parser.add_argument("--config_folder", help="Read or Write", type=str)
@@ -44,6 +45,8 @@ args = parser.parse_args()
 
 if args.device:
 	globals.device = args.device
+if args.host:
+	globals.socket_host = args.host
 if args.port:
 	globals.port_server = args.port
 if args.loglevel:

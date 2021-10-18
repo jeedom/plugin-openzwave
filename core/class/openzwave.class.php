@@ -35,9 +35,9 @@ class openzwave extends eqLogic {
 	
 	public static function callOpenzwave($_url,$_timeout = null) {
 		if (strpos($_url, '?') !== false) {
-			$url = 'http://127.0.0.1:' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim($_url, '/') . '&apikey=' . jeedom::getApiKey('openzwave');
+			$url = 'http://'. config::byKey('host_server', 'openzwave', '127.0.0.1') . ':' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim($_url, '/') . '&apikey=' . jeedom::getApiKey('openzwave');
 		} else {
-			$url = 'http://127.0.0.1:' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim($_url, '/') . '?apikey=' . jeedom::getApiKey('openzwave');
+			$url = 'http://'. config::byKey('host_server', 'openzwave', '127.0.0.1') . ':' . config::byKey('port_server', 'openzwave', 8083) . '/' . trim($_url, '/') . '?apikey=' . jeedom::getApiKey('openzwave');
 		}
 		$ch = curl_init();
 		curl_setopt_array($ch, array(
@@ -299,6 +299,7 @@ class openzwave extends eqLogic {
 			return false;
 		}
 		$callback = network::getNetworkAccess('internal', 'proto:127.0.0.1:port:comp') . '/plugins/openzwave/core/php/jeeZwave.php';
+		$host_server = config::byKey('host_server', 'openzwave', '127.0.0.1');
 		$port_server = config::byKey('port_server', 'openzwave', 8083);
 		$openzwave_path = dirname(__FILE__) . '/../../resources';
 		$config_path = dirname(__FILE__) . '/../../resources/openzwaved/config';
@@ -322,6 +323,7 @@ class openzwave extends eqLogic {
 		$cmd = '/usr/bin/python ' . $openzwave_path . '/openzwaved/openzwaved.py ';
 		$cmd .= ' --device ' . $port;
 		$cmd .= ' --loglevel ' . log::convertLogLevel(log::getLogLevel('openzwave'));
+		$cmd .= ' --host ' . $host_server;
 		$cmd .= ' --port ' . $port_server;
 		$cmd .= ' --config_folder ' . $config_path;
 		$cmd .= ' --data_folder ' . $data_path;

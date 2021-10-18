@@ -40,7 +40,7 @@ def check_start_server():
 
 	logging.info("Check if the port REST server available")
 	_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	port_available = _sock.connect_ex(('127.0.0.1', int(globals.port_server)))
+	port_available = _sock.connect_ex((globals.socket_host, int(globals.port_server)))
 	if port_available == 0:
 		logging.error('The port %s is already in use. Please check your Z-Wave (openzwave) configuration plugin page' % (
 		globals.port_server,), 'error')
