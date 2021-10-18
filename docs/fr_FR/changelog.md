@@ -4,6 +4,11 @@
 >
 >Pour rappel s'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte
 
+# 18/10/2021
+
+- Passage Stable
+- Amélioration des threads du démon
+
 # 20/04/2021
 
 - Ajout de la fonction Backup et Restore de la clé Zwave (GPIO ou USB)
