@@ -123,43 +123,37 @@ NB! Please use this procedure only when the primary controller/ gateway is missi
     </Value>
     <Value genre="config" index="18" instance="1" label="Deactivate Central Scene noti-fications." size="1" max="1" min="0" type="short" value="0">
       <Help>It is possible to enable Central Scene notifications when the 6 inputs are activated.
-            0 Central Scene notifications enabled (standard)
+            0 Central Scene notifications enabled (default)
             1 Central Scene notifications disabled.
       </Help>
     </Value>
     <Value genre="config" index="19" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
-      <Help>Choose parameter value from the table on the right.
-            0 Output is controlled via Z-Wave messages.
-            1 Output is controlled by input 1 (standard).
+      <Help>0 Output is controlled via Z-Wave messages.
+            1 Output is controlled by input 1 (default).
       </Help>
     </Value>
-    <Value genre="config" index="20" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
-      <Help>Choose parameter value from the table on the right.
-            0 Output is controlled via Z-Wave messages.
+    <Value genre="config" index="20" instance="1" label="Output function, Output 2." size="1" max="1" min="0" type="short" value="1">
+      <Help>0 Output is controlled via Z-Wave messages.
             1 Output is controlled by input 2 (default).
       </Help>
     </Value>
-    <Value genre="config" index="21" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
-      <Help>Choose parameter value from the table on the right.
-            0 Output is controlled via Z-Wave messages.
+    <Value genre="config" index="21" instance="1" label="Output function, Output 3." size="1" max="1" min="0" type="short" value="1">
+      <Help>0 Output is controlled via Z-Wave messages.
             1 Output is controlled by input 3 (default).
       </Help>
     </Value>
-    <Value genre="config" index="22" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
-      <Help>Choose parameter value from the table on the right.
-            0 Output is controlled via Z-Wave messages.
+    <Value genre="config" index="22" instance="1" label="Output function, Output 4." size="1" max="1" min="0" type="short" value="1">
+      <Help>0 Output is controlled via Z-Wave messages.
             1 Output is controlled by input 4 (default).
       </Help>
     </Value>
-    <Value genre="config" index="23" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
-      <Help>Choose parameter value from the table on the right.
-            0 Output is controlled via Z-Wave messages.
+    <Value genre="config" index="23" instance="1" label="Output function, Output 5." size="1" max="1" min="0" type="short" value="1">
+      <Help>0 Output is controlled via Z-Wave messages.
             1 Output is controlled by input 5 (default).
       </Help>
     </Value>
-    <Value genre="config" index="24" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
-      <Help>Choose parameter value from the table on the right.
-            0 Output is controlled via Z-Wave messages.
+    <Value genre="config" index="24" instance="1" label="Output function, Output 6." size="1" max="1" min="0" type="short" value="1">
+      <Help>0 Output is controlled via Z-Wave messages.
             1 Output is controlled by input 6 (default).
       </Help>
     </Value>
