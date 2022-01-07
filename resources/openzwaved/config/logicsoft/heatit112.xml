@@ -170,22 +170,22 @@ NB! Please use this procedure only when the primary controller/ gateway is missi
       <Group index="1" label="Lifeline. - Reset notification - Basic Report On / Off - Multilevel Sensor Report" max_associations="5"/>
       <Group index="2" label="Basic Set On / Off when input 1 is activated." max_associations="5"/>
       <Group index="3" label="Binary Switch Set On / Off when input 1 is activated." max_associations="5"/>
-      <Group index="4" label="Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when input 1 is activated." max_associations="5"/>
+      <Group index="4" label="Multilevel Switch Set/Start Level Change/Stop Level Change input 1" max_associations="5"/>
       <Group index="5" label="Basic Set On / Off when input 2 is activated." max_associations="5"/>
       <Group index="6" label="Binary Switch Set On / Off when input 2 is activated." max_associations="5"/>
-      <Group index="7" label="Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when input 2 is activated." max_associations="5"/>
+      <Group index="7" label="Multilevel Switch Set/Start Level Change/Stop Level Change input 2" max_associations="5"/>
       <Group index="8" label="Basic Set On / Off when input 3 is activated." max_associations="5"/>
       <Group index="9" label="Binary Switch Set On / Off when input 3 is activated." max_associations="5"/>
-      <Group index="10" label="Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when input 3 is activated." max_associations="5"/>
+      <Group index="10" label="Multilevel Switch Set/Start Level Change/Stop Level Change input 3" max_associations="5"/>
       <Group index="11" label="Basic Set On / Off when input 4 is activated." max_associations="5"/>
       <Group index="12" label="Binary Switch Set On / Off when input 4 is activated." max_associations="5"/>
-      <Group index="13" label="Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when input 4 is activated." max_associations="5"/>
+      <Group index="13" label="Multilevel Switch Set/Start Level Change/Stop Level Change input 4" max_associations="5"/>
       <Group index="14" label="Basic Set On / Off when input 5 is activated." max_associations="5"/>
       <Group index="15" label="Binary Switch Set On / Off when input 5 is activated." max_associations="5"/>
-      <Group index="16" label="Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when input 5 is activated." max_associations="5"/>
+      <Group index="16" label="Multilevel Switch Set/Start Level Change/Stop Level Change input 5" max_associations="5"/>
       <Group index="17" label="Basic Set On / Off when input 6 is activated." max_associations="5"/>
       <Group index="18" label="Binary Switch Set On / Off when input 6 is activated." max_associations="5"/>
-      <Group index="19" label="Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when input 6 is activated." max_associations="5"/>
+      <Group index="19" label="Multilevel Switch Set/Start Level Change/Stop Level Change input 6" max_associations="5"/>
     </Associations>
     <Compatibility/>
   </CommandClass>
