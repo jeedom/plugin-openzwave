@@ -1,25 +1,19 @@
 <?xml version="1.0"?>
 <!--
 Heatit Z-Din 616
-https://products.z-wavealliance.org/products/3102
 -->
 <Product xmlns="https://github.com/OpenZWave/open-zwave" Revision="3">
   <MetaData>
     <MetaDataItem name="ProductPic">images/logicsoft/heatit112.png</MetaDataItem>
-    <MetaDataItem id="0112" name="ZWProductPage" type="0003">https://products.z-wavealliance.org/products/3102/</MetaDataItem>
+    <MetaDataItem id="0112" name="ZWProductPage" type="0003"></MetaDataItem>
     <MetaDataItem name="InclusionDescription">Adding the device:
 When the primary controller is set to add/remove modus press the &#x201D;INCLUSION&#x201D; button once on the device</MetaDataItem>
     <MetaDataItem id="0112" name="Identifier" type="0003">Z-Din 616</MetaDataItem>
-    <MetaDataItem name="Description">Heatit Z-Din 616 is equipped with 10 relay outputs and 4 analog inputs, and a Z-Wave radio for interfacing to the wireless
-Z-Wave network.
-The regulator can be power supplied from a 230V AC mains connection, and is able to deliver an output supply of 24V DC.
-Heatit Z-Din 616 relay outputs are able to be freely controlled from the Z-Wave network, and can be used for several
-purposes, e.g. on/off control of light, control of valve actuators for an underfloor heating system, or control of other home
-automation systems.
-Heatit Z-Din 616 inputs are analog inputs for interfacing simple temperature sensors; NTC, PT1000, etc.
-It is possible to configure the level and the indication of the status indicator LED in the front of the Heatit Z-Din 616
-regulator.</MetaDataItem>
-    <MetaDataItem name="ProductManual">https://Products.Z-WaveAlliance.org/ProductManual/File?folder=&amp;filename=Manuals/3102/Manual_Heatit_Z-Water_analog%20inputs_FW%202.1_Ver2019-A_ENG.pdf</MetaDataItem>
+    <MetaDataItem name="Description">The Heatit Z-DIN 616, which is built upon the wireless Z-Wave communication protocol, has 6 relay driven outputs and 6 digital inputs. The unit is a multi-purpose Z-Wave I/O module, which can be used for many applications. For example, the Heatit Z-DIN 616 provides the possibility to control other systems via the Z-Wave network, by utilizing the 6 outputs as a kind of hand-over function to another automation system.
+                The relay outputs (controlled through the Z-Wave network) are suitable for switching up to six 230VAC loads. In connection with simultaneous connection to SELV (Safety Extra Low Voltage) and 230VAC power circuits for relay outputs, relays must be considered as two groups, where the first group includes output 1 to 3 and the second group includes outputs 4 to 6. This ensures complete separation between the SELV and 230VAC circuits. If one of the relays in the group is connected to a SELV circuit, the remaining outputs are not allowed to be connected to 230VAC or another circuit which is not a SELV circuit. For example, the relay outputs of the Heatit Z-DIN 616 module can be used to control the 230Vac power supply outlet, making it possible to turn on and disconnect the electrical outlets directly through the Z-Wave network. For safety reasons, however, it is not recommended to use the Heatit Z-DIN 616 to connect electrical outlets that are normally used for hazardous tools and machinery.
+                The 6 digital inputs of the Heatit Z-DIN 616 are useful for various purposes, where potential-free contacts or Open Collector outputs may be connected. The inputs may be configured to different trigger modes; leading edge, trailing edge or level triggered. The Heatit Z-DIN 616’s inputs may be programmed to control other Z-Wave devices when the inputs are activated, by sending Z-Wave commands over the Z-Wave network to e.g. Z-Wave relay modules, dimmer units etc. Heatit Z-DIN 616 allows sending different types of Z-Wave commands by utilizing the different association groups for the 6 inputs. In addition, the Heatit Z-DIN 616 also acts as a repeater, thus extending the range of the Z-Wave network. By default, the Heatit Z-DIN 616’s inputs and outputs are set to operate as toggle-relays. Input 1 controls the output 1, input 2 controls the output 2, etc. This functionality can be modified via the configuration parameters 3-8 and 13-18.
+    </MetaDataItem>
+    <MetaDataItem name="ProductManual">https://media.heatit.com/1756</MetaDataItem>
     <MetaDataItem name="ExclusionDescription">Removing the device: When the primary controller is set to add/remove modus press the &#x201D;INCLUSION&#x201D; button once on the device</MetaDataItem>
     <MetaDataItem id="0112" name="FrequencyName" type="0003">CEPT (Europe)</MetaDataItem>
     <MetaDataItem name="ResetDescription">By pressing buttons Right and Center (down and confirm) for 20 seconds, the thermostat will perform a complete factory reset.
