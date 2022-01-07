@@ -5,7 +5,7 @@
     "remark": "", 
     "imglink": "danfoss.living-connect", 
     "configuration": {
-        "battery_type": "2x1.5V AAA"
+        "battery_type": "2x1.5V AA"
     }, 
     "commands": [
         {

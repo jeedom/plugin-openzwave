@@ -145,6 +145,7 @@ Cette partie permet de configurer les paramètres généraux du plugin ![configu
     -   **Port clé Z-Wave** : le port USB sur lequel votre interface Z-Wave est connectée. Si vous utilisez le Razberry, vous avez, en fonction de votre architecture (RPI ou Jeedomboard) les 2 possibilités à la fin de la liste.
     -   **Port du Serveur** (modification dangereuse, doit avoir la même valeur sur tous les Jeedoms déportés Z-Wave) : permet de modifier le port de communication interne du démon.
     -   **Backups** : permet de gérer les backups du fichier de topologie réseaux (voir plus bas)
+    -   **Backups réseaux** : permet de gérer les backups du contrôleur. Vous pourrez créer un backup d'une clé, restaurer un backup, le télécharger ou en uploader un. Pour créer un bakcup il faut bien donner un nom, choisir le bon port pour le contrôleur et cliquer sur lancer une sauvegarde. La procédure peut prendre quelques minutes. Pour restaurer un backup il suffit de choisir le port du contrôleur de choisir dans le menu déroulant le backup à restaurer et de cliquer sur restaurer la sauvegarde.  Le bouton télécharger permet de télécharger une sauvegarde sur votre pc. Le bouton ajouter une sauvegarde permet d'uploader une sauvegarde sur Jeedom. Le bouton supprimer quand à lui permet comme son nom l'indique de supprimer une sauvegarde.
     -   **Config modules** : permet de récupérer, manuellement, les fichiers de configurations OpenZWave avec les paramètres des modules ainsi que la définition des commandes de modules pour leurs utilisations.
 
         > **Tip**
