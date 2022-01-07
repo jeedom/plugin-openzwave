@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<!--
+Heatit Z-Din 616
+https://products.z-wavealliance.org/products/3102
+-->
+<Product xmlns="https://github.com/OpenZWave/open-zwave" Revision="3">
+  <MetaData>
+    <MetaDataItem name="ProductPic">images/logicsoft/heatit112.png</MetaDataItem>
+    <MetaDataItem id="0112" name="ZWProductPage" type="0003">https://products.z-wavealliance.org/products/3102/</MetaDataItem>
+    <MetaDataItem name="InclusionDescription">Adding the device:
+When the primary controller is set to add/remove modus press the &#x201D;INCLUSION&#x201D; button once on the device</MetaDataItem>
+    <MetaDataItem id="0112" name="Identifier" type="0003">Z-Din 616</MetaDataItem>
+    <MetaDataItem name="Description">Heatit Z-Din 616 is equipped with 10 relay outputs and 4 analog inputs, and a Z-Wave radio for interfacing to the wireless
+Z-Wave network.
+The regulator can be power supplied from a 230V AC mains connection, and is able to deliver an output supply of 24V DC.
+Heatit Z-Din 616 relay outputs are able to be freely controlled from the Z-Wave network, and can be used for several
+purposes, e.g. on/off control of light, control of valve actuators for an underfloor heating system, or control of other home
+automation systems.
+Heatit Z-Din 616 inputs are analog inputs for interfacing simple temperature sensors; NTC, PT1000, etc.
+It is possible to configure the level and the indication of the status indicator LED in the front of the Heatit Z-Din 616
+regulator.</MetaDataItem>
+    <MetaDataItem name="ProductManual">https://Products.Z-WaveAlliance.org/ProductManual/File?folder=&amp;filename=Manuals/3102/Manual_Heatit_Z-Water_analog%20inputs_FW%202.1_Ver2019-A_ENG.pdf</MetaDataItem>
+    <MetaDataItem name="ExclusionDescription">Removing the device: When the primary controller is set to add/remove modus press the &#x201D;INCLUSION&#x201D; button once on the device</MetaDataItem>
+    <MetaDataItem id="0112" name="FrequencyName" type="0003">CEPT (Europe)</MetaDataItem>
+    <MetaDataItem name="ResetDescription">By pressing buttons Right and Center (down and confirm) for 20 seconds, the thermostat will perform a complete factory reset.
+NB! Please use this procedure only when the primary controller/ gateway is missing or otherwise inoperable.</MetaDataItem>
+    <MetaDataItem name="Name">Heatit Z-Din 616</MetaDataItem>
+    <ChangeLog>
+      <Entry author="Flobul - flobul.jeedom@gmail.com" date="06 Jan 2022" revision="1">Initial Metadata Import from constructor documentation https://media.heatit.com/1756</Entry>
+    </ChangeLog>
+  </MetaData>
+  <CommandClass id="112">
+    <Value genre="config" index="1" label="Status of LED." size="1" type="list" value="1">
+      <Help>Changes the mode of the front-mounted status LED.</Help>
+      <Item label="0 LED turned off" value="0"/>
+      <Item label="1 LED turned on.(default)" value="1"/>
+      <Item label="2 LED flashing at 1 second intervals (&#xBD; Hz)" value="2"/>
+      <Item label="3 LED flashing at &#xBD; second interval (1 Hz)" value="3"/>
+    </Value>
+    <Value genre="config" index="2" instance="1" label="Brightness of status LED." size="1" type="byte" value="50">
+      <Help>Determines the brightness of the status LED.</Help>
+    </Value>
+    <Value genre="config" index="3" instance="1" label="Function setup of input 1" size="1" type="list" value="3">
+      <Help>This parameter decides which kind of function is configured to trigger the input.</Help>
+      <Item label="0 Inactive" value="0"/>
+      <Item label="1 level-controlled input – normally open" value="1"/>
+      <Item label="2 level controlled input – normally closed" value="2"/>
+      <Item label="3 toggle controlled input – normally open (default)" value="3"/>
+      <Item label="4 toggle controlled input – normally closed" value="4"/>
+      <Item label="5 timer controlled input – normally open" value="5"/>
+      <Item label="6 timer controlled input – normally closed" value="6"/>
+    </Value>
+    <Value genre="config" index="4" instance="1" label="Timer for input 1." size="1" type="byte" value="0">
+      <Help>Timer value for input 1, used when input Mode 5 or 6 is chosen. 0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
+    </Value>
+    <Value genre="config" index="5" instance="1" label="Function setup of input 2" size="1" type="list" value="3">
+      <Help>This parameter decides which kind of function is configured to trigger the input.</Help>
+      <Item label="0 Inactive" value="0"/>
+      <Item label="1 level-controlled input – normally open" value="1"/>
+      <Item label="2 level controlled input – normally closed" value="2"/>
+      <Item label="3 toggle controlled input – normally open (default)" value="3"/>
+      <Item label="4 toggle controlled input – normally closed" value="4"/>
+      <Item label="5 timer controlled input – normally open" value="5"/>
+      <Item label="6 timer controlled input – normally closed" value="6"/>
+    </Value>
+    <Value genre="config" index="6" instance="1" label="Timer for input 2." size="1" type="byte" value="0">
+      <Help>Timer value for input 2, used when input Mode 5 or 6 is chosen. 0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
+    </Value>
+    <Value genre="config" index="7" instance="1" label="Function setup of input 3" size="1" type="list" value="3">
+      <Help>This parameter decides which kind of function is configured to trigger the input.</Help>
+      <Item label="0 Inactive" value="0"/>
+      <Item label="1 level-controlled input – normally open" value="1"/>
+      <Item label="2 level controlled input – normally closed" value="2"/>
+      <Item label="3 toggle controlled input – normally open (default)" value="3"/>
+      <Item label="4 toggle controlled input – normally closed" value="4"/>
+      <Item label="5 timer controlled input – normally open" value="5"/>
+      <Item label="6 timer controlled input – normally closed" value="6"/>
+    </Value>
+    <Value genre="config" index="8" instance="1" label="Timer for input 3." size="1" type="byte" value="0">
+      <Help>Timer value for input 3, used when input Mode 5 or 6 is chosen. 0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
+    </Value>
+    <Value genre="config" index="9" instance="1" label="Function setup of input 4" size="1" type="list" value="3">
+      <Help>This parameter decides which kind of function is configured to trigger the input.</Help>
+      <Item label="0 Inactive" value="0"/>
+      <Item label="1 level-controlled input – normally open" value="1"/>
+      <Item label="2 level controlled input – normally closed" value="2"/>
+      <Item label="3 toggle controlled input – normally open (default)" value="3"/>
+      <Item label="4 toggle controlled input – normally closed" value="4"/>
+      <Item label="5 timer controlled input – normally open" value="5"/>
+      <Item label="6 timer controlled input – normally closed" value="6"/>
+    </Value>
+    <Value genre="config" index="10" instance="1" label="Timer for input 4." size="1" type="byte" value="0">
+      <Help>Timer value for input 4, used when input Mode 5 or 6 is chosen. 0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
+    </Value>
+    <Value genre="config" index="11" instance="1" label="Function setup of input 5" size="1" type="list" value="3">
+      <Help>This parameter decides which kind of function is configured to trigger the input.</Help>
+      <Item label="0 Inactive" value="0"/>
+      <Item label="1 level-controlled input – normally open" value="1"/>
+      <Item label="2 level controlled input – normally closed" value="2"/>
+      <Item label="3 toggle controlled input – normally open (default)" value="3"/>
+      <Item label="4 toggle controlled input – normally closed" value="4"/>
+      <Item label="5 timer controlled input – normally open" value="5"/>
+      <Item label="6 timer controlled input – normally closed" value="6"/>
+    </Value>
+    <Value genre="config" index="12" instance="1" label="Timer for input 5." size="1" type="byte" value="0">
+      <Help>Timer value for input 5, used when input Mode 5 or 6 is chosen. 0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
+    </Value>
+    <Value genre="config" index="13" instance="1" label="Function setup of input 6" size="1" type="list" value="3">
+      <Help>This parameter decides which kind of function is configured to trigger the input.</Help>
+      <Item label="0 Inactive" value="0"/>
+      <Item label="1 level-controlled input – normally open" value="1"/>
+      <Item label="2 level controlled input – normally closed" value="2"/>
+      <Item label="3 toggle controlled input – normally open (default)" value="3"/>
+      <Item label="4 toggle controlled input – normally closed" value="4"/>
+      <Item label="5 timer controlled input – normally open" value="5"/>
+      <Item label="6 timer controlled input – normally closed" value="6"/>
+    </Value>
+    <Value genre="config" index="14" instance="1" label="Timer for input 6." size="1" type="byte" value="0">
+      <Help>Timer value for input 6, used when input Mode 5 or 6 is chosen. 0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
+    </Value>
+    <Value genre="config" index="15" instance="1" label="Input Snubber-filter time constant." size="1" type="byte" value="5">
+      <Help>Specifies the time used to define the time constant of the input snubber-filter. (Increments in 0.01 second resolution.)</Help>
+    </Value>
+    <Value genre="config" index="16" instance="1" label="Threshold value for activation of inputs." size="1" type="byte" value="20">
+      <Help>Specifies the time that an entry must be stable before it is accepted as active / idle in 0.01 second resolution.</Help>
+    </Value>
+    <Value genre="config" index="17" instance="1" label="Threshold for input in latched mode." size="1" type="byte" value="50">
+      <Help>Indicates the time that an input must be activated before it accepts the button latched mode. (Increments in 0.01 second resolution.)</Help>
+    </Value>
+    <Value genre="config" index="18" instance="1" label="Deactivate Central Scene noti-fications." size="1" max="1" min="0" type="short" value="0">
+      <Help>It is possible to enable Central Scene notifications when the 6 inputs are activated.
+            0 Central Scene notifications enabled (standard)
+            1 Central Scene notifications disabled.
+      </Help>
+    </Value>
+    <Value genre="config" index="19" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
+      <Help>Choose parameter value from the table on the right.
+            0 Output is controlled via Z-Wave messages.
+            1 Output is controlled by input 1 (standard).
+      </Help>
+    </Value>
+    <Value genre="config" index="20" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
+      <Help>Choose parameter value from the table on the right.
+            0 Output is controlled via Z-Wave messages.
+            1 Output is controlled by input 2 (default).
+      </Help>
+    </Value>
+    <Value genre="config" index="21" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
+      <Help>Choose parameter value from the table on the right.
+            0 Output is controlled via Z-Wave messages.
+            1 Output is controlled by input 3 (default).
+      </Help>
+    </Value>
+    <Value genre="config" index="22" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
+      <Help>Choose parameter value from the table on the right.
+            0 Output is controlled via Z-Wave messages.
+            1 Output is controlled by input 4 (default).
+      </Help>
+    </Value>
+    <Value genre="config" index="23" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
+      <Help>Choose parameter value from the table on the right.
+            0 Output is controlled via Z-Wave messages.
+            1 Output is controlled by input 5 (default).
+      </Help>
+    </Value>
+    <Value genre="config" index="24" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
+      <Help>Choose parameter value from the table on the right.
+            0 Output is controlled via Z-Wave messages.
+            1 Output is controlled by input 6 (default).
+      </Help>
+    </Value>
+    <Compatibility/>
+  </CommandClass>
+  <CommandClass id="133">
+    <Associations num_groups="5">
+      <Group index="1" label="Lifeline. - Reset notification - Basic Report On / Off - Multilevel Sensor Report" max_associations="5"/>
+      <Group index="2" label="Basic Set On / Off when input 1 is activated." max_associations="5"/>
+      <Group index="3" label="Binary Switch Set On / Off when input 1 is activated." max_associations="5"/>
+      <Group index="4" label="Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when input 1 is activated." max_associations="5"/>
+      <Group index="5" label="Basic Set On / Off when input 2 is activated." max_associations="5"/>
+      <Group index="6" label="Binary Switch Set On / Off when input 2 is activated." max_associations="5"/>
+      <Group index="7" label="Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when input 2 is activated." max_associations="5"/>
+      <Group index="8" label="Basic Set On / Off when input 3 is activated." max_associations="5"/>
+      <Group index="9" label="Binary Switch Set On / Off when input 3 is activated." max_associations="5"/>
+      <Group index="10" label="Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when input 3 is activated." max_associations="5"/>
+      <Group index="11" label="Basic Set On / Off when input 4 is activated." max_associations="5"/>
+      <Group index="12" label="Binary Switch Set On / Off when input 4 is activated." max_associations="5"/>
+      <Group index="13" label="Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when input 4 is activated." max_associations="5"/>
+      <Group index="14" label="Basic Set On / Off when input 5 is activated." max_associations="5"/>
+      <Group index="15" label="Binary Switch Set On / Off when input 5 is activated." max_associations="5"/>
+      <Group index="16" label="Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when input 5 is activated." max_associations="5"/>
+      <Group index="17" label="Basic Set On / Off when input 6 is activated." max_associations="5"/>
+      <Group index="18" label="Binary Switch Set On / Off when input 6 is activated." max_associations="5"/>
+      <Group index="19" label="Multilevel Switch Set / Multilevel Switch Start Level Change / Multilevel Switch Stop Level Change when input 6 is activated." max_associations="5"/>
+    </Associations>
+    <Compatibility/>
+  </CommandClass>
+  <!-- COMMAND_CLASS_MULTI_CHANNEL_ASSOCIATION_V2-->
+  <CommandClass id="142">
+    <Compatibility>
+      <ForceInstances>true</ForceInstances>
+    </Compatibility>
+  </CommandClass>
+  <!--COMMAND_CLASS_MULTI_CHANNEL_V2 Map endpoints to instances -->
+  <CommandClass id="96">
+    <Compatibility>
+      <MapRootToEndpoint>true</MapRootToEndpoint>
+    </Compatibility>
+  </CommandClass>
+</Product>
