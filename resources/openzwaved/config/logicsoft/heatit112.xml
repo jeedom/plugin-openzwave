@@ -166,7 +166,7 @@ NB! Please use this procedure only when the primary controller/ gateway is missi
     <Compatibility/>
   </CommandClass>
   <CommandClass id="133">
-    <Associations num_groups="5">
+    <Associations num_groups="19">
       <Group index="1" label="Lifeline. - Reset notification - Basic Report On / Off - Multilevel Sensor Report" max_associations="5"/>
       <Group index="2" label="Basic Set On / Off when input 1 is activated." max_associations="5"/>
       <Group index="3" label="Binary Switch Set On / Off when input 1 is activated." max_associations="5"/>
