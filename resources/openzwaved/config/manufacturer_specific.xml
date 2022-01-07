@@ -1318,10 +1318,9 @@
 		<Product config="thermofloor/heatit058.xml" id="0203" name="Heatit Thermostat TF 058" type="0003"/>
 		<Product type="0004" id="0204" name="Heatit Thermostat Z-Temp2" config="thermofloor/ztemp2.xml"/>
 		<Product config="thermofloor/heatit-zdim.xml" id="2200" name="Heatit ZDim" type="0003"/>
-		<Product config="thermofloor/heatit112.xml" id="0112" name="Heatit Z-Din 616" type="0003"/>
+		<Product config="thermofloor/heatit20a.xml" id="020a" name="Heatit Z-Water TF 20a" type="0003"/>
 		<Product config="thermofloor/heatit208.xml" id="0208" name="Heatit Z-Relay" type="0003"/>
 		<Product id="000d" name="Heatit Z-Smoke Battery" type="0003"/>
-		<Product type="0003" id="020a" name="Heatit Z-Water TF 20a" config="thermofloor/heatit20a.xml"/>
 	</Manufacturer>
 	<Manufacturer id="008b" name="Trane">
 		<Product type="5452" id="5431" name="Model TZEMT400AB32MAA" config="trane/TZEMT400AB32MAA.xml"/>
