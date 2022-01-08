@@ -10,6 +10,10 @@ O Z-Wave opera na faixa de frequência sub-gigahertz, de acordo com as regiões 
 
 O Z-Wave + traz algumas melhorias, incluindo um alcance melhor e melhora a vida útil das baterias, entre outras. Total compatibilidade com o Z-Wave.
 
+## Compatibilité
+
+Você pode encontrar [aqui](https://compatibility.jeedom.com/index.php?v=d&p=home&plugin=openzwave) a lista de módulos compatíveis com o plugin
+
 ## Distâncias a serem respeitadas com outras fontes de sinais sem fio
 
 Os receptores de rádio devem estar posicionados a uma distância mínima de 50 cm de outras fontes de rádio.
@@ -141,6 +145,7 @@ Esta parte permite que você configure os parâmetros gerais do plugin ![configu
     -   **Porta de chave Z-Wave** : a porta USB na qual sua interface Z-Wave está conectada. Se você usa o Razberry, possui, dependendo da sua arquitetura (RPI ou Jeedomboard), as 2 possibilidades no final da lista.
     -   **Porta do servidor** (modificação perigosa, deve ter o mesmo valor em todos os Jeedoms remotos Z-Wave) : permite modificar a porta de comunicação interna do daemon.
     -   **Backups** : permite gerenciar backups do arquivo de topologia de rede (veja abaixo)
+    -   **Backups de rede** : permite que você gerencie backups do controlador. Você pode criar um backup de uma chave, restaurar um backup, baixá-lo ou fazer upload de um. Para criar um bakcup você tem que dar um nome, escolher a porta certa para o controlador e clicar em iniciar um backup. O procedimento pode demorar alguns minutos. Para restaurar um backup, basta escolher a porta do controlador, escolher o backup a ser restaurado no menu suspenso e clicar em restaurar backup.  O botão de download permite que você baixe um backup para o seu pc. O botão adicionar um backup permite que você carregue um backup no Jeedom. O botão deletar quando permite, como o próprio nome sugere, deletar um backup.
     -   **Módulos de configuração** : permite recuperar, manualmente, os arquivos de configuração do OpenZWave com os parâmetros dos módulos, bem como a definição dos comandos dos módulos para seus usos.
 
         > **Dica**
@@ -876,7 +881,7 @@ Depois que a atualização das dependências for concluída, o daemon será rein
 # Lista de módulos compatíveis
 
 Você encontrará a lista de módulos compatíveis
-[aqui](https://doc.jeedom.com/pt_PT/zwave/equipement.compatible)
+[aqui](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=openzwave)
 
 # Solução de problemas e diagnóstico
 

@@ -4,6 +4,11 @@
 >
 >Zur Erinnerung: Wenn keine Informationen zum Update vorhanden sind, bedeutet dies, dass es sich nur um die Aktualisierung von Dokumentation, Übersetzung oder Text handelt
 
+# 18.10.2021
+
+- Stabiler Durchgang
+- Verbesserte Daemon-Threads
+
 # 20.04.2021
 
 - Hinzufügen der Sicherungs- und Wiederherstellungsfunktion des Zwave-Schlüssels (GPIO oder USB))

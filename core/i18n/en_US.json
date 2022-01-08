@@ -167,7 +167,7 @@
     },
     "plugins\/openzwave\/desktop\/modal\/backupnetwork.php": {
         "Demande envoyée": "Request sent",
-        "Un backup réseau d'un contrôleur Zwave n'est pas une chose anodine. Soyez bien sûr du port et de l'ordre dans lequel vous faites les choses. Jeedom ne pourra être tenu responsable d'une perte de votre contrôleur. PAGE TOUJOURS EN CONSTRUCTION.": "A network backup of a Zwave controller is not trivial. Be sure of the port and the order in which you do things. Jeedom cannot be held responsible for the loss of your controller. PAGE STILL UNDER CONSTRUCTION",
+        "Un backup ou une restauration est en cours": "A backup or restoration is in progress",
         "Sauvegardes": "Backups",
         "Nom du backup": "Backup name",
         "Port clé Z-Wave": "Z-Wave key port",
@@ -177,8 +177,7 @@
         "Supprimer la sauvegarde": "Delete backup",
         "Restaurer la sauvegarde": "Restore backup",
         "Télécharger la sauvegarde": "Download the backup",
-        "Ajouter une sauvegarde": "Add backup",
-        "Informations": "Information"
+        "Ajouter une sauvegarde": "Add backup"
     },
     "plugins\/openzwave\/desktop\/modal\/syncconf.openzwave.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -375,7 +374,9 @@
         "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Successful restoration. OpenZwave restart in progress",
         "Fichier(s) ajouté(s) avec succès": "File (s) added successfully",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Are you sure you want to delete the backup",
-        "Sauvegarde supprimée avec succès": "Backup successfully deleted"
+        "Sauvegarde supprimée avec succès": "Backup successfully deleted",
+        "Un backup ou une restauration est en cours": "A backup or restoration is in progress",
+        "Opération terminée": "Operation completed"
     },
     "plugins\/openzwave\/desktop\/js\/nodes.js": {
         "Contrôleur": "Controller",

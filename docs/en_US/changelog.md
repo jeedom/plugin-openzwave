@@ -4,6 +4,11 @@
 >
 >As a reminder if there is no information on the update, it means that it only concerns the updating of documentation, translation or text
 
+# 10/18/2021
+
+- Stable passage
+- Improved daemon threads
+
 # 04/20/2021
 
 - Addition of the Backup and Restore function of the Zwave key (GPIO or USB)

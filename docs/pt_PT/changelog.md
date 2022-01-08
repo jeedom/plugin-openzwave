@@ -4,6 +4,11 @@
 >
 >Como lembrete, se não houver informações sobre a atualização, isso significa que se trata apenas da atualização da documentação, tradução ou texto
 
+# 18/10/2021
+
+- Passagem estável
+- Threads daemon aprimorados
+
 # 20/04/2021
 
 - Adição da função de backup e restauração da chave Zwave (GPIO ou USB)

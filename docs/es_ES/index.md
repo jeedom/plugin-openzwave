@@ -10,6 +10,10 @@ Z-Wave opera en el rango de frecuencia de sub gigahercios, según las regiones (
 
 El Z-Wave +, trae ciertas mejoras que incluyen un mejor alcance y mejora la vida útil de las baterías, entre otros. Compatibilidad con versiones anteriores de Z-Wave.
 
+## Compatibilité
+
+Puedes encontrar [aquí](https://compatibility.jeedom.com/index.php?v=d&p=home&plugin=openzwave) la lista de módulos compatibles con el complemento
+
 ## Distancias a respetar con otras fuentes de señal inalámbrica
 
 Los receptores de radio deben colocarse a una distancia mínima de 50 cm de otras fuentes de radio.
@@ -141,6 +145,7 @@ Esta parte le permite configurar los parámetros generales del complemento ![con
     -   **Puerto de llave Z-Wave** : el puerto USB en el que está conectada su interfaz Z-Wave. Si usa Razberry, tiene, dependiendo de su arquitectura (RPI o Jeedomboard), las 2 posibilidades al final de la lista.
     -   **Puerto del servidor** (modificación peligrosa, debe tener el mismo valor en todos los Jeedoms remotos Z-Wave) : permite modificar el puerto de comunicación interna del demonio.
     -   **Copias de seguridad** : le permite administrar copias de seguridad del archivo de topología de red (consulte a continuación)
+    -   **Copias de seguridad de la red** : le permite administrar las copias de seguridad del controlador. Puede crear una copia de seguridad de una clave, restaurar una copia de seguridad, descargarla o cargar una. Para crear una copia de seguridad, debe dar un nombre, elegir el puerto correcto para el controlador y hacer clic en iniciar una copia de seguridad. El procedimiento puede tardar unos minutos. Para restaurar una copia de seguridad, simplemente elija el puerto del controlador, elija la copia de seguridad para restaurar en el menú desplegable y haga clic en restaurar copia de seguridad.  El botón de descarga le permite descargar una copia de seguridad a su PC. El botón Agregar una copia de seguridad le permite cargar una copia de seguridad en Jeedom. El botón eliminar cuando le permite, como su nombre indica, eliminar una copia de seguridad.
     -   **Módulos de configuración** : permite recuperar, manualmente, los archivos de configuración de OpenZWave con los parámetros de los módulos, así como la definición de los comandos de los módulos para sus usos.
 
         > **Punta**
@@ -876,7 +881,7 @@ Una vez que se completa la actualización de las dependencias, el demonio se rei
 # Lista de módulos compatibles
 
 Encontrará la lista de módulos compatibles
-[aquí](https://doc.jeedom.com/es_ES/zwave/equipement.compatible)
+[aquí](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=openzwave)
 
 # Solución de problemas y diagnóstico
 
