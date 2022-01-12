@@ -656,6 +656,7 @@
     <Product config="fibaro/fgd211.xml" id="100a" name="FGD211 Universal Dimmer 500W" type="0100"/>
     <Product config="fibaro/fgd211.xml" id="300a" name="FGD211 Universal Dimmer 500W" type="0100"/>
     <Product config="fibaro/fgd212.xml" id="1000" name="FGD212 Dimmer 2" type="0102"/>
+    <Product config="fibaro/fgd212.xml" id="1001" name="FGD212 Dimmer 2" type="0102"/>
     <Product config="fibaro/fgd212.xml" id="2000" name="FGD212 Dimmer 2" type="0102"/>
     <Product config="fibaro/fgd212.xml" id="3000" name="FGD212 Dimmer 2" type="0102"/>
     <Product config="fibaro/fgd212.xml" id="4000" name="FGD212 Dimmer 2" type="0102"/>
