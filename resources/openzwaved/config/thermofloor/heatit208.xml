@@ -54,29 +54,37 @@ NB! Please use this procedure only when the primary controller/ gateway is missi
     </Value>
     <Value genre="config" index="5" instance="1" label="Temperature offset on input 1." size="1" type="byte" max="40" min="-40" value="0">
       <Help>Configures a temperature offset that can be added to the measured temperature in order to get a more accurate measurement from the
-thermistor on input 1</Help>
+thermistor on input 1.
+      Possible parameter settings: -40 to 40 ; -4,0 – 4,0 C. Value is added to the temperature measurement. (Default is 0).</Help>
     </Value>
     <Value genre="config" index="6" instance="1" label="Temperature offset on input 2." size="1" type="byte" max="40" min="-40" value="0">
       <Help>Configures a temperature offset that can be added to the measured temperature in order to get a more accurate measurement from the
-thermistor on input 2</Help>
+thermistor on input 2.
+      Possible parameter settings: -40 to 40 ; -4,0 – 4,0 C. Value is added to the temperature measurement. (Default is 0).</Help>
     </Value>
     <Value genre="config" index="7" instance="1" label="Time interval for reports sent about input 1." max="8640" min="0" size="2" type="short" value="6">
-      <Help>Configures the time interval between when sensor reports are transmitted for input 1.</Help>
+      <Help>Configures the time interval between when sensor reports are transmitted for input 1.
+      Possible parameter settings: 0 to 8 640 ; 0 – 86 400 seconds. Default value is 6 (60 seconds) which will cause a report to be sent
+every minute.</Help>
     </Value>
     <Value genre="config" index="8" instance="1" label="Time interval for reports sent about input 2." max="8640" min="0" size="2" type="short" value="6">
-      <Help>Configures the time interval between when sensor reports are transmitted for input 2.</Help>
+      <Help>Configures the time interval between when sensor reports are transmitted for input 2.
+      Possible parameter settings: 0 to 8 640 ; 0 – 86 400 seconds. Default value is 6 (60 seconds) which will cause a report to be sent
+every minute.</Help>
     </Value>
     <Value genre="config" index="9" instance="1" label="Time interval between notification reports for input 3." max="8640" min="0" size="2" type="short" value="2">
-      <Help>Configures the time interval between when notification reports for flood input 3.</Help>
+      <Help>Configures the time interval between when notification reports for flood input 3.
+      Possible parameter settings: 0 to 8 640 ; 0 – 86 400 seconds. Default value is 2 (20 seconds) which will cause reports to be sent every
+20 seconds.</Help>
     </Value>
     <Value genre="config" index="10" instance="1" label="Time interval between meter reports." max="8640" min="0" size="2" type="short" value="90">
-      <Help>Configures the time interval between when meter reports for reporting the energy (kWh) consumed by the load connected to the relay output.</Help>
+      <Help>Configures the time interval between when meter reports for reporting the energy (kWh) consumed by the load connected to the relay output.
+      Possible parameter settings: 0 to 8 640 ; 0 – 86 400 seconds. Default value is 90 (900 seconds) which will cause reports to be sent
+every 15 minute.</Help>
     </Value>
-    <Value genre="config" index="11" instance="1" label="Flood steady timer." max="60" min="0" size="1" type="byte" value="6">
-      <Help>Configures the time that the flood input (input 3) has to be steady before the state is accepted as a valid state.</Help>
-	  <Item label="0 Relay is not turned on automatically. " value="0"/>
-      <Item label="1 The relay is turned on when a flood is detected. (Default)" value="1"/>
-      <Item label="2 The relay is turned on when no flood is detected." value="2"/>
+    <Value genre="config" index="11" instance="1" label="Flood steady timer." max="60" min="0" size="1" type="short" value="6">
+      <Help>Configures the time that the flood input (input 3) has to be steady before the state is accepted as a valid state.
+     Possible parameter settings: 0 – 60 seconds. Default value is 6 (6 seconds) before a state is accepted as valid.</Help>
     </Value>
     <Value genre="config" index="12" instance="1" label="Auto relay on" size="1" type="list" value="2">
       <Help>Configures internal states that will cause the relay to be turned on.</Help>
@@ -90,22 +98,27 @@ thermistor on input 2</Help>
       <Item label="1 The relay is turned off when a flood is detected. (Default)" value="1"/>
       <Item label="2 The relay is turned off when no flood is detected." value="2"/>
     </Value>
-	<Value genre="config" index="14" instance="1" label="Flood detection threshold" max="4095" min="0" size="2" type="short" value="2048">
-      <Help>Configures the threshold for input 3 that will cause a flood to be detected.</Help>
+    <Value genre="config" index="14" instance="1" label="Flood detection threshold" max="4095" min="0" size="2" type="short" value="2048">
+      <Help>Configures the threshold for input 3 that will cause a flood to be detected.
+      Possible parameter settings: 0 to 4095 ; Low value means a low detection threshold, high value will cause the input to be more
+sensitive. Default value is 2048.</Help>
     </Value>
-	<Value genre="config" index="15" instance="1" label="Voltage" max="250" min="0" size="1" type="byte" value="220">
-      <Help>Configures the value used for power calculation, as only the current for the load on the relay output is measured.</Help>
+    <Value genre="config" index="15" instance="1" label="Voltage" max="250" min="0" size="1" type="byte" value="220">
+      <Help>Configures the value used for power calculation, as only the current for the load on the relay output is measured.
+      Possible parameter settings: 0 – 250 Volt. Default value is 220.</Help>
     </Value>
-	<Value genre="config" index="16" instance="1" label="Ampere" max="255" min="0" size="1" type="byte" value="0">
+    <Value genre="config" index="16" instance="1" label="Ampere" max="255" min="0" size="1" type="byte" value="0">
       <Help>NOT USED</Help>
     </Value>
 	<Value genre="config" index="17" instance="1" label="Ampere" max="255" min="0" size="1" type="byte" value="81">
       <Help>Configures the digital value on the A/D converter that corresponds to a current of one ampere.
-      DO NOT CHANGE THIS VALUE, UNLESS INSTRUCTED TO.</Help>
+      DO NOT CHANGE THIS VALUE, UNLESS INSTRUCTED TO.
+     Possible parameter settings: 0 – 255. Default value is 81 which is corresponds to the current sensor ACS722LLCTR-20AB.</Help>
     </Value>
 	<Value genre="config" index="18" instance="1" label="Size of load connected" max="6000" min="0" size="2" type="short" value="0">
       <Help>Configures a constant value that will be used in power metering when this value is different from 0.
-This value specifies the actual load in Watt used for power metering.</Help>
+This value specifies the actual load in Watt used for power metering.
+     Possible parameter settings:0 – 6000 Watt. Default value is 0.</Help>
     </Value>
       
     <Compatibility/>
