@@ -10,6 +10,10 @@ Z-Wave arbeitet nach Regionen im Sub-Gigahertz-Frequenzbereich (868 MHz in Europ
 
 Der Z-Wave + bringt bestimmte Verbesserungen, einschließlich einer besseren Reichweite, und verbessert unter anderem die Lebensdauer der Batterien. Volle Abwärtskompatibilität mit dem Z-Wave.
 
+## Compatibilité
+
+Sie finden [hier](https://compatibility.jeedom.com/index.php?v=d&p=home&plugin=openzwave) die Liste der Module, die mit dem Plugin kompatibel sind
+
 ## Mit anderen drahtlosen Signalquellen zu beachtende Entfernungen
 
 Funkempfänger müssen in einem Mindestabstand von 50 cm zu anderen Funkquellen aufgestellt werden.
@@ -141,6 +145,7 @@ In diesem Teil können Sie die allgemeinen Parameter des Plugins konfigurieren !
     -   **Z-Wave-Schlüsselanschluss** : Der USB-Anschluss, an den Ihre Z-Wave-Schnittstelle angeschlossen ist. Wenn Sie den Razberry verwenden, haben Sie je nach Ihrer Architektur (RPI oder Jeedomboard) die 2 Möglichkeiten am Ende der Liste.
     -   **Server-Port** (gefährliche Modifikation, muss auf allen Z-Wave Remote Jeedoms den gleichen Wert haben) : Ermöglicht das Ändern des internen Kommunikationsports des Dämons.
     -   **Backups** : Mit dieser Option können Sie Sicherungen der Netzwerktopologiedatei verwalten (siehe unten))
+    -   **Netzwerk-Backups** : ermöglicht Ihnen die Verwaltung von Controller-Backups. Sie können ein Backup eines Schlüssels erstellen, ein Backup wiederherstellen, herunterladen oder hochladen. Um einen Bakcup zu erstellen, müssen Sie einen Namen vergeben, den richtigen Port für den Controller auswählen und auf Backup starten klicken. Der Vorgang kann einige Minuten dauern. Um ein Backup wiederherzustellen, wählen Sie einfach den Controller-Port aus, wählen Sie das wiederherzustellende Backup aus dem Dropdown-Menü und klicken Sie auf Backup wiederherstellen.  Mit der Download-Schaltfläche können Sie ein Backup auf Ihren PC herunterladen. Mit der Schaltfläche "Backup hinzufügen" können Sie ein Backup auf Jeedom hochladen. Der Löschknopf wann erlaubt es, wie der Name schon sagt, das Löschen eines Backups.
     -   **Module konfigurieren** : ermöglicht die manuelle Wiederherstellung der OpenZWave-Konfigurationsdateien mit den Parametern der Module sowie der Definition der Befehle der Module für deren Verwendung.
 
         > **Spitze**
@@ -876,7 +881,7 @@ Sobald die Aktualisierung der Abhängigkeiten abgeschlossen ist, wird der Dämon
 # Liste kompatibler Module
 
 Sie finden die Liste der kompatiblen Module
-[hier](https://doc.jeedom.com/de_DE/zwave/equipement.compatible)
+[hier](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=openzwave)
 
 # Fehlerbehebung und Diagnose
 

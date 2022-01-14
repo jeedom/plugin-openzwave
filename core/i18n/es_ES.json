@@ -167,7 +167,7 @@
     },
     "plugins\/openzwave\/desktop\/modal\/backupnetwork.php": {
         "Demande envoyée": "Solicitud enviada",
-        "Un backup réseau d'un contrôleur Zwave n'est pas une chose anodine. Soyez bien sûr du port et de l'ordre dans lequel vous faites les choses. Jeedom ne pourra être tenu responsable d'une perte de votre contrôleur. PAGE TOUJOURS EN CONSTRUCTION.": "Una copia de seguridad en red de un controlador Zwave no es trivial. Asegúrese del puerto y el orden en que hace las cosas. Jeedom no se hace responsable de la pérdida de su controlador. PÁGINA TODAVÍA EN CONSTRUCCIÓN",
+        "Un backup ou une restauration est en cours": "Hay una copia de seguridad o una restauración en curso",
         "Sauvegardes": "Copias de seguridad",
         "Nom du backup": "Nombre de la copia de seguridad",
         "Port clé Z-Wave": "Puerto clave Z-Wave",
@@ -177,8 +177,7 @@
         "Supprimer la sauvegarde": "Eliminar copia de seguridad",
         "Restaurer la sauvegarde": "Restaurar copia de seguridad",
         "Télécharger la sauvegarde": "Descarga la copia de seguridad",
-        "Ajouter une sauvegarde": "Agregar respaldo",
-        "Informations": "Información"
+        "Ajouter une sauvegarde": "Agregar respaldo"
     },
     "plugins\/openzwave\/desktop\/modal\/syncconf.openzwave.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -375,7 +374,9 @@
         "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Restauración exitosa. Reinicio de OpenZwave en curso",
         "Fichier(s) ajouté(s) avec succès": "Archivo (s) agregado (s) exitosamente",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "¿Estás seguro de que deseas eliminar la copia de seguridad?",
-        "Sauvegarde supprimée avec succès": "Copia de seguridad eliminada correctamente"
+        "Sauvegarde supprimée avec succès": "Copia de seguridad eliminada correctamente",
+        "Un backup ou une restauration est en cours": "Hay una copia de seguridad o una restauración en curso",
+        "Opération terminée": "Operación completada"
     },
     "plugins\/openzwave\/desktop\/js\/nodes.js": {
         "Contrôleur": "Controlador",

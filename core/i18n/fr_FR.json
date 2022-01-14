@@ -167,7 +167,7 @@
     },
     "plugins\/openzwave\/desktop\/modal\/backupnetwork.php": {
         "Demande envoyée": "Demande envoyée",
-        "Un backup réseau d'un contrôleur Zwave n'est pas une chose anodine. Soyez bien sûr du port et de l'ordre dans lequel vous faites les choses. Jeedom ne pourra être tenu responsable d'une perte de votre contrôleur. PAGE TOUJOURS EN CONSTRUCTION.": "Un backup réseau d'un contrôleur Zwave n'est pas une chose anodine. Soyez bien sûr du port et de l'ordre dans lequel vous faites les choses. Jeedom ne pourra être tenu responsable d'une perte de votre contrôleur. PAGE TOUJOURS EN CONSTRUCTION.",
+        "Un backup ou une restauration est en cours": "Un backup ou une restauration est en cours",
         "Sauvegardes": "Sauvegardes",
         "Nom du backup": "Nom du backup",
         "Port clé Z-Wave": "Port clé Z-Wave",
@@ -177,8 +177,7 @@
         "Supprimer la sauvegarde": "Supprimer la sauvegarde",
         "Restaurer la sauvegarde": "Restaurer la sauvegarde",
         "Télécharger la sauvegarde": "Télécharger la sauvegarde",
-        "Ajouter une sauvegarde": "Ajouter une sauvegarde",
-        "Informations": "Informations"
+        "Ajouter une sauvegarde": "Ajouter une sauvegarde"
     },
     "plugins\/openzwave\/desktop\/modal\/syncconf.openzwave.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -375,7 +374,9 @@
         "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Restauration réussie. Redémarrage d\\'OpenZwave en cours.",
         "Fichier(s) ajouté(s) avec succès": "Fichier(s) ajouté(s) avec succès",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Êtes-vous sûr de vouloir supprimer la sauvegarde",
-        "Sauvegarde supprimée avec succès": "Sauvegarde supprimée avec succès"
+        "Sauvegarde supprimée avec succès": "Sauvegarde supprimée avec succès",
+        "Un backup ou une restauration est en cours": "Un backup ou une restauration est en cours",
+        "Opération terminée": "Opération terminée"
     },
     "plugins\/openzwave\/desktop\/js\/nodes.js": {
         "Contrôleur": "Contrôleur",

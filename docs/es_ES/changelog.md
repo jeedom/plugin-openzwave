@@ -4,6 +4,11 @@
 >
 >Como recordatorio si no hay información sobre la actualización, significa que solo se refiere a la actualización de documentación, traducción o texto
 
+# 18/10/2021
+
+- Paso estable
+- Hilos de demonio mejorados
+
 # 20/04/2021
 
 - Adición de la función de copia de seguridad y restauración de la clave Zwave (GPIO o USB)
