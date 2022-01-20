@@ -1,0 +1,96 @@
+<Product Revision="4" xmlns="https://github.com/OpenZWave/open-zwave">
+  <MetaData>
+    <MetaDataItem id="0800" name="FrequencyName" type="1214">CEPT (Europe)</MetaDataItem>
+  </MetaData>
+
+<!-- Configuration  -->
+  <CommandClass id="112">
+	<Value type="short" genre="config" instance="1" index="30" label="OPEN_COLLISION_SCENE_ID" max="254" min="0" size="2" value="0">
+      <Help>
+        Scene ID sent if a collision is detected during opening operation.
+      </Help>
+    </Value>
+	<Value type="short" genre="config" instance="1" index="31" label="CLOSE_COLLISION_SCENE_ID" max="254" min="0" size="2" value="0">
+      <Help>
+        Scene ID sent if a collision is detected during closing operation.
+      </Help>
+    </Value>
+     <Value type="byte" genre="config" instance="1" index="32" label="PARAM_ID" size="1" value="13">
+      <Help>Parameter ID used by the window
+covering set on group: Follow me weatherFollow me weather</Help>
+      <Item label="0" value="0"/>
+      <Item label="1" value="1"/>
+      <Item label="2" value="2"/>
+      <Item label="3" value="3"/>
+      <Item label="4" value="4"/>
+      <Item label="5" value="5"/>
+      <Item label="6" value="6"/>
+      <Item label="7" value="7"/>
+      <Item label="8" value="8"/>
+      <Item label="9" value="9"/>
+      <Item label="10" value="10"/>
+      <Item label="11" value="11"/>
+      <Item label="12" value="12"/>
+      <Item label="13" value="13"/>
+      <Item label="14" value="14"/>
+      <Item label="15" value="15"/>
+      <Item label="16" value="16"/>
+      <Item label="17" value="17"/>
+      <Item label="18" value="18"/>
+      <Item label="19" value="19"/>
+      <Item label="20" value="20"/>
+      <Item label="21" value="21"/>
+      <Item label="22" value="22"/>
+      <Item label="23" value="23"/>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="33" label="MOVEMENT_TRIGGER" size="1" value="0">
+      <Help>ADVANCED PARAM NOT USED Read Only parameter used to tell the reason of the last movement 0.</Help>
+      <Item label="Request by the user" value="0"/>
+      <Item label="Wind" value="1"/>
+      <Item label="Sun" value="2"/>
+      <Item label="Rain" value="3"/>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="34" label="AUTOMATION_CONFIG" size="1" value="5">
+      <Help>The value of this parameter
+is the sum of Wind, Sun and Rain status. It can be used to set the automation status. Since
+Automation for Wind and Rain are always activated the only valid values are: 5 to disable the
+Sun automation 7 to enabled it.</Help>
+      <Item label="Disable" value="5"/>
+      <Item label="Enable" value="7"/>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="35" label="SENSOR_ACTIVATION_STATUS" size="1" value="0">
+      <Help>ADVANCED PARAM NOT USED It allows to know which sensor has been associated to the motor. The value of this parameter
+is the sum of Wind, Sun and Rain status.</Help>
+      <Item label="Disable" value="5"/>
+      <Item label="Enable" value="7"/>
+    </Value>
+	<Value type="byte" genre="config" instance="1" index="36" label="LOST_LIFE_SIGNAL" size="1" value="0">
+      <Help>ADVANCED PARAM NOT USED It allows you to know
+if the radio connection is operative or if the motor has lost the connection with its sensors</Help>
+      <Item label="Connection with the sensor is operative" value="0"/>
+      <Item label="Connection with the sensor has been lost" value="1"/>
+    </Value>
+	<Value type="short" genre="config" instance="1" index="37" label="LEVEL_REPORT_PERIOD" max="60" min="2" size="2" value="5">
+      <Help>
+        Used to define the level report frequency when the motor is moving. Valid values are from
+		2 (report updated every 2 seconds) to 60 (report updated every 60 seconds).
+      </Help>
+    </Value>
+     <Value type="byte" genre="config" instance="1" index="38" label="SEND_MULTILEVEL_REPORT" size="1" value="0">
+      <Help>For backward compatibility the device can send the multilevel report together with the
+		Switch Multilevel report in addition to the update with Windows Covering report.</Help>
+      <Item label="DISABLED" value="0"/>
+      <Item label="ENABLED" value="1"/>
+    </Value>
+</CommandClass>
+
+  <!-- Association Groups -->
+  <CommandClass id="133">
+    <Associations num_groups="4">
+      <Group index="1" label="Lifeline" max_associations="5"/>
+      <Group index="2" label="Follow Me" max_associations="5"/>
+      <Group index="3" label="Scene Activation" max_associations="5"/>
+      <Group index="4" label="Follow Me Weather" max_associations="5"/>
+    </Associations>
+  </CommandClass>
+</Product>

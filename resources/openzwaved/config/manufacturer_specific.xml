@@ -1436,6 +1436,7 @@
 		<Product type="0311" id="0304" name="TZ74 Dual Switch" config="wenzhou/tz74.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0149" name="wiDom">
+		<Product type="0004" id="0002" name="Motor ORA ZRX" config="widom/ora_zrx.xml"/>
 		<Product type="0012" id="0104" name="UBS104 Universal Relay Switch" config="widom/UBS104.xml"/>
 		<Product type="1214" id="0304" name="UME304 Energy Driven Switch" config="widom/UME304C_S.xml"/>
 		<Product type="1214" id="0504" name="WDS Universal Double Switch" config="widom/WDS.xml"/>
@@ -1444,6 +1445,9 @@
 		<Product type="1214" id="0700" name="WSP Smart Plug" config="widom/WSP.xml" />
 		<Product type="1214" id="0a00" name="WTED Smart TE Dimmer" config="widom/WTED.xml"/>
 		<Product type="1214"id="0800" name="UMS2 Smart Roller Shutter" config="widom/UMS2.xml"/>
+	</Manufacturer>
+	<Manufacturer id="0455" name="wiDom">
+		<Product type="0004" id="0002" name="Motor OPEN ZRX" config="widom/open_zrx.xml"/>
 	</Manufacturer>
 	<Manufacturer id="004c" name="Woodward Labs">
 	</Manufacturer>

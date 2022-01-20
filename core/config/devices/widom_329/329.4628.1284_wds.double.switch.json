@@ -215,5 +215,17 @@
             }, 
             "unite": "kWh"
         }
+    ],
+  "recommended": {
+    "groups": [
+      {
+        "index": 1,
+        "value": "remove"
+      },
+      {
+        "index": 1,
+        "value": "add1"
+      }
     ]
+  }
 }
