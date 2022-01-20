@@ -1972,6 +1972,7 @@
 		<Product type="1214"id="0800" name="UMS2 Smart Roller Shutter" config="widom/UMS2.xml"/>
 	</Manufacturer>
 	<Manufacturer id="0455" name="wiDom">
+		<Product type="0004" id="0001" name="Motor ORA ZRX" config="widom/ora_zrx.xml"/>
 		<Product type="0004" id="0002" name="Motor OPEN ZRX" config="widom/open_zrx.xml"/>
   </Manufacturer>
   <Manufacturer id="012D" name="Wilshine Holding"></Manufacturer>
