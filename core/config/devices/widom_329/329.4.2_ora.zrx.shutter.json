@@ -130,7 +130,7 @@
         "index": 33,
         "instance": 1
       },
-      "subtype": "string",
+      "subtype": "numeric",
       "display": {
         "generic_type": "DONT"
       }
