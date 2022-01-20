@@ -118,7 +118,39 @@
                 "icon": "<i class=\"fas fa-stop\"></i>", 
                 "generic_type": "STOP"
             }
-        }
+        },
+    {
+      "name": "Raison",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 112,
+        "value": "",
+        "index": 33,
+        "instance": 1
+      },
+      "subtype": "string",
+      "display": {
+        "generic_type": "DONT"
+      }
+    },
+    {
+      "name": "Refresh raison",
+      "type": "action",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 112,
+        "value": "type=refreshData",
+        "index": 33,
+        "instance": 1
+      },
+      "subtype": "other",
+      "display": {
+        "generic_type": "DONT"
+      }
+    }
     ],
   "recommended": {
     "params": [
