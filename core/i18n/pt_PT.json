@@ -167,7 +167,7 @@
     },
     "plugins\/openzwave\/desktop\/modal\/backupnetwork.php": {
         "Demande envoyée": "Pedido enviado",
-        "Un backup réseau d'un contrôleur Zwave n'est pas une chose anodine. Soyez bien sûr du port et de l'ordre dans lequel vous faites les choses. Jeedom ne pourra être tenu responsable d'une perte de votre contrôleur. PAGE TOUJOURS EN CONSTRUCTION.": "Um backup de rede de um controlador Zwave não é trivial. Certifique-se do porto e da ordem em que faz as coisas. A Jeedom não pode ser responsabilizada pela perda do seu controlador. PÁGINA AINDA EM CONSTRUÇÃO",
+        "Un backup ou une restauration est en cours": "Um backup ou restauração está em andamento",
         "Sauvegardes": "Backups",
         "Nom du backup": "Nome de backup",
         "Port clé Z-Wave": "Porta de chave Z-Wave",
@@ -177,8 +177,7 @@
         "Supprimer la sauvegarde": "Excluir backup",
         "Restaurer la sauvegarde": "Restaurar backup",
         "Télécharger la sauvegarde": "Baixe o backup",
-        "Ajouter une sauvegarde": "Adicionar backup",
-        "Informations": "Em formação"
+        "Ajouter une sauvegarde": "Adicionar backup"
     },
     "plugins\/openzwave\/desktop\/modal\/syncconf.openzwave.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -375,7 +374,9 @@
         "Restauration réussie. Redémarrage d\\'OpenZwave en cours.": "Restauração bem-sucedida. Reinicialização do OpenZwave em andamento",
         "Fichier(s) ajouté(s) avec succès": "Arquivo (s) adicionado (s) com sucesso",
         "Êtes-vous sûr de vouloir supprimer la sauvegarde": "Tem certeza que deseja excluir o backup",
-        "Sauvegarde supprimée avec succès": "Backup excluído com sucesso"
+        "Sauvegarde supprimée avec succès": "Backup excluído com sucesso",
+        "Un backup ou une restauration est en cours": "Um backup ou restauração está em andamento",
+        "Opération terminée": "Operação concluída"
     },
     "plugins\/openzwave\/desktop\/js\/nodes.js": {
         "Contrôleur": "Controlador",

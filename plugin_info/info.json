@@ -42,5 +42,7 @@
         "Docker",
         "DIY",
         "v4"
-    ]
+    ],
+    "changelog_beta": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/openzwave\/beta\/changelog",
+    "documentation_beta": "https:\/\/doc.jeedom.com\/#language#\/plugins\/automation protocol\/openzwave\/beta"
 }

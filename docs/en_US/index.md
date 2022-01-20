@@ -10,6 +10,10 @@ Z-Wave operates in the sub-gigahertz frequency range, according to the regions (
 
 The Z-Wave +, brings certain improvements including a better range and improves the life of the batteries among others. Full backward compatibility with the Z-Wave.
 
+## Compatibilité
+
+You can find [here](https://compatibility.jeedom.com/index.php?v=d&p=home&plugin=openzwave) the list of modules compatible with the plugin
+
 ## Distances to be Respected with Other Wireless Signal Sources
 
 Radio receivers must be positioned at a minimum distance of 50 cm from other radio sources.
@@ -141,6 +145,7 @@ This part allows you to configure the general parameters of the plugin ![configu
     -   **Z-Wave key port** : the USB port on which your Z-Wave interface is connected. If you use the Razberry, you have, depending on your architecture (RPI or Jeedomboard) the 2 possibilities at the end of the list.
     -   **Server Port** (dangerous modification, must have the same value on all Z-Wave remote Jeedoms) : allows to modify the internal communication port of the daemon.
     -   **Backups** : allows you to manage backups of the network topology file (see below)
+    -   **Network backups** : allows you to manage controller backups. You can create a backup of a key, restore a backup, download it or upload one. To create a bakcup you have to give a name, choose the right port for the controller and click on start a backup. The procedure may take a few minutes. To restore a backup, simply choose the controller port, choose the backup to restore from the drop-down menu and click on restore backup.  The download button allows you to download a backup to your pc. The add a backup button allows you to upload a backup on Jeedom. The delete button when to allows it, as its name suggests, to delete a backup.
     -   **Config modules** : allows to recover, manually, the OpenZWave configuration files with the parameters of the modules as well as the definition of the commands of modules for their uses.
 
         > **Tip**
@@ -876,7 +881,7 @@ Once the update of dependencies is completed, the daemon will restart automatica
 # List of compatible modules
 
 You will find the list of compatible modules
-[here](https://doc.jeedom.com/en_US/zwave/equipement.compatible)
+[here](https://compatibility.jeedom.com/index.php?v=d&p=home&search=&plugin=openzwave)
 
 # Troubleshooting and diagnosis
 
