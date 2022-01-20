@@ -206,5 +206,17 @@
             }, 
             "isVisible": "1"
         }
+    ],
+  "recommended": {
+    "groups": [
+      {
+        "index": 1,
+        "value": "remove"
+      },
+      {
+        "index": 1,
+        "value": "add1"
+      }
     ]
+  }
 }
