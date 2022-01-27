@@ -20,21 +20,16 @@
 
   <!-- Configuration Parameters -->
   <CommandClass id="112">
-    <Value genre="config" instance="1" index="1" value="1" label="Temperature/ Humidity report interval" units="" size="1" min="0" max="3" type="list">
-      <Help></Help>
-      <Item value="0" label="OFF"/>
-      <Item value="1" label="Only report the difference, the current temperature and the last temperature of a certain value to trigger the reporting"/>
-      <Item value="2" label="Regular reporting only"/>
-      <Item value="3" label="Difference reporting + Interval reporting"/>
-    </Value>
     <Value genre="config" instance="1" index="1" value="900" label="Temperature/ Humidity report interval" units="" size="2" min="30" max="32767" type="short">
       <Help>Used to adjust the time between report interval for Temperature and humidity reports.</Help>
     </Value>
     <Value genre="config" instance="1" index="2" value="10" label="Temperature delta value" units="" size="2" min="0" max="50" type="short">
-      <Help></Help>
+      <Help>0 - Reporting temperature based on change is disabled
+	    5 to 50 - 0.5 to 5°C (Default 10, 1.0°C)</Help>
     </Value>
     <Value genre="config" instance="1" index="3" value="10" label="Humidity delta value" units="" size="2" min="0" max="50" type="short">
-      <Help></Help>
+      <Help>0 - Reporting humidity based on change is disabled
+	    5 to 50 - 0.5 to 5% (Default 10, 1.0%)</Help>
     </Value>
     <Value genre="config" instance="1" index="4" value="0" label="Temperature offset settings" units="" size="2" min="-100" max="100" type="short">
       <Help>Calibrate the internal sensor. NB! To set negative values; 65 535 – desired value + 1.</Help>
@@ -43,7 +38,7 @@
       <Help>Offsets the measured relative humidity. NB! To set negative values; 65 535 – desired value + 1</Help>
     </Value>
     <Value genre="config" instance="1" index="6" value="10" label="Proximity sensor retrigger interval" units="" size="2" min="2" max="270" type="short">
-      <Help></Help>
+      <Help>2 to 270 - 2 to 270 seconds (Default 10, 10 seconds)</Help>
     </Value>
     <Value genre="config" instance="1" index="7" value="1" label="Proximity sensor Enable / Disable" units="" size="2" min="0" max="1" type="short">
       <Help>Choose if proximity sensor is used or not.</Help>
