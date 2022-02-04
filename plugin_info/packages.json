@@ -5,7 +5,7 @@
     "python-dev" : {},
     "python3-pyudev" : {},
     "python3-requests" : {},
-    "python3-setuptool" : {},
+    "python3-setuptools" : {},
     "make" : {},
     "build-essential" : {},
     "libudev-dev" : {},
