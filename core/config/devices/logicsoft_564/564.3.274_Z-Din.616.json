@@ -356,6 +356,168 @@
             "display": {
                 "generic_type": "LIGHT_STATE"
             }
+        },
+        {
+            "name": "Input 1", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 8
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Input 2", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 9
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Input 3", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 10
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Input 4", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 11
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Input 5", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 12
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Input 6", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 37, 
+                "value": "", 
+                "index": 0, 
+                "instance": 13
+            }, 
+            "subtype": "binary", 
+            "display": {
+                "generic_type": "DONT"
+            }
+        }, 
+        {
+            "name": "Scene", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 91, 
+                "value": "", 
+                "index": 128, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "", 
+            "template": {
+                "dashboard": "badge", 
+                "mobile": "badge"
+            }
+        },
+        {
+            "name": "SceneID", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 91, 
+                "value": "", 
+                "index": 2, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "", 
+            "template": {
+                "dashboard": "badge", 
+                "mobile": "badge"
+            }
+        }, 
+        {
+            "name": "SceneAttribute", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 91, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1, 
+                "repeatEventManagement": "always"
+            }, 
+            "subtype": "string", 
+            "display": {
+                "generic_type": "DONT"
+            }, 
+            "unite": "", 
+            "template": {
+                "dashboard": "badge", 
+                "mobile": "badge"
+            }
         }
     ]
 }
