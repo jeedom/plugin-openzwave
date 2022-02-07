@@ -27,6 +27,6 @@
     "tornado" : {"reinstall" : true}
   },
   "post-install" : {
-    "script" : "plugins/openzwave/resources/post-install.sh"
+    "script" : "plugins/openzwave/resources/post_install.sh"
   }
 }
