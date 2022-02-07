@@ -34,6 +34,7 @@
 #include "platform/Log.h"
 
 #include "value_classes/ValueDecimal.h"
+#include "value_classes/ValueByte.h"
 
 #include "tinyxml.h"
 
@@ -45,7 +46,9 @@ enum ThermostatSetpointCmd
 	ThermostatSetpointCmd_Get				= 0x02,
 	ThermostatSetpointCmd_Report			= 0x03,
 	ThermostatSetpointCmd_SupportedGet		= 0x04,
-	ThermostatSetpointCmd_SupportedReport	= 0x05
+	ThermostatSetpointCmd_SupportedReport	= 0x05,
+	ThermostatSetpointCmd_CapabilitiesGet   = 0x09,
+	ThermostatSetpointCmd_CapabilitiesReport = 0x0A
 };
 
 enum
@@ -257,6 +260,20 @@ bool ThermostatSetpoint::HandleMsg
 				{
 					if( ( _data[i] & (1<<bit) ) != 0 )
 					{
+						if (GetVersion() >= 3)
+						{
+							Msg* msg = new Msg("ThermostatSetpointCmd_CapabilitesGet", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true, true, FUNC_ID_APPLICATION_COMMAND_HANDLER, GetCommandClassId());
+							msg->SetInstance(this, _instance);
+							msg->Append(GetNodeId());
+							msg->Append(3);
+							msg->Append(GetCommandClassId());
+							msg->Append(ThermostatSetpointCmd_CapabilitiesGet);
+							uint8 type = ((i - 1) << 3) + bit;
+							msg->Append(type);
+							msg->Append(GetDriver()->GetTransmitOptions());
+							GetDriver()->SendMsg(msg, OpenZWave::Driver::MsgQueue_Query);
+							Log::Write(LogLevel_Info, GetNodeId(), "   Requested Thermostat Setpoint Capabilities" );
+						}
 						// Add supported setpoint
 						int32 index = (int32)((i-1)<<3) + bit + m_setPointBase;
 						if( index < ThermostatSetpoint_Count )
@@ -273,6 +290,46 @@ bool ThermostatSetpoint::HandleMsg
 		return true;
 	}
 
+	if (ThermostatSetpointCmd_CapabilitiesReport == (ThermostatSetpointCmd) _data[0])
+	{
+		if (Node* node = GetNodeUnsafe())
+		{
+			// We have received the capabilities for supported setpoint Type
+			uint8 scale;
+			uint8 min_precision = 0;
+			uint8 max_precision = 0;
+			uint8 size = _data[2] & 0x07;
+			string minValue = ExtractValue(&_data[2], &scale, &min_precision);
+			string maxValue = ExtractValue(&_data[2 + size + 1], &scale, &max_precision);
+
+			Log::Write(LogLevel_Info, GetNodeId(), "Received capabilities of thermostat setpoint type %d, min %s (field size: %i bytes, precision: %i decimals) max %s (precision: %i decimals)", (int) _data[1], minValue.c_str(), size, min_precision, maxValue.c_str(), max_precision);
+
+			uint8 index = _data[1];
+
+// JFD: Porting the Z-TRM3 minsize fix: branch 1.6 has a different way of managing ValueIDs and
+// explicitely defines values for setpoint minsize and precision. The index part is 8 bits unsigned
+// for both branches. We use an arbitrary unused index value for storing the minsize and precision.
+// We don't store the minimum and maximum setpoint values as we have no use for them.            
+#define   ValueID_Index_ThermostatSetpoint_SetPointMinSize   250
+#define   ValueID_Index_ThermostatSetpoint_SetPointPrecision 251
+
+			if (index < ThermostatSetpoint_Count)
+			{
+				string setpointName = c_setpointName[index];
+
+				if (m_enforceMinSizePrecision) {
+					// Retain the size of the minimum temperature as the minimum field size for the temperature and the minimum precision as the base precision for future communication
+					node->CreateValueByte(ValueID::ValueGenre_User, GetCommandClassId(), _instance, ValueID_Index_ThermostatSetpoint_SetPointMinSize, setpointName + "_setpointminsize", "B", false, false, size, 0);
+					node->CreateValueByte(ValueID::ValueGenre_User, GetCommandClassId(), _instance, ValueID_Index_ThermostatSetpoint_SetPointPrecision, setpointName + "_setpointprecision", "D", false, false, min_precision, 0);
+					Log::Write(LogLevel_Info, GetNodeId(), "EnforceMinSizePrecision enabled, retained min size and min precision from capability report for setpoint command");
+				}
+//                    node->CreateValueDecimal(ValueID::ValueGenre_User, GetCommandClassId(), _instance, ValueID_Index_ThermostatSetpoint::Unused_0_Minimum + index, setpointName + "_minimum", "C", false, false, minValue, 0);
+//                    node->CreateValueDecimal(ValueID::ValueGenre_User, GetCommandClassId(), _instance, ValueID_Index_ThermostatSetpoint::Unused_0_Maximum + index, setpointName + "_maximum", "C", false, false, maxValue, 0);
+				Log::Write(LogLevel_Info, GetNodeId(), "    Added setpoint: %s", setpointName.c_str());
+			}
+
+		}
+	}
 	return false;
 }
 
@@ -289,15 +346,26 @@ bool ThermostatSetpoint::SetValue
 	{
 		ValueDecimal const* value = static_cast<ValueDecimal const*>(&_value);
 		uint8 scale = strcmp( "C", value->GetUnits().c_str() ) ? 1 : 0;
+		int8 setpointminsize = 0;   // Minimum number of bytes to express the setpoint value, optionally cached from the capabilities report
+		int8 setpointprecision = 0; // Minimum precision express the setpoint value, optionally cached from the capabilities report
+
+		if (auto const *minsizeValue = static_cast<ValueByte const*>(GetValue(_value.GetID().GetInstance(),  ValueID_Index_ThermostatSetpoint_SetPointMinSize)))
+		{
+			setpointminsize = minsizeValue->GetValue();
+		}
+		if (auto const *precisionValue = static_cast<ValueByte const*>(GetValue(_value.GetID().GetInstance(),  ValueID_Index_ThermostatSetpoint_SetPointPrecision)))
+		{
+			setpointprecision = precisionValue->GetValue();
+		}
 
 		Msg* msg = new Msg( "ThermostatSetpointCmd_Set", GetNodeId(), REQUEST, FUNC_ID_ZW_SEND_DATA, true );
 		msg->SetInstance( this, _value.GetID().GetInstance() );
 		msg->Append( GetNodeId() );
-		msg->Append( 4 + GetAppendValueSize( value->GetValue() ) );
+		msg->Append( 4 + GetAppendValueSize(value->GetValue(), setpointminsize, setpointprecision ) );
 		msg->Append( GetCommandClassId() );
 		msg->Append( ThermostatSetpointCmd_Set );
 		msg->Append( value->GetID().GetIndex() );
-		AppendValue( msg, value->GetValue(), scale );
+		AppendValue( msg, value->GetValue(), scale, setpointminsize, setpointprecision );
 		msg->Append( GetDriver()->GetTransmitOptions() );
 		GetDriver()->SendMsg( msg, Driver::MsgQueue_Send );
 		return true;

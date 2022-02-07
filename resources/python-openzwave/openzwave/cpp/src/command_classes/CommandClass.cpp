@@ -63,6 +63,7 @@ m_afterMark( false ),
 m_createVars( true ),
 m_overridePrecision( -1 ),
 m_getSupported( true ),
+m_enforceMinSizePrecision( true ),
 m_isSecured( false ),
 m_SecureSupport( true ),
 m_inNIF(false),
@@ -238,6 +239,12 @@ void CommandClass::ReadXML
 	if( str )
 	{
 		m_afterMark = !strcmp( str, "true" );
+	}
+
+	str = _ccElement->Attribute( "enforce_minsize_precision" );
+	if( str )
+	{
+		m_enforceMinSizePrecision = !strcmp( str, "true" );
 	}
 
 	str = _ccElement->Attribute( "create_vars" );
@@ -648,12 +655,14 @@ void CommandClass::AppendValue
 (
 		Msg* _msg,
 		string const& _value,
-		uint8 const _scale
+		uint8 const _scale,
+		uint8 const _minsize,
+		uint8 const _minprecision
 )const
 {
 	uint8 precision;
 	uint8 size;
-	int32 val = ValueToInteger( _value, &precision, &size );
+	int32 val = ValueToInteger( _value, &precision, &size, _minsize, _minprecision );
 
 	_msg->Append( (precision<<c_precisionShift) | (_scale<<c_scaleShift) | size );
 
@@ -670,11 +679,13 @@ void CommandClass::AppendValue
 //-----------------------------------------------------------------------------
 uint8 const CommandClass::GetAppendValueSize
 (
-		string const& _value
-)const
+    string const& _value,
+    uint8 const _minsize,
+    uint8 const _minprecision
+    )const
 {
 	uint8 size;
-	ValueToInteger( _value, NULL, &size );
+	ValueToInteger( _value, NULL, &size, _minsize, _minprecision);
 	return size;
 }
 
@@ -687,7 +698,9 @@ int32 CommandClass::ValueToInteger
 (
 		string const& _value,
 		uint8* o_precision,
-		uint8* o_size
+		uint8* o_size,
+		uint8 const _minsize,
+		uint8 const _minprecision
 )const
 {
 	int32 val;
@@ -714,8 +727,10 @@ int32 CommandClass::ValueToInteger
 		string str = _value.substr( 0, pos ) + _value.substr( pos+1 );
 		val = atol( str.c_str() );
 	}
-
-	if ( m_overridePrecision > 0 )
+	uint8 orp = m_overridePrecision;
+	if ( orp == 0 && _minprecision > 0 )
+		orp = _minprecision; // Only if no override is given and a valid _minprecision is used, force the precision to _minprecision
+	if ( orp > 0 )
 	{
 		while ( precision < m_overridePrecision ) {
 			precision++;
@@ -751,6 +766,8 @@ int32 CommandClass::ValueToInteger
 				*o_size = 2;
 			}
 		}
+		if(*o_size < _minsize && (_minsize == 1 || _minsize == 2 || _minsize == 4))
+			*o_size = _minsize;
 	}
 
 	return val;
