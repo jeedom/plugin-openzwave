@@ -13,7 +13,7 @@
     "gcc" : {},
     "python-lxml" : {},
     "unzip" : {},
-    "libjpeg-dev" : {},
+    "libjpeg-dev" : {}
   },
   "pip2":{
     "pyudev" : {"reinstall" : true},
@@ -27,6 +27,6 @@
     "tornado" : {"reinstall" : true}
   },
   "post-install" : {
-    "script" : "plugins/openzwave/resources/post-install.sh"
+    "script" : "plugins/openzwave/resources/post_install.sh"
   }
 }

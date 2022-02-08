@@ -308,8 +308,8 @@ $('body').off('zwave::controller.data.controllerState').on('zwave::controller.da
   } else {
     $('.changeIncludeState.card[data-mode=1]').removeClass('warning').addClass('success');
     $('.changeIncludeState.card[data-mode=0]').removeClass('warning').addClass('danger');
-    $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fas fa-sign-in-alt"></i> {{Mode inclusion}}');
-    $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fas fa-sign-in-alt"></i> {{Mode exclusion}}');
+    $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fas fa-sign-in-alt fa-rotate-90"></i> {{Mode inclusion}}');
+    $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fas fa-sign-in-alt fa-rotate-90"></i> {{Mode exclusion}}');
     $('.changeIncludeState.card[data-mode=1] span').text('{{Mode inclusion}}');
     $('.changeIncludeState.card[data-mode=0] span').text('{{Mode exclusion}}');
     $('.changeIncludeState[data-mode=1]').attr('data-state', 1);
