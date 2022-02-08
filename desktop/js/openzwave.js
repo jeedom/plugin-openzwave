@@ -99,6 +99,13 @@ $('#bt_zwaveNetwork').off('click').on('click', function () {
   $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=network').dialog('open');
 });
 
+$('.eqLogicDisplayCard .bt_configureDevice').off('click').on('click', function (event) {
+  var id = $(this).closest('.eqLogicDisplayCard').attr('data-logical-id')
+  event.stopPropagation()
+  $('#md_modal').dialog({title: "{{Configuration du module}}"});
+  $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=node.configure&id=' + id).dialog('open');
+});
+
 $('#bt_configureDevice').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Configuration du module}}"});
   $('#md_modal').load('index.php?v=d&plugin=openzwave&modal=node.configure&id=' + $('.eqLogicAttr[data-l1key=logicalId]').value()).dialog('open');
@@ -281,7 +288,7 @@ $('body').off('zwave::controller.data.controllerState').on('zwave::controller.da
     $('.changeIncludeState.card[data-mode=1]').removeClass('success').addClass('warning');
     $('.changeIncludeState.card[data-mode=1] span').text('{{Arrêter l\'inclusion}}');
     $('.changeIncludeState[data-mode=1]').attr('data-state', 0);
-    $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fas fa-sign-in-alt fa-rotate-90"></i> {{Arrêter l\'inclusion}}');
+    $('.changeIncludeState[data-mode=1]:not(.card)').html('<i class="fas fa-sign-in-alt"></i> {{Arrêter l\'inclusion}}');
     $('#div_inclusionAlert').showAlert({
       message: '{{Vous êtes en mode inclusion}} ' + '. {{Cliquez à nouveau sur le bouton d\'inclusion pour sortir de ce mode. Pour inclure un module veuillez appuyer sur son bouton d\'inclusion (une ou plusieurs fois comme décrit dans la documentation du module).}}',
       level: 'warning',
@@ -292,7 +299,7 @@ $('body').off('zwave::controller.data.controllerState').on('zwave::controller.da
     $('.changeIncludeState.card[data-mode=0]').removeClass('danger').addClass('warning');
     $('.changeIncludeState.card[data-mode=0] span').text('{{Arrêter l\'exclusion}}');
     $('.changeIncludeState[data-mode=0]').attr('data-state', 0);
-    $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fas fa-sign-out-alt fa-rotate-90"></i> {{Arrêter l\'exclusion}}');
+    $('.changeIncludeState[data-mode=0]:not(.card)').html('<i class="fas fa-sign-out-alt"></i> {{Arrêter l\'exclusion}}');
     $('#div_inclusionAlert').showAlert({
       message: '{{Vous êtes en mode exclusion}} ' + '. {{Cliquez à nouveau sur le bouton d\'exclusion pour sortir de ce mode. Pour exclure un module veuillez appuyer sur son bouton d\'inclusion (une ou plusieurs fois comme décrit dans la documentation du module).}}',
       level: 'warning',
