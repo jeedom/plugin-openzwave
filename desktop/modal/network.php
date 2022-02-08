@@ -66,6 +66,9 @@ if (!isConnect('admin')) {
     .rediconcolor {
         color: red;
     }
+    #route_network{
+    	overflow-x:auto;
+    }
 </style>
 <div id='div_networkOpenzwaveAlert' style="display: none;"></div>
 <div class='network' nid='' id="div_templateNetwork">
