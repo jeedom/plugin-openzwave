@@ -142,6 +142,26 @@ Use reset procedure only if the primary controller is missing or inoperable.
       <Item label="default (Q1 - 1st channel, Q2 - 2nd channel)" value="0"/>
       <Item label="reversed (Q1 - 2nd channel, Q2 - 1st channel)" value="1"/>
     </Value>
+    <Value genre="config" index="40" instance="1" label="S1 input - scenes sent" max="15" min="0" size="1" type="byte" value="0">
+      <Help>
+                This parameter determines which actions result in sending scene IDs assigned to them.
+                1 - Key pressed 1 time.
+                2 - Key pressed 2 times.
+                4 - Key pressed 3 times.
+                8 - Key Hold Down and Key Released.
+                Default setting: 0 (none)
+            </Help>
+    </Value>
+    <Value genre="config" index="41" instance="1" label="S2 input - scenes sent" max="15" min="0" size="1" type="byte" value="0">
+      <Help>
+                This parameter determines which actions result in sending scene IDs assigned to them.
+                1 - Key pressed 1 time.
+                2 - Key pressed 2 times.
+                4 - Key pressed 3 times.
+                8 - Key Hold Down and Key Released.
+                Default setting: 0 (none)
+            </Help>
+    </Value>
   </CommandClass>
   <!-- -->
   <CommandClass id="96">
