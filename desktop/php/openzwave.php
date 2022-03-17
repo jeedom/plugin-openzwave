@@ -105,7 +105,7 @@ sendVarTojs('eqLogic_human_name', $tags);
 				echo '</div>';
 			} else {
 				echo '<div class="cursor changeIncludeState card success" data-mode="1" data-state="1" >';
-				echo '<i class="fas fa-sign-in-alt fa-rotate-90"></i>';
+				echo '<i class="fas fa-sign-in-alt"></i>';
 				echo '<br/>';
 				echo '<span>{{Mode inclusion}}</span>';
 				echo '</div>';
@@ -118,7 +118,7 @@ sendVarTojs('eqLogic_human_name', $tags);
 				echo '</div>';
 			} else {
 				echo '<div class="cursor changeIncludeState card danger" data-mode="0" data-state="1" >';
-				echo '<i class="fas fa-sign-out-alt fa-rotate-90"></i>';
+				echo '<i class="fas fa-sign-out-alt"></i>';
 				echo '<br/>';
 				echo '<span>{{Mode exclusion}}</span>';
 				echo '</div>';
@@ -149,7 +149,8 @@ sendVarTojs('eqLogic_human_name', $tags);
 		<div class="input-group" style="margin:5px;">
 			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchEqlogic"/>
 			<div class="input-group-btn">
-				<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i></a>
+				<a id="bt_resetSearch" class="btn" style="width:30px"><i class="fas fa-times"></i></a>
+              	<a class="btn roundedRight hidden" id="bt_pluginDisplayAsTable" data-coreSupport="1" data-state="0"><i class="fas fa-grip-lines"></i></a>
 			</div>
 		</div>
 		<div class="eqLogicThumbnailContainer">
@@ -164,6 +165,8 @@ sendVarTojs('eqLogic_human_name', $tags);
 				}
 				echo '<br/>';
 				echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
+              	echo '<span class="hidden hiddenAsCard displayTableRight">'.$eqLogic->getConfiguration('product_name').' | '.$eqLogic->getLogicalId();
+              	echo '  <a class="btn btn-primary btn-xs bt_configureDevice"><i class="fas fa-wrench"></i></a></span>';
 				echo '</div>';
 			}
 			?>

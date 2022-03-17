@@ -10,20 +10,20 @@
     "gcc" : {},
     "python-lxml" : {},
     "unzip" : {},
-    "libjpeg-dev" : {},
+    "libjpeg-dev" : {}
   },
   "pip2":{
-    "pyudev" : {},
-    "wheel" : {},
-    "urwid" : {},
-    "louie" : {},
-    "requests" : {},
-    "setuptools" : {},
-    "pyserial" : {},
-    "six" : {},
-    "tornado" : {}
+    "pyudev" : {"reinstall" : true},
+    "wheel" : {"reinstall" : true},
+    "urwid" : {"reinstall" : true},
+    "louie" : {"reinstall" : true},
+    "requests" : {"reinstall" : true},
+    "setuptools" : {"reinstall" : true},
+    "pyserial" : {"reinstall" : true},
+    "six" : {"reinstall" : true},
+    "tornado" : {"reinstall" : true}
   },
   "post-install" : {
-    "script" : "plugins/openzwave/resources/post-install.sh"
+    "script" : "plugins/openzwave/resources/post_install.sh"
   }
 }
