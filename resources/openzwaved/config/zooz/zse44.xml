@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="2">
   <CommandClass id="112">
     <Value type="byte" genre="config" instance="1" index="2" label="Low battery report" min="10" max="50" value="5" size="1">
       <Help>
@@ -44,4 +44,4 @@
         <Group index="4" label="High Humidity" max_associations="5" />
       </Associations>
     </CommandClass>
-
+</Product>
