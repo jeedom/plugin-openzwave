@@ -15,11 +15,12 @@
             "isVisible": 1, 
             "isHistorized": 0, 
             "configuration": {
-                "class": 48, 
-                "value": "", 
-                "index": 0, 
-                "instance": 1
-            }, 
+                "class": 113,
+                "value": "",
+                "index": 10,
+                "instance": 1,
+                "calculValueOffset": "#value#==8"
+            },
             "subtype": "binary", 
             "display": {
                 "invertBinary": "1", 
@@ -84,24 +85,6 @@
                 "generic_type": "BRIGHTNESS"
             }, 
             "unite": "%"
-        },
-        {
-            "name": "Sabotage",
-            "type": "info",
-            "isVisible": 0,
-            "isHistorized": 0,
-            "configuration": {
-                "class": 113,
-                "value": "",
-                "index": 10,
-                "instance": 1,
-                "calculValueOffset": "#value#==3"
-            },
-            "subtype": "binary",
-            "display": {
-                "invertBinary": "1",
-                "generic_type": "SABOTAGE"
-            }
         },
         {
             "name": "Batterie", 

@@ -1,0 +1,57 @@
+{
+    "name": "XS Open Close Sensor",
+    "ref": "ZSE41",
+    "manufacturer": "Zooz",
+    "type": "Détecteur d'ouverture", 
+    "reset": "Appuyer 2 fois, puis maintenir appuyé la 3ème fois le bouton à l'intérieur pendant 10 secondes. Quand la LED clignote, appuyer immédiatement 2 fois sur le bouton pour finaliser le reset. La LED clignotera 3 fois pour confirmer la réussite du reset.",
+    "pairing": "Appuyer 3 fois rapidement sur le bouton à l'intérieur",
+    "remark": "",
+    "documentation": "https://cdn.shopify.com/s/files/1/0218/7704/files/zooz-zse41-manual-online.pdf?v=1628275237",
+    "buylink": "",
+    "commands": [
+        {
+      "name": "Etat",
+      "type": "info",
+      "isVisible": 1,
+      "isHistorized": 1,
+      "configuration": {
+                "class": 113,
+                "value": "",
+                "index": 9,
+                "instance": 1,
+                "calculValueOffset": "#value#==23"
+            },
+      "subtype": "binary",
+      "display": {
+        "invertBinary": "1",
+        "generic_type": "OPENING"
+      },
+      "template": {
+        "dashboard": "door",
+        "mobile": "door"
+      }
+    },
+    {
+      "name": "Batterie",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 128,
+        "value": "",
+        "index": 0,
+        "instance": 1,
+        "minValue": 0,
+        "maxValue": 100
+      },
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "BATTERY"
+      },
+      "unite": "%"
+    }
+]
+}
+
+
+

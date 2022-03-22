@@ -1,0 +1,70 @@
+{
+    "name": "XS Temperature Humidity Sensor",
+    "ref": "ZSE44",
+    "manufacturer": "Zooz",
+    "type": "Température,Humidité", 
+    "reset": "Appuyer 2 fois, puis maintenir appuyé la 3ème fois le bouton à l'intérieur pendant 10 secondes. Quand la LED clignote, appuyer immédiatement 2 fois sur le bouton pour finaliser le reset. La LED clignotera 3 fois pour confirmer la réussite du reset.",
+    "pairing": "Appuyer 3 fois rapidement sur le bouton à l'intérieur",
+    "remark": "",
+    "documentation": "https://cdn.shopify.com/s/files/1/0218/7704/files/zooz-z-wave-plus-700-series-temperature-humidity-xs-sensor-zse44-manual.pdf",
+    "buylink": "",
+       {
+            "name": "Température", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 1, 
+                "instance": 1
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "TEMPERATURE"
+            }, 
+            "unite": "°C"
+        }, 
+        {
+            "name": "Humidité", 
+            "type": "info", 
+            "isVisible": 1, 
+            "isHistorized": 1, 
+            "configuration": {
+                "class": 49, 
+                "value": "", 
+                "index": 5, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "HUMIDITY"
+            }, 
+            "unite": "%"
+        },
+        {
+            "name": "Batterie", 
+            "type": "info", 
+            "isVisible": 0, 
+            "isHistorized": 0, 
+            "configuration": {
+                "class": 128, 
+                "value": "", 
+                "index": 0, 
+                "instance": 1, 
+                "minValue": 0, 
+                "maxValue": 100
+            }, 
+            "subtype": "numeric", 
+            "display": {
+                "generic_type": "BATTERY"
+            }, 
+            "unite": "%"
+        }
+    ]
+}
+
+
+

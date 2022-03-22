@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <CommandClass id="112">
+    <Value type="byte" genre="config" instance="1" index="2" label="Low battery report" min="10" max="50" value="5" size="1">
+      <Help>
+      Decide when the sensor should report low battery to the hub.
+      Values: 10-50 (% battery life).
+      Default: 5
+      </Help>
+    </Value>  
+    <Value type="byte" genre="config" instance="1" index="3" label="Temperature Sensor Report Threshold" min="10" max="100" value="20" size="1">
+      <Help>
+      Set the temperature reporting threshold. The sensor will send a new temperature report if the diﬀerence compared to last reading exceeds the value set here.
+      Values: 10 – 100 (degrees where 10 equals 1 degree);
+      Default: 20.
+      </Help>
+    </Value>
+    <Value type="byte" genre="config" instance="1" index="4" label="Humidity Sensor Report Threshold" min="1" max="50" value="10" size="1">
+      <Help>
+      Set the humidity reporting threshold. The sensor will report a new humidity value if the diﬀerence compared to last reading exceeds the value set here.
+      Values: 1 – 50 (%);
+      Default: 10.
+      </Help>
+    </Value>
+    <Value type="byte" genre="config" instance="1" index="16" label="Temperature reporting interval" min="0" max="480" value="240" size="2">
+      <Help>
+      Set the temperature reporting interval. The sensor will report temperature at least that often.
+      Values: 0 – disable this setting; 1 480 (minutes); Default: 240.
+      </Help>
+    </Value>
+        <Value type="byte" genre="config" instance="1" index="17" label="Humidity reporting Interval" min="0" max="480" value="240" size="2">
+      <Help>
+      Set the humidity reporting interval. The sensor will report humidity at least that oƞen.
+      Values: 0 – disable this setting; 1 480 (minutes); Default: 240.
+      </Help>
+    </Value>
+  </CommandClass>
+  
+  <CommandClass id="133">
+      <Associations num_groups="3">
+        <Group index="1" label="Lifeline" max_associations="1" />
+        <Group index="2" label="Basic" max_associations="5" />
+        <Group index="3" label="Temperature Alert" max_associations="5" />
+        <Group index="4" label="High Humidity" max_associations="5" />
+      </Associations>
+    </CommandClass>
+

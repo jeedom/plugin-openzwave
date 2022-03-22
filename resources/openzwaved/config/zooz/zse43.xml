@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <CommandClass id="112">
+    <Value type="list" genre="config" instance="1" index="1" label="LED Indicator Status" value="3" size="1">
+      <Help>
+      Turn the LED indicator for tilt or shock status change on or oﬀ.
+      Default: 3
+      </Help>
+      <Item label="0 - LED won’t blink when either sensor is triggered" value="0"/>
+      <Item label="1 – LED blinks only when the shock sensor is triggered" value="1"/>
+      <Item label="2 - LED blinks only when the tilt sensor is triggered" value="2"/>
+      <Item label="3 – LED blinks when either sensor is triggered" value="3"/>
+    </Value>
+    <Value type="list" genre="config" instance="1" index="4" label="Vibration Sensor Sensibility" value="0" size="1">
+      <Help>
+      Set the vibration sensor's level of sensitivity.
+      Default: 0 
+      </Help>
+      <Item label="0 - Highest level of sensitivity" value="0"/>
+      <Item label="1 – Medium level of sensitivity" value="1"/>
+      <Item label="2 - Lowest level of sensitivity" value="2"/>
+    </Value>
+    <Value type="list" genre="config" instance="1" index="7" label="Activate/Disable Sensor" value="2" size="1">
+      <Help>
+      Diisable one of the sensor's reports if needed.
+      Default: 2
+      </Help>
+      <Item label="0 - only Tilt Sensor enabled" value="0"/>
+      <Item label="1 – only Shock Sensor enabled" value="1"/>
+      <Item label="2 - both sensors enabled" value="2"/>
+    </Value>
+  </CommandClass>
+  <CommandClass id="133">
+      <Associations num_groups="3">
+        <Group index="1" label="Lifeline" max_associations="1" />
+        <Group index="2" label="Tilt sensor reports" max_associations="5" />
+        <Group index="3" label="Shock sensor" max_associations="5" />
+      </Associations>
+    </CommandClass>
+

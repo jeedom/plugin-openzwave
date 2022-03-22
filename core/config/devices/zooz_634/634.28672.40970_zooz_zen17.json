@@ -1,0 +1,204 @@
+{
+    "name": "Universal Relay",
+    "ref": "ZEN17",
+    "manufacturer": "Zooz",
+    "type": "Relais", 
+    "reset": "Appuyer 4 fois rapidement sur le bouton, la LED s'allume. Appuyer de nouveau 4 fois rapidement. La LED clignote 4 fois pour confirmer le reset.",
+    "pairing": "Appuyer 3 fois rapidement sur le bouton",
+    "remark": "",
+    "documentation": "https://cdn.shopify.com/s/files/1/0218/7704/files/zooz-700-series-z-wave-plus-universal-relay-zen17-ver1.0-manual.pdf",
+    "buylink": "",
+    "commands": [
+        {
+      "name": "Etat-Tous",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 37,
+        "value": "",
+        "index": 0,
+        "instance": 1
+      },
+      "subtype": "binary",
+      "display": {
+        "generic_type": "ENERGY_STATE"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      },
+      "unite": ""
+    },
+    {
+      "name": "On-Tous",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 37,
+        "value": "type=setvalue&value=255",
+        "index": 0,
+        "instance": 1
+      },
+      "value": "Etat-Tous",
+      "subtype": "other",
+      "display": {
+        "generic_type": "ENERGY_ON"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+    {
+      "name": "Off-Tous",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 37,
+        "value": "type=setvalue&value=0",
+        "index": 0,
+        "instance": 1
+      },
+      "value": "Etat-Tous",
+      "subtype": "other",
+      "display": {
+        "generic_type": "ENERGY_OFF"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+	{
+      "name": "Etat-1",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 37,
+        "value": "",
+        "index": 0,
+        "instance": 2
+      },
+      "subtype": "binary",
+      "display": {
+        "generic_type": "ENERGY_STATE"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      },
+      "unite": ""
+    },
+    {
+      "name": "On-1",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 37,
+        "value": "type=setvalue&value=255",
+        "index": 0,
+        "instance": 2
+      },
+      "value": "Etat-1",
+      "subtype": "other",
+      "display": {
+        "generic_type": "ENERGY_ON"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+    {
+      "name": "Off-1",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 37,
+        "value": "type=setvalue&value=0",
+        "index": 0,
+        "instance": 2
+      },
+      "value": "Etat-1",
+      "subtype": "other",
+      "display": {
+        "generic_type": "ENERGY_OFF"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },{
+      "name": "Etat-2",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 37,
+        "value": "",
+        "index": 0,
+        "instance": 3
+      },
+      "subtype": "binary",
+      "display": {
+        "generic_type": "ENERGY_STATE"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      },
+      "unite": ""
+    },
+    {
+      "name": "On-2",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 37,
+        "value": "type=setvalue&value=255",
+        "index": 0,
+        "instance": 3
+      },
+      "value": "Etat-2",
+      "subtype": "other",
+      "display": {
+        "generic_type": "ENERGY_ON"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    },
+    {
+      "name": "Off-2",
+      "type": "action",
+      "isVisible": 1,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 37,
+        "value": "type=setvalue&value=0",
+        "index": 0,
+        "instance": 3
+      },
+      "value": "Etat-2",
+      "subtype": "other",
+      "display": {
+        "generic_type": "ENERGY_OFF"
+      },
+      "template": {
+        "dashboard": "prise",
+        "mobile": "prise"
+      }
+    }
+	]
+}
+
+
+
