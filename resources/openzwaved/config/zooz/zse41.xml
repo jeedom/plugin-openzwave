@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="2">
+  <CommandClass id="112">
+    <Value type="list" genre="config" instance="1" index="1" label="LED Indicator Status" value="1" size="1">
+      <Help>
+      Parameter 1: Turn the LED indicator for open/close status change on or oﬀ.
+      Values: 0 – LED indicator won’t blink when the sensor’s status is changed from open to close and vice versa;
+      		  1 – LED indicator will blink when the sensor’s open/close status is changed (default).
+      </Help>
+      <Item label="0 - LED indicator won’t blink" value="0"/>
+      <Item label="1 – LED indicator will blink" value="1"/>
+    </Value>
+    <Value type="byte" genre="config" instance="1" index="4" label="Low Battery Report" min="10" max="50" value="20" size="1">
+      <Help>
+      Decide when the sensor should report low battery to the hub.
+      Values: 10-50 (% battery life).
+      Default: 20
+      </Help>
+    </Value>
+    <Value type="list" genre="config" instance="1" index="5" label="Sensor Status Report" value="0" size="1">
+      <Help>
+      Decide which status should the sensor report to the hub when the magnet touches the sensor.
+      Values: 0 – closed status reported when the magnet is by the sensor (default);
+      		  1 – open status reported when the magnet is by the sensor.
+      </Help>
+      <Item label="0 – closed status reported" value="0"/>
+      <Item label="1 – open status reported" value="1"/>
+    </Value>
+  </CommandClass>
+  <CommandClass id="133">
+      <Associations num_groups="3">
+        <Group index="1" label="Lifeline" max_associations="1" />
+        <Group index="2" label="Basic" max_associations="5" />
+      </Associations>
+    </CommandClass>
+	
+	</Product>
+
