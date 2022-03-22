@@ -1524,7 +1524,6 @@
 		<Product type="0003" id="0085" name="ZSE30 Water Sensor" config="zooz/zse30.xml" />
 		<Product type="0003" id="0087" name="ZEN07 Mini Plug" config="zooz/zen07.xml" />
 		<Product type="7000" id="a00a" name="ZEN17 Universal Relay" config="zooz/zen17.xml" />
-		<Product type="7000" id="e001" name="ZSE41 Open Close Sensor" config="zooz/zse41.xml" />
 		<Product type="7000" id="e002" name="ZSE42 Water" config="zooz/zse42.xml" />
 		<Product type="7000" id="e003" name="ZSE43 Tilt Shock Sensor" config="zooz/zse43.xml" />
 		<Product type="7000" id="e004" name="ZSE44 Temperature Humidity" config="zooz/zse44.xml" />
