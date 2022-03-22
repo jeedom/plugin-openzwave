@@ -1517,6 +1517,25 @@
 		<Product type="8004" id="1000" name="Water Leakage Sensor HS1WL-Z" config="heiman/HS1WL-Z.xml"/>
 		<Product type="8005" id="1000" name="CO Sensor HS1CA-Z" config="heiman/HS1CA-Z.xml"/>
 	</Manufacturer>
+	<Manufacturer id="027a" name="Zooz">
+		<Product type="0003" id="0082" name="ZSE08 Contact Sensor" config="zooz/zse08.xml" />
+		<Product type="0003" id="0083" name="ZSE09 Mini Sensor" config="zooz/zse09.xml" />
+		<Product type="b112" id="1f1c" name="ZEN22 Dimmer V2" config="zooz/zen22v2.xml"/>
+		<Product type="0003" id="0085" name="ZSE30 Water Sensor" config="zooz/zse30.xml" />
+		<Product type="0003" id="0087" name="ZEN07 Mini Plug" config="zooz/zen07.xml" />
+		<Product type="7000" id="a00a" name="ZEN17 Universal Relay" config="zooz/zen17.xml" />
+		<Product type="7000" id="e001" name="ZSE41 Open Close Sensor" config="zooz/zse41.xml" />
+		<Product type="7000" id="e002" name="ZSE42 Water" config="zooz/zse42.xml" />
+		<Product type="7000" id="e003" name="ZSE43 Tilt Shock Sensor" config="zooz/zse43.xml" />
+		<Product type="7000" id="e004" name="ZSE44 Temperature Humidity" config="zooz/zse44.xml" />
+		<Product type="2021" id="2101" name="ZSE40 4-in-1 sensor" config="zooz/zse40.xml" />
+		<Product type="0003" id="0088" name="ZSE33 Smart Chime" config="zooz/zse33.xml" />
+		<Product type="0101" id="000a" name="ZEN06" config="zooz/zen06.xml"/>
+		<Product type="b111" id="251c" name="ZEN23 Toggle Switch V2" config="zooz/zen23.xml" />
+		<Product type="0101" id="000D" name="ZEN15 Power Switch" config="zooz/zen15.xml" />
+		<Product type="0301" id="0012" name="ZSE18 Motion Sensor" config="zooz/zse18.xml" />
+		<Product type="0401" id="0002" name="ZST10 S2 Z-Wave Plus USB Stick" />
+	</Manufacturer>
 	<Manufacturer id="015d" name="Zooz">
 		<Product type="0651" id="f51c" name="ZEN20 Power Strip" config="zooz/zen20.xml" />
 		<Product type="0111" id="231c" name="ZEN21 Switch" config="zooz/zen21.xml"/>
