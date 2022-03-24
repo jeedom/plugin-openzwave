@@ -35,7 +35,10 @@
                 "instance": 1,
                 "calculValueOffset": "#value#==3"
             },
-            "subtype": "binary"
+            "subtype": "binary",
+			"display": {
+					"invertBinary": "1"
+			}
         },
         {
             "name": "Batterie", 
