@@ -7,7 +7,7 @@
     "pairing": "Appuyer 3 fois rapidement sur le bouton",
     "remark": "",
     "documentation": "https://cdn.shopify.com/s/files/1/0218/7704/files/zooz-700-series-z-wave-plus-universal-relay-zen17-ver1.0-manual.pdf",
-    "buylink": "https://www.domadoo.fr/fr/peripheriques/6149-zooz-module-relais-universel-avec-2-sorties-contact-sec-z-wave-700-zen17-853478006179.html",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/6149-zooz-module-relais-universel-avec-2-sorties-contact-sec-z-wave-700-zen17-853478006179.html?domid=4&id_campaign=9",
     "commands": [
         {
       "name": "Etat-Tous",
