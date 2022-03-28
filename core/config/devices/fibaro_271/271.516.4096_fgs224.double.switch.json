@@ -6,7 +6,7 @@
     "reset": "",
     "pairing": "",
     "remark": "",
-    "documentation": "",
+    "documentation": "https://manuals.fibaro.com/smart-module/",
     "buylink": "https://www.domadoo.fr/fr/peripheriques/5189-fibaro-micromodule-commutateur-libre-de-potentiel-double-z-wave-fibaro-smart-module-fgs-224-5902701702090.html?domid=4&id_campaign=9",
     "imglink": "fibaro.fgs224", 
     "commands": [
