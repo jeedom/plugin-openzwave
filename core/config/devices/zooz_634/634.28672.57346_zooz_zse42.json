@@ -7,7 +7,7 @@
     "pairing": "Appuyer 3 fois rapidement sur le bouton à l'intérieur",
     "remark": "",
     "documentation": "https://cdn.shopify.com/s/files/1/0218/7704/files/zooz-xs-water-leak-sensor-zse42-user-manual.pdf?v=1628820692",
-    "buylink": "",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/6152-zooz-capteur-de-fuite-d-eau-z-wave-700-zse42-853478006421.html",
     "commands": [
         {
             "name": "Fuite", 
