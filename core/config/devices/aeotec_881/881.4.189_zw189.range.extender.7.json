@@ -1,8 +1,13 @@
 {
     "name": "Range Extender (ZW189)", 
+    "ref": "ZW189",
+    "manufacturer": "Aeotec",
     "type": "Répéteur", 
-    "comlink": "", 
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/5179-aeotec-repeteur-de-signal-z-wave-700-range-extender-7-1220000016583.html?domid=4&id_campaign=9", 
     "remark": "Module sans fonctionnalité hors mis le fait de relayer les infos du réseau", 
+    "reset": "",
+    "pairing": "",
+    "documentation": "https://help.aeotec.com/support/solutions/articles/6000226827-range-extender-7-user-guide-",
     "imglink": "aeotec.zw189",
 	"commands": [
         {
