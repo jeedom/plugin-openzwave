@@ -1,7 +1,15 @@
 {
-    "name": "ZW141 Volet roulant", 
+    "name": "Nano Shutter ZW141", 
     "type": "Volets", 
-    "imglink": "Aeotec.zw141", 
+    "imglink": "Aeotec.zw141",
+    "ref": "ZW141-EU",
+    "manufacturer": "Aeotec",
+    "reset": "",
+    "pairing": "",
+    "remark": "",
+    "documentation": "https://help.aeotec.com/support/solutions/articles/6000198854-nano-shutter-user-guide-",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/4622-aeotec-micromodule-volet-roulant-z-wave-nano-shutter-122000001603.html?domid=4&id_campaign=9",
+    
     "commands": [
         {
             "name": "Up", 
