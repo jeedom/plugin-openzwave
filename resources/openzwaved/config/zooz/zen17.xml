@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="2">
   <CommandClass id="112">
-    <Value type="list" genre="config" instance="1" index="1" label="On Off Status Aer Power Failure" value="1" size="1">
+    <Value type="list" genre="config" instance="1" index="1" label="On Off Status After Power Failure" value="1" size="1">
       <Help>
       Set the on off status for the relays after power failure.
       Values: 0 – ALL relays forced to OFF (regardless of state prior to power outage);
-      		  1 – ALL relays remember and restore on/off status after power failure (default);
-      		  2 – ALL relays forced to ON (regardless of state prior to power outage);
-      		  3 – Relay 1 remembers and restores on/off status after power failure, Relay 2 forced to ON;
-      		  4 – Relay 2 remembers and restores on/off status after power failure, Relay 1 forced to ON.
+      	      1 – ALL relays remember and restore on/off status after power failure (default);
+      	      2 – ALL relays forced to ON (regardless of state prior to power outage);
+      	      3 – Relay 1 remembers and restores on/off status after power failure, Relay 2 forced to ON;
+      	      4 – Relay 2 remembers and restores on/off status after power failure, Relay 1 forced to ON.
       </Help>
       <Item label="ALL relays forced to OFF" value="0"/>
       <Item label="ALL relays remember and restore on/off status" value="1"/>
@@ -156,7 +156,7 @@
       <Help>
       Sync R1 and R2 together to prevent them from being activated at the same time.
       Values: 0 – DC motor mode disabled (relays will activate whenever they're triggered);
-      		  1 – DC motor mode enabled (relay will check the status of the other relay after being triggered and will shut the other relay off before activating so that only one of the relays is on at the same time).
+      	      1 – DC motor mode enabled (relay will check the status of the other relay after being triggered and will shut the other relay off before activating so that only one of the relays is on at the same time).
 	  Default: 0.
       </Help>
       <Item label="0 – DC motor mode disabled" value="0"/>

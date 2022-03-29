@@ -7,7 +7,7 @@
     "pairing": "Appuyer sur le bouton et le relâcher lorsque la LED s'allume en JAUNE. L'appareil entre en mode appairage. La LED clignote ensuite blanc/vert/blanc/vert pendant 2 sec pour indiquer la réussite de la procédure.",
     "remark": "",
     "documentation": "https://help.aeotec.com/helpdesk/attachments/6121529483",
-    "buylink": "",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/5825-aeotec-detecteur-multifonctions-6-en-1-multisensor-7-z-wave-700-1220000016873.html?domid=4&id_campaign=9",
     "configuration": {
         "battery_type": "4x1.5V AAA"
     }, 

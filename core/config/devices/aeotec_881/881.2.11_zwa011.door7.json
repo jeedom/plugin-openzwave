@@ -1,9 +1,14 @@
 {
     "name": "Door/Window Sensor 7 (ZWA011)",
+    "ref": "ZWA011",
+    "manufacturer": "Aeotec",
     "type": "Ouverture",
-    "comlink": "",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/5775-aeotec-capteur-d-ouverture-portefenetre-z-wave-700-doorwindow-sensor-7-1220000016668.html?domid=4&id_campaign=9",
+    "reset": "",
+    "pairing": "",
     "remark": "",
-    "imglink": "aeotec.zwa011",
+    "documentation": "https://help.aeotec.com/support/solutions/articles/6000230382-door-window-sensor-7-basic-user-guide-zwa011-",
+    "imglink": "zwa011-C.door7",
     "configuration": {
         "battery_type": "1x3V ER14250"
     },

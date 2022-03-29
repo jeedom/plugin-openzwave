@@ -1,8 +1,13 @@
 {
     "name": "Water Sensor 7 Pro (ZWA019)",
     "type": "Fuite",
-    "comlink": "",
+    "ref": "ZWA019",
+    "manufacturer": "Aeotec",
+    "reset": "",
+    "pairing": "",
     "remark": "",
+    "documentation": "https://help.aeotec.com/support/solutions/articles/6000235950-water-sensor-7-pro-user-guide-zwa019-",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/5773-aeotec-capteur-d-inondation-z-wave-700-water-sensor-7-pro-1220000016729.html?domid=4&id_campaign=9",
     "imglink": "aeotec.zwa019",
     "configuration": {
         "battery_type": "1x3V ER14250"

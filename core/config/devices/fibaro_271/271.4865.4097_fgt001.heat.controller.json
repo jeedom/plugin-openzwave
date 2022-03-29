@@ -1,7 +1,13 @@
 {
 	"name": "FGT-001 HEAT CONTROLLER",
-	"doc": "",
+	"ref": "FGT-001",
+	"manufacturer": "Fibaro",
 	"type": "Thermostat",
+	"reset": "",
+	"pairing": "",
+	"remark": "",
+	"documentation": "https://manuals.fibaro.com/heat-controller/",
+	"buylink": "https://www.domadoo.fr/fr/peripheriques/4279-fibaro-tete-thermostatique-z-wave-fibaro-heat-controller-5902701701062.html?domid=4&id_campaign=9",
 	"imglink": "fibaro.fgt001",
 	"configuration": {
 		"conf_version": 1

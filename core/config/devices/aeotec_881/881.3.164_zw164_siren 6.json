@@ -1,9 +1,14 @@
 {
     "name": "Siren 6 (ZW164)",
+    "ref": "ZW164",
+    "manufacturer": "Aeotec",
     "type": "Sirène", 
-    "comlink": "",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/4778-aeotec-sirene-interieure-z-wave-siren-6-1220000016224.html?domid=4&id_campaign=9",
     "remark": "", 
     "imglink": "aeotec.zw164",
+    "reset": "",
+    "pairing": "",
+    "documentation": "https://help.aeotec.com/support/solutions/articles/6000202227-siren-6-user-guide-",
     "commands": [
         {
             "name": "Sonnette",

@@ -7,7 +7,7 @@
     "pairing": "Appuyer 3 fois rapidement sur le bouton à l'intérieur",
     "remark": "",
     "documentation": "https://cdn.shopify.com/s/files/1/0218/7704/files/zooz-z-wave-plus-700-series-temperature-humidity-xs-sensor-zse44-manual.pdf",
-    "buylink": "",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/6154-zooz-capteur-de-temperature-et-d-humidite-z-wave-700-zse44-853478006445.html?domid=4&id_campaign=9",
 	"commands": [
 		{
             "name": "Température", 
