@@ -196,6 +196,45 @@
         "dashboard": "prise",
         "mobile": "prise"
       }
+    },
+	{
+      "name": "Sensor-1",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 48,
+        "value": "",
+        "index": 0,
+        "instance": 1
+      },
+      "subtype": "binary"
+    },
+	{
+      "name": "Sensor-2",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 48,
+        "value": "",
+        "index": 0,
+        "instance": 2
+      },
+      "subtype": "binary"
+    },
+	{
+      "name": "Sensor-3",
+      "type": "info",
+      "isVisible": 0,
+      "isHistorized": 0,
+      "configuration": {
+        "class": 48,
+        "value": "",
+        "index": 0,
+        "instance": 3
+      },
+      "subtype": "binary"
     }
 	]
 }
