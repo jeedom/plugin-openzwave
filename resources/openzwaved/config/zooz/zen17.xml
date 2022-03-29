@@ -5,10 +5,10 @@
       <Help>
       Set the on off status for the relays after power failure.
       Values: 0 – ALL relays forced to OFF (regardless of state prior to power outage);
-      		  1 – ALL relays remember and restore on/off status after power failure (default);
-      		  2 – ALL relays forced to ON (regardless of state prior to power outage);
-      		  3 – Relay 1 remembers and restores on/off status after power failure, Relay 2 forced to ON;
-      		  4 – Relay 2 remembers and restores on/off status after power failure, Relay 1 forced to ON.
+      	      1 – ALL relays remember and restore on/off status after power failure (default);
+      	      2 – ALL relays forced to ON (regardless of state prior to power outage);
+      	      3 – Relay 1 remembers and restores on/off status after power failure, Relay 2 forced to ON;
+      	      4 – Relay 2 remembers and restores on/off status after power failure, Relay 1 forced to ON.
       </Help>
       <Item label="ALL relays forced to OFF" value="0"/>
       <Item label="ALL relays remember and restore on/off status" value="1"/>
