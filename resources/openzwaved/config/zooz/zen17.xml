@@ -104,8 +104,8 @@
       for monitoring only and separate the output from the input.
       Values: 0 – input trigger disabled; 1 – input trigger enabled (default)
       </Help>
-      <Item label="0 – input trigger disabled" value="1"/>
-      <Item label="1 – input trigger enabled" value="2"/>
+      <Item label="0 – input trigger disabled" value="0"/>
+      <Item label="1 – input trigger enabled" value="1"/>
     </Value>   
     <Value type="list" genre="config" instance="1" index="11" label="Input Trigger for Relay 2" value="1" size="1">
       <Help>
@@ -113,8 +113,8 @@
       for monitoring only and separate the output from the input.
       Values: 0 – input trigger disabled; 1 – input trigger enabled (default)
       </Help>
-      <Item label="0 – input trigger disabled" value="1"/>
-      <Item label="1 – input trigger enabled" value="2"/>
+      <Item label="0 – input trigger disabled" value="0"/>
+      <Item label="1 – input trigger enabled" value="1"/>
     </Value>         
         <Value type="list" genre="config" instance="1" index="15" label="Auto Turn-Off Timer Unit for Relay 1" value="0" size="1">
       <Help>
