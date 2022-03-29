@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Product xmlns='https://github.com/OpenZWave/open-zwave' Revision="2">
   <CommandClass id="112">
-    <Value type="list" genre="config" instance="1" index="1" label="On Off Status Aer Power Failure" value="1" size="1">
+    <Value type="list" genre="config" instance="1" index="1" label="On Off Status After Power Failure" value="1" size="1">
       <Help>
       Set the on off status for the relays after power failure.
       Values: 0 – ALL relays forced to OFF (regardless of state prior to power outage);
@@ -156,7 +156,7 @@
       <Help>
       Sync R1 and R2 together to prevent them from being activated at the same time.
       Values: 0 – DC motor mode disabled (relays will activate whenever they're triggered);
-      		  1 – DC motor mode enabled (relay will check the status of the other relay after being triggered and will shut the other relay off before activating so that only one of the relays is on at the same time).
+      	      1 – DC motor mode enabled (relay will check the status of the other relay after being triggered and will shut the other relay off before activating so that only one of the relays is on at the same time).
 	  Default: 0.
       </Help>
       <Item label="0 – DC motor mode disabled" value="0"/>
