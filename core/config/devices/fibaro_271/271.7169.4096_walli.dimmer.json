@@ -1,6 +1,7 @@
 {
     "name": "Walli Dimmer",
     "type": "Micromodule",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/4849-fibaro-interrupteur-variateur-intelligent-z-wave-fibaro-walli-dimmer-5902701701369.html?domid=4&id_campaign=9",
     "commands": [
         {
             "name": "Intensité",
