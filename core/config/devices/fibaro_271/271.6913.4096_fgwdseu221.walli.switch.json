@@ -1,6 +1,7 @@
 {
     "name": "Walli Switch FGWDSEU-221",
     "type": "Micromodule",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/4848-fibaro-interrupteur-intelligent-z-wave-fibaro-walli-switch-5902701701352.html?domid=4&id_campaign=9",
     "commands": [
         {
             "name": "On 1",
