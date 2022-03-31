@@ -2,6 +2,7 @@
     "name": "Strike Lock Control", 
     "type": "Gache", 
     "remark": "",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/3856-popp-module-de-controle-d-ouverture-de-porte-z-wave-0019962012501.html?domid=4&id_campaign=9",
 	"battery_type": "1x3V CR2032", 
     "commands": [
         {
