@@ -2,6 +2,7 @@
     "name": "RGBW-442", 
     "type": "RGBW", 
     "remark": "Peut aussi servir de capteurs multisondes", 
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/4969-fibaro-controleur-rgbw-z-wave-fibaro-rgbw-controller-2-5902701701581.html?domid=4&id_campaign=9",
     "commands": [
         {
             "name": "Couleur", 
