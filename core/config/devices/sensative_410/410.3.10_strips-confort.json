@@ -3,7 +3,8 @@
     "type": "Multicapteur", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "", 
+    "imglink": "",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/5772-sensative-capteur-multifonctions-temperature-humidite-luminosite-extra-fin-z-wave-strips-comfort-700.html?domid=4&id_campaign=9",
     "commands": [
         {
             "name": "Température", 
