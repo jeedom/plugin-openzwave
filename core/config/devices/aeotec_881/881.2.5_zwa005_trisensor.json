@@ -2,6 +2,7 @@
     "name": "Trisensor (ZWA005)", 
     "type": "Multicapteurs", 
     "remark": "", 
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/4621-aeotec-detecteur-multifonctions-3-en-1-z-wave-trisensor-1220000016132.html?domid=4&id_campaign=9",
     "configuration": {
         "battery_type": "1x3V CR123A"
     }, 
