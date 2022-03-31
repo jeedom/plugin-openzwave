@@ -3,7 +3,8 @@
     "type": "Rail-din", 
     "comlink": "", 
     "remark": "Le module doit être inclus en mode sécurisé pour pouvoir contrôler les relais additionnels", 
-    "imglink": "", 
+    "imglink": "",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/4187-qubino-module-rail-din-compteur-d-energie-triphase-z-wave-3-phases-smart-meter-3830062070683.html?domid=4&id_campaign=9",	
     "commands": [
         {
             "name": "Puissance", 
