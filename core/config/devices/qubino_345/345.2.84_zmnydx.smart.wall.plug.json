@@ -3,7 +3,8 @@
     "type": "Prise", 
     "comlink": "", 
     "remark": "", 
-    "imglink": "", 
+    "imglink": "",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/4494-qubino-prise-commandee-z-wave-smart-plug-16a-3830062071505.html?domid=4&id_campaign=9",	
     "commands": [
         {
             "name": "Etat", 
