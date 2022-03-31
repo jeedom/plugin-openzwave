@@ -2,6 +2,7 @@
     "name": "Walli Volet roulant", 
     "type": "Volets", 
     "remark": "", 
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/4850-fibaro-interrupteur-intelligent-pour-volet-roulant-z-wave-fibaro-walli-roller-shutter-5902701701376.html?domid=4&id_campaign=9",
     "commands": [
         {
             "name": "Up", 
