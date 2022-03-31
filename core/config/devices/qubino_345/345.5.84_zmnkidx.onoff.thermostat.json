@@ -1,7 +1,8 @@
 {
     "name": "ZMNKIDX On/Off Thermostat", 
-    "type": "Micromodule", 
-    "remark": "", 
+    "type": "Micromodule",
+    "remark": "",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/4971-qubino-micromodule-thermostat-encastrable-z-wave-zmnkid1-flush-onoff-thermostat-2-3830062071710.html?domid=4&id_campaign=9",			
     "commands": [
         {
             "name": "Température", 
