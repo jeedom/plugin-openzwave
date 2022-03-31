@@ -3,6 +3,7 @@
     "type": "Volets", 
     "remark": "Nouveau nom du module FGR-222", 
     "imglink": "fibaro.fgr222", 
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/4737-fibaro-micromodule-pour-volet-roulant-z-wave-fibaro-roller-shutter-3-fgr-223-5905279987197.html?domid=4&id_campaign=9",
     "commands": [
         {
             "name": "Up", 
