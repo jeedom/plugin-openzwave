@@ -1,5 +1,6 @@
 {
     "name": "aerQ Temperature & Humidity (ZWA009)",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/5397-aeotec-capteur-de-temperature-et-d-humidite-z-wave-700-aerq-1220000017054.html?domid=4&id_campaign=9",
     "type": "Multicapteurs", 
     "remark": "", 
     "configuration": {
