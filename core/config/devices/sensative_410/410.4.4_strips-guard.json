@@ -7,7 +7,7 @@
     "pairing": "Positionner l'aimant près du bord arrondi du StripGuard, puis éloigner et rapprocher le 3 fois de suite de ce même bord. La Led s'allume quelques secondes pour indiquer la réussite de l'opération",
     "remark": "",
     "documentation": "",
-    "buylink": "",
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/5770-sensative-capteur-d-ouverture-extra-fin-z-wave-strips-guard-700-7350088520437.html?domid=4&id_campaign=9",
     "commands": [
         {
             "name": "Etat", 
