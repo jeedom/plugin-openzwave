@@ -2,6 +2,7 @@
     "name": "ZMNHHDx Mini Dimmer", 
     "type": "Micromodule", 
     "remark": "", 
+    "buylink": "https://www.domadoo.fr/fr/actionneurs-variateurs/4958-qubino-micromodule-variateur-z-wave-mini-dimmer-3830062071673.html?domid=4&id_campaign=9",
     "commands": [
         {
             "name": "Intensité", 
