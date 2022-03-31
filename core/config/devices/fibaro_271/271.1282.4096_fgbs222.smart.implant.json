@@ -1,6 +1,7 @@
 {
     "name": "FGBS-222 Smart Implant", 
     "type": "Micromodule", 
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/4793-fibaro-detecteur-universel-z-wave-fibaro-smart-implant-fgbs-222-5902701701475.html?domid=4&id_campaign=9",
     "commands": [
         {
             "name": "Etat entrée 2", 
