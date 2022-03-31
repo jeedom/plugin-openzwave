@@ -5,6 +5,7 @@
     "remark": "Pas de remontée d'alerte au contrôleur. Sonne sur détection de gaz combustible",
     "imglink": "heiman.hs1cgz",
     "ignore": true,
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/4818-heiman-capteur-de-gaz-z-wave-6971348970062.html?domid=4&id_campaign=9",
     "configuration": {
         "battery_type": "2x1.5V LR03"
     }, 
