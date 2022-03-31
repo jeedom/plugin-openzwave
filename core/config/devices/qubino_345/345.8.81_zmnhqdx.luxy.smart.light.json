@@ -3,6 +3,7 @@
     "type": "Micromodule", 
     "comlink": "", 
     "imglink": "qubino.zmnhqdx", 
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/5311-qubino-veilleuse-intelligente-z-wave-luxy-smart-light-3830062071796.html?domid=4&id_campaign=9",	
     "commands": [
         {
             "name": "Intensité", 
