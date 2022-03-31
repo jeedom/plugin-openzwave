@@ -3,6 +3,7 @@
 	"doc": "",
 	"type": "Fumée",
 	"imglink": "fibaro.fgcd001",
+	"buylink": "https://www.domadoo.fr/fr/peripheriques/4185-fibaro-detecteur-de-monoxyde-de-carbone-z-wave-fibaro-co-sensor-5902020528838.html?domid=4&id_campaign=9",
 	"configuration": {
 		"battery_type": "1x3V CR123A",
 		"conf_version": 1
