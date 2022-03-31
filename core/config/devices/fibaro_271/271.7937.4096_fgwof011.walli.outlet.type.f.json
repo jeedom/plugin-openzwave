@@ -3,6 +3,7 @@
     "type": "Prise", 
     "remark": "", 
     "imglink": "fibaro.fgwof011", 
+    "buylink": "https://www.domadoo.fr/fr/peripheriques/4852-fibaro-prise-murale-intelligente-z-wave-fibaro-walli-outlet-type-f-schuko-5902701701345.html?domid=4&id_campaign=9",
     "commands": [
         {
             "name": "Etat", 
