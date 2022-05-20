@@ -638,7 +638,7 @@ Une fois que le réseau a au minimum atteint **Topology loaded**, des mécanisme
 
 > **Tip**
 >
-> Le réseau est dit fonctionnel au moment où il atteint le statut **Topology Loaded**, c’est-à-dire que l’ensemble des nœuds secteurs ont complété leurs interviews. Selon le nombre de modules, la répartition pile/secteur, le choix du dongle USB et le PC sur lequel tourne le plugin Z-Wave, le réseau va atteindre cette état entre une et cinq minutes.
+> Le réseau est dit fonctionnel au moment où il atteint le statut **Topology Loaded**, c’est-à-dire que l’ensemble des nœuds secteurs ont complété leurs interviews. Selon le nombre de modules, la répartition pile/secteur, le choix du dongle USB et le PC sur lequel tourne le plugin Z-Wave, le réseau va atteindre cet état entre une et cinq minutes.
 
 Un réseau **Ready**, signifie que tous les nœuds secteur et sur pile ont complété leur interview.
 
@@ -926,7 +926,7 @@ Le choix d’options dépend d’un constructeur à l’autre.
 
 Il faut donc bien prendre le temps de passer en revue l’ensemble de ses interrupteurs/variateurs avant de mettre en place un scénario si vous ne pilotez pas que des lumières.
 
-## Mon module n a pas de commande Scene ou Bouton
+## Mon module n'a pas de commande Scene ou Bouton
 
 ![troubleshooting05](../images/troubleshooting05.png)
 
@@ -1001,7 +1001,7 @@ Si le module n’est pas présumé "Dead" mais est toujours accessible:
 -   Retourner sur l’onglet de l’ancien module puis coller le nouvel ID à la place de l’ancien ID.
 -   Remettre vos paramètres spécifiques.
 
-## Suppression de noeud fantome
+## Suppression de noeud fantôme
 
 Si vous avez perdu toute communication avec un module sur pile et que vous souhaitez l’exclure du réseau, il est possible que l’exclusion n’aboutisse pas ou que le nœud reste présent dans votre réseau.
 
@@ -1062,7 +1062,7 @@ Toutes les nuits, le plugin Z-Wave demande à chaque module de rafraichir la val
 >
 > La décharge d’une pile n’est pas linéaire, certains modules vont montrer un grosse perte en pourcentage dans les premiers jours de mise en service, puis ne plus bouger durant des semaines pour se vider rapidement une fois passé les 20%.
 
-## Controleur est en cours d initialisation
+## Controleur est en cours d'initialisation
 
 Lorsque vous démarrez le démon Z-Wave, si vous essayez de lancer immédiatement une inclusion/exclusion, vous risquez d’obtenir ce message: \* "Le contrôleur est en cours d’initialisation, veuillez réessayer dans quelques minutes"
 
