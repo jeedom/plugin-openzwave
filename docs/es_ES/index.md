@@ -2,6 +2,10 @@
 
 Este complemento permite la explotación de módulos Z-Wave a través de la biblioteca OpenZwave.
 
+> **Importante**
+>
+> Es esencial estar bajo Debian 10 Buster para que el complemento funcione; el complemento no funcionará con Debian 11 Bullseye o superior porque Python2.7 es requerido.
+
 # Introduction
 
 Z-Wave se comunica utilizando tecnología de radio de baja potencia en la banda de frecuencia de 868.42 MHz. Está específicamente diseñado para aplicaciones de domótica. El protocolo de radio Z-Wave está optimizado para intercambios de bajo ancho de banda (entre 9 y 40 kbit / s) entre dispositivos con batería o alimentados por la red eléctrica.
@@ -638,7 +642,7 @@ Una vez que la red ha alcanzado al menos **Topología cargada**, Los mecanismos 
 
 > **Punta**
 >
-> Se dice que la red es funcional cuando alcanza el estado **Topología cargada**, es decir que todos los nodos del sector han completado sus entrevistas. Dependiendo de la cantidad de módulos, la distribución de la batería / sector, la elección del dongle USB y la PC en la que se ejecuta el complemento Z-Wave, la red alcanzará este estado entre uno y cinco minutos.
+> Se dice que la red es funcional cuando alcanza el estado **Topología cargada**, es decir que todos los nodos del sector han completado sus entrevistas. Dependiendo de la cantidad de módulos, la distribución de la batería/sector, la elección del dongle USB y la PC en la que se ejecuta el complemento Z-Wave, la red alcanzará este estado entre uno y cinco minutos.
 
 Una red **Listo**, significa que todos los nodos del sector y de la batería han completado su entrevista.
 
@@ -926,7 +930,7 @@ La elección de las opciones depende del fabricante.
 
 Por lo tanto, debe tomarse el tiempo de revisar todos sus interruptores / atenuadores antes de configurar un escenario si no controla solo las luces.
 
-## Mi módulo no tiene un comando de escena o botón
+## Mi módulo no tiene un comando de Escena o Botón
 
 ![troubleshooting05](../images/troubleshooting05.png)
 

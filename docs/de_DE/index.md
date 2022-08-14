@@ -2,6 +2,10 @@
 
 Dieses Plugin ermöglicht die Nutzung von Z-Wave-Modulen über die OpenZwave-Bibliothek.
 
+> **Wichtig**
+>
+> Es ist wichtig, unter Debian 10 Buster zu sein, damit das Plugin funktioniert; Das Plugin funktioniert nicht mit Debian 11 Bullseye oder höher, da Python2.7 erforderlich.
+
 # Introduction
 
 Z-Wave kommuniziert mit Low-Power-Funktechnologie im Frequenzband 868,42 MHz. Es wurde speziell für Hausautomationsanwendungen entwickelt. Das Z-Wave-Funkprotokoll ist für den Austausch mit geringer Bandbreite (zwischen 9 und 40 kbit / s) zwischen Geräten mit Batterie oder Netzstrom optimiert.
@@ -638,7 +642,7 @@ Sobald das Netzwerk mindestens erreicht hat **Topologie geladen**, Interne Mecha
 
 > **Spitze**
 >
-> Das Netzwerk soll funktionsfähig sein, wenn es den Status erreicht **Topologie geladen**, Das heißt, dass alle Sektorknoten ihre Interviews abgeschlossen haben. Abhängig von der Anzahl der Module, der Batterie- / Sektorverteilung, der Auswahl des USB-Dongles und dem PC, auf dem das Z-Wave-Plugin ausgeführt wird, erreicht das Netzwerk diesen Zustand zwischen einer und fünf Minuten.
+> Das Netzwerk soll funktionsfähig sein, wenn es den Status erreicht **Topologie geladen**, Das heißt, dass alle Sektorknoten ihre Interviews abgeschlossen haben. Abhängig von der Anzahl der Module, der Batterie-/Sektorenverteilung, der Wahl des USB-Dongles und des PCs, auf dem das Z-Wave-Plugin läuft, erreicht das Netzwerk diesen Zustand zwischen einer und fünf Minuten.
 
 Ein Netzwerk **Fertig**, bedeutet, dass alle Sektor- und Batterieknoten ihr Interview abgeschlossen haben.
 
@@ -926,7 +930,7 @@ Die Auswahl der Optionen hängt vom Hersteller ab.
 
 Sie müssen sich daher die Zeit nehmen, alle Schalter / Dimmer zu überprüfen, bevor Sie ein Szenario einrichten, wenn Sie nicht nur Lichter steuern.
 
-## Mein Modul verfügt nicht über einen Szenen- oder Schaltflächenbefehl
+## Mein Modul hat keinen Scene- oder Button-Befehl
 
 ![troubleshooting05](../images/troubleshooting05.png)
 

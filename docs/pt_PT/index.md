@@ -2,6 +2,10 @@
 
 Este plugin permite a exploração de módulos Z-Wave através da biblioteca OpenZwave.
 
+> **IMPORTANTE**
+>
+> É essencial estar sob o Debian 10 Buster para fazer o plugin funcionar; o plugin não funcionará com o Debian 11 Bullseye ou superior porque Python2.7 é obrigatório.
+
 # Introduction
 
 O Z-Wave se comunica usando a tecnologia de rádio de baixa potência na faixa de frequência de 868,42 MHz. Foi projetado especificamente para aplicações de automação residencial. O protocolo de rádio Z-Wave é otimizado para trocas de baixa largura de banda (entre 9 e 40 kbit / s) entre dispositivos com bateria ou alimentados por rede elétrica.
@@ -638,7 +642,7 @@ Quando a rede atingir pelo menos **Topologia carregada**, Se os mecanismos inter
 
 > **Dica**
 >
-> Diz-se que a rede está funcional quando atinge o status **Topologia carregada**, isto é, todos os nós do setor concluíram suas entrevistas. Dependendo do número de módulos, da distribuição da bateria / setor, da escolha do dongle USB e do PC no qual o plug-in Z-Wave está sendo executado, a rede alcançará esse estado entre um e cinco minutos.
+> Diz-se que a rede está funcional quando atinge o status **Topologia carregada**, isto é, todos os nós do setor concluíram suas entrevistas. Dependendo do número de módulos, da distribuição da bateria/setor, da escolha do dongle USB e do PC em que o plugin Z-Wave está sendo executado, a rede atingirá esse estado entre um e cinco minutos.
 
 Uma rede **Pronto**, significa que todos os nós do setor e da bateria concluíram sua entrevista.
 
@@ -926,7 +930,7 @@ A escolha das opções depende do fabricante.
 
 Portanto, você deve reservar um tempo para revisar todos os seus interruptores / dimmers antes de configurar um cenário, se você não controlar apenas as luzes.
 
-## Meu módulo não possui um comando Cena ou Botão
+## Meu módulo não tem um comando Scene ou Button
 
 ![troubleshooting05](../images/troubleshooting05.png)
 
@@ -1062,7 +1066,7 @@ Todas as noites, o plug-in Z-Wave solicita que cada módulo atualize o valor da 
 >
 > A descarga de uma bateria não é linear, alguns módulos mostram uma grande porcentagem de perda nos primeiros dias de comissionamento e, em seguida, não se movem por semanas para esvaziar rapidamente uma vez acima dos 20%.
 
-## O controlador está sendo inicializado
+## O controlador está inicializando
 
 Ao iniciar o daemon Z-Wave, se você tentar iniciar imediatamente uma inclusão / exclusão, poderá receber esta mensagem: \* "O controlador está inicializando, tente novamente em alguns minutos"
 

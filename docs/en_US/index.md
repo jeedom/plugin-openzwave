@@ -2,6 +2,10 @@
 
 This plugin allows the exploitation of Z-Wave modules through the OpenZwave library.
 
+> **Important**
+>
+> It is essential to be under Debian 10 Buster to make the plugin work; the plugin will not work with Debian 11 Bullseye or higher because Python2.7 is required.
+
 # Introduction
 
 Z-Wave communicates using low power radio technology in the 868.42 MHz frequency band. It is specifically designed for home automation applications. The Z-Wave radio protocol is optimized for low bandwidth exchanges (between 9 and 40 kbit / s) between devices on battery or powered by mains.
@@ -638,7 +642,7 @@ Once the network has at least reached **Topology loaded**, internal mechanisms o
 
 > **Tip**
 >
-> The network is said to be functional when it reaches the status **Topology loaded**, that is to say that all the sector nodes have completed their interviews. Depending on the number of modules, the battery / sector distribution, the choice of the USB dongle and the PC on which the Z-Wave plugin is running, the network will reach this state between one and five minutes.
+> The network is said to be functional when it reaches the status **Topology loaded**, that is to say that all the sector nodes have completed their interviews. Depending on the number of modules, the battery/sector distribution, the choice of USB dongle and the PC on which the Z-Wave plugin is running, the network will reach this state between one and five minutes.
 
 A network **Ready**, means that all sector and battery nodes have completed their interview.
 
@@ -1062,7 +1066,7 @@ Every night, the Z-Wave plugin asks each module to refresh the Battery value. Th
 >
 > The discharge of a battery is not linear, some modules will show a large percentage loss in the first days of commissioning, then do not move for weeks to empty quickly once past the 20%.
 
-## Controller is being initialized
+## Controller is initializing
 
 When you start the Z-Wave daemon, if you try to immediately start an inclusion / exclusion, you may get this message: \* "The controller is initializing, please try again in a few minutes"
 
