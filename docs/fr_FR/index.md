@@ -2,6 +2,10 @@
 
 Ce plugin permet l’exploitation de modules Z-Wave par l’intermédiaire de la librairie OpenZwave.
 
+> **Important**
+>
+> Il est indispensable d'être sous Debian 10 Buster pour faire fonctionner le plugin; le plugin ne fonctionnera pas avec Debian 11 Bullseye ou supérieur car Python2.7 est requis.
+
 # Introduction
 
 Z-Wave communique en utilisant une technologie radio de faible puissance dans la bande de fréquence de 868,42 MHz. Il est spécifiquement conçu pour les applications de domotique. Le protocole radio Z-Wave est optimisé pour des échanges à faible bande passante (entre 9 et 40 kbit/s) entre des appareils sur pile ou alimentés sur secteur.
