@@ -190,7 +190,11 @@ def serialize_node_to_json(node_id):
 			index2 = 0
 		pending_state = None
 		expected_data = None
-		data_items = utils.concatenate_list(my_value.data_items)
+		try:
+			data_items = utils.concatenate_list(my_value.data_items)
+		except Exception, exception:
+			data_items = exception.message
+			logging.error('Value data_items contains unsupported data: %s' % (str(exception),))
 		if my_value.id_on_network in globals.pending_configurations:
 			pending = globals.pending_configurations[my_value.id_on_network]
 			if pending is not None:
