@@ -38,7 +38,6 @@ if [ ! -d /opt ]; then
   sudo mkdir /opt
 fi
 
-sudo mkdir /opt
 if [ -d /opt/python-openzwave ]; then
   cd /opt/python-openzwave
   echo "Désinstallation de la version précédente";
