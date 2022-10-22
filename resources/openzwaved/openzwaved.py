@@ -73,5 +73,5 @@ if __name__ == '__main__':
 		http_server = HTTPServer(globals.app)
 		http_server.listen(globals.port_server, address=globals.socket_host)
 		IOLoop.instance().start()
-	except Exception, ex:
-		print "Fatal Error: %s" % str(ex)
+	except Exception as ex:
+		print("Fatal Error: %s" % str(ex))
