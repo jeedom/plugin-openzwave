@@ -81,6 +81,9 @@ if (!isConnect('admin')) {
 				<sup><i class="fas fa-question-circle tooltips" title="{{Permet de modifier le port de communication interne du démon. Réservé aux utilisateurs avancés}}"></i></sup>
 			</label>
 			<div class="col-md-6">
+				<input class="configKey form-control" data-l1key="host_server" placeholder="127.0.0.1" />
+			</div>
+			<div class="col-md-6">
 				<input class="configKey form-control" data-l1key="port_server" placeholder="8083" />
 			</div>
 		</div>
