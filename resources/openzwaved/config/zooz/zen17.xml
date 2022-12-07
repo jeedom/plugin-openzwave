@@ -70,28 +70,28 @@
       <Item label="LED indicator is always OFF" value="2"/>
       <Item label="LED indicator is always ON" value="3"/>
     </Value>        
-    <Value type="byte" genre="config" instance="1" index="6" label="Auto Turn-Off Timer for Relay 1" min="0" max="65535" value="0" size="4">
+    <Value type="short" genre="config" instance="1" index="6" label="Auto Turn-Off Timer for Relay 1" min="0" max="65535" value="0" size="4">
       <Help>
       Use this parameter to set the time after which you want the device connected to Relay 1 to automatically turn off once it has been
       turned on. The number entered as value corresponds to the number of minutes, seconds, or hours (set the unit in Par. 15).
       Values: 0 – timer disabled (default); 1 – 65535
       </Help>
     </Value>
-    <Value type="byte" genre="config" instance="1" index="7" label="Auto Turn-On Timer for Relay 1" min="0" max="65535" value="0" size="4">
+    <Value type="short" genre="config" instance="1" index="7" label="Auto Turn-On Timer for Relay 1" min="0" max="65535" value="0" size="4">
       <Help>
       Use this parameter to set the time after which you want the device connected to Relay 1 to automatically turn on once it has been turned off.
       The number entered as value corresponds to the number of minutes, seconds, or hours (set the unit in Par. 16).
       Values: 0 – timer disabled (default); 1 – 65535.
       </Help>
     </Value>
-    <Value type="byte" genre="config" instance="1" index="8" label="Auto Turn-Off Timer for Relay 2" min="0" max="65535" value="0" size="4">
+    <Value type="short" genre="config" instance="1" index="8" label="Auto Turn-Off Timer for Relay 2" min="0" max="65535" value="0" size="4">
       <Help>
       Use this parameter to set the time after which you want the device connected to Relay 2 to automatically turn off once it has been
       turned on. The number entered as value corresponds to the number of minutes, seconds, or hours (set the unit in Par. 17).
       Values: 0 – timer disabled (default); 1 – 65535
       </Help>
     </Value>
-    <Value type="byte" genre="config" instance="1" index="9" label="Auto Turn-On Timer for Relay 2" min="0" max="65535" value="0" size="4">
+    <Value type="short" genre="config" instance="1" index="9" label="Auto Turn-On Timer for Relay 2" min="0" max="65535" value="0" size="4">
       <Help>
       Use this parameter to set the time after which you want the device connected to Relay 2 to automatically turn on once it has been turned off.
       The number entered as value corresponds to the number of minutes, seconds, or hours (set the unit in Par. 18).
