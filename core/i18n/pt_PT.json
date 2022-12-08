@@ -36,7 +36,7 @@
         "Port du Serveur": "Porta do servidor",
         "Permet de modifier le port de communication interne du démon. Réservé aux utilisateurs avancés": "Usado para modificar a porta de comunicação interna do daemon. Apenas para usuários avançados",
         "Options avancées": "Opções avançadas",
-        "Backups Openzwave": "Backups Openzwave",
+        "Backups Openzwave": "Backups do Openzwave",
         "Backups Réseau": "Backups de rede",
         "Configuration des modules": "Configuração de módulos",
         "Etes-vous sûr de vouloir télécharger les dernières configurations de modules ? Le plugin sera redémarré suite à cette action.": "Tem certeza de que deseja baixar as configurações de mod mais recentes? O plugin será reiniciado após esta ação",
