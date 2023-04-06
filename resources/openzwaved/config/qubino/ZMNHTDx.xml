@@ -93,8 +93,8 @@ ZMNHTD5 916,0 MHz
 				Default value 0
 			</Help>
 			<Item label="Endpoints IR external relay and External relay disabled" value="0"/>
-			<Item label="Endpoints IR external relay disabled, External relay enabled" value="1"/>
-			<Item label="Endpoints IR external relay enabled, External relay disabled" value="2"/>
+			<Item label="Endpoints IR external relay enabled, External relay disabled" value="1"/>
+			<Item label="Endpoints IR external relay disabled, External relay enabled" value="2"/>
 			<Item label="Endpoints IR external relay and External relay enabled" value="3"/>
 		</Value>
 
