@@ -1,24 +1,25 @@
 <?xml version="1.0"?>
 <!--
-Heatit Z-Din 616
+Heatit Z-DIN 616
 -->
 <Product xmlns="https://github.com/OpenZWave/open-zwave" Revision="3">
   <MetaData>
-    <MetaDataItem name="ProductPic">images/logicsoft/heatit112.png</MetaDataItem>
-    <MetaDataItem id="0112" name="ZWProductPage" type="0003"></MetaDataItem>
-    <MetaDataItem name="InclusionDescription">Adding the device:
-When the primary controller is set to add/remove modus press the &#x201D;INCLUSION&#x201D; button once on the device</MetaDataItem>
-    <MetaDataItem id="0112" name="Identifier" type="0003">Z-Din 616</MetaDataItem>
+    <MetaDataItem name="Name">Heatit Z-DIN 616</MetaDataItem>
     <MetaDataItem name="Description">The Heatit Z-DIN 616, which is built upon the wireless Z-Wave communication protocol, has 6 relay driven outputs and 6 digital inputs. The unit is a multi-purpose Z-Wave I/O module, which can be used for many applications. For example, the Heatit Z-DIN 616 provides the possibility to control other systems via the Z-Wave network, by utilizing the 6 outputs as a kind of hand-over function to another automation system.
                 The relay outputs (controlled through the Z-Wave network) are suitable for switching up to six 230VAC loads. In connection with simultaneous connection to SELV (Safety Extra Low Voltage) and 230VAC power circuits for relay outputs, relays must be considered as two groups, where the first group includes output 1 to 3 and the second group includes outputs 4 to 6. This ensures complete separation between the SELV and 230VAC circuits. If one of the relays in the group is connected to a SELV circuit, the remaining outputs are not allowed to be connected to 230VAC or another circuit which is not a SELV circuit. For example, the relay outputs of the Heatit Z-DIN 616 module can be used to control the 230Vac power supply outlet, making it possible to turn on and disconnect the electrical outlets directly through the Z-Wave network. For safety reasons, however, it is not recommended to use the Heatit Z-DIN 616 to connect electrical outlets that are normally used for hazardous tools and machinery.
                 The 6 digital inputs of the Heatit Z-DIN 616 are useful for various purposes, where potential-free contacts or Open Collector outputs may be connected. The inputs may be configured to different trigger modes; leading edge, trailing edge or level triggered. The Heatit Z-DIN 616’s inputs may be programmed to control other Z-Wave devices when the inputs are activated, by sending Z-Wave commands over the Z-Wave network to e.g. Z-Wave relay modules, dimmer units etc. Heatit Z-DIN 616 allows sending different types of Z-Wave commands by utilizing the different association groups for the 6 inputs. In addition, the Heatit Z-DIN 616 also acts as a repeater, thus extending the range of the Z-Wave network. By default, the Heatit Z-DIN 616’s inputs and outputs are set to operate as toggle-relays. Input 1 controls the output 1, input 2 controls the output 2, etc. This functionality can be modified via the configuration parameters 3-8 and 13-18.
     </MetaDataItem>
+    <MetaDataItem id="0112" name="Identifier" type="0003">Z-DIN 616</MetaDataItem>
+    <MetaDataItem id="0112" name="ZWProductPage" type="0003">https://heatit.com/produkt/9384/heatit-z-din-616</MetaDataItem>
+    <MetaDataItem name="OzwInfoPage">http://www.openzwave.com/device-database/0234:0003:0112</MetaDataItem>
+    <MetaDataItem name="ProductPic">images/logicsoft/heatit112.png</MetaDataItem>
     <MetaDataItem name="ProductManual">https://media.heatit.com/1756</MetaDataItem>
+    <MetaDataItem name="InclusionDescription">Adding the device:
+When the primary controller is set to add/remove modus press the &#x201D;INCLUSION&#x201D; button once on the device</MetaDataItem>
     <MetaDataItem name="ExclusionDescription">Removing the device: When the primary controller is set to add/remove modus press the &#x201D;INCLUSION&#x201D; button once on the device</MetaDataItem>
     <MetaDataItem id="0112" name="FrequencyName" type="0003">CEPT (Europe)</MetaDataItem>
     <MetaDataItem name="ResetDescription">By pressing buttons Right and Center (down and confirm) for 20 seconds, the thermostat will perform a complete factory reset.
 NB! Please use this procedure only when the primary controller/ gateway is missing or otherwise inoperable.</MetaDataItem>
-    <MetaDataItem name="Name">Heatit Z-Din 616</MetaDataItem>
     <ChangeLog>
       <Entry author="Flobul - flobul.jeedom@gmail.com" date="06 Jan 2022" revision="1">Initial Metadata Import from constructor documentation https://media.heatit.com/1756</Entry>
     </ChangeLog>
@@ -45,7 +46,8 @@ NB! Please use this procedure only when the primary controller/ gateway is missi
       <Item label="6 timer controlled input – normally closed" value="6"/>
     </Value>
     <Value genre="config" index="4" instance="1" label="Timer for input 1." size="1" type="byte" value="0">
-      <Help>Timer value for input 1, used when input Mode 5 or 6 is chosen. 0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
+      <Help>Timer value for input 1, used when input Mode 5 or 6 is chosen.
+            0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
     </Value>
     <Value genre="config" index="5" instance="1" label="Function setup of input 2" size="1" type="list" value="3">
       <Help>This parameter decides which kind of function is configured to trigger the input.</Help>
@@ -58,7 +60,8 @@ NB! Please use this procedure only when the primary controller/ gateway is missi
       <Item label="6 timer controlled input – normally closed" value="6"/>
     </Value>
     <Value genre="config" index="6" instance="1" label="Timer for input 2." size="1" type="byte" value="0">
-      <Help>Timer value for input 2, used when input Mode 5 or 6 is chosen. 0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
+      <Help>Timer value for input 2, used when input Mode 5 or 6 is chosen.
+            0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
     </Value>
     <Value genre="config" index="7" instance="1" label="Function setup of input 3" size="1" type="list" value="3">
       <Help>This parameter decides which kind of function is configured to trigger the input.</Help>
@@ -71,7 +74,8 @@ NB! Please use this procedure only when the primary controller/ gateway is missi
       <Item label="6 timer controlled input – normally closed" value="6"/>
     </Value>
     <Value genre="config" index="8" instance="1" label="Timer for input 3." size="1" type="byte" value="0">
-      <Help>Timer value for input 3, used when input Mode 5 or 6 is chosen. 0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
+      <Help>Timer value for input 3, used when input Mode 5 or 6 is chosen.
+            0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
     </Value>
     <Value genre="config" index="9" instance="1" label="Function setup of input 4" size="1" type="list" value="3">
       <Help>This parameter decides which kind of function is configured to trigger the input.</Help>
@@ -84,7 +88,8 @@ NB! Please use this procedure only when the primary controller/ gateway is missi
       <Item label="6 timer controlled input – normally closed" value="6"/>
     </Value>
     <Value genre="config" index="10" instance="1" label="Timer for input 4." size="1" type="byte" value="0">
-      <Help>Timer value for input 4, used when input Mode 5 or 6 is chosen. 0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
+      <Help>Timer value for input 4, used when input Mode 5 or 6 is chosen.
+            0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
     </Value>
     <Value genre="config" index="11" instance="1" label="Function setup of input 5" size="1" type="list" value="3">
       <Help>This parameter decides which kind of function is configured to trigger the input.</Help>
@@ -97,7 +102,8 @@ NB! Please use this procedure only when the primary controller/ gateway is missi
       <Item label="6 timer controlled input – normally closed" value="6"/>
     </Value>
     <Value genre="config" index="12" instance="1" label="Timer for input 5." size="1" type="byte" value="0">
-      <Help>Timer value for input 5, used when input Mode 5 or 6 is chosen. 0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
+      <Help>Timer value for input 5, used when input Mode 5 or 6 is chosen.
+            0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
     </Value>
     <Value genre="config" index="13" instance="1" label="Function setup of input 6" size="1" type="list" value="3">
       <Help>This parameter decides which kind of function is configured to trigger the input.</Help>
@@ -110,7 +116,8 @@ NB! Please use this procedure only when the primary controller/ gateway is missi
       <Item label="6 timer controlled input – normally closed" value="6"/>
     </Value>
     <Value genre="config" index="14" instance="1" label="Timer for input 6." size="1" type="byte" value="0">
-      <Help>Timer value for input 6, used when input Mode 5 or 6 is chosen. 0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
+      <Help>Timer value for input 6, used when input Mode 5 or 6 is chosen.
+            0 Inactive (default). Time in seconds: 1 – 127. Time in minutes: 128 – 255</Help>
     </Value>
     <Value genre="config" index="15" instance="1" label="Input Snubber-filter time constant." size="1" type="byte" value="5">
       <Help>Specifies the time used to define the time constant of the input snubber-filter. (Increments in 0.01 second resolution.)</Help>
@@ -121,45 +128,39 @@ NB! Please use this procedure only when the primary controller/ gateway is missi
     <Value genre="config" index="17" instance="1" label="Threshold for input in latched mode." size="1" type="byte" value="50">
       <Help>Indicates the time that an input must be activated before it accepts the button latched mode. (Increments in 0.01 second resolution.)</Help>
     </Value>
-    <Value genre="config" index="18" instance="1" label="Deactivate Central Scene noti-fications." size="1" max="1" min="0" type="short" value="0">
+    <Value genre="config" index="18" instance="1" label="Deactivate Central Scene notifications." size="1" max="1" min="0" type="short" value="0">
       <Help>It is possible to enable Central Scene notifications when the 6 inputs are activated.
-            0 Central Scene notifications enabled (standard)
+            0 Central Scene notifications enabled (default)
             1 Central Scene notifications disabled.
       </Help>
     </Value>
     <Value genre="config" index="19" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
-      <Help>Choose parameter value from the table on the right.
-            0 Output is controlled via Z-Wave messages.
-            1 Output is controlled by input 1 (standard).
+      <Help>0 Output is controlled via Z-Wave messages.
+            1 Output is controlled by input 1 (default).
       </Help>
     </Value>
-    <Value genre="config" index="20" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
-      <Help>Choose parameter value from the table on the right.
-            0 Output is controlled via Z-Wave messages.
+    <Value genre="config" index="20" instance="1" label="Output function, Output 2." size="1" max="1" min="0" type="short" value="1">
+      <Help>0 Output is controlled via Z-Wave messages.
             1 Output is controlled by input 2 (default).
       </Help>
     </Value>
-    <Value genre="config" index="21" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
-      <Help>Choose parameter value from the table on the right.
-            0 Output is controlled via Z-Wave messages.
+    <Value genre="config" index="21" instance="1" label="Output function, Output 3." size="1" max="1" min="0" type="short" value="1">
+      <Help>0 Output is controlled via Z-Wave messages.
             1 Output is controlled by input 3 (default).
       </Help>
     </Value>
-    <Value genre="config" index="22" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
-      <Help>Choose parameter value from the table on the right.
-            0 Output is controlled via Z-Wave messages.
+    <Value genre="config" index="22" instance="1" label="Output function, Output 4." size="1" max="1" min="0" type="short" value="1">
+      <Help>0 Output is controlled via Z-Wave messages.
             1 Output is controlled by input 4 (default).
       </Help>
     </Value>
-    <Value genre="config" index="23" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
-      <Help>Choose parameter value from the table on the right.
-            0 Output is controlled via Z-Wave messages.
+    <Value genre="config" index="23" instance="1" label="Output function, Output 5." size="1" max="1" min="0" type="short" value="1">
+      <Help>0 Output is controlled via Z-Wave messages.
             1 Output is controlled by input 5 (default).
       </Help>
     </Value>
-    <Value genre="config" index="24" instance="1" label="Output function, Output 1." size="1" max="1" min="0" type="short" value="1">
-      <Help>Choose parameter value from the table on the right.
-            0 Output is controlled via Z-Wave messages.
+    <Value genre="config" index="24" instance="1" label="Output function, Output 6." size="1" max="1" min="0" type="short" value="1">
+      <Help>0 Output is controlled via Z-Wave messages.
             1 Output is controlled by input 6 (default).
       </Help>
     </Value>

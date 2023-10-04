@@ -1,117 +1,136 @@
 <?xml version="1.0"?>
 <!--
-Heatit Z-Water
-https://products.z-wavealliance.org/products/3102
+Heatit Z-Relay
 -->
 <Product xmlns="https://github.com/OpenZWave/open-zwave" Revision="3">
   <MetaData>
     <MetaDataItem name="ProductPic">images/thermofloor/heatit208.png</MetaDataItem>
-    <MetaDataItem id="020a" name="ZWProductPage" type="0003">https://products.z-wavealliance.org/products/3102/</MetaDataItem>
+    <MetaDataItem id="0208" name="ZWProductPage" type="0003"></MetaDataItem>
     <MetaDataItem name="InclusionDescription">Adding the device:
 When the primary controller is set to add/remove modus press the &#x201D;INCLUSION&#x201D; button once on the device</MetaDataItem>
-    <MetaDataItem id="020a" name="Identifier" type="0003">Z-Water</MetaDataItem>
-    <MetaDataItem name="Description">Heatit Z-Water is equipped with 10 relay outputs and 4 analog inputs, and a Z-Wave radio for interfacing to the wireless
-Z-Wave network.
-The regulator can be power supplied from a 230V AC mains connection, and is able to deliver an output supply of 24V DC.
-Heatit Z-Water relay outputs are able to be freely controlled from the Z-Wave network, and can be used for several
-purposes, e.g. on/off control of light, control of valve actuators for an underfloor heating system, or control of other home
-automation systems.
-Heatit Z-Water inputs are analog inputs for interfacing simple temperature sensors; NTC, PT1000, etc.
-It is possible to configure the level and the indication of the status indicator LED in the front of the Heatit Z-Water
-regulator.</MetaDataItem>
-    <MetaDataItem name="ProductManual">https://Products.Z-WaveAlliance.org/ProductManual/File?folder=&amp;filename=Manuals/3102/Manual_Heatit_Z-Water_analog%20inputs_FW%202.1_Ver2019-A_ENG.pdf</MetaDataItem>
+    <MetaDataItem id="0208" name="Identifier" type="0003">Z-Relay</MetaDataItem>
+    <MetaDataItem name="Description">The Heatit Z-Relay is a Z-Wave module in a water-resistant housing equipped with 10 x membrane cable entries.
+The Heatit Z-Relay is equipped with 1 relay output and 3 multi-purpose inputs, and a Z-radio for interfacing to the
+wireless Z-Wave network. The module must be power supplied from a 230V AC mains connection.
+The Heatit Z-Realy high-duty relay output are able to be freely controlled from the Z-Wave network, and can be used for
+several purposes, e.g. control of valve actuators, stoves etc.
+Two of the Heatit Z-Relay inputs can be configured to function as either digital inputs or as analogue inputs for interfacing
+simple NTC temperature sensors. When the inputs are used as digital inputs, they can be connected to potential free
+contacts, open-collector outputs, and will be able to control other Z-Wave devices when the status of the inputs sent
+to other Z-Wave devices on the Z-Wave network. The last input can be used as either digital input or be used to be
+connected to a flood detector.
+It is possible to configure the level- and the indication of the status indicator LED on the modules circuit board.     
+    </MetaDataItem>
+    <MetaDataItem name="ProductManual">https://media.heatit.com/923</MetaDataItem>
     <MetaDataItem name="ExclusionDescription">Removing the device: When the primary controller is set to add/remove modus press the &#x201D;INCLUSION&#x201D; button once on the device</MetaDataItem>
-    <MetaDataItem id="020a" name="FrequencyName" type="0003">CEPT (Europe)</MetaDataItem>
+    <MetaDataItem id="0208" name="FrequencyName" type="0003">CEPT (Europe)</MetaDataItem>
     <MetaDataItem name="ResetDescription">By pressing buttons Right and Center (down and confirm) for 20 seconds, the thermostat will perform a complete factory reset.
 NB! Please use this procedure only when the primary controller/ gateway is missing or otherwise inoperable.</MetaDataItem>
-    <MetaDataItem name="Name">Heatit Z-Water</MetaDataItem>
+    <MetaDataItem name="Name">Heatit Z-Relay</MetaDataItem>
     <ChangeLog>
-      <Entry author="Espen Throndsen - espenthrondsen@gmail.com" date="21 Oct 2019" revision="1">Initial Metadata Import from Z-Wave Alliance Database - https://products.z-wavealliance.org/products/3102/xml</Entry>
-      <Entry author="Lars Tobias Skjong-B&#xF8;rsting - larstobi@relatime.no" date="28 Jun 2020" revision="2">Added ProductPic</Entry>
-      <Entry author="Lars Tobias Skjong-B&#xF8;rsting - larstobi@relatime.no" date="12 Jul 2020" revision="3">Fixed errors</Entry>
+      <Entry author="Flobul - flobuljeedom@gmail.com" date="14 Jan 2022" revision="1">Fixed all wrong configurations (found on manual)</Entry>
     </ChangeLog>
   </MetaData>
   <CommandClass id="112">
     <Value genre="config" index="1" label="status LED" size="1" type="list" value="1">
-      <Help>Set LED mode</Help>
+      <Help>Configuration of the status LED.</Help>
       <Item label="LED turned off" value="0"/>
-      <Item label="LED turned on.(default)" value="1"/>
+      <Item label="LED turned on. (default)" value="1"/>
       <Item label="2 LED flashing at 1 second intervals (&#xBD; Hz)" value="2"/>
       <Item label="3 LED flashing at &#xBD; second interval (1 Hz)" value="3"/>
     </Value>
     <Value genre="config" index="2" instance="1" label="Specifies the brightness level of the LED when it is on.(0-100) Default is 50" size="1" type="byte" value="50">
-      <Help>Set Brightnes</Help>
+      <Help>Configure the percentage of light in the status LED, when the LED is turned on</Help>
     </Value>
     <Value genre="config" index="3" instance="1" label="Thermistor type connected to input 1" size="1" type="list" value="0">
-      <Help>This parameter decides which kind of thermistor that is connected to the input.</Help>
+      <Help>Configures the thermistor type connected to input 1.</Help>
       <Item label="0 No thermistor, input is disabled" value="0"/>
       <Item label="1 10K NTC. (PART NUMBER: TT02-10KC3-93D-3000R-TPH). (Default)" value="1"/>
     </Value>
     <Value genre="config" index="4" instance="1" label="Thermistor type connected to input 2" size="1" type="list" value="0">
-      <Help>This parameter decides which kind of thermistor that is connected to the input.</Help>
+      <Help>Configures the thermistor type connected to input 2.</Help>
       <Item label="0 No thermistor, input is disabled" value="0"/>
       <Item label="1 10K NTC. (PART NUMBER: TT02-10KC3-93D-3000R-TPH). (Default)" value="1"/>
     </Value>
-    <Value genre="config" index="5" instance="1" label="Input 1 calibration" size="1" type="byte" max="255" min="0" value="0">
-      <Help>-40 - 40 (-4.0C - 4.0C) Default is 0 (0.0C) To set a negative value, use 255 and subtract the desired value.</Help>
+    <Value genre="config" index="5" instance="1" label="Temperature offset on input 1." size="1" type="byte" max="40" min="-40" value="0">
+      <Help>Configures a temperature offset that can be added to the measured temperature in order to get a more accurate measurement from the
+thermistor on input 1.
+      Possible parameter settings: -40 to 40 ; -4,0 – 4,0 C. Value is added to the temperature measurement. (Default is 0).</Help>
     </Value>
-    <Value genre="config" index="7" instance="1" label="Input 1 Temperature report interval" max="8640" min="0" size="2" type="short" value="60">
-      <Help>
-				0 (Report disabled)
-        Multiply with 10 seconds, 10 seconds &#x2013; 24 hours. Default is 6 (60 seconds).</Help>
+    <Value genre="config" index="6" instance="1" label="Temperature offset on input 2." size="1" type="byte" max="40" min="-40" value="0">
+      <Help>Configures a temperature offset that can be added to the measured temperature in order to get a more accurate measurement from the
+thermistor on input 2.
+      Possible parameter settings: -40 to 40 ; -4,0 – 4,0 C. Value is added to the temperature measurement. (Default is 0).</Help>
     </Value>
-    <Value genre="config" index="8" instance="1" label="Input 2 Temperature report interval" max="8640" min="0" size="2" type="short" value="60">
-      <Help>
-				0 (Report disabled)
-        Multiply with 10 seconds, 10 seconds &#x2013; 24 hours. Default is 6 (60 seconds).</Help>
+    <Value genre="config" index="7" instance="1" label="Time interval for reports sent about input 1." max="8640" min="0" size="2" type="short" value="6">
+      <Help>Configures the time interval between when sensor reports are transmitted for input 1.
+      Possible parameter settings: 0 to 8 640 ; 0 – 86 400 seconds. Default value is 6 (60 seconds) which will cause a report to be sent
+every minute.</Help>
     </Value>
-    <Value genre="config" index="9" instance="1" label="Input 3 report interval" max="8640" min="0" size="2" type="short" value="60">
-      <Help>
-				0 (Report disabled)
-        Multiply with 10 seconds, 10 seconds &#x2013; 24 hours. Default is 6 (60 seconds).</Help>
+    <Value genre="config" index="8" instance="1" label="Time interval for reports sent about input 2." max="8640" min="0" size="2" type="short" value="6">
+      <Help>Configures the time interval between when sensor reports are transmitted for input 2.
+      Possible parameter settings: 0 to 8 640 ; 0 – 86 400 seconds. Default value is 6 (60 seconds) which will cause a report to be sent
+every minute.</Help>
     </Value>
-    <Value genre="config" index="10" instance="1" label="Meter reports interval" max="8640" min="0" size="2" type="short" value="60">
-      <Help>
-				0 (Report disabled)
-        Multiply with 10 seconds, 10 seconds &#x2013; 24 hours. Default is 6 (60 seconds).</Help>
+    <Value genre="config" index="9" instance="1" label="Time interval between notification reports for input 3." max="8640" min="0" size="2" type="short" value="2">
+      <Help>Configures the time interval between when notification reports for flood input 3.
+      Possible parameter settings: 0 to 8 640 ; 0 – 86 400 seconds. Default value is 2 (20 seconds) which will cause reports to be sent every
+20 seconds.</Help>
     </Value>
-    <Value genre="config" index="11" instance="1" label="Flood Steady Timer" max="60" min="0" size="1" type="byte" value="6">
-      <Help></Help>
-    <Value genre="config" index="12" instance="1" label="Auto relay on" max="60" min="0" size="1" type="list" value="1">
-      <Help></Help>
+    <Value genre="config" index="10" instance="1" label="Time interval between meter reports." max="8640" min="0" size="2" type="short" value="90">
+      <Help>Configures the time interval between when meter reports for reporting the energy (kWh) consumed by the load connected to the relay output.
+      Possible parameter settings: 0 to 8 640 ; 0 – 86 400 seconds. Default value is 90 (900 seconds) which will cause reports to be sent
+every 15 minute.</Help>
+    </Value>
+    <Value genre="config" index="11" instance="1" label="Flood steady timer." max="60" min="0" size="1" type="short" value="6">
+      <Help>Configures the time that the flood input (input 3) has to be steady before the state is accepted as a valid state.
+     Possible parameter settings: 0 – 60 seconds. Default value is 6 (6 seconds) before a state is accepted as valid.</Help>
+    </Value>
+    <Value genre="config" index="12" instance="1" label="Auto relay on" size="1" type="list" value="2">
+      <Help>Configures internal states that will cause the relay to be turned on.</Help>
 	  <Item label="0 Relay is not turned on automatically. " value="0"/>
       <Item label="1 The relay is turned on when a flood is detected. (Default)" value="1"/>
       <Item label="2 The relay is turned on when no flood is detected." value="2"/>
     </Value>
-	<Value genre="config" index="13" instance="1" label="Auto relay off" max="60" min="0" size="1" type="list" value="1">
-      <Help></Help>
+    <Value genre="config" index="13" instance="1" label="Auto relay off" size="1" type="list" value="2">
+      <Help>Configures internal states that will cause the relay to be turned off.</Help>
 	  <Item label="0 Relay is not turned off automatically. " value="0"/>
       <Item label="1 The relay is turned off when a flood is detected. (Default)" value="1"/>
       <Item label="2 The relay is turned off when no flood is detected." value="2"/>
     </Value>
-	 <Value genre="config" index="14" instance="1" label="Flood detection threshold" max="4095" min="0" size="2" type="short" value="2048">
-      <Help></Help>
+    <Value genre="config" index="14" instance="1" label="Flood detection threshold" max="4095" min="0" size="2" type="short" value="2048">
+      <Help>Configures the threshold for input 3 that will cause a flood to be detected.
+      Possible parameter settings: 0 to 4095 ; Low value means a low detection threshold, high value will cause the input to be more
+sensitive. Default value is 2048.</Help>
     </Value>
-	<Value genre="config" index="15" instance="1" label="Voltage" max="250" min="0" size="1" type="byte" value="220">
-      <Help></Help>
+    <Value genre="config" index="15" instance="1" label="Voltage" max="250" min="0" size="1" type="byte" value="220">
+      <Help>Configures the value used for power calculation, as only the current for the load on the relay output is measured.
+      Possible parameter settings: 0 – 250 Volt. Default value is 220.</Help>
     </Value>
-	<Value genre="config" index="16" instance="1" label="Ampere" max="255" min="0" size="1" type="byte" value="0">
-      <Help>Not used</Help>
+    <Value genre="config" index="16" instance="1" label="Ampere" max="255" min="0" size="1" type="byte" value="0">
+      <Help>NOT USED</Help>
     </Value>
-	<Value genre="config" index="17" instance="1" label="Digital value per ampere" max="255" min="0" size="1" type="byte" value="81">
-      <Help>DO NOT CHANGE THIS VALUE, UNLESS INSTRUCTED TO.</Help>
+	<Value genre="config" index="17" instance="1" label="Ampere" max="255" min="0" size="1" type="byte" value="81">
+      <Help>Configures the digital value on the A/D converter that corresponds to a current of one ampere.
+      DO NOT CHANGE THIS VALUE, UNLESS INSTRUCTED TO.
+     Possible parameter settings: 0 – 255. Default value is 81 which is corresponds to the current sensor ACS722LLCTR-20AB.</Help>
     </Value>
 	<Value genre="config" index="18" instance="1" label="Size of load connected" max="6000" min="0" size="2" type="short" value="0">
-      <Help>This value specifies the actual load in Watt used for power metering.</Help>
+      <Help>Configures a constant value that will be used in power metering when this value is different from 0.
+This value specifies the actual load in Watt used for power metering.
+     Possible parameter settings:0 – 6000 Watt. Default value is 0.</Help>
     </Value>
+      
     <Compatibility/>
   </CommandClass>
   <CommandClass id="133">
-    <Associations num_groups="5">
-      <Group index="1" label="Lifeline" max_associations="5"/>
+    <Associations num_groups="6">
+      <Group index="1" label="Lifeline" max_associations="1"/>
       <Group index="2" label="Sends Multilevel Sensor Reports for input 1" max_associations="5"/>
       <Group index="3" label="Sends Multilevel Sensor Reports for input 2" max_associations="5"/>
-      <Group index="4" label="Sends Multilevel Sensor Reports for input 3" max_associations="5"/>
+      <Group index="4" label="Basic Report On / Off" max_associations="5"/>
+      <Group index="5" label="Basic Set On / Off" max_associations="5"/>
+      <Group index="6" label="Notification Report" max_associations="5"/>
     </Associations>
     <Compatibility/>
   </CommandClass>
@@ -128,3 +147,4 @@ NB! Please use this procedure only when the primary controller/ gateway is missi
     </Compatibility>
   </CommandClass>
 </Product>
+
